@@ -1,0 +1,63 @@
+<script type="text/javascript">
+
+$('#btn-{{ buttonType }}').click(function() {
+    var url = '{{panel}}_GETPOPUP';
+    var needSelectedRow = '{{ needSelectedRow|default('false') }}';
+    var data = {};
+    data['buttonType'] = '{{ buttonType }}';
+    data['typmod'] = '{{ typmod|default('') }}';
+    data['editable'] = '{{editable|default('false')}}';
+    data['withConfirmation'] = '{{withConfirmation|default('false')}}';
+    if (needSelectedRow == 'true') {
+      data['row'] = getRowDataSelected();
+    }
+
+    callTo(url, data);
+  });
+
+
+  getRowDataSelected = function() {
+      var heads = [];
+      $("#datatable thead").find("th").each(function () {
+        heads.push($(this).attr('id'));
+      });
+      //window.alert("CHONG COLUMN : " + JSON.stringify(heads));
+
+      var data = {};
+      $('#datatable .row_selected').each(function () {
+        cur = {};
+        $(this).find("td").each(function(i, v) {
+          cur[heads[i]] = $(this).text().trim();
+        });
+        //data[$(this)[0]['_DT_RowIndex']] = cur;
+        data = cur;
+        cur = {};
+      });
+      return data;
+  };
+
+
+  callTo = function(url, data) {
+    $.ajax({
+      url : url,
+      type: 'post',
+      data : data,
+      success: function(data) {
+        $('[class="popup-inner"]').html(data);
+        affichPopup();
+      },
+      error: function(data) {
+        window.alert('Error');
+      }
+    });
+  };
+
+  affichPopup = function() {
+    $('[data-popup="popup-action"]').fadeIn(350);
+  };
+  closePopup = function() {
+    $('[data-popup="popup-action"]').fadeOut(350);
+  };
+
+</script>
+<button type="button" id="btn-{{buttonType}}" class="btn btn-secondary" >{{buttonTrad|trans}}</button>

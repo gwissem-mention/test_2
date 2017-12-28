@@ -1,0 +1,3 @@
+alstef_ihm:
+    resource: "@AlstefIhmBundle/Resources/config/routing.yml"
+    prefix:   /

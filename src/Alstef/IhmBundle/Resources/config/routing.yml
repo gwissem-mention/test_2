@@ -1,0 +1,69 @@
+# Ecrans Login et Menu
+alstef_ihm_homepage:
+  path: /
+  defaults: { _controller: AlstefIhmBundle:Accueil:init }
+alstef_ihm_login:
+  path: /login
+  defaults: { _controller: AlstefIhmBundle:Accueil:login }
+alstef_ihm_disconnect:
+  path: /logout
+  defaults: { _controller: AlstefIhmBundle:Accueil:disconnect }
+alstef_ihm_menu:
+  path: /menu
+  defaults: { _controller: AlstefIhmBundle:Accueil:menu }
+alstef_ihm_refresh:
+  path: /statusRefresh
+  defaults: { _controller: AlstefIhmBundle:Accueil:statusRefresh }
+
+# Ecran LISVOL
+alstef_ihm_LISVOL:
+  path: /LISVOL
+  defaults: { _controller: AlstefIhmBundle:LISVOL:init }
+alstef_ihm_LISVOL_afficher_vide:
+  path: /LISVOL_afficher_vide
+  defaults: { _controller: AlstefIhmBundle:LISVOL:afficherVide }
+alstef_ihm_LISVOL_afficher:
+  path: /LISVOL_afficher
+  defaults: { _controller: AlstefIhmBundle:LISVOL:afficher }
+
+# Ecran LISBAG
+alstef_ihm_LISBAG:
+  path: /LISBAG
+  defaults: { _controller: AlstefIhmBundle:LISBAG:init }
+alstef_ihm_LISBAG_afficher_vide:
+  path: /LISBAG_afficher_vide
+  defaults: { _controller: AlstefIhmBundle:LISBAG:afficherVide }
+alstef_ihm_LISBAG_afficher:
+  path: /LISBAG_afficher
+  defaults: { _controller: AlstefIhmBundle:LISBAG:afficher }
+
+# Ecran LISECR
+alstef_ihm_LISECR:
+  path: /LISECR
+  defaults: { _controller: AlstefIhmBundle:LISECR:init }
+alstef_ihm_LISECR_afficher:
+  path: /LISECR_afficher
+  defaults: { _controller: AlstefIhmBundle:LISECR:afficher }
+
+alstef_ihm_LISECR_GETPOPUP:
+  path: /LISECR_GETPOPUP
+  defaults: { _controller: AlstefIhmBundle:LISECR:getpopup }
+alstef_ihm_LISECR_action:
+    path: /LISECR_ACTION
+    defaults: { _controller: AlstefIhmBundle:LISECR:action }
+
+# Ecran LISPFL
+alstef_ihm_LISPFL:
+  path: /LISPFL
+  defaults: { _controller: AlstefIhmBundle:LISPFL:init }
+alstef_ihm_LISPFL_afficher:
+  path: /LISPFL_afficher
+  defaults: { _controller: AlstefIhmBundle:LISPFL:afficher }
+
+alstef_ihm_LISPFL_GETPOPUP:
+  path: /LISPFL_GETPOPUP
+  defaults: { _controller: AlstefIhmBundle:LISPFL:getpopup }
+alstef_ihm_LISPFL_action:
+  path: /LISPFL_ACTION
+  defaults: { _controller: AlstefIhmBundle:LISPFL:action }
+

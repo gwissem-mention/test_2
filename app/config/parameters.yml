@@ -1,0 +1,16 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_driver: pdo_oci
+    database_host: "%env(HOSTNAME_SHORT)%"
+    database_port: "%env(BD_PORT)%"
+    database_name: ''
+    database_servicename: "%env(ORACLE_SID)%"
+    database_user: "%env(BD_USER)%"
+    database_password: "%env(BD_PASS)%"
+    database_charset: "%env(BD_CHARSET)%"
+    logDirectory: "%env(TRALGB)%"
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: null
+    mailer_password: null
+    secret: 922eda030907bd80eb691a561ab27be5c2bcac2e

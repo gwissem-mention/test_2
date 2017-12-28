@@ -1,0 +1,24 @@
+/* src/Alstef/alstefihmBundle/Resources/public/css/ecrans.css */
+
+/* Toutes les DIV des pages */
+.panel { margin-top: 10px; background: lightgreen; border-radius: 10px; border: 2px solid black; }
+
+/* Partie Critères de sélection */
+#criteres { padding: 20px; line-height: 40px; text-align: left; }
+#criteres span { margin-left: 30px; }
+#criteres span * { margin-left: 10px; }
+#criteres input[type='button'] { float: right; margin-right: 50px; font-size: 15px; padding: 10px; }
+
+/* Tableau de résultats */
+#resultats { padding-top: 5px; float: left; width: 85%; }
+#resultats table tr { line-height: 10px; }
+
+/* Boutons à droite */
+#boutons { padding: 20px; float: right; width: 11%; text-align: center; height: 430px; }
+#boutons input[type='button'] { width: 150px; font-size: 15px; padding: 10px; margin: 10px; }
+
+/* Cadrage des cellules de tableau qui contiennent des nombres */
+td.numerique { text-align: right; }
+
+/* Bordures verticales des entêtes des tableaux de class .cell-border */
+table.dataTable.cell-border thead th, table.dataTable.cell-border thead td { border-right: 1px solid #ffffff; }

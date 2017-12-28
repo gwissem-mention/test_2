@@ -1,0 +1,49 @@
+{# src/Alstef/IhmBundle/Resources/views/login.html.twig #}
+{% extends 'AlstefIhmBundle:Layout:Base/BaseLogin.html.twig' %}
+
+{% form_theme form 'AlstefIhmBundle:Form:fields.html.twig' %}
+{% block title %}Identification{% endblock%}
+{% block javascript %}
+
+{% endblock %}
+
+{% block id %}ecr_LOGIN{% endblock %}
+{% block body %}
+<img class="background-login" src="{{ asset('bundles/alstefihm/Ihm/pictures/ALSTEF_fond_ecran_neutre.jpg')}}">
+<div class="container container-table">
+  <div class="row vertical-center-row">
+    <div id="login-modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header" align="center">
+            <img class="img" id="img_logo" src="{{ asset('bundles/alstefihm/Ihm/pictures/flavicon_bagware.png') }}">
+          </div>
+
+          <div id="div-forms">
+            {{ form_start (form, {'action': path ('alstef_ihm_login'), 'method': 'POST', 'attr': {'id':'login-form'}}) }}
+            <div class="modal-body">
+              {{ form_errors(form) }}
+              {{ form_row(form.language, {'label': 'LIBELLE.LANGUE'}) }}
+              {{ form_widget(form.name, { 'attr': { 'class': 'form-control', 'placeholder' : 'LIBELLE.USR_NOM' }}) }}
+              {{ form_widget(form.password, { 'attr': { 'class': 'form-control', 'placeholder' : 'LIBELLE.USR_PSW' }}) }}
+            </div>
+            {{ form_rest(form) }}
+            {# {{ form_widget(form) }} #}
+            <div class="modal-footer">
+              <div>
+                <button id="btnLogin" type="submit" class="btn btn-primary btn-lg btn-block">{{'BOUTON.BOX_LOGIN'|trans}}</button>
+              </div>
+            </div>
+            {{ form_end(form) }}
+
+            <div id="loaderView" style="display:none;">
+              <h3 class="loaderText">Veuillez patienter...</h3>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,47 @@
+.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1{
+    padding-right: 0px;
+    padding-left: 0px;  
+}
+
+.indicators {
+  display: block;
+  position:absolute;
+  bottom: 0px;
+  left: 0px;
+  width:100%;
+  padding: 0 0 0 0;
+  background-color: white;
+  font-size: 1em;
+}
+
+.indicators div {
+    padding-top: 7px;
+    height: 35px;
+    text-align: center;
+    font-size: 135%;
+    border-style: solid;
+    border-width: 0px 2px 0px 2px;
+}
+
+.indicators div i { 
+    margin-right: 2px;
+}
+
+.indicators .indic-warn {
+    background-color: #f0ad4e;
+    color: white;
+}
+
+.indicators .indic-err {
+    background-color: #d9534f;
+    color: white;
+}
+
+.indicators .indic-ok {
+    background-color: #5cb85c;
+    color: white;
+}
+
+/*.indicators div h3 {
+    text-align: center;
+}*/

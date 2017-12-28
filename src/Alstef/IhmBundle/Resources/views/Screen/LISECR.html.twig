@@ -1,0 +1,57 @@
+<div role="tabpanel" class="tab-pane active" id="{{idtab}}">
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>{{'PANEL.LISECR'|trans}}</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <div class="btn-group crud" role="group">
+                        {{include('AlstefIhmBundle:Form:ActionButton.html.twig',
+                         {  'buttonType' : 'create',
+                            'typmod' : 'C',
+                            'buttonTrad' : 'BOUTON.CREATE',
+                            'panel': idtab,
+                            'editable': 'true',
+                            'withConfirmation' : 'true' })}}
+                        {{include('AlstefIhmBundle:Form:ActionButton.html.twig',
+                         {  'buttonType' : 'read',
+                            'buttonTrad' : 'BOUTON.DETAIL',
+                            'panel': idtab,
+                            'needSelectedRow' : 'true' })}}
+                        {{include('AlstefIhmBundle:Form:ActionButton.html.twig',
+                         {  'buttonType' : 'update',
+                            'typmod' : 'M',
+                            'buttonTrad' : 'BOUTON.UPDATE',
+                            'panel': idtab,
+                            'needSelectedRow' : 'true' ,
+                            'editable' : 'true',
+                            'withConfirmation' : 'true'})}}
+                        {{include('AlstefIhmBundle:Form:ActionButton.html.twig',
+                         {  'buttonType' : 'delete',
+                            'typmod' : 'S',
+                            'buttonTrad' : 'BOUTON.DELETE',
+                            'panel': idtab,
+                            'needSelectedRow' : 'true' ,
+                            'withConfirmation' : 'true'})}}
+                      </div>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="popup" data-popup="popup-action">
+                  <div class="popup-inner">
+
+                  </div>
+                </div>
+                <div class="x_content">
+                    <div id="datatable-content" style="display:none;">
+                        <table id="datatable" class="table table-striped table-bordered dataTable no-footer" cellspacing="0" width="100%">
+                        </table>
+                    </div>
+                    <div id="loader" style="display:none;">
+                        <p>{{ 'LIBELLE.DATATABLE_LOADINGRECORDS'|trans }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

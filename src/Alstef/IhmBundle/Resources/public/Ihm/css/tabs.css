@@ -1,0 +1,22 @@
+.nav-tabs>li{
+        margin-top: 18px;
+}
+
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus{
+    color: #6A70B0;
+    background-color: #F7F7F7;  
+}
+
+.nav-tabs {
+    border-bottom: 0px solid #ddd;
+}
+
+#tabcontainer{
+    height: 57px;
+}
+
+.tab-content{
+    height: 100%;
+}

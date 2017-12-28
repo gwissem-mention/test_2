@@ -1,0 +1,48 @@
+# TODO : Voir pourquoi ce fichier n'accepte pas les caracteres accentues (attend de l'UTF-8 et pas de l'ISO-8859-1)
+
+parameters:
+# alstef.example.class: Alstef\IhmBundle\Example
+
+services:
+# Logger personnalise
+  alstef.logger:
+    class: Alstef\IhmBundle\Services\Logger
+    arguments: ['alstef', 5, 200000, "%logDirectory%"]
+    tags:
+      - { name: monolog.logger }
+
+# Connexion a la BDD
+  alstef.bdd:
+    class: Alstef\IhmBundle\Services\DBALConnection
+    arguments: ["@session", "@alstef.logger", "@database_connection"]
+
+# Listener charge de memoriser la _locale en session
+  alstef.locale_listener:
+    class: Alstef\IhmBundle\Services\LocaleListener
+    arguments: ["@alstef.logger", "%kernel.default_locale%"]
+    tags:
+      - { name: kernel.event_subscriber }
+
+# Listener charge de rediriger vers l'ecran d'accueil si utilisateur non authentifie
+  alstef.logged_in_listener:
+    class: Alstef\IhmBundle\Services\LoggedInUserListener
+    arguments: ["@alstef.logger", "@router"]
+    tags:
+      - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+
+# Loader de STKWSIZ
+  alstef.stkwsiz:
+    class: Alstef\IhmBundle\Services\StkwsizLoad
+    arguments: ["@alstef.bdd", "@alstef.logger"]
+
+# Loader de traduction personnalise. Utilise STKWDIC
+  alstef.traduction.dic:
+    class: Alstef\IhmBundle\Services\StkwdicTranslate
+    arguments: ["@alstef.bdd", "@alstef.logger"]
+    tags:
+      - { name: translation.loader, alias: dic }
+
+# Service de traduction personnalise
+  alstef.traduction:
+    class: Alstef\IhmBundle\Services\UtlTranslate
+    arguments: ["@session", "@alstef.logger", "@translator.default"]

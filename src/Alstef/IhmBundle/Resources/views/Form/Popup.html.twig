@@ -1,0 +1,71 @@
+<script type="text/javascript">
+$( "#form-action" ).submit(function( event ) {
+    event.preventDefault();
+
+    var data = {};
+
+    $(this).contents().filter("input").each(function(){
+        var input = $(this); // This is the jquery object of the input
+
+        if(input.attr('name') !== undefined)
+        {
+            if(input.attr("type") == 'checkbox')
+            {
+                if (input.is(":checked"))
+                {
+                    data[input.attr('name')] = 1;
+                }else{
+                    data[input.attr('name')] = 0;
+                }
+            }else{
+                data[input.attr('name')] = input.val();
+            }
+        }
+    });
+
+    data['typmod'] = '{{typmod}}';
+
+    $.ajax({
+      url : '{{idtab}}_ACTION',
+      type: 'post',
+      data : data,
+      success: function(data) {
+        window.alert('Success');
+        closePopup();
+      },
+      error: function(data) {
+        window.alert('Error');
+      }
+    });
+});
+
+</script>
+<h2>(Popup #{{buttonType}})</h2>
+<div>
+    {{ form_start (form, {'attr':
+    {'class':'form-horizontal form-label-left', 'id':'form-action', 'method':'post' }}) }}
+
+    {% if editable == 'true' %}
+      {% for field in form %}
+        {% if field != form._token %}
+          {{ form_label(field) }}
+          {{ form_widget(field) }}
+        {% endif %}
+      {% endfor %}
+    {% else %}
+      {% for field in form %}
+        {% if field != form._token %}
+          {{ form_label(field) }}
+          {{ form_widget(field, {'attr': {'disabled': ""}}) }}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+
+    {% if withConfirmation == 'true' %}
+      <button type="submit-action" class="btn-primary btn-lg">{{'LIBELLE.CONFIRM'|trans}}</button>
+    {% endif %}
+
+    {{ form_end(form) }}
+</div>
+<p><a data-popup-close="popup-action" href="#" onclick="closePopup()">Close</a></p>
+<a class="popup-close" data-popup-close="popup-action" href="#" onclick="closePopup()">x</a>

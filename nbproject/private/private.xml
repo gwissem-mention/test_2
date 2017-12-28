@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/home/cla/apps/bgstd/dvp/web_ihm/src/Alstef/IhmBundle/Controller/LISVOLController.php</file>
+            <file>file:/home/cla/apps/bgstd/dvp/web_ihm/src/Alstef/IhmBundle/Resources/views/Screen/Menu.html.twig</file>
+            <file>file:/home/cla/apps/bgstd/dvp/web_ihm/src/Alstef/IhmBundle/Resources/views/Screen/login.html.twig</file>
+            <file>file:/home/cla/apps/bgstd/dvp/web_ihm/src/Alstef/IhmBundle/Controller/LISBAGController.php</file>
+            <file>file:/home/cla/apps/bgstd/dvp/web_ihm/src/Alstef/IhmBundle/Resources/public/Ihm/js/screenmanager/ScreenManager.js</file>
+            <file>file:/home/cla/apps/bgstd/dvp/web_ihm/src/Alstef/IhmBundle/Resources/views/Screen/LISPFL.html.twig</file>
+            <file>file:/home/cla/apps/bgstd/dvp/web_ihm/src/Alstef/IhmBundle/Resources/views/Screen/LISECR.html.twig</file>
+            <file>file:/home/cla/apps/bgstd/dvp/web_ihm/src/Alstef/IhmBundle/Controller/LISECRController.php</file>
+            <file>file:/home/cla/apps/bgstd/dvp/web_ihm/src/Alstef/IhmBundle/Resources/views/Form/fields.html.twig</file>
+            <file>file:/home/cla/apps/bgstd/dvp/web_ihm/src/Alstef/IhmBundle/Form/LISBAGType.php</file>
+            <file>file:/home/cla/apps/bgstd/dvp/web_ihm/src/Alstef/IhmBundle/Form/LISVOLType.php</file>
+            <file>file:/home/cla/apps/bgstd/dvp/web_ihm/src/Alstef/IhmBundle/Resources/config/routing.yml</file>
+            <file>file:/home/cla/apps/bgstd/dvp/web_ihm/src/Alstef/IhmBundle/Resources/views/Layout/Base/Base.html.twig</file>
+            <file>file:/home/cla/apps/bgstd/dvp/web_ihm/src/Alstef/IhmBundle/Resources/views/Screen/LISBAG.html.twig</file>
+            <file>file:/home/cla/apps/bgstd/dvp/web_ihm/src/Alstef/IhmBundle/Resources/public/Ihm/js/Utils.js</file>
+            <file>file:/home/cla/apps/bgstd/dvp/web_ihm/src/Alstef/IhmBundle/Resources/views/Form/Criteria.html.twig</file>
+            <file>file:/home/cla/apps/bgstd/dvp/web_ihm/src/Alstef/IhmBundle/Resources/views/Screen/LISVOL.html.twig</file>
+            <file>file:/home/cla/apps/bgstd/dvp/web_ihm/src/Alstef/IhmBundle/Resources/public/Ihm/js/componentmanager/DatatableManager.js</file>
+            <file>file:/home/cla/apps/bgstd/dvp/web_ihm/src/Alstef/IhmBundle/Resources/views/Form/Popup.html.twig</file>
+            <file>file:/home/cla/apps/bgstd/dvp/web_ihm/src/Alstef/IhmBundle/Resources/config/services.yml</file>
+            <file>file:/home/cla/apps/bgstd/dvp/web_ihm/src/Alstef/IhmBundle/Resources/public/Ihm/js/componentmanager/TabManager.js</file>
+            <file>file:/home/cla/apps/bgstd/dvp/web_ihm/src/Alstef/IhmBundle/Resources/public/Ihm/js/screenmanager/LISBAGManager.js</file>
+            <file>file:/home/cla/apps/bgstd/dvp/web_ihm/src/Alstef/IhmBundle/Resources/public/Ihm/js/Main.js</file>
+            <file>file:/home/cla/apps/bgstd/dvp/web_ihm/src/Alstef/IhmBundle/Resources/views/Form/ActionButton.html.twig</file>
+        </group>
+    </open-files>
+</project-private>
