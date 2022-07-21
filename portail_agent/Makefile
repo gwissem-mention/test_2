@@ -24,7 +24,7 @@ endif
 
 ## Display help
 help:
-	@echo "${GREEN}Plainte en ligne - Portail Citoyen${RESET} https://citoyen.pel.localhost"
+	@echo "${GREEN}Plainte en ligne - Portail Agent${RESET} https://agent.pel.localhost"
 	@awk '/^[a-zA-Z\-_0-9]+:/ { \
 			helpMessage = match(lastLine, /^## (.*)/); \
 			if (helpMessage) { \
@@ -57,9 +57,7 @@ vendor: c=install --prefer-dist --no-progress --no-scripts --no-interaction --op
 vendor: composer
 
 ## Update composer dependencies
-php-version:
-	@php -v
-vendor-update: c=update --prefer-dist --no-progress --no-scripts --no-interaction --optimize-autoloader
+vendor-update: c=update --prefer-dist --no-dev --no-progress --no-scripts --no-interaction --optimize-autoloader
 vendor-update: composer
 
 ## Show recipes

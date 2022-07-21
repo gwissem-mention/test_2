@@ -26,10 +26,10 @@ services:
 
   database_citoyen:
     ports:
-      - "5432"
+      - "14532:5432"
   database_agent:
     ports:
-      - "5433"
+      - "14533:5433"
 
   mailer:
     image: schickling/mailcatcher

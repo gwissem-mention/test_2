@@ -1,12 +1,7 @@
 variables:
-    DOCKER_VERSION: 20.10.16
-    DOCKER_DRIVER: overlay2
-    DOCKER_HOST: tcp://docker:2376
-    DOCKER_TLS_CERTDIR: "/certs"
-    CI_PHP_AGENT_IMAGE_WITH_TAG: "$CI_REGISTRY_IMAGE/php_agent:$CI_COMMIT_REF_SLUG"
-    CI_PHP_CITOYEN_IMAGE_WITH_TAG: "$CI_REGISTRY_IMAGE/php_citoyen:$CI_COMMIT_REF_SLUG"
-
-image: docker:${DOCKER_VERSION}
+    HARBOR_PROJECT: "ministere-de-linterieur-plaintes-en-ligne-pel-2"
+    PHP_AGENT_ARTIFACT_NAME: "php_agent_debug:$CI_COMMIT_REF_SLUG"
+    PHP_CITOYEN_ARTIFACT_NAME: "php_citoyen_debug:$CI_COMMIT_REF_SLUG"
 
 stages:
     - build
@@ -14,194 +9,222 @@ stages:
     - quality
     - test
 
-.composer-install: &composer-install
-    before_script:
-        - composer install --prefer-dist --no-progress --no-scripts --no-interaction --optimize-autoloader
+#######################################
+##         Basic Inheritance         ##
+#######################################
 
-## Agent CI
-agent-build-php:
-    stage: build
-    before_script:
-        - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-    script:
-        - docker pull $CI_PHP_AGENT_IMAGE_WITH_TAG || true
-        - docker build 
-            --cache-from $CI_PHP_AGENT_IMAGE_WITH_TAG
-            --tag $CI_PHP_AGENT_IMAGE_WITH_TAG
-            --target symfony_php_debug ./portail_agent
-        - docker push $CI_PHP_AGENT_IMAGE_WITH_TAG
+.basic-override: &basic-override
     dependencies: []
     tags:
-        - galaxy-docker-shared
+        - docker
+
+.agent-step: &agent-step
+    image: "registry.smile.fr/${HARBOR_PROJECT}/${PHP_AGENT_ARTIFACT_NAME}"
+    before_script:
+        - cd ./portail_agent/
+        - make vendor
+    <<: *basic-override
+
+.citoyen-step: &citoyen-step
+    image: "registry.smile.fr/${HARBOR_PROJECT}/${PHP_CITOYEN_ARTIFACT_NAME}"
+    before_script:
+        - cd ./portail_citoyen/
+        - make vendor
+    <<: *basic-override
+
+#######################################
+##               Build               ##
+#######################################
+
+agent-build-php:
+    image:
+        name: gcr.io/kaniko-project/executor:debug
+        entrypoint: [""]
+    stage: build
+    script:
+        - mkdir -p /kaniko/.docker
+        - |
+            cat > /kaniko/.docker/config.json <<EOM
+            {
+                "auths": {
+                    "registry.smile.fr": {
+                        "auth": "$(printf "%s:%s" "${HARBOR_USER}" "${HARBOR_PASSWORD}" | base64 | tr -d '\n')"
+                    }
+                }
+            }
+            EOM
+        - >-
+            /kaniko/executor
+            --context "${CI_PROJECT_DIR}/portail_agent/"
+            --build-arg "BUILD_PATH='./portail_agent/'"
+            --target "symfony_php_debug"
+            --destination "registry.smile.fr/${HARBOR_PROJECT}/${PHP_AGENT_ARTIFACT_NAME}"
+    only:
+        changes:
+            - "portail_agent/Dockerfile"
+            - "portail_agent/docker/**/*"
+            - "docker-compose.*.yaml"
+            - "docker-compose.yaml"
+    <<: *basic-override
+
+citoyen-build-php:
+    image:
+        name: gcr.io/kaniko-project/executor:debug
+        entrypoint: [""]
+    stage: build
+    script:
+        - mkdir -p /kaniko/.docker
+        - |
+            cat > /kaniko/.docker/config.json <<EOM
+            {
+                "auths": {
+                    "registry.smile.fr": {
+                        "auth": "$(printf "%s:%s" "${HARBOR_USER}" "${HARBOR_PASSWORD}" | base64 | tr -d '\n')"
+                    }
+                }
+            }
+            EOM
+        - >-
+            /kaniko/executor
+            --context "${CI_PROJECT_DIR}/portail_citoyen/"
+            --build-arg "BUILD_PATH='./portail_citoyen/'"
+            --target "symfony_php_debug"
+            --destination "registry.smile.fr/${HARBOR_PROJECT}/${PHP_CITOYEN_ARTIFACT_NAME}"
+    only:
+        changes:
+            - "portail_citoyen/Dockerfile"
+            - "portail_citoyen/docker/**/*"
+            - "docker-compose.*.yaml"
+            - "docker-compose.yaml"
+    <<: *basic-override
+
+#######################################
+##            Quality Tools           #
+#######################################
+
+## Security ##
+.symfony-security: &symfony-security
+    stage: security
+    script:
+        - make security
 
 agent-symfony-security:
-    image: $CI_PHP_AGENT_IMAGE_WITH_TAG
-    stage: security
-    script:
-        - symfony security:check
-    dependencies: []
-    tags:
-        - galaxy-docker-shared
-
-agent-php-cs:
-    image: $CI_PHP_AGENT_IMAGE_WITH_TAG
-    stage: quality
-    before_script:
-        - composer install --working-dir=tools/php-cs-fixer
-    script:
-        - tools/php-cs-fixer/vendor/bin/php-cs-fixer fix --dry-run --diff --config .php-cs-fixer.dist.php
-    dependencies: []
-    tags:
-        - galaxy-docker-shared
-
-agent-phpmnd:
-    image: $CI_PHP_AGENT_IMAGE_WITH_TAG
-    stage: quality
-    before_script:
-        - composer install --working-dir=tools/phpmnd
-    script:
-        - tools/phpmnd/vendor/bin/phpmnd src
-    dependencies: []
-    tags:
-        - galaxy-docker-shared
-    
-agent-phpstan:
-    image: $CI_PHP_AGENT_IMAGE_WITH_TAG
-    stage: quality
-    <<: *composer-install
-    script:
-        - composer install --working-dir=tools/phpstan
-        - tools/phpstan/vendor/bin/phpstan analyse -c .phpstan.neon
-    dependencies: []
-    tags:
-        - galaxy-docker-shared
-
-agent-php-assumption:
-    image: $CI_PHP_AGENT_IMAGE_WITH_TAG
-    stage: quality
-    before_script:
-        - composer install --working-dir=tools/php-assumptions
-    script:
-        - tools/php-assumptions/vendor/bin/phpa src
-    dependencies: []
-    tags:
-        - galaxy-docker-shared
-    
-agent-phpcpd:
-    image: $CI_PHP_AGENT_IMAGE_WITH_TAG
-    stage: quality
-    before_script:
-        - wget https://phar.phpunit.de/phpcpd.phar -O tools/phpcpd.phar
-    script:
-        - php tools/phpcpd.phar src
-    dependencies: []
-    tags:
-        - galaxy-docker-shared
-    
-agent-phpunit:
-    image: $CI_PHP_AGENT_IMAGE_WITH_TAG
-    stage: test
-    <<: *composer-install
-    script:
-        - bin/phpunit --no-coverage --order-by random --process-isolation
-    dependencies: []
-    tags:
-        - galaxy-docker-shared
-
-agent-infection:
-    image: $CI_PHP_AGENT_IMAGE_WITH_TAG
-    stage: test
-    <<: *composer-install
-    script:
-        - composer install --working-dir=tools/infection
-        - XDEBUG_MODE=coverage tools/infection/vendor/bin/infection run -j$(nproc) -c infection.json
-    dependencies: []
-    tags:
-        - galaxy-docker-shared
-    needs:
-        - agent-phpunit
-
-## Citoyen CI
-citoyen-build-php:
-    stage: build
-    before_script:
-        - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-    script:
-        - docker pull $CI_PHP_CITOYEN_IMAGE_WITH_TAG || true
-        - docker build
-            --cache-from $CI_PHP_CITOYEN_IMAGE_WITH_TAG
-            --tag $CI_PHP_CITOYEN_IMAGE_WITH_TAG
-            --target symfony_php_debug ./portail_citoyen
-        - docker push $CI_PHP_CITOYEN_IMAGE_WITH_TAG
-    dependencies: []
+    <<: *agent-step
+    <<: *symfony-security
 
 citoyen-symfony-security:
-    image: $CI_PHP_CITOYEN_IMAGE_WITH_TAG
-    stage: security
+    <<: *citoyen-step
+    <<: *symfony-security
+
+## Php Cs Fixer ##
+.cs: &cs
+    stage: quality
     script:
-        - symfony security:check
-    dependencies: []
+        - make tools-install
+        - make cs
+
+agent-php-cs:
+    <<: *agent-step
+    <<: *cs
 
 citoyen-php-cs:
-    image: $CI_PHP_CITOYEN_IMAGE_WITH_TAG
-    stage: quality
-    before_script:
-        - composer install --working-dir=tools/php-cs-fixer
-    script:
-        - tools/php-cs-fixer/vendor/bin/php-cs-fixer fix --dry-run --diff --config .php-cs-fixer.dist.php
-    dependencies: []
+    <<: *citoyen-step
+    <<: *cs
 
-citoyen-phpmnd:
-    image: $CI_PHP_CITOYEN_IMAGE_WITH_TAG
+## Php Magic Number Detector ##
+.mnd: &mnd
     stage: quality
-    before_script:
-        - composer install --working-dir=tools/phpmnd
     script:
-        - tools/phpmnd/vendor/bin/phpmnd src
-    dependencies: []
+        - make tools-install
+        - make mnd
 
-citoyen-phpstan:
-    image: $CI_PHP_CITOYEN_IMAGE_WITH_TAG
+agent-php-mnd:
+    <<: *agent-step
+    <<: *mnd
+
+citoyen-php-mnd:
+    <<: *citoyen-step
+    <<: *mnd
+
+## Phpstan ##
+.phpstan: &phpstan
     stage: quality
-    <<: *composer-install
     script:
-        - composer install --working-dir=tools/phpstan
-        - tools/phpstan/vendor/bin/phpstan analyse -c .phpstan.neon
-    dependencies: []
+        - make tools-install
+        - make phpstan
+
+agent-php-phpstan:
+    <<: *agent-step
+    <<: *phpstan
+
+citoyen-php-phpstan:
+    <<: *citoyen-step
+    <<: *phpstan
+
+## Php Assumption ##
+.assumption: &assumption
+    stage: quality
+    script:
+        - make tools-install
+        - make assumption
+
+agent-php-assumption:
+    <<: *agent-step
+    <<: *assumption
 
 citoyen-php-assumption:
-    image: $CI_PHP_CITOYEN_IMAGE_WITH_TAG
-    stage: quality
-    before_script:
-        - composer install --working-dir=tools/php-assumptions
-    script:
-        - tools/php-assumptions/vendor/bin/phpa src
-    dependencies: []
+    <<: *citoyen-step
+    <<: *assumption
 
-citoyen-phpcpd:
-    image: $CI_PHP_CITOYEN_IMAGE_WITH_TAG
+## Php Copy/Past Detector ##
+.cpd: &cpd
     stage: quality
-    before_script:
-        - wget https://phar.phpunit.de/phpcpd.phar -O tools/phpcpd.phar
     script:
-        - php tools/phpcpd.phar src
-    dependencies: []
+        - make tools-install
+        - make cpd
 
-citoyen-phpunit:
-    image: $CI_PHP_CITOYEN_IMAGE_WITH_TAG
+agent-php-cpd:
+    <<: *agent-step
+    <<: *cpd
+
+citoyen-php-cpd:
+    <<: *citoyen-step
+    <<: *cpd
+
+
+#######################################
+##          Tests Frameworks          #
+#######################################
+
+## PhpUnit ##
+.unit: &unit
     stage: test
-    <<: *composer-install
     script:
-        - bin/phpunit --no-coverage --order-by random --process-isolation
-    dependencies: []
+        - make unit
+
+agent-unit:
+    <<: *agent-step
+    <<: *unit
+
+citoyen-unit:
+    <<: *citoyen-step
+    <<: *unit
+
+## Infection ##
+.infection: &infection
+    stage: test
+    script:
+        - make tools-install
+        - make infection
+
+agent-infection:
+    <<: *agent-step
+    <<: *infection
+    needs:
+        - agent-unit
 
 citoyen-infection:
-    image: $CI_PHP_CITOYEN_IMAGE_WITH_TAG
-    stage: test
-    <<: *composer-install
-    script:
-        - composer install --working-dir=tools/infection
-        - XDEBUG_MODE=coverage tools/infection/vendor/bin/infection run -j$(nproc) -c infection.json
-    dependencies: []
+    <<: *citoyen-step
+    <<: *infection
     needs:
-        - citoyen-phpunit
+        - citoyen-unit

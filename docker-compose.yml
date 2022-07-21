@@ -10,6 +10,7 @@ services:
         SYMFONY_VERSION: 6.1.*
         SKELETON: symfony/skeleton
         STABILITY: stable
+        BUILD_PATH: ./portail_citoyen/
     restart: unless-stopped
     volumes:
       - php_8:/var/run/php
@@ -31,6 +32,7 @@ services:
         SYMFONY_VERSION: 5.4.*
         SKELETON: symfony/skeleton
         STABILITY: stable
+        BUILD_PATH: ./portail_citoyen/
     restart: unless-stopped
     volumes:
       - php_7:/var/run/php

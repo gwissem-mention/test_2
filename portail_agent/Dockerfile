@@ -6,6 +6,7 @@
 # https://docs.docker.com/engine/reference/builder/#understand-how-arg-and-from-interact
 ARG PHP_VERSION=8.1
 ARG CADDY_VERSION=2
+ARG BUILD_PATH=.
 
 # "php" stage
 FROM php:${PHP_VERSION}-fpm-alpine AS symfony_php
@@ -18,6 +19,7 @@ RUN apk add --no-cache \
 		gettext \
 		git \
 		bash \
+		make \
 	;
 
 COPY docker/php/setup.alpine.sh /tmp/setup.alpine.sh
@@ -92,7 +94,7 @@ RUN apk add --no-cache --virtual .pgsql-deps postgresql-dev; \
 ###< doctrine/doctrine-bundle ###
 ###< recipes ###
 
-COPY . .
+COPY ${BUILD_PATH} .
 
 VOLUME /srv/agent/var
 VOLUME /srv/agent/public
