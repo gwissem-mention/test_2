@@ -1,0 +1,36 @@
+version: "3.4"
+
+# Development environment override
+services:
+  php_citoyen:
+    volumes:
+      # The "cached" option has no effect on Linux but improves performance on Mac
+      - ./portail_citoyen:/srv/citoyen:rw,cached
+      - ./portail_citoyen/docker/php/conf.d/symfony.dev.ini:/usr/local/etc/php/conf.d/symfony.ini
+      # If you develop on Mac you can remove the var/ directory from the bind-mount
+      # for better performance by enabling the next line
+      # - /srv/app/var
+    environment:
+      APP_ENV: dev
+
+  php_agent:
+    volumes:
+      # The "cached" option has no effect on Linux but improves performance on Mac
+      - ./portail_agent:/srv/agent:rw,cached
+      - ./portail_agent/docker/php/conf.d/symfony.dev.ini:/usr/local/etc/php/conf.d/symfony.ini
+      # If you develop on Mac you can remove the var/ directory from the bind-mount
+      # for better performance by enabling the next line
+      # - /srv/app/var
+    environment:
+      APP_ENV: dev
+
+  database_citoyen:
+    ports:
+      - "5432"
+  database_agent:
+    ports:
+      - "5433"
+
+  mailer:
+    image: schickling/mailcatcher
+    ports: [1025, 1080]

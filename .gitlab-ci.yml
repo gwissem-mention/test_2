@@ -1,0 +1,207 @@
+variables:
+    DOCKER_VERSION: 20.10.16
+    DOCKER_DRIVER: overlay2
+    DOCKER_HOST: tcp://docker:2376
+    DOCKER_TLS_CERTDIR: "/certs"
+    CI_PHP_AGENT_IMAGE_WITH_TAG: "$CI_REGISTRY_IMAGE/php_agent:$CI_COMMIT_REF_SLUG"
+    CI_PHP_CITOYEN_IMAGE_WITH_TAG: "$CI_REGISTRY_IMAGE/php_citoyen:$CI_COMMIT_REF_SLUG"
+
+image: docker:${DOCKER_VERSION}
+
+stages:
+    - build
+    - security
+    - quality
+    - test
+
+.composer-install: &composer-install
+    before_script:
+        - composer install --prefer-dist --no-progress --no-scripts --no-interaction --optimize-autoloader
+
+## Agent CI
+agent-build-php:
+    stage: build
+    before_script:
+        - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    script:
+        - docker pull $CI_PHP_AGENT_IMAGE_WITH_TAG || true
+        - docker build 
+            --cache-from $CI_PHP_AGENT_IMAGE_WITH_TAG
+            --tag $CI_PHP_AGENT_IMAGE_WITH_TAG
+            --target symfony_php_debug ./portail_agent
+        - docker push $CI_PHP_AGENT_IMAGE_WITH_TAG
+    dependencies: []
+    tags:
+        - galaxy-docker-shared
+
+agent-symfony-security:
+    image: $CI_PHP_AGENT_IMAGE_WITH_TAG
+    stage: security
+    script:
+        - symfony security:check
+    dependencies: []
+    tags:
+        - galaxy-docker-shared
+
+agent-php-cs:
+    image: $CI_PHP_AGENT_IMAGE_WITH_TAG
+    stage: quality
+    before_script:
+        - composer install --working-dir=tools/php-cs-fixer
+    script:
+        - tools/php-cs-fixer/vendor/bin/php-cs-fixer fix --dry-run --diff --config .php-cs-fixer.dist.php
+    dependencies: []
+    tags:
+        - galaxy-docker-shared
+
+agent-phpmnd:
+    image: $CI_PHP_AGENT_IMAGE_WITH_TAG
+    stage: quality
+    before_script:
+        - composer install --working-dir=tools/phpmnd
+    script:
+        - tools/phpmnd/vendor/bin/phpmnd src
+    dependencies: []
+    tags:
+        - galaxy-docker-shared
+    
+agent-phpstan:
+    image: $CI_PHP_AGENT_IMAGE_WITH_TAG
+    stage: quality
+    <<: *composer-install
+    script:
+        - composer install --working-dir=tools/phpstan
+        - tools/phpstan/vendor/bin/phpstan analyse -c .phpstan.neon
+    dependencies: []
+    tags:
+        - galaxy-docker-shared
+
+agent-php-assumption:
+    image: $CI_PHP_AGENT_IMAGE_WITH_TAG
+    stage: quality
+    before_script:
+        - composer install --working-dir=tools/php-assumptions
+    script:
+        - tools/php-assumptions/vendor/bin/phpa src
+    dependencies: []
+    tags:
+        - galaxy-docker-shared
+    
+agent-phpcpd:
+    image: $CI_PHP_AGENT_IMAGE_WITH_TAG
+    stage: quality
+    before_script:
+        - wget https://phar.phpunit.de/phpcpd.phar -O tools/phpcpd.phar
+    script:
+        - php tools/phpcpd.phar src
+    dependencies: []
+    tags:
+        - galaxy-docker-shared
+    
+agent-phpunit:
+    image: $CI_PHP_AGENT_IMAGE_WITH_TAG
+    stage: test
+    <<: *composer-install
+    script:
+        - bin/phpunit --no-coverage --order-by random --process-isolation
+    dependencies: []
+    tags:
+        - galaxy-docker-shared
+
+agent-infection:
+    image: $CI_PHP_AGENT_IMAGE_WITH_TAG
+    stage: test
+    <<: *composer-install
+    script:
+        - composer install --working-dir=tools/infection
+        - XDEBUG_MODE=coverage tools/infection/vendor/bin/infection run -j$(nproc) -c infection.json
+    dependencies: []
+    tags:
+        - galaxy-docker-shared
+    needs:
+        - agent-phpunit
+
+## Citoyen CI
+citoyen-build-php:
+    stage: build
+    before_script:
+        - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    script:
+        - docker pull $CI_PHP_CITOYEN_IMAGE_WITH_TAG || true
+        - docker build
+            --cache-from $CI_PHP_CITOYEN_IMAGE_WITH_TAG
+            --tag $CI_PHP_CITOYEN_IMAGE_WITH_TAG
+            --target symfony_php_debug ./portail_citoyen
+        - docker push $CI_PHP_CITOYEN_IMAGE_WITH_TAG
+    dependencies: []
+
+citoyen-symfony-security:
+    image: $CI_PHP_CITOYEN_IMAGE_WITH_TAG
+    stage: security
+    script:
+        - symfony security:check
+    dependencies: []
+
+citoyen-php-cs:
+    image: $CI_PHP_CITOYEN_IMAGE_WITH_TAG
+    stage: quality
+    before_script:
+        - composer install --working-dir=tools/php-cs-fixer
+    script:
+        - tools/php-cs-fixer/vendor/bin/php-cs-fixer fix --dry-run --diff --config .php-cs-fixer.dist.php
+    dependencies: []
+
+citoyen-phpmnd:
+    image: $CI_PHP_CITOYEN_IMAGE_WITH_TAG
+    stage: quality
+    before_script:
+        - composer install --working-dir=tools/phpmnd
+    script:
+        - tools/phpmnd/vendor/bin/phpmnd src
+    dependencies: []
+
+citoyen-phpstan:
+    image: $CI_PHP_CITOYEN_IMAGE_WITH_TAG
+    stage: quality
+    <<: *composer-install
+    script:
+        - composer install --working-dir=tools/phpstan
+        - tools/phpstan/vendor/bin/phpstan analyse -c .phpstan.neon
+    dependencies: []
+
+citoyen-php-assumption:
+    image: $CI_PHP_CITOYEN_IMAGE_WITH_TAG
+    stage: quality
+    before_script:
+        - composer install --working-dir=tools/php-assumptions
+    script:
+        - tools/php-assumptions/vendor/bin/phpa src
+    dependencies: []
+
+citoyen-phpcpd:
+    image: $CI_PHP_CITOYEN_IMAGE_WITH_TAG
+    stage: quality
+    before_script:
+        - wget https://phar.phpunit.de/phpcpd.phar -O tools/phpcpd.phar
+    script:
+        - php tools/phpcpd.phar src
+    dependencies: []
+
+citoyen-phpunit:
+    image: $CI_PHP_CITOYEN_IMAGE_WITH_TAG
+    stage: test
+    <<: *composer-install
+    script:
+        - bin/phpunit --no-coverage --order-by random --process-isolation
+    dependencies: []
+
+citoyen-infection:
+    image: $CI_PHP_CITOYEN_IMAGE_WITH_TAG
+    stage: test
+    <<: *composer-install
+    script:
+        - composer install --working-dir=tools/infection
+        - XDEBUG_MODE=coverage tools/infection/vendor/bin/infection run -j$(nproc) -c infection.json
+    dependencies: []
+    needs:
+        - citoyen-phpunit
