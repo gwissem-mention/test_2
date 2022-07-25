@@ -220,11 +220,13 @@ citoyen-unit:
 agent-infection:
     <<: *agent-step
     <<: *infection
+    allow_failure: true
     needs:
         - agent-unit
 
 citoyen-infection:
     <<: *citoyen-step
     <<: *infection
+    allow_failure: true
     needs:
         - citoyen-unit
