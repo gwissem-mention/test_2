@@ -2,6 +2,37 @@ version: "3.4"
 
 # Development environment override
 services:
+  reverse-proxy:
+    image: traefik:v2.8
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.traefik=true
+    restart: unless-stopped
+    ports:
+      - "443:443"
+      - "8080:8080"
+    volumes:
+      - ./docker/traefik/traefik.yml:/etc/traefik/traefik.yml:ro
+      - ./docker/traefik/config.yml:/etc/traefik/config.yml:ro
+      - ./certs:/etc/certs:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+  nginx_citoyen:
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.citoyen.tls=true
+      - traefik.http.routers.citoyen.rule=Host("citoyen.pel.localhost")
+    volumes:
+      - ./docker/nginx/dev/citoyen.dev.conf:/etc/nginx/conf.d/citoyen.dev.conf
+
+  nginx_agent:
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.agent.tls=true
+      - traefik.http.routers.agent.rule=Host("agent.pel.localhost")
+    volumes:
+      - ./docker/nginx/dev/agent.dev.conf:/etc/nginx/conf.d/agent.dev.conf
+
   php_citoyen:
     volumes:
       # The "cached" option has no effect on Linux but improves performance on Mac

@@ -44,6 +44,11 @@ permfix:
 	@$(eval gid ?=)
 	@chown -R $(uid):$(gid) .
 
+## Run symfony's console command
+console:
+	@$(eval cmd ?=)
+	@$(CONSOLE) $(cmd)
+
 #################################
 Composer:
 
@@ -89,6 +94,10 @@ QA:
 ## Run php-cs-fixer
 cs:
 	@tools/php-cs-fixer/vendor/bin/php-cs-fixer fix --dry-run --diff --config .php-cs-fixer.dist.php
+
+## Run php-cs-fixer
+cs-fix:
+	@tools/php-cs-fixer/vendor/bin/php-cs-fixer fix --diff --config .php-cs-fixer.dist.php
 
 ## Run php magic number detector
 mnd:
