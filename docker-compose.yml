@@ -93,8 +93,6 @@ volumes:
   php_7:
   citoyen_public:
   agent_public:
-  caddy_data:
-  caddy_config:
   ###> doctrine/doctrine-bundle ###
   db-data:
 ###< doctrine/doctrine-bundle ###
