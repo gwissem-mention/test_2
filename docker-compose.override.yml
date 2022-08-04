@@ -2,6 +2,12 @@ version: "3.4"
 
 # Development environment override
 services:
+  blackfire:
+    image: blackfire/blackfire:2
+    env_file: .env.local
+    ports:
+      - "8307:8307"
+
   reverse-proxy:
     image: traefik:v2.8
     labels:
