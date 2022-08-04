@@ -102,7 +102,7 @@ permfix: agent-permfix
 install: build start vendor
 
 ## Install environment from scratch with debug and tools
-install-dev: build-debug start vendor tools
+install-dev: build-debug start vendor tools-install
 
 ## Display logs stream
 logs:
@@ -112,7 +112,7 @@ logs:
 ## Start containers
 start:
 	@echo $(DOCKER_COMP_FILES)
-	@$(DOCKER_COMP) $(DOCKER_COMP_FILES) up
+	@$(DOCKER_COMP) $(DOCKER_COMP_FILES) up -d
 
 ## Stop containers
 stop:
