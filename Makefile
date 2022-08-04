@@ -156,3 +156,11 @@ Tests:
 
 ## Run phpunit tests
 unit: citoyen-unit agent-unit
+
+#################################
+Performance:
+
+## Profile from CLI, pass the parameter "url=" to run a given command, example: make blackfire url='https://localhost'
+blackfire:
+	$(eval url ?=)
+	$(DOCKER_COMP) exec blackfire blackfire curl $(url)
