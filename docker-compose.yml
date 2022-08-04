@@ -13,7 +13,7 @@ services:
         BUILD_PATH: ./portail_citoyen/
     restart: unless-stopped
     volumes:
-      - php_8:/var/run/php
+      - php_8_citoyen:/var/run/php
       - citoyen_public:/srv/citoyen/public
     healthcheck:
       interval: 10s
@@ -28,14 +28,14 @@ services:
       context: ./portail_agent
       target: symfony_php
       args:
-        PHP_VERSION: 7.4
-        SYMFONY_VERSION: 5.4.*
+        PHP_VERSION: 8.1
+        SYMFONY_VERSION: 6.1.*
         SKELETON: symfony/skeleton
         STABILITY: stable
         BUILD_PATH: ./portail_citoyen/
     restart: unless-stopped
     volumes:
-      - php_7:/var/run/php
+      - php_8_agent:/var/run/php
       - agent_public:/srv/agent/public
     healthcheck:
       interval: 10s
@@ -51,7 +51,7 @@ services:
       - php_citoyen
     restart: unless-stopped
     volumes:
-      - php_8:/var/run/php/8
+      - php_8_citoyen:/var/run/php
       - citoyen_public:/srv/citoyen/public
 
   nginx_agent:
@@ -60,7 +60,7 @@ services:
       - php_agent
     restart: unless-stopped
     volumes:
-      - php_7:/var/run/php/7
+      - php_8_agent:/var/run/php
       - agent_public:/srv/agent/public
 
   ###> doctrine/doctrine-bundle ###
@@ -89,8 +89,8 @@ services:
 ###< doctrine/doctrine-bundle ###
 
 volumes:
-  php_8:
-  php_7:
+  php_8_agent:
+  php_8_citoyen:
   citoyen_public:
   agent_public:
   ###> doctrine/doctrine-bundle ###
