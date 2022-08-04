@@ -5,6 +5,8 @@ DOCKER_COMP_FILES	= -f docker-compose.yml
 MAKE				= @make
 AGENT_CONT			= $(DOCKER_COMP) exec php_agent
 CITOYEN_CONT		= $(DOCKER_COMP) exec php_citoyen
+AGENT_NODE_CONT		= $(DOCKER_COMP) exec node_agent
+CITOYEN_NODE_CONT	= $(DOCKER_COMP) exec node_citoyen
 
 ifeq ($(APP_ENV),prod)
 	DOCKER_COMP_FILES := $(DOCKER_COMP_FILES) -f docker-compose.prod.yml
@@ -51,6 +53,10 @@ Subdirectory:
 agent-help:
 	@$(MAKE) --no-print-directory -C portail_agent
 
+## Run yarn command in portail_agent
+agent-yarn-%:
+	@$(AGENT_NODE_CONT) make --no-print-directory $*
+
 ## Run in command in portail_agent
 agent-%:
 	@$(AGENT_CONT) make --no-print-directory $*
@@ -68,6 +74,10 @@ agent-composer:
 citoyen-help:
 	@$(MAKE) --no-print-directory -C portail_citoyen
 
+## Run yarn command in citoyen_agent
+citoyen-yarn-%:
+	@$(CITOYEN_NODE_CONT) make --no-print-directory $*
+
 ## Run in command in portail_citoyen
 citoyen-%:
 	@$(CITOYEN_CONT) make --no-print-directory $*
@@ -80,6 +90,7 @@ citoyen-sh:
 citoyen-composer:
 	@$(eval c ?=)
 	@$(CITOYEN_CONT) make --no-print-directory composer c="$(c)"
+
 
 #################################
 Project:
@@ -99,10 +110,10 @@ permfix: citoyen-permfix
 permfix: agent-permfix
 
 ## Install environment from scratch
-install: build start vendor
+install: build start vendor yarn-install yarn-watch
 
 ## Install environment from scratch with debug and tools
-install-dev: build-debug start vendor tools-install
+install-dev: build-debug start vendor tools-install yarn-install yarn-watch
 
 ## Display logs stream
 logs:
@@ -126,6 +137,22 @@ vendor: citoyen-vendor agent-vendor
 
 ## Install php tools
 tools-install: citoyen-tools-install agent-tools-install
+
+#################################
+Yarn:
+
+## Install nodes packages
+yarn-install: citoyen-yarn-install agent-yarn-install
+
+## Build dev nodes packages and watch
+yarn-watch:
+	@$(MAKE) -j2 citoyen-yarn-watch agent-yarn-watch
+
+## Build prod nodes packages
+yarn-build: citoyen-yarn-build agent-yarn-build
+
+## Build dev nodes packages
+yarn-dev: citoyen-yarn-dev agent-yarn-dev
 
 #################################
 QA:

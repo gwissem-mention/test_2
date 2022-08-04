@@ -4,6 +4,7 @@ PHP			:= @php
 COMPOSER	:= @composer
 CONSOLE		:= @bin/console
 SF_CLI		:= @symfony
+YARN		:= @yarn
 
 NPROC	:= 1
 OS		:= $(shell uname)
@@ -85,6 +86,31 @@ tools-install:
 	@$(COMPOSER) install --working-dir=tools/phpstan
 	@$(COMPOSER) install --working-dir=tools/phpmnd
 	@wget https://phar.phpunit.de/phpcpd.phar -O tools/phpcpd.phar
+
+
+#################################
+Yarn:
+
+## Run yarn for agent container, pass the parameter "c=" to run a given command, example: make yarn c='install'
+yarn:
+	@$(eval c ?=)
+	@$(YARN) $(c)
+
+## Install nodes packages
+install: c=install
+install: yarn
+
+## Build dev nodes packages and watch
+watch: c=watch
+watch: yarn
+
+## Build prod nodes packages
+build: c=build
+build: yarn
+
+## Build dev nodes packages
+dev: c=dev
+dev: yarn
 
 #################################
 QA:

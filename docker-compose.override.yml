@@ -47,6 +47,7 @@ services:
       # If you develop on Mac you can remove the var/ directory from the bind-mount
       # for better performance by enabling the next line
       # - /srv/app/var
+      - citoyen_public_build:/srv/citoyen/public/build
     environment:
       APP_ENV: dev
 
@@ -58,6 +59,7 @@ services:
       # If you develop on Mac you can remove the var/ directory from the bind-mount
       # for better performance by enabling the next line
       # - /srv/app/var
+      - agent_public_build:/srv/agent/public/build
     environment:
       APP_ENV: dev
 
@@ -71,3 +73,23 @@ services:
   mailer:
     image: schickling/mailcatcher
     ports: [1025, 1080]
+
+  node_citoyen:
+    image: node:16
+    tty: true
+    volumes:
+      - ./portail_citoyen:/srv/citoyen
+      - citoyen_public_build:/srv/citoyen/public/build
+    working_dir: /srv/citoyen
+
+  node_agent:
+    image: node:16
+    tty: true
+    volumes:
+      - ./portail_agent:/srv/agent
+      - agent_public_build:/srv/agent/public/build
+    working_dir: /srv/agent
+
+volumes:
+  agent_public_build:
+  citoyen_public_build:

@@ -63,8 +63,8 @@ agent-build-php:
         changes:
             - "portail_agent/Dockerfile"
             - "portail_agent/docker/**/*"
-            - "docker-compose.*.yaml"
-            - "docker-compose.yaml"
+            - "docker-compose.*.yml"
+            - "docker-compose.yml"
     <<: *basic-override
 
 citoyen-build-php:
@@ -94,8 +94,8 @@ citoyen-build-php:
         changes:
             - "portail_citoyen/Dockerfile"
             - "portail_citoyen/docker/**/*"
-            - "docker-compose.*.yaml"
-            - "docker-compose.yaml"
+            - "docker-compose.*.yml"
+            - "docker-compose.yml"
     <<: *basic-override
 
 #######################################
