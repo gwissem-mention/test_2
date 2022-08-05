@@ -2,7 +2,13 @@
 
 ## Install
 
-Install the project with just one command:
+Setup env files:
+
+```bash
+cp .env.local.dist .env.local # Edit it if needed
+```
+
+Install the project with following commands:
 
 ```bash
 make install
@@ -11,11 +17,6 @@ make install
 If you want some extra dev tools, run the command:
 ```bash
 make install-dev
-```
-
-If you want to install the project in prod, run the command:
-```bash
-APP_ENV=prod make install-prod
 ```
 
 You can find more commands to use in the [Makefile](./Makefile) file.

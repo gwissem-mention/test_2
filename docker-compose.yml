@@ -1,7 +1,7 @@
 version: '3.4'
 
 services:
-  php_citoyen:
+  php-citoyen:
     build:
       context: ./portail_citoyen
       target: symfony_php
@@ -12,18 +12,19 @@ services:
         STABILITY: stable
         BUILD_PATH: ./portail_citoyen/
     restart: unless-stopped
+    depends_on:
+      - database-citoyen
     volumes:
-      - php_8_citoyen:/var/run/php
-      - citoyen_public:/srv/citoyen/public
+      - citoyen-public:/srv/citoyen/public:ro
     healthcheck:
       interval: 10s
       timeout: 3s
       retries: 3
       start_period: 30s
     environment:
-      DATABASE_URL: postgresql://${POSTGRES_USER:-symfony}:${POSTGRES_PASSWORD:-ChangeMe}@database_citoyen:5432/${POSTGRES_DB:-app}?serverVersion=${POSTGRES_VERSION:-13}
+      DATABASE_URL: postgresql://${POSTGRES_USER:-symfony}:${POSTGRES_PASSWORD:-ChangeMe}@database-citoyen:5432/${POSTGRES_DB:-app}?serverVersion=${POSTGRES_VERSION:-13}
 
-  php_agent:
+  php-agent:
     build:
       context: ./portail_agent
       target: symfony_php
@@ -34,37 +35,52 @@ services:
         STABILITY: stable
         BUILD_PATH: ./portail_citoyen/
     restart: unless-stopped
+    depends_on:
+      - database-agent
     volumes:
-      - php_8_agent:/var/run/php
-      - agent_public:/srv/agent/public
+      - agent-public:/srv/agent/public:ro
     healthcheck:
       interval: 10s
       timeout: 3s
       retries: 3
       start_period: 30s
     environment:
-      DATABASE_URL: postgresql://${POSTGRES_USER:-symfony}:${POSTGRES_PASSWORD:-ChangeMe}@database_agent:5432/${POSTGRES_DB:-app}?serverVersion=${POSTGRES_VERSION:-13}
+      DATABASE_URL: postgresql://${POSTGRES_USER:-symfony}:${POSTGRES_PASSWORD:-ChangeMe}@database-agent:5432/${POSTGRES_DB:-app}?serverVersion=${POSTGRES_VERSION:-13}
 
-  nginx_citoyen:
-    image: nginx:alpine
+  nginx-citoyen:
+    image: nginx
     depends_on:
-      - php_citoyen
+      - php-citoyen
     restart: unless-stopped
     volumes:
-      - php_8_citoyen:/var/run/php
-      - citoyen_public:/srv/citoyen/public
+      - citoyen-public:/srv/citoyen/public:ro
 
-  nginx_agent:
-    image: nginx:alpine
+  nginx-agent:
+    image: nginx
     depends_on:
-      - php_agent
+      - php-agent
     restart: unless-stopped
     volumes:
-      - php_8_agent:/var/run/php
-      - agent_public:/srv/agent/public
+      - agent-public:/srv/agent/public:ro
+
+  node-citoyen:
+    image: node:16
+    tty: true
+    volumes:
+      - ./portail_citoyen:/srv/citoyen
+      - citoyen-public:/srv/citoyen/public:rw
+    working_dir: /srv/citoyen
+
+  node-agent:
+    image: node:16
+    tty: true
+    volumes:
+      - ./portail_agent:/srv/agent
+      - agent-public:/srv/agent/public:rw
+    working_dir: /srv/agent
 
   ###> doctrine/doctrine-bundle ###
-  database_citoyen:
+  database-citoyen:
     image: postgres:${POSTGRES_VERSION:-13}-alpine
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-app}
@@ -75,7 +91,7 @@ services:
       - db-data:/var/lib/postgresql/data:rw
       # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
       # - ./docker/db/data:/var/lib/postgresql/data:rw
-  database_agent:
+  database-agent:
     image: postgres:${POSTGRES_VERSION:-13}-alpine
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-app}
@@ -89,10 +105,8 @@ services:
 ###< doctrine/doctrine-bundle ###
 
 volumes:
-  php_8_agent:
-  php_8_citoyen:
-  citoyen_public:
-  agent_public:
+  citoyen-public:
+  agent-public:
   ###> doctrine/doctrine-bundle ###
   db-data:
 ###< doctrine/doctrine-bundle ###
