@@ -1,0 +1,37 @@
+default:
+    suites:
+        default:
+            contexts:
+                - App\Tests\Behat\DemoContext
+    extensions:
+        FriendsOfBehat\SymfonyExtension:
+            kernel:
+                environment: test
+            bootstrap: tests/bootstrap.php
+
+func:
+    suites:
+        default:
+            filters:
+                tags: '~@javascript&&~@e2e'
+    extensions:
+        Behat\MinkExtension:
+            sessions:
+                symfony:
+                    symfony: ~
+
+e2e:
+    suites:
+        default:
+            filters:
+                tags: '~@func'
+    extensions:
+        Behat\MinkExtension:
+            base_url: http://nginx-citoyen
+            browser_name: chrome
+            sessions:
+                selenium:
+                    selenium2:
+                        wd_host: http://selenium-hub:4444
+                        browser: chrome
+                        capabilities: { "browserName": "chrome" }

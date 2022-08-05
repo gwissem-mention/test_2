@@ -23,23 +23,33 @@ services:
       - ./certs:/etc/certs:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
 
-  nginx_citoyen:
+  nginx-citoyen:
+    environment:
+      SERVER_NAME: "citoyen.pel.localhost"
+      PHP_HOST: "php-citoyen"
+      PHP_PORT: "9000"
     labels:
       - traefik.enable=true
       - traefik.http.routers.citoyen.tls=true
       - traefik.http.routers.citoyen.rule=Host("citoyen.pel.localhost")
     volumes:
-      - ./docker/nginx/dev/citoyen.dev.conf:/etc/nginx/conf.d/citoyen.dev.conf
+      - ./docker/nginx/dev/citoyen.dev.conf:/etc/nginx/conf.d/citoyen.dev.template
+    command: /bin/bash -c "envsubst '$${SERVER_NAME} $${PHP_HOST} $${PHP_PORT}' < /etc/nginx/conf.d/citoyen.dev.template > /etc/nginx/conf.d/citoyen.dev.conf && nginx -g 'daemon off;'"
 
-  nginx_agent:
+  nginx-agent:
+    environment:
+      SERVER_NAME: "agent.pel.localhost"
+      PHP_HOST: "php-agent"
+      PHP_PORT: "9000"
     labels:
       - traefik.enable=true
       - traefik.http.routers.agent.tls=true
       - traefik.http.routers.agent.rule=Host("agent.pel.localhost")
     volumes:
-      - ./docker/nginx/dev/agent.dev.conf:/etc/nginx/conf.d/agent.dev.conf
+      - ./docker/nginx/dev/agent.dev.conf:/etc/nginx/conf.d/agent.dev.template
+    command: /bin/bash -c "envsubst '$${SERVER_NAME} $${PHP_HOST} $${PHP_PORT}' < /etc/nginx/conf.d/agent.dev.template > /etc/nginx/conf.d/agent.dev.conf && nginx -g 'daemon off;'"
 
-  php_citoyen:
+  php-citoyen:
     volumes:
       # The "cached" option has no effect on Linux but improves performance on Mac
       - ./portail_citoyen:/srv/citoyen:rw,cached
@@ -47,11 +57,10 @@ services:
       # If you develop on Mac you can remove the var/ directory from the bind-mount
       # for better performance by enabling the next line
       # - /srv/app/var
-      - citoyen_public_build:/srv/citoyen/public/build
     environment:
       APP_ENV: dev
 
-  php_agent:
+  php-agent:
     volumes:
       # The "cached" option has no effect on Linux but improves performance on Mac
       - ./portail_agent:/srv/agent:rw,cached
@@ -59,37 +68,16 @@ services:
       # If you develop on Mac you can remove the var/ directory from the bind-mount
       # for better performance by enabling the next line
       # - /srv/app/var
-      - agent_public_build:/srv/agent/public/build
     environment:
       APP_ENV: dev
 
-  database_citoyen:
+  database-citoyen:
     ports:
       - "14532:5432"
-  database_agent:
+  database-agent:
     ports:
       - "14533:5433"
 
   mailer:
     image: schickling/mailcatcher
     ports: [1025, 1080]
-
-  node_citoyen:
-    image: node:16
-    tty: true
-    volumes:
-      - ./portail_citoyen:/srv/citoyen
-      - citoyen_public_build:/srv/citoyen/public/build
-    working_dir: /srv/citoyen
-
-  node_agent:
-    image: node:16
-    tty: true
-    volumes:
-      - ./portail_agent:/srv/agent
-      - agent_public_build:/srv/agent/public/build
-    working_dir: /srv/agent
-
-volumes:
-  agent_public_build:
-  citoyen_public_build:

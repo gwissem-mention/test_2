@@ -109,6 +109,10 @@ watch: yarn
 build: c=build
 build: yarn
 
+## Build ci nodes packages
+build-ci: c=build-ci
+build-ci: yarn
+
 ## Build dev nodes packages
 dev: c=dev
 dev: yarn
@@ -154,3 +158,11 @@ Tests:
 ## Run phpunit tests
 unit:
 	@bin/phpunit --no-coverage --order-by random --process-isolation -vvv --stop-on-failure
+
+## Run behat tests
+behat:
+	@vendor/bin/behat -c behat.yml.dist --profile func
+
+## Run e2e behat tests
+e2e:
+	@vendor/bin/behat -c behat.yml.dist --profile e2e

@@ -3,15 +3,19 @@
 DOCKER_COMP			= @docker-compose
 DOCKER_COMP_FILES	= -f docker-compose.yml
 MAKE				= @make
-AGENT_CONT			= $(DOCKER_COMP) exec php_agent
-CITOYEN_CONT		= $(DOCKER_COMP) exec php_citoyen
-AGENT_NODE_CONT		= $(DOCKER_COMP) exec node_agent
-CITOYEN_NODE_CONT	= $(DOCKER_COMP) exec node_citoyen
+AGENT_CONT			= $(DOCKER_COMP) exec php-agent
+CITOYEN_CONT		= $(DOCKER_COMP) exec php-citoyen
+AGENT_NODE_CONT		= $(DOCKER_COMP) exec node-agent
+CITOYEN_NODE_CONT	= $(DOCKER_COMP) exec node-citoyen
 
 ifeq ($(APP_ENV),prod)
 	DOCKER_COMP_FILES := $(DOCKER_COMP_FILES) -f docker-compose.prod.yml
 else
 	DOCKER_COMP_FILES := $(DOCKER_COMP_FILES) -f docker-compose.override.yml
+endif
+
+ifeq ($(E2E), true)
+	DOCKER_COMP_FILES := $(DOCKER_COMP_FILES) -f docker-compose.e2e.yml
 endif
 
 NPROC	:= 1
@@ -70,6 +74,10 @@ agent-composer:
 	@$(eval c ?=)
 	@$(AGENT_CONT) make --no-print-directory composer c="$(c)"
 
+## Fix linux permissions into agent container
+agent-permfix:
+	@$(AGENT_CONT) make --no-print-directory permfix uid=$(UID) gid=$(GID)
+
 ## Display help for portail_citoyen
 citoyen-help:
 	@$(MAKE) --no-print-directory -C portail_citoyen
@@ -91,6 +99,9 @@ citoyen-composer:
 	@$(eval c ?=)
 	@$(CITOYEN_CONT) make --no-print-directory composer c="$(c)"
 
+## Fix linux permissions into citoyen container
+citoyen-permfix:
+	@$(CITOYEN_CONT) make --no-print-directory permfix uid=$(UID) gid=$(GID)
 
 #################################
 Project:
@@ -104,8 +115,6 @@ build-debug:
 	@$(DOCKER_COMP) $(DOCKER_COMP_FILES) -f docker-compose.debug.yml build --parallel
 
 ## Fix linux permissions
-permfix: uid=$(UID)
-permfix: gid=$(GID)
 permfix: citoyen-permfix
 permfix: agent-permfix
 
