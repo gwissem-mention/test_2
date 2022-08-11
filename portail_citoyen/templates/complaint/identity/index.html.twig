@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="fr-container">
+        <div class="fr-grid-row">
+            <div class="fr-col">
+                {{ include('includes/_breadcrumb.html.twig', {
+                    breadcrumbs:{'complaint.identity':false}
+                } ) }}
+            </div>
+        </div>
+        <div class="fr-grid-row">
+            <div class="fr-col">
+                <a class="fr-btn" href="{{ path('complaint_offense_nature') }}">
+                    {{ 'next'|trans }}
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
