@@ -131,7 +131,6 @@ logs:
 
 ## Start containers
 start:
-	@echo $(DOCKER_COMP_FILES)
 	@$(DOCKER_COMP) $(DOCKER_COMP_FILES) up -d
 
 ## Stop containers

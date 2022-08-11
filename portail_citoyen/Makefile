@@ -63,8 +63,6 @@ vendor: c=install --prefer-dist --no-progress --no-scripts --no-interaction --op
 vendor: composer
 
 ## Update composer dependencies
-php-version:
-	@php -v
 vendor-update: c=update --prefer-dist --no-progress --no-scripts --no-interaction --optimize-autoloader
 vendor-update: composer
 
