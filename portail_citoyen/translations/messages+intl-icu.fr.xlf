@@ -18,6 +18,10 @@
                 <source>information.message</source>
                 <target>Message d'informations</target>
             </trans-unit>
+            <trans-unit id="access.to.the.form">
+                <source>access.to.the.form</source>
+                <target>Accéder au formulaire</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
