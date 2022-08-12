@@ -9,3 +9,5 @@ Feature:
         Then the response status code should be 200
         And I should see 1 "body" element
         And I should see "Message d'informations"
+        And I should see 1 "a" element
+        And I should see "Accéder au formulaire"
