@@ -440,30 +440,74 @@ citoyen-e2e:
     <<: *cache-complete-citoyen
     <<: *citoyen-step
     variables:
+        APP_ENV: "test"
         POSTGRES_DB: "app"
         POSTGRES_PASSWORD: "ChangeMe"
         POSTGRES_USER: "symfony"
-        SERVER_NAME: "citoyen.pel.localhost"
-        PHP_HOST: "php-citoyen"
-        PHP_PORT: "9000"
         SE_EVENT_BUS_HOST: "selenium-hub"
         SE_EVENT_BUS_PUBLISH_PORT: "4442"
         SE_EVENT_BUS_SUBSCRIBE_PORT: "4443"
         HUB_PORT_4444_TCP_ADDR: selenium-hub
         HUB_PORT_4444_TCP_PORT: 4444
     script:
+        - LOCAL_IP=$(ip route get 8.8.8.8 | awk -F"src " 'NR==1{split($2,a," ");print a[1]}')
+        - echo Local IP $LOCAL_IP
+        - symfony server:start --no-tls --port=8080 -d
+        - sed -i "s/nginx-citoyen/127.0.0.1:8080/g" behat.yml.dist
+        - echo $APP_ENV
         - make e2e
+    artifacts:
+        name: "citoyen-e2e-$CI_COMMIT_REF_NAME"
+        paths:
+            - /builds/ministere-de-l-interieur/plaintes-en-ligne-pel/portail_citoyen/var/log
+            - /builds/ministere-de-l-interieur/plaintes-en-ligne-pel/portail_citoyen/var/screenshots
+        expire_in: 1 day
+        when: on_failure
     services:
-        - name: nginx
-          alias: nginx-citoyen
         - name: postgres:13-alpine
           alias: database-citoyen
         - name: selenium/hub
           alias: selenium-hub
         - name: selenium/node-chrome
           alias: chrome
+    allow_failure: true
 
-        ## Infection ##
+agent-e2e:
+    <<: *cache-complete-agent
+    <<: *agent-step
+    variables:
+        APP_ENV: "test"
+        POSTGRES_DB: "app"
+        POSTGRES_PASSWORD: "ChangeMe"
+        POSTGRES_USER: "symfony"
+        SE_EVENT_BUS_HOST: "selenium-hub"
+        SE_EVENT_BUS_PUBLISH_PORT: "4442"
+        SE_EVENT_BUS_SUBSCRIBE_PORT: "4443"
+        HUB_PORT_4444_TCP_ADDR: selenium-hub
+        HUB_PORT_4444_TCP_PORT: 4444
+    script:
+        - LOCAL_IP=$(ip route get 8.8.8.8 | awk -F"src " 'NR==1{split($2,a," ");print a[1]}')
+        - echo Local IP $LOCAL_IP
+        - symfony server:start --no-tls --port=8080 -d
+        - sed -i "s/nginx-agent/127.0.0.1:8080/g" behat.yml.dist
+        - echo $APP_ENV
+        - make e2e
+    services:
+        - name: postgres:13-alpine
+          alias: database-agent
+        - name: selenium/hub
+          alias: selenium-hub
+        - name: selenium/node-chrome
+          alias: chrome
+    artifacts:
+        name: "agent-e2e-$CI_COMMIT_REF_NAME"
+        paths:
+            - /builds/ministere-de-l-interieur/plaintes-en-ligne-pel/portail_agent/var/log
+        expire_in: 1 day
+        when: on_failure
+    allow_failure: true
+
+## Infection ##
 .infection: &infection
     stage: test
     script:
