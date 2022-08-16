@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {{ form_start(form) }}
+        <div class="fr-checkbox-group">
+            {{ form_widget(form.agree) }}
+            {{ form_label(form.agree) }}
+            {{ form_errors(form.agree) }}
+        </div>
+        <button id="keep.going" class="fr-btn" type="submit">{{ 'keep.going'|trans }}</button>
+    {{ form_end(form) }}
+
+    <p>{{ 'law.informations'|trans }}</p>
+{% endblock %}

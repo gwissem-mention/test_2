@@ -17,7 +17,7 @@ Feature:
     Scenario: Press button to be redirect to the police
         Given I am on "/"
         Then I follow "Continuer"
-        And I should be on "/"
+        And I should be on "/visitor-agreement"
 
     @func
     Scenario: Press button to be redirect to the police
