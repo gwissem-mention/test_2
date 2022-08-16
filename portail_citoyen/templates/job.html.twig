@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {{ form_start(form) }}
+        <div class="fr-select-group">
+            {{ form_row(form.job) }}
+        </div>
+    {{ form_end(form) }}
+{% endblock %}
