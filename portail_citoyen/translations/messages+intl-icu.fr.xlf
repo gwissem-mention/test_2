@@ -54,6 +54,14 @@
                 <source>job.none</source>
                 <target>Sans Profession</target>
             </trans-unit>
+            <trans-unit id="law.informations">
+                <source>law.informations</source>
+                <target>Conformément à la loi 78-17 du 6 janvier 1978 modifiée relative à l’informatique, aux fichiers et aux libertés, vous disposez d’un droit d’accès et de rectification aux informations. Vous pouvez exercer ce droit auprès de l'unité de gendarmerie ou du service de police où vous irez signer votre plainte.</target>
+            </trans-unit>
+            <trans-unit id="visitor.agree">
+                <source>visitor.agree</source>
+                <target>J'autorise la collecte de mes données personnelles et poursuit ma déclaration</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
