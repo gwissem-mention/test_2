@@ -34,6 +34,26 @@
                 <source>redirect.to.gendarmerie</source>
                 <target>Être redirigé vers l'orienteur de la Gendarmerie Nationale</target>
             </trans-unit>
+            <trans-unit id="your.job">
+                <source>your.job</source>
+                <target>Votre profession</target>
+            </trans-unit>
+            <trans-unit id="your.job.placeholder">
+                <source>your.job.placeholder</source>
+                <target>Choisissez votre profession</target>
+            </trans-unit>
+            <trans-unit id="job.policeman">
+                <source>job.policeman</source>
+                <target>Policier</target>
+            </trans-unit>
+            <trans-unit id="job.constable">
+                <source>job.constable</source>
+                <target>Gendarme</target>
+            </trans-unit>
+            <trans-unit id="job.none">
+                <source>job.none</source>
+                <target>Sans Profession</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

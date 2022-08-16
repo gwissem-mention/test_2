@@ -15,7 +15,6 @@ workflow:
 stages:
     - check
     - build
-    - vendor
     - security
     - quality
     - test
@@ -225,6 +224,44 @@ citoyen-build-php:
     dependencies:
         - check-php-images
 
+.build-tools: &build-tools
+    stage: build
+    script:
+        - make tools-install
+
+agent-build-tools:
+    <<: *agent-step
+    <<: *cache-tools-agent
+    <<: *build-tools
+    needs:
+        - agent-build-php
+
+citoyen-build-tools:
+    <<: *citoyen-step
+    <<: *cache-tools-citoyen
+    <<: *build-tools
+    needs:
+        - citoyen-build-php
+
+.build-vendor: &build-vendor
+    stage: build
+    script:
+        - make vendor
+
+agent-build-vendor:
+    <<: *agent-step
+    <<: *cache-vendor-agent
+    <<: *build-vendor
+    needs:
+        - agent-build-php
+
+citoyen-build-vendor:
+    <<: *citoyen-step
+    <<: *cache-vendor-citoyen
+    <<: *build-vendor
+    needs:
+        - citoyen-build-php
+
 .build-front: &build-front
     stage: build
     image: node:16
@@ -233,14 +270,16 @@ citoyen-build-php:
         - make build-ci
 
 agent-build-front:
-    <<: *cache-front-agent
+    <<: *cache-complete-agent
     <<: *build-front
     <<: *basic-override
     before_script:
         - cd ./portail_agent/
+    needs:
+        - agent-build-vendor
 
 citoyen-build-front:
-    <<: *cache-front-citoyen
+    <<: *cache-complete-citoyen
     <<: *build-front
     <<: *basic-override
     before_script:
@@ -248,40 +287,8 @@ citoyen-build-front:
     variables:
         KUBERNETES_MEMORY_REQUEST: 1Gi
         KUBERNETES_MEMORY_LIMIT: 1Gi
-
-#######################################
-##              Vendor               ##
-#######################################
-
-.build-tools: &build-tools
-    stage: vendor
-    script:
-        - make tools-install
-
-agent-build-tools:
-    <<: *agent-step
-    <<: *cache-tools-agent
-    <<: *build-tools
-
-citoyen-build-tools:
-    <<: *citoyen-step
-    <<: *cache-tools-citoyen
-    <<: *build-tools
-
-.build-vendor: &build-vendor
-    stage: vendor
-    script:
-        - make vendor
-
-agent-build-vendor:
-    <<: *agent-step
-    <<: *cache-vendor-agent
-    <<: *build-vendor
-
-citoyen-build-vendor:
-    <<: *citoyen-step
-    <<: *cache-vendor-citoyen
-    <<: *build-vendor
+    needs:
+        - citoyen-build-vendor
 
 #######################################
 ##            Quality Tools           #
