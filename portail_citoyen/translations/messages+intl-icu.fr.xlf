@@ -58,6 +58,78 @@
                  <source>complaint.location</source>
                  <target>Lieu de l'infraction</target>
             </trans-unit>
+            <trans-unit id="country.france">
+                <source>country.france</source>
+                <target>France</target>
+            </trans-unit>
+            <trans-unit id="country.germany">
+                <source>country.germany</source>
+                <target>Allemagne</target>
+            </trans-unit>
+            <trans-unit id="country.spain">
+                <source>country.spain</source>
+                <target>Espagne</target>
+            </trans-unit>
+            <trans-unit id="department.thirteen">
+                <source>department.thirteen</source>
+                <target>Bouches-du-Rhône</target>
+            </trans-unit>
+            <trans-unit id="department.thirty.three">
+                <source>department.thirty.three</source>
+                <target>Gironde</target>
+            </trans-unit>
+            <trans-unit id="department.seventy.five">
+                <source>department.seventy.five</source>
+                <target>Paris</target>
+            </trans-unit>
+            <trans-unit id="nationality.france">
+                <source>nationality.france</source>
+                <target>Française</target>
+            </trans-unit>
+            <trans-unit id="nationality.germany">
+                <source>nationality.germany</source>
+                <target>Allemande</target>
+            </trans-unit>
+            <trans-unit id="nationality.spain">
+                <source>nationality.spain</source>
+                <target>Espagnole</target>
+            </trans-unit>
+            <trans-unit id="town.arcachon">
+                <source>town.arcachon</source>
+                <target>Arcachon</target>
+            </trans-unit>
+            <trans-unit id="town.bordeaux">
+                <source>town.bordeaux</source>
+                <target>Bordeaux</target>
+            </trans-unit>
+            <trans-unit id="town.la.ciotat">
+                <source>town.la.ciotat</source>
+                <target>La Ciotat</target>
+            </trans-unit>
+            <trans-unit id="town.marseille">
+                <source>town.marseille</source>
+                <target>Marseille</target>
+            </trans-unit>
+            <trans-unit id="town.merignac">
+                <source>town.merignac</source>
+                <target>Mérignac</target>
+            </trans-unit>
+            <trans-unit id="town.paris">
+                <source>town.paris</source>
+                <target>Paris</target>
+            </trans-unit>
+            <trans-unit id="way.one">
+                <source>way.one</source>
+                <target>Voie une</target>
+            </trans-unit>
+            <trans-unit id="way.two">
+                <source>way.two</source>
+                <target>Voie deux</target>
+            </trans-unit>
+            <trans-unit id="way.three">
+                <source>way.three</source>
+                <target>Voie trois</target>
+            </trans-unit>
             <trans-unit id="information.message">
                 <source>information.message</source>
                 <target>Message d'informations</target>
