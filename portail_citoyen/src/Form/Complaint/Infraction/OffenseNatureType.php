@@ -32,7 +32,8 @@ class OffenseNatureType extends AbstractType
                 'attr' => [
                     'class' => 'fr-select',
                     'data-controller' => 'complaint--offense-nature',
-                    'data-action' => 'complaint--offense-nature#displayWarningText complaint--offense-nature#displayOtherAABText',
+                    'data-action' => 'complaint--offense-nature#displayWarningText 
+                    complaint--offense-nature#displayOtherAABField complaint--offense-nature#displayHouseRobberyFields',
                     'data-complaint--offense-nature-url' => $this->router->generate(
                         'complaint_offense_nature_warning_text'
                     ),
@@ -65,6 +66,17 @@ class OffenseNatureType extends AbstractType
                 ],
                 'constraints' => [new Length(['max' => self::OTHER_AAB_TEXT_MAX_LENGTH])],
             ]);
+        } elseif (OffenseNature::HouseRobbery->value === intval($event->getData())) {
+            $event->getForm()->getParent()?->add('fsiVisit', ChoiceType::class, [
+                'label' => 'complaint.offense.nature.fsi.visit',
+                'expanded' => true,
+                'multiple' => false,
+                'choices' => [
+                    'yes' => true,
+                    'no' => false,
+                ],
+                'block_prefix' => 'simple_radio_group',
+            ]);
         }
     }
 
@@ -81,11 +93,13 @@ class OffenseNatureType extends AbstractType
                 OffenseNature::MotorizedVehicleTheft->value,
                 OffenseNature::Scam->value,
             ], true)) {
-                $attr['data-complaint-offense-nature-active'] = 1;
+                $attr['data-complaint-offense-nature-warning-text'] = 1;
             }
 
             if (OffenseNature::OtherAab->value === $offenseNature) {
                 $attr['data-complaint-offense-nature-other-aab'] = 1;
+            } elseif (OffenseNature::HouseRobbery->value === $offenseNature) {
+                $attr['data-complaint-offense-nature-house-robbery'] = 1;
             }
         }
 

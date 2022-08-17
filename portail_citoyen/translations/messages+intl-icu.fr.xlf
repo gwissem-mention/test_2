@@ -106,6 +106,18 @@
                 <source>visitor.agree</source>
                 <target>J'autorise la collecte de mes données personnelles et poursuit ma déclaration</target>
             </trans-unit>
+            <trans-unit id="complaint.offense.nature.fsi.visit">
+                <source>complaint.offense.nature.fsi.visit</source>
+                <target>Des FSI sont-ils intervenus sur les lieux de l'infraction ?</target>
+             </trans-unit>
+            <trans-unit id="yes">
+                <source>yes</source>
+                <target>Oui</target>
+            </trans-unit>
+            <trans-unit id="no">
+                <source>no</source>
+                <target>Non</target>
+             </trans-unit>
         </body>
     </file>
 </xliff>

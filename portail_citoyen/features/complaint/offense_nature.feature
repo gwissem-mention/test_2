@@ -53,7 +53,7 @@ Feature:
     Then I should see the key "complaint.offense.nature.warning.text" translated
 
   @javascript
-  Scenario: I can see a warning text if I select House robbing
+  Scenario: I can see a warning text if I select House robbery
     Given I am on "/declaration/nature-infraction"
     When I select "Cambriolage" from "Nature de l'infraction"
     And I wait for the element "#warning-text" to appear
@@ -77,5 +77,20 @@ Feature:
   Scenario: I can see a textarea field if I select Other AAB
     Given I am on "/declaration/nature-infraction"
     When I select "Autre situation d’AAB" from "Nature de l'infraction"
-    And I wait for the element "#aab-text" to be filled
-    Then the "#aab-text" element should contain "textarea"
+    And I wait for the element "#other-aab-field" to be filled
+    Then the "#other-aab-field" element should contain "Préciser le type d'infraction"
+    And the "#other-aab-field" element should contain "textarea"
+
+  @javascript
+  Scenario Outline: I can see 2 radio buttons if I select House robbery
+    Given I am on "/declaration/nature-infraction"
+    When I select "Cambriolage" from "Nature de l'infraction"
+    And I wait for the element "#house-robbery-fields" to be filled
+    Then the "#house-robbery-fields" element should contain "Des FSI sont-ils intervenus sur les lieux de l'infraction ?"
+    Then I should see 2 "input[type=radio][name='offense_nature[fsiVisit]']" elements
+    And I should see "<fsi_visit>" in the "<element>" element
+
+    Examples:
+      | element                              | fsi_visit |
+      | label[for=offense_nature_fsiVisit_0] | Oui       |
+      | label[for=offense_nature_fsiVisit_1] | Non       |
