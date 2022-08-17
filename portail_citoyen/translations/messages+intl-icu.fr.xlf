@@ -2,10 +2,6 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="fr" target-language="fr" datatype="plaintext" original="file.ext">
         <body>
-            <trans-unit id="previous">
-                 <source>previous</source>
-                 <target>Précédent</target>
-            </trans-unit>
             <trans-unit id="next">
                  <source>next</source>
                  <target>Suivant</target>
@@ -14,49 +10,9 @@
                  <source>complaint.identity</source>
                  <target>Identité</target>
             </trans-unit>
-            <trans-unit id="complaint.offense.nature">
-                 <source>complaint.offense.nature</source>
+            <trans-unit id="complaint.offense_nature">
+                 <source>complaint.offense_nature</source>
                  <target>Nature de l'infraction</target>
-            </trans-unit>
-            <trans-unit id="complaint.offense.nature.other.aab.text">
-                 <source>complaint.offense.nature.other.aab.text</source>
-                 <target>Préciser le type d'infraction</target>
-            </trans-unit>
-            <trans-unit id="complaint.offense.nature.house.robbery">
-                 <source>complaint.offense.nature.house.robbery</source>
-                 <target>Cambriolage</target>
-            </trans-unit>
-            <trans-unit id="complaint.offense.nature.motorized.vehicle.robbery">
-                  <source>complaint.offense.nature.motorized.vehicle.robbery</source>
-                  <target>Vol dans/sur véhicule motorisé</target>
-            </trans-unit>
-            <trans-unit id="complaint.offense.nature.motorized.vehicle.theft">
-                  <source>complaint.offense.nature.motorized.vehicle.theft</source>
-                  <target>Vol de véhicule motorisé</target>
-            </trans-unit>
-            <trans-unit id="complaint.offense.nature.other.theft">
-                  <source>complaint.offense.nature.other.theft</source>
-                  <target>Autres vols</target>
-            </trans-unit>
-            <trans-unit id="complaint.offense.nature.scam">
-                  <source>complaint.offense.nature.scam</source>
-                  <target>Arnaque</target>
-            </trans-unit>
-            <trans-unit id="complaint.offense.nature.degradation">
-                   <source>complaint.offense.nature.degradation</source>
-                   <target>Dégradation</target>
-            </trans-unit>
-            <trans-unit id="complaint.offense.nature.other.aab">
-                    <source>complaint.offense.nature.other.aab</source>
-                    <target>Autre situation d’AAB</target>
-            </trans-unit>
-            <trans-unit id="complaint.offense.nature.warning.text">
-                     <source>complaint.offense.nature.warning.text</source>
-                     <target>Veillez à préserver les traces et indices qui pourront être exploités par les enquêteurs.</target>
-             </trans-unit>
-            <trans-unit id="complaint.location">
-                 <source>complaint.location</source>
-                 <target>Lieu de l'infraction</target>
             </trans-unit>
             <trans-unit id="information.message">
                 <source>information.message</source>

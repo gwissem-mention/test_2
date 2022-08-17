@@ -163,4 +163,4 @@ behat:
 
 ## Run e2e behat tests
 e2e:
-	@vendor/bin/behat -c behat.yml.dist --format=pretty --profile e2e
+	@vendor/bin/behat -c behat.yml.dist --profile e2e
