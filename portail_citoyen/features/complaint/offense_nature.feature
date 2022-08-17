@@ -82,7 +82,7 @@ Feature:
     And the "#other-aab-field" element should contain "textarea"
 
   @javascript
-  Scenario Outline: I can see 2 radio buttons if I select House robbery
+  Scenario Outline: I can see 2 radio buttons for FSI visit if I select House robbery
     Given I am on "/declaration/nature-infraction"
     When I select "Cambriolage" from "Nature de l'infraction"
     And I wait for the element "#house-robbery-fields" to be filled
@@ -94,3 +94,17 @@ Feature:
       | element                              | fsi_visit |
       | label[for=offense_nature_fsiVisit_0] | Oui       |
       | label[for=offense_nature_fsiVisit_1] | Non       |
+
+  @javascript
+  Scenario Outline: I can see 2 radio buttons for technical police visit if I select House robbery
+    Given I am on "/declaration/nature-infraction"
+    When I select "Cambriolage" from "Nature de l'infraction"
+    And I wait for the element "#house-robbery-fields" to be filled
+    Then the "#house-robbery-fields" element should contain "La police technique et scientifique est-elle intervenue sur les lieux de l'infraction ?"
+    Then I should see 2 "input[type=radio][name='offense_nature[technicalPoliceVisit]']" elements
+    And I should see "<technical_police_visit>" in the "<element>" element
+
+    Examples:
+      | element                                          | technical_police_visit |
+      | label[for=offense_nature_technicalPoliceVisit_0] | Oui                    |
+      | label[for=offense_nature_technicalPoliceVisit_1] | Non                    |
