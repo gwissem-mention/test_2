@@ -21,26 +21,4 @@ final class BaseContext extends MinkContext
     {
         $this->assertPageContainsText($this->translator->trans($arg1));
     }
-
-    /**
-     * @Then /^I wait for the element "([^"]*)" to appear$/
-     */
-    public function iWaitForTheElementToAppear(string $selector): void
-    {
-        $this->getSession()->wait(
-            3000,
-            "document.querySelector('".$selector."')"
-        );
-    }
-
-    /**
-     * @Then /^I wait for the element "([^"]*)" to be filled$/
-     */
-    public function iWaitForTheElementToBeFilled(string $selector): void
-    {
-        $this->getSession()->wait(
-            3000,
-            "document.querySelector('".$selector."').childNodes.length > 0"
-        );
-    }
 }
