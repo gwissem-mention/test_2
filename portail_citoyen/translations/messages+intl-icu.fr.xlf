@@ -122,6 +122,38 @@
                 <source>no</source>
                 <target>Non</target>
              </trans-unit>
+            <trans-unit id="nature.place">
+                <source>nature.place</source>
+                <target>Nature de lieu</target>
+            </trans-unit>
+            <trans-unit id="nature.place.placeholder">
+                <source>nature.place.placeholder</source>
+                <target>Choisissez le lieu où se sont déroulés les faits</target>
+            </trans-unit>
+            <trans-unit id="nature.place.home">
+                <source>nature.place.home</source>
+                <target>Domicile/Logement</target>
+            </trans-unit>
+            <trans-unit id="nature.place.park">
+                <source>nature.place.park</source>
+                <target>Parking / garage</target>
+            </trans-unit>
+            <trans-unit id="nature.place.street">
+                <source>nature.place.street</source>
+                <target>Voie publique / Rue</target>
+            </trans-unit>
+            <trans-unit id="nature.place.market">
+                <source>nature.place.market</source>
+                <target>Commerce</target>
+            </trans-unit>
+            <trans-unit id="nature.place.public.transport">
+                <source>nature.place.public.transport</source>
+                <target>Transports en commun</target>
+            </trans-unit>
+            <trans-unit id="nature.place.other">
+                <source>nature.place.other</source>
+                <target>Autres natures de lieu</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
