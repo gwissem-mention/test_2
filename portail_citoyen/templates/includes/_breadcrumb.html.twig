@@ -9,7 +9,7 @@
                         {% if route %}
                             <a class="fr-breadcrumb__link" href="{{ path(route) }}">{{ label|trans }}</a>
                         {% else %}
-                            {{ label|trans }}
+                            <span class="fr-breadcrumb__link">{{ label|trans }}</span>
                         {% endif %}
                     </li>
                 {% endfor %}

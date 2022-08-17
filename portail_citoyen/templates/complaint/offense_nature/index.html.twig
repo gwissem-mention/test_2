@@ -1,3 +1,37 @@
-{% extends 'base.html.twig' %}
+{% extends 'complaint/complaint_layout.html.twig' %}
 
-{% block body %}{{ 'complaint.offense_nature'|trans }}{% endblock %}
+{% block breadcrumbs %}
+    {% set breadcrumbs =  {
+        'complaint.identity': 'complaint_identity',
+        'complaint.offense.nature' :false
+    } %}
+    {{ parent() }}
+{% endblock %}
+
+{% block complaint_step_form %}
+    <div class="fr-grid-row">
+        <div class="fr-col">
+            {{ form_start(form) }}
+            <div class="fr-select-group">
+                {{ form_row(form.offenseNature) }}
+            </div>
+            <div class="fr-input-group" id="aab-text">
+                {% if form.aabText is defined %}
+                    {{ form_row(form.aabText) }}
+                {% endif %}
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+
+    <div class="fr-grid-row">
+        <div class="fr-col">
+            <a class="fr-btn" href="{{ path('complaint_identity') }}">
+                {{ 'previous'|trans }}
+            </a>
+            <a class="fr-btn" href="{{ path('complaint_location') }}">
+                {{ 'next'|trans }}
+            </a>
+        </div>
+    </div>
+{% endblock %}
