@@ -2,6 +2,7 @@ default:
     suites:
         default:
             contexts:
+                - FailAid\Context\FailureContext
                 - App\Tests\Behat\BaseContext
     extensions:
         FriendsOfBehat\SymfonyExtension:
