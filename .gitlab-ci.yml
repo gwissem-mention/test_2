@@ -83,8 +83,8 @@ stages:
     cache:
         - key: "front-agent-${CI_COMMIT_REF_SLUG}"
           paths:
-            - "portail_agent/public"
-            - "portail_agent/node_modules"
+              - "portail_agent/public"
+              - "portail_agent/node_modules"
         - key: "vendor-agent-${CI_COMMIT_REF_SLUG}"
           paths:
               - "portail_agent/vendor"

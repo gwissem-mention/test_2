@@ -1,20 +1,16 @@
-{% extends 'base.html.twig' %}
+{% extends 'complaint/complaint_layout.html.twig' %}
 
-{% block body %}
-    <div class="fr-container">
-        <div class="fr-grid-row">
-            <div class="fr-col">
-                {{ include('includes/_breadcrumb.html.twig', {
-                    breadcrumbs:{'complaint.identity':false}
-                } ) }}
-            </div>
-        </div>
-        <div class="fr-grid-row">
-            <div class="fr-col">
-                <a class="fr-btn" href="{{ path('complaint_offense_nature') }}">
-                    {{ 'next'|trans }}
-                </a>
-            </div>
+{% block breadcrumbs %}
+    {% set breadcrumbs =  {'complaint.identity': false} %}
+    {{ parent() }}
+{% endblock %}
+
+{% block complaint_step_form %}
+    <div class="fr-grid-row">
+        <div class="fr-col">
+            <a class="fr-btn" href="{{ path('complaint_offense_nature') }}">
+                {{ 'next'|trans }}
+            </a>
         </div>
     </div>
 {% endblock %}
