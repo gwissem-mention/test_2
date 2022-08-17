@@ -76,7 +76,17 @@ class OffenseNatureType extends AbstractType
                     'no' => false,
                 ],
                 'block_prefix' => 'simple_radio_group',
-            ]);
+            ])
+                ->add('technicalPoliceVisit', ChoiceType::class, [
+                    'label' => 'complaint.offense.nature.technical.police.visit',
+                    'expanded' => true,
+                    'multiple' => false,
+                    'choices' => [
+                        'yes' => true,
+                        'no' => false,
+                    ],
+                    'block_prefix' => 'simple_radio_group',
+                ]);
         }
     }
 

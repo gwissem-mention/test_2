@@ -20,9 +20,16 @@
                     {{ form_row(form.aabText) }}
                 {% endif %}
             </div>
-            <div class="fr-form-group" id="house-robbery-fields">
+            <div id="house-robbery-fields">
                 {% if form.fsiVisit is defined %}
-                    {{ form_row(form.fsiVisit) }}
+                    <div class="fr-form-group">
+                        {{ form_row(form.fsiVisit) }}
+                    </div>
+                {% endif %}
+                {% if form.technicalPoliceVisit is defined %}
+                    <div class="fr-form-group">
+                        {{ form_row(form.technicalPoliceVisit) }}
+                    </div>
                 {% endif %}
             </div>
         </div>

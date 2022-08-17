@@ -110,6 +110,10 @@
                 <source>complaint.offense.nature.fsi.visit</source>
                 <target>Des FSI sont-ils intervenus sur les lieux de l'infraction ?</target>
              </trans-unit>
+            <trans-unit id="complaint.offense.nature.technical.police.visit">
+                <source>complaint.offense.nature.technical.police.visit</source>
+                <target>La police technique et scientifique est-elle intervenue sur les lieux de l'infraction ?</target>
+             </trans-unit>
             <trans-unit id="yes">
                 <source>yes</source>
                 <target>Oui</target>
