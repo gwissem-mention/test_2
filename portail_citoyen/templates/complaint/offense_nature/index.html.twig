@@ -15,13 +15,18 @@
             <div class="fr-select-group">
                 {{ form_row(form.offenseNature) }}
             </div>
-            <div class="fr-input-group" id="aab-text">
+            <div class="fr-input-group" id="other-aab-field">
                 {% if form.aabText is defined %}
                     {{ form_row(form.aabText) }}
                 {% endif %}
             </div>
-            {{ form_end(form) }}
+            <div class="fr-form-group" id="house-robbery-fields">
+                {% if form.fsiVisit is defined %}
+                    {{ form_row(form.fsiVisit) }}
+                {% endif %}
+            </div>
         </div>
+        {{ form_end(form) }}
     </div>
 
     <div class="fr-grid-row">

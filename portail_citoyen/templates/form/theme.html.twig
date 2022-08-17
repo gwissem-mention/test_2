@@ -1,0 +1,15 @@
+{% block simple_radio_group_row %}
+    <fieldset class="fr-fieldset fr-fieldset--inline">
+        <legend class="fr-fieldset__legend fr-text--regular">
+            {{ form_label(form) }}
+        </legend>
+        <div class="fr-fieldset__content">
+            {% for child in form.children %}
+                <div class="fr-radio-group">
+                    {{ form_widget(child) }}
+                    {{ form_label(child) }}
+                </div>
+            {% endfor %}
+        </div>
+    </fieldset>
+{% endblock %}
