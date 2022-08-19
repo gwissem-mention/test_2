@@ -88,7 +88,7 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ChangeMe}
       POSTGRES_USER: ${POSTGRES_USER:-symfony}
     volumes:
-      - db-data:/var/lib/postgresql/data:rw
+      - db-data-citoyen:/var/lib/postgresql/data:rw
       # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
       # - ./docker/db/data:/var/lib/postgresql/data:rw
   database-agent:
@@ -99,7 +99,7 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ChangeMe}
       POSTGRES_USER: ${POSTGRES_USER:-symfony}
     volumes:
-      - db-data:/var/lib/postgresql/data:rw
+      - db-data-agent:/var/lib/postgresql/data:rw
       # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
       # - ./docker/db/data:/var/lib/postgresql/data:rw
 ###< doctrine/doctrine-bundle ###
@@ -108,5 +108,6 @@ volumes:
   citoyen-public:
   agent-public:
   ###> doctrine/doctrine-bundle ###
-  db-data:
+  db-data-citoyen:
+  db-data-agent:
 ###< doctrine/doctrine-bundle ###

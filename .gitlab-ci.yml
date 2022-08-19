@@ -450,6 +450,7 @@ citoyen-e2e:
         HUB_PORT_4444_TCP_ADDR: selenium-hub
         HUB_PORT_4444_TCP_PORT: 4444
     script:
+        - php bin/console cache:clear --env=test
         - LOCAL_IP=$(ip route get 8.8.8.8 | awk -F"src " 'NR==1{split($2,a," ");print a[1]}')
         - echo Local IP $LOCAL_IP
         - symfony server:start --no-tls --port=8080 -d
@@ -460,8 +461,8 @@ citoyen-e2e:
         name: "citoyen-e2e-$CI_COMMIT_REF_NAME"
         paths:
             - /builds/ministere-de-l-interieur/plaintes-en-ligne-pel/portail_citoyen/var/log
-            - /builds/ministere-de-l-interieur/plaintes-en-ligne-pel/portail_citoyen/var/screenshots
-        expire_in: 1 day
+            - /builds/ministere-de-l-interieur/plaintes-en-ligne-pel/portail_citoyen/build/screenshots
+        expire_in: 1 week
         when: on_failure
     services:
         - name: postgres:13-alpine
@@ -470,7 +471,6 @@ citoyen-e2e:
           alias: selenium-hub
         - name: selenium/node-chrome
           alias: chrome
-    allow_failure: true
 
 agent-e2e:
     <<: *cache-complete-agent
@@ -486,6 +486,7 @@ agent-e2e:
         HUB_PORT_4444_TCP_ADDR: selenium-hub
         HUB_PORT_4444_TCP_PORT: 4444
     script:
+        - php bin/console cache:clear --env=test
         - LOCAL_IP=$(ip route get 8.8.8.8 | awk -F"src " 'NR==1{split($2,a," ");print a[1]}')
         - echo Local IP $LOCAL_IP
         - symfony server:start --no-tls --port=8080 -d
@@ -503,9 +504,9 @@ agent-e2e:
         name: "agent-e2e-$CI_COMMIT_REF_NAME"
         paths:
             - /builds/ministere-de-l-interieur/plaintes-en-ligne-pel/portail_agent/var/log
-        expire_in: 1 day
+            - /builds/ministere-de-l-interieur/plaintes-en-ligne-pel/portail_agent/build/screenshots
+        expire_in: 1 week
         when: on_failure
-    allow_failure: true
 
 ## Infection ##
 .infection: &infection
