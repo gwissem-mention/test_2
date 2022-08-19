@@ -4,15 +4,22 @@ declare(strict_types=1);
 
 namespace App\Controller\Complaint\Identity;
 
+use App\Form\Complaint\IdentityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/declaration/identite', name: 'complaint_identity')]
 class IndexController extends AbstractController
 {
-    public function __invoke(): Response
+    public function __invoke(Request $request): Response
     {
-        return $this->render('complaint/identity/index.html.twig');
+        $form = $this->createForm(IdentityType::class);
+        $form->handleRequest($request);
+
+        return $this->render('complaint/identity/index.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 }

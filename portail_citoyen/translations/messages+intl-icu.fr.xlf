@@ -226,6 +226,22 @@
                 <source>nature.place.other</source>
                 <target>Autres natures de lieu</target>
             </trans-unit>
+            <trans-unit id="complaint.identity.victim">
+                  <source>complaint.identity.victim</source>
+                  <target>Victime</target>
+             </trans-unit>
+             <trans-unit id="complaint.identity.corporation.legal.representative">
+                  <source>complaint.identity.corporation.legal.representative</source>
+                  <target>Représentant légal d'une personne morale</target>
+             </trans-unit>
+             <trans-unit id="complaint.identity.person.legal.representative">
+                  <source>complaint.identity.person.legal.representative</source>
+                  <target>Représentant légal d'une personne physique</target>
+             </trans-unit>
+             <trans-unit id="complaint.identity.declarant.status">
+                  <source>complaint.identity.declarant.status</source>
+                  <target>Statut du déclarant</target>
+             </trans-unit>
         </body>
     </file>
 </xliff>
