@@ -43,4 +43,18 @@ final class BaseContext extends MinkContext
             "document.querySelector('".$selector."').childNodes.length > 0"
         );
     }
+
+    /**
+     * @When /^I click the "([^"]*)" element/
+     */
+    public function iClick(string $selector): void
+    {
+        $page = $this->getSession()->getPage();
+        $element = $page->find('css', $selector);
+
+        if (is_null($element)) {
+            throw new \RuntimeException('Element not found');
+        }
+        $element->click();
+    }
 }

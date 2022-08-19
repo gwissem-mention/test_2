@@ -35,4 +35,9 @@ e2e:
                     selenium2:
                         wd_host: http://selenium-hub:4444
                         browser: chrome
-                        capabilities: { "browserName": "chrome" }
+                        capabilities:
+                            browserName: "chrome"
+                            extra_capabilities:
+                                chromeOptions:
+                                    w3c: false
+

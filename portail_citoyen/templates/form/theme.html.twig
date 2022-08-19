@@ -13,3 +13,19 @@
         </div>
     </fieldset>
 {% endblock %}
+
+{% block rich_radio_row %}
+    <fieldset class="fr-fieldset">
+        <legend class="fr-fieldset__legend">
+            {{ form_label(form) }}
+        </legend>
+        <div class="fr-fieldset__content">
+            {% for child in form.children %}
+                <div class="fr-radio-group fr-radio-rich" id="radio-{{ child.vars.id }}">
+                    {{ form_widget(child) }}
+                    {{ form_label(child) }}
+                </div>
+            {% endfor %}
+        </div>
+    </fieldset>
+{% endblock %}
