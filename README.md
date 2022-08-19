@@ -5,7 +5,9 @@
 Setup env files:
 
 ```bash
-cp .env.local.dist .env.local # Edit it if needed
+ # Edit them if needed
+cp docker-compose.override.yml.dist docker-compose.override.yml
+cp .env.local.dist .env.local
 ```
 
 Install the project with following commands:

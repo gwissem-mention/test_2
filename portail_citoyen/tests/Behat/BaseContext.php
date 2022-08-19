@@ -28,7 +28,7 @@ final class BaseContext extends MinkContext
     public function iWaitForTheElementToAppear(string $selector): void
     {
         $this->getSession()->wait(
-            3000,
+            5000,
             "document.querySelector('".$selector."')"
         );
     }
@@ -39,7 +39,7 @@ final class BaseContext extends MinkContext
     public function iWaitForTheElementToBeFilled(string $selector): void
     {
         $this->getSession()->wait(
-            3000,
+            5000,
             "document.querySelector('".$selector."').childNodes.length > 0"
         );
     }

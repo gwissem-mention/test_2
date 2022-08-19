@@ -1,6 +1,13 @@
 .DEFAULT_GOAL := help
 
-DOCKER_COMP			= @docker-compose
+# New docker-compose binary check
+ifeq (, $(shell which docker-compose))
+	DOCKER_COMPOSE=@docker compose
+else
+	DOCKER_COMPOSE=@docker-compose
+endif
+
+DOCKER_COMP			= $(DOCKER_COMPOSE)
 DOCKER_COMP_FILES	= -f docker-compose.yml
 MAKE				= @make
 AGENT_CONT			= $(DOCKER_COMP) exec php-agent

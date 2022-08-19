@@ -71,13 +71,6 @@ services:
     environment:
       APP_ENV: dev
 
-  database-citoyen:
-    ports:
-      - "14532:5432"
-  database-agent:
-    ports:
-      - "14533:5433"
-
   mailer:
     image: schickling/mailcatcher
     ports: [1025, 1080]
