@@ -19,14 +19,8 @@ class PlaceNatureType extends AbstractType
     {
         $builder
             ->add('place', ChoiceType::class, [
-                'attr' => [
-                    'class' => 'fr-select',
-                ],
                 'choices' => $this->naturePlaceThesaurusProvider->getChoices(),
                 'label' => 'nature.place',
-                'label_attr' => [
-                    'class' => 'fr-label',
-                ],
                 'placeholder' => 'nature.place.placeholder',
             ])
         ;

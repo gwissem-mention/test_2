@@ -9,7 +9,7 @@ Feature:
         Then the response status code should be 200
         And I should see 1 "body" element
         When I select "<job>" from "job_job"
-        And I should see "<job>" in the ".fr-input" element
+        And I should see "<job>" in the ".fr-select" element
 
         Examples:
             | job             |
