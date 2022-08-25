@@ -20,15 +20,9 @@ class JobType extends AbstractType
     {
         $builder
             ->add('job', ChoiceType::class, [
-                'attr' => [
-                    'class' => 'fr-input',
-                ],
                 'autocomplete' => true,
                 'choices' => $this->jobThesaurusProvider->getChoices(),
                 'label' => 'your.job',
-                'label_attr' => [
-                    'class' => 'fr-label',
-                ],
                 'placeholder' => 'your.job.placeholder',
             ])
         ;

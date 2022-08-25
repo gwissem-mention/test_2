@@ -20,9 +20,6 @@ class ConsentType extends AbstractType
                     ]),
                 ],
                 'label' => 'visitor.agree',
-                'label_attr' => [
-                    'class' => 'fr-label',
-                ],
             ])
         ;
     }

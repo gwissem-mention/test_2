@@ -30,16 +30,12 @@ class OffenseNatureType extends AbstractType
                 'label' => 'complaint.offense.nature',
                 'choices' => OffenseNature::getChoices(),
                 'attr' => [
-                    'class' => 'fr-select',
                     'data-controller' => 'complaint--offense-nature',
                     'data-action' => 'complaint--offense-nature#displayWarningText 
                     complaint--offense-nature#displayOtherAABField complaint--offense-nature#displayHouseRobberyFields',
                     'data-complaint--offense-nature-url' => $this->router->generate(
                         'complaint_offense_nature_warning_text'
                     ),
-                ],
-                'label_attr' => [
-                    'class' => 'fr-label',
                 ],
                 'choice_attr' => static function (?int $choice) {
                     return self::getOffenseNatureChoiceAttr($choice);
@@ -58,11 +54,7 @@ class OffenseNatureType extends AbstractType
             $event->getForm()->getParent()?->add('aabText', TextareaType::class, [
                 'label' => 'complaint.offense.nature.other.aab.text',
                 'attr' => [
-                    'class' => 'fr-input',
                     'maxlength' => self::OTHER_AAB_TEXT_MAX_LENGTH,
-                ],
-                'label_attr' => [
-                    'class' => 'fr-label',
                 ],
                 'constraints' => [new Length(['max' => self::OTHER_AAB_TEXT_MAX_LENGTH])],
             ]);
@@ -71,21 +63,21 @@ class OffenseNatureType extends AbstractType
                 'label' => 'complaint.offense.nature.fsi.visit',
                 'expanded' => true,
                 'multiple' => false,
+                'inline' => true,
                 'choices' => [
                     'yes' => true,
                     'no' => false,
                 ],
-                'block_prefix' => 'simple_radio_group',
             ])
                 ->add('technicalPoliceVisit', ChoiceType::class, [
                     'label' => 'complaint.offense.nature.technical.police.visit',
                     'expanded' => true,
                     'multiple' => false,
+                    'inline' => true,
                     'choices' => [
                         'yes' => true,
                         'no' => false,
                     ],
-                    'block_prefix' => 'simple_radio_group',
                 ]);
         }
     }
