@@ -57,4 +57,30 @@ final class BaseContext extends MinkContext
         }
         $element->click();
     }
+
+    /**
+     * @When I wait for the element :arg1 to contain :arg2
+     */
+    public function iWaitForTheElementToContain(string $arg1, string $arg2): void
+    {
+        $this->getSession()->wait(
+            5000,
+            "document.querySelector('".$arg1."').innerHTML ===".$arg2
+        );
+
+        $this->assertElementContainsText($arg1, $arg2);
+    }
+
+    /**
+     * @When /^I wait for the "(?P<field>(?:[^"]|\\")*)" field to contain "(?P<value>(?:[^"]|\\")*)"$/
+     */
+    public function iWaitForTheFieldToContainValue(string $arg1, string $arg2): void
+    {
+        $this->getSession()->wait(
+            5000,
+            "document.querySelector('".$arg1."').value === ".$arg2
+        );
+
+        $this->assertFieldContains(str_replace('#', '', $arg1), $arg2);
+    }
 }

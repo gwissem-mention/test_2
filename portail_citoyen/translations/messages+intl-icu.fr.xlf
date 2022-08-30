@@ -6,6 +6,58 @@
                  <source>previous</source>
                  <target>Précédent</target>
             </trans-unit>
+            <trans-unit id="all.fields.are.required">
+                <source>all.fields.are.required</source>
+                <target>Tous les champs indiqués avec un astérisque (*) sont obligatoires</target>
+            </trans-unit>
+            <trans-unit id="birth.country">
+                <source>birth.country</source>
+                <target>Pays de naissance</target>
+            </trans-unit>
+            <trans-unit id="birth.date">
+                <source>birth.date</source>
+                <target>Date de naissance</target>
+            </trans-unit>
+            <trans-unit id="birth.date.help">
+                <source>birth.date.help</source>
+                <target>Date de naissance au format jj/mm/aaaa</target>
+            </trans-unit>
+            <trans-unit id="birth.department">
+                <source>birth.department</source>
+                <target>Département de naissance</target>
+            </trans-unit>
+            <trans-unit id="birth.name">
+                <source>birth.name</source>
+                <target>Nom de naissance</target>
+            </trans-unit>
+            <trans-unit id="birth.town">
+                <source>birth.town</source>
+                <target>Commune de naissance</target>
+            </trans-unit>
+            <trans-unit id="choose.your.civility">
+                <source>choose.your.civility</source>
+                <target>Choisissez votre civilité</target>
+            </trans-unit>
+            <trans-unit id="choose.your.department">
+                <source>choose.your.department</source>
+                <target>Choisissez votre département</target>
+            </trans-unit>
+            <trans-unit id="choose.your.town">
+                <source>choose.your.town</source>
+                <target>Choisissez votre commune</target>
+            </trans-unit>
+            <trans-unit id="civility">
+                <source>civility</source>
+                <target>Civilité</target>
+            </trans-unit>
+            <trans-unit id="first.names">
+                <source>first.names</source>
+                <target>Prénom(s)</target>
+            </trans-unit>
+            <trans-unit id="nationality">
+                <source>nationality</source>
+                <target>Nationalité</target>
+            </trans-unit>
             <trans-unit id="next">
                  <source>next</source>
                  <target>Suivant</target>
@@ -81,6 +133,14 @@
             <trans-unit id="department.seventy.five">
                 <source>department.seventy.five</source>
                 <target>Paris</target>
+            </trans-unit>
+            <trans-unit id="m">
+                <source>m</source>
+                <target>M</target>
+            </trans-unit>
+            <trans-unit id="mme">
+                <source>mme</source>
+                <target>Mme</target>
             </trans-unit>
             <trans-unit id="nationality.france">
                 <source>nationality.france</source>
@@ -241,6 +301,10 @@
              <trans-unit id="complaint.identity.declarant.status">
                   <source>complaint.identity.declarant.status</source>
                   <target>Statut du déclarant</target>
+             </trans-unit>
+             <trans-unit id="validate">
+                   <source>validate</source>
+                   <target>Valider</target>
              </trans-unit>
         </body>
     </file>

@@ -1,0 +1,3 @@
+label.fr-label.required:after {
+    content: " (*)" !important;
+}
