@@ -334,10 +334,22 @@
                 <source>mobile</source>
                 <target>Numéro de téléphone portable</target>
             </trans-unit>
-            <trans-unit id="choose.your.address.town">
-                <source>choose.your.address.town</source>
-                <target>Choisissez votre commune</target>
-            </trans-unit>
+            <trans-unit id="civil.state">
+                 <source>civil.state</source>
+                 <target>État civil</target>
+             </trans-unit>
+             <trans-unit id="contact.information">
+                 <source>contact.information</source>
+                 <target>Coordonnées</target>
+             </trans-unit>
+             <trans-unit id="my.identity">
+                 <source>my.identity</source>
+                 <target>Mon identité</target>
+             </trans-unit>
+             <trans-unit id="choose.your.address.town">
+                   <source>choose.your.address.town</source>
+                   <target>Choisissez votre commune</target>
+             </trans-unit>
         </body>
     </file>
 </xliff>

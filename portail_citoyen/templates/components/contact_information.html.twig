@@ -1,18 +1,10 @@
-<div
-    {{ attributes }}
->
-    <p>{{ 'all.fields.are.required'|trans }}</p>
-    {{ form_start(form) }}
-    {{ form_row(form.addressCountry) }}
-    {{ form_row(form.addressTown) }}
-    {% if form.addressDepartment is defined %}
-        {{ form_row(form.addressDepartment, {'value':form.addressTown.vars.value|removeTown }) }}
+<h3>{{ 'contact.information'|trans }}</h3>
+{{ form_row(form.addressLocation.country) }}
+    {{ form_row(form.addressLocation.town) }}
+    {% if form.addressLocation.department is defined %}
+        {{ form_row(form.addressLocation.department, {'value':form.addressLocation.town.vars.value|removeTown }) }}
     {% endif %}
     {{ form_row(form.addressNumber) }}
     {{ form_row(form.addressWay) }}
     {{ form_row(form.email) }}
     {{ form_row(form.mobile) }}
-    <button class="fr-btn" type="submit">{{ 'validate'|trans }}</button>
-    {{ form_end(form) }}
-</div>
-
