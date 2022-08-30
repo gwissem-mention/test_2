@@ -1,0 +1,35 @@
+<div
+        {{ attributes }}
+>
+    {{ form_start(form) }}
+    <div class="fr-grid-row">
+        <div class="fr-col">
+            <div id="declarant-status">
+                {{ form_row(form.declarantStatus) }}
+            </div>
+            {% if form.civilState is defined and form.contactInformation is defined %}
+                <div id="form-identity" class="fr-py-1w">
+                    <p>{{ 'all.fields.are.required'|trans }}</p>
+                    <h2>{{ 'my.identity'|trans }}</h2>
+                    <div class="fr-py-1w">
+                        {{ component('civil_state', {
+                            form: form.civilState,
+                        }) }}
+                    </div>
+                    <div class="fr-py-1w">
+                        {{ component('contact_information', {
+                            form: form.contactInformation,
+                        }) }}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="fr-grid-row">
+        <div class="fr-col">
+            <button type="submit" class="fr-btn">{{ 'next'|trans }}</button>
+        </div>
+    </div>
+    {{ form_end(form) }}
+</div>
+

@@ -18,6 +18,10 @@ class IndexController extends AbstractController
         $form = $this->createForm(IdentityType::class);
         $form->handleRequest($request);
 
+        if ($form->isSubmitted() && $form->isValid()) {
+            return $this->redirectToRoute('complaint_offense_nature');
+        }
+
         return $this->render('complaint/identity/index.html.twig', [
             'form' => $form->createView(),
         ]);

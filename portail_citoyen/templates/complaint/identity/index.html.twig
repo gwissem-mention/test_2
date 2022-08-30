@@ -6,23 +6,8 @@
 {% endblock %}
 
 {% block complaint_step_form %}
-    <div class="fr-grid-row">
-        {{ form_start(form) }}
-        <div id="declarant-status">
-            {{ form_row(form.declarantStatus) }}
-        </div>
-        <div id="form-identity" class="fr-py-1w">
-            {% if form.identity is defined %}
-                {{ form_row(form.identity) }}
-            {% endif %}
-        </div>
-        {{ form_end(form) }}
-    </div>
-    <div class="fr-grid-row">
-        <div class="fr-col">
-            <a class="fr-btn" href="{{ path('complaint_offense_nature') }}">
-                {{ 'next'|trans }}
-            </a>
-        </div>
-    </div>
+    {{ component('identity', {
+        form: form,
+        class: 'fr-py-1w'
+    }) }}
 {% endblock %}
