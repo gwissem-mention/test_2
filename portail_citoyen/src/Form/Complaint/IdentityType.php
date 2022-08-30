@@ -7,6 +7,7 @@ namespace App\Form\Complaint;
 use App\Enum\DeclarantStatus;
 use App\Form\CivilStateType;
 use App\Form\ContactInformationType;
+use App\Form\CorporationType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -28,7 +29,7 @@ class IdentityType extends AbstractType
             ->addEventListener(
                 FormEvents::PRE_SET_DATA,
                 function (FormEvent $event) {
-                    $this->addCivilStateAndContactInformationFields($event->getForm(), null);
+                    $this->buildFieldsForDeclarantStatus($event->getForm());
                 }
             )
             ->get('declarantStatus')
@@ -37,22 +38,39 @@ class IdentityType extends AbstractType
                 function (FormEvent $event) {
                     /** @var FormInterface $parent */
                     $parent = $event->getForm()->getParent();
-                    $this->addCivilStateAndContactInformationFields(
-                        $parent,
-                        intval(
-                            $event->getData()
-                        )
-                    );
+                    $this->buildFieldsForDeclarantStatus($parent, intval($event->getData()));
                 }
             );
     }
 
-    public function addCivilStateAndContactInformationFields(FormInterface $form, ?int $declarantStatus): void
+    protected function buildFieldsForDeclarantStatus(FormInterface $form, ?int $declarantStatus = null): void
     {
-        if (is_int($declarantStatus)) {
-            $form
-                ->add('civilState', CivilStateType::class)
-                ->add('contactInformation', ContactInformationType::class);
+        if (null === $declarantStatus) {
+            return;
         }
+
+        switch ($declarantStatus) {
+            case DeclarantStatus::PersonLegalRepresentative->value:
+            case DeclarantStatus::Victim->value:
+                break;
+            case DeclarantStatus::CorporationLegalRepresentative->value:
+                $this->addCorporationFields($form);
+                break;
+            default:
+            }
+
+        $this->addCivilStateAndContactInformationFields($form);
+    }
+
+    public function addCorporationFields(FormInterface $form): void
+    {
+        $form->add('corporation', CorporationType::class);
+    }
+
+    public function addCivilStateAndContactInformationFields(FormInterface $form): void
+    {
+        $form
+            ->add('civilState', CivilStateType::class)
+            ->add('contactInformation', ContactInformationType::class);
     }
 }

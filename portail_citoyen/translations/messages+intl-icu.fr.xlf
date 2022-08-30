@@ -330,26 +330,74 @@
                 <source>email</source>
                 <target>Adresse électronique</target>
             </trans-unit>
+            <trans-unit id="civil.state">
+                <source>civil.state</source>
+                <target>État civil</target>
+            </trans-unit>
+            <trans-unit id="contact.information">
+                <source>contact.information</source>
+                <target>Coordonnées</target>
+            </trans-unit>
+            <trans-unit id="my.identity">
+                <source>my.identity</source>
+                <target>Mon identité</target>
+            </trans-unit>
             <trans-unit id="mobile">
                 <source>mobile</source>
                 <target>Numéro de téléphone portable</target>
             </trans-unit>
-            <trans-unit id="civil.state">
-                 <source>civil.state</source>
-                 <target>État civil</target>
+            <trans-unit id="choose.your.address.town">
+                <source>choose.your.address.town</source>
+                <target>Choisissez votre commune</target>
+            </trans-unit>
+             <trans-unit id="corporation.nationality">
+                  <source>corporation.nationality</source>
+                  <target>Nationalité</target>
              </trans-unit>
-             <trans-unit id="contact.information">
-                 <source>contact.information</source>
-                 <target>Coordonnées</target>
+             <trans-unit id="corporation.siren">
+                  <source>corporation.siren</source>
+                  <target>SIREN</target>
              </trans-unit>
-             <trans-unit id="my.identity">
-                 <source>my.identity</source>
-                 <target>Mon identité</target>
+             <trans-unit id="corporation.name">
+                  <source>corporation.name</source>
+                  <target>Raison sociale</target>
              </trans-unit>
-             <trans-unit id="choose.your.address.town">
-                   <source>choose.your.address.town</source>
-                   <target>Choisissez votre commune</target>
+             <trans-unit id="corporation.function">
+                  <source>corporation.function</source>
+                  <target>En qualité de</target>
              </trans-unit>
+             <trans-unit id="corporation.email">
+                  <source>corporation.email</source>
+                  <target>Adresse électronique professionnelle d'un point de contact de l'organisation</target>
+             </trans-unit>
+             <trans-unit id="corporation.phone">
+                  <source>corporation.phone</source>
+                  <target>Numéro de téléphone fixe ou portable</target>
+             </trans-unit>
+             <trans-unit id="corporation.legal.information">
+                  <source>corporation.legal.information</source>
+                  <target>Informations légales de la personne morale que je représente</target>
+             </trans-unit>
+             <trans-unit id="corporation.address.country">
+                <source>corporation.address.country</source>
+                <target>Pays</target>
+            </trans-unit>
+            <trans-unit id="corporation.address.town">
+                <source>corporation.address.town</source>
+                <target>Commune</target>
+            </trans-unit>
+            <trans-unit id="corporation.address.department">
+                <source>corporation.address.department</source>
+                <target>Département</target>
+            </trans-unit>
+            <trans-unit id="corporation.address.number">
+                <source>corporation.address.number</source>
+                <target>N°</target>
+            </trans-unit>
+            <trans-unit id="corporation.address.way">
+                <source>corporation.address.way</source>
+                <target>Voie de résidence</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

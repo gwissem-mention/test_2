@@ -1,0 +1,16 @@
+<h3>{{ 'corporation.legal.information'|trans }}</h3>
+<div>
+    {{ form_row(form.siren) }}
+    {{ form_row(form.name) }}
+    {{ form_row(form.function) }}
+    {{ form_row(form.nationality) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.phone) }}
+    {{ form_row(form.addressLocation.country) }}
+    {{ form_row(form.addressLocation.town) }}
+    {% if form.addressLocation.department is defined %}
+        {{ form_row(form.addressLocation.department, {'value':form.addressLocation.town.vars.value|removeTown }) }}
+    {% endif %}
+    {{ form_row(form.addressNumber) }}
+    {{ form_row(form.addressWay) }}
+</div>
