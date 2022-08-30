@@ -22,6 +22,13 @@
                         }) }}
                     </div>
                 </div>
+                {% if form.corporation is defined %}
+                    <div class="fr-py-1w">
+                        {{ component('corporation', {
+                            form: form.corporation,
+                        }) }}
+                    </div>
+                {% endif %}
             {% endif %}
         </div>
     </div>
