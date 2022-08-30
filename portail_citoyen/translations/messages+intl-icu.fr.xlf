@@ -3,8 +3,8 @@
     <file source-language="fr" target-language="fr" datatype="plaintext" original="file.ext">
         <body>
             <trans-unit id="previous">
-                 <source>previous</source>
-                 <target>Précédent</target>
+                <source>previous</source>
+                <target>Précédent</target>
             </trans-unit>
             <trans-unit id="all.fields.are.required">
                 <source>all.fields.are.required</source>
@@ -59,56 +59,56 @@
                 <target>Nationalité</target>
             </trans-unit>
             <trans-unit id="next">
-                 <source>next</source>
-                 <target>Suivant</target>
+                <source>next</source>
+                <target>Suivant</target>
             </trans-unit>
             <trans-unit id="complaint.identity">
-                 <source>complaint.identity</source>
-                 <target>Identité</target>
+                <source>complaint.identity</source>
+                <target>Identité</target>
             </trans-unit>
             <trans-unit id="complaint.offense.nature">
-                 <source>complaint.offense.nature</source>
-                 <target>Nature de l'infraction</target>
+                <source>complaint.offense.nature</source>
+                <target>Nature de l'infraction</target>
             </trans-unit>
             <trans-unit id="complaint.offense.nature.other.aab.text">
-                 <source>complaint.offense.nature.other.aab.text</source>
-                 <target>Préciser le type d'infraction</target>
+                <source>complaint.offense.nature.other.aab.text</source>
+                <target>Préciser le type d'infraction</target>
             </trans-unit>
             <trans-unit id="complaint.offense.nature.house.robbery">
-                 <source>complaint.offense.nature.house.robbery</source>
-                 <target>Cambriolage</target>
+                <source>complaint.offense.nature.house.robbery</source>
+                <target>Cambriolage</target>
             </trans-unit>
             <trans-unit id="complaint.offense.nature.motorized.vehicle.robbery">
-                  <source>complaint.offense.nature.motorized.vehicle.robbery</source>
-                  <target>Vol dans/sur véhicule motorisé</target>
+                <source>complaint.offense.nature.motorized.vehicle.robbery</source>
+                <target>Vol dans/sur véhicule motorisé</target>
             </trans-unit>
             <trans-unit id="complaint.offense.nature.motorized.vehicle.theft">
-                  <source>complaint.offense.nature.motorized.vehicle.theft</source>
-                  <target>Vol de véhicule motorisé</target>
+                <source>complaint.offense.nature.motorized.vehicle.theft</source>
+                <target>Vol de véhicule motorisé</target>
             </trans-unit>
             <trans-unit id="complaint.offense.nature.other.theft">
-                  <source>complaint.offense.nature.other.theft</source>
-                  <target>Autres vols</target>
+                <source>complaint.offense.nature.other.theft</source>
+                <target>Autres vols</target>
             </trans-unit>
             <trans-unit id="complaint.offense.nature.scam">
-                  <source>complaint.offense.nature.scam</source>
-                  <target>Arnaque</target>
+                <source>complaint.offense.nature.scam</source>
+                <target>Arnaque</target>
             </trans-unit>
             <trans-unit id="complaint.offense.nature.degradation">
-                   <source>complaint.offense.nature.degradation</source>
-                   <target>Dégradation</target>
+                <source>complaint.offense.nature.degradation</source>
+                <target>Dégradation</target>
             </trans-unit>
             <trans-unit id="complaint.offense.nature.other.aab">
-                    <source>complaint.offense.nature.other.aab</source>
-                    <target>Autre situation d’AAB</target>
+                <source>complaint.offense.nature.other.aab</source>
+                <target>Autre situation d’AAB</target>
             </trans-unit>
             <trans-unit id="complaint.offense.nature.warning.text">
-                     <source>complaint.offense.nature.warning.text</source>
-                     <target>Veillez à préserver les traces et indices qui pourront être exploités par les enquêteurs.</target>
-             </trans-unit>
+                <source>complaint.offense.nature.warning.text</source>
+                <target>Veillez à préserver les traces et indices qui pourront être exploités par les enquêteurs.</target>
+            </trans-unit>
             <trans-unit id="complaint.location">
-                 <source>complaint.location</source>
-                 <target>Lieu de l'infraction</target>
+                <source>complaint.location</source>
+                <target>Lieu de l'infraction</target>
             </trans-unit>
             <trans-unit id="country.france">
                 <source>country.france</source>
@@ -241,11 +241,11 @@
             <trans-unit id="complaint.offense.nature.fsi.visit">
                 <source>complaint.offense.nature.fsi.visit</source>
                 <target>Des FSI sont-ils intervenus sur les lieux de l'infraction ?</target>
-             </trans-unit>
+            </trans-unit>
             <trans-unit id="complaint.offense.nature.technical.police.visit">
                 <source>complaint.offense.nature.technical.police.visit</source>
                 <target>La police technique et scientifique est-elle intervenue sur les lieux de l'infraction ?</target>
-             </trans-unit>
+            </trans-unit>
             <trans-unit id="yes">
                 <source>yes</source>
                 <target>Oui</target>
@@ -253,7 +253,7 @@
             <trans-unit id="no">
                 <source>no</source>
                 <target>Non</target>
-             </trans-unit>
+            </trans-unit>
             <trans-unit id="nature.place">
                 <source>nature.place</source>
                 <target>Nature de lieu</target>
@@ -287,25 +287,57 @@
                 <target>Autres natures de lieu</target>
             </trans-unit>
             <trans-unit id="complaint.identity.victim">
-                  <source>complaint.identity.victim</source>
-                  <target>Victime</target>
-             </trans-unit>
-             <trans-unit id="complaint.identity.corporation.legal.representative">
-                  <source>complaint.identity.corporation.legal.representative</source>
-                  <target>Représentant légal d'une personne morale</target>
-             </trans-unit>
-             <trans-unit id="complaint.identity.person.legal.representative">
-                  <source>complaint.identity.person.legal.representative</source>
-                  <target>Représentant légal d'une personne physique</target>
-             </trans-unit>
-             <trans-unit id="complaint.identity.declarant.status">
-                  <source>complaint.identity.declarant.status</source>
-                  <target>Statut du déclarant</target>
-             </trans-unit>
-             <trans-unit id="validate">
-                   <source>validate</source>
-                   <target>Valider</target>
-             </trans-unit>
+                <source>complaint.identity.victim</source>
+                <target>Victime</target>
+            </trans-unit>
+            <trans-unit id="complaint.identity.corporation.legal.representative">
+                <source>complaint.identity.corporation.legal.representative</source>
+                <target>Représentant légal d'une personne morale</target>
+            </trans-unit>
+            <trans-unit id="complaint.identity.person.legal.representative">
+                <source>complaint.identity.person.legal.representative</source>
+                <target>Représentant légal d'une personne physique</target>
+            </trans-unit>
+            <trans-unit id="complaint.identity.declarant.status">
+                <source>complaint.identity.declarant.status</source>
+                <target>Statut du déclarant</target>
+            </trans-unit>
+            <trans-unit id="validate">
+                <source>validate</source>
+                <target>Valider</target>
+            </trans-unit>
+            <trans-unit id="address.country">
+                <source>address.country</source>
+                <target>Pays</target>
+            </trans-unit>
+            <trans-unit id="address.town">
+                <source>address.town</source>
+                <target>Commune</target>
+            </trans-unit>
+            <trans-unit id="address.department">
+                <source>address.department</source>
+                <target>Département</target>
+            </trans-unit>
+            <trans-unit id="address.number">
+                <source>address.number</source>
+                <target>N°</target>
+            </trans-unit>
+            <trans-unit id="address.way">
+                <source>address.way</source>
+                <target>Voie de résidence</target>
+            </trans-unit>
+            <trans-unit id="email">
+                <source>email</source>
+                <target>Adresse électronique</target>
+            </trans-unit>
+            <trans-unit id="mobile">
+                <source>mobile</source>
+                <target>Numéro de téléphone portable</target>
+            </trans-unit>
+            <trans-unit id="choose.your.address.town">
+                <source>choose.your.address.town</source>
+                <target>Choisissez votre commune</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
