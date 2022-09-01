@@ -15,6 +15,8 @@ CITOYEN_CONT		= $(DOCKER_COMP) exec php-citoyen
 AGENT_NODE_CONT		= $(DOCKER_COMP) exec node-agent
 CITOYEN_NODE_CONT	= $(DOCKER_COMP) exec node-citoyen
 
+APP_ENV?=dev
+
 ifeq ($(APP_ENV),prod)
 	DOCKER_COMP_FILES := $(DOCKER_COMP_FILES) -f docker-compose.prod.yml
 else
@@ -70,7 +72,7 @@ agent-yarn-%:
 
 ## Run in command in portail_agent
 agent-%:
-	@$(AGENT_CONT) make --no-print-directory $*
+	@$(AGENT_CONT) make APP_ENV=$(APP_ENV) --no-print-directory $*
 
 ## Connect to portail_agent container
 agent-sh:
@@ -95,7 +97,7 @@ citoyen-yarn-%:
 
 ## Run in command in portail_citoyen
 citoyen-%:
-	@$(CITOYEN_CONT) make --no-print-directory $*
+	@$(CITOYEN_CONT) make APP_ENV=$(APP_ENV) --no-print-directory $*
 
 ## Connect to portail_citoyen container
 citoyen-sh:
@@ -126,10 +128,10 @@ permfix: citoyen-permfix
 permfix: agent-permfix
 
 ## Install environment from scratch
-install: build start vendor yarn-install yarn-watch
+install: build start vendor db-create yarn-install yarn-watch
 
 ## Install environment from scratch with debug and tools
-install-dev: build-debug start vendor tools-install yarn-install yarn-watch
+install-dev: build-debug start vendor db-create tools-install yarn-install yarn-watch
 
 ## Display logs stream
 logs:
@@ -168,6 +170,12 @@ yarn-build: citoyen-yarn-build agent-yarn-build
 
 ## Build dev nodes packages
 yarn-dev: citoyen-yarn-dev agent-yarn-dev
+
+#################################
+Doctrine:
+
+## Drop, create db and create tables
+db-create: citoyen-db-create
 
 #################################
 QA:

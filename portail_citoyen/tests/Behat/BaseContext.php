@@ -83,4 +83,24 @@ final class BaseContext extends MinkContext
 
         $this->assertFieldContains(str_replace('#', '', $arg1), $arg2);
     }
+
+    /**
+     * @When /^I attach the file "(?P<path>[^"]*)" to "(?P<field>(?:[^"]|\\")*)" field/
+     */
+    public function iAttachFileToField(string $selector, string $path): void
+    {
+        $field = $this->getSession()->getPage()->find('css', $selector);
+
+        if ($this->getMinkParameter('files_path')) {
+            $fullPath = rtrim(
+                strval(realpath(strval($this->getMinkParameter('files_path')))),
+                DIRECTORY_SEPARATOR
+            ).DIRECTORY_SEPARATOR.$path;
+            if (is_file($fullPath)) {
+                $path = $fullPath;
+            }
+        }
+
+        $field?->attachFile($path);
+    }
 }

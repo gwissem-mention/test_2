@@ -23,6 +23,8 @@ ifndef CI_JOB_ID
 	TARGET_MAX_CHAR_NUM=30
 endif
 
+APP_ENV?=dev
+
 ## Display help
 help:
 	@echo "${GREEN}Plainte en ligne - Portail Citoyen${RESET} https://citoyen.pel.localhost"
@@ -114,6 +116,22 @@ build-ci: yarn
 ## Build dev nodes packages
 dev: c=dev
 dev: yarn
+
+#################################
+Doctrine:
+
+## Drop, create db and create tables
+db-create:
+	@$(eval APP_ENV ?=)
+	@$(CONSOLE) doctrine:database:drop --force --if-exists --env=$(APP_ENV)
+	@$(CONSOLE) doctrine:database:create --env=$(APP_ENV)
+	@$(CONSOLE) doctrine:migrations:migrate -n --allow-no-migration --env=$(APP_ENV)
+
+db-ci-setup:
+	@$(eval APP_ENV ?=)
+	@$(CONSOLE) doctrine:database:drop --force --if-exists --env=$(APP_ENV)
+	@$(CONSOLE) doctrine:database:create --env=$(APP_ENV) --if-not-exists
+	@$(CONSOLE) doctrine:schema:update --force
 
 #################################
 QA:

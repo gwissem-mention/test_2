@@ -96,3 +96,23 @@
         {{ form_errors(form) }}
     </div>
 {% endblock %}
+
+{% block dropzone_row %}
+    {{ form_label(form) }}
+    <div class="dropzone"
+         data-controller="dropzone"
+         data-dropzone-name="{{ form.vars.name }}"
+         data-dropzone-max-files="{{ form.vars.max_files }}"
+         data-dropzone-max-file-size="{{ form.vars.max_file_size }}"
+         data-dropzone-accepted-files="{{ form.vars.accepted_files }}"
+         data-dropzone-add-remove-links="{{ form.vars.add_remove_links }}"
+         data-dropzone-default-message="{{ 'dropzone.default.message'|trans }}"
+         data-dropzone-remove-file="{{ 'dropzone.remove.file'|trans }}"
+         data-dropzone-file-too-big="{{ 'dropzone.file.too.big'|trans }}"
+         data-dropzone-invalid-file-type="{{ 'dropzone.invalid.file.type'|trans }}"
+         data-dropzone-max-files-exceeded="{{ 'dropzone.max.files.exceeded'|trans }}"
+         data-dropzone-cancel-upload="{{ 'dropzone.cancel.upload'|trans }}"
+         data-dropzone-cancel-upload-confirmation="{{ 'dropzone.cancel.upload.confirmation'|trans }}"
+    >
+    </div>
+{% endblock %}
