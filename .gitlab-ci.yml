@@ -430,18 +430,32 @@ agent-func:
     <<: *cache-complete-agent
     <<: *agent-step
     <<: *func
+    services:
+        - name: postgres:13-alpine
+          alias: database-agent
 
 citoyen-func:
     <<: *cache-complete-citoyen
     <<: *citoyen-step
     <<: *func
+    variables:
+        APP_ENV: "test"
+        POSTGRES_DB: "app_test"
+        POSTGRES_PASSWORD: "ChangeMe"
+        POSTGRES_USER: "symfony"
+    script:
+        - make APP_ENV=test db-ci-setup
+        - make behat
+    services:
+        - name: postgres:13-alpine
+          alias: database-func-citoyen
 
 citoyen-e2e:
     <<: *cache-complete-citoyen
     <<: *citoyen-step
     variables:
         APP_ENV: "test"
-        POSTGRES_DB: "app"
+        POSTGRES_DB: "app_test"
         POSTGRES_PASSWORD: "ChangeMe"
         POSTGRES_USER: "symfony"
         SE_EVENT_BUS_HOST: "selenium-hub"
@@ -455,7 +469,7 @@ citoyen-e2e:
         - echo Local IP $LOCAL_IP
         - symfony server:start --no-tls --port=8080 -d
         - sed -i "s/nginx-citoyen/127.0.0.1:8080/g" behat.yml.dist
-        - echo $APP_ENV
+        - make APP_ENV=test db-ci-setup
         - make e2e
     artifacts:
         name: "citoyen-e2e-$CI_COMMIT_REF_NAME"
@@ -466,7 +480,7 @@ citoyen-e2e:
         when: on_failure
     services:
         - name: postgres:13-alpine
-          alias: database-citoyen
+          alias: database-e2e-citoyen
         - name: selenium/hub
           alias: selenium-hub
         - name: selenium/node-chrome
@@ -495,7 +509,7 @@ agent-e2e:
         - make e2e
     services:
         - name: postgres:13-alpine
-          alias: database-agent
+          alias: database-e2e-agent
         - name: selenium/hub
           alias: selenium-hub
         - name: selenium/node-chrome

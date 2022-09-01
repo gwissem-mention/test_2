@@ -25,4 +25,5 @@ import './styles/app.css'
 import '@gouvfr/dsfr/dist/dsfr.module.min.js'
 import '@gouvfr/dsfr/dist/dsfr.nomodule.min.js'
 
-import "./styles/spinner.scss";
+import "./styles/spinner.scss"
+import 'dropzone/dist/dropzone.css'

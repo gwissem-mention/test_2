@@ -398,6 +398,46 @@
                 <source>corporation.address.way</source>
                 <target>Voie de résidence</target>
             </trans-unit>
+            <trans-unit id="file">
+                <source>files</source>
+                <target>Fichiers</target>
+            </trans-unit>
+            <trans-unit id="file.download">
+                <source>file.download</source>
+                <target>Télécharger</target>
+            </trans-unit>
+            <trans-unit id="dropzone.default.message">
+                <source>dropzone.default.message</source>
+                <target>Glisser / déposer ou parcourir</target>
+            </trans-unit>
+            <trans-unit id="dropzone.remove.file">
+                <source>dropzone.remove.file</source>
+                <target>Supprimer</target>
+            </trans-unit>
+            <trans-unit id="dropzone.file.too.big">
+                <source>dropzone.file.too.big</source>
+                <target>Fichier trop volumineux</target>
+            </trans-unit>
+            <trans-unit id="dropzone.invalid.file.type">
+                <source>dropzone.invalid.file.type</source>
+                <target>Type de fichier non autorisé</target>
+            </trans-unit>
+            <trans-unit id="dropzone.max.files.exceeded">
+                <source>dropzone.max.files.exceeded</source>
+                <target>Limite d'envois de fichiers simultanés atteinte</target>
+            </trans-unit>
+            <trans-unit id="dropzone.cancel.upload">
+                <source>dropzone.cancel.upload</source>
+                <target>Annuler l'envoi</target>
+            </trans-unit>
+            <trans-unit id="dropzone.cancel.upload.confirmation">
+                <source>dropzone.cancel.upload.confirmation</source>
+                <target>Etes-vous sur de vouloir annuler l'envoi ?</target>
+            </trans-unit>
+            <trans-unit id="submit">
+                <source>submit</source>
+                <target>Enregistrer</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

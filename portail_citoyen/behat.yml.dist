@@ -4,6 +4,7 @@ default:
             contexts:
                 - App\Tests\Behat\BaseContext
                 - FailAid\Context\FailureContext
+                - App\Tests\Behat\DatabaseContext
     extensions:
         FriendsOfBehat\SymfonyExtension:
             kernel:
@@ -32,6 +33,7 @@ e2e:
                 tags: '~@func'
     extensions:
         Behat\MinkExtension:
+            files_path: "%paths.base%/tests/Behat/Files"
             base_url: http://nginx-citoyen
             browser_name: chrome
             sessions:
@@ -44,4 +46,3 @@ e2e:
                             extra_capabilities:
                                 chromeOptions:
                                     w3c: false
-
