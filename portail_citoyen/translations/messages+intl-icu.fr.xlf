@@ -438,6 +438,10 @@
                 <source>submit</source>
                 <target>Enregistrer</target>
             </trans-unit>
+            <trans-unit id="represented.person.identity">
+                 <source>represented.person.identity</source>
+                 <target>L'identité de la personne physique représentée</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
