@@ -37,7 +37,8 @@ Feature:
     And I should see the key "corporation.address.town" translated
     And I should see the key "corporation.address.department" translated
     And I should see the key "next" translated
-    
+
+
 
   @javascript
   Scenario: Submit the form with minimal valid values for Corporation Legal Representative declarant
