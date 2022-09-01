@@ -81,6 +81,7 @@ class IdentityType extends AbstractType
         $form
             ->add('representedPersonCivilState', CivilStateType::class, [
                 'declarant_status' => $declarantStatus,
+                'label' => 'civil.state',
             ])
             ->add('representedPersonContactInformation', ContactInformationType::class, [
                 'label' => 'contact.information',
