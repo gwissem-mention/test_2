@@ -21,14 +21,27 @@
                             form: form.contactInformation,
                         }) }}
                     </div>
+                    {% if form.corporation is defined %}
+                        <div class="fr-py-1w">
+                            {{ component('corporation', {
+                                form: form.corporation,
+                            }) }}
+                        </div>
+                    {% endif %}
+                    {% if form.representedPersonCivilState is defined and form.representedPersonContactInformation is defined %}
+                        <h2>{{ 'represented.person.identity'|trans }}</h2>
+                        <div class="fr-py-1w">
+                            {{ component('civil_state', {
+                                form: form.representedPersonCivilState,
+                            }) }}
+                        </div>
+                        <div class="fr-py-1w">
+                            {{ component('contact_information', {
+                                form: form.representedPersonContactInformation,
+                            }) }}
+                        </div>
+                    {% endif %}
                 </div>
-                {% if form.corporation is defined %}
-                    <div class="fr-py-1w">
-                        {{ component('corporation', {
-                            form: form.corporation,
-                        }) }}
-                    </div>
-                {% endif %}
             {% endif %}
         </div>
     </div>

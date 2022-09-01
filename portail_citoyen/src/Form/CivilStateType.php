@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Form;
 
+use App\Enum\DeclarantStatus;
 use App\Thesaurus\JobThesaurusProviderInterface;
 use App\Thesaurus\NationalityThesaurusProviderInterface;
 use Symfony\Component\Form\AbstractType;
@@ -11,6 +12,10 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\FormInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\LessThanOrEqual;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -81,14 +86,52 @@ class CivilStateType extends AbstractType
                 ],
                 'choices' => $this->nationalityThesaurusProvider->getChoices(),
                 'label' => 'nationality',
-            ])
-            ->add('job', ChoiceType::class, [
-                'constraints' => [
-                    new NotBlank(),
-                ],
-                'choices' => $this->jobThesaurusProvider->getChoices(),
-                'label' => 'your.job',
-                'placeholder' => 'your.job.placeholder',
             ]);
+
+        $builder->addEventListener(
+            FormEvents::PRE_SET_DATA,
+            function (FormEvent $event) {
+                $this->addJobField($event->getForm());
+            }
+        );
+
+        $builder->addEventListener(
+            FormEvents::SUBMIT,
+            function (FormEvent $event) {
+                /** @var array<string, mixed> $data */
+                $data = $event->getData();
+                $job = null;
+                $jobNone = $this->jobThesaurusProvider->getChoices()['job.none'];
+
+                if ($data['job'] && !($jobNone === $data['job'])) {
+                    $job = $data['job'];
+                } elseif (DeclarantStatus::PersonLegalRepresentative->value === $event->getForm()->getConfig()
+                        ->getOption('declarant_status')) {
+                    $job = $jobNone;
+                }
+
+                $this->addJobField($event->getForm(), intval($job));
+            }
+        );
+    }
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            'declarant_status' => null,
+        ]);
+    }
+
+    private function addJobField(FormInterface $form, ?int $job = null): void
+    {
+        $form->add('job', ChoiceType::class, [
+            'constraints' => [
+                new NotBlank(),
+            ],
+            'choices' => $this->jobThesaurusProvider->getChoices(),
+            'data' => $job,
+            'label' => 'your.job',
+            'placeholder' => 'your.job.placeholder',
+        ]);
     }
 }

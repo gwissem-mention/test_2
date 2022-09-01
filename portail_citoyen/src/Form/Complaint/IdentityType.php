@@ -51,6 +51,8 @@ class IdentityType extends AbstractType
 
         switch ($declarantStatus) {
             case DeclarantStatus::PersonLegalRepresentative->value:
+                $this->addRepresentedPersonFields($form, $declarantStatus);
+                break;
             case DeclarantStatus::Victim->value:
                 break;
             case DeclarantStatus::CorporationLegalRepresentative->value:
@@ -72,5 +74,16 @@ class IdentityType extends AbstractType
         $form
             ->add('civilState', CivilStateType::class)
             ->add('contactInformation', ContactInformationType::class);
+    }
+
+    public function addRepresentedPersonFields(FormInterface $form, int $declarantStatus): void
+    {
+        $form
+            ->add('representedPersonCivilState', CivilStateType::class, [
+                'declarant_status' => $declarantStatus,
+            ])
+            ->add('representedPersonContactInformation', ContactInformationType::class, [
+                'label' => 'contact.information',
+            ]);
     }
 }
