@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {{ form(form) }}
+    {{ component('public_transport', {
+        form: form
+    }) }}
 {% endblock %}

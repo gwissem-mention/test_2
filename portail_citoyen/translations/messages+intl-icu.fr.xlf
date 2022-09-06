@@ -287,20 +287,52 @@
                 <target>Autres natures de lieu</target>
             </trans-unit>
             <trans-unit id="complaint.identity.victim">
-                <source>complaint.identity.victim</source>
-                <target>Victime</target>
+                  <source>complaint.identity.victim</source>
+                  <target>Victime</target>
+             </trans-unit>
+             <trans-unit id="complaint.identity.corporation.legal.representative">
+                  <source>complaint.identity.corporation.legal.representative</source>
+                  <target>Représentant légal d'une personne morale</target>
+             </trans-unit>
+             <trans-unit id="complaint.identity.person.legal.representative">
+                  <source>complaint.identity.person.legal.representative</source>
+                  <target>Représentant légal d'une personne physique</target>
+             </trans-unit>
+             <trans-unit id="complaint.identity.declarant.status">
+                  <source>complaint.identity.declarant.status</source>
+                  <target>Statut du déclarant</target>
+             </trans-unit>
+            <trans-unit id="nature.place.public.transport.placeholder">
+                <source>nature.place.public.transport.placeholder</source>
+                <target>Précisez le transport</target>
             </trans-unit>
-            <trans-unit id="complaint.identity.corporation.legal.representative">
-                <source>complaint.identity.corporation.legal.representative</source>
-                <target>Représentant légal d'une personne morale</target>
+            <trans-unit id="nature.place.public.transport.plane">
+                <source>nature.place.public.transport.plane</source>
+                <target>Avion/Aéroport</target>
             </trans-unit>
-            <trans-unit id="complaint.identity.person.legal.representative">
-                <source>complaint.identity.person.legal.representative</source>
-                <target>Représentant légal d'une personne physique</target>
+            <trans-unit id="nature.place.public.transport.subway">
+                <source>nature.place.public.transport.subway</source>
+                <target>Métro</target>
             </trans-unit>
-            <trans-unit id="complaint.identity.declarant.status">
-                <source>complaint.identity.declarant.status</source>
-                <target>Statut du déclarant</target>
+            <trans-unit id="nature.place.public.transport.bus">
+                <source>nature.place.public.transport.bus</source>
+                <target>Bus</target>
+            </trans-unit>
+            <trans-unit id="nature.place.public.transport.train.station">
+                <source>nature.place.public.transport.train.station</source>
+                <target>Train/gare</target>
+            </trans-unit>
+            <trans-unit id="nature.place.public.transport.tram">
+                <source>nature.place.public.transport.tram</source>
+                <target>Tramway</target>
+            </trans-unit>
+            <trans-unit id="nature.place.public.transport.boat">
+                <source>nature.place.public.transport.boat</source>
+                <target>Bateau</target>
+            </trans-unit>
+            <trans-unit id="nature.place.public.transport.autocar">
+                <source>nature.place.public.transport.autocar</source>
+                <target>Autocar</target>
             </trans-unit>
             <trans-unit id="validate">
                 <source>validate</source>

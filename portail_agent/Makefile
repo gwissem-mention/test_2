@@ -43,7 +43,7 @@ Project:
 permfix:
 	@$(eval uid ?=)
 	@$(eval gid ?=)
-	@chown -R $(uid):$(gid) .
+	@find . -path ./public -prune -o -exec chown $(uid):$(gid) {} +;
 
 ## Run symfony's console command
 console:

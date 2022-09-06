@@ -85,6 +85,17 @@ final class BaseContext extends MinkContext
     }
 
     /**
+     * @When I wait for the element :arg1 to be enabled
+     */
+    public function iWaitForTheElementToBeEnabled(string $arg1): void
+    {
+        $this->getSession()->wait(
+            5000,
+            "document.querySelector('".$arg1."').disabled === false"
+        );
+    }
+
+    /**
      * @When /^I attach the file "(?P<path>[^"]*)" to "(?P<field>(?:[^"]|\\")*)" field/
      */
     public function iAttachFileToField(string $selector, string $path): void

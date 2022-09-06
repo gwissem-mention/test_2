@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class PlaceNatureController extends AbstractController
 {
-    #[Route('/place/nature', name: 'place_nature')]
+    #[Route('/nature-de-lieu', name: 'place_nature')]
     public function __invoke(): Response
     {
         $form = $this->createForm(PlaceNatureType::class);
