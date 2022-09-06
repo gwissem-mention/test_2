@@ -9,9 +9,8 @@ Feature:
         Then the response status code should be 200
         And I should see 1 "body" element
         And I should see "Message d'informations"
-        And I should see 4 "a" elements
-        And I should see "Accéder au formulaire"
-        And I should see 4 ".fr-btn" elements
+        And I should see 3 "a" elements
+        And I should see 3 ".fr-btn" elements
 
     @func
     Scenario: Press button to be redirect to the police
