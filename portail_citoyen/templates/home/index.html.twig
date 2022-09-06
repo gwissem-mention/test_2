@@ -1,21 +1,39 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div>
-        <p>
-            {{ 'information.message'|trans }}
-        </p>
-        <p class="fr-text--red-marianne">
-            {{ 'home.emergency.message'|trans }}
-        </p>
-        <p>
-            <a class="fr-btn" href="{{ path('visitor_agreement') }}">{{ 'keep.going'|trans }}</a>
-        </p>
-        <p>
-            <a class="fr-btn" href="https://www.moncommissariat.interieur.gouv.fr">{{ 'redirect.to.police'|trans }}</a>
-        </p>
-        <p>
-            <a class="fr-btn" href="https://www.gendarmerie.interieur.gouv.fr">{{ 'redirect.to.gendarmerie'|trans }}</a>
-        </p>
+    <div class="fr-container--fluid">
+        <div class="fr-grid-row fr-py-2w">
+            <div class="fr-col">
+                {{ 'information.message'|trans }}
+            </div>
+        </div>
+        <div class="fr-grid-row fr-py-2w">
+            <div class="fr-col">
+                <a class="fr-btn" href="{{ path('visitor_agreement') }}">{{ 'keep.going'|trans }}</a>
+            </div>
+        </div>
+        <div class="fr-grid-row fr-py-2w fr-btns-group--center fr-grid-row--gutters">
+            <div class="fr-col">
+                <a class="fr-btn"
+                   href="https://www.moncommissariat.interieur.gouv.fr">{{ 'redirect.to.police'|trans }}</a>
+            </div>
+            <div class="fr-col">
+                <a class="fr-btn"
+                   href="https://www.gendarmerie.interieur.gouv.fr">{{ 'redirect.to.gendarmerie'|trans }}</a>
+            </div>
+            <div class="fr-col">
+                <a class="fr-btn"
+                   href="https://www.service-public.fr/particuliers/vosdroits/R46526">{{ 'redirect.to.perceval'|trans }}</a>
+            </div>
+            <div class="fr-col">
+                <a class="fr-btn"
+                   href="https://www.service-public.fr/particuliers/vosdroits/N31138">{{ 'redirect.to.thesee'|trans }}</a>
+            </div>
+        </div>
+        <div class="fr-grid-row fr-py-2w">
+            <div class="fr-col fr-text--red-marianne">
+                {{ 'home.emergency.message'|trans }}
+            </div>
+        </div>
     </div>
 {% endblock %}
