@@ -478,6 +478,14 @@
                  <source>home.emergency.message</source>
                  <target>En cas d’urgence, composez le 17 ou le 112 ou le 114</target>
             </trans-unit>
+            <trans-unit id="redirect.to.perceval">
+                <source>redirect.to.perceval</source>
+                <target>Être réorienté vers PERCEVAL</target>
+            </trans-unit>
+            <trans-unit id="redirect.to.thesee">
+                <source>redirect.to.thesee</source>
+                <target>Être réorienté vers THÉSÉE</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
