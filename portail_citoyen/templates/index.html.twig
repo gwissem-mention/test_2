@@ -1,8 +1,13 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {{ 'information.message'|trans }}
     <div>
+        <p>
+            {{ 'information.message'|trans }}
+        </p>
+        <p class="fr-text--red-marianne">
+            {{ 'home.emergency.message'|trans }}
+        </p>
         <p>
             <a class="fr-btn" href="{{ path('visitor_agreement') }}">{{ 'keep.going'|trans }}</a>
         </p>
