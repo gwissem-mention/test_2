@@ -518,6 +518,22 @@
                  <source>home.orienteer.information.message.3</source>
                  <target>Elle ne constitue qu’une faculté, vous pouvez porter plainte dans les locaux des forces de sécurité ou auprès du Tribunal judiciaire. Vous pourrez à tout moment demander à être entendu par un enquêteur voire être convoqué en cas de nécessité. En tant que victime, vous pouvez exercer les droits décrits à l’article 10-2 du CPP (cliquer pour en prendre connaissance). Si vous souhaitez vous faire assister d’un avocat ou d’un interprète, ces droits demeurent incompatibles avec une procédure dématérialisée. Vous devrez donc vous rendre dans une unité de police ou de gendarmerie.</target>
             </trans-unit>
+           <trans-unit id="home.orienteer.legal.message.1">
+                 <source>home.orienteer.legal.message.1</source>
+                 <target>Je prends acte des dispositions légales portées par les articles suivants</target>
+            </trans-unit>
+            <trans-unit id="article.10.2">
+                 <source>article.10.2</source>
+                 <target>Article 10-2</target>
+            </trans-unit>
+            <trans-unit id="article.d.8.2.2">
+                 <source>article.d.8.2.2</source>
+                 <target>Article D8-2-2</target>
+            </trans-unit>
+            <trans-unit id="home.orienteer.legal.message.2">
+                  <source>home.orienteer.legal.message.2</source>
+                  <target>du Code de Procédure Pénale</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
