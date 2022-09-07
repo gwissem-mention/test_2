@@ -190,9 +190,29 @@
                 <source>way.three</source>
                 <target>Voie trois</target>
             </trans-unit>
-            <trans-unit id="information.message">
-                <source>information.message</source>
-                <target>Message d'informations</target>
+            <trans-unit id="home.information.message.1">
+                <source>home.information.message.1</source>
+                <target>Cette démarche est réservée aux déclarants</target>
+            </trans-unit>
+            <trans-unit id="home.information.message.2">
+                <source>home.information.message.2</source>
+                <target>agissant pour leur compte ou celui d’une personne morale ou physique qu’ils sont en droit de représenter (autorité parentale, pouvoir ou procuration, décision de justice).</target>
+            </trans-unit>
+            <trans-unit id="home.information.message.3">
+                <source>home.information.message.3</source>
+                <target>Elle ne concerne que</target>
+            </trans-unit>
+            <trans-unit id="home.information.message.4">
+                <source>home.information.message.4</source>
+                <target>certains faits commis contre les biens</target>
+            </trans-unit>
+            <trans-unit id="home.information.message.5">
+                <source>home.information.message.5</source>
+                <target>(vols, dégradations, délits de fuite, escroqueries...) commis par une personne dont je ne connais pas l’identité.</target>
+            </trans-unit>
+            <trans-unit id="major">
+                <source>major</source>
+                <target>majeur</target>
             </trans-unit>
             <trans-unit id="access.to.the.form">
                 <source>access.to.the.form</source>

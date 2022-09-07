@@ -8,7 +8,12 @@ Feature:
         Given I am on "/"
         Then the response status code should be 200
         And I should see 1 "body" element
-        And I should see the key "information.message" translated
+        And I should see the key "home.information.message.1" translated
+        And I should see the key "major" translated
+        And I should see the key "home.information.message.2" translated
+        And I should see the key "home.information.message.3" translated
+        And I should see the key "home.information.message.4" translated
+        And I should see the key "home.information.message.5" translated
         And I should see 5 "a" elements
         And I should see 5 ".fr-btn" elements
         And I should see the key "home.emergency.message" translated
