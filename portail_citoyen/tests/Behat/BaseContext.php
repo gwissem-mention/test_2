@@ -23,6 +23,14 @@ final class BaseContext extends MinkContext
     }
 
     /**
+     * @Then I should see the key :arg1 translated in the response
+     */
+    public function iShouldSeeTheKeyTranslatedInTheResponse(string $arg1): void
+    {
+        $this->assertResponseContains($this->translator->trans($arg1));
+    }
+
+    /**
      * @Then /^I wait for the element "([^"]*)" to appear$/
      */
     public function iWaitForTheElementToAppear(string $selector): void
