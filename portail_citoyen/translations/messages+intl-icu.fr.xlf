@@ -307,21 +307,21 @@
                 <target>Autres natures de lieu</target>
             </trans-unit>
             <trans-unit id="complaint.identity.victim">
-                  <source>complaint.identity.victim</source>
-                  <target>Victime</target>
-             </trans-unit>
-             <trans-unit id="complaint.identity.corporation.legal.representative">
-                  <source>complaint.identity.corporation.legal.representative</source>
-                  <target>Représentant légal d'une personne morale</target>
-             </trans-unit>
-             <trans-unit id="complaint.identity.person.legal.representative">
-                  <source>complaint.identity.person.legal.representative</source>
-                  <target>Représentant légal d'une personne physique</target>
-             </trans-unit>
-             <trans-unit id="complaint.identity.declarant.status">
-                  <source>complaint.identity.declarant.status</source>
-                  <target>Statut du déclarant</target>
-             </trans-unit>
+                <source>complaint.identity.victim</source>
+                <target>Victime</target>
+            </trans-unit>
+            <trans-unit id="complaint.identity.corporation.legal.representative">
+                <source>complaint.identity.corporation.legal.representative</source>
+                <target>Représentant légal d'une personne morale</target>
+            </trans-unit>
+            <trans-unit id="complaint.identity.person.legal.representative">
+                <source>complaint.identity.person.legal.representative</source>
+                <target>Représentant légal d'une personne physique</target>
+            </trans-unit>
+            <trans-unit id="complaint.identity.declarant.status">
+                <source>complaint.identity.declarant.status</source>
+                <target>Statut du déclarant</target>
+            </trans-unit>
             <trans-unit id="nature.place.public.transport.placeholder">
                 <source>nature.place.public.transport.placeholder</source>
                 <target>Précisez le transport</target>
@@ -505,6 +505,18 @@
             <trans-unit id="redirect.to.thesee">
                 <source>redirect.to.thesee</source>
                 <target>Être réorienté vers THÉSÉE</target>
+            </trans-unit>
+            <trans-unit id="home.orienteer.information.message.1">
+                 <source>home.orienteer.information.message.1</source>
+                 <target>Elle vise à vous faire gagner du temps soit en vous dispensant d’une venue dans les locaux des forces de sécurité, soit en préparant cette venue.</target>
+            </trans-unit>
+            <trans-unit id="home.orienteer.information.message.2">
+                 <source>home.orienteer.information.message.2</source>
+                 <target>La démarche sera nécessairement finalisée par un rendez-vous si vous ne vous identifiez pas par le biais de FC, si les faits ont été accompagnés de violences ou de menaces ou si l'objet volé est un véhicule motorisé.</target>
+            </trans-unit>
+            <trans-unit id="home.orienteer.information.message.3">
+                 <source>home.orienteer.information.message.3</source>
+                 <target>Elle ne constitue qu’une faculté, vous pouvez porter plainte dans les locaux des forces de sécurité ou auprès du Tribunal judiciaire. Vous pourrez à tout moment demander à être entendu par un enquêteur voire être convoqué en cas de nécessité. En tant que victime, vous pouvez exercer les droits décrits à l’article 10-2 du CPP (cliquer pour en prendre connaissance). Si vous souhaitez vous faire assister d’un avocat ou d’un interprète, ces droits demeurent incompatibles avec une procédure dématérialisée. Vous devrez donc vous rendre dans une unité de police ou de gendarmerie.</target>
             </trans-unit>
         </body>
     </file>
