@@ -1,11 +1,25 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div>
-        {{ 'home.orienteer.information.message.1'|trans }}
-        <br/><br/>
-        {{ 'home.orienteer.information.message.2'|trans }}
-        <br/><br/>
-        {{ 'home.orienteer.information.message.3'|trans }}
+    <div class="fr-container--fluid fr-m-1w">
+        <div class="fr-grid-row">
+            <div class="fr-col">
+                {{ 'home.orienteer.information.message.1'|trans }}
+                <br/><br/>
+                {{ 'home.orienteer.information.message.2'|trans }}
+                <br/><br/>
+                {{ 'home.orienteer.information.message.3'|trans }}
+            </div>
+        </div>
+        <div class="fr-grid-row fr-pt-4w">
+            <div class="fr-col">
+                {{ 'home.orienteer.legal.message.1'|trans }} : <a
+                        href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044569870"
+                        target="_blank">{{ 'article.10.2'|trans }}</a>
+                {{ 'home.orienteer.legal.message.2'|trans }}, <a
+                        href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038552381"
+                        target="_blank">{{ 'article.d.8.2.2'|trans }}</a> {{ 'home.orienteer.legal.message.2'|trans }}
+            </div>
+        </div>
     </div>
 {% endblock %}
