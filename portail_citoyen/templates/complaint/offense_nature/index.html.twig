@@ -3,38 +3,15 @@
 {% block breadcrumbs %}
     {% set breadcrumbs =  {
         'complaint.identity': 'complaint_identity',
-        'complaint.offense.nature' :false
+        'complaint.nature.of.the.facts' :false
     } %}
     {{ parent() }}
 {% endblock %}
 
 {% block complaint_step_form %}
-    <div class="fr-grid-row">
-        <div class="fr-col">
-            {{ form_start(form) }}
-            <div class="fr-select-group">
-                {{ form_row(form.offenseNature) }}
-            </div>
-            <div class="fr-input-group" id="other-aab-field">
-                {% if form.aabText is defined %}
-                    {{ form_row(form.aabText) }}
-                {% endif %}
-            </div>
-            <div id="house-robbery-fields">
-                {% if form.fsiVisit is defined %}
-                    <div class="fr-form-group">
-                        {{ form_row(form.fsiVisit) }}
-                    </div>
-                {% endif %}
-                {% if form.technicalPoliceVisit is defined %}
-                    <div class="fr-form-group">
-                        {{ form_row(form.technicalPoliceVisit) }}
-                    </div>
-                {% endif %}
-            </div>
-        </div>
-        {{ form_end(form) }}
-    </div>
+    {{ component('offense_nature', {
+        form: form,
+    }) }}
 
     <div class="fr-grid-row">
         <div class="fr-col">
