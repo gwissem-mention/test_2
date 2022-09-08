@@ -1,0 +1,10 @@
+<div
+    {{ attributes }}
+>
+    {{ form_start(form) }}
+        {{ form_row(form.offenseNature) }}
+        {% if form.offenseNature.vars.value is same as("1") %}
+            <p id="complaint_offense_nature_warning_text">{{ 'complaint.offense.nature.warning.text'|trans }}</p>
+        {% endif %}
+    {{ form_end(form) }}
+</div>
