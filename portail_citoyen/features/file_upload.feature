@@ -18,4 +18,4 @@ Feature:
         And I press "Enregistrer"
         And I wait for the element "ul" to appear
         Then I should see 1 "li" element
-        And I should see 1 "a" element
+        And I should see 2 "a" element

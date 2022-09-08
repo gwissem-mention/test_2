@@ -8,6 +8,9 @@ Feature:
     Given I am on "/declaration/nature-infraction"
     When I follow "Identité"
     Then the response status code should be 200
+    And I should see the key "ministry" translated
+    And I should see the key "inside" translated
+    And I should see the key "and.overseas" translated
     And I should be on "/declaration/identite"
 
   @func
