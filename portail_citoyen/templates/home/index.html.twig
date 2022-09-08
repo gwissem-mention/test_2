@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="fr-container--fluid">
+    <div class="fr-container--fluid fr-p-1w">
         <div class="fr-grid-row fr-py-2w">
             <div class="fr-col">
                 {{ 'home.information.message.1'|trans }}
@@ -12,7 +12,7 @@
         </div>
         <div class="fr-grid-row fr-py-2w">
             <div class="fr-col">
-                <a class="fr-btn" href="{{ path('visitor_agreement') }}">{{ 'keep.going'|trans }}</a>
+                <a class="fr-btn" href="{{ path('complaint_continuation') }}">{{ 'keep.going'|trans }}</a>
             </div>
         </div>
         <div class="fr-grid-row fr-py-2w fr-btns-group--center fr-grid-row--gutters">

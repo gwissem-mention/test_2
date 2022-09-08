@@ -116,3 +116,8 @@
     >
     </div>
 {% endblock %}
+
+{% block submit_widget %}
+    {% set attr = attr|merge({class: (attr.class|default('') ~ ' fr-btn')|trim}) -%}
+    {{- parent() -}}
+{% endblock %}

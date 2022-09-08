@@ -122,4 +122,14 @@ final class BaseContext extends MinkContext
 
         $field?->attachFile($path);
     }
+
+    /**
+     * @When /^I wait (?P<num>\d+) ms$/
+     */
+    public function iWait(int $time): void
+    {
+        $this->getSession()->wait(
+            $time,
+        );
+    }
 }

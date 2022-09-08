@@ -25,7 +25,7 @@ Feature:
     Scenario: Press button to be redirect to the visitor agreement page
         Given I am on "/"
         Then I follow "Continuer"
-        And I should be on "/visitor-agreement"
+        And I should be on "/poursuivre"
 
     @func
     Scenario: Press button to be redirect to the police
