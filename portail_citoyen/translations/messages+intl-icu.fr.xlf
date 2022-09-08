@@ -534,6 +534,14 @@
                   <source>home.orienteer.legal.message.2</source>
                   <target>du Code de Procédure Pénale</target>
             </trans-unit>
+            <trans-unit id="complaint.continuation.material.damage">
+                 <source>complaint.continuation.material.damage</source>
+                 <target>Confirmez-vous porter plainte pour un ou des préjudices matériels ?</target>
+            </trans-unit>
+            <trans-unit id="complaint.continuation.offense.author.known">
+                 <source>complaint.continuation.offense.author.known</source>
+                 <target>Connaissez-vous l'identité de l'auteur de l'infraction ?</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

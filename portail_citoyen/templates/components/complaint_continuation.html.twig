@@ -1,0 +1,27 @@
+<div
+        {{ attributes }}
+>
+    {{ form_start(form, {
+        attr: {
+            'data-action': 'live#action',
+            'data-action-name': 'prevent|submit'
+        }
+    }) }}
+    <div class="fr-grid-row">
+        <div class="fr-col">
+            {{ form_row(form.materialDamage) }}
+            {% if form.offenseAuthorKnown is defined %}
+                <div id="form-offense-author-known" class="fr-py-2w">
+                    {{ form_row(form.offenseAuthorKnown) }}
+                </div>
+            {% endif %}
+            {% if form.continue is defined %}
+                <div id="continue" class="fr-py-2w">
+                    {{ form_row(form.continue) }}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    {{ form_end(form) }}
+</div>
+
