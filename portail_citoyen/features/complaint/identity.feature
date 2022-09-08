@@ -6,7 +6,10 @@ Feature:
     @func
     Scenario: I can see the identity breadcrumb
         Given I am on "/declaration/identite"
-        Then I should see "Identité" in the ".fr-breadcrumb__list" element
+        Then I should see the key "ministry" translated
+        And I should see the key "inside" translated
+        And I should see the key "and.overseas" translated
+        And I should see "Identité" in the ".fr-breadcrumb__list" element
 
     @func
     Scenario: I can see a the declarant status label

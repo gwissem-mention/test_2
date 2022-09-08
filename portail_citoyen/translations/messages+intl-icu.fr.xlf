@@ -10,6 +10,10 @@
                 <source>all.fields.are.required</source>
                 <target>Tous les champs indiqués avec un astérisque (*) sont obligatoires</target>
             </trans-unit>
+            <trans-unit id="and.overseas">
+                <source>and.overseas</source>
+                <target>et des outre-mer</target>
+            </trans-unit>
             <trans-unit id="birth.country">
                 <source>birth.country</source>
                 <target>Pays de naissance</target>
@@ -50,9 +54,21 @@
                 <source>civility</source>
                 <target>Civilité</target>
             </trans-unit>
+            <trans-unit id="complaint.online">
+                <source>complaint.online</source>
+                <target>Plainte en ligne</target>
+            </trans-unit>
             <trans-unit id="first.names">
                 <source>first.names</source>
                 <target>Prénom(s)</target>
+            </trans-unit>
+            <trans-unit id="inside">
+                <source>inside</source>
+                <target>de l'intérieur</target>
+            </trans-unit>
+            <trans-unit id="ministry">
+                <source>ministry</source>
+                <target>Ministère</target>
             </trans-unit>
             <trans-unit id="nationality">
                 <source>nationality</source>
