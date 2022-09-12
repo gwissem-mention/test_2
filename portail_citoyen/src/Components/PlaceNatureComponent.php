@@ -11,8 +11,8 @@ use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 use Symfony\UX\LiveComponent\ComponentWithFormTrait;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
 
-#[AsLiveComponent('public_transport')]
-class PublicTransportComponent extends AbstractController
+#[AsLiveComponent('place_nature')]
+class PlaceNatureComponent extends AbstractController
 {
     use ComponentWithFormTrait;
     use DefaultActionTrait;

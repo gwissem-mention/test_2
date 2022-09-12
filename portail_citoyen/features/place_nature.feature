@@ -26,12 +26,8 @@ Feature:
     @javascript
     Scenario Outline: Show place nature page and select "Transports en commun" nature place
         Given I am on "/nature-de-lieu"
-        And I should see 1 "body" element
         When I select "Transports en commun" from "place_nature_place"
-        And I should see "Transports en commun" in the "#place_nature_place" element
         And I wait for the element "#place_nature_naturePlacePublicTransportChoice" to appear
-        And I wait for the element "#place_nature_naturePlacePublicTransportChoice" to be enabled
-        And I should see 2 ".fr-select" elements
         Then I select "<nature_place_public_transport>" from "place_nature_naturePlacePublicTransportChoice"
         And I should see "<nature_place_public_transport>" in the "#place_nature_naturePlacePublicTransportChoice" element
 
@@ -44,3 +40,20 @@ Feature:
             | Tramway                       |
             | Bateau                        |
             | Autocar                       |
+
+
+    @javascript
+    Scenario Outline: Show place nature page and select "Autres natures de lieu" nature place
+        Given I am on "/nature-de-lieu"
+        When I select "Autres natures de lieu" from "place_nature_place"
+        And I wait for the element "#place_nature_naturePlaceOtherChoice" to appear
+        Then I select "<nature_place_other>" from "place_nature_naturePlaceOtherChoice"
+        And I should see "<nature_place_other>" in the "#place_nature_naturePlaceOtherChoice" element
+
+        Examples:
+            | nature_place_other |
+            | Camping            |
+            | Restaurant         |
+            | Parc               |
+            | Marché             |
+
