@@ -15,7 +15,8 @@ services:
     depends_on:
       - database-citoyen
     volumes:
-      - citoyen-public:/srv/citoyen/public:ro
+      - citoyen-public:/srv/citoyen/public:rw
+      - ./portail_citoyen/public/robots.txt:/srv/citoyen/public/robots.txt:ro
     healthcheck:
       interval: 10s
       timeout: 3s
@@ -53,7 +54,8 @@ services:
       - php-citoyen
     restart: unless-stopped
     volumes:
-      - citoyen-public:/srv/citoyen/public:ro
+      - citoyen-public:/srv/citoyen/public:rw
+      - ./portail_citoyen/public/robots.txt:/srv/citoyen/public/robots.txt:ro
 
   nginx-agent:
     image: nginx
