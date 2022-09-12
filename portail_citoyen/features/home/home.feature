@@ -38,6 +38,7 @@ Feature:
         Given I am on "/"
         Then I follow "Être redirigé vers l'orienteur de la Gendarmerie Nationale"
         And I should be on "https://www.gendarmerie.interieur.gouv.fr/"
+
     @func
     Scenario: Press button to be redirect to perceval
         Given I am on "/"
