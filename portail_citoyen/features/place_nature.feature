@@ -100,3 +100,34 @@ Feature:
         When I click the "label[for='place_nature_moreInfo']" element
         And I wait for the element "#place_nature_moreInfoText" to appear
         Then I should see a "#place_nature_moreInfoText" element
+
+    @func
+    Scenario Outline: I can see the offense exact date known radio buttons
+        Given I am on "/nature-de-lieu"
+        Then I should see 2 "input[type=radio][name='place_nature[exactDateKnown]']" elements
+        And I should see "<exact_date_known>" in the "<element>" element
+
+        Examples:
+            | element                                  | exact_date_known |
+            | label[for=place_nature_exactDateKnown_0] | Oui              |
+            | label[for=place_nature_exactDateKnown_1] | Non              |
+
+    @javascript
+    Scenario: I can see 1 date input if I select "Yes" to offense exact date known radio buttons
+        Given I am on "/nature-de-lieu"
+        When I click the "label[for='place_nature_exactDateKnown_0']" element
+        And I wait for the element "#place_nature_startDate" to appear
+        Then I should see the key "offense.unique.date" translated
+        And I should see the key "offense.unique.date" translated
+        And I should see a "input#place_nature_startDate" element
+
+    @javascript
+    Scenario: I can see 2 date inputs if I select "No" to offense exact date known radio buttons
+        Given I am on "/nature-de-lieu"
+        When I click the "label[for='place_nature_exactDateKnown_1']" element
+        And I wait for the element "#place_nature_startDate" to appear
+        Then I should see the key "offense.unique.date" translated
+        And I should see the key "offense.start.date" translated
+        And I should see a "input#place_nature_startDate" element
+        And I should see the key "offense.end.date" translated
+        And I should see a "input#place_nature_endDate" element

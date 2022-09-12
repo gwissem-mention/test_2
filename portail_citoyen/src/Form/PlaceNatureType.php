@@ -10,6 +10,7 @@ use App\Thesaurus\NaturePlaceThesaurusProviderInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -17,6 +18,7 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\LessThanOrEqual;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 class PlaceNatureType extends AbstractType
@@ -37,6 +39,16 @@ class PlaceNatureType extends AbstractType
                 'placeholder' => 'nature.place.placeholder',
                 'constraints' => [
                     new NotBlank(message: 'nature.place.not.blank.error'),
+                ],
+            ])
+            ->add('exactDateKnown', ChoiceType::class, [
+                'label' => 'complaint.exact.date.known',
+                'expanded' => true,
+                'multiple' => false,
+                'inline' => true,
+                'choices' => [
+                    'yes' => true,
+                    'no' => false,
                 ],
             ])
             ->add('choiceHour', ChoiceType::class, [
@@ -73,6 +85,7 @@ class PlaceNatureType extends AbstractType
                 $parent = $event->getForm()->getParent();
                 $this->addNaturePlacePublicTransportField($parent, $place);
                 $this->addNaturePlaceOtherField($parent, $place);
+                $this->addDateFields($event->getForm());
             }
         );
 
@@ -95,6 +108,16 @@ class PlaceNatureType extends AbstractType
                 /** @var FormInterface $parent */
                 $parent = $event->getForm()->getParent();
                 $this->addMoreInfoText($parent, $moreInfoValue);
+            }
+        );
+
+        $builder->get('exactDateKnown')->addEventListener(
+            FormEvents::POST_SUBMIT,
+            function (FormEvent $event) {
+                $exactDateKnown = $event->getData();
+                /** @var FormInterface $parent */
+                $parent = $event->getForm()->getParent();
+                $this->addDateFields($parent, boolval($exactDateKnown));
             }
         );
     }
@@ -188,6 +211,39 @@ class PlaceNatureType extends AbstractType
                         'max' => 150,
                     ]),
                 ],
+            ]);
+        }
+    }
+
+    private function addDateFields(FormInterface $form, ?bool $exactDateKnown = null): void
+    {
+        if (null === $exactDateKnown) {
+            return;
+        }
+
+        $form->add('startDate', DateType::class, [
+            'constraints' => [
+                new NotBlank(),
+                new LessThanOrEqual('today'),
+            ],
+            'format' => 'dd/MM/yyyy',
+            'html5' => false,
+            'label' => true === $exactDateKnown ? 'offense.unique.date' : 'offense.start.date',
+            'widget' => 'single_text',
+            'help' => 'date.help',
+        ]);
+
+        if (false === $exactDateKnown) {
+            $form->add('endDate', DateType::class, [
+                'constraints' => [
+                    new NotBlank(),
+                    new LessThanOrEqual('today'),
+                ],
+                'format' => 'dd/MM/yyyy',
+                'html5' => false,
+                'label' => 'offense.end.date',
+                'widget' => 'single_text',
+                'help' => 'date.help',
             ]);
         }
     }
