@@ -83,3 +83,20 @@ Feature:
         Then I should not see a "#place_nature_hour" element
         And I should not see a "#place_nature_startHour" element
         And I should not see a "#place_nature_endHour" element
+
+    @func
+    Scenario: Show place nature page and don't check "Je souhaite apporter des précisions sur le lieu des faits" checkbox
+        Given I am on "/nature-de-lieu"
+        And I should see 1 "body" element
+        And I should see the key "more.info.place" translated
+        And I should not see a "#place_nature_moreInfoText" element
+
+    @javascript
+    Scenario: Show place nature page and check "Je souhaite apporter des précisions sur le lieu des faits" checkbox
+        Given I am on "/nature-de-lieu"
+        And I should see 1 "body" element
+        And I should see the key "more.info.place" translated
+        And I should not see a "#place_nature_moreInfoText" element
+        When I click the "label[for='place_nature_moreInfo']" element
+        And I wait for the element "#place_nature_moreInfoText" to appear
+        Then I should see a "#place_nature_moreInfoText" element

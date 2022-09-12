@@ -8,12 +8,15 @@ use App\Thesaurus\NaturePlaceOtherThesaurusProviderInterface;
 use App\Thesaurus\NaturePlacePublicTransportThesaurusProviderInterface;
 use App\Thesaurus\NaturePlaceThesaurusProviderInterface;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 class PlaceNatureType extends AbstractType
@@ -44,6 +47,10 @@ class PlaceNatureType extends AbstractType
                 ],
                 'expanded' => true,
                 'label' => 'do.you.know.hour.facts',
+            ])
+            ->add('moreInfo', CheckboxType::class, [
+                'label' => 'more.info.place',
+                'required' => false,
             ])
         ;
 
@@ -77,6 +84,17 @@ class PlaceNatureType extends AbstractType
                 /** @var FormInterface $parent */
                 $parent = $event->getForm()->getParent();
                 $this->addDateTimeHourField($parent, $choice);
+            }
+        );
+
+        $builder->get('moreInfo')->addEventListener(
+            FormEvents::POST_SUBMIT,
+            function (FormEvent $event) {
+                /** @var bool $moreInfoValue */
+                $moreInfoValue = $event->getForm()->getData();
+                /** @var FormInterface $parent */
+                $parent = $event->getForm()->getParent();
+                $this->addMoreInfoText($parent, $moreInfoValue);
             }
         );
     }
@@ -156,6 +174,20 @@ class PlaceNatureType extends AbstractType
                 ],
                 'label' => 'end.hour',
                 'widget' => 'single_text',
+            ]);
+        }
+    }
+
+    public function addMoreInfoText(FormInterface $form, bool $moreInfoValue): void
+    {
+        if (true === $moreInfoValue) {
+            $form->add('moreInfoText', TextType::class, [
+                'label' => false,
+                'constraints' => [
+                    new Length([
+                        'max' => 150,
+                    ]),
+                ],
             ]);
         }
     }
