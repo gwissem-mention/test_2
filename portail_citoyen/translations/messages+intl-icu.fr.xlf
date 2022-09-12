@@ -606,6 +606,26 @@
                 <source>minute</source>
                 <target>Minute</target>
             </trans-unit>
+            <trans-unit id="offense.start.date">
+                  <source>offense.start.date</source>
+                  <target>Entre</target>
+            </trans-unit>
+            <trans-unit id="offense.end.date">
+                  <source>offense.end.date</source>
+                  <target>Et</target>
+            </trans-unit>
+            <trans-unit id="offense.unique.date">
+                  <source>offense.unique.date</source>
+                  <target>Le</target>
+            </trans-unit>
+            <trans-unit id="complaint.exact.date.known">
+                  <source>complaint.exact.date.known</source>
+                  <target>Connaissez-vous la date exacte des faits ?</target>
+            </trans-unit>
+            <trans-unit id="date.help">
+                  <source>date.help</source>
+                  <target>Date au format jj/mm/aaaa</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

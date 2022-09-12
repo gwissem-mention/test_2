@@ -1,3 +1,0 @@
-label.fr-label:not(.no-star).required:after {
-    content: " (*)" !important;
-}

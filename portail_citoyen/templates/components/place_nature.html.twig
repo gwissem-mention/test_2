@@ -9,6 +9,51 @@
     {% if form.naturePlaceOtherChoice is defined %}
         {{ form_row(form.naturePlaceOtherChoice) }}
     {% endif %}
+    {{ form_row(form.moreInfo) }}
+    {% if form.moreInfoText is defined %}
+        {{ form_row(form.moreInfoText) }}
+    {% endif %}
+    <div class="fr-grid-row fr-py-1w">
+        <div class="fr-col">
+            {{ form_row(form.exactDateKnown) }}
+        </div>
+    </div>
+    {% if form.startDate is defined %}
+        <div class="fr-grid-row fr-py-1w fr-grid-row--gutters">
+            <div class="fr-col-xl-2 fr-col-md-4 fr-col-6">
+                {{ form_row(form.startDate) }}
+            </div>
+            {% if form.endDate is defined %}
+                <div class="fr-col-xl-2 fr-col-md-4 fr-col-6">
+                    {{ form_row(form.endDate) }}
+                </div>
+            {% endif %}
+        </div>
+    {% endif %}
+    <div class="fr-grid-row fr-py-2w">
+        <div class="fr-col">
+            {{ form_row(form.choiceHour) }}
+        </div>
+    </div>
+    {% if form.startHour is defined or form.hour is defined %}
+        <div class="fr-grid-row fr-py-2w fr-grid-row--gutters">
+            {% if form.hour is defined %}
+                <div class="fr-col-xl-2 fr-col-md-4 fr-col-6">
+                    {{ form_row(form.hour) }}
+                </div>
+            {% elseif form.endHour is defined %}
+                <div class="fr-col-xl-2 fr-col-md-4 fr-col-6">
+                    {{ form_row(form.startHour) }}
+                </div>
+            {% endif %}
+            {% if form.endHour is defined %}
+                <div class="fr-col-xl-2 fr-col-md-4 fr-col-6">
+                    {{ form_row(form.endHour) }}
+                </div>
+            {% endif %}
+        </div>
+    {% endif %}
     <button id="keep.going" class="fr-btn" type="submit">{{ 'keep.going'|trans }}</button>
     {{ form_end(form) }}
 </div>
+
