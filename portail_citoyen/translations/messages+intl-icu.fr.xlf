@@ -142,6 +142,10 @@
                 <source>mme</source>
                 <target>Mme</target>
             </trans-unit>
+            <trans-unit id="more.info.place">
+                <source>more.info.place</source>
+                <target>Je souhaite apporter des précisions sur le lieu des faits</target>
+            </trans-unit>
             <trans-unit id="nationality.france">
                 <source>nationality.france</source>
                 <target>Française</target>
