@@ -522,7 +522,7 @@
                  <source>home.orienteer.information.message.3</source>
                  <target>Elle ne constitue qu’une faculté, vous pouvez porter plainte dans les locaux des forces de sécurité ou auprès du Tribunal judiciaire. Vous pourrez à tout moment demander à être entendu par un enquêteur voire être convoqué en cas de nécessité. En tant que victime, vous pouvez exercer les droits décrits à l’article 10-2 du CPP (cliquer pour en prendre connaissance). Si vous souhaitez vous faire assister d’un avocat ou d’un interprète, ces droits demeurent incompatibles avec une procédure dématérialisée. Vous devrez donc vous rendre dans une unité de police ou de gendarmerie.</target>
             </trans-unit>
-           <trans-unit id="home.orienteer.legal.message.1">
+            <trans-unit id="home.orienteer.legal.message.1">
                  <source>home.orienteer.legal.message.1</source>
                  <target>Je prends acte des dispositions légales portées par les articles suivants</target>
             </trans-unit>
@@ -565,6 +565,42 @@
             <trans-unit id="nature.place.other.market">
                 <source>nature.place.other.market</source>
                 <target>Marché</target>
+            </trans-unit>
+            <trans-unit id="do.you.know.hour.facts">
+                  <source>do.you.know.hour.facts</source>
+                  <target>Connaissez-vous l'heure des faits ?</target>
+            </trans-unit>
+            <trans-unit id="yes.i.know.the.exact.time.of.facts">
+                <source>yes.i.know.the.exact.time.of.facts</source>
+                <target>Oui je connais l'heure exacte des faits</target>
+            </trans-unit>
+            <trans-unit id="no.but.i.know.the.time.slot">
+                <source>no.but.i.know.the.time.slot</source>
+                <target>Non mais je connais le créneau horaire</target>
+            </trans-unit>
+            <trans-unit id="no.but.i.don.t.know.at.all.the.time.of.facts">
+                <source>no.but.i.don.t.know.at.all.the.time.of.facts</source>
+                <target>Je ne connais pas l'heure des faits</target>
+            </trans-unit>
+            <trans-unit id="exact.hour">
+                <source>exact.hour</source>
+                <target>Heure exacte</target>
+            </trans-unit>
+            <trans-unit id="start.hour">
+                <source>start.hour</source>
+                <target>Heure de début</target>
+            </trans-unit>
+            <trans-unit id="end.hour">
+                <source>end.hour</source>
+                <target>Heure de fin</target>
+            </trans-unit>
+            <trans-unit id="hour">
+                <source>hour</source>
+                <target>Heure</target>
+            </trans-unit>
+            <trans-unit id="minute">
+                <source>minute</source>
+                <target>Minute</target>
             </trans-unit>
         </body>
     </file>
