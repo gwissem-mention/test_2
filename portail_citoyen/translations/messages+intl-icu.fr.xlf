@@ -306,6 +306,10 @@
                 <source>nature.place.other</source>
                 <target>Autres natures de lieu</target>
             </trans-unit>
+            <trans-unit id="nature.place.unknown">
+                <source>nature.place.unknown</source>
+                <target>Lieu indéterminé</target>
+            </trans-unit>
             <trans-unit id="complaint.identity.victim">
                 <source>complaint.identity.victim</source>
                 <target>Victime</target>

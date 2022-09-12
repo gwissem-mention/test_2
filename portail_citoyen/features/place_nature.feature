@@ -22,6 +22,7 @@ Feature:
             | Commerce               |
             | Transports en commun   |
             | Autres natures de lieu |
+            | Lieu indéterminé       |
 
     @javascript
     Scenario Outline: Show place nature page and select "Transports en commun" nature place

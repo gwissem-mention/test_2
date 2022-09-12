@@ -15,6 +15,7 @@ class MockedNaturePlaceThesaurusProvider implements NaturePlaceThesaurusProvider
             'nature.place.market' => 4,
             'nature.place.public.transport' => 5,
             'nature.place.other' => 6,
+            'nature.place.unknown' => 7,
         ];
     }
 }
