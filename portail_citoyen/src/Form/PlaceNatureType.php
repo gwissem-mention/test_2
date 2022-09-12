@@ -9,6 +9,7 @@ use App\Thesaurus\NaturePlacePublicTransportThesaurusProviderInterface;
 use App\Thesaurus\NaturePlaceThesaurusProviderInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -34,7 +35,17 @@ class PlaceNatureType extends AbstractType
                 'constraints' => [
                     new NotBlank(message: 'nature.place.not.blank.error'),
                 ],
-            ]);
+            ])
+            ->add('choiceHour', ChoiceType::class, [
+                'choices' => [
+                    'yes.i.know.the.exact.time.of.facts' => 'yes',
+                    'no.but.i.know.the.time.slot' => 'maybe',
+                    'no.but.i.don.t.know.at.all.the.time.of.facts' => 'no',
+                ],
+                'expanded' => true,
+                'label' => 'do.you.know.hour.facts',
+            ])
+        ;
 
         $builder->addEventListener(
             FormEvents::PRE_SET_DATA,
@@ -55,6 +66,17 @@ class PlaceNatureType extends AbstractType
                 $parent = $event->getForm()->getParent();
                 $this->addNaturePlacePublicTransportField($parent, $place);
                 $this->addNaturePlaceOtherField($parent, $place);
+            }
+        );
+
+        $builder->get('choiceHour')->addEventListener(
+            FormEvents::POST_SUBMIT,
+            function (FormEvent $event) {
+                /** @var ?string $choice */
+                $choice = $event->getForm()->getData();
+                /** @var FormInterface $parent */
+                $parent = $event->getForm()->getParent();
+                $this->addDateTimeHourField($parent, $choice);
             }
         );
     }
@@ -108,5 +130,33 @@ class PlaceNatureType extends AbstractType
             $values['nature.place.other'] => $this->naturePlaceOtherThesaurusProvider->getChoices(),
             default => []
         };
+    }
+
+    public function addDateTimeHourField(FormInterface $form, ?string $choice): void
+    {
+        if ('yes' === $choice) {
+            $form->add('hour', TimeType::class, [
+                'attr' => [
+                    'class' => 'fr-btn',
+                ],
+                'label' => 'exact.hour',
+                'widget' => 'single_text',
+            ]);
+        } elseif ('maybe' === $choice) {
+            $form->add('startHour', TimeType::class, [
+                'attr' => [
+                    'class' => 'fr-btn',
+                ],
+                'label' => 'start.hour',
+                'widget' => 'single_text',
+            ]);
+            $form->add('endHour', TimeType::class, [
+                'attr' => [
+                    'class' => 'fr-btn',
+                ],
+                'label' => 'end.hour',
+                'widget' => 'single_text',
+            ]);
+        }
     }
 }

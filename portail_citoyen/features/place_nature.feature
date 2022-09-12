@@ -41,7 +41,6 @@ Feature:
             | Bateau                        |
             | Autocar                       |
 
-
     @javascript
     Scenario Outline: Show place nature page and select "Autres natures de lieu" nature place
         Given I am on "/nature-de-lieu"
@@ -57,3 +56,29 @@ Feature:
             | Parc               |
             | Marché             |
 
+    @javascript
+    Scenario: Show place nature page and choose hour facts
+        Given I am on "/nature-de-lieu"
+        And I should see 1 "body" element
+        When I click the "label[for='place_nature_choiceHour_0']" element
+        Then I wait for the element "#place_nature_hour" to appear
+        And I should not see a "#place_nature_startHour" element
+        And I should not see a "#place_nature_endHour" element
+
+    @javascript
+    Scenario: Show place nature page and choose hour facts
+        Given I am on "/nature-de-lieu"
+        And I should see 1 "body" element
+        When I click the "label[for='place_nature_choiceHour_1']" element
+        Then I wait for the element "#place_nature_startHour" to appear
+        And I wait for the element "#place_nature_endHour" to appear
+        And I should not see a "#place_nature_hour" element
+
+    @javascript
+    Scenario: Show place nature page and choose hour facts
+        Given I am on "/nature-de-lieu"
+        And I should see 1 "body" element
+        When I click the "label[for='place_nature_choiceHour_2']" element
+        Then I should not see a "#place_nature_hour" element
+        And I should not see a "#place_nature_startHour" element
+        And I should not see a "#place_nature_endHour" element
