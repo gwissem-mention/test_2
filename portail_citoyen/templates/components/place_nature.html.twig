@@ -1,0 +1,14 @@
+<div
+        {{ attributes }}
+>
+    {{ form_start(form) }}
+    {{ form_row(form.place) }}
+    {% if form.naturePlacePublicTransportChoice is defined %}
+        {{ form_row(form.naturePlacePublicTransportChoice) }}
+    {% endif %}
+    {% if form.naturePlaceOtherChoice is defined %}
+        {{ form_row(form.naturePlaceOtherChoice) }}
+    {% endif %}
+    <button id="keep.going" class="fr-btn" type="submit">{{ 'keep.going'|trans }}</button>
+    {{ form_end(form) }}
+</div>

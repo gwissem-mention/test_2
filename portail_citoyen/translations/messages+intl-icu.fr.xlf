@@ -542,6 +542,26 @@
                  <source>complaint.continuation.offense.author.known</source>
                  <target>Connaissez-vous l'identité de l'auteur de l'infraction ?</target>
             </trans-unit>
+            <trans-unit id="nature.place.other.placeholder">
+                <source>nature.place.other.placeholder</source>
+                <target>Précisez la nature du lieu</target>
+            </trans-unit>
+            <trans-unit id="nature.place.other.camping">
+                <source>nature.place.other.camping</source>
+                <target>Camping</target>
+            </trans-unit>
+            <trans-unit id="nature.place.other.restaurant">
+                <source>nature.place.other.restaurant</source>
+                <target>Restaurant</target>
+            </trans-unit>
+            <trans-unit id="nature.place.other.park">
+                <source>nature.place.other.park</source>
+                <target>Parc</target>
+            </trans-unit>
+            <trans-unit id="nature.place.other.market">
+                <source>nature.place.other.market</source>
+                <target>Marché</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

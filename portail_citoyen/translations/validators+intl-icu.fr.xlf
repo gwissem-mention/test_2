@@ -10,6 +10,10 @@
                 <source>corporation.siren.number.error</source>
                 <target>Cette chaine doit contenir uniquement des chiffres.</target>
             </trans-unit>
+            <trans-unit id="nature.place.not.blank.error">
+                <source>nature.place.not.blank.error</source>
+                <target>Veuillez entrer un lieu valide.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
