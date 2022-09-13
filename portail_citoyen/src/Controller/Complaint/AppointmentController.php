@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace App\Controller\Complaint\Location;
+namespace App\Controller\Complaint;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/declaration/lieu', name: 'complaint_location')]
-class IndexController extends AbstractController
+class AppointmentController extends AbstractController
 {
+    #[Route('/declaration/rendez-vous', name: 'appointment')]
     public function __invoke(): Response
     {
-        return $this->render('complaint/location/index.html.twig');
+        return $this->render('complaint/appointment.html.twig');
     }
 }

@@ -33,7 +33,7 @@ Feature:
   Scenario: I am redirected to / when I select "No" to the material damage radio buttons
     Given I am on "/poursuivre"
     When I click the "label[for='continuation_materialDamage_1']" element
-    And I wait 500 ms
+    And I wait 1000 ms
     Then I should be on "/"
 
   @javascript
@@ -42,7 +42,7 @@ Feature:
     And I click the "label[for='continuation_materialDamage_0']" element
     And I wait for the element "#continuation_offenseAuthorKnown_0" to appear
     When I click the "label[for='continuation_offenseAuthorKnown_0']" element
-    And I wait 500 ms
+    And I wait 1000 ms
     Then I should be on "/"
 
   @javascript
@@ -53,5 +53,5 @@ Feature:
     When I click the "label[for='continuation_offenseAuthorKnown_1']" element
     And I wait for the element "#continuation_continue" to appear
     And I press "Continuer"
-    And I wait 500 ms
+    And I wait 1000 ms
     Then I should be on "/accueil-orienteur"

@@ -10,15 +10,12 @@ use App\Thesaurus\NaturePlaceThesaurusProviderInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Validator\Constraints\Length;
-use Symfony\Component\Validator\Constraints\LessThanOrEqual;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 class PlaceNatureType extends AbstractType
@@ -41,30 +38,10 @@ class PlaceNatureType extends AbstractType
                     new NotBlank(message: 'nature.place.not.blank.error'),
                 ],
             ])
-            ->add('exactDateKnown', ChoiceType::class, [
-                'label' => 'complaint.exact.date.known',
-                'expanded' => true,
-                'multiple' => false,
-                'inline' => true,
-                'choices' => [
-                    'yes' => true,
-                    'no' => false,
-                ],
-            ])
-            ->add('choiceHour', ChoiceType::class, [
-                'choices' => [
-                    'yes.i.know.the.exact.time.of.facts' => 'yes',
-                    'no.but.i.know.the.time.slot' => 'maybe',
-                    'no.but.i.don.t.know.at.all.the.time.of.facts' => 'no',
-                ],
-                'expanded' => true,
-                'label' => 'do.you.know.hour.facts',
-            ])
             ->add('moreInfo', CheckboxType::class, [
                 'label' => 'more.info.place',
                 'required' => false,
-            ])
-        ;
+            ]);
 
         $builder->addEventListener(
             FormEvents::PRE_SET_DATA,
@@ -85,18 +62,6 @@ class PlaceNatureType extends AbstractType
                 $parent = $event->getForm()->getParent();
                 $this->addNaturePlacePublicTransportField($parent, $place);
                 $this->addNaturePlaceOtherField($parent, $place);
-                $this->addDateFields($event->getForm());
-            }
-        );
-
-        $builder->get('choiceHour')->addEventListener(
-            FormEvents::POST_SUBMIT,
-            function (FormEvent $event) {
-                /** @var ?string $choice */
-                $choice = $event->getForm()->getData();
-                /** @var FormInterface $parent */
-                $parent = $event->getForm()->getParent();
-                $this->addDateTimeHourField($parent, $choice);
             }
         );
 
@@ -108,16 +73,6 @@ class PlaceNatureType extends AbstractType
                 /** @var FormInterface $parent */
                 $parent = $event->getForm()->getParent();
                 $this->addMoreInfoText($parent, $moreInfoValue);
-            }
-        );
-
-        $builder->get('exactDateKnown')->addEventListener(
-            FormEvents::POST_SUBMIT,
-            function (FormEvent $event) {
-                $exactDateKnown = $event->getData();
-                /** @var FormInterface $parent */
-                $parent = $event->getForm()->getParent();
-                $this->addDateFields($parent, boolval($exactDateKnown));
             }
         );
     }
@@ -173,35 +128,7 @@ class PlaceNatureType extends AbstractType
         };
     }
 
-    public function addDateTimeHourField(FormInterface $form, ?string $choice): void
-    {
-        if ('yes' === $choice) {
-            $form->add('hour', TimeType::class, [
-                'attr' => [
-                    'class' => 'fr-btn',
-                ],
-                'label' => 'exact.hour',
-                'widget' => 'single_text',
-            ]);
-        } elseif ('maybe' === $choice) {
-            $form->add('startHour', TimeType::class, [
-                'attr' => [
-                    'class' => 'fr-btn',
-                ],
-                'label' => 'start.hour',
-                'widget' => 'single_text',
-            ]);
-            $form->add('endHour', TimeType::class, [
-                'attr' => [
-                    'class' => 'fr-btn',
-                ],
-                'label' => 'end.hour',
-                'widget' => 'single_text',
-            ]);
-        }
-    }
-
-    public function addMoreInfoText(FormInterface $form, bool $moreInfoValue): void
+    private function addMoreInfoText(FormInterface $form, bool $moreInfoValue): void
     {
         if (true === $moreInfoValue) {
             $form->add('moreInfoText', TextType::class, [
@@ -211,39 +138,6 @@ class PlaceNatureType extends AbstractType
                         'max' => 150,
                     ]),
                 ],
-            ]);
-        }
-    }
-
-    private function addDateFields(FormInterface $form, ?bool $exactDateKnown = null): void
-    {
-        if (null === $exactDateKnown) {
-            return;
-        }
-
-        $form->add('startDate', DateType::class, [
-            'constraints' => [
-                new NotBlank(),
-                new LessThanOrEqual('today'),
-            ],
-            'format' => 'dd/MM/yyyy',
-            'html5' => false,
-            'label' => true === $exactDateKnown ? 'offense.unique.date' : 'offense.start.date',
-            'widget' => 'single_text',
-            'help' => 'date.help',
-        ]);
-
-        if (false === $exactDateKnown) {
-            $form->add('endDate', DateType::class, [
-                'constraints' => [
-                    new NotBlank(),
-                    new LessThanOrEqual('today'),
-                ],
-                'format' => 'dd/MM/yyyy',
-                'html5' => false,
-                'label' => 'offense.end.date',
-                'widget' => 'single_text',
-                'help' => 'date.help',
             ]);
         }
     }

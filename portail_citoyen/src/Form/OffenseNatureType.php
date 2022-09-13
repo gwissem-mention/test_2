@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Form\Complaint\Infraction;
+namespace App\Form;
 
 use App\Enum\OffenseNature;
 use Symfony\Component\Form\AbstractType;
