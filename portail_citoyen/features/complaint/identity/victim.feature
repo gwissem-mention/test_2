@@ -47,7 +47,7 @@ Feature:
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I fill in "identity_contactInformation_mobile" with "0602030405"
         And I press "Suivant"
-        Then I should be on "/declaration/nature-infraction"
+        Then I should be on "/declaration/faits"
 
     @javascript
     Scenario: Submit the form with birthCountry is France for victim declarant
@@ -70,7 +70,7 @@ Feature:
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I fill in "identity_contactInformation_mobile" with "0602030405"
         And I press "Suivant"
-        Then I should be on "/declaration/nature-infraction"
+        Then I should be on "/declaration/faits"
 
     @javascript
     Scenario: Submit the form with another birthCountry than France for victim declarant
@@ -93,7 +93,7 @@ Feature:
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I fill in "identity_contactInformation_mobile" with "0602030405"
         And I press "Suivant"
-        Then I should be on "/declaration/nature-infraction"
+        Then I should be on "/declaration/faits"
 
     @javascript
     Scenario: Submit the form with addressCountry is France for victim declarant
@@ -116,7 +116,7 @@ Feature:
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I fill in "identity_contactInformation_mobile" with "0602030405"
         And I press "Suivant"
-        Then I should be on "/declaration/nature-infraction"
+        Then I should be on "/declaration/faits"
 
     @javascript
     Scenario: Submit the form with another addressCountry than France for victim declarant
@@ -140,7 +140,7 @@ Feature:
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I fill in "identity_contactInformation_mobile" with "0602030405"
         And I press "Suivant"
-        Then I should be on "/declaration/nature-infraction"
+        Then I should be on "/declaration/faits"
 
     @javascript
     Scenario: Submit the form without any required values

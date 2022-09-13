@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace App\Controller;
+namespace App\Controller\Complaint;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class AppointmentController extends AbstractController
+class FinalizationController extends AbstractController
 {
-    #[Route('/declaration/rendez-vous', name: 'appointment')]
+    #[Route('/declaration/finalisation', name: 'finalization')]
     public function __invoke(): Response
     {
-        return $this->render('appointment.html.twig');
+        return $this->render('complaint/finalization.html.twig');
     }
 }

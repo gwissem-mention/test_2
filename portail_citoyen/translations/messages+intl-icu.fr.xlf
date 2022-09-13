@@ -674,6 +674,10 @@
                 <source>finalization</source>
                 <target>Finalisation</target>
             </trans-unit>
+            <trans-unit id="facts">
+                <source>facts</source>
+                <target>Faits</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -69,7 +69,7 @@ Feature:
         And I fill in "identity_corporation_addressNumber" with "01"
         And I select "1" from "identity_corporation_addressWay"
         And I press "Suivant"
-        Then I should be on "/declaration/nature-infraction"
+        Then I should be on "/declaration/faits"
 
     @javascript
     Scenario: Submit the form with no required value for Corporation Legal Representative declarant

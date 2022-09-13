@@ -10,7 +10,7 @@ Feature:
         And I should see 1 "body" element
         And I should see the key "make.appointment" translated
         And I follow "Précédent"
-        And I should be on "/declaration/lieu"
+        And I should be on "/declaration/faits"
 
     @func
     Scenario: Show appointment page with "Prise de RDV" title

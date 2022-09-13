@@ -27,6 +27,8 @@ class ComplaintContinuationComponent extends AbstractController
     #[LiveAction]
     public function submit(): RedirectResponse
     {
+        $this->submitForm();
+
         return $this->redirectToRoute('home_orienteer');
     }
 }

@@ -1,0 +1,86 @@
+<div
+        {{ attributes }}
+>
+    {{ form_start(form, {
+        attr: {
+            'data-action': 'live#action',
+            'data-action-name': 'prevent|submit'
+        }
+    }) }}
+    <div class="fr-grid-row fr-py-2w">
+        <div class="fr-col">
+            {{ form_row(form.offenseNature.offenseNature) }}
+            {% if form.offenseNature.offenseNature.vars.value is same as("1") %}
+                <p id="complaint_offense_nature_warning_text">{{ 'complaint.offense.nature.warning.text'|trans }}</p>
+            {% endif %}
+            {% if form.offenseNature.aabText is defined %}
+                {{ form_row(form.offenseNature.aabText) }}
+            {% endif %}
+        </div>
+    </div>
+    <div class="fr-grid-row fr-py-2w">
+        <div class="fr-col">
+            {{ form_row(form.placeNature.place) }}
+            {% if form.placeNature.naturePlacePublicTransportChoice is defined %}
+                {{ form_row(form.placeNature.naturePlacePublicTransportChoice) }}
+            {% endif %}
+            {% if form.placeNature.naturePlaceOtherChoice is defined %}
+                {{ form_row(form.placeNature.naturePlaceOtherChoice) }}
+            {% endif %}
+            {{ form_row(form.placeNature.moreInfo) }}
+            {% if form.placeNature.moreInfoText is defined %}
+                {{ form_row(form.placeNature.moreInfoText) }}
+            {% endif %}
+        </div>
+    </div>
+    <div class="fr-grid-row fr-py-2w">
+        <div class="fr-col">
+            {{ form_row(form.offenseDate.exactDateKnown) }}
+        </div>
+    </div>
+    {% if form.offenseDate.startDate is defined %}
+        <div class="fr-grid-row fr-py-2w fr-grid-row--gutters">
+            <div class="fr-col-xl-2 fr-col-md-4 fr-col-6">
+                {{ form_row(form.offenseDate.startDate) }}
+            </div>
+            {% if form.offenseDate.endDate is defined %}
+                <div class="fr-col-xl-2 fr-col-md-4 fr-col-6">
+                    {{ form_row(form.offenseDate.endDate) }}
+                </div>
+            {% endif %}
+        </div>
+    {% endif %}
+    <div class="fr-grid-row fr-py-2w">
+        <div class="fr-col">
+            {{ form_row(form.offenseDate.choiceHour) }}
+        </div>
+    </div>
+    {% if form.offenseDate.startHour is defined or form.offenseDate.hour is defined %}
+        <div class="fr-grid-row fr-py-2w fr-grid-row--gutters">
+            {% if form.offenseDate.hour is defined %}
+                <div class="fr-col-xl-2 fr-col-md-4 fr-col-6">
+                    {{ form_row(form.offenseDate.hour) }}
+                </div>
+            {% elseif form.offenseDate.endHour is defined %}
+                <div class="fr-col-xl-2 fr-col-md-4 fr-col-6">
+                    {{ form_row(form.offenseDate.startHour) }}
+                </div>
+            {% endif %}
+            {% if form.offenseDate.endHour is defined %}
+                <div class="fr-col-xl-2 fr-col-md-4 fr-col-6">
+                    {{ form_row(form.offenseDate.endHour) }}
+                </div>
+            {% endif %}
+        </div>
+    {% endif %}
+    <div class="fr-grid-row fr-pt-4w">
+        <div class="fr-col">
+            <a class="fr-btn" href="{{ path('complaint_identity') }}">
+                {{ 'previous'|trans }}
+            </a>
+            <button type="submit" class="fr-btn">{{ 'next'|trans }}</button>
+        </div>
+    </div>
+    {{ form_end(form) }}
+</div>
+
