@@ -13,7 +13,7 @@
         {% if files is not empty %}
             <div class="fr-grid-row">
                 <div class="fr-col">
-                    <ul>
+                    <ul id="upload_file_list">
                         {% for file in files %}
                             <li>
                                 <a href="{{ path('file_download', {'fileName':file.fileName}) }}">
