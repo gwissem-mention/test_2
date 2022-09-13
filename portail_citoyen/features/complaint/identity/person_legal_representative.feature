@@ -36,6 +36,7 @@ Feature:
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I fill in "identity_civilState_birthDate" with "01/01/2000"
+        And I wait 100 ms
         And I select "Paris (75)" from "identity_civilState_birthLocation_town"
         And I wait for the "#identity_civilState_birthLocation_department" field to contain "75"
         And I select "1" from "identity_civilState_nationality"
@@ -145,6 +146,7 @@ Feature:
         And I select "1" from "identity_civilState_civility"
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
+        And I wait 100 ms
         And I fill in "identity_civilState_birthDate" with "01/01/2000"
         And I select "Paris (75)" from "identity_civilState_birthLocation_town"
         And I wait for the "#identity_civilState_birthLocation_department" field to contain "75"
