@@ -76,3 +76,23 @@ make blackfire url='http://nginx_citoyen'
 ```
 
 If you want to know more about a project, see [agent](./portail_agent/README.md) or [citoyen](./portail_citoyen/README.md)
+
+### Deploy
+
+#### Deploy into Smile container
+
+/!\ This is not the best way to deploy, but it's the easiest way to deploy for now. You need to be in the Smile VPN (https://wiki.smile.fr/wiki/VPN_Connection) to do this.
+
+```bash
+ssh root@pel-citoyen.forge.intranet
+# Switch to pel-citoyen user
+su pel-citoyen
+cd ~/plaintes-en-ligne-pel/
+git pull
+cd portail_citoyen # For now we use only this project
+composer dump-env prod
+composer install --no-dev --optimize-autoloader
+make install # Yarn dependencies
+make build # Build assets + javascript
+APP_ENV=prod APP_DEBUG=0 php bin/console cache:clear
+```
