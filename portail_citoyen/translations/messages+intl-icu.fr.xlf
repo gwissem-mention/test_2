@@ -58,6 +58,14 @@
                 <source>complaint.online</source>
                 <target>Plainte en ligne</target>
             </trans-unit>
+            <trans-unit id="faq">
+                <source>faq</source>
+                <target>FAQ</target>
+            </trans-unit>
+            <trans-unit id="file.a.complaint">
+                <source>file.a.complaint</source>
+                <target>Déclarer plainte</target>
+            </trans-unit>
             <trans-unit id="first.names">
                 <source>first.names</source>
                 <target>Prénom(s)</target>
@@ -625,6 +633,10 @@
             <trans-unit id="date.help">
                   <source>date.help</source>
                   <target>Date au format jj/mm/aaaa</target>
+            </trans-unit>
+            <trans-unit id="start.complaint.process">
+                <source>start.complaint.process</source>
+                <target>Démarrer la rédaction de ma plainte en ligne</target>
             </trans-unit>
         </body>
     </file>

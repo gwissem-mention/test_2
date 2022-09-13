@@ -17,5 +17,5 @@ Feature:
         When I attach the file "blank.pdf" to ".dz-hidden-input" field
         And I press "Enregistrer"
         And I wait for the element "ul" to appear
-        Then I should see 1 "li" element
-        And I should see 2 "a" element
+        Then I should see 2 "li" element
+        And I should see 4 "a" element

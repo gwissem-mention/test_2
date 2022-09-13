@@ -9,6 +9,8 @@ Feature:
         Then I should see the key "ministry" translated
         And I should see the key "inside" translated
         And I should see the key "and.overseas" translated
+        And I should see the key "file.a.complaint" translated
+        And I should see the key "faq" translated
         And I should see "Identité" in the ".fr-breadcrumb__list" element
 
     @func

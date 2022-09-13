@@ -17,9 +17,11 @@ Feature:
         And I should see the key "home.information.message.3" translated
         And I should see the key "home.information.message.4" translated
         And I should see the key "home.information.message.5" translated
-        And I should see 6 "a" elements
+        And I should see 8 "a" elements
         And I should see 5 ".fr-btn" elements
         And I should see the key "home.emergency.message" translated
+        And I should see the key "file.a.complaint" translated
+        And I should see the key "faq" translated
 
     @func
     Scenario: Press button to be redirect to the visitor agreement page
