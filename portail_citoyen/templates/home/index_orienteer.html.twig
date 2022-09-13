@@ -21,5 +21,18 @@
                         target="_blank">{{ 'article.d.8.2.2'|trans }}</a> {{ 'home.orienteer.legal.message.2'|trans }}
             </div>
         </div>
+        <div class="fr-grid-row fr-pt-4w">
+            <div class="fr-col">
+                {{ form_start(form) }}
+                {{ form_row(form.agree) }}
+                <button id="start.complaint.process" class="fr-btn" type="submit">{{ 'start.complaint.process'|trans }}</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+        <div class="fr-grid-row fr-pt-2w">
+            <div class="fr-col">
+                {{ 'law.informations'|trans }}
+            </div>
+        </div>
     </div>
 {% endblock %}

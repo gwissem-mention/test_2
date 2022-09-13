@@ -10,6 +10,8 @@ Feature:
         And I should see the key "ministry" translated
         And I should see the key "inside" translated
         And I should see the key "and.overseas" translated
+        And I should see the key "file.a.complaint" translated
+        And I should see the key "faq" translated
         And I should see 1 "body" element
         When I select "<nature_place>" from "place_nature_place"
         And I should see "<nature_place>" in the ".fr-select" element
