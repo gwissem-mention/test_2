@@ -638,6 +638,34 @@
                 <source>start.complaint.process</source>
                 <target>Démarrer la rédaction de ma plainte en ligne</target>
             </trans-unit>
+            <trans-unit id="to.log.in">
+                <source>to.log.in</source>
+                <target>Se connecter</target>
+            </trans-unit>
+            <trans-unit id="continue.pel.without.log.in">
+                <source>continue.pel.without.log.in</source>
+                <target>Continuer sans m'authentifier</target>
+            </trans-unit>
+            <trans-unit id="continue.pel.without.log.in.explanation">
+                <source>continue.pel.without.log.in.explanation</source>
+                <target>Dans le cas où vous choisissez de ne pas vous authentifier avec France Connect, un RDV sera à planifier obligatoirement en fin de déclaration</target>
+            </trans-unit>
+            <trans-unit id="identify.with">
+                <source>identify.with</source>
+                <target>S’identifier avec</target>
+            </trans-unit>
+            <trans-unit id="france.connect">
+                <source>france.connect</source>
+                <target>FranceConnect</target>
+            </trans-unit>
+            <trans-unit id="what.is.france.connect">
+                <source>what.is.france.connect</source>
+                <target>Qu’est-ce que FranceConnect ?</target>
+            </trans-unit>
+            <trans-unit id="new.window">
+                <source>new.window</source>
+                <target>nouvelle fenêtre</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
