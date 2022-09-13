@@ -634,8 +634,8 @@
                   <source>date.help</source>
                   <target>Date au format jj/mm/aaaa</target>
             </trans-unit>
-            <trans-unit id="start.complaint.process">
-                <source>start.complaint.process</source>
+            <trans-unit id="start.redacting.my.online.complaint">
+                <source>start.redacting.my.online.complaint</source>
                 <target>Démarrer la rédaction de ma plainte en ligne</target>
             </trans-unit>
             <trans-unit id="to.log.in">
