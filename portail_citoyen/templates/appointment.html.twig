@@ -2,4 +2,15 @@
 
 {% block body %}
     <h1>{{ 'make.appointment'|trans }}</h1>
+
+    <div class="fr-grid-row">
+        <div class="fr-col">
+            <a class="fr-btn" href="{{ path('complaint_location') }}">
+                {{ 'previous'|trans }}
+            </a>
+            <a class="fr-btn" href="{{ path('finalization') }}">
+                {{ 'next'|trans }}
+            </a>
+        </div>
+    </div>
 {% endblock %}

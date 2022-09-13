@@ -670,6 +670,10 @@
                 <source>make.appointment</source>
                 <target>Prise de RDV</target>
             </trans-unit>
+            <trans-unit id="finalization">
+                <source>finalization</source>
+                <target>Finalisation</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
