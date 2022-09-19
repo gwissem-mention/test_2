@@ -11,28 +11,28 @@ class MockedTownAndDepartmentAndDepartmentThesaurusProvider implements TownAndDe
     public function getChoices(): array
     {
         return [
-            'town.paris' => [
-                'department' => Department::SeventyFive->value,
+            'pel.town.paris' => [
+                'pel.department' => Department::SeventyFive->value,
                 'value' => 1,
             ],
-            'town.marseille' => [
-                'department' => Department::Thirteen->value,
+            'pel.town.marseille' => [
+                'pel.department' => Department::Thirteen->value,
                 'value' => 2,
             ],
-            'town.la.ciotat' => [
-                'department' => Department::Thirteen->value,
+            'pel.town.la.ciotat' => [
+                'pel.department' => Department::Thirteen->value,
                 'value' => 3,
             ],
-            'town.bordeaux' => [
-                'department' => Department::ThirtyThree->value,
+            'pel.town.bordeaux' => [
+                'pel.department' => Department::ThirtyThree->value,
                 'value' => 4,
             ],
-            'town.merignac' => [
-                'department' => Department::ThirtyThree->value,
+            'pel.town.merignac' => [
+                'pel.department' => Department::ThirtyThree->value,
                 'value' => 5,
             ],
-            'town.arcachon' => [
-                'department' => Department::ThirtyThree->value,
+            'pel.town.arcachon' => [
+                'pel.department' => Department::ThirtyThree->value,
                 'value' => 6,
             ],
         ];

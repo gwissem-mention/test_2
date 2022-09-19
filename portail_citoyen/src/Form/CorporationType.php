@@ -36,7 +36,7 @@ class CorporationType extends AbstractType
                     new Regex('/\d/', 'corporation.siren.number.error'),
                     new Length(['min' => 9, 'max' => 9]),
                 ],
-                'label' => 'corporation.siren',
+                'label' => 'pel.corporation.siren',
             ])
             ->add('name', TextType::class, [
                 'attr' => [
@@ -46,7 +46,7 @@ class CorporationType extends AbstractType
                     new NotBlank(),
                     new Length(['max' => 40]),
                 ],
-                'label' => 'corporation.name',
+                'label' => 'pel.corporation.name',
             ])
             ->add('function', TextType::class, [
                 'attr' => [
@@ -56,14 +56,14 @@ class CorporationType extends AbstractType
                     new NotBlank(),
                     new Length(['max' => 30]),
                 ],
-                'label' => 'corporation.function',
+                'label' => 'pel.corporation.function',
             ])
             ->add('nationality', ChoiceType::class, [
                 'constraints' => [
                     new NotBlank(),
                 ],
                 'choices' => $this->nationalityThesaurusProvider->getChoices(),
-                'label' => 'corporation.nationality',
+                'label' => 'pel.corporation.nationality',
             ])
             ->add('email', EmailType::class, [
                 'attr' => [
@@ -73,7 +73,7 @@ class CorporationType extends AbstractType
                     new Length(['max' => 50]),
                     new Email(),
                 ],
-                'label' => 'corporation.email',
+                'label' => 'pel.corporation.email',
                 'required' => false,
             ])
             ->add('phone', TextType::class, [
@@ -84,12 +84,12 @@ class CorporationType extends AbstractType
                     new NotBlank(),
                     new Length(['max' => 15]),
                 ],
-                'label' => 'corporation.phone',
+                'label' => 'pel.corporation.phone',
             ])
             ->add('addressLocation', LocationType::class, [
-                'country_label' => 'corporation.address.country',
-                'town_label' => 'corporation.address.town',
-                'department_label' => 'corporation.address.department',
+                'country_label' => 'pel.corporation.address.country',
+                'town_label' => 'pel.corporation.address.town',
+                'department_label' => 'pel.corporation.address.department',
             ])
             ->add('addressNumber', TextType::class, [
                 'attr' => [
@@ -99,14 +99,14 @@ class CorporationType extends AbstractType
                     new NotBlank(),
                     new Length(['max' => 11]),
                 ],
-                'label' => 'corporation.address.number',
+                'label' => 'pel.corporation.address.number',
             ])
             ->add('addressWay', ChoiceType::class, [
                 'constraints' => [
                     new NotBlank(),
                 ],
                 'choices' => $this->wayThesaurusProvider->getChoices(),
-                'label' => 'corporation.address.way',
+                'label' => 'pel.corporation.address.way',
             ]);
     }
 }

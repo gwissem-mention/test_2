@@ -9,9 +9,9 @@ class MockedCountryThesaurusProvider implements CountryThesaurusProviderInterfac
     public function getChoices(): array
     {
         return [
-            'country.france' => 1,
-            'country.spain' => 2,
-            'country.germany' => 3,
+            'pel.country.france' => 1,
+            'pel.country.spain' => 2,
+            'pel.country.germany' => 3,
         ];
     }
 }

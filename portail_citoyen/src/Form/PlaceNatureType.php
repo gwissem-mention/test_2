@@ -32,14 +32,14 @@ class PlaceNatureType extends AbstractType
         $builder
             ->add('place', ChoiceType::class, [
                 'choices' => $this->naturePlaceThesaurusProvider->getChoices(),
-                'label' => 'nature.place',
-                'placeholder' => 'nature.place.placeholder',
+                'label' => 'pel.nature.place',
+                'placeholder' => 'pel.nature.place.choice.message',
                 'constraints' => [
-                    new NotBlank(message: 'nature.place.not.blank.error'),
+                    new NotBlank(message: 'pel.nature.place.not.blank.error'),
                 ],
             ])
             ->add('moreInfo', CheckboxType::class, [
-                'label' => 'more.info.place',
+                'label' => 'pel.more.info.place',
                 'required' => false,
             ]);
 
@@ -81,7 +81,7 @@ class PlaceNatureType extends AbstractType
     {
         $naturePlaces = $this->naturePlaceThesaurusProvider->getChoices();
 
-        if ($place === $naturePlaces['nature.place.public.transport']) {
+        if ($place === $naturePlaces['pel.nature.place.public.transport']) {
             $choices = null === $place ? [] : $this->getAvailableNaturePlaceChoices(
                 $place
             );
@@ -89,7 +89,7 @@ class PlaceNatureType extends AbstractType
             $form->add('naturePlacePublicTransportChoice', ChoiceType::class, [
                 'choices' => $choices,
                 'label' => false,
-                'placeholder' => 'nature.place.public.transport.placeholder',
+                'placeholder' => 'pel.pel.nature.place.public.transport.choice.message',
             ]);
         }
     }
@@ -98,14 +98,14 @@ class PlaceNatureType extends AbstractType
     {
         $naturePlaces = $this->naturePlaceThesaurusProvider->getChoices();
 
-        if ($place === $naturePlaces['nature.place.other']) {
+        if ($place === $naturePlaces['pel.nature.place.other']) {
             $choices = null === $place ? [] : $this->getAvailableNaturePlaceChoices(
                 $place
             );
             $form->add('naturePlaceOtherChoice', ChoiceType::class, [
                 'choices' => $choices,
                 'label' => false,
-                'placeholder' => 'nature.place.other.placeholder',
+                'placeholder' => 'pel.pel.nature.place.other.choice.message',
                 'constraints' => [
                     new NotBlank(),
                 ],
@@ -121,9 +121,9 @@ class PlaceNatureType extends AbstractType
         $values = $this->naturePlaceThesaurusProvider->getChoices();
 
         return match ($place) {
-            $values['nature.place.public.transport'] => $this->naturePlacePublicTransportThesaurusProvider->getChoices(
+            $values['pel.nature.place.public.transport'] => $this->naturePlacePublicTransportThesaurusProvider->getChoices(
             ),
-            $values['nature.place.other'] => $this->naturePlaceOtherThesaurusProvider->getChoices(),
+            $values['pel.nature.place.other'] => $this->naturePlaceOtherThesaurusProvider->getChoices(),
             default => []
         };
     }

@@ -21,23 +21,23 @@ class OffenseDateType extends AbstractType
     {
         $builder
             ->add('exactDateKnown', ChoiceType::class, [
-                'label' => 'complaint.exact.date.known',
+                'label' => 'pel.complaint.exact.date.known',
                 'expanded' => true,
                 'multiple' => false,
                 'inline' => true,
                 'choices' => [
-                    'yes' => true,
-                    'no' => false,
+                    'pel.yes' => true,
+                    'pel.no' => false,
                 ],
             ])
             ->add('choiceHour', ChoiceType::class, [
                 'choices' => [
-                    'yes.i.know.the.exact.time.of.facts' => 'yes',
-                    'no.but.i.know.the.time.slot' => 'maybe',
-                    'no.but.i.don.t.know.at.all.the.time.of.facts' => 'no',
+                    'pel.yes.i.know.the.exact.time.of.facts' => 'yes',
+                    'pel.no.but.i.know.the.time.slot' => 'maybe',
+                    'pel.no.but.i.don.t.know.at.all.the.time.of.facts' => 'no',
                 ],
                 'expanded' => true,
-                'label' => 'do.you.know.hour.facts',
+                'label' => 'pel.do.you.know.hour.facts',
             ]);
 
         $builder->get('exactDateKnown')->addEventListener(
@@ -77,9 +77,9 @@ class OffenseDateType extends AbstractType
             ],
             'format' => 'dd/MM/yyyy',
             'html5' => false,
-            'label' => true === $exactDateKnown ? 'offense.unique.date' : 'offense.start.date',
+            'label' => true === $exactDateKnown ? 'pel.offense.unique.date' : 'pel.offense.start.date',
             'widget' => 'single_text',
-            'help' => 'date.help',
+            'help' => 'pel.date.help',
         ]);
 
         if (false === $exactDateKnown) {
@@ -90,9 +90,9 @@ class OffenseDateType extends AbstractType
                 ],
                 'format' => 'dd/MM/yyyy',
                 'html5' => false,
-                'label' => 'offense.end.date',
+                'label' => 'pel.offense.end.date',
                 'widget' => 'single_text',
-                'help' => 'date.help',
+                'help' => 'pel.date.help',
             ]);
         }
     }
@@ -104,7 +104,7 @@ class OffenseDateType extends AbstractType
                 'attr' => [
                     'class' => 'fr-btn',
                 ],
-                'label' => 'exact.hour',
+                'label' => 'pel.exact.hour',
                 'widget' => 'single_text',
             ]);
         } elseif ('maybe' === $choice) {
@@ -112,14 +112,14 @@ class OffenseDateType extends AbstractType
                 'attr' => [
                     'class' => 'fr-btn',
                 ],
-                'label' => 'start.hour',
+                'label' => 'pel.start.hour',
                 'widget' => 'single_text',
             ]);
             $form->add('endHour', TimeType::class, [
                 'attr' => [
                     'class' => 'fr-btn',
                 ],
-                'label' => 'end.hour',
+                'label' => 'pel.end.hour',
                 'widget' => 'single_text',
             ]);
         }

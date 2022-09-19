@@ -9,9 +9,9 @@ class MockedNationalityThesaurusProvider implements NationalityThesaurusProvider
     public function getChoices(): array
     {
         return [
-            'nationality.france' => 1,
-            'nationality.spain' => 2,
-            'nationality.germany' => 3,
+            'pel.nationality.france' => 1,
+            'pel.nationality.spain' => 2,
+            'pel.nationality.germany' => 3,
         ];
     }
 }

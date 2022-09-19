@@ -14,9 +14,9 @@ enum DeclarantStatus: int
     public static function getChoices(): array
     {
         return [
-            'complaint.identity.victim' => self::Victim->value,
-            'complaint.identity.person.legal.representative' => self::PersonLegalRepresentative->value,
-            'complaint.identity.corporation.legal.representative' => self::CorporationLegalRepresentative->value,
+            'pel.complaint.identity.victim' => self::Victim->value,
+            'pel.complaint.identity.person.legal.representative' => self::PersonLegalRepresentative->value,
+            'pel.complaint.identity.corporation.legal.representative' => self::CorporationLegalRepresentative->value,
         ];
     }
 }

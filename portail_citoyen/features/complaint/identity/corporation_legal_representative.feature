@@ -8,35 +8,35 @@ Feature:
         Given I am on "/declaration/identite"
         When I click the "label[for='identity_declarantStatus_2']" element
         And I wait for the element "#form-identity" to appear
-        Then I should see the key "all.fields.are.required" translated
-        And I should see the key "civility" translated
-        And I should see the key "birth.name" translated
-        And I should see the key "first.names" translated
-        And I should see the key "birth.date" translated
-        And I should see the key "birth.country" translated
-        And I should see the key "birth.town" translated
-        And I should see the key "birth.department" translated
-        And I should see the key "nationality" translated
-        And I should see the key "your.job" translated
-        And I should see the key "address.country" translated
-        And I should see the key "address.town" translated
-        And I should see the key "address.department" translated
-        And I should see the key "address.way" translated
-        And I should see the key "address.number" translated
-        And I should see the key "email" translated
-        And I should see the key "mobile" translated
-        And I should see the key "corporation.siren" translated
-        And I should see the key "corporation.name" translated
-        And I should see the key "corporation.function" translated
-        And I should see the key "corporation.nationality" translated
-        And I should see the key "corporation.email" translated
-        And I should see the key "corporation.phone" translated
-        And I should see the key "corporation.address.country" translated
-        And I should see the key "corporation.address.number" translated
-        And I should see the key "corporation.address.way" translated
-        And I should see the key "corporation.address.town" translated
-        And I should see the key "corporation.address.department" translated
-        And I should see the key "next" translated
+        Then I should see the key "pel.all.fields.are.required" translated
+        And I should see the key "pel.civility" translated
+        And I should see the key "pel.birth.name" translated
+        And I should see the key "pel.first.names" translated
+        And I should see the key "pel.birth.date" translated
+        And I should see the key "pel.birth.country" translated
+        And I should see the key "pel.birth.town" translated
+        And I should see the key "pel.birth.department" translated
+        And I should see the key "pel.nationality" translated
+        And I should see the key "pel.your.job" translated
+        And I should see the key "pel.address.country" translated
+        And I should see the key "pel.address.town" translated
+        And I should see the key "pel.address.department" translated
+        And I should see the key "pel.address.way" translated
+        And I should see the key "pel.address.number" translated
+        And I should see the key "pel.email" translated
+        And I should see the key "pel.mobile" translated
+        And I should see the key "pel.corporation.siren" translated
+        And I should see the key "pel.corporation.name" translated
+        And I should see the key "pel.corporation.function" translated
+        And I should see the key "pel.corporation.nationality" translated
+        And I should see the key "pel.corporation.email" translated
+        And I should see the key "pel.corporation.phone" translated
+        And I should see the key "pel.corporation.address.country" translated
+        And I should see the key "pel.corporation.address.number" translated
+        And I should see the key "pel.corporation.address.way" translated
+        And I should see the key "pel.corporation.address.town" translated
+        And I should see the key "pel.corporation.address.department" translated
+        And I should see the key "pel.next" translated
 
 
     @javascript

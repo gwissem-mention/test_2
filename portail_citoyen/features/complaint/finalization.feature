@@ -8,4 +8,4 @@ Feature:
         Given I am on "/declaration/finalisation"
         Then the response status code should be 200
         And I should see 1 "body" element
-        And I should see the key "finalization" translated in the response
+        And I should see the key "pel.finalization" translated

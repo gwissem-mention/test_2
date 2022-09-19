@@ -8,7 +8,7 @@ Feature:
         Given I am on "/declaration/rendez-vous"
         Then the response status code should be 200
         And I should see 1 "body" element
-        And I should see the key "make.appointment" translated
+        And I should see the key "pel.make.appointment" translated
         And I follow "Précédent"
         And I should be on "/declaration/faits"
 
@@ -17,6 +17,6 @@ Feature:
         Given I am on "/declaration/rendez-vous"
         Then the response status code should be 200
         And I should see 1 "body" element
-        And I should see the key "make.appointment" translated
+        And I should see the key "pel.make.appointment" translated
         And I follow "Suivant"
         And I should be on "/declaration/finalisation"

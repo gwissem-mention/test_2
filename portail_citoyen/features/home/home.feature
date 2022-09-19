@@ -7,21 +7,21 @@ Feature:
     Scenario: Show homepage on / route with 200 status code and header translated
         Given I am on "/"
         Then the response status code should be 200
-        And I should see the key "ministry" translated
-        And I should see the key "inside" translated
-        And I should see the key "and.overseas" translated
+        And I should see the key "pel.ministry" translated
+        And I should see the key "pel.inside" translated
+        And I should see the key "pel.and.overseas" translated
         And I should see 1 "body" element
-        And I should see the key "home.information.message.1" translated
-        And I should see the key "major" translated
-        And I should see the key "home.information.message.2" translated
-        And I should see the key "home.information.message.3" translated
-        And I should see the key "home.information.message.4" translated
-        And I should see the key "home.information.message.5" translated
+        And I should see the key "pel.home.information.message.1" translated
+        And I should see the key "pel.major" translated
+        And I should see the key "pel.home.information.message.2" translated
+        And I should see the key "pel.home.information.message.3" translated
+        And I should see the key "pel.home.information.message.4" translated
+        And I should see the key "pel.home.information.message.5" translated
         And I should see 8 "a" elements
         And I should see 5 ".fr-btn" elements
-        And I should see the key "home.emergency.message" translated
-        And I should see the key "file.a.complaint" translated
-        And I should see the key "faq" translated
+        And I should see the key "pel.home.emergency.message" translated
+        And I should see the key "pel.file.a.complaint" translated
+        And I should see the key "pel.faq" translated
 
     @func
     Scenario: Press button to be redirect to the visitor agreement page

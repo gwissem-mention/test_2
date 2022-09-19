@@ -22,8 +22,8 @@ class JobType extends AbstractType
             ->add('job', ChoiceType::class, [
                 'autocomplete' => true,
                 'choices' => $this->jobThesaurusProvider->getChoices(),
-                'label' => 'your.job',
-                'placeholder' => 'your.job.placeholder',
+                'label' => 'pel.your.job',
+                'placeholder' => 'pel.your.job.choice.message',
             ])
         ;
     }

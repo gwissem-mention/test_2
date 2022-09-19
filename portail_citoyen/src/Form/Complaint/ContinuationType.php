@@ -18,16 +18,16 @@ class ContinuationType extends AbstractType
     {
         $builder
             ->add('materialDamage', ChoiceType::class, [
-                'label' => 'complaint.continuation.material.damage',
+                'label' => 'pel.complaint.continuation.material.damage',
                 'expanded' => true,
                 'multiple' => false,
                 'inline' => true,
                 'choices' => [
-                    'yes' => true,
-                    'no' => false,
+                    'pel.yes' => true,
+                    'pel.no' => false,
                 ],
                 'choice_attr' => [
-                    'no' => [
+                    'pel.no' => [
                         'data-controller' => 'complaint--continuation',
                         'data-action' => 'complaint--continuation#redirectToHomepage',
                     ],
@@ -66,16 +66,16 @@ class ContinuationType extends AbstractType
     {
         if (true === $materialDamage) {
             $form->add('offenseAuthorKnown', ChoiceType::class, [
-                'label' => 'complaint.continuation.offense.author.known',
+                'label' => 'pel.complaint.continuation.offense.author.known',
                 'expanded' => true,
                 'multiple' => false,
                 'inline' => true,
                 'choices' => [
-                    'yes' => true,
-                    'no' => false,
+                    'pel.yes' => true,
+                    'pel.no' => false,
                 ],
                 'choice_attr' => [
-                    'yes' => [
+                    'pel.yes' => [
                         'data-controller' => 'complaint--continuation',
                         'data-action' => 'complaint--continuation#redirectToHomepage',
                     ],
@@ -88,7 +88,7 @@ class ContinuationType extends AbstractType
     {
         if (false === $offenseAuthorKnown) {
             $form->add('continue', SubmitType::class, [
-                'label' => 'keep.going',
+                'label' => 'pel.keep.going',
             ]);
         }
     }

@@ -19,6 +19,8 @@ final class BaseContext extends MinkContext
      */
     public function iShouldSeeTheKeyTranslated(string $arg1): void
     {
+        $this->assertPageNotContainsText($arg1);
+        $this->assertResponseNotContains($arg1);
         $this->assertPageContainsText($this->translator->trans($arg1));
     }
 
@@ -27,6 +29,8 @@ final class BaseContext extends MinkContext
      */
     public function iShouldSeeTheKeyTranslatedInTheResponse(string $arg1): void
     {
+        $this->assertPageNotContainsText($arg1);
+        $this->assertResponseNotContains($arg1);
         $this->assertResponseContains($this->translator->trans($arg1));
     }
 

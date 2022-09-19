@@ -9,8 +9,8 @@
             </div>
             {% if form.civilState is defined and form.contactInformation is defined %}
                 <div id="form-identity" class="fr-py-1w">
-                    <p>{{ 'all.fields.are.required'|trans }}</p>
-                    <h2>{{ 'my.identity'|trans }}</h2>
+                    <p>{{ 'pel.all.fields.are.required'|trans }}</p>
+                    <h2>{{ 'pel.my.identity'|trans }}</h2>
                     <div class="fr-py-1w">
                         {{ component('civil_state', {
                             form: form.civilState,
@@ -29,7 +29,7 @@
                         </div>
                     {% endif %}
                     {% if form.representedPersonCivilState is defined and form.representedPersonContactInformation is defined %}
-                        <h2>{{ 'represented.person.identity'|trans }}</h2>
+                        <h2>{{ 'pel.represented.person.identity'|trans }}</h2>
                         <div class="fr-py-1w">
                             {{ component('civil_state', {
                                 form: form.representedPersonCivilState,
@@ -47,7 +47,7 @@
     </div>
     <div class="fr-grid-row">
         <div class="fr-col">
-            <button type="submit" class="fr-btn">{{ 'next'|trans }}</button>
+            <button type="submit" class="fr-btn">{{ 'pel.next'|trans }}</button>
         </div>
     </div>
     {{ form_end(form) }}

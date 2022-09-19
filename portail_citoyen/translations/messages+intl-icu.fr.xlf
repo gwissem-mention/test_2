@@ -2,681 +2,681 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="fr" target-language="fr" datatype="plaintext" original="file.ext">
         <body>
-            <trans-unit id="previous">
-                <source>previous</source>
-                <target>Précédent</target>
-            </trans-unit>
-            <trans-unit id="all.fields.are.required">
-                <source>all.fields.are.required</source>
-                <target>Tous les champs indiqués avec un astérisque (*) sont obligatoires</target>
-            </trans-unit>
-            <trans-unit id="and.overseas">
-                <source>and.overseas</source>
-                <target>et des outre-mer</target>
-            </trans-unit>
-            <trans-unit id="birth.country">
-                <source>birth.country</source>
-                <target>Pays de naissance</target>
-            </trans-unit>
-            <trans-unit id="birth.date">
-                <source>birth.date</source>
-                <target>Date de naissance</target>
-            </trans-unit>
-            <trans-unit id="birth.date.help">
-                <source>birth.date.help</source>
-                <target>Date de naissance au format jj/mm/aaaa</target>
-            </trans-unit>
-            <trans-unit id="birth.department">
-                <source>birth.department</source>
-                <target>Département de naissance</target>
-            </trans-unit>
-            <trans-unit id="birth.name">
-                <source>birth.name</source>
-                <target>Nom de naissance</target>
-            </trans-unit>
-            <trans-unit id="birth.town">
-                <source>birth.town</source>
-                <target>Commune de naissance</target>
-            </trans-unit>
-            <trans-unit id="choose.your.civility">
-                <source>choose.your.civility</source>
-                <target>Choisissez votre civilité</target>
-            </trans-unit>
-            <trans-unit id="choose.your.department">
-                <source>choose.your.department</source>
-                <target>Choisissez votre département</target>
-            </trans-unit>
-            <trans-unit id="choose.your.town">
-                <source>choose.your.town</source>
-                <target>Choisissez votre commune</target>
-            </trans-unit>
-            <trans-unit id="civility">
-                <source>civility</source>
-                <target>Civilité</target>
-            </trans-unit>
-            <trans-unit id="complaint.online">
-                <source>complaint.online</source>
-                <target>Plainte en ligne</target>
-            </trans-unit>
-            <trans-unit id="faq">
-                <source>faq</source>
-                <target>FAQ</target>
-            </trans-unit>
-            <trans-unit id="file.a.complaint">
-                <source>file.a.complaint</source>
-                <target>Déclarer plainte</target>
-            </trans-unit>
-            <trans-unit id="first.names">
-                <source>first.names</source>
-                <target>Prénom(s)</target>
-            </trans-unit>
-            <trans-unit id="inside">
-                <source>inside</source>
-                <target>de l'intérieur</target>
-            </trans-unit>
-            <trans-unit id="ministry">
-                <source>ministry</source>
-                <target>Ministère</target>
-            </trans-unit>
-            <trans-unit id="nationality">
-                <source>nationality</source>
-                <target>Nationalité</target>
-            </trans-unit>
-            <trans-unit id="next">
-                <source>next</source>
-                <target>Suivant</target>
-            </trans-unit>
-            <trans-unit id="complaint.identity">
-                <source>complaint.identity</source>
-                <target>Identité</target>
-            </trans-unit>
-            <trans-unit id="complaint.nature.of.the.facts">
-                <source>complaint.nature.of.the.facts</source>
-                <target>Nature des faits</target>
-            </trans-unit>
-            <trans-unit id="complaint.offense.nature.other.aab.text">
-                <source>complaint.offense.nature.other.aab.text</source>
-                <target>Préciser le type d'infraction</target>
-            </trans-unit>
-            <trans-unit id="complaint.offense.nature.robbery">
-                <source>complaint.offense.nature.robbery</source>
-                <target>Vol</target>
-            </trans-unit>
-            <trans-unit id="complaint.offense.nature.degradation">
-                <source>complaint.offense.nature.degradation</source>
-                <target>Dégradation</target>
-            </trans-unit>
-            <trans-unit id="complaint.offense.nature.other">
-                <source>complaint.offense.nature.other</source>
-                <target>Autre atteinte aux biens</target>
-            </trans-unit>
-            <trans-unit id="complaint.offense.nature.warning.text">
-                <source>complaint.offense.nature.warning.text</source>
-                <target>Veillez à préserver les traces et indices qui pourront être exploités par les enquêteurs.</target>
-            </trans-unit>
-            <trans-unit id="complaint.location">
-                <source>complaint.location</source>
-                <target>Lieu de l'infraction</target>
-            </trans-unit>
-            <trans-unit id="country.france">
-                <source>country.france</source>
-                <target>France</target>
-            </trans-unit>
-            <trans-unit id="country.germany">
-                <source>country.germany</source>
-                <target>Allemagne</target>
-            </trans-unit>
-            <trans-unit id="country.spain">
-                <source>country.spain</source>
-                <target>Espagne</target>
-            </trans-unit>
-            <trans-unit id="department.thirteen">
-                <source>department.thirteen</source>
-                <target>Bouches-du-Rhône</target>
-            </trans-unit>
-            <trans-unit id="department.thirty.three">
-                <source>department.thirty.three</source>
-                <target>Gironde</target>
-            </trans-unit>
-            <trans-unit id="department.seventy.five">
-                <source>department.seventy.five</source>
-                <target>Paris</target>
-            </trans-unit>
-            <trans-unit id="m">
-                <source>m</source>
-                <target>M</target>
-            </trans-unit>
-            <trans-unit id="mme">
-                <source>mme</source>
-                <target>Mme</target>
-            </trans-unit>
-            <trans-unit id="more.info.place">
-                <source>more.info.place</source>
-                <target>Je souhaite apporter des précisions sur le lieu des faits</target>
-            </trans-unit>
-            <trans-unit id="nationality.france">
-                <source>nationality.france</source>
-                <target>Française</target>
-            </trans-unit>
-            <trans-unit id="nationality.germany">
-                <source>nationality.germany</source>
-                <target>Allemande</target>
-            </trans-unit>
-            <trans-unit id="nationality.spain">
-                <source>nationality.spain</source>
-                <target>Espagnole</target>
-            </trans-unit>
-            <trans-unit id="town.arcachon">
-                <source>town.arcachon</source>
-                <target>Arcachon</target>
-            </trans-unit>
-            <trans-unit id="town.bordeaux">
-                <source>town.bordeaux</source>
-                <target>Bordeaux</target>
-            </trans-unit>
-            <trans-unit id="town.la.ciotat">
-                <source>town.la.ciotat</source>
-                <target>La Ciotat</target>
-            </trans-unit>
-            <trans-unit id="town.marseille">
-                <source>town.marseille</source>
-                <target>Marseille</target>
-            </trans-unit>
-            <trans-unit id="town.merignac">
-                <source>town.merignac</source>
-                <target>Mérignac</target>
-            </trans-unit>
-            <trans-unit id="town.paris">
-                <source>town.paris</source>
-                <target>Paris</target>
-            </trans-unit>
-            <trans-unit id="way.one">
-                <source>way.one</source>
-                <target>Voie une</target>
-            </trans-unit>
-            <trans-unit id="way.two">
-                <source>way.two</source>
-                <target>Voie deux</target>
-            </trans-unit>
-            <trans-unit id="way.three">
-                <source>way.three</source>
-                <target>Voie trois</target>
-            </trans-unit>
-            <trans-unit id="home.information.message.1">
-                <source>home.information.message.1</source>
-                <target>Cette démarche est réservée aux déclarants</target>
-            </trans-unit>
-            <trans-unit id="home.information.message.2">
-                <source>home.information.message.2</source>
-                <target>agissant pour leur compte ou celui d’une personne morale ou physique qu’ils sont en droit de représenter (autorité parentale, pouvoir ou procuration, décision de justice).</target>
-            </trans-unit>
-            <trans-unit id="home.information.message.3">
-                <source>home.information.message.3</source>
-                <target>Elle ne concerne que</target>
-            </trans-unit>
-            <trans-unit id="home.information.message.4">
-                <source>home.information.message.4</source>
-                <target>certains faits commis contre les biens</target>
-            </trans-unit>
-            <trans-unit id="home.information.message.5">
-                <source>home.information.message.5</source>
-                <target>(vols, dégradations, délits de fuite, escroqueries...) commis par une personne dont je ne connais pas l’identité.</target>
-            </trans-unit>
-            <trans-unit id="major">
-                <source>major</source>
-                <target>majeur</target>
-            </trans-unit>
-            <trans-unit id="access.to.the.form">
-                <source>access.to.the.form</source>
+            <trans-unit id="pel.access.to.the.form">
+                <source>pel.access.to.the.form</source>
                 <target>Accéder au formulaire</target>
             </trans-unit>
-            <trans-unit id="keep.going">
-                <source>keep.going</source>
-                <target>Continuer</target>
-            </trans-unit>
-            <trans-unit id="redirect.to.police">
-                <source>redirect.to.police</source>
-                <target>Être redirigé vers l'orienteur de la Police Nationale</target>
-            </trans-unit>
-            <trans-unit id="redirect.to.gendarmerie">
-                <source>redirect.to.gendarmerie</source>
-                <target>Être redirigé vers l'orienteur de la Gendarmerie Nationale</target>
-            </trans-unit>
-            <trans-unit id="your.job">
-                <source>your.job</source>
-                <target>Votre profession</target>
-            </trans-unit>
-            <trans-unit id="your.job.placeholder">
-                <source>your.job.placeholder</source>
-                <target>Choisissez votre profession</target>
-            </trans-unit>
-            <trans-unit id="job.policeman">
-                <source>job.policeman</source>
-                <target>Policier</target>
-            </trans-unit>
-            <trans-unit id="job.constable">
-                <source>job.constable</source>
-                <target>Gendarme</target>
-            </trans-unit>
-            <trans-unit id="job.none">
-                <source>job.none</source>
-                <target>Sans Profession</target>
-            </trans-unit>
-            <trans-unit id="law.informations">
-                <source>law.informations</source>
-                <target>Conformément à la loi 78-17 du 6 janvier 1978 modifiée relative à l’informatique, aux fichiers et aux libertés, vous disposez d’un droit d’accès et de rectification aux informations. Vous pouvez exercer ce droit auprès de l'unité de gendarmerie ou du service de police où vous irez signer votre plainte.</target>
-            </trans-unit>
-            <trans-unit id="visitor.agree">
-                <source>visitor.agree</source>
-                <target>J'autorise la collecte de mes données personnelles et poursuit ma déclaration</target>
-            </trans-unit>
-            <trans-unit id="complaint.offense.nature.fsi.visit">
-                <source>complaint.offense.nature.fsi.visit</source>
-                <target>Des FSI sont-ils intervenus sur les lieux de l'infraction ?</target>
-            </trans-unit>
-            <trans-unit id="complaint.offense.nature.technical.police.visit">
-                <source>complaint.offense.nature.technical.police.visit</source>
-                <target>La police technique et scientifique est-elle intervenue sur les lieux de l'infraction ?</target>
-            </trans-unit>
-            <trans-unit id="yes">
-                <source>yes</source>
-                <target>Oui</target>
-            </trans-unit>
-            <trans-unit id="no">
-                <source>no</source>
-                <target>Non</target>
-            </trans-unit>
-            <trans-unit id="nature.place">
-                <source>nature.place</source>
-                <target>Nature de lieu</target>
-            </trans-unit>
-            <trans-unit id="nature.place.placeholder">
-                <source>nature.place.placeholder</source>
-                <target>Choisissez le lieu où se sont déroulés les faits</target>
-            </trans-unit>
-            <trans-unit id="nature.place.home">
-                <source>nature.place.home</source>
-                <target>Domicile/Logement</target>
-            </trans-unit>
-            <trans-unit id="nature.place.park">
-                <source>nature.place.park</source>
-                <target>Parking / garage</target>
-            </trans-unit>
-            <trans-unit id="nature.place.street">
-                <source>nature.place.street</source>
-                <target>Voie publique / Rue</target>
-            </trans-unit>
-            <trans-unit id="nature.place.market">
-                <source>nature.place.market</source>
-                <target>Commerce</target>
-            </trans-unit>
-            <trans-unit id="nature.place.public.transport">
-                <source>nature.place.public.transport</source>
-                <target>Transports en commun</target>
-            </trans-unit>
-            <trans-unit id="nature.place.other">
-                <source>nature.place.other</source>
-                <target>Autres natures de lieu</target>
-            </trans-unit>
-            <trans-unit id="nature.place.unknown">
-                <source>nature.place.unknown</source>
-                <target>Lieu indéterminé</target>
-            </trans-unit>
-            <trans-unit id="complaint.identity.victim">
-                <source>complaint.identity.victim</source>
-                <target>Victime</target>
-            </trans-unit>
-            <trans-unit id="complaint.identity.corporation.legal.representative">
-                <source>complaint.identity.corporation.legal.representative</source>
-                <target>Représentant légal d'une personne morale</target>
-            </trans-unit>
-            <trans-unit id="complaint.identity.person.legal.representative">
-                <source>complaint.identity.person.legal.representative</source>
-                <target>Représentant légal d'une personne physique</target>
-            </trans-unit>
-            <trans-unit id="complaint.identity.declarant.status">
-                <source>complaint.identity.declarant.status</source>
-                <target>Statut du déclarant</target>
-            </trans-unit>
-            <trans-unit id="nature.place.public.transport.placeholder">
-                <source>nature.place.public.transport.placeholder</source>
-                <target>Précisez le transport</target>
-            </trans-unit>
-            <trans-unit id="nature.place.public.transport.plane">
-                <source>nature.place.public.transport.plane</source>
-                <target>Avion/Aéroport</target>
-            </trans-unit>
-            <trans-unit id="nature.place.public.transport.subway">
-                <source>nature.place.public.transport.subway</source>
-                <target>Métro</target>
-            </trans-unit>
-            <trans-unit id="nature.place.public.transport.bus">
-                <source>nature.place.public.transport.bus</source>
-                <target>Bus</target>
-            </trans-unit>
-            <trans-unit id="nature.place.public.transport.train.station">
-                <source>nature.place.public.transport.train.station</source>
-                <target>Train/gare</target>
-            </trans-unit>
-            <trans-unit id="nature.place.public.transport.tram">
-                <source>nature.place.public.transport.tram</source>
-                <target>Tramway</target>
-            </trans-unit>
-            <trans-unit id="nature.place.public.transport.boat">
-                <source>nature.place.public.transport.boat</source>
-                <target>Bateau</target>
-            </trans-unit>
-            <trans-unit id="nature.place.public.transport.autocar">
-                <source>nature.place.public.transport.autocar</source>
-                <target>Autocar</target>
-            </trans-unit>
-            <trans-unit id="validate">
-                <source>validate</source>
-                <target>Valider</target>
-            </trans-unit>
-            <trans-unit id="address.country">
-                <source>address.country</source>
+            <trans-unit id="pel.address.country">
+                <source>pel.address.country</source>
                 <target>Pays</target>
             </trans-unit>
-            <trans-unit id="address.town">
-                <source>address.town</source>
-                <target>Commune</target>
-            </trans-unit>
-            <trans-unit id="address.department">
-                <source>address.department</source>
+            <trans-unit id="pel.address.department">
+                <source>pel.address.department</source>
                 <target>Département</target>
             </trans-unit>
-            <trans-unit id="address.number">
-                <source>address.number</source>
+            <trans-unit id="pel.address.number">
+                <source>pel.address.number</source>
                 <target>N°</target>
             </trans-unit>
-            <trans-unit id="address.way">
-                <source>address.way</source>
+            <trans-unit id="pel.address.town">
+                <source>pel.address.town</source>
+                <target>Commune</target>
+            </trans-unit>
+            <trans-unit id="pel.address.way">
+                <source>pel.address.way</source>
                 <target>Voie de résidence</target>
             </trans-unit>
-            <trans-unit id="email">
-                <source>email</source>
-                <target>Adresse électronique</target>
+            <trans-unit id="pel.all.fields.are.required">
+                <source>pel.all.fields.are.required</source>
+                <target>Tous les champs indiqués avec un astérisque (*) sont obligatoires</target>
             </trans-unit>
-            <trans-unit id="civil.state">
-                <source>civil.state</source>
-                <target>État civil</target>
+            <trans-unit id="pel.and.overseas">
+                <source>pel.and.overseas</source>
+                <target>et des outre-mer</target>
             </trans-unit>
-            <trans-unit id="contact.information">
-                <source>contact.information</source>
-                <target>Coordonnées</target>
+            <trans-unit id="pel.article.10.2">
+                <source>pel.article.10.2</source>
+                <target>Article 10-2</target>
             </trans-unit>
-            <trans-unit id="my.identity">
-                <source>my.identity</source>
-                <target>Mon identité</target>
+            <trans-unit id="pel.article.d.8.2.2">
+                <source>pel.article.d.8.2.2</source>
+                <target>Article D8-2-2</target>
             </trans-unit>
-            <trans-unit id="mobile">
-                <source>mobile</source>
-                <target>Numéro de téléphone portable</target>
+            <trans-unit id="pel.birth.country">
+                <source>pel.birth.country</source>
+                <target>Pays de naissance</target>
             </trans-unit>
-            <trans-unit id="choose.your.address.town">
-                <source>choose.your.address.town</source>
+            <trans-unit id="pel.birth.date">
+                <source>pel.birth.date</source>
+                <target>Date de naissance</target>
+            </trans-unit>
+            <trans-unit id="pel.birth.date.help">
+                <source>pel.birth.date.help</source>
+                <target>Date de naissance au format jj/mm/aaaa</target>
+            </trans-unit>
+            <trans-unit id="pel.birth.department">
+                <source>pel.birth.department</source>
+                <target>Département de naissance</target>
+            </trans-unit>
+            <trans-unit id="pel.birth.name">
+                <source>pel.birth.name</source>
+                <target>Nom de naissance</target>
+            </trans-unit>
+            <trans-unit id="pel.birth.town">
+                <source>pel.birth.town</source>
+                <target>Commune de naissance</target>
+            </trans-unit>
+            <trans-unit id="pel.choose.your.address.town">
+                <source>pel.choose.your.address.town</source>
                 <target>Choisissez votre commune</target>
             </trans-unit>
-             <trans-unit id="corporation.nationality">
-                  <source>corporation.nationality</source>
-                  <target>Nationalité</target>
-             </trans-unit>
-             <trans-unit id="corporation.siren">
-                  <source>corporation.siren</source>
-                  <target>SIREN</target>
-             </trans-unit>
-             <trans-unit id="corporation.name">
-                  <source>corporation.name</source>
-                  <target>Raison sociale</target>
-             </trans-unit>
-             <trans-unit id="corporation.function">
-                  <source>corporation.function</source>
-                  <target>En qualité de</target>
-             </trans-unit>
-             <trans-unit id="corporation.email">
-                  <source>corporation.email</source>
-                  <target>Adresse électronique professionnelle d'un point de contact de l'organisation</target>
-             </trans-unit>
-             <trans-unit id="corporation.phone">
-                  <source>corporation.phone</source>
-                  <target>Numéro de téléphone fixe ou portable</target>
-             </trans-unit>
-             <trans-unit id="corporation.legal.information">
-                  <source>corporation.legal.information</source>
-                  <target>Informations légales de la personne morale que je représente</target>
-             </trans-unit>
-             <trans-unit id="corporation.address.country">
-                <source>corporation.address.country</source>
+            <trans-unit id="pel.choose.your.civility">
+                <source>pel.choose.your.civility</source>
+                <target>Choisissez votre civilité</target>
+            </trans-unit>
+            <trans-unit id="pel.choose.your.department">
+                <source>pel.choose.your.department</source>
+                <target>Choisissez votre département</target>
+            </trans-unit>
+            <trans-unit id="pel.choose.your.town">
+                <source>pel.choose.your.town</source>
+                <target>Choisissez votre commune</target>
+            </trans-unit>
+            <trans-unit id="pel.civil.state">
+                <source>pel.civil.state</source>
+                <target>État civil</target>
+            </trans-unit>
+            <trans-unit id="pel.civility">
+                <source>pel.civility</source>
+                <target>Civilité</target>
+            </trans-unit>
+            <trans-unit id="pel.complaint.continuation.material.damage">
+                <source>pel.complaint.continuation.material.damage</source>
+                <target>Confirmez-vous porter plainte pour un ou des préjudices matériels ?</target>
+            </trans-unit>
+            <trans-unit id="pel.complaint.continuation.offense.author.known">
+                <source>pel.complaint.continuation.offense.author.known</source>
+                <target>Connaissez-vous l'identité de l'auteur de l'infraction ?</target>
+            </trans-unit>
+            <trans-unit id="pel.complaint.exact.date.known">
+                <source>pel.complaint.exact.date.known</source>
+                <target>Connaissez-vous la date exacte des faits ?</target>
+            </trans-unit>
+            <trans-unit id="pel.complaint.identity">
+                <source>pel.complaint.identity</source>
+                <target>Identité</target>
+            </trans-unit>
+            <trans-unit id="pel.complaint.identity.corporation.legal.representative">
+                <source>pel.complaint.identity.corporation.legal.representative</source>
+                <target>Représentant légal d'une personne morale</target>
+            </trans-unit>
+            <trans-unit id="pel.complaint.identity.declarant.status">
+                <source>pel.complaint.identity.declarant.status</source>
+                <target>Statut du déclarant</target>
+            </trans-unit>
+            <trans-unit id="pel.complaint.identity.person.legal.representative">
+                <source>pel.complaint.identity.person.legal.representative</source>
+                <target>Représentant légal d'une personne physique</target>
+            </trans-unit>
+            <trans-unit id="pel.complaint.identity.victim">
+                <source>pel.complaint.identity.victim</source>
+                <target>Victime</target>
+            </trans-unit>
+            <trans-unit id="pel.complaint.location">
+                <source>pel.complaint.location</source>
+                <target>Lieu de l'infraction</target>
+            </trans-unit>
+            <trans-unit id="pel.complaint.nature.of.the.facts">
+                <source>pel.complaint.nature.of.the.facts</source>
+                <target>Nature des faits</target>
+            </trans-unit>
+            <trans-unit id="pel.complaint.offense.nature.degradation">
+                <source>pel.complaint.offense.nature.degradation</source>
+                <target>Dégradation</target>
+            </trans-unit>
+            <trans-unit id="pel.complaint.offense.nature.fsi.visit">
+                <source>pel.complaint.offense.nature.fsi.visit</source>
+                <target>Des FSI sont-ils intervenus sur les lieux de l'infraction ?</target>
+            </trans-unit>
+            <trans-unit id="pel.complaint.offense.nature.other">
+                <source>pel.complaint.offense.nature.other</source>
+                <target>Autre atteinte aux biens</target>
+            </trans-unit>
+            <trans-unit id="pel.complaint.offense.nature.other.aab.text">
+                <source>pel.complaint.offense.nature.other.aab.text</source>
+                <target>Préciser le type d'infraction</target>
+            </trans-unit>
+            <trans-unit id="pel.complaint.offense.nature.robbery">
+                <source>pel.complaint.offense.nature.robbery</source>
+                <target>Vol</target>
+            </trans-unit>
+            <trans-unit id="pel.complaint.offense.nature.technical.police.visit">
+                <source>pel.complaint.offense.nature.technical.police.visit</source>
+                <target>La police technique et scientifique est-elle intervenue sur les lieux de l'infraction ?</target>
+            </trans-unit>
+            <trans-unit id="pel.complaint.offense.nature.warning.text">
+                <source>pel.complaint.offense.nature.warning.text</source>
+                <target>Veillez à préserver les traces et indices qui pourront être exploités par les enquêteurs.</target>
+            </trans-unit>
+            <trans-unit id="pel.complaint.online">
+                <source>pel.complaint.online</source>
+                <target>Plainte en ligne</target>
+            </trans-unit>
+            <trans-unit id="pel.corporation.address.country">
+                <source>pel.corporation.address.country</source>
                 <target>Pays</target>
             </trans-unit>
-            <trans-unit id="corporation.address.town">
-                <source>corporation.address.town</source>
-                <target>Commune</target>
-            </trans-unit>
-            <trans-unit id="corporation.address.department">
-                <source>corporation.address.department</source>
+            <trans-unit id="pel.corporation.address.department">
+                <source>pel.corporation.address.department</source>
                 <target>Département</target>
             </trans-unit>
-            <trans-unit id="corporation.address.number">
-                <source>corporation.address.number</source>
+            <trans-unit id="pel.corporation.address.number">
+                <source>pel.corporation.address.number</source>
                 <target>N°</target>
             </trans-unit>
-            <trans-unit id="corporation.address.way">
-                <source>corporation.address.way</source>
+            <trans-unit id="pel.corporation.address.town">
+                <source>pel.corporation.address.town</source>
+                <target>Commune</target>
+            </trans-unit>
+            <trans-unit id="pel.corporation.address.way">
+                <source>pel.corporation.address.way</source>
                 <target>Voie de résidence</target>
             </trans-unit>
-            <trans-unit id="file">
-                <source>files</source>
-                <target>Fichiers</target>
+            <trans-unit id="pel.corporation.email">
+                <source>pel.corporation.email</source>
+                <target>Adresse électronique professionnelle d'un point de contact de l'organisation</target>
             </trans-unit>
-            <trans-unit id="file.download">
-                <source>file.download</source>
-                <target>Télécharger</target>
+            <trans-unit id="pel.corporation.function">
+                <source>pel.corporation.function</source>
+                <target>En qualité de</target>
             </trans-unit>
-            <trans-unit id="dropzone.default.message">
-                <source>dropzone.default.message</source>
-                <target>Glisser / déposer ou parcourir</target>
+            <trans-unit id="pel.corporation.legal.information">
+                <source>pel.corporation.legal.information</source>
+                <target>Informations légales de la personne morale que je représente</target>
             </trans-unit>
-            <trans-unit id="dropzone.remove.file">
-                <source>dropzone.remove.file</source>
-                <target>Supprimer</target>
+            <trans-unit id="pel.corporation.name">
+                <source>pel.corporation.name</source>
+                <target>Raison sociale</target>
             </trans-unit>
-            <trans-unit id="dropzone.file.too.big">
-                <source>dropzone.file.too.big</source>
-                <target>Fichier trop volumineux</target>
+            <trans-unit id="pel.corporation.nationality">
+                <source>pel.corporation.nationality</source>
+                <target>Nationalité</target>
             </trans-unit>
-            <trans-unit id="dropzone.invalid.file.type">
-                <source>dropzone.invalid.file.type</source>
-                <target>Type de fichier non autorisé</target>
+            <trans-unit id="pel.corporation.phone">
+                <source>pel.corporation.phone</source>
+                <target>Numéro de téléphone fixe ou portable</target>
             </trans-unit>
-            <trans-unit id="dropzone.max.files.exceeded">
-                <source>dropzone.max.files.exceeded</source>
-                <target>Limite d'envois de fichiers simultanés atteinte</target>
+            <trans-unit id="pel.corporation.siren">
+                <source>pel.corporation.siren</source>
+                <target>SIREN</target>
             </trans-unit>
-            <trans-unit id="dropzone.cancel.upload">
-                <source>dropzone.cancel.upload</source>
-                <target>Annuler l'envoi</target>
+            <trans-unit id="pel.contact.information">
+                <source>pel.contact.information</source>
+                <target>Coordonnées</target>
             </trans-unit>
-            <trans-unit id="dropzone.cancel.upload.confirmation">
-                <source>dropzone.cancel.upload.confirmation</source>
-                <target>Etes-vous sur de vouloir annuler l'envoi ?</target>
-            </trans-unit>
-            <trans-unit id="submit">
-                <source>submit</source>
-                <target>Enregistrer</target>
-            </trans-unit>
-            <trans-unit id="represented.person.identity">
-                 <source>represented.person.identity</source>
-                 <target>L'identité de la personne physique représentée</target>
-            </trans-unit>
-            <trans-unit id="home.emergency.message">
-                 <source>home.emergency.message</source>
-                 <target>En cas d’urgence, composez le 17 ou le 112 ou le 114</target>
-            </trans-unit>
-            <trans-unit id="redirect.to.perceval">
-                <source>redirect.to.perceval</source>
-                <target>Être réorienté vers PERCEVAL</target>
-            </trans-unit>
-            <trans-unit id="redirect.to.thesee">
-                <source>redirect.to.thesee</source>
-                <target>Être réorienté vers THÉSÉE</target>
-            </trans-unit>
-            <trans-unit id="home.orienteer.information.message.1">
-                 <source>home.orienteer.information.message.1</source>
-                 <target>Elle vise à vous faire gagner du temps soit en vous dispensant d’une venue dans les locaux des forces de sécurité, soit en préparant cette venue.</target>
-            </trans-unit>
-            <trans-unit id="home.orienteer.information.message.2">
-                 <source>home.orienteer.information.message.2</source>
-                 <target>La démarche sera nécessairement finalisée par un rendez-vous si vous ne vous identifiez pas par le biais de FC, si les faits ont été accompagnés de violences ou de menaces ou si l'objet volé est un véhicule motorisé.</target>
-            </trans-unit>
-            <trans-unit id="home.orienteer.information.message.3">
-                 <source>home.orienteer.information.message.3</source>
-                 <target>Elle ne constitue qu’une faculté, vous pouvez porter plainte dans les locaux des forces de sécurité ou auprès du Tribunal judiciaire. Vous pourrez à tout moment demander à être entendu par un enquêteur voire être convoqué en cas de nécessité. En tant que victime, vous pouvez exercer les droits décrits à l’article 10-2 du CPP (cliquer pour en prendre connaissance). Si vous souhaitez vous faire assister d’un avocat ou d’un interprète, ces droits demeurent incompatibles avec une procédure dématérialisée. Vous devrez donc vous rendre dans une unité de police ou de gendarmerie.</target>
-            </trans-unit>
-            <trans-unit id="home.orienteer.legal.message.1">
-                 <source>home.orienteer.legal.message.1</source>
-                 <target>Je prends acte des dispositions légales portées par les articles suivants</target>
-            </trans-unit>
-            <trans-unit id="article.10.2">
-                 <source>article.10.2</source>
-                 <target>Article 10-2</target>
-            </trans-unit>
-            <trans-unit id="article.d.8.2.2">
-                 <source>article.d.8.2.2</source>
-                 <target>Article D8-2-2</target>
-            </trans-unit>
-            <trans-unit id="home.orienteer.legal.message.2">
-                  <source>home.orienteer.legal.message.2</source>
-                  <target>du Code de Procédure Pénale</target>
-            </trans-unit>
-            <trans-unit id="complaint.continuation.material.damage">
-                 <source>complaint.continuation.material.damage</source>
-                 <target>Confirmez-vous porter plainte pour un ou des préjudices matériels ?</target>
-            </trans-unit>
-            <trans-unit id="complaint.continuation.offense.author.known">
-                 <source>complaint.continuation.offense.author.known</source>
-                 <target>Connaissez-vous l'identité de l'auteur de l'infraction ?</target>
-            </trans-unit>
-            <trans-unit id="nature.place.other.placeholder">
-                <source>nature.place.other.placeholder</source>
-                <target>Précisez la nature du lieu</target>
-            </trans-unit>
-            <trans-unit id="nature.place.other.camping">
-                <source>nature.place.other.camping</source>
-                <target>Camping</target>
-            </trans-unit>
-            <trans-unit id="nature.place.other.restaurant">
-                <source>nature.place.other.restaurant</source>
-                <target>Restaurant</target>
-            </trans-unit>
-            <trans-unit id="nature.place.other.park">
-                <source>nature.place.other.park</source>
-                <target>Parc</target>
-            </trans-unit>
-            <trans-unit id="nature.place.other.market">
-                <source>nature.place.other.market</source>
-                <target>Marché</target>
-            </trans-unit>
-            <trans-unit id="do.you.know.hour.facts">
-                  <source>do.you.know.hour.facts</source>
-                  <target>Connaissez-vous l'heure des faits ?</target>
-            </trans-unit>
-            <trans-unit id="yes.i.know.the.exact.time.of.facts">
-                <source>yes.i.know.the.exact.time.of.facts</source>
-                <target>Oui je connais l'heure exacte des faits</target>
-            </trans-unit>
-            <trans-unit id="no.but.i.know.the.time.slot">
-                <source>no.but.i.know.the.time.slot</source>
-                <target>Non mais je connais le créneau horaire</target>
-            </trans-unit>
-            <trans-unit id="no.but.i.don.t.know.at.all.the.time.of.facts">
-                <source>no.but.i.don.t.know.at.all.the.time.of.facts</source>
-                <target>Je ne connais pas l'heure des faits</target>
-            </trans-unit>
-            <trans-unit id="exact.hour">
-                <source>exact.hour</source>
-                <target>Heure exacte</target>
-            </trans-unit>
-            <trans-unit id="start.hour">
-                <source>start.hour</source>
-                <target>Heure de début</target>
-            </trans-unit>
-            <trans-unit id="end.hour">
-                <source>end.hour</source>
-                <target>Heure de fin</target>
-            </trans-unit>
-            <trans-unit id="hour">
-                <source>hour</source>
-                <target>Heure</target>
-            </trans-unit>
-            <trans-unit id="minute">
-                <source>minute</source>
-                <target>Minute</target>
-            </trans-unit>
-            <trans-unit id="offense.start.date">
-                  <source>offense.start.date</source>
-                  <target>Entre</target>
-            </trans-unit>
-            <trans-unit id="offense.end.date">
-                  <source>offense.end.date</source>
-                  <target>Et</target>
-            </trans-unit>
-            <trans-unit id="offense.unique.date">
-                  <source>offense.unique.date</source>
-                  <target>Le</target>
-            </trans-unit>
-            <trans-unit id="complaint.exact.date.known">
-                  <source>complaint.exact.date.known</source>
-                  <target>Connaissez-vous la date exacte des faits ?</target>
-            </trans-unit>
-            <trans-unit id="date.help">
-                  <source>date.help</source>
-                  <target>Date au format jj/mm/aaaa</target>
-            </trans-unit>
-            <trans-unit id="start.redacting.my.online.complaint">
-                <source>start.redacting.my.online.complaint</source>
-                <target>Démarrer la rédaction de ma plainte en ligne</target>
-            </trans-unit>
-            <trans-unit id="to.log.in">
-                <source>to.log.in</source>
-                <target>Se connecter</target>
-            </trans-unit>
-            <trans-unit id="continue.pel.without.log.in">
-                <source>continue.pel.without.log.in</source>
+            <trans-unit id="pel.continue.pel.without.log.in">
+                <source>pel.continue.pel.without.log.in</source>
                 <target>Continuer sans m'authentifier</target>
             </trans-unit>
-            <trans-unit id="continue.pel.without.log.in.explanation">
-                <source>continue.pel.without.log.in.explanation</source>
+            <trans-unit id="pel.continue.pel.without.log.in.explanation">
+                <source>pel.continue.pel.without.log.in.explanation</source>
                 <target>Dans le cas où vous choisissez de ne pas vous authentifier avec France Connect, un RDV sera à planifier obligatoirement en fin de déclaration</target>
             </trans-unit>
-            <trans-unit id="identify.with">
-                <source>identify.with</source>
-                <target>S’identifier avec</target>
+            <trans-unit id="pel.country.france">
+                <source>pel.country.france</source>
+                <target>France</target>
             </trans-unit>
-            <trans-unit id="france.connect">
-                <source>france.connect</source>
-                <target>FranceConnect</target>
+            <trans-unit id="pel.country.germany">
+                <source>pel.country.germany</source>
+                <target>Allemagne</target>
             </trans-unit>
-            <trans-unit id="what.is.france.connect">
-                <source>what.is.france.connect</source>
-                <target>Qu’est-ce que FranceConnect ?</target>
+            <trans-unit id="pel.country.spain">
+                <source>pel.country.spain</source>
+                <target>Espagne</target>
             </trans-unit>
-            <trans-unit id="new.window">
-                <source>new.window</source>
-                <target>nouvelle fenêtre</target>
+            <trans-unit id="pel.date.help">
+                <source>pel.date.help</source>
+                <target>Date au format jj/mm/aaaa</target>
             </trans-unit>
-            <trans-unit id="make.appointment">
-                <source>make.appointment</source>
-                <target>Prise de RDV</target>
+            <trans-unit id="pel.department.thirteen">
+                <source>pel.department.thirteen</source>
+                <target>Bouches-du-Rhône</target>
             </trans-unit>
-            <trans-unit id="finalization">
-                <source>finalization</source>
+            <trans-unit id="pel.department.thirty.three">
+                <source>pel.department.thirty.three</source>
+                <target>Gironde</target>
+            </trans-unit>
+            <trans-unit id="pel.department.seventy.five">
+                <source>pel.department.seventy.five</source>
+                <target>Paris</target>
+            </trans-unit>
+            <trans-unit id="pel.do.you.know.hour.facts">
+                <source>pel.do.you.know.hour.facts</source>
+                <target>Connaissez-vous l'heure des faits ?</target>
+            </trans-unit>
+            <trans-unit id="pel.dropzone.cancel.upload">
+                <source>pel.dropzone.cancel.upload</source>
+                <target>Annuler l'envoi</target>
+            </trans-unit>
+            <trans-unit id="pel.dropzone.cancel.upload.confirmation">
+                <source>pel.dropzone.cancel.upload.confirmation</source>
+                <target>Êtes-vous sûr de vouloir annuler l'envoi ?</target>
+            </trans-unit>
+            <trans-unit id="pel.dropzone.default.message">
+                <source>pel.dropzone.default.message</source>
+                <target>Glisser / déposer ou parcourir</target>
+            </trans-unit>
+            <trans-unit id="pel.dropzone.file.too.big">
+                <source>pel.dropzone.file.too.big</source>
+                <target>Fichier trop volumineux</target>
+            </trans-unit>
+            <trans-unit id="pel.dropzone.invalid.file.type">
+                <source>pel.dropzone.invalid.file.type</source>
+                <target>Type de fichier non autorisé</target>
+            </trans-unit>
+            <trans-unit id="pel.dropzone.max.files.exceeded">
+                <source>pel.dropzone.max.files.exceeded</source>
+                <target>Limite d'envois de fichiers simultanés atteinte</target>
+            </trans-unit>
+            <trans-unit id="pel.dropzone.remove.file">
+                <source>pel.dropzone.remove.file</source>
+                <target>Supprimer</target>
+            </trans-unit>
+            <trans-unit id="pel.email">
+                <source>pel.email</source>
+                <target>Adresse électronique</target>
+            </trans-unit>
+            <trans-unit id="pel.end.hour">
+                <source>pel.end.hour</source>
+                <target>Heure de fin</target>
+            </trans-unit>
+            <trans-unit id="pel.exact.hour">
+                <source>pel.exact.hour</source>
+                <target>Heure exacte</target>
+            </trans-unit>
+            <trans-unit id="pel.facts">
+                <source>pel.facts</source>
+                <target>Faits</target>
+            </trans-unit>
+            <trans-unit id="pel.faq">
+                <source>pel.faq</source>
+                <target>FAQ</target>
+            </trans-unit>
+            <trans-unit id="pel.file.a.complaint">
+                <source>pel.file.a.complaint</source>
+                <target>Déclarer plainte</target>
+            </trans-unit>
+            <trans-unit id="pel.files">
+                <source>pel.files</source>
+                <target>Fichiers</target>
+            </trans-unit>
+            <trans-unit id="pel.file.download">
+                <source>pel.file.download</source>
+                <target>Télécharger</target>
+            </trans-unit>
+            <trans-unit id="pel.finalization">
+                <source>pel.finalization</source>
                 <target>Finalisation</target>
             </trans-unit>
-            <trans-unit id="facts">
-                <source>facts</source>
-                <target>Faits</target>
+            <trans-unit id="pel.first.names">
+                <source>pel.first.names</source>
+                <target>Prénom(s)</target>
+            </trans-unit>
+            <trans-unit id="pel.france.connect">
+                <source>pel.france.connect</source>
+                <target>FranceConnect</target>
+            </trans-unit>
+            <trans-unit id="pel.home.emergency.message">
+                <source>pel.home.emergency.message</source>
+                <target>En cas d’urgence, composez le 17 ou le 112 ou le 114</target>
+            </trans-unit>
+            <trans-unit id="pel.home.information.message.1">
+                <source>pel.home.information.message.1</source>
+                <target>Cette démarche est réservée aux déclarants</target>
+            </trans-unit>
+            <trans-unit id="pel.home.information.message.2">
+                <source>pel.home.information.message.2</source>
+                <target>agissant pour leur compte ou celui d’une personne morale ou physique qu’ils sont en droit de représenter (autorité parentale, pouvoir ou procuration, décision de justice).</target>
+            </trans-unit>
+            <trans-unit id="pel.home.information.message.3">
+                <source>pel.home.information.message.3</source>
+                <target>Elle ne concerne que</target>
+            </trans-unit>
+            <trans-unit id="pel.home.information.message.4">
+                <source>pel.home.information.message.4</source>
+                <target>certains faits commis contre les biens</target>
+            </trans-unit>
+            <trans-unit id="pel.home.information.message.5">
+                <source>pel.home.information.message.5</source>
+                <target>(vols, dégradations, délits de fuite, escroqueries...) commis par une personne dont je ne connais pas l’identité.</target>
+            </trans-unit>
+            <trans-unit id="pel.home.orienteer.information.message.1">
+                <source>pel.home.orienteer.information.message.1</source>
+                <target>Elle vise à vous faire gagner du temps soit en vous dispensant d’une venue dans les locaux des forces de sécurité, soit en préparant cette venue.</target>
+            </trans-unit>
+            <trans-unit id="pel.home.orienteer.information.message.2">
+                <source>pel.home.orienteer.information.message.2</source>
+                <target>La démarche sera nécessairement finalisée par un rendez-vous si vous ne vous identifiez pas par le biais de FC, si les faits ont été accompagnés de violences ou de menaces ou si l'objet volé est un véhicule motorisé.</target>
+            </trans-unit>
+            <trans-unit id="pel.home.orienteer.information.message.3">
+                <source>pel.home.orienteer.information.message.3</source>
+                <target>Elle ne constitue qu’une faculté, vous pouvez porter plainte dans les locaux des forces de sécurité ou auprès du Tribunal judiciaire. Vous pourrez à tout moment demander à être entendu par un enquêteur voire être convoqué en cas de nécessité. En tant que victime, vous pouvez exercer les droits décrits à l’article 10-2 du CPP (cliquer pour en prendre connaissance). Si vous souhaitez vous faire assister d’un avocat ou d’un interprète, ces droits demeurent incompatibles avec une procédure dématérialisée. Vous devrez donc vous rendre dans une unité de police ou de gendarmerie.</target>
+            </trans-unit>
+            <trans-unit id="pel.home.orienteer.legal.message.1">
+                <source>pel.home.orienteer.legal.message.1</source>
+                <target>Je prends acte des dispositions légales portées par les articles suivants</target>
+            </trans-unit>
+            <trans-unit id="pel.home.orienteer.legal.message.2">
+                <source>pel.home.orienteer.legal.message.2</source>
+                <target>du Code de Procédure Pénale</target>
+            </trans-unit>
+            <trans-unit id="pel.hour">
+                <source>pel.hour</source>
+                <target>Heure</target>
+            </trans-unit>
+            <trans-unit id="pel.identify.with">
+                <source>pel.identify.with</source>
+                <target>S’identifier avec</target>
+            </trans-unit>
+            <trans-unit id="pel.inside">
+                <source>pel.inside</source>
+                <target>de l'intérieur</target>
+            </trans-unit>
+            <trans-unit id="pel.job.constable">
+                <source>pel.job.constable</source>
+                <target>Gendarme</target>
+            </trans-unit>
+            <trans-unit id="pel.job.none">
+                <source>pel.job.none</source>
+                <target>Sans Profession</target>
+            </trans-unit>
+            <trans-unit id="pel.job.policeman">
+                <source>pel.job.policeman</source>
+                <target>Policier</target>
+            </trans-unit>
+            <trans-unit id="pel.keep.going">
+                <source>pel.keep.going</source>
+                <target>Continuer</target>
+            </trans-unit>
+            <trans-unit id="pel.law.informations">
+                <source>pel.law.informations</source>
+                <target>Conformément à la loi 78-17 du 6 janvier 1978 modifiée relative à l’informatique, aux fichiers et aux libertés, vous disposez d’un droit d’accès et de rectification aux informations. Vous pouvez exercer ce droit auprès de l'unité de gendarmerie ou du service de police où vous irez signer votre plainte.</target>
+            </trans-unit>
+            <trans-unit id="pel.m">
+                <source>pel.m</source>
+                <target>M</target>
+            </trans-unit>
+            <trans-unit id="pel.major">
+                <source>pel.major</source>
+                <target>majeur</target>
+            </trans-unit>
+            <trans-unit id="pel.make.appointment">
+                <source>pel.make.appointment</source>
+                <target>Prise de RDV</target>
+            </trans-unit>
+            <trans-unit id="pel.ministry">
+                <source>pel.ministry</source>
+                <target>Ministère</target>
+            </trans-unit>
+            <trans-unit id="pel.minute">
+                <source>pel.minute</source>
+                <target>Minute</target>
+            </trans-unit>
+            <trans-unit id="pel.mme">
+                <source>pel.mme</source>
+                <target>Mme</target>
+            </trans-unit>
+            <trans-unit id="pel.mobile">
+                <source>pel.mobile</source>
+                <target>Numéro de téléphone portable</target>
+            </trans-unit>
+            <trans-unit id="pel.more.info.place">
+                <source>pel.more.info.place</source>
+                <target>Je souhaite apporter des précisions sur le lieu des faits</target>
+            </trans-unit>
+            <trans-unit id="pel.my.identity">
+                <source>pel.my.identity</source>
+                <target>Mon identité</target>
+            </trans-unit>
+            <trans-unit id="pel.nationality.france">
+                <source>pel.nationality.france</source>
+                <target>Française</target>
+            </trans-unit>
+            <trans-unit id="pel.nationality.germany">
+                <source>pel.nationality.germany</source>
+                <target>Allemande</target>
+            </trans-unit>
+            <trans-unit id="pel.nationality">
+                <source>pel.nationality</source>
+                <target>Nationalité</target>
+            </trans-unit>
+            <trans-unit id="pel.nationality.spain">
+                <source>pel.nationality.spain</source>
+                <target>Espagnole</target>
+            </trans-unit>
+            <trans-unit id="pel.nature.place">
+                <source>pel.nature.place</source>
+                <target>Nature de lieu</target>
+            </trans-unit>
+            <trans-unit id="pel.nature.place.home">
+                <source>pel.nature.place.home</source>
+                <target>Domicile/Logement</target>
+            </trans-unit>
+            <trans-unit id="pel.nature.place.market">
+                <source>pel.nature.place.market</source>
+                <target>Commerce</target>
+            </trans-unit>
+            <trans-unit id="pel.nature.place.other">
+                <source>pel.nature.place.other</source>
+                <target>Autres natures de lieu</target>
+            </trans-unit>
+            <trans-unit id="pel.nature.place.other.camping">
+                <source>pel.nature.place.other.camping</source>
+                <target>Camping</target>
+            </trans-unit>
+            <trans-unit id="pel.nature.place.other.market">
+                <source>pel.nature.place.other.market</source>
+                <target>Marché</target>
+            </trans-unit>
+            <trans-unit id="pel.nature.place.other.park">
+                <source>pel.nature.place.other.park</source>
+                <target>Parc</target>
+            </trans-unit>
+            <trans-unit id="pel.nature.place.other.choice.message">
+                <source>pel.nature.place.other.choice.message</source>
+                <target>Précisez la nature du lieu</target>
+            </trans-unit>
+            <trans-unit id="pel.nature.place.other.restaurant">
+                <source>pel.nature.place.other.restaurant</source>
+                <target>Restaurant</target>
+            </trans-unit>
+            <trans-unit id="pel.nature.place.park">
+                <source>pel.nature.place.park</source>
+                <target>Parking / garage</target>
+            </trans-unit>
+            <trans-unit id="pel.nature.place.choice.message">
+                <source>pel.nature.place.choice.message</source>
+                <target>Choisissez le lieu où se sont déroulés les faits</target>
+            </trans-unit>
+            <trans-unit id="pel.nature.place.public.transport">
+                <source>pel.nature.place.public.transport</source>
+                <target>Transports en commun</target>
+            </trans-unit>
+            <trans-unit id="pel.nature.place.public.transport.autocar">
+                <source>pel.nature.place.public.transport.autocar</source>
+                <target>Autocar</target>
+            </trans-unit>
+            <trans-unit id="pel.nature.place.public.transport.boat">
+                <source>pel.nature.place.public.transport.boat</source>
+                <target>Bateau</target>
+            </trans-unit>
+            <trans-unit id="pel.nature.place.public.transport.bus">
+                <source>pel.nature.place.public.transport.bus</source>
+                <target>Bus</target>
+            </trans-unit>
+            <trans-unit id="pel.nature.place.public.transport.choice.message">
+                <source>pel.nature.place.public.transport.choice.message</source>
+                <target>Précisez le transport</target>
+            </trans-unit>
+            <trans-unit id="pel.nature.place.public.transport.plane">
+                <source>pel.nature.place.public.transport.plane</source>
+                <target>Avion/Aéroport</target>
+            </trans-unit>
+            <trans-unit id="pel.nature.place.public.transport.subway">
+                <source>pel.nature.place.public.transport.subway</source>
+                <target>Métro</target>
+            </trans-unit>
+            <trans-unit id="pel.nature.place.public.transport.train.station">
+                <source>pel.nature.place.public.transport.train.station</source>
+                <target>Train/gare</target>
+            </trans-unit>
+            <trans-unit id="pel.nature.place.public.transport.tram">
+                <source>pel.nature.place.public.transport.tram</source>
+                <target>Tramway</target>
+            </trans-unit>
+            <trans-unit id="pel.nature.place.street">
+                <source>pel.nature.place.street</source>
+                <target>Voie publique / Rue</target>
+            </trans-unit>
+            <trans-unit id="pel.nature.place.unknown">
+                <source>pel.nature.place.unknown</source>
+                <target>Lieu indéterminé</target>
+            </trans-unit>
+            <trans-unit id="pel.next">
+                <source>pel.next</source>
+                <target>Suivant</target>
+            </trans-unit>
+            <trans-unit id="pel.new.window">
+                <source>pel.new.window</source>
+                <target>nouvelle fenêtre</target>
+            </trans-unit>
+            <trans-unit id="pel.no">
+                <source>pel.no</source>
+                <target>Non</target>
+            </trans-unit>
+            <trans-unit id="pel.no.but.i.know.the.time.slot">
+                <source>pel.no.but.i.know.the.time.slot</source>
+                <target>Non mais je connais le créneau horaire</target>
+            </trans-unit>
+            <trans-unit id="pel.no.but.i.don.t.know.at.all.the.time.of.facts">
+                <source>pel.no.but.i.don.t.know.at.all.the.time.of.facts</source>
+                <target>Je ne connais pas l'heure des faits</target>
+            </trans-unit>
+            <trans-unit id="pel.offense.start.date">
+                <source>pel.offense.start.date</source>
+                <target>Entre</target>
+            </trans-unit>
+            <trans-unit id="pel.offense.end.date">
+                <source>pel.offense.end.date</source>
+                <target>Et</target>
+            </trans-unit>
+            <trans-unit id="pel.offense.unique.date">
+                <source>pel.offense.unique.date</source>
+                <target>Le</target>
+            </trans-unit>
+            <trans-unit id="pel.previous">
+                <source>pel.previous</source>
+                <target>Précédent</target>
+            </trans-unit>
+            <trans-unit id="pel.redirect.to.gendarmerie">
+                <source>pel.redirect.to.gendarmerie</source>
+                <target>Être redirigé vers l'orienteur de la Gendarmerie Nationale</target>
+            </trans-unit>
+            <trans-unit id="pel.redirect.to.perceval">
+                <source>pel.redirect.to.perceval</source>
+                <target>Être réorienté vers PERCEVAL</target>
+            </trans-unit>
+            <trans-unit id="pel.redirect.to.police">
+                <source>pel.redirect.to.police</source>
+                <target>Être redirigé vers l'orienteur de la Police Nationale</target>
+            </trans-unit>
+            <trans-unit id="pel.redirect.to.thesee">
+                <source>pel.redirect.to.thesee</source>
+                <target>Être réorienté vers THÉSÉE</target>
+            </trans-unit>
+            <trans-unit id="pel.represented.person.identity">
+                <source>pel.represented.person.identity</source>
+                <target>L'identité de la personne physique représentée</target>
+            </trans-unit>
+            <trans-unit id="pel.start.hour">
+                <source>pel.start.hour</source>
+                <target>Heure de début</target>
+            </trans-unit>
+            <trans-unit id="pel.start.redacting.my.online.complaint">
+                <source>pel.start.redacting.my.online.complaint</source>
+                <target>Démarrer la rédaction de ma plainte en ligne</target>
+            </trans-unit>
+            <trans-unit id="pel.submit">
+                <source>pel.submit</source>
+                <target>Enregistrer</target>
+            </trans-unit>
+            <trans-unit id="pel.to.log.in">
+                <source>pel.to.log.in</source>
+                <target>Se connecter</target>
+            </trans-unit>
+            <trans-unit id="pel.town.arcachon">
+                <source>pel.town.arcachon</source>
+                <target>Arcachon</target>
+            </trans-unit>
+            <trans-unit id="pel.town.bordeaux">
+                <source>pel.town.bordeaux</source>
+                <target>Bordeaux</target>
+            </trans-unit>
+            <trans-unit id="pel.town.la.ciotat">
+                <source>pel.town.la.ciotat</source>
+                <target>La Ciotat</target>
+            </trans-unit>
+            <trans-unit id="pel.town.marseille">
+                <source>pel.town.marseille</source>
+                <target>Marseille</target>
+            </trans-unit>
+            <trans-unit id="pel.town.merignac">
+                <source>pel.town.merignac</source>
+                <target>Mérignac</target>
+            </trans-unit>
+            <trans-unit id="pel.town.paris">
+                <source>pel.town.paris</source>
+                <target>Paris</target>
+            </trans-unit>
+            <trans-unit id="pel.validate">
+                <source>pel.validate</source>
+                <target>Valider</target>
+            </trans-unit>
+            <trans-unit id="pel.visitor.agree">
+                <source>pel.visitor.agree</source>
+                <target>J'autorise la collecte de mes données personnelles et poursuit ma déclaration</target>
+            </trans-unit>
+            <trans-unit id="pel.what.is.france.connect">
+                <source>pel.what.is.france.connect</source>
+                <target>Qu’est-ce que FranceConnect ?</target>
+            </trans-unit>
+            <trans-unit id="pel.way.one">
+                <source>pel.way.one</source>
+                <target>Voie une</target>
+            </trans-unit>
+            <trans-unit id="pel.way.two">
+                <source>pel.way.two</source>
+                <target>Voie deux</target>
+            </trans-unit>
+            <trans-unit id="pel.way.three">
+                <source>pel.way.three</source>
+                <target>Voie trois</target>
+            </trans-unit>
+            <trans-unit id="pel.yes">
+                <source>pel.yes</source>
+                <target>Oui</target>
+            </trans-unit>
+            <trans-unit id="pel.yes.i.know.the.exact.time.of.facts">
+                <source>pel.yes.i.know.the.exact.time.of.facts</source>
+                <target>Oui je connais l'heure exacte des faits</target>
+            </trans-unit>
+            <trans-unit id="pel.your.job">
+                <source>pel.your.job</source>
+                <target>Votre profession</target>
+            </trans-unit>
+            <trans-unit id="pel.your.job.choice.message">
+                <source>pel.your.job.choice.message</source>
+                <target>Choisissez votre profession</target>
             </trans-unit>
         </body>
     </file>

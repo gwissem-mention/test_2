@@ -16,10 +16,10 @@ class ConsentType extends AbstractType
             ->add('agree', CheckboxType::class, [
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'visitor.agree.checkbox.error',
+                        'message' => 'pel.visitor.agree.checkbox.error',
                     ]),
                 ],
-                'label' => 'visitor.agree',
+                'label' => 'pel.visitor.agree',
             ])
         ;
     }

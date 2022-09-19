@@ -11,7 +11,7 @@
         <div class="fr-col">
             {{ form_row(form.offenseNature.offenseNature) }}
             {% if form.offenseNature.offenseNature.vars.value is same as("1") %}
-                <p id="complaint_offense_nature_warning_text">{{ 'complaint.offense.nature.warning.text'|trans }}</p>
+                <p id="complaint_offense_nature_warning_text">{{ 'pel.complaint.offense.nature.warning.text'|trans }}</p>
             {% endif %}
             {% if form.offenseNature.aabText is defined %}
                 {{ form_row(form.offenseNature.aabText) }}
@@ -76,9 +76,9 @@
     <div class="fr-grid-row fr-pt-4w">
         <div class="fr-col">
             <a class="fr-btn" href="{{ path('complaint_identity') }}">
-                {{ 'previous'|trans }}
+                {{ 'pel.previous'|trans }}
             </a>
-            <button type="submit" class="fr-btn">{{ 'next'|trans }}</button>
+            <button type="submit" class="fr-btn">{{ 'pel.next'|trans }}</button>
         </div>
     </div>
     {{ form_end(form) }}

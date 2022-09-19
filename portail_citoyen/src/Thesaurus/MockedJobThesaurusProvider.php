@@ -9,9 +9,9 @@ class MockedJobThesaurusProvider implements JobThesaurusProviderInterface
     public function getChoices(): array
     {
         return [
-            'job.policeman' => 1,
-            'job.constable' => 2,
-            'job.none' => 3,
+            'pel.job.policeman' => 1,
+            'pel.job.constable' => 2,
+            'pel.job.none' => 3,
         ];
     }
 }
