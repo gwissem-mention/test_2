@@ -21,8 +21,8 @@ class OffenseNatureType extends AbstractType
     {
         $builder
             ->add('offenseNature', ChoiceType::class, [
-                'placeholder' => 'complaint.nature.of.the.facts',
-                'label' => 'complaint.nature.of.the.facts',
+                'placeholder' => 'pel.complaint.nature.of.the.facts',
+                'label' => 'pel.complaint.nature.of.the.facts',
                 'choices' => OffenseNature::getChoices(),
             ])
             ->get('offenseNature')
@@ -36,7 +36,7 @@ class OffenseNatureType extends AbstractType
     {
         if (OffenseNature::Other->value === intval($event->getData())) {
             $event->getForm()->getParent()?->add('aabText', TextareaType::class, [
-                'label' => 'complaint.offense.nature.other.aab.text',
+                'label' => 'pel.complaint.offense.nature.other.aab.text',
                 'attr' => [
                     'maxlength' => self::OTHER_AAB_TEXT_MAX_LENGTH,
                 ],

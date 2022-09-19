@@ -9,13 +9,13 @@ class MockedNaturePlacePublicTransportThesaurusProvider implements NaturePlacePu
     public function getChoices(): array
     {
         return [
-            'nature.place.public.transport.plane' => 1,
-            'nature.place.public.transport.subway' => 2,
-            'nature.place.public.transport.bus' => 3,
-            'nature.place.public.transport.train.station' => 4,
-            'nature.place.public.transport.tram' => 5,
-            'nature.place.public.transport.boat' => 6,
-            'nature.place.public.transport.autocar' => 7,
+            'pel.nature.place.public.transport.plane' => 1,
+            'pel.nature.place.public.transport.subway' => 2,
+            'pel.nature.place.public.transport.bus' => 3,
+            'pel.nature.place.public.transport.train.station' => 4,
+            'pel.nature.place.public.transport.tram' => 5,
+            'pel.nature.place.public.transport.boat' => 6,
+            'pel.nature.place.public.transport.autocar' => 7,
         ];
     }
 }

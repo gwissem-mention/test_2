@@ -9,9 +9,9 @@ class MockedWayThesaurusProvider implements WayThesaurusProviderInterface
     public function getChoices(): array
     {
         return [
-            'way.one' => 1,
-            'way.two' => 2,
-            'way.three' => 3,
+            'pel.way.one' => 1,
+            'pel.way.two' => 2,
+            'pel.way.three' => 3,
         ];
     }
 }

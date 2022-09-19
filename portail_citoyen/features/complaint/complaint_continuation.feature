@@ -8,7 +8,7 @@ Feature:
     Given I am on "/poursuivre"
     Then I should see 2 "input[type=radio][name='continuation[materialDamage]']" elements
     And I should see "<material_damage>" in the "<element>" element
-    And I should see the key "complaint.continuation.material.damage" translated
+    And I should see the key "pel.complaint.continuation.material.damage" translated
 
     Examples:
       | element                                  | material_damage |
@@ -22,7 +22,7 @@ Feature:
     And I wait for the element "#form-offense-author-known" to appear
     Then I should see 2 "input[type=radio][name='continuation[offenseAuthorKnown]']" elements
     And I should see "<offense_author_known>" in the "<element>" element
-    And I should see the key "complaint.continuation.offense.author.known" translated
+    And I should see the key "pel.complaint.continuation.offense.author.known" translated
 
     Examples:
       | element                                      | offense_author_known |

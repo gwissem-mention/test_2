@@ -7,15 +7,15 @@ Feature:
     Scenario: I can see the offense facts page
         Given I am on "/declaration/faits"
         Then the response status code should be 200
-        And I should see the key "ministry" translated
-        And I should see the key "inside" translated
-        And I should see the key "and.overseas" translated
-        And I should see the key "complaint.nature.of.the.facts" translated
-        And I should see the key "nature.place" translated
-        And I should see the key "more.info.place" translated
+        And I should see the key "pel.ministry" translated
+        And I should see the key "pel.inside" translated
+        And I should see the key "pel.and.overseas" translated
+        And I should see the key "pel.complaint.nature.of.the.facts" translated
+        And I should see the key "pel.nature.place" translated
+        And I should see the key "pel.more.info.place" translated
         And I should not see a "#place_nature_moreInfoText" element
-        And I should see the key "complaint.exact.date.known" translated
-        And I should see the key "do.you.know.hour.facts" translated
+        And I should see the key "pel.complaint.exact.date.known" translated
+        And I should see the key "pel.do.you.know.hour.facts" translated
 
     @func
     Scenario: I can click on the identity breadcrumb
@@ -92,14 +92,14 @@ Feature:
         Given I am on "/declaration/faits"
         When I select "Vol" from "facts_offenseNature_offenseNature"
         And I wait for the element "#facts_offenseNature_aabText" to appear
-        Then I should see the key "complaint.offense.nature.warning.text" translated
+        Then I should see the key "pel.complaint.offense.nature.warning.text" translated
 
     @javascript
     Scenario: I can see a textarea field if I select Other AAB
         Given I am on "/declaration/faits"
         When I select "Autre atteinte aux biens" from "facts_offenseNature_offenseNature"
         And I wait for the element "#offense_nature_aabText" to appear
-        And I should see the key "complaint.offense.nature.other.aab.text" translated
+        And I should see the key "pel.complaint.offense.nature.other.aab.text" translated
 
     @javascript
     Scenario: I can see the more info input text if I check "Je souhaite apporter des précisions sur le lieu des faits" checkbox
@@ -148,8 +148,8 @@ Feature:
         Given I am on "/declaration/faits"
         When I click the "label[for='facts_offenseDate_exactDateKnown_0']" element
         And I wait for the element "#facts_offenseDate_startDate" to appear
-        Then I should see the key "offense.unique.date" translated
-        And I should see the key "offense.unique.date" translated
+        Then I should see the key "pel.offense.unique.date" translated
+        And I should see the key "pel.offense.unique.date" translated
         And I should see a "input#facts_offenseDate_startDate" element
 
     @javascript
@@ -157,10 +157,10 @@ Feature:
         Given I am on "/declaration/faits"
         When I click the "label[for='facts_offenseDate_exactDateKnown_1']" element
         And I wait for the element "input#facts_offenseDate_startDate" to appear
-        Then I should see the key "offense.unique.date" translated
-        And I should see the key "offense.start.date" translated
+        Then I should see the key "pel.offense.unique.date" translated
+        And I should see the key "pel.offense.start.date" translated
         And I should see a "input#facts_offenseDate_startDate" element
-        And I should see the key "offense.end.date" translated
+        And I should see the key "pel.offense.end.date" translated
         And I should see a "input#facts_offenseDate_endDate" element
 
     @javascript

@@ -20,7 +20,7 @@ class IdentityType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add('declarantStatus', ChoiceType::class, [
-            'label' => 'complaint.identity.declarant.status',
+            'label' => 'pel.complaint.identity.declarant.status',
             'expanded' => true,
             'multiple' => false,
             'rich' => true,
@@ -81,10 +81,10 @@ class IdentityType extends AbstractType
         $form
             ->add('representedPersonCivilState', CivilStateType::class, [
                 'declarant_status' => $declarantStatus,
-                'label' => 'civil.state',
+                'label' => 'pel.civil.state',
             ])
             ->add('representedPersonContactInformation', ContactInformationType::class, [
-                'label' => 'contact.information',
+                'label' => 'pel.contact.information',
             ]);
     }
 }

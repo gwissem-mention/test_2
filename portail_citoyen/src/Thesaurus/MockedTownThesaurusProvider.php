@@ -9,12 +9,12 @@ class MockedTownThesaurusProvider implements TownAndDepartmentThesaurusProviderI
     public function getChoices(): array
     {
         return [
-            'town.paris' => 1,
-            'town.marseille' => 2,
-            'town.la.ciotat' => 3,
-            'town.bordeaux' => 4,
-            'town.merignac' => 5,
-            'town.arcachon' => 6,
+            'pel.town.paris' => 1,
+            'pel.town.marseille' => 2,
+            'pel.town.la.ciotat' => 3,
+            'pel.town.bordeaux' => 4,
+            'pel.town.merignac' => 5,
+            'pel.town.arcachon' => 6,
         ];
     }
 }

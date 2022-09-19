@@ -8,13 +8,13 @@ Feature:
         Given I am on "/authentification"
         Then the response status code should be 200
         And I should see 1 "body" element
-        And I should see the key "to.log.in" translated
-        And I should see the key "identify.with" translated
-        And I should see the key "france.connect" translated
-        And I should see the key "what.is.france.connect" translated
-        And I should see the key "new.window" translated in the response
-        And I should see the key "continue.pel.without.log.in" translated
-        And I should see the key "continue.pel.without.log.in.explanation" translated
+        And I should see the key "pel.to.log.in" translated
+        And I should see the key "pel.identify.with" translated
+        And I should see the key "pel.france.connect" translated
+        And I should see the key "pel.what.is.france.connect" translated
+        And I should see the key "pel.new.window" translated in the response
+        And I should see the key "pel.continue.pel.without.log.in" translated
+        And I should see the key "pel.continue.pel.without.log.in.explanation" translated
         And I follow "Continuer sans m'authentifier"
         And I am on "/declaration/identite"
 

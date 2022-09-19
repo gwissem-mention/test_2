@@ -33,7 +33,7 @@ class DropzoneType extends AbstractType
                 'accepted_files' => null,
                 'add_remove_links' => true,
                 'multiple' => true,
-                'label' => 'files',
+                'label' => 'pel.files',
             ])
             ->setAllowedTypes('max_files', ['null', 'int'])
             ->setAllowedTypes('max_files', ['null', 'int'])

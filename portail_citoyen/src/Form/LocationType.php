@@ -42,7 +42,7 @@ class LocationType extends AbstractType
             FormEvents::PRE_SET_DATA,
             function (FormEvent $event) {
                 /** @var array<string, int> $townParis */
-                $townParis = $this->townAndDepartmentAndDepartmentThesaurusProvider->getChoices()['town.paris'];
+                $townParis = $this->townAndDepartmentAndDepartmentThesaurusProvider->getChoices()['pel.town.paris'];
                 /** @var ?int $town */
                 $town = $townParis['value'];
                 $this->addTownField($event->getForm(), $town);
@@ -54,7 +54,7 @@ class LocationType extends AbstractType
             function (FormEvent $event) {
                 /** @var ?int $country */
                 $country = $event->getForm()->getData() ?: $this->countryThesaurusProvider->getChoices(
-                )['country.france'];
+                )['pel.country.france'];
                 /** @var FormInterface $parent */
                 $parent = $event->getForm()->getParent();
                 $this->addTownField($parent, $country);
@@ -93,7 +93,7 @@ class LocationType extends AbstractType
 
         $countries = $this->countryThesaurusProvider->getChoices();
 
-        return $countries['country.france'] === $country
+        return $countries['pel.country.france'] === $country
             ? $this->townToTransform($this->townAndDepartmentAndDepartmentThesaurusProvider->getChoices())
             : [];
     }
@@ -111,7 +111,7 @@ class LocationType extends AbstractType
          * @var array<string, int> $town
          */
         foreach ($towns as $key => $town) {
-            $transformedValue = $this->townToTownAndDepartmentTransformer->transform([$key, $town['department']]);
+            $transformedValue = $this->townToTownAndDepartmentTransformer->transform([$key, $town['pel.department']]);
             $townsTransformed[$transformedValue] = $transformedValue;
         }
 
@@ -146,7 +146,7 @@ class LocationType extends AbstractType
                 ],
                 'choices' => $townChoices,
                 'label' => $form->getConfig()->getOption('town_label'),
-                'placeholder' => 'choose.your.town',
+                'placeholder' => 'pel.choose.your.town',
             ])
             ->add('department', TextType::class, [
                 'disabled' => true,

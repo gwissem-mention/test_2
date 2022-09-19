@@ -14,9 +14,9 @@ enum OffenseNature: int
     public static function getChoices(): array
     {
         return [
-            'complaint.offense.nature.robbery' => self::Robbery->value,
-            'complaint.offense.nature.degradation' => self::Degradation->value,
-            'complaint.offense.nature.other' => self::Other->value,
+            'pel.complaint.offense.nature.robbery' => self::Robbery->value,
+            'pel.complaint.offense.nature.degradation' => self::Degradation->value,
+            'pel.complaint.offense.nature.other' => self::Other->value,
         ];
     }
 }

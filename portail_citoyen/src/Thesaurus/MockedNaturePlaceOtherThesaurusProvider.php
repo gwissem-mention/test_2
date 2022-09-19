@@ -9,10 +9,10 @@ class MockedNaturePlaceOtherThesaurusProvider implements NaturePlaceOtherThesaur
     public function getChoices(): array
     {
         return [
-            'nature.place.other.camping' => 1,
-            'nature.place.other.restaurant' => 2,
-            'nature.place.other.park' => 3,
-            'nature.place.other.market' => 4,
+            'pel.nature.place.other.camping' => 1,
+            'pel.nature.place.other.restaurant' => 2,
+            'pel.nature.place.other.park' => 3,
+            'pel.nature.place.other.market' => 4,
         ];
     }
 }

@@ -6,17 +6,17 @@ Feature:
     @func
     Scenario: I can see the identity breadcrumb
         Given I am on "/declaration/identite"
-        Then I should see the key "ministry" translated
-        And I should see the key "inside" translated
-        And I should see the key "and.overseas" translated
-        And I should see the key "file.a.complaint" translated
-        And I should see the key "faq" translated
+        Then I should see the key "pel.ministry" translated
+        And I should see the key "pel.inside" translated
+        And I should see the key "pel.and.overseas" translated
+        And I should see the key "pel.file.a.complaint" translated
+        And I should see the key "pel.faq" translated
         And I should see "Identité" in the ".fr-breadcrumb__list" element
 
     @func
     Scenario: I can see a the declarant status label
         Given I am on "/declaration/identite"
-        Then I should see the key "complaint.identity.declarant.status" translated
+        Then I should see the key "pel.complaint.identity.declarant.status" translated
 
     @func
     Scenario Outline: I can see the declarant status inputs

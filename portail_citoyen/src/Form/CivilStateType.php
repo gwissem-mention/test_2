@@ -33,14 +33,14 @@ class CivilStateType extends AbstractType
         $builder
             ->add('civility', ChoiceType::class, [
                 'choices' => [
-                    'm' => 1,
-                    'mme' => 2,
+                    'pel.m' => 1,
+                    'pel.mme' => 2,
                 ],
                 'constraints' => [
                     new NotBlank(),
                 ],
-                'label' => 'civility',
-                'placeholder' => 'choose.your.civility',
+                'label' => 'pel.civility',
+                'placeholder' => 'pel.choose.your.civility',
             ])
             ->add('birthName', TextType::class, [
                 'attr' => [
@@ -52,7 +52,7 @@ class CivilStateType extends AbstractType
                     new NotBlank(),
                     new Length(['max' => 70]),
                 ],
-                'label' => 'birth.name',
+                'label' => 'pel.birth.name',
             ])
             ->add('firstnames', TextType::class, [
                 'attr' => [
@@ -62,7 +62,7 @@ class CivilStateType extends AbstractType
                     new NotBlank(),
                     new Length(['max' => 40]),
                 ],
-                'label' => 'first.names',
+                'label' => 'pel.first.names',
             ])
             ->add('birthDate', DateType::class, [
                 'constraints' => [
@@ -70,22 +70,22 @@ class CivilStateType extends AbstractType
                     new LessThanOrEqual('today'),
                 ],
                 'format' => 'dd/MM/yyyy',
-                'help' => 'birth.date.help',
+                'help' => 'pel.birth.date.help',
                 'html5' => false,
-                'label' => 'birth.date',
+                'label' => 'pel.birth.date',
                 'widget' => 'single_text',
             ])
             ->add('birthLocation', LocationType::class, [
-                'country_label' => 'birth.country',
-                'town_label' => 'birth.town',
-                'department_label' => 'birth.department',
+                'country_label' => 'pel.birth.country',
+                'town_label' => 'pel.birth.town',
+                'department_label' => 'pel.birth.department',
             ])
             ->add('nationality', ChoiceType::class, [
                 'constraints' => [
                     new NotBlank(),
                 ],
                 'choices' => $this->nationalityThesaurusProvider->getChoices(),
-                'label' => 'nationality',
+                'label' => 'pel.nationality',
             ]);
 
         $builder->addEventListener(
@@ -101,7 +101,7 @@ class CivilStateType extends AbstractType
                 /** @var array<string, mixed> $data */
                 $data = $event->getData();
                 $job = null;
-                $jobNone = $this->jobThesaurusProvider->getChoices()['job.none'];
+                $jobNone = $this->jobThesaurusProvider->getChoices()['pel.job.none'];
 
                 if ($data['job'] && !($jobNone === $data['job'])) {
                     $job = $data['job'];
@@ -130,8 +130,8 @@ class CivilStateType extends AbstractType
             ],
             'choices' => $this->jobThesaurusProvider->getChoices(),
             'data' => $job,
-            'label' => 'your.job',
-            'placeholder' => 'your.job.placeholder',
+            'label' => 'pel.your.job',
+            'placeholder' => 'pel.your.job.choice.message',
         ]);
     }
 }

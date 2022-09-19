@@ -25,9 +25,9 @@ class ContactInformationType extends AbstractType
     {
         $builder
             ->add('addressLocation', LocationType::class, [
-                'country_label' => 'address.country',
-                'town_label' => 'address.town',
-                'department_label' => 'address.department',
+                'country_label' => 'pel.address.country',
+                'town_label' => 'pel.address.town',
+                'department_label' => 'pel.address.department',
             ])
             ->add('addressNumber', TextType::class, [
                 'attr' => [
@@ -37,14 +37,14 @@ class ContactInformationType extends AbstractType
                     new NotBlank(),
                     new Length(['max' => 11]),
                 ],
-                'label' => 'address.number',
+                'label' => 'pel.address.number',
             ])
             ->add('addressWay', ChoiceType::class, [
                 'constraints' => [
                     new NotBlank(),
                 ],
                 'choices' => $this->wayThesaurusProvider->getChoices(),
-                'label' => 'address.way',
+                'label' => 'pel.address.way',
             ])
             ->add('email', EmailType::class, [
                 'attr' => [
@@ -55,7 +55,7 @@ class ContactInformationType extends AbstractType
                     new Length(['max' => 50]),
                     new Email(),
                 ],
-                'label' => 'email',
+                'label' => 'pel.email',
             ])
             ->add('mobile', TextType::class, [
                 'attr' => [
@@ -65,7 +65,7 @@ class ContactInformationType extends AbstractType
                     new NotBlank(),
                     new Length(['max' => 15]),
                 ],
-                'label' => 'mobile',
+                'label' => 'pel.mobile',
             ]);
     }
 }

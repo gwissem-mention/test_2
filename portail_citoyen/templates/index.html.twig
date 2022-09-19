@@ -1,17 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {{ 'information.message'|trans }}
-    <a class="fr-btn" href="#">{{ 'access.to.the.form'|trans }}</a>
+    {{ 'pel.information.message'|trans }}
+    <a class="fr-btn" href="#">{{ 'pel.access.to.the.form'|trans }}</a>
     <div>
         <p>
-            <a class="fr-btn" href="{{ path('visitor_agreement') }}">{{ 'keep.going'|trans }}</a>
+            <a class="fr-btn" href="{{ path('visitor_agreement') }}">{{ 'pel.keep.going'|trans }}</a>
         </p>
         <p>
-            <a class="fr-btn" href="https://www.moncommissariat.interieur.gouv.fr">{{ 'redirect.to.police'|trans }}</a>
+            <a class="fr-btn" href="https://www.moncommissariat.interieur.gouv.fr">{{ 'pel.redirect.to.police'|trans }}</a>
         </p>
         <p>
-            <a class="fr-btn" href="https://www.gendarmerie.interieur.gouv.fr">{{ 'redirect.to.gendarmerie'|trans }}</a>
+            <a class="fr-btn" href="https://www.gendarmerie.interieur.gouv.fr">{{ 'pel.redirect.to.gendarmerie'|trans }}</a>
         </p>
     </div>
 {% endblock %}

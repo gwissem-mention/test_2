@@ -5,11 +5,12 @@
         <div class="fr-collapse" id="breadcrumb-1">
             <ol class="fr-breadcrumb__list">
                 {% for label, route in breadcrumbs %}
+                    {% set labelTranslate = 'pel.' ~ label %}
                     <li>
                         {% if route %}
-                            <a class="fr-breadcrumb__link" href="{{ path(route) }}">{{ label|trans }}</a>
+                            <a class="fr-breadcrumb__link" href="{{ path(route) }}">{{ labelTranslate|trans }}</a>
                         {% else %}
-                            <span class="fr-breadcrumb__link">{{ label|trans }}</span>
+                            <span class="fr-breadcrumb__link">{{ labelTranslate|trans }}</span>
                         {% endif %}
                     </li>
                 {% endfor %}

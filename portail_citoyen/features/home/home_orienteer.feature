@@ -8,26 +8,26 @@ Feature:
         Given I am on "/accueil-orienteur"
         Then the response status code should be 200
         And I should see 1 "body" element
-        And I should see the key "home.orienteer.information.message.1" translated
-        And I should see the key "home.orienteer.information.message.2" translated
-        And I should see the key "home.orienteer.information.message.3" translated
-        And I should see the key "home.orienteer.legal.message.1" translated
-        And I should see the key "home.orienteer.legal.message.2" translated
-        And I should see the key "ministry" translated
-        And I should see the key "inside" translated
-        And I should see the key "and.overseas" translated
-        And I should see the key "article.10.2" translated
-        And I should see the key "article.d.8.2.2" translated
+        And I should see the key "pel.home.orienteer.information.message.1" translated
+        And I should see the key "pel.home.orienteer.information.message.2" translated
+        And I should see the key "pel.home.orienteer.information.message.3" translated
+        And I should see the key "pel.home.orienteer.legal.message.1" translated
+        And I should see the key "pel.home.orienteer.legal.message.2" translated
+        And I should see the key "pel.ministry" translated
+        And I should see the key "pel.inside" translated
+        And I should see the key "pel.and.overseas" translated
+        And I should see the key "pel.article.10.2" translated
+        And I should see the key "pel.article.d.8.2.2" translated
         And I should see 1 "input[type=checkbox]" element
         And the checkbox "consent_agree" should be unchecked
         And I should see 1 "label" element
-        And I should see the key "visitor.agree" translated
+        And I should see the key "pel.visitor.agree" translated
         And I should see 2 "p" element
-        And I should see the key "law.informations" translated
+        And I should see the key "pel.law.informations" translated
         And I should see 1 "button" element
-        And I should see the key "start.redacting.my.online.complaint" translated
-        And I should see the key "file.a.complaint" translated
-        And I should see the key "faq" translated
+        And I should see the key "pel.start.redacting.my.online.complaint" translated
+        And I should see the key "pel.file.a.complaint" translated
+        And I should see the key "pel.faq" translated
 
     @func
     Scenario: Click on "Article 10-2" link
