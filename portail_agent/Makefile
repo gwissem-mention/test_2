@@ -80,11 +80,7 @@ recipes-update: composer
 
 ## Install php tools
 tools-install:
-	@$(COMPOSER) install --working-dir=tools/infection
-	@$(COMPOSER) install --working-dir=tools/php-assumptions
-	@$(COMPOSER) install --working-dir=tools/php-cs-fixer
-	@$(COMPOSER) install --working-dir=tools/phpstan
-	@$(COMPOSER) install --working-dir=tools/phpmnd
+	@$(COMPOSER) install --working-dir=tools
 	@wget https://phar.phpunit.de/phpcpd.phar -O tools/phpcpd.phar
 
 
@@ -121,27 +117,27 @@ QA:
 
 ## Run php-cs-fixer
 cs:
-	@tools/php-cs-fixer/vendor/bin/php-cs-fixer fix --dry-run --diff --config .php-cs-fixer.dist.php
+	@tools/vendor/bin/php-cs-fixer fix --dry-run --diff --config .php-cs-fixer.dist.php
 
 ## Run php-cs-fixer
 cs-fix:
-	@tools/php-cs-fixer/vendor/bin/php-cs-fixer fix --diff --config .php-cs-fixer.dist.php
+	@tools/vendor/bin/php-cs-fixer fix --diff --config .php-cs-fixer.dist.php
 
 ## Run php magic number detector
 mnd:
-	@tools/phpmnd/vendor/bin/phpmnd src
+	@tools/vendor/bin/phpmnd src
 
 ## Run phpstan
 phpstan:
-	@tools/phpstan/vendor/bin/phpstan analyse -c .phpstan.neon
+	@tools/vendor/bin/phpstan analyse -c .phpstan.neon
 
 ## Run php assumptions
 assumption:
-	@tools/php-assumptions/vendor/bin/phpa src
+	@tools/vendor/bin/phpa src
 
 ## Run infection (mutation testing)
 infection:
-	XDEBUG_MODE=coverage tools/infection/vendor/bin/infection run -j$(NPROC) -s --ignore-msi-with-no-mutations --no-progress -c infection.json
+	XDEBUG_MODE=coverage tools/vendor/bin/infection run -j$(NPROC) -s --ignore-msi-with-no-mutations --no-progress -c infection.json
 
 ## Run Symfony security checker
 security:

@@ -59,7 +59,7 @@ class IdentityType extends AbstractType
                 $this->addCorporationFields($form);
                 break;
             default:
-            }
+        }
 
         $this->addCivilStateAndContactInformationFields($form);
     }
