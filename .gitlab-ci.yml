@@ -43,61 +43,91 @@ stages:
 
 .cache-tools-agent: &cache-tools-agent
     cache:
-        key: "tools-agent-${CI_COMMIT_REF_SLUG}"
+        key:
+            files:
+                - "portail_agent/tools/composer.lock"
+            prefix: portail_agent
         paths:
             - "portail_agent/tools"
 
 .cache-tools-citoyen: &cache-tools-citoyen
     cache:
-        key: "tools-citoyen-${CI_COMMIT_REF_SLUG}"
+        key:
+            files:
+                - "portail_citoyen/tools/composer.lock"
+            prefix: portail_citoyen
         paths:
             - "portail_citoyen/tools"
 
 .cache-vendor-agent: &cache-vendor-agent
     cache:
-        key: "vendor-agent-${CI_COMMIT_REF_SLUG}"
+        key:
+            files:
+                - "portail_agent/composer.lock"
+            prefix: portail_agent
         paths:
             - "portail_agent/vendor"
 
 .cache-vendor-citoyen: &cache-vendor-citoyen
     cache:
-        key: "vendor-citoyen-${CI_COMMIT_REF_SLUG}"
+        key:
+            files:
+                - "portail_citoyen/composer.lock"
+            prefix: portail_citoyen
         paths:
             - "portail_citoyen/vendor"
 
 .cache-front-agent: &cache-front-agent
     cache:
-        key: "front-agent-${CI_COMMIT_REF_SLUG}"
+        key:
+            files:
+                - "portail_agent/yarn.lock"
+            prefix: portail_agent
         paths:
             - "portail_agent/public"
             - "portail_agent/node_modules"
 
 .cache-front-citoyen: &cache-front-citoyen
     cache:
-        key: "front-citoyen-${CI_COMMIT_REF_SLUG}"
+        key:
+            files:
+                - "portail_citoyen/yarn.lock"
+            prefix: portail_citoyen
         paths:
             - "portail_citoyen/public"
             - "portail_citoyen/node_modules"
 
 .cache-complete-agent: &cache-complete-agent
     cache:
-        - key: "front-agent-${CI_COMMIT_REF_SLUG}"
+        - key:
+            files:
+                - "portail_agent/yarn.lock"
+            prefix: portail_agent
           paths:
               - "portail_agent/public"
               - "portail_agent/node_modules"
-        - key: "vendor-agent-${CI_COMMIT_REF_SLUG}"
+        - key:
+            files:
+               - "portail_agent/composer.lock"
+            prefix: portail_agent
           paths:
               - "portail_agent/vendor"
 
 .cache-complete-citoyen: &cache-complete-citoyen
     cache:
-        - key: "front-citoyen-${CI_COMMIT_REF_SLUG}"
+        - key:
+            files:
+                - "portail_citoyen/yarn.lock"
+            prefix: portail_citoyen
           paths:
               - "portail_citoyen/public"
               - "portail_citoyen/node_modules"
-        - key: "vendor-citoyen-${CI_COMMIT_REF_SLUG}"
+        - key:
+            files:
+                - "portail_citoyen/composer.lock"
+            prefix: portail_citoyen
           paths:
-              - "portail_citoyen/vendor"
+            - "portail_citoyen/vendor"
 
 #######################################
 ##               Check               ##
@@ -350,21 +380,33 @@ agent-php-phpstan:
     <<: *agent-step
     <<: *phpstan
     cache:
-        - key: "tools-agent-${CI_COMMIT_REF_SLUG}"
+        - key:
+            files:
+                - "portail_agent/tools/composer.lock"
+            prefix: portail_agent
           paths:
-              - "portail_agent/tools"
-        - key: "vendor-agent-${CI_COMMIT_REF_SLUG}"
+            - "portail_agent/tools/vendor"
+        - key:
+            files:
+                - "portail_agent/composer.lock"
+            prefix: portail_agent
           paths:
-              - "portail_agent/vendor"
+            - "portail_agent/vendor"
 
 citoyen-php-phpstan:
     <<: *citoyen-step
     <<: *phpstan
     cache:
-        - key: "tools-citoyen-${CI_COMMIT_REF_SLUG}"
+        - key:
+            files:
+                - "portail_citoyen/tools/composer.lock"
+            prefix: portail_citoyen
           paths:
-              - "portail_citoyen/tools"
-        - key: "vendor-citoyen-${CI_COMMIT_REF_SLUG}"
+              - "portail_citoyen/tools/vendor"
+        - key:
+            files:
+                - "portail_citoyen/composer.lock"
+            prefix: portail_citoyen
           paths:
               - "portail_citoyen/vendor"
 
