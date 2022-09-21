@@ -17,12 +17,13 @@ Feature:
         And I should see the key "pel.home.information.message.3" translated
         And I should see the key "pel.home.information.message.4" translated
         And I should see the key "pel.home.information.message.5" translated
-        And I should see 8 "a" elements
-        And I should see 5 ".fr-btn" elements
+        And I should see 7 "a" elements
+        And I should see 4 ".fr-btn" elements
         And I should see the key "pel.home.emergency.message" translated
         And I should see the key "pel.file.a.complaint" translated
         And I should see the key "pel.faq" translated
-
+        And I should see the key "pel.fsi.general.orienteer" translated
+        And I should see the key "pel.home.fsi.general.orienteer.message" translated
     @func
     Scenario: Press button to be redirect to the visitor agreement page
         Given I am on "/"
@@ -30,17 +31,9 @@ Feature:
         And I should be on "/poursuivre"
 
     @func
-    Scenario: Press button to be redirect to the police
+    Scenario: Press button to be fsi general orienteer
         Given I am on "/"
-        Then I follow "Être redirigé vers l'orienteur de la Police Nationale"
-        And I should be on "https://www.moncommissariat.interieur.gouv.fr"
-
-    @func
-    Scenario: Press button to be redirect to the gendarmerie
-        Given I am on "/"
-        Then I follow "Être redirigé vers l'orienteur de la Gendarmerie Nationale"
-        And I should be on "https://www.gendarmerie.interieur.gouv.fr/"
-
+        When I follow "Orienteur général FSI"
     @func
     Scenario: Press button to be redirect to perceval
         Given I am on "/"

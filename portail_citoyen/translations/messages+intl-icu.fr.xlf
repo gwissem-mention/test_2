@@ -678,6 +678,14 @@
                 <source>pel.your.job.choice.message</source>
                 <target>Choisissez votre profession</target>
             </trans-unit>
+            <trans-unit id="pel.fsi.general.orienteer">
+                <source>pel.fsi.general.orienteer</source>
+                <target>Orienteur général FSI</target>
+            </trans-unit>
+            <trans-unit id="pel.home.fsi.general.orienteer.message">
+                <source>pel.home.fsi.general.orienteer.message</source>
+                <target>Dans le cas où vous ne rentrez pas dans le périmètre de PEL, vous pouvez être redirigés vers l’orienteur général afin d'être pris en charge et orienté vers le téléservice ministériel approprié à votre besoin</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
