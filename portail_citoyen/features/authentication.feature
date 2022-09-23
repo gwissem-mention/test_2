@@ -16,11 +16,11 @@ Feature:
         And I should see the key "pel.continue.pel.without.log.in" translated
         And I should see the key "pel.continue.pel.without.log.in.explanation" translated
         And I follow "Continuer sans m'authentifier"
-        And I am on "/declaration/identite"
+        And I am on "/identite"
 
     @javascript
     Scenario: Show authentication page with a button and a link and click on the button
         Given I am on "/authentification"
         Then I wait for the element "#france_connect_auth_button" to appear
         And I press "france_connect_auth_button"
-        And I am on "/declaration/identite"
+        And I am on "/identite"

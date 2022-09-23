@@ -1,0 +1,13 @@
+{% extends 'complaint_layout.html.twig' %}
+
+{% block breadcrumbs %}
+    {% set breadcrumbs =  {
+        'complaint.identity': 'identity',
+        'facts' :false
+    } %}
+    {{ parent() }}
+{% endblock %}
+
+{% block complaint_step_form %}
+    {{ component('facts') }}
+{% endblock %}

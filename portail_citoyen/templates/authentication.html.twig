@@ -11,14 +11,14 @@
             <a href="https://franceconnect.gouv.fr/" target="_blank"  rel="noopener" title="{{ 'pel.what.is.france.connect'|trans }} - {{ 'pel.new.window'|trans }}">{{ 'pel.what.is.france.connect'|trans }}</a>
         </p>
     </div>
-    <a href="{{ path('complaint_identity') }}">{{ 'pel.continue.pel.without.log.in'|trans }}</a>
+    <a href="{{ path('identity') }}">{{ 'pel.continue.pel.without.log.in'|trans }}</a>
     <p>{{ 'pel.continue.pel.without.log.in.explanation'|trans }}</p>
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
     <script>
-        let path = "{{ path('complaint_identity') }}";
+        let path = "{{ path('identity') }}";
         document.getElementById('france_connect_auth_button').addEventListener('click', function () {
             window.location.href = path;
         })
