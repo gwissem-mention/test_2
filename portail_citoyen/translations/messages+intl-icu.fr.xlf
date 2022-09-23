@@ -690,6 +690,18 @@
                 <source>pel.home.appointment.message</source>
                 <target>Dans le cas où vous ne souhaitez pas déposer plainte sur internet, vous avez la possibilité de vous rendre dans une unité de Police ou de Gendarmerie</target>
             </trans-unit>
+            <trans-unit id="pel.attachments.upload">
+                <source>pel.attachments.upload</source>
+                <target>Vous pouvez utilement joindre les pièces-jointes nécessaires en appui de votre déclaration</target>
+            </trans-unit>
+            <trans-unit id="pel.attachments">
+                <source>pel.attachments</source>
+                <target>Pièces complémentaires</target>
+            </trans-unit>
+            <trans-unit id="pel.online.complaint">
+                <source>pel.online.complaint</source>
+                <target>Plainte en ligne</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
