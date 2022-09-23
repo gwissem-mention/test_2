@@ -686,6 +686,10 @@
                 <source>pel.home.fsi.general.orienteer.message</source>
                 <target>Dans le cas où vous ne rentrez pas dans le périmètre de PEL, vous pouvez être redirigés vers l’orienteur général afin d'être pris en charge et orienté vers le téléservice ministériel approprié à votre besoin</target>
             </trans-unit>
+            <trans-unit id="pel.home.appointment.message">
+                <source>pel.home.appointment.message</source>
+                <target>Dans le cas où vous ne souhaitez pas déposer plainte sur internet, vous avez la possibilité de vous rendre dans une unité de Police ou de Gendarmerie</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
