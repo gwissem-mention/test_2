@@ -1,0 +1,18 @@
+---
+- hosts: all
+
+  become: true
+
+  vars_files:
+    - ../vars/vars.yaml
+    - ../vault/vault.yaml
+
+  vars:
+    # Ansistrano vars
+    ansistrano_deploy_to: "{{ symfony_root_dir }}" # Base path to deploy to.
+
+    # Hooks: custom tasks if you need them
+    ansistrano_before_symlink_tasks_file: '{{ playbook_dir }}/rollback/before-symlink.yaml'
+
+  roles:
+    - ansistrano.rollback

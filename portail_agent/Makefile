@@ -59,11 +59,15 @@ composer:
 	@$(COMPOSER) $(c)
 
 ## Install php dependencies for dev
-vendor: c=install --prefer-dist --no-progress --no-scripts --no-interaction --optimize-autoloader
+vendor: c=install --prefer-dist --no-progress --no-scripts --no-interaction --classmap-authoritative
 vendor: composer
 
+## Install php dependencies for prod
+vendor-prod: c=install --prefer-dist --no-progress --no-scripts --no-interaction --classmap-authoritative --no-dev
+vendor-prod: composer
+
 ## Update composer dependencies
-vendor-update: c=update --prefer-dist --no-dev --no-progress --no-scripts --no-interaction --optimize-autoloader
+vendor-update: c=update --prefer-dist --no-dev --no-progress --no-scripts --no-interaction --classmap-authoritative
 vendor-update: composer
 
 ## Show recipes
@@ -82,6 +86,19 @@ recipes-update: composer
 tools-install:
 	@$(COMPOSER) install --working-dir=tools
 	@wget https://phar.phpunit.de/phpcpd.phar -O tools/phpcpd.phar
+
+#################################
+Cache:
+
+## Symfony cache clear
+cache-clear:
+	@$(eval APP_ENV ?=)
+	@$(CONSOLE) cache:clear --no-warmup --env=$(APP_ENV)
+
+## Symfony cache clear
+cache-warmup:
+	@$(eval APP_ENV ?=)
+	@$(CONSOLE) cache:warmup --env=$(APP_ENV)
 
 
 #################################

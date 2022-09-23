@@ -5,6 +5,7 @@ COMPOSER	:= @composer
 CONSOLE		:= @bin/console
 SF_CLI		:= @symfony
 YARN		:= @yarn
+ANSIBLE		:= @ansible-playbook
 
 NPROC	:= 1
 OS		:= $(shell uname)
@@ -61,11 +62,15 @@ composer:
 	@$(COMPOSER) $(c)
 
 ## Install php dependencies for dev
-vendor: c=install --prefer-dist --no-progress --no-scripts --no-interaction --optimize-autoloader
+vendor: c=install --prefer-dist --no-progress --no-scripts --no-interaction --classmap-authoritative
 vendor: composer
 
+## Install php dependencies for prod
+vendor-prod: c=install --prefer-dist --no-progress --no-scripts --no-interaction --classmap-authoritative --no-dev
+vendor-prod: composer
+
 ## Update composer dependencies
-vendor-update: c=update --prefer-dist --no-progress --no-scripts --no-interaction --optimize-autoloader
+vendor-update: c=update --prefer-dist --no-progress --no-scripts --no-interaction --classmap-authoritative
 vendor-update: composer
 
 ## Show recipes
@@ -117,17 +122,38 @@ dev: yarn
 Doctrine:
 
 ## Drop, create db and create tables
-db-create:
-	@$(eval APP_ENV ?=)
-	@$(CONSOLE) doctrine:database:drop --force --if-exists --env=$(APP_ENV)
-	@$(CONSOLE) doctrine:database:create --env=$(APP_ENV)
-	@$(CONSOLE) doctrine:migrations:migrate -n --allow-no-migration --env=$(APP_ENV)
+db-setup: db-drop db-create db-migrate
 
 db-ci-setup:
 	@$(eval APP_ENV ?=)
 	@$(CONSOLE) doctrine:database:drop --force --if-exists --env=$(APP_ENV)
 	@$(CONSOLE) doctrine:database:create --env=$(APP_ENV) --if-not-exists
 	@$(CONSOLE) doctrine:schema:update --force
+
+db-migrate:
+	@$(eval APP_ENV ?=)
+	@$(CONSOLE) doctrine:migrations:migrate -n --allow-no-migration --env=$(APP_ENV)
+
+db-create:
+	@$(eval APP_ENV ?=)
+	@$(CONSOLE) doctrine:database:create --env=$(APP_ENV) --if-not-exists
+
+db-drop:
+	@$(eval APP_ENV ?=)
+	@$(CONSOLE) doctrine:database:drop --force --if-exists --env=$(APP_ENV)
+
+#################################
+Cache:
+
+## Symfony cache clear
+cache-clear:
+	@$(eval APP_ENV ?=)
+	@$(CONSOLE) cache:clear --no-warmup --env=$(APP_ENV)
+
+## Symfony cache clear
+cache-warmup:
+	@$(eval APP_ENV ?=)
+	@$(CONSOLE) cache:warmup --env=$(APP_ENV)
 
 #################################
 QA:
@@ -178,3 +204,18 @@ behat:
 ## Run e2e behat tests
 e2e:
 	@vendor/bin/behat -c behat.yml.dist --format=pretty --profile e2e
+
+#################################
+Deployment:
+
+## Run ansible deploy
+deploy:
+	@$(ANSIBLE) --become-method=su  --become-user=$(BECOME_USER)  ansible/deploy/deploy.yaml -i ansible/hosts.yaml  --ask-vault-pass --private-key=$(PRIVATE_KEY_PATH)
+
+## Run ansible deploy for CI
+deploy-ci:
+	@$(ANSIBLE) --become-method=su  --become-user=$(BECOME_USER)  ansible/deploy/deploy.yaml -i ansible/hosts.yaml  --vault-password-file $ANSIBLE_VAULT_PASSWORD  --private-key=$(PRIVATE_KEY_PATH)
+
+## Run ansible rollback
+rollback:
+	@$(ANSIBLE) --become-method=su  --become-user=$(BECOME_USER)  ansible/rollback/rollback.yaml -i ansible/hosts.yaml  --ask-vault-pass  --private-key=$(PRIVATE_KEY_PATH)
