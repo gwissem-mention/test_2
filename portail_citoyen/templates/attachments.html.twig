@@ -1,11 +1,14 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}{{ 'pel.attachments'|trans }}{% endblock %}
+
 {% block body %}
-    <div class="fr-container">
+    <div class="fr-container fr-py-2w">
         <div class="fr-grid-row">
             <div class="fr-col">
+                <h2>{{ 'pel.attachments'|trans }}</h2>
                 {{ form_start(form) }}
-                {{ form_row(form) }}
+                {{ form_row(form.attachments) }}
                 <button type="submit" class="fr-btn fr-mt-2w">{{ 'pel.submit'|trans }}</button>
                 {{ form_end(form) }}
             </div>
@@ -17,7 +20,7 @@
                         {% for file in files %}
                             <li>
                                 <a href="{{ path('file_download', {'fileName':file.fileName}) }}">
-                                    {{ 'file.download'|trans }} {{ file.fileName }}
+                                    {{ 'pel.file.download'|trans }} {{ file.fileName }}
                                 </a>
                             </li>
                         {% endfor %}

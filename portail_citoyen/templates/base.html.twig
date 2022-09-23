@@ -12,13 +12,13 @@
     <link rel="shortcut icon" href="{{ asset('build/favicon/favicon.ico') }}" type="image/x-icon">
     <link rel="manifest" href="{{ asset('build/favicon/manifest.webmanifest') }}" crossorigin="use-credentials">
 
-    <title>{% block title %}Welcome!{% endblock %}</title>
+    <title>{% block title %}{{ 'pel.online.complaint'|trans }}{% endblock %}</title>
 </head>
 <body>
-    {{ include('includes/_header.html.twig') }}
-    {% block body %}{% endblock %}
-    {% block javascripts %}
-        {{ encore_entry_script_tags('app') }}
-    {% endblock %}
+{{ include('includes/_header.html.twig') }}
+{% block body %}{% endblock %}
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}
 </body>
 </html>

@@ -145,7 +145,7 @@
     {{ form_label(form) }}
     <div class="dropzone"
          data-controller="dropzone"
-         data-dropzone-name="{{ form.vars.name }}"
+         data-dropzone-name="{{ form.parent.vars.name }}[{{ form.vars.name }}]"
          data-dropzone-max-files="{{ form.vars.max_files }}"
          data-dropzone-max-file-size="{{ form.vars.max_file_size }}"
          data-dropzone-accepted-files="{{ form.vars.accepted_files }}"
