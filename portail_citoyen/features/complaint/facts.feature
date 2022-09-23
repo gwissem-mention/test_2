@@ -202,5 +202,4 @@ Feature:
         And I wait for the element "#facts_offenseDate_hour" to appear
         And I fill in "facts_offenseDate_hour" with "15:00"
         And I press "Suivant"
-        And I wait 1000 ms
-        Then I should be on "/declaration/rendez-vous"
+        Then I should be on "/declaration/rendez-vous" by js

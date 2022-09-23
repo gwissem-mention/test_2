@@ -23,6 +23,8 @@ class ContactInformationType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $wayChoices = $this->wayThesaurusProvider->getChoices();
+
         $builder
             ->add('addressLocation', LocationType::class, [
                 'country_label' => 'pel.address.country',
@@ -43,7 +45,8 @@ class ContactInformationType extends AbstractType
                 'constraints' => [
                     new NotBlank(),
                 ],
-                'choices' => $this->wayThesaurusProvider->getChoices(),
+                'choices' => $wayChoices,
+                'empty_data' => $wayChoices['pel.way.one'],
                 'label' => 'pel.address.way',
             ])
             ->add('email', EmailType::class, [

@@ -30,6 +30,8 @@ class CivilStateType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $nationalityChoices = $this->nationalityThesaurusProvider->getChoices();
+
         $builder
             ->add('civility', ChoiceType::class, [
                 'choices' => [
@@ -84,8 +86,9 @@ class CivilStateType extends AbstractType
                 'constraints' => [
                     new NotBlank(),
                 ],
-                'choices' => $this->nationalityThesaurusProvider->getChoices(),
+                'choices' => $nationalityChoices,
                 'label' => 'pel.nationality',
+                'empty_data' => $nationalityChoices['pel.nationality.france'],
             ]);
 
         $builder->addEventListener(
