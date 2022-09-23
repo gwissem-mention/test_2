@@ -26,6 +26,9 @@ class CorporationType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $nationalityChoices = $this->nationalityThesaurusProvider->getChoices();
+        $wayChoices = $this->wayThesaurusProvider->getChoices();
+
         $builder
             ->add('siren', TextType::class, [
                 'attr' => [
@@ -62,8 +65,9 @@ class CorporationType extends AbstractType
                 'constraints' => [
                     new NotBlank(),
                 ],
-                'choices' => $this->nationalityThesaurusProvider->getChoices(),
+                'choices' => $nationalityChoices,
                 'label' => 'pel.corporation.nationality',
+                'empty_data' => $nationalityChoices['pel.nationality.france'],
             ])
             ->add('email', EmailType::class, [
                 'attr' => [
@@ -105,8 +109,9 @@ class CorporationType extends AbstractType
                 'constraints' => [
                     new NotBlank(),
                 ],
-                'choices' => $this->wayThesaurusProvider->getChoices(),
+                'choices' => $wayChoices,
                 'label' => 'pel.corporation.address.way',
+                'empty_data' => $wayChoices['pel.way.one'],
             ]);
     }
 }

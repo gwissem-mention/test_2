@@ -89,7 +89,7 @@ class PlaceNatureType extends AbstractType
             $form->add('naturePlacePublicTransportChoice', ChoiceType::class, [
                 'choices' => $choices,
                 'label' => false,
-                'placeholder' => 'pel.pel.nature.place.public.transport.choice.message',
+                'placeholder' => 'pel.nature.place.public.transport.choice.message',
             ]);
         }
     }
@@ -105,7 +105,7 @@ class PlaceNatureType extends AbstractType
             $form->add('naturePlaceOtherChoice', ChoiceType::class, [
                 'choices' => $choices,
                 'label' => false,
-                'placeholder' => 'pel.pel.nature.place.other.choice.message',
+                'placeholder' => 'pel.nature.place.other.choice.message',
                 'constraints' => [
                     new NotBlank(),
                 ],

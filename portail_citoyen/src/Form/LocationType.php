@@ -29,13 +29,16 @@ class LocationType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $countryChoices = $this->countryThesaurusProvider->getChoices();
+
         $builder
             ->add('country', ChoiceType::class, [
                 'constraints' => [
                     new NotBlank(),
                 ],
-                'choices' => $this->countryThesaurusProvider->getChoices(),
+                'choices' => $countryChoices,
                 'label' => $options['country_label'],
+                'empty_data' => $countryChoices['pel.country.france'],
             ]);
 
         $builder->addEventListener(
