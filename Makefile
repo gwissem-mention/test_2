@@ -128,10 +128,10 @@ permfix: citoyen-permfix
 permfix: agent-permfix
 
 ## Install environment from scratch
-install: build start vendor db-create yarn-install yarn-watch
+install: build start vendor db-setup yarn-install yarn-watch
 
 ## Install environment from scratch with debug and tools
-install-dev: build-debug start vendor db-create tools-install yarn-install yarn-watch
+install-dev: build-debug start vendor db-setup tools-install yarn-install yarn-watch
 
 ## Display logs stream
 logs:
@@ -152,8 +152,20 @@ Composer:
 ## Install php dependencies
 vendor: citoyen-vendor agent-vendor
 
+## Install php dependencies for prod
+vendor-prod: citoyen-vendor-prod agent-vendor-prod
+
 ## Install php tools
 tools-install: citoyen-tools-install agent-tools-install
+
+#################################
+Cache:
+
+## Symfony cache clear
+cache-clear: citoyen-cache-clear agent-cache-clear
+
+## Symfony cache clear
+cache-warmup: citoyen-cache-warmup agent-cache-warmup
 
 #################################
 Yarn:
@@ -175,7 +187,7 @@ yarn-dev: citoyen-yarn-dev agent-yarn-dev
 Doctrine:
 
 ## Drop, create db and create tables
-db-create: citoyen-db-create
+db-setup: citoyen-db-setup
 
 #################################
 QA:
