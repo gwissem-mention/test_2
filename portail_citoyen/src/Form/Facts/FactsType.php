@@ -24,6 +24,9 @@ class FactsType extends AbstractType
                 'label' => false,
             ])
             ->add('description', TextareaType::class, [
+                'attr' => [
+                    'class' => 'fr-input',
+                ],
                 'constraints' => [
                     new Length([
                         'max' => 800,
