@@ -6,6 +6,10 @@
                 <source>pel.access.to.the.form</source>
                 <target>Accéder au formulaire</target>
             </trans-unit>
+            <trans-unit id="pel.additional.factual.information">
+                <source>pel.additional.factual.information</source>
+                <target>Informations complémentaires sur les faits</target>
+            </trans-unit>
             <trans-unit id="pel.address.country">
                 <source>pel.address.country</source>
                 <target>Pays</target>

@@ -16,7 +16,7 @@ Feature:
         And I should not see a "#place_nature_moreInfoText" element
         And I should see the key "pel.complaint.exact.date.known" translated
         And I should see the key "pel.do.you.know.hour.facts" translated
-        And I should see the key "pel.facts.description" translated
+        And I should see the key "pel.additional.factual.information" translated
 
     @func
     Scenario: I can click on the identity breadcrumb
