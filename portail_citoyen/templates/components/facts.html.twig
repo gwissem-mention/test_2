@@ -73,6 +73,9 @@
             {% endif %}
         </div>
     {% endif %}
+    <div class="fr-input-group">
+        {{ form_row(form.description) }}
+    </div>
     <div class="fr-grid-row fr-pt-4w">
         <div class="fr-col">
             <a class="fr-btn" href="{{ path('identity') }}">

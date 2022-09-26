@@ -42,6 +42,14 @@
                 <source>pel.article.d.8.2.2</source>
                 <target>Article D8-2-2</target>
             </trans-unit>
+            <trans-unit id="pel.attachments">
+                <source>pel.attachments</source>
+                <target>Pièces complémentaires</target>
+            </trans-unit>
+            <trans-unit id="pel.attachments.upload">
+                <source>pel.attachments.upload</source>
+                <target>Vous pouvez utilement joindre les pièces-jointes nécessaires en appui de votre déclaration</target>
+            </trans-unit>
             <trans-unit id="pel.birth.country">
                 <source>pel.birth.country</source>
                 <target>Pays de naissance</target>
@@ -298,6 +306,10 @@
                 <source>pel.facts</source>
                 <target>Faits</target>
             </trans-unit>
+            <trans-unit id="pel.facts.description">
+                <source>pel.facts.description</source>
+                <target>Description précise des faits</target>
+            </trans-unit>
             <trans-unit id="pel.faq">
                 <source>pel.faq</source>
                 <target>FAQ</target>
@@ -326,9 +338,21 @@
                 <source>pel.france.connect</source>
                 <target>FranceConnect</target>
             </trans-unit>
+            <trans-unit id="pel.fsi.general.orienteer">
+                <source>pel.fsi.general.orienteer</source>
+                <target>Orienteur général FSI</target>
+            </trans-unit>
+            <trans-unit id="pel.home.appointment.message">
+                <source>pel.home.appointment.message</source>
+                <target>Dans le cas où vous ne souhaitez pas déposer plainte sur internet, vous avez la possibilité de vous rendre dans une unité de Police ou de Gendarmerie</target>
+            </trans-unit>
             <trans-unit id="pel.home.emergency.message">
                 <source>pel.home.emergency.message</source>
                 <target>En cas d’urgence, composez le 17 ou le 112 ou le 114</target>
+            </trans-unit>
+            <trans-unit id="pel.home.fsi.general.orienteer.message">
+                <source>pel.home.fsi.general.orienteer.message</source>
+                <target>Dans le cas où vous ne rentrez pas dans le périmètre de PEL, vous pouvez être redirigés vers l’orienteur général afin d'être pris en charge et orienté vers le téléservice ministériel approprié à votre besoin</target>
             </trans-unit>
             <trans-unit id="pel.home.information.message.1">
                 <source>pel.home.information.message.1</source>
@@ -574,6 +598,10 @@
                 <source>pel.offense.unique.date</source>
                 <target>Le</target>
             </trans-unit>
+            <trans-unit id="pel.online.complaint">
+                <source>pel.online.complaint</source>
+                <target>Plainte en ligne</target>
+            </trans-unit>
             <trans-unit id="pel.previous">
                 <source>pel.previous</source>
                 <target>Précédent</target>
@@ -677,30 +705,6 @@
             <trans-unit id="pel.your.job.choice.message">
                 <source>pel.your.job.choice.message</source>
                 <target>Choisissez votre profession</target>
-            </trans-unit>
-            <trans-unit id="pel.fsi.general.orienteer">
-                <source>pel.fsi.general.orienteer</source>
-                <target>Orienteur général FSI</target>
-            </trans-unit>
-            <trans-unit id="pel.home.fsi.general.orienteer.message">
-                <source>pel.home.fsi.general.orienteer.message</source>
-                <target>Dans le cas où vous ne rentrez pas dans le périmètre de PEL, vous pouvez être redirigés vers l’orienteur général afin d'être pris en charge et orienté vers le téléservice ministériel approprié à votre besoin</target>
-            </trans-unit>
-            <trans-unit id="pel.home.appointment.message">
-                <source>pel.home.appointment.message</source>
-                <target>Dans le cas où vous ne souhaitez pas déposer plainte sur internet, vous avez la possibilité de vous rendre dans une unité de Police ou de Gendarmerie</target>
-            </trans-unit>
-            <trans-unit id="pel.attachments.upload">
-                <source>pel.attachments.upload</source>
-                <target>Vous pouvez utilement joindre les pièces-jointes nécessaires en appui de votre déclaration</target>
-            </trans-unit>
-            <trans-unit id="pel.attachments">
-                <source>pel.attachments</source>
-                <target>Pièces complémentaires</target>
-            </trans-unit>
-            <trans-unit id="pel.online.complaint">
-                <source>pel.online.complaint</source>
-                <target>Plainte en ligne</target>
             </trans-unit>
         </body>
     </file>
