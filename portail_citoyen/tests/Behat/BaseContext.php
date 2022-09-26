@@ -40,7 +40,7 @@ final class BaseContext extends MinkContext
     public function iWaitForTheElementToAppear(string $selector): void
     {
         $this->getSession()->wait(
-            5000,
+            500,
             "document.querySelector('".$selector."') !== null"
         );
     }
@@ -51,7 +51,7 @@ final class BaseContext extends MinkContext
     public function iWaitForTheElementToBeFilled(string $selector): void
     {
         $this->getSession()->wait(
-            5000,
+            500,
             "document.querySelector('".$selector."').childNodes.length > 0"
         );
     }
@@ -62,6 +62,7 @@ final class BaseContext extends MinkContext
     public function iClick(string $selector): void
     {
         $page = $this->getSession()->getPage();
+        $this->iWaitForTheElementToAppear($selector);
         $element = $page->find('css', $selector);
 
         if (is_null($element)) {
@@ -76,7 +77,7 @@ final class BaseContext extends MinkContext
     public function iWaitForTheElementToContain(string $arg1, string $arg2): void
     {
         $this->getSession()->wait(
-            5000,
+            500,
             "document.querySelector('".$arg1."').innerHTML ===".$arg2
         );
 
@@ -89,7 +90,7 @@ final class BaseContext extends MinkContext
     public function iWaitForTheFieldToContainValue(string $arg1, string $arg2): void
     {
         $this->getSession()->wait(
-            5000,
+            500,
             "document.querySelector('".$arg1."').value === ".$arg2
         );
 
@@ -102,7 +103,7 @@ final class BaseContext extends MinkContext
     public function iWaitForTheElementToBeEnabled(string $arg1): void
     {
         $this->getSession()->wait(
-            5000,
+            500,
             "document.querySelector('".$arg1."').disabled === false"
         );
     }
@@ -112,6 +113,7 @@ final class BaseContext extends MinkContext
      */
     public function iAttachFileToField(string $selector, string $path): void
     {
+        $this->iWaitForTheElementToAppear($selector);
         $field = $this->getSession()->getPage()->find('css', $selector);
 
         if ($this->getMinkParameter('files_path')) {
@@ -162,5 +164,33 @@ final class BaseContext extends MinkContext
 
             sleep(1);
         }
+    }
+
+    /**
+     * Fills in form field with specified id|name|label|value
+     * Example: When I wait and fill in "username" with: "bwayne"
+     * Example: And I wait and fill in "bwayne" for "username".
+     *
+     * @When /^(?:|I )wait and fill in "(?P<field>(?:[^"]|\\")*)" with "(?P<value>(?:[^"]|\\")*)"$/
+     * @When /^(?:|I )wait and fill in "(?P<field>(?:[^"]|\\")*)" with:$/
+     * @When /^(?:|I )wait and fill in "(?P<value>(?:[^"]|\\")*)" for "(?P<field>(?:[^"]|\\")*)"$/
+     */
+    public function waitAndFillField(string $field, string $value): void
+    {
+        $this->iWaitForTheElementToAppear($field);
+        $this->fillField($field, $value);
+    }
+
+    /**
+     * Selects option in select field with specified id|name|label|value
+     * Example: When I wait and select "Bats" from "user_fears"
+     * Example: And I wait and select "Bats" from "user_fears".
+     *
+     * @When /^(?:|I )wait and select "(?P<option>(?:[^"]|\\")*)" from "(?P<select>(?:[^"]|\\")*)"$/
+     */
+    public function waitAndSelectOption(string $select, string $option): void
+    {
+        $this->iWaitForTheElementToAppear($select);
+        $this->selectOption($select, $option);
     }
 }

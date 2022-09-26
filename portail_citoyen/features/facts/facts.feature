@@ -16,6 +16,7 @@ Feature:
         And I should not see a "#place_nature_moreInfoText" element
         And I should see the key "pel.complaint.exact.date.known" translated
         And I should see the key "pel.do.you.know.hour.facts" translated
+        And I should see the key "pel.facts.description" translated
 
     @func
     Scenario: I can click on the identity breadcrumb
@@ -90,31 +91,31 @@ Feature:
     @javascript
     Scenario: I can see a warning text if I select "Robbery"
         Given I am on "/faits"
-        When I select "Vol" from "facts_offenseNature_offenseNature"
+        When I wait and select "Vol" from "facts_offenseNature_offenseNature"
         And I wait for the element "#facts_offenseNature_aabText" to appear
         Then I should see the key "pel.complaint.offense.nature.warning.text" translated
 
     @javascript
     Scenario: I can see a textarea field if I select Other AAB
         Given I am on "/faits"
-        When I select "Autre atteinte aux biens" from "facts_offenseNature_offenseNature"
+        When I wait and select "Autre atteinte aux biens" from "facts_offenseNature_offenseNature"
         And I wait for the element "#offense_nature_aabText" to appear
         And I should see the key "pel.complaint.offense.nature.other.aab.text" translated
 
     @javascript
     Scenario: I can see the more info input text if I check "Je souhaite apporter des précisions sur le lieu des faits" checkbox
         Given I am on "/faits"
-        When I click the "label[for='facts_placeNature_moreInfo']" element
+        When I click the "label[for=facts_placeNature_moreInfo]" element
         And I wait for the element "#facts_placeNature_moreInfoText" to appear
         Then I should see a "#facts_placeNature_moreInfoText" element
 
     @javascript
-    Scenario Outline: I can see a list a common transports when I select "Common transport" nature place
+    Scenario Outline: I can see a list a common transports When I wait and select "Common transport" nature place
         Given I am on "/faits"
-        When I select "Transports en commun" from "facts_placeNature_place"
+        When I wait and select "Transports en commun" from "facts_placeNature_place"
         And I should see "Transports en commun" in the "#facts_placeNature_place" element
         And I wait for the element "#facts_placeNature_naturePlacePublicTransportChoice" to appear
-        And I select "<nature_place_public_transport>" from "facts_placeNature_naturePlacePublicTransportChoice"
+        And I wait and select "<nature_place_public_transport>" from "facts_placeNature_naturePlacePublicTransportChoice"
         Then I should see "<nature_place_public_transport>" in the "#facts_placeNature_naturePlacePublicTransportChoice" element
 
         Examples:
@@ -128,11 +129,11 @@ Feature:
             | Autocar                       |
 
     @javascript
-    Scenario Outline: I can see a list a other places when I select "Other places" nature place
+    Scenario Outline: I can see a list a other places When I wait and select "Other places" nature place
         Given I am on "/faits"
-        When I select "Autres natures de lieu" from "facts_placeNature_place"
+        When I wait and select "Autres natures de lieu" from "facts_placeNature_place"
         And I wait for the element "#facts_placeNature_naturePlaceOtherChoice" to appear
-        Then I select "<nature_place_other>" from "facts_placeNature_naturePlaceOtherChoice"
+        Then I wait and select "<nature_place_other>" from "facts_placeNature_naturePlaceOtherChoice"
         And I should see "<nature_place_other>" in the "#facts_placeNature_naturePlaceOtherChoice" element
 
         Examples:
@@ -146,7 +147,7 @@ Feature:
     @javascript
     Scenario: I can see 1 date input if I select "Yes" to offense exact date known radio buttons
         Given I am on "/faits"
-        When I click the "label[for='facts_offenseDate_exactDateKnown_0']" element
+        When I click the "label[for=facts_offenseDate_exactDateKnown_0]" element
         And I wait for the element "#facts_offenseDate_startDate" to appear
         Then I should see the key "pel.offense.unique.date" translated
         And I should see the key "pel.offense.unique.date" translated
@@ -155,7 +156,7 @@ Feature:
     @javascript
     Scenario: I can see 2 date inputs if I select "No" to offense exact date known radio buttons
         Given I am on "/faits"
-        When I click the "label[for='facts_offenseDate_exactDateKnown_1']" element
+        When I click the "label[for=facts_offenseDate_exactDateKnown_1]" element
         And I wait for the element "input#facts_offenseDate_startDate" to appear
         Then I should see the key "pel.offense.unique.date" translated
         And I should see the key "pel.offense.start.date" translated
@@ -164,27 +165,27 @@ Feature:
         And I should see a "input#facts_offenseDate_endDate" element
 
     @javascript
-    Scenario: I can see only the hour input when I select "Oui je connais l'heure exacte des faits" to the offense hour radio buttons
+    Scenario: I can see only the hour input When I wait and select "Oui je connais l'heure exacte des faits" to the offense hour radio buttons
         Given I am on "/faits"
-        When I click the "label[for='facts_offenseDate_choiceHour_0']" element
+        When I click the "label[for=facts_offenseDate_choiceHour_0]" element
         Then I wait for the element "#input#facts_offenseDate_hour" to appear
         And I should see a "input#facts_offenseDate_hour" element
         And I should not see a "input#facts_offenseDate_startHour" element
         And I should not see a "input#facts_offenseDate_endHour" element
 
     @javascript
-    Scenario: I can see only the hour input when I select "Oui je connais l'heure exacte des faits" to the offense hour radio buttons
+    Scenario: I can see only the hour input When I wait and select "Oui je connais l'heure exacte des faits" to the offense hour radio buttons
         Given I am on "/faits"
-        When I click the "label[for='facts_offenseDate_choiceHour_1']" element
+        When I click the "label[for=facts_offenseDate_choiceHour_1]" element
         Then I wait for the element "input#facts_offenseDate_hour" to appear
         And I should see a "input#facts_offenseDate_startHour" element
         And I should see a "input#facts_offenseDate_endHour" element
         And I should not see a "input#facts_offenseDate_hour" element
 
     @javascript
-    Scenario: I can see only the hour input when I select "Oui je connais l'heure exacte des faits" to the offense hour radio buttons
+    Scenario: I can see only the hour input When I wait and select "Oui je connais l'heure exacte des faits" to the offense hour radio buttons
         Given I am on "/faits"
-        When I click the "label[for='facts_offenseDate_choiceHour_2']" element
+        When I click the "label[for=facts_offenseDate_choiceHour_2]" element
         Then I wait for the element "input#facts_offenseDate_hour" to appear
         And I should not see a "input#facts_offenseDate_startHour" element
         And I should not see a "input#facts_offenseDate_endHour" element
@@ -193,13 +194,14 @@ Feature:
     @javascript
     Scenario: Submit the facts form
         Given I am on "/faits"
-        When I select "1" from "facts_offenseNature_offenseNature"
-        And I select "1" from "facts_placeNature_place"
-        And I click the "label[for='facts_offenseDate_exactDateKnown_0']" element
+        When I wait and select "1" from "facts_offenseNature_offenseNature"
+        And I wait and select "1" from "facts_placeNature_place"
+        And I click the "label[for=facts_offenseDate_exactDateKnown_0]" element
         And I wait for the element "#facts_offenseDate_startDate" to appear
-        And I fill in "facts_offenseDate_startDate" with "01/01/2022"
-        And I click the "label[for='facts_offenseDate_choiceHour_0']" element
+        And I wait and fill in "facts_offenseDate_startDate" with "01/01/2022"
+        And I click the "label[for=facts_offenseDate_choiceHour_0]" element
         And I wait for the element "#facts_offenseDate_hour" to appear
-        And I fill in "facts_offenseDate_hour" with "15:00"
+        And I wait and fill in "facts_offenseDate_hour" with "15:00"
+        And I wait and fill in "facts_description" with "facts description"
         And I press "Suivant"
         Then I should be on "/rendez-vous" by js
