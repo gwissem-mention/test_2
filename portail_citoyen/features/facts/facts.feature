@@ -18,6 +18,7 @@ Feature:
         And I should see the key "pel.do.you.know.hour.facts" translated
         And I should see the key "pel.additional.factual.information" translated
         And I should see the key "pel.do.you.have.informations.on.potential.suspects" translated
+        And I should see the key "pel.facts.witnesses" translated
 
     @func
     Scenario: I can click on the identity breadcrumb
@@ -193,26 +194,40 @@ Feature:
         And I should not see a "input#facts_offenseDate_hour" element
 
     @javascript
-    Scenario: Selecting the "label[for='facts_informations_1']" element and not showing
-        the key "pel.facts.suspects.informations.text" translated
-        Given I am on "/declaration/faits"
-        When I click the "label[for=facts_informations_1]" element
+    Scenario: Selecting the "label[for=facts_additionalInformation_suspectsChoice_1]" element and not showing
+    the key "pel.facts.suspects.informations.text" translated
+        Given I am on "/faits"
+        When I click the "label[for=facts_additionalInformation_suspectsChoice_1]" element
         And I should not see the key "pel.facts.suspects.informations.text" translated
+
+
+    @javascript
+    Scenario: I can see 1 text input if I select "Yes" to the witnesses radio buttons
+        Given I am on "/faits"
+        When I click the "label[for=facts_additionalInformation_witnesses_0]" element
+        And I wait for the element "#facts_additionalInformation_witnessesText" to appear
+        Then I should see the key "pel.facts.witnesses.information.text" translated
+        And I should see a "input#facts_additionalInformation_witnessesText" element
+
 
     @javascript
     Scenario: Submit the facts form
         Given I am on "/faits"
-        When I wait and select "1" from "facts_offenseNature_offenseNature"
-        And I wait and select "1" from "facts_placeNature_place"
+        When I select "1" from "facts_offenseNature_offenseNature"
+        And I select "1" from "facts_placeNature_place"
         And I click the "label[for=facts_offenseDate_exactDateKnown_0]" element
         And I wait for the element "#facts_offenseDate_startDate" to appear
         And I wait and fill in "facts_offenseDate_startDate" with "01/01/2022"
         And I click the "label[for=facts_offenseDate_choiceHour_0]" element
         And I wait for the element "#facts_offenseDate_hour" to appear
         And I wait and fill in "facts_offenseDate_hour" with "15:00"
-        And I wait and fill in "facts_description" with "facts description"
-        And I click the "label[for=facts_informations_0]" element
+        And I click the "label[for=facts_additionalInformation_suspectsChoice_0]" element
+        And I wait for the element "#facts_additionalInformation_suspectsText" to appear
         And I should see the key "pel.facts.suspects.informations.text" translated
-        And I fill in "facts_text" with "informations"
+        And I wait and fill in "facts_additionalInformation_suspectsText" with "informations"
+        And I click the "label[for=facts_additionalInformation_witnesses_0]" element
+        And I wait for the element "#facts_additionalInformation_witnessesText" to appear
+        And I wait and fill in "facts_additionalInformation_witnessesText" with "informations"
+        And I wait and fill in "facts_description" with "informations"
         And I press "Suivant"
         Then I should be on "/rendez-vous" by js
