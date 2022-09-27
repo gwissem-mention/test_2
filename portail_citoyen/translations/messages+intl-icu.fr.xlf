@@ -262,6 +262,10 @@
                 <source>pel.department.seventy.five</source>
                 <target>Paris</target>
             </trans-unit>
+            <trans-unit id="pel.do.you.have.informations.on.potential.suspects">
+                <source>pel.do.you.have.informations.on.potential.suspects</source>
+                <target>Avez-vous des informations sur les éventuels suspects ?</target>
+            </trans-unit>
             <trans-unit id="pel.do.you.know.hour.facts">
                 <source>pel.do.you.know.hour.facts</source>
                 <target>Connaissez-vous l'heure des faits ?</target>
@@ -313,6 +317,10 @@
             <trans-unit id="pel.facts.description">
                 <source>pel.facts.description</source>
                 <target>Description précise des faits</target>
+            </trans-unit>
+            <trans-unit id="pel.facts.suspects.informations.text">
+                <source>pel.facts.suspects.informations.text</source>
+                <target>Veuillez indiquer le nombre de personnes, la direction de fuite, la description des suspects...</target>
             </trans-unit>
             <trans-unit id="pel.faq">
                 <source>pel.faq</source>
