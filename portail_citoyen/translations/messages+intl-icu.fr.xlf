@@ -730,6 +730,14 @@
                 <source>pel.observation.made</source>
                 <target>Est-ce que des constatations ou des relevés ont été effectués ?</target>
             </trans-unit>
+            <trans-unit id="pel.cctv.present">
+                <source>pel.cctv.present</source>
+                <target>Y a-t-il un système de vidéoprotection disponible sur le lieu des faits ?</target>
+            </trans-unit>
+            <trans-unit id="pel.cctv.available">
+                <source>pel.cctv.available</source>
+                <target>Êtes-vous en capacité de fournir des vidéos des faits ?</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

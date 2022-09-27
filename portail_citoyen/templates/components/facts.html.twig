@@ -112,6 +112,18 @@
             </div>
         </div>
     {% endif %}
+    <div class="fr-grid-row fr-py-2w">
+        <div class="fr-col">
+            {{ form_row(form.additionalInformation.cctvPresent) }}
+        </div>
+    </div>
+    {% if form.additionalInformation.cctvAvailable is defined %}
+        <div class="fr-grid-row fr-py-2w">
+            <div class="fr-col">
+                {{ form_row(form.additionalInformation.cctvAvailable) }}
+            </div>
+        </div>
+    {% endif %}
     <div class="fr-input-group">
         {{ form_row(form.description) }}
     </div>

@@ -20,6 +20,8 @@ Feature:
         And I should see the key "pel.do.you.have.informations.on.potential.suspects" translated
         And I should see the key "pel.facts.witnesses" translated
         And I should see the key "pel.additional.factual.information" translated
+        And I should see the key "pel.fsi.visit" translated
+        And I should see the key "pel.cctv.present" translated
 
     @func
     Scenario: I can click on the identity breadcrumb
@@ -219,6 +221,15 @@ Feature:
         And I should see a "input#facts_additionalInformation_observationMade_0" element
         And I should see a "input#facts_additionalInformation_observationMade_1" element
 
+    @javascript
+    Scenario: I can see 1 radio button group if I select "Yes" to the cctv present radio buttons
+        Given I am on "/faits"
+        When I click the "label[for=facts_additionalInformation_cctvPresent_0]" element
+        And I wait for the element "#facts_additionalInformation_cctvAvailable_0" to appear
+        Then I should see the key "pel.cctv.available" translated
+        And I should see a "input#facts_additionalInformation_cctvAvailable_0" element
+        And I should see a "input#facts_additionalInformation_cctvAvailable_1" element
+
 
     @javascript
     Scenario: Submit the facts form
@@ -241,6 +252,9 @@ Feature:
         And I click the "label[for=facts_additionalInformation_fsiVisit_0]" element
         And I wait for the element "#facts_additionalInformation_observationMade_0" to appear
         And I click the "label[for=facts_additionalInformation_observationMade_0]" element
+        And I click the "label[for=facts_additionalInformation_cctvPresent_0]" element
+        And I wait for the element "#facts_additionalInformation_cctvAvailable_0" to appear
+        And I click the "label[for=facts_additionalInformation_cctvAvailable_0]" element
         And I wait and fill in "facts_description" with "informations"
         And I press "Suivant"
         Then I should be on "/rendez-vous" by js

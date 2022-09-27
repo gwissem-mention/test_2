@@ -45,6 +45,15 @@ class AdditionalInformationType extends AbstractType
                 'expanded' => true,
                 'label' => 'pel.fsi.visit',
                 'multiple' => false,
+            ])
+            ->add('cctvPresent', ChoiceType::class, [
+                'choices' => [
+                    'pel.yes' => true,
+                    'pel.no' => false,
+                ],
+                'expanded' => true,
+                'label' => 'pel.cctv.present',
+                'multiple' => false,
             ]);
 
         $builder->get('suspectsChoice')->addEventListener(
@@ -74,6 +83,16 @@ class AdditionalInformationType extends AbstractType
                 /** @var FormInterface $parent */
                 $parent = $event->getForm()->getParent();
                 $this->addFSIVisitField($parent, boolval($choice));
+            }
+        );
+
+        $builder->get('cctvPresent')->addEventListener(
+            FormEvents::POST_SUBMIT,
+            function (FormEvent $event) {
+                $choice = $event->getData();
+                /** @var FormInterface $parent */
+                $parent = $event->getForm()->getParent();
+                $this->addCCTVAvailableField($parent, boolval($choice));
             }
         );
     }
@@ -120,6 +139,21 @@ class AdditionalInformationType extends AbstractType
                 ],
                 'expanded' => true,
                 'label' => 'pel.observation.made',
+                'multiple' => false,
+            ]);
+        }
+    }
+
+    private function addCCTVAvailableField(FormInterface $form, bool $choice): void
+    {
+        if (true === $choice) {
+            $form->add('cctvAvailable', ChoiceType::class, [
+                'choices' => [
+                    'pel.yes' => true,
+                    'pel.no' => false,
+                ],
+                'expanded' => true,
+                'label' => 'pel.cctv.available',
                 'multiple' => false,
             ]);
         }
