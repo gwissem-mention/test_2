@@ -36,6 +36,15 @@ class AdditionalInformationType extends AbstractType
                 'expanded' => true,
                 'label' => 'pel.facts.witnesses',
                 'multiple' => false,
+            ])
+            ->add('fsiVisit', ChoiceType::class, [
+                'choices' => [
+                    'pel.yes' => true,
+                    'pel.no' => false,
+                ],
+                'expanded' => true,
+                'label' => 'pel.fsi.visit',
+                'multiple' => false,
             ]);
 
         $builder->get('suspectsChoice')->addEventListener(
@@ -55,6 +64,16 @@ class AdditionalInformationType extends AbstractType
                 /** @var FormInterface $parent */
                 $parent = $event->getForm()->getParent();
                 $this->addWitnessesTextField($parent, boolval($choice));
+            }
+        );
+
+        $builder->get('fsiVisit')->addEventListener(
+            FormEvents::POST_SUBMIT,
+            function (FormEvent $event) {
+                $choice = $event->getData();
+                /** @var FormInterface $parent */
+                $parent = $event->getForm()->getParent();
+                $this->addFSIVisitField($parent, boolval($choice));
             }
         );
     }
@@ -87,6 +106,21 @@ class AdditionalInformationType extends AbstractType
                     ]),
                 ],
                 'label' => 'pel.facts.witnesses.information.text',
+            ]);
+        }
+    }
+
+    private function addFSIVisitField(FormInterface $form, bool $choice): void
+    {
+        if (true === $choice) {
+            $form->add('observationMade', ChoiceType::class, [
+                'choices' => [
+                    'pel.yes' => true,
+                    'pel.no' => false,
+                ],
+                'expanded' => true,
+                'label' => 'pel.observation.made',
+                'multiple' => false,
             ]);
         }
     }

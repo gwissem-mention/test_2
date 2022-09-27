@@ -146,9 +146,9 @@
                 <source>pel.complaint.offense.nature.degradation</source>
                 <target>Dégradation</target>
             </trans-unit>
-            <trans-unit id="pel.complaint.offense.nature.fsi.visit">
-                <source>pel.complaint.offense.nature.fsi.visit</source>
-                <target>Des FSI sont-ils intervenus sur les lieux de l'infraction ?</target>
+            <trans-unit id="pel.fsi.visit">
+                <source>pel.fsi.visit</source>
+                <target>Y a-t-il eu intervention d’un équipage de police ou de gendarmerie ?</target>
             </trans-unit>
             <trans-unit id="pel.complaint.offense.nature.other">
                 <source>pel.complaint.offense.nature.other</source>
@@ -725,6 +725,10 @@
             <trans-unit id="pel.facts.witnesses.information.text">
                 <source>pel.facts.witnesses.information.text</source>
                 <target>Veuillez indiquer, si vous le pouvez, les noms et les coordonnées du/des témoin(s)</target>
+            </trans-unit>
+            <trans-unit id="pel.observation.made">
+                <source>pel.observation.made</source>
+                <target>Est-ce que des constatations ou des relevés ont été effectués ?</target>
             </trans-unit>
         </body>
     </file>
