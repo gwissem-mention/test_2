@@ -78,20 +78,32 @@
     <h6>{{ 'pel.additional.factual.information'|trans }}</h6>
     <div class="fr-grid-row fr-py-2w">
         <div class="fr-col">
-            {{ form_row(form.suspectsChoice) }}
+            {{ form_row(form.additionalInformation.suspectsChoice) }}
         </div>
     </div>
-    {% if form.suspectsText is defined %}
+    {% if form.additionalInformation.suspectsText is defined %}
         <div class="fr-grid-row fr-py-2w">
             <div class="fr-col">
-                {{ form_row(form.suspectsText) }}
+                {{ form_row(form.additionalInformation.suspectsText) }}
+            </div>
+        </div>
+    {% endif %}
+    <div class="fr-grid-row fr-py-2w">
+        <div class="fr-col">
+            {{ form_row(form.additionalInformation.witnesses) }}
+        </div>
+    </div>
+    {% if form.additionalInformation.witnessesText is defined %}
+        <div class="fr-grid-row fr-py-2w">
+            <div class="fr-col">
+                {{ form_row(form.additionalInformation.witnessesText) }}
             </div>
         </div>
     {% endif %}
     <div class="fr-input-group">
         {{ form_row(form.description) }}
     </div>
-    <div class="fr-grid-row fr-pt-4w">
+    <div class="fr-grid-row fr-py-4w">
         <div class="fr-col">
             <a class="fr-btn" href="{{ path('identity') }}">
                 {{ 'pel.previous'|trans }}

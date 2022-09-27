@@ -718,6 +718,14 @@
                 <source>pel.your.job.choice.message</source>
                 <target>Choisissez votre profession</target>
             </trans-unit>
+            <trans-unit id="pel.facts.witnesses">
+                <source>pel.facts.witnesses</source>
+                <target>Y a-t-il eu des témoins des faits ?</target>
+            </trans-unit>
+            <trans-unit id="pel.facts.witnesses.information.text">
+                <source>pel.facts.witnesses.information.text</source>
+                <target>Veuillez indiquer, si vous le pouvez, les noms et les coordonnées du/des témoin(s)</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
