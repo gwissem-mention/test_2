@@ -29,6 +29,6 @@ class IdentityComponent extends AbstractController
     {
         $this->submitForm();
 
-        return $this->redirectToRoute('complaint_facts');
+        return $this->redirectToRoute('facts');
     }
 }
