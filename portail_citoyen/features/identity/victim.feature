@@ -47,7 +47,7 @@ Feature:
         And I wait and fill in "identity_contactInformation_email" with "jean@test.com"
         And I wait and fill in "identity_contactInformation_mobile" with "0602030405"
         And I press "Suivant"
-        Then I should be on "/faits" by js
+        Then I am redirected on "/faits"
 
     @javascript
     Scenario: Submit the form with birthCountry is France for victim declarant
@@ -70,7 +70,7 @@ Feature:
         And I wait and fill in "identity_contactInformation_email" with "jean@test.com"
         And I wait and fill in "identity_contactInformation_mobile" with "0602030405"
         And I press "Suivant"
-        Then I should be on "/faits" by js
+        Then I am redirected on "/faits"
 
     @javascript
     Scenario: Submit the form with another birthCountry than France for victim declarant
@@ -93,7 +93,7 @@ Feature:
         And I wait and fill in "identity_contactInformation_email" with "jean@test.com"
         And I wait and fill in "identity_contactInformation_mobile" with "0602030405"
         And I press "Suivant"
-        Then I should be on "/faits" by js
+        Then I am redirected on "/faits"
 
     @javascript
     Scenario: Submit the form with addressCountry is France for victim declarant
@@ -116,7 +116,7 @@ Feature:
         And I wait and fill in "identity_contactInformation_email" with "jean@test.com"
         And I wait and fill in "identity_contactInformation_mobile" with "0602030405"
         And I press "Suivant"
-        Then I should be on "/faits" by js
+        Then I am redirected on "/faits"
 
     @javascript
     Scenario: Submit the form with another addressCountry than France for victim declarant
@@ -140,20 +140,20 @@ Feature:
         And I wait and fill in "identity_contactInformation_email" with "jean@test.com"
         And I wait and fill in "identity_contactInformation_mobile" with "0602030405"
         And I press "Suivant"
-        Then I should be on "/faits" by js
+        Then I am redirected on "/faits"
 
     @javascript
     Scenario: Submit the form without any required values
         Given I am on "/identite"
         And I press "Suivant"
-        Then I should be on "/identite" by js
+        Then I am redirected on "/identite"
 
     @javascript
     Scenario: Submit the form with only 1 required value for victim declarant
         Given I am on "/identite"
         When I click the "label[for=identity_declarantStatus_0]" element
         And I press "Suivant"
-        Then I should be on "/identite" by js
+        Then I am redirected on "/identite"
 
     @javascript
     Scenario: Submit the form with only 2 required value for victim declarant
@@ -162,7 +162,7 @@ Feature:
         And I wait for the element "#form-identity" to appear
         And I wait and select "1" from "identity_civilState_civility"
         And I press "Suivant"
-        Then I should be on "/identite" by js
+        Then I am redirected on "/identite"
 
     @javascript
     Scenario: Submit the form with only 3 required value for victim declarant
@@ -172,7 +172,7 @@ Feature:
         And I wait and select "1" from "identity_civilState_civility"
         And I wait and fill in "identity_civilState_birthName" with "Dupont"
         And I press "Suivant"
-        Then I should be on "/identite" by js
+        Then I am redirected on "/identite"
 
     @javascript
     Scenario: Submit the form with only 4 required value for victim declarant
@@ -183,7 +183,7 @@ Feature:
         And I wait and fill in "identity_civilState_birthName" with "Dupont"
         And I wait and fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I press "Suivant"
-        Then I should be on "/identite" by js
+        Then I am redirected on "/identite"
 
     @javascript
     Scenario: Submit the form with only 5 required value for victim declarant
@@ -195,7 +195,7 @@ Feature:
         And I wait and fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I wait and fill in "identity_civilState_birthDate" with "01/01/2000"
         And I press "Suivant"
-        Then I should be on "/identite" by js
+        Then I am redirected on "/identite"
 
     @javascript
     Scenario: Submit the form with only 6 required value for victim declarant
@@ -209,7 +209,7 @@ Feature:
         And I wait and select "Paris (75)" from "identity_civilState_birthLocation_town"
         And I wait for the "#identity_civilState_birthLocation_department" field to contain "75"
         And I press "Suivant"
-        Then I should be on "/identite" by js
+        Then I am redirected on "/identite"
 
     @javascript
     Scenario: Submit the form with only 7 required value for victim declarant
@@ -224,7 +224,7 @@ Feature:
         And I wait for the "#identity_civilState_birthLocation_department" field to contain "75"
         And I wait and select "1" from "identity_civilState_nationality"
         And I press "Suivant"
-        Then I should be on "/identite" by js
+        Then I am redirected on "/identite"
 
     @javascript
     Scenario: Submit the form with only 8 required value for victim declarant
@@ -240,7 +240,7 @@ Feature:
         And I wait and select "1" from "identity_civilState_nationality"
         And I wait and select "1" from "identity_civilState_job"
         And I press "Suivant"
-        Then I should be on "/identite" by js
+        Then I am redirected on "/identite"
 
     @javascript
     Scenario: Submit the form with only 9 required value for victim declarant
@@ -258,7 +258,7 @@ Feature:
         And I wait and select "Paris (75)" from "identity_contactInformation_addressLocation_town"
         And I wait for the "#identity_contactInformation_addressLocation_department" field to contain "75"
         And I press "Suivant"
-        Then I should be on "/identite" by js
+        Then I am redirected on "/identite"
 
     @javascript
     Scenario: Submit the form with only 10 required value for victim declarant
@@ -277,7 +277,7 @@ Feature:
         And I wait for the "#identity_contactInformation_addressLocation_department" field to contain "75"
         And I wait and fill in "identity_contactInformation_addressNumber" with "01"
         And I press "Suivant"
-        Then I should be on "/identite" by js
+        Then I am redirected on "/identite"
 
     @javascript
     Scenario: Submit the form with only 11 required value for victim declarant
@@ -298,4 +298,4 @@ Feature:
         And I wait and select "1" from "identity_contactInformation_addressWay"
         And I wait and fill in "identity_contactInformation_email" with "jean@test.com"
         And I press "Suivant"
-        Then I should be on "/identite" by js
+        Then I am redirected on "/identite"

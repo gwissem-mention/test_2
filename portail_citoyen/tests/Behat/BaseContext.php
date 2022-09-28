@@ -61,7 +61,7 @@ final class BaseContext extends MinkContext
     public function iWaitForTheElementToDisappear(string $selector): void
     {
         $this->getSession()->wait(
-            5000,
+            500,
             "document.querySelector('".$selector."') === null"
         );
     }
@@ -161,32 +161,11 @@ final class BaseContext extends MinkContext
     }
 
     /**
-     * @Then /^I should be on "([^"]*)" by js/
+     * @Then I am redirected on :url
      */
-    public function assertPageAddressJS(string $url): void
+    public function iAmRedirectedOn(string $url): void
     {
-        $this->spin(function () use ($url) {
-            $this->assertSession()->addressEquals($this->locatePath($url));
-
-            return true;
-        });
-    }
-
-    private function spin(callable $lambda, int $wait = 60): void
-    {
-        for ($i = 0; $i < $wait; ++$i) {
-            try {
-                if ($lambda($this)) {
-                    return;
-                }
-            } catch (\Exception $e) {
-                // do nothing
-            }
-
-            sleep(1);
-        }
-
-        throw new \Exception('Timeout thrown');
+        $this->visitPath($url);
     }
 
     /**

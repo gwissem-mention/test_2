@@ -33,7 +33,7 @@ Feature:
   Scenario: I am redirected to / when I select "No" to the material damage radio buttons
     Given I am on "/poursuivre"
     When I click the "label[for=continuation_materialDamage_1]" element
-    Then I should be on "/" by js
+    Then I am redirected on "/"
 
   @javascript
   Scenario: I am redirected to / when I select "Yes" to the offense author known radio buttons
@@ -41,7 +41,7 @@ Feature:
     And I click the "label[for=continuation_materialDamage_0]" element
     And I wait for the element "#continuation_offenseAuthorKnown_0" to appear
     When I click the "label[for=continuation_offenseAuthorKnown_0]" element
-    Then I should be on "/" by js
+    Then I am redirected on "/"
 
   @javascript
   Scenario: I am redirected to /accueil-deroule when I select "No" to the offense author known radio buttons
@@ -51,4 +51,4 @@ Feature:
     When I click the "label[for=continuation_offenseAuthorKnown_1]" element
     And I wait for the element "#continuation_continue" to appear
     And I press "Continuer"
-    Then I should be on "/accueil-deroule" by js
+    Then I am redirected on "/accueil-deroule"

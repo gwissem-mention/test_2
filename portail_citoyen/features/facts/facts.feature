@@ -279,4 +279,4 @@ Feature:
         And I click the "label[for=facts_additionalInformation_cctvAvailable_0]" element
         And I wait and fill in "facts_description" with "informations"
         And I press "Suivant"
-        Then I should be on "/rendez-vous" by js
+        Then I am redirected on "/rendez-vous"
