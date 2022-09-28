@@ -10,13 +10,13 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 use Symfony\UX\LiveComponent\Attribute\LiveAction;
-use Symfony\UX\LiveComponent\ComponentWithFormTrait;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
+use Symfony\UX\LiveComponent\LiveCollectionTrait;
 
 #[AsLiveComponent('facts')]
 class FactsComponent extends AbstractController
 {
-    use ComponentWithFormTrait;
+    use LiveCollectionTrait;
     use DefaultActionTrait;
 
     protected function instantiateForm(): FormInterface

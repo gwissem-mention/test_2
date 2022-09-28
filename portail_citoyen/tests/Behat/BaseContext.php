@@ -56,6 +56,17 @@ final class BaseContext extends MinkContext
     }
 
     /**
+     * @Then /^I wait for the element "([^"]*)" to disappear$/
+     */
+    public function iWaitForTheElementToDisappear(string $selector): void
+    {
+        $this->getSession()->wait(
+            5000,
+            "document.querySelector('".$selector."') === null"
+        );
+    }
+
+    /**
      * @Then /^I wait for the element "([^"]*)" to be filled$/
      */
     public function iWaitForTheElementToBeFilled(string $selector): void
@@ -174,6 +185,8 @@ final class BaseContext extends MinkContext
 
             sleep(1);
         }
+
+        throw new \Exception('Timeout thrown');
     }
 
     /**

@@ -139,8 +139,6 @@
     </div>
 {% endblock %}
 
-
-
 {% block dropzone_row %}
     {{ form_label(form) }}
     <div class="dropzone"
@@ -162,6 +160,20 @@
 {% endblock %}
 
 {% block submit_widget %}
-    {% set attr = attr|merge({class: (attr.class|default('') ~ ' fr-btn')|trim}) -%}
+    {% set attr
+        = attr|merge({class: (attr.class|default('') ~ ' fr-btn')|trim}) -%}
     {{- parent() -}}
 {% endblock %}
+
+{%- block _facts_objects_entry_label_label -%}
+    {{ form_label(form, 'pel.object'|trans~' '~(form.parent.vars.name+1)) }}
+{%- endblock -%}
+
+{%- block _facts_objects_entry_row -%}
+    <div class="fr-py-2w">
+        {{ block('form_row') }}
+        {%- if form.vars.name is not same as("0") and button_delete is defined and not button_delete.rendered -%}
+            {{ form_row(button_delete) }}
+        {%- endif -%}
+    </div>
+{%- endblock -%}

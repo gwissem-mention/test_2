@@ -22,7 +22,9 @@ Feature:
         And I should see the key "pel.additional.factual.information" translated
         And I should see the key "pel.fsi.visit" translated
         And I should see the key "pel.cctv.present" translated
-
+        And I should see the key "pel.objects" translated
+        And I should see the key "pel.objects.add" translated
+        And I should see the key "pel.object" translated
     @func
     Scenario: I can click on the identity breadcrumb
         Given I am on "/faits"
@@ -230,18 +232,38 @@ Feature:
         And I should see a "input#facts_additionalInformation_cctvAvailable_0" element
         And I should see a "input#facts_additionalInformation_cctvAvailable_1" element
 
+    @javascript
+    Scenario: I can add an input text when I click on the add an object button
+        Given I am on "/faits"
+        When I press "facts_objects_add"
+        Then I should see the key "pel.object" translated
+        And I should see the key "pel.delete" translated
+        And I should see a "input#facts_objects_1_label" element
+
+    @javascript
+    Scenario: I can delete an input text when I click on the delete an object button
+        Given I am on "/faits"
+        And  I press "facts_objects_add"
+        And I wait for the element "#facts_objects_1_delete" to appear
+        When I press "facts_objects_1_delete"
+        And I wait for the element "input#facts_objects_1_label" to disappear
+        Then I should not see a "input#facts_objects_1_label" element
 
     @javascript
     Scenario: Submit the facts form
         Given I am on "/faits"
-        When I select "1" from "facts_offenseNature_offenseNature"
-        And I select "1" from "facts_placeNature_place"
+        When I wait and select "1" from "facts_offenseNature_offenseNature"
+        And I wait and select "1" from "facts_placeNature_place"
         And I click the "label[for=facts_offenseDate_exactDateKnown_0]" element
         And I wait for the element "#facts_offenseDate_startDate" to appear
         And I wait and fill in "facts_offenseDate_startDate" with "01/01/2022"
         And I click the "label[for=facts_offenseDate_choiceHour_0]" element
         And I wait for the element "#facts_offenseDate_hour" to appear
         And I wait and fill in "facts_offenseDate_hour" with "15:00"
+        And I wait and fill in "facts_objects_0_label" with "Object 1"
+        And I press "facts_objects_add"
+        And I wait for the element "input#facts_objects_1_label" to appear
+        And I wait and fill in "facts_objects_1_label" with "Object 2"
         And I click the "label[for=facts_additionalInformation_suspectsChoice_0]" element
         And I wait for the element "#facts_additionalInformation_suspectsText" to appear
         And I should see the key "pel.facts.suspects.informations.text" translated

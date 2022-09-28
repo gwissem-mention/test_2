@@ -738,6 +738,26 @@
                 <source>pel.cctv.available</source>
                 <target>Êtes-vous en capacité de fournir des vidéos des faits ?</target>
             </trans-unit>
+            <trans-unit id="pel.objects">
+                <source>pel.objects</source>
+                <target>Objets</target>
+            </trans-unit>
+            <trans-unit id="pel.delete">
+                <source>pel.delete</source>
+                <target>Supprimer</target>
+            </trans-unit>
+            <trans-unit id="pel.objects.add">
+                <source>pel.objects.add</source>
+                <target>Ajouter un objet supplémentaire</target>
+            </trans-unit>
+            <trans-unit id="pel.description">
+                <source>pel.description</source>
+                <target>Description</target>
+            </trans-unit>
+            <trans-unit id="pel.object">
+                <source>pel.object</source>
+                <target>Objet</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
