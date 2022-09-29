@@ -37,6 +37,7 @@ Feature:
     Scenario: Press button to be fsi general orienteer
         Given I am on "/"
         When I follow "Orienteur général FSI"
+
     @func
     Scenario: Press button to be redirect to perceval
         Given I am on "/"
