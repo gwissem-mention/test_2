@@ -25,6 +25,7 @@ Feature:
         And I should see the key "pel.objects" translated
         And I should see the key "pel.objects.add" translated
         And I should see the key "pel.object" translated
+
     @func
     Scenario: I can click on the identity breadcrumb
         Given I am on "/faits"
