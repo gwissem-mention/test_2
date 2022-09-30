@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="fr-container fr-py-2w">
+        <div class="fr-grid-row fr-py-2w">
+            <div class="fr-col">
+                {{ 'pel.end.thanks'|trans }}
+            </div>
+        </div>
+        <div class="fr-grid-row fr-py-2w">
+            <div class="fr-col">
+                <h6>{{ 'pel.your.appointment'|trans }}</h6>
+            </div>
+        </div>
+        <div class="fr-grid-row fr-py-2w">
+            <div class="fr-col">
+                <h6>{{ 'pel.your.opinion'|trans }}</h6>
+            </div>
+        </div>
+        <div class="fr-grid-row fr-py-2w">
+            <div class="fr-col-4">
+                <p style="font-size:100px" class="smiley">&#128512;</p>
+            </div>
+            <div class="fr-col-4">
+                <p style="font-size:100px" class="smiley">&#128545;</p>
+            </div>
+        </div>
+        <div class="fr-grid-row fr-py-2w">
+            <div class="fr-col">
+                <a class="fr-btn" href="{{ path('home') }}">
+                    {{ 'pel.back.to.homepage'|trans }}
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -19,4 +19,4 @@ Feature:
         And I should see 1 "body" element
         And I should see the key "pel.make.appointment" translated
         And I follow "Suivant"
-        And I should be on "/declaration/finalisation"
+        And I should be on "/fin"
