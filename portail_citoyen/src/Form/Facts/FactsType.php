@@ -31,7 +31,7 @@ class FactsType extends AbstractType
                         'max' => 800,
                     ]),
                 ],
-                'label' => 'pel.facts.description',
+                'label' => 'pel.facts.description.precise',
             ])
             ->add('objects', LiveCollectionType::class, [
                 'entry_type' => ObjectType::class,

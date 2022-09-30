@@ -25,6 +25,7 @@ Feature:
         And I should see the key "pel.objects" translated
         And I should see the key "pel.objects.add" translated
         And I should see the key "pel.object" translated
+        And I should see the key "pel.facts.description.precise" translated
 
     @func
     Scenario: I can click on the identity breadcrumb
@@ -280,4 +281,4 @@ Feature:
         And I click the "label[for=facts_additionalInformation_cctvAvailable_0]" element
         And I wait and fill in "facts_description" with "informations"
         And I press "Suivant"
-        Then I am redirected on "/rendez-vous"
+        Then I am redirected on "/recapitulatif"

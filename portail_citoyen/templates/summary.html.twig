@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="fr-container">
+        <h1>{{ 'pel.complaint.summary'|trans }}</h1>
+        <div class="fr-grid-row">
+            <div class="fr-col">
+                <h6>{{ 'pel.complaint.identity.declarant.status'|trans }}</h6>
+            </div>
+        </div>
+        <div class="fr-grid-row">
+            <div class="fr-col">
+                <h6>{{ 'pel.complaint.identity'|trans }}</h6>
+            </div>
+        </div>
+        <div class="fr-grid-row">
+            <div class="fr-col">
+                <h6>{{ 'pel.facts.description'|trans }}</h6>
+            </div>
+        </div>
+        <div class="fr-grid-row">
+            <div class="fr-col">
+                <a class="fr-btn" href="{{ path('facts') }}">
+                    {{ 'pel.previous'|trans }}
+                </a>
+                <a class="fr-btn" href="{{ path('appointment') }}">
+                    {{ 'pel.next'|trans }}
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
