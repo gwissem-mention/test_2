@@ -78,6 +78,18 @@
             {{ form_row(form.objects) }}
         </div>
     </div>
+    <div class="fr-grid-row fr-py-2w">
+        <div class="fr-col">
+            {{ form_row(form.amountKnown) }}
+        </div>
+    </div>
+    {% if form.amount is defined %}
+        <div class="fr-grid-row fr-py-2w">
+            <div class="fr-col-4">
+                {{ form_row(form.amount) }}
+            </div>
+        </div>
+    {% endif %}
     <br>
     <br>
     <h6>{{ 'pel.additional.factual.information'|trans }}</h6>

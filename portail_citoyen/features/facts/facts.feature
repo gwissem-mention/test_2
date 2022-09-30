@@ -26,6 +26,7 @@ Feature:
         And I should see the key "pel.objects.add" translated
         And I should see the key "pel.object" translated
         And I should see the key "pel.facts.description.precise" translated
+        And I should see the key "pel.is.amount.known" translated
 
     @func
     Scenario: I can click on the identity breadcrumb
@@ -252,6 +253,14 @@ Feature:
         Then I should not see a "input#facts_objects_1_label" element
 
     @javascript
+    Scenario: I can see 1 number input if I select "Yes" to amount known radio button
+        Given I am on "/faits"
+        When I click the "label[for=facts_amountKnown_0]" element
+        And I wait for the element "#facts_amount" to appear
+        Then I should see the key "pel.amount" translated
+        And I should see a "input#facts_amount" element
+
+    @javascript
     Scenario: Submit the facts form
         Given I am on "/faits"
         When I wait and select "1" from "facts_offenseNature_offenseNature"
@@ -266,6 +275,9 @@ Feature:
         And I press "facts_objects_add"
         And I wait for the element "input#facts_objects_1_label" to appear
         And I wait and fill in "facts_objects_1_label" with "Object 2"
+        And I click the "label[for=facts_amountKnown_0]" element
+        And I wait for the element "#facts_amount" to appear
+        And I wait and fill in "facts_amount" with "700"
         And I click the "label[for=facts_additionalInformation_suspectsChoice_0]" element
         And I wait for the element "#facts_additionalInformation_suspectsText" to appear
         And I should see the key "pel.facts.suspects.informations.text" translated

@@ -2,6 +2,10 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="fr" target-language="fr" datatype="plaintext" original="file.ext">
         <body>
+            <trans-unit id="pel.amount">
+                <source>pel.amount</source>
+                <target>Montant</target>
+            </trans-unit>
             <trans-unit id="pel.access.to.the.form">
                 <source>pel.access.to.the.form</source>
                 <target>Accéder au formulaire</target>
@@ -457,6 +461,10 @@
             <trans-unit id="pel.inside">
                 <source>pel.inside</source>
                 <target>de l'intérieur</target>
+            </trans-unit>
+           <trans-unit id="pel.is.amount.known">
+                <source>pel.is.amount.known</source>
+                <target>Pouvez-vous estimer le montant du préjudice ?</target>
             </trans-unit>
             <trans-unit id="pel.job.constable">
                 <source>pel.job.constable</source>
