@@ -8,11 +8,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class FinalizationController extends AbstractController
+class EndController extends AbstractController
 {
-    #[Route('/declaration/finalisation', name: 'finalization')]
+    #[Route('/fin', name: 'end')]
     public function __invoke(): Response
     {
-        return $this->render('finalization.html.twig');
+        return $this->render('end.html.twig');
     }
 }

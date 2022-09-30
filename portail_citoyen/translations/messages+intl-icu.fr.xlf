@@ -54,6 +54,10 @@
                 <source>pel.attachments.upload</source>
                 <target>Vous pouvez utilement joindre les pièces-jointes nécessaires en appui de votre déclaration</target>
             </trans-unit>
+            <trans-unit id="pel.back.to.homepage">
+                 <source>pel.back.to.homepage</source>
+                 <target>Revenir à l'accueil</target>
+             </trans-unit>
             <trans-unit id="pel.birth.country">
                 <source>pel.birth.country</source>
                 <target>Pays de naissance</target>
@@ -325,6 +329,10 @@
             <trans-unit id="pel.end.hour">
                 <source>pel.end.hour</source>
                 <target>Heure de fin</target>
+            </trans-unit>
+           <trans-unit id="pel.end.thanks">
+                <source>pel.end.thanks</source>
+                <target>Merci pour votre déclaration de plainte. Vous serez recontacté dans les meilleurs délais</target>
             </trans-unit>
             <trans-unit id="pel.exact.hour">
                 <source>pel.exact.hour</source>
@@ -758,6 +766,10 @@
                 <source>pel.yes.i.know.the.exact.time.of.facts</source>
                 <target>Oui je connais l'heure exacte des faits</target>
             </trans-unit>
+            <trans-unit id="pel.your.appointment">
+                <source>pel.your.appointment</source>
+                <target>Votre Rendez-vous</target>
+            </trans-unit>
             <trans-unit id="pel.your.job">
                 <source>pel.your.job</source>
                 <target>Votre profession</target>
@@ -765,6 +777,10 @@
             <trans-unit id="pel.your.job.choice.message">
                 <source>pel.your.job.choice.message</source>
                 <target>Choisissez votre profession</target>
+            </trans-unit>
+            <trans-unit id="pel.your.opinion">
+                <source>pel.your.opinion</source>
+                <target>Votre avis</target>
             </trans-unit>
         </body>
     </file>
