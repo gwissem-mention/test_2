@@ -29,6 +29,6 @@ class FactsComponent extends AbstractController
     {
         $this->submitForm();
 
-        return $this->redirectToRoute('appointment');
+        return $this->redirectToRoute('summary');
     }
 }

@@ -78,6 +78,14 @@
                 <source>pel.birth.town</source>
                 <target>Commune de naissance</target>
             </trans-unit>
+            <trans-unit id="pel.cctv.available">
+                <source>pel.cctv.available</source>
+                <target>Êtes-vous en capacité de fournir des vidéos des faits ?</target>
+            </trans-unit>
+            <trans-unit id="pel.cctv.present">
+                <source>pel.cctv.present</source>
+                <target>Y a-t-il un système de vidéoprotection disponible sur le lieu des faits ?</target>
+            </trans-unit>
             <trans-unit id="pel.choose.your.address.town">
                 <source>pel.choose.your.address.town</source>
                 <target>Choisissez votre commune</target>
@@ -174,6 +182,10 @@
                 <source>pel.complaint.online</source>
                 <target>Plainte en ligne</target>
             </trans-unit>
+            <trans-unit id="pel.complaint.summary">
+                <source>pel.complaint.summary</source>
+                <target>Récapitulatif de déclaration de plainte initiale</target>
+            </trans-unit>
             <trans-unit id="pel.corporation.address.country">
                 <source>pel.corporation.address.country</source>
                 <target>Pays</target>
@@ -250,6 +262,10 @@
                 <source>pel.date.help</source>
                 <target>Date au format jj/mm/aaaa</target>
             </trans-unit>
+            <trans-unit id="pel.delete">
+                <source>pel.delete</source>
+                <target>Supprimer</target>
+            </trans-unit>
             <trans-unit id="pel.department.thirteen">
                 <source>pel.department.thirteen</source>
                 <target>Bouches-du-Rhône</target>
@@ -261,6 +277,10 @@
             <trans-unit id="pel.department.seventy.five">
                 <source>pel.department.seventy.five</source>
                 <target>Paris</target>
+            </trans-unit>
+            <trans-unit id="pel.description">
+                <source>pel.description</source>
+                <target>Description</target>
             </trans-unit>
             <trans-unit id="pel.do.you.have.informations.on.potential.suspects">
                 <source>pel.do.you.have.informations.on.potential.suspects</source>
@@ -316,11 +336,23 @@
             </trans-unit>
             <trans-unit id="pel.facts.description">
                 <source>pel.facts.description</source>
+                <target>Description des faits</target>
+            </trans-unit>
+            <trans-unit id="pel.facts.description.precise">
+                <source>pel.facts.description.precise</source>
                 <target>Description précise des faits</target>
             </trans-unit>
             <trans-unit id="pel.facts.suspects.informations.text">
                 <source>pel.facts.suspects.informations.text</source>
                 <target>Veuillez indiquer le nombre de personnes, la direction de fuite, la description des suspects...</target>
+            </trans-unit>
+            <trans-unit id="pel.facts.witnesses.information.text">
+                <source>pel.facts.witnesses.information.text</source>
+                <target>Veuillez indiquer, si vous le pouvez, les noms et les coordonnées du/des témoin(s)</target>
+            </trans-unit>
+            <trans-unit id="pel.facts.witnesses">
+                <source>pel.facts.witnesses</source>
+                <target>Y a-t-il eu des témoins des faits ?</target>
             </trans-unit>
             <trans-unit id="pel.faq">
                 <source>pel.faq</source>
@@ -598,6 +630,22 @@
                 <source>pel.no.but.i.don.t.know.at.all.the.time.of.facts</source>
                 <target>Je ne connais pas l'heure des faits</target>
             </trans-unit>
+            <trans-unit id="pel.object">
+                <source>pel.object</source>
+                <target>Objet</target>
+            </trans-unit>
+            <trans-unit id="pel.objects">
+                <source>pel.objects</source>
+                <target>Objets</target>
+            </trans-unit>
+            <trans-unit id="pel.objects.add">
+                <source>pel.objects.add</source>
+                <target>Ajouter un objet supplémentaire</target>
+            </trans-unit>
+            <trans-unit id="pel.observation.made">
+                <source>pel.observation.made</source>
+                <target>Est-ce que des constatations ou des relevés ont été effectués ?</target>
+            </trans-unit>
             <trans-unit id="pel.offense.start.date">
                 <source>pel.offense.start.date</source>
                 <target>Entre</target>
@@ -717,46 +765,6 @@
             <trans-unit id="pel.your.job.choice.message">
                 <source>pel.your.job.choice.message</source>
                 <target>Choisissez votre profession</target>
-            </trans-unit>
-            <trans-unit id="pel.facts.witnesses">
-                <source>pel.facts.witnesses</source>
-                <target>Y a-t-il eu des témoins des faits ?</target>
-            </trans-unit>
-            <trans-unit id="pel.facts.witnesses.information.text">
-                <source>pel.facts.witnesses.information.text</source>
-                <target>Veuillez indiquer, si vous le pouvez, les noms et les coordonnées du/des témoin(s)</target>
-            </trans-unit>
-            <trans-unit id="pel.observation.made">
-                <source>pel.observation.made</source>
-                <target>Est-ce que des constatations ou des relevés ont été effectués ?</target>
-            </trans-unit>
-            <trans-unit id="pel.cctv.present">
-                <source>pel.cctv.present</source>
-                <target>Y a-t-il un système de vidéoprotection disponible sur le lieu des faits ?</target>
-            </trans-unit>
-            <trans-unit id="pel.cctv.available">
-                <source>pel.cctv.available</source>
-                <target>Êtes-vous en capacité de fournir des vidéos des faits ?</target>
-            </trans-unit>
-            <trans-unit id="pel.objects">
-                <source>pel.objects</source>
-                <target>Objets</target>
-            </trans-unit>
-            <trans-unit id="pel.delete">
-                <source>pel.delete</source>
-                <target>Supprimer</target>
-            </trans-unit>
-            <trans-unit id="pel.objects.add">
-                <source>pel.objects.add</source>
-                <target>Ajouter un objet supplémentaire</target>
-            </trans-unit>
-            <trans-unit id="pel.description">
-                <source>pel.description</source>
-                <target>Description</target>
-            </trans-unit>
-            <trans-unit id="pel.object">
-                <source>pel.object</source>
-                <target>Objet</target>
             </trans-unit>
         </body>
     </file>
