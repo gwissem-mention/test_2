@@ -5,9 +5,14 @@
     {{ form_row(form.firstnames) }}
     {{ form_row(form.birthDate) }}
     {{ form_row(form.birthLocation.country) }}
-    {{ form_row(form.birthLocation.town) }}
-    {% if form.birthLocation.department is defined %}
-        {{ form_row(form.birthLocation.department, {'value':form.birthLocation.town.vars.value|removeTown }) }}
+    {% if form.birthLocation.frenchTown is defined %}
+        {{ form_row(form.birthLocation.frenchTown) }}
+    {% endif %}
+    {% if form.birthLocation.otherTown is defined %}
+        {{ form_row(form.birthLocation.otherTown) }}
+    {% endif %}
+    {% if form.birthLocation.frenchTown is defined and form.birthLocation.department is defined %}
+        {{ form_row(form.birthLocation.department, {'value':form.birthLocation.frenchTown.vars.value|removeTown }) }}
     {% endif %}
     {{ form_row(form.nationality) }}
     {{ form_row(form.job) }}

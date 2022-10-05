@@ -124,7 +124,9 @@ class LocationType extends AbstractType
     private function addFormPartForForeignPlace(FormInterface $form): void
     {
         $form
-            ->add('town', TextType::class, [
+            ->remove('frenchTown')
+            ->remove('department')
+            ->add('otherTown', TextType::class, [
                 'attr' => [
                     'maxlength' => 50,
                 ],
@@ -134,7 +136,7 @@ class LocationType extends AbstractType
                 ],
                 'label' => $form->getConfig()->getOption('town_label'),
             ])
-            ->remove('department');
+        ;
     }
 
     /**
@@ -143,7 +145,8 @@ class LocationType extends AbstractType
     private function addFormPartForFrenchPlace(FormInterface $form, array $townChoices): void
     {
         $form
-            ->add('town', ChoiceType::class, [
+            ->remove('otherTown')
+            ->add('frenchTown', ChoiceType::class, [
                 'constraints' => [
                     new NotBlank(),
                 ],
