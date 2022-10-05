@@ -378,3 +378,77 @@ Feature:
         When I click the "label[for=identity_declarantStatus_1]" element
         And I wait for the element "#form-identity" to appear
         Then I should see "Sans Profession" in the "#identity_representedPersonCivilState_job" element
+
+    @javascript
+    Scenario: Submit the form with an invalid birth date (under 18) for declarant
+        Given I am on "/identite"
+        When I click the "label[for=identity_declarantStatus_1]" element
+        And I wait for the element "#form-identity" to appear
+        And I wait and select "1" from "identity_civilState_civility"
+        And I wait and fill in "identity_civilState_birthName" with "Dupont"
+        And I wait and fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
+        And I wait and fill in "identity_civilState_birthDate" with "01/01/2020"
+        And I wait 100 ms
+        And I wait and select "Paris (75)" from "identity_civilState_birthLocation_town"
+        And I wait for the "#identity_civilState_birthLocation_department" field to contain "75"
+        And I wait and select "1" from "identity_civilState_nationality"
+        And I wait and select "1" from "identity_civilState_job"
+        And I wait and select "Paris (75)" from "identity_contactInformation_addressLocation_town"
+        And I wait for the "#identity_contactInformation_addressLocation_department" field to contain "75"
+        And I wait and fill in "identity_contactInformation_addressNumber" with "01"
+        And I wait and select "1" from "identity_contactInformation_addressWay"
+        And I wait and fill in "identity_contactInformation_email" with "jean@test.com"
+        And I wait and fill in "identity_contactInformation_mobile" with "0602030405"
+        And I wait and select "1" from "identity_representedPersonCivilState_civility"
+        And I wait and fill in "identity_representedPersonCivilState_birthName" with "Dupont"
+        And I wait and fill in "identity_representedPersonCivilState_firstnames" with "Jean Pierre Marie"
+        And I wait and fill in "identity_representedPersonCivilState_birthDate" with "01/01/2000"
+        And I wait and select "Paris (75)" from "identity_representedPersonCivilState_birthLocation_town"
+        And I wait for the "#identity_representedPersonCivilState_birthLocation_department" field to contain "75"
+        And I wait and select "1" from "identity_representedPersonCivilState_nationality"
+        And I wait and select "1" from "identity_representedPersonCivilState_job"
+        And I wait and select "Paris (75)" from "identity_representedPersonContactInformation_addressLocation_town"
+        And I wait for the "#identity_representedPersonContactInformation_addressLocation_department" field to contain "75"
+        And I wait and fill in "identity_representedPersonContactInformation_addressNumber" with "01"
+        And I wait and select "1" from "identity_representedPersonContactInformation_addressWay"
+        And I wait and fill in "identity_representedPersonContactInformation_email" with "jean@test.com"
+        And I wait and fill in "identity_representedPersonContactInformation_mobile" with "0602030405"
+        And I press "Suivant"
+        Then I am redirected on "/identite"
+
+    @javascript
+    Scenario: Submit the form with an invalid birth date (over 120) for declarant
+        Given I am on "/identite"
+        When I click the "label[for=identity_declarantStatus_1]" element
+        And I wait for the element "#form-identity" to appear
+        And I wait and select "1" from "identity_civilState_civility"
+        And I wait and fill in "identity_civilState_birthName" with "Dupont"
+        And I wait and fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
+        And I wait and fill in "identity_civilState_birthDate" with "01/01/2000"
+        And I wait 100 ms
+        And I wait and select "Paris (75)" from "identity_civilState_birthLocation_town"
+        And I wait for the "#identity_civilState_birthLocation_department" field to contain "75"
+        And I wait and select "1" from "identity_civilState_nationality"
+        And I wait and select "1" from "identity_civilState_job"
+        And I wait and select "Paris (75)" from "identity_contactInformation_addressLocation_town"
+        And I wait for the "#identity_contactInformation_addressLocation_department" field to contain "75"
+        And I wait and fill in "identity_contactInformation_addressNumber" with "01"
+        And I wait and select "1" from "identity_contactInformation_addressWay"
+        And I wait and fill in "identity_contactInformation_email" with "jean@test.com"
+        And I wait and fill in "identity_contactInformation_mobile" with "0602030405"
+        And I wait and select "1" from "identity_representedPersonCivilState_civility"
+        And I wait and fill in "identity_representedPersonCivilState_birthName" with "Dupont"
+        And I wait and fill in "identity_representedPersonCivilState_firstnames" with "Jean Pierre Marie"
+        And I wait and fill in "identity_representedPersonCivilState_birthDate" with "01/01/2000"
+        And I wait and select "Paris (75)" from "identity_representedPersonCivilState_birthLocation_town"
+        And I wait for the "#identity_representedPersonCivilState_birthLocation_department" field to contain "75"
+        And I wait and select "1" from "identity_representedPersonCivilState_nationality"
+        And I wait and select "1" from "identity_representedPersonCivilState_job"
+        And I wait and select "Paris (75)" from "identity_representedPersonContactInformation_addressLocation_town"
+        And I wait for the "#identity_representedPersonContactInformation_addressLocation_department" field to contain "75"
+        And I wait and fill in "identity_representedPersonContactInformation_addressNumber" with "01"
+        And I wait and select "1" from "identity_representedPersonContactInformation_addressWay"
+        And I wait and fill in "identity_representedPersonContactInformation_email" with "jean@test.com"
+        And I wait and fill in "identity_representedPersonContactInformation_mobile" with "0602030405"
+        And I press "Suivant"
+        Then I am redirected on "/identite"
