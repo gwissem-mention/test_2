@@ -28,6 +28,19 @@ Feature:
         And I should see the key "pel.next" translated
 
     @javascript
+    Scenario: Change country from France to Spain and check the town field is cleared
+        Given I am on "/identite"
+        When I click the "label[for=identity_declarantStatus_0]" element
+        And I wait for the element "#form-identity" to appear
+        And I select "1" from "identity_civilState_birthLocation_country"
+        And I select "1" from "identity_civilState_birthLocation_frenchTown"
+        And I should see "Paris" in the "#identity_civilState_birthLocation_frenchTown" element
+        And I select "2" from "identity_civilState_birthLocation_country"
+        And I wait and fill in "identity_civilState_birthLocation_otherTown" with "Madrid"
+        And I should not see a "identity_civilState_birthLocation_frenchTown" element
+        And I should not see "Paris" in the "#identity_civilState_birthLocation_otherTown" element
+
+    @javascript
     Scenario: Submit the form with minimal valid values for victim declarant
         Given I am on "/identite"
         When I click the "label[for=identity_declarantStatus_0]" element
