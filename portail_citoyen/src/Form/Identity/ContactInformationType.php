@@ -5,9 +5,8 @@ declare(strict_types=1);
 namespace App\Form\Identity;
 
 use App\Form\LocationType;
-use App\Thesaurus\WayThesaurusProviderInterface;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -18,16 +17,15 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 class ContactInformationType extends AbstractType
 {
     public function __construct(
-        private readonly WayThesaurusProviderInterface $wayThesaurusProvider,
+        private readonly EventSubscriberInterface $addAddressWaySubscriber,
     ) {
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $wayChoices = $this->wayThesaurusProvider->getChoices();
-
         $builder
             ->add('addressLocation', LocationType::class, [
+                'compound' => true,
                 'country_label' => 'pel.address.country',
                 'town_label' => 'pel.address.town',
                 'department_label' => 'pel.address.department',
@@ -41,14 +39,6 @@ class ContactInformationType extends AbstractType
                     new Length(['max' => 11]),
                 ],
                 'label' => 'pel.address.number',
-            ])
-            ->add('addressWay', ChoiceType::class, [
-                'constraints' => [
-                    new NotBlank(),
-                ],
-                'choices' => $wayChoices,
-                'empty_data' => $wayChoices['pel.way.one'],
-                'label' => 'pel.address.way',
             ])
             ->add('email', EmailType::class, [
                 'attr' => [
@@ -71,5 +61,7 @@ class ContactInformationType extends AbstractType
                 ],
                 'label' => 'pel.mobile',
             ]);
+
+        $builder->addEventSubscriber($this->addAddressWaySubscriber);
     }
 }

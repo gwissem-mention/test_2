@@ -6,7 +6,7 @@ namespace App\Form\Identity;
 
 use App\Form\LocationType;
 use App\Thesaurus\NationalityThesaurusProviderInterface;
-use App\Thesaurus\WayThesaurusProviderInterface;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -20,16 +20,14 @@ use Symfony\Component\Validator\Constraints\Regex;
 class CorporationType extends AbstractType
 {
     public function __construct(
+        private readonly EventSubscriberInterface $addAddressWaySubscriber,
         private readonly NationalityThesaurusProviderInterface $nationalityThesaurusProvider,
-        private readonly WayThesaurusProviderInterface $wayThesaurusProvider,
     ) {
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $nationalityChoices = $this->nationalityThesaurusProvider->getChoices();
-        $wayChoices = $this->wayThesaurusProvider->getChoices();
-
         $builder
             ->add('siren', TextType::class, [
                 'attr' => [
@@ -105,14 +103,8 @@ class CorporationType extends AbstractType
                     new Length(['max' => 11]),
                 ],
                 'label' => 'pel.corporation.address.number',
-            ])
-            ->add('addressWay', ChoiceType::class, [
-                'constraints' => [
-                    new NotBlank(),
-                ],
-                'choices' => $wayChoices,
-                'label' => 'pel.corporation.address.way',
-                'empty_data' => $wayChoices['pel.way.one'],
             ]);
+
+        $builder->addEventSubscriber($this->addAddressWaySubscriber);
     }
 }
