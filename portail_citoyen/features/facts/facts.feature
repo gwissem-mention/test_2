@@ -57,6 +57,7 @@ Feature:
             | offense_nature           |
             | Vol                      |
             | Dégradation              |
+            | Vol et Dégradation       |
             | Autre atteinte aux biens |
 
     @func
