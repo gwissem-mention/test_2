@@ -68,13 +68,8 @@ class CivilStateType extends AbstractType
                 'label' => 'pel.first.names',
             ])
             ->add('birthDate', DateType::class, [
-                'constraints' => [
-                    new NotBlank(),
-                    new LessThanOrEqual('today'),
-                ],
-                'format' => 'dd/MM/yyyy',
+                'constraints' => $options['birthDate_constraints'],
                 'help' => 'pel.birth.date.help',
-                'html5' => false,
                 'label' => 'pel.birth.date',
                 'widget' => 'single_text',
             ])
@@ -123,6 +118,7 @@ class CivilStateType extends AbstractType
     {
         $resolver->setDefaults([
             'declarant_status' => null,
+            'birthDate_constraints' => [new NotBlank(), new LessThanOrEqual('today')],
         ]);
     }
 

@@ -11,6 +11,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Validator\Constraints\GreaterThanOrEqual;
+use Symfony\Component\Validator\Constraints\LessThanOrEqual;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class IdentityType extends AbstractType
 {
@@ -69,7 +72,13 @@ class IdentityType extends AbstractType
     public function addCivilStateAndContactInformationFields(FormInterface $form): void
     {
         $form
-            ->add('civilState', CivilStateType::class)
+            ->add('civilState', CivilStateType::class, [
+                'birthDate_constraints' => [
+                    new NotBlank(),
+                    new LessThanOrEqual('-18 years'),
+                    new GreaterThanOrEqual('-120 years'),
+                ],
+            ])
             ->add('contactInformation', ContactInformationType::class);
     }
 
