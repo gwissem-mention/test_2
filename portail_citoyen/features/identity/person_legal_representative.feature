@@ -194,7 +194,7 @@ Feature:
         And I wait for the element "identity_contactInformation_addressLocation_town" to appear
         And I wait and fill in "identity_contactInformation_addressLocation_town" with "Madrid"
         And I wait and fill in "identity_contactInformation_addressNumber" with "01"
-        And I wait and select "1" from "identity_contactInformation_addressWay"
+        And I wait and fill in "identity_contactInformation_addressWay" with "way"
         And I wait and fill in "identity_contactInformation_email" with "jean@test.com"
         And I wait and fill in "identity_contactInformation_mobile" with "0602030405"
         And I wait and select "1" from "identity_representedPersonCivilState_civility"
