@@ -11,8 +11,7 @@ Feature:
         And I should see the key "pel.inside" translated
         And I should see the key "pel.and.overseas" translated
         And I should see the key "pel.complaint.nature.of.the.facts" translated
-        And I should see the key "pel.nature.place" translated
-        And I should see the key "pel.more.info.place" translated
+        And I should see the key "pel.address.facts" translated
         And I should not see a "#place_nature_moreInfoText" element
         And I should see the key "pel.complaint.exact.date.known" translated
         And I should see the key "pel.do.you.know.hour.facts" translated
@@ -61,22 +60,6 @@ Feature:
             | Autre atteinte aux biens |
 
     @func
-    Scenario Outline: I can see the offense places list
-        Given I am on "/faits"
-        When I select "<nature_place>" from "facts_placeNature_place"
-        Then I should see "<nature_place>" in the "#facts_placeNature_place" element
-
-        Examples:
-            | nature_place           |
-            | Domicile/Logement      |
-            | Parking / garage       |
-            | Voie publique / Rue    |
-            | Commerce               |
-            | Transports en commun   |
-            | Autres natures de lieu |
-            | Lieu indéterminé       |
-
-    @func
     Scenario Outline: I can see the offense exact date known radio buttons
         Given I am on "/faits"
         Then I should see 2 "input[type=radio][name='facts[offenseDate][exactDateKnown]']" elements
@@ -116,18 +99,20 @@ Feature:
     @javascript
     Scenario: I can see the more info input text if I check "Je souhaite apporter des précisions sur le lieu des faits" checkbox
         Given I am on "/faits"
-        When I click the "label[for=facts_placeNature_moreInfo]" element
-        And I wait for the element "#facts_placeNature_moreInfoText" to appear
-        Then I should see a "#facts_placeNature_moreInfoText" element
+        When I click the "label[for=facts_address_isAddressFactsKnown_0]" element
+        And I click the "label[for=facts_address_placeNature_moreInfo]" element
+        And I wait for the element "#facts_address_placeNature_moreInfoText" to appear
+        Then I should see a "#facts_address_placeNature_moreInfoText" element
 
     @javascript
     Scenario Outline: I can see a list a common transports When I wait and select "Common transport" nature place
         Given I am on "/faits"
-        When I wait and select "Transports en commun" from "facts_placeNature_place"
-        And I should see "Transports en commun" in the "#facts_placeNature_place" element
-        And I wait for the element "#facts_placeNature_naturePlacePublicTransportChoice" to appear
-        And I wait and select "<nature_place_public_transport>" from "facts_placeNature_naturePlacePublicTransportChoice"
-        Then I should see "<nature_place_public_transport>" in the "#facts_placeNature_naturePlacePublicTransportChoice" element
+        When I click the "label[for=facts_address_isAddressFactsKnown_0]" element
+        And I wait and select "Transports en commun" from "facts_address_placeNature_place"
+        And I should see "Transports en commun" in the "#facts_address_placeNature_place" element
+        And I wait for the element "#facts_address_placeNature_naturePlacePublicTransportChoice" to appear
+        And I select "<nature_place_public_transport>" from "facts_address_placeNature_naturePlacePublicTransportChoice"
+        Then I should see "<nature_place_public_transport>" in the "#facts_address_placeNature_naturePlacePublicTransportChoice" element
 
         Examples:
             | nature_place_public_transport |
@@ -142,10 +127,11 @@ Feature:
     @javascript
     Scenario Outline: I can see a list a other places When I wait and select "Other places" nature place
         Given I am on "/faits"
-        When I wait and select "Autres natures de lieu" from "facts_placeNature_place"
-        And I wait for the element "#facts_placeNature_naturePlaceOtherChoice" to appear
-        Then I wait and select "<nature_place_other>" from "facts_placeNature_naturePlaceOtherChoice"
-        And I should see "<nature_place_other>" in the "#facts_placeNature_naturePlaceOtherChoice" element
+        When I click the "label[for=facts_address_isAddressFactsKnown_0]" element
+        And I wait and select "Autres natures de lieu" from "facts_address_placeNature_place"
+        And I wait for the element "#facts_address_placeNature_naturePlaceOtherChoice" to appear
+        Then I select "<nature_place_other>" from "facts_address_placeNature_naturePlaceOtherChoice"
+        And I should see "<nature_place_other>" in the "#facts_address_placeNature_naturePlaceOtherChoice" element
 
         Examples:
             | nature_place_other |
@@ -153,7 +139,6 @@ Feature:
             | Restaurant         |
             | Parc               |
             | Marché             |
-
 
     @javascript
     Scenario: I can see 1 date input if I select "Yes" to offense exact date known radio buttons
@@ -265,29 +250,24 @@ Feature:
     Scenario: Submit the facts form
         Given I am on "/faits"
         When I wait and select "1" from "facts_offenseNature_offenseNature"
-        And I wait and select "1" from "facts_placeNature_place"
+        And I click the "label[for=facts_address_isAddressFactsKnown_0]" element
+        And I wait and select "1" from "facts_address_placeNature_place"
         And I click the "label[for=facts_offenseDate_exactDateKnown_0]" element
-        And I wait for the element "#facts_offenseDate_startDate" to appear
         And I wait and fill in "facts_offenseDate_startDate" with "01/01/2022"
         And I click the "label[for=facts_offenseDate_choiceHour_0]" element
-        And I wait for the element "#facts_offenseDate_hour" to appear
         And I wait and fill in "facts_offenseDate_hour" with "15:00"
-        And I wait and fill in "facts_objects_0_label" with "Object 1"
+        And I fill in "facts_objects_0_label" with "Object 1"
         And I press "facts_objects_add"
-        And I wait for the element "input#facts_objects_1_label" to appear
         And I wait and fill in "facts_objects_1_label" with "Object 2"
         And I click the "label[for=facts_amountKnown_0]" element
         And I wait for the element "#facts_amount" to appear
         And I wait and fill in "facts_amount" with "700"
         And I click the "label[for=facts_additionalInformation_suspectsChoice_0]" element
-        And I wait for the element "#facts_additionalInformation_suspectsText" to appear
-        And I should see the key "pel.facts.suspects.informations.text" translated
         And I wait and fill in "facts_additionalInformation_suspectsText" with "informations"
+        And I should see the key "pel.facts.suspects.informations.text" translated
         And I click the "label[for=facts_additionalInformation_witnesses_0]" element
-        And I wait for the element "#facts_additionalInformation_witnessesText" to appear
         And I wait and fill in "facts_additionalInformation_witnessesText" with "informations"
         And I click the "label[for=facts_additionalInformation_fsiVisit_0]" element
-        And I wait for the element "#facts_additionalInformation_observationMade_0" to appear
         And I click the "label[for=facts_additionalInformation_observationMade_0]" element
         And I click the "label[for=facts_additionalInformation_cctvPresent_0]" element
         And I wait for the element "#facts_additionalInformation_cctvAvailable_0" to appear

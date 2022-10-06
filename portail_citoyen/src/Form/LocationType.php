@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Form;
 
-use App\Form\DataTransformer\TownToTownAndDepartmentTransformer;
 use App\Thesaurus\CountryThesaurusProviderInterface;
 use App\Thesaurus\TownAndDepartmentThesaurusProviderInterface;
+use App\Thesaurus\Transformer\TownToTransformTransformerInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -23,7 +23,7 @@ class LocationType extends AbstractType
     public function __construct(
         private readonly CountryThesaurusProviderInterface $countryThesaurusProvider,
         private readonly TownAndDepartmentThesaurusProviderInterface $townAndDepartmentAndDepartmentThesaurusProvider,
-        private readonly TownToTownAndDepartmentTransformer $townToTownAndDepartmentTransformer,
+        private readonly TownToTransformTransformerInterface $townToTransformTransformer,
     ) {
     }
 
@@ -97,28 +97,8 @@ class LocationType extends AbstractType
         $countries = $this->countryThesaurusProvider->getChoices();
 
         return $countries['pel.country.france'] === $country
-            ? $this->townToTransform($this->townAndDepartmentAndDepartmentThesaurusProvider->getChoices())
+            ? $this->townToTransformTransformer->transform($this->townAndDepartmentAndDepartmentThesaurusProvider->getChoices())
             : [];
-    }
-
-    /**
-     * @param array<mixed> $towns
-     *
-     * @return array<string, string>
-     */
-    private function townToTransform(array $towns): array
-    {
-        $townsTransformed = [];
-
-        /**
-         * @var array<string, int> $town
-         */
-        foreach ($towns as $key => $town) {
-            $transformedValue = $this->townToTownAndDepartmentTransformer->transform([$key, $town['pel.department']]);
-            $townsTransformed[$transformedValue] = $transformedValue;
-        }
-
-        return $townsTransformed;
     }
 
     private function addFormPartForForeignPlace(FormInterface $form): void
