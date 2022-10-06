@@ -21,10 +21,10 @@ class FactsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('offenseNature', OffenseNatureType::class, [
+            ->add('address', AddressType::class, [
                 'label' => false,
             ])
-            ->add('placeNature', PlaceNatureType::class, [
+            ->add('offenseNature', OffenseNatureType::class, [
                 'label' => false,
             ])
             ->add('offenseDate', OffenseDateType::class, [

@@ -7,14 +7,18 @@ namespace App\Form\Facts;
 use App\Thesaurus\NaturePlaceOtherThesaurusProviderInterface;
 use App\Thesaurus\NaturePlacePublicTransportThesaurusProviderInterface;
 use App\Thesaurus\NaturePlaceThesaurusProviderInterface;
+use App\Thesaurus\TownAndDepartmentThesaurusProviderInterface;
+use App\Thesaurus\Transformer\TownToTransformTransformerInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Validator\Constraints\Choice;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
@@ -24,6 +28,8 @@ class PlaceNatureType extends AbstractType
         private readonly NaturePlaceThesaurusProviderInterface $naturePlaceThesaurusProvider,
         private readonly NaturePlacePublicTransportThesaurusProviderInterface $naturePlacePublicTransportThesaurusProvider,
         private readonly NaturePlaceOtherThesaurusProviderInterface $naturePlaceOtherThesaurusProvider,
+        private readonly TownAndDepartmentThesaurusProviderInterface $townAndDepartmentAndDepartmentThesaurusProvider,
+        private readonly TownToTransformTransformerInterface $townToTransformTransformer,
     ) {
     }
 
@@ -91,6 +97,31 @@ class PlaceNatureType extends AbstractType
                 'label' => false,
                 'placeholder' => 'pel.nature.place.public.transport.choice.message',
             ]);
+        } else {
+            $choices = $this->townToTransformTransformer->transform($this->townAndDepartmentAndDepartmentThesaurusProvider->getChoices());
+            $form
+                ->add('townAndDepartment', ChoiceType::class, [
+                    'choices' => $choices,
+                    'constraints' => [
+                        new NotBlank([
+                            'message' => 'pel.town.and.department.error',
+                        ]),
+                        new Choice([
+                            'choices' => $choices,
+                        ]),
+                    ],
+                    'label' => 'pel.address.town',
+                    'placeholder' => 'pel.choose.your.town',
+                ])
+                ->add('wayNumber', NumberType::class, [
+                    'label' => 'pel.address.way.number',
+                    'required' => false,
+                ])
+                ->add('way', TextType::class, [
+                    'label' => 'pel.address.way',
+                    'required' => false,
+                ])
+            ;
         }
     }
 

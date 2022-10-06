@@ -22,6 +22,10 @@
                 <source>pel.address.department</source>
                 <target>Département</target>
             </trans-unit>
+            <trans-unit id="pel.address.facts">
+                <source>pel.address.facts</source>
+                <target>Connaissez-vous l'adresse des faits ?</target>
+            </trans-unit>
             <trans-unit id="pel.address.number">
                 <source>pel.address.number</source>
                 <target>N°</target>
@@ -33,6 +37,10 @@
             <trans-unit id="pel.address.way">
                 <source>pel.address.way</source>
                 <target>Voie de résidence</target>
+            </trans-unit>
+            <trans-unit id="pel.address.way.number">
+                <source>pel.address.way.number</source>
+                <target>Numéro de voie</target>
             </trans-unit>
             <trans-unit id="pel.all.fields.are.required">
                 <source>pel.all.fields.are.required</source>
@@ -721,6 +729,10 @@
             <trans-unit id="pel.to.log.in">
                 <source>pel.to.log.in</source>
                 <target>Se connecter</target>
+            </trans-unit>
+            <trans-unit id="pel.town.and.department.error">
+                <source>pel.town.and.department.error</source>
+                <target>Veuillez renseigner une commune ou indiquer que vous ne connaissez pas l'adresse des faits</target>
             </trans-unit>
             <trans-unit id="pel.town.arcachon">
                 <source>pel.town.arcachon</source>
