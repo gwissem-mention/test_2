@@ -470,6 +470,10 @@
                 <source>pel.identify.with</source>
                 <target>S’identifier avec</target>
             </trans-unit>
+            <trans-unit id="pel.i.dont.know">
+                <source>pel.i.dont.know</source>
+                <target>Je ne sais pas</target>
+            </trans-unit>
             <trans-unit id="pel.inside">
                 <source>pel.inside</source>
                 <target>de l'intérieur</target>
