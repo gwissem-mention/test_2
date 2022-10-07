@@ -15,6 +15,13 @@ class IndexController extends AbstractController
 {
     public function __invoke(Request $request): Response
     {
+        $session = $request->getSession();
+        if ($request->query->has('france_connected')) {
+            $session->set('france_connected', true);
+        } else {
+            $session->remove('france_connected');
+        }
+
         $form = $this->createForm(IdentityType::class);
         $form->handleRequest($request);
 

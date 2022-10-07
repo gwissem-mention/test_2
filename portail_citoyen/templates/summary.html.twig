@@ -23,7 +23,8 @@
                 <a class="fr-btn" href="{{ path('facts') }}">
                     {{ 'pel.previous'|trans }}
                 </a>
-                <a class="fr-btn" href="{{ path('appointment') }}">
+                <a class="fr-btn"
+                   href="{{ path(app.session.has('france_connected') ? 'end': 'appointment') }}">
                     {{ 'pel.next'|trans }}
                 </a>
             </div>
