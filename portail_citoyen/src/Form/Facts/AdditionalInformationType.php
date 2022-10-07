@@ -16,6 +16,10 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 class AdditionalInformationType extends AbstractType
 {
+    private const CCTV_AVAILABLE_YES = 1;
+    private const CCTV_AVAILABLE_NO = 2;
+    private const CCTV_AVAILABLE_DONT_KNOW = 3;
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -48,8 +52,9 @@ class AdditionalInformationType extends AbstractType
             ])
             ->add('cctvPresent', ChoiceType::class, [
                 'choices' => [
-                    'pel.yes' => true,
-                    'pel.no' => false,
+                    'pel.yes' => self::CCTV_AVAILABLE_YES,
+                    'pel.no' => self::CCTV_AVAILABLE_NO,
+                    'pel.i.dont.know' => self::CCTV_AVAILABLE_DONT_KNOW,
                 ],
                 'expanded' => true,
                 'label' => 'pel.cctv.present',
@@ -92,7 +97,7 @@ class AdditionalInformationType extends AbstractType
                 $choice = $event->getData();
                 /** @var FormInterface $parent */
                 $parent = $event->getForm()->getParent();
-                $this->addCCTVAvailableField($parent, boolval($choice));
+                $this->addCCTVAvailableField($parent, intval($choice));
             }
         );
     }
@@ -144,9 +149,9 @@ class AdditionalInformationType extends AbstractType
         }
     }
 
-    private function addCCTVAvailableField(FormInterface $form, bool $choice): void
+    private function addCCTVAvailableField(FormInterface $form, int $choice): void
     {
-        if (true === $choice) {
+        if (self::CCTV_AVAILABLE_YES === $choice) {
             $form->add('cctvAvailable', ChoiceType::class, [
                 'choices' => [
                     'pel.yes' => true,

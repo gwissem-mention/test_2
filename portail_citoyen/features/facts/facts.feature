@@ -187,6 +187,17 @@ Feature:
         And I should not see a "input#facts_offenseDate_endHour" element
         And I should not see a "input#facts_offenseDate_hour" element
 
+    @func
+    Scenario Outline: I can see the suspectsChoice choices
+        Given I am on "/faits"
+        Then I should see 2 "input[type=radio][name='facts[additionalInformation][suspectsChoice]']" elements
+        And I should see "<choice>" in the "<element>" element
+
+        Examples:
+            | element                                                 | choice |
+            | label[for=facts_additionalInformation_suspectsChoice_0] | Oui    |
+            | label[for=facts_additionalInformation_suspectsChoice_1] | Non    |
+
     @javascript
     Scenario: Selecting the "label[for=facts_additionalInformation_suspectsChoice_1]" element and not showing
     the key "pel.facts.suspects.informations.text" translated
@@ -194,6 +205,16 @@ Feature:
         When I click the "label[for=facts_additionalInformation_suspectsChoice_1]" element
         And I should not see the key "pel.facts.suspects.informations.text" translated
 
+    @func
+    Scenario Outline: I can see the witnesses choices
+        Given I am on "/faits"
+        Then I should see 2 "input[type=radio][name='facts[additionalInformation][witnesses]']" elements
+        And I should see "<choice>" in the "<element>" element
+
+        Examples:
+            | element                                            | choice |
+            | label[for=facts_additionalInformation_witnesses_0] | Oui    |
+            | label[for=facts_additionalInformation_witnesses_1] | Non    |
 
     @javascript
     Scenario: I can see 1 text input if I select "Yes" to the witnesses radio buttons
@@ -203,6 +224,17 @@ Feature:
         Then I should see the key "pel.facts.witnesses.information.text" translated
         And I should see a "input#facts_additionalInformation_witnessesText" element
 
+    @func
+    Scenario Outline: I can see the fsi visit choices
+        Given I am on "/faits"
+        Then I should see 2 "input[type=radio][name='facts[additionalInformation][fsiVisit]']" elements
+        And I should see "<choice>" in the "<element>" element
+
+        Examples:
+            | element                                           | choice |
+            | label[for=facts_additionalInformation_fsiVisit_0] | Oui    |
+            | label[for=facts_additionalInformation_fsiVisit_1] | Non    |
+
     @javascript
     Scenario: I can see 1 radio button group if I select "Yes" to the fsi visit radio buttons
         Given I am on "/faits"
@@ -211,6 +243,19 @@ Feature:
         Then I should see the key "pel.observation.made" translated
         And I should see a "input#facts_additionalInformation_observationMade_0" element
         And I should see a "input#facts_additionalInformation_observationMade_1" element
+
+
+    @func
+    Scenario Outline: I can see the cctv choices
+        Given I am on "/faits"
+        Then I should see 3 "input[type=radio][name='facts[additionalInformation][cctvPresent]']" elements
+        And I should see "<choice>" in the "<element>" element
+
+        Examples:
+            | element                                              | choice         |
+            | label[for=facts_additionalInformation_cctvPresent_0] | Oui            |
+            | label[for=facts_additionalInformation_cctvPresent_1] | Non            |
+            | label[for=facts_additionalInformation_cctvPresent_2] | Je ne sais pas |
 
     @javascript
     Scenario: I can see 1 radio button group if I select "Yes" to the cctv present radio buttons
