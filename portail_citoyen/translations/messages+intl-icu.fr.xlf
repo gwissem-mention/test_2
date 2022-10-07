@@ -14,6 +14,18 @@
                 <source>pel.additional.factual.information</source>
                 <target>Informations complémentaires sur les faits</target>
             </trans-unit>
+            <trans-unit id="pel.address">
+                <source>pel.address</source>
+                <target>Adresse</target>
+            </trans-unit>
+            <trans-unit id="pel.address.arrival">
+                <source>pel.address.arrival</source>
+                <target>Adresse d'arrivée</target>
+            </trans-unit>
+            <trans-unit id="pel.address.departure">
+                <source>pel.address.departure</source>
+                <target>Adresse de départ</target>
+            </trans-unit>
             <trans-unit id="pel.address.country">
                 <source>pel.address.country</source>
                 <target>Pays</target>
@@ -358,6 +370,10 @@
                 <source>pel.facts</source>
                 <target>Faits</target>
             </trans-unit>
+            <trans-unit id="pel.facts.date">
+                <source>pel.facts.date</source>
+                <target>Date des faits</target>
+            </trans-unit>
             <trans-unit id="pel.facts.description">
                 <source>pel.facts.description</source>
                 <target>Description des faits</target>
@@ -366,6 +382,10 @@
                 <source>pel.facts.description.precise</source>
                 <target>Description précise des faits</target>
             </trans-unit>
+            <trans-unit id="pel.facts.hour">
+                <source>pel.facts.hour</source>
+                <target>Heure des faits</target>
+            </trans-unit>
             <trans-unit id="pel.facts.suspects.informations.text">
                 <source>pel.facts.suspects.informations.text</source>
                 <target>Veuillez indiquer le nombre de personnes, la direction de fuite, la description des suspects...</target>
@@ -373,6 +393,10 @@
             <trans-unit id="pel.facts.witnesses.information.text">
                 <source>pel.facts.witnesses.information.text</source>
                 <target>Veuillez indiquer, si vous le pouvez, les noms et les coordonnées du/des témoin(s)</target>
+            </trans-unit>
+            <trans-unit id="pel.witness">
+                <source>pel.witness</source>
+                <target>Témoin</target>
             </trans-unit>
             <trans-unit id="pel.facts.witnesses">
                 <source>pel.facts.witnesses</source>
@@ -670,6 +694,10 @@
                 <source>pel.objects</source>
                 <target>Objets</target>
             </trans-unit>
+            <trans-unit id="pel.objects.concerned">
+                <source>pel.objects.concerned</source>
+                <target>Objets concernés</target>
+            </trans-unit>
             <trans-unit id="pel.objects.add">
                 <source>pel.objects.add</source>
                 <target>Ajouter un objet supplémentaire</target>
@@ -693,6 +721,10 @@
             <trans-unit id="pel.online.complaint">
                 <source>pel.online.complaint</source>
                 <target>Plainte en ligne</target>
+            </trans-unit>
+            <trans-unit id="pel.passage.fsi">
+                <source>pel.passage.fsi</source>
+                <target>Indications du passage des FSI</target>
             </trans-unit>
             <trans-unit id="pel.previous">
                 <source>pel.previous</source>
@@ -730,6 +762,10 @@
                 <source>pel.submit</source>
                 <target>Enregistrer</target>
             </trans-unit>
+            <trans-unit id="pel.suspect">
+                <source>pel.suspect</source>
+                <target>Suspect</target>
+            </trans-unit>
             <trans-unit id="pel.to.log.in">
                 <source>pel.to.log.in</source>
                 <target>Se connecter</target>
@@ -765,6 +801,10 @@
             <trans-unit id="pel.validate">
                 <source>pel.validate</source>
                 <target>Valider</target>
+            </trans-unit>
+            <trans-unit id="pel.video.surveillance">
+                <source>pel.video.surveillance</source>
+                <target>Vidéosurveillance</target>
             </trans-unit>
             <trans-unit id="pel.visitor.agree">
                 <source>pel.visitor.agree</source>

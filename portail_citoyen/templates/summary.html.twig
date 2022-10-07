@@ -6,6 +6,11 @@
         <div class="fr-grid-row">
             <div class="fr-col">
                 <h6>{{ 'pel.complaint.identity.declarant.status'|trans }}</h6>
+                <ul>
+                    <li>{{ 'pel.complaint.identity.victim'|trans }}</li>
+                    <li>{{ 'pel.complaint.identity.person.legal.representative'|trans }}</li>
+                    <li>{{ 'pel.complaint.identity.corporation.legal.representative'|trans }}</li>
+                </ul>
             </div>
         </div>
         <div class="fr-grid-row">
@@ -16,6 +21,38 @@
         <div class="fr-grid-row">
             <div class="fr-col">
                 <h6>{{ 'pel.facts.description'|trans }}</h6>
+                <p>{{ 'pel.complaint.nature.of.the.facts'|trans }}</p>
+                <ul>
+                    <li>{{ 'pel.complaint.offense.nature.robbery'|trans }}</li>
+                    <li>{{ 'pel.complaint.offense.nature.degradation'|trans }}</li>
+                    <li>{{ 'pel.complaint.offense.nature.robbery.and.degradation'|trans }}</li>
+                    <li>{{ 'pel.complaint.offense.nature.other'|trans }}</li>
+                </ul>
+                <p>{{ 'pel.nature.place'|trans }}</p>
+                <ul>
+                    <li>{{ 'pel.nature.place'|trans }} : {{ 'pel.address'|trans }}</li>
+                    <li>{{ 'pel.address.departure'|trans }} : {{ 'pel.address.arrival'|trans }}</li>
+                    <li>{{ 'pel.nature.place.unknown'|trans }}</li>
+                </ul>
+                <p>{{ 'pel.facts.date'|trans }}</p>
+                <ul>
+                    <li>{{ 'pel.offense.unique.date'|trans }} : 01/09/2022</li>
+                    <li>{{ 'pel.offense.start.date'|trans }} : 01/09/2022 - {{ 'pel.offense.end.date'|trans }} : 03/09/2022</li>
+                </ul>
+                <p>{{ 'pel.facts.hour'|trans }}</p>
+                <ul>
+                    <li>Date exacte : 15:00</li>
+                    <li>Date de début : 15:00 - Date de fin : 18:00</li>
+                    <li>Je ne connais pas l'heure des faits</li>
+                </ul>
+                <p>{{ 'pel.objects.concerned'|trans }}</p>
+                <p>{{ 'pel.additional.factual.information'|trans }}</p>
+                <ul>
+                    <li>{{ 'pel.witness'|trans }}</li>
+                    <li>{{ 'pel.suspect'|trans }}</li>
+                    <li>{{ 'pel.passage.fsi'|trans }}</li>
+                    <li>{{ 'pel.video.surveillance'|trans }}</li>
+                </ul>
             </div>
         </div>
         <div class="fr-grid-row">
