@@ -39,44 +39,10 @@
         </div>
     </div>
 
-    {% if form.address.placeNature is defined %}
+    {% if form.address.addressNotKnown is defined %}
         <div class="fr-grid-row fr-py-2w">
             <div class="fr-col">
-                {{ form_row(form.address.placeNature.place) }}
-                {% if form.address.placeNature.naturePlacePublicTransportChoice is defined %}
-                    {{ form_row(form.address.placeNature.naturePlacePublicTransportChoice) }}
-                {% endif %}
-                {% if form.address.placeNature.naturePlaceOtherChoice is defined %}
-                    {{ form_row(form.address.placeNature.naturePlaceOtherChoice) }}
-                {% endif %}
-                {{ form_row(form.address.placeNature.moreInfo) }}
-                {% if form.address.placeNature.moreInfoText is defined %}
-                    {{ form_row(form.address.placeNature.moreInfoText) }}
-                {% endif %}
-            </div>
-        </div>
-    {% endif %}
-
-    {% if form.address.placeNature.townAndDepartment is defined %}
-        <div class="fr-grid-row fr-py-2w">
-            <div class="fr-col">
-                {{ form_row(form.address.placeNature.townAndDepartment) }}
-            </div>
-        </div>
-    {% endif %}
-
-    {% if form.address.placeNature.wayNumber is defined %}
-        <div class="fr-grid-row fr-py-2w">
-            <div class="fr-col">
-                {{ form_row(form.address.placeNature.wayNumber) }}
-            </div>
-        </div>
-    {% endif %}
-
-    {% if form.address.placeNature.way is defined %}
-        <div class="fr-grid-row fr-py-2w">
-            <div class="fr-col">
-                {{ form_row(form.address.placeNature.way) }}
+                {{ form_row(form.address.addressNotKnown) }}
             </div>
         </div>
     {% endif %}

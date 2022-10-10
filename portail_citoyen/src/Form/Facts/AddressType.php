@@ -7,11 +7,7 @@ namespace App\Form\Facts;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\FormEvent;
-use Symfony\Component\Form\FormEvents;
-use Symfony\Component\Form\FormInterface;
 
 class AddressType extends AbstractType
 {
@@ -33,34 +29,5 @@ class AddressType extends AbstractType
                 'required' => false,
             ])
         ;
-
-        $builder
-            ->get('isAddressOrRouteFactsKnown')
-            ->addEventListener(
-                FormEvents::POST_SUBMIT,
-                function (FormEvent $event) {
-                    $choice = $event->getData();
-                    if ('' === $choice) {
-                        return;
-                    }
-                    /** @var FormInterface $parent */
-                    $parent = $event->getForm()->getParent();
-                    $this->addOffenseNatureOrNotKnownField($parent, boolval($choice));
-                }
-            )
-        ;
-    }
-
-    private function addOffenseNatureOrNotKnownField(FormInterface $form, bool $choice): void
-    {
-        if (true === $choice) {
-            $form
-                ->add('address', TextType::class, [
-                    'label' => 'pel.address',
-                ])
-                ->add('placeNature', PlaceNatureType::class, [
-                    'label' => false,
-                ]);
-        }
     }
 }

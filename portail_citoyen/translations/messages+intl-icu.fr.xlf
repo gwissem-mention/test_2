@@ -558,10 +558,6 @@
                 <source>pel.mobile</source>
                 <target>Numéro de téléphone portable</target>
             </trans-unit>
-            <trans-unit id="pel.more.info.place">
-                <source>pel.more.info.place</source>
-                <target>Je souhaite apporter des précisions sur le lieu des faits</target>
-            </trans-unit>
             <trans-unit id="pel.my.identity">
                 <source>pel.my.identity</source>
                 <target>Mon identité</target>
@@ -581,94 +577,6 @@
             <trans-unit id="pel.nationality.spain">
                 <source>pel.nationality.spain</source>
                 <target>Espagnole</target>
-            </trans-unit>
-            <trans-unit id="pel.nature.place">
-                <source>pel.nature.place</source>
-                <target>Nature de lieu</target>
-            </trans-unit>
-            <trans-unit id="pel.nature.place.home">
-                <source>pel.nature.place.home</source>
-                <target>Domicile/Logement</target>
-            </trans-unit>
-            <trans-unit id="pel.nature.place.market">
-                <source>pel.nature.place.market</source>
-                <target>Commerce</target>
-            </trans-unit>
-            <trans-unit id="pel.nature.place.other">
-                <source>pel.nature.place.other</source>
-                <target>Autres natures de lieu</target>
-            </trans-unit>
-            <trans-unit id="pel.nature.place.other.camping">
-                <source>pel.nature.place.other.camping</source>
-                <target>Camping</target>
-            </trans-unit>
-            <trans-unit id="pel.nature.place.other.market">
-                <source>pel.nature.place.other.market</source>
-                <target>Marché</target>
-            </trans-unit>
-            <trans-unit id="pel.nature.place.other.park">
-                <source>pel.nature.place.other.park</source>
-                <target>Parc</target>
-            </trans-unit>
-            <trans-unit id="pel.nature.place.other.choice.message">
-                <source>pel.nature.place.other.choice.message</source>
-                <target>Précisez la nature du lieu</target>
-            </trans-unit>
-            <trans-unit id="pel.nature.place.other.restaurant">
-                <source>pel.nature.place.other.restaurant</source>
-                <target>Restaurant</target>
-            </trans-unit>
-            <trans-unit id="pel.nature.place.park">
-                <source>pel.nature.place.park</source>
-                <target>Parking / garage</target>
-            </trans-unit>
-            <trans-unit id="pel.nature.place.choice.message">
-                <source>pel.nature.place.choice.message</source>
-                <target>Choisissez le lieu où se sont déroulés les faits</target>
-            </trans-unit>
-            <trans-unit id="pel.nature.place.public.transport">
-                <source>pel.nature.place.public.transport</source>
-                <target>Transports en commun</target>
-            </trans-unit>
-            <trans-unit id="pel.nature.place.public.transport.autocar">
-                <source>pel.nature.place.public.transport.autocar</source>
-                <target>Autocar</target>
-            </trans-unit>
-            <trans-unit id="pel.nature.place.public.transport.boat">
-                <source>pel.nature.place.public.transport.boat</source>
-                <target>Bateau</target>
-            </trans-unit>
-            <trans-unit id="pel.nature.place.public.transport.bus">
-                <source>pel.nature.place.public.transport.bus</source>
-                <target>Bus</target>
-            </trans-unit>
-            <trans-unit id="pel.nature.place.public.transport.choice.message">
-                <source>pel.nature.place.public.transport.choice.message</source>
-                <target>Précisez le transport</target>
-            </trans-unit>
-            <trans-unit id="pel.nature.place.public.transport.plane">
-                <source>pel.nature.place.public.transport.plane</source>
-                <target>Avion/Aéroport</target>
-            </trans-unit>
-            <trans-unit id="pel.nature.place.public.transport.subway">
-                <source>pel.nature.place.public.transport.subway</source>
-                <target>Métro</target>
-            </trans-unit>
-            <trans-unit id="pel.nature.place.public.transport.train.station">
-                <source>pel.nature.place.public.transport.train.station</source>
-                <target>Train/gare</target>
-            </trans-unit>
-            <trans-unit id="pel.nature.place.public.transport.tram">
-                <source>pel.nature.place.public.transport.tram</source>
-                <target>Tramway</target>
-            </trans-unit>
-            <trans-unit id="pel.nature.place.street">
-                <source>pel.nature.place.street</source>
-                <target>Voie publique / Rue</target>
-            </trans-unit>
-            <trans-unit id="pel.nature.place.unknown">
-                <source>pel.nature.place.unknown</source>
-                <target>Lieu indéterminé</target>
             </trans-unit>
             <trans-unit id="pel.next">
                 <source>pel.next</source>
