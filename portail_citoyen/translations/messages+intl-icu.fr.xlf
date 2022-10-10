@@ -710,6 +710,10 @@
                 <source>pel.town.paris</source>
                 <target>Paris</target>
             </trans-unit>
+            <trans-unit id="pel.usage.name">
+                <source>pel.usage.name</source>
+                <target>Nom d'usage</target>
+            </trans-unit>
             <trans-unit id="pel.validate">
                 <source>pel.validate</source>
                 <target>Valider</target>
