@@ -11,6 +11,7 @@ Feature:
         Then I should see the key "pel.all.fields.are.required" translated
         And I should see the key "pel.civility" translated
         And I should see the key "pel.birth.name" translated
+        And I should see the key "pel.usage.name" translated
         And I should see the key "pel.first.names" translated
         And I should see the key "pel.birth.date" translated
         And I should see the key "pel.birth.country" translated

@@ -57,6 +57,18 @@ class CivilStateType extends AbstractType
                 ],
                 'label' => 'pel.birth.name',
             ])
+            ->add('usageName', TextType::class, [
+                'attr' => [
+                    'data-controller' => 'form',
+                    'data-action' => 'keyup->form#toUpperCase change->form#toUpperCase',
+                    'maxlength' => 70,
+                ],
+                'constraints' => [
+                    new Length(['max' => 70]),
+                ],
+                'label' => 'pel.usage.name',
+                'required' => false,
+            ])
             ->add('firstnames', TextType::class, [
                 'attr' => [
                     'maxlength' => 40,
