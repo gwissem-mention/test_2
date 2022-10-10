@@ -14,6 +14,10 @@
                 <source>pel.additional.factual.information</source>
                 <target>Informations complémentaires sur les faits</target>
             </trans-unit>
+            <trans-unit id="pel.additional.place.information">
+                <source>pel.additional.place.information</source>
+                <target>Informations complémentaires sur le lieu</target>
+            </trans-unit>
             <trans-unit id="pel.address">
                 <source>pel.address</source>
                 <target>Adresse</target>
@@ -21,10 +25,6 @@
             <trans-unit id="pel.address.arrival">
                 <source>pel.address.arrival</source>
                 <target>Adresse d'arrivée</target>
-            </trans-unit>
-            <trans-unit id="pel.address.departure">
-                <source>pel.address.departure</source>
-                <target>Adresse de départ</target>
             </trans-unit>
             <trans-unit id="pel.address.country">
                 <source>pel.address.country</source>
@@ -34,9 +34,13 @@
                 <source>pel.address.department</source>
                 <target>Département</target>
             </trans-unit>
-            <trans-unit id="pel.address.facts">
-                <source>pel.address.facts</source>
-                <target>Connaissez-vous l'adresse des faits ?</target>
+            <trans-unit id="pel.address.departure">
+                <source>pel.address.departure</source>
+                <target>Adresse de départ</target>
+            </trans-unit>
+            <trans-unit id="pel.address.or.route.facts">
+                <source>pel.address.or.route.facts</source>
+                <target>Connaissez vous l'adresse exacte ou le trajet sur lequel se sont déroulés les faits ?</target>
             </trans-unit>
             <trans-unit id="pel.address.number">
                 <source>pel.address.number</source>

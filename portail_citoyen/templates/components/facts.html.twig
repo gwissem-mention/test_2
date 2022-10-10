@@ -21,7 +21,21 @@
 
     <div class="fr-grid-row fr-py-2w">
         <div class="fr-col">
-            {{ form_row(form.address.isAddressFactsKnown) }}
+            {{ form_row(form.address.isAddressOrRouteFactsKnown) }}
+        </div>
+    </div>
+
+    {% if form.address.address is defined %}
+        <div class="fr-grid-row fr-py-2w">
+            <div class="fr-col">
+                {{ form_row(form.address.address) }}
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="fr-grid-row fr-py-2w">
+        <div class="fr-col">
+            {{ form_row(form.address.addressAdditionalInformation) }}
         </div>
     </div>
 
@@ -63,14 +77,6 @@
         <div class="fr-grid-row fr-py-2w">
             <div class="fr-col">
                 {{ form_row(form.address.placeNature.way) }}
-            </div>
-        </div>
-    {% endif %}
-
-    {% if form.address.addressNotKnown is defined %}
-        <div class="fr-grid-row fr-py-2w">
-            <div class="fr-col">
-                {{ form_row(form.address.addressNotKnown) }}
             </div>
         </div>
     {% endif %}

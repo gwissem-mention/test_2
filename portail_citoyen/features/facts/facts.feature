@@ -11,7 +11,9 @@ Feature:
         And I should see the key "pel.inside" translated
         And I should see the key "pel.and.overseas" translated
         And I should see the key "pel.complaint.nature.of.the.facts" translated
-        And I should see the key "pel.address.facts" translated
+        And I should see the key "pel.address.or.route.facts" translated
+        And I should see the key "pel.additional.place.information" translated
+        And I should see a "#facts_address_addressAdditionalInformation" element
         And I should not see a "#place_nature_moreInfoText" element
         And I should see the key "pel.complaint.exact.date.known" translated
         And I should see the key "pel.do.you.know.hour.facts" translated
@@ -83,6 +85,19 @@ Feature:
             | label[for=facts_offenseDate_choiceHour_2] | Je ne connais pas l'heure des faits     |
 
     @javascript
+    Scenario: I should see a text field and a "Adresse" label when I know the address or facts
+        Given I am on "/faits"
+        When I click the "label[for=facts_address_isAddressOrRouteFactsKnown_0]" element
+        Then I should see the key "pel.address" translated
+        And I should see a "#facts_address_address" element
+
+    @javascript
+    Scenario: I should not see a text field and a "Adresse" label when I don't know the address or facts
+        Given I am on "/faits"
+        When I click the "label[for=facts_address_isAddressOrRouteFactsKnown_1]" element
+        Then I should not see a "#facts_address_address" element
+
+    @javascript
     Scenario: I can see a warning text if I select "Robbery"
         Given I am on "/faits"
         When I wait and select "Vol" from "facts_offenseNature_offenseNature"
@@ -99,7 +114,7 @@ Feature:
     @javascript
     Scenario: I can see the more info input text if I check "Je souhaite apporter des précisions sur le lieu des faits" checkbox
         Given I am on "/faits"
-        When I click the "label[for=facts_address_isAddressFactsKnown_0]" element
+        When I click the "label[for=facts_address_isAddressOrRouteFactsKnown_0]" element
         And I click the "label[for=facts_address_placeNature_moreInfo]" element
         And I wait for the element "#facts_address_placeNature_moreInfoText" to appear
         Then I should see a "#facts_address_placeNature_moreInfoText" element
@@ -107,7 +122,7 @@ Feature:
     @javascript
     Scenario Outline: I can see a list a common transports When I wait and select "Common transport" nature place
         Given I am on "/faits"
-        When I click the "label[for=facts_address_isAddressFactsKnown_0]" element
+        When I click the "label[for=facts_address_isAddressOrRouteFactsKnown_0]" element
         And I wait and select "Transports en commun" from "facts_address_placeNature_place"
         And I should see "Transports en commun" in the "#facts_address_placeNature_place" element
         And I wait for the element "#facts_address_placeNature_naturePlacePublicTransportChoice" to appear
@@ -127,7 +142,7 @@ Feature:
     @javascript
     Scenario Outline: I can see a list a other places When I wait and select "Other places" nature place
         Given I am on "/faits"
-        When I click the "label[for=facts_address_isAddressFactsKnown_0]" element
+        When I click the "label[for=facts_address_isAddressOrRouteFactsKnown_0]" element
         And I wait and select "Autres natures de lieu" from "facts_address_placeNature_place"
         And I wait for the element "#facts_address_placeNature_naturePlaceOtherChoice" to appear
         Then I select "<nature_place_other>" from "facts_address_placeNature_naturePlaceOtherChoice"
@@ -295,7 +310,7 @@ Feature:
     Scenario: Submit the facts form
         Given I am on "/faits"
         When I wait and select "1" from "facts_offenseNature_offenseNature"
-        And I click the "label[for=facts_address_isAddressFactsKnown_0]" element
+        And I click the "label[for=facts_address_isAddressOrRouteFactsKnown_0]" element
         And I wait and select "1" from "facts_address_placeNature_place"
         And I click the "label[for=facts_offenseDate_exactDateKnown_0]" element
         And I wait and fill in "facts_offenseDate_startDate" with "01/01/2022"
