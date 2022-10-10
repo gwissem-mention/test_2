@@ -7,6 +7,7 @@ namespace App\Form\Facts;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -17,8 +18,8 @@ class AddressType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('isAddressFactsKnown', ChoiceType::class, [
-                'label' => 'pel.address.facts',
+            ->add('isAddressOrRouteFactsKnown', ChoiceType::class, [
+                'label' => 'pel.address.or.route.facts',
                 'expanded' => true,
                 'multiple' => false,
                 'inline' => true,
@@ -26,10 +27,15 @@ class AddressType extends AbstractType
                     'pel.yes' => true,
                     'pel.no' => false,
                 ],
-            ]);
+            ])
+            ->add('addressAdditionalInformation', TextareaType::class, [
+                'label' => 'pel.additional.place.information',
+                'required' => false,
+            ])
+        ;
 
         $builder
-            ->get('isAddressFactsKnown')
+            ->get('isAddressOrRouteFactsKnown')
             ->addEventListener(
                 FormEvents::POST_SUBMIT,
                 function (FormEvent $event) {
@@ -49,12 +55,10 @@ class AddressType extends AbstractType
     {
         if (true === $choice) {
             $form
+                ->add('address', TextType::class, [
+                    'label' => 'pel.address',
+                ])
                 ->add('placeNature', PlaceNatureType::class, [
-                    'label' => false,
-                ]);
-        } else {
-            $form
-                ->add('addressNotKnown', TextareaType::class, [
                     'label' => false,
                 ]);
         }
