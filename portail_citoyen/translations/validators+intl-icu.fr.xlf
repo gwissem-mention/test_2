@@ -6,10 +6,6 @@
                 <source>pel.corporation.siren.number.error</source>
                 <target>Cette chaine doit contenir uniquement des chiffres.</target>
             </trans-unit>
-            <trans-unit id="pel.nature.place.not.blank.error">
-                <source>pel.nature.place.not.blank.error</source>
-                <target>Veuillez entrer un lieu valide.</target>
-            </trans-unit>
             <trans-unit id="pel.visitor.agree.checkbox.error">
                 <source>pel.visitor.agree.checkbox.error</source>
                 <target>Veuillez accepter la collecte des données pour poursuivre votre déclaration</target>
