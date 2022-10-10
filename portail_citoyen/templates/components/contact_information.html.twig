@@ -13,6 +13,11 @@
 {% endif %}
 
 {{ form_row(form.addressNumber) }}
-{{ form_row(form.addressWay) }}
+{% if form.frenchAddressWay is defined %}
+    {{ form_row(form.frenchAddressWay) }}
+{% endif %}
+{% if form.foreignAddressWay is defined %}
+    {{ form_row(form.foreignAddressWay) }}
+{% endif %}
 {{ form_row(form.email) }}
 {{ form_row(form.mobile) }}

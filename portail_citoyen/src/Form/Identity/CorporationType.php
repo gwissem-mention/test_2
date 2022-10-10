@@ -21,6 +21,7 @@ class CorporationType extends AbstractType
 {
     public function __construct(
         private readonly EventSubscriberInterface $addAddressWaySubscriber,
+        private readonly EventSubscriberInterface $addAddressWayCountrySubscriber,
         private readonly NationalityThesaurusProviderInterface $nationalityThesaurusProvider,
     ) {
     }
@@ -106,5 +107,6 @@ class CorporationType extends AbstractType
             ]);
 
         $builder->addEventSubscriber($this->addAddressWaySubscriber);
+        $builder->get('addressLocation')->get('country')->addEventSubscriber($this->addAddressWayCountrySubscriber);
     }
 }

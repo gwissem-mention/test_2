@@ -17,7 +17,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 class AddAddressWaySubscriber implements EventSubscriberInterface
 {
     public function __construct(
-        private readonly CountryThesaurusProviderInterface $countryThesaurusProvider,
+        protected readonly CountryThesaurusProviderInterface $countryThesaurusProvider,
         private readonly WayThesaurusProviderInterface $wayThesaurusProvider,
     ) {
     }
@@ -25,12 +25,11 @@ class AddAddressWaySubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return [
-            FormEvents::PRE_SET_DATA => 'preSetData',
-            FormEvents::SUBMIT => 'submit',
+            FormEvents::PRE_SET_DATA => 'addAddressWayFieldOnPreSetData',
         ];
     }
 
-    public function preSetData(FormEvent $event): void
+    public function addAddressWayFieldOnPreSetData(FormEvent $event): void
     {
         /** @var int $country */
         $country = $this->countryThesaurusProvider->getChoices()['pel.country.france'];
@@ -40,22 +39,7 @@ class AddAddressWaySubscriber implements EventSubscriberInterface
         );
     }
 
-    public function submit(FormEvent $event): void
-    {
-        /** @var array<string, string> $data */
-        $data = (array) $event->getData();
-        /** @var array<string> $addressLocation */
-        $addressLocation = (array) $data['addressLocation'];
-        if (isset($addressLocation['country'])) {
-            /** @var ?int $country */
-            $country = $addressLocation['country'] ?:
-                $this->countryThesaurusProvider->getChoices()['pel.country.france'];
-
-            $this->addAddressWayField($event->getForm(), $country);
-        }
-    }
-
-    private function addAddressWayField(FormInterface $form, null|int $country): void
+    protected function addAddressWayField(FormInterface $form, null|int $country): void
     {
         if ($this->countryThesaurusProvider->getChoices()['pel.country.france'] === $country) {
             $this->addFrenchAddressWayField($form);
@@ -64,21 +48,24 @@ class AddAddressWaySubscriber implements EventSubscriberInterface
         }
     }
 
-    private function addFrenchAddressWayField(FormInterface $form): void
-    {
-        $form->add('addressWay', ChoiceType::class, [
-            'constraints' => [
-                new NotBlank(),
-            ],
-            'choices' => $this->wayThesaurusProvider->getChoices(),
-            'label' => 'pel.address.way',
-        ]);
-    }
-
-    private function addForeignAddressWayField(FormInterface $form): void
+    protected function addFrenchAddressWayField(FormInterface $form): void
     {
         $form
-            ->add('addressWay', TextType::class, [
+            ->remove('foreignAddressWay')
+            ->add('frenchAddressWay', ChoiceType::class, [
+                'constraints' => [
+                    new NotBlank(),
+                ],
+                'choices' => $this->wayThesaurusProvider->getChoices(),
+                'label' => 'pel.address.way',
+            ]);
+    }
+
+    protected function addForeignAddressWayField(FormInterface $form): void
+    {
+        $form
+            ->remove('frenchAddressWay')
+            ->add('foreignAddressWay', TextType::class, [
                 'constraints' => [
                     new NotBlank(),
                 ],
