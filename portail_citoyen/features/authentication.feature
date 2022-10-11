@@ -19,8 +19,21 @@ Feature:
         And I am on "/identite"
 
     @javascript
-    Scenario: Show authentication page with a button and a link and click on the button
+    Scenario: I can click on the FranceConnect Button
         Given I am on "/authentification"
-        Then I wait for the element "#france_connect_auth_button" to appear
-        And I press "france_connect_auth_button"
-        And I am on "/identite"
+        When I press "france_connect_auth_button"
+        Then I am on "/identite?france_connected=1"
+        When I click the "label[for=identity_declarantStatus_0]" element
+        And I wait for the element "#form-identity" to appear
+        Then the "identity_civilState_birthName" field should contain "DUPONT"
+        And the "identity_civilState_firstnames" field should contain "Michel"
+
+    @javascript
+    Scenario: I can click on the unconnected button
+        Given I am on "/authentification"
+        When I follow "Continuer sans m'authentifier"
+        Then I am on "/identite"
+        When I click the "label[for=identity_declarantStatus_0]" element
+        And I wait for the element "#form-identity" to appear
+        Then the "identity_civilState_birthName" field should not contain "DUPONT"
+        And the "identity_civilState_firstnames" field should not contain "Michel"

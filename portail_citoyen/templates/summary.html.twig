@@ -61,7 +61,7 @@
                     {{ 'pel.previous'|trans }}
                 </a>
                 <a class="fr-btn"
-                   href="{{ path(app.session.has('france_connected') ? 'end': 'appointment') }}">
+                   href="{{ path(is_france_connected() ? 'end': 'appointment') }}">
                     {{ 'pel.next'|trans }}
                 </a>
             </div>

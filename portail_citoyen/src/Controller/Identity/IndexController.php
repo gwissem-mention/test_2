@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller\Identity;
 
 use App\Form\Identity\IdentityType;
+use App\FranceConnect\IdentitySessionHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,13 +14,20 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/identite', name: 'identity')]
 class IndexController extends AbstractController
 {
-    public function __invoke(Request $request): Response
+    public function __invoke(Request $request, IdentitySessionHandler $fcIdentitySessionHandler): Response
     {
-        $session = $request->getSession();
         if ($request->query->has('france_connected')) {
-            $session->set('france_connected', true);
+            $fcIdentitySessionHandler->setIdentity(
+                'Michel',
+                'DUPONT',
+                '1967-03-02',
+                'male',
+                '75056',
+                '75056',
+                'michel.dupont@example.com'
+            );
         } else {
-            $session->remove('france_connected');
+            $fcIdentitySessionHandler->removeIdentity();
         }
 
         $form = $this->createForm(IdentityType::class);
