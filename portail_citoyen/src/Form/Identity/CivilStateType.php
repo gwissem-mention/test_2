@@ -6,6 +6,7 @@ namespace App\Form\Identity;
 
 use App\Enum\DeclarantStatus;
 use App\Form\LocationType;
+use App\FranceConnect\Identity;
 use App\Thesaurus\JobThesaurusProviderInterface;
 use App\Thesaurus\NationalityThesaurusProviderInterface;
 use Symfony\Component\Form\AbstractType;
@@ -25,14 +26,16 @@ class CivilStateType extends AbstractType
 {
     public function __construct(
         private readonly NationalityThesaurusProviderInterface $nationalityThesaurusProvider,
-        private readonly JobThesaurusProviderInterface $jobThesaurusProvider
+        private readonly JobThesaurusProviderInterface $jobThesaurusProvider,
     ) {
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $nationalityChoices = $this->nationalityThesaurusProvider->getChoices();
+        /** @var Identity|null $fcIdentity */
+        $fcIdentity = $options['fc_identity'];
 
+        $nationalityChoices = $this->nationalityThesaurusProvider->getChoices();
         $builder
             ->add('civility', ChoiceType::class, [
                 'choices' => [
@@ -56,6 +59,7 @@ class CivilStateType extends AbstractType
                     new Length(['max' => 70]),
                 ],
                 'label' => 'pel.birth.name',
+                'empty_data' => $fcIdentity?->getFamilyName(),
             ])
             ->add('usageName', TextType::class, [
                 'attr' => [
@@ -78,6 +82,7 @@ class CivilStateType extends AbstractType
                     new Length(['max' => 40]),
                 ],
                 'label' => 'pel.first.names',
+                'empty_data' => $fcIdentity?->getGivenName(),
             ])
             ->add('birthDate', DateType::class, [
                 'constraints' => $options['birthDate_constraints'],
@@ -128,10 +133,13 @@ class CivilStateType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults([
-            'declarant_status' => null,
-            'birthDate_constraints' => [new NotBlank(), new LessThanOrEqual('today')],
-        ]);
+        $resolver
+            ->setDefaults([
+                'declarant_status' => null,
+                'fc_identity' => null,
+                'birthDate_constraints' => [new NotBlank(), new LessThanOrEqual('today')],
+            ])
+            ->setAllowedTypes('fc_identity', [Identity::class, 'null']);
     }
 
     private function addJobField(FormInterface $form, ?int $job = null): void

@@ -7,7 +7,7 @@
                 {{ 'pel.end.thanks'|trans }}
             </div>
         </div>
-        {% if not app.session.has('france_connected') %}
+        {% if not is_france_connected() %}
             <div class="fr-grid-row fr-py-2w">
                 <div class="fr-col">
                     <h6>{{ 'pel.your.appointment'|trans }}</h6>

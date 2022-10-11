@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Form\Identity;
 
 use App\Enum\DeclarantStatus;
+use App\FranceConnect\IdentitySessionHandler;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -17,6 +18,11 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 class IdentityType extends AbstractType
 {
+    public function __construct(
+        private readonly IdentitySessionHandler $fcIdentitySessionHandler
+    ) {
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add('declarantStatus', ChoiceType::class, [
@@ -43,7 +49,7 @@ class IdentityType extends AbstractType
             );
     }
 
-    protected function buildFieldsForDeclarantStatus(FormInterface $form, ?int $declarantStatus = null): void
+    private function buildFieldsForDeclarantStatus(FormInterface $form, ?int $declarantStatus = null): void
     {
         if (null === $declarantStatus) {
             return;
@@ -64,15 +70,17 @@ class IdentityType extends AbstractType
         $this->addCivilStateAndContactInformationFields($form);
     }
 
-    public function addCorporationFields(FormInterface $form): void
+    private function addCorporationFields(FormInterface $form): void
     {
         $form->add('corporation', CorporationType::class);
     }
 
-    public function addCivilStateAndContactInformationFields(FormInterface $form): void
+    private function addCivilStateAndContactInformationFields(FormInterface $form): void
     {
         $form
             ->add('civilState', CivilStateType::class, [
+                'compound' => true,
+                'fc_identity' => $this->fcIdentitySessionHandler->getIdentity(),
                 'birthDate_constraints' => [
                     new NotBlank(),
                     new LessThanOrEqual('-18 years'),
@@ -82,7 +90,7 @@ class IdentityType extends AbstractType
             ->add('contactInformation', ContactInformationType::class);
     }
 
-    public function addRepresentedPersonFields(FormInterface $form, int $declarantStatus): void
+    private function addRepresentedPersonFields(FormInterface $form, int $declarantStatus): void
     {
         $form
             ->add('representedPersonCivilState', CivilStateType::class, [
