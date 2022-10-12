@@ -85,12 +85,6 @@ Feature:
             | label[for=facts_offenseDate_choiceHour_2] | Je ne connais pas l'heure des faits     |
 
     @javascript
-    Scenario: I should not see a text field and a "Adresse" label when I don't know the address or facts
-        Given I am on "/faits"
-        When I click the "label[for=facts_address_isAddressOrRouteFactsKnown_1]" element
-        Then I should not see a "#facts_address_address" element
-
-    @javascript
     Scenario: I can see a warning text if I select "Robbery"
         Given I am on "/faits"
         When I wait and select "Vol" from "facts_offenseNature_offenseNature"
@@ -256,10 +250,30 @@ Feature:
         And I should see a "input#facts_amount" element
 
     @javascript
+    Scenario: I can see 2 inputs text if I select "Yes" to isAddressOrRouteFactsKnown radio button
+        Given I am on "/faits"
+        When I click the "label[for=facts_address_isAddressOrRouteFactsKnown_0]" element
+        And I wait for the element "#facts_address_startAddress" to appear
+        Then I should see the key "pel.address.start.or.exact" translated
+        And I should see the key "pel.address.end" translated
+        And I should see a "input#facts_address_startAddress" element
+        And I should see a "input#facts_address_endAddress" element
+
+    @javascript
+    Scenario: I should not see 2 inputs text if I select "No" to isAddressOrRouteFactsKnown radio button
+        Given I am on "/faits"
+        When I click the "label[for=facts_address_isAddressOrRouteFactsKnown_1]" element
+        Then I should not see the key "pel.address.start.or.exact" translated
+        And I should not see the key "pel.address.end" translated
+
+    @javascript
     Scenario: Submit the facts form
         Given I am on "/faits"
         When I wait and select "1" from "facts_offenseNature_offenseNature"
         And I click the "label[for=facts_address_isAddressOrRouteFactsKnown_0]" element
+        And I wait for the element "#facts_address_startAddress" to appear
+        And I wait and fill in "facts_address_startAddress" with "1 test street"
+        And I wait and fill in "facts_address_endAddress" with "2 test street"
         And I click the "label[for=facts_offenseDate_exactDateKnown_0]" element
         And I wait and fill in "facts_offenseDate_startDate" with "01/01/2022"
         And I click the "label[for=facts_offenseDate_choiceHour_0]" element

@@ -23,6 +23,7 @@ class FactsType extends AbstractType
         $builder
             ->add('address', AddressType::class, [
                 'label' => false,
+                'compound' => true,
             ])
             ->add('offenseNature', OffenseNatureType::class, [
                 'label' => false,

@@ -18,13 +18,13 @@
                 <source>pel.additional.place.information</source>
                 <target>Informations complémentaires sur le lieu</target>
             </trans-unit>
+            <trans-unit id="pel.additional.place.information.help">
+                <source>pel.additional.place.information.help</source>
+                <target>Vous pouvez indiquer ici des informations complémentaires qui vous semblent pertinentes ou des éléments d'étapes sur votre trajet</target>
+            </trans-unit>
             <trans-unit id="pel.address">
                 <source>pel.address</source>
                 <target>Adresse</target>
-            </trans-unit>
-            <trans-unit id="pel.address.arrival">
-                <source>pel.address.arrival</source>
-                <target>Adresse d'arrivée</target>
             </trans-unit>
             <trans-unit id="pel.address.country">
                 <source>pel.address.country</source>
@@ -34,9 +34,13 @@
                 <source>pel.address.department</source>
                 <target>Département</target>
             </trans-unit>
-            <trans-unit id="pel.address.departure">
-                <source>pel.address.departure</source>
-                <target>Adresse de départ</target>
+            <trans-unit id="pel.address.end">
+                <source>pel.address.end</source>
+                <target>Adresse d'arrivée</target>
+            </trans-unit>
+            <trans-unit id="pel.address.end.help">
+                <source>pel.address.end.help</source>
+                <target>Afin de compléter le trajet, merci de renseigner ce champ</target>
             </trans-unit>
             <trans-unit id="pel.address.or.route.facts">
                 <source>pel.address.or.route.facts</source>
@@ -45,6 +49,14 @@
             <trans-unit id="pel.address.number">
                 <source>pel.address.number</source>
                 <target>N°</target>
+            </trans-unit>
+            <trans-unit id="pel.address.start.or.exact">
+                <source>pel.address.start.or.exact</source>
+                <target>Adresse exacte ou de départ</target>
+            </trans-unit>
+            <trans-unit id="pel.address.start.or.exact.help">
+                <source>pel.address.start.or.exact.help</source>
+                <target>En cas d'adresse exacte, merci de renseigner uniquement ce champ, ou dans le cas d'un trajet l'adresse de départ</target>
             </trans-unit>
             <trans-unit id="pel.address.town">
                 <source>pel.address.town</source>
