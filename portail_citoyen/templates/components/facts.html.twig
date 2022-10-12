@@ -25,10 +25,18 @@
         </div>
     </div>
 
-    {% if form.address.address is defined %}
+    {% if form.address.startAddress is defined %}
         <div class="fr-grid-row fr-py-2w">
             <div class="fr-col">
-                {{ form_row(form.address.address) }}
+                {{ form_row(form.address.startAddress) }}
+            </div>
+        </div>
+    {% endif %}
+
+    {% if form.address.endAddress is defined %}
+        <div class="fr-grid-row fr-py-2w">
+            <div class="fr-col">
+                {{ form_row(form.address.endAddress) }}
             </div>
         </div>
     {% endif %}
