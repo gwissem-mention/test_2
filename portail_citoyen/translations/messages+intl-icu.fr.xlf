@@ -614,14 +614,6 @@
                 <source>pel.previous</source>
                 <target>Précédent</target>
             </trans-unit>
-            <trans-unit id="pel.redirect.to.perceval">
-                <source>pel.redirect.to.perceval</source>
-                <target>Être réorienté vers PERCEVAL</target>
-            </trans-unit>
-            <trans-unit id="pel.redirect.to.thesee">
-                <source>pel.redirect.to.thesee</source>
-                <target>Être réorienté vers THÉSÉE</target>
-            </trans-unit>
             <trans-unit id="pel.represented.person.identity">
                 <source>pel.represented.person.identity</source>
                 <target>L'identité de la personne physique représentée</target>
