@@ -30,10 +30,6 @@
                 <source>pel.address.country</source>
                 <target>Pays</target>
             </trans-unit>
-            <trans-unit id="pel.address.department">
-                <source>pel.address.department</source>
-                <target>Département</target>
-            </trans-unit>
             <trans-unit id="pel.address.end">
                 <source>pel.address.end</source>
                 <target>Adresse d'arrivée</target>
@@ -46,10 +42,6 @@
                 <source>pel.address.or.route.facts</source>
                 <target>Connaissez vous l'adresse exacte ou le trajet sur lequel se sont déroulés les faits ?</target>
             </trans-unit>
-            <trans-unit id="pel.address.number">
-                <source>pel.address.number</source>
-                <target>N°</target>
-            </trans-unit>
             <trans-unit id="pel.address.start.or.exact">
                 <source>pel.address.start.or.exact</source>
                 <target>Adresse exacte ou de départ</target>
@@ -57,18 +49,6 @@
             <trans-unit id="pel.address.start.or.exact.help">
                 <source>pel.address.start.or.exact.help</source>
                 <target>En cas d'adresse exacte, merci de renseigner uniquement ce champ, ou dans le cas d'un trajet l'adresse de départ</target>
-            </trans-unit>
-            <trans-unit id="pel.address.town">
-                <source>pel.address.town</source>
-                <target>Commune</target>
-            </trans-unit>
-            <trans-unit id="pel.address.way">
-                <source>pel.address.way</source>
-                <target>Voie de résidence</target>
-            </trans-unit>
-            <trans-unit id="pel.address.way.number">
-                <source>pel.address.way.number</source>
-                <target>Numéro de voie</target>
             </trans-unit>
             <trans-unit id="pel.all.fields.are.required">
                 <source>pel.all.fields.are.required</source>
@@ -233,26 +213,6 @@
             <trans-unit id="pel.complaint.summary">
                 <source>pel.complaint.summary</source>
                 <target>Récapitulatif de déclaration de plainte initiale</target>
-            </trans-unit>
-            <trans-unit id="pel.corporation.address.country">
-                <source>pel.corporation.address.country</source>
-                <target>Pays</target>
-            </trans-unit>
-            <trans-unit id="pel.corporation.address.department">
-                <source>pel.corporation.address.department</source>
-                <target>Département</target>
-            </trans-unit>
-            <trans-unit id="pel.corporation.address.number">
-                <source>pel.corporation.address.number</source>
-                <target>N°</target>
-            </trans-unit>
-            <trans-unit id="pel.corporation.address.town">
-                <source>pel.corporation.address.town</source>
-                <target>Commune</target>
-            </trans-unit>
-            <trans-unit id="pel.corporation.address.way">
-                <source>pel.corporation.address.way</source>
-                <target>Voie de résidence</target>
             </trans-unit>
             <trans-unit id="pel.corporation.email">
                 <source>pel.corporation.email</source>
@@ -654,17 +614,9 @@
                 <source>pel.previous</source>
                 <target>Précédent</target>
             </trans-unit>
-            <trans-unit id="pel.redirect.to.gendarmerie">
-                <source>pel.redirect.to.gendarmerie</source>
-                <target>Être redirigé vers l'orienteur de la Gendarmerie Nationale</target>
-            </trans-unit>
             <trans-unit id="pel.redirect.to.perceval">
                 <source>pel.redirect.to.perceval</source>
                 <target>Être réorienté vers PERCEVAL</target>
-            </trans-unit>
-            <trans-unit id="pel.redirect.to.police">
-                <source>pel.redirect.to.police</source>
-                <target>Être redirigé vers l'orienteur de la Police Nationale</target>
             </trans-unit>
             <trans-unit id="pel.redirect.to.thesee">
                 <source>pel.redirect.to.thesee</source>
@@ -693,10 +645,6 @@
             <trans-unit id="pel.to.log.in">
                 <source>pel.to.log.in</source>
                 <target>Se connecter</target>
-            </trans-unit>
-            <trans-unit id="pel.town.and.department.error">
-                <source>pel.town.and.department.error</source>
-                <target>Veuillez renseigner une commune ou indiquer que vous ne connaissez pas l'adresse des faits</target>
             </trans-unit>
             <trans-unit id="pel.town.arcachon">
                 <source>pel.town.arcachon</source>
@@ -741,18 +689,6 @@
             <trans-unit id="pel.what.is.france.connect">
                 <source>pel.what.is.france.connect</source>
                 <target>Qu’est-ce que FranceConnect ?</target>
-            </trans-unit>
-            <trans-unit id="pel.way.one">
-                <source>pel.way.one</source>
-                <target>Voie une</target>
-            </trans-unit>
-            <trans-unit id="pel.way.two">
-                <source>pel.way.two</source>
-                <target>Voie deux</target>
-            </trans-unit>
-            <trans-unit id="pel.way.three">
-                <source>pel.way.three</source>
-                <target>Voie trois</target>
             </trans-unit>
             <trans-unit id="pel.yes">
                 <source>pel.yes</source>
