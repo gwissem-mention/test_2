@@ -20,10 +20,7 @@ Feature:
         And I should see the key "pel.nationality" translated
         And I should see the key "pel.your.job" translated
         And I should see the key "pel.address.country" translated
-        And I should see the key "pel.address.town" translated
-        And I should see the key "pel.address.department" translated
-        And I should see the key "pel.address.way" translated
-        And I should see the key "pel.address.number" translated
+        And I should see the key "pel.address" translated
         And I should see the key "pel.email" translated
         And I should see the key "pel.mobile" translated
         And I should see the key "pel.next" translated
@@ -54,10 +51,7 @@ Feature:
         And I wait for the "#identity_civilState_birthLocation_department" field to contain "75"
         And I wait and select "1" from "identity_civilState_nationality"
         And I wait and select "1" from "identity_civilState_job"
-        And I wait and select "Paris (75)" from "identity_contactInformation_addressLocation_frenchTown"
-        And I wait for the "#identity_contactInformation_addressLocation_department" field to contain "75"
-        And I wait and fill in "identity_contactInformation_addressNumber" with "01"
-        And I wait and select "1" from "identity_contactInformation_frenchAddressWay"
+        And I wait and fill in "identity_contactInformation_frenchAddress" with "Av. de la République 75011 Paris France"
         And I wait and fill in "identity_contactInformation_email" with "jean@test.com"
         And I wait and fill in "identity_contactInformation_mobile" with "0602030405"
         And I press "Suivant"
@@ -77,10 +71,7 @@ Feature:
         And I wait for the "#identity_civilState_birthLocation_department" field to contain "75"
         And I wait and select "1" from "identity_civilState_nationality"
         And I wait and select "1" from "identity_civilState_job"
-        And I wait and select "Paris (75)" from "identity_contactInformation_addressLocation_frenchTown"
-        And I wait for the "#identity_contactInformation_addressLocation_department" field to contain "75"
-        And I wait and fill in "identity_contactInformation_addressNumber" with "01"
-        And I wait and select "1" from "identity_contactInformation_frenchAddressWay"
+        And I wait and fill in "identity_contactInformation_frenchAddress" with "Av. de la République 75011 Paris France"
         And I wait and fill in "identity_contactInformation_email" with "jean@test.com"
         And I wait and fill in "identity_contactInformation_mobile" with "0602030405"
         And I press "Suivant"
@@ -100,10 +91,7 @@ Feature:
         And I wait and fill in "identity_civilState_birthLocation_otherTown" with "Madrid"
         And I wait and select "1" from "identity_civilState_nationality"
         And I wait and select "1" from "identity_civilState_job"
-        And I wait and select "Paris (75)" from "identity_contactInformation_addressLocation_frenchTown"
-        And I wait for the "#identity_contactInformation_addressLocation_department" field to contain "75"
-        And I wait and fill in "identity_contactInformation_addressNumber" with "01"
-        And I wait and select "1" from "identity_contactInformation_frenchAddressWay"
+        And I wait and fill in "identity_contactInformation_frenchAddress" with "Av. de la République 75011 Paris France"
         And I wait and fill in "identity_contactInformation_email" with "jean@test.com"
         And I wait and fill in "identity_contactInformation_mobile" with "0602030405"
         And I press "Suivant"
@@ -122,11 +110,8 @@ Feature:
         And I wait for the "#identity_civilState_birthLocation_department" field to contain "75"
         And I wait and select "1" from "identity_civilState_nationality"
         And I wait and select "1" from "identity_civilState_job"
-        And I wait and select "1" from "identity_contactInformation_addressLocation_country"
-        And I wait and select "Paris (75)" from "identity_contactInformation_addressLocation_frenchTown"
-        And I wait for the "#identity_contactInformation_addressLocation_department" field to contain "75"
-        And I wait and fill in "identity_contactInformation_addressNumber" with "01"
-        And I wait and select "1" from "identity_contactInformation_frenchAddressWay"
+        And I wait and select "FR" from "identity_contactInformation_country"
+        And I wait and fill in "identity_contactInformation_frenchAddress" with "Av. de la République 75011 Paris France"
         And I wait and fill in "identity_contactInformation_email" with "jean@test.com"
         And I wait and fill in "identity_contactInformation_mobile" with "0602030405"
         And I press "Suivant"
@@ -146,11 +131,8 @@ Feature:
         And I wait for the "#identity_civilState_birthLocation_department" field to contain "75"
         And I wait and select "1" from "identity_civilState_nationality"
         And I wait and select "1" from "identity_civilState_job"
-        And I wait and select "2" from "identity_contactInformation_addressLocation_country"
-        And I wait for the element "identity_contactInformation_addressLocation_otherTown" to appear
-        And I wait and fill in "identity_contactInformation_addressLocation_otherTown" with "Madrid"
-        And I wait and fill in "identity_contactInformation_addressNumber" with "01"
-        And I wait and fill in "identity_contactInformation_foreignAddressWay" with "way"
+        And I wait and select "ES" from "identity_contactInformation_country"
+        And I wait and fill in "identity_contactInformation_foreignAddress" with "C. de Alcalá Madrid España"
         And I wait and fill in "identity_contactInformation_email" with "jean@test.com"
         And I wait and fill in "identity_contactInformation_mobile" with "0602030405"
         And I press "Suivant"
@@ -269,10 +251,10 @@ Feature:
         And I wait for the "#identity_civilState_birthLocation_department" field to contain "75"
         And I wait and select "1" from "identity_civilState_nationality"
         And I wait and select "1" from "identity_civilState_job"
-        And I wait and select "Paris (75)" from "identity_contactInformation_addressLocation_frenchTown"
-        And I wait for the "#identity_contactInformation_addressLocation_department" field to contain "75"
+        And I wait and fill in "identity_contactInformation_frenchAddress" with "Av. de la République 75011 Paris France"
         And I press "Suivant"
         Then I am redirected on "/identite"
+
 
     @javascript
     Scenario: Submit the form with only 10 required value for victim declarant
@@ -287,29 +269,7 @@ Feature:
         And I wait for the "#identity_civilState_birthLocation_department" field to contain "75"
         And I wait and select "1" from "identity_civilState_nationality"
         And I wait and select "1" from "identity_civilState_job"
-        And I wait and select "Paris (75)" from "identity_contactInformation_addressLocation_frenchTown"
-        And I wait for the "#identity_contactInformation_addressLocation_department" field to contain "75"
-        And I wait and fill in "identity_contactInformation_addressNumber" with "01"
-        And I press "Suivant"
-        Then I am redirected on "/identite"
-
-    @javascript
-    Scenario: Submit the form with only 11 required value for victim declarant
-        Given I am on "/identite"
-        When I click the "label[for=identity_declarantStatus_0]" element
-        And I wait for the element "#form-identity" to appear
-        And I wait and select "1" from "identity_civilState_civility"
-        And I wait and fill in "identity_civilState_birthName" with "Dupont"
-        And I wait and fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
-        And I wait and fill in "identity_civilState_birthDate" with "01/01/2000"
-        And I wait and select "Paris (75)" from "identity_civilState_birthLocation_frenchTown"
-        And I wait for the "#identity_civilState_birthLocation_department" field to contain "75"
-        And I wait and select "1" from "identity_civilState_nationality"
-        And I wait and select "1" from "identity_civilState_job"
-        And I wait and select "Paris (75)" from "identity_contactInformation_addressLocation_frenchTown"
-        And I wait for the "#identity_contactInformation_addressLocation_department" field to contain "75"
-        And I wait and fill in "identity_contactInformation_addressNumber" with "01"
-        And I wait and select "1" from "identity_contactInformation_frenchAddressWay"
+        And I wait and fill in "identity_contactInformation_frenchAddress" with "Av. de la République 75011 Paris France"
         And I wait and fill in "identity_contactInformation_email" with "jean@test.com"
         And I press "Suivant"
         Then I am redirected on "/identite"

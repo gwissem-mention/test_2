@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Form\Identity;
 
-use App\Form\LocationType;
 use App\Thesaurus\NationalityThesaurusProviderInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -20,8 +20,7 @@ use Symfony\Component\Validator\Constraints\Regex;
 class CorporationType extends AbstractType
 {
     public function __construct(
-        private readonly EventSubscriberInterface $addAddressWaySubscriber,
-        private readonly EventSubscriberInterface $addAddressWayCountrySubscriber,
+        private readonly EventSubscriberInterface $addAddressSubscriber,
         private readonly NationalityThesaurusProviderInterface $nationalityThesaurusProvider,
     ) {
     }
@@ -90,23 +89,15 @@ class CorporationType extends AbstractType
                 ],
                 'label' => 'pel.corporation.phone',
             ])
-            ->add('addressLocation', LocationType::class, [
-                'country_label' => 'pel.corporation.address.country',
-                'town_label' => 'pel.corporation.address.town',
-                'department_label' => 'pel.corporation.address.department',
-            ])
-            ->add('addressNumber', TextType::class, [
-                'attr' => [
-                    'maxlength' => 11,
-                ],
+            ->add('country', CountryType::class, [
+                'label' => 'pel.address.country',
+                'preferred_choices' => ['FR'],
+                'empty_data' => 'FR',
                 'constraints' => [
                     new NotBlank(),
-                    new Length(['max' => 11]),
                 ],
-                'label' => 'pel.corporation.address.number',
             ]);
 
-        $builder->addEventSubscriber($this->addAddressWaySubscriber);
-        $builder->get('addressLocation')->get('country')->addEventSubscriber($this->addAddressWayCountrySubscriber);
+        $builder->get('country')->addEventSubscriber($this->addAddressSubscriber);
     }
 }
