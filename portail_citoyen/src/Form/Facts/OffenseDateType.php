@@ -73,10 +73,8 @@ class OffenseDateType extends AbstractType
         $form->add('startDate', DateType::class, [
             'constraints' => [
                 new NotBlank(),
-                new LessThanOrEqual('today'),
+                new LessThanOrEqual('today', message: 'pel.date.less.than.equal.today.error'),
             ],
-            'format' => 'dd/MM/yyyy',
-            'html5' => false,
             'label' => true === $exactDateKnown ? 'pel.offense.unique.date' : 'pel.offense.start.date',
             'widget' => 'single_text',
             'help' => 'pel.date.help',
@@ -86,10 +84,8 @@ class OffenseDateType extends AbstractType
             $form->add('endDate', DateType::class, [
                 'constraints' => [
                     new NotBlank(),
-                    new LessThanOrEqual('today'),
+                    new LessThanOrEqual('today', message: 'pel.date.less.than.equal.today.error'),
                 ],
-                'format' => 'dd/MM/yyyy',
-                'html5' => false,
                 'label' => 'pel.offense.end.date',
                 'widget' => 'single_text',
                 'help' => 'pel.date.help',

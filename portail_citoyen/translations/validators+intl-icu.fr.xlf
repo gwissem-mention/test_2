@@ -10,6 +10,10 @@
                 <source>pel.visitor.agree.checkbox.error</source>
                 <target>Veuillez accepter la collecte des données pour poursuivre votre déclaration</target>
             </trans-unit>
+            <trans-unit id="pel.date.less.than.equal.today.error">
+                <source>pel.date.less.than.equal.today.error</source>
+                <target>La date doit être inférieure ou égale à aujourd'hui</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
