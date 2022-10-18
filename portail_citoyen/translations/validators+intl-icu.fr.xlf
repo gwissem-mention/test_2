@@ -10,6 +10,14 @@
                 <source>pel.visitor.agree.checkbox.error</source>
                 <target>Veuillez accepter la collecte des données pour poursuivre votre déclaration</target>
             </trans-unit>
+            <trans-unit id="pel.you.must.have.more.than.error">
+                <source>pel.you.must.have.more.than.error</source>
+                <target>Vous devez avoir plus de {age} ans</target>
+            </trans-unit>
+            <trans-unit id="pel.you.must.have.less.than.error">
+                <source>pel.you.must.have.less.than.error</source>
+                <target>Vous devez avoir moins de {age} ans</target>
+            </trans-unit>
             <trans-unit id="pel.date.less.than.equal.today.error">
                 <source>pel.date.less.than.equal.today.error</source>
                 <target>La date doit être inférieure ou égale à aujourd'hui</target>

@@ -15,10 +15,12 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Validator\Constraints\GreaterThanOrEqual;
 use Symfony\Component\Validator\Constraints\LessThanOrEqual;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class IdentityType extends AbstractType
 {
     public function __construct(
+        private readonly TranslatorInterface $translator,
         private readonly IdentitySessionHandler $fcIdentitySessionHandler
     ) {
     }
@@ -83,8 +85,24 @@ class IdentityType extends AbstractType
                 'fc_identity' => $this->fcIdentitySessionHandler->getIdentity(),
                 'birthDate_constraints' => [
                     new NotBlank(),
-                    new LessThanOrEqual('-18 years'),
-                    new GreaterThanOrEqual('-120 years'),
+                    new LessThanOrEqual(
+                        '-18 years', message: $this->translator->trans(
+                            'pel.you.must.have.more.than.error',
+                            [
+                                'age' => '18',
+                            ],
+                            'validators'
+                        )
+                    ),
+                    new GreaterThanOrEqual(
+                        '-120 years', message: $this->translator->trans(
+                            'pel.you.must.have.less.than.error',
+                            [
+                                'age' => '120',
+                            ],
+                            'validators'
+                        )
+                    ),
                 ],
             ])
             ->add('contactInformation', ContactInformationType::class);
