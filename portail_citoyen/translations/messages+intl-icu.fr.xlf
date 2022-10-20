@@ -614,6 +614,38 @@
                 <source>pel.object</source>
                 <target>Objet</target>
             </trans-unit>
+            <trans-unit id="pel.object.category">
+                <source>pel.object.category</source>
+                <target>Catégorie d'objet</target>
+            </trans-unit>
+            <trans-unit id="pel.object.category.choose">
+                <source>pel.object.category.choose</source>
+                <target>Sélectionnez une catégorie d'objet</target>
+            </trans-unit>
+            <trans-unit id="pel.object.category.documents">
+                <source>pel.object.category.documents</source>
+                <target>Documents</target>
+            </trans-unit>
+            <trans-unit id="pel.object.category.payment.ways">
+                <source>pel.object.category.payment.ways</source>
+                <target>Moyens de paiement</target>
+            </trans-unit>
+            <trans-unit id="pel.object.category.multimedia">
+                <source>pel.object.category.multimedia</source>
+                <target>Multimédia</target>
+            </trans-unit>
+            <trans-unit id="pel.object.category.registered.vehicle">
+                <source>pel.object.category.registered.vehicle</source>
+                <target>Véhicules immatriculés</target>
+            </trans-unit>
+            <trans-unit id="pel.object.category.unregistered.vehicle">
+                <source>pel.object.category.unregistered.vehicle</source>
+                <target>Véhicules non immatriculés</target>
+            </trans-unit>
+            <trans-unit id="pel.object.category.other">
+                <source>pel.object.category.other</source>
+                <target>Autres</target>
+            </trans-unit>
             <trans-unit id="pel.objects">
                 <source>pel.objects</source>
                 <target>Objets</target>

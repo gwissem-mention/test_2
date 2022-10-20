@@ -23,6 +23,8 @@ Feature:
         And I should see the key "pel.additional.factual.information" translated
         And I should see the key "pel.fsi.visit" translated
         And I should see the key "pel.cctv.present" translated
+        And I should see the key "pel.object.category" translated
+        And I should see the key "pel.object.category.choose" translated
         And I should see the key "pel.objects" translated
         And I should see the key "pel.objects.add" translated
         And I should see the key "pel.object" translated
@@ -83,6 +85,21 @@ Feature:
             | label[for=facts_offenseDate_choiceHour_0] | Oui je connais l'heure exacte des faits |
             | label[for=facts_offenseDate_choiceHour_1] | Non mais je connais le créneau horaire  |
             | label[for=facts_offenseDate_choiceHour_2] | Je ne connais pas l'heure des faits     |
+
+    @func
+    Scenario Outline: I can see the object category choice list
+        Given I am on "/faits"
+        When I select "<object_category>" from "facts_objects_0_category"
+        Then I should see "<object_category>" in the "#facts_objects_0_category" element
+
+        Examples:
+            | object_category            |
+            | Documents                  |
+            | Moyens de paiement         |
+            | Multimédia                 |
+            | Véhicules immatriculés     |
+            | Véhicules non immatriculés |
+            | Autres                     |
 
     @javascript
     Scenario: I can see a warning text if I select "Robbery"
