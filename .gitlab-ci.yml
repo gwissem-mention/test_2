@@ -4,6 +4,8 @@ variables:
     PHP_CITOYEN_ARTIFACT_NAME: "php-citoyen-debug:$CI_COMMIT_REF_SLUG"
     PHP_AGENT_CHANGE: 0
     PHP_CITOYEN_CHANGE: 0
+    KUBERNETES_MEMORY_REQUEST: 1Gi
+    KUBERNETES_MEMORY_LIMIT: 1Gi
 
 workflow:
     rules:
