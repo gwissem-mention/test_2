@@ -42,12 +42,14 @@ RUN set -eux; \
 		zip \
 	; \
 	pecl install \
-		apcu-${APCU_VERSION} \
+        apcu-${APCU_VERSION} \
+        redis \
 	; \
 	pecl clear-cache; \
 	docker-php-ext-enable \
-		apcu \
-		opcache \
+        apcu \
+        opcache \
+        redis \
 	; \
 	\
 	runDeps="$( \

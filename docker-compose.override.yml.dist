@@ -51,26 +51,22 @@ services:
 
   php-citoyen:
     volumes:
-      # The "cached" option has no effect on Linux but improves performance on Mac
       - ./portail_citoyen:/srv/citoyen:rw,cached
       - ./portail_citoyen/docker/php/conf.d/symfony.dev.ini:/usr/local/etc/php/conf.d/symfony.ini
-      # If you develop on Mac you can remove the var/ directory from the bind-mount
-      # for better performance by enabling the next line
-      # - /srv/app/var
     environment:
       APP_ENV: dev
 
   php-agent:
     volumes:
-      # The "cached" option has no effect on Linux but improves performance on Mac
       - ./portail_agent:/srv/agent:rw,cached
       - ./portail_agent/docker/php/conf.d/symfony.dev.ini:/usr/local/etc/php/conf.d/symfony.ini
-      # If you develop on Mac you can remove the var/ directory from the bind-mount
-      # for better performance by enabling the next line
-      # - /srv/app/var
     environment:
       APP_ENV: dev
 
   mailer:
     image: schickling/mailcatcher
     ports: [1025, 1080]
+
+  redis-citoyen:
+    ports:
+      - "6379:6379"
