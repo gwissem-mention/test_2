@@ -14,6 +14,17 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
+    Redis:
+        class: Redis
+        calls:
+            - connect:
+                  - '%env(REDIS_HOST)%'
+                  - '%env(int:REDIS_PORT)%'
+
+    Symfony\Component\HttpFoundation\Session\Storage\Handler\RedisSessionHandler:
+        arguments:
+            - '@Redis'
+    
     App\Thesaurus\TownAndDepartmentThesaurusProviderInterface $townAndDepartmentAndDepartmentThesaurusProvider: '@App\Thesaurus\MockedTownAndDepartmentAndDepartmentThesaurusProvider'
 
     Symfony\Component\EventDispatcher\EventSubscriberInterface $addAddressSubscriber: '@App\Form\EventListener\AddAddressSubscriber'
