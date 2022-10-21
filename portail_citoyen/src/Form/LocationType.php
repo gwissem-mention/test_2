@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Form;
 
-use App\Thesaurus\CountryThesaurusProviderInterface;
 use App\Thesaurus\TownAndDepartmentThesaurusProviderInterface;
 use App\Thesaurus\Transformer\TownToTransformTransformerInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -21,43 +21,29 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 class LocationType extends AbstractType
 {
     public function __construct(
-        private readonly CountryThesaurusProviderInterface $countryThesaurusProvider,
         private readonly TownAndDepartmentThesaurusProviderInterface $townAndDepartmentAndDepartmentThesaurusProvider,
         private readonly TownToTransformTransformerInterface $townToTransformTransformer,
+        private readonly string $franceCode
     ) {
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $countryChoices = $this->countryThesaurusProvider->getChoices();
-
         $builder
-            ->add('country', ChoiceType::class, [
+            ->add('country', CountryType::class, [
+                'label' => $options['country_label'],
+                'preferred_choices' => [$this->franceCode],
+                'empty_data' => $this->franceCode,
                 'constraints' => [
                     new NotBlank(),
                 ],
-                'choices' => $countryChoices,
-                'label' => $options['country_label'],
-                'empty_data' => $countryChoices['pel.country.france'],
             ]);
-
-        $builder->addEventListener(
-            FormEvents::PRE_SET_DATA,
-            function (FormEvent $event) {
-                /** @var array<string, int> $townParis */
-                $townParis = $this->townAndDepartmentAndDepartmentThesaurusProvider->getChoices()['pel.town.paris'];
-                /** @var ?int $town */
-                $town = $townParis['value'];
-                $this->addTownField($event->getForm(), $town);
-            }
-        );
 
         $builder->get('country')->addEventListener(
             FormEvents::POST_SUBMIT,
             function (FormEvent $event) {
-                /** @var ?int $country */
-                $country = $event->getForm()->getData() ?: $this->countryThesaurusProvider->getChoices(
-                )['pel.country.france'];
+                /** @var string $country */
+                $country = $event->getForm()->getData();
                 /** @var FormInterface $parent */
                 $parent = $event->getForm()->getParent();
                 $this->addTownField($parent, $country);
@@ -74,31 +60,13 @@ class LocationType extends AbstractType
         ]);
     }
 
-    private function addTownField(FormInterface $form, ?int $country): void
+    private function addTownField(FormInterface $form, string $country): void
     {
-        $townChoices = array_filter($this->getAvailableTownChoices($country));
-
-        if (0 === count($townChoices)) {
-            $this->addFormPartForForeignPlace($form);
+        if ($this->franceCode === $country) {
+            $this->addFormPartForFrenchPlace($form);
         } else {
-            $this->addFormPartForFrenchPlace($form, $townChoices);
+            $this->addFormPartForForeignPlace($form);
         }
-    }
-
-    /**
-     * @return array<string, string>
-     */
-    private function getAvailableTownChoices(?int $country = null): array
-    {
-        if (null === $country) {
-            return [];
-        }
-
-        $countries = $this->countryThesaurusProvider->getChoices();
-
-        return $countries['pel.country.france'] === $country
-            ? $this->townToTransformTransformer->transform($this->townAndDepartmentAndDepartmentThesaurusProvider->getChoices())
-            : [];
     }
 
     private function addFormPartForForeignPlace(FormInterface $form): void
@@ -115,14 +83,10 @@ class LocationType extends AbstractType
                     new Length(['max' => 50]),
                 ],
                 'label' => $form->getConfig()->getOption('town_label'),
-            ])
-        ;
+            ]);
     }
 
-    /**
-     * @param array<string, string> $townChoices
-     */
-    private function addFormPartForFrenchPlace(FormInterface $form, array $townChoices): void
+    private function addFormPartForFrenchPlace(FormInterface $form): void
     {
         $form
             ->remove('otherTown')
@@ -130,7 +94,9 @@ class LocationType extends AbstractType
                 'constraints' => [
                     new NotBlank(),
                 ],
-                'choices' => $townChoices,
+                'choices' => $this->townToTransformTransformer->transform(
+                    $this->townAndDepartmentAndDepartmentThesaurusProvider->getChoices()
+                ),
                 'label' => $form->getConfig()->getOption('town_label'),
                 'placeholder' => 'pel.choose.your.town',
             ])

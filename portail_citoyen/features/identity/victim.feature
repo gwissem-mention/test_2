@@ -30,10 +30,10 @@ Feature:
         Given I am on "/identite"
         When I click the "label[for=identity_declarantStatus_0]" element
         And I wait for the element "#form-identity" to appear
-        And I select "1" from "identity_civilState_birthLocation_country"
-        And I select "1" from "identity_civilState_birthLocation_frenchTown"
+        And I select "FR" from "identity_civilState_birthLocation_country"
+        And I select "Paris (75)" from "identity_civilState_birthLocation_frenchTown"
         And I should see "Paris" in the "#identity_civilState_birthLocation_frenchTown" element
-        And I select "2" from "identity_civilState_birthLocation_country"
+        And I select "ES" from "identity_civilState_birthLocation_country"
         And I wait and fill in "identity_civilState_birthLocation_otherTown" with "Madrid"
         And I should not see a "identity_civilState_birthLocation_frenchTown" element
         And I should not see "Paris" in the "#identity_civilState_birthLocation_otherTown" element
@@ -66,7 +66,7 @@ Feature:
         And I wait and fill in "identity_civilState_birthName" with "Dupont"
         And I wait and fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I wait and fill in "identity_civilState_birthDate" with "01/01/2000"
-        And I wait and select "1" from "identity_civilState_birthLocation_country"
+        And I wait and select "FR" from "identity_civilState_birthLocation_country"
         And I wait and select "Paris (75)" from "identity_civilState_birthLocation_frenchTown"
         And I wait for the "#identity_civilState_birthLocation_department" field to contain "75"
         And I wait and select "1" from "identity_civilState_nationality"
@@ -86,7 +86,7 @@ Feature:
         And I wait and fill in "identity_civilState_birthName" with "Dupont"
         And I wait and fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I wait and fill in "identity_civilState_birthDate" with "01/01/2000"
-        And I wait and select "2" from "identity_civilState_birthLocation_country"
+        And I wait and select "ES" from "identity_civilState_birthLocation_country"
         And I wait for the element "identity_civilState_birthLocation_otherTown" to appear
         And I wait and fill in "identity_civilState_birthLocation_otherTown" with "Madrid"
         And I wait and select "1" from "identity_civilState_nationality"
@@ -126,7 +126,7 @@ Feature:
         And I wait and fill in "identity_civilState_birthName" with "Dupont"
         And I wait and fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I wait and fill in "identity_civilState_birthDate" with "01/01/2000"
-        And I wait and select "1" from "identity_civilState_birthLocation_country"
+        And I wait and select "FR" from "identity_civilState_birthLocation_country"
         And I wait and select "Paris (75)" from "identity_civilState_birthLocation_frenchTown"
         And I wait for the "#identity_civilState_birthLocation_department" field to contain "75"
         And I wait and select "1" from "identity_civilState_nationality"

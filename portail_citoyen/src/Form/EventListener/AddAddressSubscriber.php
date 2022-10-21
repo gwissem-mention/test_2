@@ -13,6 +13,10 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 class AddAddressSubscriber implements EventSubscriberInterface
 {
+    public function __construct(private readonly string $franceCode)
+    {
+    }
+
     public static function getSubscribedEvents(): array
     {
         return [
@@ -24,7 +28,7 @@ class AddAddressSubscriber implements EventSubscriberInterface
     {
         /** @var FormInterface $parent */
         $parent = $event->getForm()->getParent();
-        if ('FR' === $event->getData()) {
+        if ($this->franceCode === $event->getData()) {
             $this->addFrenchAddressField($parent);
         } else {
             $this->addForeignAddressField($parent);
