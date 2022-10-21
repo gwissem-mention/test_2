@@ -662,6 +662,10 @@
                 <source>pel.previous</source>
                 <target>Précédent</target>
             </trans-unit>
+            <trans-unit id="pel.quantity">
+                <source>pel.quantity</source>
+                <target>Quantité</target>
+            </trans-unit>
             <trans-unit id="pel.represented.person.identity">
                 <source>pel.represented.person.identity</source>
                 <target>L'identité de la personne physique représentée</target>

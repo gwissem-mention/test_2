@@ -296,6 +296,15 @@ Feature:
         And I should not see the key "pel.address.end" translated
 
     @javascript
+    Scenario: I should see 2 inputs when I select "Other" for object category
+        Given I am on "/faits"
+        When I select "6" from "facts_objects_0_category"
+        Then I should see the key "pel.description" translated
+        And I should see the key "pel.quantity" translated
+        And I should see a "input#facts_objects_0_description" element
+        And I should see a "input#facts_objects_0_quantity" element
+
+    @javascript
     Scenario: Submit the facts form
         Given I am on "/faits"
         When I wait and select "1" from "facts_offenseNature_offenseNature"
