@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Form;
 
+use App\Form\Model\LocationModel;
 use App\Thesaurus\TownAndDepartmentThesaurusProviderInterface;
 use App\Thesaurus\Transformer\TownToTransformTransformerInterface;
 use Symfony\Component\Form\AbstractType;
@@ -54,6 +55,7 @@ class LocationType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
+            'data_class' => LocationModel::class,
             'country_label' => false,
             'town_label' => false,
             'department_label' => false,

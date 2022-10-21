@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Form\Facts;
 
+use App\Form\DataTransformer\ObjectTransformer;
+use App\Form\Model\Facts\FactsModel;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
@@ -12,12 +14,17 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\UX\LiveComponent\Form\Type\LiveCollectionType;
 
 class FactsType extends AbstractType
 {
+    public function __construct(private readonly ObjectTransformer $objectTransformer)
+    {
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -64,6 +71,7 @@ class FactsType extends AbstractType
                 'constraints' => [
                     new NotBlank(),
                 ],
+                'mapped' => false,
             ])
             ->add('amountKnown', ChoiceType::class, [
                 'choices' => [
@@ -77,6 +85,8 @@ class FactsType extends AbstractType
             ->add('additionalInformation', AdditionalInformationType::class, [
                 'label' => false,
             ]);
+
+        $builder->get('objects')->addModelTransformer($this->objectTransformer);
 
         $builder->get('amountKnown')->addEventListener(
             FormEvents::POST_SUBMIT,
@@ -110,5 +120,12 @@ class FactsType extends AbstractType
                 ],
             ]);
         }
+    }
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+           'data_class' => FactsModel::class,
+        ]);
     }
 }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Form\Facts;
 
+use App\Form\Model\Facts\OffenseDateModel;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -12,6 +13,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\LessThanOrEqual;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
@@ -119,5 +121,12 @@ class OffenseDateType extends AbstractType
                 'widget' => 'single_text',
             ]);
         }
+    }
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+           'data_class' => OffenseDateModel::class,
+        ]);
     }
 }
