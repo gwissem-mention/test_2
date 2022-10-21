@@ -103,7 +103,7 @@ services:
   ###< doctrine/doctrine-bundle ###
 
   redis-citoyen:
-    image: redis:alpine
+    image: redislabs/rejson:latest
 
 volumes:
   citoyen-public:
