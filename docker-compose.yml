@@ -14,6 +14,7 @@ services:
     restart: unless-stopped
     depends_on:
       - database-citoyen
+      - redis-citoyen
     volumes:
       - citoyen-public:/srv/citoyen/public:rw
       - ./portail_citoyen/public/robots.txt:/srv/citoyen/public/robots.txt:ro
@@ -86,25 +87,23 @@ services:
     image: postgres:${POSTGRES_VERSION:-13}-alpine
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-app}
-      # You should definitely change the password in production
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ChangeMe}
       POSTGRES_USER: ${POSTGRES_USER:-symfony}
     volumes:
       - db-data-citoyen:/var/lib/postgresql/data:rw
-      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
-      # - ./docker/db/data:/var/lib/postgresql/data:rw
+
   database-agent:
     image: postgres:${POSTGRES_VERSION:-13}-alpine
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-app}
-      # You should definitely change the password in production
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ChangeMe}
       POSTGRES_USER: ${POSTGRES_USER:-symfony}
     volumes:
       - db-data-agent:/var/lib/postgresql/data:rw
-      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
-      # - ./docker/db/data:/var/lib/postgresql/data:rw
-###< doctrine/doctrine-bundle ###
+  ###< doctrine/doctrine-bundle ###
+
+  redis-citoyen:
+    image: redis:alpine
 
 volumes:
   citoyen-public:
@@ -112,4 +111,4 @@ volumes:
   ###> doctrine/doctrine-bundle ###
   db-data-citoyen:
   db-data-agent:
-###< doctrine/doctrine-bundle ###
+  ###< doctrine/doctrine-bundle ###
