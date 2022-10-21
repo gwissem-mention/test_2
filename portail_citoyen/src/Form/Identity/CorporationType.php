@@ -22,6 +22,7 @@ class CorporationType extends AbstractType
     public function __construct(
         private readonly EventSubscriberInterface $addAddressSubscriber,
         private readonly NationalityThesaurusProviderInterface $nationalityThesaurusProvider,
+        private readonly string $franceCode
     ) {
     }
 
@@ -91,8 +92,8 @@ class CorporationType extends AbstractType
             ])
             ->add('country', CountryType::class, [
                 'label' => 'pel.address.country',
-                'preferred_choices' => ['FR'],
-                'empty_data' => 'FR',
+                'preferred_choices' => [$this->franceCode],
+                'empty_data' => $this->franceCode,
                 'constraints' => [
                     new NotBlank(),
                 ],
