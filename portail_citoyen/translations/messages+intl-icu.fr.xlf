@@ -102,6 +102,10 @@
                 <source>pel.birth.town</source>
                 <target>Commune de naissance</target>
             </trans-unit>
+            <trans-unit id="pel.brand">
+                <source>pel.brand</source>
+                <target>Marque</target>
+            </trans-unit>
             <trans-unit id="pel.cctv.available">
                 <source>pel.cctv.available</source>
                 <target>Êtes-vous en capacité de fournir des vidéos des faits ?</target>
@@ -530,6 +534,10 @@
                 <source>pel.mobile</source>
                 <target>Numéro de téléphone portable</target>
             </trans-unit>
+            <trans-unit id="pel.model">
+                <source>pel.model</source>
+                <target>Modèle</target>
+            </trans-unit>
             <trans-unit id="pel.my.identity">
                 <source>pel.my.identity</source>
                 <target>Mon identité</target>
@@ -638,9 +646,17 @@
                 <source>pel.online.complaint</source>
                 <target>Plainte en ligne</target>
             </trans-unit>
+            <trans-unit id="pel.operator">
+                <source>pel.operator</source>
+                <target>Opérateur</target>
+            </trans-unit>
             <trans-unit id="pel.passage.fsi">
                 <source>pel.passage.fsi</source>
                 <target>Indications du passage des FSI</target>
+            </trans-unit>
+            <trans-unit id="pel.phone.number.line">
+                <source>pel.phone.number.line</source>
+                <target>N° de la ligne de téléphone</target>
             </trans-unit>
             <trans-unit id="pel.previous">
                 <source>pel.previous</source>
@@ -649,6 +665,14 @@
             <trans-unit id="pel.represented.person.identity">
                 <source>pel.represented.person.identity</source>
                 <target>L'identité de la personne physique représentée</target>
+            </trans-unit>
+            <trans-unit id="pel.serial.number">
+                <source>pel.serial.number</source>
+                <target>N° de série/IMEI</target>
+            </trans-unit>
+            <trans-unit id="pel.serial.number.help">
+                <source>pel.serial.number.help</source>
+                <target>Ce numéro est nécessaire pour identifier votre téléphone. Si vous n'êtes pas en mesure de le fournir sur ce formulaire, il vous sera demandé plus tard</target>
             </trans-unit>
             <trans-unit id="pel.start.hour">
                 <source>pel.start.hour</source>
