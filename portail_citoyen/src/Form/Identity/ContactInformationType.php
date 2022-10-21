@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace App\Form\Identity;
 
+use App\Form\Model\Identity\ContactInformationModel;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -56,5 +58,12 @@ class ContactInformationType extends AbstractType
             ]);
 
         $builder->get('country')->addEventSubscriber($this->addAddressSubscriber);
+    }
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            'data_class' => ContactInformationModel::class,
+        ]);
     }
 }

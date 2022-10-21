@@ -6,6 +6,7 @@ namespace App\Form\Identity;
 
 use App\Enum\DeclarantStatus;
 use App\Form\LocationType;
+use App\Form\Model\Identity\CivilStateModel;
 use App\FranceConnect\Identity;
 use App\Thesaurus\JobThesaurusProviderInterface;
 use App\Thesaurus\NationalityThesaurusProviderInterface;
@@ -114,13 +115,13 @@ class CivilStateType extends AbstractType
         $builder->addEventListener(
             FormEvents::SUBMIT,
             function (FormEvent $event) {
-                /** @var array<string, mixed> $data */
+                /** @var CivilStateModel $data */
                 $data = $event->getData();
                 $job = null;
                 $jobNone = $this->jobThesaurusProvider->getChoices()['pel.job.none'];
 
-                if ($data['job'] && !($jobNone === $data['job'])) {
-                    $job = $data['job'];
+                if ($data->getJob() && !($jobNone === $data->getJob())) {
+                    $job = $data->getJob();
                 } elseif (DeclarantStatus::PersonLegalRepresentative->value === $event->getForm()->getConfig()
                         ->getOption('declarant_status')) {
                     $job = $jobNone;
@@ -135,6 +136,7 @@ class CivilStateType extends AbstractType
     {
         $resolver
             ->setDefaults([
+                'data_class' => CivilStateModel::class,
                 'declarant_status' => null,
                 'fc_identity' => null,
                 'birthDate_constraints' => [new NotBlank(), new LessThanOrEqual('today')],

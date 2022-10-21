@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Form\Model\ConsentModel;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -26,6 +27,8 @@ class ConsentType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults([]);
+        $resolver->setDefaults([
+            'data_class' => ConsentModel::class,
+        ]);
     }
 }

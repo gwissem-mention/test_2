@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Form\Identity;
 
 use App\Enum\DeclarantStatus;
+use App\Form\Model\Identity\IdentityModel;
 use App\FranceConnect\IdentitySessionHandler;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -12,6 +13,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\GreaterThanOrEqual;
 use Symfony\Component\Validator\Constraints\LessThanOrEqual;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -118,5 +120,12 @@ class IdentityType extends AbstractType
             ->add('representedPersonContactInformation', ContactInformationType::class, [
                 'label' => 'pel.contact.information',
             ]);
+    }
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            'data_class' => IdentityModel::class,
+        ]);
     }
 }

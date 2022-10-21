@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Form\Facts;
 
+use App\Form\Model\Facts\AddressModel;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -12,6 +13,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 class AddressType extends AbstractType
@@ -68,5 +70,12 @@ class AddressType extends AbstractType
                     'help' => 'pel.address.end.help',
                 ]);
         }
+    }
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            'data_class' => AddressModel::class,
+        ]);
     }
 }
