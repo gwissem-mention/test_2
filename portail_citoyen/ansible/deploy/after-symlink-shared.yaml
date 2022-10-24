@@ -6,6 +6,7 @@
       APP_ENV={{ ansible_env.APP_ENV }}
       APP_SECRET={{ ansible_env.APP_SECRET }}
       DATABASE_URL={{ ansible_env.DATABASE_URL }}
+      REDIS_HOST={{ ansible_env.REDIS_HOST }}
 
 - name: Install vendors for prod env
   make:

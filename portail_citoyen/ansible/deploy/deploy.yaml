@@ -8,6 +8,7 @@
     APP_SECRET: "{{ vault_symfony_secret }}"
     DATABASE_URL: "{{ vault_database_url }}"
     TRUSTED_PROXIES: "{{ vault_trusted_proxies }}"
+    REDIS_HOST: 127.0.0.1
 
   vars_files:
     - ../vars/vars.yaml
