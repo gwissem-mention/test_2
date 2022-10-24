@@ -37,7 +37,7 @@ RUN set -eux; \
 	; \
 	\
 	docker-php-ext-configure zip; \
-	docker-php-ext-install -j$(nproc) \
+	docker-php-ext-install \
 		intl \
 		zip \
 	; \

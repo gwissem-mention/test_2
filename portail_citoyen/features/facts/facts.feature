@@ -104,14 +104,14 @@ Feature:
     @javascript
     Scenario: I can see a warning text if I select "Robbery"
         Given I am on "/faits"
-        When I wait and select "Vol" from "facts_offenseNature_offenseNature"
+        When I select "Vol" from "facts_offenseNature_offenseNature"
         And I wait for the element "#facts_offenseNature_aabText" to appear
         Then I should see the key "pel.complaint.offense.nature.warning.text" translated
 
     @javascript
     Scenario: I can see a textarea field if I select Other AAB
         Given I am on "/faits"
-        When I wait and select "Autre atteinte aux biens" from "facts_offenseNature_offenseNature"
+        When I select "Autre atteinte aux biens" from "facts_offenseNature_offenseNature"
         And I wait for the element "#offense_nature_aabText" to appear
         And I should see the key "pel.complaint.offense.nature.other.aab.text" translated
 
@@ -307,31 +307,37 @@ Feature:
     @javascript
     Scenario: Submit the facts form
         Given I am on "/faits"
-        When I wait and select "1" from "facts_offenseNature_offenseNature"
+        When I select "1" from "facts_offenseNature_offenseNature"
         And I click the "label[for=facts_address_isAddressOrRouteFactsKnown_0]" element
         And I wait for the element "#facts_address_startAddress" to appear
-        And I wait and fill in "facts_address_startAddress" with "1 test street"
-        And I wait and fill in "facts_address_endAddress" with "2 test street"
+        And I fill in "facts_address_startAddress" with "1 test street"
+        And I fill in "facts_address_endAddress" with "2 test street"
         And I click the "label[for=facts_offenseDate_exactDateKnown_0]" element
-        And I wait and fill in "facts_offenseDate_startDate" with "01/01/2022"
+        And I wait for the element "#facts_offenseDate_startDate" to appear
+        And I fill in "facts_offenseDate_startDate" with "01/01/2022"
         And I click the "label[for=facts_offenseDate_choiceHour_0]" element
-        And I wait and fill in "facts_offenseDate_hour" with "15:00"
+        And I wait for the element "#facts_offenseDate_hour" to appear
+        And I fill in "facts_offenseDate_hour" with "15:00"
         And I fill in "facts_objects_0_label" with "Object 1"
         And I press "facts_objects_add"
-        And I wait and fill in "facts_objects_1_label" with "Object 2"
+        And I wait for the element "#facts_objects_1_label" to appear
+        And I fill in "facts_objects_1_label" with "Object 2"
         And I click the "label[for=facts_amountKnown_0]" element
         And I wait for the element "#facts_amount" to appear
-        And I wait and fill in "facts_amount" with "700"
+        And I fill in "facts_amount" with "700"
+        And I wait for the element "#facts_additionalInformation_suspectsChoice_0" to appear
         And I click the "label[for=facts_additionalInformation_suspectsChoice_0]" element
-        And I wait and fill in "facts_additionalInformation_suspectsText" with "informations"
+        And I wait for the element "#facts_additionalInformation_suspectsText" to appear
+        And I fill in "facts_additionalInformation_suspectsText" with "informations"
         And I should see the key "pel.facts.suspects.informations.text" translated
         And I click the "label[for=facts_additionalInformation_witnesses_0]" element
-        And I wait and fill in "facts_additionalInformation_witnessesText" with "informations"
+        And I wait for the element "#facts_additionalInformation_witnessesText" to appear
+        And I fill in "facts_additionalInformation_witnessesText" with "informations"
         And I click the "label[for=facts_additionalInformation_fsiVisit_0]" element
         And I click the "label[for=facts_additionalInformation_observationMade_0]" element
         And I click the "label[for=facts_additionalInformation_cctvPresent_0]" element
         And I wait for the element "#facts_additionalInformation_cctvAvailable_0" to appear
         And I click the "label[for=facts_additionalInformation_cctvAvailable_0]" element
-        And I wait and fill in "facts_description" with "informations"
+        And I fill in "facts_description" with "informations"
         And I press "Suivant"
         Then I am redirected on "/recapitulatif"

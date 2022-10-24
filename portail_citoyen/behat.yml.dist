@@ -6,10 +6,6 @@ default:
                 - FailAid\Context\FailureContext
                 - App\Tests\Behat\DatabaseContext
     extensions:
-        FriendsOfBehat\SymfonyExtension:
-            kernel:
-                environment: test
-            bootstrap: tests/bootstrap.php
         FailAid\Extension:
             screenshot:
                 directory: ./build/screenshots/
@@ -25,6 +21,10 @@ func:
             sessions:
                 symfony:
                     symfony: ~
+        FriendsOfBehat\SymfonyExtension:
+            kernel:
+                environment: test
+            bootstrap: tests/bootstrap.php
 
 e2e:
     suites:
@@ -32,6 +32,10 @@ e2e:
             filters:
                 tags: '~@func'
     extensions:
+        FriendsOfBehat\SymfonyExtension:
+            kernel:
+                environment: e2e
+            bootstrap: tests/bootstrap.php
         Behat\MinkExtension:
             files_path: "%paths.base%/tests/Behat/Files"
             base_url: http://nginx-citoyen
@@ -39,10 +43,15 @@ e2e:
             sessions:
                 selenium:
                     selenium2:
-                        wd_host: http://selenium-hub:4444
+                        wd_host: http://chrome:4444/wd/hub
                         browser: chrome
                         capabilities:
                             browserName: "chrome"
                             extra_capabilities:
                                 chromeOptions:
                                     w3c: false
+                                    args:
+                                        - "--headless"
+                                        - "--no-sandbox"
+                                        - "--disable-gpu"
+                                        - "--disable-dev-shm-usage"
