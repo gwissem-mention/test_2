@@ -45,89 +45,59 @@ stages:
 
 .cache-tools-agent: &cache-tools-agent
     cache:
-        key:
-            files:
-                - "portail_agent/tools/composer.lock"
-            prefix: portail_agent
+        key: tools-agent-$CI_COMMIT_REF_SLUG
         paths:
             - "portail_agent/tools"
 
 .cache-tools-citoyen: &cache-tools-citoyen
     cache:
-        key:
-            files:
-                - "portail_citoyen/tools/composer.lock"
-            prefix: portail_citoyen
+        key: tools-citoyen-$CI_COMMIT_REF_SLUG
         paths:
             - "portail_citoyen/tools"
 
 .cache-vendor-agent: &cache-vendor-agent
     cache:
-        key:
-            files:
-                - "portail_agent/composer.lock"
-            prefix: portail_agent
+        key: vendor-agent-$CI_COMMIT_REF_SLUG
         paths:
             - "portail_agent/vendor"
 
 .cache-vendor-citoyen: &cache-vendor-citoyen
     cache:
-        key:
-            files:
-                - "portail_citoyen/composer.lock"
-            prefix: portail_citoyen
+        key: vendor-citoyen-$CI_COMMIT_REF_SLUG
         paths:
             - "portail_citoyen/vendor"
 
 .cache-front-agent: &cache-front-agent
     cache:
-        key:
-            files:
-                - "portail_agent/yarn.lock"
-            prefix: portail_agent
+        key: front-agent-$CI_COMMIT_REF_SLUG
         paths:
             - "portail_agent/public"
             - "portail_agent/node_modules"
 
 .cache-front-citoyen: &cache-front-citoyen
     cache:
-        key:
-            files:
-                - "portail_citoyen/yarn.lock"
-            prefix: portail_citoyen
+        key: front-citoyen-$CI_COMMIT_REF_SLUG
         paths:
             - "portail_citoyen/public"
             - "portail_citoyen/node_modules"
 
 .cache-complete-agent: &cache-complete-agent
     cache:
-        - key:
-            files:
-                - "portail_agent/yarn.lock"
-            prefix: portail_agent
+        - key: front-agent-$CI_COMMIT_REF_SLUG
           paths:
               - "portail_agent/public"
               - "portail_agent/node_modules"
-        - key:
-            files:
-               - "portail_agent/composer.lock"
-            prefix: portail_agent
+        - key: vendor-agent-$CI_COMMIT_REF_SLUG
           paths:
               - "portail_agent/vendor"
 
 .cache-complete-citoyen: &cache-complete-citoyen
     cache:
-        - key:
-            files:
-                - "portail_citoyen/yarn.lock"
-            prefix: portail_citoyen
+        - key: front-citoyen-$CI_COMMIT_REF_SLUG
           paths:
               - "portail_citoyen/public"
               - "portail_citoyen/node_modules"
-        - key:
-            files:
-                - "portail_citoyen/composer.lock"
-            prefix: portail_citoyen
+        - key: vendor-citoyen-$CI_COMMIT_REF_SLUG
           paths:
             - "portail_citoyen/vendor"
 
@@ -382,16 +352,10 @@ agent-php-phpstan:
     <<: *agent-step
     <<: *phpstan
     cache:
-        - key:
-            files:
-                - "portail_agent/tools/composer.lock"
-            prefix: portail_agent
+        - key: tools-agent-$CI_COMMIT_REF_SLUG
           paths:
-            - "portail_agent/tools/vendor"
-        - key:
-            files:
-                - "portail_agent/composer.lock"
-            prefix: portail_agent
+                - "portail_agent/tools"
+        - key: vendor-agent-$CI_COMMIT_REF_SLUG
           paths:
             - "portail_agent/vendor"
 
@@ -399,16 +363,10 @@ citoyen-php-phpstan:
     <<: *citoyen-step
     <<: *phpstan
     cache:
-        - key:
-            files:
-                - "portail_citoyen/tools/composer.lock"
-            prefix: portail_citoyen
+        - key: tools-citoyen-$CI_COMMIT_REF_SLUG
           paths:
-              - "portail_citoyen/tools/vendor"
-        - key:
-            files:
-                - "portail_citoyen/composer.lock"
-            prefix: portail_citoyen
+              - "portail_citoyen/tools"
+        - key: vendor-citoyen-$CI_COMMIT_REF_SLUG
           paths:
               - "portail_citoyen/vendor"
 
