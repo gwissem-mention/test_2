@@ -167,32 +167,4 @@ final class BaseContext extends MinkContext
     {
         $this->visitPath($url);
     }
-
-    /**
-     * Fills in form field with specified id|name|label|value
-     * Example: When I wait and fill in "username" with: "bwayne"
-     * Example: And I wait and fill in "bwayne" for "username".
-     *
-     * @When /^(?:|I )wait and fill in "(?P<field>(?:[^"]|\\")*)" with "(?P<value>(?:[^"]|\\")*)"$/
-     * @When /^(?:|I )wait and fill in "(?P<field>(?:[^"]|\\")*)" with:$/
-     * @When /^(?:|I )wait and fill in "(?P<value>(?:[^"]|\\")*)" for "(?P<field>(?:[^"]|\\")*)"$/
-     */
-    public function waitAndFillField(string $field, string $value): void
-    {
-        $this->iWaitForTheElementToAppear($field);
-        $this->fillField($field, $value);
-    }
-
-    /**
-     * Selects option in select field with specified id|name|label|value
-     * Example: When I wait and select "Bats" from "user_fears"
-     * Example: And I wait and select "Bats" from "user_fears".
-     *
-     * @When /^(?:|I )wait and select "(?P<option>(?:[^"]|\\")*)" from "(?P<select>(?:[^"]|\\")*)"$/
-     */
-    public function waitAndSelectOption(string $select, string $option): void
-    {
-        $this->iWaitForTheElementToAppear($select);
-        $this->selectOption($select, $option);
-    }
 }
