@@ -6,24 +6,26 @@ namespace App\Form\Model\Facts;
 
 class ObjectModel
 {
-    private int $category;
-    private ?string $label;
-    private ?string $brand;
-    private ?string $model;
-    private ?string $phoneNumberLine;
-    private ?string $operator;
-    private ?string $serialNumber;
-    private ?string $description;
-    private ?int $quantity;
+    private ?int $category = null;
+    private ?string $label = null;
+    private ?string $brand = null;
+    private ?string $model = null;
+    private ?string $phoneNumberLine = null;
+    private ?string $operator = null;
+    private ?string $serialNumber = null;
+    private ?string $description = null;
+    private ?int $quantity = null;
 
-    public function getCategory(): int
+    public function getCategory(): ?int
     {
         return $this->category;
     }
 
-    public function setCategory(int $category): void
+    public function setCategory(?int $category): self
     {
         $this->category = $category;
+
+        return $this;
     }
 
     public function getLabel(): ?string
@@ -31,9 +33,11 @@ class ObjectModel
         return $this->label;
     }
 
-    public function setLabel(?string $label): void
+    public function setLabel(?string $label): self
     {
         $this->label = $label;
+
+        return $this;
     }
 
     public function getBrand(): ?string
@@ -41,9 +45,11 @@ class ObjectModel
         return $this->brand;
     }
 
-    public function setBrand(?string $brand): void
+    public function setBrand(?string $brand): self
     {
         $this->brand = $brand;
+
+        return $this;
     }
 
     public function getModel(): ?string
@@ -51,9 +57,11 @@ class ObjectModel
         return $this->model;
     }
 
-    public function setModel(?string $model): void
+    public function setModel(?string $model): self
     {
         $this->model = $model;
+
+        return $this;
     }
 
     public function getPhoneNumberLine(): ?string
@@ -61,9 +69,11 @@ class ObjectModel
         return $this->phoneNumberLine;
     }
 
-    public function setPhoneNumberLine(?string $phoneNumberLine): void
+    public function setPhoneNumberLine(?string $phoneNumberLine): self
     {
         $this->phoneNumberLine = $phoneNumberLine;
+
+        return $this;
     }
 
     public function getOperator(): ?string
@@ -71,9 +81,11 @@ class ObjectModel
         return $this->operator;
     }
 
-    public function setOperator(?string $operator): void
+    public function setOperator(?string $operator): self
     {
         $this->operator = $operator;
+
+        return $this;
     }
 
     public function getSerialNumber(): ?string
@@ -81,9 +93,11 @@ class ObjectModel
         return $this->serialNumber;
     }
 
-    public function setSerialNumber(?string $serialNumber): void
+    public function setSerialNumber(?string $serialNumber): self
     {
         $this->serialNumber = $serialNumber;
+
+        return $this;
     }
 
     public function getDescription(): ?string
@@ -91,9 +105,11 @@ class ObjectModel
         return $this->description;
     }
 
-    public function setDescription(?string $description): void
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
     }
 
     public function getQuantity(): ?int
@@ -101,8 +117,10 @@ class ObjectModel
         return $this->quantity;
     }
 
-    public function setQuantity(?int $quantity): void
+    public function setQuantity(?int $quantity): self
     {
         $this->quantity = $quantity;
+
+        return $this;
     }
 }

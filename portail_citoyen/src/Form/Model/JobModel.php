@@ -6,15 +6,17 @@ namespace App\Form\Model;
 
 class JobModel
 {
-    private int $job;
+    private ?int $job = null;
 
-    public function getJob(): int
+    public function isJob(): ?int
     {
         return $this->job;
     }
 
-    public function setJob(int $job): void
+    public function setJob(?int $job): self
     {
         $this->job = $job;
+
+        return $this;
     }
 }

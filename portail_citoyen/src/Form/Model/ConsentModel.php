@@ -6,15 +6,17 @@ namespace App\Form\Model;
 
 class ConsentModel
 {
-    private bool $agree;
+    private ?bool $agree = null;
 
-    public function isAgree(): bool
+    public function isAgree(): ?bool
     {
         return $this->agree;
     }
 
-    public function setAgree(bool $agree): void
+    public function setAgree(?bool $agree): self
     {
         $this->agree = $agree;
+
+        return $this;
     }
 }

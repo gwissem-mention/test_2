@@ -30,11 +30,12 @@ class LocationType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $emptyData = $options['empty_data'];
         $builder
             ->add('country', CountryType::class, [
                 'label' => $options['country_label'],
                 'preferred_choices' => [$this->franceCode],
-                'empty_data' => $this->franceCode,
+                'empty_data' => $emptyData instanceof LocationModel ? $emptyData->getCountry() : $this->franceCode,
                 'constraints' => [
                     new NotBlank(),
                 ],
@@ -90,6 +91,7 @@ class LocationType extends AbstractType
 
     private function addFormPartForFrenchPlace(FormInterface $form): void
     {
+        $emptyData = $form->getConfig()->getEmptyData();
         $form
             ->remove('otherTown')
             ->add('frenchTown', ChoiceType::class, [
@@ -101,6 +103,7 @@ class LocationType extends AbstractType
                 ),
                 'label' => $form->getConfig()->getOption('town_label'),
                 'placeholder' => 'pel.choose.your.town',
+                'empty_data' => $emptyData instanceof LocationModel ? $emptyData->getFrenchTown() : null,
             ])
             ->add('department', TextType::class, [
                 'disabled' => true,

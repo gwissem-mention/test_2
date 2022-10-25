@@ -12,7 +12,7 @@
                title="{{ 'pel.what.is.france.connect'|trans }} - {{ 'pel.new.window'|trans }}">{{ 'pel.what.is.france.connect'|trans }}</a>
         </p>
     </div>
-    <a href="{{ path('identity') }}">{{ 'pel.continue.pel.without.log.in'|trans }}</a>
+    <a href="{{ path('identity', {'france_connected': false}) }}">{{ 'pel.continue.pel.without.log.in'|trans }}</a>
     <p>{{ 'pel.continue.pel.without.log.in.explanation'|trans }}</p>
 {% endblock %}
 

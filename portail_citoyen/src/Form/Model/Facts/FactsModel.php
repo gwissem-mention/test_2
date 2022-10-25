@@ -9,12 +9,12 @@ use Doctrine\Common\Collections\Collection;
 
 class FactsModel
 {
-    private AddressModel $address;
-    private OffenseNatureModel $offenseNature;
-    private OffenseDateModel $offenseDate;
-    private string $description;
-    private bool $amountKnown;
-    private AdditionalInformationModel $additionalInformation;
+    private ?AddressModel $address = null;
+    private ?OffenseNatureModel $offenseNature = null;
+    private ?OffenseDateModel $offenseDate = null;
+    private ?string $description = null;
+    private ?bool $amountKnown = null;
+    private ?AdditionalInformationModel $additionalInformation = null;
     private ?int $amount = null;
     /**
      * @var Collection<int, ObjectModel>
@@ -26,64 +26,76 @@ class FactsModel
         $this->objects = new ArrayCollection();
     }
 
-    public function getAddress(): AddressModel
+    public function getAddress(): ?AddressModel
     {
         return $this->address;
     }
 
-    public function setAddress(AddressModel $address): void
+    public function setAddress(?AddressModel $address): self
     {
         $this->address = $address;
+
+        return $this;
     }
 
-    public function getOffenseNature(): OffenseNatureModel
+    public function getOffenseNature(): ?OffenseNatureModel
     {
         return $this->offenseNature;
     }
 
-    public function setOffenseNature(OffenseNatureModel $offenseNature): void
+    public function setOffenseNature(?OffenseNatureModel $offenseNature): self
     {
         $this->offenseNature = $offenseNature;
+
+        return $this;
     }
 
-    public function getOffenseDate(): OffenseDateModel
+    public function getOffenseDate(): ?OffenseDateModel
     {
         return $this->offenseDate;
     }
 
-    public function setOffenseDate(OffenseDateModel $offenseDate): void
+    public function setOffenseDate(?OffenseDateModel $offenseDate): self
     {
         $this->offenseDate = $offenseDate;
+
+        return $this;
     }
 
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    public function setDescription(string $description): void
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
     }
 
-    public function isAmountKnown(): bool
+    public function isAmountKnown(): ?bool
     {
         return $this->amountKnown;
     }
 
-    public function setAmountKnown(bool $amountKnown): void
+    public function setAmountKnown(?bool $amountKnown): self
     {
         $this->amountKnown = $amountKnown;
+
+        return $this;
     }
 
-    public function getAdditionalInformation(): AdditionalInformationModel
+    public function getAdditionalInformation(): ?AdditionalInformationModel
     {
         return $this->additionalInformation;
     }
 
-    public function setAdditionalInformation(AdditionalInformationModel $additionalInformation): void
+    public function setAdditionalInformation(?AdditionalInformationModel $additionalInformation): self
     {
         $this->additionalInformation = $additionalInformation;
+
+        return $this;
     }
 
     public function getAmount(): ?int
@@ -91,9 +103,11 @@ class FactsModel
         return $this->amount;
     }
 
-    public function setAmount(?int $amount): void
+    public function setAmount(?int $amount): self
     {
         $this->amount = $amount;
+
+        return $this;
     }
 
     /**

@@ -14,6 +14,7 @@ class ComplaintModel
     private \DateTimeInterface $createdAt;
     private ?IdentityModel $identity = null;
     private ?FactsModel $facts = null;
+    private bool $franceConnected = false;
 
     public function __construct(Uuid $id)
     {
@@ -65,6 +66,18 @@ class ComplaintModel
     public function setId(Uuid $id): self
     {
         $this->id = $id;
+
+        return $this;
+    }
+
+    public function isFranceConnected(): bool
+    {
+        return $this->franceConnected;
+    }
+
+    public function setFranceConnected(bool $franceConnected): self
+    {
+        $this->franceConnected = $franceConnected;
 
         return $this;
     }

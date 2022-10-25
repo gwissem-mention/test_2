@@ -6,29 +6,33 @@ namespace App\Form\Model\Facts;
 
 class AddressModel
 {
-    private bool $isAddressOrRouteFactsKnown;
-    private string $addressAdditionalInformation;
+    private ?bool $isAddressOrRouteFactsKnown = null;
+    private ?string $addressAdditionalInformation = null;
     private ?string $startAddress = null;
     private ?string $endAddress = null;
 
-    public function isAddressOrRouteFactsKnown(): bool
+    public function isAddressOrRouteFactsKnown(): ?bool
     {
         return $this->isAddressOrRouteFactsKnown;
     }
 
-    public function setIsAddressOrRouteFactsKnown(bool $isAddressOrRouteFactsKnown): void
+    public function setIsAddressOrRouteFactsKnown(?bool $isAddressOrRouteFactsKnown): self
     {
         $this->isAddressOrRouteFactsKnown = $isAddressOrRouteFactsKnown;
+
+        return $this;
     }
 
-    public function getAddressAdditionalInformation(): string
+    public function getAddressAdditionalInformation(): ?string
     {
         return $this->addressAdditionalInformation;
     }
 
-    public function setAddressAdditionalInformation(string $addressAdditionalInformation): void
+    public function setAddressAdditionalInformation(?string $addressAdditionalInformation): self
     {
         $this->addressAdditionalInformation = $addressAdditionalInformation;
+
+        return $this;
     }
 
     public function getStartAddress(): ?string
@@ -36,9 +40,11 @@ class AddressModel
         return $this->startAddress;
     }
 
-    public function setStartAddress(?string $startAddress): void
+    public function setStartAddress(?string $startAddress): self
     {
         $this->startAddress = $startAddress;
+
+        return $this;
     }
 
     public function getEndAddress(): ?string
@@ -46,8 +52,10 @@ class AddressModel
         return $this->endAddress;
     }
 
-    public function setEndAddress(?string $endAddress): void
+    public function setEndAddress(?string $endAddress): self
     {
         $this->endAddress = $endAddress;
+
+        return $this;
     }
 }

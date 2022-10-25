@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Form\Identity;
 
+use App\Enum\Civility;
 use App\Enum\DeclarantStatus;
 use App\Form\LocationType;
 use App\Form\Model\Identity\CivilStateModel;
-use App\FranceConnect\Identity;
 use App\Thesaurus\JobThesaurusProviderInterface;
 use App\Thesaurus\NationalityThesaurusProviderInterface;
 use Symfony\Component\Form\AbstractType;
@@ -27,27 +27,25 @@ class CivilStateType extends AbstractType
 {
     public function __construct(
         private readonly NationalityThesaurusProviderInterface $nationalityThesaurusProvider,
-        private readonly JobThesaurusProviderInterface $jobThesaurusProvider,
+        private readonly JobThesaurusProviderInterface $jobThesaurusProvider
     ) {
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        /** @var Identity|null $fcIdentity */
-        $fcIdentity = $options['fc_identity'];
-
+        /** @var ?CivilStateModel $emptyData */
+        $emptyData = $options['empty_data'];
         $nationalityChoices = $this->nationalityThesaurusProvider->getChoices();
+
         $builder
             ->add('civility', ChoiceType::class, [
-                'choices' => [
-                    'pel.m' => 1,
-                    'pel.mme' => 2,
-                ],
+                'choices' => Civility::getChoices(),
                 'constraints' => [
                     new NotBlank(),
                 ],
                 'label' => 'pel.civility',
                 'placeholder' => 'pel.choose.your.civility',
+                'empty_data' => $emptyData instanceof CivilStateModel ? $emptyData->getCivility() : null,
             ])
             ->add('birthName', TextType::class, [
                 'attr' => [
@@ -60,7 +58,7 @@ class CivilStateType extends AbstractType
                     new Length(['max' => 70]),
                 ],
                 'label' => 'pel.birth.name',
-                'empty_data' => $fcIdentity?->getFamilyName(),
+                'empty_data' => $emptyData instanceof CivilStateModel ? $emptyData->getBirthName() : null,
             ])
             ->add('usageName', TextType::class, [
                 'attr' => [
@@ -83,18 +81,21 @@ class CivilStateType extends AbstractType
                     new Length(['max' => 40]),
                 ],
                 'label' => 'pel.first.names',
-                'empty_data' => $fcIdentity?->getGivenName(),
+                'empty_data' => $emptyData instanceof CivilStateModel ? $emptyData->getFirstnames() : null,
             ])
             ->add('birthDate', DateType::class, [
                 'constraints' => $options['birthDate_constraints'],
                 'help' => 'pel.birth.date.help',
                 'label' => 'pel.birth.date',
                 'widget' => 'single_text',
+                'empty_data' => $emptyData instanceof CivilStateModel ? $emptyData->getBirthDate()?->format('Y-m-d') :
+                    null,
             ])
             ->add('birthLocation', LocationType::class, [
                 'country_label' => 'pel.birth.country',
                 'town_label' => 'pel.birth.town',
                 'department_label' => 'pel.birth.department',
+                'empty_data' => $emptyData instanceof CivilStateModel ? $emptyData->getBirthLocation() : null,
             ])
             ->add('nationality', ChoiceType::class, [
                 'constraints' => [
@@ -115,12 +116,12 @@ class CivilStateType extends AbstractType
         $builder->addEventListener(
             FormEvents::SUBMIT,
             function (FormEvent $event) {
-                /** @var CivilStateModel $data */
+                /** @var ?CivilStateModel $data */
                 $data = $event->getData();
                 $job = null;
                 $jobNone = $this->jobThesaurusProvider->getChoices()['pel.job.none'];
 
-                if ($data->getJob() && !($jobNone === $data->getJob())) {
+                if ($data?->getJob() && !($jobNone === $data->getJob())) {
                     $job = $data->getJob();
                 } elseif (DeclarantStatus::PersonLegalRepresentative->value === $event->getForm()->getConfig()
                         ->getOption('declarant_status')) {
@@ -138,10 +139,8 @@ class CivilStateType extends AbstractType
             ->setDefaults([
                 'data_class' => CivilStateModel::class,
                 'declarant_status' => null,
-                'fc_identity' => null,
                 'birthDate_constraints' => [new NotBlank(), new LessThanOrEqual('today')],
-            ])
-            ->setAllowedTypes('fc_identity', [Identity::class, 'null']);
+            ]);
     }
 
     private function addJobField(FormInterface $form, ?int $job = null): void

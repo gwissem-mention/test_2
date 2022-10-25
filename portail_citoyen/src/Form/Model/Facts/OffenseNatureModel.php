@@ -6,17 +6,19 @@ namespace App\Form\Model\Facts;
 
 class OffenseNatureModel
 {
-    private int $offenseNature;
-    private ?string $aabText;
+    private ?int $offenseNature = null;
+    private ?string $aabText = null;
 
-    public function getOffenseNature(): int
+    public function getOffenseNature(): ?int
     {
         return $this->offenseNature;
     }
 
-    public function setOffenseNature(int $offenseNature): void
+    public function setOffenseNature(?int $offenseNature): self
     {
         $this->offenseNature = $offenseNature;
+
+        return $this;
     }
 
     public function getAabText(): ?string
@@ -24,8 +26,10 @@ class OffenseNatureModel
         return $this->aabText;
     }
 
-    public function setAabText(?string $aabText): void
+    public function setAabText(?string $aabText): self
     {
         $this->aabText = $aabText;
+
+        return $this;
     }
 }

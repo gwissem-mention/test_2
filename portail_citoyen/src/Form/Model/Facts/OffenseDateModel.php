@@ -6,32 +6,36 @@ namespace App\Form\Model\Facts;
 
 class OffenseDateModel
 {
-    private bool $exactDateKnown;
-    private string $choiceHour;
+    private ?bool $exactDateKnown = null;
+    private ?string $choiceHour = null;
     private ?\DateTimeInterface $startDate = null;
     private ?\DateTimeInterface $endDate = null;
     private ?\DateTimeInterface $hour = null;
     private ?\DateTimeInterface $startHour = null;
     private ?\DateTimeInterface $endHour = null;
 
-    public function isExactDateKnown(): bool
+    public function isExactDateKnown(): ?bool
     {
         return $this->exactDateKnown;
     }
 
-    public function setExactDateKnown(bool $exactDateKnown): void
+    public function setExactDateKnown(?bool $exactDateKnown): self
     {
         $this->exactDateKnown = $exactDateKnown;
+
+        return $this;
     }
 
-    public function getChoiceHour(): string
+    public function getChoiceHour(): ?string
     {
         return $this->choiceHour;
     }
 
-    public function setChoiceHour(string $choiceHour): void
+    public function setChoiceHour(?string $choiceHour): self
     {
         $this->choiceHour = $choiceHour;
+
+        return $this;
     }
 
     public function getStartDate(): ?\DateTimeInterface
@@ -39,9 +43,11 @@ class OffenseDateModel
         return $this->startDate;
     }
 
-    public function setStartDate(?\DateTimeInterface $startDate): void
+    public function setStartDate(?\DateTimeInterface $startDate): self
     {
         $this->startDate = $startDate;
+
+        return $this;
     }
 
     public function getEndDate(): ?\DateTimeInterface
@@ -49,9 +55,11 @@ class OffenseDateModel
         return $this->endDate;
     }
 
-    public function setEndDate(?\DateTimeInterface $endDate): void
+    public function setEndDate(?\DateTimeInterface $endDate): self
     {
         $this->endDate = $endDate;
+
+        return $this;
     }
 
     public function getHour(): ?\DateTimeInterface
@@ -59,9 +67,11 @@ class OffenseDateModel
         return $this->hour;
     }
 
-    public function setHour(?\DateTimeInterface $hour): void
+    public function setHour(?\DateTimeInterface $hour): self
     {
         $this->hour = $hour;
+
+        return $this;
     }
 
     public function getStartHour(): ?\DateTimeInterface
@@ -69,9 +79,11 @@ class OffenseDateModel
         return $this->startHour;
     }
 
-    public function setStartHour(?\DateTimeInterface $startHour): void
+    public function setStartHour(?\DateTimeInterface $startHour): self
     {
         $this->startHour = $startHour;
+
+        return $this;
     }
 
     public function getEndHour(): ?\DateTimeInterface
@@ -79,8 +91,10 @@ class OffenseDateModel
         return $this->endHour;
     }
 
-    public function setEndHour(?\DateTimeInterface $endHour): void
+    public function setEndHour(?\DateTimeInterface $endHour): self
     {
         $this->endHour = $endHour;
+
+        return $this;
     }
 }
