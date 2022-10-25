@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Components\Identity;
 
 use App\Form\Identity\IdentityType;
+use App\Session\SessionHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -19,9 +20,13 @@ class IdentityComponent extends AbstractController
     use ComponentWithFormTrait;
     use DefaultActionTrait;
 
+    public function __construct(private readonly SessionHandler $sessionHandler)
+    {
+    }
+
     protected function instantiateForm(): FormInterface
     {
-        return $this->createForm(IdentityType::class);
+        return $this->createForm(IdentityType::class, $this->sessionHandler->getComplaint()?->getIdentity());
     }
 
     #[LiveAction]

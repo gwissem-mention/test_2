@@ -21,7 +21,7 @@ class TownToTownAndDepartmentTransformer implements DataTransformerInterface
      */
     public function transform(mixed $value): string
     {
-        if (false === (isset($value[0]) && isset($value[1]))) {
+        if (false === (isset($value[0], $value[1]))) {
             throw new TransformationFailedException(sprintf('Cannot convert town %s to town and department', strval($value)));
         }
 

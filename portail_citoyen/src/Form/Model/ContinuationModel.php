@@ -6,17 +6,19 @@ namespace App\Form\Model;
 
 class ContinuationModel
 {
-    private bool $materialDamage;
+    private ?bool $materialDamage = null;
     private ?bool $offenseAuthorKnown = null;
 
-    public function isMaterialDamage(): bool
+    public function isMaterialDamage(): ?bool
     {
         return $this->materialDamage;
     }
 
-    public function setMaterialDamage(bool $materialDamage): void
+    public function setMaterialDamage(?bool $materialDamage): self
     {
         $this->materialDamage = $materialDamage;
+
+        return $this;
     }
 
     public function isOffenseAuthorKnown(): ?bool
@@ -24,8 +26,10 @@ class ContinuationModel
         return $this->offenseAuthorKnown;
     }
 
-    public function setOffenseAuthorKnown(?bool $offenseAuthorKnown): void
+    public function setOffenseAuthorKnown(?bool $offenseAuthorKnown): self
     {
         $this->offenseAuthorKnown = $offenseAuthorKnown;
+
+        return $this;
     }
 }

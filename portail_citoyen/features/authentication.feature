@@ -27,6 +27,11 @@ Feature:
         And I wait for the element "#form-identity" to appear
         Then the "identity_civilState_birthName" field should contain "DUPONT"
         And the "identity_civilState_firstnames" field should contain "Michel"
+        And the "identity_civilState_birthDate" field should contain "1967-03-02"
+        And the "identity_civilState_civility" field should contain "1"
+        And the "identity_civilState_birthLocation_country" field should contain "FR"
+        And the "identity_civilState_birthLocation_frenchTown" field should contain "Paris (75)"
+        And the "identity_contactInformation_email" field should contain "michel.dupont@example.com"
 
     @javascript
     Scenario: I can click on the unconnected button
@@ -37,3 +42,7 @@ Feature:
         And I wait for the element "#form-identity" to appear
         Then the "identity_civilState_birthName" field should not contain "DUPONT"
         And the "identity_civilState_firstnames" field should not contain "Michel"
+        And the "identity_civilState_birthDate" field should not contain "1967-03-02"
+        And the "identity_civilState_civility" field should not contain "1"
+        And the "identity_civilState_birthLocation_frenchTown" field should not contain "Paris (75)"
+        And the "identity_contactInformation_email" field should not contain "michel.dupont@example.com"

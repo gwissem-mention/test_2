@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Uid\Uuid;
 
-class ComplaintSessionHandler
+class SessionHandler
 {
     private const SESSION_ATTRIBUTE_COMPLAINT = 'complaint';
 
@@ -26,15 +26,24 @@ class ComplaintSessionHandler
         if (!$session->has(self::SESSION_ATTRIBUTE_COMPLAINT)) {
             /** @var Uuid $complaintId */
             $complaintId = $this->generator->generate();
-            $session->set(
-                self::SESSION_ATTRIBUTE_COMPLAINT,
-                $this->serializer->serialize(new ComplaintModel($complaintId), 'json')
-            );
+            $this->setComplaint(new ComplaintModel($complaintId));
         }
     }
 
-    public function get(): ComplaintModel
+    public function setComplaint(ComplaintModel $complaintModel): void
     {
+        $this->requestStack->getSession()->set(
+            self::SESSION_ATTRIBUTE_COMPLAINT,
+            $this->serializer->serialize($complaintModel, 'json')
+        );
+    }
+
+    public function getComplaint(): ?ComplaintModel
+    {
+        if (!$this->requestStack->getSession()->has(self::SESSION_ATTRIBUTE_COMPLAINT)) {
+            return null;
+        }
+
         /** @var ComplaintModel $complaint */
         $complaint = $this->serializer->deserialize(
             $this->requestStack->getSession()->get(self::SESSION_ATTRIBUTE_COMPLAINT),

@@ -6,7 +6,6 @@ namespace App\Form\Identity;
 
 use App\Enum\DeclarantStatus;
 use App\Form\Model\Identity\IdentityModel;
-use App\FranceConnect\IdentitySessionHandler;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -22,24 +21,30 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class IdentityType extends AbstractType
 {
     public function __construct(
-        private readonly TranslatorInterface $translator,
-        private readonly IdentitySessionHandler $fcIdentitySessionHandler
+        private readonly TranslatorInterface $translator
     ) {
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder->add('declarantStatus', ChoiceType::class, [
-            'label' => 'pel.complaint.identity.declarant.status',
-            'expanded' => true,
-            'multiple' => false,
-            'rich' => true,
-            'choices' => DeclarantStatus::getChoices(),
-        ])
+        $builder
+            ->add('declarantStatus', ChoiceType::class, [
+                'label' => 'pel.complaint.identity.declarant.status',
+                'expanded' => true,
+                'multiple' => false,
+                'rich' => true,
+                'choices' => DeclarantStatus::getChoices(),
+            ])
             ->addEventListener(
                 FormEvents::PRE_SET_DATA,
                 function (FormEvent $event) {
-                    $this->buildFieldsForDeclarantStatus($event->getForm());
+                    /** @var ?IdentityModel $identityModel */
+                    $identityModel = $event->getData();
+                    $this->buildFieldsForDeclarantStatus(
+                        $event->getForm(),
+                        $identityModel?->getDeclarantStatus(),
+                        $identityModel
+                    );
                 }
             )
             ->get('declarantStatus')
@@ -48,13 +53,18 @@ class IdentityType extends AbstractType
                 function (FormEvent $event) {
                     /** @var FormInterface $parent */
                     $parent = $event->getForm()->getParent();
-                    $this->buildFieldsForDeclarantStatus($parent, intval($event->getData()));
+                    /** @var IdentityModel $identityModel */
+                    $identityModel = $parent->getData();
+                    $this->buildFieldsForDeclarantStatus($parent, intval($event->getData()), $identityModel);
                 }
             );
     }
 
-    private function buildFieldsForDeclarantStatus(FormInterface $form, ?int $declarantStatus = null): void
-    {
+    private function buildFieldsForDeclarantStatus(
+        FormInterface $form,
+        ?int $declarantStatus = null,
+        ?IdentityModel $identityModel = null
+    ): void {
         if (null === $declarantStatus) {
             return;
         }
@@ -71,7 +81,7 @@ class IdentityType extends AbstractType
             default:
         }
 
-        $this->addCivilStateAndContactInformationFields($form);
+        $this->addCivilStateAndContactInformationFields($form, $identityModel);
     }
 
     private function addCorporationFields(FormInterface $form): void
@@ -79,12 +89,14 @@ class IdentityType extends AbstractType
         $form->add('corporation', CorporationType::class);
     }
 
-    private function addCivilStateAndContactInformationFields(FormInterface $form): void
-    {
+    private function addCivilStateAndContactInformationFields(
+        FormInterface $form,
+        ?IdentityModel $identityModel = null
+    ): void {
         $form
             ->add('civilState', CivilStateType::class, [
                 'compound' => true,
-                'fc_identity' => $this->fcIdentitySessionHandler->getIdentity(),
+                'empty_data' => $identityModel?->getCivilState(),
                 'birthDate_constraints' => [
                     new NotBlank(),
                     new LessThanOrEqual(
@@ -107,7 +119,10 @@ class IdentityType extends AbstractType
                     ),
                 ],
             ])
-            ->add('contactInformation', ContactInformationType::class);
+            ->add('contactInformation', ContactInformationType::class, [
+                'compound' => true,
+                'empty_data' => $identityModel?->getContactInformation(),
+            ]);
     }
 
     private function addRepresentedPersonFields(FormInterface $form, int $declarantStatus): void

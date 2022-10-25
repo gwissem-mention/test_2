@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace App\Twig;
 
-use App\FranceConnect\IdentitySessionHandler;
+use App\Session\FranceConnectHandler;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
 class FranceConnectExtension extends AbstractExtension
 {
     public function __construct(
-        private readonly IdentitySessionHandler $fcIdentitySessionHandler
+        private readonly FranceConnectHandler $franceConnectHandler
     ) {
     }
 
@@ -24,6 +24,6 @@ class FranceConnectExtension extends AbstractExtension
 
     public function isFranceConnected(): bool
     {
-        return $this->fcIdentitySessionHandler->isConnected();
+        return $this->franceConnectHandler->isFranceConnected();
     }
 }
