@@ -102,6 +102,10 @@ yarn:
 install: c=install
 install: yarn
 
+## Check packages vulnerabilities
+frontend-audit: c=audit
+frontend-audit: yarn
+
 ## Build dev nodes packages and watch
 watch: c=watch
 watch: yarn
@@ -117,6 +121,14 @@ build-ci: yarn
 ## Build dev nodes packages
 dev: c=dev
 dev: yarn
+
+## Fix TS files coding style
+frontend-cs: c=cs
+frontend-cs: yarn
+
+## Check TS files coding style
+frontend-cs-test: c=cs-test
+frontend-cs-test: yarn
 
 #################################
 Doctrine:

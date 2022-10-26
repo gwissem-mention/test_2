@@ -6,13 +6,19 @@
         "@symfony/ux-autocomplete": "file:vendor/symfony/ux-autocomplete/assets",
         "@symfony/ux-live-component": "file:vendor/symfony/ux-live-component/assets",
         "@symfony/webpack-encore": "^3.0.0",
+        "@types/dropzone": "^5.7.4",
+        "@typescript-eslint/eslint-plugin": "^5.41.0",
+        "@typescript-eslint/parser": "^5.41.0",
         "core-js": "^3.23.0",
         "dropzone": "^6.0.0-beta.2",
+        "eslint": "^8.26.0",
         "file-loader": "^6.0.0",
         "regenerator-runtime": "^0.13.9",
         "sass": "^1.54.0",
         "sass-loader": "^13.0.2",
         "tom-select": "^2.0.1",
+        "ts-loader": "^9.4.1",
+        "typescript": "^4.8.4",
         "webpack-notifier": "^1.15.0"
     },
     "license": "UNLICENSED",
@@ -22,6 +28,9 @@
         "dev": "encore dev",
         "watch": "encore dev --watch",
         "build": "encore production --progress",
-        "build-ci": "encore production --no-devtool --no-stats --no-watch"
+        "build-ci": "encore production --no-devtool --no-stats --no-watch",
+        "cs": "eslint . --fix --ext .ts",
+        "cs-test": "eslint . --ext .ts",
+        "audit": "npm audit"
     }
 }
