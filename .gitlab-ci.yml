@@ -37,11 +37,29 @@ stages:
         - cd ./portail_agent/
     <<: *basic-override
 
+.frontend-step: &frontend-step
+    image: node:16
+    <<: *basic-override
+
+.citoyen-frontend-step: &citoyen-frontend-step
+    <<: *frontend-step
+    before_script:
+        - cd ./portail_citoyen/
+
+.agent-frontend-step: &agent-frontend-step
+    <<: *frontend-step
+    before_script:
+        - cd ./portail_agent/
+
 .citoyen-step: &citoyen-step
     image: "registry.smile.fr/${HARBOR_PROJECT}/${PHP_CITOYEN_ARTIFACT_NAME}"
     before_script:
         - cd ./portail_citoyen/
     <<: *basic-override
+
+#######################################
+##       Caches configurations       ##
+#######################################
 
 .cache-tools-agent: &cache-tools-agent
     cache:
@@ -99,7 +117,7 @@ stages:
               - "portail_citoyen/node_modules"
         - key: vendor-citoyen-$CI_COMMIT_REF_SLUG
           paths:
-            - "portail_citoyen/vendor"
+              - "portail_citoyen/vendor"
 
 #######################################
 ##               Check               ##
@@ -266,7 +284,6 @@ citoyen-build-vendor:
 
 .build-front: &build-front
     stage: build
-    image: node:16
     script:
         - make install
         - make build-ci
@@ -274,9 +291,8 @@ citoyen-build-vendor:
 agent-build-front:
     <<: *cache-complete-agent
     <<: *build-front
+    <<: *agent-frontend-step
     <<: *basic-override
-    before_script:
-        - cd ./portail_agent/
     needs:
         - agent-build-vendor
 
@@ -284,8 +300,7 @@ citoyen-build-front:
     <<: *cache-complete-citoyen
     <<: *build-front
     <<: *basic-override
-    before_script:
-        - cd ./portail_citoyen/
+    <<: *citoyen-frontend-step
     variables:
         KUBERNETES_MEMORY_REQUEST: 1Gi
         KUBERNETES_MEMORY_LIMIT: 1Gi
@@ -310,6 +325,16 @@ citoyen-symfony-security:
     <<: *citoyen-step
     <<: *symfony-security
 
+.frontend-audit: &frontend-audit
+    stage: security
+    script:
+        - make frontend-audit
+
+citoyen-frontend-security:
+    <<: *cache-complete-citoyen
+    <<: *frontend-audit
+    <<: *citoyen-frontend-step
+
 ## Php Cs Fixer ##
 .cs: &cs
     stage: quality
@@ -325,6 +350,16 @@ citoyen-php-cs:
     <<: *cache-tools-citoyen
     <<: *citoyen-step
     <<: *cs
+
+.frontend-cs: &frontend-cs
+    stage: quality
+    script:
+        - make frontend-cs-test
+
+citoyen-frontend-cs:
+    <<: *citoyen-frontend-step
+    <<: *cache-complete-citoyen
+    <<: *frontend-cs
 
 ## Php Magic Number Detector ##
 .mnd: &mnd
@@ -354,10 +389,10 @@ agent-php-phpstan:
     cache:
         - key: tools-agent-$CI_COMMIT_REF_SLUG
           paths:
-                - "portail_agent/tools"
+              - "portail_agent/tools"
         - key: vendor-agent-$CI_COMMIT_REF_SLUG
           paths:
-            - "portail_agent/vendor"
+              - "portail_agent/vendor"
 
 citoyen-php-phpstan:
     <<: *citoyen-step
