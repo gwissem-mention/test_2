@@ -351,6 +351,16 @@ citoyen-php-cs:
     <<: *citoyen-step
     <<: *cs
 
+.frontend-twig-cs: &frontend-twig-cs
+    stage: quality
+    script:
+        - make frontend-twig-cs-test
+
+citoyen-frontend-twig-cs:
+    <<: *citoyen-step
+    <<: *cache-complete-citoyen
+    <<: *frontend-twig-cs
+
 .frontend-cs: &frontend-cs
     stage: quality
     script:
@@ -360,6 +370,16 @@ citoyen-frontend-cs:
     <<: *citoyen-frontend-step
     <<: *cache-complete-citoyen
     <<: *frontend-cs
+
+.frontend-cpd: &frontend-cpd
+    stage: quality
+    script:
+        - make frontend-cpd-test
+
+citoyen-frontend-cpd:
+    <<: *citoyen-frontend-step
+    <<: *cache-complete-citoyen
+    <<: *frontend-cpd
 
 ## Php Magic Number Detector ##
 .mnd: &mnd

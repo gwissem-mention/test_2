@@ -13,6 +13,6 @@ class SummaryController extends AbstractController
     #[Route('/recapitulatif', name: 'summary')]
     public function __invoke(): Response
     {
-        return $this->render('summary.html.twig');
+        return $this->render('pages/summary.html.twig');
     }
 }

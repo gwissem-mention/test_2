@@ -13,6 +13,6 @@ class ContinuationController extends AbstractController
     #[Route('/poursuivre', name: 'continuation')]
     public function __invoke(): Response
     {
-        return $this->render('continuation.html.twig');
+        return $this->render('pages/continuation.html.twig');
     }
 }

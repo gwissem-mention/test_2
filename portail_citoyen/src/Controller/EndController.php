@@ -13,6 +13,6 @@ class EndController extends AbstractController
     #[Route('/fin', name: 'end')]
     public function __invoke(): Response
     {
-        return $this->render('end.html.twig');
+        return $this->render('pages/end.html.twig');
     }
 }

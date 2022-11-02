@@ -2,25 +2,13 @@
 
 {% block choice_row %}
     {% if expanded is same as(true) %}
-        <fieldset class="{{ html_classes('fr-fieldset', 'fr-input-group', {
-            'fr-fieldset--inline': inline is same as(true),
-            'fr-fieldset--error': errors is not empty
-        }) }}"
-                {% if errors is not empty %}
-                    role="group"
-                    aria-labelledby="legend-{{ form.vars.id }} form-errors-{{ form.vars.id }}"
-                {% endif %}
-        >
+        <fieldset class="{{ html_classes('fr-fieldset', 'fr-input-group', {'fr-fieldset--inline': inline is same as(true),'fr-fieldset--error': errors is not empty}) }}" {% if errors is not empty %}role="group" aria-labelledby="legend-{{ form.vars.id }} form-errors-{{ form.vars.id }}"{% endif %}>
             <legend class="fr-fieldset__legend fr-text--regular" id="legend-{{ form.vars.id }}">
                 {{ form_label(form) }}
             </legend>
             <div class="fr-fieldset__content">
                 {% for child in form.children %}
-                    <div class="{{ html_classes({
-                        'fr-radio-group': multiple is same as(false),
-                        'fr-checkbox-group': multiple is same as(true),
-                        'fr-radio-rich':rich is defined and rich is same as(true)
-                    }) }}">
+                    <div class="{{ html_classes({'fr-radio-group': multiple is same as(false), 'fr-checkbox-group': multiple is same as(true), 'fr-radio-rich':rich is defined and rich is same as(true)}) }}">
                         {{ form_widget(child) }}
                         {{ form_label(child, null, {'required_help':false}) }}
                     </div>
@@ -29,25 +17,17 @@
             {{ form_errors(form) }}
         </fieldset>
     {% else %}
-        <div class="{{ html_classes('fr-select-group', {
-            'fr-select-group--error':  errors is not empty,
-        }) }}">
+        <div class="{{ html_classes('fr-select-group', {'fr-select-group--error':  errors is not empty}) }}">
             {{ form_label(form) }}
-            {{ form_widget(form, {'attr':{'class':html_classes(attr.class ?? '', 'fr-select',{
-                'fr-select--error':errors is not empty
-            })}}) }}
+            {{ form_widget(form, {'attr':{'class':html_classes(attr.class ?? '', 'fr-select',{'fr-select--error':errors is not empty})}}) }}
             {{ form_errors(form) }}
         </div>
     {% endif %}
 {% endblock %}
 
 {% block checkbox_row %}
-    <div class="{{ html_classes('fr-checkbox-group', {
-        'fr-checkbox-group--error': errors is not empty
-    }) }}">
-        {{ form_widget(form, {'attr':{
-            'aria-describedby':errors is not empty ? 'form-errors-'~ form.vars.id :''
-        }}) }}
+    <div class="{{ html_classes('fr-checkbox-group', {'fr-checkbox-group--error': errors is not empty}) }}">
+        {{ form_widget(form, {'attr':{'aria-describedby':errors is not empty ? 'form-errors-'~ form.vars.id :''}}) }}
         {{ form_label(form) }}
     </div>
 {% endblock %}
@@ -65,17 +45,10 @@
 {% endblock %}
 
 {% block money_row %}
-    <div class="{{ html_classes('fr-input-group', {
-        'fr-input-group--error': errors is not empty
-    }) }}">
+    <div class="{{ html_classes('fr-input-group', {'fr-input-group--error': errors is not empty}) }}">
         {{ form_label(form) }}
         <div class="fr-input-wrap fr-icon-money-euro-circle-fill">
-            {{ form_widget(form, {'attr':{
-                'class':html_classes(attr.class ?? '', 'fr-input', {
-                    'fr-input--error':errors is not empty
-                }),
-                'aria-describedby':errors is not empty ? 'form-errors-'~ form.vars.id :''
-            }}) }}
+            {{ form_widget(form, {'attr':{'class':html_classes(attr.class ?? '', 'fr-input', {'fr-input--error':errors is not empty}),'aria-describedby':errors is not empty ? 'form-errors-'~ form.vars.id :''}}) }}
         </div>
         {{ form_errors(form) }}
     </div>
@@ -92,10 +65,7 @@
         {%- endif -%}
         {% if label is empty -%}
             {%- if label_format is not empty -%}
-                {% set label = label_format|replace({
-                    '%name%': name,
-                    '%id%': id,
-                }) %}
+                {% set label = label_format|replace({'%name%': name, '%id%': id}) %}
             {%- else -%}
                 {% set label = name|humanize %}
             {%- endif -%}
@@ -134,6 +104,7 @@
             {% for error in errors %}
                 {{ error.message|trans }}
                 {% if not loop.last %}
+                    {# TO DO : Remove breakline #}
                     <br>
                 {% endif %}
             {% endfor %}
@@ -142,43 +113,20 @@
 {% endblock %}
 
 {% block input_row %}
-    <div class="{{ html_classes('fr-input-group', {
-        'fr-input-group--error': errors is not empty
-    }) }}">
+    <div class="{{ html_classes('fr-input-group', {'fr-input-group--error': errors is not empty}) }}">
         {{ form_label(form) }}
-        {{ form_widget(form, {'attr':{
-            'class':html_classes(attr.class ?? '', 'fr-input', {
-                'fr-input--error':errors is not empty
-            }),
-            'aria-describedby':errors is not empty ? 'form-errors-'~ form.vars.id :''
-        }}) }}
+        {{ form_widget(form, {'attr':{'class':html_classes(attr.class ?? '', 'fr-input', {'fr-input--error':errors is not empty}),'aria-describedby':errors is not empty ? 'form-errors-'~ form.vars.id :''}}) }}
         {{ form_errors(form) }}
     </div>
 {% endblock %}
 
 {% block dropzone_row %}
     {{ form_label(form) }}
-    <div class="dropzone"
-         data-controller="dropzone"
-         data-dropzone-name="{{ form.parent.vars.name }}[{{ form.vars.name }}]"
-         data-dropzone-max-files="{{ form.vars.max_files }}"
-         data-dropzone-max-file-size="{{ form.vars.max_file_size }}"
-         data-dropzone-accepted-files="{{ form.vars.accepted_files }}"
-         data-dropzone-add-remove-links="{{ form.vars.add_remove_links }}"
-         data-dropzone-default-message="{{ 'pel.dropzone.default.message'|trans }}"
-         data-dropzone-remove-file="{{ 'pel.dropzone.remove.file'|trans }}"
-         data-dropzone-file-too-big="{{ 'pel.dropzone.file.too.big'|trans }}"
-         data-dropzone-invalid-file-type="{{ 'pel.dropzone.invalid.file.type'|trans }}"
-         data-dropzone-max-files-exceeded="{{ 'pel.dropzone.max.files.exceeded'|trans }}"
-         data-dropzone-cancel-upload="{{ 'pel.dropzone.cancel.upload'|trans }}"
-         data-dropzone-cancel-upload-confirmation="{{ 'pel.dropzone.cancel.upload.confirmation'|trans }}"
-    >
-    </div>
+    <div class="dropzone" data-controller="dropzone" data-dropzone-name="{{ form.parent.vars.name }}[{{ form.vars.name }}]" data-dropzone-max-files="{{ form.vars.max_files }}" data-dropzone-max-file-size="{{ form.vars.max_file_size }}" data-dropzone-accepted-files="{{ form.vars.accepted_files }}" data-dropzone-add-remove-links="{{ form.vars.add_remove_links }}" data-dropzone-default-message="{{ 'pel.dropzone.default.message'|trans }}" data-dropzone-remove-file="{{ 'pel.dropzone.remove.file'|trans }}" data-dropzone-file-too-big="{{ 'pel.dropzone.file.too.big'|trans }}" data-dropzone-invalid-file-type="{{ 'pel.dropzone.invalid.file.type'|trans }}" data-dropzone-max-files-exceeded="{{ 'pel.dropzone.max.files.exceeded'|trans }}" data-dropzone-cancel-upload="{{ 'pel.dropzone.cancel.upload'|trans }}" data-dropzone-cancel-upload-confirmation="{{ 'pel.dropzone.cancel.upload.confirmation'|trans }}"></div>
 {% endblock %}
 
 {% block submit_widget %}
-    {% set attr
-        = attr|merge({class: (attr.class|default('') ~ ' fr-btn')|trim}) -%}
+    {% set attr = attr|merge({class: (attr.class|default('') ~ ' fr-btn')|trim}) -%}
     {{- parent() -}}
 {% endblock %}
 

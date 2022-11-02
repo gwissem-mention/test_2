@@ -17,6 +17,6 @@ class AuthenticationController extends AbstractController
     {
         $sessionHandler->init();
 
-        return $this->render('authentication.html.twig');
+        return $this->render('pages/authentication.html.twig');
     }
 }

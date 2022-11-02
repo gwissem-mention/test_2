@@ -13,6 +13,6 @@ class AppointmentController extends AbstractController
     #[Route('/rendez-vous', name: 'appointment')]
     public function __invoke(): Response
     {
-        return $this->render('appointment.html.twig');
+        return $this->render('pages/appointment.html.twig');
     }
 }

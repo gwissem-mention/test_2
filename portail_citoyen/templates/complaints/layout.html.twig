@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout.html.twig' %}
 
 {% block body %}
     <div class="fr-container">
@@ -6,7 +6,7 @@
             {% if breadcrumbs is defined and breadcrumbs is not empty %}
                 <div class="fr-grid-row">
                     <div class="fr-col">
-                        {{ include('includes/_breadcrumb.html.twig', {breadcrumbs:breadcrumbs} ) }}
+                        {{ include('common/_breadcrumb.html.twig', {breadcrumbs:breadcrumbs} ) }}
                     </div>
                 </div>
             {% endif %}

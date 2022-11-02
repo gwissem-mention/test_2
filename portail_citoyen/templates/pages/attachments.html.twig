@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout.html.twig' %}
 
 {% block title %}{{ 'pel.attachments'|trans }}{% endblock %}
 
@@ -8,8 +8,8 @@
             <div class="fr-col">
                 <h2>{{ 'pel.attachments'|trans }}</h2>
                 {{ form_start(form) }}
-                {{ form_row(form.attachments) }}
-                <button type="submit" class="fr-btn fr-mt-2w">{{ 'pel.submit'|trans }}</button>
+                    {{ form_row(form.attachments) }}
+                    <button type="submit" class="fr-btn fr-mt-2w">{{ 'pel.submit'|trans }}</button>
                 {{ form_end(form) }}
             </div>
         </div>

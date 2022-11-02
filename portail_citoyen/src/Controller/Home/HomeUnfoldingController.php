@@ -22,7 +22,7 @@ class HomeUnfoldingController extends AbstractController
             return $this->redirectToRoute('authentication');
         }
 
-        return $this->render('home/index_unfolding.html.twig', [
+        return $this->render('pages/index_unfolding.html.twig', [
             'form' => $form->createView(),
         ]);
     }
