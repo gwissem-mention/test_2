@@ -1,60 +1,50 @@
-<div
-        {{ attributes }}
->
-    {{ form_start(form, {
-        attr: {
-            'data-action': 'live#action',
-            'data-action-name': 'prevent|submit'
-        }
-    }) }}
-    <div class="fr-grid-row">
-        <div class="fr-col">
-            <div id="declarant-status">
-                {{ form_row(form.declarantStatus) }}
-            </div>
-            {% if form.civilState is defined and form.contactInformation is defined %}
-                <div id="form-identity" class="fr-py-1w">
-                    <p>{{ 'pel.all.fields.are.required'|trans }}</p>
-                    <h2>{{ 'pel.my.identity'|trans }}</h2>
-                    <div class="fr-py-1w">
-                        {{ component('civil_state', {
-                            form: form.civilState,
-                        }) }}
-                    </div>
-                    <div class="fr-py-1w">
-                        {{ component('contact_information', {
-                            form: form.contactInformation,
-                        }) }}
-                    </div>
-                    {% if form.corporation is defined %}
-                        <div class="fr-py-1w">
-                            {{ component('corporation', {
-                                form: form.corporation,
-                            }) }}
-                        </div>
-                    {% endif %}
-                    {% if form.representedPersonCivilState is defined and form.representedPersonContactInformation is defined %}
-                        <h2>{{ 'pel.represented.person.identity'|trans }}</h2>
+<div {{ attributes }}>
+    {{ form_start(form, {attr: {'data-action': 'live#action','data-action-name': 'prevent|submit'}}) }}
+        <div class="fr-grid-row">
+            <div class="fr-col">
+                <div id="declarant-status">{{ form_row(form.declarantStatus) }}</div>
+                {% if form.civilState is defined and form.contactInformation is defined %}
+                    <div id="form-identity" class="fr-py-1w">
+                        <p>{{ 'pel.all.fields.are.required'|trans }}</p>
+                        <h2>{{ 'pel.my.identity'|trans }}</h2>
                         <div class="fr-py-1w">
                             {{ component('civil_state', {
-                                form: form.representedPersonCivilState,
+                                form: form.civilState,
                             }) }}
                         </div>
                         <div class="fr-py-1w">
                             {{ component('contact_information', {
-                                form: form.representedPersonContactInformation,
+                                form: form.contactInformation,
                             }) }}
                         </div>
-                    {% endif %}
-                </div>
-            {% endif %}
+                        {% if form.corporation is defined %}
+                            <div class="fr-py-1w">
+                                {{ component('corporation', {
+                                    form: form.corporation,
+                                }) }}
+                            </div>
+                        {% endif %}
+                        {% if form.representedPersonCivilState is defined and form.representedPersonContactInformation is defined %}
+                            <h2>{{ 'pel.represented.person.identity'|trans }}</h2>
+                            <div class="fr-py-1w">
+                                {{ component('civil_state', {
+                                    form: form.representedPersonCivilState,
+                                }) }}
+                            </div>
+                            <div class="fr-py-1w">
+                                {{ component('contact_information', {
+                                    form: form.representedPersonContactInformation,
+                                }) }}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </div>
         </div>
-    </div>
-    <div class="fr-grid-row">
-        <div class="fr-col">
-            <button type="submit" class="fr-btn">{{ 'pel.next'|trans }}</button>
+        <div class="fr-grid-row">
+            <div class="fr-col">
+                <button type="submit" class="fr-btn">{{ 'pel.next'|trans }}</button>
+            </div>
         </div>
-    </div>
     {{ form_end(form) }}
 </div>
-

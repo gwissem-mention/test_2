@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout.html.twig' %}
 
 {% block body %}
     <div class="fr-container--fluid fr-p-1w">
@@ -6,7 +6,9 @@
             <div class="fr-col">
                 {{ 'pel.home.information.message.1'|trans }}
                 <strong>{{ 'pel.major'|trans }}</strong> {{ 'pel.home.information.message.2'|trans }}
-                <br> {{ 'pel.home.information.message.3'|trans }} <strong>{{ 'pel.home.information.message.4'|trans }}</strong>
+                {# TO DO : Remove breakline #}
+                <br>
+                {{ 'pel.home.information.message.3'|trans }} <strong>{{ 'pel.home.information.message.4'|trans }}</strong>
                 {{ 'pel.home.information.message.5'|trans }}
             </div>
         </div>
@@ -22,8 +24,7 @@
         </div>
         <div class="fr-grid-row fr-grid-row--gutters">
             <div class="fr-col">
-                <a class="fr-btn"
-                   href="#">{{ 'pel.fsi.general.orienteer'|trans }}</a>
+                <a class="fr-btn" href="#">{{ 'pel.fsi.general.orienteer'|trans }}</a>
             </div>
         </div>
         <div class="fr-grid-row fr-py-2w">

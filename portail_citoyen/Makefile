@@ -130,6 +130,14 @@ frontend-cs: yarn
 frontend-cs-test: c=cs-test
 frontend-cs-test: yarn
 
+## Check TS files duplicated code
+frontend-cpd-test: c=cpd-test
+frontend-cpd-test: yarn
+
+## Test twig files coding style
+frontend-twig-cs-test:
+	@$(CONSOLE) lint:twig templates/
+
 #################################
 Doctrine:
 

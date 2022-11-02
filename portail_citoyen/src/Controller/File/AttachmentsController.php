@@ -36,7 +36,7 @@ class AttachmentsController extends AbstractController
             return $this->json(['redirect_url' => $this->generateUrl('attachments')]);
         }
 
-        return $this->render('attachments.html.twig', [
+        return $this->render('pages/attachments.html.twig', [
             'form' => $form->createView(),
             'files' => $entityManager->getRepository(File::class)->findAll(),
         ]);

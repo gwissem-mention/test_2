@@ -31,6 +31,6 @@ class IndexController extends AbstractController
             $franceConnectHandler->clear();
         }
 
-        return $this->render('identity/index.html.twig');
+        return $this->render('complaints/pages/identity.html.twig');
     }
 }

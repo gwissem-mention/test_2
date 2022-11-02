@@ -13,6 +13,7 @@
         "dropzone": "^6.0.0-beta.2",
         "eslint": "^8.26.0",
         "file-loader": "^6.0.0",
+        "jscpd": "^3.5.1",
         "regenerator-runtime": "^0.13.9",
         "sass": "^1.54.0",
         "sass-loader": "^13.0.2",
@@ -31,6 +32,7 @@
         "build-ci": "encore production --no-devtool --no-stats --no-watch",
         "cs": "eslint . --fix --ext .ts",
         "cs-test": "eslint . --ext .ts",
-        "audit": "npm audit"
+        "audit": "npm audit",
+        "cpd-test": "jscpd assets"
     }
 }

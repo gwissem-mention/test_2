@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout.html.twig' %}
 
 {% block body %}
     <h1>{{ 'pel.to.log.in'|trans }}</h1>
@@ -8,8 +8,7 @@
             <span class="fr-connect__brand">{{ 'pel.france.connect'|trans }}</span>
         </button>
         <p>
-            <a href="https://franceconnect.gouv.fr/" target="_blank" rel="noopener"
-               title="{{ 'pel.what.is.france.connect'|trans }} - {{ 'pel.new.window'|trans }}">{{ 'pel.what.is.france.connect'|trans }}</a>
+            <a href="https://franceconnect.gouv.fr/" target="_blank" rel="noopener" title="{{ 'pel.what.is.france.connect'|trans }} - {{ 'pel.new.window'|trans }}">{{ 'pel.what.is.france.connect'|trans }}</a>
         </p>
     </div>
     <a href="{{ path('identity', {'france_connected': false}) }}">{{ 'pel.continue.pel.without.log.in'|trans }}</a>

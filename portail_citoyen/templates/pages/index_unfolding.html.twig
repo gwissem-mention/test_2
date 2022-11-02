@@ -1,31 +1,29 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout.html.twig' %}
 
 {% block body %}
     <div class="fr-container--fluid fr-m-1w">
         <div class="fr-grid-row">
             <div class="fr-col">
                 {{ 'pel.home.orienteer.information.message.1'|trans }}
+                {# TO DO : Remove breaklines #}
                 <br/><br/>
                 {{ 'pel.home.orienteer.information.message.2'|trans }}
+                {# TO DO : Remove breaklines #}
                 <br/><br/>
                 {{ 'pel.home.orienteer.information.message.3'|trans }}
             </div>
         </div>
         <div class="fr-grid-row fr-pt-4w">
             <div class="fr-col">
-                {{ 'pel.home.orienteer.legal.message.1'|trans }} : <a
-                        href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044569870"
-                        target="_blank">{{ 'pel.article.10.2'|trans }}</a>
-                {{ 'pel.home.orienteer.legal.message.2'|trans }}, <a
-                        href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038552381"
-                        target="_blank">{{ 'pel.article.d.8.2.2'|trans }}</a> {{ 'pel.home.orienteer.legal.message.2'|trans }}
+                {{ 'pel.home.orienteer.legal.message.1'|trans }} : <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044569870" target="_blank">{{ 'pel.article.10.2'|trans }}</a>
+                {{ 'pel.home.orienteer.legal.message.2'|trans }}, <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038552381" target="_blank">{{ 'pel.article.d.8.2.2'|trans }}</a> {{ 'pel.home.orienteer.legal.message.2'|trans }}
             </div>
         </div>
         <div class="fr-grid-row fr-pt-4w">
             <div class="fr-col">
                 {{ form_start(form) }}
-                {{ form_row(form.agree) }}
-                <button id="start_redacting_my_online_complaint" class="fr-btn" type="submit">{{ 'pel.start.redacting.my.online.complaint'|trans }}</button>
+                    {{ form_row(form.agree) }}
+                    <button id="start_redacting_my_online_complaint" class="fr-btn" type="submit">{{ 'pel.start.redacting.my.online.complaint'|trans }}</button>
                 {{ form_end(form) }}
             </div>
         </div>
