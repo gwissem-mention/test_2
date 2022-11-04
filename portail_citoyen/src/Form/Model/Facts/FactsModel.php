@@ -16,6 +16,8 @@ class FactsModel
     private ?bool $amountKnown = null;
     private ?AdditionalInformationModel $additionalInformation = null;
     private ?int $amount = null;
+    private ?int $placeNature = null;
+
     /**
      * @var Collection<int, ObjectModel>
      */
@@ -126,5 +128,17 @@ class FactsModel
     public function removeObject(ObjectModel $object): void
     {
         $this->objects->removeElement($object);
+    }
+
+    public function getPlaceNature(): ?int
+    {
+        return $this->placeNature;
+    }
+
+    public function setPlaceNature(?int $placeNature): self
+    {
+        $this->placeNature = $placeNature;
+
+        return $this;
     }
 }

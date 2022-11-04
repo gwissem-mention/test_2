@@ -6,6 +6,7 @@ namespace App\Form\Facts;
 
 use App\Form\DataTransformer\ObjectTransformer;
 use App\Form\Model\Facts\FactsModel;
+use App\Thesaurus\NaturePlaceThesaurusProviderInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
@@ -21,19 +22,27 @@ use Symfony\UX\LiveComponent\Form\Type\LiveCollectionType;
 
 class FactsType extends AbstractType
 {
-    public function __construct(private readonly ObjectTransformer $objectTransformer)
-    {
+    public function __construct(
+        private readonly ObjectTransformer $objectTransformer,
+        private readonly NaturePlaceThesaurusProviderInterface $naturePlaceThesaurusProvider,
+    ) {
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            ->add('offenseNature', OffenseNatureType::class, [
+                'label' => false,
+            ])
+            ->add('placeNature', ChoiceType::class, [
+                'choices' => $this->naturePlaceThesaurusProvider->getChoices(),
+                'label' => 'pel.nature.place',
+                'placeholder' => 'pel.nature.place.choose',
+                'required' => false,
+            ])
             ->add('address', AddressType::class, [
                 'label' => false,
                 'compound' => true,
-            ])
-            ->add('offenseNature', OffenseNatureType::class, [
-                'label' => false,
             ])
             ->add('offenseDate', OffenseDateType::class, [
                 'label' => false,
