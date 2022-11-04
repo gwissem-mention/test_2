@@ -766,6 +766,18 @@
                 <source>pel.validate</source>
                 <target>Valider</target>
             </trans-unit>
+            <trans-unit id="pel.victim.of.violence">
+                <source>pel.victim.of.violence</source>
+                <target>J'ai été victime de violences au moment des faits</target>
+            </trans-unit>
+            <trans-unit id="pel.victim.of.violence.text">
+                <source>pel.victim.of.violence.text</source>
+                <target>Veuillez préciser les violences dont vous avez été victime</target>
+            </trans-unit>
+            <trans-unit id="pel.victim.of.violence.information">
+                <source>pel.victim.of.violence.information</source>
+                <target>Afin de prendre en compte votre situation dans les meilleurs conditions, un rendez-vous vous sera proposé</target>
+            </trans-unit>
             <trans-unit id="pel.video.surveillance">
                 <source>pel.video.surveillance</source>
                 <target>Vidéosurveillance</target>

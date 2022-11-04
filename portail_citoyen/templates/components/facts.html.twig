@@ -13,6 +13,25 @@
     </div>
     <div class="fr-grid-row fr-py-2w">
         <div class="fr-col">
+            {{ form_row(form.victimOfViolence) }}
+        </div>
+    </div>
+    {% if form.victimOfViolenceText is defined %}
+        <div class="fr-grid-row fr-py-2w">
+            <div class="fr-col">
+                {{ form_row(form.victimOfViolenceText) }}
+            </div>
+        </div>
+        <div class="fr-grid-row fr-py-2w">
+            <div class="fr-col">
+                <span class="fr-text--red-marianne">
+                    {{ 'pel.victim.of.violence.information'|trans }}
+                </span>
+            </div>
+        </div>
+    {% endif %}
+    <div class="fr-grid-row fr-py-2w">
+        <div class="fr-col">
             {{ form_row(form.placeNature) }}
         </div>
     </div>
