@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace App\Form\Facts;
 
-use App\Form\DataTransformer\ObjectTransformer;
 use App\Form\Model\Facts\FactsModel;
 use App\Thesaurus\NaturePlaceThesaurusProviderInterface;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -23,7 +24,6 @@ use Symfony\UX\LiveComponent\Form\Type\LiveCollectionType;
 class FactsType extends AbstractType
 {
     public function __construct(
-        private readonly ObjectTransformer $objectTransformer,
         private readonly NaturePlaceThesaurusProviderInterface $naturePlaceThesaurusProvider,
     ) {
     }
@@ -33,6 +33,10 @@ class FactsType extends AbstractType
         $builder
             ->add('offenseNature', OffenseNatureType::class, [
                 'label' => false,
+            ])
+            ->add('victimOfViolence', CheckboxType::class, [
+                'label' => 'pel.victim.of.violence',
+                'required' => false,
             ])
             ->add('placeNature', ChoiceType::class, [
                 'choices' => $this->naturePlaceThesaurusProvider->getChoices(),
@@ -76,11 +80,9 @@ class FactsType extends AbstractType
                         'class' => 'fr-btn fr-btn--tertiary-no-outline',
                     ],
                 ],
-                'data' => [[]],
                 'constraints' => [
                     new NotBlank(),
                 ],
-                'mapped' => false,
             ])
             ->add('amountKnown', ChoiceType::class, [
                 'choices' => [
@@ -93,9 +95,18 @@ class FactsType extends AbstractType
             ])
             ->add('additionalInformation', AdditionalInformationType::class, [
                 'label' => false,
-            ]);
-
-        $builder->get('objects')->addModelTransformer($this->objectTransformer);
+            ])->addEventListener(
+                FormEvents::PRE_SET_DATA,
+                function (FormEvent $event) {
+                    /** @var FactsModel $factsModel */
+                    $factsModel = $event->getData();
+                    if ($factsModel instanceof FactsModel) {
+                        $form = $event->getForm();
+                        $this->addAmountKnownField($form, $factsModel->isAmountKnown());
+                        $this->addVictimOfViolenceField($form, $factsModel->isVictimOfViolence());
+                    }
+                }
+            );
 
         $builder->get('amountKnown')->addEventListener(
             FormEvents::POST_SUBMIT,
@@ -107,9 +118,38 @@ class FactsType extends AbstractType
                 $this->addAmountKnownField($parent, boolval($choice));
             }
         );
+
+        $builder->get('victimOfViolence')->addEventListener(
+            FormEvents::POST_SUBMIT,
+            function (FormEvent $event) {
+                /** @var bool $victimOfViolence */
+                $victimOfViolence = $event->getForm()->getData();
+                /** @var FormInterface $parent */
+                $parent = $event->getForm()->getParent();
+                $this->addVictimOfViolenceField($parent, boolval($victimOfViolence));
+            }
+        );
     }
 
-    private function addAmountKnownField(FormInterface $form, bool $choice): void
+    private function addVictimOfViolenceField(FormInterface $form, ?bool $victimOfViolence): void
+    {
+        if (true === $victimOfViolence) {
+            $form->add('victimOfViolenceText', TextType::class, [
+                'label' => 'pel.victim.of.violence.text',
+                'attr' => [
+                    'maxlength' => 250,
+                ],
+                'constraints' => [
+                    new NotBlank(),
+                    new Length([
+                        'max' => 250,
+                    ]),
+                ],
+            ]);
+        }
+    }
+
+    private function addAmountKnownField(FormInterface $form, ?bool $choice): void
     {
         if (true === $choice) {
             $form->add('amount', MoneyType::class, [

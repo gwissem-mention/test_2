@@ -17,6 +17,8 @@ class FactsModel
     private ?AdditionalInformationModel $additionalInformation = null;
     private ?int $amount = null;
     private ?int $placeNature = null;
+    private ?bool $victimOfViolence = null;
+    private ?string $victimOfViolenceText = null;
 
     /**
      * @var Collection<int, ObjectModel>
@@ -25,7 +27,7 @@ class FactsModel
 
     public function __construct()
     {
-        $this->objects = new ArrayCollection();
+        $this->objects = new ArrayCollection([new ObjectModel()]);
     }
 
     public function getAddress(): ?AddressModel
@@ -112,24 +114,6 @@ class FactsModel
         return $this;
     }
 
-    /**
-     * @return Collection<int, ObjectModel>
-     */
-    public function getObjects(): Collection
-    {
-        return $this->objects;
-    }
-
-    public function addObject(ObjectModel $object): void
-    {
-        $this->objects->add($object);
-    }
-
-    public function removeObject(ObjectModel $object): void
-    {
-        $this->objects->removeElement($object);
-    }
-
     public function getPlaceNature(): ?int
     {
         return $this->placeNature;
@@ -138,6 +122,52 @@ class FactsModel
     public function setPlaceNature(?int $placeNature): self
     {
         $this->placeNature = $placeNature;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ObjectModel>
+     */
+    public function getObjects(): Collection
+    {
+        return $this->objects;
+    }
+
+    public function addObject(ObjectModel $object): self
+    {
+        $this->objects->add($object);
+
+        return $this;
+    }
+
+    public function removeObject(ObjectModel $object): self
+    {
+        $this->objects->removeElement($object);
+
+        return $this;
+    }
+
+    public function isVictimOfViolence(): ?bool
+    {
+        return $this->victimOfViolence;
+    }
+
+    public function setVictimOfViolence(?bool $victimOfViolence): self
+    {
+        $this->victimOfViolence = $victimOfViolence;
+
+        return $this;
+    }
+
+    public function getVictimOfViolenceText(): ?string
+    {
+        return $this->victimOfViolenceText;
+    }
+
+    public function setVictimOfViolenceText(?string $victimOfViolenceText): self
+    {
+        $this->victimOfViolenceText = $victimOfViolenceText;
 
         return $this;
     }

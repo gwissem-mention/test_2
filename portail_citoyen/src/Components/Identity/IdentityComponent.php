@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Components\Identity;
 
 use App\Form\Identity\IdentityType;
+use App\Form\Model\Identity\IdentityModel;
 use App\Session\SessionHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormInterface;
@@ -26,7 +27,10 @@ class IdentityComponent extends AbstractController
 
     protected function instantiateForm(): FormInterface
     {
-        return $this->createForm(IdentityType::class, $this->sessionHandler->getComplaint()?->getIdentity());
+        return $this->createForm(
+            IdentityType::class,
+            $this->sessionHandler->getComplaint()?->getIdentity() ?? new IdentityModel()
+        );
     }
 
     #[LiveAction]
