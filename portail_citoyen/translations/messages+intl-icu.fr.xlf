@@ -658,6 +658,42 @@
                 <source>pel.phone.number.line</source>
                 <target>N° de la ligne de téléphone</target>
             </trans-unit>
+            <trans-unit id="pel.nature.place">
+                <source>pel.nature.place</source>
+                <target>Nature de lieu</target>
+            </trans-unit>
+            <trans-unit id="pel.nature.place.choose">
+                <source>pel.nature.place.choose</source>
+                <target>Choisissez le lieu où se sont déroulés les faits</target>
+            </trans-unit>
+            <trans-unit id="pel.nature.place.home">
+                <source>pel.nature.place.home</source>
+                <target>Domicile/Logement</target>
+            </trans-unit>
+            <trans-unit id="pel.nature.place.market">
+                <source>pel.nature.place.market</source>
+                <target>Commerce</target>
+            </trans-unit>
+            <trans-unit id="pel.nature.place.other">
+                <source>pel.nature.place.other</source>
+                <target>Autres natures de lieu</target>
+            </trans-unit>
+            <trans-unit id="pel.nature.place.park">
+                <source>pel.nature.place.park</source>
+                <target>Parking / garage</target>
+            </trans-unit>
+            <trans-unit id="pel.nature.place.public.transport">
+                <source>pel.nature.place.public.transport</source>
+                <target>Transports en commun</target>
+            </trans-unit>
+            <trans-unit id="pel.nature.place.street">
+                <source>pel.nature.place.street</source>
+                <target>Voie publique / Rue</target>
+            </trans-unit>
+            <trans-unit id="pel.nature.place.unknown">
+                <source>pel.nature.place.unknown</source>
+                <target>Lieu indéterminé</target>
+            </trans-unit>
             <trans-unit id="pel.previous">
                 <source>pel.previous</source>
                 <target>Précédent</target>

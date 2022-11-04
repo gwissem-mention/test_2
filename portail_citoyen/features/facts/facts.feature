@@ -30,6 +30,7 @@ Feature:
         And I should see the key "pel.object" translated
         And I should see the key "pel.facts.description.precise" translated
         And I should see the key "pel.is.amount.known" translated
+        And I should see the key "pel.nature.place" translated
 
     @func
     Scenario: I can click on the identity breadcrumb
@@ -62,6 +63,21 @@ Feature:
             | Dégradation              |
             | Vol et Dégradation       |
             | Autre atteinte aux biens |
+
+    @func
+    Scenario Outline: I can see the place natures list
+        Given I am on "/faits"
+        Then I should see "<place_nature>" in the "#facts_placeNature" element
+
+        Examples:
+            | place_nature           |
+            | Domicile/Logement      |
+            | Parking / garage       |
+            | Voie publique / Rue    |
+            | Commerce               |
+            | Transports en commun   |
+            | Autres natures de lieu |
+            | Lieu indéterminé       |
 
     @func
     Scenario Outline: I can see the offense exact date known radio buttons
