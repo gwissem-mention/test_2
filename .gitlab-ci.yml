@@ -533,7 +533,7 @@ citoyen-e2e:
     services:
         - name: postgres:13-alpine
           alias: database-e2e-citoyen
-        - name: selenium/standalone-chrome
+        - name: selenium/standalone-chrome:4.5.3
           alias: chrome
         - name: redislabs/rejson:latest
           alias: redis-citoyen
