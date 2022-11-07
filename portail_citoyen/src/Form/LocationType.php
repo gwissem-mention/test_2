@@ -21,6 +21,8 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 class LocationType extends AbstractType
 {
+    private ?LocationModel $location;
+
     public function __construct(
         private readonly TownAndDepartmentThesaurusProviderInterface $townAndDepartmentAndDepartmentThesaurusProvider,
         private readonly TownToTransformTransformerInterface $townToTransformTransformer,
@@ -30,16 +32,27 @@ class LocationType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $emptyData = $options['empty_data'];
+        /** @var ?LocationModel $fcData */
+        $fcData = $options['fc_data'];
+        $this->location = $fcData;
         $builder
             ->add('country', CountryType::class, [
                 'label' => $options['country_label'],
                 'preferred_choices' => [$this->franceCode],
-                'empty_data' => $emptyData instanceof LocationModel ? $emptyData->getCountry() : $this->franceCode,
+                'empty_data' => null === $this->location ? $this->franceCode : $this->location->getCountry(),
                 'constraints' => [
                     new NotBlank(),
                 ],
             ]);
+
+        $builder->addEventListener(
+            FormEvents::PRE_SET_DATA,
+            function (FormEvent $event) {
+                /** @var ?LocationModel $location */
+                $location = $event->getData();
+                $this->addTownField($event->getForm(), $location?->getCountry());
+            }
+        );
 
         $builder->get('country')->addEventListener(
             FormEvents::POST_SUBMIT,
@@ -60,10 +73,11 @@ class LocationType extends AbstractType
             'country_label' => false,
             'town_label' => false,
             'department_label' => false,
+            'fc_data' => null,
         ]);
     }
 
-    private function addTownField(FormInterface $form, string $country): void
+    private function addTownField(FormInterface $form, ?string $country): void
     {
         if ($this->franceCode === $country) {
             $this->addFormPartForFrenchPlace($form);
@@ -91,7 +105,6 @@ class LocationType extends AbstractType
 
     private function addFormPartForFrenchPlace(FormInterface $form): void
     {
-        $emptyData = $form->getConfig()->getEmptyData();
         $form
             ->remove('otherTown')
             ->add('frenchTown', ChoiceType::class, [
@@ -103,7 +116,7 @@ class LocationType extends AbstractType
                 ),
                 'label' => $form->getConfig()->getOption('town_label'),
                 'placeholder' => 'pel.choose.your.town',
-                'empty_data' => $emptyData instanceof LocationModel ? $emptyData->getFrenchTown() : null,
+                'empty_data' => $this->location?->getFrenchTown(),
             ])
             ->add('department', TextType::class, [
                 'disabled' => true,

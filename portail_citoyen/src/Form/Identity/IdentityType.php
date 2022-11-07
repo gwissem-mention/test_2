@@ -71,11 +71,15 @@ class IdentityType extends AbstractType
 
         switch ($declarantStatus) {
             case DeclarantStatus::PersonLegalRepresentative->value:
+                $this->removeCorporationFields($form);
                 $this->addRepresentedPersonFields($form, $declarantStatus);
                 break;
             case DeclarantStatus::Victim->value:
+                $this->removeRepresentedPersonFields($form);
+                $this->removeCorporationFields($form);
                 break;
             case DeclarantStatus::CorporationLegalRepresentative->value:
+                $this->removeRepresentedPersonFields($form);
                 $this->addCorporationFields($form);
                 break;
             default:
@@ -89,6 +93,11 @@ class IdentityType extends AbstractType
         $form->add('corporation', CorporationType::class);
     }
 
+    private function removeCorporationFields(FormInterface $form): void
+    {
+        $form->remove('corporation');
+    }
+
     private function addCivilStateAndContactInformationFields(
         FormInterface $form,
         ?IdentityModel $identityModel = null
@@ -96,7 +105,7 @@ class IdentityType extends AbstractType
         $form
             ->add('civilState', CivilStateType::class, [
                 'compound' => true,
-                'empty_data' => $identityModel?->getCivilState(),
+                'fc_data' => $identityModel?->getCivilState(),
                 'birthDate_constraints' => [
                     new NotBlank(),
                     new LessThanOrEqual(
@@ -121,7 +130,7 @@ class IdentityType extends AbstractType
             ])
             ->add('contactInformation', ContactInformationType::class, [
                 'compound' => true,
-                'empty_data' => $identityModel?->getContactInformation(),
+                'fc_data' => $identityModel?->getContactInformation(),
             ]);
     }
 
@@ -135,6 +144,13 @@ class IdentityType extends AbstractType
             ->add('representedPersonContactInformation', ContactInformationType::class, [
                 'label' => 'pel.contact.information',
             ]);
+    }
+
+    private function removeRepresentedPersonFields(FormInterface $form): void
+    {
+        $form
+            ->remove('representedPersonCivilState')
+            ->remove('representedPersonContactInformation');
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
 
@@ -27,30 +28,44 @@ class OffenseNatureType extends AbstractType
                 'label' => 'pel.complaint.nature.of.the.facts',
                 'choices' => OffenseNature::getChoices(),
             ])
+            ->addEventListener(
+                FormEvents::PRE_SET_DATA,
+                function (FormEvent $event) {
+                    /** @var ?OffenseNatureModel $offenseNature */
+                    $offenseNature = $event->getData();
+                    $this->onOffenseNaturePostSubmit($event->getForm(), $offenseNature?->getOffenseNature());
+                }
+            )
             ->get('offenseNature')
             ->addEventListener(
                 FormEvents::POST_SUBMIT,
-                [$this, 'onOffenseNaturePostSubmit']
+                function (FormEvent $event) {
+                    /** @var FormInterface $parent */
+                    $parent = $event->getForm()->getParent();
+                    $this->onOffenseNaturePostSubmit($parent, intval($event->getForm()->getData()));
+                }
             );
     }
 
-    public function onOffenseNaturePostSubmit(FormEvent $event): void
+    public function onOffenseNaturePostSubmit(FormInterface $form, ?int $offenseNature): void
     {
-        if (OffenseNature::Other->value === intval($event->getData())) {
-            $event->getForm()->getParent()?->add('aabText', TextareaType::class, [
+        if (OffenseNature::Other->value === $offenseNature) {
+            $form->add('aabText', TextareaType::class, [
                 'label' => 'pel.complaint.offense.nature.other.aab.text',
                 'attr' => [
                     'maxlength' => self::OTHER_AAB_TEXT_MAX_LENGTH,
                 ],
                 'constraints' => [new Length(['max' => self::OTHER_AAB_TEXT_MAX_LENGTH])],
             ]);
+        } else {
+            $form->remove('aabText');
         }
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-           'data_class' => OffenseNatureModel::class,
+            'data_class' => OffenseNatureModel::class,
         ]);
     }
 }

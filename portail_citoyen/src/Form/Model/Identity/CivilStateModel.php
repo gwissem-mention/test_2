@@ -15,7 +15,7 @@ class CivilStateModel
     private ?\DateTimeInterface $birthDate = null;
     private ?LocationModel $birthLocation = null;
     private ?int $nationality = null;
-    private ?string $job = null;
+    private ?int $job = null;
 
     public function getCivility(): ?int
     {
@@ -101,12 +101,12 @@ class CivilStateModel
         return $this;
     }
 
-    public function getJob(): ?string
+    public function getJob(): ?int
     {
         return $this->job;
     }
 
-    public function setJob(?string $job): self
+    public function setJob(?int $job): self
     {
         $this->job = $job;
 

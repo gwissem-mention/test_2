@@ -295,9 +295,9 @@ Feature:
         And I should see a "input#facts_amount" element
 
     @javascript
-    Scenario: I can see 2 inputs text if I select "Yes" to isAddressOrRouteFactsKnown radio button
+    Scenario: I can see 2 inputs text if I select "Yes" to addressOrRouteFactsKnown radio button
         Given I am on "/faits"
-        When I click the "label[for=facts_address_isAddressOrRouteFactsKnown_0]" element
+        When I click the "label[for=facts_address_addressOrRouteFactsKnown_0]" element
         And I wait for the element "#facts_address_startAddress" to appear
         Then I should see the key "pel.address.start.or.exact" translated
         And I should see the key "pel.address.end" translated
@@ -305,9 +305,9 @@ Feature:
         And I should see a "input#facts_address_endAddress" element
 
     @javascript
-    Scenario: I should not see 2 inputs text if I select "No" to isAddressOrRouteFactsKnown radio button
+    Scenario: I should not see 2 inputs text if I select "No" to addressOrRouteFactsKnown radio button
         Given I am on "/faits"
-        When I click the "label[for=facts_address_isAddressOrRouteFactsKnown_1]" element
+        When I click the "label[for=facts_address_addressOrRouteFactsKnown_1]" element
         Then I should not see the key "pel.address.start.or.exact" translated
         And I should not see the key "pel.address.end" translated
 
@@ -321,10 +321,19 @@ Feature:
         And I should see a "input#facts_objects_0_quantity" element
 
     @javascript
-    Scenario: Submit the facts form
-        Given I am on "/faits"
+    Scenario: Submit the facts form as a victim logged in with France Connect
+        Given I am on "/authentification"
+        When I press "france_connect_auth_button"
+        Then I am on "/identite?france_connected=1"
+        When I click the "label[for=identity_declarantStatus_0]" element
+        And I wait for the element "#form-identity" to appear
+        And I select "1" from "identity_civilState_job"
+        And I fill in "identity_contactInformation_frenchAddress" with "Av. de la République 75011 Paris France"
+        And I fill in "identity_contactInformation_mobile" with "0601020304"
+        And I press "Suivant"
+        Then I am on "/faits"
         When I select "1" from "facts_offenseNature_offenseNature"
-        And I click the "label[for=facts_address_isAddressOrRouteFactsKnown_0]" element
+        And I click the "label[for=facts_address_addressOrRouteFactsKnown_0]" element
         And I wait for the element "#facts_address_startAddress" to appear
         And I fill in "facts_address_startAddress" with "1 test street"
         And I fill in "facts_address_endAddress" with "2 test street"
@@ -334,9 +343,11 @@ Feature:
         And I click the "label[for=facts_offenseDate_choiceHour_0]" element
         And I wait for the element "#facts_offenseDate_hour" to appear
         And I fill in "facts_offenseDate_hour" with "15:00"
+        And I select "1" from "facts_objects_0_category"
         And I fill in "facts_objects_0_label" with "Object 1"
         And I press "facts_objects_add"
         And I wait for the element "#facts_objects_1_label" to appear
+        And I select "1" from "facts_objects_1_category"
         And I fill in "facts_objects_1_label" with "Object 2"
         And I click the "label[for=facts_amountKnown_0]" element
         And I wait for the element "#facts_amount" to appear
@@ -344,16 +355,29 @@ Feature:
         And I wait for the element "#facts_additionalInformation_suspectsChoice_0" to appear
         And I click the "label[for=facts_additionalInformation_suspectsChoice_0]" element
         And I wait for the element "#facts_additionalInformation_suspectsText" to appear
-        And I fill in "facts_additionalInformation_suspectsText" with "informations"
+        And I fill in "facts_additionalInformation_suspectsText" with "suspects informations"
         And I should see the key "pel.facts.suspects.informations.text" translated
         And I click the "label[for=facts_additionalInformation_witnesses_0]" element
         And I wait for the element "#facts_additionalInformation_witnessesText" to appear
-        And I fill in "facts_additionalInformation_witnessesText" with "informations"
+        And I fill in "facts_additionalInformation_witnessesText" with "witnesses informations"
         And I click the "label[for=facts_additionalInformation_fsiVisit_0]" element
         And I click the "label[for=facts_additionalInformation_observationMade_0]" element
         And I click the "label[for=facts_additionalInformation_cctvPresent_0]" element
         And I wait for the element "#facts_additionalInformation_cctvAvailable_0" to appear
         And I click the "label[for=facts_additionalInformation_cctvAvailable_0]" element
-        And I fill in "facts_description" with "informations"
+        And I fill in "facts_description" with "description informations"
         And I press "Suivant"
-        Then I am redirected on "/recapitulatif"
+        Then I am on "/recapitulatif"
+        And I follow "Précédent"
+        Then I am on "/faits"
+        And the "facts_offenseNature_offenseNature" field should contain "1"
+        And the "facts_address_startAddress" field should contain "1 test street"
+        And the "facts_address_endAddress" field should contain "2 test street"
+        And the "facts_offenseDate_startDate" field should contain "2022-01-01"
+        And the "facts_offenseDate_hour" field should contain "15:00"
+        And the "facts_objects_0_label" field should contain "Object 1"
+        And the "facts_objects_1_label" field should contain "Object 2"
+        And the "facts_amount" field should contain "700"
+        And the "facts_additionalInformation_suspectsText" field should contain "suspects informations"
+        And the "facts_additionalInformation_witnessesText" field should contain "witnesses informations"
+        And the "facts_description" field should contain "description informations"

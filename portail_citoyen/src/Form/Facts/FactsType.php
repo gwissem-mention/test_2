@@ -5,7 +5,10 @@ declare(strict_types=1);
 namespace App\Form\Facts;
 
 use App\Form\Model\Facts\FactsModel;
+use App\Form\Model\Facts\ObjectModel;
+use App\Session\SessionHandler;
 use App\Thesaurus\NaturePlaceThesaurusProviderInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -24,6 +27,7 @@ use Symfony\UX\LiveComponent\Form\Type\LiveCollectionType;
 class FactsType extends AbstractType
 {
     public function __construct(
+        private readonly SessionHandler $sessionHandler,
         private readonly NaturePlaceThesaurusProviderInterface $naturePlaceThesaurusProvider,
     ) {
     }
@@ -83,6 +87,9 @@ class FactsType extends AbstractType
                 'constraints' => [
                     new NotBlank(),
                 ],
+                'data' => $this->sessionHandler->getComplaint()?->getFacts()?->getObjects() ?: new ArrayCollection(
+                    [new ObjectModel()]
+                ),
             ])
             ->add('amountKnown', ChoiceType::class, [
                 'choices' => [
@@ -95,16 +102,15 @@ class FactsType extends AbstractType
             ])
             ->add('additionalInformation', AdditionalInformationType::class, [
                 'label' => false,
-            ])->addEventListener(
+            ])
+            ->addEventListener(
                 FormEvents::PRE_SET_DATA,
                 function (FormEvent $event) {
-                    /** @var FactsModel $factsModel */
-                    $factsModel = $event->getData();
-                    if ($factsModel instanceof FactsModel) {
-                        $form = $event->getForm();
-                        $this->addAmountKnownField($form, $factsModel->isAmountKnown());
-                        $this->addVictimOfViolenceField($form, $factsModel->isVictimOfViolence());
-                    }
+                    /** @var FactsModel $facts */
+                    $facts = $event->getData();
+                    $form = $event->getForm();
+                    $this->addAmountKnownField($form, $facts->isAmountKnown());
+                    $this->addVictimOfViolenceField($form, $facts->isVictimOfViolence());
                 }
             );
 
@@ -146,6 +152,8 @@ class FactsType extends AbstractType
                     ]),
                 ],
             ]);
+        } else {
+            $form->remove('victimOfViolenceText');
         }
     }
 
@@ -168,6 +176,8 @@ class FactsType extends AbstractType
                     ]),
                 ],
             ]);
+        } else {
+            $form->remove('amount');
         }
     }
 

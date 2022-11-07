@@ -51,6 +51,15 @@ class ObjectType extends AbstractType
                 ],
             ]);
 
+        $builder->addEventListener(
+            FormEvents::PRE_SET_DATA,
+            function (FormEvent $event) {
+                /** @var ?ObjectModel $object */
+                $object = $event->getData();
+                $this->addCategoryFields($event->getForm(), $object?->getCategory());
+            }
+        );
+
         $builder->get('category')->addEventListener(
             FormEvents::POST_SUBMIT,
             function (FormEvent $event) {
@@ -63,14 +72,20 @@ class ObjectType extends AbstractType
         );
     }
 
-    private function addCategoryFields(FormInterface $form, int $category): void
+    private function addCategoryFields(FormInterface $form, ?int $category): void
     {
         switch ($category) {
             case $this->objectCategories['pel.object.category.other']:
+                $this->removeMultimediaCategoryFields($form);
                 $this->addCategoryOtherFields($form);
                 break;
             case $this->objectCategories['pel.object.category.multimedia']:
+                $this->removeOtherCategoryFields($form);
                 $this->addCategoryMultimediaFields($form);
+                break;
+            default:
+                $this->removeOtherCategoryFields($form);
+                $this->removeMultimediaCategoryFields($form);
                 break;
         }
     }
@@ -108,6 +123,8 @@ class ObjectType extends AbstractType
     private function addCategoryMultimediaFields(FormInterface $form): void
     {
         $form
+            ->remove('description')
+            ->remove('quantity')
             ->add('brand', TextType::class, [
                 'constraints' => [
                     new NotBlank(),
@@ -161,5 +178,22 @@ class ObjectType extends AbstractType
         $resolver->setDefaults([
             'data_class' => ObjectModel::class,
         ]);
+    }
+
+    private function removeMultimediaCategoryFields(FormInterface $form): void
+    {
+        $form
+            ->remove('brand')
+            ->remove('model')
+            ->remove('phoneNumberLine')
+            ->remove('operator')
+            ->remove('serialNumber');
+    }
+
+    private function removeOtherCategoryFields(FormInterface $form): void
+    {
+        $form
+            ->remove('description')
+            ->remove('quantity');
     }
 }

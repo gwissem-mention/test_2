@@ -24,6 +24,7 @@ class CorporationType extends AbstractType
     public function __construct(
         private readonly EventSubscriberInterface $addAddressSubscriber,
         private readonly NationalityThesaurusProviderInterface $nationalityThesaurusProvider,
+        private readonly EventSubscriberInterface $addAddressCountrySubscriber,
         private readonly string $franceCode
     ) {
     }
@@ -101,13 +102,14 @@ class CorporationType extends AbstractType
                 ],
             ]);
 
-        $builder->get('country')->addEventSubscriber($this->addAddressSubscriber);
+        $builder->addEventSubscriber($this->addAddressSubscriber);
+        $builder->get('country')->addEventSubscriber($this->addAddressCountrySubscriber);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-           'data_class' => CorporationModel::class,
+            'data_class' => CorporationModel::class,
         ]);
     }
 }
