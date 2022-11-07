@@ -42,11 +42,22 @@ class OffenseDateType extends AbstractType
                 'label' => 'pel.do.you.know.hour.facts',
             ]);
 
+        $builder->addEventListener(
+            FormEvents::PRE_SET_DATA,
+            function (FormEvent $event) {
+                /** @var ?OffenseDateModel $offenseDate */
+                $offenseDate = $event->getData();
+                $form = $event->getForm();
+                $this->addDateFields($form, $offenseDate?->isExactDateKnown());
+                $this->addDateTimeHourField($form, $offenseDate?->getChoiceHour());
+            }
+        );
+
         $builder->get('exactDateKnown')->addEventListener(
             FormEvents::POST_SUBMIT,
             function (FormEvent $event) {
-                $exactDateKnown = $event->getData();
-                if ('' === $exactDateKnown) {
+                $exactDateKnown = $event->getForm()->getData();
+                if (null === $exactDateKnown) {
                     return;
                 }
                 /** @var FormInterface $parent */
@@ -72,15 +83,17 @@ class OffenseDateType extends AbstractType
         if (null === $exactDateKnown) {
             return;
         }
-        $form->add('startDate', DateType::class, [
-            'constraints' => [
-                new NotBlank(),
-                new LessThanOrEqual('today', message: 'pel.date.less.than.equal.today.error'),
-            ],
-            'label' => true === $exactDateKnown ? 'pel.offense.unique.date' : 'pel.offense.start.date',
-            'widget' => 'single_text',
-            'help' => 'pel.date.help',
-        ]);
+
+        $form
+            ->add('startDate', DateType::class, [
+                'constraints' => [
+                    new NotBlank(),
+                    new LessThanOrEqual('today', message: 'pel.date.less.than.equal.today.error'),
+                ],
+                'label' => true === $exactDateKnown ? 'pel.offense.unique.date' : 'pel.offense.start.date',
+                'widget' => 'single_text',
+                'help' => 'pel.date.help',
+            ]);
 
         if (false === $exactDateKnown) {
             $form->add('endDate', DateType::class, [
@@ -92,41 +105,48 @@ class OffenseDateType extends AbstractType
                 'widget' => 'single_text',
                 'help' => 'pel.date.help',
             ]);
+        } else {
+            $form->remove('endDate');
         }
     }
 
     private function addDateTimeHourField(FormInterface $form, ?string $choice = null): void
     {
         if ('yes' === $choice) {
-            $form->add('hour', TimeType::class, [
-                'attr' => [
-                    'class' => 'fr-btn',
-                ],
-                'label' => 'pel.exact.hour',
-                'widget' => 'single_text',
-            ]);
+            $form
+                ->remove('startHour')
+                ->remove('endHour')
+                ->add('hour', TimeType::class, [
+                    'attr' => [
+                        'class' => 'fr-btn',
+                    ],
+                    'label' => 'pel.exact.hour',
+                    'widget' => 'single_text',
+                ]);
         } elseif ('maybe' === $choice) {
-            $form->add('startHour', TimeType::class, [
-                'attr' => [
-                    'class' => 'fr-btn',
-                ],
-                'label' => 'pel.start.hour',
-                'widget' => 'single_text',
-            ]);
-            $form->add('endHour', TimeType::class, [
-                'attr' => [
-                    'class' => 'fr-btn',
-                ],
-                'label' => 'pel.end.hour',
-                'widget' => 'single_text',
-            ]);
+            $form
+                ->remove('hour')
+                ->add('startHour', TimeType::class, [
+                    'attr' => [
+                        'class' => 'fr-btn',
+                    ],
+                    'label' => 'pel.start.hour',
+                    'widget' => 'single_text',
+                ])
+                ->add('endHour', TimeType::class, [
+                    'attr' => [
+                        'class' => 'fr-btn',
+                    ],
+                    'label' => 'pel.end.hour',
+                    'widget' => 'single_text',
+                ]);
         }
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-           'data_class' => OffenseDateModel::class,
+            'data_class' => OffenseDateModel::class,
         ]);
     }
 }

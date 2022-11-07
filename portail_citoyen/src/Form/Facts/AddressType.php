@@ -21,7 +21,7 @@ class AddressType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('isAddressOrRouteFactsKnown', ChoiceType::class, [
+            ->add('addressOrRouteFactsKnown', ChoiceType::class, [
                 'label' => 'pel.address.or.route.facts',
                 'expanded' => true,
                 'multiple' => false,
@@ -38,12 +38,20 @@ class AddressType extends AbstractType
             ]);
 
         $builder
-            ->get('isAddressOrRouteFactsKnown')
+            ->addEventListener(
+                FormEvents::PRE_SET_DATA,
+                function (FormEvent $event) {
+                    /** @var ?AddressModel $address */
+                    $address = $event->getData();
+                    $this->addOffenseNatureOrNotKnownField($event->getForm(), $address?->isAddressOrRouteFactsKnown());
+                }
+            )
+            ->get('addressOrRouteFactsKnown')
             ->addEventListener(
                 FormEvents::POST_SUBMIT,
                 function (FormEvent $event) {
                     $choice = $event->getForm()->getData();
-                    if ('' === $choice) {
+                    if (null === $choice) {
                         return;
                     }
                     /** @var FormInterface $parent */
@@ -53,7 +61,7 @@ class AddressType extends AbstractType
             );
     }
 
-    private function addOffenseNatureOrNotKnownField(FormInterface $form, bool $choice): void
+    private function addOffenseNatureOrNotKnownField(FormInterface $form, ?bool $choice): void
     {
         if (true === $choice) {
             $form
@@ -69,6 +77,10 @@ class AddressType extends AbstractType
                     'label' => 'pel.address.end',
                     'help' => 'pel.address.end.help',
                 ]);
+        } else {
+            $form
+                ->remove('startAddress')
+                ->remove('endAddress');
         }
     }
 

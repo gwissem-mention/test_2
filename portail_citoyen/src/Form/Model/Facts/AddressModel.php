@@ -6,19 +6,19 @@ namespace App\Form\Model\Facts;
 
 class AddressModel
 {
-    private ?bool $isAddressOrRouteFactsKnown = null;
+    private ?bool $addressOrRouteFactsKnown = null;
     private ?string $addressAdditionalInformation = null;
     private ?string $startAddress = null;
     private ?string $endAddress = null;
 
     public function isAddressOrRouteFactsKnown(): ?bool
     {
-        return $this->isAddressOrRouteFactsKnown;
+        return $this->addressOrRouteFactsKnown;
     }
 
-    public function setIsAddressOrRouteFactsKnown(?bool $isAddressOrRouteFactsKnown): self
+    public function setAddressOrRouteFactsKnown(?bool $addressOrRouteFactsKnown): self
     {
-        $this->isAddressOrRouteFactsKnown = $isAddressOrRouteFactsKnown;
+        $this->addressOrRouteFactsKnown = $addressOrRouteFactsKnown;
 
         return $this;
     }

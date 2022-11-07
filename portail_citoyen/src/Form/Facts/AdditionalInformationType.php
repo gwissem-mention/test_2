@@ -63,6 +63,19 @@ class AdditionalInformationType extends AbstractType
                 'multiple' => false,
             ]);
 
+        $builder->addEventListener(
+            FormEvents::PRE_SET_DATA,
+            function (FormEvent $event) {
+                /** @var ?AdditionalInformationModel $additionalInfo */
+                $additionalInfo = $event->getData();
+                $form = $event->getForm();
+                $this->addInformationTextField($form, $additionalInfo?->isSuspectsChoice());
+                $this->addWitnessesTextField($form, $additionalInfo?->isWitnesses());
+                $this->addFSIVisitField($form, $additionalInfo?->isFsiVisit());
+                $this->addCCTVAvailableField($form, $additionalInfo?->getCctvPresent());
+            }
+        );
+
         $builder->get('suspectsChoice')->addEventListener(
             FormEvents::POST_SUBMIT,
             function (FormEvent $event) {
@@ -104,7 +117,7 @@ class AdditionalInformationType extends AbstractType
         );
     }
 
-    private function addInformationTextField(FormInterface $form, bool $choice): void
+    private function addInformationTextField(FormInterface $form, ?bool $choice): void
     {
         if (true === $choice) {
             $form->add('suspectsText', TextType::class, [
@@ -115,10 +128,12 @@ class AdditionalInformationType extends AbstractType
                 ],
                 'label' => 'pel.facts.suspects.informations.text',
             ]);
+        } else {
+            $form->remove('suspectsText');
         }
     }
 
-    private function addWitnessesTextField(FormInterface $form, bool $choice): void
+    private function addWitnessesTextField(FormInterface $form, ?bool $choice): void
     {
         if (true === $choice) {
             $form->add('witnessesText', TextType::class, [
@@ -133,10 +148,12 @@ class AdditionalInformationType extends AbstractType
                 ],
                 'label' => 'pel.facts.witnesses.information.text',
             ]);
+        } else {
+            $form->remove('witnessesText');
         }
     }
 
-    private function addFSIVisitField(FormInterface $form, bool $choice): void
+    private function addFSIVisitField(FormInterface $form, ?bool $choice): void
     {
         if (true === $choice) {
             $form->add('observationMade', ChoiceType::class, [
@@ -148,10 +165,12 @@ class AdditionalInformationType extends AbstractType
                 'label' => 'pel.observation.made',
                 'multiple' => false,
             ]);
+        } else {
+            $form->remove('observationMade');
         }
     }
 
-    private function addCCTVAvailableField(FormInterface $form, int $choice): void
+    private function addCCTVAvailableField(FormInterface $form, ?int $choice): void
     {
         if (self::CCTV_AVAILABLE_YES === $choice) {
             $form->add('cctvAvailable', ChoiceType::class, [
@@ -163,6 +182,8 @@ class AdditionalInformationType extends AbstractType
                 'label' => 'pel.cctv.available',
                 'multiple' => false,
             ]);
+        } else {
+            $form->remove('cctvAvailable');
         }
     }
 

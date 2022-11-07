@@ -26,5 +26,6 @@ services:
       - '@Redis'
 
   Symfony\Component\EventDispatcher\EventSubscriberInterface $addAddressSubscriber: '@App\Form\EventListener\AddAddressSubscriber'
+  Symfony\Component\EventDispatcher\EventSubscriberInterface $addAddressCountrySubscriber: '@App\Form\EventListener\AddAddressCountrySubscriber'
 
   Symfony\Component\Form\DataTransformerInterface $townToTownAndDepartmentTransformer: '@App\Form\DataTransformer\TownToTownAndDepartmentTransformer'

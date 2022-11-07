@@ -20,14 +20,15 @@ class ContactInformationType extends AbstractType
 {
     public function __construct(
         private readonly EventSubscriberInterface $addAddressSubscriber,
+        private readonly EventSubscriberInterface $addAddressCountrySubscriber,
         private readonly string $franceCode
     ) {
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        /** @var ?ContactInformationModel $emptyData */
-        $emptyData = $options['empty_data'];
+        /** @var ?ContactInformationModel $contactInformation */
+        $contactInformation = $options['fc_data'];
         $builder
             ->add('country', CountryType::class, [
                 'label' => 'pel.address.country',
@@ -47,7 +48,7 @@ class ContactInformationType extends AbstractType
                     new Email(),
                 ],
                 'label' => 'pel.email',
-                'empty_data' => $emptyData instanceof ContactInformationModel ? $emptyData->getEmail() : null,
+                'empty_data' => $contactInformation?->getEmail(),
             ])
             ->add('mobile', TextType::class, [
                 'attr' => [
@@ -60,13 +61,15 @@ class ContactInformationType extends AbstractType
                 'label' => 'pel.mobile',
             ]);
 
-        $builder->get('country')->addEventSubscriber($this->addAddressSubscriber);
+        $builder->addEventSubscriber($this->addAddressSubscriber);
+        $builder->get('country')->addEventSubscriber($this->addAddressCountrySubscriber);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => ContactInformationModel::class,
+            'fc_data' => null,
         ]);
     }
 }

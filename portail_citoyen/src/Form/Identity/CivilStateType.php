@@ -33,10 +33,9 @@ class CivilStateType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        /** @var ?CivilStateModel $emptyData */
-        $emptyData = $options['empty_data'];
         $nationalityChoices = $this->nationalityThesaurusProvider->getChoices();
-
+        /** @var ?CivilStateModel $fcData */
+        $fcData = $options['fc_data'];
         $builder
             ->add('civility', ChoiceType::class, [
                 'choices' => Civility::getChoices(),
@@ -45,7 +44,7 @@ class CivilStateType extends AbstractType
                 ],
                 'label' => 'pel.civility',
                 'placeholder' => 'pel.choose.your.civility',
-                'empty_data' => $emptyData instanceof CivilStateModel ? $emptyData->getCivility() : null,
+                'empty_data' => $fcData?->getCivility(),
             ])
             ->add('birthName', TextType::class, [
                 'attr' => [
@@ -58,7 +57,7 @@ class CivilStateType extends AbstractType
                     new Length(['max' => 70]),
                 ],
                 'label' => 'pel.birth.name',
-                'empty_data' => $emptyData instanceof CivilStateModel ? $emptyData->getBirthName() : null,
+                'empty_data' => $fcData?->getBirthName(),
             ])
             ->add('usageName', TextType::class, [
                 'attr' => [
@@ -81,21 +80,20 @@ class CivilStateType extends AbstractType
                     new Length(['max' => 40]),
                 ],
                 'label' => 'pel.first.names',
-                'empty_data' => $emptyData instanceof CivilStateModel ? $emptyData->getFirstnames() : null,
+                'empty_data' => $fcData?->getFirstnames(),
             ])
             ->add('birthDate', DateType::class, [
                 'constraints' => $options['birthDate_constraints'],
                 'help' => 'pel.birth.date.help',
                 'label' => 'pel.birth.date',
                 'widget' => 'single_text',
-                'empty_data' => $emptyData instanceof CivilStateModel ? $emptyData->getBirthDate()?->format('Y-m-d') :
-                    null,
+                'empty_data' => $fcData?->getBirthDate()?->format('Y-m-d'),
             ])
             ->add('birthLocation', LocationType::class, [
                 'country_label' => 'pel.birth.country',
                 'town_label' => 'pel.birth.town',
                 'department_label' => 'pel.birth.department',
-                'empty_data' => $emptyData instanceof CivilStateModel ? $emptyData->getBirthLocation() : null,
+                'fc_data' => $fcData?->getBirthLocation(),
             ])
             ->add('nationality', ChoiceType::class, [
                 'constraints' => [
@@ -109,7 +107,9 @@ class CivilStateType extends AbstractType
         $builder->addEventListener(
             FormEvents::PRE_SET_DATA,
             function (FormEvent $event) {
-                $this->addJobField($event->getForm());
+                /** @var ?CivilStateModel $civilState */
+                $civilState = $event->getData();
+                $this->addJobField($event->getForm(), $civilState?->getJob());
             }
         );
 
@@ -140,6 +140,7 @@ class CivilStateType extends AbstractType
                 'data_class' => CivilStateModel::class,
                 'declarant_status' => null,
                 'birthDate_constraints' => [new NotBlank(), new LessThanOrEqual('today')],
+                'fc_data' => null,
             ]);
     }
 

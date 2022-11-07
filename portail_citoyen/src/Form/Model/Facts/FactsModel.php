@@ -27,7 +27,7 @@ class FactsModel
 
     public function __construct()
     {
-        $this->objects = new ArrayCollection([new ObjectModel()]);
+        $this->objects = new ArrayCollection();
     }
 
     public function getAddress(): ?AddressModel
