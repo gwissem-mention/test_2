@@ -10,6 +10,7 @@ Feature:
         And I should see the key "pel.ministry" translated
         And I should see the key "pel.inside" translated
         And I should see the key "pel.and.overseas" translated
+        And I should see the key "pel.header.baseline" translated
         And I should see the key "pel.complaint.nature.of.the.facts" translated
         And I should see the key "pel.address.or.route.facts" translated
         And I should see the key "pel.additional.place.information" translated

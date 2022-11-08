@@ -9,6 +9,7 @@ Feature:
         Then I should see the key "pel.ministry" translated
         And I should see the key "pel.inside" translated
         And I should see the key "pel.and.overseas" translated
+        And I should see the key "pel.header.baseline" translated
         And I should see "Identité" in the ".fr-breadcrumb__list" element
 
     @func

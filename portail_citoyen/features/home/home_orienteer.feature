@@ -16,13 +16,14 @@ Feature:
         And I should see the key "pel.ministry" translated
         And I should see the key "pel.inside" translated
         And I should see the key "pel.and.overseas" translated
+        And I should see the key "pel.header.baseline" translated
         And I should see the key "pel.article.10.2" translated
         And I should see the key "pel.article.d.8.2.2" translated
         And I should see 1 "input[type=checkbox]" element
         And the checkbox "consent_agree" should be unchecked
         And I should see 1 "label" element
         And I should see the key "pel.visitor.agree" translated
-        And I should see 2 "p" element
+        And I should see 3 "p" element
         And I should see the key "pel.law.informations" translated
         And I should see 1 "button" element
         And I should see the key "pel.start.redacting.my.online.complaint" translated
