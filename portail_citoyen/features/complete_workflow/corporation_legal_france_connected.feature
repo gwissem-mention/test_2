@@ -58,3 +58,42 @@ Feature:
         And I fill in "facts_description" with "description informations"
         And I press "Suivant"
         Then I am on "/recapitulatif"
+        And I should see the key "pel.civility" translated
+        And I should see the key "pel.sir" translated
+        And I should see "DUPONT"
+        And I should see "Michel"
+        And I should not see the key "pel.usage.name" translated
+        And I should see the key "pel.born.on" translated
+        And I should see "02/03/1967"
+        And I should see the key "pel.at.in" translated
+        And I should see "France"
+        And I should see the key "pel.department" translated
+        And I should see the key "pel.nationality" translated
+        And I should see "Française"
+        And I should see the key "pel.resides.at" translated
+        And I should see "Av. de la République 75011 Paris France"
+        And I should see the key "pel.your.job" translated
+        And I should see the key "pel.job.policeman" translated
+        And I should see the key "pel.phone" translated
+        And I should see "0601020304"
+        And I should see the key "pel.email" translated
+        And I should see "michel.dupont@example.com"
+        And I should see the key "pel.want.to.receive.sms.notifications" translated
+        And I should see the key "pel.is.designated.as" translated
+        And I should see the key "pel.complaint.identity.corporation.legal.representative" translated
+        And I should see the key "pel.of.infraction" translated
+        And I should see the key "pel.corporation.legal.information" translated
+        And I should see the key "pel.corporation.siren" translated
+        And I should see "123456789"
+        And I should see the key "pel.corporation.name" translated
+        And I should see "Mon entreprise"
+        And I should see the key "pel.corporation.function" translated
+        And I should see "Directeur"
+        And I should see the key "pel.nationality" translated
+        And I should see "Française"
+        And I should see the key "pel.corporation.email" translated
+        And I should see "contact@mon-entreprise.fr"
+        And I should see the key "pel.address.country" translated
+        And I should see "France"
+        And I should see the key "pel.address" translated
+        And I should see "Av. de la République 75011 Paris France"

@@ -10,7 +10,7 @@ Feature:
         And I should see 1 "body" element
         And I should see the key "pel.make.appointment" translated
         And I follow "Précédent"
-        And I should be on "/recapitulatif"
+        And I should be on "/"
 
     @func
     Scenario: Show appointment page with "Prise de RDV" title

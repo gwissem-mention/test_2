@@ -15,7 +15,78 @@
         </div>
         <div class="fr-grid-row">
             <div class="fr-col">
-                <h6>{{ 'pel.complaint.identity'|trans }}</h6>
+                <h6>{{ 'pel.complaint.identification'|trans }}</h6>
+                <ul>
+                    {{ include('common/_recap_identity.html.twig', {
+                        civilState: complaint.identity.civilState,
+                        contactInformation: complaint.identity.contactInformation,
+                    }) }}
+                    <li>{{ 'pel.want.to.receive.sms.notifications'|trans }}</li>
+                    <li>
+                        {{ 'pel.is.designated.as'|trans }}
+                        {% if complaint.identity.declarantStatus is same as(constant('App\\Enum\\DeclarantStatus::Victim').value) %}
+                            {{ 'pel.complaint.identity.victim'|trans }}
+                        {% elseif complaint.identity.declarantStatus is same as(constant('App\\Enum\\DeclarantStatus::PersonLegalRepresentative').value) %}
+                            {{ 'pel.complaint.identity.person.legal.representative'|trans }}
+                        {% else %}
+                            {{ 'pel.complaint.identity.corporation.legal.representative'|trans }}
+                        {% endif %}
+                        {{ 'pel.of.infraction'|trans }}
+                    </li>
+                </ul>
+                {% if complaint.identity.declarantStatus is same as(constant('App\\Enum\\DeclarantStatus::PersonLegalRepresentative').value) %}
+                    <br>
+                    <p>{{ 'pel.represented.person.identity'|trans }}</p>
+                    {{ include('common/_recap_identity.html.twig', {
+                        civilState: complaint.identity.representedPersonCivilState,
+                        contactInformation: complaint.identity.representedPersonContactInformation
+                    }) }}
+                {% endif %}
+
+                {% if complaint.identity.declarantStatus is same as(constant('App\\Enum\\DeclarantStatus::CorporationLegalRepresentative').value) %}
+                    <br>
+                    <p><b>{{ 'pel.corporation.legal.information'|trans }}</b></p>
+                    <ul>
+                        <li>
+                            {{ 'pel.corporation.siren'|trans }} :
+                            {{ complaint.identity.corporation.siren }}
+                        </li>
+                        <li>
+                            {{ 'pel.corporation.name'|trans }} :
+                            {{ complaint.identity.corporation.name }}
+                        </li>
+                        <li>
+                            {{ 'pel.corporation.function'|trans }} :
+                            {{ complaint.identity.corporation.function }}
+                        </li>
+                        <li>
+                            {{ 'pel.nationality'|trans }} :
+                            {{ complaint.identity.corporation.nationality|nationality_get_name|trans }}
+                        </li>
+                        {% if complaint.identity.corporation.email %}
+                            <li>
+                                {{ 'pel.corporation.email'|trans }} :
+                                {{ complaint.identity.corporation.email }}
+                            </li>
+                        {% endif %}
+                        <li>
+                            {{ 'pel.corporation.phone'|trans }} :
+                            {{ complaint.identity.corporation.phone }}
+                        </li>
+                        <li>
+                            {{ 'pel.address.country'|trans }} :
+                            {{ complaint.identity.corporation.country|country_name }}
+                        </li>
+                        <li>
+                            {{ 'pel.address'|trans }} :
+                            {% if complaint.identity.corporation.country|country_name is same as('France') %}
+                                {{ complaint.identity.corporation.frenchAddress }}
+                            {% else %}
+                                {{  complaint.identity.corporation.foreignAddress }}
+                            {% endif %}
+                        </li>
+                    </ul>
+                {% endif %}
             </div>
         </div>
         <div class="fr-grid-row">

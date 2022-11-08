@@ -26,7 +26,7 @@ Feature:
         And I should see the key "pel.corporation.siren" translated
         And I should see the key "pel.corporation.name" translated
         And I should see the key "pel.corporation.function" translated
-        And I should see the key "pel.corporation.nationality" translated
+        And I should see the key "pel.nationality" translated
         And I should see the key "pel.corporation.email" translated
         And I should see the key "pel.corporation.phone" translated
         And I should see the key "pel.next" translated
