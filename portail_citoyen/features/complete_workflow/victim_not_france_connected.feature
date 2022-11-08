@@ -80,3 +80,27 @@ Feature:
         And I fill in "facts_description" with "description informations"
         And I press "Suivant"
         Then I am on "/recapitulatif"
+        And I should see the key "pel.civility" translated
+        And I should see the key "pel.sir" translated
+        And I should see "DUPONT"
+        And I should see "Jean Pierre Marie"
+        And I should not see the key "pel.usage.name" translated
+        And I should see the key "pel.born.on" translated
+        And I should see "01/01/2000"
+        And I should see the key "pel.at.in" translated
+        And I should see "France"
+        And I should see the key "pel.department" translated
+        And I should see the key "pel.nationality" translated
+        And I should see "Française"
+        And I should see the key "pel.resides.at" translated
+        And I should see "Av. de la République 75011 Paris France"
+        And I should see the key "pel.your.job" translated
+        And I should see the key "pel.job.policeman" translated
+        And I should see the key "pel.phone" translated
+        And I should see "0601020304"
+        And I should see the key "pel.email" translated
+        And I should see "jean@test.com"
+        And I should see the key "pel.want.to.receive.sms.notifications" translated
+        And I should see the key "pel.is.designated.as" translated
+        And I should see the key "pel.complaint.identity.victim" translated
+        And I should see the key "pel.of.infraction" translated

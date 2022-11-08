@@ -69,7 +69,7 @@ class CorporationType extends AbstractType
                     new NotBlank(),
                 ],
                 'choices' => $nationalityChoices,
-                'label' => 'pel.corporation.nationality',
+                'label' => 'pel.nationality',
                 'empty_data' => $nationalityChoices['pel.nationality.france'],
             ])
             ->add('email', EmailType::class, [

@@ -1,0 +1,41 @@
+<li>
+    {{ 'pel.civility'|trans }} :
+    {% if civilState.civility is same as(constant('App\\Enum\\Civility::M').value) %}
+        {{ 'pel.sir'|trans }}
+    {% else %}
+        {{ 'pel.madam'|trans }}
+    {% endif %}
+    {{ civilState.birthName }}
+    {{ civilState.firstnames }}
+</li>
+{% if civilState.usageName %}
+    <li>
+        {{ 'pel.usage.name'|trans }} :
+        {{ civilState.usageName }}
+    </li>
+{% endif %}
+<li>
+    {{ 'pel.born.on'|trans }} : {{ civilState.birthDate|date('d/m/Y') }}
+    {{ 'pel.at.in'|trans }} : {{ civilState.birthLocation.country|country_name }}
+    {{ 'pel.department'|trans }} : {{ civilState.birthLocation.department }}
+</li>
+<li>
+    {{ 'pel.nationality'|trans }} :
+    {{ civilState.nationality|nationality_get_name|trans }}
+</li>
+<li>
+    {{ 'pel.resides.at'|trans }} :
+    {% if contactInformation.country|country_name is same as('France') %}
+        {{ contactInformation.frenchAddress }}
+    {% else %}
+        {{  contactInformation.foreignAddress }}
+    {% endif %}
+</li>
+<li>
+    {{ 'pel.your.job'|trans }} :
+    {{ civilState.job|job_get_name|trans }}
+</li>
+<li>
+    {{ 'pel.phone'|trans }} : {{ contactInformation.mobile }}
+    {{ 'pel.email'|trans }} : {{ contactInformation.email }}
+</li>

@@ -102,6 +102,10 @@
                 <source>pel.article.d.8.2.2</source>
                 <target>Article D8-2-2</target>
             </trans-unit>
+            <trans-unit id="pel.at.in">
+                <source>pel.at.in</source>
+                <target>au/en</target>
+            </trans-unit>
             <trans-unit id="pel.attachments">
                 <source>pel.attachments</source>
                 <target>Pièces complémentaires</target>
@@ -153,6 +157,10 @@
             <trans-unit id="pel.birth.town">
                 <source>pel.birth.town</source>
                 <target>Commune de naissance</target>
+            </trans-unit>
+            <trans-unit id="pel.born.on">
+                <source>pel.born.on</source>
+                <target>Né(e) le</target>
             </trans-unit>
             <trans-unit id="pel.brand">
                 <source>pel.brand</source>
@@ -221,6 +229,10 @@
             <trans-unit id="pel.complaint.identity">
                 <source>pel.complaint.identity</source>
                 <target>Identité</target>
+            </trans-unit>
+            <trans-unit id="pel.complaint.identification">
+                <source>pel.complaint.identification</source>
+                <target>Identification</target>
             </trans-unit>
             <trans-unit id="pel.complaint.identity.corporation.legal.representative">
                 <source>pel.complaint.identity.corporation.legal.representative</source>
@@ -303,10 +315,6 @@
                 <source>pel.corporation.name</source>
                 <target>Raison sociale</target>
             </trans-unit>
-            <trans-unit id="pel.corporation.nationality">
-                <source>pel.corporation.nationality</source>
-                <target>Nationalité</target>
-            </trans-unit>
             <trans-unit id="pel.corporation.phone">
                 <source>pel.corporation.phone</source>
                 <target>Numéro de téléphone fixe ou portable</target>
@@ -358,6 +366,10 @@
             <trans-unit id="pel.delete">
                 <source>pel.delete</source>
                 <target>Supprimer</target>
+            </trans-unit>
+            <trans-unit id="pel.department">
+                <source>pel.department</source>
+                <target>Département</target>
             </trans-unit>
             <trans-unit id="pel.department.thirteen">
                 <source>pel.department.thirteen</source>
@@ -425,7 +437,7 @@
             </trans-unit>
             <trans-unit id="pel.email">
                 <source>pel.email</source>
-                <target>Adresse électronique</target>
+                <target>Email</target>
             </trans-unit>
             <trans-unit id="pel.end.hour">
                 <source>pel.end.hour</source>
@@ -466,6 +478,10 @@
             <trans-unit id="pel.facts.witnesses.information.text">
                 <source>pel.facts.witnesses.information.text</source>
                 <target>Veuillez indiquer, si vous le pouvez, les noms et les coordonnées du/des témoin(s)</target>
+            </trans-unit>
+            <trans-unit id="pel.want.to.receive.sms.notifications">
+                <source>pel.want.to.receive.sms.notifications</source>
+                <target>Souhaite pouvoir recevoir des notifications SMS concernant cette plainte</target>
             </trans-unit>
             <trans-unit id="pel.witness">
                 <source>pel.witness</source>
@@ -611,6 +627,10 @@
                 <source>pel.is.amount.known</source>
                 <target>Pouvez-vous estimer le montant du préjudice ?</target>
             </trans-unit>
+            <trans-unit id="pel.is.designated.as">
+                <source>pel.is.designated.as</source>
+                <target>Se désigne comme</target>
+            </trans-unit>
             <trans-unit id="pel.job.constable">
                 <source>pel.job.constable</source>
                 <target>Gendarme</target>
@@ -634,6 +654,10 @@
             <trans-unit id="pel.m">
                 <source>pel.m</source>
                 <target>M</target>
+            </trans-unit>
+            <trans-unit id="pel.madam">
+                <source>pel.madam</source>
+                <target>Madame</target>
             </trans-unit>
             <trans-unit id="pel.major">
                 <source>pel.major</source>
@@ -759,6 +783,10 @@
                 <source>pel.observation.made</source>
                 <target>Est-ce que des constatations ou des relevés ont été effectués ?</target>
             </trans-unit>
+            <trans-unit id="pel.of.infraction">
+                <source>pel.of.infraction</source>
+                <target>de l'infraction</target>
+            </trans-unit>
             <trans-unit id="pel.offense.context">
                 <source>pel.offense.context</source>
                 <target>Contexte de l'infraction</target>
@@ -802,6 +830,10 @@
             <trans-unit id="pel.passage.fsi">
                 <source>pel.passage.fsi</source>
                 <target>Indications du passage des FSI</target>
+            </trans-unit>
+            <trans-unit id="pel.phone">
+                <source>pel.phone</source>
+                <target>Téléphone</target>
             </trans-unit>
             <trans-unit id="pel.phone.number.line">
                 <source>pel.phone.number.line</source>
@@ -859,6 +891,10 @@
                 <source>pel.represented.person.identity</source>
                 <target>L'identité de la personne physique représentée</target>
             </trans-unit>
+            <trans-unit id="pel.resides.at">
+                <source>pel.resides.at</source>
+                <target>Réside à/au</target>
+            </trans-unit>
             <trans-unit id="pel.scam.except.online">
                 <source>pel.scam.except.online</source>
                 <target>Escroquerie hors internet</target>
@@ -870,6 +906,10 @@
             <trans-unit id="pel.serial.number.help">
                 <source>pel.serial.number.help</source>
                 <target>Ce numéro est nécessaire pour identifier votre téléphone. Si vous n'êtes pas en mesure de le fournir sur ce formulaire, il vous sera demandé plus tard</target>
+            </trans-unit>
+            <trans-unit id="pel.sir">
+                <source>pel.sir</source>
+                <target>Monsieur</target>
             </trans-unit>
             <trans-unit id="pel.start.hour">
                 <source>pel.start.hour</source>
