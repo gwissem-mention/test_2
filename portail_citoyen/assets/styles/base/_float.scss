@@ -1,0 +1,11 @@
+@mixin float($float) {
+  float: $float;
+}
+
+.fr-float-left {
+  @include float(left);
+}
+
+.fr-float-right {
+  @include float(right);
+}

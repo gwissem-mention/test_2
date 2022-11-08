@@ -1,35 +1,91 @@
 {% extends 'layout.html.twig' %}
 
 {% block body %}
-    <div class="fr-container--fluid fr-m-1w">
-        <div class="fr-grid-row">
-            <div class="fr-col">
-                {{ 'pel.home.orienteer.information.message.1'|trans }}
-                {# TO DO : Remove breaklines #}
-                <br/><br/>
-                {{ 'pel.home.orienteer.information.message.2'|trans }}
-                {# TO DO : Remove breaklines #}
-                <br/><br/>
-                {{ 'pel.home.orienteer.information.message.3'|trans }}
+    <div class="fr-container--fluid">
+        <div class="fr-grid-row fr-background-alt--blue-france">
+            <div class="fr-col fr-pl-2w fr-py-3w fr-pr-3w">
+                <div class="fr-my-3w fr-text-center">
+                    <h1><strong>{{ 'pel.my.route.to.fill.a.complaint'|trans }}</strong></h1>
+                </div>
             </div>
         </div>
-        <div class="fr-grid-row fr-pt-4w">
-            <div class="fr-col">
-                {{ 'pel.home.orienteer.legal.message.1'|trans }} : <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044569870" target="_blank">{{ 'pel.article.10.2'|trans }}</a>
-                {{ 'pel.home.orienteer.legal.message.2'|trans }}, <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038552381" target="_blank">{{ 'pel.article.d.8.2.2'|trans }}</a> {{ 'pel.home.orienteer.legal.message.2'|trans }}
+    </div>
+    <div class="fr-container">
+        <div class="fr-grid-row fr-mt-6w">
+            <div class="fr-col-12 fr-col-md-6 fr-col-lg-4">
+                <div class="fr-content-media fr-my-0">
+                    <iframe class="fr-responsive-vid fr-ratio-4x3" src="https://www.youtube.com/embed/HyirpmPL43I" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="fr-col-12 fr-col-md-6 fr-col-lg-8 fr-pl-md-4w fr-mt-3w fr-mt-md-0">
+                <p class="fr-text--lg">
+                    <strong>{{ 'pel.you.will.start.an.online.complaint.procedure'|trans }}</strong>
+                </p>
+                <p>
+                    {{ 'pel.appointment.needed.if'|trans }}
+                </p>
+                <ul>
+                    <li>{{ 'pel.your.are.not.logged.in.with.france.connect'|trans }}</li>
+                    <li>{{ 'pel.your.are.victim.of.a.registered.vehicle.theft'|trans }}</li>
+                    <li>{{ 'pel.your.are.victim.of.a.violent.theft'|trans }}</li>
+                    <li>{{ 'pel.other.complex.offenses'|trans }}</li>
+                </ul>
+                <p class="fr-mt-4w">
+                    {{ 'pel.if.no.lawyer.needed.text'|trans }}
+                </p>
             </div>
         </div>
-        <div class="fr-grid-row fr-pt-4w">
-            <div class="fr-col">
-                {{ form_start(form) }}
-                    {{ form_row(form.agree) }}
-                    <button id="start_redacting_my_online_complaint" class="fr-btn" type="submit">{{ 'pel.start.redacting.my.online.complaint'|trans }}</button>
-                {{ form_end(form) }}
+    </div>
+    <div class="fr-container--fluid">
+        <div class="fr-background-alt--grey fr-mt-6w">
+            <div class="fr-container">
+                <div class="fr-pl-2w fr-py-3w fr-pr-3w">
+                    <div class="fr-my-3w">
+                        <h3 class="fr-text-center">{{ 'pel.online.complaint.process'|trans }}</h3>
+                        <div class="fr-grid-row  fr-px-1w">
+                            <div class="fr-col-6 fr-col-md-3 fr-px-1w">
+                                <strong>{{ 'pel.1.fill.your.form'|trans }}</strong>
+                                <div class="fr-text-center fr-mt-3w">
+                                    <img src="{{ asset('build/images/document.svg') }}" alt="{{ 'pel.1.fill.your.form'|trans }}">
+                                </div>
+                            </div>
+                            <div class="fr-col-6 fr-col-md-3 fr-px-1w">
+                                <strong>{{ 'pel.2.upload.your.files'|trans }}</strong>
+                                <div class="fr-text-center fr-mt-3w">
+                                    <img src="{{ asset('build/images/national-identity-card.svg') }}" alt="{{ 'pel.2.upload.your.files'|trans }}">
+                                </div>
+                            </div>
+                            <div class="fr-col-6 fr-col-md-3 fr-px-1w fr-mt-3w fr-mt-md-0">
+                                <strong>{{ 'pel.3.your.request.is.sent.to.an.agent'|trans }}</strong>
+                                <div class="fr-text-center">
+                                    <img src="{{ asset('build/images/police.svg') }}" alt="{{ 'pel.3.your.request.is.sent.to.an.agent'|trans }}">
+                                </div>
+                            </div>
+                            <div class="fr-col-6 fr-col-md-3 fr-px-1w fr-px-1w fr-mt-3w fr-mt-md-0">
+                                <strong>{{ 'pel.4.your.request.is.processed.within.48h'|trans }}</strong>
+                                <div class="fr-text-center">
+                                    <img src="{{ asset('build/images/calendar.svg') }}" alt="{{ 'pel.4.your.request.is.processed.within.48h'|trans }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="fr-grid-row fr-mt-3w">
+                            <div class="fr-col-12">
+                                <strong>
+                                    {{ 'pel.i.take.note.of.legal.provisions'|trans }} <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044569870" target="_blank">{{ 'pel.article.10.2'|trans }}</a> {{ 'pel.of.the.penal.procedure'|trans }}, <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038552381" target="_blank">{{ 'pel.article.d.8.2.2'|trans }}</a> {{ 'pel.of.the.penal.procedure'|trans }}.
+                                </strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="fr-grid-row fr-pt-2w">
-            <div class="fr-col">
-                {{ 'pel.law.informations'|trans }}
+    </div>
+    <div class="fr-container">
+        <div class="fr-grid-row fr-mt-6w fr-mb-3w">
+            <div class="fr-col-12">
+                <a href="{{ path('home') }}" class="fr-btn fr-btn--secondary">{{ 'pel.back'|trans }}</a>
+                <a href="{{ path('authentication') }}"
+                   class="fr-btn fr-float-right fr-btn--icon-right fr-icon-arrow-right-line">{{ 'pel.start.my.declaration'|trans }}</a>
             </div>
         </div>
     </div>

@@ -1,32 +1,41 @@
 Feature:
     In order to show the orienteer homepage
     As a user
-    I need to see a page with a 2 texts and 2 links
+    I need to see a page with working buttons and translated texts
 
     @func
-    Scenario: Show homepage lvl2 on /accueil-deroule route with 200 status code
+    Scenario Outline: Show homepage with all translated elements
         Given I am on "/accueil-deroule"
         Then the response status code should be 200
         And I should see 1 "body" element
-        And I should see the key "pel.home.orienteer.information.message.1" translated
-        And I should see the key "pel.home.orienteer.information.message.2" translated
-        And I should see the key "pel.home.orienteer.information.message.3" translated
-        And I should see the key "pel.home.orienteer.legal.message.1" translated
-        And I should see the key "pel.home.orienteer.legal.message.2" translated
-        And I should see the key "pel.ministry" translated
-        And I should see the key "pel.inside" translated
-        And I should see the key "pel.and.overseas" translated
-        And I should see the key "pel.header.baseline" translated
-        And I should see the key "pel.article.10.2" translated
-        And I should see the key "pel.article.d.8.2.2" translated
-        And I should see 1 "input[type=checkbox]" element
-        And the checkbox "consent_agree" should be unchecked
-        And I should see 1 "label" element
-        And I should see the key "pel.visitor.agree" translated
-        And I should see 3 "p" element
-        And I should see the key "pel.law.informations" translated
-        And I should see 1 "button" element
-        And I should see the key "pel.start.redacting.my.online.complaint" translated
+        And I should see the key "<trans>" translated
+
+        Examples:
+            | trans                                               |
+            | pel.ministry                                        |
+            | pel.inside                                          |
+            | pel.and.overseas                                    |
+            | pel.header.baseline                                 |
+            | pel.online.complaint                                |
+            | pel.my.route.to.fill.a.complaint                    |
+            | pel.you.will.start.an.online.complaint.procedure    |
+            | pel.appointment.needed.if                           |
+            | pel.your.are.not.logged.in.with.france.connect      |
+            | pel.your.are.victim.of.a.registered.vehicle.theft   |
+            | pel.your.are.victim.of.a.violent.theft              |
+            | pel.other.complex.offenses                          |
+            | pel.if.no.lawyer.needed.text                        |
+            | pel.online.complaint.process                        |
+            | pel.1.fill.your.form                                |
+            | pel.2.upload.your.files                             |
+            | pel.3.your.request.is.sent.to.an.agent              |
+            | pel.4.your.request.is.processed.within.48h          |
+            | pel.i.take.note.of.legal.provisions                 |
+            | pel.article.10.2                                    |
+            | pel.of.the.penal.procedure                          |
+            | pel.article.d.8.2.2                                 |
+            | pel.back                                            |
+            | pel.start.my.declaration                            |
 
     @func
     Scenario: Click on "Article 10-2" link
@@ -41,14 +50,13 @@ Feature:
         And I should be on "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038552381"
 
     @func
-    Scenario: Click on the start complaint button with consent_agree checkbox checked
+    Scenario: Click on "Back" link
         Given I am on "/accueil-deroule"
-        When I check "consent_agree"
-        And I press "start_redacting_my_online_complaint"
-        Then I should be on "/authentification"
+        Then I follow "Retour"
+        And I should be on "/"
 
     @func
-    Scenario: Click on the start complaint button with consent_agree checkbox not checked
+    Scenario: Click on "Start" link
         Given I am on "/accueil-deroule"
-        When I press "start_redacting_my_online_complaint"
-        Then I should be on "/accueil-deroule"
+        Then I follow "Débuter ma déclaration"
+        And I should be on "/authentification"
