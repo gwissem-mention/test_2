@@ -26,8 +26,6 @@ Feature:
         And I should see the key "pel.law.informations" translated
         And I should see 1 "button" element
         And I should see the key "pel.start.redacting.my.online.complaint" translated
-        And I should see the key "pel.file.a.complaint" translated
-        And I should see the key "pel.faq" translated
 
     @func
     Scenario: Click on "Article 10-2" link

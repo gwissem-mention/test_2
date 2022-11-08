@@ -6,6 +6,22 @@
                 <source>pel.amount</source>
                 <target>Montant</target>
             </trans-unit>
+            <trans-unit id="pel.a.dematerialized.service">
+                <source>pel.a.dematerialized.service</source>
+                <target>Un service dématérialisé</target>
+            </trans-unit>
+            <trans-unit id="pel.a.dematerialized.service.text.1">
+                <source>pel.a.dematerialized.service.text.1</source>
+                <target>Ce site vous permet de déclarer une infraction en ligne depuis un ordinateur. Chaque déclaration est examinée par un enquêteur. Des renseignements complémentaires sur les faits dont vous avez été victime pourront vous être demandés ultérieurement.</target>
+            </trans-unit>
+            <trans-unit id="pel.a.dematerialized.service.text.2">
+                <source>pel.a.dematerialized.service.text.2</source>
+                <target>Cette démarche peut être totalement dématérialisée depuis chez vous, de la déclaration à son examination. Toutefois, selon votre situation, un rendez-vous en gendarmerie ou dans un commissariat pourra vous être demandé.</target>
+            </trans-unit>
+            <trans-unit id="pel.a.dematerialized.service.text.3">
+                <source>pel.a.dematerialized.service.text.3</source>
+                <target>Avant de débuter votre démarche, veuillez prendre connaissance des élements ci-dessous.</target>
+            </trans-unit>
             <trans-unit id="pel.access.to.the.form">
                 <source>pel.access.to.the.form</source>
                 <target>Accéder au formulaire</target>
@@ -78,6 +94,10 @@
                  <source>pel.back.to.homepage</source>
                  <target>Revenir à l'accueil</target>
              </trans-unit>
+            <trans-unit id="pel.be.sure.facts.are.relevant.for.this.service">
+                <source>pel.be.sure.facts.are.relevant.for.this.service</source>
+                <target>Assurez-vous que les faits dont vous êtes victime relèvent de ce téléservice</target>
+            </trans-unit>
             <trans-unit id="pel.birth.country">
                 <source>pel.birth.country</source>
                 <target>Pays de naissance</target>
@@ -105,6 +125,18 @@
             <trans-unit id="pel.brand">
                 <source>pel.brand</source>
                 <target>Marque</target>
+            </trans-unit>
+            <trans-unit id="pel.can.i.make.a.physical.appointment">
+                <source>pel.can.i.make.a.physical.appointment</source>
+                <target>Est-ce que je peux prendre directement rendez-vous en commissariat ou en gendarmerie ?</target>
+            </trans-unit>
+            <trans-unit id="pel.can.i.make.a.physical.appointment.text">
+                <source>pel.can.i.make.a.physical.appointment.text</source>
+                <target>Que vous remplissiez ou non les conditions de dépôt de plainte en ligne, vous pouvez choisir de prendre un rendez-vous en ligne dans une unité de la Police ou de Gendarmerie afin de déposer votre plainte en présentiel avec un agent.</target>
+            </trans-unit>
+            <trans-unit id="pel.check.our.faq">
+                <source>pel.check.our.faq</source>
+                <target>Une question ? Consultez notre FAQ</target>
             </trans-unit>
             <trans-unit id="pel.cctv.available">
                 <source>pel.cctv.available</source>
@@ -182,10 +214,11 @@
                 <source>pel.complaint.offense.nature.degradation</source>
                 <target>Dégradation</target>
             </trans-unit>
-            <trans-unit id="pel.fsi.visit">
-                <source>pel.fsi.visit</source>
-                <target>Y a-t-il eu intervention d’un équipage de police ou de gendarmerie ?</target>
+            <trans-unit id="pel.compose.the.17">
+                <source>pel.compose.the.17</source>
+                <target>Composez le 17</target>
             </trans-unit>
+
             <trans-unit id="pel.complaint.offense.nature.other">
                 <source>pel.complaint.offense.nature.other</source>
                 <target>Autre atteinte aux biens</target>
@@ -270,6 +303,14 @@
                 <source>pel.country.spain</source>
                 <target>Espagne</target>
             </trans-unit>
+            <trans-unit id="pel.damage.to.a.vehicle">
+                <source>pel.damage.to.a.vehicle</source>
+                <target>Méfait à un véhicule</target>
+            </trans-unit>
+            <trans-unit id="pel.damage.except.vehicle">
+                <source>pel.damage.except.vehicle</source>
+                <target>Méfait (dégradation à un bien à l'exception des véhicules)</target>
+            </trans-unit>
             <trans-unit id="pel.date.help">
                 <source>pel.date.help</source>
                 <target>Date au format jj/mm/aaaa</target>
@@ -301,6 +342,14 @@
             <trans-unit id="pel.do.you.know.hour.facts">
                 <source>pel.do.you.know.hour.facts</source>
                 <target>Connaissez-vous l'heure des faits ?</target>
+            </trans-unit>
+            <trans-unit id="pel.dont.use.online.complaint">
+                <source>pel.dont.use.online.complaint</source>
+                <target>N'UTILISEZ PAS plainte en ligne :</target>
+            </trans-unit>
+            <trans-unit id="pel.drive.complaints">
+                <source>pel.drive.complaints</source>
+                <target>Plaintes de conduite</target>
             </trans-unit>
             <trans-unit id="pel.dropzone.cancel.upload">
                 <source>pel.dropzone.cancel.upload</source>
@@ -386,9 +435,9 @@
                 <source>pel.faq</source>
                 <target>FAQ</target>
             </trans-unit>
-            <trans-unit id="pel.file.a.complaint">
-                <source>pel.file.a.complaint</source>
-                <target>Déclarer plainte</target>
+            <trans-unit id="pel.fill.a.complaint">
+                <source>pel.fill.a.complaint</source>
+                <target>Déposer une plainte pour une atteinte aux biens</target>
             </trans-unit>
             <trans-unit id="pel.files">
                 <source>pel.files</source>
@@ -406,45 +455,29 @@
                 <source>pel.first.names</source>
                 <target>Prénom(s)</target>
             </trans-unit>
+            <trans-unit id="pel.fraudulent.use.of.stolen.credit.card">
+                <source>pel.fraudulent.use.of.stolen.credit.card</source>
+                <target>L'utilisation frauduleuse de votre carte bleue volée</target>
+            </trans-unit>
             <trans-unit id="pel.france.connect">
                 <source>pel.france.connect</source>
                 <target>FranceConnect</target>
             </trans-unit>
             <trans-unit id="pel.fsi.general.orienteer">
                 <source>pel.fsi.general.orienteer</source>
-                <target>Orienteur général FSI</target>
+                <target>Soyez guidé vers la bonne solution !</target>
             </trans-unit>
-            <trans-unit id="pel.home.appointment.message">
-                <source>pel.home.appointment.message</source>
-                <target>Dans le cas où vous ne souhaitez pas déposer plainte sur internet, vous avez la possibilité de vous rendre dans une unité de Police ou de Gendarmerie</target>
+            <trans-unit id="pel.fsi.general.orienteer.message">
+                <source>pel.fsi.general.orienteer.message</source>
+                <target>Besoin d'aide ? Rendez-vous sur le site orienteur du ministère afin de pouvoir déposer plainte sur le téléservice approprié.</target>
             </trans-unit>
-            <trans-unit id="pel.home.emergency.message">
-                <source>pel.home.emergency.message</source>
-                <target>En cas d’urgence, composez le 17 ou le 112 ou le 114</target>
+            <trans-unit id="pel.fsi.visit">
+                <source>pel.fsi.visit</source>
+                <target>Y a-t-il eu intervention d’un équipage de police ou de gendarmerie ?</target>
             </trans-unit>
-            <trans-unit id="pel.home.fsi.general.orienteer.message">
-                <source>pel.home.fsi.general.orienteer.message</source>
-                <target>Dans le cas où vous ne rentrez pas dans le périmètre de PEL, vous pouvez être redirigés vers l’orienteur général afin d'être pris en charge et orienté vers le téléservice ministériel approprié à votre besoin</target>
-            </trans-unit>
-            <trans-unit id="pel.home.information.message.1">
-                <source>pel.home.information.message.1</source>
-                <target>Cette démarche est réservée aux déclarants</target>
-            </trans-unit>
-            <trans-unit id="pel.home.information.message.2">
-                <source>pel.home.information.message.2</source>
-                <target>agissant pour leur compte ou celui d’une personne morale ou physique qu’ils sont en droit de représenter (autorité parentale, pouvoir ou procuration, décision de justice).</target>
-            </trans-unit>
-            <trans-unit id="pel.home.information.message.3">
-                <source>pel.home.information.message.3</source>
-                <target>Elle ne concerne que</target>
-            </trans-unit>
-            <trans-unit id="pel.home.information.message.4">
-                <source>pel.home.information.message.4</source>
-                <target>certains faits commis contre les biens</target>
-            </trans-unit>
-            <trans-unit id="pel.home.information.message.5">
-                <source>pel.home.information.message.5</source>
-                <target>(vols, dégradations, délits de fuite, escroqueries...) commis par une personne dont je ne connais pas l’identité.</target>
+            <trans-unit id="pel.home.intro">
+                <source>pel.home.intro</source>
+                <target>Ce téléservice vous permet d'effectuer une déclaration en ligne pour une atteinte aux biens (vol, dégradation ...) par une personne inconnue.</target>
             </trans-unit>
             <trans-unit id="pel.home.orienteer.information.message.1">
                 <source>pel.home.orienteer.information.message.1</source>
@@ -477,6 +510,38 @@
             <trans-unit id="pel.i.dont.know">
                 <source>pel.i.dont.know</source>
                 <target>Je ne sais pas</target>
+            </trans-unit>
+            <trans-unit id="pel.if.accident.ongoing">
+                <source>pel.if.accident.ongoing</source>
+                <target>Si l'incident est en cours</target>
+            </trans-unit>
+            <trans-unit id="pel.if.suspect.still.present">
+                <source>pel.if.suspect.still.present</source>
+                <target>Si le suspect est toujours présent</target>
+            </trans-unit>
+            <trans-unit id="pel.if.person.injured.or.in.danger">
+                <source>pel.if.person.injured.or.in.danger</source>
+                <target>Si une personne est gravement blessée ou en danger immédiat</target>
+            </trans-unit>
+            <trans-unit id="pel.if.you.are.minor">
+                <source>pel.if.you.are.minor</source>
+                <target>Si vous êtes mineur</target>
+            </trans-unit>
+            <trans-unit id="pel.if.you.are.victim.of.online.scam">
+                <source>pel.if.you.are.victim.of.online.scam</source>
+                <target>Si vous avez été victime d'une escroquerie sur internet</target>
+            </trans-unit>
+            <trans-unit id="pel.if.you.are.victim.of.credit.card.fraudulent.use">
+                <source>pel.if.you.are.victim.of.credit.card.fraudulent.use</source>
+                <target>Si vous êtes victime d'utilisation frauduleuse de votre carte bancaire</target>
+            </trans-unit>
+            <trans-unit id="pel.if.you.are.victim.of.violence">
+                <source>pel.if.you.are.victim.of.violence</source>
+                <target>Si vous avez été victimes de viol, violence, harcèlement, discrimination et autres atteintes à votre personne</target>
+            </trans-unit>
+            <trans-unit id="pel.if.you.know.offense.author">
+                <source>pel.if.you.know.offense.author</source>
+                <target>Si vous connaissez l'identité de l'auteur</target>
             </trans-unit>
             <trans-unit id="pel.inside">
                 <source>pel.inside</source>
@@ -516,7 +581,7 @@
             </trans-unit>
             <trans-unit id="pel.make.appointment">
                 <source>pel.make.appointment</source>
-                <target>Prise de RDV</target>
+                <target>Prendre un rendez-vous</target>
             </trans-unit>
             <trans-unit id="pel.ministry">
                 <source>pel.ministry</source>
@@ -650,6 +715,10 @@
                 <source>pel.operator</source>
                 <target>Opérateur</target>
             </trans-unit>
+            <trans-unit id="pel.other.goods.damages">
+                <source>pel.other.goods.damages</source>
+                <target>Autres atteintes aux biens</target>
+            </trans-unit>
             <trans-unit id="pel.passage.fsi">
                 <source>pel.passage.fsi</source>
                 <target>Indications du passage des FSI</target>
@@ -657,6 +726,10 @@
             <trans-unit id="pel.phone.number.line">
                 <source>pel.phone.number.line</source>
                 <target>N° de la ligne de téléphone</target>
+            </trans-unit>
+            <trans-unit id="pel.portal">
+                <source>pel.portal</source>
+                <target>Portail</target>
             </trans-unit>
             <trans-unit id="pel.nature.place">
                 <source>pel.nature.place</source>
@@ -706,6 +779,10 @@
                 <source>pel.represented.person.identity</source>
                 <target>L'identité de la personne physique représentée</target>
             </trans-unit>
+            <trans-unit id="pel.scam.except.online">
+                <source>pel.scam.except.online</source>
+                <target>Escroquerie hors internet</target>
+            </trans-unit>
             <trans-unit id="pel.serial.number">
                 <source>pel.serial.number</source>
                 <target>N° de série/IMEI</target>
@@ -729,6 +806,10 @@
             <trans-unit id="pel.suspect">
                 <source>pel.suspect</source>
                 <target>Suspect</target>
+            </trans-unit>
+            <trans-unit id="pel.thefts">
+                <source>pel.thefts</source>
+                <target>Vols</target>
             </trans-unit>
             <trans-unit id="pel.to.log.in">
                 <source>pel.to.log.in</source>
@@ -762,6 +843,10 @@
                 <source>pel.usage.name</source>
                 <target>Nom d'usage</target>
             </trans-unit>
+            <trans-unit id="pel.use.online.complaint.for">
+                <source>pel.use.online.complaint.for</source>
+                <target>Utilisez plainte en ligne pour :</target>
+            </trans-unit>
             <trans-unit id="pel.validate">
                 <source>pel.validate</source>
                 <target>Valider</target>
@@ -790,6 +875,22 @@
                 <source>pel.what.is.france.connect</source>
                 <target>Qu’est-ce que FranceConnect ?</target>
             </trans-unit>
+            <trans-unit id="pel.what.is.goods.damages">
+                <source>pel.what.is.goods.damages</source>
+                <target>Qu'est-ce qu'une atteinte aux biens ?</target>
+            </trans-unit>
+            <trans-unit id="pel.what.is.goods.damages.text">
+                <source>pel.what.is.goods.damages.text</source>
+                <target>Lorem ipsum dolor sit amet, consectetur adipiscing, incididunt, ut labore et dolore magna aliqua. Vitae sapien pellentesque habitant morbi tristique senectus et. Diam maecenas sed enim ut. Accumsan lacus vel facilisis volutpat est. Ut aliquam purus sit amet luctus. Lorem ipsum dolor sit amet consectetur adipiscing elit ut.</target>
+            </trans-unit>
+            <trans-unit id="pel.what.is.online.complaint">
+                <source>pel.what.is.online.complaint</source>
+                <target>Qu'est-ce que plainte en ligne ?</target>
+            </trans-unit>
+            <trans-unit id="pel.what.is.online.complaint.text">
+                <source>pel.what.is.online.complaint.text</source>
+                <target>Lorem ipsum dolor sit amet, consectetur adipiscing, incididunt, ut labore et dolore magna aliqua. Vitae sapien pellentesque habitant morbi tristique senectus et. Diam maecenas sed enim ut. Accumsan lacus vel facilisis volutpat est. Ut aliquam purus sit amet luctus. Lorem ipsum dolor sit amet consectetur adipiscing elit ut.</target>
+            </trans-unit>
             <trans-unit id="pel.yes">
                 <source>pel.yes</source>
                 <target>Oui</target>
@@ -797,6 +898,10 @@
             <trans-unit id="pel.yes.i.know.the.exact.time.of.facts">
                 <source>pel.yes.i.know.the.exact.time.of.facts</source>
                 <target>Oui je connais l'heure exacte des faits</target>
+            </trans-unit>
+            <trans-unit id="pel.you.dont.know.offense.author">
+                <source>pel.you.dont.know.offense.author</source>
+                <target>Vous ne connaissez pas l'identité de l'auteur de l'infraction</target>
             </trans-unit>
             <trans-unit id="pel.your.appointment">
                 <source>pel.your.appointment</source>

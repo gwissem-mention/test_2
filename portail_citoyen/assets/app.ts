@@ -20,9 +20,11 @@ import "@gouvfr/dsfr/dist/utility/icons/icons-others/icons-others.min.css";
 import "@gouvfr/dsfr/dist/utility/icons/icons-system/icons-system.min.css";
 import "@gouvfr/dsfr/dist/utility/icons/icons-user/icons-user.min.css";
 import "@gouvfr/dsfr/dist/utility/icons/icons-weather/icons-weather.min.css";
-import "./styles/_text.scss";
+import "./styles/base/_text.scss";
+import "./styles/base/_positions.scss";
 
 import "@gouvfr/dsfr/dist/dsfr.module.min.js";
 import "@gouvfr/dsfr/dist/dsfr.nomodule.min.js";
 
-import "./styles/spinner.scss";
+import "./styles/components/_spinner.scss";
+import "./styles/components/_accordion.scss";

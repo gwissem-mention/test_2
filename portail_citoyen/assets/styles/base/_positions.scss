@@ -1,0 +1,11 @@
+@mixin position($position) {
+  position: $position;
+}
+
+.fr-position-relative {
+  @include position(relative);
+}
+
+.fr-position-absolute {
+  @include position(absolute);
+}
