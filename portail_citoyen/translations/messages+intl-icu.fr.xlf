@@ -463,6 +463,10 @@
                 <source>pel.france.connect</source>
                 <target>FranceConnect</target>
             </trans-unit>
+            <trans-unit id="pel.header.baseline">
+                <source>pel.header.baseline</source>
+                <target>Portail officiel de déclaration de plainte pour des faits d'atteinte aux biens</target>
+            </trans-unit>
             <trans-unit id="pel.fsi.general.orienteer">
                 <source>pel.fsi.general.orienteer</source>
                 <target>Soyez guidé vers la bonne solution !</target>
