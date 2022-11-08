@@ -116,8 +116,16 @@
             </trans-unit>
             <trans-unit id="pel.back.to.homepage">
                  <source>pel.back.to.homepage</source>
-                 <target>Revenir à l'accueil</target>
+                 <target>Retour à l'accueil</target>
              </trans-unit>
+            <trans-unit id="pel.being.major">
+                <source>pel.being.major</source>
+                <target>Être majeur</target>
+            </trans-unit>
+            <trans-unit id="pel.being.victim.or.representative">
+                <source>pel.being.victim.or.representative</source>
+                <target>Être la victime ou son représentant légal (physique ou moral)</target>
+            </trans-unit>
             <trans-unit id="pel.be.sure.facts.are.relevant.for.this.service">
                 <source>pel.be.sure.facts.are.relevant.for.this.service</source>
                 <target>Assurez-vous que les faits dont vous êtes victime relèvent de ce téléservice</target>
@@ -193,6 +201,10 @@
             <trans-unit id="pel.civility">
                 <source>pel.civility</source>
                 <target>Civilité</target>
+            </trans-unit>
+            <trans-unit id="pel.close">
+                <source>pel.close</source>
+                <target>Fermer</target>
             </trans-unit>
             <trans-unit id="pel.complaint.continuation.material.damage">
                 <source>pel.complaint.continuation.material.damage</source>
@@ -315,6 +327,10 @@
                 <source>pel.continue.pel.without.log.in.explanation</source>
                 <target>Dans le cas où vous choisissez de ne pas vous authentifier avec France Connect, un RDV sera à planifier obligatoirement en fin de déclaration</target>
             </trans-unit>
+            <trans-unit id="pel.could.you.confirm.complaint.validity">
+                <source>pel.could.you.confirm.complaint.validity</source>
+                <target>Afin de vérifier la validité de votre plainte dans le cadre de PEL, confirmez les points suivants :</target>
+            </trans-unit>
             <trans-unit id="pel.country.france">
                 <source>pel.country.france</source>
                 <target>France</target>
@@ -370,6 +386,10 @@
             <trans-unit id="pel.dont.use.online.complaint">
                 <source>pel.dont.use.online.complaint</source>
                 <target>N'UTILISEZ PAS plainte en ligne :</target>
+            </trans-unit>
+         <trans-unit id="pel.dont.know.the.offense.author">
+                <source>pel.dont.know.the.offense.author</source>
+                <target>Ne pas connaître l'identité de l'auteur de l'infraction</target>
             </trans-unit>
             <trans-unit id="pel.drive.complaints">
                 <source>pel.drive.complaints</source>
@@ -534,6 +554,10 @@
             <trans-unit id="pel.identify.with">
                 <source>pel.identify.with</source>
                 <target>S’identifier avec</target>
+            </trans-unit>
+            <trans-unit id="pel.i.confirm">
+                <source>pel.i.confirm</source>
+                <target>Je confirme</target>
             </trans-unit>
             <trans-unit id="pel.i.dont.know">
                 <source>pel.i.dont.know</source>
@@ -734,6 +758,10 @@
             <trans-unit id="pel.observation.made">
                 <source>pel.observation.made</source>
                 <target>Est-ce que des constatations ou des relevés ont été effectués ?</target>
+            </trans-unit>
+            <trans-unit id="pel.offense.context">
+                <source>pel.offense.context</source>
+                <target>Contexte de l'infraction</target>
             </trans-unit>
             <trans-unit id="pel.offense.start.date">
                 <source>pel.offense.start.date</source>

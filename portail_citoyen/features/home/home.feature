@@ -60,12 +60,6 @@ Feature:
             | pel.what.is.goods.damages.text                      |
 
     @func
-    Scenario: Press button to be redirect to the visitor agreement page
-        Given I am on "/"
-        Then I follow "Déposer une plainte pour une atteinte aux biens"
-        And I should be on "/poursuivre"
-
-    @func
     Scenario: Press button to be fsi general orienteer
         Given I am on "/"
         When I follow "Soyez guidé vers la bonne solution !"
@@ -75,3 +69,27 @@ Feature:
         Given I am on "/"
         Then I follow "Prendre un rendez-vous"
         And I should be on "/rendez-vous"
+
+    @javascript
+    Scenario Outline: I can open a confirmation modal when I click on "Continue" and I can click on modal buttons
+        Given I am on "/"
+        When I press "Déposer une plainte pour une atteinte aux bien"
+        Then I should see 1 "#fr-modal-complaint-confirm[open=true]" element
+        And I should see the key "<key>" translated
+        When I follow "Retour à l'accueil"
+        Then I should be on "/"
+        Given I am on "/"
+        When I press "Déposer une plainte pour une atteinte aux bien"
+        And I follow "Je confirme"
+        Then I should be on "/accueil-deroule"
+
+        Examples:
+            | key                                      |
+            | pel.close                                |
+            | pel.offense.context                      |
+            | pel.could.you.confirm.complaint.validity |
+            | pel.being.major                          |
+            | pel.being.victim.or.representative       |
+            | pel.dont.know.the.offense.author         |
+            | pel.i.confirm                            |
+            | pel.back.to.homepage                     |
