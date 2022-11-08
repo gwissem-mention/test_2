@@ -1,0 +1,10 @@
+$callout-top-top: 50px;
+$callout-top-left: 30px;
+
+@media only screen and (min-width: 48em) { // min md breakpoint
+  #callout-top {
+    position: absolute;
+    top: $callout-top-top;
+    left: $callout-top-left;
+  }
+}
