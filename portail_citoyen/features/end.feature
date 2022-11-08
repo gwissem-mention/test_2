@@ -17,6 +17,6 @@ Feature:
     @func
     Scenario: I can click on the back to homepage button
         Given I am on "/fin"
-        When I follow "Revenir à l'accueil"
+        When I follow "Retour à l'accueil"
         Then the response status code should be 200
         And I should be on "/"
