@@ -1,0 +1,51 @@
+@mixin reset
+    margin: 0
+    padding: 0
+
+@mixin reset-list
+    @include reset
+    list-style-type: none
+
+@mixin rotate($deg)
+    transform: rotate($deg)
+
+@mixin transition
+    transition: 0.3s
+    -webkit-transition: 0.3s
+    -moz-transition: 0.3s
+
+@mixin box($size)
+    width: $size
+    height: $size
+    display: inline-block
+    box-sizing: border-box
+
+@mixin spinner($width, $height)
+    width: $width
+    height: $height
+    display: inline-block
+    box-sizing: border-box
+
+@mixin position($position)
+    position: $position
+
+@mixin draw-borders
+    @include box($spinner-size)
+    @include position(absolute)
+    border-radius: 50%
+    content: " "
+    border-top: solid 6px transparent
+    border-bottom: solid 6px transparent
+    top: -18px
+    left: -18px
+
+@mixin borders($width, $color-top, $color-right, $color-bottom, $color-left)
+    border-top: solid $width $color-top
+    border-right: solid $width $color-right
+    border-bottom: solid $width $color-bottom
+    border-left: solid $width $color-left
+
+@mixin round
+    border-radius: 50%
+    -webkit-border-radius: 50%
+    -moz-border-radius: 50%

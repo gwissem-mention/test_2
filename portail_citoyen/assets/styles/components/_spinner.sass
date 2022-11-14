@@ -1,0 +1,21 @@
+.spinner
+    @include spinner($spinner-size, $spinner-size)
+    @include position(relative)
+
+    &.round
+        &::before,
+        &::after
+            @include position(absolute)
+            @include round
+            content: " "
+            top: 0
+            left: 0
+
+        &::before
+            @include spinner($spinner-size, $spinner-size)
+            @include borders(calc($spinner-size / 8), $purple, $purple, $purple, $purple)
+
+        &::after
+            @include spinner($spinner-size, $spinner-size)
+            @include borders(calc($spinner-size / 8), $blue, transparent, transparent, transparent)
+            animation: round $speed-fast ease-in-out infinite

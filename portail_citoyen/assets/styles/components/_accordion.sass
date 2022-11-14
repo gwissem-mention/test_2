@@ -1,0 +1,26 @@
+.fr-accordion
+  &__title
+    &--background-default-grey
+      background: var(--background-default-grey)
+
+.accordion
+  @include reset-list
+
+  &__item
+      &__title
+          background-color: $grey
+          color: $blue
+          font-size: $font-size-large
+          padding: $padding-medium
+          border: 1px solid $grey-dark
+          font-weight: $font-weight-semi-bold
+          cursor: pointer
+
+          span
+              @include transition
+              @include rotate(180deg)
+              color: $grey-darker
+
+      &__content
+          display: none
+          padding: $padding-normal 0

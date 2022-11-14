@@ -1,0 +1,42 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}POC Accordéon{% endblock %}
+
+{% block body %}
+    {# DEMO ACCORDION #}
+    <div style="width: 1000px;margin: 30px auto;">
+        <nav role="navigation" class="fr-breadcrumb" aria-label="vous êtes ici :" id="complaintsBreadcrumb">
+            <button class="fr-breadcrumb__button" aria-expanded="false" aria-controls="breadcrumb-1">Voir le fil d’Ariane</button>
+            <div class="fr-collapse" id="breadcrumb-1">
+                <ol class="fr-breadcrumb__list">
+                    <li>
+                        <a class="fr-breadcrumb__link" href="#" data-accordion="1">Un premier titre</a>
+                    </li>
+                    <li>
+                        <a class="fr-breadcrumb__link" href="#" data-accordion="2">Un deuxième titre</a>
+                    </li>
+                </ol>
+            </div>
+        </nav>
+        <ul class="accordion">
+            <li class="accordion__item">
+                <div class="accordion__item__title" data-accordion-id="1">
+                    <span class="fr-icon-arrow-down-s-line"></span>
+                    Un premier titre
+                </div>
+                <div class="accordion__item__content">
+                    <p>Premier contenu : lorem ipsum dol or sit amet Lorem ipsum dol or sit amet Lorem ipsum dol or sit amet Lorem ipsum dol or sit amet Lorem ipsum dol or sit amet Lorem ipsum dol or sit amet Lorem ipsum dol or sit amet</p>
+                </div>
+            </li>
+            <li class="accordion__item">
+                <div class="accordion__item__title" data-accordion-id="2">
+                    <span class="fr-icon-arrow-down-s-line"></span>
+                    Un deuxième titre
+                </div>
+                <div class="accordion__item__content">
+                    <p>Deuxième contenu : lorem ipsum dol or sit amet Lorem ipsum dol or sit amet Lorem ipsum dol or sit amet Lorem ipsum dol or sit amet Lorem ipsum dol or sit amet Lorem ipsum dol or sit amet Lorem ipsum dol or sit amet</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+{% endblock %}
