@@ -9,8 +9,7 @@ export const unsetAccordions = (): void => {
     });
 
     document.querySelectorAll(".accordion__item__title span").forEach((icon: Element) => {
-        // Must be ignored due to style attribute.
-        // @ts-ignore
-        icon.style.rotate = "0deg";
+        icon.classList.remove("fr-icon-arrow-down-s-line");
+        icon.classList.add("fr-icon-arrow-right-s-line");
     });
 };

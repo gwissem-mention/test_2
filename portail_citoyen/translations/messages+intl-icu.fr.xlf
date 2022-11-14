@@ -1059,6 +1059,38 @@
                 <source>pel.you.will.start.an.online.complaint.procedure</source>
                 <target>Vous allez débuter une procédure de plainte en ligne</target>
             </trans-unit>
+            <trans-unit id="pel.complaint.create">
+                <source>pel.complaint.create</source>
+                <target>Déposer plainte</target>
+            </trans-unit>
+            <trans-unit id="pel.complaint.see.ariannes.thread">
+                <source>pel.complaint.see.ariannes.thread</source>
+                <target>Voir le fil d’Ariane</target>
+            </trans-unit>
+            <trans-unit id="pel.complaint.your.identity">
+                <source>pel.complaint.your.identity</source>
+                <target>Votre identité</target>
+            </trans-unit>
+            <trans-unit id="pel.complaint.description.of.facts">
+                <source>pel.complaint.description.of.facts</source>
+                <target>Description des faits</target>
+            </trans-unit>
+            <trans-unit id="pel.complaint.objects.concerned">
+                <source>pel.complaint.objects.concerned</source>
+                <target>Objets concernés</target>
+            </trans-unit>
+            <trans-unit id="pel.complaint.additional.informations">
+                <source>pel.complaint.additional.informations</source>
+                <target>Informations complémentaires</target>
+            </trans-unit>
+            <trans-unit id="pel.complaint.my.declaration">
+                <source>pel.complaint.my.declaration</source>
+                <target>Ma déclaration</target>
+            </trans-unit>
+            <trans-unit id="pel.complaint.all.required.fields.are.required">
+                <source>pel.complaint.all.required.fields.are.required</source>
+                <target>Tous les champs sont obligatoires à l'exception de ceux mentionnés comme facultatifs.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

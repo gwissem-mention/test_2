@@ -12,9 +12,8 @@ export const setCurrentAccordion = (accordionId: number): void => {
         });
 
         currentAccordionTitle.querySelectorAll("span").forEach((icon: Element) => {
-            // Must be ignored due to style attribute.
-            // @ts-ignore
-            icon.style.rotate = "180deg";
+            icon.classList.remove("fr-icon-arrow-right-s-line");
+            icon.classList.add("fr-icon-arrow-down-s-line");
         });
     }
 };
