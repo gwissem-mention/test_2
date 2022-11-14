@@ -17,10 +17,12 @@
           cursor: pointer
 
           span
-              @include transition
-              @include rotate(180deg)
               color: $grey-darker
 
       &__content
           display: none
           padding: $padding-normal 0
+
+          p
+              &:last-child
+                  margin-bottom: 0

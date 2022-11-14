@@ -21,7 +21,6 @@ import "@gouvfr/dsfr/dist/utility/icons/icons-system/icons-system.min.css";
 import "@gouvfr/dsfr/dist/utility/icons/icons-user/icons-user.min.css";
 import "@gouvfr/dsfr/dist/utility/icons/icons-weather/icons-weather.min.css";
 import "@gouvfr/dsfr/dist/dsfr.module.min.js";
-import "@gouvfr/dsfr/dist/dsfr.nomodule.min.js";
 
 import "./scripts/scripts";
 import "./styles/styles.sass";

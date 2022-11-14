@@ -1,0 +1,84 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}{{ 'pel.complaint.create'|trans }}{% endblock %}
+
+{% block body %}
+    <div class="fr-container container">
+        <h1>{{ 'pel.complaint.my.declaration'|trans }}</h1>
+        <p>
+            {{ 'pel.complaint.all.required.fields.are.required'|trans }}
+            <span class="fr-icon-information-line" aria-hidden="true"></span>
+        </p>
+        <div class="wrapper--complaint">
+            <nav role="navigation" class="fr-breadcrumb breadcrumb" aria-label="vous êtes ici :" id="complaintsBreadcrumb">
+                <button class="fr-breadcrumb__button" aria-expanded="false" aria-controls="breadcrumb-1">{{ 'pel.complaint.see.ariannes.thread'|trans }}</button>
+                <div class="fr-collapse" id="breadcrumb-1">
+                    <ol class="fr-breadcrumb__list">
+                        <li>
+                            <a class="fr-breadcrumb__link" href="#" data-accordion="1">{{ 'pel.complaint.your.identity'|trans }}</a>
+                        </li>
+                        <li>
+                            <a class="fr-breadcrumb__link" href="#" data-accordion="2">{{ 'pel.complaint.description.of.facts'|trans }}</a>
+                        </li>
+                        <li>
+                            <a class="fr-breadcrumb__link" href="#" data-accordion="3">{{ 'pel.complaint.objects.concerned'|trans }}</a>
+                        </li>
+                        <li>
+                            <a class="fr-breadcrumb__link" href="#" data-accordion="4">{{ 'pel.complaint.additional.informations'|trans }}</a>
+                        </li>
+                        <li>
+                            <a class="fr-breadcrumb__link" href="#" data-accordion="5">{{ 'pel.complaint.summary'|trans }}</a>
+                        </li>
+                    </ol>
+                </div>
+            </nav>
+            <ul class="accordion">
+                <li class="accordion__item">
+                    <div class="accordion__item__title" data-accordion-id="1">
+                        <span class="fr-icon-arrow-down-s-line"></span>
+                        {{ 'pel.complaint.your.identity'|trans }}
+                    </div>
+                    <div class="accordion__item__content">
+                        <p>Lorem ipsum dol or sit amet Lorem ipsum dol or sit amet Lorem ipsum dol or sit amet Lorem ipsum dol or sit amet Lorem ipsum dol or sit amet Lorem ipsum dol or sit amet Lorem ipsum dol or sit amet</p>
+                    </div>
+                </li>
+                <li class="accordion__item">
+                    <div class="accordion__item__title" data-accordion-id="2">
+                        <span class="fr-icon-arrow-down-s-line"></span>
+                        {{ 'pel.complaint.description.of.facts'|trans }}
+                    </div>
+                    <div class="accordion__item__content">
+                        <p>Lorem ipsum dol or sit amet Lorem ipsum dol or sit amet Lorem ipsum dol or sit amet Lorem ipsum dol or sit amet Lorem ipsum dol or sit amet Lorem ipsum dol or sit amet Lorem ipsum dol or sit amet</p>
+                    </div>
+                </li>
+                <li class="accordion__item">
+                    <div class="accordion__item__title" data-accordion-id="3">
+                        <span class="fr-icon-arrow-down-s-line"></span>
+                        {{ 'pel.complaint.objects.concerned'|trans }}
+                    </div>
+                    <div class="accordion__item__content">
+                        <p>Lorem ipsum dol or sit amet Lorem ipsum dol or sit amet Lorem ipsum dol or sit amet Lorem ipsum dol or sit amet Lorem ipsum dol or sit amet Lorem ipsum dol or sit amet Lorem ipsum dol or sit amet</p>
+                    </div>
+                </li>
+                <li class="accordion__item">
+                    <div class="accordion__item__title" data-accordion-id="4">
+                        <span class="fr-icon-arrow-down-s-line"></span>
+                        {{ 'pel.complaint.additional.informations'|trans }}
+                    </div>
+                    <div class="accordion__item__content">
+                        <p>Lorem ipsum dol or sit amet Lorem ipsum dol or sit amet Lorem ipsum dol or sit amet Lorem ipsum dol or sit amet Lorem ipsum dol or sit amet Lorem ipsum dol or sit amet Lorem ipsum dol or sit amet</p>
+                    </div>
+                </li>
+                <li class="accordion__item">
+                    <div class="accordion__item__title" data-accordion-id="5">
+                        <span class="fr-icon-arrow-down-s-line"></span>
+                        {{ 'pel.complaint.summary'|trans }}
+                    </div>
+                    <div class="accordion__item__content">
+                        <p>Lorem ipsum dol or sit amet Lorem ipsum dol or sit amet Lorem ipsum dol or sit amet Lorem ipsum dol or sit amet Lorem ipsum dol or sit amet Lorem ipsum dol or sit amet Lorem ipsum dol or sit amet</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}

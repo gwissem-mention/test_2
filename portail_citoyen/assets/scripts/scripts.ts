@@ -6,7 +6,7 @@ import {setCurrentBreadcrumb} from "./functions/set-current-breadcrumb";
 import {getPersistedCurrentAccordion} from "./functions/get-persisted-accordion";
 
 document.addEventListener("DOMContentLoaded", () => {
-    const complaintsBreadcrumb: HTMLElement|null = document.getElementById("complaintsBreadcrumb");
+    const complaintsBreadcrumb: HTMLElement | null = document.getElementById("complaintsBreadcrumb");
 
     // Initializes breadcrumb and accordion with persisted data at page load.
     const persistedAccordionId: number = parseInt(String(getPersistedCurrentAccordion()));
