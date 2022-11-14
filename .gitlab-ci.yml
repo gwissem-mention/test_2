@@ -537,6 +537,7 @@ citoyen-e2e:
           alias: chrome
         - name: redislabs/rejson:latest
           alias: redis-citoyen
+    allow_failure: true
 
 agent-e2e:
     <<: *cache-complete-agent
@@ -566,25 +567,4 @@ agent-e2e:
             - /builds/ministere-de-l-interieur/plaintes-en-ligne-pel/portail_agent/build/screenshots
         expire_in: 1 week
         when: on_failure
-
-## Infection ##
-.infection: &infection
-    stage: test
-    script:
-        - make infection
-
-agent-infection:
-    <<: *cache-tools-agent
-    <<: *agent-step
-    <<: *infection
     allow_failure: true
-    needs:
-        - agent-unit
-
-citoyen-infection:
-    <<: *cache-tools-citoyen
-    <<: *citoyen-step
-    <<: *infection
-    allow_failure: true
-    needs:
-        - citoyen-unit
