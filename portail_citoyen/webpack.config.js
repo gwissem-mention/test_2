@@ -8,7 +8,7 @@ Encore
     .setOutputPath("public/build/")
     .setPublicPath("/build")
     .addEntry("app", "./assets/app.ts")
-    .addStyleEntry("pages_home", "./assets/styles/pages/_home.scss")
+    .addStyleEntry("pages_home", "./assets/styles/styles.sass")
     .enableTypeScriptLoader()
     .enableStimulusBridge("./assets/controllers.json")
     .splitEntryChunks()
