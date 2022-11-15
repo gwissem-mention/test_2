@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Form\Identity;
 
 use App\Enum\Civility;
-use App\Enum\DeclarantStatus;
 use App\Form\LocationType;
 use App\Form\Model\Identity\CivilStateModel;
 use App\Thesaurus\JobThesaurusProviderInterface;
@@ -107,28 +106,14 @@ class CivilStateType extends AbstractType
         $builder->addEventListener(
             FormEvents::PRE_SET_DATA,
             function (FormEvent $event) {
-                /** @var ?CivilStateModel $civilState */
-                $civilState = $event->getData();
-                $this->addJobField($event->getForm(), $civilState?->getJob());
+                $this->addJobField($event->getForm());
             }
         );
 
         $builder->addEventListener(
             FormEvents::SUBMIT,
             function (FormEvent $event) {
-                /** @var ?CivilStateModel $data */
-                $data = $event->getData();
-                $job = null;
-                $jobNone = $this->jobThesaurusProvider->getChoices()['pel.job.none'];
-
-                if ($data?->getJob() && !($jobNone === $data->getJob())) {
-                    $job = $data->getJob();
-                } elseif (DeclarantStatus::PersonLegalRepresentative->value === $event->getForm()->getConfig()
-                        ->getOption('declarant_status')) {
-                    $job = $jobNone;
-                }
-
-                $this->addJobField($event->getForm(), intval($job));
+                $this->addJobField($event->getForm());
             }
         );
     }
@@ -144,14 +129,13 @@ class CivilStateType extends AbstractType
             ]);
     }
 
-    private function addJobField(FormInterface $form, ?int $job = null): void
+    private function addJobField(FormInterface $form): void
     {
         $form->add('job', ChoiceType::class, [
             'constraints' => [
                 new NotBlank(),
             ],
             'choices' => $this->jobThesaurusProvider->getChoices(),
-            'data' => $job,
             'label' => 'pel.your.job',
             'placeholder' => 'pel.your.job.choice.message',
         ]);
