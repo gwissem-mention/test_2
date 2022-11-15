@@ -92,29 +92,105 @@
         <div class="fr-grid-row">
             <div class="fr-col">
                 <h6>{{ 'pel.facts.description'|trans }}</h6>
-                <p>{{ 'pel.complaint.nature.of.the.facts'|trans }}</p>
                 <ul>
-                    <li>{{ 'pel.complaint.offense.nature.robbery'|trans }}</li>
-                    <li>{{ 'pel.complaint.offense.nature.degradation'|trans }}</li>
-                    <li>{{ 'pel.complaint.offense.nature.robbery.and.degradation'|trans }}</li>
-                    <li>{{ 'pel.complaint.offense.nature.other'|trans }}</li>
-                </ul>
-                <p>{{ 'pel.address'|trans }}</p>
-                <ul>
-                    <li>{{ 'pel.address.start.or.exact'|trans }} : {{ 'pel.address.start.or.exact'|trans }}</li>
-                    <li>{{ 'pel.address.end'|trans }} : {{ 'pel.address.end'|trans }}</li>
-                    <li>{{ 'pel.additional.place.information'|trans }}</li>
-                </ul>
-                <p>{{ 'pel.facts.date'|trans }}</p>
-                <ul>
-                    <li>{{ 'pel.offense.unique.date'|trans }} : 01/09/2022</li>
-                    <li>{{ 'pel.offense.start.date'|trans }} : 01/09/2022 - {{ 'pel.offense.end.date'|trans }} : 03/09/2022</li>
-                </ul>
-                <p>{{ 'pel.facts.hour'|trans }}</p>
-                <ul>
-                    <li>Heure exacte : 15:00</li>
-                    <li>Heure de début : 15:00 - Heure de fin : 18:00</li>
-                    <li>Je ne connais pas l'heure des faits</li>
+                    <li>
+                        {{ 'pel.complaint.nature.of.the.facts'|trans }} :
+                        {% if complaint.facts.offenseNature.offenseNature is same as(constant('App\\Enum\\OffenseNature::Robbery').value) %}
+                            {{ 'pel.complaint.offense.nature.robbery'|trans }}
+                        {% elseif complaint.facts.offenseNature.offenseNature is same as(constant('App\\Enum\\OffenseNature::Degradation').value) %}
+                            {{ 'pel.complaint.offense.nature.degradation'|trans }}
+                        {% elseif complaint.facts.offenseNature.offenseNature is same as(constant('App\\Enum\\OffenseNature::RobberyAndDegradation').value) %}
+                            {{ 'pel.complaint.offense.nature.robbery.and.degradation'|trans }}
+                        {% else %}
+                            {{ 'pel.complaint.offense.nature.other'|trans }}
+                        {% endif %}
+                    </li>
+                    {% if complaint.facts.offenseNature.offenseNature is same as(constant('App\\Enum\\OffenseNature::Other').value) %}
+                        <li>
+                            {{ 'pel.infraction.type'|trans }} :
+                            {{ complaint.facts.offenseNature.aabText }}
+                        </li>
+                    {% endif %}
+                    <li>
+                        {{ 'pel.victim.at.time.of.facts'|trans }} : {{ complaint.facts.victimOfViolence ? 'pel.yes'|trans : 'pel.no'|trans }}
+                    </li>
+                    {% if complaint.facts.victimOfViolence %}
+                        <li>
+                            {{ 'pel.victim.at.time.of.facts.precisions'|trans }} :
+                            {{ complaint.facts.victimOfViolenceText }}
+                        </li>
+                    {% endif %}
+                    {% if complaint.facts.placeNature %}
+                        <li>
+                            {{ 'pel.nature.place'|trans }} :
+                            {% if complaint.facts.placeNature is same as(1) %}
+                                {{ 'pel.nature.place.home'|trans }}
+                            {% elseif complaint.facts.placeNature is same as(2) %}
+                                {{ 'pel.nature.place.park'|trans }}
+                            {% elseif complaint.facts.placeNature is same as(3) %}
+                                {{ 'pel.nature.place.street'|trans }}
+                            {% elseif complaint.facts.placeNature is same as(4) %}
+                                {{ 'pel.nature.place.market'|trans }}
+                            {% elseif complaint.facts.placeNature is same as(5) %}
+                                {{ 'pel.nature.place.public.transport'|trans }}
+                            {% elseif complaint.facts.placeNature is same as(6) %}
+                                {{ 'pel.nature.place.other'|trans }}
+                            {% else %}
+                                {{ 'pel.nature.place.unknown'|trans }}
+                            {% endif %}
+                        </li>
+                    {% endif %}
+                    <li>
+                        {{ 'pel.address.or.route.facts'|trans }} :
+                        {{ complaint.facts.address.addressOrRouteFactsKnown ? 'pel.yes'|trans : 'pel.no'|trans }}
+                    </li>
+                    {% if complaint.facts.address.addressOrRouteFactsKnown %}
+                        <li>
+                            {{ 'pel.address.start.or.exact'|trans }} : {{ complaint.facts.address.startAddress }}
+                        </li>
+                        {% if complaint.facts.address.endAddress %}
+                            <li>{{ 'pel.address.end'|trans }} : {{ complaint.facts.address.endAddress }}</li>
+                        {% endif %}
+                    {% endif %}
+                    {% if complaint.facts.address.addressAdditionalInformation %}
+                        <li>
+                            {{ 'pel.additional.place.information'|trans }} :
+                            {{ complaint.facts.address.addressAdditionalInformation }}
+                        </li>
+                    {% endif %}
+                    <li>
+                        {{ 'pel.complaint.exact.date.known'|trans }} :
+                        {{ complaint.facts.offenseDate.exactDateKnown ? 'pel.yes'|trans : 'pel.no'|trans }}
+                    </li>
+                    <li>
+                        {{ 'pel.facts.date'|trans }} :
+                        {% if complaint.facts.offenseDate.exactDateKnown %}
+                            {{ 'pel.the'|trans }} {{ complaint.facts.offenseDate.startDate|date('d/m/Y') }}
+                        {% else %}
+                            {{ 'pel.between'|trans|lower }} {{ 'pel.the'|trans|lower }} {{ complaint.facts.offenseDate.startDate|date('d/m/Y') }} {{ 'pel.and'|trans|lower }} {{ 'pel.the'|trans|lower }} {{ complaint.facts.offenseDate.endDate|date('d/m/Y') }}
+                        {% endif %}
+                    </li>
+                    <li>
+                        {{ 'pel.do.you.know.hour.facts'|trans }} :
+                        {% if complaint.facts.offenseDate.choiceHour is same as('yes') %}
+                            {{ 'pel.yes'|trans }}
+                        {% elseif complaint.facts.offenseDate.choiceHour is same as('maybe') %}
+                            {{ 'pel.no.but.you.know.the.time.slot'|trans }}
+                        {% else %}
+                            {{ 'pel.no'|trans }}
+                        {% endif %}
+                    </li>
+                    {% if complaint.facts.offenseDate.choiceHour is same as('yes') or complaint.facts.offenseDate.choiceHour is same as('maybe') %}
+                        <li>
+                            {% if complaint.facts.offenseDate.hour %}
+                                {{ 'pel.exact.hour'|trans }} :
+                                {{ complaint.facts.offenseDate.hour|date('H:i') }}
+                            {% else %}
+                                {{ 'pel.facts.hour'|trans }} :
+                                {{ 'pel.between'|trans|lower }} {{ complaint.facts.offenseDate.startHour|date('H:i') }} et {{ complaint.facts.offenseDate.endHour|date('H:i') }}
+                            {% endif %}
+                        </li>
+                    {% endif %}
                 </ul>
                 <p>{{ 'pel.objects.concerned'|trans }}</p>
                 <p>{{ 'pel.additional.factual.information'|trans }}</p>

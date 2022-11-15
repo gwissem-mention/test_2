@@ -137,8 +137,8 @@ Feature:
         Given I am on "/faits"
         When I click the "label[for=facts_offenseDate_exactDateKnown_0]" element
         And I wait for the element "#facts_offenseDate_startDate" to appear
-        Then I should see the key "pel.offense.unique.date" translated
-        And I should see the key "pel.offense.unique.date" translated
+        Then I should see the key "pel.the" translated
+        And I should see the key "pel.the" translated
         And I should see a "input#facts_offenseDate_startDate" element
 
     @javascript
@@ -146,10 +146,10 @@ Feature:
         Given I am on "/faits"
         When I click the "label[for=facts_offenseDate_exactDateKnown_1]" element
         And I wait for the element "input#facts_offenseDate_startDate" to appear
-        Then I should see the key "pel.offense.unique.date" translated
-        And I should see the key "pel.offense.start.date" translated
+        Then I should see the key "pel.the" translated
+        And I should see the key "pel.between" translated
         And I should see a "input#facts_offenseDate_startDate" element
-        And I should see the key "pel.offense.end.date" translated
+        And I should see the key "pel.and" translated
         And I should see a "input#facts_offenseDate_endDate" element
 
     @javascript
