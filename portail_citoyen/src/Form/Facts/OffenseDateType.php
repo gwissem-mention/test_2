@@ -84,16 +84,15 @@ class OffenseDateType extends AbstractType
             return;
         }
 
-        $form
-            ->add('startDate', DateType::class, [
-                'constraints' => [
-                    new NotBlank(),
-                    new LessThanOrEqual('today', message: 'pel.date.less.than.equal.today.error'),
-                ],
-                'label' => true === $exactDateKnown ? 'pel.offense.unique.date' : 'pel.offense.start.date',
-                'widget' => 'single_text',
-                'help' => 'pel.date.help',
-            ]);
+        $form->add('startDate', DateType::class, [
+            'constraints' => [
+                new NotBlank(),
+                new LessThanOrEqual('today', message: 'pel.date.less.than.equal.today.error'),
+            ],
+            'label' => true === $exactDateKnown ? 'pel.the' : 'pel.between',
+            'widget' => 'single_text',
+            'help' => 'pel.date.help',
+        ]);
 
         if (false === $exactDateKnown) {
             $form->add('endDate', DateType::class, [
@@ -101,7 +100,7 @@ class OffenseDateType extends AbstractType
                     new NotBlank(),
                     new LessThanOrEqual('today', message: 'pel.date.less.than.equal.today.error'),
                 ],
-                'label' => 'pel.offense.end.date',
+                'label' => 'pel.and',
                 'widget' => 'single_text',
                 'help' => 'pel.date.help',
             ]);

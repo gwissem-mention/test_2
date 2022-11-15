@@ -86,6 +86,10 @@
                 <source>pel.all.fields.are.required</source>
                 <target>Tous les champs indiqués avec un astérisque (*) sont obligatoires</target>
             </trans-unit>
+            <trans-unit id="pel.and">
+                <source>pel.and</source>
+                <target>Et</target>
+            </trans-unit>
             <trans-unit id="pel.and.overseas">
                 <source>pel.and.overseas</source>
                 <target>et des outre-mer</target>
@@ -133,6 +137,10 @@
             <trans-unit id="pel.be.sure.facts.are.relevant.for.this.service">
                 <source>pel.be.sure.facts.are.relevant.for.this.service</source>
                 <target>Assurez-vous que les faits dont vous êtes victime relèvent de ce téléservice</target>
+            </trans-unit>
+            <trans-unit id="pel.between">
+                <source>pel.between</source>
+                <target>Entre</target>
             </trans-unit>
             <trans-unit id="pel.birth.country">
                 <source>pel.birth.country</source>
@@ -619,6 +627,10 @@
                 <source>pel.if.you.know.offense.author</source>
                 <target>Si vous connaissez l'identité de l'auteur</target>
             </trans-unit>
+            <trans-unit id="pel.infraction.type">
+                <source>pel.infraction.type</source>
+                <target>Type d'infraction</target>
+            </trans-unit>
             <trans-unit id="pel.inside">
                 <source>pel.inside</source>
                 <target>de l'intérieur</target>
@@ -731,6 +743,10 @@
                 <source>pel.no.but.i.don.t.know.at.all.the.time.of.facts</source>
                 <target>Je ne connais pas l'heure des faits</target>
             </trans-unit>
+            <trans-unit id="pel.no.but.you.know.the.time.slot">
+                <source>pel.no.but.you.know.the.time.slot</source>
+                <target>Non, mais vous connaissez le créneau horaire</target>
+            </trans-unit>
             <trans-unit id="pel.object">
                 <source>pel.object</source>
                 <target>Objet</target>
@@ -791,29 +807,17 @@
                 <source>pel.offense.context</source>
                 <target>Contexte de l'infraction</target>
             </trans-unit>
-            <trans-unit id="pel.offense.start.date">
-                <source>pel.offense.start.date</source>
-                <target>Entre</target>
-            </trans-unit>
-            <trans-unit id="pel.offense.end.date">
-                <source>pel.offense.end.date</source>
-                <target>Et</target>
-            </trans-unit>
-            <trans-unit id="pel.offense.unique.date">
-                <source>pel.offense.unique.date</source>
-                <target>Le</target>
-            </trans-unit>
             <trans-unit id="pel.of.the.penal.procedure">
                 <source>pel.of.the.penal.procedure</source>
                 <target>du Code de Procédure Pénale</target>
             </trans-unit>
-            <trans-unit id="pel.online.complaint.process">
-                <source>pel.online.complaint.process</source>
-                <target>DEROULEMENT DE VOTRE DEMARCHE</target>
-            </trans-unit>
             <trans-unit id="pel.online.complaint">
                 <source>pel.online.complaint</source>
                 <target>Plainte en ligne</target>
+            </trans-unit>
+            <trans-unit id="pel.online.complaint.process">
+                <source>pel.online.complaint.process</source>
+                <target>DEROULEMENT DE VOTRE DEMARCHE</target>
             </trans-unit>
             <trans-unit id="pel.operator">
                 <source>pel.operator</source>
@@ -931,6 +935,10 @@
                 <source>pel.suspect</source>
                 <target>Suspect</target>
             </trans-unit>
+            <trans-unit id="pel.the">
+                <source>pel.the</source>
+                <target>Le</target>
+            </trans-unit>
             <trans-unit id="pel.thefts">
                 <source>pel.thefts</source>
                 <target>Vols</target>
@@ -974,6 +982,14 @@
             <trans-unit id="pel.validate">
                 <source>pel.validate</source>
                 <target>Valider</target>
+            </trans-unit>
+            <trans-unit id="pel.victim.at.time.of.facts">
+                <source>pel.victim.at.time.of.facts</source>
+                <target>Victime de violences au moment des faits</target>
+            </trans-unit>
+            <trans-unit id="pel.victim.at.time.of.facts.precisions">
+                <source>pel.victim.at.time.of.facts.precisions</source>
+                <target>Précisions concernant les violences dont vous avez victimes</target>
             </trans-unit>
             <trans-unit id="pel.victim.of.violence">
                 <source>pel.victim.of.violence</source>

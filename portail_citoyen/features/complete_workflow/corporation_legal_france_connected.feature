@@ -97,3 +97,22 @@ Feature:
         And I should see "France"
         And I should see the key "pel.address" translated
         And I should see "Av. de la République 75011 Paris France"
+        And I should see the key "pel.facts.description" translated
+        And I should see the key "pel.complaint.nature.of.the.facts" translated
+        And I should see the key "pel.complaint.identity.corporation.legal.representative" translated
+        And I should see the key "pel.victim.at.time.of.facts" translated
+        And I should see the key "pel.nature.place" translated
+        And I should see the key "pel.nature.place.home" translated
+        And I should see the key "pel.address.or.route.facts" translated
+        And I should see the key "pel.address" translated
+        And I should see the key "pel.address.start.or.exact" translated
+        And I should see "1 test street"
+        And I should see the key "pel.address.end" translated
+        And I should see "2 test street"
+        And I should see the key "pel.complaint.exact.date.known" translated
+        And I should see the key "pel.facts.date" translated
+        And I should see the key "pel.the" translated
+        And I should see "01/01/2022"
+        And I should see the key "pel.do.you.know.hour.facts" translated
+        And I should see the key "pel.exact.hour" translated
+        And I should see "15:00"
