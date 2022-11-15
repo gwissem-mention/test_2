@@ -5,16 +5,6 @@
         <h1>{{ 'pel.complaint.summary'|trans }}</h1>
         <div class="fr-grid-row">
             <div class="fr-col">
-                <h6>{{ 'pel.complaint.identity.declarant.status'|trans }}</h6>
-                <ul>
-                    <li>{{ 'pel.complaint.identity.victim'|trans }}</li>
-                    <li>{{ 'pel.complaint.identity.person.legal.representative'|trans }}</li>
-                    <li>{{ 'pel.complaint.identity.corporation.legal.representative'|trans }}</li>
-                </ul>
-            </div>
-        </div>
-        <div class="fr-grid-row">
-            <div class="fr-col">
                 <h6>{{ 'pel.complaint.identification'|trans }}</h6>
                 <ul>
                     {{ include('common/_recap_identity.html.twig', {
