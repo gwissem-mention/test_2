@@ -371,6 +371,10 @@
                 <source>pel.date.help</source>
                 <target>Date au format jj/mm/aaaa</target>
             </trans-unit>
+            <trans-unit id="pel.declaration.confirmation">
+                <source>pel.declaration.confirmation</source>
+                <target>Confirmation de ma déclaration</target>
+            </trans-unit>
             <trans-unit id="pel.delete">
                 <source>pel.delete</source>
                 <target>Supprimer</target>
@@ -575,6 +579,14 @@
                 <source>pel.hour</source>
                 <target>Heure</target>
             </trans-unit>
+            <trans-unit id="pel.i.am.inform.of.article.434.26">
+                <source>pel.i.am.inform.of.article.434.26</source>
+                <target>Je suis informé(e) que l'article 434-26 du code pénal prévoit que le fait de dénoncer mensongèrement à l'autorité judiciaire ou administrative des faits consécutifs d'un crime ou d'un délit qui ont exposé les autorités de police ou judiciaires à d'inutiles recherches est puni de 6 mois d'emprisonnement et de 7500.00€ d'amende. Informations sur les fausses déclarations (art8-2-6CPP/art434-26CP)</target>
+            </trans-unit>
+            <trans-unit id="pel.i.consent.use.of.data.for.fsi">
+                <source>pel.i.consent.use.of.data.for.fsi</source>
+                <target>En validant ma déclaration, je consens à l'utilisation et à la transmission des informations précédemment renseignées par les Forces de l'ordre et tout autre organisme impliqué dans le traitement de ma déclaration</target>
+            </trans-unit>
             <trans-unit id="pel.identify.with">
                 <source>pel.identify.with</source>
                 <target>S’identifier avec</target>
@@ -582,6 +594,10 @@
             <trans-unit id="pel.i.confirm">
                 <source>pel.i.confirm</source>
                 <target>Je confirme</target>
+            </trans-unit>
+            <trans-unit id="pel.i.confirm.declaration.is.complete">
+                <source>pel.i.confirm.declaration.is.complete</source>
+                <target>Je confirme que ma déclaration est bien complète et confirme l'exactitude des informations fournies dans la déclaration</target>
             </trans-unit>
             <trans-unit id="pel.i.dont.know">
                 <source>pel.i.dont.know</source>
@@ -1086,6 +1102,10 @@
             <trans-unit id="pel.you.will.start.an.online.complaint.procedure">
                 <source>pel.you.will.start.an.online.complaint.procedure</source>
                 <target>Vous allez débuter une procédure de plainte en ligne</target>
+            </trans-unit>
+            <trans-unit id="pel.cancel">
+                <source>pel.cancel</source>
+                <target>Annuler</target>
             </trans-unit>
             <trans-unit id="pel.complaint.create">
                 <source>pel.complaint.create</source>

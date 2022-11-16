@@ -172,6 +172,14 @@ Feature:
         And I should see "description informations"
         And I should see the key "pel.note" translated
         And I should see the key "pel.summary.is.not.legal.proof" translated
-        When I follow "Suivant"
+        When I press "Suivant"
+        Then I should see 1 "#fr-modal-complaint-confirm[open=true]" element
+        And I should see the key "pel.declaration.confirmation" translated
+        And I should see the key "pel.i.confirm.declaration.is.complete" translated
+        And I should see the key "pel.i.am.inform.of.article.434.26" translated
+        And I should see the key "pel.i.consent.use.of.data.for.fsi" translated
+        When I follow "Annuler"
+        Then I should be on "/recapitulatif"
+        When I press "Suivant"
+        And I follow "Je confirme"
         Then I should be on "/fin"
-        And I should not see the key "pel.your.appointment" translated
