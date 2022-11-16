@@ -69,6 +69,7 @@ class AdditionalInformationType extends AbstractType
                 $this->addWitnessesTextField($form, $additionalInfo?->isWitnesses());
                 $this->addFSIVisitField($form, $additionalInfo?->isFsiVisit());
                 $this->addCCTVAvailableField($form, $additionalInfo?->getCctvPresent());
+                $this->addFSIVisitField($form, $additionalInfo?->isFsiVisit());
             }
         );
 

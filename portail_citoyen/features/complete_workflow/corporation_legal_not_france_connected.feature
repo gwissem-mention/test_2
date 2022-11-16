@@ -59,6 +59,9 @@ Feature:
         And I press "Suivant"
         Then I am on "/faits"
         When I select "1" from "facts_offenseNature_offenseNature"
+        And I click the "label[for=facts_victimOfViolence]" element
+        And I wait for the element "#facts_victimOfViolenceText" to appear
+        And I fill in "facts_victimOfViolenceText" with "Violence informations"
         And I click the "label[for=facts_address_addressOrRouteFactsKnown_0]" element
         And I wait for the element "#facts_address_startAddress" to appear
         And I fill in "facts_address_startAddress" with "1 test street"
@@ -133,22 +136,24 @@ Feature:
         And I should see "France"
         And I should see the key "pel.address" translated
         And I should see "Av. de la République 75011 Paris France"
-        And I should see the key "pel.facts.description" translated
-        And I should see the key "pel.complaint.nature.of.the.facts" translated
-        And I should see the key "pel.complaint.identity.corporation.legal.representative" translated
-        And I should see the key "pel.victim.at.time.of.facts" translated
-        And I should see the key "pel.nature.place" translated
-        And I should see the key "pel.nature.place.home" translated
-        And I should see the key "pel.address.or.route.facts" translated
-        And I should see the key "pel.address" translated
-        And I should see the key "pel.address.start.or.exact" translated
-        And I should see "1 test street"
-        And I should see the key "pel.address.end" translated
-        And I should see "2 test street"
-        And I should see the key "pel.complaint.exact.date.known" translated
-        And I should see the key "pel.facts.date" translated
-        And I should see the key "pel.the" translated
-        And I should see "01/01/2022"
-        And I should see the key "pel.do.you.know.hour.facts" translated
-        And I should see the key "pel.exact.hour" translated
-        And I should see "15:00"
+        And I should see the key "pel.additional.factual.information" translated
+        And I should see the key "pel.facts.witnesses" translated
+        And I should see the key "pel.facts.witnesses.information.text" translated
+        And I should see "witnesses informations"
+        And I should see the key "pel.do.you.have.informations.on.potential.suspects" translated
+        And I should see the key "pel.facts.suspects.informations.text" translated
+        And I should see "suspects informations"
+        And I should see the key "pel.cctv.present" translated
+        And I should see the key "pel.cctv.available" translated
+        And I should see the key "pel.fsi.visit" translated
+        And I should see the key "pel.observation.made" translated
+        And I should see the key "pel.other.victim.present" translated
+        And I should see the key "pel.victim.of.violence" translated
+        And I should see the key "pel.victim.of.violence.text" translated
+        And I should see the key "pel.facts.description.precise" translated
+        And I should see "description informations"
+        And I should see the key "pel.note" translated
+        And I should see the key "pel.summary.is.not.legal.proof" translated
+        When I follow "Suivant"
+        Then I should be on "/rendez-vous"
+        And I should see the key "pel.your.appointment" translated
