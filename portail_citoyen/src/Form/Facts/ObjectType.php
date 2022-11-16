@@ -83,18 +83,19 @@ class ObjectType extends AbstractType
 
     private function addCategoryFields(FormInterface $form, ?int $category, ?ObjectModel $objectModel = null): void
     {
+        $this->removeCategoryOtherFields($form, $objectModel);
+        $this->removeCategoryMultimediaFields($form, $objectModel);
+        $this->removeCategoryPaymentWaysFields($form, $objectModel);
+
         switch ($category) {
             case $this->objectCategories['pel.object.category.other']:
-                $this->removeMultimediaCategoryFields($form, $objectModel);
                 $this->addCategoryOtherFields($form);
                 break;
             case $this->objectCategories['pel.object.category.multimedia']:
-                $this->removeOtherCategoryFields($form, $objectModel);
                 $this->addCategoryMultimediaFields($form);
                 break;
-            default:
-                $this->removeOtherCategoryFields($form, $objectModel);
-                $this->removeMultimediaCategoryFields($form, $objectModel);
+            case $this->objectCategories['pel.object.category.payment.ways']:
+                $this->addCategoryPaymentWaysFields($form);
                 break;
         }
     }
@@ -180,7 +181,48 @@ class ObjectType extends AbstractType
             ]);
     }
 
-    private function removeMultimediaCategoryFields(FormInterface $form, ?ObjectModel $objectModel): void
+    private function addCategoryPaymentWaysFields(FormInterface $form): void
+    {
+        $form
+            ->add('bank', TextType::class, [
+                'attr' => [
+                    'maxlength' => 20,
+                ],
+                'label' => 'pel.organism.bank',
+                'constraints' => [
+                    new NotBlank(),
+                    new Length([
+                        'max' => 20,
+                    ]),
+                ],
+            ])
+            ->add('bankAccountNumber', TextType::class, [
+                'attr' => [
+                    'maxlength' => 30,
+                ],
+                'label' => 'pel.bank.account.number',
+                'constraints' => [
+                    new NotBlank(),
+                    new Length([
+                        'max' => 30,
+                    ]),
+                ],
+            ])
+            ->add('creditCardNumber', TextType::class, [
+                'attr' => [
+                    'maxlength' => 30,
+                ],
+                'required' => false,
+                'label' => 'pel.credit.card.number',
+                'constraints' => [
+                    new Length([
+                        'max' => 30,
+                    ]),
+                ],
+            ]);
+    }
+
+    private function removeCategoryMultimediaFields(FormInterface $form, ?ObjectModel $objectModel): void
     {
         $form
             ->remove('brand')
@@ -197,14 +239,22 @@ class ObjectType extends AbstractType
             ->setSerialNumber(null);
     }
 
-    private function removeOtherCategoryFields(FormInterface $form, ?ObjectModel $objectModel): void
+    private function removeCategoryOtherFields(FormInterface $form, ?ObjectModel $objectModel): void
     {
         $form
             ->remove('description')
             ->remove('quantity');
 
-        $objectModel
-            ?->setDescription(null)
-            ->setQuantity(null);
+        $objectModel?->setDescription(null)->setQuantity(null);
+    }
+
+    private function removeCategoryPaymentWaysFields(FormInterface $form, ?ObjectModel $objectModel): void
+    {
+        $form
+            ->remove('bank')
+            ->remove('bankAccountNumber')
+            ->remove('creditCardNumber');
+
+        $objectModel?->setBank(null)->setBankAccountNumber(null)->setCreditCardNumber(null);
     }
 }

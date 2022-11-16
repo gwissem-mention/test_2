@@ -126,6 +126,10 @@
                  <source>pel.back.to.homepage</source>
                  <target>Retour à l'accueil</target>
              </trans-unit>
+            <trans-unit id="pel.bank.account.number">
+                <source>pel.bank.account.number</source>
+                <target>N° de compte</target>
+            </trans-unit>
             <trans-unit id="pel.being.major">
                 <source>pel.being.major</source>
                 <target>Être majeur</target>
@@ -274,7 +278,6 @@
                 <source>pel.compose.the.17</source>
                 <target>Composez le 17</target>
             </trans-unit>
-
             <trans-unit id="pel.complaint.offense.nature.other">
                 <source>pel.complaint.offense.nature.other</source>
                 <target>Autre atteinte aux biens</target>
@@ -358,6 +361,10 @@
             <trans-unit id="pel.country.spain">
                 <source>pel.country.spain</source>
                 <target>Espagne</target>
+            </trans-unit>
+            <trans-unit id="pel.credit.card.number">
+                <source>pel.credit.card.number</source>
+                <target>N° de carte bancaire</target>
             </trans-unit>
             <trans-unit id="pel.damage.to.a.vehicle">
                 <source>pel.damage.to.a.vehicle</source>
@@ -842,6 +849,10 @@
             <trans-unit id="pel.operator">
                 <source>pel.operator</source>
                 <target>Opérateur</target>
+            </trans-unit>
+            <trans-unit id="pel.organism.bank">
+                <source>pel.organism.bank</source>
+                <target>Organisme / Banque</target>
             </trans-unit>
             <trans-unit id="pel.other.complex.offenses">
                 <source>pel.other.complex.offenses</source>

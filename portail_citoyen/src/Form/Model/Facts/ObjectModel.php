@@ -15,6 +15,9 @@ class ObjectModel
     private ?string $serialNumber = null;
     private ?string $description = null;
     private ?int $quantity = null;
+    private ?string $bank = null;
+    private ?string $bankAccountNumber = null;
+    private ?string $creditCardNumber = null;
 
     public function getCategory(): ?int
     {
@@ -120,6 +123,42 @@ class ObjectModel
     public function setQuantity(?int $quantity): self
     {
         $this->quantity = $quantity;
+
+        return $this;
+    }
+
+    public function getBank(): ?string
+    {
+        return $this->bank;
+    }
+
+    public function setBank(?string $bank): self
+    {
+        $this->bank = $bank;
+
+        return $this;
+    }
+
+    public function getBankAccountNumber(): ?string
+    {
+        return $this->bankAccountNumber;
+    }
+
+    public function setBankAccountNumber(?string $bankAccountNumber): self
+    {
+        $this->bankAccountNumber = $bankAccountNumber;
+
+        return $this;
+    }
+
+    public function getCreditCardNumber(): ?string
+    {
+        return $this->creditCardNumber;
+    }
+
+    public function setCreditCardNumber(?string $creditCardNumber): self
+    {
+        $this->creditCardNumber = $creditCardNumber;
 
         return $this;
     }
