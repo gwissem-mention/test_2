@@ -4,7 +4,7 @@
     {{ encore_entry_link_tags('pages_home') }}
 {% endblock %}
 {% block body %}
-    {% embed "common/_modal.html.twig" with {'id':'complaint-confirm'} %}
+    {% embed "common/_modal.html.twig" with {'id':'complaint-confirm', 'size':'md'} %}
         {% block title %}
             {{ 'pel.offense.context'|trans }}
         {% endblock %}
