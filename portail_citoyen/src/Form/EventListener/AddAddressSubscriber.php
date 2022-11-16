@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Form\EventListener;
 
+use App\Form\Model\Identity\EmbedAddressInterface;
 use App\Form\Model\LocationModel;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -37,8 +38,10 @@ class AddAddressSubscriber implements EventSubscriberInterface
         }
     }
 
-    protected function addFrenchAddressField(FormInterface $form): void
-    {
+    protected function addFrenchAddressField(
+        FormInterface $form,
+        EmbedAddressInterface|null $model = null
+    ): void {
         $form
             ->remove('foreignAddress')
             ->add('frenchAddress', TextType::class, [
@@ -47,10 +50,14 @@ class AddAddressSubscriber implements EventSubscriberInterface
                     new NotBlank(),
                 ],
             ]);
+
+        $model?->setForeignAddress(null);
     }
 
-    protected function addForeignAddressField(FormInterface $form): void
-    {
+    protected function addForeignAddressField(
+        FormInterface $form,
+        EmbedAddressInterface|null $model = null
+    ): void {
         $form
             ->remove('frenchAddress')
             ->add('foreignAddress', TextType::class, [
@@ -59,5 +66,7 @@ class AddAddressSubscriber implements EventSubscriberInterface
                     new NotBlank(),
                 ],
             ]);
+
+        $model?->setFrenchAddress(null);
     }
 }

@@ -41,9 +41,12 @@ class AddressType extends AbstractType
             ->addEventListener(
                 FormEvents::PRE_SET_DATA,
                 function (FormEvent $event) {
-                    /** @var ?AddressModel $address */
-                    $address = $event->getData();
-                    $this->addOffenseNatureOrNotKnownField($event->getForm(), $address?->isAddressOrRouteFactsKnown());
+                    /** @var ?AddressModel $addressModel */
+                    $addressModel = $event->getData();
+                    $this->addOffenseNatureOrNotKnownField(
+                        $event->getForm(),
+                        $addressModel?->isAddressOrRouteFactsKnown()
+                    );
                 }
             )
             ->get('addressOrRouteFactsKnown')
@@ -56,13 +59,18 @@ class AddressType extends AbstractType
                     }
                     /** @var FormInterface $parent */
                     $parent = $event->getForm()->getParent();
-                    $this->addOffenseNatureOrNotKnownField($parent, boolval($choice));
+                    /** @var ?AddressModel $addressModel */
+                    $addressModel = $parent->getData();
+                    $this->addOffenseNatureOrNotKnownField($parent, boolval($choice), $addressModel);
                 }
             );
     }
 
-    private function addOffenseNatureOrNotKnownField(FormInterface $form, ?bool $choice): void
-    {
+    private function addOffenseNatureOrNotKnownField(
+        FormInterface $form,
+        ?bool $choice,
+        ?AddressModel $addressModel = null
+    ): void {
         if (true === $choice) {
             $form
                 ->add('startAddress', TextType::class, [
@@ -81,6 +89,8 @@ class AddressType extends AbstractType
             $form
                 ->remove('startAddress')
                 ->remove('endAddress');
+
+            $addressModel?->setStartAddress(null)->setEndAddress(null);
         }
     }
 

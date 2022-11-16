@@ -45,11 +45,11 @@ class OffenseDateType extends AbstractType
         $builder->addEventListener(
             FormEvents::PRE_SET_DATA,
             function (FormEvent $event) {
-                /** @var ?OffenseDateModel $offenseDate */
-                $offenseDate = $event->getData();
+                /** @var ?OffenseDateModel $offenseDateModel */
+                $offenseDateModel = $event->getData();
                 $form = $event->getForm();
-                $this->addDateFields($form, $offenseDate?->isExactDateKnown());
-                $this->addDateTimeHourField($form, $offenseDate?->getChoiceHour());
+                $this->addDateFields($form, $offenseDateModel?->isExactDateKnown());
+                $this->addDateTimeHourField($form, $offenseDateModel?->getChoiceHour());
             }
         );
 
@@ -62,7 +62,9 @@ class OffenseDateType extends AbstractType
                 }
                 /** @var FormInterface $parent */
                 $parent = $event->getForm()->getParent();
-                $this->addDateFields($parent, boolval($exactDateKnown));
+                /** @var ?OffenseDateModel $offenseDateModel */
+                $offenseDateModel = $parent->getData();
+                $this->addDateFields($parent, boolval($exactDateKnown), $offenseDateModel);
             }
         );
 
@@ -73,13 +75,18 @@ class OffenseDateType extends AbstractType
                 $choice = $event->getForm()->getData();
                 /** @var FormInterface $parent */
                 $parent = $event->getForm()->getParent();
-                $this->addDateTimeHourField($parent, $choice);
+                /** @var ?OffenseDateModel $offenseDateModel */
+                $offenseDateModel = $parent->getData();
+                $this->addDateTimeHourField($parent, $choice, $offenseDateModel);
             }
         );
     }
 
-    private function addDateFields(FormInterface $form, ?bool $exactDateKnown = null): void
-    {
+    private function addDateFields(
+        FormInterface $form,
+        ?bool $exactDateKnown = null,
+        ?OffenseDateModel $offenseDateModel = null
+    ): void {
         if (null === $exactDateKnown) {
             return;
         }
@@ -107,11 +114,15 @@ class OffenseDateType extends AbstractType
             ]);
         } else {
             $form->remove('endDate');
+            $offenseDateModel?->setEndDate(null);
         }
     }
 
-    private function addDateTimeHourField(FormInterface $form, ?string $choice = null): void
-    {
+    private function addDateTimeHourField(
+        FormInterface $form,
+        ?string $choice = null,
+        ?OffenseDateModel $offenseDateModel = null
+    ): void {
         if ('yes' === $choice) {
             $form
                 ->remove('startHour')
@@ -123,6 +134,8 @@ class OffenseDateType extends AbstractType
                     'label' => 'pel.exact.hour',
                     'widget' => 'single_text',
                 ]);
+
+            $offenseDateModel?->setStartHour(null)->setEndHour(null);
         } elseif ('maybe' === $choice) {
             $form
                 ->remove('hour')
@@ -140,6 +153,15 @@ class OffenseDateType extends AbstractType
                     'label' => 'pel.end.hour',
                     'widget' => 'single_text',
                 ]);
+
+            $offenseDateModel?->setHour(null);
+        } else {
+            $form
+                ->remove('startHour')
+                ->remove('endHour')
+                ->remove('hour');
+
+            $offenseDateModel?->setStartHour(null)->setEndHour(null)->setHour(null);
         }
     }
 

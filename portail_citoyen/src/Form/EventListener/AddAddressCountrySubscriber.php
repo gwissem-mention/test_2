@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Form\EventListener;
 
+use App\Form\Model\Identity\EmbedAddressInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
@@ -21,10 +22,12 @@ class AddAddressCountrySubscriber extends AddAddressSubscriber
     {
         /** @var FormInterface $parent */
         $parent = $event->getForm()->getParent();
+        /** @var EmbedAddressInterface|null $model */
+        $model = $parent->getData();
         if ($this->franceCode === $event->getData()) {
-            $this->addFrenchAddressField($parent);
+            $this->addFrenchAddressField($parent, $model);
         } else {
-            $this->addForeignAddressField($parent);
+            $this->addForeignAddressField($parent, $model);
         }
     }
 }

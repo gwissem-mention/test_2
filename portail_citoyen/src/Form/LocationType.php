@@ -61,7 +61,9 @@ class LocationType extends AbstractType
                 $country = $event->getForm()->getData();
                 /** @var FormInterface $parent */
                 $parent = $event->getForm()->getParent();
-                $this->addTownField($parent, $country);
+                /** @var ?LocationModel $locationModel */
+                $locationModel = $parent->getData();
+                $this->addTownField($parent, $country, $locationModel);
             }
         );
     }
@@ -77,16 +79,16 @@ class LocationType extends AbstractType
         ]);
     }
 
-    private function addTownField(FormInterface $form, ?string $country): void
+    private function addTownField(FormInterface $form, ?string $country, ?LocationModel $locationModel = null): void
     {
         if ($this->franceCode === $country) {
-            $this->addFormPartForFrenchPlace($form);
+            $this->addFormPartForFrenchPlace($form, $locationModel);
         } else {
-            $this->addFormPartForForeignPlace($form);
+            $this->addFormPartForForeignPlace($form, $locationModel);
         }
     }
 
-    private function addFormPartForForeignPlace(FormInterface $form): void
+    private function addFormPartForForeignPlace(FormInterface $form, ?LocationModel $locationModel = null): void
     {
         $form
             ->remove('frenchTown')
@@ -101,9 +103,11 @@ class LocationType extends AbstractType
                 ],
                 'label' => $form->getConfig()->getOption('town_label'),
             ]);
+
+        $locationModel?->setFrenchTown(null)->setDepartment(null);
     }
 
-    private function addFormPartForFrenchPlace(FormInterface $form): void
+    private function addFormPartForFrenchPlace(FormInterface $form, ?LocationModel $locationModel = null): void
     {
         $form
             ->remove('otherTown')
@@ -122,5 +126,7 @@ class LocationType extends AbstractType
                 'disabled' => true,
                 'label' => $form->getConfig()->getOption('department_label'),
             ]);
+
+        $locationModel?->setOtherTown(null);
     }
 }

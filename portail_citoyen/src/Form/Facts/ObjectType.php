@@ -54,9 +54,9 @@ class ObjectType extends AbstractType
         $builder->addEventListener(
             FormEvents::PRE_SET_DATA,
             function (FormEvent $event) {
-                /** @var ?ObjectModel $object */
-                $object = $event->getData();
-                $this->addCategoryFields($event->getForm(), $object?->getCategory());
+                /** @var ?ObjectModel $objectModel */
+                $objectModel = $event->getData();
+                $this->addCategoryFields($event->getForm(), $objectModel?->getCategory());
             }
         );
 
@@ -67,25 +67,34 @@ class ObjectType extends AbstractType
                 $category = $event->getForm()->getData();
                 /** @var FormInterface $parent */
                 $parent = $event->getForm()->getParent();
-                $this->addCategoryFields($parent, intval($category));
+                /** @var ?ObjectModel $objectModel */
+                $objectModel = $parent->getData();
+                $this->addCategoryFields($parent, intval($category), $objectModel);
             }
         );
     }
 
-    private function addCategoryFields(FormInterface $form, ?int $category): void
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            'data_class' => ObjectModel::class,
+        ]);
+    }
+
+    private function addCategoryFields(FormInterface $form, ?int $category, ?ObjectModel $objectModel = null): void
     {
         switch ($category) {
             case $this->objectCategories['pel.object.category.other']:
-                $this->removeMultimediaCategoryFields($form);
+                $this->removeMultimediaCategoryFields($form, $objectModel);
                 $this->addCategoryOtherFields($form);
                 break;
             case $this->objectCategories['pel.object.category.multimedia']:
-                $this->removeOtherCategoryFields($form);
+                $this->removeOtherCategoryFields($form, $objectModel);
                 $this->addCategoryMultimediaFields($form);
                 break;
             default:
-                $this->removeOtherCategoryFields($form);
-                $this->removeMultimediaCategoryFields($form);
+                $this->removeOtherCategoryFields($form, $objectModel);
+                $this->removeMultimediaCategoryFields($form, $objectModel);
                 break;
         }
     }
@@ -123,8 +132,6 @@ class ObjectType extends AbstractType
     private function addCategoryMultimediaFields(FormInterface $form): void
     {
         $form
-            ->remove('description')
-            ->remove('quantity')
             ->add('brand', TextType::class, [
                 'constraints' => [
                     new NotBlank(),
@@ -173,14 +180,7 @@ class ObjectType extends AbstractType
             ]);
     }
 
-    public function configureOptions(OptionsResolver $resolver): void
-    {
-        $resolver->setDefaults([
-            'data_class' => ObjectModel::class,
-        ]);
-    }
-
-    private function removeMultimediaCategoryFields(FormInterface $form): void
+    private function removeMultimediaCategoryFields(FormInterface $form, ?ObjectModel $objectModel): void
     {
         $form
             ->remove('brand')
@@ -188,12 +188,23 @@ class ObjectType extends AbstractType
             ->remove('phoneNumberLine')
             ->remove('operator')
             ->remove('serialNumber');
+
+        $objectModel
+            ?->setBrand(null)
+            ->setModel(null)
+            ->setPhoneNumberLine(null)
+            ->setOperator(null)
+            ->setSerialNumber(null);
     }
 
-    private function removeOtherCategoryFields(FormInterface $form): void
+    private function removeOtherCategoryFields(FormInterface $form, ?ObjectModel $objectModel): void
     {
         $form
             ->remove('description')
             ->remove('quantity');
+
+        $objectModel
+            ?->setDescription(null)
+            ->setQuantity(null);
     }
 }

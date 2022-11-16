@@ -31,9 +31,9 @@ class OffenseNatureType extends AbstractType
             ->addEventListener(
                 FormEvents::PRE_SET_DATA,
                 function (FormEvent $event) {
-                    /** @var ?OffenseNatureModel $offenseNature */
-                    $offenseNature = $event->getData();
-                    $this->onOffenseNaturePostSubmit($event->getForm(), $offenseNature?->getOffenseNature());
+                    /** @var ?OffenseNatureModel $offenseNatureModel */
+                    $offenseNatureModel = $event->getData();
+                    $this->addAabTextField($event->getForm(), $offenseNatureModel?->getOffenseNature());
                 }
             )
             ->get('offenseNature')
@@ -42,14 +42,19 @@ class OffenseNatureType extends AbstractType
                 function (FormEvent $event) {
                     /** @var FormInterface $parent */
                     $parent = $event->getForm()->getParent();
-                    $this->onOffenseNaturePostSubmit($parent, intval($event->getForm()->getData()));
+                    /** @var ?OffenseNatureModel $offenseNatureModel */
+                    $offenseNatureModel = $parent->getData();
+                    $this->addAabTextField($parent, intval($event->getForm()->getData()), $offenseNatureModel);
                 }
             );
     }
 
-    public function onOffenseNaturePostSubmit(FormInterface $form, ?int $offenseNature): void
-    {
-        if (OffenseNature::Other->value === $offenseNature) {
+    private function addAabTextField(
+        FormInterface $form,
+        ?int $offenseNatureChoice,
+        ?OffenseNatureModel $offenseNatureModel = null
+    ): void {
+        if (OffenseNature::Other->value === $offenseNatureChoice) {
             $form->add('aabText', TextareaType::class, [
                 'label' => 'pel.complaint.offense.nature.other.aab.text',
                 'attr' => [
@@ -59,6 +64,7 @@ class OffenseNatureType extends AbstractType
             ]);
         } else {
             $form->remove('aabText');
+            $offenseNatureModel?->setAabText(null);
         }
     }
 

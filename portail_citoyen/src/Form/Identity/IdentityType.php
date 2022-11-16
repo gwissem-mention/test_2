@@ -60,6 +60,13 @@ class IdentityType extends AbstractType
             );
     }
 
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            'data_class' => IdentityModel::class,
+        ]);
+    }
+
     private function buildFieldsForDeclarantStatus(
         FormInterface $form,
         ?int $declarantStatus = null,
@@ -71,15 +78,15 @@ class IdentityType extends AbstractType
 
         switch ($declarantStatus) {
             case DeclarantStatus::PersonLegalRepresentative->value:
-                $this->removeCorporationFields($form);
+                $this->removeCorporationFields($form, $identityModel);
                 $this->addRepresentedPersonFields($form, $declarantStatus);
                 break;
             case DeclarantStatus::Victim->value:
-                $this->removeRepresentedPersonFields($form);
-                $this->removeCorporationFields($form);
+                $this->removeRepresentedPersonFields($form, $identityModel);
+                $this->removeCorporationFields($form, $identityModel);
                 break;
             case DeclarantStatus::CorporationLegalRepresentative->value:
-                $this->removeRepresentedPersonFields($form);
+                $this->removeRepresentedPersonFields($form, $identityModel);
                 $this->addCorporationFields($form);
                 break;
             default:
@@ -93,9 +100,10 @@ class IdentityType extends AbstractType
         $form->add('corporation', CorporationType::class);
     }
 
-    private function removeCorporationFields(FormInterface $form): void
+    private function removeCorporationFields(FormInterface $form, ?IdentityModel $identityModel = null): void
     {
         $form->remove('corporation');
+        $identityModel?->setCorporation(null);
     }
 
     private function addCivilStateAndContactInformationFields(
@@ -146,17 +154,14 @@ class IdentityType extends AbstractType
             ]);
     }
 
-    private function removeRepresentedPersonFields(FormInterface $form): void
+    private function removeRepresentedPersonFields(FormInterface $form, ?IdentityModel $identityModel = null): void
     {
         $form
             ->remove('representedPersonCivilState')
             ->remove('representedPersonContactInformation');
-    }
 
-    public function configureOptions(OptionsResolver $resolver): void
-    {
-        $resolver->setDefaults([
-            'data_class' => IdentityModel::class,
-        ]);
+        $identityModel
+            ?->setRepresentedPersonCivilState(null)
+            ->setRepresentedPersonContactInformation(null);
     }
 }
