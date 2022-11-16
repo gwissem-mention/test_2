@@ -183,13 +183,77 @@
                     {% endif %}
                 </ul>
                 <p>{{ 'pel.objects.concerned'|trans }}</p>
-                <p>{{ 'pel.additional.factual.information'|trans }}</p>
+                <h6>{{ 'pel.additional.factual.information'|trans }}</h6>
                 <ul>
-                    <li>{{ 'pel.witness'|trans }}</li>
-                    <li>{{ 'pel.suspect'|trans }}</li>
-                    <li>{{ 'pel.passage.fsi'|trans }}</li>
-                    <li>{{ 'pel.video.surveillance'|trans }}</li>
+                    <li>
+                        {{ 'pel.facts.witnesses'|trans }} :
+                        {{ complaint.facts.additionalInformation.witnesses ? 'pel.yes'|trans : 'pel.no'|trans }}
+                    </li>
+                    {% if complaint.facts.additionalInformation.witnesses %}
+                        <li>
+                            {{ 'pel.facts.witnesses.information.text'|trans }} :
+                            {{ complaint.facts.additionalInformation.witnessesText }}
+                        </li>
+                    {% endif %}
+                    <li>
+                        {{ 'pel.do.you.have.informations.on.potential.suspects'|trans }} :
+                        {{ complaint.facts.additionalInformation.suspectsChoice ? 'pel.yes'|trans : 'pel.no'|trans }}
+                    </li>
+                    {% if complaint.facts.additionalInformation.suspectsChoice %}
+                        <li>
+                            {{ 'pel.facts.suspects.informations.text'|trans }} :
+                            {{ complaint.facts.additionalInformation.suspectsText }}
+                        </li>
+                    {% endif %}
+                    <li>
+                        {{ 'pel.cctv.present'|trans }} :
+                        {% if complaint.facts.additionalInformation.cctvPresent is same as(constant('App\\Form\\Model\\Facts\\AdditionalInformationModel::CCTV_PRESENT_YES')) %}
+                            {{ 'pel.yes'|trans }}
+                        {% elseif complaint.facts.additionalInformation.cctvPresent is same as(constant('App\\Form\\Model\\Facts\\AdditionalInformationModel::CCTV_PRESENT_NO')) %}
+                            {{ 'pel.no'|trans }}
+                        {% else %}
+                            {{ 'pel.i.dont.know'|trans }}
+                        {% endif %}
+                    </li>
+                    {% if complaint.facts.additionalInformation.cctvPresent is same as(constant('App\\Form\\Model\\Facts\\AdditionalInformationModel::CCTV_PRESENT_YES')) %}
+                        <li>
+                            {{ 'pel.cctv.available'|trans }} :
+                            {{ complaint.facts.additionalInformation.cctvAvailable ? 'pel.yes'|trans : 'pel.no'|trans }}
+                        </li>
+                    {% endif %}
+                    <li>
+                        {{ 'pel.fsi.visit'|trans }} :
+                        {{ complaint.facts.additionalInformation.fsiVisit ? 'pel.yes'|trans : 'pel.no'|trans }}
+                    </li>
+                    {% if complaint.facts.additionalInformation.fsiVisit %}
+                        <li>
+                            {{ 'pel.observation.made'|trans }} :
+                            {{ complaint.facts.additionalInformation.observationMade ? 'pel.yes'|trans : 'pel.no'|trans }}
+                        </li>
+                    {% endif %}
+                    <li>
+                        {{ 'pel.other.victim.present'|trans }} :
+                        {{ 'pel.yes'|trans }}
+                    </li>
+                    <li>
+                        {{ 'pel.victim.of.violence'|trans }} :
+                        {{ complaint.facts.victimOfViolence ? 'pel.yes'|trans : 'pel.no'|trans }}
+                    </li>
+                    {% if complaint.facts.victimOfViolence %}
+                        <li>
+                            {{ 'pel.victim.of.violence.text'|trans }} :
+                            {{ complaint.facts.victimOfViolenceText }}
+                        </li>
+                    {% endif %}
+                    <li>
+                        {{ 'pel.facts.description.precise'|trans }} :
+                        {{ complaint.facts.description }}
+                    </li>
                 </ul>
+                <hr>
+                <p>
+                    <strong>{{ 'pel.note'|trans }}</strong> : {{ 'pel.summary.is.not.legal.proof'|trans }}
+                </p>
             </div>
         </div>
         <div class="fr-grid-row">
