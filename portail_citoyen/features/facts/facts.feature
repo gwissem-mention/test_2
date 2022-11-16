@@ -267,7 +267,7 @@ Feature:
         And I should see a "input#facts_objects_1_label" element
 
     @javascript
-    Scenario: I can a list of text fields translated when I select "Multimédia" from category object list
+    Scenario: I can see a list of text fields translated when I select "Multimédia" from category object list
         Given I am on "/faits"
         When I select "Multimédia" from "facts_objects_0_category"
         And I wait for the element "#facts_objects_0_brand" to appear
@@ -277,6 +277,15 @@ Feature:
         And I should see the key "pel.operator" translated
         And I should see the key "pel.serial.number" translated
         And I should see the key "pel.serial.number.help" translated
+
+    @javascript
+    Scenario: I can see a list of text fields translated when I select "Moyens de paiement" from category object list
+        Given I am on "/faits"
+        When I select "Moyens de paiement" from "facts_objects_0_category"
+        And I wait for the element "#facts_objects_0_bank" to appear
+        Then I should see the key "pel.organism.bank" translated
+        And I should see the key "pel.bank.account.number" translated
+        And I should see the key "pel.credit.card.number" translated
 
     @javascript
     Scenario: I can delete an input text when I click on the delete an object button
