@@ -6,6 +6,10 @@ namespace App\Form\Model\Facts;
 
 class AdditionalInformationModel
 {
+    public const CCTV_PRESENT_YES = 1;
+    public const CCTV_PRESENT_NO = 2;
+    public const CCTV_PRESENT_DONT_KNOW = 3;
+
     private ?bool $suspectsChoice = null;
     private ?bool $witnesses = null;
     private ?bool $fsiVisit = null;

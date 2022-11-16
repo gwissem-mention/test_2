@@ -106,11 +106,11 @@ class FactsType extends AbstractType
             ->addEventListener(
                 FormEvents::PRE_SET_DATA,
                 function (FormEvent $event) {
-                    /** @var FactsModel $facts */
-                    $facts = $event->getData();
+                    /** @var FactsModel $factsModel */
+                    $factsModel = $event->getData();
                     $form = $event->getForm();
-                    $this->addAmountKnownField($form, $facts->isAmountKnown());
-                    $this->addVictimOfViolenceField($form, $facts->isVictimOfViolence());
+                    $this->addAmountKnownField($form, $factsModel->isAmountKnown());
+                    $this->addVictimOfViolenceField($form, $factsModel->isVictimOfViolence());
                 }
             );
 
@@ -121,7 +121,9 @@ class FactsType extends AbstractType
                 $choice = $event->getForm()->getData();
                 /** @var FormInterface $parent */
                 $parent = $event->getForm()->getParent();
-                $this->addAmountKnownField($parent, boolval($choice));
+                /** @var FactsModel $factsModel */
+                $factsModel = $parent->getData();
+                $this->addAmountKnownField($parent, boolval($choice), $factsModel);
             }
         );
 
@@ -132,13 +134,18 @@ class FactsType extends AbstractType
                 $victimOfViolence = $event->getForm()->getData();
                 /** @var FormInterface $parent */
                 $parent = $event->getForm()->getParent();
-                $this->addVictimOfViolenceField($parent, boolval($victimOfViolence));
+                /** @var FactsModel $factsModel */
+                $factsModel = $parent->getData();
+                $this->addVictimOfViolenceField($parent, boolval($victimOfViolence), $factsModel);
             }
         );
     }
 
-    private function addVictimOfViolenceField(FormInterface $form, ?bool $victimOfViolence): void
-    {
+    private function addVictimOfViolenceField(
+        FormInterface $form,
+        ?bool $victimOfViolence,
+        ?FactsModel $factsModel = null
+    ): void {
         if (true === $victimOfViolence) {
             $form->add('victimOfViolenceText', TextType::class, [
                 'label' => 'pel.victim.of.violence.text',
@@ -154,10 +161,11 @@ class FactsType extends AbstractType
             ]);
         } else {
             $form->remove('victimOfViolenceText');
+            $factsModel?->setVictimOfViolenceText(null);
         }
     }
 
-    private function addAmountKnownField(FormInterface $form, ?bool $choice): void
+    private function addAmountKnownField(FormInterface $form, ?bool $choice, ?FactsModel $factsModel = null): void
     {
         if (true === $choice) {
             $form->add('amount', MoneyType::class, [
@@ -178,6 +186,7 @@ class FactsType extends AbstractType
             ]);
         } else {
             $form->remove('amount');
+            $factsModel?->setAmount(null);
         }
     }
 

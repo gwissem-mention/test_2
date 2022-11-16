@@ -18,10 +18,6 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 class AdditionalInformationType extends AbstractType
 {
-    private const CCTV_AVAILABLE_YES = 1;
-    private const CCTV_AVAILABLE_NO = 2;
-    private const CCTV_AVAILABLE_DONT_KNOW = 3;
-
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -54,9 +50,9 @@ class AdditionalInformationType extends AbstractType
             ])
             ->add('cctvPresent', ChoiceType::class, [
                 'choices' => [
-                    'pel.yes' => self::CCTV_AVAILABLE_YES,
-                    'pel.no' => self::CCTV_AVAILABLE_NO,
-                    'pel.i.dont.know' => self::CCTV_AVAILABLE_DONT_KNOW,
+                    'pel.yes' => AdditionalInformationModel::CCTV_PRESENT_YES,
+                    'pel.no' => AdditionalInformationModel::CCTV_PRESENT_NO,
+                    'pel.i.dont.know' => AdditionalInformationModel::CCTV_PRESENT_DONT_KNOW,
                 ],
                 'expanded' => true,
                 'label' => 'pel.cctv.present',
@@ -82,7 +78,9 @@ class AdditionalInformationType extends AbstractType
                 $choice = $event->getData();
                 /** @var FormInterface $parent */
                 $parent = $event->getForm()->getParent();
-                $this->addInformationTextField($parent, boolval($choice));
+                /** @var ?AdditionalInformationModel $additionalInformationModel */
+                $additionalInformationModel = $parent->getData();
+                $this->addInformationTextField($parent, boolval($choice), $additionalInformationModel);
             }
         );
 
@@ -92,7 +90,9 @@ class AdditionalInformationType extends AbstractType
                 $choice = $event->getData();
                 /** @var FormInterface $parent */
                 $parent = $event->getForm()->getParent();
-                $this->addWitnessesTextField($parent, boolval($choice));
+                /** @var ?AdditionalInformationModel $additionalInformationModel */
+                $additionalInformationModel = $parent->getData();
+                $this->addWitnessesTextField($parent, boolval($choice), $additionalInformationModel);
             }
         );
 
@@ -102,7 +102,9 @@ class AdditionalInformationType extends AbstractType
                 $choice = $event->getData();
                 /** @var FormInterface $parent */
                 $parent = $event->getForm()->getParent();
-                $this->addFSIVisitField($parent, boolval($choice));
+                /** @var ?AdditionalInformationModel $additionalInformationModel */
+                $additionalInformationModel = $parent->getData();
+                $this->addFSIVisitField($parent, boolval($choice), $additionalInformationModel);
             }
         );
 
@@ -112,13 +114,18 @@ class AdditionalInformationType extends AbstractType
                 $choice = $event->getData();
                 /** @var FormInterface $parent */
                 $parent = $event->getForm()->getParent();
-                $this->addCCTVAvailableField($parent, intval($choice));
+                /** @var ?AdditionalInformationModel $additionalInformationModel */
+                $additionalInformationModel = $parent->getData();
+                $this->addCCTVAvailableField($parent, intval($choice), $additionalInformationModel);
             }
         );
     }
 
-    private function addInformationTextField(FormInterface $form, ?bool $choice): void
-    {
+    private function addInformationTextField(
+        FormInterface $form,
+        ?bool $choice,
+        ?AdditionalInformationModel $additionalInformationModel = null
+    ): void {
         if (true === $choice) {
             $form->add('suspectsText', TextType::class, [
                 'constraints' => [
@@ -130,11 +137,15 @@ class AdditionalInformationType extends AbstractType
             ]);
         } else {
             $form->remove('suspectsText');
+            $additionalInformationModel?->setSuspectsText(null);
         }
     }
 
-    private function addWitnessesTextField(FormInterface $form, ?bool $choice): void
-    {
+    private function addWitnessesTextField(
+        FormInterface $form,
+        ?bool $choice,
+        ?AdditionalInformationModel $additionalInformationModel = null
+    ): void {
         if (true === $choice) {
             $form->add('witnessesText', TextType::class, [
                 'attr' => [
@@ -150,11 +161,15 @@ class AdditionalInformationType extends AbstractType
             ]);
         } else {
             $form->remove('witnessesText');
+            $additionalInformationModel?->setWitnessesText(null);
         }
     }
 
-    private function addFSIVisitField(FormInterface $form, ?bool $choice): void
-    {
+    private function addFSIVisitField(
+        FormInterface $form,
+        ?bool $choice,
+        ?AdditionalInformationModel $additionalInformationModel = null
+    ): void {
         if (true === $choice) {
             $form->add('observationMade', ChoiceType::class, [
                 'choices' => [
@@ -167,12 +182,16 @@ class AdditionalInformationType extends AbstractType
             ]);
         } else {
             $form->remove('observationMade');
+            $additionalInformationModel?->setObservationMade(null);
         }
     }
 
-    private function addCCTVAvailableField(FormInterface $form, ?int $choice): void
-    {
-        if (self::CCTV_AVAILABLE_YES === $choice) {
+    private function addCCTVAvailableField(
+        FormInterface $form,
+        ?int $choice,
+        ?AdditionalInformationModel $additionalInformationModel = null
+    ): void {
+        if (AdditionalInformationModel::CCTV_PRESENT_YES === $choice) {
             $form->add('cctvAvailable', ChoiceType::class, [
                 'choices' => [
                     'pel.yes' => true,
@@ -184,6 +203,7 @@ class AdditionalInformationType extends AbstractType
             ]);
         } else {
             $form->remove('cctvAvailable');
+            $additionalInformationModel?->setCctvAvailable(null);
         }
     }
 

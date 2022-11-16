@@ -28,7 +28,10 @@ class IdentityComponent extends AbstractController
 
     protected function instantiateForm(): FormInterface
     {
-        return $this->createForm(IdentityType::class, $this->sessionHandler->getComplaint()?->getIdentity() ?? new IdentityModel());
+        return $this->createForm(
+            IdentityType::class,
+            $this->sessionHandler->getComplaint()?->getIdentity() ?? new IdentityModel()
+        );
     }
 
     #[LiveAction]

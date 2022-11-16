@@ -4,17 +4,16 @@ declare(strict_types=1);
 
 namespace App\Form\Model\Identity;
 
-class CorporationModel
+class CorporationModel implements EmbedAddressInterface
 {
+    use AddressTrait;
+    use EmailTrait;
+
     private ?string $siren = null;
     private ?string $name = null;
     private ?string $function = null;
     private ?string $nationality = null;
-    private ?string $email = null;
     private ?string $phone = null;
-    private ?string $country = null;
-    private ?string $frenchAddress = null;
-    private ?string $foreignAddress = null;
 
     public function getSiren(): ?string
     {
@@ -64,18 +63,6 @@ class CorporationModel
         return $this;
     }
 
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(?string $email): self
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
     public function getPhone(): ?string
     {
         return $this->phone;
@@ -84,42 +71,6 @@ class CorporationModel
     public function setPhone(?string $phone): self
     {
         $this->phone = $phone;
-
-        return $this;
-    }
-
-    public function getCountry(): ?string
-    {
-        return $this->country;
-    }
-
-    public function setCountry(?string $country): self
-    {
-        $this->country = $country;
-
-        return $this;
-    }
-
-    public function getFrenchAddress(): ?string
-    {
-        return $this->frenchAddress;
-    }
-
-    public function setFrenchAddress(?string $frenchAddress): self
-    {
-        $this->frenchAddress = $frenchAddress;
-
-        return $this;
-    }
-
-    public function getForeignAddress(): ?string
-    {
-        return $this->foreignAddress;
-    }
-
-    public function setForeignAddress(?string $foreignAddress): self
-    {
-        $this->foreignAddress = $foreignAddress;
 
         return $this;
     }
