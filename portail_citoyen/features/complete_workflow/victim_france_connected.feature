@@ -7,7 +7,7 @@ Feature:
     Scenario: Submit the facts form as a victim logged in with France Connect
         Given I am on "/authentification"
         When I press "france_connect_auth_button"
-        Then I am on "/identite?france_connected=1"
+        Then I am on "/porter-plainte?france_connected=1"
         When I click the "label[for=identity_declarantStatus_0]" element
         And I wait for the element "#form-identity" to appear
         And I select "1" from "identity_civilState_job"
@@ -16,7 +16,7 @@ Feature:
         And I press "Suivant"
         Then I am on "/faits"
         And I follow "Précédent"
-        Then I am on "/identite"
+        Then I am on "/porter-plainte"
         And the "identity_civilState_civility" field should contain "1"
         And the "identity_civilState_birthName" field should contain "DUPONT"
         And the "identity_civilState_firstnames" field should contain "Michel"

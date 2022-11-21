@@ -10,7 +10,6 @@ use App\Session\ComplaintModel;
 use App\Session\SessionHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormInterface;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 use Symfony\UX\LiveComponent\Attribute\LiveAction;
 use Symfony\UX\LiveComponent\ComponentWithFormTrait;
@@ -35,7 +34,7 @@ class IdentityComponent extends AbstractController
     }
 
     #[LiveAction]
-    public function submit(): RedirectResponse
+    public function submit(): void
     {
         $this->submitForm();
 
@@ -44,7 +43,5 @@ class IdentityComponent extends AbstractController
         /** @var IdentityModel $identity */
         $identity = $this->getFormInstance()->getData();
         $this->sessionHandler->setComplaint($complaint->setIdentity($identity));
-
-        return $this->redirectToRoute('facts');
     }
 }
