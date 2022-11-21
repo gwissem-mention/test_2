@@ -8,6 +8,7 @@ use App\Form\Model\Facts\ObjectModel;
 use App\Thesaurus\ObjectCategoryThesaurusProviderInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -25,7 +26,8 @@ class ObjectType extends AbstractType
     private readonly array $objectCategories;
 
     public function __construct(
-        private readonly ObjectCategoryThesaurusProviderInterface $objectCategoryThesaurusProvider
+        private readonly ObjectCategoryThesaurusProviderInterface $objectCategoryThesaurusProvider,
+        private readonly string $franceCode
     ) {
         $this->objectCategories = $this->objectCategoryThesaurusProvider->getChoices();
     }
@@ -86,6 +88,7 @@ class ObjectType extends AbstractType
         $this->removeCategoryOtherFields($form, $objectModel);
         $this->removeCategoryMultimediaFields($form, $objectModel);
         $this->removeCategoryPaymentWaysFields($form, $objectModel);
+        $this->removeCategoryRegisteredVehicleFields($form, $objectModel);
 
         switch ($category) {
             case $this->objectCategories['pel.object.category.other']:
@@ -96,6 +99,9 @@ class ObjectType extends AbstractType
                 break;
             case $this->objectCategories['pel.object.category.payment.ways']:
                 $this->addCategoryPaymentWaysFields($form);
+                break;
+            case $this->objectCategories['pel.object.category.registered.vehicle']:
+                $this->addCategoryRegisteredVehicleFields($form);
                 break;
         }
     }
@@ -222,6 +228,78 @@ class ObjectType extends AbstractType
             ]);
     }
 
+    private function addCategoryRegisteredVehicleFields(FormInterface $form): void
+    {
+        $form
+            ->add('brand', TextType::class, [
+                'attr' => [
+                    'maxlength' => 20,
+                ],
+                'label' => 'pel.brand',
+                'constraints' => [
+                    new NotBlank(),
+                    new Length([
+                        'max' => 20,
+                    ]),
+                ],
+            ])
+            ->add('model', TextType::class, [
+                'attr' => [
+                    'maxlength' => 20,
+                ],
+                'required' => false,
+                'label' => 'pel.model',
+                'constraints' => [
+                    new Length([
+                        'max' => 20,
+                    ]),
+                ],
+            ])
+            ->add('registrationNumber', TextType::class, [
+                'attr' => [
+                    'maxlength' => 20,
+                ],
+                'required' => false,
+                'label' => 'pel.registration.number',
+                'constraints' => [
+                    new Length([
+                        'max' => 20,
+                    ]),
+                ],
+            ])
+            ->add('registrationNumberCountry', CountryType::class, [
+                'label' => 'pel.registration.number.country',
+                'preferred_choices' => [$this->franceCode],
+                'constraints' => [
+                    new NotBlank(),
+                ],
+            ])
+            ->add('insuranceCompany', TextType::class, [
+                'attr' => [
+                    'maxlength' => 20,
+                ],
+                'label' => 'pel.insurance.company',
+                'required' => false,
+                'constraints' => [
+                    new Length([
+                        'max' => 20,
+                    ]),
+                ],
+            ])
+            ->add('insuranceNumber', TextType::class, [
+                'attr' => [
+                    'maxlength' => 20,
+                ],
+                'label' => 'pel.insurance.number',
+                'required' => false,
+                'constraints' => [
+                    new Length([
+                        'max' => 20,
+                    ]),
+                ],
+            ]);
+    }
+
     private function removeCategoryMultimediaFields(FormInterface $form, ?ObjectModel $objectModel): void
     {
         $form
@@ -256,5 +334,24 @@ class ObjectType extends AbstractType
             ->remove('creditCardNumber');
 
         $objectModel?->setBank(null)->setBankAccountNumber(null)->setCreditCardNumber(null);
+    }
+
+    private function removeCategoryRegisteredVehicleFields(FormInterface $form, ?ObjectModel $objectModel): void
+    {
+        $form
+            ->remove('brand')
+            ->remove('model')
+            ->remove('registrationNumber')
+            ->remove('registrationNumberCountry')
+            ->remove('insuranceCompany')
+            ->remove('insuranceNumber');
+
+        $objectModel
+            ?->setBrand(null)
+            ->setModel(null)
+            ->setRegistrationNumber(null)
+            ->setRegistrationNumberCountry(null)
+            ->setInsuranceCompany(null)
+            ->setInsuranceNumber(null);
     }
 }

@@ -324,6 +324,18 @@ Feature:
         And I should see a "input#facts_objects_0_quantity" element
 
     @javascript
+    Scenario: I can see a list of text fields translated when I select "Véhicules immatriculés" from category object list
+        Given I am on "/faits"
+        When I select "Véhicules immatriculés" from "facts_objects_0_category"
+        And I wait for the element "#facts_objects_0_brand" to appear
+        Then I should see the key "pel.brand" translated
+        And I should see the key "pel.model" translated
+        And I should see the key "pel.registration.number" translated
+        And I should see the key "pel.registration.number.country" translated
+        And I should see the key "pel.insurance.company" translated
+        And I should see the key "pel.insurance.number" translated
+
+    @javascript
     Scenario: Submit the facts form as a victim logged in with France Connect
         Given I am on "/authentification"
         When I press "france_connect_auth_button"

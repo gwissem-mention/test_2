@@ -658,6 +658,14 @@
                 <source>pel.inside</source>
                 <target>de l'intérieur</target>
             </trans-unit>
+            <trans-unit id="pel.insurance.company">
+                <source>pel.insurance.company</source>
+                <target>Compagnie d'assurance</target>
+            </trans-unit>
+            <trans-unit id="pel.insurance.number">
+                <source>pel.insurance.number</source>
+                <target>N° de police d'assurance</target>
+            </trans-unit>
            <trans-unit id="pel.is.amount.known">
                 <source>pel.is.amount.known</source>
                 <target>Pouvez-vous estimer le montant du préjudice ?</target>
@@ -929,6 +937,14 @@
             <trans-unit id="pel.quantity">
                 <source>pel.quantity</source>
                 <target>Quantité</target>
+            </trans-unit>
+            <trans-unit id="pel.registration.number">
+                <source>pel.registration.number</source>
+                <target>N° d'immatriculation</target>
+            </trans-unit>
+            <trans-unit id="pel.registration.number.country">
+                <source>pel.registration.number.country</source>
+                <target>Pays d'immatriculation</target>
             </trans-unit>
             <trans-unit id="pel.represented.person.identity">
                 <source>pel.represented.person.identity</source>
