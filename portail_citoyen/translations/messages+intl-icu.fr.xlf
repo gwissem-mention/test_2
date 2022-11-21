@@ -750,6 +750,10 @@
                 <source>pel.next</source>
                 <target>Suivant</target>
             </trans-unit>
+            <trans-unit id="pel.save">
+                <source>pel.save</source>
+                <target>Sauvegarder</target>
+            </trans-unit>
             <trans-unit id="pel.new.window">
                 <source>pel.new.window</source>
                 <target>nouvelle fenêtre</target>

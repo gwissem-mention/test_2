@@ -5,7 +5,7 @@ Feature:
 
     @func
     Scenario: I can see the identity breadcrumb
-        Given I am on "/identite"
+        Given I am on "/porter-plainte"
         Then I should see the key "pel.ministry" translated
         And I should see the key "pel.inside" translated
         And I should see the key "pel.and.overseas" translated
@@ -14,12 +14,12 @@ Feature:
 
     @func
     Scenario: I can see a the declarant status label
-        Given I am on "/identite"
+        Given I am on "/porter-plainte"
         Then I should see the key "pel.complaint.identity.declarant.status" translated
 
     @func
     Scenario Outline: I can see the declarant status inputs
-        Given I am on "/identite"
+        Given I am on "/porter-plainte"
         Then I should see 3 "input[type=radio][name='identity[declarantStatus]']" elements
         And I should see "<declarant_status>" in the "<element>" element
 

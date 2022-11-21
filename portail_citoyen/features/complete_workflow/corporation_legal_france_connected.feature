@@ -7,7 +7,7 @@ Feature:
     Scenario: Submit the facts form as a corporation legal logged in with France Connect
         Given I am on "/authentification"
         When I press "france_connect_auth_button"
-        Then I am on "/identite?france_connected=1"
+        Then I am on "/porter-plainte?france_connected=1"
         When I click the "label[for=identity_declarantStatus_2]" element
         And I wait for the element "#form-identity" to appear
         And I select "1" from "identity_civilState_job"

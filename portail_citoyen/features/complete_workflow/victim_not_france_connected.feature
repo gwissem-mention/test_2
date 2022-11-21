@@ -7,7 +7,7 @@ Feature:
     Scenario: Submit the facts form as a victim not logged in with France Connect
         Given I am on "/authentification"
         When I follow "Continuer sans m'authentifier"
-        Then I am on "/identite?france_connected=0"
+        Then I am on "/porter-plainte?france_connected=0"
         When I click the "label[for=identity_declarantStatus_0]" element
         And I wait for the element "#form-identity" to appear
         Then the "identity_civilState_birthName" field should not contain "DUPONT"
@@ -30,7 +30,7 @@ Feature:
         And I press "Suivant"
         Then I am on "/faits"
         And I follow "Précédent"
-        Then I am on "/identite"
+        Then I am on "/porter-plainte"
         And the "identity_civilState_civility" field should contain "1"
         And the "identity_civilState_birthName" field should contain "DUPONT"
         And the "identity_civilState_firstnames" field should contain "Jean Pierre Marie"
