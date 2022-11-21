@@ -18,6 +18,10 @@ class ObjectModel
     private ?string $bank = null;
     private ?string $bankAccountNumber = null;
     private ?string $creditCardNumber = null;
+    private ?string $registrationNumber = null;
+    private ?string $registrationNumberCountry = null;
+    private ?string $insuranceCompany = null;
+    private ?string $insuranceNumber = null;
 
     public function getCategory(): ?int
     {
@@ -159,6 +163,54 @@ class ObjectModel
     public function setCreditCardNumber(?string $creditCardNumber): self
     {
         $this->creditCardNumber = $creditCardNumber;
+
+        return $this;
+    }
+
+    public function getRegistrationNumber(): ?string
+    {
+        return $this->registrationNumber;
+    }
+
+    public function setRegistrationNumber(?string $registrationNumber): self
+    {
+        $this->registrationNumber = $registrationNumber;
+
+        return $this;
+    }
+
+    public function getRegistrationNumberCountry(): ?string
+    {
+        return $this->registrationNumberCountry;
+    }
+
+    public function setRegistrationNumberCountry(?string $registrationNumberCountry): self
+    {
+        $this->registrationNumberCountry = $registrationNumberCountry;
+
+        return $this;
+    }
+
+    public function getInsuranceCompany(): ?string
+    {
+        return $this->insuranceCompany;
+    }
+
+    public function setInsuranceCompany(?string $insuranceCompany): self
+    {
+        $this->insuranceCompany = $insuranceCompany;
+
+        return $this;
+    }
+
+    public function getInsuranceNumber(): ?string
+    {
+        return $this->insuranceNumber;
+    }
+
+    public function setInsuranceNumber(?string $insuranceNumber): self
+    {
+        $this->insuranceNumber = $insuranceNumber;
 
         return $this;
     }
