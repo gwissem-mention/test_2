@@ -1170,6 +1170,18 @@
                 <source>pel.complaint.all.required.fields.are.required</source>
                 <target>Tous les champs sont obligatoires à l'exception de ceux mentionnés comme facultatifs.</target>
             </trans-unit>
+            <trans-unit id="pel.authentication_failed">
+                <source>pel.authentication_failed</source>
+                <target>Echec de l'authentification</target>
+            </trans-unit>
+            <trans-unit id="pel.authentication_failed.details">
+                <source>pel.authentication_failed.details</source>
+                <target>Une erreur est survenue lors de l'authentification.</target>
+            </trans-unit>
+            <trans-unit id="pel.go.back.homepage">
+                <source>pel.go.back.homepage</source>
+                <target>Retourner à la page d'accueil</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

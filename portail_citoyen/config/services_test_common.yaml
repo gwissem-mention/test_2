@@ -1,0 +1,14 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    App\Tests\Behat\:
+        resource: '../tests/Behat/*'
+
+    Symfony\Component\HttpFoundation\Session\SessionFactoryInterface: '@session.factory'
+
+    Psr\Container\ContainerInterface $behatDriverContainer: '@behat.driver.service_container'
+
+    App\Tests\Behat\FranceConnectContext:
+        $baseUri: '%env(FRANCE_CONNECT_BASE_URI)%'

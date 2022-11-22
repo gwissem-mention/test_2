@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+
+{% block layout %}
+    <h1>{{ 'pel.authentication_failed'|trans }}</h1>
+    <p>{{ 'pel.authentication_failed.details'|trans }}</p>
+    <p><a href="{{ path('home') }}">{{ 'pel.go.back.homepage'|trans }}</a></p>
+{% endblock %}
+

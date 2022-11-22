@@ -23,7 +23,7 @@ class IdentityModelFactory
     public function createFromFranceConnect(
         string $givenName,
         string $familyName,
-        string $birthDate,
+        \DateTimeImmutable $birthDate,
         string $gender,
         string $birthPlace,
         string $birthCountry,
@@ -63,7 +63,7 @@ class IdentityModelFactory
             ->setBirthName($familyName)
             ->setFirstnames($givenName)
             ->setUsageName($usageName)
-            ->setBirthDate(new \DateTimeImmutable($birthDate))
+            ->setBirthDate($birthDate)
             ->setBirthLocation($birthLocation);
 
         $contactInformation = new ContactInformationModel();

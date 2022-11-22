@@ -19,15 +19,7 @@ class ComplaintController extends AbstractController
         FranceConnectHandler $franceConnectHandler
     ): Response {
         if ('1' === $request->query->get('france_connected')) {
-            $franceConnectHandler->set(
-                'Michel',
-                'DUPONT',
-                '1967-03-02',
-                'male',
-                '75056',
-                'FR',
-                'michel.dupont@example.com'
-            );
+            $franceConnectHandler->setIdentityToComplaint();
         } elseif ('0' === $request->query->get('france_connected')) {
             $franceConnectHandler->clear();
         }

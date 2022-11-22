@@ -7,6 +7,7 @@ namespace App\Form;
 use App\Form\Model\LocationModel;
 use App\Thesaurus\TownAndDepartmentThesaurusProviderInterface;
 use App\Thesaurus\Transformer\TownToTransformTransformerInterface;
+use App\Tmp\CountryInseeCodeMapper;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
@@ -26,7 +27,8 @@ class LocationType extends AbstractType
     public function __construct(
         private readonly TownAndDepartmentThesaurusProviderInterface $townAndDepartmentAndDepartmentThesaurusProvider,
         private readonly TownToTransformTransformerInterface $townToTransformTransformer,
-        private readonly string $franceCode
+        private readonly string $franceCode,
+        private readonly CountryInseeCodeMapper $countryInseeCodeMapper,
     ) {
     }
 
@@ -35,6 +37,13 @@ class LocationType extends AbstractType
         /** @var ?LocationModel $fcData */
         $fcData = $options['fc_data'];
         $this->location = $fcData;
+
+        // Temp fix to handle France case
+        // TODO remove it when countries thesaurus is implemented
+        if ($this->countryInseeCodeMapper->isSupportedInseeCode($this->location?->getCountry())) {
+            $this->location?->setCountry($this->countryInseeCodeMapper->getCountryCode($this->location->getCountry()));
+        }
+
         $builder
             ->add('country', CountryType::class, [
                 'label' => $options['country_label'],
