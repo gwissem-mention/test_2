@@ -826,13 +826,21 @@
                 <source>pel.objects</source>
                 <target>Objets</target>
             </trans-unit>
-            <trans-unit id="pel.objects.concerned">
-                <source>pel.objects.concerned</source>
-                <target>Objets concernés</target>
-            </trans-unit>
             <trans-unit id="pel.objects.add">
                 <source>pel.objects.add</source>
                 <target>Ajouter un objet supplémentaire</target>
+            </trans-unit>
+            <trans-unit id="pel.objects.description">
+                <source>pel.objects.description</source>
+                <target>Description des objets</target>
+            </trans-unit>
+            <trans-unit id="pel.objects.gradient">
+                <source>pel.objects.gradient</source>
+                <target>Objets dégradés</target>
+            </trans-unit>
+            <trans-unit id="pel.objects.stolen">
+                <source>pel.objects.stolen</source>
+                <target>Objets volés</target>
             </trans-unit>
             <trans-unit id="pel.observation.made">
                 <source>pel.observation.made</source>
@@ -1005,6 +1013,26 @@
             <trans-unit id="pel.to.log.in">
                 <source>pel.to.log.in</source>
                 <target>Se connecter</target>
+            </trans-unit>
+            <trans-unit id="pel.total">
+                <source>pel.total</source>
+                <target>Total</target>
+            </trans-unit>
+            <trans-unit id="pel.total.message.amount">
+                <source>pel.total.message.amount</source>
+                <target>pour un montant total de</target>
+            </trans-unit>
+            <trans-unit id="pel.total.message.no.amount">
+                <source>pel.total.message.no.amount</source>
+                <target>sans estimation du montant</target>
+            </trans-unit>
+            <trans-unit id="pel.total.message.one">
+                <source>pel.total.message.one</source>
+                <target>Vous avez ajouté un total de</target>
+            </trans-unit>
+            <trans-unit id="pel.total.message.two">
+                <source>pel.total.message.two</source>
+                <target>{quantity, plural, one {objet} other {objets}}</target>
             </trans-unit>
             <trans-unit id="pel.town.arcachon">
                 <source>pel.town.arcachon</source>

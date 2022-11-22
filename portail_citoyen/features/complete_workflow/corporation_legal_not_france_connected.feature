@@ -54,6 +54,7 @@ Feature:
         And the "identity_corporation_email" field should contain "contact@mon-entreprise.fr"
         And the "identity_corporation_phone" field should contain "0102030405"
         And the "identity_corporation_frenchAddress" field should contain "Av. de la République 75011 Paris France"
+        And I press "identity_submit"
         When I select "1" from "facts_offenseNature_offenseNature"
         And I click the "label[for=facts_victimOfViolence]" element
         And I wait for the element "#facts_victimOfViolenceText" to appear
@@ -160,6 +161,35 @@ Feature:
         And I should see the key "pel.i.consent.use.of.data.for.fsi" translated
         When I follow "Annuler"
         Then I should be on "/recapitulatif"
+        And I should see the key "pel.facts.description" translated
+        And I should see the key "pel.complaint.nature.of.the.facts" translated
+        And I should see the key "pel.complaint.identity.corporation.legal.representative" translated
+        And I should see the key "pel.victim.at.time.of.facts" translated
+        And I should see the key "pel.nature.place" translated
+        And I should see the key "pel.nature.place.home" translated
+        And I should see the key "pel.address.or.route.facts" translated
+        And I should see the key "pel.address" translated
+        And I should see the key "pel.address.start.or.exact" translated
+        And I should see "1 test street"
+        And I should see the key "pel.address.end" translated
+        And I should see "2 test street"
+        And I should see the key "pel.complaint.exact.date.known" translated
+        And I should see the key "pel.facts.date" translated
+        And I should see the key "pel.the" translated
+        And I should see "01/01/2022"
+        And I should see the key "pel.do.you.know.hour.facts" translated
+        And I should see the key "pel.exact.hour" translated
+        And I should see "15:00"
+        And I should see the key "pel.objects.description" translated
+        And I should see the key "pel.object.category" translated
+        And I should see "Documents"
+        And I should see the key "pel.object" translated
+        And I should see "Object 1"
+        And I should see "Object 2"
+        And I should see the key "pel.total" translated
+        And I should see the key "pel.total.message.one" translated
+        And I should see the key "pel.total.message.amount" translated
+        And I should see "700"
         When I press "Suivant"
         And I follow "Je confirme"
         Then I should be on "/rendez-vous"
