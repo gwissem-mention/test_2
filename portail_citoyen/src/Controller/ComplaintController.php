@@ -10,10 +10,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route(path: '/porter-plainte')]
+#[Route(path: '/porter-plainte', name: 'complaint', methods: ['GET'])]
 class ComplaintController extends AbstractController
 {
-    #[Route(path: '/', name: 'complaint', methods: ['GET'])]
     public function __invoke(
         Request $request,
         FranceConnectHandler $franceConnectHandler

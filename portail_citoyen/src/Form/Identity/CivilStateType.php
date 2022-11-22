@@ -14,9 +14,6 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\FormEvent;
-use Symfony\Component\Form\FormEvents;
-use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\LessThanOrEqual;
@@ -101,21 +98,15 @@ class CivilStateType extends AbstractType
                 'choices' => $nationalityChoices,
                 'label' => 'pel.nationality',
                 'empty_data' => $nationalityChoices['pel.nationality.france'],
+            ])
+            ->add('job', ChoiceType::class, [
+                'constraints' => [
+                    new NotBlank(),
+                ],
+                'choices' => $this->jobThesaurusProvider->getChoices(),
+                'label' => 'pel.your.job',
+                'placeholder' => 'pel.your.job.choice.message',
             ]);
-
-        $builder->addEventListener(
-            FormEvents::PRE_SET_DATA,
-            function (FormEvent $event) {
-                $this->addJobField($event->getForm());
-            }
-        );
-
-        $builder->addEventListener(
-            FormEvents::SUBMIT,
-            function (FormEvent $event) {
-                $this->addJobField($event->getForm());
-            }
-        );
     }
 
     public function configureOptions(OptionsResolver $resolver): void
@@ -127,17 +118,5 @@ class CivilStateType extends AbstractType
                 'birthDate_constraints' => [new NotBlank(), new LessThanOrEqual('today')],
                 'fc_data' => null,
             ]);
-    }
-
-    private function addJobField(FormInterface $form): void
-    {
-        $form->add('job', ChoiceType::class, [
-            'constraints' => [
-                new NotBlank(),
-            ],
-            'choices' => $this->jobThesaurusProvider->getChoices(),
-            'label' => 'pel.your.job',
-            'placeholder' => 'pel.your.job.choice.message',
-        ]);
     }
 }
