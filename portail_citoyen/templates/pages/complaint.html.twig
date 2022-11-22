@@ -34,20 +34,20 @@
             </nav>
             <ul class="accordion">
                 <li class="accordion__item">
-                    <div class="accordion__item__title" data-accordion-id="1" data-locked="false">
+                    <div class="accordion__item__title" data-accordion-id="1" data-locked="false" id="identity_accordion_title">
                         <span class="fr-icon-arrow-down-s-line"></span>
                         {{ 'pel.complaint.your.identity'|trans }}
                     </div>
-                    <div class="accordion__item__content">
+                    <div class="accordion__item__content" id="identity_accordion_content">
                         {{ component('identity', {class: 'fr-py-1w'}) }}
                     </div>
                 </li>
                 <li class="accordion__item">
-                    <div class="accordion__item__title" data-accordion-id="2" data-locked="false">
+                    <div class="accordion__item__title" data-accordion-id="2" data-locked="false" id="facts_accordion_title">
                         <span class="fr-icon-arrow-down-s-line"></span>
                         {{ 'pel.complaint.description.of.facts'|trans }}
                     </div>
-                    <div class="accordion__item__content">
+                    <div class="accordion__item__content" id="facts_accordion_content">
                         {{ component('facts') }}
                     </div>
                 </li>

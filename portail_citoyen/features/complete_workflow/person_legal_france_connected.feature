@@ -8,6 +8,7 @@ Feature:
         Given I am on "/authentification"
         When I press "france_connect_auth_button"
         Then I am on "/porter-plainte?france_connected=1"
+        And I click the "#identity_accordion_title" element
         When I click the "label[for=identity_declarantStatus_1]" element
         And I wait for the element "#form-identity" to appear
         And I select "1" from "identity_civilState_civility"
@@ -25,10 +26,7 @@ Feature:
         And I fill in "identity_representedPersonContactInformation_frenchAddress" with "Av. de la République 75011 Paris France"
         And I fill in "identity_representedPersonContactInformation_email" with "jean@test.com"
         And I fill in "identity_representedPersonContactInformation_mobile" with "0602030405"
-        And I press "Suivant"
-        Then I am on "/faits"
-        And I follow "Précédent"
-        Then I am on "/porter-plainte"
+        And I press "identity_submit"
         And the "identity_civilState_civility" field should contain "1"
         And the "identity_civilState_birthName" field should contain "DUPONT"
         And the "identity_civilState_firstnames" field should contain "Michel"
@@ -50,8 +48,6 @@ Feature:
         And the "identity_representedPersonContactInformation_frenchAddress" field should contain "Av. de la République 75011 Paris France"
         And the "identity_representedPersonContactInformation_email" field should contain "jean@test.com"
         And the "identity_representedPersonContactInformation_mobile" field should contain "0602030405"
-        And I press "Suivant"
-        Then I am on "/faits"
         When I select "1" from "facts_offenseNature_offenseNature"
         And I click the "label[for=facts_victimOfViolence]" element
         And I wait for the element "#facts_victimOfViolenceText" to appear
@@ -84,14 +80,16 @@ Feature:
         And I wait for the element "#facts_additionalInformation_witnessesText" to appear
         And I fill in "facts_additionalInformation_witnessesText" with "witnesses informations"
         And I click the "label[for=facts_additionalInformation_fsiVisit_0]" element
+        And I wait for the element "#facts_additionalInformation_observationMade_0" to appear
         And I click the "label[for=facts_additionalInformation_observationMade_0]" element
         And I click the "label[for=facts_additionalInformation_cctvPresent_0]" element
         And I wait for the element "#facts_additionalInformation_cctvAvailable_0" to appear
         And I click the "label[for=facts_additionalInformation_cctvAvailable_0]" element
         And I fill in "facts_description" with "description informations"
-        And I press "Suivant"
-        Then I am on "/recapitulatif"
-        And I should see the key "pel.civility" translated
+        And I press "facts_submit"
+        And I wait 500 ms
+        Given I am on "/recapitulatif"
+        Then I should see the key "pel.civility" translated
         And I should see the key "pel.sir" translated
         And I should see "DUPONT"
         And I should see "Michel"
@@ -139,8 +137,6 @@ Feature:
         And I should see the key "pel.complaint.nature.of.the.facts" translated
         And I should see the key "pel.complaint.identity.person.legal.representative" translated
         And I should see the key "pel.victim.at.time.of.facts" translated
-        And I should see the key "pel.nature.place" translated
-        And I should see the key "pel.nature.place.home" translated
         And I should see the key "pel.address.or.route.facts" translated
         And I should see the key "pel.address" translated
         And I should see the key "pel.address.start.or.exact" translated
