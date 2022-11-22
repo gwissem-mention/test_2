@@ -1,7 +1,18 @@
+imports:
+    - { resource: services_test_common.yaml }
+
 services:
     _defaults:
         autowire: true
         autoconfigure: true
-
-    App\Tests\Behat\:
-        resource: '../tests/Behat/*'
+        
+    App\Tests\Doubles\FranceConnectClientFake:
+        decorates: 'knpu.oauth2.client.france_connect'
+        arguments:
+            $clientId: '%env(FRANCE_CONNECT_CLIENT_ID)%'
+            $baseUri: '%env(FRANCE_CONNECT_BASE_URI)%'
+        
+    App\Tests\Doubles\FranceConnectGuzzleClientFake:
+        $clientId: '%env(FRANCE_CONNECT_CLIENT_ID)%'
+        $clientSecret: '%env(FRANCE_CONNECT_CLIENT_SECRET)%'
+        $baseUri: '%env(FRANCE_CONNECT_BASE_URI)%'

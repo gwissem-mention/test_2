@@ -4,13 +4,25 @@ declare(strict_types=1);
 
 namespace App\Tests\Behat;
 
+use App\Entity\User;
+use App\Repository\UserRepository;
+use Behat\Mink\Driver\Selenium2Driver;
+use Behat\Mink\Exception\ExpectationException;
 use Behat\MinkExtension\Context\MinkContext;
+use FriendsOfBehat\SymfonyExtension\Driver\SymfonyDriver;
+use Psr\Container\ContainerInterface;
+use Symfony\Bundle\FrameworkBundle\Test\TestBrowserToken;
+use Symfony\Component\HttpFoundation\Session\SessionFactoryInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 final class BaseContext extends MinkContext
 {
     public function __construct(
-        private readonly TranslatorInterface $translator
+        private readonly TranslatorInterface $translator,
+        private readonly UserRepository $userRepository,
+        private readonly SessionFactoryInterface $sessionFactory,
+        private ContainerInterface $behatDriverContainer,
     ) {
     }
 
@@ -166,5 +178,104 @@ final class BaseContext extends MinkContext
     public function iAmRedirectedOn(string $url): void
     {
         $this->visitPath($url);
+    }
+
+    /**
+     * @Given /^I am connected as "([^"]+)" \((?P<id>[^\)]+)\)$/
+     */
+    public function iAmConnectedAs(string $id): void
+    {
+        $user = $this->userRepository->findOneByIdentifier($id);
+
+        if (!$user instanceof User) {
+            throw new \RuntimeException(sprintf('User %s not found', $id));
+        }
+
+        /** @var SymfonyDriver|Selenium2Driver $driver */
+        $driver = $this->getSession()->getDriver();
+        if ($driver instanceof Selenium2Driver) {
+            $this->visitPath('/'); // Force session creation on client side
+            $token = new TestBrowserToken($user->getRoles(), $user, 'main');
+            $session = $this->sessionFactory->createSession();
+            $session->set('_security_main', serialize($token));
+            $session->save();
+            $this->getSession()->setCookie($session->getName(), $session->getId());
+        } else {
+            $driver->getClient()->loginUser($user);
+        }
+    }
+
+    /**
+     * @Then I should not be connected
+     */
+    public function iShouldNotBeConnected(): void
+    {
+        $connectedUser = $this->behatDriverContainer->get('security.helper')->getUser();
+        if ($connectedUser instanceof UserInterface) {
+            throw new ExpectationException(sprintf('User connected as %s', $connectedUser->getUserIdentifier()), $this->session->getDriver());
+        }
+    }
+
+    /**
+     * @Then I should be connected as :username
+     */
+    public function iShouldBeConnectedAs(string $username): void
+    {
+        $connectedUser = $this->behatDriverContainer->get('security.helper')->getUser();
+        if (!$connectedUser instanceof User) {
+            throw new ExpectationException('User is not connected', $this->getSession()->getDriver());
+        }
+
+        if ($username !== $connectedUser->getFullName()) {
+            throw new ExpectationException(sprintf('Wrong user connected (expected: %s, actual: %s)', $username, $connectedUser->getFullName()), $this->session->getDriver());
+        }
+    }
+
+    /**
+     * @Given follow redirects is disabled
+     */
+    public function followRedirectsIsDisabled(): void
+    {
+        $driver = $this->getSession()->getDriver();
+        if (!$driver instanceof SymfonyDriver) {
+            throw new \BadMethodCallException(sprintf('Follow redirects can only be disabled with Symfony driver (%s used)', get_class($driver)));
+        }
+
+        $driver->getClient()->followRedirects(false);
+    }
+
+    /**
+     * @BeforeScenario
+     */
+    public function enableFollowRedirects(): void
+    {
+        $driver = $this->getSession()->getDriver();
+        if (!$driver instanceof SymfonyDriver) {
+            return;
+        }
+
+        $driver->getClient()->followRedirects(true);
+    }
+
+    /**
+     * @Then I follow the redirection
+     */
+    public function iFollowTheRedirection(): void
+    {
+        $driver = $this->getSession()->getDriver();
+        if (!$driver instanceof SymfonyDriver) {
+            throw new \BadMethodCallException(sprintf('Follow the redirection can only be used with Symfony driver (%s used)', get_class($driver)));
+        }
+
+        if (302 !== $this->getSession()->getStatusCode()) {
+            throw new ExpectationException('Response is not a redirection', $driver);
+        }
+
+        $location = $this->getSession()->getResponseHeader('Location');
+        if (null === $location) {
+            throw new ExpectationException('Location header not present in response', $driver);
+        }
+
+        $driver->getClient()->followRedirect();
     }
 }

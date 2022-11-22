@@ -1,0 +1,15 @@
+knpu_oauth2_client:
+    clients:
+        france_connect:
+            type: generic
+            provider_class: App\Security\FranceConnectProvider
+            
+            client_id: '%env(FRANCE_CONNECT_CLIENT_ID)%'
+            client_secret: '%env(FRANCE_CONNECT_CLIENT_SECRET)%'
+            redirect_route: france_connect_callback
+            provider_options:
+                baseUri: '%env(FRANCE_CONNECT_BASE_URI)%'
+                
+when@test:
+    knpu_oauth2_client:
+        http_client: 'App\Tests\Doubles\FranceConnectGuzzleClientFake'

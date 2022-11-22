@@ -1,3 +1,18 @@
 controllers:
     resource: ../src/Controller/
     type: attribute
+    
+france_connect_callback:
+    path: /france-connect-retour
+        
+france_connect_error:
+    path: /echec-authentification
+    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController
+    defaults:
+        template: authentication_failed.html.twig
+        
+france_connect_logout_callback:
+    path: /deconnexion-retour
+    
+logout:
+    path: /logout

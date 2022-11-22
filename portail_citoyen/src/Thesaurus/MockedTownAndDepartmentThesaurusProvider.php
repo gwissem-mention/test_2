@@ -14,7 +14,7 @@ class MockedTownAndDepartmentThesaurusProvider implements TownAndDepartmentThesa
             'pel.town.paris' => [
                 'pel.department' => Department::SeventyFive->value,
                 'value' => 1,
-                'code_insee' => '75056',
+                'code_insee' => '75107',
             ],
             'pel.town.marseille' => [
                 'pel.department' => Department::Thirteen->value,

@@ -192,7 +192,11 @@ mnd:
 
 ## Run phpstan
 phpstan:
-	@tools/vendor/bin/phpstan analyse -c .phpstan.neon
+	@tools/vendor/bin/phpstan analyse -c .phpstan.neon --memory-limit=-1
+
+## Update phpstan baseline
+phpstan-baseline:
+	@tools/vendor/bin/phpstan analyse -c .phpstan.neon --memory-limit=-1 --generate-baseline
 
 ## Run php assumptions
 assumption:

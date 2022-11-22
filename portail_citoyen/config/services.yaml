@@ -29,3 +29,7 @@ services:
   Symfony\Component\EventDispatcher\EventSubscriberInterface $addAddressCountrySubscriber: '@App\Form\EventListener\AddAddressCountrySubscriber'
 
   Symfony\Component\Form\DataTransformerInterface $townToTownAndDepartmentTransformer: '@App\Form\DataTransformer\TownToTownAndDepartmentTransformer'
+  
+  App\Security\FranceConnectListener:
+      $baseUri: '%env(FRANCE_CONNECT_BASE_URI)%'
+      $logoutTargetPathMap: ~  # Replaced in LogoutTargetPass
