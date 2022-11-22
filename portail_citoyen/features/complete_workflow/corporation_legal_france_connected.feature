@@ -145,6 +145,17 @@ Feature:
         And I should see the key "pel.i.consent.use.of.data.for.fsi" translated
         When I follow "Annuler"
         Then I should be on "/recapitulatif"
+        And I should see the key "pel.objects.description" translated
+        And I should see the key "pel.objects" translated
+        And I should see the key "pel.object.category" translated
+        And I should see "Documents"
+        And I should see the key "pel.object" translated
+        And I should see "Object 1"
+        And I should see "Object 2"
+        And I should see the key "pel.total" translated
+        And I should see the key "pel.total.message.one" translated
+        And I should see the key "pel.total.message.amount" translated
+        And I should see "700"
         When I press "Suivant"
         And I follow "Je confirme"
         Then I should be on "/fin"

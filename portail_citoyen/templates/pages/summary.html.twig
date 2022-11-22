@@ -210,8 +210,7 @@
                         </li>
                     {% endif %}
                 </ul>
-                <p>{{ 'pel.objects.concerned'|trans }}</p>
-                <h6>{{ 'pel.additional.factual.information'|trans }}</h6>
+                <p>{{ 'pel.additional.factual.information'|trans }}</p>
                 <ul>
                     <li>
                         {{ 'pel.facts.witnesses'|trans }} :
@@ -278,6 +277,77 @@
                         {{ complaint.facts.description }}
                     </li>
                 </ul>
+            </div>
+        </div>
+        <div class="fr-grid-row">
+            <div class="fr-col">
+                <h6>{{ 'pel.objects.description'|trans }}</h6>
+                {#
+                <p>{{ 'pel.objects.stolen'|trans }}</p>
+                #}
+                {% set quantity = 0 %}
+                {% for object in complaint.facts.objects %}
+                    {% set quantity = quantity + 1 %}
+                    <ul>
+                        <li>{{ 'pel.object.category'|trans }} : {{ object.category|object_category_get_name|trans }}</li>
+                        <li>{{ 'pel.object'|trans }} : {{ object.label }}</li>
+                        {% if object.category|object_category_get_name|trans is same as('pel.object.category.multimedia'|trans) %}
+                            <li>{{ 'pel.brand'|trans }} : {{ object.brand }}</li>
+                            {% if object.model %}
+                                <li>{{ 'pel.model'|trans }} : {{ object.model }}</li>
+                            {% endif %}
+                            {% if object.phoneNumberLine %}
+                                <li>{{ 'pel.phone.number.line'|trans }} : {{ object.phoneNumberLine }}</li>
+                            {% endif %}
+                            {% if object.operator %}
+                                <li>{{ 'pel.operator'|trans }} : {{ object.operator }}</li>
+                            {% endif %}
+                            {% if object.serialNumber %}
+                                <li>{{ 'pel.serial.number'|trans }} : {{ object.serialNumber }}</li>
+                            {% endif %}
+                        {% elseif object.category|object_category_get_name|trans is same as('pel.object.category.payment.ways'|trans) %}
+                            <li>{{ 'pel.organism.bank'|trans }} : {{ object.bank }}</li>
+                            <li>{{ 'pel.bank.account.number'|trans }} : {{ object.bankAccountNumber }}</li>
+                            {% if object.creditCardNumber %}
+                                <li>{{ 'pel.credit.card.number'|trans }} : {{ object.creditCardNumber }}</li>
+                            {% endif %}
+                        {% elseif object.category|object_category_get_name|trans is same as('pel.object.category.registered.vehicle'|trans) %}
+                            <li>{{ 'pel.brand'|trans }} : {{ object.brand }}</li>
+                            {% if object.model %}
+                                <li>{{ 'pel.model'|trans }} : {{ object.model }}</li>
+                            {% endif %}
+                            {% if object.registrationNumber %}
+                                <li>{{ 'pel.registration.number'|trans }} : {{ object.registrationNumber }}</li>
+                            {% endif %}
+                            <li>{{ 'pel.registration.number.country'|trans }} : {{ object.registrationNumberCountry|country_name }}</li>
+                            {% if object.insuranceCompany %}
+                                <li>{{ 'pel.insurance.company'|trans }} : {{ object.insuranceCompany }}</li>
+                            {% endif %}
+                            {% if object.insuranceNumber %}
+                                <li>{{ 'pel.insurance.number'|trans }} : {{ object.insuranceNumber }}</li>
+                            {% endif %}
+                        {% elseif object.category|object_category_get_name|trans is same as('pel.object.category.other'|trans) %}
+                            {% set quantity = quantity - 1 + object.quantity %}
+                            <li>{{ 'pel.description'|trans }} : {{ object.description }}</li>
+                            <li>{{ 'pel.quantity'|trans }} : {{ object.quantity }}</li>
+                        {% endif %}
+                    </ul>
+                    <br>
+                {% endfor %}
+
+                <br>
+                {#
+                <p>{{ 'pel.objects.gradient'|trans }}</p>
+                #}
+                <p>{{ 'pel.total'|trans }}</p>
+                <p>
+                    {{ 'pel.total.message.one'|trans }} {{ quantity }} {{ 'pel.total.message.two'|trans({'%quantity%': quantity}) }}
+                    {% if complaint.facts.amount %}
+                        {{ 'pel.total.message.amount'|trans }} {{ complaint.facts.amount }} €
+                    {% else %}
+                        {{ 'pel.total.message.no.amount'|trans }}
+                    {% endif %}
+                </p>
                 <hr>
                 <p>
                     <strong>{{ 'pel.note'|trans }}</strong> : {{ 'pel.summary.is.not.legal.proof'|trans }}
