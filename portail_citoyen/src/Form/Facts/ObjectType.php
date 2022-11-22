@@ -270,9 +270,6 @@ class ObjectType extends AbstractType
             ->add('registrationNumberCountry', CountryType::class, [
                 'label' => 'pel.registration.number.country',
                 'preferred_choices' => [$this->franceCode],
-                'constraints' => [
-                    new NotBlank(),
-                ],
             ])
             ->add('insuranceCompany', TextType::class, [
                 'attr' => [
