@@ -29,6 +29,11 @@ class CivilStateModel
         return $this;
     }
 
+    public function civilityIsDefined(): bool
+    {
+        return is_int($this->civility);
+    }
+
     public function getBirthName(): ?string
     {
         return $this->birthName;
@@ -39,6 +44,11 @@ class CivilStateModel
         $this->birthName = $birthName;
 
         return $this;
+    }
+
+    public function birthNameIsDefined(): bool
+    {
+        return is_string($this->birthName) && strlen($this->birthName) > 0;
     }
 
     public function getUsageName(): ?string
@@ -53,6 +63,11 @@ class CivilStateModel
         return $this;
     }
 
+    public function usageNameIsDefined(): bool
+    {
+        return is_string($this->usageName) && strlen($this->usageName) > 0;
+    }
+
     public function getFirstnames(): ?string
     {
         return $this->firstnames;
@@ -63,6 +78,11 @@ class CivilStateModel
         $this->firstnames = $firstnames;
 
         return $this;
+    }
+
+    public function firstnamesIsDefined(): bool
+    {
+        return is_string($this->firstnames) && strlen($this->firstnames) > 0;
     }
 
     public function getBirthDate(): ?\DateTimeInterface
@@ -77,6 +97,11 @@ class CivilStateModel
         return $this;
     }
 
+    public function birthDateIsDefined(): bool
+    {
+        return $this->birthDate instanceof \DateTimeInterface;
+    }
+
     public function getBirthLocation(): ?LocationModel
     {
         return $this->birthLocation;
@@ -87,6 +112,11 @@ class CivilStateModel
         $this->birthLocation = $birthLocation;
 
         return $this;
+    }
+
+    public function birthLocationIsDefined(): bool
+    {
+        return $this->birthLocation instanceof LocationModel;
     }
 
     public function getNationality(): ?int
