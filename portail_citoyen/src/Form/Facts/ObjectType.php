@@ -268,6 +268,7 @@ class ObjectType extends AbstractType
                 ],
             ])
             ->add('registrationNumberCountry', CountryType::class, [
+                'empty_data' => $this->franceCode,
                 'label' => 'pel.registration.number.country',
                 'preferred_choices' => [$this->franceCode],
             ])
