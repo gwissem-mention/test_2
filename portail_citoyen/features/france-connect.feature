@@ -6,7 +6,7 @@ Feature:
 
     Scenario: France Connect successful authentication
         When I go to "/porter-plainte?france_connected=1"
-        Then I should be on "/porter-plainte/"
+        Then I should be on "/porter-plainte"
         And I should be connected as "John Doe"
 
     Scenario: Error on access token retrieval
