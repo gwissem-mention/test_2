@@ -1,6 +1,7 @@
 framework:
     secret: '%env(APP_SECRET)%'
     http_method_override: false
+    trusted_proxies: '%env(TRUSTED_PROXIES)%'
 
     session:
         handler_id: Symfony\Component\HttpFoundation\Session\Storage\Handler\RedisSessionHandler
@@ -10,10 +11,6 @@ framework:
 
     php_errors:
         log: true
-
-when@dev:
-    framework:
-        trusted_proxies: '%env(TRUSTED_PROXIES)%'
 
 when@test:
     framework:
