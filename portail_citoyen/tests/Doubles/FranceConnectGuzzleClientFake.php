@@ -115,15 +115,15 @@ class FranceConnectGuzzleClientFake implements ClientInterface
         }
 
         return new Response(self::RESPONSE_OK, [], json_encode([
-            'sub' => 'john-doe-id',
-            'family_name' => 'Doe',
-            'given_name' => 'John',
+            'sub' => 'michel-dupont-id',
+            'family_name' => 'DUPONT',
+            'given_name' => 'Michel',
             'preferred_username' => '',
-            'birthdate' => '1970-08-14',
-            'birthplace' => '46789',
+            'birthdate' => '1967-03-02',
+            'birthplace' => '75107',
             'birthcountry' => '99100',
             'gender' => Gender::MALE->value,
-            'email' => 'john.doe@example.org',
+            'email' => 'michel.dupont@example.com',
         ]));
     }
 

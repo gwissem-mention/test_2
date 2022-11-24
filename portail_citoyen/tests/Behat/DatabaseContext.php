@@ -24,15 +24,15 @@ class DatabaseContext implements Context
         $purger->purge();
 
         $user = new User(
-            'jean-dupond-id',
-            'DUPOND',
-            'Jean',
+            'michel-dupont-id',
+            'DUPONT',
+            'Michel',
             '',
-            '1982-04-23',
+            '1967-03-02',
             '75107',
             '99100',
             Gender::MALE->value,
-            'jean.dupond@example.org',
+            'michel.dupont@example.com',
         );
 
         $this->entityManager->persist($user);

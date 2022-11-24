@@ -222,6 +222,7 @@ final class BaseContext extends MinkContext
     public function iShouldBeConnectedAs(string $username): void
     {
         $connectedUser = $this->behatDriverContainer->get('security.helper')->getUser();
+
         if (!$connectedUser instanceof User) {
             throw new ExpectationException('User is not connected', $this->getSession()->getDriver());
         }
