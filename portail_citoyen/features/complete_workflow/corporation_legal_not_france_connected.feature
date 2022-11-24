@@ -54,7 +54,6 @@ Feature:
         And the "identity_corporation_email" field should contain "contact@mon-entreprise.fr"
         And the "identity_corporation_phone" field should contain "0102030405"
         And the "identity_corporation_frenchAddress" field should contain "Av. de la République 75011 Paris France"
-        And I press "identity_submit"
         When I select "1" from "facts_offenseNature_offenseNature"
         And I click the "label[for=facts_victimOfViolence]" element
         And I wait for the element "#facts_victimOfViolenceText" to appear
@@ -165,8 +164,6 @@ Feature:
         And I should see the key "pel.complaint.nature.of.the.facts" translated
         And I should see the key "pel.complaint.identity.corporation.legal.representative" translated
         And I should see the key "pel.victim.at.time.of.facts" translated
-        And I should see the key "pel.nature.place" translated
-        And I should see the key "pel.nature.place.home" translated
         And I should see the key "pel.address.or.route.facts" translated
         And I should see the key "pel.address" translated
         And I should see the key "pel.address.start.or.exact" translated

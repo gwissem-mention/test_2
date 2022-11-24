@@ -26,7 +26,6 @@ Feature:
         And the "identity_contactInformation_frenchAddress" field should contain "Av. de la République 75011 Paris France"
         And the "identity_contactInformation_email" field should contain "michel.dupont@example.com"
         And the "identity_contactInformation_mobile" field should contain "0601020304"
-        And I press "Suivant"
         When I select "1" from "facts_offenseNature_offenseNature"
         And I click the "label[for=facts_victimOfViolence]" element
         And I wait for the element "#facts_victimOfViolenceText" to appear

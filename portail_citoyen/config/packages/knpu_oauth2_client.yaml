@@ -13,3 +13,7 @@ knpu_oauth2_client:
 when@test:
     knpu_oauth2_client:
         http_client: 'App\Tests\Doubles\FranceConnectGuzzleClientFake'
+
+when@e2e:
+    knpu_oauth2_client:
+        http_client: 'App\Tests\Doubles\FranceConnectGuzzleClientFake'

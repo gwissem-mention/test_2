@@ -6,8 +6,8 @@ Feature:
 
     Scenario: France Connect successful authentication
         When I go to "/porter-plainte?france_connected=1"
-        Then I should be on "/porter-plainte"
-        And I should be connected as "John Doe"
+        Then I should be on "/porter-plainte?france_connected=1"
+        And I should be connected as "Michel DUPONT"
 
     Scenario: Error on access token retrieval
         Given An error will occur during France Connect access token retrieval
@@ -25,13 +25,13 @@ Feature:
         Given follow redirects is disabled
         When I go to "/porter-plainte?france_connected=1"
         And I follow the redirection
-        Then I should be connected as "John Doe"
+        Then I should be connected as "Michel DUPONT"
         When I go to "/logout"
         Then I should be redirected to the France Connect logout page
         And I should not be connected
 
     Scenario: FranceConnect button is not displayed when logged
-        Given I am connected as "Jean Dupond" (jean-dupond-id)
+        Given I am connected as "Michel DUPONT" (michel-dupont-id)
         When I go to "/authentification"
         Then the FranceConnect button is not displayed
 
