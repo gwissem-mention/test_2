@@ -22,21 +22,29 @@
                 <source>pel.amount</source>
                 <target>Montant</target>
             </trans-unit>
-            <trans-unit id="pel.a.dematerialized.service">
-                <source>pel.a.dematerialized.service</source>
-                <target>Un service dématérialisé</target>
+            <trans-unit id="pel.a.public.service.on.internet">
+                <source>pel.a.public.service.on.internet</source>
+                <target>Un service public sur Internet</target>
             </trans-unit>
-            <trans-unit id="pel.a.dematerialized.service.text.1">
-                <source>pel.a.dematerialized.service.text.1</source>
-                <target>Ce site vous permet de déclarer une infraction en ligne depuis un ordinateur. Chaque déclaration est examinée par un enquêteur. Des renseignements complémentaires sur les faits dont vous avez été victime pourront vous être demandés ultérieurement.</target>
+            <trans-unit id="pel.a.public.service.on.internet.text.1">
+                <source>pel.a.public.service.on.internet.text.1</source>
+                <target>Ce téléservice, accessible depuis chez vous, vous permet de déclarer des faits d’atteintes aux biens dont vous avez été victime à titre personnel ou en qualité de représentant légal d’une personne physique (mineur, personne sous tutelle ou curatelle) ou d’une personne morale (société, entreprise, association, collectivités, administrations, ... ).</target>
             </trans-unit>
-            <trans-unit id="pel.a.dematerialized.service.text.2">
-                <source>pel.a.dematerialized.service.text.2</source>
-                <target>Cette démarche peut être totalement dématérialisée depuis chez vous, de la déclaration à son examination. Toutefois, selon votre situation, un rendez-vous en gendarmerie ou dans un commissariat pourra vous être demandé.</target>
+            <trans-unit id="pel.a.public.service.on.internet.text.2">
+                <source>pel.a.public.service.on.internet.text.2</source>
+                <target>Votre déclaration sera systématiquement examinée par un enquêteur qui décidera :</target>
             </trans-unit>
-            <trans-unit id="pel.a.dematerialized.service.text.3">
-                <source>pel.a.dematerialized.service.text.3</source>
-                <target>Avant de débuter votre démarche, veuillez prendre connaissance des élements ci-dessous.</target>
+            <trans-unit id="pel.a.public.service.on.internet.text.3">
+                <source>pel.a.public.service.on.internet.text.3</source>
+                <target>soit de valider votre télédéclaration en plainte.</target>
+            </trans-unit>
+            <trans-unit id="pel.a.public.service.on.internet.text.4">
+                <source>pel.a.public.service.on.internet.text.4</source>
+                <target>soit de vous demander des informations complémentaires le cas échéant.</target>
+            </trans-unit>
+            <trans-unit id="pel.a.public.service.on.internet.text.5">
+                <source>pel.a.public.service.on.internet.text.5</source>
+                <target>soit de vous proposer un rendez-vous dans un service de Police ou de Gendarmerie dès lors que la situation le nécessite.</target>
             </trans-unit>
             <trans-unit id="pel.access.to.the.form">
                 <source>pel.access.to.the.form</source>
@@ -416,7 +424,7 @@
             </trans-unit>
             <trans-unit id="pel.dont.use.online.complaint">
                 <source>pel.dont.use.online.complaint</source>
-                <target>N'UTILISEZ PAS plainte en ligne :</target>
+                <target>N'UTILISEZ PAS Plainte en ligne :</target>
             </trans-unit>
          <trans-unit id="pel.dont.know.the.offense.author">
                 <source>pel.dont.know.the.offense.author</source>
@@ -516,7 +524,7 @@
             </trans-unit>
             <trans-unit id="pel.fill.a.complaint">
                 <source>pel.fill.a.complaint</source>
-                <target>Déposer une plainte pour une atteinte aux biens</target>
+                <target>Poursuivre ma déclaration</target>
             </trans-unit>
             <trans-unit id="pel.files">
                 <source>pel.files</source>
@@ -568,7 +576,7 @@
             </trans-unit>
             <trans-unit id="pel.home.orienteer.information.message.2">
                 <source>pel.home.orienteer.information.message.2</source>
-                <target>La démarche sera nécessairement finalisée par un rendez-vous si vous ne vous identifiez pas par le biais de FC, si les faits ont été accompagnés de violences ou de menaces ou si l'objet volé est un véhicule motorisé.</target>
+                <target>Votre démarche aboutira nécessairement à un rendez-vous en présentiel si @</target>
             </trans-unit>
             <trans-unit id="pel.home.orienteer.information.message.3">
                 <source>pel.home.orienteer.information.message.3</source>
@@ -616,7 +624,11 @@
             </trans-unit>
             <trans-unit id="pel.if.no.lawyer.needed.text">
                 <source>pel.if.no.lawyer.needed.text</source>
-                <target>Si vous ne souhaitez pas vous faire assister d'un avocat ou d'un interprète, ces droits deumeurent incompatible avec une procédure dématérialisée. Vous devez vous rendre dans une unité de police ou de gendarmerie.</target>
+                <target>Si un rendez-vous en présentiel vous est proposé, l’intégralité des données que vous aurez renseigné seront reprises par l’enquêteur qui vous recevra.</target>
+            </trans-unit>
+            <trans-unit id="pel.if.no.lawyer.needed.text.bis">
+                <source>pel.if.no.lawyer.needed.text.bis</source>
+                <target>Si vous souhaitez vous faire assister d’un avocat ou d’un interprète, ces droits demeurent incompatibles avec une procédure dématérialisée. Vous devez vous rendre dans une unité de police ou de gendarmerie de votre choix.</target>
             </trans-unit>
             <trans-unit id="pel.if.accident.ongoing">
                 <source>pel.if.accident.ongoing</source>
@@ -640,7 +652,7 @@
             </trans-unit>
             <trans-unit id="pel.if.you.are.victim.of.credit.card.fraudulent.use">
                 <source>pel.if.you.are.victim.of.credit.card.fraudulent.use</source>
-                <target>Si vous êtes victime d'utilisation frauduleuse de votre carte bancaire</target>
+                <target>Si vous êtes victime d'utilisation frauduleuse de votre carte bancaire toujours en votre possession</target>
             </trans-unit>
             <trans-unit id="pel.if.you.are.victim.of.violence">
                 <source>pel.if.you.are.victim.of.violence</source>
@@ -734,9 +746,9 @@
                 <source>pel.my.identity</source>
                 <target>Mon identité</target>
             </trans-unit>
-            <trans-unit id="pel.my.route.to.fill.a.complaint">
-                <source>pel.my.route.to.fill.a.complaint</source>
-                <target>Mon parcours pour porter plainte</target>
+            <trans-unit id="pel.my.journey">
+                <source>pel.my.journey</source>
+                <target>Mon parcours</target>
             </trans-unit>
             <trans-unit id="pel.nationality.france">
                 <source>pel.nationality.france</source>
@@ -876,7 +888,7 @@
             </trans-unit>
             <trans-unit id="pel.other.complex.offenses">
                 <source>pel.other.complex.offenses</source>
-                <target>Autres infractions complexes</target>
+                <target>l’enquêteur estime que cela est nécessaire au regard des éléments télédéclarés.</target>
             </trans-unit>
             <trans-unit id="pel.other.goods.damages">
                 <source>pel.other.goods.damages</source>
@@ -1148,15 +1160,15 @@
             </trans-unit>
             <trans-unit id="pel.your.are.not.logged.in.with.france.connect">
                 <source>pel.your.are.not.logged.in.with.france.connect</source>
-                <target>Vous ne vous connectez pas par France Connect</target>
+                <target>vous ne vous êtes pas identifié via FranceConnect ;</target>
             </trans-unit>
             <trans-unit id="pel.your.are.victim.of.a.registered.vehicle.theft">
                 <source>pel.your.are.victim.of.a.registered.vehicle.theft</source>
-                <target>Vous êtes victime d'un vol de véhicule immatriculé</target>
+                <target>vous êtes victime d’un vol de véhicule immatriculé ;</target>
             </trans-unit>
             <trans-unit id="pel.your.are.victim.of.a.violent.theft">
                 <source>pel.your.are.victim.of.a.violent.theft</source>
-                <target>Vous êtes victime d'un vol avec violence</target>
+                <target>vous êtes victimes d’un vol avec violences ;</target>
             </trans-unit>
             <trans-unit id="pel.you.will.start.an.online.complaint.procedure">
                 <source>pel.you.will.start.an.online.complaint.procedure</source>

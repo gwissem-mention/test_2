@@ -11,31 +11,33 @@ Feature:
         And I should see the key "<trans>" translated
 
         Examples:
-            | trans                                               |
-            | pel.ministry                                        |
-            | pel.inside                                          |
-            | pel.and.overseas                                    |
-            | pel.header.baseline                                 |
-            | pel.online.complaint                                |
-            | pel.my.route.to.fill.a.complaint                    |
-            | pel.you.will.start.an.online.complaint.procedure    |
-            | pel.appointment.needed.if                           |
-            | pel.your.are.not.logged.in.with.france.connect      |
-            | pel.your.are.victim.of.a.registered.vehicle.theft   |
-            | pel.your.are.victim.of.a.violent.theft              |
-            | pel.other.complex.offenses                          |
-            | pel.if.no.lawyer.needed.text                        |
-            | pel.online.complaint.process                        |
-            | pel.1.fill.your.form                                |
-            | pel.2.upload.your.files                             |
-            | pel.3.your.request.is.sent.to.an.agent              |
-            | pel.4.your.request.is.processed.within.48h          |
-            | pel.i.take.note.of.legal.provisions                 |
-            | pel.article.10.2                                    |
-            | pel.of.the.penal.procedure                          |
-            | pel.article.d.8.2.2                                 |
-            | pel.back                                            |
-            | pel.start.my.declaration                            |
+            | trans                                             |
+            | pel.ministry                                      |
+            | pel.inside                                        |
+            | pel.and.overseas                                  |
+            | pel.header.baseline                               |
+            | pel.online.complaint                              |
+            | pel.my.journey                                    |
+            | pel.you.will.start.an.online.complaint.procedure  |
+            | pel.appointment.needed.if                         |
+            | pel.your.are.not.logged.in.with.france.connect    |
+            | pel.your.are.victim.of.a.registered.vehicle.theft |
+            | pel.your.are.victim.of.a.violent.theft            |
+            | pel.other.complex.offenses                        |
+            | pel.if.no.lawyer.needed.text                      |
+            | pel.if.no.lawyer.needed.text.bis                  |
+            | pel.online.complaint.process                      |
+            | pel.1.fill.your.form                              |
+            | pel.1.fill.your.form                              |
+            | pel.2.upload.your.files                           |
+            | pel.3.your.request.is.sent.to.an.agent            |
+            | pel.4.your.request.is.processed.within.48h        |
+            | pel.i.take.note.of.legal.provisions               |
+            | pel.article.10.2                                  |
+            | pel.of.the.penal.procedure                        |
+            | pel.article.d.8.2.2                               |
+            | pel.back                                          |
+            | pel.start.my.declaration                          |
 
     @func
     Scenario: Click on "Article 10-2" link
