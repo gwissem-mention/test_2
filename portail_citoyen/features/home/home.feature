@@ -23,10 +23,12 @@ Feature:
             | pel.online.complaint                                |
             | pel.portal                                          |
             | pel.home.intro                                      |
-            | pel.a.dematerialized.service                        |
-            | pel.a.dematerialized.service.text.1                 |
-            | pel.a.dematerialized.service.text.2                 |
-            | pel.a.dematerialized.service.text.3                 |
+            | pel.a.public.service.on.internet                    |
+            | pel.a.public.service.on.internet.text.1             |
+            | pel.a.public.service.on.internet.text.2             |
+            | pel.a.public.service.on.internet.text.3             |
+            | pel.a.public.service.on.internet.text.4             |
+            | pel.a.public.service.on.internet.text.5             |
             | pel.compose.the.17                                  |
             | pel.if.accident.ongoing                             |
             | pel.if.suspect.still.present                        |

@@ -54,16 +54,18 @@
         </div>
         <div class="fr-grid-row fr-mt-2w fr-mt-md-4w">
             <div class="fr-col-12 fr-col-md-6 fr-col-lg-7 fr-col-offset-lg-1 fr-text-justify">
-                <h3 class="fr-text-center">{{ 'pel.a.dematerialized.service'|trans }}</h3>
+                <h3 class="fr-text-center">{{ 'pel.a.public.service.on.internet'|trans }}</h3>
                 <p>
-                    {{ 'pel.a.dematerialized.service.text.1'|trans }}
+                    {{ 'pel.a.public.service.on.internet.text.1'|trans }}
                 </p>
                 <p>
-                    {{ 'pel.a.dematerialized.service.text.2'|trans }}
+                    {{ 'pel.a.public.service.on.internet.text.2'|trans }}
                 </p>
-                <p class="fr-text--lg">
-                    <strong>{{ 'pel.a.dematerialized.service.text.3'|trans }}</strong>
-                </p>
+                <ul>
+                    <li>{{ 'pel.a.public.service.on.internet.text.3'|trans }}</li>
+                    <li>{{ 'pel.a.public.service.on.internet.text.4'|trans }}</li>
+                    <li>{{ 'pel.a.public.service.on.internet.text.5'|trans }}</li>
+                </ul>
             </div>
             <div class="fr-col-12 fr-col-md-5 fr-col-lg-3 fr-col-offset-md-1">
                 <div class="fr-callout fr-callout--pink-tuile">
@@ -82,28 +84,6 @@
             <div class="fr-col-12">
                 <h4 class="fr-text-center">{{ 'pel.be.sure.facts.are.relevant.for.this.service'|trans }}</h4>
                 <div class="fr-grid-row">
-                    <div class="fr-col-12 fr-col-md-5 fr-ml-md-8w">
-                        <div class="fr-callout fr-callout--green-emeraude">
-                            <h3 class="fr-callout__title">{{ 'pel.use.online.complaint.for'|trans }}</h3>
-                            <p class="fr-callout__text">
-                            <ul>
-                                <li>{{ 'pel.damage.to.a.vehicle'|trans }}</li>
-                                <li>{{ 'pel.damage.except.vehicle'|trans }}</li>
-                                <li>{{ 'pel.thefts'|trans }}</li>
-                                <li>{{ 'pel.drive.complaints'|trans }}</li>
-                                <li>{{ 'pel.fraudulent.use.of.stolen.credit.card'|trans }}</li>
-                                <li>{{ 'pel.scam.except.online'|trans }}</li>
-                                <li>{{ 'pel.other.goods.damages'|trans }}</li>
-                            </ul>
-                            {{ 'pel.you.dont.know.offense.author'|trans }}
-                            </p>
-                        </div>
-                        <div class="fr-text-center">
-                            <button class="fr-btn" data-fr-opened="false" aria-controls="fr-modal-complaint-confirm">
-                                {{ 'pel.fill.a.complaint'|trans }}
-                            </button>
-                        </div>
-                    </div>
                     <div class="fr-col-12 fr-col-md-5 fr-mt-3w fr-mt-md-0 fr-ml-md-8w">
                         <div class="fr-callout fr-callout--pink-tuile">
                             <h3 class="fr-callout__title">{{ 'pel.dont.use.online.complaint'|trans }}</h3>
@@ -124,6 +104,28 @@
                             <a href="#" class="fr-btn fr-btn--icon-right fr-icon-logout-box-r-line">
                                 {{ 'pel.fsi.general.orienteer'|trans }}
                             </a>
+                        </div>
+                    </div>
+                    <div class="fr-col-12 fr-col-md-5 fr-ml-md-8w">
+                        <div class="fr-callout fr-callout--green-emeraude">
+                            <h3 class="fr-callout__title">{{ 'pel.use.online.complaint.for'|trans }}</h3>
+                            <p class="fr-callout__text">
+                            <ul>
+                                <li>{{ 'pel.damage.to.a.vehicle'|trans }}</li>
+                                <li>{{ 'pel.damage.except.vehicle'|trans }}</li>
+                                <li>{{ 'pel.thefts'|trans }}</li>
+                                <li>{{ 'pel.drive.complaints'|trans }}</li>
+                                <li>{{ 'pel.fraudulent.use.of.stolen.credit.card'|trans }}</li>
+                                <li>{{ 'pel.scam.except.online'|trans }}</li>
+                                <li>{{ 'pel.other.goods.damages'|trans }}</li>
+                            </ul>
+                            {{ 'pel.you.dont.know.offense.author'|trans }}
+                            </p>
+                        </div>
+                        <div class="fr-text-center">
+                            <button class="fr-btn" data-fr-opened="false" aria-controls="fr-modal-complaint-confirm">
+                                {{ 'pel.fill.a.complaint'|trans }}
+                            </button>
                         </div>
                     </div>
                 </div>
