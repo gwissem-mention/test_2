@@ -47,14 +47,13 @@ Feature:
     @func
     Scenario Outline: I can see the offense nature list
         Given I am on "/porter-plainte"
-        When I select "<offense_nature>" from "facts_offenseNature_offenseNature"
-        Then I should see "<offense_nature>" in the "#facts_offenseNature_offenseNature" element
+        When I check "<offense_nature>"
+        Then I should see "<offense_nature>"
 
         Examples:
             | offense_nature           |
             | Vol                      |
             | Dégradation              |
-            | Vol et Dégradation       |
             | Autre atteinte aux biens |
 
     @func

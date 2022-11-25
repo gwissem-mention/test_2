@@ -22,7 +22,7 @@ Feature:
         And I fill in "identity_corporation_phone" with "0102030405"
         And I fill in "identity_corporation_frenchAddress" with "Av. de la République 75011 Paris France"
         And I press "identity_submit"
-        When I select "1" from "facts_offenseNature_offenseNature"
+        When I click the "label[for=facts_offenseNature_offenseNatures_0]" element
         And I click the "label[for=facts_victimOfViolence]" element
         And I wait for the element "#facts_victimOfViolenceText" to appear
         And I fill in "facts_victimOfViolenceText" with "Violence informations"

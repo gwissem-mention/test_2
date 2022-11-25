@@ -19,14 +19,13 @@ Feature:
     @javascript
     Scenario: I can see a warning text if I select "Robbery"
         Given I am on "/porter-plainte"
-        When I select "Vol" from "facts_offenseNature_offenseNature"
-        And I wait for the element "#facts_offenseNature_aabText" to appear
+        When I click the "label[for=facts_offenseNature_offenseNatures_0]" element
         Then I should see the key "pel.complaint.offense.nature.warning.text" translated
 
     @javascript
     Scenario: I can see a textarea field if I select Other AAB
         Given I am on "/porter-plainte"
-        When I select "Autre atteinte aux biens" from "facts_offenseNature_offenseNature"
+        When I click the "label[for=facts_offenseNature_offenseNatures_2]" element
         And I wait for the element "#offense_nature_aabText" to appear
         And I should see the key "pel.complaint.offense.nature.other.aab.text" translated
 
@@ -281,8 +280,17 @@ Feature:
 
     @javascript
     Scenario: Submit the facts form as a victim logged in with France Connect
-        Given I am on "/porter-plainte"
-        When I select "1" from "facts_offenseNature_offenseNature"
+        Given I am on "/authentification"
+        When I press "france_connect_auth_button"
+        Then I am on "/porter-plainte?france_connected=1"
+        When I click the "label[for=identity_declarantStatus_0]" element
+        And I wait for the element "#form-identity" to appear
+        And I select "1" from "identity_civilState_job"
+        And I fill in "identity_contactInformation_frenchAddress" with "Av. de la République 75011 Paris France"
+        And I fill in "identity_contactInformation_mobile" with "0601020304"
+        And I press "Suivant"
+        Then I am on "/porter-plainte"
+        When I click the "label[for=facts_offenseNature_offenseNatures_0]" element
         And I click the "label[for=facts_address_addressOrRouteFactsKnown_0]" element
         And I wait for the element "#facts_address_startAddress" to appear
         And I fill in "facts_address_startAddress" with "1 test street"
@@ -316,10 +324,9 @@ Feature:
         And I wait for the element "#facts_additionalInformation_cctvAvailable_0" to appear
         And I click the "label[for=facts_additionalInformation_cctvAvailable_0]" element
         And I fill in "facts_description" with "description informations"
-        And I press "facts_submit"
-        And I wait 500 ms
-        Given I am on "/recapitulatif"
-        When I follow "Précédent"
+        And I press "Suivant"
+        Then I am on "/recapitulatif"
+        And I follow "Précédent"
         Then I am on "/porter-plainte"
         And the "facts_offenseNature_offenseNature" field should contain "1"
         And the "facts_address_startAddress" field should contain "1 test street"

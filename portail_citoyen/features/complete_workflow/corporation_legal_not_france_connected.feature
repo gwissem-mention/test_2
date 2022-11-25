@@ -54,7 +54,8 @@ Feature:
         And the "identity_corporation_email" field should contain "contact@mon-entreprise.fr"
         And the "identity_corporation_phone" field should contain "0102030405"
         And the "identity_corporation_frenchAddress" field should contain "Av. de la République 75011 Paris France"
-        When I select "1" from "facts_offenseNature_offenseNature"
+        And I press "Suivant"
+        When I click the "label[for=facts_offenseNature_offenseNatures_0]" element
         And I click the "label[for=facts_victimOfViolence]" element
         And I wait for the element "#facts_victimOfViolenceText" to appear
         And I fill in "facts_victimOfViolenceText" with "Violence informations"

@@ -6,17 +6,26 @@ namespace App\Form\Model\Facts;
 
 class OffenseNatureModel
 {
-    private ?int $offenseNature = null;
+    /**
+     * @var array<int, int>
+     */
+    private array $offenseNatures = [];
     private ?string $aabText = null;
 
-    public function getOffenseNature(): ?int
+    /**
+     * @return array<int, int>
+     */
+    public function getOffenseNatures(): array
     {
-        return $this->offenseNature;
+        return $this->offenseNatures;
     }
 
-    public function setOffenseNature(?int $offenseNature): self
+    /**
+     * @param array<int, int> $offenseNatures
+     */
+    public function setOffenseNatures(array $offenseNatures): self
     {
-        $this->offenseNature = $offenseNature;
+        $this->offenseNatures = $offenseNatures;
 
         return $this;
     }

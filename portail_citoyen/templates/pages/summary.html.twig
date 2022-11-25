@@ -112,17 +112,17 @@
                 <ul>
                     <li>
                         {{ 'pel.complaint.nature.of.the.facts'|trans }} :
-                        {% if complaint.facts.offenseNature.offenseNature is same as(constant('App\\Enum\\OffenseNature::Robbery').value) %}
-                            {{ 'pel.complaint.offense.nature.robbery'|trans }}
-                        {% elseif complaint.facts.offenseNature.offenseNature is same as(constant('App\\Enum\\OffenseNature::Degradation').value) %}
-                            {{ 'pel.complaint.offense.nature.degradation'|trans }}
-                        {% elseif complaint.facts.offenseNature.offenseNature is same as(constant('App\\Enum\\OffenseNature::RobberyAndDegradation').value) %}
-                            {{ 'pel.complaint.offense.nature.robbery.and.degradation'|trans }}
-                        {% else %}
-                            {{ 'pel.complaint.offense.nature.other'|trans }}
-                        {% endif %}
+                        {% for offenseNature in complaint.facts.offenseNature.offenseNatures %}
+                            {% if offenseNature is same as(constant('App\\Enum\\OffenseNature::Robbery').value) %}
+                                {{ 'pel.complaint.offense.nature.robbery'|trans }}{% if loop.last is same as(false) %},{% endif %}
+                            {% elseif offenseNature is same as(constant('App\\Enum\\OffenseNature::Degradation').value) %}
+                                {{ 'pel.complaint.offense.nature.degradation'|trans }}{% if loop.last is same as(false) %},{% endif %}
+                            {% else %}
+                                {{ 'pel.complaint.offense.nature.other'|trans }}{% if loop.last is same as(false) %},{% endif %}
+                            {% endif %}
+                        {% endfor %}
                     </li>
-                    {% if complaint.facts.offenseNature.offenseNature is same as(constant('App\\Enum\\OffenseNature::Other').value) %}
+                    {% if constant('App\\Enum\\OffenseNature::Other').value in complaint.facts.offenseNature.offenseNatures %}
                         <li>
                             {{ 'pel.infraction.type'|trans }} :
                             {{ complaint.facts.offenseNature.aabText }}
