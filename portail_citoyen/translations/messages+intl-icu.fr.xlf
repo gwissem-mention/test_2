@@ -290,10 +290,6 @@
                 <source>pel.complaint.offense.nature.robbery</source>
                 <target>Vol</target>
             </trans-unit>
-            <trans-unit id="pel.complaint.offense.nature.robbery.and.degradation">
-                <source>pel.complaint.offense.nature.robbery.and.degradation</source>
-                <target>Vol et Dégradation</target>
-            </trans-unit>
             <trans-unit id="pel.complaint.offense.nature.technical.police.visit">
                 <source>pel.complaint.offense.nature.technical.police.visit</source>
                 <target>La police technique et scientifique est-elle intervenue sur les lieux de l'infraction ?</target>

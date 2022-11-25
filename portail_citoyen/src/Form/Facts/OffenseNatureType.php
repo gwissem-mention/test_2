@@ -15,6 +15,7 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class OffenseNatureType extends AbstractType
 {
@@ -23,20 +24,28 @@ class OffenseNatureType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('offenseNature', ChoiceType::class, [
-                'placeholder' => 'pel.complaint.nature.of.the.facts',
-                'label' => 'pel.complaint.nature.of.the.facts',
+            ->add('offenseNatures', ChoiceType::class, [
                 'choices' => OffenseNature::getChoices(),
+                'constraints' => [new NotBlank()],
+                'expanded' => true,
+                'inline' => true,
+                'label' => 'pel.complaint.nature.of.the.facts',
+                'multiple' => true,
+                'placeholder' => 'pel.complaint.nature.of.the.facts',
             ])
             ->addEventListener(
                 FormEvents::PRE_SET_DATA,
                 function (FormEvent $event) {
-                    /** @var ?OffenseNatureModel $offenseNatureModel */
-                    $offenseNatureModel = $event->getData();
-                    $this->addAabTextField($event->getForm(), $offenseNatureModel?->getOffenseNature());
+                    /** @var ?OffenseNatureModel $offenseNature */
+                    $offenseNature = $event->getData();
+                    $offenseNatures = $offenseNature?->getOffenseNatures();
+                    if (null === $offenseNatures) {
+                        return;
+                    }
+                    $this->addAabTextField($event->getForm(), $offenseNatures);
                 }
             )
-            ->get('offenseNature')
+            ->get('offenseNatures')
             ->addEventListener(
                 FormEvents::POST_SUBMIT,
                 function (FormEvent $event) {
@@ -44,17 +53,22 @@ class OffenseNatureType extends AbstractType
                     $parent = $event->getForm()->getParent();
                     /** @var ?OffenseNatureModel $offenseNatureModel */
                     $offenseNatureModel = $parent->getData();
-                    $this->addAabTextField($parent, intval($event->getForm()->getData()), $offenseNatureModel);
+                    /** @var array<int, int> $data */
+                    $data = $event->getForm()->getData();
+                    $this->addAabTextField($parent, $data, $offenseNatureModel);
                 }
             );
     }
 
+    /**
+     * @param array<int, int> $offenseNatures
+     */
     private function addAabTextField(
         FormInterface $form,
-        ?int $offenseNatureChoice,
+        array $offenseNatures,
         ?OffenseNatureModel $offenseNatureModel = null
     ): void {
-        if (OffenseNature::Other->value === $offenseNatureChoice) {
+        if (true === in_array(OffenseNature::Other->value, $offenseNatures)) {
             $form->add('aabText', TextareaType::class, [
                 'label' => 'pel.complaint.offense.nature.other.aab.text',
                 'attr' => [

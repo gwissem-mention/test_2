@@ -61,7 +61,7 @@ Feature:
         And the "identity_representedPersonContactInformation_frenchAddress" field should contain "Av. de la République 75011 Paris France"
         And the "identity_representedPersonContactInformation_email" field should contain "jean@test.com"
         And the "identity_representedPersonContactInformation_mobile" field should contain "0602030405"
-        When I select "1" from "facts_offenseNature_offenseNature"
+        When I click the "label[for=facts_offenseNature_offenseNatures_0]" element
         And I click the "label[for=facts_victimOfViolence]" element
         And I wait for the element "#facts_victimOfViolenceText" to appear
         And I fill in "facts_victimOfViolenceText" with "Violence informations"
