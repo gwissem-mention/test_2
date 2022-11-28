@@ -6,16 +6,17 @@ use App\Security\FranceConnectAuthenticator;
 use KnpU\OAuth2ClientBundle\Client\OAuth2Client;
 use League\OAuth2\Client\Provider\ResourceOwnerInterface;
 use League\OAuth2\Client\Token\AccessToken;
+use League\OAuth2\Client\Token\AccessTokenInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class FranceConnectClientFake extends OAuth2Client
 {
     public function __construct(
-        private OAuth2Client $franceConnectClient,
-        private UrlGeneratorInterface $urlGenerator,
-        private string $clientId,
-        private string $baseUri,
+        private readonly OAuth2Client $franceConnectClient,
+        private readonly UrlGeneratorInterface $urlGenerator,
+        private readonly string $clientId,
+        private readonly string $baseUri,
     ) {
     }
 
@@ -68,7 +69,7 @@ class FranceConnectClientFake extends OAuth2Client
     /**
      * @param array<string, string> $options
      */
-    public function getAccessToken(array $options = [])
+    public function getAccessToken(array $options = []): AccessTokenInterface
     {
         return $this->franceConnectClient->getAccessToken();
     }

@@ -18,11 +18,14 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 final class BaseContext extends MinkContext
 {
+    private const RETRY_SLEEP = 100000;
+    private const RETRY_MAX_TIME = 10;
+
     public function __construct(
         private readonly TranslatorInterface $translator,
         private readonly UserRepository $userRepository,
         private readonly SessionFactoryInterface $sessionFactory,
-        private ContainerInterface $behatDriverContainer,
+        private readonly ContainerInterface $behatDriverContainer
     ) {
     }
 
@@ -31,9 +34,11 @@ final class BaseContext extends MinkContext
      */
     public function iShouldSeeTheKeyTranslated(string $arg1): void
     {
-        $this->assertPageNotContainsText($arg1);
-        $this->assertResponseNotContains($arg1);
-        $this->assertPageContainsText($this->translator->trans($arg1));
+        $this->retryStep(function () use ($arg1) {
+            parent::assertPageNotContainsText($arg1);
+            parent::assertResponseNotContains($arg1);
+            parent::assertPageContainsText($this->translator->trans($arg1));
+        });
     }
 
     /**
@@ -41,9 +46,11 @@ final class BaseContext extends MinkContext
      */
     public function iShouldNotSeeTheKeyTranslated(string $arg1): void
     {
-        $this->assertPageNotContainsText($arg1);
-        $this->assertResponseNotContains($arg1);
-        $this->assertPageNotContainsText($this->translator->trans($arg1));
+        $this->retryStep(function () use ($arg1) {
+            parent::assertPageNotContainsText($arg1);
+            parent::assertResponseNotContains($arg1);
+            parent::assertPageNotContainsText($this->translator->trans($arg1));
+        });
     }
 
     /**
@@ -51,94 +58,117 @@ final class BaseContext extends MinkContext
      */
     public function iShouldSeeTheKeyTranslatedInTheResponse(string $arg1): void
     {
-        $this->assertPageNotContainsText($arg1);
-        $this->assertResponseNotContains($arg1);
-        $this->assertResponseContains($this->translator->trans($arg1));
+        $this->retryStep(function () use ($arg1) {
+            parent::assertPageNotContainsText($arg1);
+            parent::assertResponseNotContains($arg1);
+            parent::assertResponseContains($this->translator->trans($arg1));
+        });
     }
 
     /**
-     * @Then /^I wait for the element "([^"]*)" to appear$/
-     */
-    public function iWaitForTheElementToAppear(string $selector): void
-    {
-        $this->getSession()->wait(
-            500,
-            "document.querySelector('".$selector."') !== null"
-        );
-    }
-
-    /**
-     * @Then /^I wait for the element "([^"]*)" to disappear$/
-     */
-    public function iWaitForTheElementToDisappear(string $selector): void
-    {
-        $this->getSession()->wait(
-            500,
-            "document.querySelector('".$selector."') === null"
-        );
-    }
-
-    /**
-     * @Then /^I wait for the element "([^"]*)" to be filled$/
-     */
-    public function iWaitForTheElementToBeFilled(string $selector): void
-    {
-        $this->getSession()->wait(
-            500,
-            "document.querySelector('".$selector."').childNodes.length > 0"
-        );
-    }
-
-    /**
-     * @When /^I click the "([^"]*)" element/
+     * @When /^I click the "([^"]*)" element$/
      */
     public function iClick(string $selector): void
     {
-        $page = $this->getSession()->getPage();
-        $this->iWaitForTheElementToAppear($selector);
-        $element = $page->find('css', $selector);
+        $this->retryStep(function () use ($selector) {
+            $page = $this->getSession()->getPage();
+            $element = $page->find('css', $selector);
 
-        if (is_null($element)) {
-            throw new \RuntimeException('Element not found');
-        }
-        $element->click();
+            if (null === $element) {
+                throw new ExpectationException('element empty', $this->getSession()->getDriver());
+            }
+
+            $element->click();
+        });
     }
 
-    /**
-     * @When I wait for the element :arg1 to contain :arg2
-     */
-    public function iWaitForTheElementToContain(string $arg1, string $arg2): void
+    public function fillField(mixed $field, mixed $value): void
     {
-        $this->getSession()->wait(
-            500,
-            "document.querySelector('".$arg1."').innerHTML ===".$arg2
-        );
+        $this->retryStep(function () use ($field, $value) {
+            parent::fillField($field, $value);
+            $element = $this->getSession()->getPage()->find('css', '#'.$field)?->getValue();
 
-        $this->assertElementContainsText($arg1, $arg2);
+            if ('' === $element) {
+                throw new ExpectationException('element empty', $this->getSession()->getDriver());
+            }
+        });
     }
 
-    /**
-     * @When /^I wait for the "(?P<field>(?:[^"]|\\")*)" field to contain "(?P<value>(?:[^"]|\\")*)"$/
-     */
-    public function iWaitForTheFieldToContainValue(string $arg1, string $arg2): void
+    public function selectOption(mixed $select, mixed $option): void
     {
-        $this->getSession()->wait(
-            500,
-            "document.querySelector('".$arg1."').value === ".$arg2
-        );
-
-        $this->assertFieldContains(str_replace('#', '', $arg1), $arg2);
+        $this->retryStep(function () use ($select, $option) {
+            parent::selectOption($select, $option);
+        });
     }
 
-    /**
-     * @When I wait for the element :arg1 to be enabled
-     */
-    public function iWaitForTheElementToBeEnabled(string $arg1): void
+    public function assertElementOnPage(mixed $element): void
     {
-        $this->getSession()->wait(
-            500,
-            "document.querySelector('".$arg1."').disabled === false"
-        );
+        $this->retryStep(function () use ($element) {
+            parent::assertElementOnPage($element);
+        });
+    }
+
+    public function assertElementNotOnPage(mixed $element): void
+    {
+        $this->retryStep(function () use ($element) {
+            parent::assertElementNotOnPage($element);
+        });
+    }
+
+    public function pressButton(mixed $button): void
+    {
+        $this->retryStep(function () use ($button) {
+            parent::pressButton($button);
+        });
+    }
+
+    public function assertElementContainsText(mixed $element, mixed $text): void
+    {
+        $this->retryStep(function () use ($element, $text) {
+            parent::assertElementContainsText($element, $text);
+        });
+    }
+
+    public function assertPageContainsText(mixed $text): void
+    {
+        $this->retryStep(function () use ($text) {
+            parent::assertPageContainsText($text);
+        });
+    }
+
+    public function assertFieldContains(mixed $field, mixed $value): void
+    {
+        $this->retryStep(function () use ($field, $value) {
+            parent::assertFieldContains($field, $value);
+        });
+    }
+
+    public function assertFieldNotContains(mixed $field, mixed $value): void
+    {
+        $this->retryStep(function () use ($field, $value) {
+            parent::assertFieldNotContains($field, $value);
+        });
+    }
+
+    public function assertNumElements(mixed $num, mixed $element): void
+    {
+        $this->retryStep(function () use ($num, $element) {
+            parent::assertNumElements($num, $element);
+        });
+    }
+
+    public function assertElementContains(mixed $element, mixed $value): void
+    {
+        $this->retryStep(function () use ($element, $value) {
+            parent::assertElementContains($element, $value);
+        });
+    }
+
+    public function assertElementNotContains(mixed $element, mixed $value): void
+    {
+        $this->retryStep(function () use ($element, $value) {
+            parent::assertElementNotContains($element, $value);
+        });
     }
 
     /**
@@ -146,7 +176,6 @@ final class BaseContext extends MinkContext
      */
     public function iAttachFileToField(string $selector, string $path): void
     {
-        $this->iWaitForTheElementToAppear($selector);
         $field = $this->getSession()->getPage()->find('css', $selector);
 
         if ($this->getMinkParameter('files_path')) {
@@ -212,7 +241,7 @@ final class BaseContext extends MinkContext
     {
         $connectedUser = $this->behatDriverContainer->get('security.helper')->getUser();
         if ($connectedUser instanceof UserInterface) {
-            throw new ExpectationException(sprintf('User connected as %s', $connectedUser->getUserIdentifier()), $this->session->getDriver());
+            throw new ExpectationException(sprintf('User connected as %s', $connectedUser->getUserIdentifier()), $this->getSession()->getDriver());
         }
     }
 
@@ -228,7 +257,7 @@ final class BaseContext extends MinkContext
         }
 
         if ($username !== $connectedUser->getFullName()) {
-            throw new ExpectationException(sprintf('Wrong user connected (expected: %s, actual: %s)', $username, $connectedUser->getFullName()), $this->session->getDriver());
+            throw new ExpectationException(sprintf('Wrong user connected (expected: %s, actual: %s)', $username, $connectedUser->getFullName()), $this->getSession()->getDriver());
         }
     }
 
@@ -255,7 +284,7 @@ final class BaseContext extends MinkContext
             return;
         }
 
-        $driver->getClient()->followRedirects(true);
+        $driver->getClient()->followRedirects();
     }
 
     /**
@@ -278,5 +307,25 @@ final class BaseContext extends MinkContext
         }
 
         $driver->getClient()->followRedirect();
+    }
+
+    private function retryStep(
+        callable $step,
+        int $maxTime = self::RETRY_MAX_TIME,
+        int $sleep = self::RETRY_SLEEP
+    ): void {
+        $startTime = \time();
+        do {
+            try {
+                $step();
+
+                return;
+            } catch (ExpectationException $e) {
+                $ex = $e;
+            }
+            \usleep($sleep);
+        } while (\time() - $startTime <= $maxTime);
+
+        throw $ex;
     }
 }

@@ -1,11 +1,6 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Access to an undefined property App\\\\Tests\\\\Behat\\\\BaseContext\\:\\:\\$session\\.$#"
-			count: 2
-			path: tests/Behat/BaseContext.php
-
-		-
 			message: "#^Call to an undefined method Symfony\\\\Component\\\\BrowserKit\\\\AbstractBrowser\\:\\:loginUser\\(\\)\\.$#"
 			count: 1
 			path: tests/Behat/BaseContext.php

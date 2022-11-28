@@ -17,6 +17,5 @@ Feature:
         Given I am on "/pieces-complementaires"
         When I attach the file "blank.pdf" to ".dz-hidden-input" field
         And I press "Enregistrer"
-        And I wait for the element "#upload_file_list" to appear
         Then I should see 1 "li" element
         And I should see 2 "a" element
