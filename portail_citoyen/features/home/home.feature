@@ -75,13 +75,13 @@ Feature:
     @javascript
     Scenario Outline: I can open a confirmation modal when I click on "Continue" and I can click on modal buttons
         Given I am on "/"
-        When I press "Déposer une plainte pour une atteinte aux bien"
+        When I press "continue_button"
         Then I should see 1 "#fr-modal-complaint-confirm[open=true]" element
         And I should see the key "<key>" translated
         When I follow "Retour à l'accueil"
         Then I should be on "/"
         Given I am on "/"
-        When I press "Déposer une plainte pour une atteinte aux bien"
+        When I press "continue_button"
         And I follow "Je confirme"
         Then I should be on "/accueil-deroule"
 
