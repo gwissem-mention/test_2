@@ -35,7 +35,7 @@
                 </div>
             </nav>
             <ul class="accordion">
-                <li class="accordion__item">
+                <li class="accordion__item" id="identity_accordion_item">
                     <div class="accordion__item__title" data-accordion-id="1" data-locked="false" id="identity_accordion_title">
                         <span class="fr-icon-arrow-down-s-line"></span>
                         {{ 'pel.complaint.your.identity'|trans }}
@@ -44,7 +44,7 @@
                         {{ component('identity', {class: 'fr-py-1w'}) }}
                     </div>
                 </li>
-                <li class="accordion__item">
+                <li class="accordion__item" id="facts_accordion_item">
                     <div class="accordion__item__title" data-accordion-id="2" data-locked="false" id="facts_accordion_title">
                         <span class="fr-icon-arrow-down-s-line"></span>
                         {{ 'pel.complaint.description.of.facts'|trans }}

@@ -26,7 +26,6 @@ Feature:
 #        When I press "france_connect_auth_button"
 #        Then I should be "/porter-plainte?france_connected=1"
 #        When I click the "label[for=identity_declarantStatus_0]" element
-#        And I wait for the element "#form-identity" to appear
 #        Then the "identity_civilState_birthName" field should contain "DUPONT"
 #        And the "identity_civilState_firstnames" field should contain "Michel"
 #        And the "identity_civilState_birthDate" field should contain "1967-03-02"
@@ -42,7 +41,6 @@ Feature:
 #        When I follow "Continuer sans m'authentifier"
 #        Then I should be on "/porter-plainte"
 #        When I click the "label[for=identity_declarantStatus_0]" element
-#        And I wait for the element "#form-identity" to appear
 #        Then the "identity_civilState_birthName" field should not contain "DUPONT"
 #        And the "identity_civilState_firstnames" field should not contain "Michel"
 #        And the "identity_civilState_birthDate" field should not contain "1967-03-02"

@@ -20,10 +20,10 @@ class FranceConnectGuzzleClientFake implements ClientInterface
     public static bool $userInfoServerError = false;
 
     public function __construct(
-        private UrlGeneratorInterface $urlGenerator,
-        private string $clientId,
-        private string $clientSecret,
-        private string $baseUri,
+        private readonly UrlGeneratorInterface $urlGenerator,
+        private readonly string $clientId,
+        private readonly string $clientSecret,
+        private readonly string $baseUri,
     ) {
     }
 
@@ -43,16 +43,13 @@ class FranceConnectGuzzleClientFake implements ClientInterface
         }
 
         return match ($path = $request->getUri()->getPath()) {
-            '/api/v1/token' => $this->tokenCall($request, $options),
-            '/api/v1/userinfo' => $this->userInfoCall($request, $options),
+            '/api/v1/token' => $this->tokenCall($request),
+            '/api/v1/userinfo' => $this->userInfoCall($request),
             default => throw new \LogicException(sprintf('Unknew path %s', $path)),
         };
     }
 
-    /**
-     * @param array<string, string> $options
-     */
-    private function tokenCall(RequestInterface $request, array $options = []): ResponseInterface
+    private function tokenCall(RequestInterface $request): ResponseInterface
     {
         if ('POST' !== $request->getMethod()) {
             throw new \LogicException(sprintf('Wrong request method (expected: POST, actual: %s', $request->getMethod()));
@@ -92,10 +89,7 @@ class FranceConnectGuzzleClientFake implements ClientInterface
         );
     }
 
-    /**
-     * @param array<string, string> $options
-     */
-    private function userInfoCall(RequestInterface $request, array $options = []): ResponseInterface
+    private function userInfoCall(RequestInterface $request): ResponseInterface
     {
         if ('GET' !== $request->getMethod()) {
             throw new \LogicException(sprintf('Wrong request method (expected: GET, actual: %s', $request->getMethod()));
@@ -151,7 +145,7 @@ class FranceConnectGuzzleClientFake implements ClientInterface
         throw new \BadMethodCallException('sendAsync should not be called');
     }
 
-    public function getConfig(?string $option = null)
+    public function getConfig(?string $option = null): never
     {
         throw new \BadMethodCallException('sendAsync should not be called');
     }

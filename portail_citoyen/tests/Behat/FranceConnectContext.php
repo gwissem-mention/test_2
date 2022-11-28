@@ -14,9 +14,9 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 class FranceConnectContext implements Context
 {
     public function __construct(
-        private UrlGeneratorInterface $urlGenerator,
-        private Session $session,
-        private string $baseUri,
+        private readonly UrlGeneratorInterface $urlGenerator,
+        private readonly Session $session,
+        private readonly string $baseUri,
     ) {
     }
 
