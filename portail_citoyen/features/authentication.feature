@@ -24,7 +24,7 @@ Feature:
 #    Scenario: I can click on the FranceConnect Button
 #        Given I am on "/authentification"
 #        When I press "france_connect_auth_button"
-#        Then I should be "/porter-plainte?france_connected=1"
+#        Then I should be "/porter-plainte"
 #        When I click the "label[for=identity_declarantStatus_0]" element
 #        Then the "identity_civilState_birthName" field should contain "DUPONT"
 #        And the "identity_civilState_firstnames" field should contain "Michel"

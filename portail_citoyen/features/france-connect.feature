@@ -5,25 +5,25 @@ Feature:
     I need to be able to connect via France Connect
 
     Scenario: France Connect successful authentication
-        When I go to "/porter-plainte?france_connected=1"
-        Then I should be on "/porter-plainte?france_connected=1"
+        When I go to "/authentification?france_connected=1"
+        Then I should be on "/porter-plainte"
         And I should be connected as "Michel DUPONT"
 
     Scenario: Error on access token retrieval
         Given An error will occur during France Connect access token retrieval
-        When I go to "/porter-plainte?france_connected=1"
+        When I go to "/authentification?france_connected=1"
         Then I should see "Echec de l'authentification"
         And I should not be connected
 
     Scenario: Error on user info retrieval
         Given An error will occur during France Connect user info retrieval
-        When I go to "/porter-plainte?france_connected=1"
+        When I go to "/authentification?france_connected=1"
         Then I should see "Echec de l'authentification"
         And I should not be connected
 
     Scenario: Redirection to France Connect logout on app logout
         Given follow redirects is disabled
-        When I go to "/porter-plainte?france_connected=1"
+        When I go to "/authentification?france_connected=1"
         And I follow the redirection
         Then I should be connected as "Michel DUPONT"
         When I go to "/logout"
