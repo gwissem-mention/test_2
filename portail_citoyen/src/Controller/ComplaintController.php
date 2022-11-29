@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Session\FranceConnectHandler;
+use App\Session\SessionHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,13 +16,10 @@ class ComplaintController extends AbstractController
 {
     public function __invoke(
         Request $request,
-        FranceConnectHandler $franceConnectHandler
+        FranceConnectHandler $franceConnectHandler,
+        SessionHandler $sessionHandler
     ): Response {
-        if ('1' === $request->query->get('france_connected')) {
-            $franceConnectHandler->setIdentityToComplaint();
-        } elseif ('0' === $request->query->get('france_connected')) {
-            $franceConnectHandler->clear();
-        }
+        $sessionHandler->init();
 
         return $this->render('pages/complaint.html.twig');
     }

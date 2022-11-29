@@ -10,8 +10,6 @@ use Symfony\Component\Security\Core\Exception\AuthenticationException;
 
 class FranceConnectProvider extends AbstractProvider
 {
-    public const ID_TOKEN_SESSION_KEY = 'fc_id_token';
-
     private const RESPONSE_OK = 200;
     private const UNAUTHORIZED = 401;
 

@@ -27,11 +27,11 @@ class FranceConnectListener
      * @param array<string, string> $logoutTargetPathMap
      */
     public function __construct(
-        private Security $security,
-        private UrlGeneratorInterface $urlGenerator,
-        private FirewallMapInterface $firewallMap,
-        private string $baseUri,
-        private array $logoutTargetPathMap,
+        private readonly Security $security,
+        private readonly UrlGeneratorInterface $urlGenerator,
+        private readonly FirewallMapInterface $firewallMap,
+        private readonly string $baseUri,
+        private readonly array $logoutTargetPathMap,
     ) {
     }
 
@@ -40,7 +40,7 @@ class FranceConnectListener
         $request = $event->getRequest();
         if (
             null === $this->security->getUser() &&
-            'complaint' === $event->getRequest()->attributes->get('_route')
+            'authentication' === $event->getRequest()->attributes->get('_route')
             && 1 === $request->query->getInt('france_connected')
         ) {
             throw new AuthenticationException('authentication needed');
@@ -84,7 +84,11 @@ class FranceConnectListener
 
         $uri = rtrim($this->baseUri, '/').'/logout?'.http_build_query([
                 'id_token_hint' => $this->idToken,
-                'post_logout_redirect_uri' => $this->urlGenerator->generate(self::LOGOUT_CALLBACK_ROUTE, [], UrlGeneratorInterface::ABSOLUTE_URL),
+                'post_logout_redirect_uri' => $this->urlGenerator->generate(
+                    self::LOGOUT_CALLBACK_ROUTE,
+                    [],
+                    UrlGeneratorInterface::ABSOLUTE_URL
+                ),
                 'state' => bin2hex(random_bytes(16)),
             ]);
 

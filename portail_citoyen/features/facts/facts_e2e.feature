@@ -6,7 +6,7 @@ Feature:
     Background:
         Given I am on "/authentification"
         When I press "france_connect_auth_button"
-        Then I am on "/porter-plainte?france_connected=1"
+        Then I am on "/porter-plainte"
         And I click the "#identity_accordion_title" element
         When I click the "label[for=identity_declarantStatus_0]" element
         And I select "1" from "identity_civilState_job"

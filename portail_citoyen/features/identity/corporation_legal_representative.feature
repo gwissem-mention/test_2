@@ -7,7 +7,7 @@ Feature:
     Scenario: I can select the Corporation Legal Representative radio button
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
-        And I am on "/porter-plainte?france_connected=0"
+        And I am on "/porter-plainte"
         And I click the "#identity_accordion_title" element
         When I click the "label[for=identity_declarantStatus_2]" element
         Then I should see the key "pel.all.fields.are.required" translated
@@ -38,7 +38,7 @@ Feature:
     Scenario: Submit the form with minimal valid values for Corporation Legal Representative declarant
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
-        And I am on "/porter-plainte?france_connected=0"
+        And I am on "/porter-plainte"
         And I click the "#identity_accordion_title" element
         When I click the "label[for=identity_declarantStatus_2]" element
         And I select "1" from "identity_civilState_civility"
@@ -65,7 +65,7 @@ Feature:
     Scenario: Submit the form with only 1 required value for Corporation Legal Representative declarant
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
-        And I am on "/porter-plainte?france_connected=0"
+        And I am on "/porter-plainte"
         And I click the "#identity_accordion_title" element
         When I click the "label[for=identity_declarantStatus_2]" element
         And I select "1" from "identity_civilState_civility"
@@ -76,7 +76,7 @@ Feature:
     Scenario: Submit the form with only 2 required value for Corporation Legal Representative declarant
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
-        And I am on "/porter-plainte?france_connected=0"
+        And I am on "/porter-plainte"
         And I click the "#identity_accordion_title" element
         When I click the "label[for=identity_declarantStatus_2]" element
         And I select "1" from "identity_civilState_civility"
@@ -88,7 +88,7 @@ Feature:
     Scenario: Submit the form with only 3 required value for Corporation Legal Representative declarant
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
-        And I am on "/porter-plainte?france_connected=0"
+        And I am on "/porter-plainte"
         And I click the "#identity_accordion_title" element
         When I click the "label[for=identity_declarantStatus_2]" element
         And I select "1" from "identity_civilState_civility"
@@ -101,7 +101,7 @@ Feature:
     Scenario: Submit the form with only 4 required value for Corporation Legal Representative declarant
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
-        And I am on "/porter-plainte?france_connected=0"
+        And I am on "/porter-plainte"
         And I click the "#identity_accordion_title" element
         When I click the "label[for=identity_declarantStatus_2]" element
         And I select "1" from "identity_civilState_civility"
@@ -115,7 +115,7 @@ Feature:
     Scenario: Submit the form with only 5 required value for Corporation Legal Representative declarant
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
-        And I am on "/porter-plainte?france_connected=0"
+        And I am on "/porter-plainte"
         And I click the "#identity_accordion_title" element
         When I click the "label[for=identity_declarantStatus_2]" element
         And I select "1" from "identity_civilState_civility"
@@ -130,7 +130,7 @@ Feature:
     Scenario: Submit the form with only 6 required value for Corporation Legal Representative declarant
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
-        And I am on "/porter-plainte?france_connected=0"
+        And I am on "/porter-plainte"
         And I click the "#identity_accordion_title" element
         When I click the "label[for=identity_declarantStatus_2]" element
         And I select "1" from "identity_civilState_civility"
@@ -148,7 +148,7 @@ Feature:
     Scenario: Submit the form with only 7 required value for Corporation Legal Representative declarant
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
-        And I am on "/porter-plainte?france_connected=0"
+        And I am on "/porter-plainte"
         And I click the "#identity_accordion_title" element
         When I click the "label[for=identity_declarantStatus_2]" element
         And I select "1" from "identity_civilState_civility"
@@ -167,7 +167,7 @@ Feature:
     Scenario: Submit the form with only 9 required value for Corporation Legal Representative declarant
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
-        And I am on "/porter-plainte?france_connected=0"
+        And I am on "/porter-plainte"
         And I click the "#identity_accordion_title" element
         When I click the "label[for=identity_declarantStatus_2]" element
         And I select "1" from "identity_civilState_civility"
@@ -187,7 +187,7 @@ Feature:
     Scenario: Submit the form with only 10 required value for Corporation Legal Representative declarant
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
-        And I am on "/porter-plainte?france_connected=0"
+        And I am on "/porter-plainte"
         And I click the "#identity_accordion_title" element
         When I click the "label[for=identity_declarantStatus_2]" element
         And I select "1" from "identity_civilState_civility"
@@ -208,7 +208,7 @@ Feature:
     Scenario: Submit the form with only 11 required value for Corporation Legal Representative declarant
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
-        And I am on "/porter-plainte?france_connected=0"
+        And I am on "/porter-plainte"
         And I click the "#identity_accordion_title" element
         When I click the "label[for=identity_declarantStatus_2]" element
         And I select "1" from "identity_civilState_civility"
@@ -230,7 +230,7 @@ Feature:
     Scenario: Submit the form with only 12 required value for Corporation Legal Representative declarant
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
-        And I am on "/porter-plainte?france_connected=0"
+        And I am on "/porter-plainte"
         And I click the "#identity_accordion_title" element
         When I click the "label[for=identity_declarantStatus_2]" element
         And I select "1" from "identity_civilState_civility"
@@ -253,7 +253,7 @@ Feature:
     Scenario: Submit the form with only 13 required value for Corporation Legal Representative declarant
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
-        And I am on "/porter-plainte?france_connected=0"
+        And I am on "/porter-plainte"
         And I click the "#identity_accordion_title" element
         When I click the "label[for=identity_declarantStatus_2]" element
         And I select "1" from "identity_civilState_civility"
@@ -276,7 +276,7 @@ Feature:
     Scenario: Submit the form with only 14 required value for Corporation Legal Representative declarant
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
-        And I am on "/porter-plainte?france_connected=0"
+        And I am on "/porter-plainte"
         And I click the "#identity_accordion_title" element
         When I click the "label[for=identity_declarantStatus_2]" element
         And I select "1" from "identity_civilState_civility"
@@ -302,7 +302,7 @@ Feature:
     Scenario: Submit the form with only 15 required value for Corporation Legal Representative declarant
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
-        And I am on "/porter-plainte?france_connected=0"
+        And I am on "/porter-plainte"
         And I click the "#identity_accordion_title" element
         When I click the "label[for=identity_declarantStatus_2]" element
         And I select "1" from "identity_civilState_civility"
@@ -328,7 +328,7 @@ Feature:
     Scenario: Submit the form with invalid siren (too short) for Corporation Legal Representative declarant
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
-        And I am on "/porter-plainte?france_connected=0"
+        And I am on "/porter-plainte"
         And I click the "#identity_accordion_title" element
         When I click the "label[for=identity_declarantStatus_2]" element
         And I select "1" from "identity_civilState_civility"
@@ -354,7 +354,7 @@ Feature:
     Scenario: Submit the form with invalid siren (letters) for Corporation Legal Representative declarant
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
-        And I am on "/porter-plainte?france_connected=0"
+        And I am on "/porter-plainte"
         And I click the "#identity_accordion_title" element
         When I click the "label[for=identity_declarantStatus_2]" element
         And I select "1" from "identity_civilState_civility"

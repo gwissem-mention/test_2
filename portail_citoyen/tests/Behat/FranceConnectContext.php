@@ -2,7 +2,6 @@
 
 namespace App\Tests\Behat;
 
-use App\Entity\User;
 use App\Security\FranceConnectListener;
 use App\Tests\Doubles\FranceConnectGuzzleClientFake;
 use Behat\Behat\Context\Context;

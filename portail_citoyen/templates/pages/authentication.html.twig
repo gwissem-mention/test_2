@@ -4,7 +4,7 @@
     <h1>{{ 'pel.to.log.in'|trans }}</h1>
     {% if app.user is null %}
         <div class="fr-connect-group">
-            <button class="fr-connect" id="france_connect_auth_button" onclick="window.location='{{ path('complaint', {'france_connected': true}) }}';">
+            <button class="fr-connect" id="france_connect_auth_button" onclick="window.location='{{ path('authentication', {'france_connected': true}) }}';">
                 <span class="fr-connect__login">{{ 'pel.identify.with'|trans }}</span>
                 <span class="fr-connect__brand">{{ 'pel.france.connect'|trans }}</span>
             </button>
@@ -13,6 +13,6 @@
             </p>
         </div>
     {% endif %}
-    <a href="{{ path('complaint', {'france_connected': false}) }}">{{ 'pel.continue.pel.without.log.in'|trans }}</a>
+    <a href="{{ path('authentication', {'france_connected': false}) }}">{{ 'pel.continue.pel.without.log.in'|trans }}</a>
     <p>{{ 'pel.continue.pel.without.log.in.explanation'|trans }}</p>
 {% endblock %}

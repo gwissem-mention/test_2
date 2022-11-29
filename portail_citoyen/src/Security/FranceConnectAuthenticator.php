@@ -25,10 +25,10 @@ class FranceConnectAuthenticator extends OAuth2Authenticator implements Authenti
     public const ID_TOKEN_SESSION_KEY = 'fc_id_token';
 
     public function __construct(
-        private OAuth2Client $franceConnectClient,
-        private UserRepository $userRepository,
-        private LoggerInterface $securityLogger,
-        private UrlGeneratorInterface $urlGenerator,
+        private readonly OAuth2Client $franceConnectClient,
+        private readonly UserRepository $userRepository,
+        private readonly LoggerInterface $securityLogger,
+        private readonly UrlGeneratorInterface $urlGenerator,
     ) {
     }
 
@@ -63,46 +63,50 @@ class FranceConnectAuthenticator extends OAuth2Authenticator implements Authenti
 
         $request->getSession()->set(self::ID_TOKEN_SESSION_KEY, $rawValues['id_token']);
 
-        return new SelfValidatingPassport(new UserBadge($accessToken->getToken(), function () use ($accessToken): User {
-            $resourceOwner = $this->franceConnectClient->fetchUserFromToken($accessToken);
+        return new SelfValidatingPassport(
+            new UserBadge($accessToken->getToken(), function () use ($accessToken): User {
+                $resourceOwner = $this->franceConnectClient->fetchUserFromToken($accessToken);
 
-            if (!is_string($sub = $resourceOwner->getId())) {
-                throw new \RuntimeException(sprintf('User identifier %s is not a string', get_debug_type($sub)));
-            }
+                if (!is_string($sub = $resourceOwner->getId())) {
+                    throw new \RuntimeException(sprintf('User identifier %s is not a string', get_debug_type($sub)));
+                }
 
-            if ($user = $this->userRepository->findOneByIdentifier($sub)) {
+                if ($user = $this->userRepository->findOneByIdentifier($sub)) {
+                    return $user;
+                }
+
+                $userData = $resourceOwner->toArray();
+                $user = new User(
+                    $sub,
+                    $userData['family_name'] ?? '',
+                    $userData['given_name'] ?? '',
+                    $userData['preferred_username'] ?? '',
+                    $userData['birthdate'] ?? '',
+                    $userData['birthplace'] ?? '',
+                    $userData['birthcountry'] ?? '',
+                    $userData['gender'] ?? '',
+                    $userData['email'] ?? '',
+                );
+                $this->userRepository->save($user);
+
                 return $user;
-            }
-
-            $userData = $resourceOwner->toArray();
-            $user = new User(
-                $sub,
-                $userData['family_name'] ?? '',
-                $userData['given_name'] ?? '',
-                $userData['preferred_username'] ?? '',
-                $userData['birthdate'] ?? '',
-                $userData['birthplace'] ?? '',
-                $userData['birthcountry'] ?? '',
-                $userData['gender'] ?? '',
-                $userData['email'] ?? '',
-            );
-            $this->userRepository->save($user);
-
-            return $user;
-        }));
+            })
+        );
     }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): Response
     {
-        return new RedirectResponse($this->urlGenerator->generate('complaint', ['france_connected' => 1]));
+        return new RedirectResponse($this->urlGenerator->generate('authentication', ['france_connected' => 1]));
     }
 
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response
     {
-        $this->securityLogger->warning(sprintf(
-            'Authentication failure: %s',
-            $exception->getMessage(),
-        ));
+        $this->securityLogger->warning(
+            sprintf(
+                'Authentication failure: %s',
+                $exception->getMessage(),
+            )
+        );
 
         return new RedirectResponse($this->urlGenerator->generate('france_connect_error'));
     }

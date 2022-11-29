@@ -22,30 +22,25 @@ class FranceConnectHandler
             return;
         }
 
+        /** @var ComplaintModel $complaint */
         $complaint = $this->sessionHandler->getComplaint();
 
-        if (null === $complaint) {
-            $this->sessionHandler->init();
-            /** @var ComplaintModel $complaint */
-            $complaint = $this->sessionHandler->getComplaint();
-        }
-
-        $complaint
-            ->setFranceConnected(true)
-            ->setIdentity(
-                $this->identityFactory->createFromFranceConnect(
-                    $currentUser->getGivenName(),
-                    $currentUser->getFamilyName(),
-                    $currentUser->getBirthDate(),
-                    $currentUser->getGender()->value,
-                    $currentUser->getBirthPlace(),
-                    $currentUser->getBirthCountry(),
-                    $currentUser->getEmail(),
-                    $currentUser->getPreferredUsername(),
+        $this->sessionHandler->setComplaint(
+            $complaint
+                ->setFranceConnected(true)
+                ->setIdentity(
+                    $this->identityFactory->createFromFranceConnect(
+                        $currentUser->getGivenName(),
+                        $currentUser->getFamilyName(),
+                        $currentUser->getBirthDate(),
+                        $currentUser->getGender()->value,
+                        $currentUser->getBirthPlace(),
+                        $currentUser->getBirthCountry(),
+                        $currentUser->getEmail(),
+                        $currentUser->getPreferredUsername(),
+                    )
                 )
-            );
-
-        $this->sessionHandler->setComplaint($complaint);
+        );
     }
 
     public function clear(): void
