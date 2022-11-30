@@ -1,5 +1,4 @@
-<dialog aria-labelledby="fr-modal-{{ id }}-title" id="fr-modal-{{ id }}" class="fr-modal"
-        role="dialog">
+<dialog aria-labelledby="fr-modal-{{ id }}-title" id="fr-modal-{{ id }}" class="fr-modal" role="dialog">
     <div class="fr-container fr-container--fluid fr-container-md">
         <div class="fr-grid-row fr-grid-row--center">
             <div class="fr-col-12 fr-col-md-8 {% if size is same as('md') %}fr-col-lg-6{% endif %}">
@@ -8,10 +7,10 @@
                         <button class="fr-link--close fr-link" aria-controls="fr-modal-{{ id }}">{{ 'pel.close'|trans }}</button>
                     </div>
                     <div class="fr-modal__content">
-                        <h1 id="fr-modal-{{ id }}-title" class="fr-modal__title">
+                        <div id="fr-modal-{{ id }}-title" class="fr-modal__title">
                             <span class="fr-fi-arrow-right-line fr-fi--lg"></span>
                             {% block title %}{% endblock %}
-                        </h1>
+                        </div>
                         <p>
                             {% block body %}{% endblock %}
                         </p>
