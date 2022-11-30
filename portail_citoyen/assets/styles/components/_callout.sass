@@ -1,6 +1,26 @@
-#callout
-    &-top
-        @media screen and (min-width: $breakpoint-medium)
-            @include position(absolute)
-            top: $margin-large
-            left: $margin-extra-large
+.fr-callout
+    &--top
+        @include reset-shadow
+        @include position(absolute)
+        @include flex(column, center, center)
+        top: 0
+        left: 0
+        background-color: $black-transparent
+        height: 100%
+        width: 100%
+
+        @media screen and (max-width: $breakpoint-medium)
+            @include reset
+            @include position(relative)
+            background-color: $white
+            display: block
+
+        .fr-callout
+            &__title,
+            &__text
+                /* !important is needed here due to DSFR. */
+                color: $white !important
+
+                @media screen and (max-width: $breakpoint-medium)
+                    /* !important is needed here due to DSFR. */
+                    color: var(--text-title-grey) !important

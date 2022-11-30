@@ -6,6 +6,11 @@
     @include reset
     list-style-type: none
 
+@mixin reset-shadow
+    box-shadow: none
+    -webkit-box-shadow: none
+    -moz-box-shadow: none
+
 @mixin rotate($deg)
     transform: rotate($deg)
 
@@ -49,3 +54,11 @@
     border-radius: 50%
     -webkit-border-radius: 50%
     -moz-border-radius: 50%
+
+@mixin flex($direction, $align-items, $justify-content)
+    display: flex
+    flex-wrap: wrap
+    box-sizing: border-box
+    flex-direction: $direction
+    align-items: $align-items
+    justify-content: $justify-content
