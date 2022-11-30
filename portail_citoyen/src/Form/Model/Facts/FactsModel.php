@@ -12,9 +12,7 @@ class FactsModel
     private ?AddressModel $address = null;
     private ?OffenseNatureModel $offenseNature = null;
     private ?OffenseDateModel $offenseDate = null;
-    private ?string $description = null;
     private ?bool $amountKnown = null;
-    private ?AdditionalInformationModel $additionalInformation = null;
     private ?int $amount = null;
     private ?int $placeNature = null;
     private ?bool $victimOfViolence = null;
@@ -66,18 +64,6 @@ class FactsModel
         return $this;
     }
 
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(?string $description): self
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
     public function isAmountKnown(): ?bool
     {
         return $this->amountKnown;
@@ -86,18 +72,6 @@ class FactsModel
     public function setAmountKnown(?bool $amountKnown): self
     {
         $this->amountKnown = $amountKnown;
-
-        return $this;
-    }
-
-    public function getAdditionalInformation(): ?AdditionalInformationModel
-    {
-        return $this->additionalInformation;
-    }
-
-    public function setAdditionalInformation(?AdditionalInformationModel $additionalInformation): self
-    {
-        $this->additionalInformation = $additionalInformation;
 
         return $this;
     }

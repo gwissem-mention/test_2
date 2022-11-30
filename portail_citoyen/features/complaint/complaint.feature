@@ -1,12 +1,15 @@
+@func
 Feature:
     In order to fill a complaint
     As a user
-    I want to see the offense facts step page
+    I want to see the complaint page
 
-    @func
-    Scenario: I can see the offense facts page
+    Scenario: I can see the complaint page
         Given I am on "/porter-plainte"
         Then the response status code should be 200
+        And I should see "Identité" in the ".fr-breadcrumb__list" element
+        And I should see "Faits" in the ".fr-breadcrumb__list" element
+        And I should see "Informations complémentaires" in the ".fr-breadcrumb__list" element
         And I should see the key "pel.ministry" translated
         And I should see the key "pel.inside" translated
         And I should see the key "pel.and.overseas" translated
@@ -18,10 +21,8 @@ Feature:
         And I should not see a "#place_nature_moreInfoText" element
         And I should see the key "pel.complaint.exact.date.known" translated
         And I should see the key "pel.do.you.know.hour.facts" translated
-        And I should see the key "pel.additional.factual.information" translated
         And I should see the key "pel.do.you.have.informations.on.potential.suspects" translated
         And I should see the key "pel.facts.witnesses" translated
-        And I should see the key "pel.additional.factual.information" translated
         And I should see the key "pel.fsi.visit" translated
         And I should see the key "pel.cctv.present" translated
         And I should see the key "pel.object.category" translated
@@ -32,31 +33,28 @@ Feature:
         And I should see the key "pel.facts.description.precise" translated
         And I should see the key "pel.is.amount.known" translated
 
-    @func
-    Scenario: I can click on the identity breadcrumb
+    Scenario Outline: I can see the declarant status inputs
         Given I am on "/porter-plainte"
-        When I follow "Votre identité"
-        Then the response status code should be 200
-        And I should be on "/porter-plainte"
-
-    @func
-    Scenario: I can see the offense nature breadcrumb
-        Given I am on "/porter-plainte"
-        Then I should see "Faits" in the ".fr-breadcrumb__list" element
-
-    @func
-    Scenario Outline: I can see the offense nature list
-        Given I am on "/porter-plainte"
-        When I check "<offense_nature>"
-        Then I should see "<offense_nature>"
+        Then I should see 3 "input[type=radio][name='identity[declarantStatus]']" elements
+        And I should see "<declarant_status>" in the "<element>" element
 
         Examples:
-            | offense_nature           |
-            | Vol                      |
-            | Dégradation              |
-            | Autre atteinte aux biens |
+            | element                               | declarant_status                           |
+            | label[for=identity_declarantStatus_0] | Victime                                    |
+            | label[for=identity_declarantStatus_1] | Représentant légal d'une personne physique |
+            | label[for=identity_declarantStatus_2] | Représentant légal d'une personne morale   |
 
-    @func
+    Scenario Outline: I can see the offense nature checkboxes
+        Given I am on "/porter-plainte"
+        Then I should see 3 "input[type=checkbox][name='facts[offenseNature][offenseNatures][]']" elements
+        And I should see "<offense_nature>" in the "<element>" element
+
+        Examples:
+            | element                                         | offense_nature           |
+            | label[for=facts_offenseNature_offenseNatures_0] | Vol                      |
+            | label[for=facts_offenseNature_offenseNatures_1] | Dégradation              |
+            | label[for=facts_offenseNature_offenseNatures_2] | Autre atteinte aux biens |
+
     Scenario Outline: I can see the place natures list
         Given I am on "/porter-plainte"
         Then I should see "<place_nature>" in the "#facts_placeNature" element
@@ -71,7 +69,6 @@ Feature:
             | Autres natures de lieu |
             | Lieu indéterminé       |
 
-    @func
     Scenario Outline: I can see the offense exact date known radio buttons
         Given I am on "/porter-plainte"
         Then I should see 2 "input[type=radio][name='facts[offenseDate][exactDateKnown]']" elements
@@ -82,7 +79,6 @@ Feature:
             | label[for=facts_offenseDate_exactDateKnown_0] | Oui              |
             | label[for=facts_offenseDate_exactDateKnown_1] | Non              |
 
-    @func
     Scenario Outline: I can see the offense choice hour radio buttons
         Given I am on "/porter-plainte"
         Then I should see 3 "input[type=radio][name='facts[offenseDate][choiceHour]']" elements
@@ -94,7 +90,6 @@ Feature:
             | label[for=facts_offenseDate_choiceHour_1] | Non mais je connais le créneau horaire  |
             | label[for=facts_offenseDate_choiceHour_2] | Je ne connais pas l'heure des faits     |
 
-    @func
     Scenario Outline: I can see the object category choice list
         Given I am on "/porter-plainte"
         When I select "<object_category>" from "facts_objects_0_category"
@@ -109,47 +104,43 @@ Feature:
             | Véhicules non immatriculés |
             | Autres                     |
 
-    @func
     Scenario Outline: I can see the suspectsChoice choices
         Given I am on "/porter-plainte"
-        Then I should see 2 "input[type=radio][name='facts[additionalInformation][suspectsChoice]']" elements
-        And I should see "<choice>" in the "<element>" element
-
-        Examples:
-            | element                                                 | choice |
-            | label[for=facts_additionalInformation_suspectsChoice_0] | Oui    |
-            | label[for=facts_additionalInformation_suspectsChoice_1] | Non    |
-
-    @func
-    Scenario Outline: I can see the witnesses choices
-        Given I am on "/porter-plainte"
-        Then I should see 2 "input[type=radio][name='facts[additionalInformation][witnesses]']" elements
+        Then I should see 2 "input[type=radio][name='additional_information[suspectsChoice]']" elements
         And I should see "<choice>" in the "<element>" element
 
         Examples:
             | element                                            | choice |
-            | label[for=facts_additionalInformation_witnesses_0] | Oui    |
-            | label[for=facts_additionalInformation_witnesses_1] | Non    |
+            | label[for=additional_information_suspectsChoice_0] | Oui    |
+            | label[for=additional_information_suspectsChoice_1] | Non    |
 
-    @func
+    Scenario Outline: I can see the witnesses choices
+        Given I am on "/porter-plainte"
+        Then I should see 2 "input[type=radio][name='additional_information[witnesses]']" elements
+        And I should see "<choice>" in the "<element>" element
+
+        Examples:
+            | element                                       | choice |
+            | label[for=additional_information_witnesses_0] | Oui    |
+            | label[for=additional_information_witnesses_1] | Non    |
+
     Scenario Outline: I can see the fsi visit choices
         Given I am on "/porter-plainte"
-        Then I should see 2 "input[type=radio][name='facts[additionalInformation][fsiVisit]']" elements
+        Then I should see 2 "input[type=radio][name='additional_information[fsiVisit]']" elements
         And I should see "<choice>" in the "<element>" element
 
         Examples:
-            | element                                           | choice |
-            | label[for=facts_additionalInformation_fsiVisit_0] | Oui    |
-            | label[for=facts_additionalInformation_fsiVisit_1] | Non    |
+            | element                                      | choice |
+            | label[for=additional_information_fsiVisit_0] | Oui    |
+            | label[for=additional_information_fsiVisit_1] | Non    |
 
-    @func
     Scenario Outline: I can see the cctv choices
         Given I am on "/porter-plainte"
-        Then I should see 3 "input[type=radio][name='facts[additionalInformation][cctvPresent]']" elements
+        Then I should see 3 "input[type=radio][name='additional_information[cctvPresent]']" elements
         And I should see "<choice>" in the "<element>" element
 
         Examples:
-            | element                                              | choice         |
-            | label[for=facts_additionalInformation_cctvPresent_0] | Oui            |
-            | label[for=facts_additionalInformation_cctvPresent_1] | Non            |
-            | label[for=facts_additionalInformation_cctvPresent_2] | Je ne sais pas |
+            | element                                         | choice         |
+            | label[for=additional_information_cctvPresent_0] | Oui            |
+            | label[for=additional_information_cctvPresent_1] | Non            |
+            | label[for=additional_information_cctvPresent_2] | Je ne sais pas |

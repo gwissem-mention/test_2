@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Session;
 
+use App\Form\Model\AdditionalInformation\AdditionalInformationModel;
 use App\Form\Model\Facts\FactsModel;
 use App\Form\Model\Identity\IdentityModel;
 use Symfony\Component\Uid\Uuid;
@@ -14,6 +15,7 @@ class ComplaintModel
     private \DateTimeInterface $createdAt;
     private ?IdentityModel $identity = null;
     private ?FactsModel $facts = null;
+    private ?AdditionalInformationModel $additionalInformation = null;
     private bool $franceConnected = false;
 
     public function __construct(Uuid $id)
@@ -78,6 +80,18 @@ class ComplaintModel
     public function setFranceConnected(bool $franceConnected): self
     {
         $this->franceConnected = $franceConnected;
+
+        return $this;
+    }
+
+    public function getAdditionalInformation(): ?AdditionalInformationModel
+    {
+        return $this->additionalInformation;
+    }
+
+    public function setAdditionalInformation(?AdditionalInformationModel $additionalInformation): self
+    {
+        $this->additionalInformation = $additionalInformation;
 
         return $this;
     }

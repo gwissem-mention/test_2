@@ -1,9 +1,9 @@
+@javascript
 Feature:
     In order to fill a complaint
     As a user
     I want to see the corporation legal representative declarant form
 
-    @javascript
     Scenario: I can select the Corporation Legal Representative radio button
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
@@ -33,8 +33,7 @@ Feature:
         And I should see the key "pel.corporation.phone" translated
         And I should see the key "pel.next" translated
 
-
-    @javascript
+        
     Scenario: Submit the form with minimal valid values for Corporation Legal Representative declarant
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
@@ -61,7 +60,6 @@ Feature:
         And I press "identity_submit"
         Then the "#facts_accordion_item" element should contain "style=\"display: block;\""
 
-    @javascript
     Scenario: Submit the form with only 1 required value for Corporation Legal Representative declarant
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
@@ -71,8 +69,7 @@ Feature:
         And I select "1" from "identity_civilState_civility"
         And I press "identity_submit"
         Then the "#facts_accordion_item" element should not contain "style=\"display: block;\""
-
-    @javascript
+    
     Scenario: Submit the form with only 2 required value for Corporation Legal Representative declarant
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
@@ -84,7 +81,6 @@ Feature:
         And I press "identity_submit"
         Then the "#facts_accordion_item" element should not contain "style=\"display: block;\""
 
-    @javascript
     Scenario: Submit the form with only 3 required value for Corporation Legal Representative declarant
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
@@ -97,7 +93,6 @@ Feature:
         And I press "identity_submit"
         Then the "#facts_accordion_item" element should not contain "style=\"display: block;\""
 
-    @javascript
     Scenario: Submit the form with only 4 required value for Corporation Legal Representative declarant
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
@@ -111,7 +106,6 @@ Feature:
         And I press "identity_submit"
         Then the "#facts_accordion_item" element should not contain "style=\"display: block;\""
 
-    @javascript
     Scenario: Submit the form with only 5 required value for Corporation Legal Representative declarant
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
@@ -126,7 +120,6 @@ Feature:
         And I press "identity_submit"
         Then the "#facts_accordion_item" element should not contain "style=\"display: block;\""
 
-    @javascript
     Scenario: Submit the form with only 6 required value for Corporation Legal Representative declarant
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
@@ -144,7 +137,6 @@ Feature:
         And I press "identity_submit"
         Then the "#facts_accordion_item" element should not contain "style=\"display: block;\""
 
-    @javascript
     Scenario: Submit the form with only 7 required value for Corporation Legal Representative declarant
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
@@ -163,7 +155,6 @@ Feature:
         And I press "identity_submit"
         Then the "#facts_accordion_item" element should not contain "style=\"display: block;\""
 
-    @javascript
     Scenario: Submit the form with only 9 required value for Corporation Legal Representative declarant
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
@@ -183,7 +174,6 @@ Feature:
         And I press "identity_submit"
         Then the "#facts_accordion_item" element should not contain "style=\"display: block;\""
 
-    @javascript
     Scenario: Submit the form with only 10 required value for Corporation Legal Representative declarant
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
@@ -204,7 +194,6 @@ Feature:
         And I press "identity_submit"
         Then the "#facts_accordion_item" element should not contain "style=\"display: block;\""
 
-    @javascript
     Scenario: Submit the form with only 11 required value for Corporation Legal Representative declarant
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
@@ -226,7 +215,6 @@ Feature:
         And I press "identity_submit"
         Then the "#facts_accordion_item" element should not contain "style=\"display: block;\""
 
-    @javascript
     Scenario: Submit the form with only 12 required value for Corporation Legal Representative declarant
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
@@ -247,9 +235,8 @@ Feature:
         And I fill in "identity_corporation_function" with "Developer"
         And I select "1" from "identity_corporation_nationality"
         And I press "identity_submit"
-        Then I am redirected on "/porter-plainte"
+        Then the "#facts_accordion_item" element should not contain "style=\"display: block;\""
 
-    @javascript
     Scenario: Submit the form with only 13 required value for Corporation Legal Representative declarant
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
@@ -272,7 +259,6 @@ Feature:
         And I press "identity_submit"
         Then the "#facts_accordion_item" element should not contain "style=\"display: block;\""
 
-    @javascript
     Scenario: Submit the form with only 14 required value for Corporation Legal Representative declarant
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
@@ -298,7 +284,6 @@ Feature:
         And I press "identity_submit"
         Then the "#facts_accordion_item" element should not contain "style=\"display: block;\""
 
-    @javascript
     Scenario: Submit the form with only 15 required value for Corporation Legal Representative declarant
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
@@ -324,7 +309,6 @@ Feature:
         And I press "identity_submit"
         Then the "#facts_accordion_item" element should not contain "style=\"display: block;\""
 
-    @javascript
     Scenario: Submit the form with invalid siren (too short) for Corporation Legal Representative declarant
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
@@ -350,7 +334,6 @@ Feature:
         And I press "identity_submit"
         Then the "#facts_accordion_item" element should not contain "style=\"display: block;\""
 
-    @javascript
     Scenario: Submit the form with invalid siren (letters) for Corporation Legal Representative declarant
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"

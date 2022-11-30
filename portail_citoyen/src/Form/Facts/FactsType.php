@@ -13,7 +13,6 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -55,14 +54,6 @@ class FactsType extends AbstractType
             ->add('offenseDate', OffenseDateType::class, [
                 'label' => false,
             ])
-            ->add('description', TextareaType::class, [
-                'constraints' => [
-                    new Length([
-                        'max' => 800,
-                    ]),
-                ],
-                'label' => 'pel.facts.description.precise',
-            ])
             ->add('objects', LiveCollectionType::class, [
                 'entry_type' => ObjectType::class,
                 'allow_add' => true,
@@ -99,9 +90,6 @@ class FactsType extends AbstractType
                 'expanded' => true,
                 'label' => 'pel.is.amount.known',
                 'multiple' => false,
-            ])
-            ->add('additionalInformation', AdditionalInformationType::class, [
-                'label' => false,
             ])
             ->addEventListener(
                 FormEvents::PRE_SET_DATA,

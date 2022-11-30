@@ -26,28 +26,6 @@ Feature:
         And I fill in "identity_representedPersonContactInformation_mobile" with "0602030405"
         And I press "identity_submit"
         And I wait 2000 ms
-        And the "identity_civilState_civility" field should contain "1"
-        And the "identity_civilState_birthName" field should contain "DUPONT"
-        And the "identity_civilState_firstnames" field should contain "Michel"
-        And the "identity_civilState_birthDate" field should contain "1967-03-02"
-        And the "identity_civilState_birthLocation_frenchTown" field should contain "Paris (75)"
-        And the "identity_civilState_birthLocation_department" field should contain "75"
-        And the "identity_civilState_nationality" field should contain "1"
-        And the "identity_civilState_job" field should contain "1"
-        And the "identity_contactInformation_frenchAddress" field should contain "Av. de la République 75011 Paris France"
-        And the "identity_contactInformation_email" field should contain "michel.dupont@example.com"
-        And the "identity_contactInformation_mobile" field should contain "0601020304"
-        And the "identity_representedPersonCivilState_birthName" field should contain "DUPONT"
-        And the "identity_representedPersonCivilState_firstnames" field should contain "Julie"
-        And the "identity_representedPersonCivilState_birthDate" field should contain "2010-01-01"
-        And the "identity_representedPersonCivilState_birthLocation_frenchTown" field should contain "Paris (75)"
-        And the "identity_representedPersonCivilState_birthLocation_department" field should contain "75"
-        And the "identity_representedPersonCivilState_nationality" field should contain "1"
-        And the "identity_representedPersonCivilState_job" field should contain "3"
-        And the "identity_representedPersonContactInformation_frenchAddress" field should contain "Av. de la République 75011 Paris France"
-        And the "identity_representedPersonContactInformation_email" field should contain "jean@test.com"
-        And the "identity_representedPersonContactInformation_mobile" field should contain "0602030405"
-        And I press "facts_submit"
         And I click the "label[for=facts_offenseNature_offenseNatures_0]" element
         And I click the "label[for=facts_victimOfViolence]" element
         And I fill in "facts_victimOfViolenceText" with "Violence informations"
@@ -65,17 +43,19 @@ Feature:
         And I fill in "facts_objects_1_label" with "Object 2"
         And I click the "label[for=facts_amountKnown_0]" element
         And I fill in "facts_amount" with "700"
-        And I click the "label[for=facts_additionalInformation_suspectsChoice_0]" element
-        And I fill in "facts_additionalInformation_suspectsText" with "suspects informations"
-        And I should see the key "pel.facts.suspects.informations.text" translated
-        And I click the "label[for=facts_additionalInformation_witnesses_0]" element
-        And I fill in "facts_additionalInformation_witnessesText" with "witnesses informations"
-        And I click the "label[for=facts_additionalInformation_fsiVisit_0]" element
-        And I click the "label[for=facts_additionalInformation_observationMade_0]" element
-        And I click the "label[for=facts_additionalInformation_cctvPresent_0]" element
-        And I click the "label[for=facts_additionalInformation_cctvAvailable_0]" element
-        And I fill in "facts_description" with "description informations"
         And I press "facts_submit"
+        And I wait 2000 ms
+        And I click the "label[for=additional_information_suspectsChoice_0]" element
+        And I fill in "additional_information_suspectsText" with "suspects informations"
+        And I should see the key "pel.facts.suspects.informations.text" translated
+        And I click the "label[for=additional_information_witnesses_0]" element
+        And I fill in "additional_information_witnessesText" with "witnesses informations"
+        And I click the "label[for=additional_information_fsiVisit_0]" element
+        And I click the "label[for=additional_information_observationMade_0]" element
+        And I click the "label[for=additional_information_cctvPresent_0]" element
+        And I click the "label[for=additional_information_cctvAvailable_0]" element
+        And I fill in "additional_information_description" with "description informations"
+        And I press "additional_information_submit"
         And I wait 2000 ms
         Given I am on "/recapitulatif"
         Then I should see the key "pel.civility" translated

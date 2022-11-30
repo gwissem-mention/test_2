@@ -214,48 +214,48 @@
                 <ul>
                     <li>
                         {{ 'pel.facts.witnesses'|trans }} :
-                        {{ complaint.facts.additionalInformation.witnesses ? 'pel.yes'|trans : 'pel.no'|trans }}
+                        {{ complaint.additionalInformation.witnesses ? 'pel.yes'|trans : 'pel.no'|trans }}
                     </li>
-                    {% if complaint.facts.additionalInformation.witnesses %}
+                    {% if complaint.additionalInformation.witnesses %}
                         <li>
                             {{ 'pel.facts.witnesses.information.text'|trans }} :
-                            {{ complaint.facts.additionalInformation.witnessesText }}
+                            {{ complaint.additionalInformation.witnessesText }}
                         </li>
                     {% endif %}
                     <li>
                         {{ 'pel.do.you.have.informations.on.potential.suspects'|trans }} :
-                        {{ complaint.facts.additionalInformation.suspectsChoice ? 'pel.yes'|trans : 'pel.no'|trans }}
+                        {{ complaint.additionalInformation.suspectsChoice ? 'pel.yes'|trans : 'pel.no'|trans }}
                     </li>
-                    {% if complaint.facts.additionalInformation.suspectsChoice %}
+                    {% if complaint.additionalInformation.suspectsChoice %}
                         <li>
                             {{ 'pel.facts.suspects.informations.text'|trans }} :
-                            {{ complaint.facts.additionalInformation.suspectsText }}
+                            {{ complaint.additionalInformation.suspectsText }}
                         </li>
                     {% endif %}
                     <li>
                         {{ 'pel.cctv.present'|trans }} :
-                        {% if complaint.facts.additionalInformation.cctvPresent is same as(constant('App\\Form\\Model\\Facts\\AdditionalInformationModel::CCTV_PRESENT_YES')) %}
+                        {% if complaint.additionalInformation.cctvPresent is same as(constant('App\\Form\\Model\\AdditionalInformation\\AdditionalInformationModel::CCTV_PRESENT_YES')) %}
                             {{ 'pel.yes'|trans }}
-                        {% elseif complaint.facts.additionalInformation.cctvPresent is same as(constant('App\\Form\\Model\\Facts\\AdditionalInformationModel::CCTV_PRESENT_NO')) %}
+                        {% elseif complaint.additionalInformation.cctvPresent is same as(constant('App\\Form\\Model\\AdditionalInformation\\AdditionalInformationModel::CCTV_PRESENT_NO')) %}
                             {{ 'pel.no'|trans }}
                         {% else %}
                             {{ 'pel.i.dont.know'|trans }}
                         {% endif %}
                     </li>
-                    {% if complaint.facts.additionalInformation.cctvPresent is same as(constant('App\\Form\\Model\\Facts\\AdditionalInformationModel::CCTV_PRESENT_YES')) %}
+                    {% if complaint.additionalInformation.cctvPresent is same as(constant('App\\Form\\Model\\AdditionalInformation\\AdditionalInformationModel::CCTV_PRESENT_YES')) %}
                         <li>
                             {{ 'pel.cctv.available'|trans }} :
-                            {{ complaint.facts.additionalInformation.cctvAvailable ? 'pel.yes'|trans : 'pel.no'|trans }}
+                            {{ complaint.additionalInformation.cctvAvailable ? 'pel.yes'|trans : 'pel.no'|trans }}
                         </li>
                     {% endif %}
                     <li>
                         {{ 'pel.fsi.visit'|trans }} :
-                        {{ complaint.facts.additionalInformation.fsiVisit ? 'pel.yes'|trans : 'pel.no'|trans }}
+                        {{ complaint.additionalInformation.fsiVisit ? 'pel.yes'|trans : 'pel.no'|trans }}
                     </li>
-                    {% if complaint.facts.additionalInformation.fsiVisit %}
+                    {% if complaint.additionalInformation.fsiVisit %}
                         <li>
                             {{ 'pel.observation.made'|trans }} :
-                            {{ complaint.facts.additionalInformation.observationMade ? 'pel.yes'|trans : 'pel.no'|trans }}
+                            {{ complaint.additionalInformation.observationMade ? 'pel.yes'|trans : 'pel.no'|trans }}
                         </li>
                     {% endif %}
                     <li>
@@ -274,7 +274,7 @@
                     {% endif %}
                     <li>
                         {{ 'pel.facts.description.precise'|trans }} :
-                        {{ complaint.facts.description }}
+                        {{ complaint.additionalInformation.description }}
                     </li>
                 </ul>
             </div>
