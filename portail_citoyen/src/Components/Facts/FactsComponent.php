@@ -10,7 +10,6 @@ use App\Session\ComplaintModel;
 use App\Session\SessionHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormInterface;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 use Symfony\UX\LiveComponent\Attribute\LiveAction;
 use Symfony\UX\LiveComponent\ComponentWithFormTrait;
@@ -34,7 +33,7 @@ class FactsComponent extends AbstractController
     }
 
     #[LiveAction]
-    public function submit(): Response
+    public function submit(): void
     {
         $this->submitForm();
 
@@ -43,7 +42,5 @@ class FactsComponent extends AbstractController
         /** @var FactsModel $facts */
         $facts = $this->getFormInstance()->getData();
         $this->sessionHandler->setComplaint($complaint->setFacts($facts));
-
-        return $this->redirectToRoute('summary');
     }
 }

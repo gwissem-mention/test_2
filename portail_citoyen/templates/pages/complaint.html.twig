@@ -24,9 +24,11 @@
                         <li>
                             <a class="fr-breadcrumb__link" href="#" data-accordion="3" data-locked="false">{{ 'pel.complaint.objects.concerned'|trans }}</a>
                         </li>
+                        #}
                         <li>
                             <a class="fr-breadcrumb__link" href="#" data-accordion="4" data-locked="false">{{ 'pel.complaint.additional.informations'|trans }}</a>
                         </li>
+                        {#
                         <li>
                             <a class="fr-breadcrumb__link" href="#" data-accordion="5" data-locked="false">{{ 'pel.complaint.summary'|trans }}</a>
                         </li>
@@ -44,7 +46,7 @@
                         {{ component('identity', {class: 'fr-py-1w'}) }}
                     </div>
                 </li>
-                <li class="accordion__item" id="facts_accordion_item">
+                <li class="accordion__item" id="facts_accordion_item" >
                     <div class="accordion__item__title" data-accordion-id="2" data-locked="false" id="facts_accordion_title">
                         <span class="fr-icon-arrow-down-s-line"></span>
                         {{ 'pel.complaint.description.of.facts'|trans }}
@@ -63,15 +65,17 @@
                         <p>Lorem ipsum dol or sit amet Lorem ipsum dol or sit amet Lorem ipsum dol or sit amet Lorem ipsum dol or sit amet Lorem ipsum dol or sit amet Lorem ipsum dol or sit amet Lorem ipsum dol or sit amet</p>
                     </div>
                 </li>
-                <li class="accordion__item">
-                    <div class="accordion__item__title" data-accordion-id="4" data-locked="false">
+                #}
+                <li class="accordion__item" id="additional_information_accordion_item">
+                    <div class="accordion__item__title" data-accordion-id="4" data-locked="false" id="additional_information_accordion_title">
                         <span class="fr-icon-arrow-down-s-line"></span>
                         {{ 'pel.complaint.additional.informations'|trans }}
                     </div>
-                    <div class="accordion__item__content">
-                        <p>Lorem ipsum dol or sit amet Lorem ipsum dol or sit amet Lorem ipsum dol or sit amet Lorem ipsum dol or sit amet Lorem ipsum dol or sit amet Lorem ipsum dol or sit amet Lorem ipsum dol or sit amet</p>
+                    <div class="accordion__item__content" id="additional_information_accordion_content">
+                        {{ component('additional_information') }}
                     </div>
                 </li>
+                {#
                 <li class="accordion__item">
                     <div class="accordion__item__title" data-accordion-id="5" data-locked="false">
                         <span class="fr-icon-arrow-down-s-line"></span>
