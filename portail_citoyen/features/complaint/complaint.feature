@@ -92,8 +92,8 @@ Feature:
 
     Scenario Outline: I can see the object category choice list
         Given I am on "/porter-plainte"
-        When I select "<object_category>" from "facts_objects_0_category"
-        Then I should see "<object_category>" in the "#facts_objects_0_category" element
+        When I select "<object_category>" from "objects_objects_0_category"
+        Then I should see "<object_category>" in the "#objects_objects_0_category" element
 
         Examples:
             | object_category            |

@@ -7,6 +7,7 @@ namespace App\Session;
 use App\Form\Model\AdditionalInformation\AdditionalInformationModel;
 use App\Form\Model\Facts\FactsModel;
 use App\Form\Model\Identity\IdentityModel;
+use App\Form\Model\Objects\ObjectsModel;
 use Symfony\Component\Uid\Uuid;
 
 class ComplaintModel
@@ -16,6 +17,7 @@ class ComplaintModel
     private ?IdentityModel $identity = null;
     private ?FactsModel $facts = null;
     private ?AdditionalInformationModel $additionalInformation = null;
+    private ?ObjectsModel $objects = null;
     private bool $franceConnected = false;
 
     public function __construct(Uuid $id)
@@ -44,6 +46,18 @@ class ComplaintModel
     public function setFacts(?FactsModel $facts): self
     {
         $this->facts = $facts;
+
+        return $this;
+    }
+
+    public function getObjects(): ?ObjectsModel
+    {
+        return $this->objects;
+    }
+
+    public function setObjects(?ObjectsModel $objects): self
+    {
+        $this->objects = $objects;
 
         return $this;
     }
