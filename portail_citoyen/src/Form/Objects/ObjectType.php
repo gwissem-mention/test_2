@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Form\Facts;
+namespace App\Form\Objects;
 
-use App\Form\Model\Facts\ObjectModel;
+use App\Form\Model\Objects\ObjectModel;
 use App\Thesaurus\ObjectCategoryThesaurusProviderInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;

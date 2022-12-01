@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Form\Model\Facts;
+namespace App\Form\Model\Objects;
 
 class ObjectModel
 {

@@ -22,14 +22,15 @@ Feature:
         And I fill in "facts_offenseDate_startDate" with "01/01/2022"
         And I click the "label[for=facts_offenseDate_choiceHour_0]" element
         And I fill in "facts_offenseDate_hour" with "15:00"
-        And I select "1" from "facts_objects_0_category"
-        And I fill in "facts_objects_0_label" with "Object 1"
-        And I press "facts_objects_add"
-        And I select "1" from "facts_objects_1_category"
-        And I fill in "facts_objects_1_label" with "Object 2"
-        And I click the "label[for=facts_amountKnown_0]" element
-        And I fill in "facts_amount" with "700"
         And I press "facts_submit"
+        And I select "1" from "objects_objects_0_category"
+        And I fill in "objects_objects_0_label" with "Object 1"
+        And I press "objects_objects_add"
+        And I select "1" from "objects_objects_1_category"
+        And I fill in "objects_objects_1_label" with "Object 2"
+        And I click the "label[for=objects_amountKnown_0]" element
+        And I fill in "objects_amount" with "700"
+        And I press "objects_submit"
 
     Scenario: Selecting the "label[for=additional_information_suspectsChoice_1]" element and not showing
     the key "pel.facts.suspects.informations.text" translated

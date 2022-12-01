@@ -139,10 +139,10 @@
     </div>
 {% endblock %}
 
-{%- block _facts_objects_entry_label_label -%}
+{%- block _objects_objects_entry_label_label -%}
     {{ form_label(form, 'pel.object'|trans~' '~(form.parent.vars.name+1)) }}
 {%- endblock -%}
 
-{%- block _facts_objects_entry_row -%}
+{%- block _objects_objects_entry_row -%}
     {{ block('live_collection_entry_row') }}
 {%- endblock -%}
