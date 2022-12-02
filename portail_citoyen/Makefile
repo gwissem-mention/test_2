@@ -208,7 +208,7 @@ infection:
 
 ## Run Symfony security checker
 security:
-	@$(SF_CLI) security:check
+	@local-php-security-checker
 
 ## Run PHP Copy/Paste Detector
 cpd:
