@@ -517,11 +517,10 @@ citoyen-e2e:
         POSTGRES_USER: "symfony"
     script:
         - php bin/console cache:clear --env=e2e
-        - LOCAL_IP=$(ip route get 8.8.8.8 | awk -F"src " 'NR==1{split($2,a," ");print a[1]}')
-        - echo Local IP $LOCAL_IP
-        - symfony server:start --no-tls --port=8080 -d
+        - echo 'APP_ENV=e2e' >> .env.local
+        - APP_ENV=e2e php -S 127.0.0.1:8080 -t public/ > /dev/null 2>&1 &
         - sed -i "s/nginx-citoyen/127.0.0.1:8080/g" behat.yml.dist
-        - make APP_ENV=e2e db-ci-setup
+        - APP_ENV=e2e make db-ci-setup
         - make e2e
     artifacts:
         name: "citoyen-e2e-$CI_COMMIT_REF_NAME"
@@ -549,11 +548,8 @@ agent-e2e:
         POSTGRES_USER: "symfony"
     script:
         - php bin/console cache:clear --env=e2e
-        - LOCAL_IP=$(ip route get 8.8.8.8 | awk -F"src " 'NR==1{split($2,a," ");print a[1]}')
-        - echo Local IP $LOCAL_IP
-        - symfony server:start --no-tls --port=8080 -d
+        - APP_ENV=e2e php -S 127.0.0.1:8080 -t public/ > /dev/null 2>&1 &
         - sed -i "s/nginx-agent/127.0.0.1:8080/g" behat.yml.dist
-        - echo $APP_ENV
         - make e2e
     services:
         - name: postgres:13-alpine

@@ -21,11 +21,6 @@ RUN apk add --no-cache \
 		make \
 	;
 
-COPY docker/php/setup.alpine.sh /tmp/setup.alpine.sh
-RUN bash /tmp/setup.alpine.sh
-RUN apk add symfony-cli;
-RUN rm /tmp/setup.alpine.sh
-
 ARG APCU_VERSION=5.1.21
 RUN set -eux; \
 	apk add --no-cache --virtual .build-deps \
@@ -84,6 +79,7 @@ RUN version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;") \
     && rm -rf /tmp/blackfire /tmp/blackfire-probe.tar.gz
 ###< blackfire ###
 
+COPY docker/php/local-php-security-checker /usr/bin/local-php-security-checker
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # https://getcomposer.org/doc/03-cli.md#composer-allow-superuser
