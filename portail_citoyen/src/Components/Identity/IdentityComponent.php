@@ -29,7 +29,10 @@ class IdentityComponent extends AbstractController
     {
         return $this->createForm(
             IdentityType::class,
-            $this->sessionHandler->getComplaint()?->getIdentity() ?? new IdentityModel()
+            $this->sessionHandler->getComplaint()?->getIdentity() ?? new IdentityModel(),
+            [
+                'is_france_connected' => $this->sessionHandler->getComplaint()?->isFranceConnected(),
+            ]
         );
     }
 

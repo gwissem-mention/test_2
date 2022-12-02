@@ -64,6 +64,7 @@ class IdentityType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => IdentityModel::class,
+            'is_france_connected' => false,
         ]);
     }
 
@@ -113,6 +114,7 @@ class IdentityType extends AbstractType
         $form
             ->add('civilState', CivilStateType::class, [
                 'compound' => true,
+                'is_france_connected' => $form->getConfig()->getOption('is_france_connected'),
                 'fc_data' => $identityModel?->getCivilState(),
                 'birthDate_constraints' => [
                     new NotBlank(),

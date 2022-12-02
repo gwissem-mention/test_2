@@ -41,6 +41,7 @@ class CivilStateType extends AbstractType
                 'label' => 'pel.civility',
                 'placeholder' => 'pel.choose.your.civility',
                 'empty_data' => $fcData?->getCivility(),
+                'disabled' => $options['is_france_connected'] && $fcData?->civilityIsDefined(),
             ])
             ->add('birthName', TextType::class, [
                 'attr' => [
@@ -54,6 +55,7 @@ class CivilStateType extends AbstractType
                 ],
                 'label' => 'pel.birth.name',
                 'empty_data' => $fcData?->getBirthName(),
+                'disabled' => $options['is_france_connected'] && $fcData?->birthNameIsDefined(),
             ])
             ->add('usageName', TextType::class, [
                 'attr' => [
@@ -66,6 +68,7 @@ class CivilStateType extends AbstractType
                 ],
                 'label' => 'pel.usage.name',
                 'required' => false,
+                'disabled' => $options['is_france_connected'] && $fcData?->usageNameIsDefined(),
             ])
             ->add('firstnames', TextType::class, [
                 'attr' => [
@@ -77,6 +80,7 @@ class CivilStateType extends AbstractType
                 ],
                 'label' => 'pel.first.names',
                 'empty_data' => $fcData?->getFirstnames(),
+                'disabled' => $options['is_france_connected'] && $fcData?->firstnamesIsDefined(),
             ])
             ->add('birthDate', DateType::class, [
                 'constraints' => $options['birthDate_constraints'],
@@ -84,12 +88,14 @@ class CivilStateType extends AbstractType
                 'label' => 'pel.birth.date',
                 'widget' => 'single_text',
                 'empty_data' => $fcData?->getBirthDate()?->format('Y-m-d'),
+                'disabled' => $options['is_france_connected'] && $fcData?->birthDateIsDefined(),
             ])
             ->add('birthLocation', LocationType::class, [
                 'country_label' => 'pel.birth.country',
                 'town_label' => 'pel.birth.town',
                 'department_label' => 'pel.birth.department',
                 'fc_data' => $fcData?->getBirthLocation(),
+                'disabled' => $options['is_france_connected'] && $fcData?->birthLocationIsDefined(),
             ])
             ->add('nationality', ChoiceType::class, [
                 'constraints' => [
@@ -117,6 +123,7 @@ class CivilStateType extends AbstractType
                 'declarant_status' => null,
                 'birthDate_constraints' => [new NotBlank(), new LessThanOrEqual('today')],
                 'fc_data' => null,
+                'is_france_connected' => false,
             ]);
     }
 }
