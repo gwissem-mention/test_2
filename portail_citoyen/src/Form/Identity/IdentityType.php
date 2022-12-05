@@ -28,6 +28,34 @@ class IdentityType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            ->add('civilState', CivilStateType::class, [
+                'compound' => true,
+                'is_france_connected' => $options['is_france_connected'],
+                'birthDate_constraints' => [
+                    new NotBlank(),
+                    new LessThanOrEqual(
+                        '-18 years', message: $this->translator->trans(
+                            'pel.you.must.have.more.than.error',
+                            [
+                                'age' => '18',
+                            ],
+                            'validators'
+                        )
+                    ),
+                    new GreaterThanOrEqual(
+                        '-120 years', message: $this->translator->trans(
+                            'pel.you.must.have.less.than.error',
+                            [
+                                'age' => '120',
+                            ],
+                            'validators'
+                        )
+                    ),
+                ],
+            ])
+            ->add('contactInformation', ContactInformationType::class, [
+                'compound' => true,
+            ])
             ->add('declarantStatus', ChoiceType::class, [
                 'label' => 'pel.complaint.identity.declarant.status',
                 'expanded' => true,
@@ -80,7 +108,7 @@ class IdentityType extends AbstractType
         switch ($declarantStatus) {
             case DeclarantStatus::PersonLegalRepresentative->value:
                 $this->removeCorporationFields($form, $identityModel);
-                $this->addRepresentedPersonFields($form, $declarantStatus);
+                $this->addRepresentedPersonFields($form);
                 break;
             case DeclarantStatus::Victim->value:
                 $this->removeRepresentedPersonFields($form, $identityModel);
@@ -92,8 +120,6 @@ class IdentityType extends AbstractType
                 break;
             default:
         }
-
-        $this->addCivilStateAndContactInformationFields($form, $identityModel);
     }
 
     private function addCorporationFields(FormInterface $form): void
@@ -107,48 +133,10 @@ class IdentityType extends AbstractType
         $identityModel?->setCorporation(null);
     }
 
-    private function addCivilStateAndContactInformationFields(
-        FormInterface $form,
-        ?IdentityModel $identityModel = null
-    ): void {
-        $form
-            ->add('civilState', CivilStateType::class, [
-                'compound' => true,
-                'is_france_connected' => $form->getConfig()->getOption('is_france_connected'),
-                'fc_data' => $identityModel?->getCivilState(),
-                'birthDate_constraints' => [
-                    new NotBlank(),
-                    new LessThanOrEqual(
-                        '-18 years', message: $this->translator->trans(
-                            'pel.you.must.have.more.than.error',
-                            [
-                                'age' => '18',
-                            ],
-                            'validators'
-                        )
-                    ),
-                    new GreaterThanOrEqual(
-                        '-120 years', message: $this->translator->trans(
-                            'pel.you.must.have.less.than.error',
-                            [
-                                'age' => '120',
-                            ],
-                            'validators'
-                        )
-                    ),
-                ],
-            ])
-            ->add('contactInformation', ContactInformationType::class, [
-                'compound' => true,
-                'fc_data' => $identityModel?->getContactInformation(),
-            ]);
-    }
-
-    private function addRepresentedPersonFields(FormInterface $form, int $declarantStatus): void
+    private function addRepresentedPersonFields(FormInterface $form): void
     {
         $form
             ->add('representedPersonCivilState', CivilStateType::class, [
-                'declarant_status' => $declarantStatus,
                 'label' => 'pel.civil.state',
             ])
             ->add('representedPersonContactInformation', ContactInformationType::class, [

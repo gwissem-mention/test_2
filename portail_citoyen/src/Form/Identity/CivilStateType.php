@@ -7,6 +7,7 @@ namespace App\Form\Identity;
 use App\Enum\Civility;
 use App\Form\LocationType;
 use App\Form\Model\Identity\CivilStateModel;
+use App\Session\SessionHandler;
 use App\Thesaurus\JobThesaurusProviderInterface;
 use App\Thesaurus\NationalityThesaurusProviderInterface;
 use Symfony\Component\Form\AbstractType;
@@ -23,15 +24,18 @@ class CivilStateType extends AbstractType
 {
     public function __construct(
         private readonly NationalityThesaurusProviderInterface $nationalityThesaurusProvider,
-        private readonly JobThesaurusProviderInterface $jobThesaurusProvider
+        private readonly JobThesaurusProviderInterface $jobThesaurusProvider,
+        private readonly SessionHandler $sessionHandler
     ) {
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $nationalityChoices = $this->nationalityThesaurusProvider->getChoices();
-        /** @var ?CivilStateModel $fcData */
-        $fcData = $options['fc_data'];
+
+        /** @var ?CivilStateModel $civilStateModel */
+        $civilStateModel = $this->sessionHandler->getComplaint()?->getIdentity()?->getCivilState();
+
         $builder
             ->add('civility', ChoiceType::class, [
                 'choices' => Civility::getChoices(),
@@ -40,8 +44,7 @@ class CivilStateType extends AbstractType
                 ],
                 'label' => 'pel.civility',
                 'placeholder' => 'pel.choose.your.civility',
-                'empty_data' => $fcData?->getCivility(),
-                'disabled' => $options['is_france_connected'] && $fcData?->civilityIsDefined(),
+                'disabled' => $options['is_france_connected'] && $civilStateModel?->civilityIsDefined(),
             ])
             ->add('birthName', TextType::class, [
                 'attr' => [
@@ -54,8 +57,7 @@ class CivilStateType extends AbstractType
                     new Length(['max' => 70]),
                 ],
                 'label' => 'pel.birth.name',
-                'empty_data' => $fcData?->getBirthName(),
-                'disabled' => $options['is_france_connected'] && $fcData?->birthNameIsDefined(),
+                'disabled' => $options['is_france_connected'] && $civilStateModel?->birthNameIsDefined(),
             ])
             ->add('usageName', TextType::class, [
                 'attr' => [
@@ -68,7 +70,7 @@ class CivilStateType extends AbstractType
                 ],
                 'label' => 'pel.usage.name',
                 'required' => false,
-                'disabled' => $options['is_france_connected'] && $fcData?->usageNameIsDefined(),
+                'disabled' => $options['is_france_connected'] && $civilStateModel?->usageNameIsDefined(),
             ])
             ->add('firstnames', TextType::class, [
                 'attr' => [
@@ -79,23 +81,20 @@ class CivilStateType extends AbstractType
                     new Length(['max' => 40]),
                 ],
                 'label' => 'pel.first.names',
-                'empty_data' => $fcData?->getFirstnames(),
-                'disabled' => $options['is_france_connected'] && $fcData?->firstnamesIsDefined(),
+                'disabled' => $options['is_france_connected'] && $civilStateModel?->firstnamesIsDefined(),
             ])
             ->add('birthDate', DateType::class, [
                 'constraints' => $options['birthDate_constraints'],
                 'help' => 'pel.birth.date.help',
                 'label' => 'pel.birth.date',
                 'widget' => 'single_text',
-                'empty_data' => $fcData?->getBirthDate()?->format('Y-m-d'),
-                'disabled' => $options['is_france_connected'] && $fcData?->birthDateIsDefined(),
+                'disabled' => $options['is_france_connected'] && $civilStateModel?->birthDateIsDefined(),
             ])
             ->add('birthLocation', LocationType::class, [
                 'country_label' => 'pel.birth.country',
                 'town_label' => 'pel.birth.town',
                 'department_label' => 'pel.birth.department',
-                'fc_data' => $fcData?->getBirthLocation(),
-                'disabled' => $options['is_france_connected'] && $fcData?->birthLocationIsDefined(),
+                'disabled' => $options['is_france_connected'] && $civilStateModel?->birthLocationIsDefined(),
             ])
             ->add('nationality', ChoiceType::class, [
                 'constraints' => [
@@ -120,9 +119,7 @@ class CivilStateType extends AbstractType
         $resolver
             ->setDefaults([
                 'data_class' => CivilStateModel::class,
-                'declarant_status' => null,
                 'birthDate_constraints' => [new NotBlank(), new LessThanOrEqual('today')],
-                'fc_data' => null,
                 'is_france_connected' => false,
             ]);
     }

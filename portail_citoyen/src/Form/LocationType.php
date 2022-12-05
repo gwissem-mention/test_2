@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Form;
 
 use App\Form\Model\LocationModel;
+use App\Session\SessionHandler;
 use App\Thesaurus\TownAndDepartmentThesaurusProviderInterface;
 use App\Thesaurus\Transformer\TownToTransformTransformerInterface;
-use App\Tmp\CountryInseeCodeMapper;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
@@ -22,33 +22,24 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 class LocationType extends AbstractType
 {
-    private ?LocationModel $location;
-
     public function __construct(
         private readonly TownAndDepartmentThesaurusProviderInterface $townAndDepartmentAndDepartmentThesaurusProvider,
         private readonly TownToTransformTransformerInterface $townToTransformTransformer,
         private readonly string $franceCode,
-        private readonly CountryInseeCodeMapper $countryInseeCodeMapper,
+        private readonly SessionHandler $sessionHandler,
     ) {
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        /** @var ?LocationModel $fcData */
-        $fcData = $options['fc_data'];
-        $this->location = $fcData;
-
-        // Temp fix to handle France case
-        // TODO remove it when countries thesaurus is implemented
-        if ($this->countryInseeCodeMapper->isSupportedInseeCode($this->location?->getCountry())) {
-            $this->location?->setCountry($this->countryInseeCodeMapper->getCountryCode($this->location->getCountry()));
-        }
-
+        /** @var ?LocationModel $locationModel */
+        $locationModel = $this->sessionHandler->getComplaint()?->getIdentity()?->getCivilState()?->getBirthLocation();
         $builder
             ->add('country', CountryType::class, [
                 'label' => $options['country_label'],
                 'preferred_choices' => [$this->franceCode],
-                'empty_data' => null === $this->location ? $this->franceCode : $this->location->getCountry(),
+                'empty_data' => null === $locationModel?->getCountry() ? $this->franceCode :
+                    $locationModel->getCountry(),
                 'constraints' => [
                     new NotBlank(),
                 ],
@@ -84,13 +75,12 @@ class LocationType extends AbstractType
             'country_label' => false,
             'town_label' => false,
             'department_label' => false,
-            'fc_data' => null,
         ]);
     }
 
     private function addTownField(FormInterface $form, ?string $country, ?LocationModel $locationModel = null): void
     {
-        if ($this->franceCode === $country) {
+        if (null === $country || $this->franceCode === $country) {
             $this->addFormPartForFrenchPlace($form, $locationModel);
         } else {
             $this->addFormPartForForeignPlace($form, $locationModel);
@@ -129,7 +119,6 @@ class LocationType extends AbstractType
                 ),
                 'label' => $form->getConfig()->getOption('town_label'),
                 'placeholder' => 'pel.choose.your.town',
-                'empty_data' => $this->location?->getFrenchTown(),
             ])
             ->add('department', TextType::class, [
                 'disabled' => true,

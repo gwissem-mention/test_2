@@ -27,8 +27,6 @@ class ContactInformationType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        /** @var ?ContactInformationModel $contactInformation */
-        $contactInformation = $options['fc_data'];
         $builder
             ->add('country', CountryType::class, [
                 'label' => 'pel.address.country',
@@ -48,7 +46,6 @@ class ContactInformationType extends AbstractType
                     new Email(),
                 ],
                 'label' => 'pel.email',
-                'empty_data' => $contactInformation?->getEmail(),
             ])
             ->add('mobile', TextType::class, [
                 'attr' => [
@@ -69,7 +66,6 @@ class ContactInformationType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => ContactInformationModel::class,
-            'fc_data' => null,
         ]);
     }
 }

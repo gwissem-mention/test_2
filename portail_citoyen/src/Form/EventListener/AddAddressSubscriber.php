@@ -31,7 +31,7 @@ class AddAddressSubscriber implements EventSubscriberInterface
         /** @var ?LocationModel $location */
         $location = $event->getData();
         $form = $event->getForm();
-        if (null === $location || $this->franceCode === $location->getCountry()) {
+        if (null === $location?->getCountry() || $this->franceCode === $location->getCountry()) {
             $this->addFrenchAddressField($form);
         } else {
             $this->addForeignAddressField($form);
