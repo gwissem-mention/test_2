@@ -1,122 +1,122 @@
 <div {{ attributes }}>
     {{ form_start(form, {attr: {'data-action': 'live#action','data-action-name': 'prevent|submit'}}) }}
+    <div class="fr-grid-row fr-py-2w">
+        <div class="fr-col">
+            {{ form_row(form.offenseNature.offenseNatures) }}
+            {% if constant('App\\Enum\\OffenseNature::Robbery').value in form.offenseNature.offenseNatures.vars.value %}
+                <p id="complaint_offense_nature_warning_text">{{ 'pel.complaint.offense.nature.warning.text'|trans }}</p>
+            {% endif %}
+            {% if form.offenseNature.aabText is defined %}
+                {{ form_row(form.offenseNature.aabText) }}
+            {% endif %}
+        </div>
+    </div>
+    <div class="fr-grid-row fr-py-2w">
+        <div class="fr-col">
+            {{ form_row(form.victimOfViolence) }}
+        </div>
+    </div>
+    {% if form.victimOfViolenceText is defined %}
         <div class="fr-grid-row fr-py-2w">
             <div class="fr-col">
-                {{ form_row(form.offenseNature.offenseNatures) }}
-                {% if constant('App\\Enum\\OffenseNature::Robbery').value in form.offenseNature.offenseNatures.vars.value %}
-                    <p id="complaint_offense_nature_warning_text">{{ 'pel.complaint.offense.nature.warning.text'|trans }}</p>
-                {% endif %}
-                {% if form.offenseNature.aabText is defined %}
-                    {{ form_row(form.offenseNature.aabText) }}
-                {% endif %}
+                {{ form_row(form.victimOfViolenceText) }}
             </div>
         </div>
         <div class="fr-grid-row fr-py-2w">
             <div class="fr-col">
-                {{ form_row(form.victimOfViolence) }}
-            </div>
-        </div>
-        {% if form.victimOfViolenceText is defined %}
-            <div class="fr-grid-row fr-py-2w">
-                <div class="fr-col">
-                    {{ form_row(form.victimOfViolenceText) }}
-                </div>
-            </div>
-            <div class="fr-grid-row fr-py-2w">
-                <div class="fr-col">
                     <span class="fr-text--red-marianne">
                         {{ 'pel.victim.of.violence.information'|trans }}
                     </span>
-                </div>
-            </div>
-        {% endif %}
-        <div class="fr-grid-row fr-py-2w">
-            <div class="fr-col">
-                {{ form_row(form.placeNature) }}
             </div>
         </div>
+    {% endif %}
+    <div class="fr-grid-row fr-py-2w">
+        <div class="fr-col">
+            {{ form_row(form.placeNature) }}
+        </div>
+    </div>
+    <div class="fr-grid-row fr-py-2w">
+        <div class="fr-col">
+            {{ form_row(form.address.addressOrRouteFactsKnown) }}
+        </div>
+    </div>
+    {% if form.address.startAddress is defined %}
         <div class="fr-grid-row fr-py-2w">
             <div class="fr-col">
-                {{ form_row(form.address.addressOrRouteFactsKnown) }}
+                {{ form_row(form.address.startAddress) }}
             </div>
         </div>
-        {% if form.address.startAddress is defined %}
-            <div class="fr-grid-row fr-py-2w">
-                <div class="fr-col">
-                    {{ form_row(form.address.startAddress) }}
-                </div>
-            </div>
-        {% endif %}
-        {% if form.address.endAddress is defined %}
-            <div class="fr-grid-row fr-py-2w">
-                <div class="fr-col">
-                    {{ form_row(form.address.endAddress) }}
-                </div>
-            </div>
-        {% endif %}
+    {% endif %}
+    {% if form.address.endAddress is defined %}
         <div class="fr-grid-row fr-py-2w">
             <div class="fr-col">
-                {{ form_row(form.address.addressAdditionalInformation) }}
+                {{ form_row(form.address.endAddress) }}
             </div>
         </div>
-        {% if form.address.addressNotKnown is defined %}
-            <div class="fr-grid-row fr-py-2w">
-                <div class="fr-col">
-                    {{ form_row(form.address.addressNotKnown) }}
-                </div>
-            </div>
-        {% endif %}
+    {% endif %}
+    <div class="fr-grid-row fr-py-2w">
+        <div class="fr-col">
+            {{ form_row(form.address.addressAdditionalInformation) }}
+        </div>
+    </div>
+    {% if form.address.addressNotKnown is defined %}
         <div class="fr-grid-row fr-py-2w">
             <div class="fr-col">
-                {{ form_row(form.offenseDate.exactDateKnown) }}
+                {{ form_row(form.address.addressNotKnown) }}
             </div>
         </div>
-        {% if form.offenseDate.startDate is defined %}
-            <div class="fr-grid-row fr-py-2w fr-grid-row--gutters">
+    {% endif %}
+    <div class="fr-grid-row fr-py-2w">
+        <div class="fr-col">
+            {{ form_row(form.offenseDate.exactDateKnown) }}
+        </div>
+    </div>
+    {% if form.offenseDate.startDate is defined %}
+        <div class="fr-grid-row fr-py-2w fr-grid-row--gutters">
+            <div class="fr-col-xl-2 fr-col-md-4 fr-col-6">
+                {{ form_row(form.offenseDate.startDate) }}
+            </div>
+            {% if form.offenseDate.endDate is defined %}
                 <div class="fr-col-xl-2 fr-col-md-4 fr-col-6">
-                    {{ form_row(form.offenseDate.startDate) }}
+                    {{ form_row(form.offenseDate.endDate) }}
                 </div>
-                {% if form.offenseDate.endDate is defined %}
-                    <div class="fr-col-xl-2 fr-col-md-4 fr-col-6">
-                        {{ form_row(form.offenseDate.endDate) }}
-                    </div>
-                {% endif %}
-            </div>
-        {% endif %}
-        <div class="fr-grid-row fr-py-2w">
-            <div class="fr-col">
-                {{ form_row(form.offenseDate.choiceHour) }}
-            </div>
+            {% endif %}
         </div>
-        {% if form.offenseDate.startHour is defined or form.offenseDate.hour is defined %}
-            <div class="fr-grid-row fr-py-2w fr-grid-row--gutters">
-                {% if form.offenseDate.hour is defined %}
-                    <div class="fr-col-xl-2 fr-col-md-4 fr-col-6">
-                        {{ form_row(form.offenseDate.hour) }}
-                    </div>
-                {% elseif form.offenseDate.endHour is defined %}
-                    <div class="fr-col-xl-2 fr-col-md-4 fr-col-6">
-                        {{ form_row(form.offenseDate.startHour) }}
-                    </div>
-                {% endif %}
-                {% if form.offenseDate.endHour is defined %}
-                    <div class="fr-col-xl-2 fr-col-md-4 fr-col-6">
-                        {{ form_row(form.offenseDate.endHour) }}
-                    </div>
-                {% endif %}
-            </div>
-        {% endif %}
-        <div class="fr-grid-row">
-            <div class="fr-col">
-                <ul class="fr-btns-group fr-btns-group--right fr-btns-group--inline-reverse fr-btns-group--inline-lg fr-btns-group--icon-left">
-                    <li>
-                        <button type="submit" class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line" data-next-accordion="3" id="facts_submit">{{ 'pel.next'|trans }}</button>
-                    </li>
-                    <li>
-                        <a href="#" class="fr-btn fr-btn--secondary">{{ 'pel.save'|trans }}</a>
-                    </li>
-                </ul>
-            </div>
+    {% endif %}
+    <div class="fr-grid-row fr-py-2w">
+        <div class="fr-col">
+            {{ form_row(form.offenseDate.choiceHour) }}
         </div>
+    </div>
+    {% if form.offenseDate.startHour is defined or form.offenseDate.hour is defined %}
+        <div class="fr-grid-row fr-py-2w fr-grid-row--gutters">
+            {% if form.offenseDate.hour is defined %}
+                <div class="fr-col-xl-2 fr-col-md-4 fr-col-6">
+                    {{ form_row(form.offenseDate.hour) }}
+                </div>
+            {% elseif form.offenseDate.endHour is defined %}
+                <div class="fr-col-xl-2 fr-col-md-4 fr-col-6">
+                    {{ form_row(form.offenseDate.startHour) }}
+                </div>
+            {% endif %}
+            {% if form.offenseDate.endHour is defined %}
+                <div class="fr-col-xl-2 fr-col-md-4 fr-col-6">
+                    {{ form_row(form.offenseDate.endHour) }}
+                </div>
+            {% endif %}
+        </div>
+    {% endif %}
+    <div class="fr-grid-row">
+        <div class="fr-col">
+            <ul class="fr-btns-group fr-btns-group--right fr-btns-group--inline-reverse fr-btns-group--inline-lg fr-btns-group--icon-left">
+                <li>
+                    <button type="submit" class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line" data-next-accordion="3" id="facts_submit">{{ 'pel.next'|trans }}</button>
+                </li>
+                <li>
+                    <a href="#" class="fr-btn fr-btn--secondary">{{ 'pel.save'|trans }}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
     {{ form_end(form) }}
 </div>

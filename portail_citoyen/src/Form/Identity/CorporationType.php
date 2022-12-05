@@ -39,7 +39,7 @@ class CorporationType extends AbstractType
                 ],
                 'constraints' => [
                     new NotBlank(),
-                    new Regex('/\d/', 'corporation.siren.number.error'),
+                    new Regex('/\d/', 'pel.only.integers.are.allowed'),
                     new Length(['min' => 9, 'max' => 9]),
                 ],
                 'label' => 'pel.corporation.siren',

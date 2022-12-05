@@ -19,6 +19,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Positive;
+use Symfony\Component\Validator\Constraints\Regex;
 
 class ObjectType extends AbstractType
 {
@@ -89,19 +90,25 @@ class ObjectType extends AbstractType
         $this->removeCategoryMultimediaFields($form, $objectModel);
         $this->removeCategoryPaymentWaysFields($form, $objectModel);
         $this->removeCategoryRegisteredVehicleFields($form, $objectModel);
-
+        $this->removeAmountField($form, $objectModel);
         switch ($category) {
             case $this->objectCategories['pel.object.category.other']:
                 $this->addCategoryOtherFields($form);
+                $this->addAmountField($form, 'pel.amount.for.group');
                 break;
             case $this->objectCategories['pel.object.category.multimedia']:
                 $this->addCategoryMultimediaFields($form);
+                $this->addAmountField($form);
                 break;
             case $this->objectCategories['pel.object.category.payment.ways']:
                 $this->addCategoryPaymentWaysFields($form);
                 break;
             case $this->objectCategories['pel.object.category.registered.vehicle']:
                 $this->addCategoryRegisteredVehicleFields($form);
+                $this->addAmountField($form);
+                break;
+            default:
+                $this->addAmountField($form);
                 break;
         }
     }
@@ -296,6 +303,32 @@ class ObjectType extends AbstractType
                     ]),
                 ],
             ]);
+    }
+
+    private function addAmountField(FormInterface $form, string $label = 'pel.amount'): void
+    {
+        $form->add('amount', NumberType::class, [
+            'label' => $label,
+            'html5' => true,
+            'attr' => [
+                'min' => 1,
+                'max' => 999999999999,
+            ],
+            'required' => false,
+            'constraints' => [
+                new Length([
+                    'min' => 1,
+                    'max' => 12,
+                ]),
+                new Regex('/\d/', 'pel.only.integers.are.allowed'),
+            ],
+        ]);
+    }
+
+    private function removeAmountField(FormInterface $form, ?ObjectModel $objectModel): void
+    {
+        $form->remove('amount');
+        $objectModel?->setAmount(null);
     }
 
     private function removeCategoryMultimediaFields(FormInterface $form, ?ObjectModel $objectModel): void

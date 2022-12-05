@@ -66,13 +66,11 @@ Feature:
     Scenario: I can see a warning text if I select "Robbery"
         Given I am on "/porter-plainte"
         When I click the "label[for=facts_offenseNature_offenseNatures_0]" element
-        #And I click the "#complaint_offense_nature_warning_text" to appear
         Then I should see the key "pel.complaint.offense.nature.warning.text" translated
 
     Scenario: I can see a textarea field if I select Other AAB
         Given I am on "/porter-plainte"
         When I click the "label[for=facts_offenseNature_offenseNatures_2]" element
-        #And I wait for the element "#offense_nature_aabText" to appear
         And I should see the key "pel.complaint.offense.nature.other.aab.text" translated
 
     Scenario: I can see 1 date input if I select "Yes" to offense exact date known radio buttons
@@ -112,7 +110,6 @@ Feature:
         And I should not see a "input#facts_offenseDate_endHour" element
         And I should not see a "input#facts_offenseDate_hour" element
 
-    @javascript
     Scenario: I can see 2 inputs text if I select "Yes" to addressOrRouteFactsKnown radio button
         Given I am on "/porter-plainte"
         When I click the "label[for=facts_address_addressOrRouteFactsKnown_0]" element
@@ -126,3 +123,17 @@ Feature:
         When I click the "label[for=facts_address_addressOrRouteFactsKnown_1]" element
         Then I should not see the key "pel.address.start.or.exact" translated
         And I should not see the key "pel.address.end" translated
+
+    Scenario: Submit the facts form as a victim logged in with France Connect
+        Given I am on "/porter-plainte"
+        When I click the "label[for=facts_offenseNature_offenseNatures_0]" element
+        And I click the "label[for=facts_address_addressOrRouteFactsKnown_0]" element
+        And I fill in "facts_address_startAddress" with "1 test street"
+        And I fill in "facts_address_endAddress" with "2 test street"
+        And I click the "label[for=facts_offenseDate_exactDateKnown_0]" element
+        And I fill in "facts_offenseDate_startDate" with "01/01/2022"
+        And I click the "label[for=facts_offenseDate_choiceHour_0]" element
+        And I fill in "facts_offenseDate_hour" with "15:00"
+        And I press "facts_submit"
+        Then the "#objects_accordion_item" element should contain "style=\"display: block;\""
+
