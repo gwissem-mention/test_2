@@ -9,13 +9,16 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
+use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Callback;
 use Symfony\Component\Validator\Constraints\LessThanOrEqual;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 class OffenseDateType extends AbstractType
 {
@@ -104,6 +107,32 @@ class OffenseDateType extends AbstractType
         if (false === $exactDateKnown) {
             $form->add('endDate', DateType::class, [
                 'constraints' => [
+                    new Callback([
+                        'callback' => static function (?\DateTime $value, ExecutionContextInterface $context) {
+                            if (null === $value) {
+                                return;
+                            }
+
+                            if (!$value instanceof \DateTime) {
+                                $context->addViolation('pel.end.date.is.invalid');
+                            }
+
+                            /** @var Form $form */
+                            $form = $context->getObject();
+                            /** @var Form $formParent */
+                            $formParent = $form->getParent();
+                            /** @var \DateTime $startDate */
+                            $startDate = $formParent->get('startDate')->getData();
+
+                            if ($value->format('d/m/Y') < $startDate->format('d/m/Y')) {
+                                $context->addViolation('pel.start.date.after.end.date');
+                            }
+
+                            if ($value->format('d/m/Y') === $startDate->format('d/m/Y')) {
+                                $context->addViolation('pel.start.date.same.as.end.date');
+                            }
+                        },
+                    ]),
                     new NotBlank(),
                     new LessThanOrEqual('today', message: 'pel.date.less.than.equal.today.error'),
                 ],
@@ -148,6 +177,35 @@ class OffenseDateType extends AbstractType
                 ->add('endHour', TimeType::class, [
                     'attr' => [
                         'class' => 'fr-btn',
+                    ],
+                    'constraints' => [
+                        new Callback([
+                            'callback' => static function (?\DateTime $value, ExecutionContextInterface $context) {
+                                if (null === $value) {
+                                    return;
+                                }
+
+                                if (!$value instanceof \DateTime) {
+                                    $context->addViolation('pel.end.hour.is.invalid');
+                                }
+
+                                /** @var Form $form */
+                                $form = $context->getObject();
+                                /** @var Form $formParent */
+                                $formParent = $form->getParent();
+                                /** @var \DateTime $startHour */
+                                $startHour = $formParent->get('startHour')->getData();
+
+                                if ($value->format('H:i') < $startHour->format('H:i')) {
+                                    $context->addViolation('pel.start.hour.after.end.hour');
+                                }
+
+                                if ($value->format('H:i') === $startHour->format('H:i')) {
+                                    $context->addViolation('pel.start.hour.same.as.end.hour');
+                                }
+                            },
+                        ]),
+                        new NotBlank(),
                     ],
                     'label' => 'pel.end.hour',
                     'widget' => 'single_text',
