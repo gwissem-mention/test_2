@@ -25,11 +25,11 @@ Feature:
         And I press "facts_submit"
         And I select "1" from "objects_objects_0_category"
         And I fill in "objects_objects_0_label" with "Object 1"
+        And I fill in "objects_objects_0_amount" with "100"
         And I press "objects_objects_add"
         And I select "1" from "objects_objects_1_category"
         And I fill in "objects_objects_1_label" with "Object 2"
-        And I click the "label[for=objects_amountKnown_0]" element
-        And I fill in "objects_amount" with "700"
+        And I fill in "objects_objects_1_amount" with "100"
         And I press "objects_submit"
 
     Scenario: Selecting the "label[for=additional_information_suspectsChoice_1]" element and not showing

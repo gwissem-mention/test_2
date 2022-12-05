@@ -31,7 +31,6 @@ Feature:
         And I should see the key "pel.objects.add" translated
         And I should see the key "pel.object" translated
         And I should see the key "pel.facts.description.precise" translated
-        And I should see the key "pel.is.amount.known" translated
 
     Scenario Outline: I can see the declarant status inputs
         Given I am on "/porter-plainte"

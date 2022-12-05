@@ -22,6 +22,10 @@
                 <source>pel.amount</source>
                 <target>Montant</target>
             </trans-unit>
+            <trans-unit id="pel.amount.for.group">
+                <source>pel.amount.for.group</source>
+                <target>Montant estimé pour le groupe d'objets :</target>
+            </trans-unit>
             <trans-unit id="pel.a.public.service.on.internet">
                 <source>pel.a.public.service.on.internet</source>
                 <target>Un service public sur Internet</target>
@@ -882,6 +886,10 @@
                 <source>pel.online.complaint.process</source>
                 <target>DEROULEMENT DE VOTRE DEMARCHE</target>
             </trans-unit>
+            <trans-unit id="pel.only.integers.are.allowed">
+                <source>pel.only.integers.are.allowed</source>
+                <target>Seuls les chiffres sont autorisés.</target>
+            </trans-unit>
             <trans-unit id="pel.operator">
                 <source>pel.operator</source>
                 <target>Opérateur</target>
@@ -1060,7 +1068,7 @@
             </trans-unit>
             <trans-unit id="pel.total.message.one">
                 <source>pel.total.message.one</source>
-                <target>Vous avez ajouté un total de</target>
+                <target>Vous avez ajouté</target>
             </trans-unit>
             <trans-unit id="pel.total.message.two">
                 <source>pel.total.message.two</source>

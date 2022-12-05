@@ -42,12 +42,12 @@ Feature:
         And I press "facts_submit"
         And I select "1" from "objects_objects_0_category"
         And I fill in "objects_objects_0_label" with "Object 1"
+        And I fill in "objects_objects_0_amount" with "100"
         And I press "objects_objects_add"
         And I click the "#objects_objects_1_label" element
         And I select "1" from "objects_objects_1_category"
         And I fill in "objects_objects_1_label" with "Object 2"
-        And I click the "label[for=objects_amountKnown_0]" element
-        And I fill in "objects_amount" with "700"
+        And I fill in "objects_objects_1_amount" with "100"
         And I press "objects_submit"
         And I wait 2000 ms
         And I click the "label[for=additional_information_suspectsChoice_0]" element
@@ -154,7 +154,7 @@ Feature:
         And I should see the key "pel.total" translated
         And I should see the key "pel.total.message.one" translated
         And I should see the key "pel.total.message.amount" translated
-        And I should see "700"
+        And I should see "Vous avez ajouté 2 objets pour un montant total de 200 €"
         When I press "Suivant"
         And I follow "Je confirme"
         Then I should be on "/rendez-vous"
