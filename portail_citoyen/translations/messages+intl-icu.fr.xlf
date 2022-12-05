@@ -382,6 +382,10 @@
                 <source>pel.date.help</source>
                 <target>Date au format jj/mm/aaaa</target>
             </trans-unit>
+            <trans-unit id="pel.end.date.is.invalid">
+                <source>pel.end.date.is.invalid</source>
+                <target>La date de fin est invalide</target>
+            </trans-unit>
             <trans-unit id="pel.declaration.confirmation">
                 <source>pel.declaration.confirmation</source>
                 <target>Confirmation de ma déclaration</target>
@@ -465,6 +469,10 @@
             <trans-unit id="pel.end.hour">
                 <source>pel.end.hour</source>
                 <target>Heure de fin</target>
+            </trans-unit>
+            <trans-unit id="pel.end.hour.is.invalid">
+                <source>pel.end.hour.is.invalid</source>
+                <target>L'heure de fin est invalide</target>
             </trans-unit>
            <trans-unit id="pel.end.thanks">
                 <source>pel.end.thanks</source>
@@ -986,9 +994,25 @@
                 <source>pel.sir</source>
                 <target>Monsieur</target>
             </trans-unit>
+            <trans-unit id="pel.start.date.after.end.date">
+                <source>pel.start.date.after.end.date</source>
+                <target>La date de début est après la date de fin</target>
+            </trans-unit>
+            <trans-unit id="pel.start.date.same.as.end.date">
+                <source>pel.start.date.same.as.end.date</source>
+                <target>La date de début est similaire à la date de fin. Veuillez sélectionner que vous connaissez la date exacte des faits.</target>
+            </trans-unit>
             <trans-unit id="pel.start.hour">
                 <source>pel.start.hour</source>
                 <target>Heure de début</target>
+            </trans-unit>
+            <trans-unit id="pel.start.hour.after.end.hour">
+                <source>pel.start.hour.after.end.hour</source>
+                <target>L'heure de début est après l'heure de fin</target>
+            </trans-unit>
+            <trans-unit id="pel.start.hour.same.as.end.hour">
+                <source>pel.start.hour.same.as.end.hour</source>
+                <target>L'heure de début est similaire à l'heure de fin. Veuillez sélectionner que vous connaissez l'heure exacte des faits.</target>
             </trans-unit>
             <trans-unit id="pel.start.redacting.my.online.complaint">
                 <source>pel.start.redacting.my.online.complaint</source>
