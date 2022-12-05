@@ -2,31 +2,30 @@
     {{ form_start(form, {attr: {'data-action': 'live#action','data-action-name': 'prevent|submit'}}) }}
     <div class="fr-grid-row">
         <div class="fr-col">
-            <div id="declarant-status">{{ form_row(form.declarantStatus) }}</div>
-            {% if form.civilState is defined and form.contactInformation is defined %}
-                <div id="form-identity" class="fr-py-1w">
-                    <p>{{ 'pel.all.fields.are.required'|trans }}</p>
-                    <h2>{{ 'pel.my.identity'|trans }}</h2>
-                    <div class="fr-py-1w">
-                        {% include 'common/_civil_state.html.twig' with {'form':form.civilState} %}
-                    </div>
-                    <div class="fr-py-1w">
-                        {% include 'common/_contact_information.html.twig' with {'form':form.contactInformation} %}
-                    </div>
-                    {% if form.corporation is defined %}
-                        {% include 'common/_corporation.html.twig' with {'form':form.corporation} %}
-                    {% endif %}
-                    {% if form.representedPersonCivilState is defined and form.representedPersonContactInformation is defined %}
-                        <h2>{{ 'pel.represented.person.identity'|trans }}</h2>
-                        <div class="fr-py-1w">
-                            {% include 'common/_civil_state.html.twig' with {'form':form.representedPersonCivilState} %}
-                        </div>
-                        <div class="fr-py-1w">
-                            {% include 'common/_contact_information.html.twig' with {'form':form.representedPersonContactInformation} %}
-                        </div>
-                    {% endif %}
+            <div id="form-identity" class="fr-py-1w">
+                <p>{{ 'pel.all.fields.are.required'|trans }}</p>
+                <div class="fr-py-1w">
+                    {% include 'common/_civil_state.html.twig' with {'form':form.civilState} %}
                 </div>
-            {% endif %}
+                <div class="fr-py-1w">
+                    {% include 'common/_contact_information.html.twig' with {'form':form.contactInformation} %}
+                </div>
+                <div class="fr-py-2w">
+                    {{ form_row(form.declarantStatus) }}
+                </div>
+                {% if form.corporation is defined %}
+                    {% include 'common/_corporation.html.twig' with {'form':form.corporation} %}
+                {% endif %}
+                {% if form.representedPersonCivilState is defined and form.representedPersonContactInformation is defined %}
+                    <h2>{{ 'pel.represented.person.identity'|trans }}</h2>
+                    <div class="fr-py-1w">
+                        {% include 'common/_civil_state.html.twig' with {'form':form.representedPersonCivilState} %}
+                    </div>
+                    <div class="fr-py-1w">
+                        {% include 'common/_contact_information.html.twig' with {'form':form.representedPersonContactInformation} %}
+                    </div>
+                {% endif %}
+            </div>
         </div>
     </div>
     <div class="fr-grid-row">
