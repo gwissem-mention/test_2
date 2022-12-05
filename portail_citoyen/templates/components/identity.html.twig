@@ -1,57 +1,52 @@
 <div {{ attributes }}>
     {{ form_start(form, {attr: {'data-action': 'live#action','data-action-name': 'prevent|submit'}}) }}
-        <div class="fr-grid-row">
-            <div class="fr-col">
-                <div id="declarant-status">{{ form_row(form.declarantStatus) }}</div>
-                {% if form.civilState is defined and form.contactInformation is defined %}
-                    <div id="form-identity" class="fr-py-1w">
-                        <p>{{ 'pel.all.fields.are.required'|trans }}</p>
-                        <h2>{{ 'pel.my.identity'|trans }}</h2>
-                        <div class="fr-py-1w">
-                            {{ component('civil_state', {
-                                form: form.civilState,
-                            }) }}
-                        </div>
-                        <div class="fr-py-1w">
-                            {{ component('contact_information', {
-                                form: form.contactInformation,
-                            }) }}
-                        </div>
-                        {% if form.corporation is defined %}
-                            <div class="fr-py-1w">
-                                {{ component('corporation', {
-                                    form: form.corporation,
-                                }) }}
-                            </div>
-                        {% endif %}
-                        {% if form.representedPersonCivilState is defined and form.representedPersonContactInformation is defined %}
-                            <h2>{{ 'pel.represented.person.identity'|trans }}</h2>
-                            <div class="fr-py-1w">
-                                {{ component('civil_state', {
-                                    form: form.representedPersonCivilState,
-                                }) }}
-                            </div>
-                            <div class="fr-py-1w">
-                                {{ component('contact_information', {
-                                    form: form.representedPersonContactInformation,
-                                }) }}
-                            </div>
-                        {% endif %}
-                    </div>
-                {% endif %}
+    <div class="fr-grid-row">
+        <div class="fr-col">
+            <p>{{ 'pel.all.fields.are.required'|trans }}</p>
+            <div class="fr-py-1w">
+                {{ component('civil_state', {
+                    form: form.civilState,
+                }) }}
             </div>
-        </div>
-        <div class="fr-grid-row">
-            <div class="fr-col">
-                <ul class="fr-btns-group fr-btns-group--right fr-btns-group--inline-reverse fr-btns-group--inline-lg fr-btns-group--icon-left">
-                    <li>
-                        <button type="submit" class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line" data-next-accordion="2" id="identity_submit">{{ 'pel.next'|trans }}</button>
-                    </li>
-                    <li>
-                        <a href="#" class="fr-btn fr-btn--secondary">{{ 'pel.save'|trans }}</a>
-                    </li>
-                </ul>
+            <div class="fr-py-1w">
+                {{ component('contact_information', {
+                    form: form.contactInformation,
+                }) }}
             </div>
+            <div id="declarant-status" class="fr-mt-3w">{{ form_row(form.declarantStatus) }}</div>
+            {% if form.corporation is defined %}
+                <div class="fr-py-1w">
+                    {{ component('corporation', {
+                        form: form.corporation,
+                    }) }}
+                </div>
+            {% endif %}
+            {% if form.representedPersonCivilState is defined and form.representedPersonContactInformation is defined %}
+                <h2>{{ 'pel.represented.person.identity'|trans }}</h2>
+                <div class="fr-py-1w">
+                    {{ component('civil_state', {
+                        form: form.representedPersonCivilState,
+                    }) }}
+                </div>
+                <div class="fr-py-1w">
+                    {{ component('contact_information', {
+                        form: form.representedPersonContactInformation,
+                    }) }}
+                </div>
+            {% endif %}
         </div>
+    </div>
+    <div class="fr-grid-row fr-mt-3w">
+        <div class="fr-col">
+            <ul class="fr-btns-group fr-btns-group--right fr-btns-group--inline-reverse fr-btns-group--inline-lg fr-btns-group--icon-left">
+                <li>
+                    <button type="submit" class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line" data-next-accordion="2" id="identity_submit">{{ 'pel.next'|trans }}</button>
+                </li>
+                <li>
+                    <a href="#" class="fr-btn fr-btn--secondary">{{ 'pel.save'|trans }}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
     {{ form_end(form) }}
 </div>

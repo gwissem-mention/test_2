@@ -10,6 +10,7 @@ use App\Form\Model\Identity\ContactInformationModel;
 use App\Form\Model\Identity\IdentityModel;
 use App\Form\Model\LocationModel;
 use App\Thesaurus\TownAndDepartmentThesaurusProviderInterface;
+use App\Tmp\CountryInseeCodeMapper;
 use Symfony\Component\Form\DataTransformerInterface;
 
 class IdentityModelFactory
@@ -17,6 +18,7 @@ class IdentityModelFactory
     public function __construct(
         private readonly TownAndDepartmentThesaurusProviderInterface $townAndDepartmentThesaurusProvider,
         private readonly DataTransformerInterface $townToTownAndDepartmentTransformer,
+        private readonly CountryInseeCodeMapper $countryInseeCodeMapper
     ) {
     }
 
@@ -33,6 +35,12 @@ class IdentityModelFactory
         $identity = new IdentityModel();
         $civilState = new CivilStateModel();
         $birthLocation = new LocationModel();
+
+        // Temp fix to handle France case
+        // TODO remove it when countries thesaurus is implemented
+        if ($this->countryInseeCodeMapper->isSupportedInseeCode($birthCountry)) {
+            $birthCountry = $this->countryInseeCodeMapper->getCountryCode($birthCountry);
+        }
         $birthLocation->setCountry($birthCountry);
 
         if (!empty($birthPlace)) {

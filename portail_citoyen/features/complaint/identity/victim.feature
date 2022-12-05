@@ -3,8 +3,8 @@ Feature:
     In order to fill a complaint
     As a user
     I want to see the victim declarant form
-    
-    Scenario: I can select the Victim radio button
+
+    Scenario: I can see the fields for Victim
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
         And I am on "/porter-plainte"
@@ -26,6 +26,7 @@ Feature:
         And I should see the key "pel.email" translated
         And I should see the key "pel.mobile" translated
         And I should see the key "pel.next" translated
+        And I should see the key "pel.complaint.identity.declarant.status" translated
 
     Scenario: Change country from France to Spain and check the town field is cleared
         Given I am on "/authentification"
@@ -140,7 +141,7 @@ Feature:
         And I fill in "identity_contactInformation_mobile" with "0602030405"
         And I press "identity_submit"
         Then the "#facts_accordion_item" element should contain "style=\"display: block;\""
-    
+
     Scenario: Submit the form without any required values
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
@@ -148,7 +149,7 @@ Feature:
         And I click the "#identity_accordion_title" element
         When I press "identity_submit"
         Then the "#facts_accordion_item" element should not contain "style=\"display: block;\""
-    
+
     Scenario: Submit the form with only 1 required value for victim declarant
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
@@ -159,7 +160,7 @@ Feature:
         And I press "identity_submit"
         Then the "#facts_accordion_item" element should not contain "style=\"display: block;\""
 
-    
+
     Scenario: Submit the form with only 2 required value for victim declarant
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
@@ -250,7 +251,7 @@ Feature:
         And I select "1" from "identity_civilState_job"
         And I press "identity_submit"
         Then the "#facts_accordion_item" element should not contain "style=\"display: block;\""
-    
+
     Scenario: Submit the form with only 9 required value for victim declarant
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
@@ -267,7 +268,7 @@ Feature:
         And I fill in "identity_contactInformation_frenchAddress" with "Av. de la République 75011 Paris France"
         And I press "identity_submit"
         Then the "#facts_accordion_item" element should not contain "style=\"display: block;\""
-    
+
     Scenario: Submit the form with only 10 required value for victim declarant
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
@@ -286,7 +287,6 @@ Feature:
         And I press "identity_submit"
         Then the "#facts_accordion_item" element should not contain "style=\"display: block;\""
 
-    @javascript
     Scenario: I fill the identity form as france connected, when I reload the page, the identity data should be saved
         Given I am on "/authentification"
         And I press "france_connect_auth_button"
@@ -302,7 +302,6 @@ Feature:
         And I click the "#identity_accordion_title" element
         Then the "identity_declarantStatus_0" field should contain "1"
 
-    @javascript
     Scenario: I fill the identity form as not france connected, when I reload the page, the identity data should be saved
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
