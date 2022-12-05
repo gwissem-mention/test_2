@@ -430,7 +430,7 @@
                 <source>pel.dont.use.online.complaint</source>
                 <target>N'UTILISEZ PAS Plainte en ligne :</target>
             </trans-unit>
-         <trans-unit id="pel.dont.know.the.offense.author">
+            <trans-unit id="pel.dont.know.the.offense.author">
                 <source>pel.dont.know.the.offense.author</source>
                 <target>Ne pas connaître l'identité de l'auteur de l'infraction</target>
             </trans-unit>
@@ -478,7 +478,7 @@
                 <source>pel.end.hour.is.invalid</source>
                 <target>L'heure de fin est invalide</target>
             </trans-unit>
-           <trans-unit id="pel.end.thanks">
+            <trans-unit id="pel.end.thanks">
                 <source>pel.end.thanks</source>
                 <target>Merci pour votre déclaration de plainte. Vous serez recontacté dans les meilleurs délais</target>
             </trans-unit>
@@ -686,7 +686,7 @@
                 <source>pel.insurance.number</source>
                 <target>N° de police d'assurance</target>
             </trans-unit>
-           <trans-unit id="pel.is.amount.known">
+            <trans-unit id="pel.is.amount.known">
                 <source>pel.is.amount.known</source>
                 <target>Pouvez-vous estimer le montant du préjudice ?</target>
             </trans-unit>
