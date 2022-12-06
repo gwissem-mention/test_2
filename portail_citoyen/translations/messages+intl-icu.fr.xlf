@@ -746,6 +746,10 @@
                 <source>pel.mobile</source>
                 <target>Numéro de téléphone portable</target>
             </trans-unit>
+            <trans-unit id="pel.mobile.help">
+                <source>pel.mobile.help</source>
+                <target>Veuillez saisir votre numéro uniquement avec des chiffres</target>
+            </trans-unit>
             <trans-unit id="pel.model">
                 <source>pel.model</source>
                 <target>Modèle</target>

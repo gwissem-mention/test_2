@@ -33,7 +33,6 @@ Feature:
         And I should see the key "pel.corporation.phone" translated
         And I should see the key "pel.next" translated
 
-        
     Scenario: Submit the form with minimal valid values for Corporation Legal Representative declarant
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
@@ -69,7 +68,7 @@ Feature:
         And I select "1" from "identity_civilState_civility"
         And I press "identity_submit"
         Then the "#facts_accordion_item" element should not contain "style=\"display: block;\""
-    
+
     Scenario: Submit the form with only 2 required value for Corporation Legal Representative declarant
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
@@ -358,4 +357,3 @@ Feature:
         And I fill in "identity_corporation_frenchAddress" with "Av. de la République 75011 Paris France"
         And I press "identity_submit"
         Then the "#facts_accordion_item" element should not contain "style=\"display: block;\""
-
