@@ -9,6 +9,7 @@ use App\Thesaurus\ObjectCategoryThesaurusProviderInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -307,8 +308,10 @@ class ObjectType extends AbstractType
 
     private function addAmountField(FormInterface $form, string $label = 'pel.amount'): void
     {
-        $form->add('amount', NumberType::class, [
+        $form->add('amount', MoneyType::class, [
             'label' => $label,
+            'scale' => 0,
+            'currency' => false,
             'html5' => true,
             'attr' => [
                 'min' => 1,
