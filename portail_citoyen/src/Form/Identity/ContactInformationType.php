@@ -9,12 +9,13 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Regex;
 
 class ContactInformationType extends AbstractType
 {
@@ -47,14 +48,16 @@ class ContactInformationType extends AbstractType
                 ],
                 'label' => 'pel.email',
             ])
-            ->add('mobile', TextType::class, [
+            ->add('mobile', TelType::class, [
                 'attr' => [
                     'maxlength' => 15,
                 ],
                 'constraints' => [
                     new NotBlank(),
                     new Length(['max' => 15]),
+                    new Regex(['pattern' => '/^[0-9]{1,15}$/']),
                 ],
+                'help' => 'pel.mobile.help',
                 'label' => 'pel.mobile',
             ]);
 
