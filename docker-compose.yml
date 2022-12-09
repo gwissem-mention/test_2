@@ -32,7 +32,7 @@ services:
       target: symfony_php
       args:
         PHP_VERSION: 8.1
-        SYMFONY_VERSION: 6.1.*
+        SYMFONY_VERSION: 6.2.*
         SKELETON: symfony/skeleton
         STABILITY: stable
         BUILD_PATH: ./portail_citoyen/
