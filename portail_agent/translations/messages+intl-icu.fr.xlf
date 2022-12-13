@@ -6,6 +6,30 @@
                 <source>pel.agent.complaint.online</source>
                 <target>Agent - Plainte en ligne</target>
             </trans-unit>
+            <trans-unit id="pel.and.overseas">
+                <source>pel.and.overseas</source>
+                <target>Et des outre-mer</target>
+            </trans-unit>
+            <trans-unit id="pel.complaint.online.portal">
+                <source>pel.complaint.online.portal</source>
+                <target>Portail Plainte en Ligne</target>
+            </trans-unit>
+            <trans-unit id="pel.faq">
+                <source>pel.faq</source>
+                <target>FAQ</target>
+            </trans-unit>
+            <trans-unit id="pel.faq.title">
+                <source>pel.faq.title</source>
+                <target>Accédez à la Foire Aux Questions ou l'assistance technique</target>
+            </trans-unit>
+            <trans-unit id="pel.fixtures.fsi.town">
+                <source>pel.fixtures.fsi.town</source>
+                <target>Angoulême</target>
+            </trans-unit>
+            <trans-unit id="pel.fixtures.fsi.type">
+                <source>pel.fixtures.fsi.type</source>
+                <target>Gendarmerie</target>
+            </trans-unit>
             <trans-unit id="pel.header.baseline">
                 <source>pel.header.baseline</source>
                 <target>Portail Force de Sécurité Intérieure</target>
@@ -13,6 +37,30 @@
             <trans-unit id="pel.home">
                 <source>pel.home</source>
                 <target>Accueil</target>
+            </trans-unit>
+            <trans-unit id="pel.home.title">
+                <source>pel.home.title</source>
+                <target>Accéder à la gestion des déclarations</target>
+            </trans-unit>
+            <trans-unit id="pel.inside">
+                <source>pel.inside</source>
+                <target>de l'intérieur</target>
+            </trans-unit>
+            <trans-unit id="pel.menu">
+                <source>pel.menu</source>
+                <target>Menu</target>
+            </trans-unit>
+            <trans-unit id="pel.ministry">
+                <source>pel.ministry</source>
+                <target>Ministère</target>
+            </trans-unit>
+            <trans-unit id="pel.reporting">
+                <source>pel.reporting</source>
+                <target>Reporting</target>
+            </trans-unit>
+            <trans-unit id="pel.reporting.title">
+                <source>pel.reporting.title</source>
+                <target>Accéder au reporting de votre activité</target>
             </trans-unit>
             <trans-unit id="pel.search">
                 <source>pel.search</source>
