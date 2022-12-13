@@ -10,7 +10,6 @@ use App\Thesaurus\TownAndDepartmentThesaurusProviderInterface;
 use App\Thesaurus\Transformer\TownToTransformTransformerInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -25,7 +24,7 @@ class LocationType extends AbstractType
     public function __construct(
         private readonly TownAndDepartmentThesaurusProviderInterface $townAndDepartmentAndDepartmentThesaurusProvider,
         private readonly TownToTransformTransformerInterface $townToTransformTransformer,
-        private readonly string $franceCode,
+        private readonly int $franceCode,
         private readonly SessionHandler $sessionHandler,
     ) {
     }
@@ -34,15 +33,14 @@ class LocationType extends AbstractType
     {
         /** @var ?LocationModel $locationModel */
         $locationModel = $this->sessionHandler->getComplaint()?->getIdentity()?->getCivilState()?->getBirthLocation();
+
         $builder
             ->add('country', CountryType::class, [
                 'label' => $options['country_label'],
                 'preferred_choices' => [$this->franceCode],
-                'empty_data' => null === $locationModel?->getCountry() ? $this->franceCode :
+                'empty_data' => null === $locationModel?->getCountry() ?
+                    $this->franceCode :
                     $locationModel->getCountry(),
-                'constraints' => [
-                    new NotBlank(),
-                ],
             ]);
 
         $builder->addEventListener(
@@ -57,7 +55,7 @@ class LocationType extends AbstractType
         $builder->get('country')->addEventListener(
             FormEvents::POST_SUBMIT,
             function (FormEvent $event) {
-                /** @var string $country */
+                /** @var int $country */
                 $country = $event->getForm()->getData();
                 /** @var FormInterface $parent */
                 $parent = $event->getForm()->getParent();
@@ -78,7 +76,7 @@ class LocationType extends AbstractType
         ]);
     }
 
-    private function addTownField(FormInterface $form, ?string $country, ?LocationModel $locationModel = null): void
+    private function addTownField(FormInterface $form, ?int $country, ?LocationModel $locationModel = null): void
     {
         if (null === $country || $this->franceCode === $country) {
             $this->addFormPartForFrenchPlace($form, $locationModel);

@@ -90,6 +90,10 @@ tools-install:
 	@$(COMPOSER) install --working-dir=tools
 	@wget https://phar.phpunit.de/phpcpd.phar -O tools/phpcpd.phar
 
+## Upgrade php tools
+tools-upgrade:
+	@$(COMPOSER) update --working-dir=tools
+
 #################################
 Yarn:
 
@@ -146,21 +150,31 @@ db-setup: db-drop db-create db-migrate
 
 db-ci-setup:
 	@$(eval APP_ENV ?=)
-	@$(CONSOLE) doctrine:database:drop --force --if-exists --env=$(APP_ENV)
-	@$(CONSOLE) doctrine:database:create --env=$(APP_ENV) --if-not-exists
-	@$(CONSOLE) doctrine:schema:update --force
+	@$(CONSOLE) doctrine:database:drop --force --if-exists --env=$(APP_ENV) --connection=default
+	@$(CONSOLE) doctrine:database:create --env=$(APP_ENV) --if-not-exists --connection=default
+	@$(CONSOLE) doctrine:schema:update --force --em=default
 
 db-migrate:
 	@$(eval APP_ENV ?=)
-	@$(CONSOLE) doctrine:migrations:migrate -n --allow-no-migration --env=$(APP_ENV)
+	@$(CONSOLE) doctrine:migrations:migrate -n --allow-no-migration --env=$(APP_ENV) --em=default
 
 db-create:
 	@$(eval APP_ENV ?=)
-	@$(CONSOLE) doctrine:database:create --env=$(APP_ENV) --if-not-exists
+	@$(CONSOLE) doctrine:database:create --env=$(APP_ENV) --if-not-exists --connection=default
 
 db-drop:
 	@$(eval APP_ENV ?=)
-	@$(CONSOLE) doctrine:database:drop --force --if-exists --env=$(APP_ENV)
+	@$(CONSOLE) doctrine:database:drop --force --if-exists --env=$(APP_ENV) --connection=default
+
+referential-create:
+	@$(eval APP_ENV ?=)
+	@$(CONSOLE) doctrine:database:drop --force --if-exists --env=$(APP_ENV) --connection=referentials
+	@$(CONSOLE) doctrine:database:create --if-not-exists --env=$(APP_ENV) --connection=referentials
+	@$(CONSOLE) doctrine:schema:update --force --env=$(APP_ENV) --em=referentials
+
+referential-load:
+	@$(eval APP_ENV ?=)
+	@$(CONSOLE) doctrine:fixtures:load --env=$(APP_ENV) --em=referentials --group=referentials --no-interaction
 
 #################################
 Cache:
@@ -243,3 +257,15 @@ deploy-ci:
 ## Run ansible rollback
 rollback:
 	@$(ANSIBLE) --become-method=su  --become-user=$(BECOME_USER)  ansible/rollback/rollback.yaml -i ansible/hosts.yaml  --ask-vault-pass  --private-key=$(PRIVATE_KEY_PATH)
+
+#################################
+Cache Redis:
+
+pools-list:
+	@$(CONSOLE) cache:pool:list
+
+pool-referentials-delete-force:
+	@$(CONSOLE) cache:pool:delete referentials.cache countries
+
+pool-referential-clear:
+	@$(CONSOLE) cache:pool:clear referentials.cache

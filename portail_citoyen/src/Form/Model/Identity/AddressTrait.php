@@ -6,16 +6,16 @@ namespace App\Form\Model\Identity;
 
 trait AddressTrait
 {
-    private ?string $country = null;
+    private ?int $country = null;
     private ?string $frenchAddress = null;
     private ?string $foreignAddress = null;
 
-    public function getCountry(): ?string
+    public function getCountry(): ?int
     {
         return $this->country;
     }
 
-    public function setCountry(?string $country): self
+    public function setCountry(?int $country): self
     {
         $this->country = $country;
 

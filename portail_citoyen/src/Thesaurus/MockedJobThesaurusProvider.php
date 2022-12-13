@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\Thesaurus;
 
+/**
+ * @deprecated
+ */
 class MockedJobThesaurusProvider implements JobThesaurusProviderInterface
 {
     public function getChoices(): array

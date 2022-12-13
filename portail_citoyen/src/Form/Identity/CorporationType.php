@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Form\Identity;
 
+use App\Form\CountryType;
 use App\Form\Model\Identity\CorporationModel;
 use App\Thesaurus\NationalityThesaurusProviderInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;

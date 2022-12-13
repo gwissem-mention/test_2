@@ -6,17 +6,17 @@ namespace App\Form\Model;
 
 class LocationModel
 {
-    private ?string $country = null;
+    private ?int $country = null;
     private ?string $department = null;
     private ?string $frenchTown = null;
     private ?string $otherTown = null;
 
-    public function getCountry(): ?string
+    public function getCountry(): ?int
     {
         return $this->country;
     }
 
-    public function setCountry(?string $country): self
+    public function setCountry(?int $country): self
     {
         $this->country = $country;
 

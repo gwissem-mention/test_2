@@ -6,6 +6,9 @@ namespace App\Thesaurus;
 
 use App\Enum\Department;
 
+/**
+ * @deprecated
+ */
 class MockedTownAndDepartmentThesaurusProvider implements TownAndDepartmentThesaurusProviderInterface
 {
     public function getChoices(): array

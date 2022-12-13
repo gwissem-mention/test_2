@@ -34,10 +34,10 @@ Feature:
         And I am on "/porter-plainte"
         And I click the "#identity_accordion_title" element
         When I click the "label[for=identity_declarantStatus_0]" element
-        And I select "FR" from "identity_civilState_birthLocation_country"
+        And I select "99100" from "identity_civilState_birthLocation_country"
         And I select "Paris (75)" from "identity_civilState_birthLocation_frenchTown"
         And I should see "Paris" in the "#identity_civilState_birthLocation_frenchTown" element
-        And I select "ES" from "identity_civilState_birthLocation_country"
+        And I select "99134" from "identity_civilState_birthLocation_country"
         And I fill in "identity_civilState_birthLocation_otherTown" with "Madrid"
         And I should not see a "identity_civilState_birthLocation_frenchTown" element
         And I should not see "Paris" in the "#identity_civilState_birthLocation_otherTown" element
@@ -71,7 +71,7 @@ Feature:
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I fill in "identity_civilState_birthDate" with "01/01/2000"
-        And I select "FR" from "identity_civilState_birthLocation_country"
+        And I select "99100" from "identity_civilState_birthLocation_country"
         And I select "Paris (75)" from "identity_civilState_birthLocation_frenchTown"
         And I select "1" from "identity_civilState_nationality"
         And I select "1" from "identity_civilState_job"
@@ -91,7 +91,7 @@ Feature:
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I fill in "identity_civilState_birthDate" with "01/01/2000"
-        And I select "ES" from "identity_civilState_birthLocation_country"
+        And I select "99134" from "identity_civilState_birthLocation_country"
         And I fill in "identity_civilState_birthLocation_otherTown" with "Madrid"
         And I select "1" from "identity_civilState_nationality"
         And I select "1" from "identity_civilState_job"
@@ -114,7 +114,7 @@ Feature:
         And I select "Paris (75)" from "identity_civilState_birthLocation_frenchTown"
         And I select "1" from "identity_civilState_nationality"
         And I select "1" from "identity_civilState_job"
-        And I select "FR" from "identity_contactInformation_country"
+        And I select "99100" from "identity_contactInformation_country"
         And I fill in "identity_contactInformation_frenchAddress" with "Av. de la République 75011 Paris France"
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I fill in "identity_contactInformation_mobile" with "0602030405"
@@ -131,11 +131,11 @@ Feature:
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I fill in "identity_civilState_birthDate" with "01/01/2000"
-        And I select "FR" from "identity_civilState_birthLocation_country"
+        And I select "99100" from "identity_civilState_birthLocation_country"
         And I select "Paris (75)" from "identity_civilState_birthLocation_frenchTown"
         And I select "1" from "identity_civilState_nationality"
         And I select "1" from "identity_civilState_job"
-        And I select "ES" from "identity_contactInformation_country"
+        And I select "99134" from "identity_contactInformation_country"
         And I fill in "identity_contactInformation_foreignAddress" with "C. de Alcalá Madrid España"
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I fill in "identity_contactInformation_mobile" with "0602030405"
@@ -306,8 +306,7 @@ Feature:
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
         And I am on "/porter-plainte"
-        And I click the "#identity_accordion_title" element
-        When I click the "label[for=identity_declarantStatus_0]" element
+        When I click the "#identity_accordion_title" element
         And I select "1" from "identity_civilState_civility"
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
@@ -318,6 +317,7 @@ Feature:
         And I fill in "identity_contactInformation_frenchAddress" with "Av. de la République 75011 Paris France"
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I fill in "identity_contactInformation_mobile" with "0602030405"
+        And I click the "label[for=identity_declarantStatus_0]" element
         And I press "identity_submit"
         And I wait 2000 ms
         And I reload the page
