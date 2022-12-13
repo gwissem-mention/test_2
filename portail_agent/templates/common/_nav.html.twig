@@ -1,0 +1,14 @@
+<div id="title_navigation">
+    <h1>{{ 'pel.complaint.online.portal'|trans }} : {{ 'pel.fixtures.fsi.type'|trans }} {{ 'pel.fixtures.fsi.town'|trans }}</h1>
+    <ul class="list-group list-group-horizontal">
+        <li class="border border-0 list-group-item {% if app.request.attributes.get('_route') is same as('home') %}text-decoration-underline{% endif %}">
+            <a href="{{ path('home') }}" title="{{ 'pel.home.title'|trans }}">{{ 'pel.home'|trans }}</a>
+        </li>
+        <li class="border border-0 list-group-item {% if app.request.attributes.get('_route') is same as('reporting') %}text-decoration-underline{% endif %}">
+            <a href="{{ path('reporting') }}" title="{{ 'pel.reporting.title'|trans }}">{{ 'pel.reporting'|trans }}</a>
+        </li>
+        <li class="border border-0 list-group-item {% if app.request.attributes.get('_route') is same as('faq') %}text-decoration-underline"{% endif %}">
+            <a href="{{ path('faq') }}" title="{{ 'pel.faq.title'|trans }}">{{ 'pel.faq'|trans }}</a>
+        </li>
+    </ul>
+</div>

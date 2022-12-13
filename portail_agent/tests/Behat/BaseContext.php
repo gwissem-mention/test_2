@@ -24,6 +24,16 @@ final class BaseContext extends MinkContext
     }
 
     /**
+     * @Then I should not see the key :arg1 translated
+     */
+    public function iShouldNotSeeTheKeyTranslated(string $arg1): void
+    {
+        parent::assertPageNotContainsText($arg1);
+        parent::assertResponseNotContains($arg1);
+        parent::assertPageNotContainsText($this->translator->trans($arg1));
+    }
+
+    /**
      * @Then the response should contain the key :arg1 translated
      */
     public function assertResponseContainsTheKeyTranslated(string $arg1): void

@@ -8,11 +8,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class HomeController extends AbstractController
+class ReportingController extends AbstractController
 {
-    #[Route('/', name: 'home')]
+    #[Route('/reporting', name: 'reporting')]
     public function __invoke(): Response
     {
-        return $this->render('pages/index.html.twig');
+        return $this->render('pages/reporting.html.twig');
     }
 }
