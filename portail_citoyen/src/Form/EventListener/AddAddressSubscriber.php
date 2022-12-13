@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 class AddAddressSubscriber implements EventSubscriberInterface
 {
-    public function __construct(protected readonly string $franceCode)
+    public function __construct(protected readonly int $franceCode)
     {
     }
 

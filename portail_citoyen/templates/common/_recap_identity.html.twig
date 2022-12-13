@@ -16,7 +16,7 @@
 {% endif %}
 <li>
     {{ 'pel.born.on'|trans }} : {{ civilState.birthDate|date('d/m/Y') }}
-    {{ 'pel.at.in'|trans }} : {{ civilState.birthLocation.country|country_name }}
+    {{ 'pel.at.in'|trans }} : {{ civilState.birthLocation.country|country_referential_name }}
     {{ 'pel.department'|trans }} : {{ civilState.birthLocation.department }}
 </li>
 <li>
@@ -25,7 +25,7 @@
 </li>
 <li>
     {{ 'pel.resides.at'|trans }} :
-    {% if contactInformation.country|country_name is same as('France') %}
+    {% if contactInformation.country == fr_code %}
         {{ contactInformation.frenchAddress }}
     {% else %}
         {{  contactInformation.foreignAddress }}

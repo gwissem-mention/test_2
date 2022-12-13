@@ -1,5 +1,5 @@
 parameters:
-  app.france_code: 'FR'
+    app.france_code: 99100
 
 services:
   _defaults:
@@ -33,3 +33,6 @@ services:
   App\Security\FranceConnectListener:
       $baseUri: '%env(FRANCE_CONNECT_BASE_URI)%'
       $logoutTargetPathMap: ~  # Replaced in LogoutTargetPass
+      
+  # Referentials
+  App\Referential\Provider\Country\CountryProviderInterface: '@App\Referential\Provider\Country\DatabaseCountryProvider'

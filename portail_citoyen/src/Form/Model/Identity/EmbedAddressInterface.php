@@ -6,9 +6,9 @@ namespace App\Form\Model\Identity;
 
 interface EmbedAddressInterface
 {
-    public function getCountry(): ?string;
+    public function getCountry(): ?int;
 
-    public function setCountry(?string $country): self;
+    public function setCountry(?int $country): self;
 
     public function getFrenchAddress(): ?string;
 

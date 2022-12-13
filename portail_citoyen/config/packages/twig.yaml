@@ -1,6 +1,8 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
     form_themes: ['forms/theme.html.twig']
+    globals:
+        fr_code: '%app.france_code%'
 
 when@test:
     twig:

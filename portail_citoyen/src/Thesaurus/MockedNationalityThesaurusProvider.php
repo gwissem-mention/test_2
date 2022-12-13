@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\Thesaurus;
 
+/**
+ * @deprecated
+ */
 class MockedNationalityThesaurusProvider implements NationalityThesaurusProviderInterface
 {
     public function getChoices(): array

@@ -501,7 +501,9 @@ citoyen-func:
         POSTGRES_PASSWORD: "ChangeMe"
         POSTGRES_USER: "symfony"
     script:
-        - make APP_ENV=test db-ci-setup
+        - make APP_ENV=${APP_ENV} db-ci-setup
+        - make APP_ENV=${APP_ENV} referential-create
+        - make APP_ENV=${APP_ENV} referential-load
         - make behat
     services:
         - name: postgres:13-alpine
@@ -516,11 +518,13 @@ citoyen-e2e:
         POSTGRES_PASSWORD: "ChangeMe"
         POSTGRES_USER: "symfony"
     script:
-        - php bin/console cache:clear --env=e2e
-        - echo 'APP_ENV=e2e' >> .env.local
-        - APP_ENV=e2e php -S 127.0.0.1:8080 -t public/ > /dev/null 2>&1 &
+        - php bin/console cache:clear --env=${APP_ENV}
+        - echo "APP_ENV=${APP_ENV}" >> .env.local
+        - php -S 127.0.0.1:8080 -t public/ > /dev/null 2>&1 &
         - sed -i "s/nginx-citoyen/127.0.0.1:8080/g" behat.yml.dist
-        - APP_ENV=e2e make db-ci-setup
+        - make APP_ENV=${APP_ENV} db-ci-setup
+        - make APP_ENV=${APP_ENV} referential-create
+        - make APP_ENV=${APP_ENV} referential-load
         - make e2e
     artifacts:
         name: "citoyen-e2e-$CI_COMMIT_REF_NAME"

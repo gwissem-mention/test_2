@@ -24,7 +24,7 @@ class AddAddressCountrySubscriber extends AddAddressSubscriber
         $parent = $event->getForm()->getParent();
         /** @var EmbedAddressInterface|null $model */
         $model = $parent->getData();
-        if ($this->franceCode === $event->getData()) {
+        if ($this->franceCode === intval($event->getData())) {
             $this->addFrenchAddressField($parent, $model);
         } else {
             $this->addForeignAddressField($parent, $model);

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Form\Identity;
 
+use App\Form\CountryType;
 use App\Form\Model\Identity\ContactInformationModel;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -22,7 +22,7 @@ class ContactInformationType extends AbstractType
     public function __construct(
         private readonly EventSubscriberInterface $addAddressSubscriber,
         private readonly EventSubscriberInterface $addAddressCountrySubscriber,
-        private readonly string $franceCode
+        private readonly int $franceCode
     ) {
     }
 
@@ -33,9 +33,6 @@ class ContactInformationType extends AbstractType
                 'label' => 'pel.address.country',
                 'preferred_choices' => [$this->franceCode],
                 'empty_data' => $this->franceCode,
-                'constraints' => [
-                    new NotBlank(),
-                ],
             ])
             ->add('email', EmailType::class, [
                 'attr' => [
