@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="fr" target-language="fr" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="pel.agent.complaint.online">
+                <source>pel.agent.complaint.online</source>
+                <target>Agent - Plainte en ligne</target>
+            </trans-unit>
+            <trans-unit id="pel.header.baseline">
+                <source>pel.header.baseline</source>
+                <target>Portail Force de Sécurité Intérieure</target>
+            </trans-unit>
+            <trans-unit id="pel.home">
+                <source>pel.home</source>
+                <target>Accueil</target>
+            </trans-unit>
+            <trans-unit id="pel.search">
+                <source>pel.search</source>
+                <target>Rechercher</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
