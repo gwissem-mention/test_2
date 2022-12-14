@@ -2,17 +2,41 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="fr" target-language="fr" datatype="plaintext" original="file.ext">
         <body>
+            <trans-unit id="pel.a.opj.name">
+                <source>pel.a.opj.name</source>
+                <target>Nom A/OPJ</target>
+            </trans-unit>
             <trans-unit id="pel.agent.complaint.online">
                 <source>pel.agent.complaint.online</source>
                 <target>Agent - Plainte en ligne</target>
             </trans-unit>
-            <trans-unit id="pel.and.overseas">
-                <source>pel.and.overseas</source>
-                <target>Et des outre-mer</target>
+            <trans-unit id="pel.alert">
+                <source>pel.alert</source>
+                <target>Alerte</target>
+            </trans-unit>
+            <trans-unit id="pel.comments">
+                <source>pel.comments</source>
+                <target>Commentaires</target>
             </trans-unit>
             <trans-unit id="pel.complaint.online.portal">
                 <source>pel.complaint.online.portal</source>
                 <target>Portail Plainte en Ligne</target>
+            </trans-unit>
+            <trans-unit id="pel.declaration.number">
+                <source>pel.declaration.number</source>
+                <target>N° de déclaration</target>
+            </trans-unit>
+            <trans-unit id="pel.deposit.date">
+                <source>pel.deposit.date</source>
+                <target>Date de dépôt</target>
+            </trans-unit>
+            <trans-unit id="pel.facts">
+                <source>pel.facts</source>
+                <target>Faits</target>
+            </trans-unit>
+            <trans-unit id="pel.facts.date">
+                <source>pel.facts.date</source>
+                <target>Date des faits</target>
             </trans-unit>
             <trans-unit id="pel.faq">
                 <source>pel.faq</source>
@@ -21,6 +45,10 @@
             <trans-unit id="pel.faq.title">
                 <source>pel.faq.title</source>
                 <target>Accédez à la Foire Aux Questions ou l'assistance technique</target>
+            </trans-unit>
+            <trans-unit id="pel.firstname.lastname">
+                <source>pel.firstname.lastname</source>
+                <target>Nom/Prénom</target>
             </trans-unit>
             <trans-unit id="pel.fixtures.fsi.town">
                 <source>pel.fixtures.fsi.town</source>
@@ -42,17 +70,9 @@
                 <source>pel.home.title</source>
                 <target>Accéder à la gestion des déclarations</target>
             </trans-unit>
-            <trans-unit id="pel.inside">
-                <source>pel.inside</source>
-                <target>de l'intérieur</target>
-            </trans-unit>
-            <trans-unit id="pel.menu">
-                <source>pel.menu</source>
-                <target>Menu</target>
-            </trans-unit>
-            <trans-unit id="pel.ministry">
-                <source>pel.ministry</source>
-                <target>Ministère</target>
+            <trans-unit id="pel.meeting.date">
+                <source>pel.meeting.date</source>
+                <target>Date RDV</target>
             </trans-unit>
             <trans-unit id="pel.reporting">
                 <source>pel.reporting</source>
@@ -65,6 +85,10 @@
             <trans-unit id="pel.search">
                 <source>pel.search</source>
                 <target>Rechercher</target>
+            </trans-unit>
+            <trans-unit id="pel.status">
+                <source>pel.status</source>
+                <target>Statut</target>
             </trans-unit>
         </body>
     </file>
