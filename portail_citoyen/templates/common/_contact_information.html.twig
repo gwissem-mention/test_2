@@ -1,11 +1,11 @@
 <h3>{{ 'pel.contact.information'|trans }}</h3>
 {{ form_row(form.country) }}
 {% if form.frenchAddress is defined %}
-    {{ form_row(form.frenchAddress) }}
+    {{ form_row(form.frenchAddress, {attr:{'class':'etalab'}}) }}
 {% endif %}
 
 {% if form.foreignAddress is defined %}
-    {{ form_row(form.foreignAddress) }}
+    {{ form_row(form.foreignAddress, {attr:{'class':'etalab'}}) }}
 {% endif %}
 {{ form_row(form.email) }}
 {{ form_row(form.mobile) }}

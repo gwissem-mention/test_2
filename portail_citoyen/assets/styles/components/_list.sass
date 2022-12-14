@@ -1,0 +1,14 @@
+.list
+    &--addresses
+        @include reset-list
+        border: 1px solid $grey
+
+        &__item
+            @include transition
+            padding: $padding-medium
+            background-color: $white
+            border-top: 1px solid $grey
+
+            &:hover
+                cursor: pointer
+                background-color: $grey
