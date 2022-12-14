@@ -96,8 +96,8 @@
                         </li>
                         <li>
                             {{ 'pel.address'|trans }} :
-                            {% if complaint.identity.corporation.country|country_name is same as('France') %}
-                                {{ complaint.identity.corporation.frenchAddress }}
+                            {% if complaint.identity.corporation.country == fr_code %}
+                                {{ complaint.identity.corporation.frenchAddress.label }}
                             {% else %}
                                 {{ complaint.identity.corporation.foreignAddress }}
                             {% endif %}

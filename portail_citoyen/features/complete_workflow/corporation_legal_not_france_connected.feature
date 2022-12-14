@@ -17,7 +17,7 @@ Feature:
         And I select "Paris (75)" from "identity_civilState_birthLocation_frenchTown"
         And I select "1" from "identity_civilState_nationality"
         And I select "1" from "identity_civilState_job"
-        And I fill in "identity_contactInformation_frenchAddress" with "Av. de la République 75011 Paris France"
+        And I fill in "identity_contactInformation_frenchAddress_address" with "Av. de la République 75011 Paris France"
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I fill in "identity_contactInformation_mobile" with "0601020304"
         And I fill in "identity_corporation_siren" with "123456789"
@@ -26,7 +26,7 @@ Feature:
         And I select "1" from "identity_corporation_nationality"
         And I fill in "identity_corporation_email" with "contact@mon-entreprise.fr"
         And I fill in "identity_corporation_phone" with "0102030405"
-        And I fill in "identity_corporation_frenchAddress" with "Av. de la République 75011 Paris France"
+        And I fill in "identity_corporation_frenchAddress_address" with "Av. de la République 75011 Paris France"
         And I press "identity_submit"
         And I wait 2000 ms
         And I click the "label[for=facts_offenseNature_offenseNatures_0]" element

@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Components\Identity;
 
+use App\Etalab\AddressEtalabHandler;
 use App\Form\Identity\IdentityType;
+use App\Form\Model\Identity\EmbedAddressInterface;
 use App\Form\Model\Identity\IdentityModel;
 use App\Session\ComplaintModel;
 use App\Session\SessionHandler;
@@ -21,8 +23,10 @@ class IdentityComponent extends AbstractController
     use ComponentWithFormTrait;
     use DefaultActionTrait;
 
-    public function __construct(private readonly SessionHandler $sessionHandler)
-    {
+    public function __construct(
+        private readonly SessionHandler $sessionHandler,
+        private readonly AddressEtalabHandler $addressEtalabHandler
+    ) {
     }
 
     protected function instantiateForm(): FormInterface
@@ -45,6 +49,29 @@ class IdentityComponent extends AbstractController
         $complaint = $this->sessionHandler->getComplaint();
         /** @var IdentityModel $identity */
         $identity = $this->getFormInstance()->getData();
+
+        $etalabFields = [
+            'contactInformation' => $identity->getContactInformation(),
+            'representedPersonContactInformation' => $identity->getRepresentedPersonContactInformation(),
+            'corporation' => $identity->getCorporation(),
+        ];
+
+        /**
+         * @var EmbedAddressInterface $model
+         */
+        foreach ($etalabFields as $form => $model) {
+            if (isset($this->formValues[$form]['frenchAddress'])) {
+                $frenchAddress = $this->formValues[$form]['frenchAddress'];
+                $model->setFrenchAddress(
+                    $this->addressEtalabHandler->getAddressModel(
+                        $frenchAddress['address'],
+                        $frenchAddress['query'],
+                        $frenchAddress['selectionId']
+                    )
+                );
+            }
+        }
+
         $this->sessionHandler->setComplaint($complaint->setIdentity($identity));
     }
 }

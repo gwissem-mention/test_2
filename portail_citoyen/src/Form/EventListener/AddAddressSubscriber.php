@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Form\EventListener;
 
+use App\Form\AddressEtalabType;
 use App\Form\Model\Identity\EmbedAddressInterface;
-use App\Form\Model\LocationModel;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormEvent;
@@ -28,13 +28,13 @@ class AddAddressSubscriber implements EventSubscriberInterface
 
     public function addAddressField(FormEvent $event): void
     {
-        /** @var ?LocationModel $location */
+        /** @var ?EmbedAddressInterface $location */
         $location = $event->getData();
         $form = $event->getForm();
         if (null === $location?->getCountry() || $this->franceCode === $location->getCountry()) {
-            $this->addFrenchAddressField($form);
+            $this->addFrenchAddressField($form, $location);
         } else {
-            $this->addForeignAddressField($form);
+            $this->addForeignAddressField($form, $location);
         }
     }
 
@@ -44,11 +44,13 @@ class AddAddressSubscriber implements EventSubscriberInterface
     ): void {
         $form
             ->remove('foreignAddress')
-            ->add('frenchAddress', TextType::class, [
-                'label' => 'pel.address',
-                'constraints' => [
+            ->add('frenchAddress', AddressEtalabType::class, [
+                'address_label' => 'pel.address',
+                'address_constraints' => [
                     new NotBlank(),
                 ],
+                'address_data' => $model?->getFrenchAddress()?->getLabel(),
+                'required' => true,
             ]);
 
         $model?->setForeignAddress(null);
