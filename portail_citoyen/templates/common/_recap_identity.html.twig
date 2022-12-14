@@ -26,7 +26,7 @@
 <li>
     {{ 'pel.resides.at'|trans }} :
     {% if contactInformation.country == fr_code %}
-        {{ contactInformation.frenchAddress }}
+        {{ contactInformation.frenchAddress.label }}
     {% else %}
         {{  contactInformation.foreignAddress }}
     {% endif %}

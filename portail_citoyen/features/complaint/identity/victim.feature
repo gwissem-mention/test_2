@@ -55,7 +55,7 @@ Feature:
         And I select "Paris (75)" from "identity_civilState_birthLocation_frenchTown"
         And I select "1" from "identity_civilState_nationality"
         And I select "1" from "identity_civilState_job"
-        And I fill in "identity_contactInformation_frenchAddress" with "Av. de la République 75011 Paris France"
+        And I fill in "identity_contactInformation_frenchAddress_address" with "Av. de la République 75011 Paris France"
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I fill in "identity_contactInformation_mobile" with "0602030405"
         And I press "identity_submit"
@@ -75,7 +75,7 @@ Feature:
         And I select "Paris (75)" from "identity_civilState_birthLocation_frenchTown"
         And I select "1" from "identity_civilState_nationality"
         And I select "1" from "identity_civilState_job"
-        And I fill in "identity_contactInformation_frenchAddress" with "Av. de la République 75011 Paris France"
+        And I fill in "identity_contactInformation_frenchAddress_address" with "Av. de la République 75011 Paris France"
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I fill in "identity_contactInformation_mobile" with "0602030405"
         And I press "identity_submit"
@@ -95,7 +95,7 @@ Feature:
         And I fill in "identity_civilState_birthLocation_otherTown" with "Madrid"
         And I select "1" from "identity_civilState_nationality"
         And I select "1" from "identity_civilState_job"
-        And I fill in "identity_contactInformation_frenchAddress" with "Av. de la République 75011 Paris France"
+        And I fill in "identity_contactInformation_frenchAddress_address" with "Av. de la République 75011 Paris France"
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I fill in "identity_contactInformation_mobile" with "0602030405"
         And I press "identity_submit"
@@ -115,7 +115,7 @@ Feature:
         And I select "1" from "identity_civilState_nationality"
         And I select "1" from "identity_civilState_job"
         And I select "99100" from "identity_contactInformation_country"
-        And I fill in "identity_contactInformation_frenchAddress" with "Av. de la République 75011 Paris France"
+        And I fill in "identity_contactInformation_frenchAddress_address" with "Av. de la République 75011 Paris France"
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I fill in "identity_contactInformation_mobile" with "0602030405"
         And I press "identity_submit"
@@ -265,7 +265,7 @@ Feature:
         And I select "Paris (75)" from "identity_civilState_birthLocation_frenchTown"
         And I select "1" from "identity_civilState_nationality"
         And I select "1" from "identity_civilState_job"
-        And I fill in "identity_contactInformation_frenchAddress" with "Av. de la République 75011 Paris France"
+        And I fill in "identity_contactInformation_frenchAddress_address" with "Av. de la République 75011 Paris France"
         And I press "identity_submit"
         Then the "#facts_accordion_item" element should not contain "style=\"display: block;\""
 
@@ -282,7 +282,7 @@ Feature:
         And I select "Paris (75)" from "identity_civilState_birthLocation_frenchTown"
         And I select "1" from "identity_civilState_nationality"
         And I select "1" from "identity_civilState_job"
-        And I fill in "identity_contactInformation_frenchAddress" with "Av. de la République 75011 Paris France"
+        And I fill in "identity_contactInformation_frenchAddress_address" with "Av. de la République 75011 Paris France"
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I press "identity_submit"
         Then the "#facts_accordion_item" element should not contain "style=\"display: block;\""
@@ -294,7 +294,7 @@ Feature:
         And I click the "#identity_accordion_title" element
         When I click the "label[for=identity_declarantStatus_0]" element
         And I select "1" from "identity_civilState_job"
-        And I fill in "identity_contactInformation_frenchAddress" with "Av. de la République 75011 Paris France"
+        And I fill in "identity_contactInformation_frenchAddress_address" with "Av. de la République 75011 Paris France"
         And I fill in "identity_contactInformation_mobile" with "0601020304"
         And I press "identity_submit"
         And I wait 2000 ms
@@ -306,7 +306,8 @@ Feature:
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
         And I am on "/porter-plainte"
-        When I click the "#identity_accordion_title" element
+        And I click the "#identity_accordion_title" element
+        When I click the "label[for=identity_declarantStatus_0]" element
         And I select "1" from "identity_civilState_civility"
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
@@ -314,10 +315,9 @@ Feature:
         And I select "Paris (75)" from "identity_civilState_birthLocation_frenchTown"
         And I select "1" from "identity_civilState_nationality"
         And I select "1" from "identity_civilState_job"
-        And I fill in "identity_contactInformation_frenchAddress" with "Av. de la République 75011 Paris France"
+        And I fill in "identity_contactInformation_frenchAddress_address" with "Av. de la République 75011 Paris France"
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I fill in "identity_contactInformation_mobile" with "0602030405"
-        And I click the "label[for=identity_declarantStatus_0]" element
         And I press "identity_submit"
         And I wait 2000 ms
         And I reload the page
