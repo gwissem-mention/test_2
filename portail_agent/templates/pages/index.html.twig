@@ -1,3 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}{% endblock %}
+{% block body %}
+    <table class="table">
+        <thead class="table-head">
+            <tr>
+                <th scope="col">{{ 'pel.deposit.date'|trans }}</th>
+                <th scope="col">{{ 'pel.facts'|trans }}</th>
+                <th scope="col">{{ 'pel.facts.date'|trans }}</th>
+                <th scope="col">{{ 'pel.alert'|trans }}</th>
+                <th scope="col">{{ 'pel.meeting.date'|trans }}</th>
+                <th scope="col">{{ 'pel.firstname.lastname'|trans }}</th>
+                <th scope="col">{{ 'pel.status'|trans }}</th>
+                <th scope="col">{{ 'pel.a.opj.name'|trans }}</th>
+                <th scope="col">{{ 'pel.declaration.number'|trans }}</th>
+                <th scope="col">{{ 'pel.comments'|trans }}</th>
+            </tr>
+        </thead>
+    </table>
+{% endblock %}

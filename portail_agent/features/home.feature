@@ -1,7 +1,7 @@
 Feature:
     In order to show the homepage
     As a user
-    I want to see the homepage
+    I want to see the homepage with table informations
 
     @func
     Scenario: I can navigate on the homepage and I should see a header and an image
@@ -21,6 +21,17 @@ Feature:
         And the response should contain the key "pel.reporting.title" translated
         And I should see the key "pel.faq" translated
         And the response should contain the key "pel.faq.title" translated
+        And I should see a "table" element
+        And I should see the key "pel.deposit.date" translated
+        And I should see the key "pel.facts" translated
+        And I should see the key "pel.facts.date" translated
+        And I should see the key "pel.alert" translated
+        And I should see the key "pel.meeting.date" translated
+        And I should see the key "pel.firstname.lastname" translated
+        And I should see the key "pel.status" translated
+        And I should see the key "pel.a.opj.name" translated
+        And I should see the key "pel.declaration.number" translated
+        And I should see the key "pel.comments" translated
 
     @func
     Scenario: I can navigate from the homepage to the homepage
