@@ -26,9 +26,17 @@
                 <source>pel.declaration.number</source>
                 <target>N° de déclaration</target>
             </trans-unit>
+            <trans-unit id="pel.degradation">
+                <source>pel.degradation</source>
+                <target>Dégradation</target>
+            </trans-unit>
             <trans-unit id="pel.deposit.date">
                 <source>pel.deposit.date</source>
                 <target>Date de dépôt</target>
+            </trans-unit>
+            <trans-unit id="pel.done">
+                <source>pel.done</source>
+                <target>Terminée</target>
             </trans-unit>
             <trans-unit id="pel.facts">
                 <source>pel.facts</source>
@@ -58,6 +66,34 @@
                 <source>pel.fixtures.fsi.type</source>
                 <target>Gendarmerie</target>
             </trans-unit>
+            <trans-unit id="pel.fixtures.declaration.number.one">
+                <source>pel.fixtures.declaration.number.one</source>
+                <target>2023-00000678</target>
+            </trans-unit>
+            <trans-unit id="pel.fixtures.declaration.number.two">
+                <source>pel.fixtures.declaration.number.two</source>
+                <target>2022-12312312</target>
+            </trans-unit>
+            <trans-unit id="pel.fixtures.jean.dupont">
+                <source>pel.fixtures.jean.dupont</source>
+                <target>Jean Dupont</target>
+            </trans-unit>
+            <trans-unit id="pel.fixtures.lorem.ipsum">
+                <source>pel.fixtures.lorem.ipsum</source>
+                <target>Lorem ipsum dolor sit amet</target>
+            </trans-unit>
+            <trans-unit id="pel.fixtures.marie.vernier">
+                <source>pel.fixtures.marie.vernier</source>
+                <target>Marie Vernier</target>
+            </trans-unit>
+            <trans-unit id="pel.fixtures.michel.blanc">
+                <source>pel.fixtures.michel.blanc</source>
+                <target>Michel Blanc</target>
+            </trans-unit>
+            <trans-unit id="pel.fixtures.paul.braud">
+                <source>pel.fixtures.paul.braud</source>
+                <target>Paul Braud</target>
+            </trans-unit>
             <trans-unit id="pel.header.baseline">
                 <source>pel.header.baseline</source>
                 <target>Portail Force de Sécurité Intérieure</target>
@@ -70,6 +106,10 @@
                 <source>pel.home.title</source>
                 <target>Accéder à la gestion des déclarations</target>
             </trans-unit>
+            <trans-unit id="pel.in.progress">
+                <source>pel.in.progress</source>
+                <target>En cours</target>
+            </trans-unit>
             <trans-unit id="pel.meeting.date">
                 <source>pel.meeting.date</source>
                 <target>Date RDV</target>
@@ -81,6 +121,10 @@
             <trans-unit id="pel.reporting.title">
                 <source>pel.reporting.title</source>
                 <target>Accéder au reporting de votre activité</target>
+            </trans-unit>
+            <trans-unit id="pel.robbery">
+                <source>pel.robbery</source>
+                <target>Vol</target>
             </trans-unit>
             <trans-unit id="pel.search">
                 <source>pel.search</source>
