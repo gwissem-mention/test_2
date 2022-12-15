@@ -1254,6 +1254,10 @@
                 <source>pel.go.back.homepage</source>
                 <target>Retourner à la page d'accueil</target>
             </trans-unit>
+            <trans-unit id="pel.update">
+                <source>pel.update</source>
+                <target>Modifier</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
