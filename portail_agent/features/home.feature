@@ -32,6 +32,19 @@ Feature:
         And I should see the key "pel.a.opj.name" translated
         And I should see the key "pel.declaration.number" translated
         And I should see the key "pel.comments" translated
+        And I follow "2023-00000678"
+        Then I am on "/plainte/2023-00000678"
+        And I should see the key "pel.declaration.number" translated
+        And I should see "2023-00000678"
+        And I should not see the key "pel.deposit.date" translated
+        And I should not see the key "pel.facts" translated
+        And I should not see the key "pel.facts.date" translated
+        And I should not see the key "pel.alert" translated
+        And I should not see the key "pel.meeting.date" translated
+        And I should not see the key "pel.firstname.lastname" translated
+        And I should not see the key "pel.status" translated
+        And I should not see the key "pel.a.opj.name" translated
+        And I should not see the key "pel.comments" translated
 
     @func
     Scenario: I can navigate from the homepage to the homepage

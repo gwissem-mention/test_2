@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <table class="table">
+    <table class="table table-striped">
         <thead class="table-head">
             <tr>
                 <th scope="col">{{ 'pel.deposit.date'|trans }}</th>
@@ -16,5 +16,27 @@
                 <th scope="col">{{ 'pel.comments'|trans }}</th>
             </tr>
         </thead>
+        <tbody>
+            {% for complaint in complaints %}
+                <tr>
+                    <td>{{ complaint.depositDate|date('d/m/Y') }}</td>
+                    <td>{{ complaint.facts|trans }}</td>
+                    <td>{{ complaint.factsDate|date('d/m/Y') }}</td>
+                    <td>{{ complaint.alert|trans }}</td>
+                    <td>{{ complaint.meetingDate|date('d/m/Y') }}</td>
+                    <td>{{ complaint.firstnameLastname }}</td>
+                    <td>{{ complaint.status|trans }}</td>
+                    <td>{{ complaint.aOpjName }}</td>
+                    <td>
+                        <a href="{{ path('complaint', {
+                            id: complaint.declarationNumber
+                        }) }}" target="_blank">
+                            {{ complaint.declarationNumber }}
+                        </a>
+                    </td>
+                    <td>{{ complaint.comments }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
     </table>
 {% endblock %}
