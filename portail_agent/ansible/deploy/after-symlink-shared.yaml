@@ -1,0 +1,62 @@
+- name: Create .env.local file
+  copy:
+    dest: "{{ release_portal_path }}/.env.local"
+    content: |
+      TRUSTED_PROXIES={{ ansible_env.TRUSTED_PROXIES }}
+      APP_ENV={{ ansible_env.APP_ENV }}
+      APP_SECRET={{ ansible_env.APP_SECRET }}
+      DATABASE_URL={{ ansible_env.DATABASE_URL }}
+
+- name: Install vendors for prod env
+  make:
+    chdir: '{{ release_portal_path }}'
+    target: vendor-prod
+
+- name: Clear the cache
+  make:
+    chdir: '{{ release_portal_path }}'
+    target: cache-clear
+    params:
+      APP_ENV: "{{ ansible_env.APP_ENV }}"
+
+- name: Warm up the cache
+  make:
+    chdir: '{{ release_portal_path }}'
+    target: cache-warmup
+    params:
+      APP_ENV: "{{ ansible_env.APP_ENV }}"
+
+- name: Create DB if not exists
+  make:
+    chdir: '{{ release_portal_path }}'
+    target: db-create
+  register: create_db_output
+  changed_when: create_db_output.stdout is not search('already exists. Skipped')
+
+- name: Run migrations
+  make:
+    chdir: '{{ release_portal_path }}'
+    target: db-migrate
+  register: run_migrations_output
+  changed_when: run_migrations_output.stdout is not search('No migrations to execute')
+
+- name: Install bundle assets
+  command: '{{ release_console_path }} assets:install {{ release_public_path }} --symlink --no-debug'
+
+- name: Install Node dependencies
+  make:
+    chdir: '{{ release_portal_path }}'
+    target: install
+
+- name: Install Webpack Encore assets
+  make:
+    chdir: '{{ release_portal_path }}'
+    target: build
+
+- name: Setup directory permissions for var/
+  become: true
+  file:
+    path: "{{ release_portal_path }}/var"
+    state: directory
+    mode: 0775
+    recurse: true
