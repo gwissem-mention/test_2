@@ -26,7 +26,6 @@ stages:
 #######################################
 
 .basic-override: &basic-override
-    dependencies: []
     tags:
         - docker
         - rancher
@@ -56,68 +55,6 @@ stages:
     before_script:
         - cd ./portail_citoyen/
     <<: *basic-override
-
-#######################################
-##       Caches configurations       ##
-#######################################
-
-.cache-tools-agent: &cache-tools-agent
-    cache:
-        key: tools-agent-$CI_COMMIT_REF_SLUG
-        paths:
-            - "portail_agent/tools"
-
-.cache-tools-citoyen: &cache-tools-citoyen
-    cache:
-        key: tools-citoyen-$CI_COMMIT_REF_SLUG
-        paths:
-            - "portail_citoyen/tools"
-
-.cache-vendor-agent: &cache-vendor-agent
-    cache:
-        key: vendor-agent-$CI_COMMIT_REF_SLUG
-        paths:
-            - "portail_agent/vendor"
-
-.cache-vendor-citoyen: &cache-vendor-citoyen
-    cache:
-        key: vendor-citoyen-$CI_COMMIT_REF_SLUG
-        paths:
-            - "portail_citoyen/vendor"
-
-.cache-front-agent: &cache-front-agent
-    cache:
-        key: front-agent-$CI_COMMIT_REF_SLUG
-        paths:
-            - "portail_agent/public"
-            - "portail_agent/node_modules"
-
-.cache-front-citoyen: &cache-front-citoyen
-    cache:
-        key: front-citoyen-$CI_COMMIT_REF_SLUG
-        paths:
-            - "portail_citoyen/public"
-            - "portail_citoyen/node_modules"
-
-.cache-complete-agent: &cache-complete-agent
-    cache:
-        - key: front-agent-$CI_COMMIT_REF_SLUG
-          paths:
-              - "portail_agent/public"
-              - "portail_agent/node_modules"
-        - key: vendor-agent-$CI_COMMIT_REF_SLUG
-          paths:
-              - "portail_agent/vendor"
-
-.cache-complete-citoyen: &cache-complete-citoyen
-    cache:
-        - key: front-citoyen-$CI_COMMIT_REF_SLUG
-          paths:
-              - "portail_citoyen/public"
-              - "portail_citoyen/node_modules"
-        - key: vendor-citoyen-$CI_COMMIT_REF_SLUG
-          paths:
-              - "portail_citoyen/vendor"
 
 #######################################
 ##               Check               ##
@@ -251,17 +188,21 @@ citoyen-build-php:
 
 agent-build-tools:
     <<: *agent-step
-    <<: *cache-tools-agent
     <<: *build-tools
     needs:
         - agent-build-php
+    artifacts:
+        paths:
+            - ./portail_agent/tools
 
 citoyen-build-tools:
     <<: *citoyen-step
-    <<: *cache-tools-citoyen
     <<: *build-tools
     needs:
         - citoyen-build-php
+    artifacts:
+        paths:
+            - ./portail_citoyen/tools
 
 .build-vendor: &build-vendor
     stage: build
@@ -270,17 +211,21 @@ citoyen-build-tools:
 
 agent-build-vendor:
     <<: *agent-step
-    <<: *cache-vendor-agent
     <<: *build-vendor
     needs:
         - agent-build-php
+    artifacts: 
+        paths:
+            - ./portail_agent/vendor
 
 citoyen-build-vendor:
     <<: *citoyen-step
-    <<: *cache-vendor-citoyen
     <<: *build-vendor
     needs:
         - citoyen-build-php
+    artifacts:
+        paths:
+            - ./portail_citoyen/vendor
 
 .build-front: &build-front
     stage: build
@@ -289,15 +234,17 @@ citoyen-build-vendor:
         - make build-ci
 
 agent-build-front:
-    <<: *cache-complete-agent
     <<: *build-front
     <<: *agent-frontend-step
     <<: *basic-override
     needs:
         - agent-build-vendor
+    artifacts:
+        paths:
+            - ./portail_agent/public/build
+            - ./portail_agent/node_modules
 
 citoyen-build-front:
-    <<: *cache-complete-citoyen
     <<: *build-front
     <<: *basic-override
     <<: *citoyen-frontend-step
@@ -306,6 +253,10 @@ citoyen-build-front:
         KUBERNETES_MEMORY_LIMIT: 1Gi
     needs:
         - citoyen-build-vendor
+    artifacts: 
+        paths:
+            - ./portail_citoyen/public/build
+            - ./portail_citoyen/node_modules
 
 #######################################
 ##            Quality Tools           #
@@ -331,7 +282,6 @@ citoyen-symfony-security:
         - make frontend-audit
 
 citoyen-frontend-security:
-    <<: *cache-complete-citoyen
     <<: *frontend-audit
     <<: *citoyen-frontend-step
 
@@ -342,12 +292,10 @@ citoyen-frontend-security:
         - make cs
 
 agent-php-cs:
-    <<: *cache-tools-agent
     <<: *agent-step
     <<: *cs
 
 citoyen-php-cs:
-    <<: *cache-tools-citoyen
     <<: *citoyen-step
     <<: *cs
 
@@ -358,7 +306,6 @@ citoyen-php-cs:
 
 citoyen-frontend-twig-cs:
     <<: *citoyen-step
-    <<: *cache-complete-citoyen
     <<: *frontend-twig-cs
 
 .frontend-cs: &frontend-cs
@@ -368,7 +315,6 @@ citoyen-frontend-twig-cs:
 
 citoyen-frontend-cs:
     <<: *citoyen-frontend-step
-    <<: *cache-complete-citoyen
     <<: *frontend-cs
 
 .frontend-cpd: &frontend-cpd
@@ -378,7 +324,6 @@ citoyen-frontend-cs:
 
 citoyen-frontend-cpd:
     <<: *citoyen-frontend-step
-    <<: *cache-complete-citoyen
     <<: *frontend-cpd
 
 ## Php Magic Number Detector ##
@@ -388,12 +333,10 @@ citoyen-frontend-cpd:
         - make mnd
 
 agent-php-mnd:
-    <<: *cache-tools-agent
     <<: *agent-step
     <<: *mnd
 
 citoyen-php-mnd:
-    <<: *cache-tools-citoyen
     <<: *citoyen-step
     <<: *mnd
 
@@ -406,24 +349,10 @@ citoyen-php-mnd:
 agent-php-phpstan:
     <<: *agent-step
     <<: *phpstan
-    cache:
-        - key: tools-agent-$CI_COMMIT_REF_SLUG
-          paths:
-              - "portail_agent/tools"
-        - key: vendor-agent-$CI_COMMIT_REF_SLUG
-          paths:
-              - "portail_agent/vendor"
-
+    
 citoyen-php-phpstan:
     <<: *citoyen-step
     <<: *phpstan
-    cache:
-        - key: tools-citoyen-$CI_COMMIT_REF_SLUG
-          paths:
-              - "portail_citoyen/tools"
-        - key: vendor-citoyen-$CI_COMMIT_REF_SLUG
-          paths:
-              - "portail_citoyen/vendor"
 
 ## Php Assumption ##
 .assumption: &assumption
@@ -432,12 +361,10 @@ citoyen-php-phpstan:
         - make assumption
 
 agent-php-assumption:
-    <<: *cache-tools-agent
     <<: *agent-step
     <<: *assumption
 
 citoyen-php-assumption:
-    <<: *cache-tools-citoyen
     <<: *citoyen-step
     <<: *assumption
 
@@ -448,12 +375,10 @@ citoyen-php-assumption:
         - make cpd
 
 agent-php-cpd:
-    <<: *cache-tools-agent
     <<: *agent-step
     <<: *cpd
 
 citoyen-php-cpd:
-    <<: *cache-tools-citoyen
     <<: *citoyen-step
     <<: *cpd
 
@@ -468,12 +393,10 @@ citoyen-php-cpd:
         - make unit
 
 agent-unit:
-    <<: *cache-vendor-agent
     <<: *agent-step
     <<: *unit
 
 citoyen-unit:
-    <<: *cache-vendor-citoyen
     <<: *citoyen-step
     <<: *unit
 
@@ -484,7 +407,6 @@ citoyen-unit:
         - make behat
 
 agent-func:
-    <<: *cache-complete-agent
     <<: *agent-step
     <<: *func
     services:
@@ -492,7 +414,6 @@ agent-func:
           alias: database-agent
 
 citoyen-func:
-    <<: *cache-complete-citoyen
     <<: *citoyen-step
     <<: *func
     variables:
@@ -510,7 +431,6 @@ citoyen-func:
           alias: database-func-citoyen
 
 citoyen-e2e:
-    <<: *cache-complete-citoyen
     <<: *citoyen-step
     variables:
         APP_ENV: "e2e"
@@ -543,7 +463,6 @@ citoyen-e2e:
     allow_failure: true
 
 agent-e2e:
-    <<: *cache-complete-agent
     <<: *agent-step
     variables:
         APP_ENV: "prod"
