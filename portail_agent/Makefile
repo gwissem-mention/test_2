@@ -88,6 +88,36 @@ tools-install:
 	@$(COMPOSER) install --working-dir=tools
 	@wget https://phar.phpunit.de/phpcpd.phar -O tools/phpcpd.phar
 
+
+#################################
+Doctrine:
+
+## Drop, create db and create tables
+db-setup: db-drop db-create db-migrate
+
+db-ci-setup:
+	@$(eval APP_ENV ?=)
+	@$(CONSOLE) doctrine:database:drop --force --if-exists --env=$(APP_ENV) --connection=default
+	@$(CONSOLE) doctrine:database:create --env=$(APP_ENV) --if-not-exists --connection=default
+	@$(CONSOLE) doctrine:schema:update --env=$(APP_ENV) --force --em=default
+
+db-migrate:
+	@$(eval APP_ENV ?=)
+	@$(CONSOLE) doctrine:migrations:migrate -n --allow-no-migration --env=$(APP_ENV) --em=default
+
+db-create:
+	@$(eval APP_ENV ?=)
+	@$(CONSOLE) doctrine:database:create --env=$(APP_ENV) --if-not-exists --connection=default
+
+db-drop:
+	@$(eval APP_ENV ?=)
+	@$(CONSOLE) doctrine:database:drop --force --if-exists --env=$(APP_ENV) --connection=default
+
+db-load:
+	@$(eval APP_ENV ?=)
+	@$(CONSOLE) doctrine:fixtures:load --env=$(APP_ENV) --em=default --no-interaction
+
+
 #################################
 Cache:
 
