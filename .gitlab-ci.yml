@@ -487,9 +487,18 @@ agent-func:
     <<: *cache-complete-agent
     <<: *agent-step
     <<: *func
+    variables:
+        APP_ENV: "test"
+        POSTGRES_DB: "app_test"
+        POSTGRES_PASSWORD: "ChangeMe"
+        POSTGRES_USER: "symfony"
+    script:
+        - make APP_ENV=${APP_ENV} db-ci-setup
+        - make APP_ENV=${APP_ENV} db-load
+        - make behat
     services:
         - name: postgres:13-alpine
-          alias: database-agent
+          alias: database-func-agent
 
 citoyen-func:
     <<: *cache-complete-citoyen

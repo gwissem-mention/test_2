@@ -1,0 +1,178 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid my-3">
+        <div class="row">
+            <div class="col-9 border border-secondary p-3 bg-light">
+                <h3><u>{{ 'pel.identification'|trans }}</u></h3>
+                <ul>
+                    <li>
+                        <strong>{{ 'pel.civility'|trans }}</strong> :
+                        {% if complaint.identity.civility is same as(constant('App\\Entity\\Identity::CIVILITY_MALE')) %}
+                            {{ 'pel.sir'|trans }}
+                        {% else %}
+                            {{ 'pel.madam'|trans }}
+                        {% endif %}
+                        {{ complaint.identity.lastname }}
+                        {{ complaint.identity.firstname }}
+                    </li>
+                    <li>
+                        <strong>{{ 'pel.born.on'|trans }} </strong>: {{ complaint.identity.birthday|date('d/m/Y') }}
+                        <strong>{{ 'pel.at.in'|trans }}</strong>: {{ complaint.identity.birthCountry }}
+                        <strong>{{ 'pel.department'|trans }}</strong> : {{ complaint.identity.birthDepartment }}
+                    </li>
+                    <li>
+                        <strong>{{ 'pel.nationality'|trans }}</strong> : {{ complaint.identity.nationality }}
+                    </li>
+                    <li>
+                        <strong>{{ 'pel.resides.at'|trans }}</strong> : {{ complaint.identity.address }}
+                    </li>
+                    <li>
+                        <strong>{{ 'pel.job'|trans }}</strong> : {{ complaint.identity.job }}
+                    </li>
+                    <li>
+                        <strong>{{ 'pel.phone'|trans }}</strong> : {{ complaint.identity.phone }}
+                        <strong>{{ 'pel.email'|trans }}</strong> : {{ complaint.identity.email }}
+                    </li>
+                    <li><strong>{{ 'pel.want.to.receive.sms.notifications'|trans }}</strong> :
+                        {% if complaint.optinNotification %}
+                            {{ 'pel.yes'|trans }}
+                        {% else %}
+                            {{ 'pel.no'|trans }}
+                        {% endif %}
+                    </li>
+                    <li>
+                        <strong>{{ 'pel.is.designated.as'|trans }}</strong>
+                        {% if complaint.identity.declarantStatus is same as(constant('App\\Entity\\Identity::DECLARANT_STATUS_VICTIM')) %}
+                            {{ 'pel.victim'|trans }}
+                        {% elseif complaint.identity.declarantStatus is same as(constant('App\\Entity\\Identity::DECLARANT_STATUS_PERSON_LEGAL_REPRESENTATIVE')) %}
+                            {{ 'pel.person.legal.representative'|trans }}
+                        {% else %}
+                            {{ 'pel.corporation.legal.representative'|trans }}
+                        {% endif %}
+                        <strong>{{ 'pel.of.infraction'|trans }}</strong>
+                    </li>
+                </ul>
+
+                <hr class="border border-2 border-dark">
+                <h3><u>{{ 'pel.description.of.facts'|trans }}</u></h3>
+                <ul>
+                    <li>
+                        <strong> {{ 'pel.nature.of.the.facts'|trans }}</strong> :
+                        {% if complaint.facts.nature is same as(constant('App\\Entity\\Facts::NATURE_ROBBERY')) %}
+                            {{ 'pel.offense.nature.robbery'|trans }}
+                        {% elseif complaint.facts.nature is same as(constant('App\\Entity\\Facts::NATURE_DEGRADATION')) %}
+                            {{ 'pel.offense.nature.degradation'|trans }}
+                        {% else %}
+                            {{ 'pel.offense.nature.other'|trans }}
+                        {% endif %}
+                    </li>
+                    <li>
+                        <strong>{{ 'pel.nature.place'|trans }}</strong> : {{ complaint.facts.place }}
+                    </li>
+                    <li>
+                        <strong>{{ 'pel.address'|trans }}</strong> : {{ complaint.facts.address }}
+                    </li>
+                    <li>
+                        <strong>{{ 'pel.facts.date'|trans }}</strong>
+                        : {{ 'pel.the'|trans }} {{ complaint.facts.date|date('d/m/Y') }}
+                    </li>
+                    <li>
+                        <strong>{{ 'pel.facts.hour'|trans }}</strong> :
+                        {{ 'pel.between'|trans|lower }} {{ complaint.facts.startHour|date('H\\hi') }}
+                        {{ 'pel.and'|trans|lower }} {{ complaint.facts.endHour|date('H\\hi') }}
+                    </li>
+                </ul>
+                <hr class="border border-2 border-dark">
+                <h3><u>{{ 'pel.additional.informations'|trans }}</u></h3>
+                <ul>
+                    <li>
+                        <strong>{{ 'pel.facts.witnesses'|trans }}</strong> :
+                        {{ complaint.additionalInformation.witnessesPresent ? 'pel.yes'|trans : 'pel.no'|trans }}
+                    </li>
+                    {% if complaint.additionalInformation.witnessesPresent %}
+                        <li>
+                            <strong>{{ 'pel.facts.witnesses.information.text'|trans }}</strong> :
+                            {{ complaint.additionalInformation.witnessesPresentText }}
+                        </li>
+                    {% endif %}
+                    <li>
+                        <strong>{{ 'pel.do.you.have.informations.on.potential.suspects'|trans }}</strong> :
+                        {{ complaint.additionalInformation.suspectsKnown ? 'pel.yes'|trans : 'pel.no'|trans }}
+                    </li>
+                    {% if complaint.additionalInformation.suspectsKnown %}
+                        <li>
+                            <strong>{{ 'pel.facts.suspects.informations.text'|trans }}</strong> :
+                            {{ complaint.additionalInformation.suspectsKnownText }}
+                        </li>
+                    {% endif %}
+                    <li>
+                        <strong>{{ 'pel.cctv.present'|trans }}</strong> :
+                        {% if complaint.additionalInformation.cctvPresent is same as(constant('App\\Entity\\AdditionalInformation::CCTV_PRESENT_YES')) %}
+                            {{ 'pel.yes'|trans }}
+                        {% elseif complaint.additionalInformation.cctvPresent is same as(constant('App\\Entity\\AdditionalInformation::CCTV_PRESENT_NO')) %}
+                            {{ 'pel.no'|trans }}
+                        {% else %}
+                            {{ 'pel.i.dont.know'|trans }}
+                        {% endif %}
+                    </li>
+                    {% if complaint.additionalInformation.cctvPresent is same as(constant('App\\Entity\\AdditionalInformation::CCTV_PRESENT_YES')) %}
+                        <li>
+                            <strong>{{ 'pel.cctv.available'|trans }}</strong> :
+                            {{ complaint.additionalInformation.cctvAvailable ? 'pel.yes'|trans : 'pel.no'|trans }}
+                        </li>
+                    {% endif %}
+                    <li>
+                        <strong>{{ 'pel.fsi.visit'|trans }}</strong> :
+                        {{ complaint.additionalInformation.fsiVisit ? 'pel.yes'|trans : 'pel.no'|trans }}
+                    </li>
+                    {% if complaint.additionalInformation.fsiVisit %}
+                        <li>
+                            <strong>{{ 'pel.observation.made'|trans }}</strong> :
+                            {{ complaint.additionalInformation.observationMade ? 'pel.yes'|trans : 'pel.no'|trans }}
+                        </li>
+                    {% endif %}
+                    <li>
+                        <strong>{{ 'pel.other.victim.present'|trans }}</strong> :
+                        {{ 'pel.yes'|trans }}
+                    </li>
+                    <li>
+                        <strong>{{ 'pel.victim.of.violence'|trans }}</strong> :
+                        {{ complaint.additionalInformation.victimOfViolence ? 'pel.yes'|trans : 'pel.no'|trans }}
+                    </li>
+                    {% if complaint.additionalInformation.victimOfViolence %}
+                        <li>
+                            <strong>{{ 'pel.victim.of.violence.text'|trans }}</strong> :
+                            {{ complaint.additionalInformation.victimOfViolenceText }}
+                        </li>
+                    {% endif %}
+                    <li>
+                        <strong>{{ 'pel.description.of.facts'|trans }}</strong> :
+                        {{ complaint.additionalInformation.description }}
+                    </li>
+                </ul>
+                <hr class="border border-2 border-dark">
+                <h3><u>{{ 'pel.objects.description'|trans }}</u></h3>
+                <p>{{ 'pel.objects.stolen'|trans }}</p>
+                {% set objects_quantity = complaint.objects|length %}
+                {% set objects_amount = 0 %}
+                <ul>
+                    {% for object in complaint.objects %}
+                        {% set objects_amount = objects_amount + object.amount %}
+                        <li><strong>{{ 'pel.number'|trans }} {{ loop.index }}</strong> : {{ object.label }}
+                            - {{ object.model }} - {{ object.brand }}
+                            - {{ object.amount|format_currency('EUR', {fraction_digit: 0}) }} - {{ object.operator }}
+                        </li>
+                    {% endfor %}
+                </ul>
+                <p>
+                    <strong>{{ 'pel.total'|trans }}</strong> :
+                    {{ 'pel.total.message.one'|trans }}
+                    <strong>{{ objects_quantity }} {{ 'pel.total.message.two'|trans({'%quantity%': objects_quantity}) }}</strong>
+                    {{ 'pel.total.message.amount'|trans }}
+                    <strong>{{ objects_amount|format_currency('EUR', {fraction_digit: 0}) }}</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

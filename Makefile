@@ -187,7 +187,7 @@ yarn-dev: citoyen-yarn-dev agent-yarn-dev
 Doctrine:
 
 ## Drop, create db and create tables
-db-setup: citoyen-db-setup
+db-setup: citoyen-db-setup agent-db-setup
 
 #################################
 QA:

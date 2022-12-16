@@ -2,6 +2,14 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="fr" target-language="fr" datatype="plaintext" original="file.ext">
         <body>
+            <trans-unit id="pel.additional.informations">
+                <source>pel.additional.informations</source>
+                <target>Informations complémentaires</target>
+            </trans-unit>
+            <trans-unit id="pel.address">
+                <source>pel.address</source>
+                <target>Adresse</target>
+            </trans-unit>
             <trans-unit id="pel.a.opj.name">
                 <source>pel.a.opj.name</source>
                 <target>Nom A/OPJ</target>
@@ -13,6 +21,34 @@
             <trans-unit id="pel.alert">
                 <source>pel.alert</source>
                 <target>Alerte</target>
+            </trans-unit>
+            <trans-unit id="pel.and">
+                <source>pel.and</source>
+                <target>Et</target>
+            </trans-unit>
+            <trans-unit id="pel.at.in">
+                <source>pel.at.in</source>
+                <target>au/en</target>
+            </trans-unit>
+            <trans-unit id="pel.between">
+                <source>pel.between</source>
+                <target>Entre</target>
+            </trans-unit>
+            <trans-unit id="pel.born.on">
+                <source>pel.born.on</source>
+                <target>Né(e) le</target>
+            </trans-unit>
+            <trans-unit id="pel.cctv.available">
+                <source>pel.cctv.available</source>
+                <target>Êtes-vous en capacité de fournir des vidéos des faits ?</target>
+            </trans-unit>
+            <trans-unit id="pel.cctv.present">
+                <source>pel.cctv.present</source>
+                <target>Y a-t-il un système de vidéoprotection disponible sur le lieu des faits ?</target>
+            </trans-unit>
+            <trans-unit id="pel.civility">
+                <source>pel.civility</source>
+                <target>Civilité</target>
             </trans-unit>
             <trans-unit id="pel.comments">
                 <source>pel.comments</source>
@@ -30,13 +66,25 @@
                 <source>pel.degradation</source>
                 <target>Dégradation</target>
             </trans-unit>
+            <trans-unit id="pel.department">
+                <source>pel.department</source>
+                <target>Département</target>
+            </trans-unit>
             <trans-unit id="pel.deposit.date">
                 <source>pel.deposit.date</source>
                 <target>Date de dépôt</target>
             </trans-unit>
-            <trans-unit id="pel.done">
-                <source>pel.done</source>
-                <target>Terminée</target>
+            <trans-unit id="pel.description.of.facts">
+                <source>pel.description.of.facts</source>
+                <target>Description des faits</target>
+            </trans-unit>
+            <trans-unit id="pel.do.you.have.informations.on.potential.suspects">
+                <source>pel.do.you.have.informations.on.potential.suspects</source>
+                <target>Avez-vous des informations sur les éventuels suspects ?</target>
+            </trans-unit>
+            <trans-unit id="pel.email">
+                <source>pel.email</source>
+                <target>Email</target>
             </trans-unit>
             <trans-unit id="pel.facts">
                 <source>pel.facts</source>
@@ -54,6 +102,22 @@
                 <source>pel.faq.title</source>
                 <target>Accédez à la Foire Aux Questions ou l'assistance technique</target>
             </trans-unit>
+            <trans-unit id="pel.facts.hour">
+                <source>pel.facts.hour</source>
+                <target>Heure des faits</target>
+            </trans-unit>
+            <trans-unit id="pel.facts.suspects.informations.text">
+                <source>pel.facts.suspects.informations.text</source>
+                <target>Veuillez indiquer le nombre de personnes, la direction de fuite, la description des suspects...</target>
+            </trans-unit>
+            <trans-unit id="pel.facts.witnesses">
+                <source>pel.facts.witnesses</source>
+                <target>Y a-t-il eu des témoins des faits ?</target>
+            </trans-unit>
+            <trans-unit id="pel.facts.witnesses.information.text">
+                <source>pel.facts.witnesses.information.text</source>
+                <target>Veuillez indiquer, si vous le pouvez, les noms et les coordonnées du/des témoin(s)</target>
+            </trans-unit>
             <trans-unit id="pel.firstname.lastname">
                 <source>pel.firstname.lastname</source>
                 <target>Nom/Prénom</target>
@@ -66,37 +130,9 @@
                 <source>pel.fixtures.fsi.type</source>
                 <target>Gendarmerie</target>
             </trans-unit>
-            <trans-unit id="pel.fixtures.declaration.number.one">
-                <source>pel.fixtures.declaration.number.one</source>
-                <target>2023-00000678</target>
-            </trans-unit>
-            <trans-unit id="pel.fixtures.declaration.number.two">
-                <source>pel.fixtures.declaration.number.two</source>
-                <target>2022-12312312</target>
-            </trans-unit>
-            <trans-unit id="pel.fixtures.jean.dupont">
-                <source>pel.fixtures.jean.dupont</source>
-                <target>Jean Dupont</target>
-            </trans-unit>
-            <trans-unit id="pel.fixtures.lorem.ipsum">
-                <source>pel.fixtures.lorem.ipsum</source>
-                <target>Lorem ipsum dolor sit amet</target>
-            </trans-unit>
-            <trans-unit id="pel.fixtures.marie.vernier">
-                <source>pel.fixtures.marie.vernier</source>
-                <target>Marie Vernier</target>
-            </trans-unit>
-            <trans-unit id="pel.fixtures.michel.blanc">
-                <source>pel.fixtures.michel.blanc</source>
-                <target>Michel Blanc</target>
-            </trans-unit>
-            <trans-unit id="pel.fixtures.paul.braud">
-                <source>pel.fixtures.paul.braud</source>
-                <target>Paul Braud</target>
-            </trans-unit>
-            <trans-unit id="pel.header.baseline">
-                <source>pel.header.baseline</source>
-                <target>Portail Force de Sécurité Intérieure</target>
+            <trans-unit id="pel.fsi.visit">
+                <source>pel.fsi.visit</source>
+                <target>Y a-t-il eu intervention d’un équipage de police ou de gendarmerie ?</target>
             </trans-unit>
             <trans-unit id="pel.home">
                 <source>pel.home</source>
@@ -106,13 +142,89 @@
                 <source>pel.home.title</source>
                 <target>Accéder à la gestion des déclarations</target>
             </trans-unit>
-            <trans-unit id="pel.in.progress">
-                <source>pel.in.progress</source>
-                <target>En cours</target>
+            <trans-unit id="pel.header.baseline">
+                <source>pel.header.baseline</source>
+                <target>Portail Force de Sécurité Intérieure</target>
+            </trans-unit>
+            <trans-unit id="pel.identification">
+                <source>pel.identification</source>
+                <target>Identification</target>
+            </trans-unit>
+            <trans-unit id="pel.is.designated.as">
+                <source>pel.is.designated.as</source>
+                <target>Se désigne comme</target>
+            </trans-unit>
+            <trans-unit id="pel.job">
+                <source>pel.job</source>
+                <target>Profession</target>
+            </trans-unit>
+            <trans-unit id="pel.madam">
+                <source>pel.madam</source>
+                <target>Madame</target>
             </trans-unit>
             <trans-unit id="pel.meeting.date">
                 <source>pel.meeting.date</source>
                 <target>Date RDV</target>
+            </trans-unit>
+            <trans-unit id="pel.mobile.phone">
+                <source>pel.mobile.phone</source>
+                <target>Téléphone portable</target>
+            </trans-unit>
+            <trans-unit id="pel.nationality">
+                <source>pel.nationality</source>
+                <target>Nationalité</target>
+            </trans-unit>
+            <trans-unit id="pel.nature.of.the.facts">
+                <source>pel.nature.of.the.facts</source>
+                <target>Nature des faits</target>
+            </trans-unit>
+            <trans-unit id="pel.offense.nature.degradation">
+                <source>pel.offense.nature.degradation</source>
+                <target>Dégradation</target>
+            </trans-unit>
+            <trans-unit id="pel.offense.nature.other">
+                <source>pel.offense.nature.other</source>
+                <target>Autre atteinte aux biens</target>
+            </trans-unit>
+            <trans-unit id="pel.offense.nature.robbery">
+                <source>pel.offense.nature.robbery</source>
+                <target>Vol</target>
+            </trans-unit>
+            <trans-unit id="pel.other.victim.present">
+                <source>pel.other.victim.present</source>
+                <target>Y a-t-il d'autres victimes de cette infraction ?</target>
+            </trans-unit>
+            <trans-unit id="pel.nature.place">
+                <source>pel.nature.place</source>
+                <target>Nature de lieu</target>
+            </trans-unit>
+            <trans-unit id="pel.no">
+                <source>pel.no</source>
+                <target>Non</target>
+            </trans-unit>
+            <trans-unit id="pel.number">
+                <source>pel.number</source>
+                <target>N°</target>
+            </trans-unit>
+            <trans-unit id="pel.objects.description">
+                <source>pel.objects.description</source>
+                <target>Description des objets</target>
+            </trans-unit>
+            <trans-unit id="pel.observation.made">
+                <source>pel.observation.made</source>
+                <target>Est-ce que des constatations ou des relevés ont été effectués ?</target>
+            </trans-unit>
+            <trans-unit id="pel.of.infraction">
+                <source>pel.of.infraction</source>
+                <target>de l'infraction</target>
+            </trans-unit>
+            <trans-unit id="pel.phone">
+                <source>pel.phone</source>
+                <target>Téléphone</target>
+            </trans-unit>
+            <trans-unit id="pel.resides.at">
+                <source>pel.resides.at</source>
+                <target>Réside à/au</target>
             </trans-unit>
             <trans-unit id="pel.reporting">
                 <source>pel.reporting</source>
@@ -126,6 +238,10 @@
                 <source>pel.robbery</source>
                 <target>Vol</target>
             </trans-unit>
+            <trans-unit id="pel.sir">
+                <source>pel.sir</source>
+                <target>Monsieur</target>
+            </trans-unit>
             <trans-unit id="pel.search">
                 <source>pel.search</source>
                 <target>Rechercher</target>
@@ -133,6 +249,62 @@
             <trans-unit id="pel.status">
                 <source>pel.status</source>
                 <target>Statut</target>
+            </trans-unit>
+            <trans-unit id="pel.the">
+                <source>pel.the</source>
+                <target>Le</target>
+            </trans-unit>
+            <trans-unit id="pel.total">
+                <source>pel.total</source>
+                <target>Total</target>
+            </trans-unit>
+            <trans-unit id="pel.total.message.amount">
+                <source>pel.total.message.amount</source>
+                <target>pour un montant total de</target>
+            </trans-unit>
+            <trans-unit id="pel.total.message.no.amount">
+                <source>pel.total.message.no.amount</source>
+                <target>sans estimation du montant</target>
+            </trans-unit>
+            <trans-unit id="pel.total.message.one">
+                <source>pel.total.message.one</source>
+                <target>Vous avez ajouté</target>
+            </trans-unit>
+            <trans-unit id="pel.total.message.two">
+                <source>pel.total.message.two</source>
+                <target>{quantity, plural, one {objet} other {objets}}</target>
+            </trans-unit>
+            <trans-unit id="pel.objects.stolen">
+                <source>pel.objects.stolen</source>
+                <target>Objets volés</target>
+            </trans-unit>
+            <trans-unit id="pel.corporation.legal.representative">
+                <source>pel.corporation.legal.representative</source>
+                <target>Représentant légal d'une personne morale</target>
+            </trans-unit>
+            <trans-unit id="pel.person.legal.representative">
+                <source>pel.person.legal.representative</source>
+                <target>Représentant légal d'une personne physique</target>
+            </trans-unit>
+            <trans-unit id="pel.victim">
+                <source>pel.victim</source>
+                <target>Victime</target>
+            </trans-unit>
+            <trans-unit id="pel.victim.of.violence">
+                <source>pel.victim.of.violence</source>
+                <target>J'ai été victime de violences au moment des faits</target>
+            </trans-unit>
+            <trans-unit id="pel.victim.of.violence.text">
+                <source>pel.victim.of.violence.text</source>
+                <target>Veuillez préciser les violences dont vous avez été victime</target>
+            </trans-unit>
+            <trans-unit id="pel.want.to.receive.sms.notifications">
+                <source>pel.want.to.receive.sms.notifications</source>
+                <target>Souhaite pouvoir recevoir des notifications SMS concernant cette plainte</target>
+            </trans-unit>
+            <trans-unit id="pel.yes">
+                <source>pel.yes</source>
+                <target>Oui</target>
             </trans-unit>
         </body>
     </file>
