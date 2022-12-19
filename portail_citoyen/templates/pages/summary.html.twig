@@ -131,6 +131,9 @@
                     <a class="fr-btn fr-btn--secondary" href="#">{{ 'pel.update'|trans }}</a>
                 </div>
             </div>
+            <br>
+            <br>
+            <hr>
             <div class="fr-grid-row">
                 <div class="fr-col">
                     <h3>{{ 'pel.facts.description'|trans }}</h3>
@@ -215,13 +218,7 @@
                             </li>
                         {% endif %}
                     </ul>
-                    <br>
-                    <a class="fr-btn fr-btn--secondary" href="#">{{ 'pel.update'|trans }}</a>
-                </div>
-            </div>
-            <div class="fr-grid-row">
-                <div class="fr-col">
-                    <h3>{{ 'pel.additional.factual.information'|trans }}</h3>
+                    <p>{{ 'pel.additional.factual.information'|trans }}</p>
                     <ul>
                         <li>{{ 'pel.facts.witnesses'|trans }} : {{ complaint.additionalInformation.witnesses ? 'pel.yes'|trans : 'pel.no'|trans }}</li>
                         {% if complaint.additionalInformation.witnesses %}
