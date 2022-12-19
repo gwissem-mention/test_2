@@ -37,7 +37,7 @@ apt update && apt upgrade -y
 apt install php8.1 php8.1-fpm php8.1-cli -y
 
 # Install PHP extensions
-apt install php8.1-xml
+apt install php8.1-xml php8.1-pgsql php8.1-intl
 
 # Check FPM
 systemctl status php8.1-fpm
@@ -100,6 +100,12 @@ systemctl status redis
 
 ## 3. Configuration
 
+### 3.1. Generate user
+
+```bash
+adduser <unprivileged_user_name>
+```
+
 ### 3.1. Nginx
 
 ```conf
@@ -109,7 +115,7 @@ server {
     root /home/<container_user_name>/<app_name>/current/public;
     
     location / {
-        try_files $uri $uri /index.php$is_args$args;
+        try_files $uri /index.php$is_args$args;
     }
     
     location ~ ^/index\.php(/|$) {
@@ -131,16 +137,21 @@ server {
 }
 ```
 
+### 3.2. PHP
+
+```conf
+# /etc/php/8.1/fpm/pool.d/www.conf
+# Change user and group by <unprivileged_user_name>
+```
+
 ### 3.2. Postgresql
 
 ```conf
 # Set password for postgres user
-passwd postgres 
-```
+passwd postgres
 
-## 4. Generate user
-
-```bash
-adduser <unprivileged_user_name>
-
+# Set password for internal postgres user
+su postgres
+psql
+ALTER USER postgres WITH PASSWORD '<new_password>';
 ```
