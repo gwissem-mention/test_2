@@ -20,7 +20,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Positive;
-use Symfony\Component\Validator\Constraints\Regex;
 
 class ObjectType extends AbstractType
 {
@@ -310,20 +309,15 @@ class ObjectType extends AbstractType
     {
         $form->add('amount', MoneyType::class, [
             'label' => $label,
-            'scale' => 0,
+            'scale' => 2,
             'currency' => false,
             'html5' => true,
-            'attr' => [
-                'min' => 1,
-                'max' => 999999999999,
-            ],
             'required' => false,
             'constraints' => [
                 new Length([
                     'min' => 1,
                     'max' => 12,
                 ]),
-                new Regex('/\d/', 'pel.only.integers.are.allowed'),
             ],
         ]);
     }

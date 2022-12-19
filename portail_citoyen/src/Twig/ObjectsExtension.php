@@ -35,7 +35,7 @@ class ObjectsExtension extends AbstractExtension
     /**
      * @param Collection<int, ObjectModel> $objects
      */
-    public function getAmount(Collection $objects): int
+    public function getAmount(Collection $objects): float
     {
         $amount = 0;
         foreach ($objects as $object) {

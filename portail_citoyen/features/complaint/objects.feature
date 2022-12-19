@@ -80,12 +80,12 @@ Feature:
         Given I am on "/porter-plainte"
         When I select "6" from "objects_objects_0_category"
         And I fill in "objects_objects_0_quantity" with "10"
-        And I fill in "objects_objects_0_amount" with "100"
+        And I fill in "objects_objects_0_amount" with "99.99"
         And I press "objects_objects_add"
         And I select "6" from "objects_objects_1_category"
         And I fill in "objects_objects_1_quantity" with "10"
         And I fill in "objects_objects_1_amount" with "100"
-        Then I should see "Vous avez ajouté 20 objets pour un montant total de 200 €"
+        Then I should see "Vous avez ajouté 20 objets pour un montant total de 199,99 €"
 
     Scenario: Submit the complaint form as a victim logged in with France Connect
         Given I am on "/porter-plainte"

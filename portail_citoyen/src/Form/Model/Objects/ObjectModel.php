@@ -22,7 +22,7 @@ class ObjectModel
     private ?string $registrationNumberCountry = null;
     private ?string $insuranceCompany = null;
     private ?string $insuranceNumber = null;
-    private ?int $amount = null;
+    private ?float $amount = null;
 
     public function getCategory(): ?int
     {
@@ -216,12 +216,12 @@ class ObjectModel
         return $this;
     }
 
-    public function getAmount(): ?int
+    public function getAmount(): ?float
     {
         return $this->amount;
     }
 
-    public function setAmount(?int $amount): self
+    public function setAmount(?float $amount): self
     {
         $this->amount = $amount;
 

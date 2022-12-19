@@ -127,7 +127,7 @@ Feature:
         And I should see the key "pel.total" translated
         And I should see the key "pel.total.message.one" translated
         And I should see the key "pel.total.message.amount" translated
-        And I should see "Vous avez ajouté 2 objets pour un montant total de 200 €"
+        And I should see "Vous avez ajouté 2 objets pour un montant total de 200,00 €"
         When I press "Suivant"
         And I follow "Je confirme"
         Then I should be on "/fin"
