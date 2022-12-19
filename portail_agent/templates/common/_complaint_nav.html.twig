@@ -1,21 +1,40 @@
-<div class="list-group position-fixed">
-    <a href="{{ path('complaint_summary', {'id':complaint.id}) }}"
-       class="{{ html_classes('list-group-item', 'list-group-item-action', {'list-group-item-secondary': app.current_route == 'complaint_summary'}) }}"
-       {% if app.current_route == 'complaint_summary' %}aria-current="true"{% endif %}>
-        {{ 'pel.summary'|trans }}
-    </a>
-    <a href="#" class="list-group-item list-group-item-action">
-        {{ 'pel.your.identity'|trans }}
-        {% if complaint.identity.alertNumber %}
-            <span class="badge bg-danger rounded-pill">{{ complaint.identity.alertNumber }}</span>
-        {% endif %}
-    </a>
-    <a href="#" class="list-group-item list-group-item-action">
-        {{ 'pel.description.of.facts'|trans }}
-        {% if complaint.facts.alertNumber %}
-            <span class="badge bg-danger rounded-pill">{{ complaint.facts.alertNumber }}</span>
-        {% endif %}
-    </a>
-    <a href="#" class="list-group-item list-group-item-action"> {{ 'pel.objects.concerned'|trans }}</a>
-    <a href="#" class="list-group-item list-group-item-action"> {{ 'pel.additional.informations'|trans }}</a>
+<div class="position-fixed">
+    <div class="list-group">
+        <a href="{{ path('complaint_summary', {'id':complaint.id}) }}"
+           class="{{ html_classes('list-group-item', 'list-group-item-action', {'list-group-item-secondary': app.current_route == 'complaint_summary'}) }}"
+           {% if app.current_route == 'complaint_summary' %}aria-current="true"{% endif %}>
+            {{ 'pel.summary'|trans }}
+        </a>
+        <a href="#" class="list-group-item list-group-item-action">
+            {{ 'pel.your.identity'|trans }}
+            {% if complaint.identity.alertNumber %}
+                <span class="badge bg-danger rounded-pill">{{ complaint.identity.alertNumber }}</span>
+            {% endif %}
+        </a>
+        <a href="#" class="list-group-item list-group-item-action">
+            {{ 'pel.description.of.facts'|trans }}
+            {% if complaint.facts.alertNumber %}
+                <span class="badge bg-danger rounded-pill">{{ complaint.facts.alertNumber }}</span>
+            {% endif %}
+        </a>
+        <a href="#" class="list-group-item list-group-item-action"> {{ 'pel.objects.concerned'|trans }}</a>
+        <a href="#" class="list-group-item list-group-item-action"> {{ 'pel.additional.informations'|trans }}</a>
+    </div>
+    <div class="row justify-content-md-center mt-3">
+        <div class="col-10">
+            <div class="d-grid gap-2 d-block">
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-complaint-reject">
+                    X {{ 'pel.reject'|trans }}
+                </button>
+            </div>
+        </div>
+    </div>
 </div>
+{% embed "common/_modal.html.twig" with {'id':'complaint-reject'} %}
+    {% block title %}{{ 'pel.title'|trans }}{% endblock %}
+    {% block body %}{{ 'pel.body'|trans }}{% endblock %}
+    {% block footer %}
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ 'pel.close'|trans }}</button>
+        <button type="button" class="btn btn-primary">{{ 'pel.validate'|trans }}</button>
+    {% endblock %}
+{% endembed %}
