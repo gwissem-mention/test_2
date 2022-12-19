@@ -311,7 +311,7 @@
                                 <li>{{ 'pel.quantity'|trans }} : {{ object.quantity }}</li>
                             {% endif %}
                             {% if object.amount %}
-                                <li>{{ 'pel.amount'|trans }}: {{ object.amount|format_currency('EUR', {fraction_digit: 0}) }}</li>
+                                <li>{{ 'pel.amount'|trans }}: {{ object.amount|format_currency('EUR', {fraction_digit: 2}) }}</li>
                             {% endif %}
                         </ul>
                         <br>
@@ -322,7 +322,7 @@
                     <p>
                         {% set objectsQuantity = complaint.objects.objects|objects_quantity %}
                         {{ 'pel.total.message.one'|trans }} {{ objectsQuantity }} {{ 'pel.total.message.two'|trans({'%quantity%': objectsQuantity}) }}
-                        {{ 'pel.total.message.amount'|trans }} {{ complaint.objects.objects|objects_amount|format_currency('EUR', {fraction_digit: 0}) }}
+                        {{ 'pel.total.message.amount'|trans }} {{ complaint.objects.objects|objects_amount|format_currency('EUR', {fraction_digit: 2}) }}
                     </p>
                     <br>
                     <a class="fr-btn fr-btn--secondary" href="#">{{ 'pel.update'|trans }}</a>

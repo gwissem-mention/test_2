@@ -11,7 +11,7 @@
             {{ 'pel.total.message.one'|trans }}
             <strong>{{ objectsQuantity }} {{ 'pel.total.message.two'|trans({'%quantity%': objectsQuantity}) }}</strong>
             {{ 'pel.total.message.amount'|trans }}
-            <strong>{{ form.objects.vars.data|objects_amount|format_currency('EUR', {fraction_digit: 0}) }}</strong>
+            <strong>{{ form.objects.vars.data|objects_amount|format_currency('EUR', {fraction_digit: 2}) }}</strong>
         </div>
     </div>
     <div class="fr-grid-row">
