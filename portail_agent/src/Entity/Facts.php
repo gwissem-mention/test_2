@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity]
 class Facts
 {
+    use AlertTrait;
     public const NATURE_ROBBERY = 1;
     public const NATURE_DEGRADATION = 2;
     public const NATURE_OTHER = 3;

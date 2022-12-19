@@ -3,7 +3,10 @@
 {% block body %}
     <div class="container-fluid my-3">
         <div class="row">
-            <div class="col-9 border border-secondary p-3 bg-light">
+            <aside class="col-12 col-md-3">
+                {% include 'common/_complaint_nav.html.twig' with {'complaint':complaint} only %}
+            </aside>
+            <main class="col-12 col-md-9 border border-secondary p-3 bg-light rounded mt-3 mt-md-0">
                 <h3><u>{{ 'pel.identification'|trans }}</u></h3>
                 <ul>
                     <li>
@@ -172,7 +175,7 @@
                     {{ 'pel.total.message.amount'|trans }}
                     <strong>{{ objects_amount|format_currency('EUR', {fraction_digit: 0}) }}</strong>
                 </p>
-            </div>
+            </main>
         </div>
     </div>
 {% endblock %}

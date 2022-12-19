@@ -9,7 +9,14 @@ Feature:
         Then the response status code should be 200
         And I should see a "body" element
         And I should see a "nav" element
+        And I should see a "aside" element
+        And I should see a "main" element
         And I should see 4 "h3" element
+        And I should see the key "pel.summary" translated
+        And I should see the key "pel.your.identity" translated
+        And I should see the key "pel.description.of.facts" translated
+        And I should see the key "pel.objects.concerned" translated
+        And I should see the key "pel.additional.informations" translated
         And I should see the key "pel.home" translated
         And I should see the key "pel.agent.complaint.online" translated
         And I should see the key "pel.header.baseline" translated
@@ -87,3 +94,10 @@ Feature:
         And I should see the key "pel.observation.made" translated
         And I should see the key "pel.victim.of.violence" translated
         And I should see the key "pel.description.of.facts" translated
+
+    @func
+    Scenario: I can click on the menu's summary button
+        Given I am on "/plainte/recapitulatif/1"
+        When I follow "Récapitulatif"
+        And I should be on "/plainte/recapitulatif/1"
+        And the response status code should be 200

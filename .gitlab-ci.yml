@@ -214,7 +214,7 @@ agent-build-vendor:
     <<: *build-vendor
     needs:
         - agent-build-php
-    artifacts: 
+    artifacts:
         paths:
             - ./portail_agent/vendor
 
@@ -253,7 +253,7 @@ citoyen-build-front:
         KUBERNETES_MEMORY_LIMIT: 1Gi
     needs:
         - citoyen-build-vendor
-    artifacts: 
+    artifacts:
         paths:
             - ./portail_citoyen/public/build
             - ./portail_citoyen/node_modules
@@ -349,7 +349,7 @@ citoyen-php-mnd:
 agent-php-phpstan:
     <<: *agent-step
     <<: *phpstan
-    
+
 citoyen-php-phpstan:
     <<: *citoyen-step
     <<: *phpstan

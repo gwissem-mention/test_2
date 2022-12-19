@@ -42,6 +42,7 @@ class ComplaintFixtures extends Fixture
                         ->setPhone('06 12 34 45 57')
                         ->setEmail('jean.dupont@gmail.com')
                         ->setJob('Boulanger')
+                        ->setAlertNumber(3)
                 )
                 ->setFacts(
                     (new Facts())
@@ -51,6 +52,7 @@ class ComplaintFixtures extends Fixture
                         ->setAddress('25 Avenue Georges Pompidou, Lyon, 69003')
                         ->setStartHour(new \DateTimeImmutable('10:00'))
                         ->setEndHour(new \DateTimeImmutable('11:00'))
+                        ->setAlertNumber(7)
                 )
                 ->addObject(
                     (new FactsObject())
@@ -97,6 +99,7 @@ class ComplaintFixtures extends Fixture
                         ->setPhone('06 35 76 66 00')
                         ->setEmail('marine.vernier@gmail.com')
                         ->setJob('Infirmière')
+                        ->setAlertNumber(2)
                 )
                 ->setFacts(
                     (new Facts())

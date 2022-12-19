@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity]
 class Identity
 {
+    use AlertTrait;
     public const CIVILITY_MALE = 1;
     public const CIVILITY_FEMALE = 2;
 

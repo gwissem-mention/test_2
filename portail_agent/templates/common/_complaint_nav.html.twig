@@ -1,0 +1,21 @@
+<div class="list-group position-fixed">
+    <a href="{{ path('complaint_summary', {'id':complaint.id}) }}"
+       class="{{ html_classes('list-group-item', 'list-group-item-action', {'list-group-item-secondary': app.current_route == 'complaint_summary'}) }}"
+       {% if app.current_route == 'complaint_summary' %}aria-current="true"{% endif %}>
+        {{ 'pel.summary'|trans }}
+    </a>
+    <a href="#" class="list-group-item list-group-item-action">
+        {{ 'pel.your.identity'|trans }}
+        {% if complaint.identity.alertNumber %}
+            <span class="badge bg-danger rounded-pill">{{ complaint.identity.alertNumber }}</span>
+        {% endif %}
+    </a>
+    <a href="#" class="list-group-item list-group-item-action">
+        {{ 'pel.description.of.facts'|trans }}
+        {% if complaint.facts.alertNumber %}
+            <span class="badge bg-danger rounded-pill">{{ complaint.facts.alertNumber }}</span>
+        {% endif %}
+    </a>
+    <a href="#" class="list-group-item list-group-item-action"> {{ 'pel.objects.concerned'|trans }}</a>
+    <a href="#" class="list-group-item list-group-item-action"> {{ 'pel.additional.informations'|trans }}</a>
+</div>

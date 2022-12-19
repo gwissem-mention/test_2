@@ -250,6 +250,10 @@
                 <source>pel.status</source>
                 <target>Statut</target>
             </trans-unit>
+            <trans-unit id="pel.summary">
+                <source>pel.summary</source>
+                <target>Récapitulatif</target>
+            </trans-unit>
             <trans-unit id="pel.the">
                 <source>pel.the</source>
                 <target>Le</target>
@@ -273,6 +277,10 @@
             <trans-unit id="pel.total.message.two">
                 <source>pel.total.message.two</source>
                 <target>{quantity, plural, one {objet} other {objets}}</target>
+            </trans-unit>
+            <trans-unit id="pel.objects.concerned">
+                <source>pel.objects.concerned</source>
+                <target>Objets concernés</target>
             </trans-unit>
             <trans-unit id="pel.objects.stolen">
                 <source>pel.objects.stolen</source>
@@ -305,6 +313,10 @@
             <trans-unit id="pel.yes">
                 <source>pel.yes</source>
                 <target>Oui</target>
+            </trans-unit>
+            <trans-unit id="pel.your.identity">
+                <source>pel.your.identity</source>
+                <target>Votre identité</target>
             </trans-unit>
         </body>
     </file>
