@@ -34,6 +34,10 @@
                 <source>pel.between</source>
                 <target>Entre</target>
             </trans-unit>
+            <trans-unit id="pel.body">
+                <source>pel.body</source>
+                <target>Corps</target>
+            </trans-unit>
             <trans-unit id="pel.born.on">
                 <source>pel.born.on</source>
                 <target>Né(e) le</target>
@@ -49,6 +53,10 @@
             <trans-unit id="pel.civility">
                 <source>pel.civility</source>
                 <target>Civilité</target>
+            </trans-unit>
+            <trans-unit id="pel.close">
+                <source>pel.close</source>
+                <target>Fermer</target>
             </trans-unit>
             <trans-unit id="pel.comments">
                 <source>pel.comments</source>
@@ -222,6 +230,10 @@
                 <source>pel.phone</source>
                 <target>Téléphone</target>
             </trans-unit>
+            <trans-unit id="pel.reject">
+                <source>pel.reject</source>
+                <target>Rejeter</target>
+            </trans-unit>
             <trans-unit id="pel.resides.at">
                 <source>pel.resides.at</source>
                 <target>Réside à/au</target>
@@ -258,6 +270,10 @@
                 <source>pel.the</source>
                 <target>Le</target>
             </trans-unit>
+            <trans-unit id="pel.title">
+                <source>pel.title</source>
+                <target>Titre</target>
+            </trans-unit>
             <trans-unit id="pel.total">
                 <source>pel.total</source>
                 <target>Total</target>
@@ -293,6 +309,10 @@
             <trans-unit id="pel.person.legal.representative">
                 <source>pel.person.legal.representative</source>
                 <target>Représentant légal d'une personne physique</target>
+            </trans-unit>
+            <trans-unit id="pel.validate">
+                <source>pel.validate</source>
+                <target>Valider</target>
             </trans-unit>
             <trans-unit id="pel.victim">
                 <source>pel.victim</source>

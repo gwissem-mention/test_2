@@ -12,6 +12,9 @@ Feature:
         And I should see a "aside" element
         And I should see a "main" element
         And I should see 4 "h3" element
+        And I should see 1 "button[data-bs-toggle='modal']" element
+        And I should see 6 "button" element
+        And I should see the key "pel.reject" translated
         And I should see the key "pel.summary" translated
         And I should see the key "pel.your.identity" translated
         And I should see the key "pel.description.of.facts" translated
@@ -101,3 +104,15 @@ Feature:
         When I follow "Récapitulatif"
         And I should be on "/plainte/recapitulatif/1"
         And the response status code should be 200
+
+    @javascript
+    Scenario: I can click on the "Complaint reject" and a modal should open
+        Given I am on "/plainte/recapitulatif/1"
+        When I press "Rejeter"
+        Then I should see a ".modal[aria-modal=true]" element
+        And I should see the key "pel.title" translated
+        And I should see the key "pel.body" translated
+        And I should see the key "pel.close" translated
+        And I should see the key "pel.validate" translated
+        And I should see 8 "button" element
+
