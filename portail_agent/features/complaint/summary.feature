@@ -106,13 +106,24 @@ Feature:
         And the response status code should be 200
 
     @javascript
-    Scenario: I can click on the "Complaint reject" and a modal should open
+    Scenario: I can toggle the reject modal
         Given I am on "/plainte/recapitulatif/1"
         When I press "Rejeter"
         Then I should see a ".modal[aria-modal=true]" element
-        And I should see the key "pel.title" translated
-        And I should see the key "pel.body" translated
-        And I should see the key "pel.close" translated
-        And I should see the key "pel.validate" translated
+        And I should see the key "pel.you.will.reject.the.declaration" translated
+        And I should see the key "pel.refusal.reason" translated
+        And I should see the key "pel.appointment.needed" translated
+        And I should see the key "pel.reorientation.other.solution" translated
+        And I should see the key "pel.absence.of.penal.offense" translated
+        And I should see the key "pel.insufisant.quality.to.act" translated
+        And I should see the key "pel.victime.carence" translated
+        And I should see the key "pel.other" translated
+        And I should see the key "pel.free.text" translated
+        And I should see the key "pel.back" translated
+        And I should see the key "pel.validate.the.refusal" translated
         And I should see 8 "button" element
+        And I should see 1 "select" element
+        And I should see 1 "textarea" element
+        When I press "Retour"
+        Then I should not see a ".modal[aria-modal=true]" element
 

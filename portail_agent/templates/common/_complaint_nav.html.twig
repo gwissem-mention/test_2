@@ -23,18 +23,40 @@
     <div class="row justify-content-md-center mt-3">
         <div class="col-10">
             <div class="d-grid gap-2 d-block">
-                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-complaint-reject">
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                        data-bs-target="#modal-complaint-reject"
+                        title="{{ 'pel.you.will.reject.the.declaration'|trans }}">
                     X {{ 'pel.reject'|trans }}
                 </button>
             </div>
         </div>
     </div>
 </div>
-{% embed "common/_modal.html.twig" with {'id':'complaint-reject'} %}
-    {% block title %}{{ 'pel.title'|trans }}{% endblock %}
-    {% block body %}{{ 'pel.body'|trans }}{% endblock %}
+{% embed "common/_modal.html.twig" with {'id':'complaint-reject', 'size':'lg'} %}
+    {% block title %}{{ 'pel.you.will.reject.the.declaration'|trans }}{% endblock %}
+    {% block body %}
+        <div class="row">
+            <div class="col">
+                <label for="reason" class="form-label">{{ 'pel.refusal.reason'|trans }}</label>
+                <select class="form-select" id="reason">
+                    <option>{{ 'pel.appointment.needed'|trans }}</option>
+                    <option>{{ 'pel.reorientation.other.solution'|trans }}</option>
+                    <option>{{ 'pel.absence.of.penal.offense'|trans }}</option>
+                    <option>{{ 'pel.insufisant.quality.to.act'|trans }}</option>
+                    <option>{{ 'pel.victime.carence'|trans }}</option>
+                    <option>{{ 'pel.other'|trans }}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col">
+                <label for="reasonText" class="form-label">{{ 'pel.free.text'|trans }}</label>
+                <textarea class="form-control" id="reasonText"></textarea>
+            </div>
+        </div>
+    {% endblock %}
     {% block footer %}
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ 'pel.close'|trans }}</button>
-        <button type="button" class="btn btn-primary">{{ 'pel.validate'|trans }}</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ 'pel.back'|trans }}</button>
+        <button type="button" class="btn btn-danger">{{ 'pel.validate.the.refusal'|trans }}</button>
     {% endblock %}
 {% endembed %}

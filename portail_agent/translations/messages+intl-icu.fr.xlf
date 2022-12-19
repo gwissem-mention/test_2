@@ -2,6 +2,10 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="fr" target-language="fr" datatype="plaintext" original="file.ext">
         <body>
+            <trans-unit id="pel.absence.of.penal.offense">
+                <source>pel.absence.of.penal.offense</source>
+                <target>Absence d’infraction pénale</target>
+            </trans-unit>
             <trans-unit id="pel.additional.informations">
                 <source>pel.additional.informations</source>
                 <target>Informations complémentaires</target>
@@ -9,6 +13,10 @@
             <trans-unit id="pel.address">
                 <source>pel.address</source>
                 <target>Adresse</target>
+            </trans-unit>
+            <trans-unit id="pel.appointment.needed">
+                <source>pel.appointment.needed</source>
+                <target>RDV nécessaire</target>
             </trans-unit>
             <trans-unit id="pel.a.opj.name">
                 <source>pel.a.opj.name</source>
@@ -29,6 +37,10 @@
             <trans-unit id="pel.at.in">
                 <source>pel.at.in</source>
                 <target>au/en</target>
+            </trans-unit>
+            <trans-unit id="pel.back">
+                <source>pel.back</source>
+                <target>Retour</target>
             </trans-unit>
             <trans-unit id="pel.between">
                 <source>pel.between</source>
@@ -65,6 +77,10 @@
             <trans-unit id="pel.complaint.online.portal">
                 <source>pel.complaint.online.portal</source>
                 <target>Portail Plainte en Ligne</target>
+            </trans-unit>
+            <trans-unit id="pel.corporation.legal.representative">
+                <source>pel.corporation.legal.representative</source>
+                <target>Représentant légal d'une personne morale</target>
             </trans-unit>
             <trans-unit id="pel.declaration.number">
                 <source>pel.declaration.number</source>
@@ -138,6 +154,10 @@
                 <source>pel.fixtures.fsi.type</source>
                 <target>Gendarmerie</target>
             </trans-unit>
+            <trans-unit id="pel.free.text">
+                <source>pel.free.text</source>
+                <target>Texte libre</target>
+            </trans-unit>
             <trans-unit id="pel.fsi.visit">
                 <source>pel.fsi.visit</source>
                 <target>Y a-t-il eu intervention d’un équipage de police ou de gendarmerie ?</target>
@@ -161,6 +181,10 @@
             <trans-unit id="pel.is.designated.as">
                 <source>pel.is.designated.as</source>
                 <target>Se désigne comme</target>
+            </trans-unit>
+            <trans-unit id="pel.insufisant.quality.to.act">
+                <source>pel.insufisant.quality.to.act</source>
+                <target>Qualité insuffisante pour agir</target>
             </trans-unit>
             <trans-unit id="pel.job">
                 <source>pel.job</source>
@@ -198,6 +222,10 @@
                 <source>pel.offense.nature.robbery</source>
                 <target>Vol</target>
             </trans-unit>
+            <trans-unit id="pel.other">
+                <source>pel.other</source>
+                <target>Autre</target>
+            </trans-unit>
             <trans-unit id="pel.other.victim.present">
                 <source>pel.other.victim.present</source>
                 <target>Y a-t-il d'autres victimes de cette infraction ?</target>
@@ -230,9 +258,17 @@
                 <source>pel.phone</source>
                 <target>Téléphone</target>
             </trans-unit>
+            <trans-unit id="pel.refusal.reason">
+                <source>pel.refusal.reason</source>
+                <target>Motif de refus</target>
+            </trans-unit>
             <trans-unit id="pel.reject">
                 <source>pel.reject</source>
                 <target>Rejeter</target>
+            </trans-unit>
+            <trans-unit id="pel.reorientation.other.solution">
+                <source>pel.reorientation.other.solution</source>
+                <target>Réorientation autre solution</target>
             </trans-unit>
             <trans-unit id="pel.resides.at">
                 <source>pel.resides.at</source>
@@ -302,10 +338,6 @@
                 <source>pel.objects.stolen</source>
                 <target>Objets volés</target>
             </trans-unit>
-            <trans-unit id="pel.corporation.legal.representative">
-                <source>pel.corporation.legal.representative</source>
-                <target>Représentant légal d'une personne morale</target>
-            </trans-unit>
             <trans-unit id="pel.person.legal.representative">
                 <source>pel.person.legal.representative</source>
                 <target>Représentant légal d'une personne physique</target>
@@ -314,9 +346,17 @@
                 <source>pel.validate</source>
                 <target>Valider</target>
             </trans-unit>
+            <trans-unit id="pel.validate.the.refusal">
+                <source>pel.validate.the.refusal</source>
+                <target>Valider le refus</target>
+            </trans-unit>
             <trans-unit id="pel.victim">
                 <source>pel.victim</source>
                 <target>Victime</target>
+            </trans-unit>
+            <trans-unit id="pel.victime.carence">
+                <source>pel.victime.carence</source>
+                <target>Carence victime</target>
             </trans-unit>
             <trans-unit id="pel.victim.of.violence">
                 <source>pel.victim.of.violence</source>
@@ -333,6 +373,10 @@
             <trans-unit id="pel.yes">
                 <source>pel.yes</source>
                 <target>Oui</target>
+            </trans-unit>
+            <trans-unit id="pel.you.will.reject.the.declarant">
+                <source>pel.you.will.reject.the.declaration</source>
+                <target>Vous allez rejeter la déclaration</target>
             </trans-unit>
             <trans-unit id="pel.your.identity">
                 <source>pel.your.identity</source>
