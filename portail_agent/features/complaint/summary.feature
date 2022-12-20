@@ -13,8 +13,11 @@ Feature:
         And I should see a "main" element
         And I should see 4 "h3" element
         And I should see 1 "button[data-bs-toggle='modal']" element
-        And I should see 6 "button" element
+        And I should see 9 "button" element
+        And I should see the key "pel.send.to.lrp" translated
         And I should see the key "pel.reject" translated
+        And I should see the key "pel.reasign" translated
+        And I should see the key "pel.comment" translated
         And I should see the key "pel.summary" translated
         And I should see the key "pel.your.identity" translated
         And I should see the key "pel.description.of.facts" translated
