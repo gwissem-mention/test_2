@@ -21,12 +21,21 @@
         <a href="#" class="list-group-item list-group-item-action"> {{ 'pel.additional.informations'|trans }}</a>
     </div>
     <div class="row justify-content-md-center mt-3">
-        <div class="col-10">
+        <div class="col-12">
             <div class="d-grid gap-2 d-block">
+                <button type="button" class="btn btn-primary">
+                    <i class="bi bi-arrow-right"></i> {{ 'pel.send.to.lrp'|trans }}
+                </button>
                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                         data-bs-target="#modal-complaint-reject"
                         title="{{ 'pel.you.will.reject.the.declaration'|trans }}">
-                    X {{ 'pel.reject'|trans }}
+                    <i class="bi bi-x-lg"></i> {{ 'pel.reject'|trans }}
+                </button>
+                <button type="button" class="btn btn-outline-primary">
+                    <i class="bi bi-arrow-return-right"></i> {{ 'pel.reasign'|trans }}
+                </button>
+                <button type="button" class="btn btn-outline-primary">
+                    <i class="bi bi-chat-left"></i> {{ 'pel.comment'|trans }}
                 </button>
             </div>
         </div>
@@ -56,7 +65,7 @@
         </div>
     {% endblock %}
     {% block footer %}
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ 'pel.back'|trans }}</button>
-        <button type="button" class="btn btn-danger">{{ 'pel.validate.the.refusal'|trans }}</button>
+        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal" style="width: 135px">{{ 'pel.back'|trans }}</button>
+        <button type="button" class="btn btn-danger" style="width: 135px">{{ 'pel.validate.the.refusal'|trans }}</button>
     {% endblock %}
 {% endembed %}
