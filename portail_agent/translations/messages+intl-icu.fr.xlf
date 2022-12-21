@@ -318,6 +318,10 @@
                 <source>pel.the</source>
                 <target>Le</target>
             </trans-unit>
+            <trans-unit id="pel.the.declaration.has.been.refused">
+                <source>pel.the.declaration.has.been.refused</source>
+                <target>La déclaration a bien été refusée </target>
+            </trans-unit>
             <trans-unit id="pel.title">
                 <source>pel.title</source>
                 <target>Titre</target>
