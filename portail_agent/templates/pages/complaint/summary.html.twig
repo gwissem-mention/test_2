@@ -2,7 +2,7 @@
 
 {% block body %}
     <div class="toast-container top-0 end-0 p-3">
-        <div class="toast align-items-center text-bg-success" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="2000">
+        <div class="toast align-items-center text-bg-secondary" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="2000">
             <div class="d-flex">
                 <div class="toast-body">
                     {{ 'pel.the.declaration.has.been.refused'|trans }}
@@ -14,7 +14,7 @@
     <div class="container-fluid my-3">
         <div class="row">
             <aside class="col-12 col-md-3">
-                {% include 'common/_complaint_nav.html.twig' with {'complaint':complaint} only %}
+                {% include 'common/_complaint_nav.html.twig' with {'complaint':complaint, 'reject_form':reject_form} only %}
             </aside>
             <main class="col-12 col-md-9 border border-secondary p-3 bg-light rounded mt-3 mt-md-0">
                 <h3><u>{{ 'pel.identification'|trans }}</u></h3>
