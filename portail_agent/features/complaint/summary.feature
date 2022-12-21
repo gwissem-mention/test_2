@@ -13,7 +13,7 @@ Feature:
         And I should see a "main" element
         And I should see 4 "h3" element
         And I should see 1 "button[data-bs-toggle='modal']" element
-        And I should see 9 "button" element
+        And I should see 10 "button" element
         And I should see the key "pel.send.to.lrp" translated
         And I should see the key "pel.reject" translated
         And I should see the key "pel.reasign" translated
@@ -124,9 +124,17 @@ Feature:
         And I should see the key "pel.free.text" translated
         And I should see the key "pel.back" translated
         And I should see the key "pel.validate.the.refusal" translated
-        And I should see 8 "button" element
+        And I should see 10 "button" element
         And I should see 1 "select" element
         And I should see 1 "textarea" element
         When I press "Retour"
         Then I should not see a ".modal[aria-modal=true]" element
 
+    @javascript
+    Scenario: I can click on the reject button on the reject modal
+        Given I am on "/plainte/recapitulatif/1"
+        When I press "Rejeter"
+        And I press "Valider le refus"
+        Then I should not see a ".modal[aria-modal=true]" element
+        And I should see a ".toast" element
+        And I should see the key "pel.the.declaration.has.been.refused" translated

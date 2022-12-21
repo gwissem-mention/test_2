@@ -66,6 +66,6 @@
     {% endblock %}
     {% block footer %}
         <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal" style="width: 135px">{{ 'pel.back'|trans }}</button>
-        <button type="button" class="btn btn-danger" style="width: 135px">{{ 'pel.validate.the.refusal'|trans }}</button>
+        <button type="button" class="btn btn-danger" style="width: 135px" data-controller="complaint" data-action="complaint#reject">{{ 'pel.validate.the.refusal'|trans }}</button>
     {% endblock %}
 {% endembed %}

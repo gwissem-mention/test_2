@@ -474,19 +474,22 @@ citoyen-e2e:
 agent-e2e:
     <<: *agent-step
     variables:
-        APP_ENV: "prod"
+        APP_ENV: "e2e"
         POSTGRES_DB: "app"
         POSTGRES_PASSWORD: "ChangeMe"
         POSTGRES_USER: "symfony"
     script:
-        - php bin/console cache:clear --env=e2e
-        - APP_ENV=e2e php -S 127.0.0.1:8080 -t public/ > /dev/null 2>&1 &
+        - php bin/console cache:clear --env=${APP_ENV}
+        - echo "APP_ENV=${APP_ENV}" >> .env.local
+        - php -S 127.0.0.1:8080 -t  public/ > /dev/null 2>&1 &
         - sed -i "s/nginx-agent/127.0.0.1:8080/g" behat.yml.dist
+        - make APP_ENV=${APP_ENV} db-ci-setup
+        - make APP_ENV=${APP_ENV} db-load
         - make e2e
     services:
         - name: postgres:13-alpine
           alias: database-e2e-agent
-        - name: selenium/standalone-chrome
+        - name: selenium/standalone-chrome:4.5.3
           alias: chrome
     artifacts:
         name: "agent-e2e-$CI_COMMIT_REF_NAME"
