@@ -7,11 +7,22 @@ namespace App\Entity;
 use App\Repository\ComplaintRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ComplaintRepository::class)]
 class Complaint
 {
+    public const STATUS_ONGOING = 'En cours';
+    public const STATUS_CLOSED = 'Cloturé';
+
+    public const REFUSAL_REASON_REORIENTATION_APPONTMENT = 1;
+    public const REFUSAL_REASON_REORIENTATION_OTHER_SOLUTION = 2;
+    public const REFUSAL_REASON_ABSENCE_PENAL_OFFENSE = 3;
+    public const REFUSAL_REASON_INSUFISANT_QUALITY_TO_ACT = 4;
+    public const REFUSAL_REASON_VICTIM_CARENCE = 5;
+    public const REFUSAL_REASON_OTHER = 6;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -59,6 +70,12 @@ class Complaint
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $alert = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $refusalReason = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $refusalText = null;
 
     public function __construct()
     {
@@ -228,6 +245,30 @@ class Complaint
     public function setAlert(?string $alert): self
     {
         $this->alert = $alert;
+
+        return $this;
+    }
+
+    public function getRefusalReason(): ?int
+    {
+        return $this->refusalReason;
+    }
+
+    public function setRefusalReason(?int $refusalReason): self
+    {
+        $this->refusalReason = $refusalReason;
+
+        return $this;
+    }
+
+    public function getRefusalText(): ?string
+    {
+        return $this->refusalText;
+    }
+
+    public function setRefusalText(?string $refusalText): self
+    {
+        $this->refusalText = $refusalText;
 
         return $this;
     }

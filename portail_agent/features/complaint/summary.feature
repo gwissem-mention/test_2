@@ -131,10 +131,28 @@ Feature:
         Then I should not see a ".modal[aria-modal=true]" element
 
     @javascript
-    Scenario: I can click on the reject button on the reject modal
+    Scenario: I can submit the reject form successfully
         Given I am on "/plainte/recapitulatif/1"
         When I press "Rejeter"
+        And I select "1" from "reject_refusalReason"
+        And I fill in "reject_refusalText" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus scelerisque ante id dui lacinia eu."
         And I press "Valider le refus"
         Then I should not see a ".modal[aria-modal=true]" element
+        And I should not see a "complaint-reject-button" element
+        And I should not see a "complaint-send-lrp-button" element
+        And I should not see a "complaint-reassign-button" element
         And I should see a ".toast" element
         And I should see the key "pel.the.declaration.has.been.refused" translated
+        And I am on "/"
+        And I should not see "PEL-2022-00000001"
+
+    @javascript
+    Scenario: I can see form errors the reject form when reject_refusalText is too short
+        Given I am on "/plainte/recapitulatif/2"
+        When I press "Rejeter"
+        And I select "1" from "reject_refusalReason"
+        And I fill in "reject_refusalText" with "Lorem ipsum dolor sit amet"
+        And I press "Valider le refus"
+        Then I should see a ".modal[aria-modal=true]" element
+        And I should see a ".invalid-feedback" element
+

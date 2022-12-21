@@ -14,16 +14,19 @@ use Doctrine\Persistence\ObjectManager;
 
 class ComplaintFixtures extends Fixture
 {
+    private const COMPLAINT_NB = 25;
+
     public function load(ObjectManager $manager): void
     {
-        $complaints = [
-            (new Complaint())
+        $complaints = [];
+        for ($i = 1; $i <= self::COMPLAINT_NB; ++$i) {
+            $complaints[] = (new Complaint())
                 ->setCreatedAt(new \DateTimeImmutable('2022-12-01'))
                 ->setAppointmentDate(new \DateTimeImmutable('2022-12-03'))
                 ->setAssignedAgent('Jean Pierre DE FURSAC')
                 ->setCommentsNumber(5)
-                ->setStatus('En cours')
-                ->setDeclarationNumber('PEL-2022-00000001')
+                ->setStatus(Complaint::STATUS_ONGOING)
+                ->setDeclarationNumber('PEL-2022-'.str_pad((string) $i, 8, '0', STR_PAD_LEFT))
                 ->setOptinNotification(true)
                 ->setAlert('Alert de test trop longue')
                 ->setIdentity(
@@ -73,61 +76,8 @@ class ComplaintFixtures extends Fixture
                         ->setFsiVisit(true)
                         ->setObservationMade(true)
                         ->setDescription("Vol d'un Iphone 13")
-                ),
-            (new Complaint())
-                ->setCreatedAt(new \DateTimeImmutable('2022-12-02'))
-                ->setAppointmentDate(new \DateTimeImmutable('2022-12-07'))
-                ->setAssignedAgent('George Harrison')
-                ->setCommentsNumber(3)
-                ->setStatus('En cours')
-                ->setDeclarationNumber('PEL-2022-00000002')
-                ->setOptinNotification(false)
-                ->setAlert('Alert de test')
-                ->setIdentity(
-                    (new Identity())
-                        ->setFirstname('Marine')
-                        ->setLastname('VERNIER')
-                        ->setCivility(Identity::CIVILITY_FEMALE)
-                        ->setDeclarantStatus(Identity::DECLARANT_STATUS_VICTIM)
-                        ->setBirthday(new \DateTimeImmutable('1989-09-09'))
-                        ->setBirthCountry('France')
-                        ->setNationality('Française')
-                        ->setBirthDepartment('38')
-                        ->setAddress('12 Boulebard Gambetta, Grenoble, 38000')
-                        ->setAddressCity('Grenoble')
-                        ->setAddressPostcode('38000')
-                        ->setPhone('06 35 76 66 00')
-                        ->setEmail('marine.vernier@gmail.com')
-                        ->setJob('Infirmière')
-                        ->setAlertNumber(2)
-                )
-                ->setFacts(
-                    (new Facts())
-                        ->setNature(Facts::NATURE_DEGRADATION)
-                        ->setDate(new \DateTimeImmutable('2022-11-30'))
-                        ->setPlace('Domicile')
-                        ->setAddress('12 Boulebard Gambetta, Grenoble, 38000')
-                        ->setStartHour(new \DateTimeImmutable('19:00'))
-                        ->setEndHour(new \DateTimeImmutable('22:00'))
-                )
-                ->addObject(
-                    (new FactsObject())
-                        ->setLabel('Téléphone mobile')
-                        ->setBrand('Samsung')
-                        ->setModel('S22')
-                        ->setOperator('SFR')
-                        ->setAmount(875)
-                )
-                ->setAdditionalInformation(
-                    (new AdditionalInformation())
-                        ->setCctvPresent(AdditionalInformation::CCTV_PRESENT_NO)
-                        ->setSuspectsKnown(false)
-                        ->setWitnessesPresent(true)
-                        ->setWitnessesPresentText('Jean DURAND')
-                        ->setFsiVisit(false)
-                        ->setDescription("Vol d'un SAMSUNG S22")
-                ),
-        ];
+                );
+        }
 
         foreach ($complaints as $complaint) {
             $manager->persist($complaint);
