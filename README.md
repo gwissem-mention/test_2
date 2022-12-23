@@ -21,6 +21,16 @@ If you want some extra dev tools, run the command:
 make install-dev
 ```
 
+If you need to load the fixtures of the project:
+```bash
+# Citoyen fixtures
+make citoyen-referential-create
+make citoyen-referential-load
+
+# Agent fixtures
+make agent-db-load
+```
+
 You can find more commands to use in the [Makefile](./Makefile) file.
 Also, each project has his own Makefile too.
 
