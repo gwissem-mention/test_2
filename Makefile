@@ -78,6 +78,11 @@ agent-%:
 agent-sh:
 	@$(AGENT_CONT) sh
 
+## Run symfony console in portail_agent container, exemple: make agent-console cmd="cache:clear"
+agent-console:
+	@$(eval cmd ?=)
+	@$(AGENT_CONT) make --no-print-directory console cmd="$(cmd)"
+
 ## Run composer command in portail_agent container, example: make agent-composer c='req symfony/orm-pack'
 agent-composer:
 	@$(eval c ?=)
@@ -102,6 +107,11 @@ citoyen-%:
 ## Connect to portail_citoyen container
 citoyen-sh:
 	@$(CITOYEN_CONT) sh
+
+## Run symfony console in portail_citoyen container, exemple: make citoyen-console cmd="cache:clear"
+citoyen-console:
+	@$(eval cmd ?=)
+	@$(CITOYEN_CONT) make --no-print-directory console cmd="$(cmd)"
 
 ## Run composer command in portail_citoyen container, example: make citoyen-composer c='req symfony/orm-pack'
 citoyen-composer:
