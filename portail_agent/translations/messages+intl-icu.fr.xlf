@@ -66,6 +66,10 @@
                 <source>pel.civility</source>
                 <target>Civilité</target>
             </trans-unit>
+            <trans-unit id="pel.click.here.to.send.this.declaration.to.lrp">
+                <source>pel.click.here.to.send.this.declaration.to.lrp</source>
+                <target>Cliquez ici pour envoyer cette déclaration vers LRP</target>
+            </trans-unit>
             <trans-unit id="pel.close">
                 <source>pel.close</source>
                 <target>Fermer</target>
@@ -366,6 +370,10 @@
                 <source>pel.validate.the.refusal</source>
                 <target>Valider le refus</target>
             </trans-unit>
+            <trans-unit id="pel.validate.the.sending">
+                <source>pel.validate.the.sending</source>
+                <target>Valider l'envoi</target>
+            </trans-unit>
             <trans-unit id="pel.victim">
                 <source>pel.victim</source>
                 <target>Victime</target>
@@ -397,6 +405,10 @@
             <trans-unit id="pel.you.will.reject.the.declarant">
                 <source>pel.you.will.reject.the.declaration</source>
                 <target>Vous allez rejeter la déclaration</target>
+            </trans-unit>
+            <trans-unit id="pel.you.will.send.the.declaration.to.lrp">
+                <source>pel.you.will.send.the.declaration.to.lrp</source>
+                <target>Vous allez envoyer la déclaration à LRP</target>
             </trans-unit>
             <trans-unit id="pel.your.identity">
                 <source>pel.your.identity</source>
