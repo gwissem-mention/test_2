@@ -27,4 +27,11 @@ export default class extends Controller {
                 }
             });
     }
+
+    send() {
+        const modalEl = document.getElementById('modal-complaint-send-to-lrp');
+        const modal = Modal.getInstance(modalEl);
+        modal.hide();
+        modal.dispose();
+    }
 }

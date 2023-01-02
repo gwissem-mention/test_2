@@ -22,6 +22,10 @@
                 <source>pel.appointment.needed</source>
                 <target>RDV nécessaire</target>
             </trans-unit>
+            <trans-unit id="pel.complaint.assignation">
+                <source>pel.complaint.assignation</source>
+                <target>Assignation de la plainte</target>
+            </trans-unit>
             <trans-unit id="pel.a.opj.name">
                 <source>pel.a.opj.name</source>
                 <target>Nom A/OPJ</target>
@@ -129,6 +133,14 @@
             <trans-unit id="pel.declarant.situation">
                 <source>pel.declarant.situation</source>
                 <target>Situation du déclarant</target>
+            </trans-unit>
+            <trans-unit id="pel.data.integration">
+                <source>pel.data.integration</source>
+                <target>Intégration des données</target>
+            </trans-unit>
+            <trans-unit id="pel.data.modification.by.agent">
+                <source>pel.data.modification.by.agent</source>
+                <target>Modification par l'agent des données</target>
             </trans-unit>
             <trans-unit id="pel.declaration.number">
                 <source>pel.declaration.number</source>
@@ -322,6 +334,10 @@
                 <source>pel.reasign</source>
                 <target>Réattribuer</target>
             </trans-unit>
+            <trans-unit id="pel.receipt.report">
+                <source>pel.receipt.report</source>
+                <target>Réception du PV</target>
+            </trans-unit>
             <trans-unit id="pel.refusal.reason">
                 <source>pel.refusal.reason</source>
                 <target>Motif de refus</target>
@@ -337,6 +353,10 @@
             <trans-unit id="pel.resides.at">
                 <source>pel.resides.at</source>
                 <target>Réside à/au</target>
+            </trans-unit>
+            <trans-unit id="pel.report.generation.in.lrp">
+                <source>pel.report.generation.in.lrp</source>
+                <target>Génération du PV dans le LRP</target>
             </trans-unit>
             <trans-unit id="pel.reporting">
                 <source>pel.reporting</source>
@@ -357,6 +377,10 @@
             <trans-unit id="pel.search">
                 <source>pel.search</source>
                 <target>Rechercher</target>
+            </trans-unit>
+            <trans-unit id="pel.send.compatible.data">
+                <source>pel.send.compatible.data</source>
+                <target>Envoi des données compatibles</target>
             </trans-unit>
             <trans-unit id="pel.send.to.lrp">
                 <source>pel.send.to.lrp</source>
@@ -426,9 +450,21 @@
                 <source>pel.validate.the.refusal</source>
                 <target>Valider le refus</target>
             </trans-unit>
-            <trans-unit id="pel.validate.the.sending">
-                <source>pel.validate.the.sending</source>
-                <target>Valider l'envoi</target>
+            <trans-unit id="pel.validate.the.sending.to.the.lrp">
+                <source>pel.validate.the.sending.to.the.lrp</source>
+                <target>Valider l'envoi vers le LRP</target>
+            </trans-unit>
+            <trans-unit id="pel.validation.sending.complain.to.lrp">
+                <source>pel.validation.sending.complain.to.lrp</source>
+                <target>Validation de l'envoi de la plainte vers le LRP</target>
+            </trans-unit>
+            <trans-unit id="pel.complaint.validation.course.to.lrp">
+                <source>pel.complaint.validation.course.to.lrp</source>
+                <target>Parcours de validation de plainte vers le LRP :</target>
+            </trans-unit>
+            <trans-unit id="pel.complaint.validation.sending.to.lrp">
+                <source>pel.complaint.validation.sending.to.lrp</source>
+                <target>Validation et envoi de la plainte au LRP</target>
             </trans-unit>
             <trans-unit id="pel.victim">
                 <source>pel.victim</source>
@@ -461,10 +497,6 @@
             <trans-unit id="pel.you.will.reject.the.declarant">
                 <source>pel.you.will.reject.the.declaration</source>
                 <target>Vous allez rejeter la déclaration</target>
-            </trans-unit>
-            <trans-unit id="pel.you.will.send.the.declaration.to.lrp">
-                <source>pel.you.will.send.the.declaration.to.lrp</source>
-                <target>Vous allez envoyer la déclaration à LRP</target>
             </trans-unit>
             <trans-unit id="pel.your.identity">
                 <source>pel.your.identity</source>

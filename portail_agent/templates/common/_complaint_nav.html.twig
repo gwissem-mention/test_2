@@ -52,13 +52,27 @@
     {% endembed %}
 
     {% embed "common/_modal.html.twig" with {'id':'complaint-send-to-lrp', 'size':'lg'} %}
-        {% block title %}{{ 'pel.you.will.send.the.declaration.to.lrp'|trans }}{% endblock %}
+        {% block title %}{{ 'pel.validation.sending.complain.to.lrp'|trans }}{% endblock %}
         {% block body %}
-
+            <div class="row m-3 mb-0">
+                <div class="col-sm d-inline bg-secondary bg-opacity-75 rounded text-center text-white p-3 m-4">{{ 'pel.complaint.assignation'|trans }}</div>
+                <div class="col-sm d-inline bg-light border border-secondary border-bottom-0 rounded-top text-center p-3">{{ 'pel.complaint.validation.sending.to.lrp'|trans }}</div>
+                <div class="col-sm d-inline bg-secondary bg-opacity-75 rounded text-center text-white p-3 m-4">{{ 'pel.receipt.report'|trans }}</div>
+            </div>
+            <div class="row bg-light align-items-baseline border border-secondary rounded p-3 m-3 mt-0">
+                <div class="fw-bold">{{ 'pel.complaint.validation.course.to.lrp'|trans }}</div>
+                <div class="col-sm text-center"><img class="rounded-circle" src="{{ asset('build/images/placeholder.jpeg') }}" alt="placeholder" style="width: 80px"><br>{{ 'pel.send.compatible.data'|trans }}</div>
+                <div class="col-sm text-center fs-1 align-self-center"><i class="bi bi-arrow-right"></i></div>
+                <div class="col-sm text-center"><img class="rounded-circle" src="{{ asset('build/images/placeholder.jpeg') }}" alt="placeholder" style="width: 80px"><br>{{ 'pel.data.integration'|trans }}</div>
+                <div class="col-sm text-center fs-1 align-self-center"><i class="bi bi-arrow-right"></i></div>
+                <div class="col-sm text-center"><img class="rounded-circle" src="{{ asset('build/images/placeholder.jpeg') }}" alt="placeholder" style="width: 80px"><br>{{ 'pel.data.modification.by.agent'|trans }}</div>
+                <div class="col-sm text-center fs-1 align-self-center"><i class="bi bi-arrow-right"></i></div>
+                <div class="col-sm text-center"><img class="rounded-circle" src="{{ asset('build/images/placeholder.jpeg') }}" alt="placeholder" style="width: 80px"><br>{{ 'pel.report.generation.in.lrp'|trans }}</div>
+            </div>
         {% endblock %}
         {% block footer %}
             <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal" style="width: 135px">{{ 'pel.back'|trans }}</button>
-            <button type="button" class="btn btn-success" data-controller="complaint" data-action="#" data-complaint-url-param="#" style="width: 135px">{{ 'pel.validate.the.sending'|trans }}</button>
+            <button type="button" class="btn btn-success" data-controller="complaint" data-action="complaint#send" data-complaint-url-param="#" style="width: 135px">{{ 'pel.validate.the.sending.to.the.lrp'|trans }}</button>
         {% endblock %}
     {% endembed %}
 {% endif %}
