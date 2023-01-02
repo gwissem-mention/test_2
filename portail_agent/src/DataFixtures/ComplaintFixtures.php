@@ -39,6 +39,7 @@ class ComplaintFixtures extends Fixture
                         ->setBirthCountry('France')
                         ->setNationality('Française')
                         ->setBirthDepartment('75')
+                        ->setBirthCity('Paris')
                         ->setAddress('15 rue PAIRA, Meudon, 92190')
                         ->setAddressCity('Meudon')
                         ->setAddressPostcode('92190')

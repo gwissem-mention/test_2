@@ -14,6 +14,10 @@
                 <source>pel.address</source>
                 <target>Adresse</target>
             </trans-unit>
+            <trans-unit id="pel.address.france.label">
+                <source>pel.address.france.label</source>
+                <target>Adresse en France Métropolitaine ou Outre-Mer</target>
+            </trans-unit>
             <trans-unit id="pel.appointment.needed">
                 <source>pel.appointment.needed</source>
                 <target>RDV nécessaire</target>
@@ -45,6 +49,18 @@
             <trans-unit id="pel.between">
                 <source>pel.between</source>
                 <target>Entre</target>
+            </trans-unit>
+            <trans-unit id="pel.birth.city">
+                <source>pel.birth.city</source>
+                <target>Ville de naissance</target>
+            </trans-unit>
+            <trans-unit id="pel.birth.country">
+                <source>pel.birth.country</source>
+                <target>Pays de naissance</target>
+            </trans-unit>
+            <trans-unit id="pel.birth.date">
+                <source>pel.birth.date</source>
+                <target>Date de naissance</target>
             </trans-unit>
             <trans-unit id="pel.body">
                 <source>pel.body</source>
@@ -89,6 +105,30 @@
             <trans-unit id="pel.corporation.legal.representative">
                 <source>pel.corporation.legal.representative</source>
                 <target>Représentant légal d'une personne morale</target>
+            </trans-unit>
+            <trans-unit id="pel.declarant.address">
+                <source>pel.declarant.address</source>
+                <target>Adresse du déclarant</target>
+            </trans-unit>
+            <trans-unit id="pel.declarant.civil.status">
+                <source>pel.declarant.civil.status</source>
+                <target>État civil du déclarant</target>
+            </trans-unit>
+            <trans-unit id="pel.declarant.contact.information">
+                <source>pel.declarant.contact.information</source>
+                <target>Les coordonnées du déclarant</target>
+            </trans-unit>
+            <trans-unit id="pel.declarant.complain.as">
+                <source>pel.declarant.complain.as</source>
+                <target>Porte plainte en qualité de :</target>
+            </trans-unit>
+            <trans-unit id="pel.declarant.identity">
+                <source>pel.declarant.identity</source>
+                <target>Identité du déclarant</target>
+            </trans-unit>
+            <trans-unit id="pel.declarant.situation">
+                <source>pel.declarant.situation</source>
+                <target>Situation du déclarant</target>
             </trans-unit>
             <trans-unit id="pel.declaration.number">
                 <source>pel.declaration.number</source>
@@ -150,6 +190,10 @@
                 <source>pel.facts.witnesses.information.text</source>
                 <target>Veuillez indiquer, si vous le pouvez, les noms et les coordonnées du/des témoin(s)</target>
             </trans-unit>
+            <trans-unit id="pel.firstname">
+                <source>pel.firstname</source>
+                <target>Prénom</target>
+            </trans-unit>
             <trans-unit id="pel.firstname.lastname">
                 <source>pel.firstname.lastname</source>
                 <target>Nom/Prénom</target>
@@ -197,6 +241,10 @@
             <trans-unit id="pel.job">
                 <source>pel.job</source>
                 <target>Profession</target>
+            </trans-unit>
+            <trans-unit id="pel.lastname">
+                <source>pel.lastname</source>
+                <target>Nom</target>
             </trans-unit>
             <trans-unit id="pel.madam">
                 <source>pel.madam</source>
@@ -266,6 +314,10 @@
                 <source>pel.phone</source>
                 <target>Téléphone</target>
             </trans-unit>
+            <trans-unit id="pel.phone.number">
+                <source>pel.phone.number</source>
+                <target>Numéro de téléphone</target>
+            </trans-unit>
             <trans-unit id="pel.reasign">
                 <source>pel.reasign</source>
                 <target>Réattribuer</target>
@@ -313,6 +365,10 @@
             <trans-unit id="pel.status">
                 <source>pel.status</source>
                 <target>Statut</target>
+            </trans-unit>
+            <trans-unit id="pel.sms.notification">
+                <source>pel.sms.notification</source>
+                <target>Notification SMS</target>
             </trans-unit>
             <trans-unit id="pel.summary">
                 <source>pel.summary</source>

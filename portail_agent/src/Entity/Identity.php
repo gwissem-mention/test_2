@@ -39,6 +39,9 @@ class Identity
     private ?\DateTimeInterface $birthday = null;
 
     #[ORM\Column(length: 255)]
+    private ?string $birthCity = null;
+
+    #[ORM\Column(length: 255)]
     private ?string $birthCountry = null;
 
     #[ORM\Column(length: 255)]
@@ -133,6 +136,18 @@ class Identity
     public function getBirthCountry(): ?string
     {
         return $this->birthCountry;
+    }
+
+    public function getBirthCity(): ?string
+    {
+        return $this->birthCity;
+    }
+
+    public function setBirthCity(?string $birthCity): self
+    {
+        $this->birthCity = $birthCity;
+
+        return $this;
     }
 
     public function setBirthCountry(string $birthCountry): self
