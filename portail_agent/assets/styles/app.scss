@@ -31,3 +31,11 @@ body {
     color: #fff;
     background-color: #000F8A;
 }
+
+.form-control:disabled, .form-select:disabled {
+    background-color: #f1f3f8;
+}
+
+.form-check-input:disabled ~ .form-check-label {
+    opacity: 1;
+}
