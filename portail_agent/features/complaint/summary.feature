@@ -195,8 +195,24 @@ Feature:
         Given I am on "/plainte/recapitulatif/1"
         When I press "Envoi à LRP"
         Then I should see a ".modal[aria-modal=true]" element
-        And I should see the key "pel.you.will.send.the.declaration.to.lrp" translated
+        And I should see the key "pel.validation.sending.complain.to.lrp" translated
+        And I should see the key "pel.complaint.assignation" translated
+        And I should see the key "pel.complaint.validation.sending.to.lrp" translated
+        And I should see the key "pel.receipt.report" translated
+        And I should see the key "pel.complaint.validation.course.to.lrp" translated
+        And I should see the key "pel.send.compatible.data" translated
+        And I should see the key "pel.data.integration" translated
+        And I should see the key "pel.data.modification.by.agent" translated
+        And I should see the key "pel.report.generation.in.lrp" translated
         And I should see the key "pel.back" translated
-        And I should see the key "pel.validate.the.sending" translated
+        And I should see the key "pel.validate.the.sending.to.the.lrp" translated
         When I press "Retour"
+        Then I should not see a ".modal[aria-modal=true]" element
+
+    @javascript
+    Scenario: I can validate the send to LRP action successfully
+        Given I am on "/plainte/recapitulatif/1"
+        When I press "Envoi à LRP"
+        Then I should see a ".modal[aria-modal=true]" element
+        When I press "Valider l'envoi vers le LRP"
         Then I should not see a ".modal[aria-modal=true]" element
