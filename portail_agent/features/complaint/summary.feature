@@ -13,7 +13,7 @@ Feature:
         And I should see a "main" element
         And I should see 4 "h3" element
         And I should see 2 "button[data-bs-toggle='modal']" element
-        And I should see 13 "button" element
+        And I should see 14 "button" element
         And I should see the key "pel.send.to.lrp" translated
         And I should see the key "pel.reject" translated
         And I should see the key "pel.reasign" translated
@@ -216,3 +216,5 @@ Feature:
         Then I should see a ".modal[aria-modal=true]" element
         When I press "Valider l'envoi vers le LRP"
         Then I should not see a ".modal[aria-modal=true]" element
+        And I should see a ".toast" element
+        And I should see the key "pel.file.generated" translated

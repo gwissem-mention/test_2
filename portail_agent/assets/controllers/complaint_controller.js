@@ -20,7 +20,7 @@ export default class extends Controller {
                     const modal = Modal.getInstance(modalEl);
                     modal.hide();
                     modal.dispose();
-                    const toast = new Toast(document.querySelector('.toast'));
+                    const toast = new Toast(document.getElementById('toast-complaint-reject'));
                     toast.show();
                 } else {
                     modalEl.querySelector('form').innerHTML = json.form;
@@ -33,5 +33,7 @@ export default class extends Controller {
         const modal = Modal.getInstance(modalEl);
         modal.hide();
         modal.dispose();
+        const toast = new Toast(document.getElementById('toast-validation-send-to-lrp'));
+        toast.show();
     }
 }

@@ -206,6 +206,10 @@
                 <source>pel.firstname</source>
                 <target>Prénom</target>
             </trans-unit>
+            <trans-unit id="pel.file.generated">
+                <source>pel.file.generated</source>
+                <target>Le fichier a bien été généré.</target>
+            </trans-unit>
             <trans-unit id="pel.firstname.lastname">
                 <source>pel.firstname.lastname</source>
                 <target>Nom/Prénom</target>
