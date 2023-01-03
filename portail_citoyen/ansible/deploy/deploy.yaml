@@ -13,6 +13,7 @@
     FRANCE_CONNECT_CLIENT_ID: "{{ vault_france_connect_client_id }}"
     FRANCE_CONNECT_CLIENT_SECRET: "{{ vault_france_connect_client_secret }}"
     FRANCE_CONNECT_BASE_URI: "{{ vault_france_connect_base_uri }}"
+    FILE_CITIES: insee_commune.csv
 
   vars_files:
     - ../vars/vars.yaml

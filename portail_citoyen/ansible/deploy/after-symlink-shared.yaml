@@ -11,6 +11,7 @@
       FRANCE_CONNECT_CLIENT_ID={{ ansible_env.FRANCE_CONNECT_CLIENT_ID }}
       FRANCE_CONNECT_CLIENT_SECRET={{ ansible_env.FRANCE_CONNECT_CLIENT_SECRET }}
       FRANCE_CONNECT_BASE_URI={{ ansible_env.FRANCE_CONNECT_BASE_URI }}
+      FILE_CITIES=insee_commune.csv
 
 - name: Install vendors for prod env
   make:
