@@ -746,8 +746,8 @@
                 <source>pel.mobile</source>
                 <target>Numéro de téléphone portable</target>
             </trans-unit>
-            <trans-unit id="pel.mobile.help">
-                <source>pel.mobile.help</source>
+            <trans-unit id="pel.phone.help">
+                <source>pel.phone.help</source>
                 <target>Veuillez saisir votre numéro uniquement avec des chiffres</target>
             </trans-unit>
             <trans-unit id="pel.model">
@@ -921,6 +921,10 @@
             <trans-unit id="pel.phone">
                 <source>pel.phone</source>
                 <target>Téléphone</target>
+            </trans-unit>
+            <trans-unit id="pel.phone.is.invalid">
+                <source>pel.phone.is.invalid</source>
+                <target>Le numéro de téléphone n'est pas valide</target>
             </trans-unit>
             <trans-unit id="pel.phone.number.line">
                 <source>pel.phone.number.line</source>

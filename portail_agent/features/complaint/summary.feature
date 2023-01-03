@@ -158,10 +158,10 @@ Feature:
         And I should see the key "pel.free.text" translated
         And I should see the key "pel.back" translated
         And I should see the key "pel.validate.the.refusal" translated
-        And I should see 13 "button" element
+        And I should see 14 "button" element
         And I should see 1 "select" element
         And I should see 1 "textarea" element
-        When I press "Retour"
+        When I press "complaint-reject-button-back"
         Then I should not see a ".modal[aria-modal=true]" element
 
     @javascript
@@ -192,7 +192,7 @@ Feature:
 
     @javascript
     Scenario: I can toggle the send to LRP modal
-        Given I am on "/plainte/recapitulatif/1"
+        Given I am on "/plainte/recapitulatif/3"
         When I press "Envoi à LRP"
         Then I should see a ".modal[aria-modal=true]" element
         And I should see the key "pel.validation.sending.complain.to.lrp" translated
@@ -206,12 +206,12 @@ Feature:
         And I should see the key "pel.report.generation.in.lrp" translated
         And I should see the key "pel.back" translated
         And I should see the key "pel.validate.the.sending.to.the.lrp" translated
-        When I press "Retour"
+        When I press "complaint-send-to-lrp-button-back"
         Then I should not see a ".modal[aria-modal=true]" element
 
     @javascript
     Scenario: I can validate the send to LRP action successfully
-        Given I am on "/plainte/recapitulatif/1"
+        Given I am on "/plainte/recapitulatif/3"
         When I press "Envoi à LRP"
         Then I should see a ".modal[aria-modal=true]" element
         When I press "Valider l'envoi vers le LRP"

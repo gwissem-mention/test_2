@@ -19,7 +19,7 @@ Feature:
         And I select "1" from "identity_civilState_job"
         And I fill in "identity_contactInformation_frenchAddress_address" with "Av. de la République 75011 Paris France"
         And I fill in "identity_contactInformation_email" with "jean@test.com"
-        And I fill in "identity_contactInformation_mobile" with "0601020304"
+        And I fill in "identity_contactInformation_phone_number" with "0601020304"
         And I press "identity_submit"
         And I wait 2000 ms
         And I click the "label[for=facts_offenseNature_offenseNatures_0]" element
@@ -73,7 +73,7 @@ Feature:
         And I should see the key "pel.your.job" translated
         And I should see the key "pel.job.policeman" translated
         And I should see the key "pel.phone" translated
-        And I should see "0601020304"
+        And I should see "+33 6 01 02 03 04"
         And I should see the key "pel.email" translated
         And I should see "jean@test.com"
         And I should see the key "pel.want.to.receive.sms.notifications" translated

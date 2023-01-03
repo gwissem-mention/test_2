@@ -110,16 +110,16 @@
                             {% endif %}
                             <li>
                                 {{ 'pel.corporation.phone'|trans }} :
-                                {{ complaint.identity.corporation.phone }}
+                                {{ complaint.identity.corporation.phone|phone_format_intl }}
                             </li>
                             <li>
                                 {{ 'pel.address.country'|trans }} :
-                                {{ complaint.identity.corporation.country|country_name }}
+                                {{ complaint.identity.corporation.country|country_referential_name }}
                             </li>
                             <li>
                                 {{ 'pel.address'|trans }} :
-                                {% if complaint.identity.corporation.country|country_name is same as('France') %}
-                                    {{ complaint.identity.corporation.frenchAddress }}
+                                {% if complaint.identity.corporation.country == fr_code  %}
+                                    {{ complaint.identity.corporation.frenchAddress.label }}
                                 {% else %}
                                     {{ complaint.identity.corporation.foreignAddress }}
                                 {% endif %}

@@ -38,6 +38,6 @@
     {{ civilState.job|job_get_name|trans }}
 </li>
 <li>
-    {{ 'pel.phone'|trans }} : {{ contactInformation.mobile }}
+    {{ 'pel.phone'|trans }} : {{ contactInformation.phone|phone_format_intl }}
     {{ 'pel.email'|trans }} : {{ contactInformation.email }}
 </li>

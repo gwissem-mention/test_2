@@ -20,7 +20,9 @@ import "@gouvfr/dsfr/dist/utility/icons/icons-others/icons-others.min.css";
 import "@gouvfr/dsfr/dist/utility/icons/icons-system/icons-system.min.css";
 import "@gouvfr/dsfr/dist/utility/icons/icons-user/icons-user.min.css";
 import "@gouvfr/dsfr/dist/utility/icons/icons-weather/icons-weather.min.css";
-import "@gouvfr/dsfr/dist/dsfr.module.min.js";
-
-import "./scripts/scripts";
+import "intl-tel-input/build/css/intlTelInput.css";
 import "./styles/styles.sass";
+
+import "@gouvfr/dsfr/dist/dsfr.module.min.js";
+import "intl-tel-input/build/js/utils";
+import "./scripts/scripts";

@@ -41,3 +41,7 @@ services:
       $citiesFixturesPath: '%app.referentials_base_path%/%app.file_cities%'
   
   App\Referential\Provider\Country\CountryProviderInterface: '@App\Referential\Provider\Country\DatabaseCountryProvider'
+
+  libphonenumber\PhoneNumberUtil:
+    factory: [ 'libphonenumber\PhoneNumberUtil', 'getInstance' ]
+

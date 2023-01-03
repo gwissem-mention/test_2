@@ -9,16 +9,16 @@ class ContactInformationModel implements EmbedAddressInterface
     use AddressTrait;
     use EmailTrait;
 
-    private ?string $mobile = null;
+    private ?PhoneModel $phone = null;
 
-    public function getMobile(): ?string
+    public function getPhone(): ?PhoneModel
     {
-        return $this->mobile;
+        return $this->phone;
     }
 
-    public function setMobile(?string $mobile): self
+    public function setPhone(?PhoneModel $phone): self
     {
-        $this->mobile = $mobile;
+        $this->phone = $phone;
 
         return $this;
     }
