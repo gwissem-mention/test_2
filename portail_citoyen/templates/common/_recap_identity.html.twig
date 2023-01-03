@@ -17,7 +17,9 @@
 <li>
     {{ 'pel.born.on'|trans }} : {{ civilState.birthDate|date('d/m/Y') }}
     {{ 'pel.at.in'|trans }} : {{ civilState.birthLocation.country|country_referential_name }}
-    {{ 'pel.department'|trans }} : {{ civilState.birthLocation.department }}
+    {% if civilState.birthLocation.frenchTown %}
+        {{ 'pel.department'|trans }} : {{ civilState.birthLocation.frenchTown|city_get_department }}
+    {% endif %}
 </li>
 <li>
     {{ 'pel.nationality'|trans }} :
@@ -28,7 +30,7 @@
     {% if contactInformation.country == fr_code %}
         {{ contactInformation.frenchAddress.label }}
     {% else %}
-        {{  contactInformation.foreignAddress }}
+        {{ contactInformation.foreignAddress }}
     {% endif %}
 </li>
 <li>

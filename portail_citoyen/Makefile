@@ -174,7 +174,12 @@ referential-create:
 
 referential-load:
 	@$(eval APP_ENV ?=)
-	@$(CONSOLE) doctrine:fixtures:load --env=$(APP_ENV) --em=referentials --group=referentials --no-interaction
+	@$(CONSOLE) doctrine:fixtures:load --env=$(APP_ENV) --em=referentials --group=referentials --group=referentials-prod --no-interaction
+
+referential-ci-load:
+	@$(eval APP_ENV ?=)
+	@$(CONSOLE) doctrine:fixtures:load --env=$(APP_ENV) --em=referentials --group=referentials --group=referentials-ci --no-interaction
+
 
 #################################
 Cache:

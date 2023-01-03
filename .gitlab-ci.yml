@@ -433,7 +433,7 @@ citoyen-func:
     script:
         - make APP_ENV=${APP_ENV} db-ci-setup
         - make APP_ENV=${APP_ENV} referential-create
-        - make APP_ENV=${APP_ENV} referential-load
+        - make APP_ENV=${APP_ENV} referential-ci-load
         - make behat
     services:
         - name: postgres:13-alpine
@@ -453,7 +453,7 @@ citoyen-e2e:
         - sed -i "s/nginx-citoyen/127.0.0.1:8080/g" behat.yml.dist
         - make APP_ENV=${APP_ENV} db-ci-setup
         - make APP_ENV=${APP_ENV} referential-create
-        - make APP_ENV=${APP_ENV} referential-load
+        - make APP_ENV=${APP_ENV} referential-ci-load
         - make e2e
     artifacts:
         name: "citoyen-e2e-$CI_COMMIT_REF_NAME"
