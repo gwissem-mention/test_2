@@ -13,7 +13,7 @@ Feature:
         And I select "1" from "identity_civilState_civility"
         And I select "1" from "identity_civilState_job"
         And I fill in "identity_contactInformation_frenchAddress_address" with "Av. de la République 75011 Paris France"
-        And I fill in "identity_contactInformation_mobile" with "0601020304"
+        And I fill in "identity_contactInformation_phone_number" with "0601020304"
         And I select "2" from "identity_representedPersonCivilState_civility"
         And I fill in "identity_representedPersonCivilState_birthName" with "Dupont"
         And I fill in "identity_representedPersonCivilState_firstnames" with "Julie"
@@ -23,28 +23,7 @@ Feature:
         And I select "3" from "identity_representedPersonCivilState_job"
         And I fill in "identity_representedPersonContactInformation_frenchAddress_address" with "Av. de la République 75011 Paris France"
         And I fill in "identity_representedPersonContactInformation_email" with "jean@test.com"
-        And I fill in "identity_representedPersonContactInformation_mobile" with "0602030405"
-        And the "identity_civilState_civility" field should contain "1"
-        And the "identity_civilState_birthName" field should contain "DUPONT"
-        And the "identity_civilState_firstnames" field should contain "Michel"
-        And the "identity_civilState_birthDate" field should contain "1967-03-02"
-        And the "identity_civilState_birthLocation_frenchTown" field should contain "75107"
-        And the "identity_civilState_birthLocation_department" field should contain "75"
-        And the "identity_civilState_nationality" field should contain "1"
-        And the "identity_civilState_job" field should contain "1"
-        And the "identity_contactInformation_frenchAddress_address" field should contain "Av. de la République 75011 Paris France"
-        And the "identity_contactInformation_email" field should contain "michel.dupont@example.com"
-        And the "identity_contactInformation_mobile" field should contain "0601020304"
-        And the "identity_representedPersonCivilState_birthName" field should contain "DUPONT"
-        And the "identity_representedPersonCivilState_firstnames" field should contain "Julie"
-        And the "identity_representedPersonCivilState_birthDate" field should contain "2010-01-01"
-        And the "identity_representedPersonCivilState_birthLocation_frenchTown" field should contain "75056"
-        And the "identity_representedPersonCivilState_birthLocation_department" field should contain "75"
-        And the "identity_representedPersonCivilState_nationality" field should contain "1"
-        And the "identity_representedPersonCivilState_job" field should contain "3"
-        And the "identity_representedPersonContactInformation_frenchAddress_address" field should contain "Av. de la République 75011 Paris France"
-        And the "identity_representedPersonContactInformation_email" field should contain "jean@test.com"
-        And the "identity_representedPersonContactInformation_mobile" field should contain "0602030405"
+        And I fill in "identity_representedPersonContactInformation_phone_number" with "0602030405"
         And I press "identity_submit"
         And I wait 2000 ms
         And I press "facts_submit"
@@ -99,7 +78,7 @@ Feature:
         And I should see the key "pel.your.job" translated
         And I should see the key "pel.job.policeman" translated
         And I should see the key "pel.phone" translated
-        And I should see "0601020304"
+        And I should see "+33 6 01 02 03 04"
         And I should see the key "pel.email" translated
         And I should see "michel.dupont@example.com"
         And I should see the key "pel.want.to.receive.sms.notifications" translated
@@ -123,7 +102,7 @@ Feature:
         And I should see the key "pel.your.job" translated
         And I should see the key "pel.job.none" translated
         And I should see the key "pel.phone" translated
-        And I should see "0602030405"
+        And I should see "+33 6 02 03 04 05"
         And I should see the key "pel.email" translated
         And I should see "jean@test.com"
         And I should see the key "pel.facts.description" translated

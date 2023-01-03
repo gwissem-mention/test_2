@@ -57,7 +57,7 @@ Feature:
         And I select "1" from "identity_civilState_job"
         And I fill in "identity_contactInformation_frenchAddress_address" with "Av. de la République 75011 Paris France"
         And I fill in "identity_contactInformation_email" with "jean@test.com"
-        And I fill in "identity_contactInformation_mobile" with "0602030405"
+        And I fill in "identity_contactInformation_phone_number" with "0602030405"
         And I press "identity_submit"
         Then the "#facts_accordion_item" element should contain "style=\"display: block;\""
 
@@ -76,7 +76,7 @@ Feature:
         And I select "1" from "identity_civilState_job"
         And I fill in "identity_contactInformation_frenchAddress_address" with "Av. de la République 75011 Paris France"
         And I fill in "identity_contactInformation_email" with "jean@test.com"
-        And I fill in "identity_contactInformation_mobile" with "0602030405"
+        And I fill in "identity_contactInformation_phone_number" with "0602030405"
         And I press "identity_submit"
         Then the "#facts_accordion_item" element should contain "style=\"display: block;\""
 
@@ -96,7 +96,7 @@ Feature:
         And I select "1" from "identity_civilState_job"
         And I fill in "identity_contactInformation_frenchAddress_address" with "Av. de la République 75011 Paris France"
         And I fill in "identity_contactInformation_email" with "jean@test.com"
-        And I fill in "identity_contactInformation_mobile" with "0602030405"
+        And I fill in "identity_contactInformation_phone_number" with "0602030405"
         And I press "identity_submit"
         Then the "#facts_accordion_item" element should contain "style=\"display: block;\""
 
@@ -116,7 +116,7 @@ Feature:
         And I select "99100" from "identity_contactInformation_country"
         And I fill in "identity_contactInformation_frenchAddress_address" with "Av. de la République 75011 Paris France"
         And I fill in "identity_contactInformation_email" with "jean@test.com"
-        And I fill in "identity_contactInformation_mobile" with "0602030405"
+        And I fill in "identity_contactInformation_phone_number" with "0602030405"
         And I press "identity_submit"
         Then the "#facts_accordion_item" element should contain "style=\"display: block;\""
 
@@ -136,7 +136,7 @@ Feature:
         And I select "99134" from "identity_contactInformation_country"
         And I fill in "identity_contactInformation_foreignAddress" with "C. de Alcalá Madrid España"
         And I fill in "identity_contactInformation_email" with "jean@test.com"
-        And I fill in "identity_contactInformation_mobile" with "0602030405"
+        And I fill in "identity_contactInformation_phone_number" with "0602030405"
         And I press "identity_submit"
         Then the "#facts_accordion_item" element should contain "style=\"display: block;\""
 
@@ -293,7 +293,7 @@ Feature:
         When I click the "label[for=identity_declarantStatus_0]" element
         And I select "1" from "identity_civilState_job"
         And I fill in "identity_contactInformation_frenchAddress_address" with "Av. de la République 75011 Paris France"
-        And I fill in "identity_contactInformation_mobile" with "0601020304"
+        And I fill in "identity_contactInformation_phone_number" with "0601020304"
         And I press "identity_submit"
         And I wait 2000 ms
         And I reload the page
@@ -315,9 +315,29 @@ Feature:
         And I select "1" from "identity_civilState_job"
         And I fill in "identity_contactInformation_frenchAddress_address" with "Av. de la République 75011 Paris France"
         And I fill in "identity_contactInformation_email" with "jean@test.com"
-        And I fill in "identity_contactInformation_mobile" with "0602030405"
+        And I fill in "identity_contactInformation_phone_number" with "0602030405"
         And I press "identity_submit"
         And I wait 2000 ms
         And I reload the page
         And I click the "#identity_accordion_title" element
         Then the "identity_declarantStatus_0" field should contain "1"
+
+    Scenario: I can switch to afghanistan phone country and submit a valid phone number
+        Given I am on "/authentification"
+        And I follow "Continuer sans m'authentifier"
+        And I am on "/porter-plainte"
+        And I click the "#identity_accordion_title" element
+        When I click the "label[for=identity_declarantStatus_0]" element
+        And I select "1" from "identity_civilState_civility"
+        And I fill in "identity_civilState_birthName" with "Dupont"
+        And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
+        And I fill in "identity_civilState_birthDate" with "01/01/2000"
+        And I select "Paris (75)" from "identity_civilState_birthLocation_frenchTown"
+        And I select "1" from "identity_civilState_nationality"
+        And I select "1" from "identity_civilState_job"
+        And I fill in "identity_contactInformation_frenchAddress_address" with "Av. de la République 75011 Paris France"
+        And I fill in "identity_contactInformation_email" with "jean@test.com"
+        And I click the ".iti__flag-container" element
+        And I click the "li[data-country-code=af]" element
+        And I fill in "identity_contactInformation_phone_number" with "70 123 4567"
+        Then I should not see a "#form-errors-identity_contactInformation_phone_number" element

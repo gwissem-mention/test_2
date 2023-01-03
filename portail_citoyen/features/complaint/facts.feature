@@ -12,7 +12,7 @@ Feature:
         When I click the "label[for=identity_declarantStatus_0]" element
         And I select "1" from "identity_civilState_job"
         And I fill in "identity_contactInformation_frenchAddress_address" with "Av. de la République 75011 Paris France"
-        And I fill in "identity_contactInformation_mobile" with "0601020304"
+        And I fill in "identity_contactInformation_phone_number" with "0601020304"
         And I press "identity_submit"
         And I click the "#facts_accordion_title" element
 

@@ -6,6 +6,7 @@ namespace App\Form\Identity;
 
 use App\Form\CountryType;
 use App\Form\Model\Identity\CorporationModel;
+use App\Form\PhoneType;
 use App\Thesaurus\NationalityThesaurusProviderInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\AbstractType;
@@ -83,15 +84,9 @@ class CorporationType extends AbstractType
                 'label' => 'pel.corporation.email',
                 'required' => false,
             ])
-            ->add('phone', TextType::class, [
-                'attr' => [
-                    'maxlength' => 15,
-                ],
-                'constraints' => [
-                    new NotBlank(),
-                    new Length(['max' => 15]),
-                ],
-                'label' => 'pel.corporation.phone',
+            ->add('phone', PhoneType::class, [
+                'label' => false,
+                'number_label' => 'pel.corporation.phone',
             ])
             ->add('country', CountryType::class, [
                 'label' => 'pel.address.country',

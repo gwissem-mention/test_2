@@ -1,13 +1,25 @@
 import {EtaLabAutoCompleter} from "../scripts/etalab/etalab-auto-completer";
 import {Controller} from "@hotwired/stimulus";
+import {IntlTelInput} from "../scripts/intl-tel-input";
 
 export default class extends Controller {
     public override connect(): void {
         const element: Element = this.element;
 
         if (element) {
-            element.addEventListener("live:connect", () => {
+            element.addEventListener("live:connect", (event: Event) => {
                 (new EtaLabAutoCompleter()).bind();
+                (new IntlTelInput()).bind();
+
+                // Must be ignored because "detail" attribute does not exist on type EventTarget.
+                // @ts-ignore
+                const component = event.detail.component;
+
+                if (component) {
+                    component.on("render:finished", () => {
+                        (new IntlTelInput()).bind();
+                    });
+                }
             });
         }
     }

@@ -49,7 +49,6 @@ class IdentityComponent extends AbstractController
         $complaint = $this->sessionHandler->getComplaint();
         /** @var IdentityModel $identity */
         $identity = $this->getFormInstance()->getData();
-
         $etalabFields = [
             'contactInformation' => $identity->getContactInformation(),
             'representedPersonContactInformation' => $identity->getRepresentedPersonContactInformation(),

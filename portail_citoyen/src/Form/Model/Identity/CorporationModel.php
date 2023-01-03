@@ -13,7 +13,7 @@ class CorporationModel implements EmbedAddressInterface
     private ?string $name = null;
     private ?string $function = null;
     private ?string $nationality = null;
-    private ?string $phone = null;
+    private ?PhoneModel $phone = null;
 
     public function getSiren(): ?string
     {
@@ -63,12 +63,12 @@ class CorporationModel implements EmbedAddressInterface
         return $this;
     }
 
-    public function getPhone(): ?string
+    public function getPhone(): ?PhoneModel
     {
         return $this->phone;
     }
 
-    public function setPhone(?string $phone): self
+    public function setPhone(?PhoneModel $phone): self
     {
         $this->phone = $phone;
 
