@@ -5,11 +5,9 @@ declare(strict_types=1);
 namespace App\Form;
 
 use App\Form\Model\LocationModel;
+use App\Referential\Repository\CityRepository;
 use App\Session\SessionHandler;
-use App\Thesaurus\TownAndDepartmentThesaurusProviderInterface;
-use App\Thesaurus\Transformer\TownToTransformTransformerInterface;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -22,10 +20,9 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 class LocationType extends AbstractType
 {
     public function __construct(
-        private readonly TownAndDepartmentThesaurusProviderInterface $townAndDepartmentAndDepartmentThesaurusProvider,
-        private readonly TownToTransformTransformerInterface $townToTransformTransformer,
         private readonly int $franceCode,
         private readonly SessionHandler $sessionHandler,
+        private readonly CityRepository $cityRepository,
     ) {
     }
 
@@ -33,37 +30,65 @@ class LocationType extends AbstractType
     {
         /** @var ?LocationModel $locationModel */
         $locationModel = $this->sessionHandler->getComplaint()?->getIdentity()?->getCivilState()?->getBirthLocation();
-
         $builder
             ->add('country', CountryType::class, [
+                'attr' => [
+                    // Temp fix for https://github.com/symfony/ux/issues/515
+                    // TODO Remove when this PR https://github.com/symfony/ux/pull/519 is merged and pulled to the
+                    // project
+                    'data-controller' => 'form',
+                    'data-action' => 'form#removeFrenchTown',
+                ],
                 'label' => $options['country_label'],
                 'preferred_choices' => [$this->franceCode],
                 'empty_data' => null === $locationModel?->getCountry() ?
                     $this->franceCode :
                     $locationModel->getCountry(),
-            ]);
-
-        $builder->addEventListener(
-            FormEvents::PRE_SET_DATA,
-            function (FormEvent $event) {
-                /** @var ?LocationModel $location */
-                $location = $event->getData();
-                $this->addTownField($event->getForm(), $location?->getCountry());
-            }
-        );
-
-        $builder->get('country')->addEventListener(
-            FormEvents::POST_SUBMIT,
-            function (FormEvent $event) {
-                /** @var int $country */
-                $country = $event->getForm()->getData();
-                /** @var FormInterface $parent */
-                $parent = $event->getForm()->getParent();
-                /** @var ?LocationModel $locationModel */
-                $locationModel = $parent->getData();
-                $this->addTownField($parent, $country, $locationModel);
-            }
-        );
+            ])
+            ->addEventListener(
+                FormEvents::PRE_SET_DATA,
+                function (FormEvent $event) {
+                    /** @var ?LocationModel $location */
+                    $location = $event->getData();
+                    $this->addTownField(
+                        $event->getForm(),
+                        $location?->getCountry(),
+                        $location?->getFrenchTown(),
+                        $location
+                    );
+                }
+            )
+            ->addEventListener(
+                FormEvents::PRE_SUBMIT,
+                function (FormEvent $event) use ($locationModel) {
+                    /** @var array<string, mixed> $location */
+                    $location = $event->getData();
+                    $this->addTownField(
+                        $event->getForm(),
+                        !empty($location['country']) ? intval($location['country']) : null,
+                        !empty($location['frenchTown']) ? strval($location['frenchTown']) : null,
+                        $locationModel
+                    );
+                }
+            )
+            ->get('country')
+            ->addEventListener(
+                FormEvents::POST_SUBMIT,
+                function (FormEvent $event) {
+                    /** @var ?int $country */
+                    $country = $event->getForm()->getData();
+                    /** @var FormInterface $parent */
+                    $parent = $event->getForm()->getParent();
+                    /** @var ?LocationModel $locationModel */
+                    $locationModel = $parent->getData();
+                    $this->addTownField(
+                        $parent,
+                        $country,
+                        $parent->has('frenchTown') ? strval($parent->get('frenchTown')->getData()) : null,
+                        $locationModel
+                    );
+                }
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver): void
@@ -76,10 +101,14 @@ class LocationType extends AbstractType
         ]);
     }
 
-    private function addTownField(FormInterface $form, ?int $country, ?LocationModel $locationModel = null): void
-    {
+    private function addTownField(
+        FormInterface $form,
+        ?int $country = null,
+        ?string $frenchTown = null,
+        ?LocationModel $locationModel = null
+    ): void {
         if (null === $country || $this->franceCode === $country) {
-            $this->addFormPartForFrenchPlace($form, $locationModel);
+            $this->addFormPartForFrenchPlace($form, $frenchTown, $locationModel);
         } else {
             $this->addFormPartForForeignPlace($form, $locationModel);
         }
@@ -101,26 +130,41 @@ class LocationType extends AbstractType
                 'label' => $form->getConfig()->getOption('town_label'),
             ]);
 
-        $locationModel?->setFrenchTown(null)->setDepartment(null);
+        $locationModel?->setFrenchTown(null);
     }
 
-    private function addFormPartForFrenchPlace(FormInterface $form, ?LocationModel $locationModel = null): void
-    {
+    private function addFormPartForFrenchPlace(
+        FormInterface $form,
+        ?string $frenchTown = null,
+        ?LocationModel $locationModel = null
+    ): void {
+        $choices = [];
+        $city = null;
+
+        if (!is_null($frenchTown)) {
+            $city = $this->cityRepository->findOneBy(['inseeCode' => $frenchTown]);
+            if (!is_null($city)) {
+                $choices[$city->getLabelAndPostCode()] = $city->getInseeCode();
+            }
+        }
+
         $form
             ->remove('otherTown')
-            ->add('frenchTown', ChoiceType::class, [
+            ->add('frenchTown', CityAutocompleteType::class, [
+                'data' => $city?->getInseeCode(),
+                'choices' => $choices,
+                'attr' => [
+                    'class' => 'french-town',
+                    'required' => true,
+                ],
                 'constraints' => [
                     new NotBlank(),
                 ],
-                'choices' => $this->townToTransformTransformer->transform(
-                    $this->townAndDepartmentAndDepartmentThesaurusProvider->getChoices()
-                ),
-                'label' => $form->getConfig()->getOption('town_label'),
-                'placeholder' => 'pel.choose.your.town',
             ])
             ->add('department', TextType::class, [
                 'disabled' => true,
                 'label' => $form->getConfig()->getOption('department_label'),
+                'mapped' => false,
             ]);
 
         $locationModel?->setOtherTown(null);

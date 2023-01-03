@@ -35,12 +35,12 @@ Feature:
         And I click the "#identity_accordion_title" element
         When I click the "label[for=identity_declarantStatus_0]" element
         And I select "99100" from "identity_civilState_birthLocation_country"
-        And I select "Paris (75)" from "identity_civilState_birthLocation_frenchTown"
-        And I should see "Paris" in the "#identity_civilState_birthLocation_frenchTown" element
+        And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
+        And I should see "Paris (75000)" in the "#identity_civilState_birthLocation_frenchTown" element
         And I select "99134" from "identity_civilState_birthLocation_country"
         And I fill in "identity_civilState_birthLocation_otherTown" with "Madrid"
         And I should not see a "identity_civilState_birthLocation_frenchTown" element
-        And I should not see "Paris" in the "#identity_civilState_birthLocation_otherTown" element
+        And I should not see "Paris (75000)" in the "#identity_civilState_birthLocation_otherTown" element
 
     Scenario: Submit the form with minimal valid values for victim declarant
         Given I am on "/authentification"
@@ -52,7 +52,7 @@ Feature:
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I fill in "identity_civilState_birthDate" with "01/01/2000"
-        And I select "Paris (75)" from "identity_civilState_birthLocation_frenchTown"
+        And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
         And I select "1" from "identity_civilState_nationality"
         And I select "1" from "identity_civilState_job"
         And I fill in "identity_contactInformation_frenchAddress_address" with "Av. de la République 75011 Paris France"
@@ -71,8 +71,7 @@ Feature:
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I fill in "identity_civilState_birthDate" with "01/01/2000"
-        And I select "99100" from "identity_civilState_birthLocation_country"
-        And I select "Paris (75)" from "identity_civilState_birthLocation_frenchTown"
+        And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
         And I select "1" from "identity_civilState_nationality"
         And I select "1" from "identity_civilState_job"
         And I fill in "identity_contactInformation_frenchAddress_address" with "Av. de la République 75011 Paris France"
@@ -111,7 +110,7 @@ Feature:
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I fill in "identity_civilState_birthDate" with "01/01/2000"
-        And I select "Paris (75)" from "identity_civilState_birthLocation_frenchTown"
+        And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
         And I select "1" from "identity_civilState_nationality"
         And I select "1" from "identity_civilState_job"
         And I select "99100" from "identity_contactInformation_country"
@@ -131,8 +130,7 @@ Feature:
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I fill in "identity_civilState_birthDate" with "01/01/2000"
-        And I select "99100" from "identity_civilState_birthLocation_country"
-        And I select "Paris (75)" from "identity_civilState_birthLocation_frenchTown"
+        And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
         And I select "1" from "identity_civilState_nationality"
         And I select "1" from "identity_civilState_job"
         And I select "99134" from "identity_contactInformation_country"
@@ -217,7 +215,7 @@ Feature:
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I fill in "identity_civilState_birthDate" with "01/01/2000"
-        And I select "Paris (75)" from "identity_civilState_birthLocation_frenchTown"
+        And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
         And I press "identity_submit"
         Then the "#facts_accordion_item" element should not contain "style=\"display: block;\""
 
@@ -231,7 +229,7 @@ Feature:
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I fill in "identity_civilState_birthDate" with "01/01/2000"
-        And I select "Paris (75)" from "identity_civilState_birthLocation_frenchTown"
+        And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
         And I select "1" from "identity_civilState_nationality"
         And I press "identity_submit"
         Then the "#facts_accordion_item" element should not contain "style=\"display: block;\""
@@ -246,7 +244,7 @@ Feature:
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I fill in "identity_civilState_birthDate" with "01/01/2000"
-        And I select "Paris (75)" from "identity_civilState_birthLocation_frenchTown"
+        And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
         And I select "1" from "identity_civilState_nationality"
         And I select "1" from "identity_civilState_job"
         And I press "identity_submit"
@@ -262,7 +260,7 @@ Feature:
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I fill in "identity_civilState_birthDate" with "01/01/2000"
-        And I select "Paris (75)" from "identity_civilState_birthLocation_frenchTown"
+        And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
         And I select "1" from "identity_civilState_nationality"
         And I select "1" from "identity_civilState_job"
         And I fill in "identity_contactInformation_frenchAddress_address" with "Av. de la République 75011 Paris France"
@@ -279,7 +277,7 @@ Feature:
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I fill in "identity_civilState_birthDate" with "01/01/2000"
-        And I select "Paris (75)" from "identity_civilState_birthLocation_frenchTown"
+        And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
         And I select "1" from "identity_civilState_nationality"
         And I select "1" from "identity_civilState_job"
         And I fill in "identity_contactInformation_frenchAddress_address" with "Av. de la République 75011 Paris France"
@@ -312,7 +310,7 @@ Feature:
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I fill in "identity_civilState_birthDate" with "01/01/2000"
-        And I select "Paris (75)" from "identity_civilState_birthLocation_frenchTown"
+        And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
         And I select "1" from "identity_civilState_nationality"
         And I select "1" from "identity_civilState_job"
         And I fill in "identity_contactInformation_frenchAddress_address" with "Av. de la République 75011 Paris France"

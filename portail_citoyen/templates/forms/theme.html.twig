@@ -2,7 +2,10 @@
 
 {% block choice_row %}
     {% if expanded is same as(true) %}
-        <fieldset class="{{ html_classes('fr-fieldset', 'fr-input-group', {'fr-fieldset--inline': inline is same as(true),'fr-fieldset--error': errors is not empty}) }}" {% if errors is not empty %}role="group" aria-labelledby="legend-{{ form.vars.id }} form-errors-{{ form.vars.id }}"{% endif %}>
+        <fieldset
+                class="{{ html_classes('fr-fieldset', 'fr-input-group', {'fr-fieldset--inline': inline is same as(true),'fr-fieldset--error': errors is not empty}) }}"
+                {% if errors is not empty %}role="group"
+                aria-labelledby="legend-{{ form.vars.id }} form-errors-{{ form.vars.id }}"{% endif %}>
             <legend class="fr-fieldset__legend fr-text--regular" id="legend-{{ form.vars.id }}">
                 {{ form_label(form) }}
             </legend>
@@ -19,7 +22,11 @@
     {% else %}
         <div class="{{ html_classes('fr-select-group', {'fr-select-group--error':  errors is not empty}) }}">
             {{ form_label(form) }}
-            {{ form_widget(form, {'attr':{'class':html_classes(attr.class ?? '', 'fr-select',{'fr-select--error':errors is not empty})}}) }}
+            {% if 'autocomplete' in form.vars['block_prefixes'] %}
+                {{ form_widget(form, {'attr':{'class':html_classes(attr.class ?? '',{'fr-select--error':errors is not empty})}}) }}
+            {% else %}
+                {{ form_widget(form, {'attr':{'class':html_classes(attr.class ?? '', 'fr-select',{'fr-select--error':errors is not empty})}}) }}
+            {% endif %}
             {{ form_errors(form) }}
         </div>
     {% endif %}

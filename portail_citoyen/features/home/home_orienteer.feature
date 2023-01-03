@@ -28,7 +28,6 @@ Feature:
             | pel.if.no.lawyer.needed.text.bis                  |
             | pel.online.complaint.process                      |
             | pel.1.fill.your.form                              |
-            | pel.1.fill.your.form                              |
             | pel.2.upload.your.files                           |
             | pel.3.your.request.is.sent.to.an.agent            |
             | pel.4.your.request.is.processed.within.48h        |

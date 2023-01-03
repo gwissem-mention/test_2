@@ -7,7 +7,6 @@ namespace App\Form\Model;
 class LocationModel
 {
     private ?int $country = null;
-    private ?string $department = null;
     private ?string $frenchTown = null;
     private ?string $otherTown = null;
 
@@ -19,18 +18,6 @@ class LocationModel
     public function setCountry(?int $country): self
     {
         $this->country = $country;
-
-        return $this;
-    }
-
-    public function getDepartment(): ?string
-    {
-        return $this->department;
-    }
-
-    public function setDepartment(?string $department): self
-    {
-        $this->department = $department;
 
         return $this;
     }

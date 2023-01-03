@@ -7,6 +7,7 @@ namespace App\Tests\Behat;
 use App\Entity\User;
 use App\Repository\UserRepository;
 use Behat\Mink\Driver\Selenium2Driver;
+use Behat\Mink\Exception\ElementNotFoundException;
 use Behat\Mink\Exception\ExpectationException;
 use Behat\MinkExtension\Context\MinkContext;
 use FriendsOfBehat\SymfonyExtension\Driver\SymfonyDriver;
@@ -82,12 +83,53 @@ final class BaseContext extends MinkContext
         });
     }
 
+    /**
+     * @When I fill in the autocomplete :autocomplete with :query and click :foundValue
+     *
+     * @throws ElementNotFoundException
+     */
+    public function fillInAutocomplete(string $field, string $query, string $foundValue): void
+    {
+        $this->retryStep(function () use ($field, $query, $foundValue) {
+            $session = $this->getSession();
+            $element = $session->getPage()->findField($field);
+            if (null === $element) {
+                throw new ElementNotFoundException($session, null, 'named', $field);
+            }
+
+            $element->setValue($query);
+            $element->focus();
+
+            $xpath = $element->getXpath();
+            $driver = $session->getDriver();
+
+            $driver->keyDown($xpath, 40);
+            $driver->keyUp($xpath, 40);
+
+            $this->iWait(500);
+
+            $autocompletes = $this->getSession()->getPage()->findAll('css', '.ts-dropdown-content');
+            if (empty($autocompletes)) {
+                throw new \RuntimeException('Could not find the autocomplete popup box');
+            }
+
+            foreach ($autocompletes as $autocomplete) {
+                if ($autocomplete->isVisible()) {
+                    $matchedElement = $autocomplete->find('xpath', "//div[@data-value='{$foundValue}']");
+                    if (!empty($matchedElement)) {
+                        $matchedElement->click();
+                        $this->iWait(500);
+                    }
+                }
+            }
+        });
+    }
+
     public function fillField(mixed $field, mixed $value): void
     {
         $this->retryStep(function () use ($field, $value) {
             parent::fillField($field, $value);
             $element = $this->getSession()->getPage()->find('css', '#'.$field)?->getValue();
-
             if ('' === $element) {
                 throw new ExpectationException('element empty', $this->getSession()->getDriver());
             }
@@ -320,7 +362,7 @@ final class BaseContext extends MinkContext
                 $step();
 
                 return;
-            } catch (ExpectationException $e) {
+            } catch (\Exception $e) {
                 $ex = $e;
             }
             \usleep($sleep);

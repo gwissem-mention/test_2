@@ -1078,30 +1078,6 @@
                 <source>pel.total.message.two</source>
                 <target>{quantity, plural, one {objet} other {objets}}</target>
             </trans-unit>
-            <trans-unit id="pel.town.arcachon">
-                <source>pel.town.arcachon</source>
-                <target>Arcachon</target>
-            </trans-unit>
-            <trans-unit id="pel.town.bordeaux">
-                <source>pel.town.bordeaux</source>
-                <target>Bordeaux</target>
-            </trans-unit>
-            <trans-unit id="pel.town.la.ciotat">
-                <source>pel.town.la.ciotat</source>
-                <target>La Ciotat</target>
-            </trans-unit>
-            <trans-unit id="pel.town.marseille">
-                <source>pel.town.marseille</source>
-                <target>Marseille</target>
-            </trans-unit>
-            <trans-unit id="pel.town.merignac">
-                <source>pel.town.merignac</source>
-                <target>Mérignac</target>
-            </trans-unit>
-            <trans-unit id="pel.town.paris">
-                <source>pel.town.paris</source>
-                <target>Paris</target>
-            </trans-unit>
             <trans-unit id="pel.usage.name">
                 <source>pel.usage.name</source>
                 <target>Nom d'usage</target>

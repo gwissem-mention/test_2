@@ -13,7 +13,7 @@
         {{ form_row(form.birthLocation.otherTown) }}
     {% endif %}
     {% if form.birthLocation.frenchTown is defined and form.birthLocation.department is defined %}
-        {{ form_row(form.birthLocation.department, {'value':form.birthLocation.frenchTown.vars.value|removeTown }) }}
+        {{ form_row(form.birthLocation.department, {'value':form.birthLocation.frenchTown.vars.value|city_get_department }) }}
     {% endif %}
     {{ form_row(form.nationality) }}
     {{ form_row(form.job) }}

@@ -237,7 +237,7 @@ final class BaseContext extends MinkContext
                 $step();
 
                 return;
-            } catch (ExpectationException $e) {
+            } catch (\Exception $e) {
                 $ex = $e;
             }
             \usleep($sleep);

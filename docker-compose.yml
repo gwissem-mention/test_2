@@ -25,7 +25,7 @@ services:
       start_period: 30s
     environment:
       DATABASE_URL: postgresql://${POSTGRES_CITOYEN_USER:-symfony}:${POSTGRES_CITOYEN_PASSWORD:-ChangeMe}@database-citoyen:5432/${POSTGRES_CITOYEN_DB:-app}?serverVersion=${POSTGRES_CITOYEN_VERSION:-13}
-      REFERENTIALS_DATABASE_URL: postgresql://${POSTGRES_REFERENTIAL_USER:-symfony}:${POSTGRES_REFERENTIAL_PASSWORD:-ChangeMe}@database-citoyen:5432/${POSTGRES_REFERENTIAL_DB:-app}?serverVersion=${POSTGRES_REFERENTIAL_VERSION:-13}
+      REFERENTIALS_DATABASE_URL: postgresql://${POSTGRES_REFERENTIAL_USER:-symfony}:${POSTGRES_REFERENTIAL_PASSWORD:-ChangeMe}@database-citoyen:5432/${POSTGRES_REFERENTIAL_DB:-reference}?serverVersion=${POSTGRES_REFERENTIAL_VERSION:-13}
 
   php-agent:
     build:
