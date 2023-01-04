@@ -1,25 +1,21 @@
 import {EtaLabElementState} from "./etalab-element-state";
 
-export class EtaLabAutoCompleter
-{
+export class EtaLabAutoCompleter {
     private readonly etaLabElements: Map<string, EtaLabElementState>;
     private readonly SUGGESTIONS_LIMIT: number = 5;
     private readonly SUGGESTIONS_START_AT_CHARS: number = 5;
 
-    constructor()
-    {
+    constructor() {
         this.etaLabElements = new Map<string, EtaLabElementState>();
     }
 
-    public bind(): void
-    {
+    public bind(): void {
         document.querySelectorAll(".etalab").forEach((field: Element) => {
             this.bindElement(field);
         });
     }
 
-    private bindElement(field: Element): void
-    {
+    private bindElement(field: Element): void {
         this.setElementAttributes(field);
 
         field.addEventListener("keyup", (event: Event) => {
@@ -27,14 +23,12 @@ export class EtaLabAutoCompleter
         });
     }
 
-    private setElementAttributes(field: Element): void
-    {
+    private setElementAttributes(field: Element): void {
         field.setAttribute("autocomplete", "off");
         field.setAttribute("list", `datalist-${field.id}`);
     }
 
-    private onKeyUpEvent(field: Element, event: Event): void
-    {
+    private onKeyUpEvent(field: Element, event: Event): void {
         if (event && event.target) {
             // Must be ignored because property "value" does not exist on type EventTarget.
             // @ts-ignore
@@ -52,8 +46,7 @@ export class EtaLabAutoCompleter
         }
     }
 
-    private render(field: Element, target: EventTarget | null, addresses: any[]): void
-    {
+    private render(field: Element, target: EventTarget | null, addresses: any[]): void {
         const etaLabElementState: EtaLabElementState | undefined = (this.etaLabElements.has(field.id)) ? this.etaLabElements.get(field.id) : new EtaLabElementState();
 
         if (etaLabElementState) {
@@ -79,8 +72,7 @@ export class EtaLabAutoCompleter
         }
     }
 
-    private clearAddresses(etaLabElementState: EtaLabElementState): void
-    {
+    private clearAddresses(etaLabElementState: EtaLabElementState): void {
         if (etaLabElementState.renderedResultContainer) {
             for (const child of etaLabElementState.renderedResultContainer.children) {
                 child.remove();
@@ -88,8 +80,7 @@ export class EtaLabAutoCompleter
         }
     }
 
-    private populateAdresses(etaLabElementState: EtaLabElementState, addresses: any[]): void
-    {
+    private populateAdresses(etaLabElementState: EtaLabElementState, addresses: any[]): void {
         for (const address of addresses) {
             const item: HTMLLIElement = document.createElement("li");
             const value: string = this.formatAddress(address);
@@ -106,13 +97,11 @@ export class EtaLabAutoCompleter
         }
     }
 
-    private formatAddress(address: any): string
-    {
+    private formatAddress(address: any): string {
         return `${(address.properties.name) ? address.properties.name : ""} ${(address.properties.district) ? address.properties.district : ""} ${(address.properties.postcode) ? address.properties.postcode : ""} ${(address.properties.city) ? address.properties.city : ""}`;
     }
 
-    private clearFieldParent(fieldParent: ParentNode): void
-    {
+    private clearFieldParent(fieldParent: ParentNode): void {
         for (const child of fieldParent.children) {
             if (child.classList.contains("list--addresses")) {
                 child.remove();
@@ -120,8 +109,7 @@ export class EtaLabAutoCompleter
         }
     }
 
-    private renderFieldParent(fieldParent: ParentNode, etaLabElementState: EtaLabElementState): void
-    {
+    private renderFieldParent(fieldParent: ParentNode, etaLabElementState: EtaLabElementState): void {
         if (etaLabElementState.renderedResultContainer) {
             fieldParent.appendChild(etaLabElementState.renderedResultContainer);
         }

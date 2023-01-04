@@ -1,19 +1,19 @@
-import {setCurrentAccordion} from "./functions/set-current-accordion";
-import {setCurrentBreadcrumb} from "./functions/set-current-breadcrumb";
-import {getPersistedCurrentAccordion} from "./functions/get-persisted-accordion";
-import {persistCurrentAccordion} from "./functions/persist-current-accordion";
+import {AccordionPersister} from "./accordion/accordion-persister";
+import {BreadcrumbPersister} from "./breadcrumb/breadcrumb-persister";
 
 document.addEventListener("DOMContentLoaded", () => {
+    const accordionPersister: AccordionPersister = new AccordionPersister();
+    const breadcrumbPersister: BreadcrumbPersister = new BreadcrumbPersister();
     const complaintsBreadcrumb: HTMLElement | null = document.getElementById("complaintsBreadcrumb");
-    const persistedAccordionId: number = (getPersistedCurrentAccordion()) ? parseInt(String(getPersistedCurrentAccordion())) : 1;
+    const persistedAccordionId: number = (accordionPersister.getPersistedCurrentAccordion()) ? parseInt(String(accordionPersister.getPersistedCurrentAccordion())) : 1;
 
     // Initializes breadcrumb and accordion with persisted data at page load.
     if (persistedAccordionId) {
-        persistCurrentAccordion(persistedAccordionId);
-        setCurrentAccordion(persistedAccordionId);
+        accordionPersister.persistCurrentAccordion(persistedAccordionId);
+        accordionPersister.setCurrentAccordion(persistedAccordionId);
 
         if (complaintsBreadcrumb) {
-            setCurrentBreadcrumb(complaintsBreadcrumb, persistedAccordionId);
+            breadcrumbPersister.setCurrentBreadcrumb(complaintsBreadcrumb, persistedAccordionId);
         }
     }
 
@@ -24,10 +24,10 @@ document.addEventListener("DOMContentLoaded", () => {
         accordionTitle.setAttribute("data-locked", String(!(persistedAccordionId >= currentAccordionId)));
         accordionTitle.addEventListener("click", () => {
             if (currentAccordionId) {
-                setCurrentAccordion(currentAccordionId);
+                accordionPersister.setCurrentAccordion(currentAccordionId);
 
                 if (complaintsBreadcrumb) {
-                    setCurrentBreadcrumb(complaintsBreadcrumb, currentAccordionId);
+                    breadcrumbPersister.setCurrentBreadcrumb(complaintsBreadcrumb, currentAccordionId);
                 }
             }
         });
@@ -43,10 +43,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 event.preventDefault();
 
                 if (currentAccordionId) {
-                    setCurrentAccordion(currentAccordionId);
+                    accordionPersister.setCurrentAccordion(currentAccordionId);
 
                     if (complaintsBreadcrumb) {
-                        setCurrentBreadcrumb(complaintsBreadcrumb, currentAccordionId);
+                        breadcrumbPersister.setCurrentBreadcrumb(complaintsBreadcrumb, currentAccordionId);
                     }
                 }
             });
@@ -70,8 +70,8 @@ document.addEventListener("DOMContentLoaded", () => {
                                 nextAccordionTitle.setAttribute("data-locked", "false");
                             }
 
-                            setCurrentAccordion(nextAccordionId);
-                            persistCurrentAccordion(nextAccordionId);
+                            accordionPersister.setCurrentAccordion(nextAccordionId);
+                            accordionPersister.persistCurrentAccordion(nextAccordionId);
 
                             if (complaintsBreadcrumb) {
                                 const nextBreadcrumb: Element | undefined = Array.from(complaintsBreadcrumb.querySelectorAll(".fr-breadcrumb__link")).filter(breadcrumbItem => parseInt(String(breadcrumbItem.getAttribute("data-accordion"))) === nextAccordionId)[0];
@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                         nextBreadcrumb.setAttribute("data-locked", "false");
                                     }
 
-                                    setCurrentBreadcrumb(complaintsBreadcrumb, nextAccordionId);
+                                    breadcrumbPersister.setCurrentBreadcrumb(complaintsBreadcrumb, nextAccordionId);
                                 }
                             }
                         }
@@ -91,5 +91,19 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             }
         });
+    });
+
+    // Updates current accordion and breadcrumb when update button is clicked and redirects user to previous page.
+    document.querySelectorAll(".btn--update").forEach((button: Element) => {
+        const newAccordionId: number = parseInt(String(button.getAttribute("data-previous-accordion-id")));
+        const previousPath: string | null = button.getAttribute("href");
+
+        if (newAccordionId && previousPath) {
+            button.addEventListener("click", () => {
+                accordionPersister.persistCurrentAccordion(newAccordionId);
+                breadcrumbPersister.setCurrentBreadcrumb(complaintsBreadcrumb, newAccordionId);
+                window.location.href = previousPath;
+            });
+        }
     });
 });

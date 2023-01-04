@@ -1,5 +1,4 @@
-export class EtaLabElementState
-{
+export class EtaLabElementState {
     private _renderedResultContainer!: HTMLUListElement | null;
 
     get renderedResultContainer(): HTMLUListElement | null {
