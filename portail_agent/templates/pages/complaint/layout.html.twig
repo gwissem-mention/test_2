@@ -33,7 +33,7 @@
                                 <span class="badge bg-danger rounded-pill">{{ complaint.identity.alertNumber }}</span>
                             {% endif %}
                         </a>
-                        <a href="#" class="list-group-item list-group-item-action">
+                        <a href="{{ path('complaint_facts', {'id':complaint.id}) }}" class="{{ html_classes('list-group-item', 'list-group-item-action', {'list-group-item-secondary': app.current_route == 'complaint_facts'}) }}" {% if app.current_route == 'complaint_facts' %}aria-current="true"{% endif %}>
                             {{ 'pel.description.of.facts'|trans }}
                             {% if complaint.facts.alertNumber %}
                                 <span class="badge bg-danger rounded-pill">{{ complaint.facts.alertNumber }}</span>

@@ -62,7 +62,8 @@ Feature:
         And I should see the key "pel.description.of.facts" translated
         And I should see the key "pel.nature.of.the.facts" translated
         And I should see the key "pel.nature.place" translated
-        And I should see the key "pel.address" translated
+        And I should see the key "pel.address.start.or.exact" translated
+        And I should see the key "pel.address.end" translated
         And I should see the key "pel.facts.date" translated
         And I should see the key "pel.facts.hour" translated
         And I should see the key "pel.between" translated
@@ -73,6 +74,7 @@ Feature:
         And I should see the key "pel.and" translated
         And I should see "Restaurant"
         And I should see "25 Avenue Georges Pompidou, Lyon, 69003"
+        And I should see "Place Charles Hernu, Villeurbanne, 69100"
         And I should see "01/12/2022"
         And I should see "10h00"
         And I should see "11h00"

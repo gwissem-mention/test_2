@@ -1,0 +1,10 @@
+{% for nature in natures %}
+    {% if nature == constant('App\\Entity\\Facts::NATURE_ROBBERY') %}
+        {{ 'pel.offense.nature.robbery'|trans }}
+    {% elseif nature == constant('App\\Entity\\Facts::NATURE_DEGRADATION') %}
+        {{ 'pel.offense.nature.degradation'|trans }}
+    {% else %}
+        {{ 'pel.offense.nature.other'|trans }}
+    {% endif %}
+    {% if not loop.last %}/{% endif %}
+{% endfor %}
