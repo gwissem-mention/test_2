@@ -230,6 +230,10 @@
                 <source>pel.fsi.visit</source>
                 <target>Y a-t-il eu intervention d’un équipage de police ou de gendarmerie ?</target>
             </trans-unit>
+            <trans-unit id="pel.fsi.intervention">
+                <source>pel.fsi.intervention</source>
+                <target>Intervention police ou gendarmerie</target>
+            </trans-unit>
             <trans-unit id="pel.home">
                 <source>pel.home</source>
                 <target>Accueil</target>
@@ -241,6 +245,10 @@
             <trans-unit id="pel.header.baseline">
                 <source>pel.header.baseline</source>
                 <target>Portail Force de Sécurité Intérieure</target>
+            </trans-unit>
+            <trans-unit id="pel.i.dont.know">
+                <source>pel.i.dont.know</source>
+                <target>Je ne sais pas</target>
             </trans-unit>
             <trans-unit id="pel.identification">
                 <source>pel.identification</source>
@@ -334,6 +342,10 @@
                 <source>pel.phone.number</source>
                 <target>Numéro de téléphone</target>
             </trans-unit>
+            <trans-unit id="pel.photos.and.videos">
+                <source>pel.photos.and.videos</source>
+                <target>Photos et vidéos</target>
+            </trans-unit>
             <trans-unit id="pel.reasign">
                 <source>pel.reasign</source>
                 <target>Réattribuer</target>
@@ -402,6 +414,10 @@
                 <source>pel.summary</source>
                 <target>Récapitulatif</target>
             </trans-unit>
+            <trans-unit id="pel.suspects">
+                <source>pel.suspects</source>
+                <target>Suspects</target>
+            </trans-unit>
             <trans-unit id="pel.the">
                 <source>pel.the</source>
                 <target>Le</target>
@@ -445,6 +461,10 @@
             <trans-unit id="pel.person.legal.representative">
                 <source>pel.person.legal.representative</source>
                 <target>Représentant légal d'une personne physique</target>
+            </trans-unit>
+            <trans-unit id="pel.physical.violences.and.threats">
+                <source>pel.physical.violences.and.threats</source>
+                <target>Violences physiques et menaces</target>
             </trans-unit>
             <trans-unit id="pel.validate">
                 <source>pel.validate</source>
@@ -493,6 +513,10 @@
             <trans-unit id="pel.welcome.to.the.agent.portal">
                 <source>pel.welcome.to.the.agent.portal</source>
                 <target>Bienvenue sur le portail plainte en ligne FSI</target>
+            </trans-unit>
+            <trans-unit id="pel.witnesses">
+                <source>pel.witnesses</source>
+                <target>Témoins</target>
             </trans-unit>
             <trans-unit id="pel.yes">
                 <source>pel.yes</source>

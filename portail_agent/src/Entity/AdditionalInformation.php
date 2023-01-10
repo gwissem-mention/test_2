@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity]
 class AdditionalInformation
 {
+    use AlertTrait;
     public const CCTV_PRESENT_YES = 1;
     public const CCTV_PRESENT_NO = 2;
     public const CCTV_PRESENT_DONT_KNOW = 3;
