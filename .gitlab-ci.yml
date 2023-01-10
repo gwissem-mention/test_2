@@ -285,6 +285,10 @@ citoyen-frontend-security:
     <<: *frontend-audit
     <<: *citoyen-frontend-step
 
+agent-frontend-security:
+    <<: *frontend-audit
+    <<: *agent-frontend-step
+
 ## Php Cs Fixer ##
 .cs: &cs
     stage: quality
@@ -308,6 +312,10 @@ citoyen-frontend-twig-cs:
     <<: *citoyen-step
     <<: *frontend-twig-cs
 
+agent-frontend-twig-cs:
+    <<: *agent-step
+    <<: *frontend-twig-cs
+
 .frontend-cs: &frontend-cs
     stage: quality
     script:
@@ -317,6 +325,10 @@ citoyen-frontend-cs:
     <<: *citoyen-frontend-step
     <<: *frontend-cs
 
+agent-frontend-cs:
+    <<: *agent-frontend-step
+    <<: *frontend-cs
+
 .frontend-cpd: &frontend-cpd
     stage: quality
     script:
@@ -324,6 +336,10 @@ citoyen-frontend-cs:
 
 citoyen-frontend-cpd:
     <<: *citoyen-frontend-step
+    <<: *frontend-cpd
+
+agent-frontend-cpd:
+    <<: *agent-frontend-step
     <<: *frontend-cpd
 
 ## Php Magic Number Detector ##
