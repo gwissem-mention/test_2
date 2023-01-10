@@ -63,33 +63,39 @@
         <ul>
             <li>
                 {{ 'pel.nature.of.the.facts'|trans }}</strong> :
-                <strong>
-                    {% if complaint.facts.nature is same as(constant('App\\Entity\\Facts::NATURE_ROBBERY')) %}
-                        {{ 'pel.offense.nature.robbery'|trans }}
-                    {% elseif complaint.facts.nature is same as(constant('App\\Entity\\Facts::NATURE_DEGRADATION')) %}
-                        {{ 'pel.offense.nature.degradation'|trans }}
-                    {% else %}
-                        {{ 'pel.offense.nature.other'|trans }}
-                    {% endif %}
-                </strong>
+                <strong>{% include 'common/_complaint_natures.html.twig' with {'natures':complaint.facts.natures} only %}</strong>
             </li>
             <li>
                 {{ 'pel.nature.place'|trans }} : <strong>{{ complaint.facts.place }}</strong>
             </li>
             <li>
-                {{ 'pel.address'|trans }} : <strong>{{ complaint.facts.address }}</strong>
+                {{ 'pel.address.start.or.exact'|trans }} : <strong>{{ complaint.facts.startAddress }}</strong>
             </li>
             <li>
-                {{ 'pel.facts.date'|trans }}:
-                <strong>{{ 'pel.the'|trans }} {{ complaint.facts.date|date('d/m/Y') }}</strong>
+                {{ 'pel.address.end'|trans }} : <strong>{{ complaint.facts.endAddress }}</strong>
             </li>
             <li>
-                {{ 'pel.facts.hour'|trans }} :
-                <strong>
-                    {{ 'pel.between'|trans|lower }} {{ complaint.facts.startHour|date('H\\hi') }}
-                    {{ 'pel.and'|trans|lower }} {{ complaint.facts.endHour|date('H\\hi') }}
-                </strong>
+                {{ 'pel.facts.date'|trans }} :
+                {% if complaint.facts.exactDateKnown %}
+                    <strong>{{ 'pel.the'|trans }} {{ complaint.facts.startDate|date('d/m/Y') }}</strong>
+                {% else %}
+                    <strong>{{ 'pel.between'|trans|lower }} {{ 'pel.the'|trans|lower }} {{ complaint.facts.startDate|date('d/m/Y') }} {{ 'pel.and'|trans|lower }} {{ 'pel.the'|trans|lower }} {{ complaint.facts.endDate|date('d/m/Y') }}</strong>
+                {% endif %}
             </li>
+            {% if complaint.facts.exactHourKnown is same as(constant('App\\Entity\\Facts::EXACT_HOUR_KNOWN_YES')) or complaint.facts.exactHourKnown is same as(constant('App\\Entity\\Facts::EXACT_HOUR_KNOWN_NO')) %}
+                <li>
+                    {% if complaint.facts.exactHourKnown is same as(constant('App\\Entity\\Facts::EXACT_HOUR_KNOWN_YES')) %}
+                        {{ 'pel.exact.hour'|trans }} :
+                        <strong>{{ complaint.facts.startHour|date('H\\hi') }}</strong>
+                    {% else %}
+                        {{ 'pel.facts.hour'|trans }} :
+                        <strong>{{ 'pel.between'|trans|lower }} {{ complaint.facts.startHour|date('H\\hi') }}
+                            et {{ complaint.facts.endHour|date('H\\hi') }}
+                        </strong>
+                    {% endif %}
+                </li>
+            {% endif %}
+
         </ul>
         <hr class="border border-2 border-dark">
         <span class="fs-3 fw-semibold lh-lg" class="text-decoration-underline">{{ 'pel.additional.informations'|trans }}</span>

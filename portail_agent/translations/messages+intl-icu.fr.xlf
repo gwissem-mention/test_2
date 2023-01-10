@@ -14,6 +14,14 @@
                 <source>pel.address</source>
                 <target>Adresse</target>
             </trans-unit>
+            <trans-unit id="pel.address.end">
+                <source>pel.address.end</source>
+                <target>Adresse d'arrivée</target>
+            </trans-unit>
+            <trans-unit id="pel.address.start.or.exact">
+                <source>pel.address.start.or.exact</source>
+                <target>Adresse exacte ou de départ</target>
+            </trans-unit>
             <trans-unit id="pel.address.france.label">
                 <source>pel.address.france.label</source>
                 <target>Adresse en France Métropolitaine ou Outre-Mer</target>
@@ -158,6 +166,10 @@
                 <source>pel.deposit.date</source>
                 <target>Date de dépôt</target>
             </trans-unit>
+            <trans-unit id="pel.description">
+                <source>pel.description</source>
+                <target>Description</target>
+            </trans-unit>
             <trans-unit id="pel.description.of.facts">
                 <source>pel.description.of.facts</source>
                 <target>Description des faits</target>
@@ -166,9 +178,17 @@
                 <source>pel.do.you.have.informations.on.potential.suspects</source>
                 <target>Avez-vous des informations sur les éventuels suspects ?</target>
             </trans-unit>
+            <trans-unit id="pel.do.you.know.hour.facts">
+                <source>pel.do.you.know.hour.facts</source>
+                <target>Connaissez-vous l'heure exacte des faits ?</target>
+            </trans-unit>
             <trans-unit id="pel.email">
                 <source>pel.email</source>
                 <target>Email</target>
+            </trans-unit>
+            <trans-unit id="pel.exact.date.known">
+                <source>pel.exact.date.known</source>
+                <target>Connaissez-vous la date exacte des faits ?</target>
             </trans-unit>
             <trans-unit id="pel.facts">
                 <source>pel.facts</source>
@@ -177,6 +197,10 @@
             <trans-unit id="pel.facts.date">
                 <source>pel.facts.date</source>
                 <target>Date des faits</target>
+            </trans-unit>
+            <trans-unit id="pel.facts.date.and.hour">
+                <source>pel.facts.date.and.hour</source>
+                <target>Date et heure des faits</target>
             </trans-unit>
             <trans-unit id="pel.faq">
                 <source>pel.faq</source>
@@ -246,13 +270,13 @@
                 <source>pel.header.baseline</source>
                 <target>Portail Force de Sécurité Intérieure</target>
             </trans-unit>
-            <trans-unit id="pel.i.dont.know">
-                <source>pel.i.dont.know</source>
-                <target>Je ne sais pas</target>
-            </trans-unit>
             <trans-unit id="pel.identification">
                 <source>pel.identification</source>
                 <target>Identification</target>
+            </trans-unit>
+            <trans-unit id="pel.i.dont.know">
+                <source>pel.i.dont.know</source>
+                <target>Je ne sais pas</target>
             </trans-unit>
             <trans-unit id="pel.is.designated.as">
                 <source>pel.is.designated.as</source>
@@ -269,6 +293,10 @@
             <trans-unit id="pel.lastname">
                 <source>pel.lastname</source>
                 <target>Nom</target>
+            </trans-unit>
+            <trans-unit id="pel.location.of.facts">
+                <source>pel.location.of.facts</source>
+                <target>Le lieu des faits</target>
             </trans-unit>
             <trans-unit id="pel.madam">
                 <source>pel.madam</source>

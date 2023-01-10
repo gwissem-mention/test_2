@@ -50,13 +50,19 @@ class ComplaintFixtures extends Fixture
                 )
                 ->setFacts(
                     (new Facts())
-                        ->setNature(Facts::NATURE_ROBBERY)
-                        ->setDate(new \DateTimeImmutable('2022-12-01'))
+                        ->setNatures([Facts::NATURE_ROBBERY, Facts::NATURE_DEGRADATION])
+                        ->setExactDateKnown(true)
+                        ->setStartDate(new \DateTimeImmutable('2022-12-01'))
                         ->setPlace('Restaurant')
-                        ->setAddress('25 Avenue Georges Pompidou, Lyon, 69003')
+                        ->setStartAddress('25 Avenue Georges Pompidou, Lyon, 69003')
+                        ->setEndAddress('Place Charles Hernu, Villeurbanne, 69100')
+                        ->setExactHourKnown(Facts::EXACT_HOUR_KNOWN_NO)
                         ->setStartHour(new \DateTimeImmutable('10:00'))
                         ->setEndHour(new \DateTimeImmutable('11:00'))
                         ->setAlertNumber(7)
+                        ->setAddressAdditionalInformation(
+                            "Les faits se sont produits entre le restaurant et l'appartement d'un ami"
+                        )
                 )
                 ->addObject(
                     (new FactsObject())

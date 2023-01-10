@@ -1,0 +1,87 @@
+{% extends 'pages/complaint/layout.html.twig' %}
+
+{% block main %}
+    {{ form_start(facts_form) }}
+    <fieldset class="border border-secondary bg-light rounded-3 p-3">
+        <legend class="float-none w-auto px-3">
+            {{ 'pel.nature.of.the.facts'|trans }}
+        </legend>
+        <div class="row">
+            <div class="col-12">
+                {{ form_row(facts_form.natures) }}
+            </div>
+        </div>
+    </fieldset>
+    <fieldset class="border border-secondary bg-light rounded-3 p-3 mt-3">
+        <legend class="float-none w-auto px-3">
+            {{ 'pel.location.of.facts'|trans }}
+        </legend>
+        <div class="row">
+            <div class="col-12">
+                {{ form_row(facts_form.place) }}
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-12">
+                {{ form_row(facts_form.startAddress) }}
+            </div>
+        </div>
+        {% if facts_form.endAddress is defined %}
+            <div class="row mt-3">
+                <div class="col-12">
+                    {{ form_row(facts_form.endAddress) }}
+                </div>
+            </div>
+        {% endif %}
+        <div class="row mt-3">
+            <div class="col-12">
+                {{ form_row(facts_form.addressAdditionalInformation) }}
+            </div>
+        </div>
+    </fieldset>
+    <fieldset class="border border-secondary bg-light rounded-3 p-3 mt-3">
+        <legend class="float-none w-auto px-3">
+            {{ 'pel.facts.date.and.hour'|trans }}
+        </legend>
+        <div class="row">
+            <div class="col-12"><strong>{{ 'pel.facts.date'|trans }}</strong></div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                {{ form_row(facts_form.exactDateKnown) }}
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-4">
+                {{ form_row(facts_form.startDate) }}
+            </div>
+            {% if facts_form.endDate is defined %}
+                <div class="col-4 offset-1">
+                    {{ form_row(facts_form.endDate) }}
+                </div>
+            {% endif %}
+        </div>
+        <hr>
+        <div class="row mt-3">
+            <div class="col-12"><strong>{{ 'pel.facts.hour'|trans }}</strong></div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-12">
+                {{ form_row(facts_form.exactHourKnown) }}
+            </div>
+        </div>
+        {% if facts_form.startHour is defined %}
+            <div class="row mt-3">
+                <div class="col-4">
+                    {{ form_row(facts_form.startHour) }}
+                </div>
+                {% if facts_form.endHour is defined %}
+                    <div class="col-4 offset-1">
+                        {{ form_row(facts_form.endHour) }}
+                    </div>
+                {% endif %}
+            </div>
+        {% endif %}
+    </fieldset>
+    {{ form_end(facts_form) }}
+{% endblock %}

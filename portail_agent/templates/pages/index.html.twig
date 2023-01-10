@@ -20,15 +20,8 @@
         {% for complaint in complaints %}
             <tr>
                 <td>{{ complaint.createdAt|date('d/m/Y') }}</td>
-                <td>{% if complaint.facts.nature is same as(constant('App\\Entity\\Facts::NATURE_ROBBERY')) %}
-                        {{ 'pel.offense.nature.robbery'|trans }}
-                    {% elseif complaint.facts.nature is same as(constant('App\\Entity\\Facts::NATURE_DEGRADATION')) %}
-                        {{ 'pel.offense.nature.degradation'|trans }}
-                    {% else %}
-                        {{ 'pel.offense.nature.other'|trans }}
-                    {% endif %}
-                </td>
-                <td>{{ complaint.facts.date|date('d/m/Y') }}</td>
+                <td>{% include 'common/_complaint_natures.html.twig' with {'natures':complaint.facts.natures} only %}</td>
+                <td>{{ complaint.facts.startDate|date('d/m/Y') }}</td>
                 <td>{{ complaint.alert|u.truncate(15, '...') }}</td>
                 <td>{{ complaint.appointmentDate|date('d/m/Y') }}</td>
                 <td>{{ (complaint.identity.firstName ~ ' ' ~ complaint.identity.lastName)|u.truncate(15, '...') }}</td>
