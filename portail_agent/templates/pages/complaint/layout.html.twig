@@ -50,7 +50,10 @@
                     <div class="row justify-content-md-center mt-3">
                         <div class="col-12">
                             <div class="d-grid gap-2 d-block">
-                                {% if not complaint.refusalReason %}
+                                {% if complaint.status != constant('App\\Entity\\Complaint::STATUS_CLOSED') %}
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-complaint-assign" title="{{ 'pel.click.here.to.assign.the.declaration.to.an.agent'|trans }}" id="complaint-assign-button">
+                                        <i class="bi bi-person-plus"></i> {{ 'pel.assign.declaration.to'|trans }}...
+                                    </button>
                                     <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-complaint-send-to-lrp" title="{{ 'pel.click.here.to.send.this.declaration.to.lrp'|trans }}" id="complaint-send-lrp-button">
                                         <i class="bi bi-arrow-right"></i> {{ 'pel.send.to.lrp'|trans }}
                                     </button>
@@ -68,7 +71,16 @@
                         </div>
                     </div>
                 </div>
-                {% if not complaint.refusalReason %}
+                {% if complaint.status != constant('App\\Entity\\Complaint::STATUS_CLOSED') %}
+                    {% embed "common/_modal.html.twig" with {'id':'complaint-assign', 'size':'lg'} %}
+                        {% block title %}{{ 'pel.select.the.agent.to.assign'|trans }}{% endblock %}
+                        {% block body %}
+                        {% endblock %}
+                        {% block footer %}
+                            <button type="button" class="btn btn-outline-primary btn--modal" id="complaint-assign-button-back" data-bs-dismiss="modal">{{ 'pel.back'|trans }}</button>
+                            <button type="button" class="btn btn-success btn--modal">{{ 'pel.validate.the.assignment'|trans }}</button>
+                        {% endblock %}
+                    {% endembed %}
                     {% embed "common/_modal.html.twig" with {'id':'complaint-reject', 'size':'lg'} %}
                         {% block title %}{{ 'pel.you.will.reject.the.declaration'|trans }}{% endblock %}
                         {% block body %}
@@ -79,7 +91,6 @@
                             <button type="button" class="btn btn-danger btn--modal" data-controller="complaint" data-action="complaint#reject" data-complaint-url-param="{{ path('complaint_reject', {id:complaint.id}) }}">{{ 'pel.validate.the.refusal'|trans }}</button>
                         {% endblock %}
                     {% endembed %}
-
                     {% embed "common/_modal.html.twig" with {'id':'complaint-send-to-lrp', 'size':'lg'} %}
                         {% block title %}{{ 'pel.validation.sending.complain.to.lrp'|trans }}{% endblock %}
                         {% block body %}
