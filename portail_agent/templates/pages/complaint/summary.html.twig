@@ -1,194 +1,183 @@
-{% extends 'base.html.twig' %}
+{% extends 'pages/complaint/layout.html.twig' %}
 
-{% block body %}
-    {{ include('common/_complaint_toast.html.twig') }}
-    <div class="container-fluid my-3">
-        <div class="row">
-            <aside class="col-12 col-md-3">
-                {% include 'common/_complaint_nav.html.twig' with {'complaint':complaint, 'reject_form':reject_form} only %}
-            </aside>
-            <main class="col-12 col-md-9 border border-secondary p-3 bg-light rounded mt-3 mt-md-0">
-                <h3><u>{{ 'pel.identification'|trans }}</u></h3>
-                <ul>
-                    <li>
-                        {{ 'pel.civility'|trans }} :
-                        <strong>
-                            {% if complaint.identity.civility is same as(constant('App\\Entity\\Identity::CIVILITY_MALE')) %}
-                                {{ 'pel.sir'|trans }}
-                            {% else %}
-                                {{ 'pel.madam'|trans }}
-                            {% endif %}
-                            {{ complaint.identity.lastname }}
-                            {{ complaint.identity.firstname }}
-                        </strong>
-                    </li>
-                    <li>
-                        {{ 'pel.born.on'|trans }} : <strong>{{ complaint.identity.birthday|date('d/m/Y') }}</strong>
-                        {{ 'pel.at.in'|trans }}: <strong>{{ complaint.identity.birthCountry }}</strong>
-                        {{ 'pel.department'|trans }} : <strong>{{ complaint.identity.birthDepartment }}</strong>
-                    </li>
-                    <li>
-                        {{ 'pel.nationality'|trans }} : <strong>{{ complaint.identity.nationality }}</strong>
-                    </li>
-                    <li>
-                        {{ 'pel.resides.at'|trans }} : <strong>{{ complaint.identity.address }}</strong>
-                    </li>
-                    <li>
-                        {{ 'pel.job'|trans }} : <strong>{{ complaint.identity.job }}</strong>
-                    </li>
-                    <li>
-                        {{ 'pel.phone'|trans }}: <strong>{{ complaint.identity.phone }}</strong>
-                        {{ 'pel.email'|trans }} : <strong>{{ complaint.identity.email }}</strong>
-                    </li>
-                    <li>{{ 'pel.want.to.receive.sms.notifications'|trans }} :
-                        <strong>
-                            {% if complaint.optinNotification %}
-                                {{ 'pel.yes'|trans }}
-                            {% else %}
-                                {{ 'pel.no'|trans }}
-                            {% endif %}
-                        </strong>
-                    </li>
-                    <li>
-                        {{ 'pel.is.designated.as'|trans }}
-                        <strong>
-                            {% if complaint.identity.declarantStatus is same as(constant('App\\Entity\\Identity::DECLARANT_STATUS_VICTIM')) %}
-                                {{ 'pel.victim'|trans }}
-                            {% elseif complaint.identity.declarantStatus is same as(constant('App\\Entity\\Identity::DECLARANT_STATUS_PERSON_LEGAL_REPRESENTATIVE')) %}
-                                {{ 'pel.person.legal.representative'|trans }}
-                            {% else %}
-                                {{ 'pel.corporation.legal.representative'|trans }}
-                            {% endif %}
-                        </strong>
-                        {{ 'pel.of.infraction'|trans }}
-                    </li>
-                </ul>
+{% block main %}
+    <div class="border border-secondary bg-light rounded p-3">
+        <span class="fs-3 fw-semibold lh-lg" class="text-decoration-underline">{{ 'pel.identification'|trans }}</span>
+        <ul>
+            <li>
+                {{ 'pel.civility'|trans }} :
+                <strong>
+                    {% if complaint.identity.civility is same as(constant('App\\Entity\\Identity::CIVILITY_MALE')) %}
+                        {{ 'pel.sir'|trans }}
+                    {% else %}
+                        {{ 'pel.madam'|trans }}
+                    {% endif %}
+                    {{ complaint.identity.lastname }}
+                    {{ complaint.identity.firstname }}
+                </strong>
+            </li>
+            <li>
+                {{ 'pel.born.on'|trans }} : <strong>{{ complaint.identity.birthday|date('d/m/Y') }}</strong>
+                {{ 'pel.at.in'|trans }}: <strong>{{ complaint.identity.birthCountry }}</strong>
+                {{ 'pel.department'|trans }} : <strong>{{ complaint.identity.birthDepartment }}</strong>
+            </li>
+            <li>
+                {{ 'pel.nationality'|trans }} : <strong>{{ complaint.identity.nationality }}</strong>
+            </li>
+            <li>
+                {{ 'pel.resides.at'|trans }} : <strong>{{ complaint.identity.address }}</strong>
+            </li>
+            <li>
+                {{ 'pel.job'|trans }} : <strong>{{ complaint.identity.job }}</strong>
+            </li>
+            <li>
+                {{ 'pel.phone'|trans }}: <strong>{{ complaint.identity.phone }}</strong>
+                {{ 'pel.email'|trans }} : <strong>{{ complaint.identity.email }}</strong>
+            </li>
+            <li>{{ 'pel.want.to.receive.sms.notifications'|trans }} :
+                <strong>
+                    {% if complaint.optinNotification %}
+                        {{ 'pel.yes'|trans }}
+                    {% else %}
+                        {{ 'pel.no'|trans }}
+                    {% endif %}
+                </strong>
+            </li>
+            <li>
+                {{ 'pel.is.designated.as'|trans }}
+                <strong>
+                    {% if complaint.identity.declarantStatus is same as(constant('App\\Entity\\Identity::DECLARANT_STATUS_VICTIM')) %}
+                        {{ 'pel.victim'|trans }}
+                    {% elseif complaint.identity.declarantStatus is same as(constant('App\\Entity\\Identity::DECLARANT_STATUS_PERSON_LEGAL_REPRESENTATIVE')) %}
+                        {{ 'pel.person.legal.representative'|trans }}
+                    {% else %}
+                        {{ 'pel.corporation.legal.representative'|trans }}
+                    {% endif %}
+                </strong>
+                {{ 'pel.of.infraction'|trans }}
+            </li>
+        </ul>
 
-                <hr class="border border-2 border-dark">
-                <h3><u>{{ 'pel.description.of.facts'|trans }}</u></h3>
-                <ul>
-                    <li>
-                        {{ 'pel.nature.of.the.facts'|trans }}</strong> :
-                        <strong>
-                            {% if complaint.facts.nature is same as(constant('App\\Entity\\Facts::NATURE_ROBBERY')) %}
-                                {{ 'pel.offense.nature.robbery'|trans }}
-                            {% elseif complaint.facts.nature is same as(constant('App\\Entity\\Facts::NATURE_DEGRADATION')) %}
-                                {{ 'pel.offense.nature.degradation'|trans }}
-                            {% else %}
-                                {{ 'pel.offense.nature.other'|trans }}
-                            {% endif %}
-                        </strong>
-                    </li>
-                    <li>
-                        {{ 'pel.nature.place'|trans }} : <strong>{{ complaint.facts.place }}</strong>
-                    </li>
-                    <li>
-                        {{ 'pel.address'|trans }} : <strong>{{ complaint.facts.address }}</strong>
-                    </li>
-                    <li>
-                        {{ 'pel.facts.date'|trans }}:
-                        <strong>{{ 'pel.the'|trans }} {{ complaint.facts.date|date('d/m/Y') }}</strong>
-                    </li>
-                    <li>
-                        {{ 'pel.facts.hour'|trans }} :
-                        <strong>
-                            {{ 'pel.between'|trans|lower }} {{ complaint.facts.startHour|date('H\\hi') }}
-                            {{ 'pel.and'|trans|lower }} {{ complaint.facts.endHour|date('H\\hi') }}
-                        </strong>
-                    </li>
-                </ul>
-                <hr class="border border-2 border-dark">
-                <h3><u>{{ 'pel.additional.informations'|trans }}</u></h3>
-                <ul>
-                    <li>
-                        {{ 'pel.facts.witnesses'|trans }} :
-                        <strong>{{ complaint.additionalInformation.witnessesPresent ? 'pel.yes'|trans : 'pel.no'|trans }}</strong>
-                    </li>
-                    {% if complaint.additionalInformation.witnessesPresent %}
-                        <li>
-                            {{ 'pel.facts.witnesses.information.text'|trans }} :
-                            <strong>{{ complaint.additionalInformation.witnessesPresentText }}</strong>
-                        </li>
+        <hr class="border border-2 border-dark">
+        <span class="fs-3 fw-semibold lh-lg" class="text-decoration-underline">{{ 'pel.description.of.facts'|trans }}</span>
+        <ul>
+            <li>
+                {{ 'pel.nature.of.the.facts'|trans }}</strong> :
+                <strong>
+                    {% if complaint.facts.nature is same as(constant('App\\Entity\\Facts::NATURE_ROBBERY')) %}
+                        {{ 'pel.offense.nature.robbery'|trans }}
+                    {% elseif complaint.facts.nature is same as(constant('App\\Entity\\Facts::NATURE_DEGRADATION')) %}
+                        {{ 'pel.offense.nature.degradation'|trans }}
+                    {% else %}
+                        {{ 'pel.offense.nature.other'|trans }}
                     {% endif %}
-                    <li>
-                        {{ 'pel.do.you.have.informations.on.potential.suspects'|trans }} :
-                        <strong>{{ complaint.additionalInformation.suspectsKnown ? 'pel.yes'|trans : 'pel.no'|trans }}</strong>
-                    </li>
-                    {% if complaint.additionalInformation.suspectsKnown %}
-                        <li>
-                            {{ 'pel.facts.suspects.informations.text'|trans }} :
-                            <strong>{{ complaint.additionalInformation.suspectsKnownText }}</strong>
-                        </li>
-                    {% endif %}
-                    <li>
-                        {{ 'pel.cctv.present'|trans }} :
-                        <strong>
-                            {% if complaint.additionalInformation.cctvPresent is same as(constant('App\\Entity\\AdditionalInformation::CCTV_PRESENT_YES')) %}
-                                {{ 'pel.yes'|trans }}
-                            {% elseif complaint.additionalInformation.cctvPresent is same as(constant('App\\Entity\\AdditionalInformation::CCTV_PRESENT_NO')) %}
-                                {{ 'pel.no'|trans }}
-                            {% else %}
-                                {{ 'pel.i.dont.know'|trans }}
-                            {% endif %}
-                        </strong>
-                    </li>
+                </strong>
+            </li>
+            <li>
+                {{ 'pel.nature.place'|trans }} : <strong>{{ complaint.facts.place }}</strong>
+            </li>
+            <li>
+                {{ 'pel.address'|trans }} : <strong>{{ complaint.facts.address }}</strong>
+            </li>
+            <li>
+                {{ 'pel.facts.date'|trans }}:
+                <strong>{{ 'pel.the'|trans }} {{ complaint.facts.date|date('d/m/Y') }}</strong>
+            </li>
+            <li>
+                {{ 'pel.facts.hour'|trans }} :
+                <strong>
+                    {{ 'pel.between'|trans|lower }} {{ complaint.facts.startHour|date('H\\hi') }}
+                    {{ 'pel.and'|trans|lower }} {{ complaint.facts.endHour|date('H\\hi') }}
+                </strong>
+            </li>
+        </ul>
+        <hr class="border border-2 border-dark">
+        <span class="fs-3 fw-semibold lh-lg" class="text-decoration-underline">{{ 'pel.additional.informations'|trans }}</span>
+        <ul>
+            <li>
+                {{ 'pel.facts.witnesses'|trans }} :
+                <strong>{{ complaint.additionalInformation.witnessesPresent ? 'pel.yes'|trans : 'pel.no'|trans }}</strong>
+            </li>
+            {% if complaint.additionalInformation.witnessesPresent %}
+                <li>
+                    {{ 'pel.facts.witnesses.information.text'|trans }} :
+                    <strong>{{ complaint.additionalInformation.witnessesPresentText }}</strong>
+                </li>
+            {% endif %}
+            <li>
+                {{ 'pel.do.you.have.informations.on.potential.suspects'|trans }} :
+                <strong>{{ complaint.additionalInformation.suspectsKnown ? 'pel.yes'|trans : 'pel.no'|trans }}</strong>
+            </li>
+            {% if complaint.additionalInformation.suspectsKnown %}
+                <li>
+                    {{ 'pel.facts.suspects.informations.text'|trans }} :
+                    <strong>{{ complaint.additionalInformation.suspectsKnownText }}</strong>
+                </li>
+            {% endif %}
+            <li>
+                {{ 'pel.cctv.present'|trans }} :
+                <strong>
                     {% if complaint.additionalInformation.cctvPresent is same as(constant('App\\Entity\\AdditionalInformation::CCTV_PRESENT_YES')) %}
-                        <li>
-                            {{ 'pel.cctv.available'|trans }} :
-                            <strong>{{ complaint.additionalInformation.cctvAvailable ? 'pel.yes'|trans : 'pel.no'|trans }}</strong>
-                        </li>
+                        {{ 'pel.yes'|trans }}
+                    {% elseif complaint.additionalInformation.cctvPresent is same as(constant('App\\Entity\\AdditionalInformation::CCTV_PRESENT_NO')) %}
+                        {{ 'pel.no'|trans }}
+                    {% else %}
+                        {{ 'pel.i.dont.know'|trans }}
                     {% endif %}
-                    <li>
-                        {{ 'pel.fsi.visit'|trans }} :
-                        <strong>{{ complaint.additionalInformation.fsiVisit ? 'pel.yes'|trans : 'pel.no'|trans }}</strong>
-                    </li>
-                    {% if complaint.additionalInformation.fsiVisit %}
-                        <li>
-                            {{ 'pel.observation.made'|trans }} :
-                            <strong>{{ complaint.additionalInformation.observationMade ? 'pel.yes'|trans : 'pel.no'|trans }}</strong>
-                        </li>
-                    {% endif %}
-                    <li>
-                        {{ 'pel.other.victim.present'|trans }} :
-                        <strong>{{ 'pel.yes'|trans }}</strong>
-                    </li>
-                    <li>
-                        {{ 'pel.victim.of.violence'|trans }} :
-                        <strong>{{ complaint.additionalInformation.victimOfViolence ? 'pel.yes'|trans : 'pel.no'|trans }}</strong>
-                    </li>
-                    {% if complaint.additionalInformation.victimOfViolence %}
-                        <li>
-                            {{ 'pel.victim.of.violence.text'|trans }} :
-                            <strong>{{ complaint.additionalInformation.victimOfViolenceText }}</strong>
-                        </li>
-                    {% endif %}
-                    <li>
-                        {{ 'pel.description.of.facts'|trans }} :
-                        <strong>{{ complaint.additionalInformation.description }}</strong>
-                    </li>
-                </ul>
-                <hr class="border border-2 border-dark">
-                <h3><u>{{ 'pel.objects.description'|trans }}</u></h3>
-                <p>{{ 'pel.objects.stolen'|trans }}</p>
-                {% set objects_quantity = complaint.objects|length %}
-                {% set objects_amount = 0 %}
-                <ul>
-                    {% for object in complaint.objects %}
-                        {% set objects_amount = objects_amount + object.amount %}
-                        <li><strong>{{ 'pel.number'|trans }} {{ loop.index }}</strong> : {{ object.label }}
-                            - {{ object.model }} - {{ object.brand }}
-                            - {{ object.amount|format_currency('EUR', {fraction_digit: 0}) }} - {{ object.operator }}
-                        </li>
-                    {% endfor %}
-                </ul>
-                <p>
-                    <strong>{{ 'pel.total'|trans }}</strong> :
-                    {{ 'pel.total.message.one'|trans }}
-                    <strong>{{ objects_quantity }} {{ 'pel.total.message.two'|trans({'%quantity%': objects_quantity}) }}</strong>
-                    {{ 'pel.total.message.amount'|trans }}
-                    <strong>{{ objects_amount|format_currency('EUR', {fraction_digit: 0}) }}</strong>
-                </p>
-            </main>
-        </div>
+                </strong>
+            </li>
+            {% if complaint.additionalInformation.cctvPresent is same as(constant('App\\Entity\\AdditionalInformation::CCTV_PRESENT_YES')) %}
+                <li>
+                    {{ 'pel.cctv.available'|trans }} :
+                    <strong>{{ complaint.additionalInformation.cctvAvailable ? 'pel.yes'|trans : 'pel.no'|trans }}</strong>
+                </li>
+            {% endif %}
+            <li>
+                {{ 'pel.fsi.visit'|trans }} :
+                <strong>{{ complaint.additionalInformation.fsiVisit ? 'pel.yes'|trans : 'pel.no'|trans }}</strong>
+            </li>
+            {% if complaint.additionalInformation.fsiVisit %}
+                <li>
+                    {{ 'pel.observation.made'|trans }} :
+                    <strong>{{ complaint.additionalInformation.observationMade ? 'pel.yes'|trans : 'pel.no'|trans }}</strong>
+                </li>
+            {% endif %}
+            <li>
+                {{ 'pel.other.victim.present'|trans }} :
+                <strong>{{ 'pel.yes'|trans }}</strong>
+            </li>
+            <li>
+                {{ 'pel.victim.of.violence'|trans }} :
+                <strong>{{ complaint.additionalInformation.victimOfViolence ? 'pel.yes'|trans : 'pel.no'|trans }}</strong>
+            </li>
+            {% if complaint.additionalInformation.victimOfViolence %}
+                <li>
+                    {{ 'pel.victim.of.violence.text'|trans }} :
+                    <strong>{{ complaint.additionalInformation.victimOfViolenceText }}</strong>
+                </li>
+            {% endif %}
+            <li>
+                {{ 'pel.description.of.facts'|trans }} :
+                <strong>{{ complaint.additionalInformation.description }}</strong>
+            </li>
+        </ul>
+        <hr class="border border-2 border-dark">
+        <span class="fs-3 fw-semibold lh-lg" class="text-decoration-underline">{{ 'pel.objects.description'|trans }}</span>
+        <p>{{ 'pel.objects.stolen'|trans }}</p>
+        <ul>
+            {% for object in complaint.objects %}
+                <li><strong>{{ 'pel.number'|trans }} {{ loop.index }}</strong> : {{ object.label }}
+                    - {{ object.model }} - {{ object.brand }}
+                    - {{ object.amount|format_currency('EUR', {fraction_digit: 0}) }} - {{ object.operator }}
+                </li>
+            {% endfor %}
+        </ul>
+        <p>
+            <strong>{{ 'pel.total'|trans }}</strong> :
+            {{ 'pel.total.message.one'|trans }}
+            <strong>{{ complaint.objects|objects_quantity }} {{ 'pel.total.message.two'|trans({'%quantity%': complaint.objects|objects_quantity}) }}</strong>
+            {{ 'pel.total.message.amount'|trans }}
+            <strong>{{ complaint.objects|objects_total_amount|format_currency('EUR', {fraction_digit: 0}) }}</strong>
+        </p>
     </div>
 {% endblock %}

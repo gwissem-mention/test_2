@@ -1,0 +1,132 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="toast-container top-0 end-0 p-3">
+        <div class="toast align-items-center text-bg-secondary" id="toast-complaint-reject" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="2000">
+            <div class="d-flex">
+                <div class="toast-body">
+                    {{ 'pel.the.declaration.has.been.refused'|trans }}
+                </div>
+                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="{{ 'pel.close'|trans }}"></button>
+            </div>
+        </div>
+        <div class="toast align-items-center text-bg-secondary" id="toast-validation-send-to-lrp" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
+            <div class="d-flex">
+                <div class="toast-body">
+                    {{ 'pel.file.generated'|trans }}
+                </div>
+                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="{{ 'pel.close'|trans }}"></button>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid my-3">
+        <div class="row">
+            <aside class="col-12 col-md-3">
+                <div class="position-fixed">
+                    <div class="list-group">
+                        <a href="{{ path('complaint_summary', {id:complaint.id}) }}" class="{{ html_classes('list-group-item', 'list-group-item-action', {'list-group-item-secondary': app.current_route == 'complaint_summary'}) }}" {% if app.current_route == 'complaint_summary' %}aria-current="true"{% endif %}>
+                            {{ 'pel.summary'|trans }}
+                        </a>
+                        <a href="{{ path('complaint_identity', {id:complaint.id}) }}" class="{{ html_classes('list-group-item', 'list-group-item-action', {'list-group-item-secondary': app.current_route == 'complaint_identity'}) }}" {% if app.current_route == 'complaint_identity' %}aria-current="true"{% endif %}>
+                            {{ 'pel.declarant.identity'|trans }}
+                            {% if complaint.identity.alertNumber %}
+                                <span class="badge bg-danger rounded-pill">{{ complaint.identity.alertNumber }}</span>
+                            {% endif %}
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action">
+                            {{ 'pel.description.of.facts'|trans }}
+                            {% if complaint.facts.alertNumber %}
+                                <span class="badge bg-danger rounded-pill">{{ complaint.facts.alertNumber }}</span>
+                            {% endif %}
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action">{{ 'pel.objects.concerned'|trans }}</a>
+                        <a href="{{ path('complaint_additional_information', {id:complaint.id}) }}" class="{{ html_classes('list-group-item', 'list-group-item-action', {'list-group-item-secondary': app.current_route == 'complaint_additional_information'}) }}" {% if app.current_route == 'complaint_additional_information' %}aria-current="true"{% endif %}>
+                            {{ 'pel.additional.informations'|trans }}
+                            {% if complaint.additionalInformation.alertNumber %}
+                                <span class="badge bg-danger rounded-pill">{{ complaint.additionalInformation.alertNumber }}</span>
+                            {% endif %}
+                        </a>
+                    </div>
+                    <div class="row justify-content-md-center mt-3">
+                        <div class="col-12">
+                            <div class="d-grid gap-2 d-block">
+                                {% if not complaint.refusalReason %}
+                                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-complaint-send-to-lrp" title="{{ 'pel.click.here.to.send.this.declaration.to.lrp'|trans }}" id="complaint-send-lrp-button">
+                                        <i class="bi bi-arrow-right"></i> {{ 'pel.send.to.lrp'|trans }}
+                                    </button>
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-complaint-reject" title="{{ 'pel.you.will.reject.the.declaration'|trans }}" id="complaint-reject-button">
+                                        <i class="bi bi-x-lg"></i> {{ 'pel.reject'|trans }}
+                                    </button>
+                                    <button type="button" class="btn btn-outline-primary" id="complaint-reassign-button">
+                                        <i class="bi bi-arrow-return-right"></i> {{ 'pel.reasign'|trans }}
+                                    </button>
+                                {% endif %}
+                                <button type="button" class="btn btn-outline-primary">
+                                    <i class="bi bi-chat-left"></i> {{ 'pel.comment'|trans }}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% if not complaint.refusalReason %}
+                    {% embed "common/_modal.html.twig" with {'id':'complaint-reject', 'size':'lg'} %}
+                        {% block title %}{{ 'pel.you.will.reject.the.declaration'|trans }}{% endblock %}
+                        {% block body %}
+                            {{ form(reject_form) }}
+                        {% endblock %}
+                        {% block footer %}
+                            <button type="button" class="btn btn-outline-primary btn--modal" id="complaint-reject-button-back" data-bs-dismiss="modal">{{ 'pel.back'|trans }}</button>
+                            <button type="button" class="btn btn-danger btn--modal" data-controller="complaint" data-action="complaint#reject" data-complaint-url-param="{{ path('complaint_reject', {id:complaint.id}) }}">{{ 'pel.validate.the.refusal'|trans }}</button>
+                        {% endblock %}
+                    {% endembed %}
+
+                    {% embed "common/_modal.html.twig" with {'id':'complaint-send-to-lrp', 'size':'lg'} %}
+                        {% block title %}{{ 'pel.validation.sending.complain.to.lrp'|trans }}{% endblock %}
+                        {% block body %}
+                            <div class="row m-3 mb-0">
+                                <div class="col-sm d-inline bg-secondary bg-opacity-75 rounded text-center text-white p-3 m-4">{{ 'pel.complaint.assignation'|trans }}</div>
+                                <div class="col-sm d-inline bg-light border border-secondary border-bottom-0 rounded-top text-center p-3">{{ 'pel.complaint.validation.sending.to.lrp'|trans }}</div>
+                                <div class="col-sm d-inline bg-secondary bg-opacity-75 rounded text-center text-white p-3 m-4">{{ 'pel.receipt.report'|trans }}</div>
+                            </div>
+                            <div class="row bg-light align-items-baseline border border-secondary rounded p-3 m-3 mt-0">
+                                <div class="fw-bold">{{ 'pel.complaint.validation.course.to.lrp'|trans }}</div>
+                                <div class="col-sm text-center">
+                                    <img class="rounded-circle modal__send-lrp--placeholder" src="{{ asset('build/images/placeholder.jpeg') }}" alt="placeholder">
+                                    <p>{{ 'pel.send.compatible.data'|trans }}</p>
+                                </div>
+                                <div class="col-sm text-center fs-1 align-self-center">
+                                    <i class="bi bi-arrow-right"></i>
+                                </div>
+                                <div class="col-sm text-center">
+                                    <img class="rounded-circle modal__send-lrp--placeholder" src="{{ asset('build/images/placeholder.jpeg') }}" alt="placeholder">
+                                    <p>{{ 'pel.data.integration'|trans }}</p>
+                                </div>
+                                <div class="col-sm text-center fs-1 align-self-center">
+                                    <i class="bi bi-arrow-right"></i>
+                                </div>
+                                <div class="col-sm text-center">
+                                    <img class="rounded-circle modal__send-lrp--placeholder" src="{{ asset('build/images/placeholder.jpeg') }}" alt="placeholder">
+                                    <p>{{ 'pel.data.modification.by.agent'|trans }}</p>
+                                </div>
+                                <div class="col-sm text-center fs-1 align-self-center">
+                                    <i class="bi bi-arrow-right"></i>
+                                </div>
+                                <div class="col-sm text-center">
+                                    <img class="rounded-circle modal__send-lrp--placeholder" src="{{ asset('build/images/placeholder.jpeg') }}" alt="placeholder">
+                                    <p>{{ 'pel.report.generation.in.lrp'|trans }}</p>
+                                </div>
+                            </div>
+                        {% endblock %}
+                        {% block footer %}
+                            <button type="button" class="btn btn-outline-primary btn--modal" data-bs-dismiss="modal" id="complaint-send-to-lrp-button-back">{{ 'pel.back'|trans }}</button>
+                            <button type="button" class="btn btn-success btn--modal" data-controller="complaint" data-action="complaint#send" data-complaint-url-param="#">{{ 'pel.validate.the.sending.to.the.lrp'|trans }}</button>
+                        {% endblock %}
+                    {% endembed %}
+                {% endif %}
+            </aside>
+            <main class="col-12 col-md-9 mt-3 mt-md-0">
+                {% block main %}{% endblock %}
+            </main>
+        </div>
+    </div>
+{% endblock %}

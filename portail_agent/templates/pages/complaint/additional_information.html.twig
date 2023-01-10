@@ -1,0 +1,101 @@
+{% extends 'pages/complaint/layout.html.twig' %}
+
+{% block main %}
+    {{ form_start(additional_information_form) }}
+    <fieldset class="border border-secondary bg-light rounded-3 p-3">
+        <legend class="float-none w-auto px-3">
+            {{ 'pel.photos.and.videos'|trans }}
+        </legend>
+        <div class="row">
+            <div class="col-12">
+                {{ form_row(additional_information_form.cctvPresent) }}
+            </div>
+        </div>
+        {% if additional_information_form.cctvAvailable is defined %}
+            <div class="row">
+                <div class="col-12">
+                    {{ form_row(additional_information_form.cctvAvailable) }}
+                </div>
+            </div>
+        {% endif %}
+    </fieldset>
+    <fieldset class="border border-secondary bg-light rounded-3 p-3 mt-3">
+        <legend class="float-none w-auto px-3">
+            {{ 'pel.suspects'|trans }}
+        </legend>
+        <div class="row">
+            <div class="col-12">
+                {{ form_row(additional_information_form.suspectsKnown) }}
+            </div>
+        </div>
+        {% if additional_information_form.suspectsKnownText is defined %}
+            <div class="row">
+                <div class="col-12">
+                    {{ form_row(additional_information_form.suspectsKnownText) }}
+                </div>
+            </div>
+        {% endif %}
+    </fieldset>
+    <fieldset class="border border-secondary bg-light rounded-3 p-3 mt-3">
+        <legend class="float-none w-auto px-3">
+            {{ 'pel.witnesses'|trans }}
+        </legend>
+        <div class="row">
+            <div class="col-12">
+                {{ form_row(additional_information_form.witnessesPresent) }}
+            </div>
+        </div>
+        {% if additional_information_form.witnessesPresentText is defined %}
+            <div class="row">
+                <div class="col-12">
+                    {{ form_row(additional_information_form.witnessesPresentText) }}
+                </div>
+            </div>
+        {% endif %}
+    </fieldset>
+    <fieldset class="border border-secondary bg-light rounded-3 p-3 mt-3">
+        <legend class="float-none w-auto px-3">
+            {{ 'pel.fsi.intervention'|trans }}
+        </legend>
+        <div class="row">
+            <div class="col-12">
+                {{ form_row(additional_information_form.fsiVisit) }}
+            </div>
+        </div>
+        {% if additional_information_form.observationMade is defined %}
+            <div class="row">
+                <div class="col-12">
+                    {{ form_row(additional_information_form.observationMade) }}
+                </div>
+            </div>
+        {% endif %}
+    </fieldset>
+    <fieldset class="border border-secondary bg-light rounded-3 p-3 mt-3">
+        <legend class="float-none w-auto px-3">
+            {{ 'pel.physical.violences.and.threats'|trans }}
+        </legend>
+        <div class="row">
+            <div class="col-12">
+                {{ form_row(additional_information_form.victimOfViolence) }}
+            </div>
+        </div>
+        {% if additional_information_form.victimOfViolenceText is defined %}
+            <div class="row">
+                <div class="col-12">
+                    {{ form_row(additional_information_form.victimOfViolenceText) }}
+                </div>
+            </div>
+        {% endif %}
+    </fieldset>
+    <fieldset class="border border-secondary bg-light rounded-3 p-3 mt-3">
+        <legend class="float-none w-auto px-3">
+            {{ 'pel.description.of.facts'|trans }}
+        </legend>
+        <div class="row">
+            <div class="col-12">
+                {{ form_row(additional_information_form.description) }}
+            </div>
+        </div>
+    </fieldset>
+    {{ form_end(additional_information_form) }}
+{% endblock %}

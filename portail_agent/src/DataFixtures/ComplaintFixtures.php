@@ -76,6 +76,7 @@ class ComplaintFixtures extends Fixture
                         ->setWitnessesPresentText('Paul DUPONT')
                         ->setFsiVisit(true)
                         ->setObservationMade(true)
+                        ->setVictimOfViolence(false)
                         ->setDescription("Vol d'un Iphone 13")
                 );
         }
