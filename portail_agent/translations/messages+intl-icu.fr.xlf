@@ -50,6 +50,10 @@
                 <source>pel.and</source>
                 <target>Et</target>
             </trans-unit>
+            <trans-unit id="pel.assign.declaration.to">
+                <source>pel.assign.declaration.to</source>
+                <target>Attribuer la déclaration à</target>
+            </trans-unit>
             <trans-unit id="pel.at.in">
                 <source>pel.at.in</source>
                 <target>au/en</target>
@@ -414,6 +418,10 @@
                 <source>pel.robbery</source>
                 <target>Vol</target>
             </trans-unit>
+            <trans-unit id="pel.select.the.agent.to.assign">
+                <source>pel.select.the.agent.to.assign</source>
+                <target>Sélectionnez l'agent à qui vous souhaitez attribuer cette déclaration</target>
+            </trans-unit>
             <trans-unit id="pel.sir">
                 <source>pel.sir</source>
                 <target>Monsieur</target>
@@ -497,6 +505,10 @@
             <trans-unit id="pel.validate">
                 <source>pel.validate</source>
                 <target>Valider</target>
+            </trans-unit>
+            <trans-unit id="pel.validate.the.assignment">
+                <source>pel.validate.the.assignment</source>
+                <target>Valider l'attribution</target>
             </trans-unit>
             <trans-unit id="pel.validate.the.refusal">
                 <source>pel.validate.the.refusal</source>
