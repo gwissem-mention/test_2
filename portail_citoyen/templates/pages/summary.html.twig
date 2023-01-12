@@ -314,7 +314,6 @@
                         {% if complaint.additionalInformation.fsiVisit %}
                             <li>{{ 'pel.observation.made'|trans }} : {{ complaint.additionalInformation.observationMade ? 'pel.yes'|trans : 'pel.no'|trans }}</li>
                         {% endif %}
-                        <li>{{ 'pel.other.victim.present'|trans }} : {{ 'pel.yes'|trans }}</li>
                         <li>{{ 'pel.victim.of.violence'|trans }} : {{ complaint.facts.victimOfViolence ? 'pel.yes'|trans : 'pel.no'|trans }}</li>
                         {% if complaint.facts.victimOfViolence %}
                             <li>{{ 'pel.victim.of.violence.text'|trans }} : {{ complaint.facts.victimOfViolenceText }}</li>
