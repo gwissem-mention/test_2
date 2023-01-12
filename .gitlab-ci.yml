@@ -433,6 +433,8 @@ agent-func:
     script:
         - make APP_ENV=${APP_ENV} db-ci-setup
         - make APP_ENV=${APP_ENV} db-load
+        - make APP_ENV=${APP_ENV} referential-create
+        - make APP_ENV=${APP_ENV} referential-load
         - make behat
     services:
         - name: postgres:13-alpine
@@ -501,6 +503,8 @@ agent-e2e:
         - sed -i "s/nginx-agent/127.0.0.1:8080/g" behat.yml.dist
         - make APP_ENV=${APP_ENV} db-ci-setup
         - make APP_ENV=${APP_ENV} db-load
+        - make APP_ENV=${APP_ENV} referential-create
+        - make APP_ENV=${APP_ENV} referential-load
         - make e2e
     services:
         - name: postgres:13-alpine

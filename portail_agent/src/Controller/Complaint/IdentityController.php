@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller\Complaint;
 
 use App\Entity\Complaint;
+use App\Form\Complaint\AssignType;
 use App\Form\Complaint\IdentityType;
 use App\Form\Complaint\RejectType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,6 +23,7 @@ class IdentityController extends AbstractController
             'identity_form' => $this->createForm(IdentityType::class, $complaint->getIdentity(), [
                 'is_optin_notification' => $complaint->isOptinNotification(),
             ]),
+            'assign_form' => $this->createForm(AssignType::class, $complaint),
         ]);
     }
 }

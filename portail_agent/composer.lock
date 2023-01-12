@@ -4,8 +4,275 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "23f47b18a8c350791286b0b4173a0064",
+    "content-hash": "19ec140524248044c8e0d309ea6acf4b",
     "packages": [
+        {
+            "name": "behat/behat",
+            "version": "v3.12.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Behat/Behat.git",
+                "reference": "2f059c9172764ba1f1759b3679aca499b665330a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Behat/Behat/zipball/2f059c9172764ba1f1759b3679aca499b665330a",
+                "reference": "2f059c9172764ba1f1759b3679aca499b665330a",
+                "shasum": ""
+            },
+            "require": {
+                "behat/gherkin": "^4.9.0",
+                "behat/transliterator": "^1.2",
+                "ext-mbstring": "*",
+                "php": "^7.2 || ^8.0",
+                "psr/container": "^1.0 || ^2.0",
+                "symfony/config": "^4.4 || ^5.0 || ^6.0",
+                "symfony/console": "^4.4 || ^5.0 || ^6.0",
+                "symfony/dependency-injection": "^4.4 || ^5.0 || ^6.0",
+                "symfony/event-dispatcher": "^4.4 || ^5.0 || ^6.0",
+                "symfony/translation": "^4.4 || ^5.0 || ^6.0",
+                "symfony/yaml": "^4.4 || ^5.0 || ^6.0"
+            },
+            "require-dev": {
+                "herrera-io/box": "~1.6.1",
+                "phpspec/prophecy": "^1.15",
+                "phpunit/phpunit": "^8.5 || ^9.0",
+                "symfony/process": "^4.4 || ^5.0 || ^6.0",
+                "vimeo/psalm": "^4.8"
+            },
+            "suggest": {
+                "ext-dom": "Needed to output test results in JUnit format."
+            },
+            "bin": [
+                "bin/behat"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Behat\\Hook\\": "src/Behat/Hook/",
+                    "Behat\\Step\\": "src/Behat/Step/",
+                    "Behat\\Behat\\": "src/Behat/Behat/",
+                    "Behat\\Testwork\\": "src/Behat/Testwork/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Konstantin Kudryashov",
+                    "email": "ever.zet@gmail.com",
+                    "homepage": "http://everzet.com"
+                }
+            ],
+            "description": "Scenario-oriented BDD framework for PHP",
+            "homepage": "http://behat.org/",
+            "keywords": [
+                "Agile",
+                "BDD",
+                "ScenarioBDD",
+                "Scrum",
+                "StoryBDD",
+                "User story",
+                "business",
+                "development",
+                "documentation",
+                "examples",
+                "symfony",
+                "testing"
+            ],
+            "support": {
+                "issues": "https://github.com/Behat/Behat/issues",
+                "source": "https://github.com/Behat/Behat/tree/v3.12.0"
+            },
+            "time": "2022-11-29T15:30:11+00:00"
+        },
+        {
+            "name": "behat/gherkin",
+            "version": "v4.9.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Behat/Gherkin.git",
+                "reference": "0bc8d1e30e96183e4f36db9dc79caead300beff4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Behat/Gherkin/zipball/0bc8d1e30e96183e4f36db9dc79caead300beff4",
+                "reference": "0bc8d1e30e96183e4f36db9dc79caead300beff4",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~7.2|~8.0"
+            },
+            "require-dev": {
+                "cucumber/cucumber": "dev-gherkin-22.0.0",
+                "phpunit/phpunit": "~8|~9",
+                "symfony/yaml": "~3|~4|~5"
+            },
+            "suggest": {
+                "symfony/yaml": "If you want to parse features, represented in YAML files"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Behat\\Gherkin": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Konstantin Kudryashov",
+                    "email": "ever.zet@gmail.com",
+                    "homepage": "http://everzet.com"
+                }
+            ],
+            "description": "Gherkin DSL parser for PHP",
+            "homepage": "http://behat.org/",
+            "keywords": [
+                "BDD",
+                "Behat",
+                "Cucumber",
+                "DSL",
+                "gherkin",
+                "parser"
+            ],
+            "support": {
+                "issues": "https://github.com/Behat/Gherkin/issues",
+                "source": "https://github.com/Behat/Gherkin/tree/v4.9.0"
+            },
+            "time": "2021-10-12T13:05:09+00:00"
+        },
+        {
+            "name": "behat/mink-selenium2-driver",
+            "version": "v1.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/minkphp/MinkSelenium2Driver.git",
+                "reference": "e5f8421654930da725499fb92983e6948c6f973e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/minkphp/MinkSelenium2Driver/zipball/e5f8421654930da725499fb92983e6948c6f973e",
+                "reference": "e5f8421654930da725499fb92983e6948c6f973e",
+                "shasum": ""
+            },
+            "require": {
+                "behat/mink": "^1.9@dev",
+                "ext-json": "*",
+                "instaclick/php-webdriver": "^1.4",
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "mink/driver-testsuite": "dev-master",
+                "phpunit/phpunit": "^8.5.22 || ^9.5.11",
+                "symfony/error-handler": "^4.4 || ^5.0"
+            },
+            "type": "mink-driver",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Behat\\Mink\\Driver\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pete Otaqui",
+                    "email": "pete@otaqui.com",
+                    "homepage": "https://github.com/pete-otaqui"
+                },
+                {
+                    "name": "Konstantin Kudryashov",
+                    "email": "ever.zet@gmail.com",
+                    "homepage": "http://everzet.com"
+                }
+            ],
+            "description": "Selenium2 (WebDriver) driver for Mink framework",
+            "homepage": "https://mink.behat.org/",
+            "keywords": [
+                "ajax",
+                "browser",
+                "javascript",
+                "selenium",
+                "testing",
+                "webdriver"
+            ],
+            "support": {
+                "issues": "https://github.com/minkphp/MinkSelenium2Driver/issues",
+                "source": "https://github.com/minkphp/MinkSelenium2Driver/tree/v1.6.0"
+            },
+            "time": "2022-03-28T14:55:17+00:00"
+        },
+        {
+            "name": "behat/transliterator",
+            "version": "v1.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Behat/Transliterator.git",
+                "reference": "baac5873bac3749887d28ab68e2f74db3a4408af"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Behat/Transliterator/zipball/baac5873bac3749887d28ab68e2f74db3a4408af",
+                "reference": "baac5873bac3749887d28ab68e2f74db3a4408af",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "chuyskywalker/rolling-curl": "^3.1",
+                "php-yaoi/php-yaoi": "^1.0",
+                "phpunit/phpunit": "^8.5.25 || ^9.5.19"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Behat\\Transliterator\\": "src/Behat/Transliterator"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Artistic-1.0"
+            ],
+            "description": "String transliterator",
+            "keywords": [
+                "i18n",
+                "slug",
+                "transliterator"
+            ],
+            "support": {
+                "issues": "https://github.com/Behat/Transliterator/issues",
+                "source": "https://github.com/Behat/Transliterator/tree/v1.5.0"
+            },
+            "time": "2022-03-30T09:27:43+00:00"
+        },
         {
             "name": "doctrine/annotations",
             "version": "1.14.1",
@@ -1613,6 +1880,136 @@
             "time": "2022-06-18T20:57:19+00:00"
         },
         {
+            "name": "friends-of-behat/mink",
+            "version": "v1.10.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FriendsOfBehat/Mink.git",
+                "reference": "301371a4e229cb7d4e0e401d6afb90cff4214ef5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FriendsOfBehat/Mink/zipball/301371a4e229cb7d4e0e401d6afb90cff4214ef5",
+                "reference": "301371a4e229cb7d4e0e401d6afb90cff4214ef5",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.4|^8.0",
+                "symfony/css-selector": "^4.4|^5.0|^6.0"
+            },
+            "replace": {
+                "behat/mink": "self.version"
+            },
+            "require-dev": {
+                "symfony/phpunit-bridge": "^5.2|^6.0"
+            },
+            "suggest": {
+                "behat/mink-browserkit-driver": "extremely fast headless driver for Symfony\\Kernel-based apps (Sf2, Silex)",
+                "behat/mink-goutte-driver": "fast headless driver for any app without JS emulation",
+                "behat/mink-selenium2-driver": "slow, but JS-enabled driver for any app (requires Selenium2)",
+                "behat/mink-zombie-driver": "fast and JS-enabled headless driver for any app (requires node.js)",
+                "dmore/chrome-mink-driver": "fast and JS-enabled driver for any app (requires chromium or google chrome)"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.8.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Behat\\Mink\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Konstantin Kudryashov",
+                    "email": "ever.zet@gmail.com",
+                    "homepage": "http://everzet.com"
+                }
+            ],
+            "description": "Browser controller/emulator abstraction for PHP",
+            "homepage": "http://mink.behat.org/",
+            "keywords": [
+                "browser",
+                "testing",
+                "web"
+            ],
+            "support": {
+                "source": "https://github.com/FriendsOfBehat/Mink/tree/v1.10.0"
+            },
+            "time": "2021-12-13T11:05:18+00:00"
+        },
+        {
+            "name": "friends-of-behat/mink-extension",
+            "version": "v2.7.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FriendsOfBehat/MinkExtension.git",
+                "reference": "ffc5ee88aa8e5b430f0c417adb3f0c943ffeafed"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FriendsOfBehat/MinkExtension/zipball/ffc5ee88aa8e5b430f0c417adb3f0c943ffeafed",
+                "reference": "ffc5ee88aa8e5b430f0c417adb3f0c943ffeafed",
+                "shasum": ""
+            },
+            "require": {
+                "behat/behat": "^3.0.5",
+                "behat/mink": "^1.5",
+                "php": ">=7.4",
+                "symfony/config": "^4.4 || ^5.0 || ^6.0"
+            },
+            "replace": {
+                "behat/mink-extension": "self.version"
+            },
+            "require-dev": {
+                "behat/mink-goutte-driver": "^1.1 || ^2.0",
+                "phpspec/phpspec": "^6.0 || ^7.0 || 7.1.x-dev"
+            },
+            "type": "behat-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Behat\\MinkExtension": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Konstantin Kudryashov",
+                    "email": "ever.zet@gmail.com"
+                },
+                {
+                    "name": "Christophe Coevoet",
+                    "email": "stof@notk.org"
+                }
+            ],
+            "description": "Mink extension for Behat",
+            "homepage": "http://extensions.behat.org/mink",
+            "keywords": [
+                "browser",
+                "gui",
+                "test",
+                "web"
+            ],
+            "support": {
+                "source": "https://github.com/FriendsOfBehat/MinkExtension/tree/v2.7.2"
+            },
+            "time": "2022-10-17T07:23:22+00:00"
+        },
+        {
             "name": "friendsofphp/proxy-manager-lts",
             "version": "v1.0.13",
             "source": {
@@ -1693,6 +2090,131 @@
                 }
             ],
             "time": "2022-10-17T19:48:16+00:00"
+        },
+        {
+            "name": "genesis/behat-fail-aid",
+            "version": "3.7.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/forceedge01/behat-fail-aid.git",
+                "reference": "43fb34def35a66a073d1b23cedf07d65fcf24572"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/forceedge01/behat-fail-aid/zipball/43fb34def35a66a073d1b23cedf07d65fcf24572",
+                "reference": "43fb34def35a66a073d1b23cedf07d65fcf24572",
+                "shasum": ""
+            },
+            "require": {
+                "behat/mink": "*@stable",
+                "behat/mink-extension": "~2.0",
+                "behat/mink-selenium2-driver": "~1.3"
+            },
+            "require-dev": {
+                "behat/behat": "^3.5",
+                "behat/mink-goutte-driver": "^1.2",
+                "ciaranmcnulty/behat-localwebserverextension": "^1.1",
+                "phpunit/phpunit": "~4.0"
+            },
+            "suggest": {
+                "genesis/db-backup-restore": "Quickly backup and restore your database.",
+                "genesis/sql-data-mods": "Extends behat-sql-extension to provide a powerful and simple framework to manage your data modules.",
+                "genesis/test-routing": "Simplistic routing that can extend main app routing for testing purposes."
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "FailAid\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Abdul Wahhab Qureshi"
+                }
+            ],
+            "description": "Get more out of your test suite by getting it to work with you when tests fail. Screenshots and more. Works with Goutte and MinkExtension.",
+            "keywords": [
+                "Behat",
+                "behat-error",
+                "behat-exception",
+                "behat-fail",
+                "behat-screenshot",
+                "error",
+                "fail",
+                "screenshot"
+            ],
+            "support": {
+                "issues": "https://github.com/forceedge01/behat-fail-aid/issues",
+                "source": "https://github.com/forceedge01/behat-fail-aid/tree/3.7.4"
+            },
+            "time": "2022-07-28T21:59:26+00:00"
+        },
+        {
+            "name": "instaclick/php-webdriver",
+            "version": "1.4.16",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/instaclick/php-webdriver.git",
+                "reference": "a39a1f6dc0f4ddd8b2438fa5eb1f67755730d606"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/instaclick/php-webdriver/zipball/a39a1f6dc0f4ddd8b2438fa5eb1f67755730d606",
+                "reference": "a39a1f6dc0f4ddd8b2438fa5eb1f67755730d606",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.5 || ^9.5",
+                "satooshi/php-coveralls": "^1.0 || ^2.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.4.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "WebDriver": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Justin Bishop",
+                    "email": "jubishop@gmail.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Anthon Pang",
+                    "email": "apang@softwaredevelopment.ca",
+                    "role": "Fork Maintainer"
+                }
+            ],
+            "description": "PHP WebDriver for Selenium 2",
+            "homepage": "http://instaclick.com/",
+            "keywords": [
+                "browser",
+                "selenium",
+                "webdriver",
+                "webtest"
+            ],
+            "support": {
+                "issues": "https://github.com/instaclick/php-webdriver/issues",
+                "source": "https://github.com/instaclick/php-webdriver/tree/1.4.16"
+            },
+            "time": "2022-10-28T13:30:35+00:00"
         },
         {
             "name": "laminas/laminas-code",
@@ -2954,6 +3476,71 @@
                 }
             ],
             "time": "2022-12-01T13:44:20+00:00"
+        },
+        {
+            "name": "symfony/css-selector",
+            "version": "v6.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/css-selector.git",
+                "reference": "91c342ffc99283c43653ed8eb47bc2a94db7f398"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/css-selector/zipball/91c342ffc99283c43653ed8eb47bc2a94db7f398",
+                "reference": "91c342ffc99283c43653ed8eb47bc2a94db7f398",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\CssSelector\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Jean-François Simon",
+                    "email": "jeanfrancois.simon@sensiolabs.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Converts CSS selectors to XPath expressions",
+            "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/css-selector/tree/v6.2.0"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2022-08-26T05:51:22+00:00"
         },
         {
             "name": "symfony/dependency-injection",
@@ -7129,6 +7716,92 @@
             "time": "2022-09-13T06:25:34+00:00"
         },
         {
+            "name": "symfony/ux-autocomplete",
+            "version": "v2.6.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/ux-autocomplete.git",
+                "reference": "cba10095b07e2a4d6d1179f503a07c9f6e88c4e3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/ux-autocomplete/zipball/cba10095b07e2a4d6d1179f503a07c9f6e88c4e3",
+                "reference": "cba10095b07e2a4d6d1179f503a07c9f6e88c4e3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.0",
+                "symfony/dependency-injection": "^5.4|^6.0",
+                "symfony/http-foundation": "^5.4|^6.0",
+                "symfony/http-kernel": "^5.4|^6.0",
+                "symfony/string": "^5.4|^6.0"
+            },
+            "conflict": {
+                "doctrine/orm": "2.9.0 || 2.9.1"
+            },
+            "require-dev": {
+                "doctrine/doctrine-bundle": "^2.4",
+                "doctrine/orm": "^2.9",
+                "mtdowling/jmespath.php": "2.6.x-dev",
+                "symfony/form": "^5.4|^6.0",
+                "symfony/framework-bundle": "^5.4|^6.0",
+                "symfony/maker-bundle": "^1.40",
+                "symfony/phpunit-bridge": "^5.4|^6.0",
+                "symfony/process": "^5.4|^6.0",
+                "symfony/security-bundle": "^5.4|^6.0",
+                "symfony/security-csrf": "^5.4|^6.0",
+                "symfony/twig-bundle": "^5.4|^6.0",
+                "symfony/uid": "^5.4|^6.0",
+                "zenstruck/browser": "^1.1",
+                "zenstruck/foundry": "^1.19"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "thanks": {
+                    "name": "symfony/ux",
+                    "url": "https://github.com/symfony/ux"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\UX\\Autocomplete\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "JavaScript Autocomplete functionality for Symfony",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "symfony-ux"
+            ],
+            "support": {
+                "source": "https://github.com/symfony/ux-autocomplete/tree/v2.6.1"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2022-12-01T15:30:12+00:00"
+        },
+        {
             "name": "symfony/validator",
             "version": "v6.2.0",
             "source": {
@@ -8057,338 +8730,6 @@
     ],
     "packages-dev": [
         {
-            "name": "behat/behat",
-            "version": "v3.12.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Behat/Behat.git",
-                "reference": "2f059c9172764ba1f1759b3679aca499b665330a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Behat/Behat/zipball/2f059c9172764ba1f1759b3679aca499b665330a",
-                "reference": "2f059c9172764ba1f1759b3679aca499b665330a",
-                "shasum": ""
-            },
-            "require": {
-                "behat/gherkin": "^4.9.0",
-                "behat/transliterator": "^1.2",
-                "ext-mbstring": "*",
-                "php": "^7.2 || ^8.0",
-                "psr/container": "^1.0 || ^2.0",
-                "symfony/config": "^4.4 || ^5.0 || ^6.0",
-                "symfony/console": "^4.4 || ^5.0 || ^6.0",
-                "symfony/dependency-injection": "^4.4 || ^5.0 || ^6.0",
-                "symfony/event-dispatcher": "^4.4 || ^5.0 || ^6.0",
-                "symfony/translation": "^4.4 || ^5.0 || ^6.0",
-                "symfony/yaml": "^4.4 || ^5.0 || ^6.0"
-            },
-            "require-dev": {
-                "herrera-io/box": "~1.6.1",
-                "phpspec/prophecy": "^1.15",
-                "phpunit/phpunit": "^8.5 || ^9.0",
-                "symfony/process": "^4.4 || ^5.0 || ^6.0",
-                "vimeo/psalm": "^4.8"
-            },
-            "suggest": {
-                "ext-dom": "Needed to output test results in JUnit format."
-            },
-            "bin": [
-                "bin/behat"
-            ],
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Behat\\Hook\\": "src/Behat/Hook/",
-                    "Behat\\Step\\": "src/Behat/Step/",
-                    "Behat\\Behat\\": "src/Behat/Behat/",
-                    "Behat\\Testwork\\": "src/Behat/Testwork/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Konstantin Kudryashov",
-                    "email": "ever.zet@gmail.com",
-                    "homepage": "http://everzet.com"
-                }
-            ],
-            "description": "Scenario-oriented BDD framework for PHP",
-            "homepage": "http://behat.org/",
-            "keywords": [
-                "Agile",
-                "BDD",
-                "ScenarioBDD",
-                "Scrum",
-                "StoryBDD",
-                "User story",
-                "business",
-                "development",
-                "documentation",
-                "examples",
-                "symfony",
-                "testing"
-            ],
-            "support": {
-                "issues": "https://github.com/Behat/Behat/issues",
-                "source": "https://github.com/Behat/Behat/tree/v3.12.0"
-            },
-            "time": "2022-11-29T15:30:11+00:00"
-        },
-        {
-            "name": "behat/gherkin",
-            "version": "v4.9.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Behat/Gherkin.git",
-                "reference": "0bc8d1e30e96183e4f36db9dc79caead300beff4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Behat/Gherkin/zipball/0bc8d1e30e96183e4f36db9dc79caead300beff4",
-                "reference": "0bc8d1e30e96183e4f36db9dc79caead300beff4",
-                "shasum": ""
-            },
-            "require": {
-                "php": "~7.2|~8.0"
-            },
-            "require-dev": {
-                "cucumber/cucumber": "dev-gherkin-22.0.0",
-                "phpunit/phpunit": "~8|~9",
-                "symfony/yaml": "~3|~4|~5"
-            },
-            "suggest": {
-                "symfony/yaml": "If you want to parse features, represented in YAML files"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "4.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Behat\\Gherkin": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Konstantin Kudryashov",
-                    "email": "ever.zet@gmail.com",
-                    "homepage": "http://everzet.com"
-                }
-            ],
-            "description": "Gherkin DSL parser for PHP",
-            "homepage": "http://behat.org/",
-            "keywords": [
-                "BDD",
-                "Behat",
-                "Cucumber",
-                "DSL",
-                "gherkin",
-                "parser"
-            ],
-            "support": {
-                "issues": "https://github.com/Behat/Gherkin/issues",
-                "source": "https://github.com/Behat/Gherkin/tree/v4.9.0"
-            },
-            "time": "2021-10-12T13:05:09+00:00"
-        },
-        {
-            "name": "behat/mink-selenium2-driver",
-            "version": "v1.6.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/minkphp/MinkSelenium2Driver.git",
-                "reference": "e5f8421654930da725499fb92983e6948c6f973e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/minkphp/MinkSelenium2Driver/zipball/e5f8421654930da725499fb92983e6948c6f973e",
-                "reference": "e5f8421654930da725499fb92983e6948c6f973e",
-                "shasum": ""
-            },
-            "require": {
-                "behat/mink": "^1.9@dev",
-                "ext-json": "*",
-                "instaclick/php-webdriver": "^1.4",
-                "php": ">=7.2"
-            },
-            "require-dev": {
-                "mink/driver-testsuite": "dev-master",
-                "phpunit/phpunit": "^8.5.22 || ^9.5.11",
-                "symfony/error-handler": "^4.4 || ^5.0"
-            },
-            "type": "mink-driver",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Behat\\Mink\\Driver\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Pete Otaqui",
-                    "email": "pete@otaqui.com",
-                    "homepage": "https://github.com/pete-otaqui"
-                },
-                {
-                    "name": "Konstantin Kudryashov",
-                    "email": "ever.zet@gmail.com",
-                    "homepage": "http://everzet.com"
-                }
-            ],
-            "description": "Selenium2 (WebDriver) driver for Mink framework",
-            "homepage": "https://mink.behat.org/",
-            "keywords": [
-                "ajax",
-                "browser",
-                "javascript",
-                "selenium",
-                "testing",
-                "webdriver"
-            ],
-            "support": {
-                "issues": "https://github.com/minkphp/MinkSelenium2Driver/issues",
-                "source": "https://github.com/minkphp/MinkSelenium2Driver/tree/v1.6.0"
-            },
-            "time": "2022-03-28T14:55:17+00:00"
-        },
-        {
-            "name": "behat/transliterator",
-            "version": "v1.5.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Behat/Transliterator.git",
-                "reference": "baac5873bac3749887d28ab68e2f74db3a4408af"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Behat/Transliterator/zipball/baac5873bac3749887d28ab68e2f74db3a4408af",
-                "reference": "baac5873bac3749887d28ab68e2f74db3a4408af",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.2"
-            },
-            "require-dev": {
-                "chuyskywalker/rolling-curl": "^3.1",
-                "php-yaoi/php-yaoi": "^1.0",
-                "phpunit/phpunit": "^8.5.25 || ^9.5.19"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Behat\\Transliterator\\": "src/Behat/Transliterator"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Artistic-1.0"
-            ],
-            "description": "String transliterator",
-            "keywords": [
-                "i18n",
-                "slug",
-                "transliterator"
-            ],
-            "support": {
-                "issues": "https://github.com/Behat/Transliterator/issues",
-                "source": "https://github.com/Behat/Transliterator/tree/v1.5.0"
-            },
-            "time": "2022-03-30T09:27:43+00:00"
-        },
-        {
-            "name": "friends-of-behat/mink",
-            "version": "v1.10.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/FriendsOfBehat/Mink.git",
-                "reference": "301371a4e229cb7d4e0e401d6afb90cff4214ef5"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfBehat/Mink/zipball/301371a4e229cb7d4e0e401d6afb90cff4214ef5",
-                "reference": "301371a4e229cb7d4e0e401d6afb90cff4214ef5",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.4|^8.0",
-                "symfony/css-selector": "^4.4|^5.0|^6.0"
-            },
-            "replace": {
-                "behat/mink": "self.version"
-            },
-            "require-dev": {
-                "symfony/phpunit-bridge": "^5.2|^6.0"
-            },
-            "suggest": {
-                "behat/mink-browserkit-driver": "extremely fast headless driver for Symfony\\Kernel-based apps (Sf2, Silex)",
-                "behat/mink-goutte-driver": "fast headless driver for any app without JS emulation",
-                "behat/mink-selenium2-driver": "slow, but JS-enabled driver for any app (requires Selenium2)",
-                "behat/mink-zombie-driver": "fast and JS-enabled headless driver for any app (requires node.js)",
-                "dmore/chrome-mink-driver": "fast and JS-enabled driver for any app (requires chromium or google chrome)"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.8.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Behat\\Mink\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Konstantin Kudryashov",
-                    "email": "ever.zet@gmail.com",
-                    "homepage": "http://everzet.com"
-                }
-            ],
-            "description": "Browser controller/emulator abstraction for PHP",
-            "homepage": "http://mink.behat.org/",
-            "keywords": [
-                "browser",
-                "testing",
-                "web"
-            ],
-            "support": {
-                "source": "https://github.com/FriendsOfBehat/Mink/tree/v1.10.0"
-            },
-            "time": "2021-12-13T11:05:18+00:00"
-        },
-        {
             "name": "friends-of-behat/mink-browserkit-driver",
             "version": "v1.6.1",
             "source": {
@@ -8449,71 +8790,6 @@
                 "source": "https://github.com/FriendsOfBehat/MinkBrowserKitDriver/tree/v1.6.1"
             },
             "time": "2021-12-13T10:41:57+00:00"
-        },
-        {
-            "name": "friends-of-behat/mink-extension",
-            "version": "v2.7.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/FriendsOfBehat/MinkExtension.git",
-                "reference": "ffc5ee88aa8e5b430f0c417adb3f0c943ffeafed"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfBehat/MinkExtension/zipball/ffc5ee88aa8e5b430f0c417adb3f0c943ffeafed",
-                "reference": "ffc5ee88aa8e5b430f0c417adb3f0c943ffeafed",
-                "shasum": ""
-            },
-            "require": {
-                "behat/behat": "^3.0.5",
-                "behat/mink": "^1.5",
-                "php": ">=7.4",
-                "symfony/config": "^4.4 || ^5.0 || ^6.0"
-            },
-            "replace": {
-                "behat/mink-extension": "self.version"
-            },
-            "require-dev": {
-                "behat/mink-goutte-driver": "^1.1 || ^2.0",
-                "phpspec/phpspec": "^6.0 || ^7.0 || 7.1.x-dev"
-            },
-            "type": "behat-extension",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.1.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Behat\\MinkExtension": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Konstantin Kudryashov",
-                    "email": "ever.zet@gmail.com"
-                },
-                {
-                    "name": "Christophe Coevoet",
-                    "email": "stof@notk.org"
-                }
-            ],
-            "description": "Mink extension for Behat",
-            "homepage": "http://extensions.behat.org/mink",
-            "keywords": [
-                "browser",
-                "gui",
-                "test",
-                "web"
-            ],
-            "support": {
-                "source": "https://github.com/FriendsOfBehat/MinkExtension/tree/v2.7.2"
-            },
-            "time": "2022-10-17T07:23:22+00:00"
         },
         {
             "name": "friends-of-behat/symfony-extension",
@@ -8583,69 +8859,6 @@
                 "source": "https://github.com/FriendsOfBehat/SymfonyExtension/tree/v2.4.0"
             },
             "time": "2022-11-30T09:17:16+00:00"
-        },
-        {
-            "name": "instaclick/php-webdriver",
-            "version": "1.4.16",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/instaclick/php-webdriver.git",
-                "reference": "a39a1f6dc0f4ddd8b2438fa5eb1f67755730d606"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/instaclick/php-webdriver/zipball/a39a1f6dc0f4ddd8b2438fa5eb1f67755730d606",
-                "reference": "a39a1f6dc0f4ddd8b2438fa5eb1f67755730d606",
-                "shasum": ""
-            },
-            "require": {
-                "ext-curl": "*",
-                "php": ">=5.3.2"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^8.5 || ^9.5",
-                "satooshi/php-coveralls": "^1.0 || ^2.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.4.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "WebDriver": "lib/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "Justin Bishop",
-                    "email": "jubishop@gmail.com",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Anthon Pang",
-                    "email": "apang@softwaredevelopment.ca",
-                    "role": "Fork Maintainer"
-                }
-            ],
-            "description": "PHP WebDriver for Selenium 2",
-            "homepage": "http://instaclick.com/",
-            "keywords": [
-                "browser",
-                "selenium",
-                "webdriver",
-                "webtest"
-            ],
-            "support": {
-                "issues": "https://github.com/instaclick/php-webdriver/issues",
-                "source": "https://github.com/instaclick/php-webdriver/tree/1.4.16"
-            },
-            "time": "2022-10-28T13:30:35+00:00"
         },
         {
             "name": "masterminds/html5",
@@ -10396,71 +10609,6 @@
                 }
             ],
             "time": "2022-11-02T09:08:04+00:00"
-        },
-        {
-            "name": "symfony/css-selector",
-            "version": "v6.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/css-selector.git",
-                "reference": "91c342ffc99283c43653ed8eb47bc2a94db7f398"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/css-selector/zipball/91c342ffc99283c43653ed8eb47bc2a94db7f398",
-                "reference": "91c342ffc99283c43653ed8eb47bc2a94db7f398",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=8.1"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Component\\CssSelector\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Jean-François Simon",
-                    "email": "jeanfrancois.simon@sensiolabs.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Converts CSS selectors to XPath expressions",
-            "homepage": "https://symfony.com",
-            "support": {
-                "source": "https://github.com/symfony/css-selector/tree/v6.2.0"
-            },
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2022-08-26T05:51:22+00:00"
         },
         {
             "name": "symfony/debug-bundle",

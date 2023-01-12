@@ -10,6 +10,14 @@
                 <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="{{ 'pel.close'|trans }}"></button>
             </div>
         </div>
+        <div class="toast align-items-center text-bg-secondary" id="toast-complaint-assign" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
+            <div class="d-flex">
+                <div class="toast-body">
+                    {{ 'pel.the.declaration.has.been.assigned.to'|trans }} <span id="agent-name"></span>
+                </div>
+                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="{{ 'pel.close'|trans }}"></button>
+            </div>
+        </div>
         <div class="toast align-items-center text-bg-secondary" id="toast-validation-send-to-lrp" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
             <div class="d-flex">
                 <div class="toast-body">
@@ -75,12 +83,14 @@
                     {% embed "common/_modal.html.twig" with {'id':'complaint-assign', 'size':'lg'} %}
                         {% block title %}{{ 'pel.select.the.agent.to.assign'|trans }}{% endblock %}
                         {% block body %}
+                            {{ form(assign_form) }}
                         {% endblock %}
                         {% block footer %}
                             <button type="button" class="btn btn-outline-primary btn--modal" id="complaint-assign-button-back" data-bs-dismiss="modal">{{ 'pel.back'|trans }}</button>
-                            <button type="button" class="btn btn-success btn--modal">{{ 'pel.validate.the.assignment'|trans }}</button>
+                            <button type="button" class="btn btn-success btn--modal" data-controller="complaint" data-action="complaint#assign" data-complaint-url-param="{{ path('complaint_assign', {'id':complaint.id}) }}">{{ 'pel.validate.the.assignment'|trans }}</button>
                         {% endblock %}
                     {% endembed %}
+
                     {% embed "common/_modal.html.twig" with {'id':'complaint-reject', 'size':'lg'} %}
                         {% block title %}{{ 'pel.you.will.reject.the.declaration'|trans }}{% endblock %}
                         {% block body %}

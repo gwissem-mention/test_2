@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller\Complaint;
 
 use App\Entity\Complaint;
+use App\Form\Complaint\AssignType;
 use App\Form\Complaint\FactsType;
 use App\Form\Complaint\RejectType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,6 +21,7 @@ class FactsController extends AbstractController
             'complaint' => $complaint,
             'reject_form' => $this->createForm(RejectType::class, $complaint),
             'facts_form' => $this->createForm(FactsType::class, $complaint->getFacts()),
+            'assign_form' => $this->createForm(AssignType::class, $complaint),
         ]);
     }
 }

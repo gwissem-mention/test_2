@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Behat;
 
+use Behat\Mink\Exception\ElementNotFoundException;
 use Behat\Mink\Exception\ExpectationException;
 use Behat\MinkExtension\Context\MinkContext;
 use FriendsOfBehat\SymfonyExtension\Driver\SymfonyDriver;
@@ -224,6 +225,58 @@ final class BaseContext extends MinkContext
     {
         parent::assertSession()->responseNotContains($arg1);
         parent::assertSession()->responseContains(htmlspecialchars($this->translator->trans($arg1)));
+    }
+
+    /**
+     * @When I fill in the autocomplete :autocomplete with :query and click :foundValue
+     *
+     * @throws ElementNotFoundException
+     */
+    public function fillInAutocomplete(string $field, string $query, string $foundValue): void
+    {
+        $this->retryStep(function () use ($field, $query, $foundValue) {
+            $session = $this->getSession();
+            $element = $session->getPage()->findField($field);
+            if (null === $element) {
+                throw new ElementNotFoundException($session, null, 'named', $field);
+            }
+
+            $element->setValue($query);
+            $element->focus();
+
+            $xpath = $element->getXpath();
+            $driver = $session->getDriver();
+
+            $driver->keyDown($xpath, 40);
+            $driver->keyUp($xpath, 40);
+
+            $this->iWait(500);
+
+            $autocompletes = $this->getSession()->getPage()->findAll('css', '.ts-dropdown-content');
+            if (empty($autocompletes)) {
+                throw new \RuntimeException('Could not find the autocomplete popup box');
+            }
+
+            foreach ($autocompletes as $autocomplete) {
+                if ($autocomplete->isVisible()) {
+                    $matchedElement = $autocomplete->find('xpath', "//div[@data-value='{$foundValue}']");
+                    if (!empty($matchedElement)) {
+                        $matchedElement->click();
+                        $this->iWait(500);
+                    }
+                }
+            }
+        });
+    }
+
+    /**
+     * @When /^I wait (?P<num>\d+) ms$/
+     */
+    public function iWait(int $time): void
+    {
+        $this->getSession()->wait(
+            $time,
+        );
     }
 
     private function retryStep(

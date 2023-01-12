@@ -40,9 +40,6 @@ class Complaint
     #[ORM\Column(length: 255)]
     private ?string $declarationNumber = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $assignedAgent = null;
-
     #[ORM\Column]
     private ?bool $optinNotification = null;
 
@@ -76,6 +73,9 @@ class Complaint
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $refusalText = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $assignedTo = null;
 
     public function __construct()
     {
@@ -131,18 +131,6 @@ class Complaint
     public function setDeclarationNumber(string $declarationNumber): self
     {
         $this->declarationNumber = $declarationNumber;
-
-        return $this;
-    }
-
-    public function getAssignedAgent(): ?string
-    {
-        return $this->assignedAgent;
-    }
-
-    public function setAssignedAgent(string $assignedAgent): self
-    {
-        $this->assignedAgent = $assignedAgent;
 
         return $this;
     }
@@ -269,6 +257,18 @@ class Complaint
     public function setRefusalText(?string $refusalText): self
     {
         $this->refusalText = $refusalText;
+
+        return $this;
+    }
+
+    public function getAssignedTo(): ?int
+    {
+        return $this->assignedTo;
+    }
+
+    public function setAssignedTo(?int $assignedTo): self
+    {
+        $this->assignedTo = $assignedTo;
 
         return $this;
     }

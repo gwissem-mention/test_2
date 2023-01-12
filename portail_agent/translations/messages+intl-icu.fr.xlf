@@ -26,6 +26,10 @@
                 <source>pel.address.france.label</source>
                 <target>Adresse en France Métropolitaine ou Outre-Mer</target>
             </trans-unit>
+            <trans-unit id="pel.agent.name">
+                <source>pel.agent.name</source>
+                <target>Nom de l'agent</target>
+            </trans-unit>
             <trans-unit id="pel.appointment.needed">
                 <source>pel.appointment.needed</source>
                 <target>RDV nécessaire</target>
@@ -97,6 +101,10 @@
             <trans-unit id="pel.civility">
                 <source>pel.civility</source>
                 <target>Civilité</target>
+            </trans-unit>
+            <trans-unit id="pel.click.here.to.assign.the.declaration.to.an.agent">
+                <source>pel.click.here.to.assign.the.declaration.to.an.agent</source>
+                <target>Cliquez ici pour attribuer cette déclaration à un agent</target>
             </trans-unit>
             <trans-unit id="pel.click.here.to.send.this.declaration.to.lrp">
                 <source>pel.click.here.to.send.this.declaration.to.lrp</source>
@@ -461,6 +469,10 @@
             <trans-unit id="pel.the.declaration.has.been.refused">
                 <source>pel.the.declaration.has.been.refused</source>
                 <target>La déclaration a bien été refusée </target>
+            </trans-unit>
+           <trans-unit id="pel.the.declaration.has.been.assigned.to">
+                <source>pel.the.declaration.has.been.assigned.to</source>
+                <target>La déclaration a été attribuée à</target>
             </trans-unit>
             <trans-unit id="pel.title">
                 <source>pel.title</source>

@@ -36,7 +36,7 @@ services:
         SYMFONY_VERSION: 6.2.*
         SKELETON: symfony/skeleton
         STABILITY: stable
-        BUILD_PATH: ./portail_citoyen/
+        BUILD_PATH: ./portail_agent/
     restart: unless-stopped
     depends_on:
       - database-agent
@@ -49,6 +49,7 @@ services:
       start_period: 30s
     environment:
       DATABASE_URL: postgresql://${POSTGRES_AGENT_USER:-symfony}:${POSTGRES_AGENT_PASSWORD:-ChangeMe}@database-agent:5432/${POSTGRES_AGENT_DB:-app}?serverVersion=${POSTGRES_AGENT_VERSION:-13}
+      REFERENTIALS_DATABASE_URL: postgresql://${POSTGRES_REFERENTIAL_USER:-symfony}:${POSTGRES_REFERENTIAL_PASSWORD:-ChangeMe}@database-agent:5432/${POSTGRES_REFERENTIAL_DB:-reference}?serverVersion=${POSTGRES_REFERENTIAL_VERSION:-13}
 
   nginx-citoyen:
     image: nginx
@@ -109,7 +110,7 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_REFERENTIAL_PASSWORD:-ChangeMe}
       POSTGRES_USER: ${POSTGRES_REFERENTIAL_USER:-symfony}
     volumes:
-      - db-data-agent:/var/lib/postgresql/data:rw
+      - db-data-referentials:/var/lib/postgresql/data:rw
   ###< doctrine/doctrine-bundle ###
 
   redis-citoyen:
