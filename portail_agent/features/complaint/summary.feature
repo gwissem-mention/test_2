@@ -238,3 +238,6 @@ Feature:
         Then I should not see a ".modal[aria-modal=true]" element
         And I should see a ".toast" element
         And I should see the key "pel.the.declaration.has.been.assigned.to" translated
+        And I should see "Déclaration attribuée à : Thomas DURAND"
+        And I should see the key "pel.declaration.assigned.to" translated
+

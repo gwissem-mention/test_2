@@ -18,6 +18,12 @@ export default class extends Controller {
 
                     if (modalElement) {
                         if (response.success) {
+                            const complaintAssignButton: Element | null = document.getElementById("complaint-assign-button");
+
+                            if (complaintAssignButton) {
+                                complaintAssignButton.remove();
+                            }
+
                             const complaintRejectButton: Element | null = document.getElementById("complaint-reject-button");
 
                             if (complaintRejectButton) {
@@ -85,10 +91,14 @@ export default class extends Controller {
                                 modal.hide();
                             }
 
-                            const agentName: Element | null = document.getElementById("agent-name");
+                            document.querySelectorAll(".agent-name").forEach((element) => {
+                                element.textContent = data.agent_name;
+                            });
 
-                            if (agentName) {
-                                agentName.textContent = data.agent_name;
+                            const complaintAgent: Element | null = document.getElementById("complaint-agent");
+
+                            if (complaintAgent) {
+                                complaintAgent.classList.remove("d-none");
                             }
 
                             // Must be ignored because in Bootstrap types, Toast element has string | Element type
