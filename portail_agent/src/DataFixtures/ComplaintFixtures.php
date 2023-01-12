@@ -10,11 +10,17 @@ use App\Entity\Facts;
 use App\Entity\FactsObject;
 use App\Entity\Identity;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class ComplaintFixtures extends Fixture
+class ComplaintFixtures extends Fixture implements FixtureGroupInterface
 {
     private const COMPLAINT_NB = 25;
+
+    public static function getGroups(): array
+    {
+        return ['default'];
+    }
 
     public function load(ObjectManager $manager): void
     {
@@ -23,7 +29,6 @@ class ComplaintFixtures extends Fixture
             $complaints[] = (new Complaint())
                 ->setCreatedAt(new \DateTimeImmutable('2022-12-01'))
                 ->setAppointmentDate(new \DateTimeImmutable('2022-12-03'))
-                ->setAssignedAgent('Jean Pierre DE FURSAC')
                 ->setCommentsNumber(5)
                 ->setStatus(Complaint::STATUS_ONGOING)
                 ->setDeclarationNumber('PEL-2022-'.str_pad((string) $i, 8, '0', STR_PAD_LEFT))

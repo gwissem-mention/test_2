@@ -16,7 +16,8 @@ class HomeController extends AbstractController
     public function __invoke(ComplaintRepository $complaintRepository): Response
     {
         return $this->render('pages/index.html.twig', [
-            'complaints' => $complaintRepository->findBy(['status' => Complaint::STATUS_ONGOING]),
+            'complaints' => $complaintRepository->findBy(['status' => Complaint::STATUS_ONGOING],
+                ['declarationNumber' => 'ASC']),
         ]);
     }
 }

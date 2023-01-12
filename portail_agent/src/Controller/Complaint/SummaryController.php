@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller\Complaint;
 
 use App\Entity\Complaint;
+use App\Form\Complaint\AssignType;
 use App\Form\Complaint\RejectType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,6 +19,7 @@ class SummaryController extends AbstractController
         return $this->render('pages/complaint/summary.html.twig', [
             'complaint' => $complaint,
             'reject_form' => $this->createForm(RejectType::class, $complaint),
+            'assign_form' => $this->createForm(AssignType::class, $complaint),
         ]);
     }
 }

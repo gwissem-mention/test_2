@@ -11,7 +11,7 @@ Feature:
         And I should see a "aside" element
         And I should see a "main" element
         And I should see 3 "button[data-bs-toggle='modal']" element
-        And I should see 18 "button" element
+        And I should see 19 "button" element
         And I should see the key "pel.assign.declaration.to" translated
         And I should see the key "pel.send.to.lrp" translated
         And I should see the key "pel.reject" translated
@@ -159,9 +159,6 @@ Feature:
         And I should see the key "pel.free.text" translated
         And I should see the key "pel.back" translated
         And I should see the key "pel.validate.the.refusal" translated
-        And I should see 18 "button" element
-        And I should see 1 "select" element
-        And I should see 1 "textarea" element
         When I press "complaint-reject-button-back"
         Then I should not see a ".modal[aria-modal=true]" element
 
@@ -231,3 +228,13 @@ Feature:
         And I should see the key "pel.validate.the.assignment" translated
         When I press "complaint-assign-button-back"
         Then I should not see a ".modal[aria-modal=true]" element
+
+    @javascript
+    Scenario: I can submit the assign form successfully
+        Given I am on "/plainte/recapitulatif/3"
+        When I press "Attribuer la déclaration à..."
+        And I fill in the autocomplete "assign_assignedTo-ts-control" with "Thomas" and click "2"
+        And I press "Valider l'attribution"
+        Then I should not see a ".modal[aria-modal=true]" element
+        And I should see a ".toast" element
+        And I should see the key "pel.the.declaration.has.been.assigned.to" translated

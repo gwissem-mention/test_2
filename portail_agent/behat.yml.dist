@@ -3,11 +3,18 @@ default:
         default:
             contexts:
                 - App\Tests\Behat\BaseContext
+                - FailAid\Context\FailureContext
+
     extensions:
         FriendsOfBehat\SymfonyExtension:
             kernel:
                 environment: test
             bootstrap: tests/bootstrap.php
+        FailAid\Extension:
+            screenshot:
+                directory: ./build/screenshots/
+                mode: default
+                autoClean: true
 
 func:
     suites:
