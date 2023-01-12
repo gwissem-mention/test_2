@@ -910,10 +910,6 @@
                 <source>pel.other.goods.damages</source>
                 <target>Autres atteintes aux biens</target>
             </trans-unit>
-            <trans-unit id="pel.other.victim.present">
-                <source>pel.other.victim.present</source>
-                <target>Y a-t-il d'autres victimes de cette infraction ?</target>
-            </trans-unit>
             <trans-unit id="pel.passage.fsi">
                 <source>pel.passage.fsi</source>
                 <target>Indications du passage des FSI</target>
