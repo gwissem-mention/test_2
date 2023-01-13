@@ -1,0 +1,60 @@
+{% extends 'pages/complaint/layout.html.twig' %}
+
+{% block main %}
+    <fieldset class="border border-secondary bg-light rounded-3 p-3">
+        <legend class="float-none w-auto px-3">
+            {{ 'pel.stolen.objects'|trans }}
+        </legend>
+        {% for form in object_forms %}
+            {{ form_start(form) }}
+                <div class="row mt-3">
+                    <div class="col-12">
+                        {{ form_label(form.label) }} {{ loop.index }}
+                        {{ form_widget(form.label) }}
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-6">
+                        {{ form_row(form.brand) }}
+                    </div>
+                    <div class="col-6">
+                        {{ form_row(form.amount) }}
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-6">
+                        {{ form_row(form.imei) }}
+                    </div>
+                    <div class="col-6">
+                        {{ form_row(form.model) }}
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-6">
+                        {{ form_row(form.operator) }}
+                    </div>
+                    <div class="col-6">
+                        {{ form_row(form.phoneNumber) }}
+                    </div>
+                </div>
+            {{ form_end(form) }}
+            {% if loop.index >= 1 and loop.index < loop.length %}
+                <hr class="hr-object">
+            {% endif %}
+        {% endfor %}
+    </fieldset>
+    <fieldset class="border border-secondary bg-light rounded-3 p-3 mt-3">
+        <legend class="float-none w-auto px-3">
+            {{ 'pel.total.objects.concerned'|trans }}
+        </legend>
+        <div class="row">
+            <div class="col-12">
+                {{ 'pel.there.is.a.total.of'|trans }}
+                <span id="objects_number" class="bg-secondary bg-opacity-50 rounded p-2">{{ complaint.objects|objects_quantity }}</span>
+                {{ 'pel.objects'|trans({'objects': complaint.objects|objects_quantity}) }},
+                {{ 'pel.for.a.total.amount.of'|trans }}
+                <span id="total_amount" class="bg-secondary bg-opacity-50 rounded p-2">{{ complaint.objects|objects_total_amount|format_currency('EUR', {fraction_digit: 0}) }}</span>
+            </div>
+        </div>
+    </fieldset>
+{% endblock %}

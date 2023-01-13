@@ -89,7 +89,12 @@ Feature:
         And I should see "Apple"
         And I should see "999 €"
         And I should see "Orange"
-        And I should see "Vous avez ajouté 1 objet pour un montant total de 999 €"
+        And I should see "Téléphone mobile"
+        And I should see "Iphone 14 Pro"
+        And I should see "Apple"
+        And I should see "1 329 €"
+        And I should see "SFR"
+        And I should see "Vous avez ajouté 2 objets pour un montant total de 2 328 €"
         And I should see the key "pel.additional.informations" translated
         And I should see the key "pel.facts.witnesses" translated
         And I should see the key "pel.facts.witnesses.information.text" translated
