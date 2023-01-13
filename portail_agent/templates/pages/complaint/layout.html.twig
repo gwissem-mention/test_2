@@ -54,7 +54,12 @@
                             <span class="badge bg-danger rounded-pill">{{ complaint.facts.alertNumber }}</span>
                         {% endif %}
                     </a>
-                    <a href="#" class="list-group-item list-group-item-action">{{ 'pel.objects.concerned'|trans }}</a>
+                    <a href="{{ path('complaint_objects', {id:complaint.id}) }}" class="{{ html_classes('list-group-item', 'list-group-item-action', {'list-group-item-secondary': app.current_route == 'complaint_objects'}) }}" {% if app.current_route == 'complaint_objects' %}aria-current="true"{% endif %}>
+                        {{ 'pel.objects.concerned'|trans }}
+                        {% if complaint.objects|objects_alerts > 0 %}
+                            <span class="badge bg-danger rounded-pill">{{ complaint.objects|objects_alerts }}</span>
+                        {% endif %}
+                    </a>
                     <a href="{{ path('complaint_additional_information', {id:complaint.id}) }}" class="{{ html_classes('list-group-item', 'list-group-item-action', {'list-group-item-secondary': app.current_route == 'complaint_additional_information'}) }}" {% if app.current_route == 'complaint_additional_information' %}aria-current="true"{% endif %}>
                         {{ 'pel.additional.informations'|trans }}
                         {% if complaint.additionalInformation.alertNumber %}

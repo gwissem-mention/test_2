@@ -262,6 +262,10 @@
                 <source>pel.fixtures.fsi.type</source>
                 <target>Gendarmerie</target>
             </trans-unit>
+            <trans-unit id="pel.for.a.total.amount.of">
+                <source>pel.for.a.total.amount.of</source>
+                <target>pour un total de</target>
+            </trans-unit>
             <trans-unit id="pel.free.text">
                 <source>pel.free.text</source>
                 <target>Texte libre</target>
@@ -322,6 +326,14 @@
                 <source>pel.meeting.date</source>
                 <target>Date RDV</target>
             </trans-unit>
+            <trans-unit id="pel.mobile.imei">
+                <source>pel.mobile.imei</source>
+                <target>Numéro de série IMEI</target>
+            </trans-unit>
+            <trans-unit id="pel.mobile.operator">
+                <source>pel.mobile.operator</source>
+                <target>Opérateur mobile</target>
+            </trans-unit>
             <trans-unit id="pel.mobile.phone">
                 <source>pel.mobile.phone</source>
                 <target>Téléphone portable</target>
@@ -366,13 +378,33 @@
                 <source>pel.number</source>
                 <target>N°</target>
             </trans-unit>
+            <trans-unit id="pel.objects">
+                <source>pel.objects</source>
+                <target>{objects, plural, =0 {objet} one {objet} other {objets}}</target>
+            </trans-unit>
+            <trans-unit id="pel.object.amount">
+                <source>pel.object.estimated.amount</source>
+                <target>Prix estimé</target>
+            </trans-unit>
+            <trans-unit id="pel.object.brand">
+                <source>pel.object.brand</source>
+                <target>Marque de l'objet</target>
+            </trans-unit>
             <trans-unit id="pel.objects.description">
                 <source>pel.objects.description</source>
                 <target>Description des objets</target>
             </trans-unit>
+            <trans-unit id="pel.object.label">
+                <source>pel.object.label</source>
+                <target>Objet N°</target>
+            </trans-unit>
             <trans-unit id="pel.observation.made">
                 <source>pel.observation.made</source>
                 <target>Est-ce que des constatations ou des relevés ont été effectués ?</target>
+            </trans-unit>
+            <trans-unit id="pel.object.model">
+                <source>pel.object.model</source>
+                <target>Modèle de l'objet</target>
             </trans-unit>
             <trans-unit id="pel.of.infraction">
                 <source>pel.of.infraction</source>
@@ -389,6 +421,10 @@
             <trans-unit id="pel.photos.and.videos">
                 <source>pel.photos.and.videos</source>
                 <target>Photos et vidéos</target>
+            </trans-unit>
+            <trans-unit id="pel.phone.number.line">
+                <source>pel.phone.number.line</source>
+                <target>N° de la ligne de téléphone</target>
             </trans-unit>
             <trans-unit id="pel.reasign">
                 <source>pel.reasign</source>
@@ -454,6 +490,10 @@
                 <source>pel.status</source>
                 <target>Statut</target>
             </trans-unit>
+            <trans-unit id="pel.stolen.objects">
+                <source>pel.stolen.objects</source>
+                <target>Objets volés</target>
+            </trans-unit>
             <trans-unit id="pel.sms.notification">
                 <source>pel.sms.notification</source>
                 <target>Notification SMS</target>
@@ -478,6 +518,10 @@
                 <source>pel.the.declaration.has.been.assigned.to</source>
                 <target>La déclaration a été attribuée à</target>
             </trans-unit>
+            <trans-unit id="pel.there.is.a.total.of">
+                <source>pel.there.is.a.total.of</source>
+                <target>Il y a un total de </target>
+            </trans-unit>
             <trans-unit id="pel.title">
                 <source>pel.title</source>
                 <target>Titre</target>
@@ -501,6 +545,10 @@
             <trans-unit id="pel.total.message.two">
                 <source>pel.total.message.two</source>
                 <target>{quantity, plural, one {objet} other {objets}}</target>
+            </trans-unit>
+            <trans-unit id="pel.total.objects.concerned">
+                <source>pel.total.objects.concerned</source>
+                <target>Total d'objets concernés</target>
             </trans-unit>
             <trans-unit id="pel.objects.concerned">
                 <source>pel.objects.concerned</source>

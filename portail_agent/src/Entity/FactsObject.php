@@ -34,6 +34,12 @@ class FactsObject
     #[ORM\Column(nullable: true)]
     private ?float $amount = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $imei = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $phoneNumber = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -107,6 +113,30 @@ class FactsObject
     public function setAmount(?float $amount): self
     {
         $this->amount = $amount;
+
+        return $this;
+    }
+
+    public function getImei(): ?int
+    {
+        return $this->imei;
+    }
+
+    public function setImei(?int $imei): self
+    {
+        $this->imei = $imei;
+
+        return $this;
+    }
+
+    public function getPhoneNumber(): ?string
+    {
+        return $this->phoneNumber;
+    }
+
+    public function setPhoneNumber(?string $phoneNumber): self
+    {
+        $this->phoneNumber = $phoneNumber;
 
         return $this;
     }

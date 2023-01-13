@@ -16,6 +16,7 @@ class ObjectsExtension extends AbstractExtension
         return [
             new TwigFilter('objects_quantity', [$this, 'getQuantity']),
             new TwigFilter('objects_total_amount', [$this, 'getTotalAmount']),
+            new TwigFilter('objects_alerts', [$this, 'getAlerts']),
         ];
     }
 
@@ -38,5 +39,18 @@ class ObjectsExtension extends AbstractExtension
         }
 
         return $amount;
+    }
+
+    /**
+     * @param Collection<int, FactsObject> $objects
+     */
+    public function getAlerts(Collection $objects): int
+    {
+        $alerts = 0;
+        foreach ($objects as $object) {
+            $alerts += $object->getAlertNumber();
+        }
+
+        return $alerts;
     }
 }
