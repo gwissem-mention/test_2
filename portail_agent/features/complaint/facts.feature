@@ -42,3 +42,8 @@ Feature:
         And the "facts_exactHourKnown_1" checkbox should be checked
         And the "facts_startHour" field should contain "10:00"
         And the "facts_endHour" field should contain "11:00"
+
+    @func
+    Scenario: Scenario: I can see the comments space on the facts page
+        Given I am on "/plainte/faits/3"
+        And I should see a "#comment_content" element
