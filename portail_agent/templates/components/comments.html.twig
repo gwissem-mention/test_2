@@ -2,7 +2,20 @@
     {% for comment in this.complaint.comments %}
         <div class="row {{ comment.author is same as constant('App\\Entity\\Comment::AGENT_AUTHOR') ? 'comment-right' : 'comment-left' }}">
             <div class="col-7 align-self-end rounded-3 m-3 p-3 {{ comment.author is same as constant('App\\Entity\\Comment::AGENT_AUTHOR') ? 'comment-author-color' : 'comment-agent-color' }}">
+                <div id="comment-author">
+                    <strong>
+                        <small>{{ comment.author }}</small>
+                    </strong>
+                </div>
                 {{ comment.content }}
+                <div class="d-flex justify-content-end" id="comment-published-at">
+                    <small>
+                        {{ 'pel.the'|trans }}
+                        {{ comment.publishedAt|date('d/m/Y') }}
+                        {{ 'pel.at'|trans }}
+                        {{ comment.publishedAt|date('H:i') }}
+                    </small>
+                </div>
             </div>
         </div>
     {% endfor %}

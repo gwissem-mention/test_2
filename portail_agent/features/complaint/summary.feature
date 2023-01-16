@@ -232,6 +232,10 @@ Feature:
         And I should see a ".comment-box" element
         And I should see 3 ".comment-left" element
         And I should see 2 ".comment-right" element
+        And I should see 5 "#comment-author" element
+        And I should see 5 "#comment-published-at" element
+        And I should see "Jean Dupont" in the ".comment-right" element
+        And I should see "André Durant" in the ".comment-left" element
 
     @javascript
     Scenario: I can click the "Comment" button, and it focus the comment field

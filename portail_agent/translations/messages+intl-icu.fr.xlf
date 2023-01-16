@@ -58,6 +58,10 @@
                 <source>pel.assign.declaration.to</source>
                 <target>Attribuer la déclaration à</target>
             </trans-unit>
+            <trans-unit id="pel.at">
+                <source>pel.at</source>
+                <target>à</target>
+            </trans-unit>
             <trans-unit id="pel.at.in">
                 <source>pel.at.in</source>
                 <target>au/en</target>
