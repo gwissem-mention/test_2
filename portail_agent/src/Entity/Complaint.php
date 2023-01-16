@@ -82,6 +82,7 @@ class Complaint
         'persist',
         'remove',
     ], orphanRemoval: true)]
+    #[ORM\OrderBy(['publishedAt' => 'DESC'])]
     private Collection $comments;
 
     public function __construct()

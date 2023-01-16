@@ -166,7 +166,7 @@
                 <div class="col-12 p-0">
                     <div class="border border-secondary bg-light rounded-3 p-3 mt-5">
                         <div class="bg-white rounded-3 p-3 m-3">
-                            {{ component('comment_form', {field_disabled: (complaint.status != constant('App\\Entity\\Complaint::STATUS_CLOSED') ? false : true)}) }}
+                            {{ component('comments', {complaint: complaint, field_disabled: (complaint.status != constant('App\\Entity\\Complaint::STATUS_CLOSED') ? false : true)}) }}
                         </div>
                     </div>
                 </div>

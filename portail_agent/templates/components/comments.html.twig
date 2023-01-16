@@ -1,0 +1,14 @@
+<div class="container comment-box overflow-scroll mb-4">
+    {% for comment in this.complaint.comments %}
+        <div class="row {{ comment.author is same as constant('App\\Entity\\Comment::AGENT_AUTHOR') ? 'comment-right' : 'comment-left' }}">
+            <div class="col-7 align-self-end rounded-3 m-3 p-3 {{ comment.author is same as constant('App\\Entity\\Comment::AGENT_AUTHOR') ? 'comment-author-color' : 'comment-agent-color' }}">
+                {{ comment.content }}
+            </div>
+        </div>
+    {% endfor %}
+</div>
+<div {{ attributes }}>
+    {{ form_start(form) }}
+        {{ form_row(form.content) }}
+    {{ form_end(form) }}
+</div>

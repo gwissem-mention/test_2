@@ -48,6 +48,9 @@ Feature:
     Scenario: I can see the comments space on the additional information page
         Given I am on "/plainte/informations-complementaires/3"
         And I should see a "#comment_content" element
+        And I should see a ".comment-box" element
+        And I should see 3 ".comment-left" element
+        And I should see 2 ".comment-right" element
 
     @javascript
     Scenario: I can click the "Comment" button, and it focus the comment field
