@@ -126,6 +126,10 @@
                 <source>pel.comments</source>
                 <target>Commentaires</target>
             </trans-unit>
+            <trans-unit id="pel.comments.feed">
+                <source>pel.comments.feed</source>
+                <target>Fil de conversation</target>
+            </trans-unit>
             <trans-unit id="pel.complaint.online.portal">
                 <source>pel.complaint.online.portal</source>
                 <target>Portail Plainte en Ligne</target>

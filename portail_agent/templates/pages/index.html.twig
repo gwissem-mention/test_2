@@ -3,38 +3,38 @@
 {% block body %}
     <table class="table table-striped">
         <thead class="table-head">
-        <tr>
-            <th scope="col">{{ 'pel.deposit.date'|trans }}</th>
-            <th scope="col">{{ 'pel.facts'|trans }}</th>
-            <th scope="col">{{ 'pel.facts.date'|trans }}</th>
-            <th scope="col">{{ 'pel.alert'|trans }}</th>
-            <th scope="col">{{ 'pel.meeting.date'|trans }}</th>
-            <th scope="col">{{ 'pel.firstname.lastname'|trans }}</th>
-            <th scope="col">{{ 'pel.status'|trans }}</th>
-            <th scope="col">{{ 'pel.a.opj.name'|trans }}</th>
-            <th scope="col">{{ 'pel.declaration.number'|trans }}</th>
-            <th scope="col">{{ 'pel.comments'|trans }}</th>
-        </tr>
+            <tr>
+                <th scope="col">{{ 'pel.deposit.date'|trans }}</th>
+                <th scope="col">{{ 'pel.facts'|trans }}</th>
+                <th scope="col">{{ 'pel.facts.date'|trans }}</th>
+                <th scope="col">{{ 'pel.alert'|trans }}</th>
+                <th scope="col">{{ 'pel.meeting.date'|trans }}</th>
+                <th scope="col">{{ 'pel.firstname.lastname'|trans }}</th>
+                <th scope="col">{{ 'pel.status'|trans }}</th>
+                <th scope="col">{{ 'pel.a.opj.name'|trans }}</th>
+                <th scope="col">{{ 'pel.declaration.number'|trans }}</th>
+                <th scope="col">{{ 'pel.comments'|trans }}</th>
+            </tr>
         </thead>
         <tbody>
-        {% for complaint in complaints %}
-            <tr>
-                <td>{{ complaint.createdAt|date('d/m/Y') }}</td>
-                <td>{% include 'common/_complaint_natures.html.twig' with {'natures':complaint.facts.natures} only %}</td>
-                <td>{{ complaint.facts.startDate|date('d/m/Y') }}</td>
-                <td>{{ complaint.alert|u.truncate(15, '...') }}</td>
-                <td>{{ complaint.appointmentDate|date('d/m/Y') }}</td>
-                <td>{{ (complaint.identity.firstName ~ ' ' ~ complaint.identity.lastName)|u.truncate(15, '...') }}</td>
-                <td>{{ complaint.status|u.truncate(15, '...') }}</td>
-                <td>{{ complaint.assignedTo|agent_name|u.truncate(15, '...') }}</td>
-                <td>
-                    <a href="{{ path('complaint_summary', {id: complaint.id}) }}" target="_blank">
-                        {{ complaint.declarationNumber }}
-                    </a>
-                </td>
-                <td>{{ complaint.commentsNumber }}</td>
-            </tr>
-        {% endfor %}
+            {% for complaint in complaints %}
+                <tr>
+                    <td>{{ complaint.createdAt|date('d/m/Y') }}</td>
+                    <td>{% include 'common/_complaint_natures.html.twig' with {'natures':complaint.facts.natures} only %}</td>
+                    <td>{{ complaint.facts.startDate|date('d/m/Y') }}</td>
+                    <td>{{ complaint.alert|u.truncate(15, '...') }}</td>
+                    <td>{{ complaint.appointmentDate|date('d/m/Y') }}</td>
+                    <td>{{ (complaint.identity.firstName ~ ' ' ~ complaint.identity.lastName)|u.truncate(15, '...') }}</td>
+                    <td>{{ complaint.status|u.truncate(15, '...') }}</td>
+                    <td>{{ complaint.assignedTo|agent_name|u.truncate(15, '...') }}</td>
+                    <td>
+                        <a href="{{ path('complaint_summary', {id: complaint.id}) }}" target="_blank">
+                            {{ complaint.declarationNumber }}
+                        </a>
+                    </td>
+                    <td>{{ complaint.comments|length }}</td>
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
 {% endblock %}
