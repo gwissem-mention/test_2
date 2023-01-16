@@ -143,4 +143,12 @@ export default class extends Controller {
             toast.show();
         }
     }
+
+    public commentFocus(): void {
+        const commentContent: HTMLElement | null = document.getElementById("comment_content");
+
+        if (commentContent) {
+            commentContent.focus();
+        }
+    }
 }
