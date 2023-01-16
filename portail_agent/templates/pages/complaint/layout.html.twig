@@ -165,6 +165,9 @@
             <div class="row p-0 m-0">
                 <div class="col-12 p-0">
                     <div class="border border-secondary bg-light rounded-3 p-3 mt-5">
+                        <div class="fs-3 fw-semibold lh-lg m-3 mt-0" id="comments-feed-title">
+                            {{ 'pel.comments.feed'|trans }} - ({{ complaint.comments|length }})
+                        </div>
                         <div class="bg-white rounded-3 p-3 m-3">
                             {{ component('comments', {complaint: complaint, field_disabled: (complaint.status != constant('App\\Entity\\Complaint::STATUS_CLOSED') ? false : true)}) }}
                         </div>

@@ -30,7 +30,6 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface
             $complaints[] = (new Complaint())
                 ->setCreatedAt(new \DateTimeImmutable('2022-12-01'))
                 ->setAppointmentDate(new \DateTimeImmutable('2022-12-03'))
-                ->setCommentsNumber(5)
                 ->setStatus(Complaint::STATUS_ONGOING)
                 ->setDeclarationNumber('PEL-2022-'.str_pad((string) $i, 8, '0', STR_PAD_LEFT))
                 ->setOptinNotification(true)

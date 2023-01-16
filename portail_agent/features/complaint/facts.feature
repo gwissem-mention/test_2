@@ -48,6 +48,9 @@ Feature:
         Given I am on "/plainte/faits/3"
         And I should see a "#comment_content" element
         And I should see a ".comment-box" element
+        And I should see a "#comments-feed-title" element
+        And I should see the key "pel.comments.feed" translated
+        And the "#comments-feed-title" element should contain "Fil de conversation - (5)"
         And I should see 3 ".comment-left" element
         And I should see 2 ".comment-right" element
         And I should see 5 "#comment-author" element

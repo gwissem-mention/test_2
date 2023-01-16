@@ -43,9 +43,6 @@ class Complaint
     #[ORM\Column]
     private ?bool $optinNotification = null;
 
-    #[ORM\Column]
-    private ?int $commentsNumber = null;
-
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?Identity $identity = null;
@@ -152,18 +149,6 @@ class Complaint
     public function setOptinNotification(bool $optinNotification): self
     {
         $this->optinNotification = $optinNotification;
-
-        return $this;
-    }
-
-    public function getCommentsNumber(): ?int
-    {
-        return $this->commentsNumber;
-    }
-
-    public function setCommentsNumber(int $commentsNumber): self
-    {
-        $this->commentsNumber = $commentsNumber;
 
         return $this;
     }
