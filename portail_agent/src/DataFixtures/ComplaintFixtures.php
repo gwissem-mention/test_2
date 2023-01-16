@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\DataFixtures;
 
 use App\Entity\AdditionalInformation;
+use App\Entity\Comment;
 use App\Entity\Complaint;
 use App\Entity\Facts;
 use App\Entity\FactsObject;
@@ -101,7 +102,32 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface
                         ->setObservationMade(true)
                         ->setVictimOfViolence(false)
                         ->setDescription("Vol d'un Iphone 13")
-                );
+                )
+                ->addComment(
+                    (new Comment())
+                        ->setContent('Ceci est un commentaire.')
+                        ->setAuthor(Comment::AGENT_AUTHOR)
+                )
+                ->addComment(
+                    (new Comment())
+                        ->setContent('Ceci est un autre commentaire.')
+                        ->setAuthor(Comment::ANOTHER_AGENT_AUTHOR)
+                )
+                ->addComment(
+                    (new Comment())
+                        ->setContent('Ceci est (encore) un autre commentaire.')
+                        ->setAuthor(Comment::ANOTHER_AGENT_AUTHOR)
+                )->addComment(
+                    (new Comment())
+                        ->setContent('Commentaire.')
+                        ->setAuthor(Comment::ANOTHER_AGENT_AUTHOR)
+                )
+                ->addComment(
+                    (new Comment())
+                        ->setContent('Ceci est un commentaire de moi.')
+                        ->setAuthor(Comment::AGENT_AUTHOR)
+                )
+            ;
         }
 
         foreach ($complaints as $complaint) {

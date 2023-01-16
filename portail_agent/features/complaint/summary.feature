@@ -228,7 +228,10 @@ Feature:
     @func
     Scenario: I can see the comments space on the summary page
         Given I am on "/plainte/recapitulatif/3"
-        And I should see a "#comment_content" element
+        Then I should see a "#comment_content" element
+        And I should see a ".comment-box" element
+        And I should see 3 ".comment-left" element
+        And I should see 2 ".comment-right" element
 
     @javascript
     Scenario: I can click the "Comment" button, and it focus the comment field
