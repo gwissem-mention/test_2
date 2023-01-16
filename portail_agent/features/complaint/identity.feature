@@ -46,3 +46,7 @@ Feature:
         And I should see the key "pel.declarant.complain.as" translated
         And the "identity_declarantStatus" field should contain "1"
 
+    @func
+    Scenario: Scenario: I can see the comments space on the identity page
+        Given I am on "/plainte/identite/3"
+        And I should see a "#comment_content" element

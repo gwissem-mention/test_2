@@ -11,8 +11,8 @@ Feature:
         And I should see a "nav" element
         And I should see a "aside" element
         And I should see a "main" element
-        And I should see 3 "button[data-bs-toggle='modal']" element
-        And I should see 19 "button" element
+        And I should see 4 "button[data-bs-toggle='modal']" element
+        And I should see 20 "button" element
         And I should see the key "pel.send.to.lrp" translated
         And I should see the key "pel.reject" translated
         And I should see the key "pel.reasign" translated
@@ -41,3 +41,8 @@ Feature:
         And the "span#objects_number" element should contain "2"
         And I should see the key "pel.for.a.total.amount.of" translated
         And I should see "2 328 €"
+
+    @func
+    Scenario: Scenario: I can see the comments space on the identity page
+        Given I am on "/plainte/objets/3"
+        And I should see a "#comment_content" element

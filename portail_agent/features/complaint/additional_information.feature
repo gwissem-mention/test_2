@@ -43,3 +43,8 @@ Feature:
         And the "additional_information_victimOfViolence_1" checkbox should be checked
         And I should see the key "pel.description.of.facts" translated
         And the "additional_information_description" field should contain "Vol d'un Iphone 13"
+
+    @func
+    Scenario: I can see the comments space on the additional information page
+        Given I am on "/plainte/informations-complementaires/3"
+        And I should see a "#comment_content" element

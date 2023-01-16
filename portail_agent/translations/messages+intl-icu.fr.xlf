@@ -622,6 +622,10 @@
                 <source>pel.witnesses</source>
                 <target>Témoins</target>
             </trans-unit>
+            <trans-unit id="pel.write.your.comment.here">
+                <source>pel.write.your.comment.here</source>
+                <target>Ecrivez votre message ici...</target>
+            </trans-unit>
             <trans-unit id="pel.yes">
                 <source>pel.yes</source>
                 <target>Oui</target>
