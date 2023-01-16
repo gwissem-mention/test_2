@@ -10,8 +10,8 @@ Feature:
         And I should see a "nav" element
         And I should see a "aside" element
         And I should see a "main" element
-        And I should see 3 "button[data-bs-toggle='modal']" element
-        And I should see 19 "button" element
+        And I should see 4 "button[data-bs-toggle='modal']" element
+        And I should see 20 "button" element
         And I should see the key "pel.assign.declaration.to" translated
         And I should see the key "pel.send.to.lrp" translated
         And I should see the key "pel.reject" translated
@@ -241,3 +241,15 @@ Feature:
         And I should see "Déclaration attribuée à : Thomas DURAND"
         And I should see the key "pel.declaration.assigned.to" translated
 
+    @javascript
+    Scenario: I can submit the reassign form successfully
+        Given I am on "/plainte/recapitulatif/3"
+        When I press "complaint-reassign-button"
+        And I click the "#modal-complaint-assign .clear-button" element
+        And I fill in the autocomplete "assign_assignedTo-ts-control" with "Jean" and click "1"
+        And I press "Valider l'attribution"
+        Then I should not see a ".modal[aria-modal=true]" element
+        And I should see a ".toast" element
+        And I should see the key "pel.the.declaration.has.been.assigned.to" translated
+        And I should see "Déclaration attribuée à : Jean DUPONT"
+        And I should see the key "pel.declaration.assigned.to" translated
