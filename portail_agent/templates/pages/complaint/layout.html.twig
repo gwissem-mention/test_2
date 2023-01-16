@@ -32,6 +32,9 @@
             <div class="fs-5 float-end">
                 {{ 'pel.declaration.assigned.to'|trans }} :
                 <span class="agent-name fw-bold">{{ complaint.assignedTo|agent_name|default }}</span>
+                <button class="btn" data-bs-toggle="modal" data-bs-target="#modal-complaint-assign" id="complaint-reassign-button">
+                    <i class="bi bi-pencil-fill"></i>
+                </button>
             </div>
         </div>
     </div>

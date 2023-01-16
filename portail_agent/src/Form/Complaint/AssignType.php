@@ -6,6 +6,8 @@ namespace App\Form\Complaint;
 
 use App\Entity\Complaint;
 use App\Form\AgentAutocompleteType;
+use App\Referential\Entity\Agent;
+use App\Referential\Repository\AgentRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -16,13 +18,22 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 class AssignType extends AbstractType
 {
+    public function __construct(private readonly AgentRepository $agentRepository)
+    {
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->addEventListener(
                 FormEvents::PRE_SET_DATA,
                 function (FormEvent $event) {
-                    $this->addAgentField($event->getForm());
+                    /** @var Complaint $complaint */
+                    $complaint = $event->getData();
+                    $this->addAgentField(
+                        $event->getForm(),
+                        !is_null($complaint->getAssignedTo()) ? strval($complaint->getAssignedTo()) : null
+                    );
                 }
             )
             ->addEventListener(
@@ -37,11 +48,17 @@ class AssignType extends AbstractType
             );
     }
 
-    private function addAgentField(FormInterface $form, ?string $agent = null): void
+    private function addAgentField(FormInterface $form, ?string $agentId = null): void
     {
+        $agent = null;
+        if (!is_null($agentId)) {
+            /** @var Agent $agent */
+            $agent = $this->agentRepository->find($agentId);
+        }
+
         $form
             ->add('assignedTo', AgentAutocompleteType::class, [
-                'choices' => !is_null($agent) ? [intval($agent)] : null,
+                'choices' => !is_null($agent) ? [$agent->getName() => $agent->getId()] : null,
                 'attr' => [
                     'required' => true,
                 ],

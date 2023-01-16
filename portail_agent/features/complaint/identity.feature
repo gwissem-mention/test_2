@@ -11,8 +11,8 @@ Feature:
         And I should see a "nav" element
         And I should see a "aside" element
         And I should see a "main" element
-        And I should see 3 "button[data-bs-toggle='modal']" element
-        And I should see 19 "button" element
+        And I should see 4 "button[data-bs-toggle='modal']" element
+        And I should see 20 "button" element
         And I should see the key "pel.send.to.lrp" translated
         And I should see the key "pel.reject" translated
         And I should see the key "pel.reasign" translated
