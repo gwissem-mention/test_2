@@ -229,3 +229,10 @@ Feature:
     Scenario: I can see the comments space on the summary page
         Given I am on "/plainte/recapitulatif/3"
         And I should see a "#comment_content" element
+
+    @javascript
+    Scenario: I can click the "Comment" button, and it focus the comment field
+        Given I am on "/plainte/recapitulatif/3"
+        And I should not focus the "comment_content" element
+        Then I press "Commentaire"
+        And I should focus the "comment_content" element
