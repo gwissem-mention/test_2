@@ -306,7 +306,7 @@ citoyen-php-cs:
 .frontend-twig-cs: &frontend-twig-cs
     stage: quality
     script:
-        - make frontend-twig-cs-test
+        - make APP_ENV=test frontend-twig-cs-test
 
 citoyen-frontend-twig-cs:
     <<: *citoyen-step
