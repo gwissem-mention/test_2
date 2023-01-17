@@ -5,7 +5,7 @@
 
   environment:
     APP_ENV: prod
-    ENABLE_SSO: false
+    ENABLE_SSO: "false"
 
   vars_files:
     - ../vars/vars.yaml
