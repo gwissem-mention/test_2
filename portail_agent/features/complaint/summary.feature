@@ -3,6 +3,9 @@ Feature:
     As a user
     I want to see the summary informations
 
+    Background:
+        Given I am authenticated with PR5KTZ9R from GN
+
     @func
     Scenario: I can navigate to the complaint page
         Given I am on "/plainte/recapitulatif/1"

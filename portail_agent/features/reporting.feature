@@ -3,6 +3,9 @@ Feature:
     As a user
     I want to see the reporting page
 
+    Background:
+        Given I am authenticated with PR5KTZ9R from GN
+
     @func
     Scenario: I want to show the reporting page
         When I am on "/reporting"

@@ -3,6 +3,9 @@ Feature:
     As a user
     I want to see the faq page
 
+    Background:
+        Given I am authenticated with PR5KTZ9R from GN
+
     @func
     Scenario: I want to show the faq page
         When I am on "/faq"

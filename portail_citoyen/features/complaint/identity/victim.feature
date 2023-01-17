@@ -332,7 +332,7 @@ Feature:
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I fill in "identity_civilState_birthDate" with "01/01/2000"
-        And I select "Paris (75)" from "identity_civilState_birthLocation_frenchTown"
+        And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
         And I select "1" from "identity_civilState_nationality"
         And I select "1" from "identity_civilState_job"
         And I fill in "identity_contactInformation_frenchAddress_address" with "Av. de la République 75011 Paris France"

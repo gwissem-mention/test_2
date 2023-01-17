@@ -326,6 +326,14 @@
                 <source>pel.location.of.facts</source>
                 <target>Le lieu des faits</target>
             </trans-unit>
+            <trans-unit id="pel.login">
+                <source>pel.login</source>
+                <target>Connexion</target>
+            </trans-unit>
+            <trans-unit id="pel.login.as">
+                <source>pel.login.as</source>
+                <target>Se connecter en tant que</target>
+            </trans-unit>
             <trans-unit id="pel.madam">
                 <source>pel.madam</source>
                 <target>Madame</target>
