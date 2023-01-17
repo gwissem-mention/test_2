@@ -2,11 +2,7 @@
   copy:
     dest: "{{ release_portal_path }}/.env.local"
     content: |
-      TRUSTED_PROXIES={{ ansible_env.TRUSTED_PROXIES }}
       APP_ENV={{ ansible_env.APP_ENV }}
-      APP_SECRET={{ ansible_env.APP_SECRET }}
-      DATABASE_URL={{ ansible_env.DATABASE_URL }}
-      REFERENTIALS_DATABASE_URL={{ ansible_env.REFERENTIALS_DATABASE_URL }}
 
 - name: Install vendors for prod env
   make:

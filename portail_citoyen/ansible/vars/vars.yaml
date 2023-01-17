@@ -17,6 +17,7 @@ ansistrano_keep_releases: 3
 ansistrano_allow_anonymous_stats: false
 ansistrano_shared_paths:
     - portail_citoyen/referentials
+    - portail_citoyen/config/secrets/prod
 # Integration env vars
 server_host: "{{ vault_server_host }}"
 server_user: "{{ vault_server_user }}"

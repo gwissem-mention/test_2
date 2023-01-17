@@ -2,16 +2,9 @@
   copy:
     dest: "{{ release_portal_path }}/.env.local"
     content: |
-      TRUSTED_PROXIES={{ ansible_env.TRUSTED_PROXIES }}
       APP_ENV={{ ansible_env.APP_ENV }}
-      APP_SECRET={{ ansible_env.APP_SECRET }}
-      DATABASE_URL={{ ansible_env.DATABASE_URL }}
-      REFERENTIALS_DATABASE_URL={{ ansible_env.REFERENTIALS_DATABASE_URL }}
       REDIS_HOST={{ ansible_env.REDIS_HOST }}
-      FRANCE_CONNECT_CLIENT_ID={{ ansible_env.FRANCE_CONNECT_CLIENT_ID }}
-      FRANCE_CONNECT_CLIENT_SECRET={{ ansible_env.FRANCE_CONNECT_CLIENT_SECRET }}
-      FRANCE_CONNECT_BASE_URI={{ ansible_env.FRANCE_CONNECT_BASE_URI }}
-      FILE_CITIES=insee_commune.csv
+      FILE_CITIES={{ ansible_env.FILE_CITIES }}
 
 - name: Install vendors for prod env
   make:

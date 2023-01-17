@@ -5,14 +5,7 @@
 
   environment:
     APP_ENV: prod
-    APP_SECRET: "{{ vault_symfony_secret }}"
-    DATABASE_URL: "{{ vault_database_url }}"
-    REFERENTIALS_DATABASE_URL: "{{ vault_database_referentials_url }}"
-    TRUSTED_PROXIES: "{{ vault_trusted_proxies }}"
     REDIS_HOST: 127.0.0.1
-    FRANCE_CONNECT_CLIENT_ID: "{{ vault_france_connect_client_id }}"
-    FRANCE_CONNECT_CLIENT_SECRET: "{{ vault_france_connect_client_secret }}"
-    FRANCE_CONNECT_BASE_URI: "{{ vault_france_connect_base_uri }}"
     FILE_CITIES: insee_commune.csv
 
   vars_files:
