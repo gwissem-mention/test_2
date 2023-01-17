@@ -338,6 +338,10 @@
                 <source>pel.login.as</source>
                 <target>Se connecter en tant que</target>
             </trans-unit>
+            <trans-unit id="pel.logout">
+                <source>pel.logout</source>
+                <target>Se déconnecter</target>
+            </trans-unit>
             <trans-unit id="pel.madam">
                 <source>pel.madam</source>
                 <target>Madame</target>
@@ -377,6 +381,10 @@
             <trans-unit id="pel.offense.nature.robbery">
                 <source>pel.offense.nature.robbery</source>
                 <target>Vol</target>
+            </trans-unit>
+            <trans-unit id="pel.online.complaint">
+                <source>pel.online.complaint</source>
+                <target>Plainte en ligne</target>
             </trans-unit>
             <trans-unit id="pel.other">
                 <source>pel.other</source>
