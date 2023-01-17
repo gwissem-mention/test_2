@@ -1,6 +1,13 @@
 {% extends 'pages/complaint/layout.html.twig' %}
 
 {% block main %}
+    <div class="row">
+        <div class="col-12 text-end">
+            <a href="{{ path('complaint_facts', {id:complaint.id}) }}" class="btn btn-secondary">
+                <i class="bi bi-arrow-right"></i> {{ 'pel.go.to.tab'|trans }} : {{ 'pel.description.of.facts'|trans }}
+            </a>
+        </div>
+    </div>
     {{ form_start(identity_form) }}
     <fieldset class="border border-secondary bg-light rounded-3 p-3">
         <legend class="float-none w-auto px-3">

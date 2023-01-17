@@ -1,8 +1,15 @@
 {% extends 'pages/complaint/layout.html.twig' %}
 
 {% block main %}
+    <div class="row mb-3">
+        <div class="col-12 text-end">
+            <a href="{{ path('complaint_identity', {id:complaint.id}) }}" class="btn btn-secondary">
+                <i class="bi bi-arrow-right"></i> {{ 'pel.go.to.tab'|trans }} : {{ 'pel.declarant.identity'|trans }}
+            </a>
+        </div>
+    </div>
     <div class="border border-secondary bg-light rounded p-3">
-        <span class="fs-3 fw-semibold lh-lg" class="text-decoration-underline">{{ 'pel.identification'|trans }}</span>
+        <span class="fs-3 fw-semibold lh-lg text-decoration-underline">{{ 'pel.identification'|trans }}</span>
         <ul>
             <li>
                 {{ 'pel.civility'|trans }} :
@@ -59,7 +66,7 @@
         </ul>
 
         <hr class="border border-2 border-dark">
-        <span class="fs-3 fw-semibold lh-lg" class="text-decoration-underline">{{ 'pel.description.of.facts'|trans }}</span>
+        <span class="fs-3 fw-semibold lh-lg text-decoration-underline">{{ 'pel.description.of.facts'|trans }}</span>
         <ul>
             <li>
                 {{ 'pel.nature.of.the.facts'|trans }}</strong> :
@@ -98,7 +105,7 @@
 
         </ul>
         <hr class="border border-2 border-dark">
-        <span class="fs-3 fw-semibold lh-lg" class="text-decoration-underline">{{ 'pel.additional.informations'|trans }}</span>
+        <span class="fs-3 fw-semibold lh-lg text-decoration-underline">{{ 'pel.additional.informations'|trans }}</span>
         <ul>
             <li>
                 {{ 'pel.facts.witnesses'|trans }} :
@@ -168,7 +175,7 @@
             </li>
         </ul>
         <hr class="border border-2 border-dark">
-        <span class="fs-3 fw-semibold lh-lg" class="text-decoration-underline">{{ 'pel.objects.description'|trans }}</span>
+        <span class="fs-3 fw-semibold lh-lg text-decoration-underline">{{ 'pel.objects.description'|trans }}</span>
         <p>{{ 'pel.objects.stolen'|trans }}</p>
         <ul>
             {% for object in complaint.objects %}

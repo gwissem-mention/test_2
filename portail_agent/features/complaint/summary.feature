@@ -114,6 +114,13 @@ Feature:
         And I should be on "/plainte/recapitulatif/1"
         And the response status code should be 200
 
+    @func
+    Scenario: I can click on the Go to identity button
+        Given I am on "/plainte/recapitulatif/1"
+        When I follow "Accéder à l'onglet : Identité du déclarant"
+        And I should be on "/plainte/identite/1"
+        And the response status code should be 200
+
     @javascript
     Scenario: I can toggle the reject modal
         Given I am on "/plainte/recapitulatif/1"

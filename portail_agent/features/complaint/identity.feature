@@ -47,6 +47,13 @@ Feature:
         And the "identity_declarantStatus" field should contain "1"
 
     @func
+    Scenario: I can click on the Go to facts button
+        Given I am on "/plainte/identite/1"
+        When I follow "Accéder à l'onglet : Description des faits"
+        And I should be on "/plainte/faits/1"
+        And the response status code should be 200
+
+    @func
     Scenario: Scenario: I can see the comments space on the identity page
         Given I am on "/plainte/identite/3"
         And I should see a "#comment_content" element
