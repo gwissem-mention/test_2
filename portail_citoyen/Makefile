@@ -140,7 +140,8 @@ frontend-cpd-test: yarn
 
 ## Test twig files coding style
 frontend-twig-cs-test:
-	@$(CONSOLE) lint:twig templates/
+	@$(eval APP_ENV ?=)
+	@$(CONSOLE) lint:twig templates/ --env=$(APP_ENV)
 
 #################################
 Doctrine:
