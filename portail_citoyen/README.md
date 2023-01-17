@@ -37,7 +37,9 @@ You have to be connected to the [Smile VPN](https://wiki.smile.fr/wiki/VPN_Conne
 
 Your local SSH public key has to be added to your Wombat profile.
 
-Sensitive data are protected by a an encrypted vault file, you will need a password to 
+You will also need the **config/secrets/prod/prod.decrypt.private.php** file in your local
+
+In portail_citoyen/ folder :
 
 ```bash
 $ BECOME_USER=[SERVER_USER] PRIVATE_KEY_PATH=[YOUR_PRIVATE_KEY_PATH] make deploy
@@ -47,4 +49,14 @@ $ BECOME_USER=[SERVER_USER] PRIVATE_KEY_PATH=[YOUR_PRIVATE_KEY_PATH] make deploy
 
 ```bash
 $ BECOME_USER=[SERVER_USER] PRIVATE_KEY_PATH=[YOUR_PRIVATE_KEY_PATH] make rollback
+```
+
+#### Add sensitive env var for production server
+
+First, you will need the **config/secrets/prod/prod.decrypt.private.php** file in your local
+
+Then will need to add this env with [Symfony Secrets](https://symfony.com/doc/current/configuration/secrets.html) :
+
+```bash
+$ APP_RUNTIME_ENV=prod php bin/console secrets:set [YOUR_ENV]
 ```
