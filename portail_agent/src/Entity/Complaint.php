@@ -79,7 +79,7 @@ class Complaint
         'persist',
         'remove',
     ], orphanRemoval: true)]
-    #[ORM\OrderBy(['publishedAt' => 'DESC'])]
+    #[ORM\OrderBy(['publishedAt' => 'ASC'])]
     private Collection $comments;
 
     public function __construct()

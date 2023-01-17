@@ -2,6 +2,10 @@ import {Controller} from "@hotwired/stimulus";
 import {Toast, Modal} from "bootstrap";
 
 export default class extends Controller {
+    public override connect() {
+        this.scrollCommentFeed();
+    }
+
     // Must be ignored because we can't type url here.
     // @ts-ignore
     public reject({params: {url}}): void {
@@ -40,6 +44,12 @@ export default class extends Controller {
 
                             if (complaintReassignButton) {
                                 complaintReassignButton.remove();
+                            }
+
+                            const commentField: Element | null = document.getElementById("comment_content");
+
+                            if (commentField) {
+                                commentField.setAttribute("disabled", "disabled");
                             }
 
                             const modal: Modal | null = Modal.getInstance(modalElement);
@@ -149,6 +159,30 @@ export default class extends Controller {
 
         if (commentContent) {
             commentContent.focus();
+        }
+    }
+
+    public commentButton(): void {
+        // Type any must be used here because the value attribute needs to be retrieved and did not exist on HTMLElement | null type
+        const commentContent: any | null = document.getElementById("comment_content");
+        const commentButton: HTMLElement | null = document.getElementById("comment-button");
+
+        if (commentContent && commentButton) {
+            const empty = (commentContent.value === "");
+
+            if (empty) {
+                commentButton.setAttribute("disabled", "disabled");
+            } else {
+                commentButton.removeAttribute("disabled");
+            }
+        }
+    }
+
+    public scrollCommentFeed(): void {
+        const commentFeed: HTMLElement | null = document.getElementById("comment-box");
+
+        if (commentFeed) {
+            commentFeed.scrollTo(0, commentFeed.scrollHeight);
         }
     }
 }

@@ -128,7 +128,7 @@
             </trans-unit>
             <trans-unit id="pel.comments.feed">
                 <source>pel.comments.feed</source>
-                <target>Fil de conversation</target>
+                <target>Espace commentaires</target>
             </trans-unit>
             <trans-unit id="pel.complaint.online.portal">
                 <source>pel.complaint.online.portal</source>
@@ -505,6 +505,10 @@
             <trans-unit id="pel.search">
                 <source>pel.search</source>
                 <target>Rechercher</target>
+            </trans-unit>
+            <trans-unit id="pel.send">
+                <source>pel.send</source>
+                <target>Envoyer</target>
             </trans-unit>
             <trans-unit id="pel.send.compatible.data">
                 <source>pel.send.compatible.data</source>
