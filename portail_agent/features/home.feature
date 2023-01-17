@@ -11,6 +11,8 @@ Feature:
         When I am on the homepage
         Then the response status code should be 200
         And I should see a "nav" element
+        And I should see a ".avatar" element
+        And I should see "TD" in the ".avatar" element
         And I should see the key "pel.search" translated
         And I should see the key "pel.agent.complaint.online" translated
         And I should see the key "pel.header.baseline" translated

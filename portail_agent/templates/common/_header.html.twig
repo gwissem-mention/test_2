@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="{{ path('home') }}" title="{{ 'pel.home'|trans }}">
-            <img id="image_logo" src="{{ asset('build/images/logo.png') }}" alt="Logo Plainte en ligne" />
+            <img id="image_logo" src="{{ asset('build/images/logo.png') }}" alt="{{ 'pel.online.complaint'|trans }}"/>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -11,10 +11,22 @@
                 <h1>{{ 'pel.agent.complaint.online'|trans }}</h1>
                 <p>{{ 'pel.header.baseline'|trans }}</p>
             </div>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="{{ 'pel.search'|trans }}" aria-label="Search">
+            <form class="d-flex me-3 mb-2 mb-lg-0" role="search">
+                <input class="form-control me-2" type="search" placeholder="{{ 'pel.search'|trans }}" aria-label="{{ 'pel.search'|trans }}">
                 <button class="btn btn-outline-success" type="submit">{{ 'pel.search'|trans }}</button>
             </form>
+            {% if app.user %}
+                <div class="text-center text-md-end">
+                    <div class="avatar bg-secondary rounded-circle text-light">
+                        {{ app.user.initials }}
+                    </div>
+                    {% if not sso_is_enabled %}
+                        <a href="{{ path('app_sso_less_close_session') }}" title="{{ 'pel.logout'|trans }}" class="text-secondary">
+                            <i class="bi bi-box-arrow-right"></i>
+                        </a>
+                    {% endif %}
+                </div>
+            {% endif %}
         </div>
     </div>
 </nav>

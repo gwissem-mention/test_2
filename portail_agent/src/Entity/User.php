@@ -125,4 +125,15 @@ class User implements UserInterface
 
         return sprintf('%s-%s', $number, $institution);
     }
+
+    public function getInitials(): string
+    {
+        $words = explode(' ', (string) $this->appellation);
+
+        return mb_strtoupper(
+            mb_substr($words[0], 0, 1, 'UTF-8').
+            mb_substr(end($words), 0, 1, 'UTF-8'),
+            'UTF-8'
+        );
+    }
 }

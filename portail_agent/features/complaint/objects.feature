@@ -2,7 +2,10 @@ Feature:
     In order to the objects facts page
     As a user
     I want to see the objects facts page
-    pel.there.is.a.total.of
+
+    Background:
+        Given I am authenticated with PR5KTZ9R from GN
+
     @func
     Scenario: I want to show objects facts page
         Given I am on "/plainte/objets/1"
