@@ -44,6 +44,13 @@ Feature:
         And the "facts_endHour" field should contain "11:00"
 
     @func
+    Scenario: I can click on the Go to facts button
+        Given I am on "/plainte/faits/1"
+        When I follow "Accéder à l'onglet : Objets concernés"
+        And I should be on "/plainte/objets/1"
+        And the response status code should be 200
+
+    @func
     Scenario: Scenario: I can see the comments space on the facts page
         Given I am on "/plainte/faits/3"
         And I should see a "#comment_content" element

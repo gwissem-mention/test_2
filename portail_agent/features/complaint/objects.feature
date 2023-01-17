@@ -43,6 +43,13 @@ Feature:
         And I should see "2 328 €"
 
     @func
+    Scenario: I can click on the Go to facts button
+        Given I am on "/plainte/objets/1"
+        When I follow "Accéder à l'onglet : Informations complémentaires"
+        And I should be on "/plainte/informations-complementaires/1"
+        And the response status code should be 200
+
+    @func
     Scenario: Scenario: I can see the comments space on the identity page
         Given I am on "/plainte/objets/3"
         And I should see a "#comment_content" element

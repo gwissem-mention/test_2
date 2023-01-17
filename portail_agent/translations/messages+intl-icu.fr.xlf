@@ -286,6 +286,10 @@
                 <source>pel.fsi.intervention</source>
                 <target>Intervention police ou gendarmerie</target>
             </trans-unit>
+            <trans-unit id="pel.go.to.tab">
+                <source>pel.go.to.tab</source>
+                <target>Accéder à l'onglet</target>
+            </trans-unit>
             <trans-unit id="pel.home">
                 <source>pel.home</source>
                 <target>Accueil</target>
