@@ -3,6 +3,9 @@ Feature:
     As a user
     I want to see the complaint additional information page
 
+    Background:
+        Given I am authenticated with PR5KTZ9R from GN
+
     @func
     Scenario: I want to show complaint additional information page
         Given I am on "/plainte/informations-complementaires/1"

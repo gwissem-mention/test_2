@@ -1,5 +1,10 @@
-<div id="title_navigation">
-    <h1>{{ 'pel.complaint.online.portal'|trans }} : {{ 'pel.fixtures.fsi.type'|trans }} {{ 'pel.fixtures.fsi.town'|trans }}</h1>
+<div class="title--navigation">
+    <h1>
+        {{ 'pel.complaint.online.portal'|trans }}
+        {% if app.user %}
+            : {{ 'pel.fixtures.fsi.type'|trans }} {{ 'pel.fixtures.fsi.town'|trans }}
+        {% endif %}
+    </h1>
     <ul class="list-group list-group-horizontal">
         <li class="border border-0 list-group-item {% if app.request.attributes.get('_route') is same as('home') %}text-decoration-underline{% endif %}">
             <a href="{{ path('home') }}" title="{{ 'pel.home.title'|trans }}">{{ 'pel.home'|trans }}</a>

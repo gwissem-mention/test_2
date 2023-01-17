@@ -11,9 +11,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class RejectController extends AbstractController
 {
+    #[IsGranted('IS_AUTHENTICATED')]
     #[Route(path: '/plainte/rejeter/{id}', name: 'complaint_reject', methods: ['POST'])]
     public function __invoke(
         Complaint $complaint,

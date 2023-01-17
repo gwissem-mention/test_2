@@ -3,6 +3,8 @@ default:
         default:
             contexts:
                 - App\Tests\Behat\BaseContext
+                - App\Tests\Behat\HttpContext
+                - App\Tests\Behat\UserContext
                 - FailAid\Context\FailureContext
 
     extensions:
@@ -26,7 +28,10 @@ func:
             sessions:
                 symfony:
                     symfony: ~
-
+        FriendsOfBehat\SymfonyExtension:
+            kernel:
+                environment: test
+            bootstrap: tests/bootstrap.php
 
 e2e:
     suites:
@@ -34,7 +39,12 @@ e2e:
             filters:
                 tags: '~@func'
     extensions:
+        FriendsOfBehat\SymfonyExtension:
+            kernel:
+                environment: e2e
+            bootstrap: tests/bootstrap.php
         Behat\MinkExtension:
+            files_path: "%paths.base%/tests/Behat/Files"
             base_url: http://nginx-agent
             browser_name: chrome
             sessions:

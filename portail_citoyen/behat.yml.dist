@@ -7,6 +7,10 @@ default:
                 - App\Tests\Behat\DatabaseContext
                 - App\Tests\Behat\FranceConnectContext
     extensions:
+        FriendsOfBehat\SymfonyExtension:
+            kernel:
+                environment: test
+            bootstrap: tests/bootstrap.php
         FailAid\Extension:
             screenshot:
                 directory: ./build/screenshots/

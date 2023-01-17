@@ -5,6 +5,7 @@ parameters:
         - tests/
 
 includes:
+    - phpstan-baseline.neon
     - tools/vendor/phpstan/phpstan-phpunit/extension.neon
     - tools/vendor/phpstan/phpstan-phpunit/rules.neon
     - tools/vendor/phpstan/phpstan-doctrine/extension.neon

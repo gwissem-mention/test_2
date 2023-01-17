@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Tests\Behat;
 
+use Behat\Behat\Hook\Scope\AfterScenarioScope;
+use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\Mink\Exception\ElementNotFoundException;
 use Behat\Mink\Exception\ExpectationException;
 use Behat\MinkExtension\Context\MinkContext;
@@ -18,10 +20,49 @@ final class BaseContext extends MinkContext
 {
     private const RETRY_SLEEP = 100000;
     private const RETRY_MAX_TIME = 10;
+    private readonly UserContext $userContext;
 
     public function __construct(
         private readonly TranslatorInterface $translator,
     ) {
+    }
+
+    /**
+     * @BeforeScenario
+     */
+    public function gatherContexts(BeforeScenarioScope $scope): void
+    {
+        $this->userContext = $scope->getEnvironment()->getContext(UserContext::class);
+    }
+
+    /**
+     * @AfterScenario
+     */
+    public function resetHeaders(AfterScenarioScope $afterScenario): void
+    {
+        $session = $this->getSession();
+        $driver = $session->getDriver();
+
+        if (!$driver instanceof SymfonyDriver) {
+            return;
+        }
+
+        // Reset severs parameters after each scenario, because it's not done by the client during the restart process
+        $driver->getClient()->setServerParameters([]);
+    }
+
+    public function visit($page): void
+    {
+        $this->setHeaders(function () use ($page) {
+            parent::visit($page);
+        });
+    }
+
+    public function iAmOnHomepage(): void
+    {
+        $this->setHeaders(function () {
+            parent::iAmOnHomepage();
+        });
     }
 
     /**
@@ -321,5 +362,27 @@ final class BaseContext extends MinkContext
         } while (\time() - $startTime <= $maxTime);
 
         throw $ex;
+    }
+
+    private function setHeaders(callable $callback): void
+    {
+        $headers = $this->userContext->getHeaders();
+
+        $session = $this->getSession();
+        $driver = $session->getDriver();
+
+        if ($driver instanceof SymfonyDriver && count($headers) > 0) {
+            $client = $driver->getClient();
+
+            /**
+             * @var string $name
+             * @var string $value
+             */
+            foreach ($headers as $name => $value) {
+                $client->setServerParameter('HTTP_'.strtoupper($name), $value);
+            }
+        }
+
+        $callback();
     }
 }

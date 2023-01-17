@@ -1,0 +1,13 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+    <div class="row mt-3">
+        <div class="col-10 col-md-8 col-lg-6 col-xl-4 mx-auto text-center">
+            <div class="ls-tight font-bolder fs-3 mb-3">{{ 'pel.login.as'|trans }}</div>
+            {{ form_start(form) }}
+            {{ form_widget(form.user) }}
+            <button class="w-100 btn btn-lg btn-primary mt-3" type="submit">{{ 'pel.login'|trans }}</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

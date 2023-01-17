@@ -1,0 +1,21 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Call to an undefined method Behat\\\\Testwork\\\\Environment\\\\Environment\\:\\:getContext\\(\\)\\.$#"
+			count: 1
+			path: tests/Behat/BaseContext.php
+
+		-
+			message: "#^Class App\\\\Tests\\\\Behat\\\\BaseContext has an uninitialized readonly property \\$userContext\\. Assign it in the constructor\\.$#"
+			count: 1
+			path: tests/Behat/BaseContext.php
+
+		-
+			message: "#^Method App\\\\Tests\\\\Behat\\\\BaseContext\\:\\:visit\\(\\) has parameter \\$page with no type specified\\.$#"
+			count: 1
+			path: tests/Behat/BaseContext.php
+
+		-
+			message: "#^Readonly property App\\\\Tests\\\\Behat\\\\BaseContext\\:\\:\\$userContext is assigned outside of the constructor\\.$#"
+			count: 1
+			path: tests/Behat/BaseContext.php

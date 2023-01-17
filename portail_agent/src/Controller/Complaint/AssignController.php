@@ -12,9 +12,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class AssignController extends AbstractController
 {
+    #[IsGranted('IS_AUTHENTICATED')]
     #[Route(path: '/plainte/attribuer/{id}', name: 'complaint_assign', methods: ['POST'])]
     public function __invoke(
         Complaint $complaint,
