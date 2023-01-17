@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html lang="fr" data-fr-scheme="system">
-<head>
-    {# PAGE #}
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>{% block title %}{{ 'pel.online.complaint'|trans }}{% endblock %}</title>
-    <meta name="theme-color" content="#000091">
-    <link rel="apple-touch-icon" href="{{ asset('build/favicon/apple-touch-icon.png') }}">
-    <link rel="icon" href="{{ asset('build/favicon/favicon.svg') }}" type="image/svg+xml">
-    <link rel="shortcut icon" href="{{ asset('build/favicon/favicon.ico') }}" type="image/x-icon">
-    <link rel="manifest" href="{{ asset('build/favicon/manifest.webmanifest') }}" crossorigin="use-credentials">
-    {# CSS #}
-    {% block stylesheets %}
-        {{ encore_entry_link_tags('app') }}
-    {% endblock %}
-</head>
-<body>
-    {% block layout %}{% endblock %}
-    {# JS #}
-    {% block javascripts %}
-        {{ encore_entry_script_tags('app') }}
-    {% endblock %}
-</body>
+    <head>
+        {# PAGE #}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>{% block title %}{{ 'pel.online.complaint'|trans }}{% endblock %}</title>
+        <meta name="theme-color" content="#000091">
+        <link rel="apple-touch-icon" href="{{ asset('build/favicon/apple-touch-icon.png') }}">
+        <link rel="icon" href="{{ asset('build/favicon/favicon.svg') }}" type="image/svg+xml">
+        <link rel="shortcut icon" href="{{ asset('build/favicon/favicon.ico') }}" type="image/x-icon">
+        <link rel="manifest" href="{{ asset('build/favicon/manifest.webmanifest') }}" crossorigin="use-credentials">
+        {# CSS #}
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+    </head>
+    <body>
+        {% block layout %}{% endblock %}
+        {# JS #}
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    </body>
 </html>

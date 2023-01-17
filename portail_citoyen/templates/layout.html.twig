@@ -4,5 +4,7 @@
     {% block header %}
         {{ include('common/_header.html.twig') }}
     {% endblock %}
-    {% block body %}{% endblock %}
+    <main role="main">
+        {% block body %}{% endblock %}
+    </main>
 {% endblock %}
