@@ -86,10 +86,10 @@
                                 <button type="button" class="btn btn-outline-primary" id="complaint-reassign-button">
                                     <i class="bi bi-arrow-return-right"></i> {{ 'pel.reasign'|trans }}
                                 </button>
+                                <button type="button" class="btn btn-outline-primary" data-controller="complaint" data-action="complaint#commentFocus" id="complaint-comment-button">
+                                    <i class="bi bi-chat-left"></i> {{ 'pel.comment'|trans }}
+                                </button>
                             {% endif %}
-                            <button type="button" class="btn btn-outline-primary" data-controller="complaint" data-action="complaint#commentFocus" id="complaint-comment-button">
-                                <i class="bi bi-chat-left"></i> {{ 'pel.comment'|trans }}
-                            </button>
                         </div>
                     </div>
                 </div>
