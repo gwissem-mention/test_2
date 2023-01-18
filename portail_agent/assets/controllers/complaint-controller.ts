@@ -46,6 +46,12 @@ export default class extends Controller {
                                 complaintReassignButton.remove();
                             }
 
+                            const commentButton: Element | null = document.getElementById("complaint-comment-button");
+
+                            if (commentButton) {
+                                commentButton.remove();
+                            }
+
                             const commentField: Element | null = document.getElementById("comment_content");
 
                             if (commentField) {
