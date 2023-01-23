@@ -62,3 +62,19 @@
     flex-direction: $direction
     align-items: $align-items
     justify-content: $justify-content
+
+@mixin hide-mobile
+    display: flex
+
+    @media screen and (max-width: $breakpoint-medium)
+        display: none
+
+@mixin show-mobile
+    display: none
+
+    @media screen and (max-width: $breakpoint-medium)
+        display: flex
+
+@mixin push-mobile
+    @media screen and (max-width: $breakpoint-medium)
+        margin-bottom: $margin-medium

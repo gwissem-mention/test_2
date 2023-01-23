@@ -2,5 +2,17 @@
     &--red-marianne
         color: var(--red-marianne-main-472)
 
+    &--push-sides
+        margin: 0 $margin-small $margin-medium $margin-small
+
+        @media screen and (max-width: $breakpoint-medium)
+            margin: 0 $margin-medium $margin-medium $margin-medium
+
     &-center
         text-align: center
+
+        &-show-mobile
+            @include show-mobile
+
+        &-push-mobile
+            @include push-mobile

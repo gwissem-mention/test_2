@@ -84,54 +84,62 @@
             </div>
         </div>
         <div class="fr-grid-row fr-background-alt--grey fr-mt-1w fr-pt-3w fr-pb-5w fr-mb-5w">
-            <div class="fr-col-12">
+            <div class="fr-col-12 fr-col--vertical">
                 <p class="fr-callout__title fr-text-center">{{ 'pel.be.sure.facts.are.relevant.for.this.service'|trans }}</p>
                 <div class="fr-grid-row fr-grid-row--home">
                     <div class="fr-col-12 fr-col-md-5 fr-col--home">
-                        <div class="fr-callout fr-callout--pink-tuile">
-                            <div class="fr-callout__title">{{ 'pel.dont.use.online.complaint'|trans }}</div>
-                            <p class="fr-callout__text">
-                                <ul>
-                                    <li>{{ 'pel.if.you.know.offense.author'|trans }}</li>
-                                    <li>{{ 'pel.if.you.are.minor'|trans }}</li>
-                                    <li>{{ 'pel.if.you.are.victim.of.online.scam'|trans }}</li>
-                                    <li>{{ 'pel.if.you.are.victim.of.credit.card.fraudulent.use'|trans }}</li>
-                                    <li>{{ 'pel.if.you.are.victim.of.violence'|trans }}</li>
-                                </ul>
-                            </p>
+                        <div class="fr-callout fr-callout--vertical fr-callout--pink-tuile">
+                            <div class="fr-callout__title fr-text-center">{{ 'pel.dont.use.online.complaint'|trans }}</div>
+                            <ul class="fr-callout__text">
+                                <li>{{ 'pel.if.you.know.offense.author'|trans }}</li>
+                                <li>{{ 'pel.if.you.are.minor'|trans }}</li>
+                                <li>{{ 'pel.if.you.are.victim.of.online.scam'|trans }}</li>
+                                <li>{{ 'pel.if.you.are.victim.of.credit.card.fraudulent.use'|trans }}</li>
+                                <li>{{ 'pel.if.you.are.victim.of.violence'|trans }}</li>
+                            </ul>
                         </div>
-                        <div class="fr-text-center">
-                            <a href="#" class="fr-btn fr-btn--icon-right fr-icon-logout-box-r-line">
+                        <p class="fr-text--bold fr-text--push-sides">{{ 'pel.fsi.general.orienteer.message'|trans }}</p>
+                        <div class="fr-text-center fr-text-center-show-mobile fr-text-center-push-mobile">
+                            <a href="#" class="fr-btn fr-btn--secondary fr-btn--icon-right fr-icon-logout-box-r-line">
                                 {{ 'pel.fsi.general.orienteer'|trans }}
                             </a>
                         </div>
                     </div>
                     <div class="fr-col-12 fr-col-md-5 fr-col--home">
-                        <div class="fr-callout fr-callout--green-emeraude">
-                            <div class="fr-callout__title">{{ 'pel.use.online.complaint.for'|trans }}</div>
-                            <p class="fr-callout__text">
-                                <ul>
-                                    <li>{{ 'pel.damage.to.a.vehicle'|trans }}</li>
-                                    <li>{{ 'pel.damage.except.vehicle'|trans }}</li>
-                                    <li>{{ 'pel.thefts'|trans }}</li>
-                                    <li>{{ 'pel.drive.complaints'|trans }}</li>
-                                    <li>{{ 'pel.fraudulent.use.of.stolen.credit.card'|trans }}</li>
-                                    <li>{{ 'pel.scam.except.online'|trans }}</li>
-                                    <li>{{ 'pel.other.goods.damages'|trans }}</li>
-                                </ul>
-                                {{ 'pel.you.dont.know.offense.author'|trans }}
-                            </p>
+                        <div class="fr-callout fr-callout--vertical fr-callout--green-emeraude">
+                            <div class="fr-callout__title fr-text-center">{{ 'pel.use.online.complaint.for'|trans }}</div>
+                            <ul class="fr-callout__text">
+                                <li>{{ 'pel.victim.of.damage.to.property'|trans }}</li>
+                                <li>{{ 'pel.theft.victim'|trans }}</li>
+                                <li>{{ 'pel.victim.of.credit.card.theft'|trans }}</li>
+                                <li>{{ 'pel.victim.of.offline.scams'|trans }}</li>
+                                <li>{{ 'pel.victim.of.other.property.crimes'|trans }}</li>
+                            </ul>
+                            <p class="fr-text-center m-0">{{ 'pel.you.dont.know.offense.author'|trans }}</p>
                         </div>
-                        <div class="fr-text-center">
-                            <button class="fr-btn" data-fr-opened="false" aria-controls="fr-modal-complaint-confirm" id="continue_button">
+                        <div class="fr-text-center fr-text-center-show-mobile">
+                            <button class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line" data-fr-opened="false" aria-controls="fr-modal-complaint-confirm" id="continue_button">
                                 {{ 'pel.fill.a.complaint'|trans }}
                             </button>
                         </div>
                     </div>
                 </div>
-                {# TO DO : Remove breakline #}
-                <br>
-                <p class="text-center fr-text-center">{{ 'pel.fsi.general.orienteer.message'|trans }}</p>
+                <div class="fr-grid-row fr-grid-row--home fr-grid-row--home-hide-mobile">
+                    <div class="fr-col-12 fr-col-md-5 fr-col--home">
+                        <div class="fr-text-center">
+                            <a href="#" class="fr-btn fr-btn--secondary fr-btn--icon-right fr-icon-logout-box-r-line">
+                                {{ 'pel.fsi.general.orienteer'|trans }}
+                            </a>
+                        </div>
+                    </div>
+                    <div class="fr-col-12 fr-col-md-5 fr-col--home">
+                        <div class="fr-text-center">
+                            <button class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line" data-fr-opened="false" aria-controls="fr-modal-complaint-confirm" id="continue_button">
+                                {{ 'pel.fill.a.complaint'|trans }}
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="fr-grid-row fr-background-alt--grey fr-mt-1w fr-pt-3w fr-pb-5w fr-mb-5w fr-grid-row--center">
