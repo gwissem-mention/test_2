@@ -8,13 +8,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const persistedAccordionId: number = (accordionPersister.getPersistedCurrentAccordion()) ? parseInt(String(accordionPersister.getPersistedCurrentAccordion())) : 1;
 
     // Initializes breadcrumb and accordion with persisted data at page load.
-    if (persistedAccordionId) {
-        accordionPersister.persistCurrentAccordion(persistedAccordionId);
-        accordionPersister.setCurrentAccordion(persistedAccordionId);
+    accordionPersister.persistCurrentAccordion(1);
+    accordionPersister.setCurrentAccordion(1);
 
-        if (complaintsBreadcrumb) {
-            breadcrumbPersister.setCurrentBreadcrumb(complaintsBreadcrumb, persistedAccordionId);
-        }
+    if (complaintsBreadcrumb) {
+        breadcrumbPersister.setCurrentBreadcrumb(complaintsBreadcrumb, 1);
     }
 
     // Updates breadcrumb when accordion title is clicked.
