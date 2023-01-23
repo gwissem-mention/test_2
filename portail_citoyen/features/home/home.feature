@@ -35,13 +35,11 @@ Feature:
             | pel.if.person.injured.or.in.danger                  |
             | pel.be.sure.facts.are.relevant.for.this.service     |
             | pel.use.online.complaint.for                        |
-            | pel.damage.to.a.vehicle                             |
-            | pel.damage.except.vehicle                           |
-            | pel.thefts                                          |
-            | pel.drive.complaints                                |
-            | pel.fraudulent.use.of.stolen.credit.card            |
-            | pel.scam.except.online                              |
-            | pel.other.goods.damages                             |
+            | pel.victim.of.damage.to.property                    |
+            | pel.theft.victim                                    |
+            | pel.victim.of.credit.card.theft                     |
+            | pel.victim.of.offline.scams                         |
+            | pel.victim.of.other.property.crimes                 |
             | pel.you.dont.know.offense.author                    |
             | pel.fill.a.complaint                                |
             | pel.dont.use.online.complaint                       |

@@ -374,14 +374,6 @@
                 <source>pel.credit.card.number</source>
                 <target>N° de carte bancaire</target>
             </trans-unit>
-            <trans-unit id="pel.damage.to.a.vehicle">
-                <source>pel.damage.to.a.vehicle</source>
-                <target>Méfait à un véhicule</target>
-            </trans-unit>
-            <trans-unit id="pel.damage.except.vehicle">
-                <source>pel.damage.except.vehicle</source>
-                <target>Méfait (dégradation à un bien à l'exception des véhicules)</target>
-            </trans-unit>
             <trans-unit id="pel.date.help">
                 <source>pel.date.help</source>
                 <target>Date au format jj/mm/aaaa</target>
@@ -428,15 +420,11 @@
             </trans-unit>
             <trans-unit id="pel.dont.use.online.complaint">
                 <source>pel.dont.use.online.complaint</source>
-                <target>N'UTILISEZ PAS Plainte en ligne :</target>
+                <target>N'UTILISEZ PAS Plainte en ligne si :</target>
             </trans-unit>
             <trans-unit id="pel.dont.know.the.offense.author">
                 <source>pel.dont.know.the.offense.author</source>
                 <target>Ne pas connaître l'identité de l'auteur de l'infraction</target>
-            </trans-unit>
-            <trans-unit id="pel.drive.complaints">
-                <source>pel.drive.complaints</source>
-                <target>Plaintes de conduite</target>
             </trans-unit>
             <trans-unit id="pel.dropzone.cancel.upload">
                 <source>pel.dropzone.cancel.upload</source>
@@ -532,7 +520,7 @@
             </trans-unit>
             <trans-unit id="pel.fill.a.complaint">
                 <source>pel.fill.a.complaint</source>
-                <target>Poursuivre ma déclaration</target>
+                <target>Poursuivre ma télédéclaration</target>
             </trans-unit>
             <trans-unit id="pel.files">
                 <source>pel.files</source>
@@ -550,10 +538,6 @@
                 <source>pel.first.names</source>
                 <target>Prénom(s)</target>
             </trans-unit>
-            <trans-unit id="pel.fraudulent.use.of.stolen.credit.card">
-                <source>pel.fraudulent.use.of.stolen.credit.card</source>
-                <target>L'utilisation frauduleuse de votre carte bleue volée</target>
-            </trans-unit>
             <trans-unit id="pel.france.connect">
                 <source>pel.france.connect</source>
                 <target>FranceConnect</target>
@@ -568,7 +552,7 @@
             </trans-unit>
             <trans-unit id="pel.fsi.general.orienteer.message">
                 <source>pel.fsi.general.orienteer.message</source>
-                <target>Besoin d'aide ? Rendez-vous sur le site orienteur du ministère afin de pouvoir déposer plainte sur le téléservice approprié.</target>
+                <target>Vous avez un doute, consultez le site du Ministère de l'intérieur pour être orienté vers le service approprié.</target>
             </trans-unit>
             <trans-unit id="pel.fsi.visit">
                 <source>pel.fsi.visit</source>
@@ -652,23 +636,23 @@
             </trans-unit>
             <trans-unit id="pel.if.you.are.minor">
                 <source>pel.if.you.are.minor</source>
-                <target>Si vous êtes mineur</target>
+                <target>Vous êtes mineur</target>
             </trans-unit>
             <trans-unit id="pel.if.you.are.victim.of.online.scam">
                 <source>pel.if.you.are.victim.of.online.scam</source>
-                <target>Si vous avez été victime d'une escroquerie sur internet</target>
+                <target>Vous avez été victime d'une escroquerie sur Internet</target>
             </trans-unit>
             <trans-unit id="pel.if.you.are.victim.of.credit.card.fraudulent.use">
                 <source>pel.if.you.are.victim.of.credit.card.fraudulent.use</source>
-                <target>Si vous êtes victime d'utilisation frauduleuse de votre carte bancaire toujours en votre possession</target>
+                <target>Vous êtes victime d'utilisation frauduleuse de votre carte bancaire toujours en votre possession</target>
             </trans-unit>
             <trans-unit id="pel.if.you.are.victim.of.violence">
                 <source>pel.if.you.are.victim.of.violence</source>
-                <target>Si vous avez été victimes de viol, violence, harcèlement, discrimination et autres atteintes à votre personne</target>
+                <target>Vous avez été victime de viol, violence, harcèlement, discrimination et autres atteintes à votre personne</target>
             </trans-unit>
             <trans-unit id="pel.if.you.know.offense.author">
                 <source>pel.if.you.know.offense.author</source>
-                <target>Si vous connaissez l'identité de l'auteur</target>
+                <target>Vous connaissez l'identité de l'auteur</target>
             </trans-unit>
             <trans-unit id="pel.infraction.type">
                 <source>pel.infraction.type</source>
@@ -906,10 +890,6 @@
                 <source>pel.other.complex.offenses</source>
                 <target>l’enquêteur estime que cela est nécessaire au regard des éléments télédéclarés.</target>
             </trans-unit>
-            <trans-unit id="pel.other.goods.damages">
-                <source>pel.other.goods.damages</source>
-                <target>Autres atteintes aux biens</target>
-            </trans-unit>
             <trans-unit id="pel.passage.fsi">
                 <source>pel.passage.fsi</source>
                 <target>Indications du passage des FSI</target>
@@ -990,10 +970,6 @@
                 <source>pel.resides.at</source>
                 <target>Réside à/au</target>
             </trans-unit>
-            <trans-unit id="pel.scam.except.online">
-                <source>pel.scam.except.online</source>
-                <target>Escroquerie hors internet</target>
-            </trans-unit>
             <trans-unit id="pel.serial.number">
                 <source>pel.serial.number</source>
                 <target>N° de série/IMEI</target>
@@ -1050,10 +1026,6 @@
                 <source>pel.the</source>
                 <target>Le</target>
             </trans-unit>
-            <trans-unit id="pel.thefts">
-                <source>pel.thefts</source>
-                <target>Vols</target>
-            </trans-unit>
             <trans-unit id="pel.to.log.in">
                 <source>pel.to.log.in</source>
                 <target>Se connecter</target>
@@ -1084,7 +1056,7 @@
             </trans-unit>
             <trans-unit id="pel.use.online.complaint.for">
                 <source>pel.use.online.complaint.for</source>
-                <target>Utilisez plainte en ligne pour :</target>
+                <target>Utilisez Plainte en ligne si :</target>
             </trans-unit>
             <trans-unit id="pel.validate">
                 <source>pel.validate</source>
@@ -1096,7 +1068,7 @@
             </trans-unit>
             <trans-unit id="pel.victim.at.time.of.facts.precisions">
                 <source>pel.victim.at.time.of.facts.precisions</source>
-                <target>Précisions concernant les violences dont vous avez victimes</target>
+                <target>Précisions concernant les violences dont vous avez été victime</target>
             </trans-unit>
             <trans-unit id="pel.victim.of.violence">
                 <source>pel.victim.of.violence</source>
@@ -1233,6 +1205,26 @@
             <trans-unit id="pel.update">
                 <source>pel.update</source>
                 <target>Modifier</target>
+            </trans-unit>
+            <trans-unit id="pel.victim.of.damage.to.property">
+                <source>pel.victim.of.damage.to.property</source>
+                <target>Vous êtes victime de dégradation(s) sur un/des bien(s)</target>
+            </trans-unit>
+            <trans-unit id="pel.theft.victim">
+                <source>pel.theft.victim</source>
+                <target>Vous êtes victime de vol(s)</target>
+            </trans-unit>
+            <trans-unit id="pel.victim.of.credit.card.theft">
+                <source>pel.victim.of.credit.card.theft</source>
+                <target>Vous êtes victime de vol de votre carte bancaire suivi d'utilisation(s) frauduleuse(s)</target>
+            </trans-unit>
+            <trans-unit id="pel.victim.of.offline.scams">
+                <source>pel.victim.of.offline.scams</source>
+                <target>Vous êtes victime d'escroqueries « Hors Internet »</target>
+            </trans-unit>
+            <trans-unit id="pel.victim.of.other.property.crimes">
+                <source>pel.victim.of.other.property.crimes</source>
+                <target>Vous êtes victime d'autres atteintes aux biens</target>
             </trans-unit>
         </body>
     </file>
