@@ -124,7 +124,9 @@ class IdentityType extends AbstractType
 
     private function addCorporationFields(FormInterface $form): void
     {
-        $form->add('corporation', CorporationType::class);
+        $form->add('corporation', CorporationType::class, [
+            'need_same_address_field' => true,
+        ]);
     }
 
     private function removeCorporationFields(FormInterface $form, ?IdentityModel $identityModel = null): void
@@ -141,6 +143,7 @@ class IdentityType extends AbstractType
             ])
             ->add('representedPersonContactInformation', ContactInformationType::class, [
                 'label' => 'pel.contact.information',
+                'need_same_address_field' => true,
             ]);
     }
 

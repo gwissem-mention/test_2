@@ -105,6 +105,7 @@ class CorporationType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => CorporationModel::class,
+            'need_same_address_field' => false,
         ]);
     }
 }

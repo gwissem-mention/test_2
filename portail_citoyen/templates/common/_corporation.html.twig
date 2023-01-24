@@ -7,10 +7,23 @@
     {{ form_row(form.email) }}
     {{ form_row(form.phone) }}
     {{ form_row(form.country) }}
-    {% if form.frenchAddress is defined %}
-        {{ form_row(form.frenchAddress) }}
-    {% endif %}
-    {% if form.foreignAddress is defined %}
-        {{ form_row(form.foreignAddress) }}
+    {% if form.sameAddress is defined %}
+        {% if form.frenchAddress is defined %}
+            {{ form_label(form.frenchAddress, 'pel.address') }}
+            {{ form_row(form.sameAddress) }}
+            {{ form_row(form.frenchAddress, {attr:{'data-live-ignore':true}}) }}
+        {% endif %}
+        {% if form.foreignAddress is defined %}
+            {{ form_label(form.foreignAddress, 'pel.address') }}
+            {{ form_row(form.sameAddress) }}
+            {{ form_row(form.foreignAddress, {attr:{'data-live-ignore':true}}) }}
+        {% endif %}
+    {% else %}
+        {% if form.frenchAddress is defined %}
+            {{ form_row(form.frenchAddress) }}
+        {% endif %}
+        {% if form.foreignAddress is defined %}
+            {{ form_row(form.foreignAddress) }}
+        {% endif %}
     {% endif %}
 </div>

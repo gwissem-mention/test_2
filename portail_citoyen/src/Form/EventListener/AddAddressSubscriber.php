@@ -7,6 +7,7 @@ namespace App\Form\EventListener;
 use App\Form\AddressEtalabType;
 use App\Form\Model\Identity\EmbedAddressInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -45,13 +46,25 @@ class AddAddressSubscriber implements EventSubscriberInterface
         $form
             ->remove('foreignAddress')
             ->add('frenchAddress', AddressEtalabType::class, [
-                'address_label' => 'pel.address',
+                'address_label' => $form->getConfig()->getOption('need_same_address_field') ? false : 'pel.address',
                 'address_constraints' => [
                     new NotBlank(),
                 ],
                 'address_data' => $model?->getFrenchAddress()?->getLabel(),
                 'required' => true,
             ]);
+
+        if ($form->getConfig()->getOption('need_same_address_field')) {
+            $form->add('sameAddress', CheckboxType::class, [
+                'mapped' => false,
+                'label' => 'pel.same.address.as.declarant',
+                'required' => false,
+                'attr' => [
+                    'data-controller' => 'form',
+                    'data-action' => 'form#sameAddress',
+                ],
+            ]);
+        }
 
         $model?->setForeignAddress(null);
     }
@@ -63,11 +76,23 @@ class AddAddressSubscriber implements EventSubscriberInterface
         $form
             ->remove('frenchAddress')
             ->add('foreignAddress', TextType::class, [
-                'label' => 'pel.address',
+                'label' => $form->getConfig()->getOption('need_same_address_field') ? false : 'pel.address',
                 'constraints' => [
                     new NotBlank(),
                 ],
             ]);
+
+        if ($form->getConfig()->getOption('need_same_address_field')) {
+            $form->add('sameAddress', CheckboxType::class, [
+                'mapped' => false,
+                'label' => 'pel.same.address.as.declarant',
+                'required' => false,
+                'attr' => [
+                    'data-controller' => 'form',
+                    'data-action' => 'form#sameAddress',
+                ],
+            ]);
+        }
 
         $model?->setFrenchAddress(null);
     }

@@ -770,6 +770,10 @@
                 <source>pel.next</source>
                 <target>Suivant</target>
             </trans-unit>
+            <trans-unit id="pel.same.address.as.declarant">
+                <source>pel.same.address.as.declarant</source>
+                <target>Adresse de la victime identique à la mienne</target>
+            </trans-unit>
             <trans-unit id="pel.save">
                 <source>pel.save</source>
                 <target>Sauvegarder</target>
