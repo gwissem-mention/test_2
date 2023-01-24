@@ -30,6 +30,9 @@ class PhoneType extends AbstractType
             ->add('number', TelType::class, [
                 'attr' => [
                     'class' => 'phone-intl',
+                    'data-controller' => 'form',
+                    'data-action' => 'input->form#trimByPattern',
+                    'data-form-pattern-param' => '[^0-9-\s]',
                 ],
                 'constraints' => [
                     new NotBlank(),

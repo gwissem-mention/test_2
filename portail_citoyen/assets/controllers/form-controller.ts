@@ -57,4 +57,16 @@ export default class extends Controller {
             element.value = element.value.toUpperCase();
         }
     }
+
+    // Must be ignored because we can't type url here.
+    // @ts-ignore
+    public trimByPattern({params: {pattern}}): void {
+        const element: Element = this.element;
+
+        if (element) {
+            // Must be ignored because "value" property does not exist on Element type.
+            // @ts-ignore
+            element.value = element.value.replaceAll(new RegExp(pattern, "g"), "");
+        }
+    }
 }
