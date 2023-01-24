@@ -23,6 +23,7 @@ Feature:
         And I should see the key "pel.reporting" translated
         And I should see the key "pel.faq" translated
         And I should see a "table" element
+        And I should see 26 "tr" element
         And I should see the key "pel.deposit.date" translated
         And I should see the key "pel.facts" translated
         And I should see the key "pel.facts.date" translated
@@ -33,6 +34,12 @@ Feature:
         And I should see the key "pel.a.opj.name" translated
         And I should see the key "pel.declaration.number" translated
         And I should see the key "pel.comments" translated
+        And I should see 5 ".btn-primary" element
+        And I should see 5 ".btn-secondary" element
+        And I should see 5 ".btn-danger" element
+        And I should see 5 ".btn-warning" element
+        And I should see 5 ".btn-success" element
+
 
     @func
     Scenario: I can click on a complaint link on the table

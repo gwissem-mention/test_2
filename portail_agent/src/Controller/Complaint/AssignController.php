@@ -38,7 +38,7 @@ class AssignController extends AbstractController
                 ], 422);
             }
 
-            $complaintRepository->save($complaint, true);
+            $complaintRepository->save($complaint->setStatus(Complaint::STATUS_ASSIGNED), true);
 
             return $this->json(
                 ['success' => true, 'agent_name' => $agentRepository->find($complaint->getAssignedTo())?->getName()]

@@ -26,7 +26,7 @@ class RejectController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $complaintRepository->save($complaint->setStatus(Complaint::STATUS_CLOSED), true);
+            $complaintRepository->save($complaint->setStatus(Complaint::STATUS_REJECTED), true);
 
             return $this->json(['success' => true]);
         }
