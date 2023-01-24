@@ -670,6 +670,10 @@
                 <source>pel.if.you.know.offense.author</source>
                 <target>Si vous connaissez l'identité de l'auteur</target>
             </trans-unit>
+            <trans-unit id="pel.in.case.of.emergency.compose.the.17.or.the.112">
+                <source>pel.in.case.of.emergency.compose.the.17.or.the.112.or.send.sms.to.114</source>
+                <target>EN CAS D'URGENCE, composez le 17 ou le 112. Ou envoyez un SMS au 114.</target>
+            </trans-unit>
             <trans-unit id="pel.infraction.type">
                 <source>pel.infraction.type</source>
                 <target>Type d'infraction</target>
