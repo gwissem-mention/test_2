@@ -18,6 +18,17 @@
         </thead>
         <tbody>
             {% for complaint in complaints %}
+                {% if complaint.status == constant('App\\Entity\\Complaint::STATUS_ASSIGNMENT_PENDING') %}
+                    {% set status_btn_color = 'secondary' %}
+                {% elseif complaint.status == constant('App\\Entity\\Complaint::STATUS_ASSIGNED') %}
+                    {% set status_btn_color = 'primary' %}
+                {% elseif complaint.status == constant('App\\Entity\\Complaint::STATUS_ONGOING_LRP') %}
+                    {% set status_btn_color = 'warning' %}
+                {% elseif complaint.status == constant('App\\Entity\\Complaint::STATUS_MP_DECLARANT') %}
+                    {% set status_btn_color = 'success' %}
+                {% elseif complaint.status == constant('App\\Entity\\Complaint::STATUS_REJECTED') %}
+                    {% set status_btn_color = 'danger' %}
+                {% endif %}
                 <tr>
                     <td>{{ complaint.createdAt|date('d/m/Y') }}</td>
                     <td>{% include 'common/_complaint_natures.html.twig' with {'natures':complaint.facts.natures} only %}</td>
@@ -25,12 +36,12 @@
                     <td>{{ complaint.alert|u.truncate(15, '...') }}</td>
                     <td>{{ complaint.appointmentDate|date('d/m/Y') }}</td>
                     <td>{{ (complaint.identity.firstName ~ ' ' ~ complaint.identity.lastName)|u.truncate(15, '...') }}</td>
-                    <td>{{ complaint.status|u.truncate(15, '...') }}</td>
+                    <td>
+                        <a href="{{ path('complaint_summary', {id:complaint.id}) }}" target="_blank" class="btn btn-sm btn-{{ status_btn_color }}">{{ complaint.status|trans|u.truncate(15, '...') }}</a>
+                    </td>
                     <td>{{ complaint.assignedTo|agent_name|u.truncate(15, '...') }}</td>
                     <td>
-                        <a href="{{ path('complaint_summary', {id: complaint.id}) }}" target="_blank">
-                            {{ complaint.declarationNumber }}
-                        </a>
+                        <a href="{{ path('complaint_summary', {id: complaint.id}) }}" target="_blank">{{ complaint.declarationNumber }}</a>
                     </td>
                     <td>{{ complaint.comments|length }}</td>
                 </tr>

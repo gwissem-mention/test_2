@@ -75,8 +75,8 @@ Feature:
         And I should focus the "comment_content" element
 
     @javascript
-    Scenario: I can add a comment from the summary page
-        Given I am on "/plainte/objets/4"
+    Scenario: I can add a comment from the objects page
+        Given I am on "/plainte/objets/8"
         And the "#comments-feed-title" element should contain "Espace commentaires (5)"
         Then I fill in "comment_content" with "Ceci est un commentaire test."
         When I press "comment-button"

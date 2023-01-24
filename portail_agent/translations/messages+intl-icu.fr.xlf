@@ -34,6 +34,14 @@
                 <source>pel.appointment.needed</source>
                 <target>RDV nécessaire</target>
             </trans-unit>
+            <trans-unit id="pel.assignment.pending">
+                <source>pel.assignment.pending</source>
+                <target>A attribuer</target>
+            </trans-unit>
+            <trans-unit id="pel.assigned">
+                <source>pel.assigned</source>
+                <target>Attribuée</target>
+            </trans-unit>
             <trans-unit id="pel.complaint.assignation">
                 <source>pel.complaint.assignation</source>
                 <target>Assignation de la plainte</target>
@@ -362,6 +370,10 @@
                 <source>pel.mobile.phone</source>
                 <target>Téléphone portable</target>
             </trans-unit>
+            <trans-unit id="pel.mp.declarant">
+                <source>pel.mp.declarant</source>
+                <target>Envoie PM déclarant</target>
+            </trans-unit>
             <trans-unit id="pel.nationality">
                 <source>pel.nationality</source>
                 <target>Nationalité</target>
@@ -385,6 +397,10 @@
             <trans-unit id="pel.online.complaint">
                 <source>pel.online.complaint</source>
                 <target>Plainte en ligne</target>
+            </trans-unit>
+            <trans-unit id="pel.ongoing.lrp">
+                <source>pel.ongoing.lrp</source>
+                <target>En cours LRP</target>
             </trans-unit>
             <trans-unit id="pel.other">
                 <source>pel.other</source>
@@ -469,6 +485,10 @@
             <trans-unit id="pel.reject">
                 <source>pel.reject</source>
                 <target>Rejeter</target>
+            </trans-unit>
+            <trans-unit id="pel.rejected">
+                <source>pel.rejected</source>
+                <target>Rejetée</target>
             </trans-unit>
             <trans-unit id="pel.reorientation.other.solution">
                 <source>pel.reorientation.other.solution</source>

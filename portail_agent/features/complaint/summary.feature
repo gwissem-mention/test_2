@@ -158,7 +158,7 @@ Feature:
         And I should see a ".toast" element
         And I should see the key "pel.the.declaration.has.been.refused" translated
         And I am on "/"
-        And I should not see "PEL-2022-00000001"
+        And I should see 6 ".btn-danger" element
 
     @javascript
     Scenario: I can see form errors the reject form when reject_refusalText is too short
