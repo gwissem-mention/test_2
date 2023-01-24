@@ -69,4 +69,86 @@ export default class extends Controller {
             element.value = element.value.replaceAll(new RegExp(pattern, "g"), "");
         }
     }
+
+    public sameAddress(): void {
+        const checkboxRepresentedPerson: HTMLElement | null = document.getElementById("identity_representedPersonContactInformation_sameAddress");
+        const checkboxCorporation: HTMLElement | null = document.getElementById("identity_corporation_sameAddress");
+        const addressDeclarant: HTMLElement | null = document.getElementById("identity_contactInformation_frenchAddress_address");
+        const frenchAddressRepresentedPerson: HTMLElement | null = document.getElementById("identity_representedPersonContactInformation_frenchAddress_address");
+        const foreignAddressRepresentedPerson: HTMLElement | null = document.getElementById("identity_representedPersonContactInformation_foreignAddress");
+        const frenchAddressCorporation: HTMLElement | null = document.getElementById("identity_corporation_frenchAddress_address");
+        const foreignAddressCorporation: HTMLElement | null = document.getElementById("identity_corporation_foreignAddress");
+
+        // Must be ignored because "checked" property does not exist on HTMLElement type.
+        // @ts-ignore
+        if (checkboxRepresentedPerson && checkboxRepresentedPerson.checked) {
+            if (addressDeclarant && frenchAddressRepresentedPerson) {
+                // Must be ignored because "value" property does not exist on HTMLElement type
+                // @ts-ignore
+                frenchAddressRepresentedPerson.value = addressDeclarant.value;
+                frenchAddressRepresentedPerson.setAttribute("disabled", "disabled");
+            }
+
+            if (addressDeclarant && foreignAddressRepresentedPerson) {
+                // Must be ignored because "value" property does not exist on HTMLElement type
+                // @ts-ignore
+                foreignAddressRepresentedPerson.value = addressDeclarant.value;
+                foreignAddressRepresentedPerson.setAttribute("disabled", "disabled");
+            }
+        }
+
+        // Must be ignored because "checked" property does not exist on HTMLElement type
+        // @ts-ignore
+        if (checkboxRepresentedPerson && !checkboxRepresentedPerson.checked) {
+            if (frenchAddressRepresentedPerson) {
+                // Must be ignored because "value" property does not exist on HTMLElement type
+                // @ts-ignore
+                frenchAddressRepresentedPerson.value = "";
+                frenchAddressRepresentedPerson.removeAttribute("disabled");
+            }
+
+            if (foreignAddressRepresentedPerson) {
+                // Must be ignored because "value" property does not exist on HTMLElement type
+                // @ts-ignore
+                foreignAddressRepresentedPerson.value = "";
+                foreignAddressRepresentedPerson.removeAttribute("disabled");
+            }
+        }
+
+        // Must be ignored because "checked" property does not exist on HTMLElement type.
+        // @ts-ignore
+        if (checkboxCorporation && checkboxCorporation.checked) {
+            if (addressDeclarant && frenchAddressCorporation) {
+                // Must be ignored because "value" property does not exist on HTMLElement type
+                // @ts-ignore
+                frenchAddressCorporation.value = addressDeclarant.value;
+                frenchAddressCorporation.setAttribute("disabled", "disabled");
+            }
+
+            if (addressDeclarant && foreignAddressCorporation) {
+                // Must be ignored because "value" property does not exist on HTMLElement type
+                // @ts-ignore
+                foreignAddressCorporation.value = addressDeclarant.value;
+                foreignAddressCorporation.setAttribute("disabled", "disabled");
+            }
+        }
+
+        // Must be ignored because "checked" property does not exist on HTMLElement type
+        // @ts-ignore
+        if (checkboxCorporation && !checkboxCorporation.checked) {
+            if (frenchAddressCorporation) {
+                // Must be ignored because "value" property does not exist on HTMLElement type
+                // @ts-ignore
+                frenchAddressCorporation.value = "";
+                frenchAddressCorporation.removeAttribute("disabled");
+            }
+
+            if (foreignAddressCorporation) {
+                // Must be ignored because "value" property does not exist on HTMLElement type
+                // @ts-ignore
+                foreignAddressCorporation.value = "";
+                foreignAddressCorporation.removeAttribute("disabled");
+            }
+        }
+    }
 }

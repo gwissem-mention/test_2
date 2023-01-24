@@ -57,6 +57,7 @@ class ContactInformationType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => ContactInformationModel::class,
+            'need_same_address_field' => false,
         ]);
     }
 }
