@@ -341,3 +341,11 @@ Feature:
         And I click the "li[data-country-code=af]" element
         And I fill in "identity_contactInformation_phone_number" with "70 123 4567"
         Then I should not see a "#form-errors-identity_contactInformation_phone_number" element
+
+    Scenario: I cannot enter invalid chars for phone input
+        Given I am on "/authentification"
+        And I follow "Continuer sans m'authentifier"
+        And I am on "/porter-plainte"
+        And I click the "#identity_accordion_title" element
+        And I fill in "identity_contactInformation_phone_number" with "abcd0601020304$."
+        And the "identity_contactInformation_phone_number" field should contain "0601020304"
