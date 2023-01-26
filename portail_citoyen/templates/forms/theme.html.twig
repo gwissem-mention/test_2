@@ -150,6 +150,11 @@
     {{ form_label(form, 'pel.object'|trans~' '~(form.parent.vars.name+1)) }}
 {%- endblock -%}
 
+{%- block _objects_objects_label -%}
+    {% set element = 'h2' %}
+    {{ block('form_label') }}
+{%- endblock -%}
+
 {%- block _objects_objects_entry_row -%}
     {{ block('live_collection_entry_row') }}
 {%- endblock -%}
