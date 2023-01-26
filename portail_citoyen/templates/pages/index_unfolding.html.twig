@@ -74,11 +74,9 @@
         </div>
     </div>
     <div class="fr-container">
-        <div class="fr-grid-row fr-mt-3w fr-mb-3w">
-            <div class="fr-col">
-                <a href="{{ path('home') }}" class="fr-btn fr-btn--secondary">{{ 'pel.back'|trans }}</a>
-                <a href="{{ path('authentication') }}" class="fr-btn fr-float-right fr-btn--icon-right fr-icon-arrow-right-line">{{ 'pel.start.my.declaration'|trans }}</a>
-            </div>
+        <div class="flex--between fr-mt-3w fr-mb-3w">
+            <a href="{{ path('home') }}" class="fr-btn fr-btn--secondary">{{ 'pel.back'|trans }}</a>
+            <a href="{{ path('authentication') }}" class="fr-btn fr-float-right fr-btn--icon-right fr-icon-arrow-right-line">{{ 'pel.start.my.declaration'|trans }}</a>
         </div>
     </div>
 {% endblock %}
