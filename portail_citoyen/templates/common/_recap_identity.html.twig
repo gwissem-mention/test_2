@@ -15,10 +15,12 @@
     </li>
 {% endif %}
 <li>
-    {{ 'pel.born.on'|trans }} : {{ civilState.birthDate|date('d/m/Y') }}
-    {{ 'pel.at.in'|trans }} : {{ civilState.birthLocation.country|country_referential_name }}
+    {{ 'pel.born.on'|trans }} : {{ civilState.birthDate|date('d/m/Y') }} {{ 'pel.at'|trans }}
     {% if civilState.birthLocation.frenchTown %}
-        {{ 'pel.department'|trans }} : {{ civilState.birthLocation.frenchTown|city_get_department }}
+        {% set city = civilState.birthLocation.frenchTown|city %}
+        {{ city.label }} ({{ city.department }})
+    {% else %}
+        {{ civilState.birthLocation.otherTown }} ({{ civilState.birthLocation.country|country_referential_name }})
     {% endif %}
 </li>
 <li>
