@@ -124,11 +124,9 @@ class OffenseDateType extends AbstractType
                             /** @var \DateTime $startDate */
                             $startDate = $formParent->get('startDate')->getData();
 
-                            if ($value->format('d/m/Y') < $startDate->format('d/m/Y')) {
+                            if ($value->getTimestamp() < $startDate->getTimestamp()) {
                                 $context->addViolation('pel.start.date.after.end.date');
-                            }
-
-                            if ($value->format('d/m/Y') === $startDate->format('d/m/Y')) {
+                            } elseif ($value->getTimestamp() === $startDate->getTimestamp()) {
                                 $context->addViolation('pel.start.date.same.as.end.date');
                             }
                         },
@@ -196,11 +194,9 @@ class OffenseDateType extends AbstractType
                                 /** @var \DateTime $startHour */
                                 $startHour = $formParent->get('startHour')->getData();
 
-                                if ($value->format('H:i') < $startHour->format('H:i')) {
+                                if ($value->getTimestamp() < $startHour->getTimestamp()) {
                                     $context->addViolation('pel.start.hour.after.end.hour');
-                                }
-
-                                if ($value->format('H:i') === $startHour->format('H:i')) {
+                                } elseif ($value->getTimestamp() === $startHour->getTimestamp()) {
                                     $context->addViolation('pel.start.hour.same.as.end.hour');
                                 }
                             },

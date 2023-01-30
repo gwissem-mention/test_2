@@ -76,7 +76,7 @@ Feature:
 
     @javascript
     Scenario: I can add a comment from the objects page
-        Given I am on "/plainte/objets/8"
+        Given I am on "/plainte/objets/7"
         And the "#comments-feed-title" element should contain "Espace commentaires (5)"
         Then I fill in "comment_content" with "Ceci est un commentaire test."
         When I press "comment-button"

@@ -119,3 +119,30 @@ Feature:
         And I press "facts_submit"
         Then the "#objects_accordion_item" element should contain "style=\"display: block;\""
 
+    Scenario: I should see a error when I put a offense end date < offense start date
+        Given I am on "/porter-plainte"
+        When I click the "label[for=facts_offenseDate_exactDateKnown_1]" element
+        And I fill in "facts_offenseDate_startDate" with "01/01/2023"
+        And I fill in "facts_offenseDate_endDate" with "15/12/2022"
+        Then I should see the key "pel.start.date.after.end.date" translated
+
+    Scenario: I should see a error when I put a offense end date = offense start date
+        Given I am on "/porter-plainte"
+        When I click the "label[for=facts_offenseDate_exactDateKnown_1]" element
+        And I fill in "facts_offenseDate_startDate" with "01/01/2023"
+        And I fill in "facts_offenseDate_endDate" with "01/01/2023"
+        Then I should see the key "pel.start.date.same.as.end.date" translated
+
+    Scenario: I should see a error when I put a offense end hour < offense start hour
+        Given I am on "/porter-plainte"
+        When I click the "label[for=facts_offenseDate_choiceHour_1]" element
+        And I fill in "facts_offenseDate_startHour" with "18:00"
+        And I fill in "facts_offenseDate_endHour" with "16:00"
+        Then I should see the key "pel.start.hour.after.end.hour" translated
+
+    Scenario: I should see a error when I put a offense end hour = offense start hour
+        Given I am on "/porter-plainte"
+        When I click the "label[for=facts_offenseDate_choiceHour_1]" element
+        And I fill in "facts_offenseDate_startHour" with "13:00"
+        And I fill in "facts_offenseDate_endHour" with "13:00"
+        Then I should see the key "pel.start.hour.same.as.end.hour" translated
