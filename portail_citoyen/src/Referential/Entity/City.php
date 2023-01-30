@@ -1,13 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Referential\Entity;
 
+use App\Referential\Repository\CityRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity]
-#[ORM\Index(fields: ['label'], name: 'label_idx')]
-#[ORM\Index(fields: ['postCode'], name: 'postCode_idx')]
+#[ORM\Entity(repositoryClass: CityRepository::class)]
+#[ORM\Index(fields: ['label'], name: 'city_label_idx')]
+#[ORM\Index(fields: ['postCode'], name: 'city_postCode_idx')]
 class City
 {
     #[ORM\Id]

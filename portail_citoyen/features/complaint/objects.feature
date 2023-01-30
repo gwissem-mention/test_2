@@ -10,7 +10,7 @@ Feature:
         Then I am on "/porter-plainte?france_connected=1"
         And I click the "#identity_accordion_title" element
         When I click the "label[for=identity_declarantStatus_0]" element
-        And I select "1" from "identity_civilState_job"
+        And I fill in the autocomplete "identity_civilState_job-ts-control" with "Avocats" and click "31B1"
         And I fill in "identity_contactInformation_frenchAddress_address" with "Av. de la République 75011 Paris France"
         And I fill in "identity_contactInformation_phone_number" with "0601020304"
         And I press "identity_submit"

@@ -1,7 +1,8 @@
 parameters:
-    app.france_code: 99100
-    app.file_cities: '%env(FILE_CITIES)%'
-    app.referentials_base_path: '%kernel.project_dir%/referentials'
+  app.france_code: 99100
+  app.file_cities: '%env(FILE_CITIES)%'
+  app.file_jobs: '%env(FILE_JOBS)%'
+  app.referentials_base_path: '%kernel.project_dir%/referentials'
 
 services:
   _defaults:
@@ -31,15 +32,19 @@ services:
   Symfony\Component\EventDispatcher\EventSubscriberInterface $addAddressCountrySubscriber: '@App\Form\EventListener\AddAddressCountrySubscriber'
   
   App\Security\FranceConnectListener:
-      $baseUri: '%env(FRANCE_CONNECT_BASE_URI)%'
-      $logoutTargetPathMap: ~  # Replaced in LogoutTargetPass
-      
+    $baseUri: '%env(FRANCE_CONNECT_BASE_URI)%'
+    $logoutTargetPathMap: ~  # Replaced in LogoutTargetPass
+
   # Referentials
   
   App\Referential\DataFixtures\City\CityFileFixtures:
     arguments:
       $citiesFixturesPath: '%app.referentials_base_path%/%app.file_cities%'
-  
+
+  App\Referential\DataFixtures\Job\JobFileFixtures:
+    arguments:
+      $jobsFixturesPath: '%app.referentials_base_path%/%app.file_jobs%'
+
   App\Referential\Provider\Country\CountryProviderInterface: '@App\Referential\Provider\Country\DatabaseCountryProvider'
 
   libphonenumber\PhoneNumberUtil:

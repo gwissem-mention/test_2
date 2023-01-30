@@ -9,7 +9,7 @@ Feature:
         When I press "france_connect_auth_button"
         And I click the "#identity_accordion_title" element
         When I click the "label[for=identity_declarantStatus_0]" element
-        And I select "1" from "identity_civilState_job"
+        And I fill in the autocomplete "identity_civilState_job-ts-control" with "Avocats" and click "31B1"
         And I fill in "identity_contactInformation_frenchAddress_address" with "Av. de la République 75011 Paris France"
         And I fill in "identity_contactInformation_phone_number" with "0601020304"
         And I press "identity_submit"
@@ -120,28 +120,24 @@ Feature:
         Then the "#objects_accordion_item" element should contain "style=\"display: block;\""
 
     Scenario: I should see a error when I put a offense end date < offense start date
-        Given I am on "/porter-plainte"
         When I click the "label[for=facts_offenseDate_exactDateKnown_1]" element
         And I fill in "facts_offenseDate_startDate" with "01/01/2023"
         And I fill in "facts_offenseDate_endDate" with "15/12/2022"
         Then I should see the key "pel.start.date.after.end.date" translated
 
     Scenario: I should see a error when I put a offense end date = offense start date
-        Given I am on "/porter-plainte"
         When I click the "label[for=facts_offenseDate_exactDateKnown_1]" element
         And I fill in "facts_offenseDate_startDate" with "01/01/2023"
         And I fill in "facts_offenseDate_endDate" with "01/01/2023"
         Then I should see the key "pel.start.date.same.as.end.date" translated
 
     Scenario: I should see a error when I put a offense end hour < offense start hour
-        Given I am on "/porter-plainte"
         When I click the "label[for=facts_offenseDate_choiceHour_1]" element
         And I fill in "facts_offenseDate_startHour" with "18:00"
         And I fill in "facts_offenseDate_endHour" with "16:00"
         Then I should see the key "pel.start.hour.after.end.hour" translated
 
     Scenario: I should see a error when I put a offense end hour = offense start hour
-        Given I am on "/porter-plainte"
         When I click the "label[for=facts_offenseDate_choiceHour_1]" element
         And I fill in "facts_offenseDate_startHour" with "13:00"
         And I fill in "facts_offenseDate_endHour" with "13:00"
