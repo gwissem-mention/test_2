@@ -84,20 +84,20 @@
             <li>
                 {{ 'pel.facts.date'|trans }} :
                 {% if complaint.facts.exactDateKnown %}
-                    <strong>{{ 'pel.the'|trans }} {{ complaint.facts.startDate|date('d/m/Y') }}</strong>
+                    <strong>{{ 'pel.the'|trans }} {{ complaint.facts.startDate|date('d/m/Y', app.user.timezone) }}</strong>
                 {% else %}
-                    <strong>{{ 'pel.between'|trans|lower }} {{ 'pel.the'|trans|lower }} {{ complaint.facts.startDate|date('d/m/Y') }} {{ 'pel.and'|trans|lower }} {{ 'pel.the'|trans|lower }} {{ complaint.facts.endDate|date('d/m/Y') }}</strong>
+                    <strong>{{ 'pel.between'|trans|lower }} {{ 'pel.the'|trans|lower }} {{ complaint.facts.startDate|date('d/m/Y', app.user.timezone) }} {{ 'pel.and'|trans|lower }} {{ 'pel.the'|trans|lower }} {{ complaint.facts.endDate|date('d/m/Y', app.user.timezone) }}</strong>
                 {% endif %}
             </li>
             {% if complaint.facts.exactHourKnown is same as(constant('App\\Entity\\Facts::EXACT_HOUR_KNOWN_YES')) or complaint.facts.exactHourKnown is same as(constant('App\\Entity\\Facts::EXACT_HOUR_KNOWN_NO')) %}
                 <li>
                     {% if complaint.facts.exactHourKnown is same as(constant('App\\Entity\\Facts::EXACT_HOUR_KNOWN_YES')) %}
                         {{ 'pel.exact.hour'|trans }} :
-                        <strong>{{ complaint.facts.startHour|date('H\\hi') }}</strong>
+                        <strong>{{ complaint.facts.startHour|date('H\\hi', app.user.timezone) }}</strong>
                     {% else %}
                         {{ 'pel.facts.hour'|trans }} :
-                        <strong>{{ 'pel.between'|trans|lower }} {{ complaint.facts.startHour|date('H\\hi') }}
-                            et {{ complaint.facts.endHour|date('H\\hi') }}
+                        <strong>{{ 'pel.between'|trans|lower }} {{ complaint.facts.startHour|date('H\\hi', app.user.timezone) }}
+                            et {{ complaint.facts.endHour|date('H\\hi', app.user.timezone) }}
                         </strong>
                     {% endif %}
                 </li>

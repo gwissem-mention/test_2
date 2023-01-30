@@ -97,8 +97,8 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface
                     ->setStartAddress('25 Avenue Georges Pompidou, Lyon, 69003')
                     ->setEndAddress('Place Charles Hernu, Villeurbanne, 69100')
                     ->setExactHourKnown(Facts::EXACT_HOUR_KNOWN_NO)
-                    ->setStartHour(new \DateTimeImmutable('10:00'))
-                    ->setEndHour(new \DateTimeImmutable('11:00'))
+                    ->setStartHour(new \DateTimeImmutable('09:00'))
+                    ->setEndHour(new \DateTimeImmutable('10:00'))
                     ->setAlertNumber(7)
                     ->setAddressAdditionalInformation(
                         "Les faits se sont produits entre le restaurant et l'appartement d'un ami"
