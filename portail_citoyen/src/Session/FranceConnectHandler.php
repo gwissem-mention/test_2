@@ -4,7 +4,7 @@ namespace App\Session;
 
 use App\Entity\User;
 use App\Form\Factory\IdentityModelFactory;
-use Symfony\Component\Security\Core\Security;
+use Symfony\Bundle\SecurityBundle\Security;
 
 class FranceConnectHandler
 {
@@ -53,7 +53,10 @@ class FranceConnectHandler
 
         $complaint
             ->setFranceConnected(false)
-            ->setIdentity(null);
+            ->setIdentity(null)
+            ->setFacts(null)
+            ->setAdditionalInformation(null)
+            ->setObjects(null);
 
         $this->sessionHandler->setComplaint($complaint);
     }
