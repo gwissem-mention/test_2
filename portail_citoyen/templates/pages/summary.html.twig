@@ -234,7 +234,7 @@
                                     <li>{{ 'pel.model'|trans }} : {{ object.model }}</li>
                                 {% endif %}
                                 {% if object.phoneNumberLine %}
-                                    <li>{{ 'pel.phone.number.line'|trans }} : {{ object.phoneNumberLine }}</li>
+                                    <li>{{ 'pel.phone.number.line'|trans }} : {{ object.phoneNumberLine|phone_format_intl }}</li>
                                 {% endif %}
                                 {% if object.operator %}
                                     <li>{{ 'pel.operator'|trans }} : {{ object.operator }}</li>

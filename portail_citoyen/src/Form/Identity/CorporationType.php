@@ -87,6 +87,7 @@ class CorporationType extends AbstractType
             ->add('phone', PhoneType::class, [
                 'label' => false,
                 'number_label' => 'pel.corporation.phone',
+                'number_constraints' => [new NotBlank()],
             ])
             ->add('country', CountryType::class, [
                 'label' => 'pel.address.country',

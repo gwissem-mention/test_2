@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Form\Objects;
 
 use App\Form\Model\Objects\ObjectModel;
+use App\Form\PhoneType;
 use App\Thesaurus\ObjectCategoryThesaurusProviderInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -172,6 +173,11 @@ class ObjectType extends AbstractType
                 ],
                 'label' => 'pel.phone.number.line',
                 'required' => false,
+            ])
+            ->add('phoneNumberLine', PhoneType::class, [
+                'label' => false,
+                'number_label' => 'pel.phone.number.line',
+                'number_required' => false,
             ])
             ->add('operator', TextType::class, [
                 'constraints' => [
