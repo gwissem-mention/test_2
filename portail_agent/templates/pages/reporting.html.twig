@@ -2,4 +2,14 @@
 
 {% block body %}
     <h1>{{ 'pel.reporting'|trans }}</h1>
+    <div class="border border-secondary bg-light rounded p-3">
+        <span class="fs-3 fw-semibold lh-lg">{{ 'pel.declarations.count'|trans }} :</span>
+        <div class="row">
+            <div class="col-4">
+                {# TODO : Implement filter in <a> route when it's implemented #}
+                <a class="btn border border-secondary m-3 p-4 fs-1 fw-bold" id="ongoing_number" href="{{ path('home') }}" title="{{ 'pel.click.here.to.display.these.complaints'|trans }}">{{ user_complaints|count_complaints_ongoing }}</a>
+                <p class="fs-3">{{ 'pel.ongoing'|trans }}</p>
+            </div>
+        </div>
+    </div>
 {% endblock %}
