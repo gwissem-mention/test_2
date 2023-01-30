@@ -62,10 +62,8 @@ Feature:
         And I should see "Jean Pierre Marie"
         And I should not see the key "pel.usage.name" translated
         And I should see the key "pel.born.on" translated
-        And I should see "01/01/2000"
-        And I should see the key "pel.at.in" translated
-        And I should see "France"
-        And I should see the key "pel.department" translated
+        And I should see the key "pel.at" translated
+        And I should see "Né(e) le : 01/01/2000 à Paris (75)"
         And I should see the key "pel.nationality" translated
         And I should see "Française"
         And I should see the key "pel.resides.at" translated

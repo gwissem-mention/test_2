@@ -68,9 +68,8 @@ Feature:
         And I should not see the key "pel.usage.name" translated
         And I should see the key "pel.born.on" translated
         And I should see "02/03/1967"
-        And I should see the key "pel.at.in" translated
-        And I should see "France"
-        And I should see the key "pel.department" translated
+        And I should see the key "pel.at" translated
+        And I should see "Né(e) le : 02/03/1967 à Paris 7e arrondissement (75)"
         And I should see the key "pel.nationality" translated
         And I should see "Française"
         And I should see the key "pel.resides.at" translated

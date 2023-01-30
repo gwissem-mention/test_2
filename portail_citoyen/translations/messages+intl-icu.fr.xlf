@@ -118,6 +118,10 @@
                 <source>pel.article.d.8.2.2</source>
                 <target>Article D8-2-2</target>
             </trans-unit>
+            <trans-unit id="pel.at">
+                <source>pel.at</source>
+                <target>à</target>
+            </trans-unit>
             <trans-unit id="pel.at.in">
                 <source>pel.at.in</source>
                 <target>au/en</target>
