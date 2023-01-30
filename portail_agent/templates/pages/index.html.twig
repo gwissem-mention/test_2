@@ -30,11 +30,11 @@
                     {% set status_btn_color = 'danger' %}
                 {% endif %}
                 <tr>
-                    <td>{{ complaint.createdAt|date('d/m/Y') }}</td>
+                    <td>{{ complaint.createdAt|date('d/m/Y', app.user.timezone) }}</td>
                     <td>{% include 'common/_complaint_natures.html.twig' with {'natures':complaint.facts.natures} only %}</td>
-                    <td>{{ complaint.facts.startDate|date('d/m/Y') }}</td>
+                    <td>{{ complaint.facts.startDate|date('d/m/Y', app.user.timezone) }}</td>
                     <td>{{ complaint.alert|u.truncate(15, '...') }}</td>
-                    <td>{{ complaint.appointmentDate|date('d/m/Y') }}</td>
+                    <td>{{ complaint.appointmentDate|date('d/m/Y', app.user.timezone) }}</td>
                     <td>{{ (complaint.identity.firstName ~ ' ' ~ complaint.identity.lastName)|u.truncate(15, '...') }}</td>
                     <td>
                         <a href="{{ path('complaint_summary', {id:complaint.id}) }}" target="_blank" class="btn btn-sm btn-{{ status_btn_color }}">{{ complaint.status|trans|u.truncate(15, '...') }}</a>

@@ -13,9 +13,9 @@
                         <div class="d-flex justify-content-end" id="comment-published-at">
                             <small>
                                 {{ 'pel.the'|trans }}
-                                {{ comment.publishedAt|date('d/m/Y') }}
+                                 {{ comment.publishedAt|date('d/m/Y', app.user.timezone) }}
                                 {{ 'pel.at'|trans }}
-                                {{ comment.publishedAt|date('H:i') }}
+                                {{ comment.publishedAt|date('H:i', app.user.timezone) }}
                             </small>
                         </div>
                     </div>

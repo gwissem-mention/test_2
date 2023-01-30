@@ -44,6 +44,9 @@ class User implements UserInterface
     #[ORM\Column(length: 255)]
     private ?string $serviceCode = null;
 
+    #[ORM\Column(length: 255, options: ['default' => 'Europe/Paris'])]
+    private ?string $timezone = 'Europe/Paris';
+
     public function __construct(string $number, Institution $institution)
     {
         $this->number = $number;
@@ -113,6 +116,30 @@ class User implements UserInterface
     public function setServiceCode(?string $serviceCode): self
     {
         $this->serviceCode = $serviceCode;
+
+        return $this;
+    }
+
+    public function getIdentifier(): string
+    {
+        return $this->identifier;
+    }
+
+    public function setIdentifier(string $identifier): User
+    {
+        $this->identifier = $identifier;
+
+        return $this;
+    }
+
+    public function getTimezone(): ?string
+    {
+        return $this->timezone;
+    }
+
+    public function setTimezone(?string $timezone): self
+    {
+        $this->timezone = $timezone;
 
         return $this;
     }
