@@ -345,7 +345,11 @@ Feature:
     Scenario: I cannot enter invalid chars for phone input
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
-        And I am on "/porter-plainte"
-        And I click the "#identity_accordion_title" element
-        And I fill in "identity_contactInformation_phone_number" with "abcd0601020304$."
-        And the "identity_contactInformation_phone_number" field should contain "0601020304"
+        When I fill in "identity_contactInformation_phone_number" with "abcd0601020304$."
+        Then the "identity_contactInformation_phone_number" field should contain "6 01 02 03 04"
+
+    Scenario: I should see a error message when number is wrong
+        Given I am on "/authentification"
+        And I follow "Continuer sans m'authentifier"
+        When I fill in "identity_contactInformation_phone_number" with "00010203040506"
+        Then I should see the key "pel.phone.is.invalid" translated
