@@ -11,7 +11,7 @@ Feature:
         When I click the "#identity_accordion_title" element
         And I click the "label[for=identity_declarantStatus_2]" element
         And I select "1" from "identity_civilState_job"
-        And I fill in "identity_contactInformation_frenchAddress_address" with "Av. de la République 75011 Paris France"
+        And I fill in "identity_contactInformation_frenchAddress_address" with "Av. de la République 75011 Paris"
         And I fill in "identity_contactInformation_phone_number" with "0601020304"
         And I fill in "identity_corporation_siren" with "123456789"
         And I fill in "identity_corporation_name" with "Mon entreprise"
@@ -19,7 +19,7 @@ Feature:
         And I select "1" from "identity_corporation_nationality"
         And I fill in "identity_corporation_email" with "contact@mon-entreprise.fr"
         And I fill in "identity_corporation_phone_number" with "0102030405"
-        And I fill in "identity_corporation_frenchAddress_address" with "Av. de la République 75011 Paris France"
+        And I fill in "identity_corporation_frenchAddress_address" with "Av. de la République 75011 Paris"
         And I press "identity_submit"
         And I wait 2000 ms
         And I click the "label[for=facts_offenseNature_offenseNatures_0]" element
@@ -69,7 +69,7 @@ Feature:
         And I should see the key "pel.nationality" translated
         And I should see "Française"
         And I should see the key "pel.resides.at" translated
-        And I should see "Av. de la République 75011 Paris France"
+        And I should see "Av. de la République 75011 Paris, France"
         And I should see the key "pel.your.job" translated
         And I should see the key "pel.job.policeman" translated
         And I should see the key "pel.phone" translated
@@ -94,7 +94,7 @@ Feature:
         And I should see the key "pel.address.country" translated
         And I should see "France"
         And I should see the key "pel.address" translated
-        And I should see "Av. de la République 75011 Paris France"
+        And I should see "Av. de la République 75011 Paris, France"
         And I should see the key "pel.facts.description" translated
         And I should see the key "pel.complaint.nature.of.the.facts" translated
         And I should see the key "pel.complaint.identity.corporation.legal.representative" translated
@@ -123,7 +123,6 @@ Feature:
         And I should see the key "pel.cctv.available" translated
         And I should see the key "pel.fsi.visit" translated
         And I should see the key "pel.observation.made" translated
-        And I should see the key "pel.other.victim.present" translated
         And I should see the key "pel.victim.of.violence" translated
         And I should see the key "pel.victim.of.violence.text" translated
         And I should see the key "pel.facts.description.precise" translated

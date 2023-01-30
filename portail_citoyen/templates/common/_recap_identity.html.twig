@@ -28,9 +28,9 @@
 <li>
     {{ 'pel.resides.at'|trans }} :
     {% if contactInformation.country == fr_code %}
-        {{ contactInformation.frenchAddress.label }}
+        {{ contactInformation.frenchAddress.label }}, France
     {% else %}
-        {{ contactInformation.foreignAddress }}
+        {{ contactInformation.foreignAddress }}, {{ contactInformation.country|country_referential_name }}
     {% endif %}
 </li>
 <li>

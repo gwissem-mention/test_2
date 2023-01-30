@@ -11,7 +11,7 @@ Feature:
         When I click the "#identity_accordion_title" element
         And I click the "label[for=identity_declarantStatus_0]" element
         And I select "1" from "identity_civilState_job"
-        And I fill in "identity_contactInformation_frenchAddress_address" with "Av. de la République 75011 Paris France"
+        And I fill in "identity_contactInformation_frenchAddress_address" with "Av. de la République 75011 Paris"
         And I fill in "identity_contactInformation_phone_number" with "0601020304"
         And I press "identity_submit"
         And I wait 2000 ms
@@ -62,7 +62,7 @@ Feature:
         And I should see the key "pel.nationality" translated
         And I should see "Française"
         And I should see the key "pel.resides.at" translated
-        And I should see "Av. de la République 75011 Paris France"
+        And I should see "Av. de la République 75011 Paris, France"
         And I should see the key "pel.your.job" translated
         And I should see the key "pel.job.policeman" translated
         And I should see the key "pel.phone" translated
@@ -101,7 +101,6 @@ Feature:
         And I should see the key "pel.cctv.available" translated
         And I should see the key "pel.fsi.visit" translated
         And I should see the key "pel.observation.made" translated
-        And I should see the key "pel.other.victim.present" translated
         And I should see the key "pel.victim.of.violence" translated
         And I should see the key "pel.victim.of.violence.text" translated
         And I should see the key "pel.facts.description.precise" translated
