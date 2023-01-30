@@ -4,13 +4,15 @@ declare(strict_types=1);
 
 namespace App\Form\Model\Objects;
 
+use App\Form\Model\Identity\PhoneModel;
+
 class ObjectModel
 {
     private ?int $category = null;
     private ?string $label = null;
     private ?string $brand = null;
     private ?string $model = null;
-    private ?string $phoneNumberLine = null;
+    private ?PhoneModel $phoneNumberLine = null;
     private ?string $operator = null;
     private ?string $serialNumber = null;
     private ?string $description = null;
@@ -72,12 +74,12 @@ class ObjectModel
         return $this;
     }
 
-    public function getPhoneNumberLine(): ?string
+    public function getPhoneNumberLine(): ?PhoneModel
     {
         return $this->phoneNumberLine;
     }
 
-    public function setPhoneNumberLine(?string $phoneNumberLine): self
+    public function setPhoneNumberLine(?PhoneModel $phoneNumberLine): self
     {
         $this->phoneNumberLine = $phoneNumberLine;
 

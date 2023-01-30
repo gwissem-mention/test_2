@@ -47,6 +47,7 @@ class ContactInformationType extends AbstractType
             ->add('phone', PhoneType::class, [
                 'label' => false,
                 'number_label' => 'pel.mobile',
+                'number_constraints' => [new NotBlank()],
             ]);
 
         $builder->addEventSubscriber($this->addAddressSubscriber);

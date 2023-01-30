@@ -31,9 +31,11 @@ Feature:
         And I fill in "objects_objects_0_amount" with "100"
         And I press "objects_objects_add"
         And I click the "#objects_objects_1_label" element
-        And I select "1" from "objects_objects_1_category"
+        And I select "3" from "objects_objects_1_category"
         And I fill in "objects_objects_1_label" with "Object 2"
         And I fill in "objects_objects_1_amount" with "100"
+        And I fill in "objects_objects_1_brand" with "Apple"
+        And I fill in "objects_objects_1_phoneNumberLine_number" with "0601020304"
         And I press "objects_submit"
         And I wait 2000 ms
         And I click the "label[for=additional_information_suspectsChoice_0]" element
@@ -101,7 +103,6 @@ Feature:
         And I should see the key "pel.cctv.available" translated
         And I should see the key "pel.fsi.visit" translated
         And I should see the key "pel.observation.made" translated
-        And I should see the key "pel.other.victim.present" translated
         And I should see the key "pel.victim.of.violence" translated
         And I should see the key "pel.victim.of.violence.text" translated
         And I should see the key "pel.facts.description.precise" translated
@@ -123,6 +124,7 @@ Feature:
         And I should see the key "pel.object" translated
         And I should see "Object 1"
         And I should see "Object 2"
+        And I should see "N° de la ligne de téléphone : +33 6 01 02 03 04"
         And I should see the key "pel.objects" translated
         And I should see the key "pel.total" translated
         And I should see the key "pel.total.message.one" translated
