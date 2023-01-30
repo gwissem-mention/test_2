@@ -4,39 +4,25 @@ declare(strict_types=1);
 
 namespace App\Twig;
 
-use App\Thesaurus\JobThesaurusProviderInterface;
+use App\Referential\Repository\JobRepository;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
 class JobExtension extends AbstractExtension
 {
-    public function __construct(private readonly JobThesaurusProviderInterface $jobThesaurusProvider)
+    public function __construct(private readonly JobRepository $jobRepository)
     {
     }
 
     public function getFilters(): array
     {
         return [
-            new TwigFilter('job_get_name', [$this, 'getName']),
+            new TwigFilter('job_get_label', [$this, 'getLabel']),
         ];
     }
 
-    /**
-     * @throws \Exception
-     */
-    public function getName(?string $value): ?string
+    public function getLabel(string $code): ?string
     {
-        if (null === $value) {
-            return null;
-        }
-        $choices = $this->jobThesaurusProvider->getChoices();
-        /** @var string|false $job */
-        $job = array_search($value, $choices);
-
-        if (false === $job) {
-            throw new \Exception(sprintf('The %s value has not been found', $value));
-        }
-
-        return $job;
+        return $this->jobRepository->findOneBy(['code' => $code])?->getLabel();
     }
 }

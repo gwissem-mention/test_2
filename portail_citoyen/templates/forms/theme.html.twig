@@ -22,11 +22,7 @@
     {% else %}
         <div class="{{ html_classes('fr-select-group', {'fr-select-group--error':  errors is not empty}) }}">
             {{ form_label(form) }}
-            {% if 'autocomplete' in form.vars['block_prefixes'] %}
-                {{ form_widget(form, {'attr':{'class':html_classes(attr.class ?? '',{'fr-select--error':errors is not empty})}}) }}
-            {% else %}
-                {{ form_widget(form, {'attr':{'class':html_classes(attr.class ?? '', 'fr-select',{'fr-select--error':errors is not empty})}}) }}
-            {% endif %}
+            {{ form_widget(form, {'attr':{'class':html_classes(attr.class ?? '', 'autocomplete' not in form.vars['block_prefixes'] ? 'fr-select' : '',{'fr-select--error':errors is not empty})}}) }}
             {{ form_errors(form) }}
         </div>
     {% endif %}

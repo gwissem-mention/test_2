@@ -5,16 +5,21 @@ declare(strict_types=1);
 namespace App\Form\Identity;
 
 use App\Enum\Civility;
+use App\Form\JobAutocompleteType;
 use App\Form\LocationType;
 use App\Form\Model\Identity\CivilStateModel;
+use App\Referential\Entity\Job;
+use App\Referential\Repository\JobRepository;
 use App\Session\SessionHandler;
-use App\Thesaurus\JobThesaurusProviderInterface;
 use App\Thesaurus\NationalityThesaurusProviderInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\LessThanOrEqual;
@@ -24,8 +29,8 @@ class CivilStateType extends AbstractType
 {
     public function __construct(
         private readonly NationalityThesaurusProviderInterface $nationalityThesaurusProvider,
-        private readonly JobThesaurusProviderInterface $jobThesaurusProvider,
-        private readonly SessionHandler $sessionHandler
+        private readonly SessionHandler $sessionHandler,
+        private readonly JobRepository $jobRepository
     ) {
     }
 
@@ -104,13 +109,48 @@ class CivilStateType extends AbstractType
                 'label' => 'pel.nationality',
                 'empty_data' => $nationalityChoices['pel.nationality.france'],
             ])
-            ->add('job', ChoiceType::class, [
+            ->addEventListener(
+                FormEvents::PRE_SET_DATA,
+                function (FormEvent $event) {
+                    /** @var ?CivilStateModel $civilState */
+                    $civilState = $event->getData();
+                    $this->addJobField($event->getForm(), $civilState?->getJob());
+                }
+            )
+            ->addEventListener(
+                FormEvents::PRE_SUBMIT,
+                function (FormEvent $event) {
+                    /** @var array<string, mixed> $civilState */
+                    $civilState = $event->getData();
+                    $this->addJobField(
+                        $event->getForm(),
+                        !empty($civilState['job']) ? strval($civilState['job']) : null,
+                    );
+                }
+            );
+    }
+
+    private function addJobField(FormInterface $form, ?string $jobCode = null): void
+    {
+        $choices = [];
+        $job = null;
+
+        if (!is_null($jobCode)) {
+            /** @var ?Job $job */
+            $job = $this->jobRepository->findOneBy(['code' => $jobCode]);
+            if (!is_null($job)) {
+                $choices[$job->getLabel()] = $job->getCode();
+            }
+        }
+
+        $form
+            ->add('job', JobAutocompleteType::class, [
+                'data' => $job?->getCode(),
+                'choices' => $choices,
                 'constraints' => [
                     new NotBlank(),
                 ],
-                'choices' => $this->jobThesaurusProvider->getChoices(),
                 'label' => 'pel.your.job',
-                'placeholder' => 'pel.your.job.choice.message',
             ]);
     }
 

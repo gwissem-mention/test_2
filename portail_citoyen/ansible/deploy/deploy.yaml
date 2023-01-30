@@ -7,6 +7,7 @@
     APP_ENV: prod
     REDIS_HOST: 127.0.0.1
     FILE_CITIES: insee_commune.csv
+    FILE_JOBS: Nomenclature_N4_PCS2020.csv
 
   vars_files:
     - ../vars/vars.yaml

@@ -122,10 +122,6 @@
                 <source>pel.at</source>
                 <target>à</target>
             </trans-unit>
-            <trans-unit id="pel.at.in">
-                <source>pel.at.in</source>
-                <target>au/en</target>
-            </trans-unit>
             <trans-unit id="pel.attachments">
                 <source>pel.attachments</source>
                 <target>Pièces complémentaires</target>
@@ -981,6 +977,10 @@
             <trans-unit id="pel.resides.at">
                 <source>pel.resides.at</source>
                 <target>Réside à/au</target>
+            </trans-unit>
+            <trans-unit id="pel.results.loading">
+                <source>pel.results.loading</source>
+                <target>Chargement des résultats ...</target>
             </trans-unit>
             <trans-unit id="pel.serial.number">
                 <source>pel.serial.number</source>
