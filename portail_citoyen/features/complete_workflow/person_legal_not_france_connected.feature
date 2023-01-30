@@ -138,7 +138,6 @@ Feature:
         And I should see the key "pel.cctv.available" translated
         And I should see the key "pel.fsi.visit" translated
         And I should see the key "pel.observation.made" translated
-        And I should see the key "pel.other.victim.present" translated
         And I should see the key "pel.victim.of.violence" translated
         And I should see the key "pel.victim.of.violence.text" translated
         And I should see the key "pel.facts.description.precise" translated
