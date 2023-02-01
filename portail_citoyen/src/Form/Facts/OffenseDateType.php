@@ -186,18 +186,19 @@ class OffenseDateType extends AbstractType
                                 if (!$value instanceof \DateTime) {
                                     $context->addViolation('pel.end.hour.is.invalid');
                                 }
-
                                 /** @var Form $form */
                                 $form = $context->getObject();
                                 /** @var Form $formParent */
                                 $formParent = $form->getParent();
-                                /** @var \DateTime $startHour */
-                                $startHour = $formParent->get('startHour')->getData();
 
-                                if ($value->getTimestamp() < $startHour->getTimestamp()) {
-                                    $context->addViolation('pel.start.hour.after.end.hour');
-                                } elseif ($value->getTimestamp() === $startHour->getTimestamp()) {
-                                    $context->addViolation('pel.start.hour.same.as.end.hour');
+                                if (!$formParent->has('endDate')) {
+                                    /** @var \DateTime $startHour */
+                                    $startHour = $formParent->get('startHour')->getData();
+                                    if ($value->getTimestamp() < $startHour->getTimestamp()) {
+                                        $context->addViolation('pel.start.hour.after.end.hour');
+                                    } elseif ($value->getTimestamp() === $startHour->getTimestamp()) {
+                                        $context->addViolation('pel.start.hour.same.as.end.hour');
+                                    }
                                 }
                             },
                         ]),

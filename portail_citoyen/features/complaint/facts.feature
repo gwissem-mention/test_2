@@ -132,13 +132,17 @@ Feature:
         Then I should see the key "pel.start.date.same.as.end.date" translated
 
     Scenario: I should see a error when I put a offense end hour < offense start hour
-        When I click the "label[for=facts_offenseDate_choiceHour_1]" element
+        When I click the "label[for=facts_offenseDate_exactDateKnown_0]" element
+        And I fill in "facts_offenseDate_startDate" with "01/01/2023"
+        And I click the "label[for=facts_offenseDate_choiceHour_1]" element
         And I fill in "facts_offenseDate_startHour" with "18:00"
         And I fill in "facts_offenseDate_endHour" with "16:00"
         Then I should see the key "pel.start.hour.after.end.hour" translated
 
     Scenario: I should see a error when I put a offense end hour = offense start hour
-        When I click the "label[for=facts_offenseDate_choiceHour_1]" element
+        When I click the "label[for=facts_offenseDate_exactDateKnown_0]" element
+        And I fill in "facts_offenseDate_startDate" with "01/01/2023"
+        And I click the "label[for=facts_offenseDate_choiceHour_1]" element
         And I fill in "facts_offenseDate_startHour" with "13:00"
         And I fill in "facts_offenseDate_endHour" with "13:00"
         Then I should see the key "pel.start.hour.same.as.end.hour" translated
