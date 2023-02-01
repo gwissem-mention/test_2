@@ -41,6 +41,11 @@ class JobFileFixtures extends Fixture implements FixtureGroupInterface
                     }
                     ++$row;
                 }
+
+                $manager->persist(new Job('RETR', 'Retraité'));
+                $manager->persist(new Job('CHOM', 'Chômeur'));
+                $manager->persist(new Job('SP', 'Sans profession'));
+
                 $manager->flush();
                 $manager->clear();
                 fclose($handle);

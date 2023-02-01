@@ -7,6 +7,7 @@ namespace App\Referential\DataFixtures\City;
 use App\Referential\Entity\City;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ObjectManager;
 
 class CityFileFixtures extends Fixture implements FixtureGroupInterface
@@ -31,6 +32,9 @@ class CityFileFixtures extends Fixture implements FixtureGroupInterface
     public function load(ObjectManager $manager): void
     {
         if (file_exists($this->citiesFixturesPath)) {
+            if ($manager instanceof EntityManagerInterface) {
+                $manager->getConnection()->getConfiguration()->setSQLLogger(null);
+            }
             $row = 1;
             $handle = fopen($this->citiesFixturesPath, 'rb');
             if (is_resource($handle)) {
