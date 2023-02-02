@@ -9,3 +9,9 @@
     flex-direction: $direction
     justify-content: $justify-content
     align-items: $align-items
+
+@mixin rounded
+    // Important is needed here to override Bootstrap.
+    border-radius: 100% !important
+    -webkit-border-radius: 100% !important
+    -moz-border-radius: 100% !important

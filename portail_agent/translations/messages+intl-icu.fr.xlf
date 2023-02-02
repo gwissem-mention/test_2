@@ -702,6 +702,10 @@
                 <source>pel.your.identity</source>
                 <target>Votre identité</target>
             </trans-unit>
+            <trans-unit id="pel.notifications">
+                <source>pel.notifications</source>
+                <target>Notifications</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
