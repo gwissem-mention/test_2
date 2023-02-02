@@ -16,12 +16,35 @@
                 <button class="btn btn-outline-success" type="submit">{{ 'pel.search'|trans }}</button>
             </form>
             {% if app.user %}
-                <div class="text-center text-md-end">
-                    <div class="avatar bg-secondary rounded-circle text-light">
+                <div class="d-flex align-items-center text-center text-md-end">
+                    <div class="dropdown">
+                        <a class="d-block text-secondary text-decoration-none m-3" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-bell-fill fs-2"></i>
+                            <span class="badge bg-danger rounded-pill--up">3</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <div class="dropdown-header">{{ 'pel.notifications'|trans }}</div>
+                            </li>
+                            <li>
+                                {# TO DO : remove this text and replace it with real notifications #}
+                                <a class="dropdown-item" href="#">Une première notification !</a>
+                            </li>
+                            <li>
+                                {# TO DO : remove this text and replace it with real notifications #}
+                                <a class="dropdown-item" href="#">Une deuxième notification !</a>
+                            </li>
+                            <li>
+                                {# TO DO : remove this text and replace it with real notifications #}
+                                <a class="dropdown-item" href="#">Une troisième notification !</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="avatar bg-secondary rounded-circle text-light m-2">
                         {{ app.user.initials }}
                     </div>
                     {% if not sso_is_enabled %}
-                        <a href="{{ path('app_sso_less_close_session') }}" title="{{ 'pel.logout'|trans }}" class="text-secondary">
+                        <a href="{{ path('app_sso_less_close_session') }}" title="{{ 'pel.logout'|trans }}" class="text-secondary m-3">
                             <i class="bi bi-box-arrow-right"></i>
                         </a>
                     {% endif %}
