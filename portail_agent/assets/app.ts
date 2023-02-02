@@ -4,3 +4,4 @@ import "./scripts/scripts";
 
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./styles/styles.sass";
+import "./bootstrap";
