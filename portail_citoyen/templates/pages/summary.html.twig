@@ -233,7 +233,7 @@
                                 {% if object.model %}
                                     <li>{{ 'pel.model'|trans }} : {{ object.model }}</li>
                                 {% endif %}
-                                {% if object.phoneNumberLine %}
+                                {% if object.phoneNumberLine is not empty and object.phoneNumberLine.number is not empty %}
                                     <li>{{ 'pel.phone.number.line'|trans }} : {{ object.phoneNumberLine|phone_format_intl }}</li>
                                 {% endif %}
                                 {% if object.operator %}
