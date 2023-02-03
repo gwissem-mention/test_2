@@ -9,7 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
-class AgentAutocompleteType extends AbstractType
+class UserAutocompleteType extends AbstractType
 {
     public function __construct(private readonly UrlGeneratorInterface $urlGenerator)
     {
@@ -22,7 +22,7 @@ class AgentAutocompleteType extends AbstractType
             'preload' => false,
             'autocomplete_url' => $this->urlGenerator->generate(
                 'ux_entity_autocomplete',
-                ['alias' => 'agent']
+                ['alias' => 'user']
             ),
             'label' => 'pel.agent.name',
             'placeholder' => false,

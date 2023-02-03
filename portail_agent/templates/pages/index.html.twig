@@ -45,7 +45,7 @@
                 <td>
                     <a href="{{ path('complaint_summary', {id:complaint.id}) }}" target="_blank" class="btn btn-sm btn-{{ status_btn_color }}">{{ complaint.status|trans|u.truncate(15, '...') }}</a>
                 </td>
-                <td>{{ complaint.assignedTo|agent_name|u.truncate(15, '...') }}</td>
+                <td>{{ complaint.assignedTo|user_appellation|u.truncate(15, '...') }}</td>
                 <td>
                     <a href="{{ path('complaint_summary', {id: complaint.id}) }}" target="_blank">{{ complaint.declarationNumber }}</a>
                 </td>

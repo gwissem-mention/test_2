@@ -17,8 +17,7 @@ Feature:
         And I should see the key "pel.agent.complaint.online" translated
         And I should see the key "pel.header.baseline" translated
         And I should see the key "pel.complaint.online.portal" translated
-        And I should see the key "pel.fixtures.fsi.type" translated
-        And I should see the key "pel.fixtures.fsi.town" translated
+        And I should see "Brigade de proximité de Voiron"
         And I should see the key "pel.home" translated
         And I should see the key "pel.reporting" translated
         And I should see the key "pel.faq" translated

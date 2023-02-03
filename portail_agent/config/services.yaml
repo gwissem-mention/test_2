@@ -1,5 +1,7 @@
 parameters:
     sso.enabled: '%env(bool:ENABLE_SSO)%'
+    app.file_units: '%env(FILE_UNITS)%'
+    app.referentials_base_path: '%kernel.project_dir%/referentials'
 
 services:
     _defaults:
@@ -14,3 +16,7 @@ services:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
             - '../src/Kernel.php'
+
+    App\Referential\DataFixtures\Unit\UnitFileFixtures:
+        arguments:
+            $unitsFixturesPath: '%app.referentials_base_path%/%app.file_units%'

@@ -6,6 +6,7 @@
   environment:
     APP_ENV: prod
     ENABLE_SSO: "false"
+    FILE_UNITS: service.csv
 
   vars_files:
     - ../vars/vars.yaml

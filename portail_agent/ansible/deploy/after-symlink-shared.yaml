@@ -4,6 +4,7 @@
     content: |
       APP_ENV={{ ansible_env.APP_ENV }}
       ENABLE_SSO={{ ansible_env.ENABLE_SSO }}
+      FILE_UNITS={{ ansible_env.FILE_UNITS }}
 
 - name: Install vendors for prod env
   make:
