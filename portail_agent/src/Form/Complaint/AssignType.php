@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Form\Complaint;
 
 use App\Entity\Complaint;
-use App\Form\AgentAutocompleteType;
-use App\Referential\Entity\Agent;
-use App\Referential\Repository\AgentRepository;
+use App\Entity\User;
+use App\Form\UserAutocompleteType;
+use App\Repository\UserRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -18,7 +18,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 class AssignType extends AbstractType
 {
-    public function __construct(private readonly AgentRepository $agentRepository)
+    public function __construct(private readonly UserRepository $userRepository)
     {
     }
 
@@ -41,24 +41,24 @@ class AssignType extends AbstractType
                 function (FormEvent $event) {
                     /** @var array<string, string> $data */
                     $data = $event->getData();
-                    /** @var ?string $agent */
-                    $agent = $data['assignedTo'];
-                    $this->addAgentField($event->getForm(), !empty($agent) ? $agent : null);
+                    /** @var ?string $user */
+                    $user = $data['assignedTo'];
+                    $this->addAgentField($event->getForm(), !empty($user) ? $user : null);
                 }
             );
     }
 
-    private function addAgentField(FormInterface $form, ?string $agentId = null): void
+    private function addAgentField(FormInterface $form, ?string $userId = null): void
     {
-        $agent = null;
-        if (!is_null($agentId)) {
-            /** @var Agent $agent */
-            $agent = $this->agentRepository->find($agentId);
+        $user = null;
+        if (!is_null($userId)) {
+            /** @var User $user */
+            $user = $this->userRepository->find($userId);
         }
 
         $form
-            ->add('assignedTo', AgentAutocompleteType::class, [
-                'choices' => !is_null($agent) ? [$agent->getName() => $agent->getId()] : null,
+            ->add('assignedTo', UserAutocompleteType::class, [
+                'choices' => !is_null($user) ? [$user->getAppellation() => $user->getId()] : null,
                 'attr' => [
                     'required' => true,
                 ],

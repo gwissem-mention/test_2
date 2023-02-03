@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace App\Referential\Entity;
 
+use App\Enum\Institution;
 use App\Referential\Repository\UnitRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: UnitRepository::class)]
@@ -17,34 +16,43 @@ class Unit
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $email = null;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $email;
+
+    #[ORM\Column(length: 255, unique: true)]
+    private string $code;
 
     #[ORM\Column(length: 255)]
-    private ?string $code = null;
+    private string $name;
 
     #[ORM\Column(length: 255)]
-    private ?string $name = null;
+    private string $shortName;
 
-    #[ORM\Column(length: 255)]
-    private ?string $address = null;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $address;
 
-    #[ORM\Column(length: 255)]
-    private ?string $callNumber = null;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $phone;
 
-    #[ORM\Column(length: 255)]
-    private ?string $institutionCode = null;
+    #[ORM\Column(length: 255, nullable: true, enumType: Institution::class)]
+    private ?Institution $institutionCode;
 
-    /** @var Collection<int, Agent> */
-    #[ORM\OneToMany(mappedBy: 'unit', targetEntity: Agent::class, cascade: [
-        'persist',
-        'remove',
-    ], orphanRemoval: true)]
-    private Collection $agents;
-
-    public function __construct()
-    {
-        $this->agents = new ArrayCollection();
+    public function __construct(
+        ?string $email,
+        string $code,
+        string $name,
+        string $shortName,
+        ?string $address,
+        ?string $phone,
+        ?Institution $institutionCode
+    ) {
+        $this->email = $email;
+        $this->code = $code;
+        $this->name = $name;
+        $this->shortName = $shortName;
+        $this->address = $address;
+        $this->phone = $phone;
+        $this->institutionCode = $institutionCode;
     }
 
     public function getId(): ?int
@@ -64,24 +72,24 @@ class Unit
         return $this;
     }
 
-    public function getCode(): ?string
+    public function getCode(): string
     {
         return $this->code;
     }
 
-    public function setCode(?string $code): self
+    public function setCode(string $code): self
     {
         $this->code = $code;
 
         return $this;
     }
 
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }
 
-    public function setName(?string $name): self
+    public function setName(string $name): self
     {
         $this->name = $name;
 
@@ -100,55 +108,38 @@ class Unit
         return $this;
     }
 
-    public function getCallNumber(): ?string
+    public function getPhone(): ?string
     {
-        return $this->callNumber;
+        return $this->phone;
     }
 
-    public function setCallNumber(?string $callNumber): self
+    public function setPhone(?string $phone): self
     {
-        $this->callNumber = $callNumber;
+        $this->phone = $phone;
 
         return $this;
     }
 
-    public function getInstitutionCode(): ?string
+    public function getInstitutionCode(): ?Institution
     {
         return $this->institutionCode;
     }
 
-    public function setInstitutionCode(?string $institutionCode): self
+    public function setInstitutionCode(?Institution $institutionCode): self
     {
         $this->institutionCode = $institutionCode;
 
         return $this;
     }
 
-    /**
-     * @return Collection<int, Agent>
-     */
-    public function getAgents(): Collection
+    public function getShortName(): string
     {
-        return $this->agents;
+        return $this->shortName;
     }
 
-    public function addAgent(Agent $agent): self
+    public function setShortName(string $shortName): self
     {
-        if (!$this->agents->contains($agent)) {
-            $this->agents->add($agent);
-            $agent->setUnit($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAgent(Agent $agent): self
-    {
-        if ($this->agents->removeElement($agent)) {
-            if ($agent->getUnit() === $this) {
-                $agent->setUnit(null);
-            }
-        }
+        $this->shortName = $shortName;
 
         return $this;
     }

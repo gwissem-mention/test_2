@@ -278,14 +278,6 @@
                 <source>pel.firstname.lastname</source>
                 <target>Nom/Prénom</target>
             </trans-unit>
-            <trans-unit id="pel.fixtures.fsi.town">
-                <source>pel.fixtures.fsi.town</source>
-                <target>Angoulême</target>
-            </trans-unit>
-            <trans-unit id="pel.fixtures.fsi.type">
-                <source>pel.fixtures.fsi.type</source>
-                <target>Gendarmerie</target>
-            </trans-unit>
             <trans-unit id="pel.for.a.total.amount.of">
                 <source>pel.for.a.total.amount.of</source>
                 <target>pour un total de</target>

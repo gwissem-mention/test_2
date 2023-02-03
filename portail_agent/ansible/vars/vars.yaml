@@ -16,6 +16,7 @@ ansistrano_after_symlink_shared_tasks_file: "{{ playbook_dir }}/after-symlink-sh
 ansistrano_keep_releases: 3
 ansistrano_allow_anonymous_stats: false
 ansistrano_shared_paths:
+  - portail_agent/referentials
   - portail_agent/config/secrets/prod
 # Integration env vars
 server_host: "{{ vault_server_host }}"

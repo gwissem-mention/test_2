@@ -6,8 +6,8 @@ namespace App\Controller\Complaint;
 
 use App\Entity\Complaint;
 use App\Form\Complaint\AssignType;
-use App\Referential\Repository\AgentRepository;
 use App\Repository\ComplaintRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,7 +21,7 @@ class AssignController extends AbstractController
     public function __invoke(
         Complaint $complaint,
         ComplaintRepository $complaintRepository,
-        AgentRepository $agentRepository,
+        UserRepository $userRepository,
         Request $request
     ): JsonResponse {
         $form = $this->createForm(AssignType::class, $complaint);
@@ -41,7 +41,10 @@ class AssignController extends AbstractController
             $complaintRepository->save($complaint->setStatus(Complaint::STATUS_ASSIGNED), true);
 
             return $this->json(
-                ['success' => true, 'agent_name' => $agentRepository->find($complaint->getAssignedTo())?->getName()]
+                [
+                    'success' => true,
+                    'agent_name' => $userRepository->find($complaint->getAssignedTo())?->getAppellation(),
+                ]
             );
         }
 

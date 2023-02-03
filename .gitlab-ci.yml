@@ -434,7 +434,7 @@ agent-func:
         - make APP_ENV=${APP_ENV} db-ci-setup
         - make APP_ENV=${APP_ENV} db-load
         - make APP_ENV=${APP_ENV} referential-create
-        - make APP_ENV=${APP_ENV} referential-load
+        - make APP_ENV=${APP_ENV} referential-ci-load
         - make behat
     services:
         - name: postgres:13-alpine

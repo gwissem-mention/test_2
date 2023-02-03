@@ -21,10 +21,10 @@ class UserFixtures extends Fixture implements FixtureGroupInterface
     {
         $users = [
             (new User('H3U3XCGD', Institution::PN))
-                ->setServiceCode('4PWR9BBS')
+                ->setServiceCode('103131') // CSP VOIRON/SVP/UPS/BRIGADE DE JOUR
                 ->setAppellation('Jean DUPONT'),
             (new User('PR5KTZ9R', Institution::GN))
-                ->setServiceCode('4PWR9BBS')
+                ->setServiceCode('3002739') // Brigade de proximité de Voiron
                 ->setAppellation('Thomas DURAND'),
         ];
 
