@@ -10,11 +10,13 @@ use App\Entity\Complaint;
 use App\Entity\Facts;
 use App\Entity\FactsObject;
 use App\Entity\Identity;
+use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class ComplaintFixtures extends Fixture implements FixtureGroupInterface
+class ComplaintFixtures extends Fixture implements FixtureGroupInterface, DependentFixtureInterface
 {
     private const COMPLAINTS_NB = 5;
 
@@ -30,16 +32,19 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface
             $complaints[] = $this->getGenericComplaint($i);
         }
 
+        /** @var User $user */
+        $user = $manager->getRepository(User::class)->findOneBy([]);
+
         for ($i = 1; $i <= self::COMPLAINTS_NB; ++$i) {
             $complaints[] = $this->getGenericComplaint($i + 5)
                 ->setStatus(Complaint::STATUS_ASSIGNED)
-                ->setAssignedTo(1);
+                ->setAssignedTo($user->getId());
         }
 
         for ($i = 1; $i <= self::COMPLAINTS_NB; ++$i) {
             $complaints[] = $this->getGenericComplaint($i + 10)
                 ->setStatus(Complaint::STATUS_ONGOING_LRP)
-                ->setAssignedTo(1);
+                ->setAssignedTo($user->getId());
         }
 
         for ($i = 1; $i <= self::COMPLAINTS_NB; ++$i) {
@@ -161,5 +166,12 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface
                     ->setContent('Ceci est un commentaire de moi.')
                     ->setAuthor(Comment::AGENT_AUTHOR)
             );
+    }
+
+    public function getDependencies(): array
+    {
+        return [
+            UserFixtures::class,
+        ];
     }
 }
