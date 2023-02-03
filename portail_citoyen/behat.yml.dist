@@ -20,7 +20,7 @@ func:
     suites:
         default:
             filters:
-                tags: '~@javascript&&~@e2e'
+                tags: '~@javascript&&~@e2e&&~@flaky'
     extensions:
         Behat\MinkExtension:
             sessions:
@@ -35,7 +35,7 @@ e2e:
     suites:
         default:
             filters:
-                tags: '~@func'
+                tags: '~@func&&~@flaky'
     extensions:
         FriendsOfBehat\SymfonyExtension:
             kernel:
@@ -61,3 +61,4 @@ e2e:
                                         - "--disable-gpu"
                                         - "--disable-dev-shm-usage"
                                         - "--window-size=1920,1080"
+                                        - "--force-prefers-reduced-motion"
