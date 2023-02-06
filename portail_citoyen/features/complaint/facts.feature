@@ -13,7 +13,6 @@ Feature:
         And I fill in "identity_contactInformation_frenchAddress_address" with "Av. de la République 75011 Paris France"
         And I fill in "identity_contactInformation_phone_number" with "0601020304"
         And I press "identity_submit"
-        And I wait 2000 ms
 
     Scenario: I can see a warning text if I select "Robbery"
         When I click the "label[for=facts_offenseNature_offenseNatures_0]" element

@@ -138,10 +138,10 @@ permfix: citoyen-permfix
 permfix: agent-permfix
 
 ## Install environment from scratch
-install: build start vendor db-setup yarn-install yarn-watch
+install: build start vendor db-setup yarn-install yarn-build
 
 ## Install environment from scratch with debug and tools
-install-dev: build-debug start vendor db-setup tools-install yarn-install yarn-watch
+install-dev: build-debug start vendor db-setup tools-install yarn-install yarn-dev
 
 ## Display logs stream
 logs:

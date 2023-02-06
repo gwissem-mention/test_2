@@ -21,7 +21,6 @@ Feature:
         And I fill in "identity_corporation_phone_number" with "0102030405"
         And I fill in "identity_corporation_frenchAddress_address" with "Av. de la République 75011 Paris"
         And I press "identity_submit"
-        And I wait 2000 ms
         And I click the "label[for=facts_offenseNature_offenseNatures_0]" element
         And I click the "label[for=facts_victimOfViolence]" element
         And I fill in "facts_victimOfViolenceText" with "Violence informations"
@@ -42,7 +41,6 @@ Feature:
         And I fill in "objects_objects_1_label" with "Object 2"
         And I fill in "objects_objects_1_amount" with "100"
         And I press "objects_submit"
-        And I wait 2000 ms
         And I click the "label[for=additional_information_suspectsChoice_0]" element
         And I fill in "additional_information_suspectsText" with "suspects informations"
         And I should see the key "pel.facts.suspects.informations.text" translated

@@ -26,12 +26,14 @@ stages:
 #######################################
 
 .basic-override: &basic-override
+    interruptible: true
     tags:
         - docker
         - rancher
 
 .agent-step: &agent-step
     image: "registry.smile.fr/${HARBOR_PROJECT}/${PHP_AGENT_ARTIFACT_NAME}"
+    interruptible: true
     before_script:
         - cd ./portail_agent/
     <<: *basic-override
@@ -42,16 +44,19 @@ stages:
 
 .citoyen-frontend-step: &citoyen-frontend-step
     <<: *frontend-step
+    interruptible: true
     before_script:
         - cd ./portail_citoyen/
 
 .agent-frontend-step: &agent-frontend-step
     <<: *frontend-step
+    interruptible: true
     before_script:
         - cd ./portail_agent/
 
 .citoyen-step: &citoyen-step
     image: "registry.smile.fr/${HARBOR_PROJECT}/${PHP_CITOYEN_ARTIFACT_NAME}"
+    interruptible: true
     before_script:
         - cd ./portail_citoyen/
     <<: *basic-override
@@ -469,6 +474,7 @@ citoyen-e2e:
         - echo "APP_ENV=${APP_ENV}" >> .env.local
         - php -S 127.0.0.1:8080 -t public/ > /dev/null 2>&1 &
         - sed -i "s/nginx-citoyen/127.0.0.1:8080/g" behat.yml.dist
+        - sed -i "s/chrome:4444/chrome-citoyen:4444/g" behat.yml.dist
         - make APP_ENV=${APP_ENV} db-ci-setup
         - make APP_ENV=${APP_ENV} referential-create
         - make APP_ENV=${APP_ENV} referential-ci-load
@@ -484,10 +490,40 @@ citoyen-e2e:
         - name: postgres:13-alpine
           alias: database-e2e-citoyen
         - name: selenium/standalone-chrome:4.5.3
+          alias: chrome-citoyen
+        - name: redislabs/rejson:latest
+          alias: redis-citoyen
+
+citoyen-flaky-e2e:
+    <<: *citoyen-step
+    variables:
+        APP_ENV: "e2e"
+        POSTGRES_DB: "app"
+        POSTGRES_PASSWORD: "ChangeMe"
+        POSTGRES_USER: "symfony"
+    script:
+        - php bin/console cache:clear --env=${APP_ENV}
+        - echo "APP_ENV=${APP_ENV}" >> .env.local
+        - php -S 127.0.0.1:8080 -t public/ > /dev/null 2>&1 &
+        - sed -i "s/nginx-citoyen/127.0.0.1:8080/g" behat.yml.dist
+        - make APP_ENV=${APP_ENV} db-ci-setup
+        - make APP_ENV=${APP_ENV} referential-create
+        - make APP_ENV=${APP_ENV} referential-ci-load
+        - make flaky-e2e
+    artifacts:
+        name: "citoyen-flaky-e2e-$CI_COMMIT_REF_NAME"
+        paths:
+            - /builds/ministere-de-l-interieur/plaintes-en-ligne-pel/portail_citoyen/var/log
+            - /builds/ministere-de-l-interieur/plaintes-en-ligne-pel/portail_citoyen/build/screenshots
+        expire_in: 1 week
+        when: on_failure
+    services:
+        - name: postgres:13-alpine
+          alias: database-e2e-citoyen
+        - name: selenium/standalone-chrome:4.5.3
           alias: chrome
         - name: redislabs/rejson:latest
           alias: redis-citoyen
-    allow_failure: true
 
 agent-e2e:
     <<: *agent-step
@@ -518,4 +554,33 @@ agent-e2e:
             - /builds/ministere-de-l-interieur/plaintes-en-ligne-pel/portail_agent/build/screenshots
         expire_in: 1 week
         when: on_failure
-    allow_failure: true
+
+agent-flaky-e2e:
+    <<: *agent-step
+    variables:
+        APP_ENV: "e2e"
+        POSTGRES_DB: "app"
+        POSTGRES_PASSWORD: "ChangeMe"
+        POSTGRES_USER: "symfony"
+    script:
+        - php bin/console cache:clear --env=${APP_ENV}
+        - echo "APP_ENV=${APP_ENV}" >> .env.local
+        - php -S 127.0.0.1:8080 -t  public/ > /dev/null 2>&1 &
+        - sed -i "s/nginx-agent/127.0.0.1:8080/g" behat.yml.dist
+        - make APP_ENV=${APP_ENV} db-ci-setup
+        - make APP_ENV=${APP_ENV} db-load
+        - make APP_ENV=${APP_ENV} referential-create
+        - make APP_ENV=${APP_ENV} referential-load
+        - make flaky-e2e
+    services:
+        - name: postgres:13-alpine
+          alias: database-e2e-agent
+        - name: selenium/standalone-chrome:4.5.3
+          alias: chrome
+    artifacts:
+        name: "agent-flaky-e2e-$CI_COMMIT_REF_NAME"
+        paths:
+            - /builds/ministere-de-l-interieur/plaintes-en-ligne-pel/portail_agent/var/log
+            - /builds/ministere-de-l-interieur/plaintes-en-ligne-pel/portail_agent/build/screenshots
+        expire_in: 1 week
+        when: on_failure
