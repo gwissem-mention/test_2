@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Controller\Complaint;
 
 use App\Entity\Complaint;
+use App\Entity\User;
+use App\Factory\NotificationFactory;
 use App\Form\Complaint\AssignType;
 use App\Repository\ComplaintRepository;
 use App\Repository\UserRepository;
@@ -22,6 +24,7 @@ class AssignController extends AbstractController
         Complaint $complaint,
         ComplaintRepository $complaintRepository,
         UserRepository $userRepository,
+        NotificationFactory $notificationFactory,
         Request $request
     ): JsonResponse {
         $form = $this->createForm(AssignType::class, $complaint);
@@ -38,12 +41,19 @@ class AssignController extends AbstractController
                 ], 422);
             }
 
-            $complaintRepository->save($complaint->setStatus(Complaint::STATUS_ASSIGNED), true);
+            $complaintRepository->save($complaint->setStatus(Complaint::STATUS_ASSIGNED));
+
+            /** @var User $user */
+            $user = $userRepository->find($complaint->getAssignedTo());
+
+            $userRepository->save(
+                $user->addNotification($notificationFactory->createForComplaintAssigned($complaint)), true
+            );
 
             return $this->json(
                 [
                     'success' => true,
-                    'agent_name' => $userRepository->find($complaint->getAssignedTo())?->getAppellation(),
+                    'agent_name' => $user->getAppellation(),
                 ]
             );
         }

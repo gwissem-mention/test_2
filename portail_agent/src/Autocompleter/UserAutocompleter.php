@@ -55,6 +55,6 @@ class UserAutocompleter implements EntityAutocompleterInterface
 
     public function isGranted(Security $security): bool
     {
-        return true;
+        return $security->isGranted('IS_AUTHENTICATED');
     }
 }

@@ -210,16 +210,21 @@ Feature:
         Then I should not see a ".modal[aria-modal=true]" element
 
     @javascript
-    Scenario: I can submit the assign form successfully
+    Scenario: I can submit the assign form successfully and Jean DUPONT should have a notif
         Given I am on "/plainte/recapitulatif/3"
         When I press "Attribuer la déclaration à..."
-        And I fill in the autocomplete "assign_assignedTo-ts-control" with "Thomas" and click "2"
+        And I fill in the autocomplete "assign_assignedTo-ts-control" with "Jean" and click "1"
         And I press "Valider l'attribution"
         Then I should not see a ".modal[aria-modal=true]" element
         And I should see a ".toast" element
         And I should see the key "pel.the.declaration.has.been.assigned.to" translated
-        And I should see "Déclaration attribuée à : Thomas DURAND"
+        And I should see "Déclaration attribuée à : Jean DUPONT"
         And I should see the key "pel.declaration.assigned.to" translated
+        Given I am authenticated with H3U3XCGD from PN
+        And I am on the homepage
+        When I click the "#notifications-dropdown" element
+        Then I should see "La déclaration PEL-2022-00000003 vient de vous être attribuée"
+
 
     @javascript
     Scenario: I can submit the reassign form successfully
