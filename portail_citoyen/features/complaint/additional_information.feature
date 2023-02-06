@@ -12,7 +12,6 @@ Feature:
         And I fill in "identity_contactInformation_frenchAddress_address" with "Av. de la République 75011 Paris France"
         And I fill in "identity_contactInformation_phone_number" with "0601020304"
         And I press "identity_submit"
-        And I wait 2000 ms
         And I click the "label[for=facts_offenseNature_offenseNatures_0]" element
         And I click the "label[for=facts_address_addressOrRouteFactsKnown_0]" element
         And I fill in "facts_address_startAddress" with "1 test street"
@@ -31,7 +30,6 @@ Feature:
         And I fill in "objects_objects_1_label" with "Object 2"
         And I fill in "objects_objects_1_amount" with "100"
         And I press "objects_submit"
-        And I wait 2000 ms
 
     Scenario: Selecting the "label[for=additional_information_suspectsChoice_1]" element and not showing
     the key "pel.facts.suspects.informations.text" translated

@@ -6,6 +6,7 @@ namespace App\Tests\Behat;
 
 use Behat\Behat\Hook\Scope\AfterScenarioScope;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
+use Behat\Mink\Driver\Selenium2Driver;
 use Behat\Mink\Exception\ElementNotFoundException;
 use Behat\Mink\Exception\ExpectationException;
 use Behat\MinkExtension\Context\MinkContext;
@@ -49,6 +50,16 @@ final class BaseContext extends MinkContext
 
         // Reset severs parameters after each scenario, because it's not done by the client during the restart process
         $driver->getClient()->setServerParameters([]);
+    }
+
+    /** @AfterScenario */
+    public function resetSession(AfterScenarioScope $scope): void
+    {
+        if (!$this->getSession()->getDriver() instanceof Selenium2Driver) {
+            return;
+        }
+
+        $this->getSession()->reset();
     }
 
     public function visit($page): void
@@ -353,6 +364,8 @@ final class BaseContext extends MinkContext
         do {
             try {
                 $step();
+                // we sleep a little bit more even when the element is found to wait for animation ending
+                \usleep($sleep / 2);
 
                 return;
             } catch (\Exception $e) {

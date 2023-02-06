@@ -341,11 +341,12 @@ Feature:
         And I click the "li[data-country-code=af]" element
         And I fill in "identity_contactInformation_phone_number" with "70 123 4567"
         Then I should not see a "#form-errors-identity_contactInformation_phone_number" element
-
+    @flaky
     Scenario: I cannot enter invalid chars for phone input
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
         When I fill in "identity_contactInformation_phone_number" with "abcd0601020304$."
+        And I wait 2000 ms
         Then the "identity_contactInformation_phone_number" field should contain "6 01 02 03 04"
 
     Scenario: I should see a error message when number is wrong
