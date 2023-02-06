@@ -16,28 +16,30 @@
                 <button class="btn btn-outline-success" type="submit">{{ 'pel.search'|trans }}</button>
             </form>
             {% if app.user %}
+                {% set notifications = app.user|user_unclicked_notifications %}
                 <div class="d-flex align-items-center text-center text-md-end">
-                    <div class="dropdown">
+                    <div class="dropdown" id="notifications-dropdown">
                         <a class="d-block text-secondary text-decoration-none m-3" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-bell-fill fs-2"></i>
-                            <span class="badge bg-danger rounded-pill--up">3</span>
+                            {% if notifications is not empty %}
+                                <span class="badge bg-danger rounded-pill--up">{{ notifications|length }}</span>
+                            {% endif %}
                         </a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu dropdown-menu-end">
                             <li>
-                                <div class="dropdown-header">{{ 'pel.notifications'|trans }}</div>
+                                <div class="dropdown-header">
+                                    {% if notifications is not empty %}
+                                        {{ 'pel.notifications'|trans }}
+                                    {% else %}
+                                        {{ 'pel.no.more.notification'|trans }}
+                                    {% endif %}
+                                </div>
                             </li>
-                            <li>
-                                {# TO DO : remove this text and replace it with real notifications #}
-                                <a class="dropdown-item" href="#">Une première notification !</a>
-                            </li>
-                            <li>
-                                {# TO DO : remove this text and replace it with real notifications #}
-                                <a class="dropdown-item" href="#">Une deuxième notification !</a>
-                            </li>
-                            <li>
-                                {# TO DO : remove this text and replace it with real notifications #}
-                                <a class="dropdown-item" href="#">Une troisième notification !</a>
-                            </li>
+                            {% for notification in notifications %}
+                                <li>
+                                    <a class="dropdown-item" href="{{ path('notification', {id:notification.id}) }}">{{ notification.title }}</a>
+                                </li>
+                            {% endfor %}
                         </ul>
                     </div>
                     <div class="avatar bg-secondary rounded-circle text-light m-2">

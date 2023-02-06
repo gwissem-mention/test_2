@@ -67,3 +67,15 @@ Feature:
         And I follow "FAQ"
         Then I am on "/faq"
         And I should see the key "pel.faq" translated
+
+    @javascript
+    Scenario: I can click on a assignment notif and I should be redirected on the complaint and the notif should be removed
+        Given I am authenticated with H3U3XCGD from PN
+        And I am on the homepage
+        When I click the "#notifications-dropdown" element
+        Then I should see "La déclaration PEL-2022-00000001 vient de vous être attribuée"
+        When I follow "La déclaration PEL-2022-00000001 vient de vous être attribuée"
+        Then I should be on "/plainte/recapitulatif/1"
+        When I click the "#notifications-dropdown" element
+        Then I should not see "La déclaration PEL-2022-00000001 vient de vous être attribuée"
+

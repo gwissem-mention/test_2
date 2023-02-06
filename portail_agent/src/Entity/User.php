@@ -6,6 +6,8 @@ namespace App\Entity;
 
 use App\Enum\Institution;
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -47,11 +49,19 @@ class User implements UserInterface
     #[ORM\Column(length: 255, options: ['default' => 'Europe/Paris'])]
     private ?string $timezone = 'Europe/Paris';
 
+    /** @var Collection<int, Notification> */
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Notification::class, cascade: [
+        'persist',
+        'remove',
+    ], orphanRemoval: true)]
+    private Collection $notifications;
+
     public function __construct(string $number, Institution $institution)
     {
         $this->number = $number;
         $this->institution = $institution;
         $this->identifier = self::generateIdentifier($number, $institution);
+        $this->notifications = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -162,5 +172,23 @@ class User implements UserInterface
             mb_substr(end($words), 0, 1, 'UTF-8'),
             'UTF-8'
         );
+    }
+
+    /**
+     * @return Collection<int, Notification>
+     */
+    public function getNotifications(): Collection
+    {
+        return $this->notifications;
+    }
+
+    public function addNotification(Notification $notification): self
+    {
+        if (!$this->notifications->contains($notification)) {
+            $this->notifications->add($notification);
+            $notification->setUser($this);
+        }
+
+        return $this;
     }
 }
