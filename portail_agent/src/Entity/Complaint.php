@@ -40,7 +40,7 @@ class Complaint
     #[ORM\Column(length: 255)]
     private ?string $status = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, unique: true)]
     private ?string $declarationNumber = null;
 
     #[ORM\Column]

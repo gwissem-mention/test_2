@@ -29,32 +29,32 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
     {
         $complaints = [];
         for ($i = 1; $i <= self::COMPLAINTS_NB; ++$i) {
-            $complaints[] = $this->getGenericComplaint($i);
+            $complaints[] = $this->getGenericComplaint();
         }
 
         /** @var User $user */
         $user = $manager->getRepository(User::class)->findOneBy([]);
 
         for ($i = 1; $i <= self::COMPLAINTS_NB; ++$i) {
-            $complaints[] = $this->getGenericComplaint($i + 5)
+            $complaints[] = $this->getGenericComplaint()
                 ->setStatus(Complaint::STATUS_ASSIGNED)
                 ->setAssignedTo($user->getId());
         }
 
         for ($i = 1; $i <= self::COMPLAINTS_NB; ++$i) {
-            $complaints[] = $this->getGenericComplaint($i + 10)
+            $complaints[] = $this->getGenericComplaint()
                 ->setStatus(Complaint::STATUS_ONGOING_LRP)
                 ->setAssignedTo($user->getId());
         }
 
         for ($i = 1; $i <= self::COMPLAINTS_NB; ++$i) {
-            $complaints[] = $this->getGenericComplaint($i + 15)
+            $complaints[] = $this->getGenericComplaint()
                 ->setStatus(Complaint::STATUS_REJECTED)
                 ->setRefusalReason(Complaint::REFUSAL_REASON_REORIENTATION_APPONTMENT);
         }
 
         for ($i = 1; $i <= self::COMPLAINTS_NB; ++$i) {
-            $complaints[] = $this->getGenericComplaint($i + 20)
+            $complaints[] = $this->getGenericComplaint()
                 ->setStatus(Complaint::STATUS_MP_DECLARANT);
         }
 
@@ -65,13 +65,12 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
         $manager->flush();
     }
 
-    private function getGenericComplaint(int $row): Complaint
+    private function getGenericComplaint(): Complaint
     {
         return (new Complaint())
             ->setCreatedAt(new \DateTimeImmutable('2022-12-01'))
             ->setAppointmentDate(new \DateTimeImmutable('2022-12-03'))
             ->setStatus(Complaint::STATUS_ASSIGNMENT_PENDING)
-            ->setDeclarationNumber('PEL-2022-'.str_pad((string) $row, 8, '0', STR_PAD_LEFT))
             ->setOptinNotification(true)
             ->setAlert('Alert de test trop longue')
             ->setIdentity(

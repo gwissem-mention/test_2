@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Behat;
 
+use App\Generator\GeneratorInterface;
 use Behat\Behat\Hook\Scope\AfterScenarioScope;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\Mink\Driver\Selenium2Driver;
@@ -25,6 +26,7 @@ final class BaseContext extends MinkContext
 
     public function __construct(
         private readonly TranslatorInterface $translator,
+        private readonly GeneratorInterface $declarationNumberGenerator
     ) {
     }
 
@@ -397,5 +399,13 @@ final class BaseContext extends MinkContext
         }
 
         $callback();
+    }
+
+    /**
+     * @When /^I follow the declaration number (?P<num>\d+)$/
+     */
+    public function IFollowTheDeclarationNumber(int $declarationNumber): void
+    {
+        $this->clickLink($this->declarationNumberGenerator->generate($declarationNumber));
     }
 }
