@@ -39,11 +39,10 @@ Feature:
         And I should see 5 ".btn-warning" element
         And I should see 5 ".btn-success" element
 
-
     @func
     Scenario: I can click on a complaint link on the table
         Given I am on the homepage
-        When I follow "PEL-2022-00000001"
+        When I follow the declaration number 1
         Then I am on "/plainte/recapitulatif/1"
         And the response status code should be 200
 
