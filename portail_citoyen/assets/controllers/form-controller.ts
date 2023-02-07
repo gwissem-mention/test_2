@@ -87,6 +87,7 @@ export default class extends Controller {
                 // @ts-ignore
                 frenchAddressRepresentedPerson.value = addressDeclarant.value;
                 frenchAddressRepresentedPerson.setAttribute("disabled", "disabled");
+                frenchAddressRepresentedPerson.dispatchEvent(new Event("change", {bubbles: true}));
             }
 
             if (addressDeclarant && foreignAddressRepresentedPerson) {
@@ -94,6 +95,7 @@ export default class extends Controller {
                 // @ts-ignore
                 foreignAddressRepresentedPerson.value = addressDeclarant.value;
                 foreignAddressRepresentedPerson.setAttribute("disabled", "disabled");
+                foreignAddressRepresentedPerson.dispatchEvent(new Event("change", {bubbles: true}));
             }
         }
 
@@ -105,6 +107,7 @@ export default class extends Controller {
                 // @ts-ignore
                 frenchAddressRepresentedPerson.value = "";
                 frenchAddressRepresentedPerson.removeAttribute("disabled");
+                frenchAddressRepresentedPerson.dispatchEvent(new Event("change", {bubbles: true}));
             }
 
             if (foreignAddressRepresentedPerson) {
@@ -112,6 +115,7 @@ export default class extends Controller {
                 // @ts-ignore
                 foreignAddressRepresentedPerson.value = "";
                 foreignAddressRepresentedPerson.removeAttribute("disabled");
+                foreignAddressRepresentedPerson.dispatchEvent(new Event("change", {bubbles: true}));
             }
         }
 
@@ -123,6 +127,7 @@ export default class extends Controller {
                 // @ts-ignore
                 frenchAddressCorporation.value = addressDeclarant.value;
                 frenchAddressCorporation.setAttribute("disabled", "disabled");
+                frenchAddressCorporation.dispatchEvent(new Event("change", {bubbles: true}));
             }
 
             if (addressDeclarant && foreignAddressCorporation) {
@@ -130,6 +135,7 @@ export default class extends Controller {
                 // @ts-ignore
                 foreignAddressCorporation.value = addressDeclarant.value;
                 foreignAddressCorporation.setAttribute("disabled", "disabled");
+                foreignAddressCorporation.dispatchEvent(new Event("change", {bubbles: true}));
             }
         }
 
@@ -141,6 +147,7 @@ export default class extends Controller {
                 // @ts-ignore
                 frenchAddressCorporation.value = "";
                 frenchAddressCorporation.removeAttribute("disabled");
+                frenchAddressCorporation.dispatchEvent(new Event("change", {bubbles: true}));
             }
 
             if (foreignAddressCorporation) {
@@ -148,6 +155,7 @@ export default class extends Controller {
                 // @ts-ignore
                 foreignAddressCorporation.value = "";
                 foreignAddressCorporation.removeAttribute("disabled");
+                foreignAddressCorporation.dispatchEvent(new Event("change", {bubbles: true}));
             }
         }
     }
