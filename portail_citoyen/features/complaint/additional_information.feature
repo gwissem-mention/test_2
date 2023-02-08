@@ -34,6 +34,10 @@ Feature:
         And I press "objects_submit"
         Then I should be on "/porter-plainte/informations-complementaires"
 
+    Scenario: I can click on the back button
+        When I follow "Précédent"
+        Then I should be on "/porter-plainte/objets"
+
     Scenario: I can see the suspectsChoice choices
         Then I should see 2 "input[type=radio][name='additional_information[suspectsChoice]']" elements
         And I should see "Oui" in the "label[for=additional_information_suspectsChoice_0]" element

@@ -306,11 +306,9 @@
             </div>
             <hr>
             <p><strong>{{ 'pel.note'|trans }}</strong> : {{ 'pel.summary.is.not.legal.proof'|trans }}</p>
-            <div class="fr-grid-row">
-                <div class="fr-col">
-                    <a class="fr-btn fr-btn--secondary" href="{{ path('complaint_additional_information') }}">{{ 'pel.previous'|trans }}</a>
-                    <button class="fr-btn fr-float-right fr-btn--icon-right fr-icon-arrow-right-line" data-fr-opened="false" aria-controls="fr-modal-complaint-confirm">{{ 'pel.next'|trans }}</button>
-                </div>
+            <div class="flex--between fr-mt-3w fr-mb-3w">
+                <a href="{{ path('complaint_additional_information') }}" class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-arrow-left-line">{{ 'pel.previous'|trans }}</a>
+                <button class="fr-btn fr-float-right fr-btn--icon-right fr-icon-arrow-right-line" data-fr-opened="false" aria-controls="fr-modal-complaint-confirm">{{ 'pel.next'|trans }}</button>
             </div>
         </div>
     </div>
