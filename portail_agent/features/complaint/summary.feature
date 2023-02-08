@@ -223,7 +223,7 @@ Feature:
         Given I am authenticated with H3U3XCGD from PN
         And I am on the homepage
         When I click the "#notifications-dropdown" element
-        Then I should see "La déclaration PEL-2022-00000003 vient de vous être attribuée"
+        Then I should see "La déclaration PEL-2023-00000003 vient de vous être attribuée"
 
 
     @javascript
