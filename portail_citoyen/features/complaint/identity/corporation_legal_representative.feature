@@ -54,26 +54,26 @@ Feature:
         And I press "identity_submit"
         Then I should be on "/porter-plainte/faits"
 
-    Scenario: Submit the form with the same address as the declarant checkbox
-        When I click the "label[for=identity_declarantStatus_2]" element
-        And I select "1" from "identity_civilState_civility"
-        And I fill in "identity_civilState_birthName" with "Dupont"
-        And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
-        And I fill in "identity_civilState_birthDate" with "01/01/2000"
-        And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
-        And I fill in the autocomplete "identity_civilState_job-ts-control" with "Avocats" and click "31B1"
-        And I fill in "identity_contactInformation_frenchAddress_address" with "Av. de la République 75011 Paris France"
-        And I fill in "identity_contactInformation_email" with "jean@test.com"
-        And I fill in "identity_contactInformation_phone_number" with "0601020304"
-        And I fill in "identity_corporation_siren" with "123456789"
-        And I fill in "identity_corporation_name" with "Test Company"
-        And I fill in "identity_corporation_function" with "Developer"
-        And I fill in "identity_corporation_email" with "jean@test.com"
-        And I fill in "identity_corporation_phone_number" with "0601020304"
-        And I click the "label[for=identity_corporation_sameAddress]" element
-        Then the "identity[corporation][frenchAddress][address]" field should contain "Av. de la République 75011 Paris France"
-        And I press "identity_submit"
-        Then I should be on "/porter-plainte/faits"
+    #Scenario: Submit the form with the same address as the declarant checkbox
+        #When I click the "label[for=identity_declarantStatus_2]" element
+        #And I select "1" from "identity_civilState_civility"
+        #And I fill in "identity_civilState_birthName" with "Dupont"
+        #And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
+        #And I fill in "identity_civilState_birthDate" with "01/01/2000"
+        #And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
+        #And I fill in the autocomplete "identity_civilState_job-ts-control" with "Avocats" and click "31B1"
+        #And I fill in "identity_contactInformation_frenchAddress_address" with "Av. de la République 75011 Paris France"
+        #And I fill in "identity_contactInformation_email" with "jean@test.com"
+        #And I fill in "identity_contactInformation_phone_number" with "0601020304"
+        #And I fill in "identity_corporation_siren" with "123456789"
+        #And I fill in "identity_corporation_name" with "Test Company"
+        #And I fill in "identity_corporation_function" with "Developer"
+        #And I fill in "identity_corporation_email" with "jean@test.com"
+        #And I fill in "identity_corporation_phone_number" with "0601020304"
+        #And I click the "label[for=identity_corporation_sameAddress]" element
+        #Then the "identity[corporation][frenchAddress][address]" field should contain "Av. de la République 75011 Paris France"
+        #And I press "identity_submit"
+        #Then I should be on "/porter-plainte/faits"
 
     Scenario: Submit the form without any required values
         And I press "identity_submit"

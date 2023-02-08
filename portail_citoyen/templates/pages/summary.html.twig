@@ -29,8 +29,8 @@
     {% endembed %}
     <div class="fr-container container">
         <h1>{{ 'pel.complaint.my.declaration'|trans }}</h1>
+        {% include 'common/_complaint_nav.html.twig' with {'active':'summary'} %}
         <div class="wrapper--complaint">
-            {% include 'common/_complaint_nav.html.twig' with {'active':'summary'} %}
             <h2>{{ 'pel.complaint.summary'|trans }}</h2>
             <div class="fr-grid-row">
                 <div class="fr-col">
@@ -213,8 +213,7 @@
                                     <li>{{ 'pel.model'|trans }} : {{ object.model }}</li>
                                 {% endif %}
                                 {% if object.phoneNumberLine is not empty and object.phoneNumberLine.number is not empty %}
-                                    <li>{{ 'pel.phone.number.line'|trans }}
-                                        : {{ object.phoneNumberLine|phone_format_intl }}</li>
+                                    <li>{{ 'pel.phone.number.line'|trans }} : {{ object.phoneNumberLine|phone_format_intl }}</li>
                                 {% endif %}
                                 {% if object.operator %}
                                     <li>{{ 'pel.operator'|trans }} : {{ object.operator }}</li>
@@ -248,7 +247,7 @@
                                 <li>{{ 'pel.quantity'|trans }} : {{ object.quantity }}</li>
                             {% endif %}
                             {% if object.amount %}
-                                <li>{{ 'pel.amount'|trans }}: {{ object.amount|format_currency('EUR', {fraction_digit: 2}) }}</li>
+                                <li>{{ 'pel.amount'|trans }} : {{ object.amount|format_currency('EUR', {fraction_digit: 2}) }}</li>
                             {% endif %}
                         </ul>
                     {% endfor %}

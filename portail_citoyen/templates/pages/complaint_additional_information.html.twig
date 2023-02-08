@@ -5,12 +5,12 @@
 {% block body %}
     <div class="fr-container container" data-controller="form">
         <h1>{{ 'pel.complaint.my.declaration'|trans }}</h1>
+        {% include 'common/_complaint_nav.html.twig' with {'active':'additional_information'} %}
         <p>
             {{ 'pel.complaint.all.required.fields.are.required'|trans }}
             <span class="fr-icon-information-line" aria-hidden="true"></span>
         </p>
         <div class="wrapper--complaint">
-            {% include 'common/_complaint_nav.html.twig' with {'active':'additional_information'} %}
             <div class="accordion__item__title" id="identity_accordion_title">
                 <span class="fr-icon-arrow-down-s-line"></span>
                 {{ 'pel.complaint.additional.informations'|trans }}
