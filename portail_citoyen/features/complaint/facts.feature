@@ -14,6 +14,10 @@ Feature:
         And I press "identity_submit"
         And I should be on "/porter-plainte/faits"
 
+    Scenario: I can click on the back button
+        When I follow "Précédent"
+        Then I should be on "/porter-plainte/identite"
+
     Scenario: I can see the offense nature checkboxes
         Then I should see 3 "input[type=checkbox][name='facts[offenseNature][offenseNatures][]']" elements
         And I should see "Vol" in the "label[for=facts_offenseNature_offenseNatures_0]" element

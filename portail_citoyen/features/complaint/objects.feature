@@ -22,6 +22,10 @@ Feature:
         And I press "facts_submit"
         Then I should be on "/porter-plainte/objets"
 
+    Scenario: I can click on the back button
+        When I follow "Précédent"
+        Then I should be on "/porter-plainte/faits"
+
     Scenario: I can see the object category choice list
         Then I should see "Documents" in the "#objects_objects_0_category" element
         And I should see "Moyens de paiement" in the "#objects_objects_0_category" element

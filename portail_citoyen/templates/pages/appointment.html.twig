@@ -1,15 +1,19 @@
 {% extends 'layout.html.twig' %}
 
 {% block body %}
-    <h1>{{ 'pel.make.appointment'|trans }}</h1>
-    <div class="fr-grid-row">
-        <div class="fr-col">
-            <a class="fr-btn" href="{{ path('complaint_summary') }}">
-                {{ 'pel.previous'|trans }}
-            </a>
-            <a class="fr-btn" href="{{ path('end') }}">
-                {{ 'pel.next'|trans }}
-            </a>
+    <div class="fr-container container">
+        <div class="fr-grid-row">
+            <div class="fr-col-6">
+                <h1>{{ 'pel.make.appointment'|trans }}</h1>
+                <div class="flex--between fr-mt-3w fr-mb-3w">
+                    <a class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-arrow-left-line" href="{{ path('complaint_summary') }}">
+                        {{ 'pel.previous'|trans }}
+                    </a>
+                    <a class="fr-btn fr-float-right fr-btn--icon-right fr-icon-arrow-right-line" href="{{ path('end') }}">
+                        {{ 'pel.next'|trans }}
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}

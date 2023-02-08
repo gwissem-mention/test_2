@@ -106,17 +106,9 @@
             {% endif %}
         </div>
     {% endif %}
-    <div class="fr-grid-row">
-        <div class="fr-col">
-            <ul class="fr-btns-group fr-btns-group--right fr-btns-group--inline-reverse fr-btns-group--inline-lg fr-btns-group--icon-left">
-                <li>
-                    <button type="submit" class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line" id="facts_submit">{{ 'pel.next'|trans }}</button>
-                </li>
-                <li>
-                    <button type="button" class="fr-btn fr-btn--secondary">{{ 'pel.save'|trans }}</button>
-                </li>
-            </ul>
-        </div>
+    <div class="flex--between fr-mt-3w fr-mb-3w">
+        <a href="{{ path('complaint_identity') }}" class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-arrow-left-line">{{ 'pel.previous'|trans }}</a>
+        <button type="submit" class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line" id="facts_submit">{{ 'pel.next'|trans }}</button>
     </div>
     {{ form_end(form) }}
 </div>
