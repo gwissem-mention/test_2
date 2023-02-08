@@ -150,6 +150,9 @@ class CivilStateType extends AbstractType
                 'constraints' => [
                     new NotBlank(),
                 ],
+                'attr' => [
+                    'required' => true,
+                ],
                 'label' => 'pel.your.job',
             ]);
     }

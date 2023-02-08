@@ -7,11 +7,13 @@ Feature:
     Background:
         Given I am on "/authentification"
         When I press "france_connect_auth_button"
-        When I click the "label[for=identity_declarantStatus_0]" element
+        Then I should be on "/porter-plainte/identite"
         And I fill in the autocomplete "identity_civilState_job-ts-control" with "Avocats" and click "31B1"
         And I fill in "identity_contactInformation_frenchAddress_address" with "Av. de la République 75011 Paris France"
         And I fill in "identity_contactInformation_phone_number" with "0601020304"
+        And I click the "label[for=identity_declarantStatus_0]" element
         And I press "identity_submit"
+        Then I should be on "/porter-plainte/faits"
         And I click the "label[for=facts_offenseNature_offenseNatures_0]" element
         And I click the "label[for=facts_address_addressOrRouteFactsKnown_0]" element
         And I fill in "facts_address_startAddress" with "1 test street"
@@ -21,7 +23,7 @@ Feature:
         And I click the "label[for=facts_offenseDate_choiceHour_0]" element
         And I fill in "facts_offenseDate_hour" with "15:00"
         And I press "facts_submit"
-        And I wait 2000 ms
+        Then I should be on "/porter-plainte/objets"
         And I select "1" from "objects_objects_0_category"
         And I fill in "objects_objects_0_label" with "Object 1"
         And I fill in "objects_objects_0_amount" with "100"
@@ -30,6 +32,28 @@ Feature:
         And I fill in "objects_objects_1_label" with "Object 2"
         And I fill in "objects_objects_1_amount" with "100"
         And I press "objects_submit"
+        Then I should be on "/porter-plainte/informations-complementaires"
+
+    Scenario: I can see the suspectsChoice choices
+        Then I should see 2 "input[type=radio][name='additional_information[suspectsChoice]']" elements
+        And I should see "Oui" in the "label[for=additional_information_suspectsChoice_0]" element
+        And I should see "Non" in the "label[for=additional_information_suspectsChoice_1]" element
+
+    Scenario: I can see the witnesses choices
+        Then I should see 2 "input[type=radio][name='additional_information[witnesses]']" elements
+        And I should see "Oui" in the "label[for=additional_information_witnesses_0]" element
+        And I should see "Non" in the "label[for=additional_information_witnesses_1]" element
+
+    Scenario: I can see the fsi visit choices
+        Then I should see 2 "input[type=radio][name='additional_information[fsiVisit]']" elements
+        And I should see "Oui" in the "label[for=additional_information_fsiVisit_0]" element
+        And I should see "Non" in the "label[for=additional_information_fsiVisit_1]" element
+
+    Scenario: I can see the cctv choices
+        Then I should see 3 "input[type=radio][name='additional_information[cctvPresent]']" elements
+        And I should see "Oui" in the "label[for=additional_information_cctvPresent_0]" element
+        And I should see "Non" in the "label[for=additional_information_cctvPresent_1]" element
+        And I should see "Je ne sais pas" in the "label[for=additional_information_cctvPresent_2]" element
 
     Scenario: Selecting the "label[for=additional_information_suspectsChoice_1]" element and not showing
     the key "pel.facts.suspects.informations.text" translated
@@ -80,10 +104,9 @@ Feature:
         And I click the "label[for=additional_information_cctvAvailable_0]" element
         And I fill in "additional_information_description" with "description informations"
         And I press "additional_information_submit"
-        And I wait 2000 ms
-        Given I am on "/recapitulatif"
+        Then I should be on "/porter-plainte/recapitulatif"
         When I follow "Précédent"
-        Then I am on "/porter-plainte"
+        Then I am on "/porter-plainte/informations-complementaires"
         And the "additional_information_suspectsChoice_0" field should contain "1"
         And the "additional_information_suspectsText" field should contain "suspects informations"
         And the "additional_information_witnesses_0" field should contain "1"

@@ -46,6 +46,6 @@ class AdditionalInformationComponent extends AbstractController
         $complaint->setAdditionalInformation($additionalInformation);
         $this->sessionHandler->setComplaint($complaint);
 
-        return $this->redirectToRoute('summary');
+        return $this->redirectToRoute('complaint_summary');
     }
 }

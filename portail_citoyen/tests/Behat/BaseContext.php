@@ -224,6 +224,29 @@ final class BaseContext extends MinkContext
         });
     }
 
+    public function assertPageAddress(mixed $page): void
+    {
+        $this->retryStep(function () use ($page) {
+            parent::assertPageAddress($page);
+        });
+    }
+
+    /**
+     * @Then /^the field "(?P<field>(?:[^"]|\\")*)" should have focus/
+     */
+    public function assertFieldHasFocus(string $field): void
+    {
+        $this->retryStep(function () use ($field) {
+            $fieldHasFocus = (bool) $this->getSession()->evaluateScript('return document.activeElement === document.getElementById("'.$field.'")');
+
+            if (true === $fieldHasFocus) {
+                return;
+            }
+
+            throw new ExpectationException(sprintf('Field "%s" do not have focus"', $field), $this->getSession()->getDriver());
+        });
+    }
+
     /**
      * @When /^I attach the file "(?P<path>[^"]*)" to "(?P<field>(?:[^"]|\\")*)" field/
      */

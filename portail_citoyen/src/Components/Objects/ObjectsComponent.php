@@ -10,6 +10,7 @@ use App\Session\ComplaintModel;
 use App\Session\SessionHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 use Symfony\UX\LiveComponent\Attribute\LiveAction;
 use Symfony\UX\LiveComponent\ComponentWithFormTrait;
@@ -33,7 +34,7 @@ class ObjectsComponent extends AbstractController
     }
 
     #[LiveAction]
-    public function submit(): void
+    public function submit(): RedirectResponse
     {
         $this->submitForm();
 
@@ -42,5 +43,7 @@ class ObjectsComponent extends AbstractController
         /** @var ObjectsModel $objects */
         $objects = $this->getFormInstance()->getData();
         $this->sessionHandler->setComplaint($complaint->setObjects($objects));
+
+        return $this->redirectToRoute('complaint_additional_information');
     }
 }

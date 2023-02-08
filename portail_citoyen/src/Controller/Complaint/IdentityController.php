@@ -2,25 +2,23 @@
 
 declare(strict_types=1);
 
-namespace App\Controller;
+namespace App\Controller\Complaint;
 
-use App\Session\FranceConnectHandler;
 use App\Session\SessionHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route(path: '/porter-plainte', name: 'complaint', methods: ['GET'])]
-class ComplaintController extends AbstractController
+#[Route(path: '/porter-plainte/identite', name: 'complaint_identity', methods: ['GET'])]
+class IdentityController extends AbstractController
 {
     public function __invoke(
         Request $request,
-        FranceConnectHandler $franceConnectHandler,
-        SessionHandler $sessionHandler
+        SessionHandler $sessionHandler,
     ): Response {
         $sessionHandler->init();
 
-        return $this->render('pages/complaint.html.twig');
+        return $this->render('pages/complaint_identity.html.twig', ['complaint' => $sessionHandler->getComplaint()]);
     }
 }

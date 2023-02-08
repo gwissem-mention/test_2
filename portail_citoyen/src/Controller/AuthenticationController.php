@@ -28,7 +28,7 @@ class AuthenticationController extends AbstractController
                 $franceConnectHandler->clear();
             }
 
-            return $this->redirectToRoute('complaint');
+            return $this->redirectToRoute('complaint_identity');
         }
 
         return $this->render('pages/authentication.html.twig');

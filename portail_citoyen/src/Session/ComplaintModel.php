@@ -109,4 +109,11 @@ class ComplaintModel
 
         return $this;
     }
+
+    public function isComplaintIdentityFilled(): bool
+    {
+        $identity = $this->getIdentity();
+
+        return $identity instanceof IdentityModel && !is_null($identity->getDeclarantStatus());
+    }
 }
