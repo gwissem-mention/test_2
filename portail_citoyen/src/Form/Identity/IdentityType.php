@@ -55,6 +55,7 @@ class IdentityType extends AbstractType
             ])
             ->add('contactInformation', ContactInformationType::class, [
                 'compound' => true,
+                'is_france_connected' => $options['is_france_connected'],
             ])
             ->add('declarantStatus', ChoiceType::class, [
                 'label' => 'pel.complaint.identity.declarant.status',
