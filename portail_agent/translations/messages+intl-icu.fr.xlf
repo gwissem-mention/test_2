@@ -244,7 +244,11 @@
             </trans-unit>
             <trans-unit id="pel.faq">
                 <source>pel.faq</source>
-                <target>FAQ</target>
+                <target>Espace FAQ</target>
+            </trans-unit>
+            <trans-unit id="pel.faq.find.best.practices">
+                <source>pel.faq.find.best.practices</source>
+                <target>Trouvez ici les réponses à vos questions</target>
             </trans-unit>
             <trans-unit id="pel.faq.title">
                 <source>pel.faq.title</source>
@@ -513,6 +517,10 @@
             <trans-unit id="pel.reporting">
                 <source>pel.reporting</source>
                 <target>Reporting</target>
+            </trans-unit>
+            <trans-unit id="pel.reporting.declaration.state">
+                <source>pel.reporting.declaration.state</source>
+                <target>Retrouvez ici l'avancement de vos déclarations</target>
             </trans-unit>
             <trans-unit id="pel.reporting.title">
                 <source>pel.reporting.title</source>
