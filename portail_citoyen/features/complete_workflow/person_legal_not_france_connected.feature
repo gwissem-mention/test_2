@@ -7,15 +7,13 @@ Feature:
     Scenario: Submit the facts form as a person legal not logged in with France Connect
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
-        And I am on "/porter-plainte"
-        When I click the "#identity_accordion_title" element
-        And I click the "label[for=identity_declarantStatus_1]" element
+        Then I should be on "/porter-plainte/identite"
+        When I click the "label[for=identity_declarantStatus_1]" element
         And I select "1" from "identity_civilState_civility"
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I fill in "identity_civilState_birthDate" with "01/01/2000"
         And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
-        And I select "1" from "identity_civilState_nationality"
         And I fill in the autocomplete "identity_civilState_job-ts-control" with "Avocats" and click "31B1"
         And I fill in "identity_contactInformation_frenchAddress_address" with "Av. de la République 75011 Paris"
         And I fill in "identity_contactInformation_email" with "jean@test.com"
@@ -25,12 +23,12 @@ Feature:
         And I fill in "identity_representedPersonCivilState_firstnames" with "Julie"
         And I fill in "identity_representedPersonCivilState_birthDate" with "01/01/2010"
         And I fill in the autocomplete "identity_representedPersonCivilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
-        And I select "1" from "identity_representedPersonCivilState_nationality"
         And I fill in the autocomplete "identity_representedPersonCivilState_job-ts-control" with "Avocats" and click "31B1"
         And I fill in "identity_representedPersonContactInformation_frenchAddress_address" with "Av. de la République 75011 Paris"
         And I fill in "identity_representedPersonContactInformation_email" with "jean@test.com"
-        And I fill in "identity_representedPersonContactInformation_phone_number" with "0602030405"
+        And I fill in "identity_representedPersonContactInformation_phone_number" with "0601020304"
         And I press "identity_submit"
+        Then I should be on "/porter-plainte/faits"
         And I click the "label[for=facts_offenseNature_offenseNatures_0]" element
         And I click the "label[for=facts_victimOfViolence]" element
         And I fill in "facts_victimOfViolenceText" with "Violence informations"
@@ -42,6 +40,7 @@ Feature:
         And I click the "label[for=facts_offenseDate_choiceHour_0]" element
         And I fill in "facts_offenseDate_hour" with "15:00"
         And I press "facts_submit"
+        Then I should be on "/porter-plainte/objets"
         And I select "1" from "objects_objects_0_category"
         And I fill in "objects_objects_0_label" with "Object 1"
         And I fill in "objects_objects_0_amount" with "100"
@@ -51,6 +50,7 @@ Feature:
         And I fill in "objects_objects_1_label" with "Object 2"
         And I fill in "objects_objects_1_amount" with "100"
         And I press "objects_submit"
+        Then I should be on "/porter-plainte/informations-complementaires"
         And I click the "label[for=additional_information_suspectsChoice_0]" element
         And I fill in "additional_information_suspectsText" with "suspects informations"
         And I should see the key "pel.facts.suspects.informations.text" translated
@@ -62,9 +62,8 @@ Feature:
         And I click the "label[for=additional_information_cctvAvailable_0]" element
         And I fill in "additional_information_description" with "description informations"
         And I press "additional_information_submit"
-        And I wait 2000 ms
-        Given I am on "/recapitulatif"
-        Then I should see the key "pel.civility" translated
+        Then I should be on "/porter-plainte/recapitulatif"
+        And I should see the key "pel.civility" translated
         And I should see the key "pel.sir" translated
         And I should see "DUPONT"
         And I should see "Jean Pierre Marie"
@@ -100,7 +99,6 @@ Feature:
         And I should see "Av. de la République 75011 Paris, France"
         And I should see the key "pel.your.job" translated
         And I should see the key "pel.phone" translated
-        And I should see "+33 6 02 03 04 05"
         And I should see the key "pel.email" translated
         And I should see "jean@test.com"
         And I should see the key "pel.facts.description" translated
@@ -144,7 +142,7 @@ Feature:
         And I should see the key "pel.i.am.inform.of.article.434.26" translated
         And I should see the key "pel.i.consent.use.of.data.for.fsi" translated
         When I follow "Annuler"
-        Then I should be on "/recapitulatif"
+        Then I should be on "/porter-plainte/recapitulatif"
         And I should see the key "pel.objects.description" translated
         And I should see the key "pel.objects" translated
         And I should see the key "pel.object.category" translated

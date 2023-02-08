@@ -1,0 +1,22 @@
+<nav role="navigation" class="fr-breadcrumb" aria-label="vous êtes ici :">
+    <button class="fr-breadcrumb__button" aria-expanded="false" aria-controls="breadcrumb-1">{{ 'pel.complaint.see.ariannes.thread'|trans }}</button>
+    <div class="fr-collapse" id="breadcrumb-1">
+        <ol class="fr-breadcrumb__list">
+            <li>
+                <a class="fr-breadcrumb__link" {% if active is same as('identity') %}aria-current="page"{% else %}href="{{ path('complaint_identity') }}"{% endif %}>{{ 'pel.complaint.your.identity'|trans }}</a>
+            </li>
+            <li>
+                <a class="fr-breadcrumb__link" {% if active is same as('facts') %}aria-current="page"{% elseif complaint.complaintIdentityFilled %}href="{{ path('complaint_facts') }}"{% endif %}>{{ 'pel.complaint.description.of.facts'|trans }}</a>
+            </li>
+            <li>
+                <a class="fr-breadcrumb__link" {% if active is same as('objects') %}aria-current="page"{% elseif complaint.facts is not null %}href="{{ path('complaint_objects') }}"{% endif %}>{{ 'pel.complaint.objects.concerned'|trans }}</a>
+            </li>
+            <li>
+                <a class="fr-breadcrumb__link" {% if active is same as('additional_information') %}aria-current="page"{% elseif complaint.objects is not null %}href="{{ path('complaint_additional_information') }}"{% endif %}>{{ 'pel.complaint.additional.informations'|trans }}</a>
+            </li>
+            <li>
+                <a class="fr-breadcrumb__link" {% if active is same as('summary') %}aria-current="page"{% elseif complaint.additionalInformation is not null %}href="{{ path('complaint_summary') }}"{% endif %}>{{ 'pel.complaint.summary'|trans }}</a>
+            </li>
+        </ol>
+    </div>
+</nav>

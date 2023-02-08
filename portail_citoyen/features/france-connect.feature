@@ -6,7 +6,7 @@ Feature:
 
     Scenario: France Connect successful authentication
         When I go to "/authentification?france_connected=1"
-        Then I should be on "/porter-plainte"
+        Then I should be on "/porter-plainte/identite"
         And I should be connected as "Michel DUPONT"
 
     Scenario: Error on access token retrieval

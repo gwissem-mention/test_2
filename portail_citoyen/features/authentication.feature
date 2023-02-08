@@ -16,13 +16,13 @@ Feature:
         And I should see the key "pel.continue.pel.without.log.in" translated
         And I should see the key "pel.continue.pel.without.log.in.explanation" translated
         And I follow "Continuer sans m'authentifier"
-        And I am on "/porter-plainte"
+        And I am on "/porter-plainte/identite"
 
     @javascript
     Scenario: I can click on the FranceConnect Button
         Given I am on "/authentification"
         When I press "france_connect_auth_button"
-        Then I should be on "/porter-plainte"
+        Then I should be on "/porter-plainte/identite"
         When I click the "label[for=identity_declarantStatus_0]" element
         Then the "identity_civilState_birthName" field should contain "DUPONT"
         And the "identity_civilState_firstnames" field should contain "Michel"
@@ -36,7 +36,7 @@ Feature:
     Scenario: I can click on the unconnected button
         Given I am on "/authentification"
         When I follow "Continuer sans m'authentifier"
-        Then I should be on "/porter-plainte"
+        Then I should be on "/porter-plainte/identite"
         When I click the "label[for=identity_declarantStatus_0]" element
         Then the "identity_civilState_birthName" field should not contain "DUPONT"
         And the "identity_civilState_firstnames" field should not contain "Michel"

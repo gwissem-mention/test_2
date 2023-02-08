@@ -7,21 +7,29 @@ Feature:
     Background:
         Given I am on "/authentification"
         When I press "france_connect_auth_button"
-        Then I am on "/porter-plainte?france_connected=1"
-        And I click the "#identity_accordion_title" element
-        When I click the "label[for=identity_declarantStatus_0]" element
+        Then I should be on "/porter-plainte/identite"
+        And I click the "label[for=identity_declarantStatus_0]" element
         And I fill in the autocomplete "identity_civilState_job-ts-control" with "Avocats" and click "31B1"
         And I fill in "identity_contactInformation_frenchAddress_address" with "Av. de la République 75011 Paris France"
         And I fill in "identity_contactInformation_phone_number" with "0601020304"
         And I press "identity_submit"
+        Then I should be on "/porter-plainte/faits"
         When I click the "label[for=facts_offenseNature_offenseNatures_0]" element
         And I click the "label[for=facts_address_addressOrRouteFactsKnown_1]" element
         And I click the "label[for=facts_offenseDate_exactDateKnown_0]" element
         And I fill in "facts_offenseDate_startDate" with "01/01/2022"
         And I click the "label[for=facts_offenseDate_choiceHour_2]" element
         And I press "facts_submit"
-        And I wait 2000 ms
-        
+        Then I should be on "/porter-plainte/objets"
+
+    Scenario: I can see the object category choice list
+        Then I should see "Documents" in the "#objects_objects_0_category" element
+        And I should see "Moyens de paiement" in the "#objects_objects_0_category" element
+        And I should see "Multimédia" in the "#objects_objects_0_category" element
+        And I should see "Véhicules immatriculés " in the "#objects_objects_0_category" element
+        And I should see "Véhicules non immatriculés" in the "#objects_objects_0_category" element
+        And I should see "Autres" in the "#objects_objects_0_category" element
+
     Scenario: I can add an input text when I click on the add an object button
         When I press "objects_objects_add"
         Then I should see the key "pel.object" translated
@@ -88,4 +96,4 @@ Feature:
         And I fill in "objects_objects_1_label" with "Object 2"
         And I fill in "objects_objects_1_amount" with "100"
         And I press "objects_submit"
-        Then the "#additional_information_accordion_item" element should contain "style=\"display: block;\""
+        Then I should be on "/porter-plainte/informations-complementaires"

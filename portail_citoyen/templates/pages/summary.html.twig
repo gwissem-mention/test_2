@@ -20,7 +20,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ path('summary') }}" class="fr-btn fr-btn--secondary">
+                    <a href="{{ path('complaint_summary') }}" class="fr-btn fr-btn--secondary">
                         {{ 'pel.cancel'|trans }}
                     </a>
                 </li>
@@ -30,28 +30,7 @@
     <div class="fr-container container">
         <h1>{{ 'pel.complaint.my.declaration'|trans }}</h1>
         <div class="wrapper--complaint">
-            <nav role="navigation" class="fr-breadcrumb breadcrumb" aria-label="vous êtes ici :" id="complaintsBreadcrumb">
-                <button class="fr-breadcrumb__button" aria-expanded="false" aria-controls="breadcrumb-1">{{ 'pel.complaint.see.ariannes.thread'|trans }}</button>
-                <div class="fr-collapse" id="breadcrumb-1">
-                    <ol class="fr-breadcrumb__list">
-                        <li>
-                            <a class="fr-breadcrumb__link" href="{{ path('complaint') }}">{{ 'pel.complaint.your.identity'|trans }}</a>
-                        </li>
-                        <li>
-                            <a class="fr-breadcrumb__link" href="{{ path('complaint') }}">{{ 'pel.complaint.description.of.facts'|trans }}</a>
-                        </li>
-                        <li>
-                            <a class="fr-breadcrumb__link" href="{{ path('complaint') }}">{{ 'pel.complaint.objects.concerned'|trans }}</a>
-                        </li>
-                        <li>
-                            <a class="fr-breadcrumb__link" href="{{ path('complaint') }}">{{ 'pel.complaint.additional.informations'|trans }}</a>
-                        </li>
-                        <li>
-                            <a class="fr-breadcrumb__link" aria-current="page">{{ 'pel.complaint.summary'|trans }}</a>
-                        </li>
-                    </ol>
-                </div>
-            </nav>
+            {% include 'common/_complaint_nav.html.twig' with {'active':'summary'} %}
             <h2>{{ 'pel.complaint.summary'|trans }}</h2>
             <div class="fr-grid-row">
                 <div class="fr-col">
@@ -116,7 +95,7 @@
                             </li>
                             <li>
                                 {{ 'pel.address'|trans }} :
-                                {% if complaint.identity.corporation.country == fr_code  %}
+                                {% if complaint.identity.corporation.country == fr_code %}
                                     {{ complaint.identity.corporation.frenchAddress.label }}
                                 {% else %}
                                     {{ complaint.identity.corporation.foreignAddress }}
@@ -125,7 +104,7 @@
                         </ul>
                     {% endif %}
                     <p>
-                        <a class="fr-btn fr-btn--secondary btn--update" href="{{ path('complaint') }}" data-previous-accordion-id="1">{{ 'pel.update'|trans }}</a>
+                        <a class="fr-btn fr-btn--secondary btn--update" href="{{ path('complaint_identity') }}">{{ 'pel.update'|trans }}</a>
                     </p>
                 </div>
             </div>
@@ -149,9 +128,9 @@
                         {% if constant('App\\Enum\\OffenseNature::Other').value in complaint.facts.offenseNature.offenseNatures %}
                             <li>{{ 'pel.infraction.type'|trans }} : {{ complaint.facts.offenseNature.aabText }}</li>
                         {% endif %}
-                        <li>{{ 'pel.victim.at.time.of.facts'|trans }} : {{ complaint.facts.victimOfViolence ? 'pel.yes'|trans : 'pel.no'|trans }}</li>
+                        <li>{{ 'pel.victim.at.time.of.facts'|trans }}: {{ complaint.facts.victimOfViolence ? 'pel.yes'|trans : 'pel.no'|trans }}</li>
                         {% if complaint.facts.victimOfViolence %}
-                            <li>{{ 'pel.victim.at.time.of.facts.precisions'|trans }} : {{ complaint.facts.victimOfViolenceText }}</li>
+                            <li>{{ 'pel.victim.at.time.of.facts.precisions'|trans }}: {{ complaint.facts.victimOfViolenceText }}</li>
                         {% endif %}
                         {% if complaint.facts.placeNature %}
                             <li>
@@ -173,17 +152,17 @@
                                 {% endif %}
                             </li>
                         {% endif %}
-                        <li>{{ 'pel.address.or.route.facts'|trans }} : {{ complaint.facts.address.addressOrRouteFactsKnown ? 'pel.yes'|trans : 'pel.no'|trans }}</li>
+                        <li>{{ 'pel.address.or.route.facts'|trans }}: {{ complaint.facts.address.addressOrRouteFactsKnown ? 'pel.yes'|trans : 'pel.no'|trans }}</li>
                         {% if complaint.facts.address.addressOrRouteFactsKnown %}
-                            <li>{{ 'pel.address.start.or.exact'|trans }} : {{ complaint.facts.address.startAddress }}</li>
+                            <li>{{ 'pel.address.start.or.exact'|trans }}: {{ complaint.facts.address.startAddress }}</li>
                             {% if complaint.facts.address.endAddress %}
                                 <li>{{ 'pel.address.end'|trans }} : {{ complaint.facts.address.endAddress }}</li>
                             {% endif %}
                         {% endif %}
                         {% if complaint.facts.address.addressAdditionalInformation %}
-                            <li>{{ 'pel.additional.place.information'|trans }} : {{ complaint.facts.address.addressAdditionalInformation }}</li>
+                            <li>{{ 'pel.additional.place.information'|trans }}: {{ complaint.facts.address.addressAdditionalInformation }}</li>
                         {% endif %}
-                        <li>{{ 'pel.complaint.exact.date.known'|trans }} : {{ complaint.facts.offenseDate.exactDateKnown ? 'pel.yes'|trans : 'pel.no'|trans }}</li>
+                        <li>{{ 'pel.complaint.exact.date.known'|trans }}: {{ complaint.facts.offenseDate.exactDateKnown ? 'pel.yes'|trans : 'pel.no'|trans }}</li>
                         <li>
                             {{ 'pel.facts.date'|trans }} :
                             {% if complaint.facts.offenseDate.exactDateKnown %}
@@ -215,7 +194,7 @@
                         {% endif %}
                     </ul>
                     <p>
-                        <a class="fr-btn fr-btn--secondary btn--update" href="{{ path('complaint') }}" data-previous-accordion-id="2">{{ 'pel.update'|trans }}</a>
+                        <a class="fr-btn fr-btn--secondary btn--update" href="{{ path('complaint_facts') }}">{{ 'pel.update'|trans }}</a>
                     </p>
                 </div>
             </div>
@@ -226,7 +205,7 @@
                     <p>{{ 'pel.objects.stolen'|trans }}</p>
                     {% for object in complaint.objects.objects %}
                         <ul>
-                            <li>{{ 'pel.object.category'|trans }} : {{ object.category|object_category_get_name|trans }}</li>
+                            <li>{{ 'pel.object.category'|trans }}: {{ object.category|object_category_get_name|trans }}</li>
                             <li>{{ 'pel.object'|trans }} : {{ object.label }}</li>
                             {% if object.category|object_category_get_name|trans is same as('pel.object.category.multimedia'|trans) %}
                                 <li>{{ 'pel.brand'|trans }} : {{ object.brand }}</li>
@@ -234,7 +213,8 @@
                                     <li>{{ 'pel.model'|trans }} : {{ object.model }}</li>
                                 {% endif %}
                                 {% if object.phoneNumberLine is not empty and object.phoneNumberLine.number is not empty %}
-                                    <li>{{ 'pel.phone.number.line'|trans }} : {{ object.phoneNumberLine|phone_format_intl }}</li>
+                                    <li>{{ 'pel.phone.number.line'|trans }}
+                                        : {{ object.phoneNumberLine|phone_format_intl }}</li>
                                 {% endif %}
                                 {% if object.operator %}
                                     <li>{{ 'pel.operator'|trans }} : {{ object.operator }}</li>
@@ -256,7 +236,7 @@
                                 {% if object.registrationNumber %}
                                     <li>{{ 'pel.registration.number'|trans }} : {{ object.registrationNumber }}</li>
                                 {% endif %}
-                                <li>{{ 'pel.registration.number.country'|trans }} : {{ object.registrationNumberCountry|country_name }}</li>
+                                <li>{{ 'pel.registration.number.country'|trans }}: {{ object.registrationNumberCountry|country_name }}</li>
                                 {% if object.insuranceCompany %}
                                     <li>{{ 'pel.insurance.company'|trans }} : {{ object.insuranceCompany }}</li>
                                 {% endif %}
@@ -268,7 +248,7 @@
                                 <li>{{ 'pel.quantity'|trans }} : {{ object.quantity }}</li>
                             {% endif %}
                             {% if object.amount %}
-                                <li>{{ 'pel.amount'|trans }} : {{ object.amount|format_currency('EUR', {fraction_digit: 2}) }}</li>
+                                <li>{{ 'pel.amount'|trans }}: {{ object.amount|format_currency('EUR', {fraction_digit: 2}) }}</li>
                             {% endif %}
                         </ul>
                     {% endfor %}
@@ -280,7 +260,7 @@
                         {{ 'pel.total.message.amount'|trans }} {{ complaint.objects.objects|objects_amount|format_currency('EUR', {fraction_digit: 2}) }}
                     </p>
                     <p>
-                        <a class="fr-btn fr-btn--secondary btn--update" href="{{ path('complaint') }}" data-previous-accordion-id="3">{{ 'pel.update'|trans }}</a>
+                        <a class="fr-btn fr-btn--secondary btn--update" href="{{ path('complaint_objects') }}">{{ 'pel.update'|trans }}</a>
                     </p>
                 </div>
             </div>
@@ -289,13 +269,13 @@
                 <div class="fr-col">
                     <h3>{{ 'pel.additional.factual.information'|trans }}</h3>
                     <ul>
-                        <li>{{ 'pel.facts.witnesses'|trans }} : {{ complaint.additionalInformation.witnesses ? 'pel.yes'|trans : 'pel.no'|trans }}</li>
+                        <li>{{ 'pel.facts.witnesses'|trans }}: {{ complaint.additionalInformation.witnesses ? 'pel.yes'|trans : 'pel.no'|trans }}</li>
                         {% if complaint.additionalInformation.witnesses %}
-                            <li>{{ 'pel.facts.witnesses.information.text'|trans }} : {{ complaint.additionalInformation.witnessesText }}</li>
+                            <li>{{ 'pel.facts.witnesses.information.text'|trans }}: {{ complaint.additionalInformation.witnessesText }}</li>
                         {% endif %}
-                        <li>{{ 'pel.do.you.have.informations.on.potential.suspects'|trans }} : {{ complaint.additionalInformation.suspectsChoice ? 'pel.yes'|trans : 'pel.no'|trans }}</li>
+                        <li>{{ 'pel.do.you.have.informations.on.potential.suspects'|trans }}: {{ complaint.additionalInformation.suspectsChoice ? 'pel.yes'|trans : 'pel.no'|trans }}</li>
                         {% if complaint.additionalInformation.suspectsChoice %}
-                            <li>{{ 'pel.facts.suspects.informations.text'|trans }} : {{ complaint.additionalInformation.suspectsText }}</li>
+                            <li>{{ 'pel.facts.suspects.informations.text'|trans }}: {{ complaint.additionalInformation.suspectsText }}</li>
                         {% endif %}
                         <li>
                             {{ 'pel.cctv.present'|trans }} :
@@ -308,20 +288,20 @@
                             {% endif %}
                         </li>
                         {% if complaint.additionalInformation.cctvPresent is same as(constant('App\\Form\\Model\\AdditionalInformation\\AdditionalInformationModel::CCTV_PRESENT_YES')) %}
-                            <li>{{ 'pel.cctv.available'|trans }} : {{ complaint.additionalInformation.cctvAvailable ? 'pel.yes'|trans : 'pel.no'|trans }}</li>
+                            <li>{{ 'pel.cctv.available'|trans }}: {{ complaint.additionalInformation.cctvAvailable ? 'pel.yes'|trans : 'pel.no'|trans }}</li>
                         {% endif %}
-                        <li>{{ 'pel.fsi.visit'|trans }} : {{ complaint.additionalInformation.fsiVisit ? 'pel.yes'|trans : 'pel.no'|trans }}</li>
+                        <li>{{ 'pel.fsi.visit'|trans }}: {{ complaint.additionalInformation.fsiVisit ? 'pel.yes'|trans : 'pel.no'|trans }}</li>
                         {% if complaint.additionalInformation.fsiVisit %}
-                            <li>{{ 'pel.observation.made'|trans }} : {{ complaint.additionalInformation.observationMade ? 'pel.yes'|trans : 'pel.no'|trans }}</li>
+                            <li>{{ 'pel.observation.made'|trans }}: {{ complaint.additionalInformation.observationMade ? 'pel.yes'|trans : 'pel.no'|trans }}</li>
                         {% endif %}
-                        <li>{{ 'pel.victim.of.violence'|trans }} : {{ complaint.facts.victimOfViolence ? 'pel.yes'|trans : 'pel.no'|trans }}</li>
+                        <li>{{ 'pel.victim.of.violence'|trans }}: {{ complaint.facts.victimOfViolence ? 'pel.yes'|trans : 'pel.no'|trans }}</li>
                         {% if complaint.facts.victimOfViolence %}
-                            <li>{{ 'pel.victim.of.violence.text'|trans }} : {{ complaint.facts.victimOfViolenceText }}</li>
+                            <li>{{ 'pel.victim.of.violence.text'|trans }}: {{ complaint.facts.victimOfViolenceText }}</li>
                         {% endif %}
-                        <li>{{ 'pel.facts.description.precise'|trans }} : {{ complaint.additionalInformation.description }}</li>
+                        <li>{{ 'pel.facts.description.precise'|trans }}: {{ complaint.additionalInformation.description }}</li>
                     </ul>
                     <p>
-                        <a class="fr-btn fr-btn--secondary btn--update" href="{{ path('complaint') }}" data-previous-accordion-id="4">{{ 'pel.update'|trans }}</a>
+                        <a class="fr-btn fr-btn--secondary btn--update" href="{{ path('complaint_additional_information') }}">{{ 'pel.update'|trans }}</a>
                     </p>
                 </div>
             </div>
@@ -329,7 +309,7 @@
             <p><strong>{{ 'pel.note'|trans }}</strong> : {{ 'pel.summary.is.not.legal.proof'|trans }}</p>
             <div class="fr-grid-row">
                 <div class="fr-col">
-                    <a class="fr-btn fr-btn--secondary" href="{{ path('complaint') }}">{{ 'pel.previous'|trans }}</a>
+                    <a class="fr-btn fr-btn--secondary" href="{{ path('complaint_additional_information') }}">{{ 'pel.previous'|trans }}</a>
                     <button class="fr-btn fr-float-right fr-btn--icon-right fr-icon-arrow-right-line" data-fr-opened="false" aria-controls="fr-modal-complaint-confirm">{{ 'pel.next'|trans }}</button>
                 </div>
             </div>

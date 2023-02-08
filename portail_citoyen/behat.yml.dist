@@ -43,6 +43,7 @@ default:
                 directory: ./build/screenshots/
                 mode: default
                 autoClean: true
+
 func:
     suites:
         default:
