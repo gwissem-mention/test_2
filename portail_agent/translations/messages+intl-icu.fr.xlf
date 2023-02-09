@@ -542,6 +542,10 @@
                 <source>pel.search</source>
                 <target>Rechercher</target>
             </trans-unit>
+            <trans-unit id="pel.search.your.declarations">
+                <source>pel.search.your.declarations</source>
+                <target>Rechercher vos déclarations...</target>
+            </trans-unit>
             <trans-unit id="pel.send">
                 <source>pel.send</source>
                 <target>Envoyer</target>

@@ -11,10 +11,6 @@
                 <h1>{{ 'pel.agent.complaint.online'|trans }}</h1>
                 <p>{{ 'pel.header.baseline'|trans }}</p>
             </div>
-            <form class="d-flex me-3 mb-2 mb-lg-0" role="search">
-                <input class="form-control me-2" type="search" placeholder="{{ 'pel.search'|trans }}" aria-label="{{ 'pel.search'|trans }}">
-                <button class="btn btn-outline-success" type="submit">{{ 'pel.search'|trans }}</button>
-            </form>
             {% if app.user %}
                 {% set notifications = app.user|user_unclicked_notifications %}
                 <div class="d-flex align-items-center text-center text-md-end">

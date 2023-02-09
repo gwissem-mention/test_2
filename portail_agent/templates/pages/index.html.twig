@@ -1,6 +1,10 @@
 {% extends 'layout.html.twig' %}
 
 {% block body %}
+    <form class="d-flex mt-4 mb-4 w-50" role="search">
+        <input class="form-control me-2" type="search" placeholder="{{ 'pel.search.your.declarations'|trans }}" aria-label="{{ 'pel.search.your.declarations'|trans }}">
+        <button class="btn btn-outline-primary" type="submit">{{ 'pel.search'|trans }}</button>
+    </form>
     <table class="table table-striped">
         <thead class="table-head">
         <tr>

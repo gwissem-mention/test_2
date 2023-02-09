@@ -14,7 +14,7 @@ Feature:
         And I should see a "aside" element
         And I should see a "main" element
         And I should see 4 "button[data-bs-toggle='modal']" element
-        And I should see 21 "button" element
+        And I should see 20 "button" element
         And I should see the key "pel.assign.declaration.to" translated
         And I should see the key "pel.send.to.lrp" translated
         And I should see the key "pel.reject" translated
@@ -28,7 +28,6 @@ Feature:
         And I should see the key "pel.home" translated
         And I should see the key "pel.agent.complaint.online" translated
         And I should see the key "pel.header.baseline" translated
-        And I should see the key "pel.search" translated
         And I should see the key "pel.complaint.online.portal" translated
         And I should see "Brigade de proximité de Voiron"
         And I should see the key "pel.reporting" translated
