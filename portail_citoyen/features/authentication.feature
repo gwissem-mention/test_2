@@ -13,6 +13,7 @@ Feature:
         And I should see the key "pel.france.connect" translated
         And I should see the key "pel.what.is.france.connect" translated
         And I should see the key "pel.new.window" translated in the response
+        And I should see the key "pel.when.using.france.connect.service.you.accept.terms" translated
         And I should see the key "pel.continue.pel.without.log.in" translated
         And I should see the key "pel.continue.pel.without.log.in.explanation" translated
         And I follow "Continuer sans m'authentifier"

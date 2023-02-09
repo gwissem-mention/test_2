@@ -352,7 +352,7 @@
             </trans-unit>
             <trans-unit id="pel.continue.pel.without.log.in.explanation">
                 <source>pel.continue.pel.without.log.in.explanation</source>
-                <target>Dans le cas où vous choisissez de ne pas vous authentifier avec France Connect, un RDV sera à planifier obligatoirement en fin de déclaration</target>
+                <target>Dans le cas où vous choisissez de ne pas vous authentifier avec France Connect, un RDV sera à planifier obligatoirement en fin de déclaration.</target>
             </trans-unit>
             <trans-unit id="pel.could.you.confirm.complaint.validity">
                 <source>pel.could.you.confirm.complaint.validity</source>
@@ -1237,6 +1237,18 @@
             <trans-unit id="pel.victim.of.other.property.crimes">
                 <source>pel.victim.of.other.property.crimes</source>
                 <target>Vous êtes victime d'autres atteintes aux biens</target>
+            </trans-unit>
+            <trans-unit id="pel.when.using.france.connect.service.you.accept.terms">
+                <source>pel.when.using.france.connect.service.you.accept.terms</source>
+                <target>En utilisant le service France Connect, vous acceptez les conditions générales d'utilisation de</target>
+            </trans-unit>
+            <trans-unit id="pel.france.connect.terms">
+                <source>pel.france.connect.terms</source>
+                <target>Conditions générales d'utilisation de France Connect</target>
+            </trans-unit>
+            <trans-unit id="pel.or.continue.pel.without.log.in">
+                <source>pel.or.continue.pel.without.log.in</source>
+                <target>Ou continuer sans m'authentifier</target>
             </trans-unit>
         </body>
     </file>
