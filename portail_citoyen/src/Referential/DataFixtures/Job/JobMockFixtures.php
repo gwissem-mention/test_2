@@ -20,8 +20,12 @@ class JobMockFixtures extends Fixture implements FixtureGroupInterface
     {
         $jobs = [
             new Job('31B1', 'Avocats'),
-            new Job('43A2', 'Sages-femmes'),
-            new Job('43D6', 'Éducateurs de jeunes enfants'),
+            new Job('46B3', 'Acheteurs (non cadres) et responsables des achats'),
+            new Job('37D2', 'Acheteurs du commerce'),
+            new Job('38F1', 'Acheteurs et cadres des achats du BTP et de l’industrie'),
+            new Job('22D3', 'Agents commerciaux immobiliers'),
+            new Job('52A1', "Agents d'accueil et de guichet des administrations publiques"),
+            new Job('48A1', 'Agents de maîtrise de l’agriculture, des travaux forestiers et de la pêche'),
         ];
 
         foreach ($jobs as $job) {
