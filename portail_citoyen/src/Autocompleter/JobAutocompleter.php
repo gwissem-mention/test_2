@@ -31,7 +31,7 @@ class JobAutocompleter implements EntityAutocompleterInterface
             ->andWhere('LOWER(job.label) LIKE LOWER(:filter)')
             ->setParameter('filter', '%'.$query.'%')
             ->orderBy('job.label', 'ASC')
-            ->setMaxResults(50);
+            ->setMaxResults(5);
     }
 
     /**

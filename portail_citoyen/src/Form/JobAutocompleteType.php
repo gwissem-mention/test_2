@@ -32,6 +32,7 @@ class JobAutocompleteType extends AbstractType
                 'maxOptions' => null,
             ],
             'attr' => [
+                'required' => true,
                 'data-controller' => 'autocomplete',
                 'data-load-text' => $this->translator->trans('pel.results.loading'),
             ],
