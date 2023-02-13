@@ -28,12 +28,14 @@ final class AgentAuthenticator extends AbstractAuthenticator implements Authenti
     public const HEADER_NUMBER = 'matricule';
     public const HEADER_INSTITUTION = 'institution';
     public const HEADER_SERVICE_CODE = 'codeservice';
+    public const HEADER_SUPERVISOR = 'superviseur';
 
     public const HEADERS = [
         self::HEADER_APPELLATION,
         self::HEADER_NUMBER,
         self::HEADER_INSTITUTION,
         self::HEADER_SERVICE_CODE,
+        self::HEADER_SUPERVISOR,
     ];
 
     public function __construct(
@@ -72,17 +74,19 @@ final class AgentAuthenticator extends AbstractAuthenticator implements Authenti
         $identifier = User::generateIdentifier($number, $institution);
         $appellation = (string) $request->headers->get(self::HEADER_APPELLATION);
         $serviceCode = (string) $request->headers->get(self::HEADER_SERVICE_CODE);
+        $supervisor = (bool) $request->headers->get(self::HEADER_SUPERVISOR);
 
         return new SelfValidatingPassport(
             new UserBadge(
                 $identifier,
-                function (string $identifier) use ($number, $institution, $appellation, $serviceCode) {
+                function (string $identifier) use ($number, $institution, $appellation, $serviceCode, $supervisor) {
                     return $this->createOrUpdateUser(
                         $identifier,
                         $number,
                         $institution,
                         $appellation,
-                        $serviceCode
+                        $serviceCode,
+                        $supervisor
                     );
                 }
             )
@@ -113,15 +117,17 @@ final class AgentAuthenticator extends AbstractAuthenticator implements Authenti
         string $number,
         Institution $institution,
         string $appellation,
-        string $serviceCode
+        string $serviceCode,
+        bool $supervisor
     ): User {
         if (null === $user = $this->userRepository->findOneByIdentifier($identifier)) {
-            $user = new User($number, $institution);
+            $user = new User($number, $institution, $supervisor);
         }
 
         $user
             ->setAppellation($appellation)
-            ->setServiceCode($serviceCode);
+            ->setServiceCode($serviceCode)
+            ->addRole('ROLE_SUPERVISOR');
 
         $this->userRepository->save($user, true);
 

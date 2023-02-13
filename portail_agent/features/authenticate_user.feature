@@ -8,12 +8,14 @@ Feature: Create/update user according to SSO attributes
             | appelation  | Foo Bar   |
             | institution | PN        |
             | codeservice | service_3 |
+            | superviseur | 1         |
 
         When I am on "/"
         Then the "user" 987654321 from PN exists with:
-            | attribute    | value     |
-            | appellation  | Foo Bar   |
-            | service_code | service_3 |
+            | attribute    | value                     |
+            | appellation  | Foo Bar                   |
+            | service_code | service_3                 |
+            | roles        | ROLE_SUPERVISOR,ROLE_USER |
 
     Scenario: Update user if exists
         Given the following HTTP headers
@@ -22,12 +24,14 @@ Feature: Create/update user according to SSO attributes
             | appelation  | Jean DUPOND |
             | institution | PN          |
             | codeservice | service_2   |
+            | superviseur | 1           |
 
         When I am on "/"
         Then the "user" H3U3XCGD from PN exists with:
-            | attribute    | value       |
-            | appellation  | Jean DUPOND |
-            | service_code | service_2   |
+            | attribute    | value                     |
+            | appellation  | Jean DUPOND               |
+            | service_code | service_2                 |
+            | roles        | ROLE_SUPERVISOR,ROLE_USER |
 
     Scenario: Empty headers
         Given the following HTTP headers
@@ -36,6 +40,7 @@ Feature: Create/update user according to SSO attributes
             | appelation  |       |
             | institution |       |
             | codeservice |       |
+            | superviseur |       |
 
         When I am on "/"
         Then the response status code should be 401
@@ -47,5 +52,7 @@ Feature: Create/update user according to SSO attributes
             | appelation  | foo   |
             | institution | bar   |
             | codeservice | baz   |
+            | superviseur | 0     |
+
         When I am on "/"
         Then the response status code should be 401
