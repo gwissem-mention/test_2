@@ -38,10 +38,10 @@ final class EmulateSSOSubscriber implements EventSubscriberInterface
         if (null === $user = $this->userRepository->find($userId)) {
             return;
         }
-
         $request->headers->set(AgentAuthenticator::HEADER_NUMBER, $user->getNumber());
         $request->headers->set(AgentAuthenticator::HEADER_INSTITUTION, $user->getInstitution()->name);
         $request->headers->set(AgentAuthenticator::HEADER_APPELLATION, $user->getAppellation());
         $request->headers->set(AgentAuthenticator::HEADER_SERVICE_CODE, $user->getServiceCode());
+        $request->headers->set(AgentAuthenticator::HEADER_SUPERVISOR, $user->isSupervisor() ? '1' : '0');
     }
 }

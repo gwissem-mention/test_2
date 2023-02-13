@@ -56,12 +56,16 @@ class User implements UserInterface
     ], orphanRemoval: true)]
     private Collection $notifications;
 
-    public function __construct(string $number, Institution $institution)
+    public function __construct(string $number, Institution $institution, bool $supervisor = false)
     {
         $this->number = $number;
         $this->institution = $institution;
         $this->identifier = self::generateIdentifier($number, $institution);
         $this->notifications = new ArrayCollection();
+
+        if (true === $supervisor) {
+            $this->addRole('ROLE_SUPERVISOR');
+        }
     }
 
     public function getId(): ?int
@@ -85,6 +89,15 @@ class User implements UserInterface
         $roles[] = 'ROLE_USER';
 
         return array_unique($roles);
+    }
+
+    public function addRole(string $role): self
+    {
+        if (!in_array($role, $this->roles, true)) {
+            $this->roles[] = $role;
+        }
+
+        return $this;
     }
 
     /**
@@ -190,5 +203,10 @@ class User implements UserInterface
         }
 
         return $this;
+    }
+
+    public function isSupervisor(): bool
+    {
+        return in_array('ROLE_SUPERVISOR', $this->roles, true);
     }
 }

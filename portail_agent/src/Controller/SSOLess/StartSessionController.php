@@ -6,6 +6,7 @@ namespace App\Controller\SSOLess;
 
 use App\Entity\User;
 use App\Security\SSOLess;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Cookie;
@@ -22,10 +23,16 @@ class StartSessionController extends AbstractController
         $form = $this->createFormBuilder()
             ->add('user', EntityType::class, [
                 'class' => User::class,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er
+                        ->createQueryBuilder('u')
+                        ->orderBy('u.serviceCode', 'ASC');
+                },
                 'choice_label' => static fn (User $user): string => sprintf(
-                    '%s (%s)',
+                    '%s (%s) %s',
                     $user->getAppellation(),
-                    $user->getInstitution()->value
+                    $user->getInstitution()->value,
+                    $user->isSupervisor() ? '(Superviseur)' : ''
                 ),
                 'constraints' => [new NotNull()],
             ])->getForm();

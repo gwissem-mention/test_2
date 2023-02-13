@@ -23,9 +23,15 @@ class UserFixtures extends Fixture implements FixtureGroupInterface
             (new User('H3U3XCGD', Institution::PN))
                 ->setServiceCode('103131') // CSP VOIRON/SVP/UPS/BRIGADE DE JOUR
                 ->setAppellation('Jean DUPONT'),
-            (new User('PR5KTZ9R', Institution::GN))
+            (new User('PR5KTZ9R', Institution::GN, true)) // Supervisor
                 ->setServiceCode('3002739') // Brigade de proximité de Voiron
                 ->setAppellation('Thomas DURAND'),
+            (new User('H3U3XCGF', Institution::PN, true)) // Supervisor
+                ->setServiceCode('103131') // CSP VOIRON/SVP/UPS/BRIGADE DE JOUR
+                ->setAppellation('Louise THOMAS'),
+            (new User('PR5KTZ9C', Institution::GN))
+                ->setServiceCode('3002739') // Brigade de proximité de Voiron
+                ->setAppellation('Julie RICHARD'),
         ];
 
         foreach ($users as $user) {
