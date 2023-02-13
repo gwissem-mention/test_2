@@ -7,7 +7,6 @@ namespace App\Form\Model\Facts;
 class FactsModel
 {
     private ?AddressModel $address = null;
-    private ?OffenseNatureModel $offenseNature = null;
     private ?OffenseDateModel $offenseDate = null;
     private ?int $placeNature = null;
     private ?bool $victimOfViolence = null;
@@ -21,18 +20,6 @@ class FactsModel
     public function setAddress(?AddressModel $address): self
     {
         $this->address = $address;
-
-        return $this;
-    }
-
-    public function getOffenseNature(): ?OffenseNatureModel
-    {
-        return $this->offenseNature;
-    }
-
-    public function setOffenseNature(?OffenseNatureModel $offenseNature): self
-    {
-        $this->offenseNature = $offenseNature;
 
         return $this;
     }

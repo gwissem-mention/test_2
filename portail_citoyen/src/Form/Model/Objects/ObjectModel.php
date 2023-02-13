@@ -8,6 +8,10 @@ use App\Form\Model\Identity\PhoneModel;
 
 class ObjectModel
 {
+    public const STATUS_STOLEN = 1;
+    public const STATUS_DEGRADED = 2;
+
+    private ?int $status = null;
     private ?int $category = null;
     private ?string $label = null;
     private ?string $brand = null;
@@ -25,6 +29,18 @@ class ObjectModel
     private ?string $insuranceCompany = null;
     private ?string $insuranceNumber = null;
     private ?float $amount = null;
+
+    public function getStatus(): ?int
+    {
+        return $this->status;
+    }
+
+    public function setStatus(?int $status): self
+    {
+        $this->status = $status;
+
+        return $this;
+    }
 
     public function getCategory(): ?int
     {

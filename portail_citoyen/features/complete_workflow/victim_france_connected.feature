@@ -14,8 +14,7 @@ Feature:
         And I fill in "identity_contactInformation_phone_number" with "0601020304"
         When I press "identity_submit"
         Then I should be on "/porter-plainte/faits"
-        When I click the "label[for=facts_offenseNature_offenseNatures_0]" element
-        And I click the "label[for=facts_victimOfViolence]" element
+        When I click the "label[for=facts_victimOfViolence]" element
         And I fill in "facts_victimOfViolenceText" with "Violence informations"
         And I click the "label[for=facts_address_addressOrRouteFactsKnown_0]" element
         And I fill in "facts_address_startAddress" with "1 test street"
@@ -27,11 +26,13 @@ Feature:
         And I press "facts_submit"
         Then I should be on "/porter-plainte/faits"
         When I select "1" from "objects_objects_0_category"
+        And I select "1" from "objects_objects_0_status"
         And I fill in "objects_objects_0_label" with "Object 1"
         And I fill in "objects_objects_0_amount" with "100"
         And I press "objects_objects_add"
         And I click the "#objects_objects_1_label" element
         And I select "3" from "objects_objects_1_category"
+        And I select "2" from "objects_objects_1_status"
         And I fill in "objects_objects_1_label" with "Object 2"
         And I fill in "objects_objects_1_amount" with "100"
         And I fill in "objects_objects_1_brand" with "Apple"
@@ -73,7 +74,6 @@ Feature:
         And I should see the key "pel.complaint.identity.victim" translated
         And I should see the key "pel.of.infraction" translated
         And I should see the key "pel.facts.description" translated
-        And I should see the key "pel.complaint.nature.of.the.facts" translated
         And I should see the key "pel.complaint.identity.victim" translated
         And I should see the key "pel.victim.at.time.of.facts" translated
         And I should see the key "pel.address.or.route.facts" translated
@@ -117,6 +117,8 @@ Feature:
         And I should see the key "pel.objects.description" translated
         And I should see the key "pel.objects" translated
         And I should see the key "pel.object.category" translated
+        And I should see the key "pel.objects.stolen" translated
+        And I should see the key "pel.objects.gradient" translated
         And I should see "Documents"
         And I should see the key "pel.object" translated
         And I should see "Object 1"

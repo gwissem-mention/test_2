@@ -386,6 +386,10 @@
                 <source>pel.declaration.confirmation</source>
                 <target>Confirmation de ma déclaration</target>
             </trans-unit>
+            <trans-unit id="pel.degraded">
+                <source>pel.degraded</source>
+                <target>Dégradé</target>
+            </trans-unit>
             <trans-unit id="pel.delete">
                 <source>pel.delete</source>
                 <target>Supprimer</target>
@@ -838,6 +842,14 @@
                 <source>pel.object.category.other</source>
                 <target>Autres</target>
             </trans-unit>
+            <trans-unit id="pel.object.status">
+                <source>pel.object.status</source>
+                <target>Statut de l'objet</target>
+            </trans-unit>
+            <trans-unit id="pel.object.status.choose">
+                <source>pel.object.status.choose</source>
+                <target>Choisissez le statut de l'objet</target>
+            </trans-unit>
             <trans-unit id="pel.objects">
                 <source>pel.objects</source>
                 <target>Objets</target>
@@ -1021,6 +1033,10 @@
             <trans-unit id="pel.start.my.declaration">
                 <source>pel.start.my.declaration</source>
                 <target>Débuter ma déclaration</target>
+            </trans-unit>
+            <trans-unit id="pel.stolen">
+                <source>pel.stolen</source>
+                <target>Volé</target>
             </trans-unit>
             <trans-unit id="pel.submit">
                 <source>pel.submit</source>

@@ -28,9 +28,6 @@ class FactsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('offenseNature', OffenseNatureType::class, [
-                'label' => false,
-            ])
             ->add('victimOfViolence', CheckboxType::class, [
                 'label' => 'pel.victim.of.violence',
                 'required' => false,
