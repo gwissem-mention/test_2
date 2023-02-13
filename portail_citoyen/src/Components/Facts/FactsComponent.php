@@ -13,6 +13,8 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 use Symfony\UX\LiveComponent\Attribute\LiveAction;
+use Symfony\UX\LiveComponent\Attribute\LiveArg;
+use Symfony\UX\LiveComponent\Attribute\LiveProp;
 use Symfony\UX\LiveComponent\ComponentWithFormTrait;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
 use Symfony\UX\LiveComponent\LiveCollectionTrait;
@@ -24,6 +26,9 @@ class FactsComponent extends AbstractController
     use LiveCollectionTrait;
     use DefaultActionTrait;
 
+    #[LiveProp]
+    public bool $fromSummary;
+
     public function __construct(private readonly SessionHandler $sessionHandler)
     {
     }
@@ -34,7 +39,7 @@ class FactsComponent extends AbstractController
     }
 
     #[LiveAction]
-    public function submit(): RedirectResponse
+    public function submit(#[LiveArg] bool $redirectToSummary = false): RedirectResponse
     {
         $this->submitForm();
 
@@ -43,6 +48,10 @@ class FactsComponent extends AbstractController
         /** @var FactsModel $facts */
         $facts = $this->getFormInstance()->getData();
         $this->sessionHandler->setComplaint($complaint->setFacts($facts));
+
+        if (true === $redirectToSummary) {
+            return $this->redirectToRoute('complaint_summary');
+        }
 
         return $this->redirectToRoute('complaint_objects');
     }

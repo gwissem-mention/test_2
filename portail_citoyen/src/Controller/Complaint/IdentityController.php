@@ -10,15 +10,16 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route(path: '/porter-plainte/identite', name: 'complaint_identity', methods: ['GET'])]
+#[Route(path: '/porter-plainte/identite/{fromSummary?0}', name: 'complaint_identity', requirements: ['fromSummary' => '0|1'], methods: ['GET'])]
 class IdentityController extends AbstractController
 {
     public function __invoke(
         Request $request,
         SessionHandler $sessionHandler,
+        bool $fromSummary = false
     ): Response {
         $sessionHandler->init();
 
-        return $this->render('pages/complaint_identity.html.twig', ['complaint' => $sessionHandler->getComplaint()]);
+        return $this->render('pages/complaint_identity.html.twig', ['complaint' => $sessionHandler->getComplaint(), 'from_summary' => $fromSummary]);
     }
 }

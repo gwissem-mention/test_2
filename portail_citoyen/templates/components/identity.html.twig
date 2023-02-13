@@ -32,8 +32,13 @@
         <div class="fr-col">
             <ul class="fr-btns-group fr-btns-group--right fr-btns-group--inline-reverse fr-btns-group--inline-lg fr-btns-group--icon-left">
                 <li>
-                    <button type="submit" class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line" id="identity_submit">{{ 'pel.next'|trans }}</button>
+                    <button type="submit" class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line" id="identity_submit" {% if this.fromSummary is same as(true) %}data-action="live#action" data-action-name="prevent|submit"{% endif %}>{{ this.fromSummary is same as(true) ? 'pel.save.and.go.to.next'|trans : 'pel.next'|trans }}</button>
                 </li>
+                {% if this.fromSummary is same as(true) %}
+                    <li>
+                        <button type="submit" class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line" id="identity_submit_recap" data-action="live#action" data-action-name="prevent|submit(redirectToSummary=true)">{{ 'pel.save.and.go.to.summary'|trans }}</button>
+                    </li>
+                {% endif %}
             </ul>
         </div>
     </div>

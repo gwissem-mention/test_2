@@ -104,7 +104,7 @@
                         </ul>
                     {% endif %}
                     <p>
-                        <a class="fr-btn fr-btn--secondary btn--update" href="{{ path('complaint_identity') }}">{{ 'pel.update'|trans }}</a>
+                        <a class="fr-btn fr-btn--secondary btn--update" href="{{ path('complaint_identity', {'fromSummary':1}) }}" id="update-identity">{{ 'pel.update'|trans }}</a>
                     </p>
                 </div>
             </div>
@@ -194,7 +194,7 @@
                         {% endif %}
                     </ul>
                     <p>
-                        <a class="fr-btn fr-btn--secondary btn--update" href="{{ path('complaint_facts') }}">{{ 'pel.update'|trans }}</a>
+                        <a class="fr-btn fr-btn--secondary btn--update" href="{{ path('complaint_facts', {'fromSummary':1}) }}" id="update-facts">{{ 'pel.update'|trans }}</a>
                     </p>
                 </div>
             </div>
@@ -259,7 +259,7 @@
                         {{ 'pel.total.message.amount'|trans }} {{ complaint.objects.objects|objects_amount|format_currency('EUR', {fraction_digit: 2}) }}
                     </p>
                     <p>
-                        <a class="fr-btn fr-btn--secondary btn--update" href="{{ path('complaint_objects') }}">{{ 'pel.update'|trans }}</a>
+                        <a class="fr-btn fr-btn--secondary btn--update" href="{{ path('complaint_objects', {'fromSummary':1}) }}" id="update-objects">{{ 'pel.update'|trans }}</a>
                     </p>
                 </div>
             </div>
@@ -300,7 +300,7 @@
                         <li>{{ 'pel.facts.description.precise'|trans }}: {{ complaint.additionalInformation.description }}</li>
                     </ul>
                     <p>
-                        <a class="fr-btn fr-btn--secondary btn--update" href="{{ path('complaint_additional_information') }}">{{ 'pel.update'|trans }}</a>
+                        <a class="fr-btn fr-btn--secondary btn--update" href="{{ path('complaint_additional_information') }}" id="update-additional-information">{{ 'pel.update'|trans }}</a>
                     </p>
                 </div>
             </div>

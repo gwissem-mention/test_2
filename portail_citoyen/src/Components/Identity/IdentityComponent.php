@@ -15,6 +15,8 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 use Symfony\UX\LiveComponent\Attribute\LiveAction;
+use Symfony\UX\LiveComponent\Attribute\LiveArg;
+use Symfony\UX\LiveComponent\Attribute\LiveProp;
 use Symfony\UX\LiveComponent\ComponentWithFormTrait;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
 
@@ -23,6 +25,9 @@ class IdentityComponent extends AbstractController
 {
     use ComponentWithFormTrait;
     use DefaultActionTrait;
+
+    #[LiveProp]
+    public bool $fromSummary;
 
     public function __construct(
         private readonly SessionHandler $sessionHandler,
@@ -42,7 +47,7 @@ class IdentityComponent extends AbstractController
     }
 
     #[LiveAction]
-    public function submit(): RedirectResponse
+    public function submit(#[LiveArg] bool $redirectToSummary = false): RedirectResponse
     {
         $this->submitForm();
 
@@ -73,6 +78,10 @@ class IdentityComponent extends AbstractController
         }
 
         $this->sessionHandler->setComplaint($complaint->setIdentity($identity));
+
+        if (true === $redirectToSummary) {
+            return $this->redirectToRoute('complaint_summary');
+        }
 
         return $this->redirectToRoute('complaint_facts');
     }

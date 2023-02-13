@@ -778,6 +778,14 @@
                 <source>pel.save</source>
                 <target>Sauvegarder</target>
             </trans-unit>
+            <trans-unit id="pel.save.and.go.to.summary">
+                <source>pel.save.and.go.to.summary</source>
+                <target>Valider mes modifications et retourner au récapitulatif</target>
+            </trans-unit>
+            <trans-unit id="pel.save.and.go.to.next">
+                <source>pel.save.and.go.to.next</source>
+                <target>Valider mes modifications et passer à la page suivante</target>
+            </trans-unit>
             <trans-unit id="pel.new.window">
                 <source>pel.new.window</source>
                 <target>nouvelle fenêtre</target>
