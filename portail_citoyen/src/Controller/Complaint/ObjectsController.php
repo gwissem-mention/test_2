@@ -11,17 +11,18 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route(path: '/porter-plainte/objets', name: 'complaint_objects', methods: ['GET'])]
+#[Route(path: '/porter-plainte/objets/{fromSummary?0}', name: 'complaint_objects', requirements: ['fromSummary' => '0|1'], methods: ['GET'])]
 class ObjectsController extends AbstractController
 {
     public function __invoke(
         Request $request,
         SessionHandler $sessionHandler,
+        bool $fromSummary = false
     ): Response {
         if (!$sessionHandler->getComplaint()?->getFacts() instanceof FactsModel) {
             return $this->redirectToRoute('home');
         }
 
-        return $this->render('pages/complaint_objects.html.twig', ['complaint' => $sessionHandler->getComplaint()]);
+        return $this->render('pages/complaint_objects.html.twig', ['complaint' => $sessionHandler->getComplaint(), 'from_summary' => $fromSummary]);
     }
 }

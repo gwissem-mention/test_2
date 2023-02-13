@@ -110,7 +110,45 @@ Feature:
         And I should see "description informations"
         And I should see the key "pel.note" translated
         And I should see the key "pel.summary.is.not.legal.proof" translated
-        When I press "Suivant"
+        When I click the "#update-identity" element
+        Then I should be on "/porter-plainte/identite/1"
+        And I should see the key "pel.save.and.go.to.next" translated
+        And I should see the key "pel.save.and.go.to.summary" translated
+        When I press "identity_submit_recap"
+        Then I should be on "/porter-plainte/recapitulatif"
+        When I click the "#update-facts" element
+        Then I should be on "/porter-plainte/faits/1"
+        And I should see the key "pel.save.and.go.to.next" translated
+        And I should see the key "pel.save.and.go.to.summary" translated
+        When I press "facts_submit_recap"
+        Then I should be on "/porter-plainte/recapitulatif"
+        When I click the "#update-objects" element
+        Then I should be on "/porter-plainte/objets/1"
+        And I should see the key "pel.save.and.go.to.next" translated
+        And I should see the key "pel.save.and.go.to.summary" translated
+        When I press "objects_submit_recap"
+        Then I should be on "/porter-plainte/recapitulatif"
+        When I click the "#update-additional-information" element
+        Then I should be on "/porter-plainte/informations-complementaires"
+        And I should see the key "pel.next" translated
+        When I press "additional_information_submit"
+        Then I should be on "/porter-plainte/recapitulatif"
+        When I click the "#update-identity" element
+        Then I should be on "/porter-plainte/identite/1"
+        When I press "identity_submit"
+        Then I should be on "/porter-plainte/faits"
+        When I am on "/porter-plainte/recapitulatif"
+        And I click the "#update-facts" element
+        Then I should be on "/porter-plainte/faits/1"
+        When I press "facts_submit"
+        Then I should be on "/porter-plainte/objets"
+        When I am on "/porter-plainte/recapitulatif"
+        And I click the "#update-objects" element
+        Then I should be on "/porter-plainte/objets/1"
+        When I press "objects_submit"
+        Then I should be on "/porter-plainte/informations-complementaires"
+        When I am on "/porter-plainte/recapitulatif"
+        And I press "Suivant"
         Then I should see 1 "#fr-modal-complaint-confirm[open=true]" element
         And I should see the key "pel.declaration.confirmation" translated
         And I should see the key "pel.i.confirm.declaration.is.complete" translated
