@@ -18,12 +18,6 @@ Feature:
         When I follow "Précédent"
         Then I should be on "/porter-plainte/identite"
 
-    Scenario: I can see the offense nature checkboxes
-        Then I should see 3 "input[type=checkbox][name='facts[offenseNature][offenseNatures][]']" elements
-        And I should see "Vol" in the "label[for=facts_offenseNature_offenseNatures_0]" element
-        And I should see "Dégradation" in the "label[for=facts_offenseNature_offenseNatures_1]" element
-        And I should see "Autre atteinte aux biens" in the "label[for=facts_offenseNature_offenseNatures_2]" element
-
     Scenario: I can see the place natures list
         Then I should see "Domicile/Logement" in the "#facts_placeNature" element
         And I should see "Parking / garage" in the "#facts_placeNature" element
@@ -43,14 +37,6 @@ Feature:
         And I should see "Oui je connais l'heure exacte des faits" in the "label[for=facts_offenseDate_choiceHour_0]" element
         And I should see "Non mais je connais le créneau horaire" in the "label[for=facts_offenseDate_choiceHour_1]" element
         And I should see "Je ne connais pas l'heure des faits" in the "label[for=facts_offenseDate_choiceHour_2]" element
-
-    Scenario: I can see a warning text if I select "Robbery"
-        When I click the "label[for=facts_offenseNature_offenseNatures_0]" element
-        Then I should see the key "pel.complaint.offense.nature.warning.text" translated
-
-    Scenario: I can see a textarea field if I select Other AAB
-        When I click the "label[for=facts_offenseNature_offenseNatures_2]" element
-        And I should see the key "pel.complaint.offense.nature.other.aab.text" translated
 
     Scenario: I can see 1 date input if I select "Yes" to offense exact date known radio buttons
         When I click the "label[for=facts_offenseDate_exactDateKnown_0]" element
@@ -83,14 +69,6 @@ Feature:
         Then I should not see a "input#facts_offenseDate_startHour" element
         And I should not see a "input#facts_offenseDate_endHour" element
         And I should not see a "input#facts_offenseDate_hour" element
-
-    Scenario: I can see a warning text if I select "Robbery"
-        When I click the "label[for=facts_offenseNature_offenseNatures_0]" element
-        Then I should see the key "pel.complaint.offense.nature.warning.text" translated
-
-    Scenario: I can see a textarea field if I select Other AAB
-        When I click the "label[for=facts_offenseNature_offenseNatures_2]" element
-        And I should see the key "pel.complaint.offense.nature.other.aab.text" translated
 
     Scenario: I can see 1 date input if I select "Yes" to offense exact date known radio buttons
         When I click the "label[for=facts_offenseDate_exactDateKnown_0]" element
@@ -137,8 +115,7 @@ Feature:
         And I should not see the key "pel.address.end" translated
 
     Scenario: Submit the facts form
-        When I click the "label[for=facts_offenseNature_offenseNatures_0]" element
-        And I click the "label[for=facts_address_addressOrRouteFactsKnown_0]" element
+        When I click the "label[for=facts_address_addressOrRouteFactsKnown_0]" element
         And I fill in "facts_address_startAddress" with "1 test street"
         And I fill in "facts_address_endAddress" with "2 test street"
         And I click the "label[for=facts_offenseDate_exactDateKnown_0]" element

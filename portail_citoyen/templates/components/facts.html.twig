@@ -2,17 +2,6 @@
     {{ form_start(form, {attr: {'data-action': 'live#action','data-action-name': 'prevent|submit'}}) }}
     <div class="fr-grid-row fr-py-2w">
         <div class="fr-col">
-            {{ form_row(form.offenseNature.offenseNatures) }}
-            {% if constant('App\\Enum\\OffenseNature::Robbery').value in form.offenseNature.offenseNatures.vars.value %}
-                <p id="complaint_offense_nature_warning_text">{{ 'pel.complaint.offense.nature.warning.text'|trans }}</p>
-            {% endif %}
-            {% if form.offenseNature.aabText is defined %}
-                {{ form_row(form.offenseNature.aabText) }}
-            {% endif %}
-        </div>
-    </div>
-    <div class="fr-grid-row fr-py-2w">
-        <div class="fr-col">
             {{ form_row(form.victimOfViolence) }}
         </div>
     </div>

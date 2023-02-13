@@ -8,14 +8,13 @@ Feature:
         Given I am on "/authentification"
         When I press "france_connect_auth_button"
         Then I should be on "/porter-plainte/identite"
-        And I click the "label[for=identity_declarantStatus_0]" element
         And I fill in the autocomplete "identity_civilState_job-ts-control" with "Avocats" and click "31B1"
         And I fill in "identity_contactInformation_frenchAddress_address" with "Av. de la République 75011 Paris France"
         And I fill in "identity_contactInformation_phone_number" with "0601020304"
+        And I click the "label[for=identity_declarantStatus_0]" element
         And I press "identity_submit"
         Then I should be on "/porter-plainte/faits"
-        When I click the "label[for=facts_offenseNature_offenseNatures_0]" element
-        And I click the "label[for=facts_address_addressOrRouteFactsKnown_1]" element
+        When I click the "label[for=facts_address_addressOrRouteFactsKnown_1]" element
         And I click the "label[for=facts_offenseDate_exactDateKnown_0]" element
         And I fill in "facts_offenseDate_startDate" with "01/01/2022"
         And I click the "label[for=facts_offenseDate_choiceHour_2]" element
@@ -39,6 +38,7 @@ Feature:
         Then I should see the key "pel.object" translated
         And I should see the key "pel.delete" translated
         And I should see the key "pel.object.category" translated
+        And I should see the key "pel.object.status" translated
         And I should see the key "pel.amount" translated
 
     Scenario: I can see a list of text fields translated when I select "Multimédia" from category object list
@@ -93,10 +93,12 @@ Feature:
 
     Scenario: Submit the complaint form as a victim logged in with France Connect
         And I select "1" from "objects_objects_0_category"
+        And I select "1" from "objects_objects_0_status"
         And I fill in "objects_objects_0_label" with "Object 1"
         And I fill in "objects_objects_0_amount" with "100"
         And I press "objects_objects_add"
         And I select "1" from "objects_objects_1_category"
+        And I select "1" from "objects_objects_1_status"
         And I fill in "objects_objects_1_label" with "Object 2"
         And I fill in "objects_objects_1_amount" with "100"
         And I press "objects_submit"

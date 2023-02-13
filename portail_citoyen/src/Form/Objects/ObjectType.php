@@ -53,6 +53,14 @@ class ObjectType extends AbstractType
                         'max' => 30,
                     ]),
                 ],
+            ])
+            ->add('status', ChoiceType::class, [
+                'choices' => [
+                    'pel.stolen' => ObjectModel::STATUS_STOLEN,
+                    'pel.degraded' => ObjectModel::STATUS_DEGRADED,
+                ],
+                'label' => 'pel.object.status',
+                'placeholder' => 'pel.object.status.choose',
             ]);
 
         $builder->addEventListener(
