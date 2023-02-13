@@ -126,8 +126,11 @@ final class AgentAuthenticator extends AbstractAuthenticator implements Authenti
 
         $user
             ->setAppellation($appellation)
-            ->setServiceCode($serviceCode)
-            ->addRole('ROLE_SUPERVISOR');
+            ->setServiceCode($serviceCode);
+
+        if (true === $supervisor) {
+            $user->addRole('ROLE_SUPERVISOR');
+        }
 
         $this->userRepository->save($user, true);
 
