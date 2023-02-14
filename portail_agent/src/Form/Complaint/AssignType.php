@@ -32,7 +32,7 @@ class AssignType extends AbstractType
                     $complaint = $event->getData();
                     $this->addAgentField(
                         $event->getForm(),
-                        !is_null($complaint->getAssignedTo()) ? strval($complaint->getAssignedTo()) : null
+                        $complaint->getAssignedTo()
                     );
                 }
             )
@@ -41,21 +41,14 @@ class AssignType extends AbstractType
                 function (FormEvent $event) {
                     /** @var array<string, string> $data */
                     $data = $event->getData();
-                    /** @var ?string $user */
                     $user = $data['assignedTo'];
-                    $this->addAgentField($event->getForm(), !empty($user) ? $user : null);
+                    $this->addAgentField($event->getForm(), $this->userRepository->find($user));
                 }
             );
     }
 
-    private function addAgentField(FormInterface $form, ?string $userId = null): void
+    private function addAgentField(FormInterface $form, ?User $user = null): void
     {
-        $user = null;
-        if (!is_null($userId)) {
-            /** @var User $user */
-            $user = $this->userRepository->find($userId);
-        }
-
         $form
             ->add('assignedTo', UserAutocompleteType::class, [
                 'choices' => !is_null($user) ? [$user->getAppellation() => $user->getId()] : null,

@@ -56,12 +56,20 @@ class User implements UserInterface
     ], orphanRemoval: true)]
     private Collection $notifications;
 
+    /** @var Collection<int, Complaint> */
+    #[ORM\OneToMany(mappedBy: 'assignedTo', targetEntity: Complaint::class, cascade: [
+        'persist',
+        'remove',
+    ], orphanRemoval: true)]
+    private Collection $complaints;
+
     public function __construct(string $number, Institution $institution, bool $supervisor = false)
     {
         $this->number = $number;
         $this->institution = $institution;
         $this->identifier = self::generateIdentifier($number, $institution);
         $this->notifications = new ArrayCollection();
+        $this->complaints = new ArrayCollection();
 
         if (true === $supervisor) {
             $this->addRole('ROLE_SUPERVISOR');
@@ -205,8 +213,42 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * @return Collection<int, Complaint>
+     */
+    public function getComplaints(): Collection
+    {
+        return $this->complaints;
+    }
+
+    public function addComplaint(Complaint $complaint): self
+    {
+        if (!$this->complaints->contains($complaint)) {
+            $this->complaints->add($complaint);
+            $complaint->setAssignedTo($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComplaint(Complaint $complaint): self
+    {
+        if ($this->complaints->removeElement($complaint)) {
+            if ($complaint->getAssignedTo() === $this) {
+                $complaint->setAssignedTo(null);
+            }
+        }
+
+        return $this;
+    }
+
     public function isSupervisor(): bool
     {
         return in_array('ROLE_SUPERVISOR', $this->roles, true);
+    }
+
+    public function __toString(): string
+    {
+        return (string) $this->getAppellation();
     }
 }

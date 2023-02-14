@@ -38,14 +38,14 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
         for ($i = 1; $i <= self::COMPLAINTS_NB; ++$i) {
             $complaints[] = $this->getGenericComplaint()
                 ->setStatus(Complaint::STATUS_ASSIGNED)
-                ->setAssignedTo($user->getId());
+                ->setAssignedTo($user);
         }
 
         for ($i = 1; $i <= self::COMPLAINTS_NB; ++$i) {
             $complaints[] = $this->getGenericComplaint()
                 ->setStatus(Complaint::STATUS_ONGOING_LRP)
                 ->setCreatedAt(new \DateTimeImmutable('2022-12-02'))
-                ->setAssignedTo($user->getId());
+                ->setAssignedTo($user);
         }
 
         for ($i = 1; $i <= self::COMPLAINTS_NB; ++$i) {
