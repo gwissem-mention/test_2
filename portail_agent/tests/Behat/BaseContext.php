@@ -171,6 +171,22 @@ final class BaseContext extends MinkContext
         });
     }
 
+    public function clickLink(mixed $link): void
+    {
+        $this->retryStep(function () use ($link) {
+            parent::clickLink($link);
+        });
+    }
+
+    /**
+     * @Given I go to the tab :tab
+     */
+    public function goToTab(int $tab): void
+    {
+        $windowNames = $this->getSession()->getWindowNames();
+        $this->getSession()->switchToWindow($windowNames[$tab - 1]);
+    }
+
     public function assertElementContainsText(mixed $element, mixed $text): void
     {
         $this->retryStep(function () use ($element, $text) {
@@ -357,6 +373,16 @@ final class BaseContext extends MinkContext
         ));
     }
 
+    /**
+     * @When /^I follow the declaration number (?P<num>\d+)$/
+     */
+    public function IFollowTheDeclarationNumber(int $declarationNumber): void
+    {
+        $this->retryStep(function () use ($declarationNumber) {
+            $this->clickLink($this->declarationNumberGenerator->generate($declarationNumber));
+        });
+    }
+
     private function retryStep(
         callable $step,
         int $maxTime = self::RETRY_MAX_TIME,
@@ -399,13 +425,5 @@ final class BaseContext extends MinkContext
         }
 
         $callback();
-    }
-
-    /**
-     * @When /^I follow the declaration number (?P<num>\d+)$/
-     */
-    public function IFollowTheDeclarationNumber(int $declarationNumber): void
-    {
-        $this->clickLink($this->declarationNumberGenerator->generate($declarationNumber));
     }
 }
