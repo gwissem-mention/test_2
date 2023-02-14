@@ -35,8 +35,11 @@
   },
   "dependencies": {
     "@types/bootstrap": "^5.2.6",
+    "@types/datatables.net": "^1.10.24",
     "@typescript-eslint/eslint-plugin": "^5.48.1",
     "@typescript-eslint/parser": "^5.48.1",
+    "datatables.net": "^1.13.2",
+    "datatables.net-bs5": "^1.13.2",
     "eslint": "^8.31.0",
     "jscpd": "^3.5.3",
     "ts-loader": "^9.4.2",
