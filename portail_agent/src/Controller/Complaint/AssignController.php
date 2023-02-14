@@ -44,7 +44,7 @@ class AssignController extends AbstractController
             $complaintRepository->save($complaint->setStatus(Complaint::STATUS_ASSIGNED));
 
             /** @var User $user */
-            $user = $userRepository->find($complaint->getAssignedTo());
+            $user = $complaint->getAssignedTo();
 
             $userRepository->save(
                 $user->addNotification($notificationFactory->createForComplaintAssigned($complaint)), true

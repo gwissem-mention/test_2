@@ -74,8 +74,9 @@ class Complaint
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $refusalText = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?int $assignedTo = null;
+    #[ORM\ManyToOne(inversedBy: 'complaints')]
+    #[ORM\JoinColumn(nullable: true)]
+    private ?User $assignedTo = null;
 
     /** @var Collection<int, Comment> */
     #[ORM\OneToMany(mappedBy: 'complaint', targetEntity: Comment::class, cascade: [
@@ -258,12 +259,12 @@ class Complaint
         return $this;
     }
 
-    public function getAssignedTo(): ?int
+    public function getAssignedTo(): ?User
     {
         return $this->assignedTo;
     }
 
-    public function setAssignedTo(?int $assignedTo): self
+    public function setAssignedTo(?User $assignedTo): self
     {
         $this->assignedTo = $assignedTo;
 
