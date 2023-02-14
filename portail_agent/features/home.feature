@@ -23,13 +23,6 @@ Feature:
         And I should see the key "pel.faq" translated
 
     @func
-    Scenario: I can click on a complaint link on the table
-        Given I am on the homepage
-        When I follow the declaration number 1
-        Then I am on "/plainte/recapitulatif/1"
-        And the response status code should be 200
-
-    @func
     Scenario: I can navigate from the homepage to the homepage
         When I am on the homepage
         And I follow "Accueil"
@@ -49,6 +42,13 @@ Feature:
         And I follow "FAQ"
         Then I am on "/faq"
         And I should see the key "pel.faq" translated
+
+    @javascript
+    Scenario: I can click on a complaint link on the table
+        Given I am on the homepage
+        When I follow "PEL-2023-00000001"
+        And I go to the tab 2
+        Then I should be on "/plainte/recapitulatif/1"
 
     @javascript
     Scenario: I can click on a assignment notif and I should be redirected on the complaint and the notif should be removed
@@ -105,7 +105,7 @@ Feature:
     Scenario: I can sort the columns of the complaints table
         Given I am authenticated with H3U3XCGD from PN
         And I am on the homepage
-        When I click the "th:nth-of-type(2)" element
+        When I click the "th:nth-of-type(10)" element
         And I should see 26 "tr" element
         And I should see the key "pel.deposit.date" translated
         And I should see the key "pel.facts" translated

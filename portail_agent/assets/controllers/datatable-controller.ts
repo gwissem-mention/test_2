@@ -10,17 +10,22 @@ export default class extends Controller {
     }
 
     private init(): void {
-        const order: string | null = this.element.getAttribute("data-order");
-        const columnDefs: string | null = this.element.getAttribute("data-columnDefs");
+        const columnsElements: NodeListOf<HTMLElement> | null = this.element.querySelectorAll("th[data-column]");
+        const columns: { data: string | null; }[] = [];
 
-        if (order && columnDefs) {
+        columnsElements.forEach(value => {
+            columns.push({data: value.getAttribute("data-column")});
+        });
+
+        if (columns) {
             new DataTable("#" + this.element.id, {
-                order: JSON.parse(order),
-                columnDefs: JSON.parse(columnDefs),
                 language: {
                     url: "build/json/datatables/fr_FR.json"
                 },
                 dom: "<\"top\">rt<\"bottom\"p><\"clear\">",
+                processing: true,
+                serverSide: true,
+                columns: columns
             });
         }
     }

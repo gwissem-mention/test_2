@@ -2,9 +2,8 @@
 
 declare(strict_types=1);
 
-namespace App\Controller;
+namespace App\Controller\Home;
 
-use App\Repository\ComplaintRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,11 +13,8 @@ class HomeController extends AbstractController
 {
     #[IsGranted('IS_AUTHENTICATED')]
     #[Route('/', name: 'home')]
-    public function __invoke(ComplaintRepository $complaintRepository): Response
+    public function __invoke(): Response
     {
-        return $this->render('pages/index.html.twig', [
-            'complaints' => $complaintRepository->findBy([],
-                ['declarationNumber' => 'ASC']),
-        ]);
+        return $this->render('pages/home/index.html.twig');
     }
 }
