@@ -30,6 +30,8 @@ default:
         default:
             contexts:
                 - App\Tests\Behat\BaseContext
+                - App\Tests\Behat\DatabaseContext:
+                    kernel: '@kernel'
                 - App\Tests\Behat\HttpContext
                 - App\Tests\Behat\UserContext
                 - FailAid\Context\FailureContext

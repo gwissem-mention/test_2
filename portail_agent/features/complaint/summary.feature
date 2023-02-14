@@ -155,8 +155,8 @@ Feature:
         And I should not see a "complaint-reassign-button" element
         And I should see a ".toast" element
         And I should see the key "pel.the.declaration.has.been.refused" translated
-        And I am on "/"
-        And I should see 6 ".btn-danger" element
+        Given I am on "/"
+        Then I should see 1 ".btn-danger" element
 
     @javascript
     Scenario: I can see form errors the reject form when reject_refusalText is too short
@@ -228,7 +228,10 @@ Feature:
     @javascript
     Scenario: I can submit the reassign form successfully
         Given I am on "/plainte/recapitulatif/3"
-        When I press "complaint-reassign-button"
+        When I press "Attribuer la déclaration à..."
+        And I fill in the autocomplete "assign_assignedTo-ts-control" with "Jean" and click "1"
+        And I press "Valider l'attribution"
+        And I press "complaint-reassign-button"
         And I click the "#modal-complaint-assign .clear-button" element
         And I fill in the autocomplete "assign_assignedTo-ts-control" with "Jean" and click "1"
         And I press "Valider l'attribution"

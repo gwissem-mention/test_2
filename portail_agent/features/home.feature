@@ -21,23 +21,6 @@ Feature:
         And I should see the key "pel.home" translated
         And I should see the key "pel.reporting" translated
         And I should see the key "pel.faq" translated
-        And I should see a "table" element
-        And I should see 26 "tr" element
-        And I should see the key "pel.deposit.date" translated
-        And I should see the key "pel.facts" translated
-        And I should see the key "pel.facts.date" translated
-        And I should see the key "pel.alert" translated
-        And I should see the key "pel.meeting.date" translated
-        And I should see the key "pel.firstname.lastname" translated
-        And I should see the key "pel.status" translated
-        And I should see the key "pel.a.opj.name" translated
-        And I should see the key "pel.declaration.number" translated
-        And I should see the key "pel.comments" translated
-        And I should see 5 ".btn-primary" element
-        And I should see 5 ".btn-secondary" element
-        And I should see 5 ".btn-danger" element
-        And I should see 5 ".btn-warning" element
-        And I should see 5 ".btn-success" element
 
     @func
     Scenario: I can click on a complaint link on the table
@@ -77,4 +60,65 @@ Feature:
         Then I should be on "/plainte/recapitulatif/1"
         When I click the "#notifications-dropdown" element
         Then I should not see "La déclaration PEL-2023-00000001 vient de vous être attribuée"
+
+    @javascript
+    Scenario: I should see a table datatables of 25 entries
+        Given I am authenticated with H3U3XCGD from PN
+        And I am on the homepage
+        Then I should see a "table#datatable" element
+        And I should see 26 "tr" element
+        And I should see the key "pel.deposit.date" translated
+        And I should see the key "pel.facts" translated
+        And I should see the key "pel.facts.date" translated
+        And I should see the key "pel.alert" translated
+        And I should see the key "pel.meeting.date" translated
+        And I should see the key "pel.firstname.lastname" translated
+        And I should see the key "pel.status" translated
+        And I should see the key "pel.a.opj.name" translated
+        And I should see the key "pel.declaration.number" translated
+        And I should see the key "pel.comments" translated
+        And I should see 10 ".btn-primary" element
+        And I should see 10 ".btn-secondary" element
+        And I should see 5 ".btn-warning" element
+
+    @javascript
+    Scenario: I can paginate to page 2 of the complaints table
+        Given I am authenticated with H3U3XCGD from PN
+        And I am on the homepage
+        When I click the "a[data-dt-idx='1']" element
+        And I should see 26 "tr" element
+        And I should see the key "pel.deposit.date" translated
+        And I should see the key "pel.facts" translated
+        And I should see the key "pel.facts.date" translated
+        And I should see the key "pel.alert" translated
+        And I should see the key "pel.meeting.date" translated
+        And I should see the key "pel.firstname.lastname" translated
+        And I should see the key "pel.status" translated
+        And I should see the key "pel.a.opj.name" translated
+        And I should see the key "pel.declaration.number" translated
+        And I should see the key "pel.comments" translated
+        And I should see 10 ".btn-danger" element
+        And I should see 10 ".btn-success" element
+        And I should see 5 ".btn-warning" element
+
+    @javascript
+    Scenario: I can sort the columns of the complaints table
+        Given I am authenticated with H3U3XCGD from PN
+        And I am on the homepage
+        When I click the "th:nth-of-type(2)" element
+        And I should see 26 "tr" element
+        And I should see the key "pel.deposit.date" translated
+        And I should see the key "pel.facts" translated
+        And I should see the key "pel.facts.date" translated
+        And I should see the key "pel.alert" translated
+        And I should see the key "pel.meeting.date" translated
+        And I should see the key "pel.firstname.lastname" translated
+        And I should see the key "pel.status" translated
+        And I should see the key "pel.a.opj.name" translated
+        And I should see the key "pel.declaration.number" translated
+        And I should see the key "pel.comments" translated
+        And I should see 10 ".btn-danger" element
+        And I should see 10 ".btn-success" element
+        And I should see 5 ".btn-warning" element
+
 

@@ -18,7 +18,7 @@ use Doctrine\Persistence\ObjectManager;
 
 class ComplaintFixtures extends Fixture implements FixtureGroupInterface, DependentFixtureInterface
 {
-    private const COMPLAINTS_NB = 5;
+    private const COMPLAINTS_NB = 10;
 
     public static function getGroups(): array
     {
@@ -44,17 +44,20 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
         for ($i = 1; $i <= self::COMPLAINTS_NB; ++$i) {
             $complaints[] = $this->getGenericComplaint()
                 ->setStatus(Complaint::STATUS_ONGOING_LRP)
+                ->setCreatedAt(new \DateTimeImmutable('2022-12-02'))
                 ->setAssignedTo($user->getId());
         }
 
         for ($i = 1; $i <= self::COMPLAINTS_NB; ++$i) {
             $complaints[] = $this->getGenericComplaint()
                 ->setStatus(Complaint::STATUS_REJECTED)
+                ->setCreatedAt(new \DateTimeImmutable('2022-12-03'))
                 ->setRefusalReason(Complaint::REFUSAL_REASON_REORIENTATION_APPONTMENT);
         }
 
         for ($i = 1; $i <= self::COMPLAINTS_NB; ++$i) {
             $complaints[] = $this->getGenericComplaint()
+                ->setCreatedAt(new \DateTimeImmutable('2022-12-04'))
                 ->setStatus(Complaint::STATUS_MP_DECLARANT);
         }
 

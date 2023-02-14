@@ -2,3 +2,18 @@
     &-head
         color: $white
         background-color: $blue
+
+    &.dataTable
+        thead
+            tr
+                th
+                    &.sorting_asc
+                        &:before
+                          opacity: 1 !important
+                    &.sorting_desc
+                        &:after
+                          opacity: 1 !important
+                    &.sorting
+                        &:after, &:before
+                          opacity: 0.5
+                          line-height: 11px
