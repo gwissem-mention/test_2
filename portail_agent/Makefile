@@ -284,12 +284,15 @@ Deployment:
 
 ## Run ansible deploy
 deploy:
-	@$(ANSIBLE) --become-method=su  --become-user=$(BECOME_USER)  ansible/deploy/deploy.yaml -i ansible/hosts.yaml  --ask-vault-pass --private-key=$(PRIVATE_KEY_PATH)
+	@$(ANSIBLE) --become-method=su  --become-user=$(BECOME_USER)  ansible/deploy/deploy.yaml -i ansible/qualif.yaml  --ask-vault-pass --private-key=$(PRIVATE_KEY_PATH)
+
+deploy-demo:
+	@$(ANSIBLE) --become-method=su  --become-user=$(BECOME_USER)  ansible/deploy/deploy.yaml -i ansible/demo.yaml  --ask-vault-pass --private-key=$(PRIVATE_KEY_PATH)
 
 ## Run ansible deploy for CI
 deploy-ci:
-	@$(ANSIBLE) --become-method=su  --become-user=$(BECOME_USER)  ansible/deploy/deploy.yaml -i ansible/hosts.yaml  --vault-password-file $ANSIBLE_VAULT_PASSWORD  --private-key=$(PRIVATE_KEY_PATH)
+	@$(ANSIBLE) --become-method=su  --become-user=$(BECOME_USER)  ansible/deploy/deploy.yaml -i ansible/qualif.yaml  --vault-password-file $ANSIBLE_VAULT_PASSWORD  --private-key=$(PRIVATE_KEY_PATH)
 
 ## Run ansible rollback
 rollback:
-	@$(ANSIBLE) --become-method=su  --become-user=$(BECOME_USER)  ansible/rollback/rollback.yaml -i ansible/hosts.yaml  --ask-vault-pass  --private-key=$(PRIVATE_KEY_PATH)
+	@$(ANSIBLE) --become-method=su  --become-user=$(BECOME_USER)  ansible/rollback/rollback.yaml -i ansible/qualif.yaml  --ask-vault-pass  --private-key=$(PRIVATE_KEY_PATH)

@@ -1,0 +1,9 @@
+---
+all:
+    hosts:
+        demo:
+            ansible_connection: ssh
+            ansible_host: "{{ vault_server_demo_host }}"
+            ansible_user: "{{ vault_server_user }}"
+            server_name: "{{ vault_server_demo_name }}"
+            server_user: "{{ vault_server_user }}"
