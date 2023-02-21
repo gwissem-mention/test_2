@@ -46,9 +46,9 @@ Feature:
     @javascript
     Scenario: I can click on a complaint link on the table
         Given I am on the homepage
-        When I follow "PEL-2023-00000001"
+        When I follow "PEL-2023-00000051"
         And I go to the tab 2
-        Then I should be on "/plainte/recapitulatif/1"
+        Then I should be on "/plainte/recapitulatif/51"
 
     @javascript
     Scenario: I can click on a assignment notif and I should be redirected on the complaint and the notif should be removed
@@ -117,9 +117,9 @@ Feature:
         And I should see the key "pel.a.opj.name" translated
         And I should see the key "pel.declaration.number" translated
         And I should see the key "pel.comments" translated
-        And I should see 10 ".btn-danger" element
+        And I should see 10 ".btn-secondary" element
         And I should see 10 ".btn-success" element
-        And I should see 5 ".btn-warning" element
+        And I should see 5 ".btn-danger" element
 
     @javascript
     Scenario: As an authenticated agent, with no complaints assigned to me, I should see an empty table
@@ -148,7 +148,7 @@ Feature:
 
     @javascript
     Scenario: As an authenticated supervisor, I should see all complaints
-        Given I am authenticated with PR5KTZ9R from GN
+        Given I am authenticated with H3U3XCGF from PN
         And I am on the homepage
         Then I should see 26 "tr" element
         And I should see "PEL-2023-00000001"

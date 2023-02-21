@@ -32,6 +32,9 @@ class UserFixtures extends Fixture implements FixtureGroupInterface
             (new User('PR5KTZ9C', Institution::GN))
                 ->setServiceCode('3002739') // Brigade de proximité de Voiron
                 ->setAppellation('Julie RICHARD'),
+            (new User('PR5KTQSD', Institution::GN))
+                ->setServiceCode('3002739') // Brigade de proximité de Voiron
+                ->setAppellation('Philippe RIVIERE'),
         ];
 
         foreach ($users as $user) {
