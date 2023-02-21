@@ -28,37 +28,51 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
     public function load(ObjectManager $manager): void
     {
         $complaints = [];
-        for ($i = 1; $i <= self::COMPLAINTS_NB; ++$i) {
-            $complaints[] = $this->getGenericComplaint();
-        }
+        /** @var User $userUnit1 */
+        $userUnit1 = $manager->getRepository(User::class)->findOneBy(['number' => 'H3U3XCGD']);
+        /** @var User $userUnit2 */
+        $userUnit2 = $manager->getRepository(User::class)->findOneBy(['number' => 'PR5KTQSD']);
+        $unitsUsers = [
+            '103131' => $userUnit1,
+            '3002739' => $userUnit2,
+        ];
 
-        /** @var User $user */
-        $user = $manager->getRepository(User::class)->findOneBy([]);
+        foreach ($unitsUsers as $unit => $user) {
+            $unit = strval($unit);
+            for ($i = 1; $i <= self::COMPLAINTS_NB; ++$i) {
+                $complaints[] = $this->getGenericComplaint()
+                    ->setUnitAssigned($unit);
+            }
 
-        for ($i = 1; $i <= self::COMPLAINTS_NB; ++$i) {
-            $complaints[] = $this->getGenericComplaint()
-                ->setStatus(Complaint::STATUS_ASSIGNED)
-                ->setAssignedTo($user);
-        }
+            for ($i = 1; $i <= self::COMPLAINTS_NB; ++$i) {
+                $complaints[] = $this->getGenericComplaint()
+                    ->setStatus(Complaint::STATUS_ASSIGNED)
+                    ->setUnitAssigned($unit)
+                    ->setAssignedTo($user);
+            }
 
-        for ($i = 1; $i <= self::COMPLAINTS_NB; ++$i) {
-            $complaints[] = $this->getGenericComplaint()
-                ->setStatus(Complaint::STATUS_ONGOING_LRP)
-                ->setCreatedAt(new \DateTimeImmutable('2022-12-02'))
-                ->setAssignedTo($user);
-        }
+            for ($i = 1; $i <= self::COMPLAINTS_NB; ++$i) {
+                $complaints[] = $this->getGenericComplaint()
+                    ->setStatus(Complaint::STATUS_ONGOING_LRP)
+                    ->setCreatedAt(new \DateTimeImmutable('2022-12-02'))
+                    ->setUnitAssigned($unit)
+                    ->setAssignedTo($user);
+            }
 
-        for ($i = 1; $i <= self::COMPLAINTS_NB; ++$i) {
-            $complaints[] = $this->getGenericComplaint()
-                ->setStatus(Complaint::STATUS_REJECTED)
-                ->setCreatedAt(new \DateTimeImmutable('2022-12-03'))
-                ->setRefusalReason(Complaint::REFUSAL_REASON_REORIENTATION_APPONTMENT);
-        }
+            for ($i = 1; $i <= self::COMPLAINTS_NB; ++$i) {
+                $complaints[] = $this->getGenericComplaint()
+                    ->setStatus(Complaint::STATUS_REJECTED)
+                    ->setCreatedAt(new \DateTimeImmutable('2022-12-03'))
+                    ->setRefusalReason(Complaint::REFUSAL_REASON_REORIENTATION_APPONTMENT)
+                    ->setUnitAssigned($unit);
+            }
 
-        for ($i = 1; $i <= self::COMPLAINTS_NB; ++$i) {
-            $complaints[] = $this->getGenericComplaint()
-                ->setCreatedAt(new \DateTimeImmutable('2022-12-04'))
-                ->setStatus(Complaint::STATUS_MP_DECLARANT);
+            for ($i = 1; $i <= self::COMPLAINTS_NB; ++$i) {
+                $complaints[] = $this->getGenericComplaint()
+                    ->setCreatedAt(new \DateTimeImmutable('2022-12-04'))
+                    ->setStatus(Complaint::STATUS_MP_DECLARANT)
+                    ->setUnitAssigned($unit);
+            }
         }
 
         foreach ($complaints as $complaint) {

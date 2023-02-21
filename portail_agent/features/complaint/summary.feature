@@ -143,7 +143,7 @@ Feature:
 
     @javascript
     Scenario: I can submit the reject form successfully
-        Given I am on "/plainte/recapitulatif/1"
+        Given I am on "/plainte/recapitulatif/51"
         When I press "Rejeter"
         And I select "1" from "reject_refusalReason"
         And I fill in "reject_refusalText" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus scelerisque ante id dui lacinia eu."

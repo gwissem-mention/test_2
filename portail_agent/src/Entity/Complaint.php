@@ -86,6 +86,9 @@ class Complaint
     #[ORM\OrderBy(['publishedAt' => 'ASC'])]
     private Collection $comments;
 
+    #[ORM\Column(length: 255)]
+    private ?string $unitAssigned = null;
+
     public function __construct()
     {
         $this->objects = new ArrayCollection();
@@ -297,6 +300,18 @@ class Complaint
                 $comment->setComplaint(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUnitAssigned(): ?string
+    {
+        return $this->unitAssigned;
+    }
+
+    public function setUnitAssigned(string $unitAssigned): self
+    {
+        $this->unitAssigned = $unitAssigned;
 
         return $this;
     }

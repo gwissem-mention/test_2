@@ -49,11 +49,14 @@ class ComplaintRepository extends ServiceEntityRepository
      *
      * @return Paginator<Complaint>
      */
-    public function findAsPaginator(array $order = [], int $start = 0, ?int $length = null, ?User $agent = null): Paginator
+    public function findAsPaginator(array $order = [], int $start = 0, ?int $length = null, string $unit = null, ?User $agent = null): Paginator
     {
         $qb = $this
             ->createQueryBuilder('c')
             ->select('c, count(comments) as HIDDEN count_comments')
+            ->addSelect('(CASE WHEN c.status = :status THEN 1 ELSE 0 END) AS HIDDEN assignmentPendingSort')
+            ->andWhere('c.unitAssigned = :unit')
+            ->orderBy('assignmentPendingSort', 'DESC')
             ->join('c.facts', 'facts')
             ->join('c.identity', 'identity')
             ->leftJoin('c.comments', 'comments')
@@ -61,7 +64,9 @@ class ComplaintRepository extends ServiceEntityRepository
             ->groupBy('c')
             ->addGroupBy('facts')
             ->addGroupBy('identity')
-            ->addGroupBy('assignedTo.id');
+            ->addGroupBy('assignedTo.id')
+            ->setParameter('unit', $unit)
+            ->setParameter('status', Complaint::STATUS_ASSIGNMENT_PENDING);
 
         if ($agent instanceof User) {
             $qb->andWhere('assignedTo = :agent')
