@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Repository;
 
 use App\Entity\Complaint;
+use App\Entity\User;
 use App\Factory\DatatableFactory;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Tools\Pagination\Paginator;
@@ -48,7 +49,7 @@ class ComplaintRepository extends ServiceEntityRepository
      *
      * @return Paginator<Complaint>
      */
-    public function findAsPaginator(array $order = [], int $start = 0, ?int $length = null): Paginator
+    public function findAsPaginator(array $order = [], int $start = 0, ?int $length = null, ?User $agent = null): Paginator
     {
         $qb = $this
             ->createQueryBuilder('c')
@@ -61,6 +62,11 @@ class ComplaintRepository extends ServiceEntityRepository
             ->addGroupBy('facts')
             ->addGroupBy('identity')
             ->addGroupBy('assignedTo.id');
+
+        if ($agent instanceof User) {
+            $qb->andWhere('assignedTo = :agent')
+            ->setParameter('agent', $agent);
+        }
 
         return new Paginator(DatatableFactory::createQuery($qb, $order, $start, $length));
     }
