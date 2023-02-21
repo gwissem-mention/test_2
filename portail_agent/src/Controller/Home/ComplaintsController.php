@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Home;
 
+use App\Entity\User;
 use App\Repository\ComplaintRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -20,10 +21,11 @@ class ComplaintsController extends AbstractController
     #[Route('/plaintes', name: 'home_complaints', methods: ['GET'])]
     public function __invoke(Request $request, ComplaintRepository $complaintRepository): JsonResponse
     {
+        /** @var ?User $agent */
+        $agent = !$this->isGranted('ROLE_SUPERVISOR') ? $this->getUser() : null;
         $columns = $request->query->all()['columns'] ?? [];
         $order = $request->query->all()['order'][0] ?? [];
-        $complaints = $complaintRepository->findAsPaginator([['field' => $columns[$order['column']]['data'], 'dir' => $order['dir']]], $request->query->getInt('start'), $request->query->getInt('length'));
-
+        $complaints = $complaintRepository->findAsPaginator([['field' => $columns[$order['column']]['data'], 'dir' => $order['dir']]], $request->query->getInt('start'), $request->query->getInt('length'), $agent);
         $json = ['data' => []];
         foreach ($complaints as $complaint) {
             $json['data'][] = json_decode($this->renderView('pages/home/_complaint.json.twig', ['complaint' => $complaint]), true, 512, JSON_THROW_ON_ERROR);

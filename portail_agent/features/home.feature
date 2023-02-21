@@ -63,7 +63,7 @@ Feature:
 
     @javascript
     Scenario: I should see a table datatables of 25 entries
-        Given I am authenticated with H3U3XCGD from PN
+        Given I am authenticated with H3U3XCGF from PN
         And I am on the homepage
         Then I should see a "table#datatable" element
         And I should see 26 "tr" element
@@ -83,7 +83,7 @@ Feature:
 
     @javascript
     Scenario: I can paginate to page 2 of the complaints table
-        Given I am authenticated with H3U3XCGD from PN
+        Given I am authenticated with H3U3XCGF from PN
         And I am on the homepage
         When I click the "a[data-dt-idx='1']" element
         And I should see 26 "tr" element
@@ -103,7 +103,7 @@ Feature:
 
     @javascript
     Scenario: I can sort the columns of the complaints table
-        Given I am authenticated with H3U3XCGD from PN
+        Given I am authenticated with H3U3XCGF from PN
         And I am on the homepage
         When I click the "th:nth-of-type(10)" element
         And I should see 26 "tr" element
@@ -121,4 +121,42 @@ Feature:
         And I should see 10 ".btn-success" element
         And I should see 5 ".btn-warning" element
 
+    @javascript
+    Scenario: As an authenticated agent, with no complaints assigned to me, I should see an empty table
+        Given I am authenticated with PR5KTZ9C from GN
+        And I am on the homepage
+        Then I should see 2 "tr" element
+        And I should see "Aucune donnée disponible dans le tableau"
 
+    @javascript
+    Scenario: As an authenticated agent, with complaints assigned to me, I should see my complaints
+        Given I am authenticated with H3U3XCGD from PN
+        And I am on the homepage
+        Then I should see 21 "tr" element
+        And I should not see "PEL-2023-00000001"
+        And I should not see "PEL-2023-00000003"
+        And I should not see "PEL-2023-00000005"
+        And I should not see "PEL-2023-00000008"
+        And I should not see "PEL-2023-00000010"
+        And I should see "PEL-2023-00000011"
+        And I should see "PEL-2023-00000015"
+        And I should see "PEL-2023-00000018"
+        And I should see "PEL-2023-00000021"
+        And I should see "PEL-2023-00000025"
+        And I should see "PEL-2023-00000027"
+        And I should see "PEL-2023-00000030"
+
+    @javascript
+    Scenario: As an authenticated supervisor, I should see all complaints
+        Given I am authenticated with PR5KTZ9R from GN
+        And I am on the homepage
+        Then I should see 26 "tr" element
+        And I should see "PEL-2023-00000001"
+        And I should see "PEL-2023-00000003"
+        And I should see "PEL-2023-00000005"
+        And I should see "PEL-2023-00000008"
+        And I should see "PEL-2023-00000010"
+        And I should see "PEL-2023-00000011"
+        And I should see "PEL-2023-00000018"
+        And I should see "PEL-2023-00000022"
+        And I should see "PEL-2023-00000025"
