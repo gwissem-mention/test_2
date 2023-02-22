@@ -626,6 +626,10 @@
                 <source>pel.total.objects.concerned</source>
                 <target>Total d'objets concernés</target>
             </trans-unit>
+            <trans-unit id="pel.to.process">
+                <source>pel.to.process</source>
+                <target>A traiter</target>
+            </trans-unit>
             <trans-unit id="pel.objects.concerned">
                 <source>pel.objects.concerned</source>
                 <target>Objets concernés</target>

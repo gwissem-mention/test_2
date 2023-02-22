@@ -145,6 +145,9 @@ Feature:
         And I should see "PEL-2023-00000025"
         And I should see "PEL-2023-00000027"
         And I should see "PEL-2023-00000030"
+        And I should see the key "pel.to.process" translated
+        And I should see 10 ".btn-primary" element
+        And I should see 10 ".btn-warning" element
 
     @javascript
     Scenario: As an authenticated supervisor, I should see all complaints
