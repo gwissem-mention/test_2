@@ -6,6 +6,16 @@
     <div class="fr-container container" data-controller="form">
         <h1>{{ 'pel.complaint.my.declaration'|trans }}</h1>
         {% include 'common/_complaint_nav.html.twig' with {'active':'identity'} %}
+        {% if is_france_connected() is same as(true) %}
+            <div class="fr-alert fr-alert--info">
+                <h3 class="fr-alert__title">{{ 'pel.information.transmitted.by.france.connect'|trans }}</h3>
+                <p>{{ 'pel.these.informations.has.been.transmitted.by.france.connect'|trans }}</p>
+                <p>
+                    {{ 'pel.if.these.informations.contains.errors'|trans }}
+                    <a href="{{ path('authentication', {'france_connected': false}) }}">{{ 'pel.click.here.to.continue.without.authentication'|trans }}</a>
+                </p>
+            </div>
+        {% endif %}
         <p>
             {{ 'pel.complaint.all.required.fields.are.required'|trans }}
             <span class="fr-icon-information-line" aria-hidden="true"></span>
