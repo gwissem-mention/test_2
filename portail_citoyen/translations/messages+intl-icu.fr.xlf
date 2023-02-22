@@ -544,7 +544,7 @@
             </trans-unit>
             <trans-unit id="pel.france.connect">
                 <source>pel.france.connect</source>
-                <target>FranceConnect</target>
+                <target>France Connect</target>
             </trans-unit>
             <trans-unit id="pel.header.baseline">
                 <source>pel.header.baseline</source>
@@ -1128,7 +1128,7 @@
             </trans-unit>
             <trans-unit id="pel.what.is.france.connect">
                 <source>pel.what.is.france.connect</source>
-                <target>Qu’est-ce que FranceConnect ?</target>
+                <target>Qu’est-ce que France Connect ?</target>
             </trans-unit>
             <trans-unit id="pel.what.is.goods.damages">
                 <source>pel.what.is.goods.damages</source>
@@ -1176,7 +1176,7 @@
             </trans-unit>
             <trans-unit id="pel.your.are.not.logged.in.with.france.connect">
                 <source>pel.your.are.not.logged.in.with.france.connect</source>
-                <target>vous ne vous êtes pas identifié via FranceConnect ;</target>
+                <target>vous ne vous êtes pas identifié via France Connect ;</target>
             </trans-unit>
             <trans-unit id="pel.your.are.victim.of.a.registered.vehicle.theft">
                 <source>pel.your.are.victim.of.a.registered.vehicle.theft</source>
@@ -1273,6 +1273,38 @@
             <trans-unit id="pel.or.continue.pel.without.log.in">
                 <source>pel.or.continue.pel.without.log.in</source>
                 <target>Ou continuer sans m'authentifier</target>
+            </trans-unit>
+            <trans-unit id="pel.why.we.ask.me.to.be.france.connected">
+                <source>pel.why.we.ask.me.to.be.france.connected</source>
+                <target>Pourquoi me demande-t-on de me France Connecter ?</target>
+            </trans-unit>
+            <trans-unit id="pel.identity.of.the.complainant.is.mandatory">
+                <source>pel.identity.of.the.complainant.is.mandatory</source>
+                <target>Dans le cadre d'une démarche de dépôt de plainte, la vérification de l'identité du plaignant est obligatoire.</target>
+            </trans-unit>
+            <trans-unit id="pel.france.connect.allow.this.verification">
+                <source>pel.france.connect.allow.this.verification</source>
+                <target>Votre identification par France Connect nous permet de réaliser cette vérification. Il est donc nécessaire que vous vous identifiez par France Connect si vous souhaitez que l'ensemble de votre démarche puisse se dérouler en ligne.</target>
+            </trans-unit>
+            <trans-unit id="pel.guaranteed.identity.informations">
+                <source>pel.guaranteed.identity.informations</source>
+                <target>L'identification par France Connect nous permet également de récupérer automatiquement des informations d'identité garanties (Civilité, Nom, Prénom, Date, Ville, Département et Pays de Naissance, adresse mail) vous évitant ainsi de les ressaisir. Des informations complémentaires, non disponibles dans France Connect, vous seront demandées.</target>
+            </trans-unit>
+            <trans-unit id="pel.if.you.dont.have.a.france.connect.account">
+                <source>pel.if.you.dont.have.a.france.connect.account</source>
+                <target>Si vous n'avez pas de compte France Connect, nous vous recommandons d'en créer un pour faciliter la suite de votre démarche. Pour créer un compte</target>
+            </trans-unit>
+            <trans-unit id="pel.france.connect.click.to.create.an.account">
+                <source>pel.france.connect.click.to.create.an.account</source>
+                <target>cliquez sur ce lien</target>
+            </trans-unit>
+            <trans-unit id="pel.otherwise.you.will.have.to.go.to.the.office">
+                <source>pel.otherwise.you.will.have.to.go.to.the.office</source>
+                <target>A défaut, vous devrez vous rendre dans un commissariat ou une unité de gendarmerie pour finaliser votre dépôt de plainte. Nous vous invitons cependant à poursuivre votre démarche même si vous n'êtes pas en mesure d'utiliser France Connect. Cela facilitera la suite de votre démarche et vous fera gagner du temps au moment de votre rendez-vous.</target>
+            </trans-unit>
+            <trans-unit id="pel.read.more.about.france.connect">
+                <source>pel.read.more.about.france.connect</source>
+                <target>En savoir plus sur France Connect</target>
             </trans-unit>
         </body>
     </file>

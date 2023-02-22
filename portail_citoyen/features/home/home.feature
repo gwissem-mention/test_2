@@ -58,6 +58,14 @@ Feature:
             | pel.what.is.online.complaint.text                   |
             | pel.what.is.goods.damages                           |
             | pel.what.is.goods.damages.text                      |
+            | pel.why.we.ask.me.to.be.france.connected            |
+            | pel.identity.of.the.complainant.is.mandatory        |
+            | pel.france.connect.allow.this.verification          |
+            | pel.guaranteed.identity.informations                |
+            | pel.if.you.dont.have.a.france.connect.account       |
+            | pel.france.connect.click.to.create.an.account       |
+            | pel.otherwise.you.will.have.to.go.to.the.office     |
+            | pel.read.more.about.france.connect                  |
 
     @func
     Scenario: Press button to be fsi general orienteer
