@@ -1306,6 +1306,22 @@
                 <source>pel.read.more.about.france.connect</source>
                 <target>En savoir plus sur France Connect</target>
             </trans-unit>
+            <trans-unit id="pel.information.transmitted.by.france.connect">
+                <source>pel.information.transmitted.by.france.connect</source>
+                <target>Information transmise par France Connect</target>
+            </trans-unit>
+            <trans-unit id="pel.these.informations.has.been.transmitted.by.france.connect">
+                <source>pel.these.informations.has.been.transmitted.by.france.connect</source>
+                <target>Ces informations nous ont été transmises par France Connect et ne peuvent pas être modifiées dans le cadre de cette démarche. Si les informations sont erronées, nous vous invitons à contacter France Connect pour les faire rectifier et à ne pas utiliser France Connect dans le cadre de cette démarche tant que les corrections n’auront pas été prises en compte.</target>
+            </trans-unit>
+            <trans-unit id="pel.if.these.informations.contains.errors">
+                <source>pel.if.these.informations.contains.errors</source>
+                <target>Si vos informations sont erronées, mais que vous voulez poursuivre votre déclaration,</target>
+            </trans-unit>
+            <trans-unit id="pel.click.here.to.continue.without.authentication">
+                <source>pel.click.here.to.continue.without.authentication</source>
+                <target>cliquez ici</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -8,6 +8,10 @@ Feature:
         Given I am on "/authentification"
         And I press "france_connect_auth_button"
         Then I should be on "/porter-plainte/identite"
+        And I should see the key "pel.information.transmitted.by.france.connect" translated
+        And I should see the key "pel.these.informations.has.been.transmitted.by.france.connect" translated
+        And I should see the key "pel.if.these.informations.contains.errors" translated
+        And I should see the key "pel.click.here.to.continue.without.authentication" translated
         When I click the "label[for=identity_declarantStatus_1]" element
         And I select "1" from "identity_civilState_civility"
         And I fill in the autocomplete "identity_civilState_job-ts-control" with "Avocats" and click "31B1"
