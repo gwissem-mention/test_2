@@ -26,7 +26,8 @@ Feature:
         And I fill in "identity_corporation_frenchAddress_address" with "Av. de la République 75011 Paris"
         And I press "identity_submit"
         Then I should be on "/porter-plainte/faits"
-        When I click the "label[for=facts_victimOfViolence]" element
+        When I fill in "facts_description" with "description informations"
+        And I click the "label[for=facts_victimOfViolence]" element
         And I fill in "facts_victimOfViolenceText" with "Violence informations"
         And I click the "label[for=facts_address_addressOrRouteFactsKnown_0]" element
         And I fill in "facts_address_startAddress" with "1 test street"
@@ -58,7 +59,6 @@ Feature:
         And I click the "label[for=additional_information_observationMade_0]" element
         And I click the "label[for=additional_information_cctvPresent_0]" element
         And I click the "label[for=additional_information_cctvAvailable_0]" element
-        And I fill in "additional_information_description" with "description informations"
         And I press "additional_information_submit"
         Then I should be on "/porter-plainte/recapitulatif"
         And I should see the key "pel.civility" translated
@@ -109,8 +109,6 @@ Feature:
         And I should see the key "pel.cctv.available" translated
         And I should see the key "pel.fsi.visit" translated
         And I should see the key "pel.observation.made" translated
-        And I should see the key "pel.victim.of.violence" translated
-        And I should see the key "pel.victim.of.violence.text" translated
         And I should see the key "pel.facts.description.precise" translated
         And I should see "description informations"
         And I should see the key "pel.note" translated
@@ -126,6 +124,7 @@ Feature:
         And I should see the key "pel.facts.description" translated
         And I should see the key "pel.complaint.identity.corporation.legal.representative" translated
         And I should see the key "pel.victim.at.time.of.facts" translated
+        And I should see the key "pel.victim.at.time.of.facts.precisions" translated
         And I should see the key "pel.address.or.route.facts" translated
         And I should see the key "pel.address" translated
         And I should see the key "pel.address.start.or.exact" translated

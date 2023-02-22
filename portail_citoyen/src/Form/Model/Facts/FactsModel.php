@@ -11,6 +11,7 @@ class FactsModel
     private ?int $placeNature = null;
     private ?bool $victimOfViolence = null;
     private ?string $victimOfViolenceText = null;
+    private ?string $description = null;
 
     public function getAddress(): ?AddressModel
     {
@@ -68,6 +69,18 @@ class FactsModel
     public function setVictimOfViolenceText(?string $victimOfViolenceText): self
     {
         $this->victimOfViolenceText = $victimOfViolenceText;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
 
         return $this;
     }

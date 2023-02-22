@@ -113,11 +113,12 @@
                 <div class="fr-col">
                     <h3>{{ 'pel.facts.description'|trans }}</h3>
                     <ul>
+                        <li>{{ 'pel.facts.description.precise'|trans }}: {{ complaint.facts.description }}</li>
                         <li>{{ 'pel.victim.at.time.of.facts'|trans }}: {{ complaint.facts.victimOfViolence ? 'pel.yes'|trans : 'pel.no'|trans }}</li>
                         {% if complaint.facts.victimOfViolence is not null %}
                             <li>{{ 'pel.victim.at.time.of.facts.precisions'|trans }}: {{ complaint.facts.victimOfViolenceText }}</li>
                         {% endif %}
-                        {% if complaint.facts.placeNature is not null  %}
+                        {% if complaint.facts.placeNature is not null %}
                             <li>
                                 {{ 'pel.nature.place'|trans }} :
                                 {% if complaint.facts.placeNature is same as(1) %}
@@ -138,19 +139,19 @@
                             </li>
                         {% endif %}
                         <li>{{ 'pel.address.or.route.facts'|trans }}: {{ complaint.facts.address.addressOrRouteFactsKnown ? 'pel.yes'|trans : 'pel.no'|trans }}</li>
-                        {% if complaint.facts.address.addressOrRouteFactsKnown is not null  %}
+                        {% if complaint.facts.address.addressOrRouteFactsKnown is not null %}
                             <li>{{ 'pel.address.start.or.exact'|trans }}: {{ complaint.facts.address.startAddress }}</li>
-                            {% if complaint.facts.address.endAddress is not null  %}
+                            {% if complaint.facts.address.endAddress is not null %}
                                 <li>{{ 'pel.address.end'|trans }} : {{ complaint.facts.address.endAddress }}</li>
                             {% endif %}
                         {% endif %}
-                        {% if complaint.facts.address.addressAdditionalInformation is not null  %}
+                        {% if complaint.facts.address.addressAdditionalInformation is not null %}
                             <li>{{ 'pel.additional.place.information'|trans }}: {{ complaint.facts.address.addressAdditionalInformation }}</li>
                         {% endif %}
                         <li>{{ 'pel.complaint.exact.date.known'|trans }}: {{ complaint.facts.offenseDate.exactDateKnown ? 'pel.yes'|trans : 'pel.no'|trans }}</li>
                         <li>
                             {{ 'pel.facts.date'|trans }} :
-                            {% if complaint.facts.offenseDate.exactDateKnown is not null  %}
+                            {% if complaint.facts.offenseDate.exactDateKnown is not null %}
                                 {{ 'pel.the'|trans }} {{ complaint.facts.offenseDate.startDate|date('d/m/Y') }}
                             {% else %}
                                 {{ 'pel.between'|trans|lower }} {{ 'pel.the'|trans|lower }} {{ complaint.facts.offenseDate.startDate|date('d/m/Y') }} {{ 'pel.and'|trans|lower }} {{ 'pel.the'|trans|lower }} {{ complaint.facts.offenseDate.endDate|date('d/m/Y') }}
@@ -237,14 +238,9 @@
                             <li>{{ 'pel.cctv.available'|trans }}: {{ complaint.additionalInformation.cctvAvailable ? 'pel.yes'|trans : 'pel.no'|trans }}</li>
                         {% endif %}
                         <li>{{ 'pel.fsi.visit'|trans }}: {{ complaint.additionalInformation.fsiVisit ? 'pel.yes'|trans : 'pel.no'|trans }}</li>
-                        {% if complaint.additionalInformation.fsiVisit is not null  %}
+                        {% if complaint.additionalInformation.fsiVisit is not null %}
                             <li>{{ 'pel.observation.made'|trans }}: {{ complaint.additionalInformation.observationMade ? 'pel.yes'|trans : 'pel.no'|trans }}</li>
                         {% endif %}
-                        <li>{{ 'pel.victim.of.violence'|trans }}: {{ complaint.facts.victimOfViolence ? 'pel.yes'|trans : 'pel.no'|trans }}</li>
-                        {% if complaint.facts.victimOfViolence is not null  %}
-                            <li>{{ 'pel.victim.of.violence.text'|trans }}: {{ complaint.facts.victimOfViolenceText }}</li>
-                        {% endif %}
-                        <li>{{ 'pel.facts.description.precise'|trans }}: {{ complaint.additionalInformation.description }}</li>
                     </ul>
                     <p>
                         <a class="fr-btn fr-btn--secondary btn--update" href="{{ path('complaint_additional_information') }}" id="update-additional-information">{{ 'pel.update'|trans }}</a>
@@ -267,16 +263,16 @@
         <li>{{ 'pel.object'|trans }} : {{ object.label }}</li>
         {% if object.category|object_category_get_name|trans is same as('pel.object.category.multimedia'|trans) %}
             <li>{{ 'pel.brand'|trans }} : {{ object.brand }}</li>
-            {% if object.model is not null  %}
+            {% if object.model is not null %}
                 <li>{{ 'pel.model'|trans }} : {{ object.model }}</li>
             {% endif %}
             {% if object.phoneNumberLine is not null and object.phoneNumberLine.number is not null %}
                 <li>{{ 'pel.phone.number.line'|trans }} : {{ object.phoneNumberLine|phone_format_intl }}</li>
             {% endif %}
-            {% if object.operator is not null  %}
+            {% if object.operator is not null %}
                 <li>{{ 'pel.operator'|trans }} : {{ object.operator }}</li>
             {% endif %}
-            {% if object.serialNumber is not null  %}
+            {% if object.serialNumber is not null %}
                 <li>{{ 'pel.serial.number'|trans }} : {{ object.serialNumber }}</li>
             {% endif %}
         {% elseif object.category|object_category_get_name|trans is same as('pel.object.category.payment.ways'|trans) %}

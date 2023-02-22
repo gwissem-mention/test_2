@@ -14,6 +14,7 @@ Feature:
         And I click the "label[for=identity_declarantStatus_0]" element
         And I press "identity_submit"
         Then I should be on "/porter-plainte/faits"
+        When I fill in "facts_description" with "description informations"
         And I click the "label[for=facts_address_addressOrRouteFactsKnown_0]" element
         And I fill in "facts_address_startAddress" with "1 test street"
         And I fill in "facts_address_endAddress" with "2 test street"
@@ -107,7 +108,6 @@ Feature:
         And I click the "label[for=additional_information_observationMade_0]" element
         And I click the "label[for=additional_information_cctvPresent_0]" element
         And I click the "label[for=additional_information_cctvAvailable_0]" element
-        And I fill in "additional_information_description" with "description informations"
         And I press "additional_information_submit"
         Then I should be on "/porter-plainte/recapitulatif"
         When I follow "Précédent"
@@ -120,4 +120,3 @@ Feature:
         And the "additional_information_observationMade_0" field should contain "1"
         And the "additional_information_cctvPresent_0" field should contain "1"
         And the "additional_information_cctvAvailable_0" field should contain "1"
-        And the "additional_information_description" field should contain "description informations"

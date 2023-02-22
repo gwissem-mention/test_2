@@ -9,6 +9,7 @@ use App\Thesaurus\NaturePlaceThesaurusProviderInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -20,14 +21,21 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 class FactsType extends AbstractType
 {
-    public function __construct(
-        private readonly NaturePlaceThesaurusProviderInterface $naturePlaceThesaurusProvider,
-    ) {
+    public function __construct(private readonly NaturePlaceThesaurusProviderInterface $naturePlaceThesaurusProvider)
+    {
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            ->add('description', TextareaType::class, [
+                'constraints' => [
+                    new Length([
+                        'max' => 800,
+                    ]),
+                ],
+                'label' => 'pel.facts.description.precise',
+            ])
             ->add('victimOfViolence', CheckboxType::class, [
                 'label' => 'pel.victim.of.violence',
                 'required' => false,
