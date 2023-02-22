@@ -209,36 +209,49 @@ Feature:
         Then I should not see a ".modal[aria-modal=true]" element
 
     @javascript
+    Scenario: I can't see the assign button if I am not supervisor
+        Given I am authenticated with H3U3XCGD from PN
+        And I am on "/plainte/recapitulatif/3"
+        Then I should not see "Attribuer la déclaration à..."
+        And I should not see a "#complaint-assign-button" element
+
+    @javascript
     Scenario: I can submit the assign form successfully and Jean DUPONT should have a notif
         Given I am on "/plainte/recapitulatif/3"
         When I press "Attribuer la déclaration à..."
-        And I fill in the autocomplete "assign_assignedTo-ts-control" with "Jean" and click "1"
+        And I fill in the autocomplete "assign_assignedTo-ts-control" with "Julie" and click "4"
         And I press "Valider l'attribution"
         Then I should not see a ".modal[aria-modal=true]" element
         And I should see a ".toast" element
         And I should see the key "pel.the.declaration.has.been.assigned.to" translated
-        And I should see "Déclaration attribuée à : Jean DUPONT"
+        And I should see "Déclaration attribuée à : Julie RICHARD"
         And I should see the key "pel.declaration.assigned.to" translated
-        Given I am authenticated with H3U3XCGD from PN
+        Given I am authenticated with PR5KTZ9C from GN
         And I am on the homepage
         When I click the "#notifications-dropdown" element
         Then I should see "La déclaration PEL-2023-00000003 vient de vous être attribuée"
 
+    @javascript
+    Scenario: I can't select an user which is not in my service
+        Given I am on "/plainte/recapitulatif/3"
+        When I press "Attribuer la déclaration à..."
+        And I fill in the autocomplete "assign_assignedTo-ts-control" with "Jean" and click "1"
+        And the "assign_assignedTo" field should not contain "1"
 
     @javascript
     Scenario: I can submit the reassign form successfully
         Given I am on "/plainte/recapitulatif/3"
         When I press "Attribuer la déclaration à..."
-        And I fill in the autocomplete "assign_assignedTo-ts-control" with "Jean" and click "1"
+        And I fill in the autocomplete "assign_assignedTo-ts-control" with "Julie" and click "4"
         And I press "Valider l'attribution"
         And I press "complaint-reassign-button"
         And I click the "#modal-complaint-assign .clear-button" element
-        And I fill in the autocomplete "assign_assignedTo-ts-control" with "Jean" and click "1"
+        And I fill in the autocomplete "assign_assignedTo-ts-control" with "Philippe" and click "5"
         And I press "Valider l'attribution"
         Then I should not see a ".modal[aria-modal=true]" element
         And I should see a ".toast" element
         And I should see the key "pel.the.declaration.has.been.assigned.to" translated
-        And I should see "Déclaration attribuée à : Jean DUPONT"
+        And I should see "Déclaration attribuée à : Philippe RIVIERE"
         And I should see the key "pel.declaration.assigned.to" translated
 
     @func

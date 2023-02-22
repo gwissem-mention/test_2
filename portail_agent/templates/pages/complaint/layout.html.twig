@@ -10,14 +10,16 @@
                 <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="{{ 'pel.close'|trans }}"></button>
             </div>
         </div>
-        <div class="toast align-items-center text-bg-secondary" id="toast-complaint-assign" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
-            <div class="d-flex">
-                <div class="toast-body">
-                    {{ 'pel.the.declaration.has.been.assigned.to'|trans }} <span class="agent-name"></span>
+        {% if is_granted('ROLE_SUPERVISOR') %}
+            <div class="toast align-items-center text-bg-secondary" id="toast-complaint-assign" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        {{ 'pel.the.declaration.has.been.assigned.to'|trans }} <span class="agent-name"></span>
+                    </div>
+                    <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="{{ 'pel.close'|trans }}"></button>
                 </div>
-                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="{{ 'pel.close'|trans }}"></button>
             </div>
-        </div>
+        {% endif %}
         <div class="toast align-items-center text-bg-secondary" id="toast-validation-send-to-lrp" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
             <div class="d-flex">
                 <div class="toast-body">
@@ -32,9 +34,11 @@
             <div class="fs-5 float-end">
                 {{ 'pel.declaration.assigned.to'|trans }} :
                 <span class="agent-name fw-bold">{{ complaint.assignedTo.appellation|default }}</span>
-                <button class="btn" data-bs-toggle="modal" data-bs-target="#modal-complaint-assign" id="complaint-reassign-button">
-                    <i class="bi bi-pencil-fill"></i>
-                </button>
+                {% if is_granted('ROLE_SUPERVISOR') %}
+                    <button class="btn" data-bs-toggle="modal" data-bs-target="#modal-complaint-assign" id="complaint-reassign-button">
+                        <i class="bi bi-pencil-fill"></i>
+                    </button>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -74,9 +78,11 @@
                     <div class="col-12">
                         <div class="d-grid gap-2 d-block">
                             {% if complaint.status != constant('App\\Entity\\Complaint::STATUS_REJECTED') %}
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-complaint-assign" title="{{ 'pel.click.here.to.assign.the.declaration.to.an.agent'|trans }}" id="complaint-assign-button">
-                                    <i class="bi bi-person-plus"></i> {{ 'pel.assign.declaration.to'|trans }}...
-                                </button>
+                                {% if is_granted('ROLE_SUPERVISOR') %}
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-complaint-assign" title="{{ 'pel.click.here.to.assign.the.declaration.to.an.agent'|trans }}" id="complaint-assign-button">
+                                        <i class="bi bi-person-plus"></i> {{ 'pel.assign.declaration.to'|trans }}...
+                                    </button>
+                                {% endif %}
                                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-complaint-send-to-lrp" title="{{ 'pel.click.here.to.send.this.declaration.to.lrp'|trans }}" id="complaint-send-lrp-button">
                                     <i class="bi bi-arrow-right"></i> {{ 'pel.send.to.lrp'|trans }}
                                 </button>
