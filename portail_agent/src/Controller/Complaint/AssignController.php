@@ -18,7 +18,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class AssignController extends AbstractController
 {
-    #[IsGranted('IS_AUTHENTICATED')]
+    #[IsGranted('ROLE_SUPERVISOR')]
     #[Route(path: '/plainte/attribuer/{id}', name: 'complaint_assign', methods: ['POST'])]
     public function __invoke(
         Complaint $complaint,

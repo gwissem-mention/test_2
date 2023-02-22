@@ -15,6 +15,10 @@ use Symfony\UX\Autocomplete\EntityAutocompleterInterface;
 #[AutoconfigureTag('ux.entity_autocompleter', ['alias' => 'user'])]
 class UserAutocompleter implements EntityAutocompleterInterface
 {
+    public function __construct(private readonly Security $security)
+    {
+    }
+
     public function getEntityClass(): string
     {
         return User::class;
@@ -31,10 +35,17 @@ class UserAutocompleter implements EntityAutocompleterInterface
             return $qb->andWhere('0 = 1');
         }
 
+        /** @var User $user */
+        $user = $this->security->getUser();
+
         return $qb
             ->andWhere('LOWER(user.appellation) LIKE LOWER(:appellation)')
+            ->andWhere('user.serviceCode = :serviceCode')
             ->orderBy('user.appellation', 'ASC')
-            ->setParameter('appellation', '%'.$query.'%');
+            ->setParameters([
+                'appellation' => '%'.$query.'%',
+                'serviceCode' => $user->getServiceCode(),
+            ]);
     }
 
     /**
@@ -55,6 +66,6 @@ class UserAutocompleter implements EntityAutocompleterInterface
 
     public function isGranted(Security $security): bool
     {
-        return $security->isGranted('IS_AUTHENTICATED');
+        return $security->isGranted('ROLE_SUPERVISOR');
     }
 }
