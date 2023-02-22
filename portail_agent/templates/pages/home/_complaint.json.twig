@@ -1,13 +1,21 @@
 {% if complaint.status == constant('App\\Entity\\Complaint::STATUS_ASSIGNMENT_PENDING') %}
     {% set status_btn_color = 'secondary' %}
+    {% set status = complaint.status %}
 {% elseif complaint.status == constant('App\\Entity\\Complaint::STATUS_ASSIGNED') %}
     {% set status_btn_color = 'primary' %}
+    {% set status = complaint.status %}
+    {% if not is_granted('ROLE_SUPERVISOR') %}
+        {% set status = 'pel.to.process' %}
+    {% endif %}
 {% elseif complaint.status == constant('App\\Entity\\Complaint::STATUS_ONGOING_LRP') %}
     {% set status_btn_color = 'warning' %}
+    {% set status = complaint.status %}
 {% elseif complaint.status == constant('App\\Entity\\Complaint::STATUS_MP_DECLARANT') %}
     {% set status_btn_color = 'success' %}
+    {% set status = complaint.status %}
 {% elseif complaint.status == constant('App\\Entity\\Complaint::STATUS_REJECTED') %}
     {% set status_btn_color = 'danger' %}
+    {% set status = complaint.status %}
 {% endif %}
 
 {{ {
@@ -18,7 +26,7 @@
     'alert':complaint.alert|u.truncate(15, '...'),
     'appointmentDate':complaint.appointmentDate|date('d/m/Y'),
     '__identity_firstname':(complaint.identity.firstName ~ ' ' ~ complaint.identity.lastName)|u.truncate(15, '...'),
-    'status': include('common/_link.html.twig', {path: path('complaint_summary', {id: complaint.id}), label: complaint.status|trans|u.truncate(15, '...'), class:'btn btn-sm btn-' ~ status_btn_color}),
+    'status': include('common/_link.html.twig', {path: path('complaint_summary', {id: complaint.id}), label: status|trans|u.truncate(15, '...'), class:'btn btn-sm btn-' ~ status_btn_color}),
     '__assignedTo_appellation':complaint.assignedTo|u.truncate(15, '...'),
     'declarationNumber':include('common/_link.html.twig', {path: path('complaint_summary', {id: complaint.id}), label: complaint.declarationNumber}),
     '___count_comments': complaint.comments|length,
