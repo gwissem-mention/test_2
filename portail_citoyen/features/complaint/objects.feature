@@ -14,7 +14,8 @@ Feature:
         And I click the "label[for=identity_declarantStatus_0]" element
         And I press "identity_submit"
         Then I should be on "/porter-plainte/faits"
-        When I click the "label[for=facts_address_addressOrRouteFactsKnown_1]" element
+        When I fill in "facts_description" with "description informations"
+        And I click the "label[for=facts_address_addressOrRouteFactsKnown_1]" element
         And I click the "label[for=facts_offenseDate_exactDateKnown_0]" element
         And I fill in "facts_offenseDate_startDate" with "01/01/2022"
         And I click the "label[for=facts_offenseDate_choiceHour_2]" element

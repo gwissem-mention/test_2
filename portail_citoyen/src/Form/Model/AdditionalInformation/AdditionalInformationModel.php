@@ -18,7 +18,6 @@ class AdditionalInformationModel
     private ?string $witnessesText = null;
     private ?bool $observationMade = null;
     private ?bool $cctvAvailable = null;
-    private ?string $description = null;
 
     public function isSuspectsChoice(): ?bool
     {
@@ -112,18 +111,6 @@ class AdditionalInformationModel
     public function setCctvAvailable(?bool $cctvAvailable): self
     {
         $this->cctvAvailable = $cctvAvailable;
-
-        return $this;
-    }
-
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(?string $description): self
-    {
-        $this->description = $description;
 
         return $this;
     }

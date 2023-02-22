@@ -115,7 +115,8 @@ Feature:
         And I should not see the key "pel.address.end" translated
 
     Scenario: Submit the facts form
-        When I click the "label[for=facts_address_addressOrRouteFactsKnown_0]" element
+        When I fill in "facts_description" with "description informations"
+        And I click the "label[for=facts_address_addressOrRouteFactsKnown_0]" element
         And I fill in "facts_address_startAddress" with "1 test street"
         And I fill in "facts_address_endAddress" with "2 test street"
         And I click the "label[for=facts_offenseDate_exactDateKnown_0]" element

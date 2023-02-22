@@ -48,11 +48,6 @@
             </div>
         </div>
     {% endif %}
-    <div class="fr-grid-row fr-py-2w">
-        <div class="fr-col">
-            {{ form_row(form.description) }}
-        </div>
-    </div>
     <div class="flex--between fr-mt-3w fr-mb-3w">
         <a href="{{ path('complaint_objects') }}" class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-arrow-left-line">{{ 'pel.previous'|trans }}</a>
         <button type="submit" class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line" id="additional_information_submit">{{ 'pel.next'|trans }}</button>
