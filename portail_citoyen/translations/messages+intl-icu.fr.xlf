@@ -1322,6 +1322,10 @@
                 <source>pel.click.here.to.continue.without.authentication</source>
                 <target>cliquez ici</target>
             </trans-unit>
+            <trans-unit id="pel.facts.describe.whats.happened">
+                <source>pel.facts.describe.whats.happened</source>
+                <target>Merci de nous décrire ce qui vous est arrivé. N'hésitez pas à mentionner toutes les informations qui peuvent vous paraître utiles dans le cadre de l'enquête.&#10;&#10;Dans la suite du parcours, nous reviendrons plus en détail sur le lieu, la date et l'heure, les objets volés et/ou dégradés et différentes autres informations de nature à faciliter la prise en compte de votre demande.&#10;&#10;Votre déclaration sera relue par un membre des forces de l'ordre. Ne vous inquiétez pas de ne pas utiliser les bons termes juridiques. Utilisez le vocabulaire qui vous est le plus familier.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
