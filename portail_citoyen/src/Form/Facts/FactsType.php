@@ -35,6 +35,9 @@ class FactsType extends AbstractType
                     ]),
                 ],
                 'label' => 'pel.facts.description.precise',
+                'attr' => [
+                    'placeholder' => 'pel.facts.describe.whats.happened',
+                ],
             ])
             ->add('victimOfViolence', CheckboxType::class, [
                 'label' => 'pel.victim.of.violence',
