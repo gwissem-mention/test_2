@@ -139,7 +139,7 @@
                             </li>
                         {% endif %}
                         <li>{{ 'pel.address.or.route.facts'|trans }}: {{ complaint.facts.address.addressOrRouteFactsKnown ? 'pel.yes'|trans : 'pel.no'|trans }}</li>
-                        {% if complaint.facts.address.addressOrRouteFactsKnown is not null %}
+                        {% if complaint.facts.address.addressOrRouteFactsKnown is same as(true) %}
                             <li>{{ 'pel.address.start.or.exact'|trans }}: {{ complaint.facts.address.startAddress }}</li>
                             {% if complaint.facts.address.endAddress is not null %}
                                 <li>{{ 'pel.address.end'|trans }} : {{ complaint.facts.address.endAddress }}</li>

@@ -69,13 +69,14 @@ class AddressType extends AbstractType
     private function addOffenseNatureOrNotKnownField(
         FormInterface $form,
         ?bool $choice,
-        ?AddressModel $addressModel = null
+        ?AddressModel $addressModel = null,
     ): void {
         if (true === $choice) {
             $form
                 ->add('startAddress', TextType::class, [
                     'label' => 'pel.address.start.or.exact',
                     'help' => 'pel.address.start.or.exact.help',
+                    'empty_data' => $form->getConfig()->getOption('start_address'),
                     'constraints' => [
                         new NotBlank(),
                     ],
@@ -98,6 +99,7 @@ class AddressType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => AddressModel::class,
+            'start_address' => null,
         ]);
     }
 }
