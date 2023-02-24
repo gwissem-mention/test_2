@@ -29,7 +29,7 @@ Feature:
         And I should see the key "pel.firstname" translated
         And the "identity_firstname" field should contain "Philippine"
         And I should see the key "pel.birth.date" translated
-        And the "identity_birthday" field should contain "1980-05-20"
+        And the "identity_birthday" field should contain "1997-12-07"
         And I should see the key "pel.birth.country" translated
         And the "identity_birthCountry" field should contain "France"
         And I should see the key "pel.birth.city" translated
