@@ -16,6 +16,11 @@ parameters:
 			path: src/DataFixtures/ComplaintFixtures.php
 
 		-
+			message: "#^Parameter \\#1 \\$datetime of class DateTimeImmutable constructor expects string, mixed given\\.$#"
+			count: 1
+			path: src/DataFixtures/ComplaintFixtures.php
+
+		-
 			message: "#^Parameter \\#1 \\$endAddress of method App\\\\Entity\\\\Facts\\:\\:setEndAddress\\(\\) expects string\\|null, mixed given\\.$#"
 			count: 1
 			path: src/DataFixtures/ComplaintFixtures.php
