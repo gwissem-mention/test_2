@@ -24,3 +24,7 @@ services:
     App\Entity\Listener\ComplaintEntityListener:
         tags:
             - { name: 'doctrine.orm.entity_listener', event: 'prePersist', entity: 'App\Entity\Complaint'}
+
+    Faker\Generator:
+        factory: [ 'Faker\Factory', 'create' ]
+        arguments: ['fr_FR']

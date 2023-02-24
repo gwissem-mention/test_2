@@ -23,28 +23,26 @@ Feature:
         And I should see the key "pel.summary" translated
         And I should see the key "pel.description.of.facts" translated
         And I should see the key "pel.nature.of.the.facts" translated
-        And the "facts_natures_0" checkbox should be checked
+        And the "facts_natures_0" checkbox should not be checked
         And the "facts_natures_1" checkbox should be checked
         And the "facts_natures_2" checkbox should not be checked
         And I should see the key "pel.location.of.facts" translated
         And I should see the key "pel.nature.place" translated
-        And the "facts_place" field should contain "Restaurant"
+        And the "facts_place" field should contain "Lieu indéterminé"
         And I should see the key "pel.address.start.or.exact" translated
-        And the "facts_startAddress" field should contain "25 Avenue Georges Pompidou, Lyon, 69003"
-        And I should see the key "pel.address.end" translated
-        And the "facts_endAddress" field should contain "Place Charles Hernu, Villeurbanne, 69100"
+        And the "facts_startAddress" field should contain "70, impasse Susanne Jourdan, Grenoble, 38000"
         And I should see the key "pel.description" translated
-        And the "facts_addressAdditionalInformation" field should contain "Les faits se sont produits entre le restaurant et l'appartement d'un ami"
+        And the "facts_addressAdditionalInformation" field should contain ""
         And I should see the key "pel.facts.date.and.hour" translated
         And I should see the key "pel.facts.date" translated
         And I should see the key "pel.exact.date.known" translated
-        And the "facts_exactDateKnown_0" checkbox should be checked
-        And the "facts_startDate" field should contain "2022-12-01"
+        And the "facts_exactDateKnown_1" checkbox should be checked
+        And the "facts_startDate" field should contain "2023-01-18"
+        And the "facts_endDate" field should contain "2023-01-19"
         And I should see the key "pel.facts.hour" translated
         And I should see the key "pel.do.you.know.hour.facts" translated
-        And the "facts_exactHourKnown_1" checkbox should be checked
-        And the "facts_startHour" field should contain "10:00"
-        And the "facts_endHour" field should contain "11:00"
+        And the "facts_exactHourKnown_0" checkbox should be checked
+        And the "facts_startHour" field should contain "23:49"
 
     @func
     Scenario: I can click on the Go to facts button
@@ -55,7 +53,7 @@ Feature:
 
     @func
     Scenario: Scenario: I can see the comments space on the facts page
-        Given I am on "/plainte/faits/3"
+        Given I am on "/plainte/faits/5"
         And I should see a "#comment_content" element
         And I should see a ".comment-box" element
         And I should see a "#comments-feed-title" element
@@ -70,7 +68,7 @@ Feature:
 
     @javascript
     Scenario: I can click the "Comment" button, and it focus the comment field
-        Given I am on "/plainte/faits/3"
+        Given I am on "/plainte/faits/5"
         And I should not focus the "comment_content" element
         Then I press "complaint-comment-button"
         And I should focus the "comment_content" element

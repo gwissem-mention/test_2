@@ -1,6 +1,61 @@
 parameters:
 	ignoreErrors:
 		-
+			message: "#^Access to an undefined property Faker\\\\Generator\\:\\:\\$mobileNumber\\.$#"
+			count: 3
+			path: src/DataFixtures/ComplaintFixtures.php
+
+		-
+			message: "#^Parameter \\#1 \\$alert of method App\\\\Entity\\\\Complaint\\:\\:setAlert\\(\\) expects string\\|null, mixed given\\.$#"
+			count: 1
+			path: src/DataFixtures/ComplaintFixtures.php
+
+		-
+			message: "#^Parameter \\#1 \\$cctvPresent of method App\\\\Entity\\\\AdditionalInformation\\:\\:setCctvPresent\\(\\) expects int, mixed given\\.$#"
+			count: 1
+			path: src/DataFixtures/ComplaintFixtures.php
+
+		-
+			message: "#^Parameter \\#1 \\$endAddress of method App\\\\Entity\\\\Facts\\:\\:setEndAddress\\(\\) expects string\\|null, mixed given\\.$#"
+			count: 1
+			path: src/DataFixtures/ComplaintFixtures.php
+
+		-
+			message: "#^Parameter \\#1 \\$exactHourKnown of method App\\\\Entity\\\\Facts\\:\\:setExactHourKnown\\(\\) expects int\\|null, mixed given\\.$#"
+			count: 1
+			path: src/DataFixtures/ComplaintFixtures.php
+
+		-
+			message: "#^Parameter \\#1 \\$model of method App\\\\Entity\\\\FactsObject\\:\\:setModel\\(\\) expects string\\|null, mixed given\\.$#"
+			count: 2
+			path: src/DataFixtures/ComplaintFixtures.php
+
+		-
+			message: "#^Parameter \\#1 \\$natures of method App\\\\Entity\\\\Facts\\:\\:setNatures\\(\\) expects array\\<int\\>\\|null, array\\<int, mixed\\> given\\.$#"
+			count: 1
+			path: src/DataFixtures/ComplaintFixtures.php
+
+		-
+			message: "#^Parameter \\#1 \\$operator of method App\\\\Entity\\\\FactsObject\\:\\:setOperator\\(\\) expects string\\|null, mixed given\\.$#"
+			count: 2
+			path: src/DataFixtures/ComplaintFixtures.php
+
+		-
+			message: "#^Parameter \\#1 \\$place of method App\\\\Entity\\\\Facts\\:\\:setPlace\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/DataFixtures/ComplaintFixtures.php
+
+		-
+			message: "#^Parameter \\#1 \\$suspectsKnownText of method App\\\\Entity\\\\AdditionalInformation\\:\\:setSuspectsKnownText\\(\\) expects string\\|null, mixed given\\.$#"
+			count: 1
+			path: src/DataFixtures/ComplaintFixtures.php
+
+		-
+			message: "#^Parameter \\#1 \\$witnessesPresentText of method App\\\\Entity\\\\AdditionalInformation\\:\\:setWitnessesPresentText\\(\\) expects string\\|null, mixed given\\.$#"
+			count: 1
+			path: src/DataFixtures/ComplaintFixtures.php
+
+		-
 			message: "#^Call to an undefined method Behat\\\\Testwork\\\\Environment\\\\Environment\\:\\:getContext\\(\\)\\.$#"
 			count: 1
 			path: tests/Behat/BaseContext.php
