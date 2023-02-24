@@ -154,3 +154,13 @@ Feature:
         And I fill in "facts_offenseDate_endHour" with "13:00"
         Then I should see the key "pel.start.hour.same.as.end.hour" translated
 
+    Scenario: The field start address should be filled with identity address when place nature is home and addressOrRouteFactsKnown is checked
+        And I select "1" from "facts_placeNature"
+        And I click the "label[for=facts_address_addressOrRouteFactsKnown_0]" element
+        Then the "facts_address_startAddress" field should contain "Av. de la République 75011 Paris France"
+
+    Scenario: The field start address should not be filled with identity address when place nature is not home and addressOrRouteFactsKnown is checked
+        And I select "2" from "facts_placeNature"
+        And I click the "label[for=facts_address_addressOrRouteFactsKnown_0]" element
+        Then the "facts_address_startAddress" field should not contain "Av. de la République 75011 Paris France"
+
