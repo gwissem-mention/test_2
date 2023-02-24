@@ -453,9 +453,13 @@ citoyen-func:
         POSTGRES_DB: "app_test"
         POSTGRES_PASSWORD: "ChangeMe"
         POSTGRES_USER: "symfony"
+        POSTGRES_REFERENTIAL_HOST: "127.0.0.1"
+        POSTGRES_REFERENTIAL_DB: "reference"
+        POSTGRES_REFERENTIAL_PASSWORD: "ChangeMe"
+        POSTGRES_REFERENTIAL_USER: "symfony"
     script:
         - make APP_ENV=${APP_ENV} db-ci-setup
-        - make APP_ENV=${APP_ENV} referential-create
+        - make APP_ENV=${APP_ENV} referential-ci-create
         - make APP_ENV=${APP_ENV} referential-ci-load
         - make behat
     services:
@@ -469,6 +473,10 @@ citoyen-e2e:
         POSTGRES_DB: "app"
         POSTGRES_PASSWORD: "ChangeMe"
         POSTGRES_USER: "symfony"
+        POSTGRES_REFERENTIAL_HOST: "127.0.0.1"
+        POSTGRES_REFERENTIAL_DB: "reference"
+        POSTGRES_REFERENTIAL_PASSWORD: "ChangeMe"
+        POSTGRES_REFERENTIAL_USER: "symfony"
     script:
         - php bin/console cache:clear --env=${APP_ENV}
         - echo "APP_ENV=${APP_ENV}" >> .env.local
@@ -476,7 +484,7 @@ citoyen-e2e:
         - sed -i "s/nginx-citoyen/127.0.0.1:8080/g" behat.yml.dist
         - sed -i "s/chrome:4444/chrome-citoyen:4444/g" behat.yml.dist
         - make APP_ENV=${APP_ENV} db-ci-setup
-        - make APP_ENV=${APP_ENV} referential-create
+        - make APP_ENV=${APP_ENV} referential-ci-create
         - make APP_ENV=${APP_ENV} referential-ci-load
         - make e2e
     artifacts:
@@ -501,13 +509,17 @@ citoyen-flaky-e2e:
         POSTGRES_DB: "app"
         POSTGRES_PASSWORD: "ChangeMe"
         POSTGRES_USER: "symfony"
+        POSTGRES_REFERENTIAL_HOST: "127.0.0.1"
+        POSTGRES_REFERENTIAL_DB: "reference"
+        POSTGRES_REFERENTIAL_PASSWORD: "ChangeMe"
+        POSTGRES_REFERENTIAL_USER: "symfony"
     script:
         - php bin/console cache:clear --env=${APP_ENV}
         - echo "APP_ENV=${APP_ENV}" >> .env.local
         - php -S 127.0.0.1:8080 -t public/ > /dev/null 2>&1 &
         - sed -i "s/nginx-citoyen/127.0.0.1:8080/g" behat.yml.dist
         - make APP_ENV=${APP_ENV} db-ci-setup
-        - make APP_ENV=${APP_ENV} referential-create
+        - make APP_ENV=${APP_ENV} referential-ci-create
         - make APP_ENV=${APP_ENV} referential-ci-load
         - make flaky-e2e
     artifacts:

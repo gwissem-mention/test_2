@@ -22,15 +22,16 @@ class JobAutocompleteType extends AbstractType
     {
         $resolver->setDefaults([
             'autocomplete' => true,
-            'autocomplete_url' => $this->urlGenerator->generate(
-                'ux_entity_autocomplete',
-                ['alias' => 'job']
-            ),
             'placeholder' => false,
-            'preload' => true,
+            'preload' => false,
             'tom_select_options' => [
                 'maxOptions' => null,
+                'hideSelected' => true,
             ],
+            'autocomplete_url' => $this->urlGenerator->generate(
+                'ux_entity_autocomplete',
+                ['alias' => 'job_male']
+            ),
             'attr' => [
                 'required' => true,
                 'data-controller' => 'autocomplete',

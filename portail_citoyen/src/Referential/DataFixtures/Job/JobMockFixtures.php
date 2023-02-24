@@ -19,13 +19,9 @@ class JobMockFixtures extends Fixture implements FixtureGroupInterface
     public function load(ObjectManager $manager): void
     {
         $jobs = [
-            new Job('31B1', 'Avocats'),
-            new Job('46B3', 'Acheteurs (non cadres) et responsables des achats'),
-            new Job('37D2', 'Acheteurs du commerce'),
-            new Job('38F1', 'Acheteurs et cadres des achats du BTP et de l’industrie'),
-            new Job('22D3', 'Agents commerciaux immobiliers'),
-            new Job('52A1', "Agents d'accueil et de guichet des administrations publiques"),
-            new Job('48A1', 'Agents de maîtrise de l’agriculture, des travaux forestiers et de la pêche'),
+            new Job('1', 'Abat-jouriste', 'Abat-jouriste'),
+            new Job('2', 'Abatteur de bestiaux', 'Abatteuse de bestiaux'),
+            new Job('3', 'Accompagnateur musical', 'Accompagnatrice musicale'),
         ];
 
         foreach ($jobs as $job) {

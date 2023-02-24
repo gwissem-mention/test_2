@@ -155,3 +155,14 @@ su postgres
 psql
 ALTER USER postgres WITH PASSWORD '<new_password>';
 ```
+
+### 4. Citoyen portal
+
+### 4.1. Postgresql
+
+```conf
+# After referential db creation
+su postgres
+psql -d <referential_db>
+create extension if not exists "unaccent";
+```

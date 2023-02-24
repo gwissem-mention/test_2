@@ -19,7 +19,7 @@ doctrine:
                         is_bundle: false
                         dir: '%kernel.project_dir%/src/Entity'
                         prefix: 'App\Entity'
-                        alias: App
+                        alias: App        
             referentials:
                 connection: referentials
                 naming_strategy: doctrine.orm.naming_strategy.underscore
@@ -29,6 +29,9 @@ doctrine:
                         dir: '%kernel.project_dir%/src/Referential/Entity'
                         prefix: 'App\Referential\Entity'
                         alias: Referentials
+                dql:
+                    string_functions:
+                        unaccent: App\DQL\Unaccent
 
 when@test:
     doctrine:

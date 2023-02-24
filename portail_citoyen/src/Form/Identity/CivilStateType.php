@@ -21,16 +21,20 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\LessThanOrEqual;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class CivilStateType extends AbstractType
 {
     public function __construct(
         private readonly NationalityThesaurusProviderInterface $nationalityThesaurusProvider,
         private readonly SessionHandler $sessionHandler,
-        private readonly JobRepository $jobRepository
+        private readonly JobRepository $jobRepository,
+        private readonly UrlGeneratorInterface $urlGenerator,
+        private readonly TranslatorInterface $translator
     ) {
     }
 
@@ -50,6 +54,10 @@ class CivilStateType extends AbstractType
                 'label' => 'pel.civility',
                 'placeholder' => 'pel.choose.your.civility',
                 'disabled' => $options['is_france_connected'] && $civilStateModel?->civilityIsDefined(),
+                'attr' => [
+                    'data-controller' => 'form',
+                    'data-action' => 'change->form#changeJobUrl',
+                ],
             ])
             ->add('birthName', TextType::class, [
                 'attr' => [
@@ -114,7 +122,7 @@ class CivilStateType extends AbstractType
                 function (FormEvent $event) {
                     /** @var ?CivilStateModel $civilState */
                     $civilState = $event->getData();
-                    $this->addJobField($event->getForm(), $civilState?->getJob());
+                    $this->addJobField($event->getForm(), $civilState?->getCivility(), $civilState?->getJob());
                 }
             )
             ->addEventListener(
@@ -124,22 +132,22 @@ class CivilStateType extends AbstractType
                     $civilState = $event->getData();
                     $this->addJobField(
                         $event->getForm(),
+                        !empty($civilState['civility']) ? intval($civilState['civility']) : null,
                         !empty($civilState['job']) ? strval($civilState['job']) : null,
                     );
                 }
             );
     }
 
-    private function addJobField(FormInterface $form, ?string $jobCode = null): void
+    private function addJobField(FormInterface $form, ?int $civility = null, ?string $jobCode = null): void
     {
         $choices = [];
         $job = null;
-
         if (!is_null($jobCode)) {
             /** @var ?Job $job */
             $job = $this->jobRepository->findOneBy(['code' => $jobCode]);
             if (!is_null($job)) {
-                $choices[$job->getLabel()] = $job->getCode();
+                $choices[Civility::Mme->value === $civility ? $job->getLabelFemale() : $job->getLabelMale()] = $job->getCode();
             }
         }
 
@@ -151,6 +159,24 @@ class CivilStateType extends AbstractType
                     new NotBlank(),
                 ],
                 'label' => 'pel.your.job',
+                'autocomplete_url' => $this->urlGenerator->generate(
+                    'ux_entity_autocomplete',
+                    ['alias' => Civility::M->value === $civility ? 'job_male' : 'job_female']
+                ),
+                'attr' => [
+                    'required' => true,
+                    'data-controller' => 'autocomplete',
+                    'data-load-text' => $this->translator->trans('pel.results.loading'),
+                    'class' => 'job',
+                    'data-url-civility-'.Civility::M->value => $this->urlGenerator->generate(
+                        'ux_entity_autocomplete',
+                        ['alias' => 'job_male']
+                    ),
+                    'data-url-civility-'.Civility::Mme->value => $this->urlGenerator->generate(
+                        'ux_entity_autocomplete',
+                        ['alias' => 'job_female']
+                    ),
+                ],
             ]);
     }
 

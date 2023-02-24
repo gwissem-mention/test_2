@@ -1,6 +1,7 @@
 import {EtaLabAutoCompleter} from "../scripts/etalab/etalab-auto-completer";
 import {Controller} from "@hotwired/stimulus";
 import {IntlTelInput} from "../scripts/intl-tel-input";
+import TomSelect from "tom-select";
 
 export default class extends Controller {
     public override connect(): void {
@@ -19,6 +20,30 @@ export default class extends Controller {
                     component.on("render:finished", () => {
                         (new IntlTelInput()).bind();
                     });
+                }
+            });
+        }
+    }
+
+    public changeJobUrl(): void {
+        const element: Element = this.element;
+        const parent: HTMLElement | null = element.closest(".fr-py-1w");
+
+        if (parent) {
+            [...parent.querySelectorAll(".job:not(.ts-wrapper)")].forEach((element) => {
+                // Must be ignored because "tomselect" attribute does not exist on type Element.
+                // @ts-ignore
+                const tomselect: TomSelect | null = element.tomselect;
+
+                // Must be ignored because "value" attribute does not exist on type Element.
+                // @ts-ignore
+                const urlInput: string | null = element.getAttribute(`data-url-civility-${this.element.value}`);
+
+                if (tomselect && urlInput) {
+                    tomselect.settings.firstUrl = query => urlInput + "?query=" + encodeURIComponent(query);
+                    tomselect.clear();
+                    tomselect.clearOptions();
+                    tomselect.load("#");
                 }
             });
         }
