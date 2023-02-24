@@ -69,18 +69,22 @@
         <span class="fs-3 fw-semibold lh-lg text-decoration-underline">{{ 'pel.description.of.facts'|trans }}</span>
         <ul>
             <li>
-                {{ 'pel.nature.of.the.facts'|trans }}</strong> :
+                {{ 'pel.nature.of.the.facts'|trans }} :
                 <strong>{% include 'common/_complaint_natures.html.twig' with {'natures':complaint.facts.natures} only %}</strong>
             </li>
             <li>
                 {{ 'pel.nature.place'|trans }} : <strong>{{ complaint.facts.place }}</strong>
             </li>
-            <li>
-                {{ 'pel.address.start.or.exact'|trans }} : <strong>{{ complaint.facts.startAddress }}</strong>
-            </li>
-            <li>
-                {{ 'pel.address.end'|trans }} : <strong>{{ complaint.facts.endAddress }}</strong>
-            </li>
+            {% if complaint.facts.startAddress is not null %}
+                <li>
+                    {{ 'pel.address.start.or.exact'|trans }} : <strong>{{ complaint.facts.startAddress }}</strong>
+                </li>
+            {% endif %}
+            {% if complaint.facts.endAddress is not null %}
+                <li>
+                    {{ 'pel.address.end'|trans }} : <strong>{{ complaint.facts.endAddress }}</strong>
+                </li>
+            {% endif %}
             <li>
                 {{ 'pel.facts.date'|trans }} :
                 {% if complaint.facts.exactDateKnown %}
@@ -91,13 +95,12 @@
             </li>
             {% if complaint.facts.exactHourKnown is same as(constant('App\\Entity\\Facts::EXACT_HOUR_KNOWN_YES')) or complaint.facts.exactHourKnown is same as(constant('App\\Entity\\Facts::EXACT_HOUR_KNOWN_NO')) %}
                 <li>
+                    {{ 'pel.facts.hour'|trans }} :
                     {% if complaint.facts.exactHourKnown is same as(constant('App\\Entity\\Facts::EXACT_HOUR_KNOWN_YES')) %}
-                        {{ 'pel.exact.hour'|trans }} :
                         <strong>{{ complaint.facts.startHour|date('H\\hi', app.user.timezone) }}</strong>
                     {% else %}
-                        {{ 'pel.facts.hour'|trans }} :
                         <strong>{{ 'pel.between'|trans|lower }} {{ complaint.facts.startHour|date('H\\hi', app.user.timezone) }}
-                            et {{ complaint.facts.endHour|date('H\\hi', app.user.timezone) }}
+                            {{ 'pel.and'|trans|lower }} {{ complaint.facts.endHour|date('H\\hi', app.user.timezone) }}
                         </strong>
                     {% endif %}
                 </li>

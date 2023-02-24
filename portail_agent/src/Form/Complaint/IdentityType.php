@@ -20,8 +20,8 @@ class IdentityType extends AbstractType
         $builder
             ->add('civility', ChoiceType::class, [
                 'choices' => [
-                  'pel.madam' => 0,
-                  'pel.sir' => 1,
+                    'pel.madam' => Identity::CIVILITY_FEMALE,
+                    'pel.sir' => Identity::CIVILITY_MALE,
                 ],
                 'label' => false,
                 'expanded' => true,
@@ -79,8 +79,7 @@ class IdentityType extends AbstractType
                 'attr' => [
                     'checked' => $options['is_optin_notification'],
                 ],
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
