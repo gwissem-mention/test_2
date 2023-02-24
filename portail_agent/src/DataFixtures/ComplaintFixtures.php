@@ -94,7 +94,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                         ->setLastname(mb_strtoupper($this->faker->lastName))
                         ->setCivility('male' === $identityGender ? Identity::CIVILITY_MALE : Identity::CIVILITY_FEMALE)
                         ->setDeclarantStatus(Identity::DECLARANT_STATUS_VICTIM)
-                        ->setBirthday(\DateTimeImmutable::createFromMutable($this->faker->dateTimeBetween('-60 years', '-20 years')))
+                        ->setBirthday(new \DateTimeImmutable($this->faker->date('Y-m-d', '-20 years')))
                         ->setBirthCountry('France')
                         ->setNationality('Française')
                         ->setBirthDepartment(substr((string) $identityBirthPostcode, 0, 2))
