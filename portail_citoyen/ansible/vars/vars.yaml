@@ -21,3 +21,5 @@ ansistrano_shared_paths:
 # Integration env vars
 server_host: "{{ vault_server_host }}"
 server_user: "{{ vault_server_user }}"
+
+referential_db: "{{ vault_referential_db }}"

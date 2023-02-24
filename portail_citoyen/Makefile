@@ -169,7 +169,6 @@ db-drop:
 
 referential-create:
 	@$(eval APP_ENV ?=)
-	@$(CONSOLE) doctrine:database:drop --force --if-exists --env=$(APP_ENV) --connection=referentials
 	@$(CONSOLE) doctrine:database:create --if-not-exists --env=$(APP_ENV) --connection=referentials
 	@$(CONSOLE) doctrine:schema:update --force --env=$(APP_ENV) --em=referentials
 
@@ -177,10 +176,19 @@ referential-load:
 	@$(eval APP_ENV ?=)
 	@$(CONSOLE) doctrine:fixtures:load --env=$(APP_ENV) --em=referentials --group=referentials --group=referentials-prod --no-interaction --no-debug
 
+referential-ci-create:
+	@$(eval APP_ENV ?=)
+	@$(CONSOLE) doctrine:database:drop --force --if-exists --env=$(APP_ENV) --connection=referentials
+	@$(CONSOLE) doctrine:database:create --if-not-exists --env=$(APP_ENV) --connection=referentials
+	@$(CONSOLE) doctrine:schema:update --force --env=$(APP_ENV) --em=referentials
+	make referential-create-extensions
+
 referential-ci-load:
 	@$(eval APP_ENV ?=)
 	@$(CONSOLE) doctrine:fixtures:load --env=$(APP_ENV) --em=referentials --group=referentials --group=referentials-ci --no-interaction --no-debug
 
+referential-create-extensions:
+	./docker/database/reference-create-extensions.sh
 
 #################################
 Cache:

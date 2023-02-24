@@ -12,8 +12,8 @@ use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 use Symfony\Component\Security\Core\Security;
 use Symfony\UX\Autocomplete\EntityAutocompleterInterface;
 
-#[AutoconfigureTag('ux.entity_autocompleter', ['alias' => 'job'])]
-class JobAutocompleter implements EntityAutocompleterInterface
+#[AutoconfigureTag('ux.entity_autocompleter', ['alias' => 'job_female'])]
+class JobFemaleAutocompleter implements EntityAutocompleterInterface
 {
     public function getEntityClass(): string
     {
@@ -28,10 +28,12 @@ class JobAutocompleter implements EntityAutocompleterInterface
         $qb = $repository->createQueryBuilder('job');
 
         return $qb
-            ->andWhere('LOWER(job.label) LIKE LOWER(:filter)')
-            ->setParameter('filter', '%'.$query.'%')
-            ->orderBy('job.label', 'ASC')
-            ->setMaxResults(5);
+            ->andWhere('LOWER(unaccent(job.labelFemale)) LIKE LOWER(unaccent(:filter))')
+            ->setParameters([
+                'filter' => '%'.$query.'%',
+            ])
+            ->orderBy('job.labelFemale', 'ASC')
+            ->setMaxResults(25);
     }
 
     /**
@@ -39,7 +41,7 @@ class JobAutocompleter implements EntityAutocompleterInterface
      */
     public function getLabel(object $entity): string
     {
-        return $entity->getLabel();
+        return (string) $entity->getLabelFemale();
     }
 
     /**

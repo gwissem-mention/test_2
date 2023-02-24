@@ -19,6 +19,7 @@ RUN apk add --no-cache \
 		git \
 		bash \
 		make \
+    	postgresql-client \
 	;
 
 ARG APCU_VERSION=5.1.21

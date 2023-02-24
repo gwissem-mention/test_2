@@ -5,18 +5,21 @@ declare(strict_types=1);
 namespace App\Referential\DataFixtures\Job;
 
 use App\Referential\Entity\Job;
+use App\Referential\Repository\JobRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class JobFileFixtures extends Fixture implements FixtureGroupInterface
+class JobFemaleFileFixtures extends Fixture implements FixtureGroupInterface, DependentFixtureInterface
 {
     private const JOB_CODE = 0;
     private const JOB_LABEL = 1;
     private const BATCH_SIZE = 20;
     private const LENGTH = 1000;
+    private const START = 2;
 
-    public function __construct(private readonly string $jobsFixturesPath)
+    public function __construct(private readonly string $jobsFixturesPath, private readonly JobRepository $jobRepository)
     {
     }
 
@@ -32,8 +35,11 @@ class JobFileFixtures extends Fixture implements FixtureGroupInterface
             $handle = fopen($this->jobsFixturesPath, 'rb');
             if (is_resource($handle)) {
                 while (is_array($data = fgetcsv($handle, self::LENGTH, ';'))) {
-                    if ($row > 1) {
-                        $manager->persist(new Job($data[self::JOB_CODE], $data[self::JOB_LABEL]));
+                    if ($row > self::START) {
+                        /** @var Job $job */
+                        $job = $this->jobRepository->findOneBy(['code' => $data[self::JOB_CODE]]);
+                        $job->setLabelFemale($data[self::JOB_LABEL]);
+                        $manager->persist($job);
                         if (($row % self::BATCH_SIZE) === 0) {
                             $manager->flush();
                             $manager->clear();
@@ -42,14 +48,15 @@ class JobFileFixtures extends Fixture implements FixtureGroupInterface
                     ++$row;
                 }
 
-                $manager->persist(new Job('RETR', 'Retraité'));
-                $manager->persist(new Job('CHOM', 'Chômeur'));
-                $manager->persist(new Job('SP', 'Sans profession'));
-
                 $manager->flush();
                 $manager->clear();
                 fclose($handle);
             }
         }
+    }
+
+    public function getDependencies(): array
+    {
+        return [JobMaleFileFixtures::class];
     }
 }

@@ -9,7 +9,7 @@ Feature:
         And I press "france_connect_auth_button"
         Then I should be on "/porter-plainte/identite"
         When I click the "label[for=identity_declarantStatus_2]" element
-        And I fill in the autocomplete "identity_civilState_job-ts-control" with "Avocats" and click "31B1"
+        And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
         And I fill in "identity_contactInformation_frenchAddress_address" with "Av. de la République 75011 Paris"
         And I fill in "identity_contactInformation_phone_number" with "0601020304"
         And I fill in "identity_corporation_siren" with "123456789"
@@ -69,7 +69,7 @@ Feature:
         And I should see the key "pel.resides.at" translated
         And I should see "Av. de la République 75011 Paris, France"
         And I should see the key "pel.your.job" translated
-        And I should see "Avocats"
+        And I should see "Abatteur de bestiaux"
         And I should see the key "pel.phone" translated
         And I should see "+33 6 01 02 03 04"
         And I should see the key "pel.email" translated

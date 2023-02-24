@@ -1,7 +1,8 @@
 parameters:
   app.france_code: 99100
   app.file_cities: '%env(FILE_CITIES)%'
-  app.file_jobs: '%env(FILE_JOBS)%'
+  app.file_jobs_male: '%env(FILE_JOBS_MALE)%'
+  app.file_jobs_female: '%env(FILE_JOBS_FEMALE)%'
   app.referentials_base_path: '%kernel.project_dir%/referentials'
 
 services:
@@ -41,9 +42,13 @@ services:
     arguments:
       $citiesFixturesPath: '%app.referentials_base_path%/%app.file_cities%'
 
-  App\Referential\DataFixtures\Job\JobFileFixtures:
+  App\Referential\DataFixtures\Job\JobMaleFileFixtures:
     arguments:
-      $jobsFixturesPath: '%app.referentials_base_path%/%app.file_jobs%'
+      $jobsFixturesPath: '%app.referentials_base_path%/%app.file_jobs_male%'
+
+  App\Referential\DataFixtures\Job\JobFemaleFileFixtures:
+    arguments:
+      $jobsFixturesPath: '%app.referentials_base_path%/%app.file_jobs_female%'
 
   App\Referential\Provider\Country\CountryProviderInterface: '@App\Referential\Provider\Country\DatabaseCountryProvider'
 
