@@ -48,7 +48,7 @@ Feature:
         And I should see the key "pel.nationality" translated
         And I should see "Philippine"
         And I should see "MILLET"
-        And I should see "05/09/1975"
+        And I should see "20/05/1980"
         And I should see "France"
         And I should see "Française"
         And I should see "Costumier-habilleur"
