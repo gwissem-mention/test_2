@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\DataFixtures;
+namespace App\DataFixtures\Complaint;
 
+use App\DataFixtures\UserFixtures;
 use App\Entity\AdditionalInformation;
 use App\Entity\Comment;
 use App\Entity\Complaint;
@@ -18,7 +19,7 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Generator;
 
-class ComplaintFixtures extends Fixture implements FixtureGroupInterface, DependentFixtureInterface
+class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, DependentFixtureInterface
 {
     private const COMPLAINTS_NB = 50;
 

@@ -14,7 +14,7 @@ class UserFixtures extends Fixture implements FixtureGroupInterface
 {
     public static function getGroups(): array
     {
-        return ['default'];
+        return ['default', 'ci'];
     }
 
     public function load(ObjectManager $manager): void

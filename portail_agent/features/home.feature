@@ -46,9 +46,9 @@ Feature:
     @javascript
     Scenario: I can click on a complaint link on the table
         Given I am on the homepage
-        When I follow "PEL-2023-00000008"
+        When I follow "PEL-2023-00000051"
         And I go to the tab 2
-        Then I should be on "/plainte/recapitulatif/8"
+        Then I should be on "/plainte/recapitulatif/51"
 
     @javascript
     Scenario: I can click on a assignment notif and I should be redirected on the complaint and the notif should be removed
@@ -63,7 +63,8 @@ Feature:
 
     @javascript
     Scenario: I should see a table datatables of 25 entries
-        Given I am on the homepage
+        Given I am authenticated with H3U3XCGF from PN
+        And I am on the homepage
         Then I should see a "table#datatable" element
         And I should see 26 "tr" element
         And I should see the key "pel.deposit.date" translated
@@ -76,17 +77,16 @@ Feature:
         And I should see the key "pel.a.opj.name" translated
         And I should see the key "pel.declaration.number" translated
         And I should see the key "pel.comments" translated
-        And I should see 1 ".btn-primary" element
-        And I should see 2 ".btn-secondary" element
-        And I should see 10 ".btn-warning" element
-        And I should see 8 ".btn-success" element
-        And I should see 4 ".btn-danger" element
+        And I should see 10 ".btn-primary" element
+        And I should see 10 ".btn-secondary" element
+        And I should see 5 ".btn-warning" element
 
     @javascript
     Scenario: I can paginate to page 2 of the complaints table
-        Given I am on the homepage
+        Given I am authenticated with H3U3XCGF from PN
+        And I am on the homepage
         When I click the "a[data-dt-idx='1']" element
-        And I should see 5 "tr" element
+        And I should see 26 "tr" element
         And I should see the key "pel.deposit.date" translated
         And I should see the key "pel.facts" translated
         And I should see the key "pel.facts.date" translated
@@ -97,13 +97,14 @@ Feature:
         And I should see the key "pel.a.opj.name" translated
         And I should see the key "pel.declaration.number" translated
         And I should see the key "pel.comments" translated
-        And I should see 1 ".btn-danger" element
-        And I should see 1 ".btn-primary" element
-        And I should see 2 ".btn-warning" element
+        And I should see 10 ".btn-danger" element
+        And I should see 10 ".btn-success" element
+        And I should see 5 ".btn-warning" element
 
     @javascript
     Scenario: I can sort the columns of the complaints table
-        Given I am on the homepage
+        Given I am authenticated with H3U3XCGF from PN
+        And I am on the homepage
         When I click the "th:nth-of-type(10)" element
         And I should see 26 "tr" element
         And I should see the key "pel.deposit.date" translated
@@ -116,11 +117,9 @@ Feature:
         And I should see the key "pel.a.opj.name" translated
         And I should see the key "pel.declaration.number" translated
         And I should see the key "pel.comments" translated
-        And I should see 2 ".btn-primary" element
-        And I should see 2 ".btn-secondary" element
-        And I should see 12 ".btn-warning" element
-        And I should see 6 ".btn-success" element
-        And I should see 3 ".btn-danger" element
+        And I should see 10 ".btn-secondary" element
+        And I should see 10 ".btn-success" element
+        And I should see 5 ".btn-danger" element
 
     @javascript
     Scenario: As an authenticated agent, with no complaints assigned to me, I should see an empty table
@@ -133,17 +132,34 @@ Feature:
     Scenario: As an authenticated agent, with complaints assigned to me, I should see my complaints
         Given I am authenticated with H3U3XCGD from PN
         And I am on the homepage
-        Then I should see 2 "tr" element
-        And I should see "PEL-2023-00000028"
+        Then I should see 21 "tr" element
+        And I should not see "PEL-2023-00000001"
+        And I should not see "PEL-2023-00000003"
+        And I should not see "PEL-2023-00000005"
+        And I should not see "PEL-2023-00000008"
+        And I should not see "PEL-2023-00000010"
+        And I should see "PEL-2023-00000011"
+        And I should see "PEL-2023-00000015"
+        And I should see "PEL-2023-00000018"
+        And I should see "PEL-2023-00000021"
+        And I should see "PEL-2023-00000025"
+        And I should see "PEL-2023-00000027"
+        And I should see "PEL-2023-00000030"
         And I should see the key "pel.to.process" translated
-        And I should see 1 ".btn-primary" element
+        And I should see 10 ".btn-primary" element
+        And I should see 10 ".btn-warning" element
 
     @javascript
     Scenario: As an authenticated supervisor, I should see all complaints
         Given I am authenticated with H3U3XCGF from PN
         And I am on the homepage
-        Then I should see 22 "tr" element
-        And I should see 3 ".btn-primary" element
-        And I should see 5 ".btn-success" element
-        And I should see 5 ".btn-secondary" element
-        And I should see 4 ".btn-danger" element
+        Then I should see 26 "tr" element
+        And I should see "PEL-2023-00000001"
+        And I should see "PEL-2023-00000003"
+        And I should see "PEL-2023-00000005"
+        And I should see "PEL-2023-00000008"
+        And I should see "PEL-2023-00000010"
+        And I should see "PEL-2023-00000011"
+        And I should see "PEL-2023-00000018"
+        And I should see "PEL-2023-00000022"
+        And I should see "PEL-2023-00000025"

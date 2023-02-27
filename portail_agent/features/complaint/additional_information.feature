@@ -8,7 +8,7 @@ Feature:
 
     @func
     Scenario: I want to show complaint additional information page
-        Given I am on "/plainte/informations-complementaires/1"
+        Given I am on "/plainte/informations-complementaires/51"
         Then the response status code should be 200
         And I should see a "body" element
         And I should see a "nav" element
@@ -23,31 +23,33 @@ Feature:
         And I should see the key "pel.summary" translated
         And I should see the key "pel.photos.and.videos" translated
         And I should see the key "pel.cctv.present" translated
-        And the "additional_information_cctvPresent_1" checkbox should be checked
-        And I should not see the key "pel.cctv.available" translated
+        And the "additional_information_cctvPresent_0" checkbox should be checked
+        And I should see the key "pel.cctv.available" translated
+        And the "additional_information_cctvAvailable_1" checkbox should be checked
         And I should see the key "pel.suspects" translated
         And I should see the key "pel.do.you.have.informations.on.potential.suspects" translated
         And the "additional_information_suspectsKnown_0" checkbox should be checked
         And I should see the key "pel.facts.suspects.informations.text" translated
-        And the "additional_information_suspectsKnownText" field should contain "Mon voisin du dessous"
+        And the "additional_information_suspectsKnownText" field should contain "2 hommes"
         And I should see the key "pel.witnesses" translated
         And I should see the key "pel.facts.witnesses" translated
-        And the "additional_information_witnessesPresent_1" checkbox should be checked
+        And the "additional_information_witnessesPresent_0" checkbox should be checked
+        And I should see the key "pel.facts.witnesses.information.text" translated
+        And the "additional_information_witnessesPresentText" field should contain "Paul DUPONT"
         And I should see the key "pel.fsi.intervention" translated
         And I should see the key "pel.fsi.visit" translated
-        And the "additional_information_fsiVisit_1" checkbox should be checked
-        And I should not see the key "pel.observation.made" translated
+        And the "additional_information_fsiVisit_0" checkbox should be checked
+        And I should see the key "pel.observation.made" translated
+        And the "additional_information_observationMade_0" checkbox should be checked
         And I should see the key "pel.physical.violences.and.threats" translated
         And I should see the key "pel.victim.of.violence" translated
-        And the "additional_information_victimOfViolence_0" checkbox should be checked
-        And I should see the key "pel.victim.of.violence.text" translated
-        And the "additional_information_victimOfViolenceText" field should contain "Frappé au visage"
+        And the "additional_information_victimOfViolence_1" checkbox should be checked
         And I should see the key "pel.description.of.facts" translated
         And the "additional_information_description" field should contain "Vol d'un Iphone 13"
 
     @func
     Scenario: I can see the comments space on the additional information page
-        Given I am on "/plainte/informations-complementaires/5"
+        Given I am on "/plainte/informations-complementaires/52"
         And I should see a "#comment_content" element
         And I should see a ".comment-box" element
         And I should see a "#comments-feed-title" element
@@ -62,14 +64,14 @@ Feature:
 
     @javascript
     Scenario: I can click the "Comment" button, and it focus the comment field
-        Given I am on "/plainte/informations-complementaires/5"
+        Given I am on "/plainte/informations-complementaires/52"
         And I should not focus the "comment_content" element
         Then I press "complaint-comment-button"
         And I should focus the "comment_content" element
 
     @javascript
     Scenario: I can add a comment from the additional information page
-        Given I am on "/plainte/informations-complementaires/22"
+        Given I am on "/plainte/informations-complementaires/53"
         And the "#comments-feed-title" element should contain "Espace commentaires (5)"
         Then I fill in "comment_content" with "Ceci est un commentaire test."
         When I press "comment-button"
