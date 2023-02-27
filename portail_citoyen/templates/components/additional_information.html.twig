@@ -1,5 +1,5 @@
-<div {{ attributes }}>
-    {{ form_start(form, {attr: {'data-action': 'live#action','data-action-name': 'prevent|submit'}}) }}
+<div {{ attributes.add(stimulus_controller('complaint-submit')) }}>
+    {{ form_start(form, {attr: {'data-action': 'live#action complaint-submit#submit','data-action-name': 'prevent|submit'}}) }}
     <div class="fr-grid-row fr-py-2w">
         <div class="fr-col">
             {{ form_row(form.suspectsChoice) }}

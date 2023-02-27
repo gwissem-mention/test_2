@@ -63,6 +63,9 @@ class IdentityType extends AbstractType
                 'multiple' => false,
                 'rich' => true,
                 'choices' => DeclarantStatus::getChoices(),
+                'constraints' => [
+                    new NotBlank(),
+                ],
             ])
             ->addEventListener(
                 FormEvents::PRE_SET_DATA,
@@ -94,6 +97,9 @@ class IdentityType extends AbstractType
         $resolver->setDefaults([
             'data_class' => IdentityModel::class,
             'is_france_connected' => false,
+            'attr' => [
+                'novalidate' => true,
+            ],
         ]);
     }
 

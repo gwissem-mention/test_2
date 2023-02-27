@@ -99,20 +99,20 @@ Feature:
     Scenario: Submit the form without any required values
         When I press "identity_submit"
         Then I should be on "/porter-plainte/identite"
-        And the field "identity_civilState_civility" should have focus
+        And I should see a "#form-errors-identity_civilState_civility" element
 
     Scenario: Submit the form with only 1 required value for Victim declarant
         When I select "1" from "identity_civilState_civility"
         And I press "identity_submit"
         Then I should be on "/porter-plainte/identite"
-        And the field "identity_civilState_birthName" should have focus
+        And I should see a "#form-errors-identity_civilState_birthName" element
 
     Scenario: Submit the form with only 2 required value for Victim declarant
         When I select "1" from "identity_civilState_civility"
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I press "identity_submit"
         Then I should be on "/porter-plainte/identite"
-        And the field "identity_civilState_firstnames" should have focus
+        And I should see a "#form-errors-identity_civilState_firstnames" element
 
     Scenario: Submit the form with only 3 required value for Victim declarant
         When I select "1" from "identity_civilState_civility"
@@ -120,7 +120,7 @@ Feature:
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I press "identity_submit"
         Then I should be on "/porter-plainte/identite"
-        And the field "identity_civilState_birthDate" should have focus
+        And I should see a "#form-errors-identity_civilState_birthDate" element
 
     Scenario: Submit the form with only 4 required value for Victim declarant
         When I select "1" from "identity_civilState_civility"
@@ -129,7 +129,7 @@ Feature:
         And I fill in "identity_civilState_birthDate" with "01/01/2000"
         And I press "identity_submit"
         Then I should be on "/porter-plainte/identite"
-        And the field "identity_civilState_birthLocation_frenchTown" should have focus
+        And I should see a "#form-errors-identity_civilState_birthLocation_frenchTown" element
 
     Scenario: Submit the form with only 5 required value for Victim declarant
         When I select "1" from "identity_civilState_civility"
@@ -139,7 +139,7 @@ Feature:
         And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
         And I press "identity_submit"
         Then I should be on "/porter-plainte/identite"
-        And the field "identity_civilState_job" should have focus
+        And I should see a "#form-errors-identity_civilState_job" element
 
     Scenario: Submit the form with only 6 required value for Victim declarant
         When I select "1" from "identity_civilState_civility"
@@ -150,7 +150,7 @@ Feature:
         And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
         And I press "identity_submit"
         Then I should be on "/porter-plainte/identite"
-        And the field "identity_contactInformation_frenchAddress_address" should have focus
+        And I should see a "#form-errors-identity_contactInformation_frenchAddress_address" element
 
     Scenario: Submit the form with only 7 required value for Victim declarant
         When I select "1" from "identity_civilState_civility"
@@ -162,7 +162,7 @@ Feature:
         And I fill in "identity_contactInformation_frenchAddress_address" with "Av. de la République 75011 Paris France"
         And I press "identity_submit"
         Then I should be on "/porter-plainte/identite"
-        And the field "identity_contactInformation_email" should have focus
+        And I should see a "#form-errors-identity_contactInformation_email" element
 
     Scenario: Submit the form with only 8 required value for Victim declarant
         When I select "1" from "identity_civilState_civility"
@@ -175,7 +175,7 @@ Feature:
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I press "identity_submit"
         Then I should be on "/porter-plainte/identite"
-        And the field "identity_contactInformation_phone_number" should have focus
+        And I should see a "#form-errors-identity_contactInformation_phone_number" element
 
     Scenario: I fill the identity form as france connected, when I go back, the identity data should be saved
         Given I am on "/authentification"

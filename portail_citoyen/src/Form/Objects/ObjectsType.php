@@ -58,6 +58,9 @@ class ObjectsType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => ObjectsModel::class,
+             'attr' => [
+                'novalidate' => true,
+            ],
         ]);
     }
 }

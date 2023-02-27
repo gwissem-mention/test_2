@@ -41,6 +41,9 @@ class ObjectType extends AbstractType
                 'choices' => $this->objectCategories,
                 'label' => 'pel.object.category',
                 'placeholder' => 'pel.object.category.choose',
+                'constraints' => [
+                    new NotBlank(),
+                ],
             ])
             ->add('label', TextType::class, [
                 'attr' => [
@@ -61,6 +64,9 @@ class ObjectType extends AbstractType
                 ],
                 'label' => 'pel.object.status',
                 'placeholder' => 'pel.object.status.choose',
+                'constraints' => [
+                    new NotBlank(),
+                ],
             ]);
 
         $builder->addEventListener(
@@ -90,6 +96,9 @@ class ObjectType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => ObjectModel::class,
+            'attr' => [
+                'novalidate' => true,
+            ],
         ]);
     }
 

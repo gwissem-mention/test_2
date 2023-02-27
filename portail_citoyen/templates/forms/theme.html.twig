@@ -2,23 +2,22 @@
 
 {% block choice_row %}
     {% if expanded is same as(true) %}
-        <fieldset
-                class="{{ html_classes('fr-fieldset', 'fr-input-group', {'fr-fieldset--inline': inline is same as(true),'fr-fieldset--error': errors is not empty}) }}"
-                {% if errors is not empty %}role="group"
-                aria-labelledby="legend-{{ form.vars.id }} form-errors-{{ form.vars.id }}"{% endif %}>
-            <legend class="fr-fieldset__legend fr-text--regular" id="legend-{{ form.vars.id }}">
-                {{ form_label(form) }}
-            </legend>
-            <div class="fr-fieldset__content">
-                {% for child in form.children %}
-                    <div class="{{ html_classes({'fr-radio-group': multiple is same as(false), 'fr-checkbox-group': multiple is same as(true), 'fr-radio-rich':rich is defined and rich is same as(true)}) }}">
-                        {{ form_widget(child) }}
-                        {{ form_label(child, null, {'required_help':false}) }}
-                    </div>
-                {% endfor %}
-            </div>
-            {{ form_errors(form) }}
-        </fieldset>
+        <div class="fr-form-group">
+            <fieldset class="{{ html_classes('fr-fieldset', 'fr-input-group', {'fr-fieldset--inline': inline is same as(true),'fr-fieldset--error': errors is not empty}) }}" {% if errors is not empty %}role="group" aria-labelledby="legend-{{ form.vars.id }} form-errors-{{ form.vars.id }}"{% endif %}>
+                <legend class="fr-fieldset__legend fr-text--regular" id="legend-{{ form.vars.id }}">
+                    {{ form_label(form) }}
+                </legend>
+                <div class="fr-fieldset__content">
+                    {% for child in form.children %}
+                        <div class="{{ html_classes({'fr-radio-group': multiple is same as(false), 'fr-checkbox-group': multiple is same as(true), 'fr-radio-rich':rich is defined and rich is same as(true)}) }}">
+                            {{ form_widget(child) }}
+                            {{ form_label(child, null, {'required_help':false}) }}
+                        </div>
+                    {% endfor %}
+                </div>
+                {{ form_errors(form) }}
+            </fieldset>
+        </div>
     {% else %}
         <div class="{{ html_classes('fr-select-group', {'fr-select-group--error':  errors is not empty}) }}">
             {{ form_label(form) }}
