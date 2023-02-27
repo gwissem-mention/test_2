@@ -18,6 +18,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Callback;
 use Symfony\Component\Validator\Constraints\LessThanOrEqual;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\NotNull;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 class OffenseDateType extends AbstractType
@@ -34,6 +35,9 @@ class OffenseDateType extends AbstractType
                     'pel.yes' => true,
                     'pel.no' => false,
                 ],
+                'constraints' => [
+                    new NotNull(),
+                ],
             ])
             ->add('choiceHour', ChoiceType::class, [
                 'choices' => [
@@ -43,6 +47,9 @@ class OffenseDateType extends AbstractType
                 ],
                 'expanded' => true,
                 'label' => 'pel.do.you.know.hour.facts',
+                'constraints' => [
+                    new NotNull(),
+                ],
             ]);
 
         $builder->addEventListener(
@@ -159,6 +166,9 @@ class OffenseDateType extends AbstractType
                     ],
                     'label' => 'pel.exact.hour',
                     'widget' => 'single_text',
+                    'constraints' => [
+                        new NotBlank(),
+                    ],
                 ]);
 
             $offenseDateModel?->setStartHour(null)->setEndHour(null);
@@ -171,6 +181,9 @@ class OffenseDateType extends AbstractType
                     ],
                     'label' => 'pel.start.hour',
                     'widget' => 'single_text',
+                    'constraints' => [
+                        new NotBlank(),
+                    ],
                 ])
                 ->add('endHour', TimeType::class, [
                     'attr' => [

@@ -15,6 +15,7 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\NotNull;
 
 class AddressType extends AbstractType
 {
@@ -29,6 +30,9 @@ class AddressType extends AbstractType
                 'choices' => [
                     'pel.yes' => true,
                     'pel.no' => false,
+                ],
+                'constraints' => [
+                   new NotNull(),
                 ],
             ])
             ->add('addressAdditionalInformation', TextareaType::class, [

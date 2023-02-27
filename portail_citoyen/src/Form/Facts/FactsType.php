@@ -35,6 +35,7 @@ class FactsType extends AbstractType
                     new Length([
                         'max' => 800,
                     ]),
+                    new NotBlank(),
                 ],
                 'label' => 'pel.facts.description.precise',
                 'attr' => [
@@ -137,6 +138,9 @@ class FactsType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => FactsModel::class,
+            'attr' => [
+                'novalidate' => true,
+            ],
         ]);
     }
 }

@@ -15,6 +15,7 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\NotNull;
 
 class AdditionalInformationType extends AbstractType
 {
@@ -29,6 +30,9 @@ class AdditionalInformationType extends AbstractType
                 'expanded' => true,
                 'label' => 'pel.do.you.have.informations.on.potential.suspects',
                 'multiple' => false,
+                'constraints' => [
+                    new NotNull(),
+                ],
             ])
             ->add('witnesses', ChoiceType::class, [
                 'choices' => [
@@ -38,6 +42,9 @@ class AdditionalInformationType extends AbstractType
                 'expanded' => true,
                 'label' => 'pel.facts.witnesses',
                 'multiple' => false,
+                'constraints' => [
+                    new NotNull(),
+                ],
             ])
             ->add('fsiVisit', ChoiceType::class, [
                 'choices' => [
@@ -47,6 +54,9 @@ class AdditionalInformationType extends AbstractType
                 'expanded' => true,
                 'label' => 'pel.fsi.visit',
                 'multiple' => false,
+                'constraints' => [
+                    new NotNull(),
+                ],
             ])
             ->add('cctvPresent', ChoiceType::class, [
                 'choices' => [
@@ -57,6 +67,9 @@ class AdditionalInformationType extends AbstractType
                 'expanded' => true,
                 'label' => 'pel.cctv.present',
                 'multiple' => false,
+                'constraints' => [
+                    new NotNull(),
+                ],
             ]);
 
         $builder->addEventListener(
@@ -133,6 +146,7 @@ class AdditionalInformationType extends AbstractType
                     new Length([
                         'max' => 300,
                     ]),
+                    new NotBlank(),
                 ],
                 'label' => 'pel.facts.suspects.informations.text',
             ]);
@@ -180,6 +194,9 @@ class AdditionalInformationType extends AbstractType
                 'expanded' => true,
                 'label' => 'pel.observation.made',
                 'multiple' => false,
+                'constraints' => [
+                    new NotNull(),
+                ],
             ]);
         } else {
             $form->remove('observationMade');
@@ -201,6 +218,9 @@ class AdditionalInformationType extends AbstractType
                 'expanded' => true,
                 'label' => 'pel.cctv.available',
                 'multiple' => false,
+                'constraints' => [
+                    new NotNull(),
+                ],
             ]);
         } else {
             $form->remove('cctvAvailable');
@@ -212,6 +232,9 @@ class AdditionalInformationType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => AdditionalInformationModel::class,
+            'attr' => [
+                'novalidate' => true,
+            ],
         ]);
     }
 }
