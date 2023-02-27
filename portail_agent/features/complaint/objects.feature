@@ -8,7 +8,7 @@ Feature:
 
     @func
     Scenario: I want to show objects facts page
-        Given I am on "/plainte/objets/1"
+        Given I am on "/plainte/objets/51"
         Then the response status code should be 200
         And I should see a "body" element
         And I should see a "nav" element
@@ -30,31 +30,31 @@ Feature:
         And I should see the key "pel.object.brand" translated
         And the "facts_object_brand" field should contain "Apple"
         And I should see the key "pel.object.estimated.amount" translated
-        And the "facts_object_amount" field should contain "1937"
+        And the "facts_object_amount" field should contain "999"
         And I should see the key "pel.mobile.imei" translated
         And the "facts_object_imei" field should contain "1234567890"
         And I should see the key "pel.object.model" translated
-        And the "facts_object_model" field should contain "Iphone 14"
+        And the "facts_object_model" field should contain "Iphone 13"
         And I should see the key "pel.mobile.operator" translated
-        And the "facts_object_operator" field should contain "SFR"
+        And the "facts_object_operator" field should contain "Orange"
         And I should see the key "pel.phone.number.line" translated
-        And the "facts_object_phoneNumber" field should contain "0633359427"
+        And the "facts_object_phoneNumber" field should contain "06 12 34 56 67"
         And I should see the key "pel.total.objects.concerned" translated
         And I should see the key "pel.there.is.a.total.of" translated
         And the "span#objects_number" element should contain "2"
         And I should see the key "pel.for.a.total.amount.of" translated
-        And I should see "2 871 €"
+        And I should see "2 328 €"
 
     @func
     Scenario: I can click on the Go to facts button
-        Given I am on "/plainte/objets/1"
+        Given I am on "/plainte/objets/51"
         When I follow "Accéder à l'onglet : Informations complémentaires"
-        And I should be on "/plainte/informations-complementaires/1"
+        And I should be on "/plainte/informations-complementaires/51"
         And the response status code should be 200
 
     @func
     Scenario: Scenario: I can see the comments space on the identity page
-        Given I am on "/plainte/objets/5"
+        Given I am on "/plainte/objets/52"
         And I should see a "#comment_content" element
         And I should see a ".comment-box" element
         And I should see a "#comments-feed-title" element
@@ -69,14 +69,14 @@ Feature:
 
     @javascript
     Scenario: I can click the "Comment" button, and it focus the comment field
-        Given I am on "/plainte/objets/5"
+        Given I am on "/plainte/objets/52"
         And I should not focus the "comment_content" element
         Then I press "complaint-comment-button"
         And I should focus the "comment_content" element
 
     @javascript
     Scenario: I can add a comment from the objects page
-        Given I am on "/plainte/objets/39"
+        Given I am on "/plainte/objets/56"
         And the "#comments-feed-title" element should contain "Espace commentaires (5)"
         Then I fill in "comment_content" with "Ceci est un commentaire test."
         When I press "comment-button"

@@ -2,7 +2,7 @@
 
 namespace App\Tests\Behat;
 
-use App\DataFixtures\ComplaintFixtures;
+use App\DataFixtures\Complaint\ComplaintFixtures;
 use App\DataFixtures\QuestionFixtures;
 use App\DataFixtures\UserFixtures;
 use App\Factory\NotificationFactory;
@@ -48,7 +48,7 @@ class DatabaseContext implements Context
 
         $loader = new Loader();
         $loader->addFixture(new UserFixtures());
-        $loader->addFixture(new ComplaintFixtures(self::$faker, $this->notificationFactory));
+        $loader->addFixture(new ComplaintFixtures($this->notificationFactory));
         $loader->addFixture(new QuestionFixtures());
         $purger = new ORMPurger();
         $purger->setPurgeMode(ORMPurger::PURGE_MODE_DELETE);

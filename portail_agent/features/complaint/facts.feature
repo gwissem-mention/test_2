@@ -1,14 +1,14 @@
 Feature:
-    In order to the complaint facts page
+    In order to the complaint additional information page
     As a user
-    I want to see the complaint facts page
+    I want to see the complaint additional information page
 
     Background:
         Given I am authenticated with PR5KTZ9R from GN
 
     @func
-    Scenario: I want to show complaint facts page
-        Given I am on "/plainte/faits/1"
+    Scenario: I want to show complaint additional information page
+        Given I am on "/plainte/informations-complementaires/51"
         Then the response status code should be 200
         And I should see a "body" element
         And I should see a "nav" element
@@ -21,39 +21,35 @@ Feature:
         And I should see the key "pel.reasign" translated
         And I should see the key "pel.comment" translated
         And I should see the key "pel.summary" translated
+        And I should see the key "pel.photos.and.videos" translated
+        And I should see the key "pel.cctv.present" translated
+        And the "additional_information_cctvPresent_0" checkbox should be checked
+        And I should see the key "pel.cctv.available" translated
+        And the "additional_information_cctvAvailable_1" checkbox should be checked
+        And I should see the key "pel.suspects" translated
+        And I should see the key "pel.do.you.have.informations.on.potential.suspects" translated
+        And the "additional_information_suspectsKnown_0" checkbox should be checked
+        And I should see the key "pel.facts.suspects.informations.text" translated
+        And the "additional_information_suspectsKnownText" field should contain "2 hommes"
+        And I should see the key "pel.witnesses" translated
+        And I should see the key "pel.facts.witnesses" translated
+        And the "additional_information_witnessesPresent_0" checkbox should be checked
+        And I should see the key "pel.facts.witnesses.information.text" translated
+        And the "additional_information_witnessesPresentText" field should contain "Paul DUPONT"
+        And I should see the key "pel.fsi.intervention" translated
+        And I should see the key "pel.fsi.visit" translated
+        And the "additional_information_fsiVisit_0" checkbox should be checked
+        And I should see the key "pel.observation.made" translated
+        And the "additional_information_observationMade_0" checkbox should be checked
+        And I should see the key "pel.physical.violences.and.threats" translated
+        And I should see the key "pel.victim.of.violence" translated
+        And the "additional_information_victimOfViolence_1" checkbox should be checked
         And I should see the key "pel.description.of.facts" translated
-        And I should see the key "pel.nature.of.the.facts" translated
-        And the "facts_natures_0" checkbox should not be checked
-        And the "facts_natures_1" checkbox should be checked
-        And the "facts_natures_2" checkbox should not be checked
-        And I should see the key "pel.location.of.facts" translated
-        And I should see the key "pel.nature.place" translated
-        And the "facts_place" field should contain "Lieu indéterminé"
-        And I should see the key "pel.address.start.or.exact" translated
-        And the "facts_startAddress" field should contain "70, impasse Susanne Jourdan, Grenoble, 38000"
-        And I should see the key "pel.description" translated
-        And the "facts_addressAdditionalInformation" field should contain ""
-        And I should see the key "pel.facts.date.and.hour" translated
-        And I should see the key "pel.facts.date" translated
-        And I should see the key "pel.exact.date.known" translated
-        And the "facts_exactDateKnown_1" checkbox should be checked
-        And the "facts_startDate" field should contain "2023-01-18"
-        And the "facts_endDate" field should contain "2023-01-19"
-        And I should see the key "pel.facts.hour" translated
-        And I should see the key "pel.do.you.know.hour.facts" translated
-        And the "facts_exactHourKnown_0" checkbox should be checked
-        And the "facts_startHour" field should contain "23:49"
+        And the "additional_information_description" field should contain "Vol d'un Iphone 13"
 
     @func
-    Scenario: I can click on the Go to facts button
-        Given I am on "/plainte/faits/1"
-        When I follow "Accéder à l'onglet : Objets concernés"
-        And I should be on "/plainte/objets/1"
-        And the response status code should be 200
-
-    @func
-    Scenario: Scenario: I can see the comments space on the facts page
-        Given I am on "/plainte/faits/5"
+    Scenario: I can see the comments space on the additional information page
+        Given I am on "/plainte/informations-complementaires/52"
         And I should see a "#comment_content" element
         And I should see a ".comment-box" element
         And I should see a "#comments-feed-title" element
@@ -68,14 +64,14 @@ Feature:
 
     @javascript
     Scenario: I can click the "Comment" button, and it focus the comment field
-        Given I am on "/plainte/faits/5"
+        Given I am on "/plainte/informations-complementaires/52"
         And I should not focus the "comment_content" element
         Then I press "complaint-comment-button"
         And I should focus the "comment_content" element
 
     @javascript
-    Scenario: I can add a comment from the facts page
-        Given I am on "/plainte/faits/6"
+    Scenario: I can add a comment from the additional information page
+        Given I am on "/plainte/informations-complementaires/54"
         And the "#comments-feed-title" element should contain "Espace commentaires (5)"
         Then I fill in "comment_content" with "Ceci est un commentaire test."
         When I press "comment-button"

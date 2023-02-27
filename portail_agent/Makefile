@@ -117,6 +117,10 @@ db-load:
 	@$(eval APP_ENV ?=)
 	@$(CONSOLE) doctrine:fixtures:load --env=$(APP_ENV) --em=default --group=default --no-interaction
 
+db-ci-load:
+	@$(eval APP_ENV ?=)
+	@$(CONSOLE) doctrine:fixtures:load --env=$(APP_ENV) --em=default --group=ci --no-interaction
+
 referential-create:
 	@$(eval APP_ENV ?=)
 	@$(CONSOLE) doctrine:database:drop --force --if-exists --env=$(APP_ENV) --connection=referentials

@@ -8,7 +8,7 @@ Feature:
 
     @func
     Scenario: I want to show complaint identity page
-        Given I am on "/plainte/identite/1"
+        Given I am on "/plainte/identite/51"
         And the response status code should be 200
         And I should see a "body" element
         And I should see a "nav" element
@@ -22,28 +22,28 @@ Feature:
         And I should see the key "pel.comment" translated
         And I should see the key "pel.summary" translated
         And I should see the key "pel.declarant.civil.status" translated
-        And the "identity_civility_0" checkbox should be checked
-        And the "identity_civility_1" checkbox should not be checked
+        And the "identity_civility_0" checkbox should not be checked
+        And the "identity_civility_1" checkbox should be checked
         And I should see the key "pel.lastname" translated
-        And the "identity_lastname" field should contain "MILLET"
+        And the "identity_lastname" field should contain "DUPONT"
         And I should see the key "pel.firstname" translated
-        And the "identity_firstname" field should contain "Philippine"
+        And the "identity_firstname" field should contain "Jean"
         And I should see the key "pel.birth.date" translated
-        And the "identity_birthday" field should contain "1997-12-07"
+        And the "identity_birthday" field should contain "1967-03-07"
         And I should see the key "pel.birth.country" translated
         And the "identity_birthCountry" field should contain "France"
         And I should see the key "pel.birth.city" translated
-        And the "identity_birthCity" field should contain "Grenoble"
+        And the "identity_birthCity" field should contain "Paris"
         And I should see the key "pel.declarant.contact.information" translated
         And I should see the key "pel.phone.number" translated
-        And the "identity_phone" field should contain "+33 7 59 13 96 20"
+        And the "identity_phone" field should contain "06 12 34 45 57"
         And I should see the key "pel.email" translated
-        And the "identity_email" field should contain "louis86@peron.fr"
+        And the "identity_email" field should contain "jean.dupont@gmail.com"
         And I should see the key "pel.sms.notification" translated
         And I should see the key "pel.want.to.receive.sms.notifications" translated
-        And the "identity_smsNotifications" checkbox should not be checked
+        And the "identity_smsNotifications" checkbox should be checked
         And I should see the key "pel.declarant.address" translated
-        And the "identity_address" field should contain "62, place de Samson, Bordeaux, 33000"
+        And the "identity_address" field should contain "15 Rue PAIRA, Meudon, 92190"
         And I should see the key "pel.address.france.label" translated
         And I should see the key "pel.declarant.situation" translated
         And I should see the key "pel.declarant.complain.as" translated
@@ -51,14 +51,14 @@ Feature:
 
     @func
     Scenario: I can click on the Go to facts button
-        Given I am on "/plainte/identite/1"
+        Given I am on "/plainte/identite/51"
         When I follow "Accéder à l'onglet : Description des faits"
-        And I should be on "/plainte/faits/1"
+        And I should be on "/plainte/faits/51"
         And the response status code should be 200
 
     @func
     Scenario: Scenario: I can see the comments space on the identity page
-        Given I am on "/plainte/identite/5"
+        Given I am on "/plainte/identite/52"
         And I should see a "#comment_content" element
         And I should see a ".comment-box" element
         And I should see a "#comments-feed-title" element
@@ -73,14 +73,14 @@ Feature:
 
     @javascript
     Scenario: I can click the "Comment" button, and it focus the comment field
-        Given I am on "/plainte/identite/5"
+        Given I am on "/plainte/identite/52"
         And I should not focus the "comment_content" element
         Then I press "complaint-comment-button"
         And I should focus the "comment_content" element
 
     @javascript
     Scenario: I can add a comment from the identity page
-        Given I am on "/plainte/identite/34"
+        Given I am on "/plainte/identite/55"
         And the "#comments-feed-title" element should contain "Espace commentaires (5)"
         Then I fill in "comment_content" with "Ceci est un commentaire test."
         When I press "comment-button"

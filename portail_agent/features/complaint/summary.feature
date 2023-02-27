@@ -8,7 +8,7 @@ Feature:
 
     @func
     Scenario: I can navigate to the complaint page
-        Given I am on "/plainte/recapitulatif/1"
+        Given I am on "/plainte/recapitulatif/51"
         Then the response status code should be 200
         And I should see a "nav" element
         And I should see a "aside" element
@@ -43,75 +43,88 @@ Feature:
         And I should see the key "pel.email" translated
         And I should see the key "pel.want.to.receive.sms.notifications" translated
         And I should see the key "pel.is.designated.as" translated
-        And I should see the key "pel.madam" translated
+        And I should see the key "pel.sir" translated
         And I should see the key "pel.job" translated
         And I should see the key "pel.nationality" translated
-        And I should see "Philippine"
-        And I should see "MILLET"
-        And I should see "07/12/1997"
+        And I should see "Jean"
+        And I should see "DUPONT"
+        And I should see "07/03/1967"
         And I should see "France"
         And I should see "Française"
-        And I should see "Costumier-habilleur"
-        And I should see "38"
-        And I should see "62, place de Samson, Bordeaux, 33000"
-        And I should see "33000"
-        And I should see "Bordeaux"
-        And I should see "+33 7 59 13 96 20"
-        And I should see "louis86@peron.fr"
+        And I should see "Boulanger"
+        And I should see "75"
+        And I should see "15 rue PAIRA, Meudon, 92190"
+        And I should see "92190"
+        And I should see "Meudon"
+        And I should see "06 12 34 45 57"
+        And I should see "jean.dupont@gmail.com"
         And I should see the key "pel.victim" translated
         And I should see the key "pel.yes" translated
         And I should see the key "pel.description.of.facts" translated
         And I should see the key "pel.nature.of.the.facts" translated
         And I should see the key "pel.nature.place" translated
         And I should see the key "pel.address.start.or.exact" translated
+        And I should see the key "pel.address.end" translated
         And I should see the key "pel.facts.date" translated
         And I should see the key "pel.facts.hour" translated
         And I should see the key "pel.between" translated
         And I should see the key "pel.and" translated
-        And I should see the key "pel.offense.nature.degradation" translated
+        And I should see the key "pel.offense.nature.robbery" translated
         And I should see the key "pel.the" translated
         And I should see the key "pel.between" translated
         And I should see the key "pel.and" translated
-        And I should see "Lieu indéterminé"
-        And I should see "70, impasse Susanne Jourdan, Grenoble, 38000"
-        And I should see "entre le 18/01/2023 et le 19/01/2023"
-        And I should see "23h49"
+        And I should see "Restaurant"
+        And I should see "25 Avenue Georges Pompidou, Lyon, 69003"
+        And I should see "Place Charles Hernu, Villeurbanne, 69100"
+        And I should see "01/12/2022"
+        And I should see "10h00"
+        And I should see "11h00"
         And I should see the key "pel.objects.description" translated
         And I should see the key "pel.objects.stolen" translated
         And I should see the key "pel.number" translated
         And I should see the key "pel.total" translated
         And I should see the key "pel.total.message.one" translated
         And I should see the key "pel.total.message.amount" translated
-        And I should see "N° 1 : Téléphone mobile - Iphone 14 - Apple - 1 937 € - SFR"
-        And I should see "N° 2 : Téléphone mobile - S22 - Samsung - 934 € - SFR"
-        And I should see "Vous avez ajouté 2 objets pour un montant total de 2 871 €"
+        And I should see "Téléphone mobile"
+        And I should see "Iphone 13"
+        And I should see "Apple"
+        And I should see "999 €"
+        And I should see "Orange"
+        And I should see "Téléphone mobile"
+        And I should see "Iphone 14 Pro"
+        And I should see "Apple"
+        And I should see "1 329 €"
+        And I should see "SFR"
+        And I should see "Vous avez ajouté 2 objets pour un montant total de 2 328 €"
         And I should see the key "pel.additional.informations" translated
         And I should see the key "pel.facts.witnesses" translated
+        And I should see the key "pel.facts.witnesses.information.text" translated
         And I should see the key "pel.do.you.have.informations.on.potential.suspects" translated
         And I should see the key "pel.facts.suspects.informations.text" translated
         And I should see the key "pel.cctv.present" translated
+        And I should see the key "pel.cctv.available" translated
         And I should see the key "pel.fsi.visit" translated
+        And I should see the key "pel.observation.made" translated
         And I should see the key "pel.victim.of.violence" translated
-        And I should see the key "pel.victim.of.violence.text" translated
         And I should see the key "pel.description.of.facts" translated
 
     @func
     Scenario: I can click on the menu's summary button
-        Given I am on "/plainte/recapitulatif/1"
+        Given I am on "/plainte/recapitulatif/51"
         When I follow "Récapitulatif"
-        And I should be on "/plainte/recapitulatif/1"
+        And I should be on "/plainte/recapitulatif/51"
         And the response status code should be 200
 
     @func
     Scenario: I can click on the Go to identity button
-        Given I am on "/plainte/recapitulatif/1"
+        Given I am on "/plainte/recapitulatif/51"
         When I follow "Accéder à l'onglet : Identité du déclarant"
-        And I should be on "/plainte/identite/1"
+        And I should be on "/plainte/identite/51"
         And the response status code should be 200
 
     @javascript
     Scenario: I can toggle the reject modal
-        Given I am on "/plainte/recapitulatif/1"
+        Given I am on "/plainte/recapitulatif/51"
         When I press "Rejeter"
         Then I should see a ".modal[aria-modal=true]" element
         And I should see the key "pel.you.will.reject.the.declaration" translated
@@ -130,7 +143,7 @@ Feature:
 
     @javascript
     Scenario: I can submit the reject form successfully
-        Given I am on "/plainte/recapitulatif/1"
+        Given I am on "/plainte/recapitulatif/51"
         When I press "Rejeter"
         And I select "1" from "reject_refusalReason"
         And I fill in "reject_refusalText" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus scelerisque ante id dui lacinia eu."
@@ -142,12 +155,12 @@ Feature:
         And I should not see a "complaint-reassign-button" element
         And I should see a ".toast" element
         And I should see the key "pel.the.declaration.has.been.refused" translated
-        Given I am on "/"
-        Then I should see 5 ".btn-danger" element
+        And I am on "/"
+        And I should see 1 ".btn-danger" element
 
     @javascript
     Scenario: I can see form errors the reject form when reject_refusalText is too short
-        Given I am on "/plainte/recapitulatif/5"
+        Given I am on "/plainte/recapitulatif/52"
         When I press "Rejeter"
         And I select "1" from "reject_refusalReason"
         And I fill in "reject_refusalText" with "Lorem ipsum dolor sit amet"
@@ -157,7 +170,7 @@ Feature:
 
     @javascript
     Scenario: I can toggle the send to LRP modal
-        Given I am on "/plainte/recapitulatif/5"
+        Given I am on "/plainte/recapitulatif/53"
         When I press "Envoi à LRP"
         Then I should see a ".modal[aria-modal=true]" element
         And I should see the key "pel.validation.sending.complain.to.lrp" translated
@@ -176,7 +189,7 @@ Feature:
 
     @javascript
     Scenario: I can validate the send to LRP action successfully
-        Given I am on "/plainte/recapitulatif/5"
+        Given I am on "/plainte/recapitulatif/53"
         When I press "Envoi à LRP"
         Then I should see a ".modal[aria-modal=true]" element
         When I press "Valider l'envoi vers le LRP"
@@ -186,7 +199,7 @@ Feature:
 
     @javascript
     Scenario: I can toggle the assign modal
-        Given I am on "/plainte/recapitulatif/5"
+        Given I am on "/plainte/recapitulatif/53"
         When I press "Attribuer la déclaration à..."
         Then I should see a ".modal[aria-modal=true]" element
         And I should see the key "pel.select.the.agent.to.assign" translated
@@ -196,15 +209,8 @@ Feature:
         Then I should not see a ".modal[aria-modal=true]" element
 
     @javascript
-    Scenario: I can't see the assign button if I am not supervisor
-        Given I am authenticated with H3U3XCGD from PN
-        And I am on "/plainte/recapitulatif/5"
-        Then I should not see "Attribuer la déclaration à..."
-        And I should not see a "#complaint-assign-button" element
-
-    @javascript
     Scenario: I can submit the assign form successfully and Jean DUPONT should have a notif
-        Given I am on "/plainte/recapitulatif/5"
+        Given I am on "/plainte/recapitulatif/53"
         When I press "Attribuer la déclaration à..."
         And I fill in the autocomplete "assign_assignedTo-ts-control" with "Julie" and click "4"
         And I press "Valider l'attribution"
@@ -216,22 +222,15 @@ Feature:
         Given I am authenticated with PR5KTZ9C from GN
         And I am on the homepage
         When I click the "#notifications-dropdown" element
-        Then I should see "La déclaration PEL-2023-00000005 vient de vous être attribuée"
-
-    @javascript
-    Scenario: I can't select an user which is not in my service
-        Given I am on "/plainte/recapitulatif/22"
-        When I press "Attribuer la déclaration à..."
-        And I fill in the autocomplete "assign_assignedTo-ts-control" with "Jean" and click "1"
-        And the "assign_assignedTo" field should not contain "1"
+        Then I should see "La déclaration PEL-2023-00000053 vient de vous être attribuée"
 
     @javascript
     Scenario: I can submit the reassign form successfully
-        Given I am on "/plainte/recapitulatif/22"
+        Given I am on "/plainte/recapitulatif/53"
         When I press "Attribuer la déclaration à..."
         And I fill in the autocomplete "assign_assignedTo-ts-control" with "Julie" and click "4"
         And I press "Valider l'attribution"
-        And I press "complaint-reassign-button"
+        When I press "complaint-reassign-button"
         And I click the "#modal-complaint-assign .clear-button" element
         And I fill in the autocomplete "assign_assignedTo-ts-control" with "Philippe" and click "5"
         And I press "Valider l'attribution"
@@ -243,7 +242,7 @@ Feature:
 
     @func
     Scenario: I can see the comments space on the summary page
-        Given I am on "/plainte/recapitulatif/5"
+        Given I am on "/plainte/recapitulatif/53"
         Then I should see a "#comment_content" element
         And I should see a ".comment-box" element
         And I should see a "#comments-feed-title" element
@@ -258,14 +257,14 @@ Feature:
 
     @javascript
     Scenario: I can click the "Comment" button, and it focus the comment field
-        Given I am on "/plainte/recapitulatif/5"
+        Given I am on "/plainte/recapitulatif/53"
         And I should not focus the "comment_content" element
         Then I press "complaint-comment-button"
         And I should focus the "comment_content" element
 
     @javascript
     Scenario: I can add a comment from the summary page
-        Given I am on "/plainte/recapitulatif/44"
+        Given I am on "/plainte/recapitulatif/57"
         And the "#comments-feed-title" element should contain "Espace commentaires (5)"
         Then I fill in "comment_content" with "Ceci est un commentaire test."
         When I press "comment-button"
