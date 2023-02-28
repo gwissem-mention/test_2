@@ -435,6 +435,7 @@ agent-func:
         POSTGRES_DB: "app_test"
         POSTGRES_PASSWORD: "ChangeMe"
         POSTGRES_USER: "symfony"
+        POSTGRES_HOST: "127.0.0.1"
     script:
         - make APP_ENV=${APP_ENV} db-ci-setup
         - make APP_ENV=${APP_ENV} db-ci-load
@@ -544,6 +545,7 @@ agent-e2e:
         POSTGRES_DB: "app"
         POSTGRES_PASSWORD: "ChangeMe"
         POSTGRES_USER: "symfony"
+        POSTGRES_HOST: "127.0.0.1"
     script:
         - php bin/console cache:clear --env=${APP_ENV}
         - echo "APP_ENV=${APP_ENV}" >> .env.local
@@ -574,6 +576,7 @@ agent-flaky-e2e:
         POSTGRES_DB: "app"
         POSTGRES_PASSWORD: "ChangeMe"
         POSTGRES_USER: "symfony"
+        POSTGRES_HOST: "127.0.0.1"
     script:
         - php bin/console cache:clear --env=${APP_ENV}
         - echo "APP_ENV=${APP_ENV}" >> .env.local

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Home;
 
+use App\Form\Complaint\SearchType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,6 +16,8 @@ class HomeController extends AbstractController
     #[Route('/', name: 'home')]
     public function __invoke(): Response
     {
-        return $this->render('pages/home/index.html.twig');
+        return $this->render('pages/home/index.html.twig', [
+            'search_form' => $this->createForm(SearchType::class),
+        ]);
     }
 }

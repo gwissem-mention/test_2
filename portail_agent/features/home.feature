@@ -163,3 +163,26 @@ Feature:
         And I should see "PEL-2023-00000018"
         And I should see "PEL-2023-00000022"
         And I should see "PEL-2023-00000025"
+
+    @javascript
+    Scenario: I can search complaints
+        Given I am authenticated with H3U3XCGF from PN
+        And I am on the homepage
+        When I fill in "search_query" with "Leo bernard"
+        And I press "Rechercher"
+        Then I should see 11 "tr" element
+        When I fill in "search_query" with "4"
+        And I press "Rechercher"
+        Then I should see 15 "tr" element
+        When I fill in "search_query" with "34"
+        And I press "Rechercher"
+        Then I should see 2 "tr" element
+        When I fill in "search_query" with "34"
+        And I press "Rechercher"
+        Then I should see 2 "tr" element
+        When I fill in "search_query" with "jean"
+        And I press "Rechercher"
+        Then I should see 26 "tr" element
+        When I fill in "search_query" with "DUPONT"
+        And I press "Rechercher"
+        Then I should see 26 "tr" element
