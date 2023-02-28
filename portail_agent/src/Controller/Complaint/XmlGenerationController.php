@@ -9,6 +9,7 @@ use App\Entity\User;
 use App\Generator\Complaint\ComplaintGeneratorInterface;
 use App\Referential\Entity\Unit;
 use App\Referential\Repository\UnitRepository;
+use App\Repository\ComplaintRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
@@ -21,8 +22,9 @@ class XmlGenerationController extends AbstractController
 {
     #[IsGranted('IS_AUTHENTICATED')]
     #[Route(path: '/plainte/xml/{id}', name: 'complaint_xml', methods: ['GET'])]
-    public function __invoke(Complaint $complaint, ComplaintGeneratorInterface $generatorXml, UnitRepository $unitRepository): Response
+    public function __invoke(Complaint $complaint, ComplaintGeneratorInterface $generatorXml, UnitRepository $unitRepository, ComplaintRepository $complaintRepository): Response
     {
+        $complaintRepository->save($complaint->setStatus(Complaint::STATUS_ONGOING_LRP), true);
         /** @var User $user */
         $user = $this->getUser();
         /** @var Unit $unit */

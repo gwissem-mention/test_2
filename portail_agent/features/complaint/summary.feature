@@ -200,6 +200,8 @@ Feature:
         Then I should not see a ".modal[aria-modal=true]" element
         And I should see a ".toast" element
         And I should see the key "pel.file.generated" translated
+        Given I am on the homepage
+        Then I should see 6 ".btn-warning" element
 
     @javascript
     Scenario: I can toggle the assign modal
