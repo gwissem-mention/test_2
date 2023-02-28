@@ -49,7 +49,7 @@ class ComplaintRepository extends ServiceEntityRepository
      *
      * @return Paginator<Complaint>
      */
-    public function findAsPaginator(array $order = [], int $start = 0, ?int $length = null, string $unit = null, ?User $agent = null): Paginator
+    public function findAsPaginator(array $order = [], int $start = 0, ?int $length = null, string $unit = null, ?User $agent = null, ?string $searchQuery = null): Paginator
     {
         $qb = $this
             ->createQueryBuilder('c')
@@ -70,7 +70,26 @@ class ComplaintRepository extends ServiceEntityRepository
 
         if ($agent instanceof User) {
             $qb->andWhere('assignedTo = :agent')
-            ->setParameter('agent', $agent);
+                ->setParameter('agent', $agent);
+        }
+
+        if (!empty($searchQuery)) {
+            $keywords = explode(' ', $searchQuery);
+            $andX = $qb->expr()->andX();
+            $i = 0;
+            foreach ($keywords as $keyword) {
+                $parameter = 'keyword_'.$i;
+                $orX = $qb->expr()->orX(
+                    $qb->expr()->like('c.declarationNumber', $qb->expr()->literal("%$keyword%")),
+                    $qb->expr()->like('LOWER(unaccent(identity.firstname))', 'LOWER(unaccent(:'.$parameter.'))'),
+                    $qb->expr()->like('LOWER(unaccent(identity.lastname))', 'LOWER(unaccent(:'.$parameter.'))'),
+                    $qb->expr()->like('LOWER(unaccent(assignedTo.appellation))', 'LOWER(unaccent(:'.$parameter.'))'),
+                );
+                $andX->add($orX);
+                $qb->setParameter($parameter, '%'.$keyword.'%');
+                ++$i;
+            }
+            $qb->andWhere($andX);
         }
 
         return new Paginator(DatatableFactory::createQuery($qb, $order, $start, $length));

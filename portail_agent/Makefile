@@ -93,12 +93,13 @@ tools-install:
 Doctrine:
 
 ## Drop, create db and create tables
-db-setup: db-drop db-create db-migrate
+db-setup: db-drop db-create db-create-extensions db-migrate
 
 db-ci-setup:
 	@$(eval APP_ENV ?=)
 	@$(CONSOLE) doctrine:database:drop --force --if-exists --env=$(APP_ENV) --connection=default
 	@$(CONSOLE) doctrine:database:create --env=$(APP_ENV) --if-not-exists --connection=default
+	make db-create-extensions
 	@$(CONSOLE) doctrine:schema:update --env=$(APP_ENV) --force --em=default
 
 db-migrate:
@@ -112,6 +113,9 @@ db-create:
 db-drop:
 	@$(eval APP_ENV ?=)
 	@$(CONSOLE) doctrine:database:drop --force --if-exists --env=$(APP_ENV) --connection=default
+
+db-create-extensions:
+	./docker/database/create-extensions.sh
 
 db-load:
 	@$(eval APP_ENV ?=)
@@ -286,27 +290,3 @@ deploy-ci:
 ## Run ansible rollback
 rollback:
 	@$(ANSIBLE) --become-method=su  --become-user=$(BECOME_USER)  ansible/rollback/rollback.yaml -i ansible/hosts.yaml  --ask-vault-pass  --private-key=$(PRIVATE_KEY_PATH)
-
-#################################
-Doctrine:
-
-## Drop, create db and create tables
-db-setup: db-drop db-create db-migrate
-
-db-ci-setup:
-	@$(eval APP_ENV ?=)
-	@$(CONSOLE) doctrine:database:drop --force --if-exists --env=$(APP_ENV)
-	@$(CONSOLE) doctrine:database:create --env=$(APP_ENV) --if-not-exists
-	@$(CONSOLE) doctrine:schema:update --force
-
-db-migrate:
-	@$(eval APP_ENV ?=)
-	@$(CONSOLE) doctrine:migrations:migrate -n --allow-no-migration --env=$(APP_ENV)
-
-db-create:
-	@$(eval APP_ENV ?=)
-	@$(CONSOLE) doctrine:database:create --env=$(APP_ENV) --if-not-exists
-
-db-drop:
-	@$(eval APP_ENV ?=)
-	@$(CONSOLE) doctrine:database:drop --force --if-exists --env=$(APP_ENV)

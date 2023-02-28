@@ -166,3 +166,14 @@ su postgres
 psql -d <referential_db>
 create extension if not exists "unaccent";
 ```
+
+### 5. Citoyen portal
+
+### 5.1. Postgresql
+
+```conf
+# After db creation
+su postgres
+psql -d <app_db>
+create extension if not exists "unaccent";
+```

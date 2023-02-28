@@ -31,6 +31,11 @@
     target: db-create
   register: create_db_output
   changed_when: create_db_output.stdout is not search('already exists. Skipped')
+  
+- name: Create extensions
+  become: true
+  become_user: postgres
+  command: 'psql -d {{ app_db }} -c "create extension if not exists unaccent"'
 
 - name: Run migrations
   make:
