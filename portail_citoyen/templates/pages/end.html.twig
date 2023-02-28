@@ -14,19 +14,16 @@
                 </div>
             </div>
         {% endif %}
-        <div class="fr-grid-row fr-py-2w">
+        <div class="fr-grid-row fr-py-2w fr-text-center">
             <div class="fr-col">
                 <h6>{{ 'pel.your.opinion'|trans }}</h6>
             </div>
         </div>
-        <div class="fr-grid-row fr-py-2w">
-            <div class="fr-col-4">
-                {# TO DO : Remove inline style #}
-                <p style="font-size:100px" class="smiley">&#128512;</p>
-            </div>
-            <div class="fr-col-4">
-                {# TO DO : Remove inline style #}
-                <p style="font-size:100px" class="smiley">&#128545;</p>
+        <div class="fr-grid-row fr-py-2w fr-text-center">
+            <div class="fr-col-12">
+                <a href="https://jedonnemonavis.numerique.gouv.fr/Demarches/{{ jedonnemonavis_id }}?&view-mode=formulaire-avis&nd_source=button&key={{ jedonnemonavis_key }}">
+                    <img src="https://jedonnemonavis.numerique.gouv.fr/static/bouton-bleu.svg" alt="Je donne mon avis"/>
+                </a>
             </div>
         </div>
         <div class="fr-grid-row fr-py-2w">

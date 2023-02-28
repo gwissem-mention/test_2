@@ -4,6 +4,8 @@ parameters:
   app.file_jobs_male: '%env(FILE_JOBS_MALE)%'
   app.file_jobs_female: '%env(FILE_JOBS_FEMALE)%'
   app.referentials_base_path: '%kernel.project_dir%/referentials'
+  app.jedonnemonavis_id: '%env(JEDONNEMONAVIS_ID)%'
+  app.jedonnemonavis_key: '%env(JEDONNEMONAVIS_KEY)%'
 
 services:
   _defaults:
