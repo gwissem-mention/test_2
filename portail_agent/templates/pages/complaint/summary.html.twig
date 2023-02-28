@@ -26,7 +26,7 @@
             <li>
                 {{ 'pel.born.on'|trans }} : <strong>{{ complaint.identity.birthday|date('d/m/Y') }}</strong>
                 {{ 'pel.at.in'|trans }}: <strong>{{ complaint.identity.birthCountry }}</strong>
-                {{ 'pel.department'|trans }} : <strong>{{ complaint.identity.birthDepartment }}</strong>
+                {{ 'pel.department'|trans }} : <strong>{{ complaint.identity.birthDepartmentNumber }}</strong>
             </li>
             <li>
                 {{ 'pel.nationality'|trans }} : <strong>{{ complaint.identity.nationality }}</strong>
@@ -38,7 +38,7 @@
                 {{ 'pel.job'|trans }} : <strong>{{ complaint.identity.job }}</strong>
             </li>
             <li>
-                {{ 'pel.phone'|trans }}: <strong>{{ complaint.identity.phone }}</strong>
+                {{ 'pel.phone'|trans }} : <strong>{{ complaint.identity.mobilePhone }}</strong>
                 {{ 'pel.email'|trans }} : <strong>{{ complaint.identity.email }}</strong>
             </li>
             <li>{{ 'pel.want.to.receive.sms.notifications'|trans }} :
@@ -182,10 +182,28 @@
         <p>{{ 'pel.objects.stolen'|trans }}</p>
         <ul>
             {% for object in complaint.objects %}
-                <li><strong>{{ 'pel.number'|trans }} {{ loop.index }}</strong> : {{ object.label }}
-                    - {{ object.model }} - {{ object.brand }}
-                    - {{ object.amount|format_currency('EUR', {fraction_digit: 0}) }} - {{ object.operator }}
-                </li>
+                {% if object|object_type is same as('App\\Entity\\FactsObjects\\AdministrativeDocument') %}
+                    <li>
+                        <strong>{{ 'pel.number'|trans }} {{ loop.index }}</strong> : {{ object.type }}
+                        {% if object.amount is not null %}
+                            - {{ object.amount|format_currency('EUR', {fraction_digit: 0}) }}
+                        {% endif %}
+                    </li>
+                {% elseif object|object_type is same as('App\\Entity\\FactsObjects\\MultimediaObject') %}
+                    <li>
+                        <strong>{{ 'pel.number'|trans }} {{ loop.index }}</strong> : {{ object.label }}
+                        - {{ object.model }} - {{ object.brand }}
+                        - {{ object.amount|format_currency('EUR', {fraction_digit: 0}) }} - {{ object.operator }}
+                    </li>
+                 {% elseif object|object_type is same as('App\\Entity\\FactsObjects\\PaymentMethod') %}
+                     <li>
+                         <strong>{{ 'pel.number'|trans }} {{ loop.index }}</strong> : {{ object.type }}
+                         - {{ object.description }} - {{ object.bank }}
+                         {% if object.amount is not null %}
+                             - {{ object.amount|format_currency('EUR', {fraction_digit: 0}) }}
+                         {% endif %}
+                     </li>
+                {% endif %}
             {% endfor %}
         </ul>
         <p>

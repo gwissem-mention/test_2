@@ -9,7 +9,9 @@ use App\Entity\AdditionalInformation;
 use App\Entity\Comment;
 use App\Entity\Complaint;
 use App\Entity\Facts;
-use App\Entity\FactsObject;
+use App\Entity\FactsObjects\AdministrativeDocument;
+use App\Entity\FactsObjects\MultimediaObject;
+use App\Entity\FactsObjects\PaymentMethod;
 use App\Entity\Identity;
 use App\Entity\User;
 use App\Factory\NotificationFactory;
@@ -44,6 +46,24 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
             '38000' => 'Grenoble',
         ];
 
+        $insees = [
+            '06000' => '06088',
+            '13000' => '13055',
+            '75000' => '75056',
+            '69000' => '69123',
+            '33000' => '33063',
+            '38000' => '38185',
+        ];
+
+        $departments = [
+            '06' => 'Alpes-Maritimes',
+            '13' => 'Bouches-du-Rhône',
+            '75' => 'Paris',
+            '69' => 'Rhône',
+            '33' => 'Gironde',
+            '38' => 'Isère',
+        ];
+
         for ($i = 1; $i <= self::COMPLAINTS_NB; ++$i) {
             $factsStartDate = \DateTimeImmutable::createFromMutable($this->faker->dateTimeBetween('2023-01-01', '2023-01-31'));
             $complaintDate = \DateTimeImmutable::createFromMutable($this->faker->dateTimeBetween('2023-02-01', '2023-02-15'));
@@ -60,6 +80,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                 Complaint::STATUS_MP_DECLARANT,
             ]);
             $identityBirthPostcode = $this->faker->randomKey($places);
+            $identityAddressStreetAddress = $this->faker->streetAddress;
             $identityAddressPostcode = $this->faker->randomKey($places);
             $identityAddressCity = $places[$identityAddressPostcode];
             $factsAddressPostcode = $this->faker->randomKey($places);
@@ -83,6 +104,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
             }
 
             $complaint = (new Complaint())
+                ->setTest(true)
                 ->setCreatedAt($complaintDate)
                 ->setAppointmentDate($complaintDate->add(new \DateInterval('P1D')))
                 ->setStatus($status)
@@ -104,12 +126,22 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                         )))
                         ->setBirthCountry('France')
                         ->setNationality('Française')
-                        ->setBirthDepartment(substr((string) $identityBirthPostcode, 0, 2))
+                        ->setBirthDepartment($departments[substr((string) $identityBirthPostcode, 0, 2)])
                         ->setBirthCity($places[$identityBirthPostcode])
-                        ->setAddress($this->faker->streetAddress.', '.$identityAddressCity.', '.$identityAddressPostcode)
-                        ->setAddressCity((string) $identityAddressCity)
+                        ->setBirthPostalCode((string) $identityBirthPostcode)
+                        ->setBirthInseeCode($insees[$identityBirthPostcode])
+                        ->setBirthDepartmentNumber((int) substr((string) $identityBirthPostcode, 0, 2))
+                        ->setAddress($identityAddressStreetAddress.', '.$identityAddressCity.', '.$identityAddressPostcode)
+                        ->setAddressStreetNumber('1')
+                        ->setAddressStreetType('Rue')
+                        ->setAddressStreetName('Test')
+                        ->setAddressCity($identityAddressCity)
+                        ->setAddressInseeCode($insees[$identityAddressPostcode])
                         ->setAddressPostcode((string) $identityAddressPostcode)
-                        ->setPhone($this->faker->mobileNumber)
+                        ->setAddressDepartment($departments[substr((string) $identityAddressPostcode, 0, 2)])
+                        ->setAddressDepartmentNumber((int) substr((string) $identityBirthPostcode, 0, 2))
+                        ->setAddressCountry('France')
+                        ->setMobilePhone($this->faker->mobileNumber)
                         ->setEmail($this->faker->email)
                         ->setJob($this->faker->jobTitle)
                         ->setAlertNumber($this->faker->randomDigit())
@@ -117,37 +149,45 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                 ->setFacts(
                     (new Facts())
                         ->setNatures([$this->faker->randomElement([Facts::NATURE_ROBBERY, Facts::NATURE_DEGRADATION])])
+                        ->setDescription($this->faker->text())
                         ->setExactDateKnown($exactDateKnown)
                         ->setStartDate($factsStartDate)
                         ->setEndDate(true === $exactDateKnown ? null : $factsStartDate->add(new \DateInterval('P1D')))
+                        ->setExactPlaceUnknown(false)
                         ->setPlace($this->faker->randomElement(['Domicile', 'Parking', 'Voie publique', 'Commerce', 'Transports en commun', 'Autre nature de lieu', 'Lieu indéterminé']))
                         ->setStartAddress($this->faker->streetAddress.', '.$factsAddressCity.', '.$factsAddressPostcode)
                         ->setEndAddress($this->faker->randomElement([
                             null,
                             $this->faker->streetAddress.', '.$factsAddressCity.', '.$factsAddressPostcode,
                         ]))
+                        ->setCity($factsAddressCity)
+                        ->setPostalCode((string) $factsAddressPostcode)
+                        ->setInseeCode($insees[$factsAddressPostcode])
+                        ->setDepartment($departments[substr((string) $factsAddressPostcode, 0, 2)])
+                        ->setDepartmentNumber((int) substr((string) $factsAddressPostcode, 0, 2))
+                        ->setCountry('France')
                         ->setExactHourKnown($exactHourKnown)
                         ->setStartHour($factsStartHour)
                         ->setEndHour(Facts::EXACT_HOUR_KNOWN_NO === $exactHourKnown ? $factsStartHour->add(new \DateInterval('PT1H')) : null)
                         ->setAlertNumber($this->faker->randomDigit())
                 )
                 ->addObject(
-                    (new FactsObject())
+                    (new MultimediaObject())
                         ->setLabel('Téléphone mobile')
                         ->setBrand('Apple')
                         ->setModel($this->faker->randomElement(['Iphone', 'Iphone 13', 'Iphone 14']))
                         ->setOperator($this->faker->randomElement(['Orange', 'SFR', 'Bouygues', 'Free']))
-                        ->setImei(1234567890)
+                        ->setSerialNumber(1234567890)
                         ->setPhoneNumber($this->faker->mobileNumber)
                         ->setAmount($this->faker->numberBetween(500, 2000))
                 )
                 ->addObject(
-                    (new FactsObject())
+                    (new MultimediaObject())
                         ->setLabel('Téléphone mobile')
                         ->setBrand('Samsung')
                         ->setModel($this->faker->randomElement(['S20', 'S21', 'S22', 'S23']))
                         ->setOperator($this->faker->randomElement(['Orange', 'SFR', 'Bouygues', 'Free']))
-                        ->setImei(987654321)
+                        ->setSerialNumber(987654321)
                         ->setPhoneNumber($this->faker->mobileNumber)
                         ->setAmount($this->faker->numberBetween(500, 2000))
                 )
@@ -201,6 +241,22 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                     $manager->getRepository(User::class)->findOneBy(['number' => $agentNumber]) :
                     null
                 );
+
+            if ($this->faker->boolean(30)) {
+                $complaint->addObject(
+                    (new AdministrativeDocument())
+                        ->setType('Permis de conduire')
+                );
+            }
+
+            if ($this->faker->boolean(30)) {
+                $complaint->addObject(
+                    (new PaymentMethod())
+                        ->setType('Carte Bancaire')
+                        ->setDescription($this->faker->randomElement(['Visa principale', 'Mastercard']))
+                        ->setBank($this->faker->randomElement(['Crédit Agricole', 'Caisse d\'épargne', 'LCL']))
+                );
+            }
 
             $manager->persist($complaint);
         }

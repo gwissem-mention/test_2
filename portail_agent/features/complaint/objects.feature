@@ -26,22 +26,56 @@ Feature:
         And I should see the key "pel.additional.informations" translated
         And I should see the key "pel.stolen.objects" translated
         And I should see the key "pel.object.label" translated
-        And the "facts_object_label" field should contain "Téléphone mobile"
+        And the "multimedia_object_label" field should contain "Téléphone mobile"
         And I should see the key "pel.object.brand" translated
-        And the "facts_object_brand" field should contain "Apple"
+        And the "multimedia_object_brand" field should contain "Apple"
         And I should see the key "pel.object.estimated.amount" translated
-        And the "facts_object_amount" field should contain "999"
+        And the "multimedia_object_amount" field should contain "999"
         And I should see the key "pel.mobile.imei" translated
-        And the "facts_object_imei" field should contain "1234567890"
+        And the "multimedia_object_serialNumber" field should contain "1234567890"
         And I should see the key "pel.object.model" translated
-        And the "facts_object_model" field should contain "Iphone 13"
+        And the "multimedia_object_model" field should contain "Iphone 13"
         And I should see the key "pel.mobile.operator" translated
-        And the "facts_object_operator" field should contain "Orange"
+        And the "multimedia_object_operator" field should contain "Orange"
         And I should see the key "pel.phone.number.line" translated
-        And the "facts_object_phoneNumber" field should contain "06 12 34 56 67"
+        And the "multimedia_object_phoneNumber" field should contain "06 12 34 56 67"
+#        And I should see the key "pel.phone.sim.number" translated
+#        And the "multimedia_object_simNumber" field should contain "1234567809"
+#        And I should see the key "pel.object.opposition" translated
+#        And the "multimedia_object_opposition" field should contain "Oui"
+#        And I should see the key "pel.object.thief.from.vehicle" translated
+#        And the "multimedia_object_thiefFromVehicle" field should contain "Non"
+        And the "payment_method_type" field should contain "Carte Bancaire VISA"
+        And I should see the key "pel.object.description" translated
+        And the "payment_method_description" field should contain "Visa principale"
+        And I should see the key "pel.object.bank" translated
+        And the "payment_method_bank" field should contain "LCL"
+#        And I should see the key "pel.object.card.type" translated
+#        And the "payment_method_cardType" field should contain "Mastercard"
+#        And I should see the key "pel.object.currency" translated
+#        And the "payment_method_currency" field should contain "EURO"
+#        And I should see the key "pel.object.bank" translated
+#        And the "payment_method_bank" field should contain "Caisse d'épargne"
+#        And I should see the key "pel.object.opposition" translated
+#        And the "payment_method_opposition" field should contain "Non"
+        And the "administrative_document_type" field should contain "Permis de conduire"
+#        And I should see the key "pel.object.description" translated
+#        And the "administrative_document_description" field should contain "Permis de conduire récent"
+#        And I should see the key "pel.object.number" translated
+#        And the "administrative_document_number" field should contain "1234567890"
+#        And I should see the key "pel.object.issuing.country" translated
+#        And the "administrative_document_issuingCountry" field should contain "France"
+#        And I should see the key "pel.object.delivery.date" translated
+#        And the "administrative_document_deliveryDate" field should contain "2022-06-20"
+#        And I should see the key "pel.object.delivery.authority" translated
+#        And the "administrative_document_authority" field should contain "Préfecture de Paris"
+        And I should see the key "pel.object.estimated.amount" translated
+        And the "administrative_document_amount" field should contain ""
+#        And I should see the key "pel.object.thief.from.vehicle" translated
+#        And the "administrative_document_thiefFromVehicle" field should contain "Non"
         And I should see the key "pel.total.objects.concerned" translated
         And I should see the key "pel.there.is.a.total.of" translated
-        And the "span#objects_number" element should contain "2"
+        And the "span#objects_number" element should contain "4"
         And I should see the key "pel.for.a.total.amount.of" translated
         And I should see "2 328 €"
 

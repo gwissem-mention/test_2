@@ -13,38 +13,13 @@
             {{ 'pel.stolen.objects'|trans }}
         </legend>
         {% for form in object_forms %}
-            {{ form_start(form) }}
-                <div class="row mt-3">
-                    <div class="col-12">
-                        {{ form_label(form.label) }} {{ loop.index }}
-                        {{ form_widget(form.label) }}
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-6">
-                        {{ form_row(form.brand) }}
-                    </div>
-                    <div class="col-6">
-                        {{ form_row(form.amount) }}
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-6">
-                        {{ form_row(form.imei) }}
-                    </div>
-                    <div class="col-6">
-                        {{ form_row(form.model) }}
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-6">
-                        {{ form_row(form.operator) }}
-                    </div>
-                    <div class="col-6">
-                        {{ form_row(form.phoneNumber) }}
-                    </div>
-                </div>
-            {{ form_end(form) }}
+            {% if form.vars.name is same as('multimedia_object') %}
+                {{ include('pages/complaint/forms/multimedia_object_form.html.twig', {'form' : form} ) }}
+            {% elseif form.vars.name is same as('administrative_document') %}
+                {{ include('pages/complaint/forms/administrative_document_form.html.twig', {'form' : form} ) }}
+            {% elseif form.vars.name is same as('payment_method') %}
+                {{ include('pages/complaint/forms/payment_method_form.html.twig', {'form' : form} ) }}
+            {% endif %}
             {% if loop.index >= 1 and loop.index < loop.length %}
                 <hr class="hr-object">
             {% endif %}

@@ -138,25 +138,31 @@ export default class extends Controller {
         }
     }
 
-    public send(): void {
-        const modalElement: Element | null = document.getElementById("modal-complaint-send-to-lrp");
+    // Must be ignored because we can't type url here.
+    // @ts-ignore
+    public send({params: {url}}): void {
+        if (url) {
+            location.href = url;
 
-        if (modalElement) {
-            const modal: any = Modal.getInstance(modalElement);
+            const modalElement: Element | null = document.getElementById("modal-complaint-send-to-lrp");
 
-            if (modal) {
-                modal.hide();
-                modal.dispose();
+            if (modalElement) {
+                const modal: Modal | null = Modal.getInstance(modalElement);
+
+                if (modal) {
+                    modal.hide();
+                    modal.dispose();
+                }
             }
-        }
 
-        // Must be ignored because in Bootstrap types, Toast element has string | Element type
-        // however we need here to type it as Toast.
-        // @ts-ignore
-        const toast: Toast = new Toast(document.getElementById("toast-validation-send-to-lrp"));
+            // Must be ignored because in Bootstrap types, Toast element has string | Element type
+            // however we need here to type it as Toast.
+            // @ts-ignore
+            const toast: Toast = new Toast(document.getElementById("toast-validation-send-to-lrp"));
 
-        if (toast) {
-            toast.show();
+            if (toast) {
+                toast.show();
+            }
         }
     }
 

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Behat;
 
-use App\Generator\GeneratorInterface;
+use App\Generator\ComplaintNumber\ComplaintNumberGeneratorInterface;
 use Behat\Behat\Hook\Scope\AfterScenarioScope;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\Mink\Driver\Selenium2Driver;
@@ -26,7 +26,7 @@ final class BaseContext extends MinkContext
 
     public function __construct(
         private readonly TranslatorInterface $translator,
-        private readonly GeneratorInterface $declarationNumberGenerator
+        private readonly ComplaintNumberGeneratorInterface $complaintNumberGenerator
     ) {
     }
 
@@ -379,7 +379,7 @@ final class BaseContext extends MinkContext
     public function IFollowTheDeclarationNumber(int $declarationNumber): void
     {
         $this->retryStep(function () use ($declarationNumber) {
-            $this->clickLink($this->declarationNumberGenerator->generate($declarationNumber));
+            $this->clickLink($this->complaintNumberGenerator->generate($declarationNumber));
         });
     }
 

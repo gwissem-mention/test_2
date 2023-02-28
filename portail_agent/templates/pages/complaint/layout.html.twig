@@ -161,7 +161,7 @@
                     {% endblock %}
                     {% block footer %}
                         <button type="button" class="btn btn-outline-primary btn--modal" data-bs-dismiss="modal" id="complaint-send-to-lrp-button-back">{{ 'pel.back'|trans }}</button>
-                        <button type="button" class="btn btn-success btn--modal" data-controller="complaint" data-action="complaint#send" data-complaint-url-param="#">{{ 'pel.validate.the.sending.to.the.lrp'|trans }}</button>
+                        <button type="button" class="btn btn-success btn--modal" data-controller="complaint" data-action="complaint#send" data-complaint-url-param="{{ path('complaint_xml', {id:complaint.id}) }}">{{ 'pel.validate.the.sending.to.the.lrp'|trans }}</button>
                     {% endblock %}
                 {% endembed %}
             {% endif %}

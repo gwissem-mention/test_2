@@ -2,19 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Entity;
+namespace App\Entity\FactsObjects;
 
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
-class FactsObject
+class MultimediaObject extends AbstractObject
 {
-    use AlertTrait;
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
-
     #[ORM\Column(length: 255)]
     private ?string $label = null;
 
@@ -27,23 +21,17 @@ class FactsObject
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $operator = null;
 
-    #[ORM\ManyToOne(inversedBy: 'objects')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Complaint $complaint = null;
+//    #[ORM\Column(nullable: true)]
+//    private ?bool $opposition = null;
+
+//    #[ORM\Column(length: 255, nullable: true)]
+//    private ?string $simNumber = null;
 
     #[ORM\Column(nullable: true)]
-    private ?float $amount = null;
-
-    #[ORM\Column(nullable: true)]
-    private ?int $imei = null;
+    private ?int $serialNumber = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $phoneNumber = null;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     public function getLabel(): ?string
     {
@@ -93,38 +81,14 @@ class FactsObject
         return $this;
     }
 
-    public function getComplaint(): ?Complaint
+    public function getSerialNumber(): ?int
     {
-        return $this->complaint;
+        return $this->serialNumber;
     }
 
-    public function setComplaint(?Complaint $complaint): self
+    public function setSerialNumber(?int $serialNumber): self
     {
-        $this->complaint = $complaint;
-
-        return $this;
-    }
-
-    public function getAmount(): ?float
-    {
-        return $this->amount;
-    }
-
-    public function setAmount(?float $amount): self
-    {
-        $this->amount = $amount;
-
-        return $this;
-    }
-
-    public function getImei(): ?int
-    {
-        return $this->imei;
-    }
-
-    public function setImei(?int $imei): self
-    {
-        $this->imei = $imei;
+        $this->serialNumber = $serialNumber;
 
         return $this;
     }

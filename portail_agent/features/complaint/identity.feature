@@ -36,7 +36,7 @@ Feature:
         And the "identity_birthCity" field should contain "Paris"
         And I should see the key "pel.declarant.contact.information" translated
         And I should see the key "pel.phone.number" translated
-        And the "identity_phone" field should contain "06 12 34 45 57"
+        And the "identity_mobilePhone" field should contain "06 12 34 45 57"
         And I should see the key "pel.email" translated
         And the "identity_email" field should contain "jean.dupont@gmail.com"
         And I should see the key "pel.sms.notification" translated

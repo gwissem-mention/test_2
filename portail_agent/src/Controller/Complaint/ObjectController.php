@@ -5,8 +5,13 @@ declare(strict_types=1);
 namespace App\Controller\Complaint;
 
 use App\Entity\Complaint;
+use App\Entity\FactsObjects\AdministrativeDocument;
+use App\Entity\FactsObjects\MultimediaObject;
+use App\Entity\FactsObjects\PaymentMethod;
 use App\Form\Complaint\AssignType;
-use App\Form\Complaint\FactsObjectType;
+use App\Form\Complaint\FactsObjects\AdministrativeDocumentType;
+use App\Form\Complaint\FactsObjects\MultimediaObjectType;
+use App\Form\Complaint\FactsObjects\PaymentMethodType;
 use App\Form\Complaint\RejectType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,7 +24,17 @@ class ObjectController extends AbstractController
     {
         $objectForms = [];
         foreach ($complaint->getObjects() as $object) {
-            $objectForms[] = $this->createForm(FactsObjectType::class, $object)->createView();
+            switch (true) {
+                case $object instanceof AdministrativeDocument:
+                    $objectForms[] = $this->createForm(AdministrativeDocumentType::class, $object)->createView();
+                    break;
+                case $object instanceof MultimediaObject:
+                    $objectForms[] = $this->createForm(MultimediaObjectType::class, $object)->createView();
+                    break;
+                case $object instanceof PaymentMethod:
+                    $objectForms[] = $this->createForm(PaymentMethodType::class, $object)->createView();
+                    break;
+            }
         }
 
         return $this->render('pages/complaint/objects.html.twig', [

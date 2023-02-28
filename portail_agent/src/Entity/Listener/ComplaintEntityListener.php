@@ -4,14 +4,14 @@ namespace App\Entity\Listener;
 
 use App\Entity\Complaint;
 use App\Entity\ComplaintCount;
-use App\Generator\GeneratorInterface;
+use App\Generator\ComplaintNumber\ComplaintNumberGeneratorInterface;
 use App\Repository\ComplaintCountRepository;
 use Doctrine\DBAL\LockMode;
 use Doctrine\ORM\EntityManagerInterface;
 
 class ComplaintEntityListener
 {
-    public function __construct(private readonly EntityManagerInterface $entityManager, private readonly ComplaintCountRepository $complaintCountRepository, private readonly GeneratorInterface $declarationNumberGenerator)
+    public function __construct(private readonly EntityManagerInterface $entityManager, private readonly ComplaintCountRepository $complaintCountRepository, private readonly ComplaintNumberGeneratorInterface $complaintNumberGenerator)
     {
     }
 
@@ -32,7 +32,7 @@ class ComplaintEntityListener
             $this->entityManager->commit();
 
             /** @var string $declarationNumber */
-            $declarationNumber = $this->declarationNumberGenerator->generate($complaintCount->getCount());
+            $declarationNumber = $this->complaintNumberGenerator->generate($complaintCount->getCount());
             $complaint->setDeclarationNumber($declarationNumber);
         }
     }

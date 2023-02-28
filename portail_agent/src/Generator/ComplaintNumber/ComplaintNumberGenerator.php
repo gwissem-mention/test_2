@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Generator;
+namespace App\Generator\ComplaintNumber;
 
-class DeclarationNumberGenerator implements GeneratorInterface
+class ComplaintNumberGenerator implements ComplaintNumberGeneratorInterface
 {
     public function generate(int $index): string
     {
