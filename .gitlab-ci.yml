@@ -554,7 +554,7 @@ agent-e2e:
         - make APP_ENV=${APP_ENV} db-ci-setup
         - make APP_ENV=${APP_ENV} db-ci-load
         - make APP_ENV=${APP_ENV} referential-create
-        - make APP_ENV=${APP_ENV} referential-load
+        - make APP_ENV=${APP_ENV} referential-ci-load
         - make e2e
     services:
         - name: postgres:13-alpine

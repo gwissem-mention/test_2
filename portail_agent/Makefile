@@ -102,6 +102,9 @@ db-ci-setup:
 	make db-create-extensions
 	@$(CONSOLE) doctrine:schema:update --env=$(APP_ENV) --force --em=default
 
+db-migration-gen:
+	@$(CONSOLE) make:migration
+
 db-migrate:
 	@$(eval APP_ENV ?=)
 	@$(CONSOLE) doctrine:migrations:migrate -n --allow-no-migration --env=$(APP_ENV) --em=default

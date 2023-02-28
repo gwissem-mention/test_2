@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Entity\FactsObjects\AbstractObject;
 use App\Repository\ComplaintRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -32,10 +33,40 @@ class Complaint
     private ?int $id = null;
 
     #[ORM\Column]
+    private ?bool $test = null;
+//
+//    #[ORM\Column]
+//    private ?\DateTimeImmutable $start = null;
+//
+//    #[ORM\Column]
+//    private ?\DateTimeImmutable $finish = null;
+//
+//    #[ORM\Column(length: 255)]
+//    private ?string $declarantIp = null;
+//
+//    #[ORM\Column]
+//    private ?int $TcHome = null;
+//
+//    #[ORM\Column]
+//    private ?int $TcFacts = null;
+//
+//    #[ORM\Column]
+//    private ?int $unitCodeTcFacts = null;
+
+    #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
+
+//    #[ORM\Column]
+//    private ?bool $claimsLegalAction = null;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $appointmentDate = null;
+
+//    #[ORM\Column]
+//    private ?string $contactWindow = null;
+//
+//    #[ORM\Column]
+//    private ?string $contactPeriod = null;
 
     #[ORM\Column(length: 255)]
     private ?string $status = null;
@@ -53,13 +84,6 @@ class Complaint
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?Facts $facts = null;
-
-    /** @var Collection<int, FactsObject> */
-    #[ORM\OneToMany(mappedBy: 'complaint', targetEntity: FactsObject::class, cascade: [
-        'persist',
-        'remove',
-    ], orphanRemoval: true)]
-    private Collection $objects;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
@@ -85,6 +109,13 @@ class Complaint
     ], orphanRemoval: true)]
     #[ORM\OrderBy(['publishedAt' => 'ASC'])]
     private Collection $comments;
+
+    /** @var Collection<int, AbstractObject> */
+    #[ORM\OneToMany(mappedBy: 'complaint', targetEntity: AbstractObject::class, cascade: [
+        'persist',
+        'remove',
+    ], orphanRemoval: true)]
+    private Collection $objects;
 
     #[ORM\Column(length: 255)]
     private ?string $unitAssigned = null;
@@ -180,36 +211,6 @@ class Complaint
     public function setFacts(Facts $facts): self
     {
         $this->facts = $facts;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, FactsObject>
-     */
-    public function getObjects(): Collection
-    {
-        return $this->objects;
-    }
-
-    public function addObject(FactsObject $object): self
-    {
-        if (!$this->objects->contains($object)) {
-            $this->objects->add($object);
-            $object->setComplaint($this);
-        }
-
-        return $this;
-    }
-
-    public function removeObject(FactsObject $object): self
-    {
-        if ($this->objects->removeElement($object)) {
-            // set the owning side to null (unless already changed)
-            if ($object->getComplaint() === $this) {
-                $object->setComplaint(null);
-            }
-        }
 
         return $this;
     }
@@ -312,6 +313,48 @@ class Complaint
     public function setUnitAssigned(string $unitAssigned): self
     {
         $this->unitAssigned = $unitAssigned;
+
+        return $this;
+    }
+
+    public function isTest(): ?bool
+    {
+        return $this->test;
+    }
+
+    public function setTest(?bool $test): self
+    {
+        $this->test = $test;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, AbstractObject>
+     */
+    public function getObjects(): Collection
+    {
+        return $this->objects;
+    }
+
+    public function addObject(AbstractObject $abstractObject): self
+    {
+        if (!$this->objects->contains($abstractObject)) {
+            $this->objects->add($abstractObject);
+            $abstractObject->setComplaint($this);
+        }
+
+        return $this;
+    }
+
+    public function removeObject(AbstractObject $abstractObject): self
+    {
+        if ($this->objects->removeElement($abstractObject)) {
+            // set the owning side to null (unless already changed)
+            if ($abstractObject->getComplaint() === $this) {
+                $abstractObject->setComplaint(null);
+            }
+        }
 
         return $this;
     }

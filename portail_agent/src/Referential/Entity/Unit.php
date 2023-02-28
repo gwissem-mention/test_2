@@ -19,6 +19,9 @@ class Unit
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $email;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $homeDepartmentEmail;
+
     #[ORM\Column(length: 255, unique: true)]
     private string $code;
 
@@ -32,6 +35,9 @@ class Unit
     private ?string $address;
 
     #[ORM\Column(length: 255, nullable: true)]
+    private ?string $department;
+
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $phone;
 
     #[ORM\Column(length: 255, nullable: true, enumType: Institution::class)]
@@ -39,18 +45,22 @@ class Unit
 
     public function __construct(
         ?string $email,
+        ?string $homeDepartmentEmail,
         string $code,
         string $name,
         string $shortName,
         ?string $address,
+        ?string $department,
         ?string $phone,
         ?Institution $institutionCode
     ) {
         $this->email = $email;
+        $this->homeDepartmentEmail = $homeDepartmentEmail;
         $this->code = $code;
         $this->name = $name;
         $this->shortName = $shortName;
         $this->address = $address;
+        $this->department = $department;
         $this->phone = $phone;
         $this->institutionCode = $institutionCode;
     }
@@ -140,6 +150,30 @@ class Unit
     public function setShortName(string $shortName): self
     {
         $this->shortName = $shortName;
+
+        return $this;
+    }
+
+    public function getHomeDepartmentEmail(): ?string
+    {
+        return $this->homeDepartmentEmail;
+    }
+
+    public function setHomeDepartmentEmail(?string $homeDepartmentEmail): self
+    {
+        $this->homeDepartmentEmail = $homeDepartmentEmail;
+
+        return $this;
+    }
+
+    public function getDepartment(): ?string
+    {
+        return $this->department;
+    }
+
+    public function setDepartment(?string $department): self
+    {
+        $this->department = $department;
 
         return $this;
     }

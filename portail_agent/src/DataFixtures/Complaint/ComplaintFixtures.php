@@ -9,7 +9,9 @@ use App\Entity\AdditionalInformation;
 use App\Entity\Comment;
 use App\Entity\Complaint;
 use App\Entity\Facts;
-use App\Entity\FactsObject;
+use App\Entity\FactsObjects\AdministrativeDocument;
+use App\Entity\FactsObjects\MultimediaObject;
+use App\Entity\FactsObjects\PaymentMethod;
 use App\Entity\Identity;
 use App\Entity\User;
 use App\Factory\NotificationFactory;
@@ -112,6 +114,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
     private function getGenericComplaint(): Complaint
     {
         return (new Complaint())
+            ->setTest(true)
             ->setCreatedAt(new \DateTimeImmutable('2022-12-01'))
             ->setAppointmentDate(new \DateTimeImmutable('2022-12-03'))
             ->setStatus(Complaint::STATUS_ASSIGNMENT_PENDING)
@@ -126,12 +129,22 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                     ->setBirthday(new \DateTimeImmutable('1967-03-07'))
                     ->setBirthCountry('France')
                     ->setNationality('Française')
-                    ->setBirthDepartment('75')
+                    ->setBirthDepartment('Paris')
+                    ->setBirthDepartmentNumber(75)
                     ->setBirthCity('Paris')
+                    ->setBirthPostalCode('75000')
+                    ->setBirthInseeCode('75056')
                     ->setAddress('15 rue PAIRA, Meudon, 92190')
+                    ->setAddressStreetNumber('15')
+                    ->setAddressStreetType('Rue')
+                    ->setAddressStreetName('PAIRA')
                     ->setAddressCity('Meudon')
+                    ->setAddressInseeCode('92048')
                     ->setAddressPostcode('92190')
-                    ->setPhone('06 12 34 45 57')
+                    ->setAddressDepartment('Hauts-de-Seine')
+                    ->setAddressDepartmentNumber(92)
+                    ->setAddressCountry('France')
+                    ->setMobilePhone('06 12 34 45 57')
                     ->setEmail('jean.dupont@gmail.com')
                     ->setJob('Boulanger')
                     ->setAlertNumber(3)
@@ -139,11 +152,19 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
             ->setFacts(
                 (new Facts())
                     ->setNatures([Facts::NATURE_ROBBERY, Facts::NATURE_DEGRADATION])
+                    ->setDescription('Le vol à eu lieu à mon domicile')
                     ->setExactDateKnown(true)
                     ->setStartDate(new \DateTimeImmutable('2022-12-01'))
+                    ->setExactPlaceUnknown(false)
                     ->setPlace('Restaurant')
                     ->setStartAddress('25 Avenue Georges Pompidou, Lyon, 69003')
                     ->setEndAddress('Place Charles Hernu, Villeurbanne, 69100')
+                    ->setCity('Lyon')
+                    ->setPostalCode('69003')
+                    ->setInseeCode('69123')
+                    ->setDepartment('Rhône')
+                    ->setDepartmentNumber(69)
+                    ->setCountry('France')
                     ->setExactHourKnown(Facts::EXACT_HOUR_KNOWN_NO)
                     ->setStartHour(new \DateTimeImmutable('09:00'))
                     ->setEndHour(new \DateTimeImmutable('10:00'))
@@ -153,24 +174,34 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                     )
             )
             ->addObject(
-                (new FactsObject())
+                (new MultimediaObject())
                     ->setLabel('Téléphone mobile')
                     ->setBrand('Apple')
                     ->setModel('iPhone 13')
                     ->setOperator('Orange')
-                    ->setImei(1234567890)
+                    ->setSerialNumber(1234567890)
                     ->setPhoneNumber('06 12 34 56 67')
                     ->setAmount(999)
             )
             ->addObject(
-                (new FactsObject())
+                (new MultimediaObject())
                     ->setLabel('Téléphone mobile')
                     ->setBrand('Apple')
                     ->setModel('iPhone 14 Pro')
                     ->setOperator('SFR')
-                    ->setImei(987654321)
+                    ->setSerialNumber(987654321)
                     ->setPhoneNumber('06 21 43 65 87')
                     ->setAmount(1329)
+            )
+            ->addObject(
+                (new AdministrativeDocument())
+                    ->setType('Permis de conduire')
+            )
+            ->addObject(
+                (new PaymentMethod())
+                    ->setDescription('Visa principale')
+                    ->setType('Carte Bancaire VISA')
+                    ->setBank('LCL')
             )
             ->setAdditionalInformation(
                 (new AdditionalInformation())

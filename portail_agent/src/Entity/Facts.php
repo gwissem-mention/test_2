@@ -30,6 +30,12 @@ class Facts
     private ?array $natures = null;
 
     #[ORM\Column(length: 255)]
+    private ?string $description = null;
+
+    #[ORM\Column]
+    private ?bool $exactPlaceUnknown = null;
+
+    #[ORM\Column(length: 255)]
     private ?string $place = null;
 
     #[ORM\Column]
@@ -47,6 +53,23 @@ class Facts
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $endAddress = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $country = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $department = null;
+
+    #[ORM\Column]
+    private ?int $departmentNumber = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $city = null;
+    #[ORM\Column(length: 255)]
+    private ?string $postalCode = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $inseeCode = null;
+
     #[ORM\Column]
     private ?int $exactHourKnown = null;
 
@@ -58,6 +81,24 @@ class Facts
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $addressAdditionalInformation = null;
+
+//    #[ORM\Column]
+//    private ?bool $noOrientation = null;
+//
+//    #[ORM\Column(length: 255)]
+//    private ?string $orientation = null;
+
+//    #[ORM\Column]
+//    private ?bool $physicalPrejudice = null;
+//
+//    #[ORM\Column(length: 255)]
+//    private ?string $physicalPrejudiceDescription = null;
+//
+//    #[ORM\Column(length: 255)]
+//    private ?bool $otherPrejudice = null;
+//
+//    #[ORM\Column(length: 255)]
+//    private ?string $otherPrejudiceDescription = null;
 
     public function getId(): ?int
     {
@@ -198,6 +239,102 @@ class Facts
     public function setExactHourKnown(?int $exactHourKnown): self
     {
         $this->exactHourKnown = $exactHourKnown;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getCountry(): ?string
+    {
+        return $this->country;
+    }
+
+    public function setCountry(?string $country): self
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    public function getDepartment(): ?string
+    {
+        return $this->department;
+    }
+
+    public function setDepartment(?string $department): self
+    {
+        $this->department = $department;
+
+        return $this;
+    }
+
+    public function getDepartmentNumber(): ?int
+    {
+        return $this->departmentNumber;
+    }
+
+    public function setDepartmentNumber(?int $departmentNumber): self
+    {
+        $this->departmentNumber = $departmentNumber;
+
+        return $this;
+    }
+
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    public function setCity(?string $city): self
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    public function getPostalCode(): ?string
+    {
+        return $this->postalCode;
+    }
+
+    public function setPostalCode(?string $postalCode): self
+    {
+        $this->postalCode = $postalCode;
+
+        return $this;
+    }
+
+    public function getInseeCode(): ?string
+    {
+        return $this->inseeCode;
+    }
+
+    public function setInseeCode(?string $inseeCode): self
+    {
+        $this->inseeCode = $inseeCode;
+
+        return $this;
+    }
+
+    public function isExactPlaceUnknown(): ?bool
+    {
+        return $this->exactPlaceUnknown;
+    }
+
+    public function setExactPlaceUnknown(?bool $exactPlaceUnknown): self
+    {
+        $this->exactPlaceUnknown = $exactPlaceUnknown;
 
         return $this;
     }

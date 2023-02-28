@@ -21,10 +21,12 @@ class UnitMockFixtures extends Fixture implements FixtureGroupInterface
     {
         $unit = (new Unit(
             null,
+            null,
             '3002739',
             'Brigade de proximité de Voiron',
             'Brigade de proximité de Voiron',
             'Voiron',
+            '75',
             '630',
             Institution::GN
         ));
@@ -33,10 +35,12 @@ class UnitMockFixtures extends Fixture implements FixtureGroupInterface
 
         $unit = (new Unit(
             null,
+            null,
             '103131',
             'CSP VOIRON/SVP/UPS/BRIGADE DE JOUR',
             'CSP VOIRON/SVP/UPS/BRIGADE DE JOUR',
             'Voiron',
+            '75',
             '630',
             Institution::PN
         ));

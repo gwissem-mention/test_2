@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Generator;
+namespace App\Generator\ComplaintNumber;
 
-interface GeneratorInterface
+interface ComplaintNumberGeneratorInterface
 {
     public function generate(int $index): mixed;
 }

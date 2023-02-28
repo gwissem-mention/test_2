@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Twig;
 
-use App\Entity\FactsObject;
+use App\Entity\FactsObjects\AbstractObject;
+use App\Entity\FactsObjects\AdministrativeDocument;
+use App\Entity\FactsObjects\MultimediaObject;
 use Doctrine\Common\Collections\Collection;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
@@ -17,11 +19,12 @@ class ObjectsExtension extends AbstractExtension
             new TwigFilter('objects_quantity', [$this, 'getQuantity']),
             new TwigFilter('objects_total_amount', [$this, 'getTotalAmount']),
             new TwigFilter('objects_alerts', [$this, 'getAlerts']),
+            new TwigFilter('object_type', [$this, 'getType']),
         ];
     }
 
     /**
-     * @param Collection<int, FactsObject> $objects
+     * @param Collection<int, AdministrativeDocument|MultimediaObject> $objects
      */
     public function getQuantity(Collection $objects): int
     {
@@ -29,7 +32,7 @@ class ObjectsExtension extends AbstractExtension
     }
 
     /**
-     * @param Collection<int, FactsObject> $objects
+     * @param Collection<int, AdministrativeDocument|MultimediaObject> $objects
      */
     public function getTotalAmount(Collection $objects): float
     {
@@ -42,7 +45,7 @@ class ObjectsExtension extends AbstractExtension
     }
 
     /**
-     * @param Collection<int, FactsObject> $objects
+     * @param Collection<int, AdministrativeDocument|MultimediaObject> $objects
      */
     public function getAlerts(Collection $objects): int
     {
@@ -52,5 +55,10 @@ class ObjectsExtension extends AbstractExtension
         }
 
         return $alerts;
+    }
+
+    public function getType(AbstractObject $object): string
+    {
+        return get_class($object);
     }
 }

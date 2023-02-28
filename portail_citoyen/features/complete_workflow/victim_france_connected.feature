@@ -25,7 +25,7 @@ Feature:
         And I click the "label[for=facts_offenseDate_choiceHour_0]" element
         And I fill in "facts_offenseDate_hour" with "15:00"
         And I press "facts_submit"
-        Then I should be on "/porter-plainte/faits"
+        Then I should be on "/porter-plainte/objets"
         When I select "1" from "objects_objects_0_category"
         And I select "1" from "objects_objects_0_status"
         And I fill in "objects_objects_0_label" with "Object 1"

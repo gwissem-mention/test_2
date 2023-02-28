@@ -270,6 +270,10 @@
                 <source>pel.facts.witnesses.information.text</source>
                 <target>Veuillez indiquer, si vous le pouvez, les noms et les coordonnées du/des témoin(s)</target>
             </trans-unit>
+            <trans-unit id="pel.first.cheque.number">
+                <source>pel.first.cheque.number</source>
+                <target>Numéro du premier chèque</target>
+            </trans-unit>
             <trans-unit id="pel.firstname">
                 <source>pel.firstname</source>
                 <target>Prénom</target>
@@ -333,6 +337,10 @@
             <trans-unit id="pel.job">
                 <source>pel.job</source>
                 <target>Profession</target>
+            </trans-unit>
+            <trans-unit id="pel.last.cheque.number">
+                <source>pel.last.cheque.number</source>
+                <target>Numéro du dernier chèque</target>
             </trans-unit>
             <trans-unit id="pel.lastname">
                 <source>pel.lastname</source>
@@ -438,7 +446,19 @@
                 <source>pel.objects</source>
                 <target>{objects, plural, =0 {objet} one {objet} other {objets}}</target>
             </trans-unit>
-            <trans-unit id="pel.object.amount">
+            <trans-unit id="pel.object.bank">
+                <source>pel.object.bank</source>
+                <target>Banque</target>
+            </trans-unit>
+            <trans-unit id="pel.object.card.type">
+                <source>pel.object.card.type</source>
+                <target>Type de carte</target>
+            </trans-unit>
+            <trans-unit id="pel.object.currency">
+                <source>pel.object.currency</source>
+                <target>Devise</target>
+            </trans-unit>
+            <trans-unit id="pel.object.estimated.amount">
                 <source>pel.object.estimated.amount</source>
                 <target>Prix estimé</target>
             </trans-unit>
@@ -446,21 +466,49 @@
                 <source>pel.object.brand</source>
                 <target>Marque de l'objet</target>
             </trans-unit>
+            <trans-unit id="pel.object.delivery.authority">
+                <source>pel.object.delivery.authority</source>
+                <target>Autorité de délivrance</target>
+            </trans-unit>
+            <trans-unit id="pel.object.delivery.date">
+                <source>pel.object.delivery.date</source>
+                <target>Date de délivrance</target>
+            </trans-unit>
+            <trans-unit id="pel.object.description">
+                <source>pel.object.description</source>
+                <target>Description</target>
+            </trans-unit>
             <trans-unit id="pel.objects.description">
                 <source>pel.objects.description</source>
                 <target>Description des objets</target>
+            </trans-unit>
+            <trans-unit id="pel.object.issuing.country">
+                <source>pel.object.issuing.country</source>
+                <target>Pays de délivrance</target>
             </trans-unit>
             <trans-unit id="pel.object.label">
                 <source>pel.object.label</source>
                 <target>Objet N°</target>
             </trans-unit>
-            <trans-unit id="pel.observation.made">
-                <source>pel.observation.made</source>
-                <target>Est-ce que des constatations ou des relevés ont été effectués ?</target>
-            </trans-unit>
             <trans-unit id="pel.object.model">
                 <source>pel.object.model</source>
                 <target>Modèle de l'objet</target>
+            </trans-unit>
+            <trans-unit id="pel.object.number">
+                <source>pel.object.number</source>
+                <target>Numéro</target>
+            </trans-unit>
+            <trans-unit id="pel.object.opposition">
+                <source>pel.object.opposition</source>
+                <target>Opposition</target>
+            </trans-unit>
+            <trans-unit id="pel.object.thief.from.vehicle">
+                <source>pel.object.thief.from.vehicle</source>
+                <target>Volé dans un véhicule</target>
+            </trans-unit>
+            <trans-unit id="pel.observation.made">
+                <source>pel.observation.made</source>
+                <target>Est-ce que des constatations ou des relevés ont été effectués ?</target>
             </trans-unit>
             <trans-unit id="pel.of.infraction">
                 <source>pel.of.infraction</source>
@@ -473,6 +521,10 @@
             <trans-unit id="pel.phone.number">
                 <source>pel.phone.number</source>
                 <target>Numéro de téléphone</target>
+            </trans-unit>
+            <trans-unit id="pel.phone.sim.number">
+                <source>pel.phone.sim.number</source>
+                <target>Numéro de la carte SIM</target>
             </trans-unit>
             <trans-unit id="pel.photos.and.videos">
                 <source>pel.photos.and.videos</source>
@@ -665,6 +717,10 @@
             <trans-unit id="pel.validation.sending.complain.to.lrp">
                 <source>pel.validation.sending.complain.to.lrp</source>
                 <target>Validation de l'envoi de la plainte vers le LRP</target>
+            </trans-unit>
+            <trans-unit id="pel.cheque.number">
+                <source>pel.cheque.number</source>
+                <target>Numéro du chèque</target>
             </trans-unit>
             <trans-unit id="pel.complaint.validation.course.to.lrp">
                 <source>pel.complaint.validation.course.to.lrp</source>

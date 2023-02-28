@@ -26,6 +26,9 @@ class Identity
     #[ORM\Column(length: 255)]
     private ?int $declarantStatus = null;
 
+//    #[ORM\Column(length: 255, nullable: true)]
+//    private ?string $relationshipWithVictim = null;
+
     #[ORM\Column(length: 255)]
     private ?int $civility = null;
 
@@ -35,6 +38,12 @@ class Identity
     #[ORM\Column(length: 255)]
     private ?string $lastname = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $marriedName = null;
+//
+//    #[ORM\Column(length: 255)]
+//    private ?string $familyStatus = null;
+
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $birthday = null;
 
@@ -42,22 +51,58 @@ class Identity
     private ?string $birthCity = null;
 
     #[ORM\Column(length: 255)]
+    private ?string $birthPostalCode = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $birthInseeCode = null;
+
+    #[ORM\Column(length: 255)]
     private ?string $birthCountry = null;
 
     #[ORM\Column(length: 255)]
     private ?string $birthDepartment = null;
 
+    #[ORM\Column]
+    private ?int $birthDepartmentNumber = null;
+
     #[ORM\Column(length: 255)]
     private ?string $address = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $addressStreetNumber = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $addressStreetType = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $addressStreetName = null;
 
     #[ORM\Column(length: 255)]
     private ?string $addressCity = null;
 
     #[ORM\Column(length: 255)]
+    private ?string $addressInseeCode = null;
+
+    #[ORM\Column(length: 255)]
     private ?string $addressPostcode = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $phone = null;
+    private ?string $addressCountry = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $addressDepartment = null;
+
+    #[ORM\Column]
+    private ?int $addressDepartmentNumber = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $mobilePhone = null;
+//
+//    #[ORM\Column(length: 255)]
+//    private ?string $homePhone = null;
+//
+//    #[ORM\Column(length: 255)]
+//    private ?string $officePhone = null;
 
     #[ORM\Column(length: 255)]
     private ?string $email = null;
@@ -205,14 +250,14 @@ class Identity
         return $this;
     }
 
-    public function getPhone(): ?string
+    public function getMobilePhone(): ?string
     {
-        return $this->phone;
+        return $this->mobilePhone;
     }
 
-    public function setPhone(string $phone): self
+    public function setMobilePhone(string $mobilePhone): self
     {
-        $this->phone = $phone;
+        $this->mobilePhone = $mobilePhone;
 
         return $this;
     }
@@ -249,6 +294,138 @@ class Identity
     public function setJob(string $job): self
     {
         $this->job = $job;
+
+        return $this;
+    }
+
+    public function getMarriedName(): ?string
+    {
+        return $this->marriedName;
+    }
+
+    public function setMarriedName(?string $marriedName): self
+    {
+        $this->marriedName = $marriedName;
+
+        return $this;
+    }
+
+    public function getBirthPostalCode(): ?string
+    {
+        return $this->birthPostalCode;
+    }
+
+    public function setBirthPostalCode(?string $birthPostalCode): self
+    {
+        $this->birthPostalCode = $birthPostalCode;
+
+        return $this;
+    }
+
+    public function getBirthInseeCode(): ?string
+    {
+        return $this->birthInseeCode;
+    }
+
+    public function setBirthInseeCode(?string $birthInseeCode): self
+    {
+        $this->birthInseeCode = $birthInseeCode;
+
+        return $this;
+    }
+
+    public function getBirthDepartmentNumber(): ?int
+    {
+        return $this->birthDepartmentNumber;
+    }
+
+    public function setBirthDepartmentNumber(?int $birthDepartmentNumber): self
+    {
+        $this->birthDepartmentNumber = $birthDepartmentNumber;
+
+        return $this;
+    }
+
+    public function getAddressStreetNumber(): ?string
+    {
+        return $this->addressStreetNumber;
+    }
+
+    public function setAddressStreetNumber(?string $addressStreetNumber): self
+    {
+        $this->addressStreetNumber = $addressStreetNumber;
+
+        return $this;
+    }
+
+    public function getAddressStreetType(): ?string
+    {
+        return $this->addressStreetType;
+    }
+
+    public function setAddressStreetType(?string $addressStreetType): self
+    {
+        $this->addressStreetType = $addressStreetType;
+
+        return $this;
+    }
+
+    public function getAddressStreetName(): ?string
+    {
+        return $this->addressStreetName;
+    }
+
+    public function setAddressStreetName(?string $addressStreetName): self
+    {
+        $this->addressStreetName = $addressStreetName;
+
+        return $this;
+    }
+
+    public function getAddressInseeCode(): ?string
+    {
+        return $this->addressInseeCode;
+    }
+
+    public function setAddressInseeCode(?string $addressInseeCode): self
+    {
+        $this->addressInseeCode = $addressInseeCode;
+
+        return $this;
+    }
+
+    public function getAddressCountry(): ?string
+    {
+        return $this->addressCountry;
+    }
+
+    public function setAddressCountry(?string $addressCountry): self
+    {
+        $this->addressCountry = $addressCountry;
+
+        return $this;
+    }
+
+    public function getAddressDepartment(): ?string
+    {
+        return $this->addressDepartment;
+    }
+
+    public function setAddressDepartment(?string $addressDepartment): self
+    {
+        $this->addressDepartment = $addressDepartment;
+
+        return $this;
+    }
+
+    public function getAddressDepartmentNumber(): ?int
+    {
+        return $this->addressDepartmentNumber;
+    }
+
+    public function setAddressDepartmentNumber(?int $addressDepartmentNumber): self
+    {
+        $this->addressDepartmentNumber = $addressDepartmentNumber;
 
         return $this;
     }

@@ -31,7 +31,7 @@ parameters:
 			path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
 
 		-
-			message: "#^Parameter \\#1 \\$model of method App\\\\Entity\\\\FactsObject\\:\\:setModel\\(\\) expects string\\|null, mixed given\\.$#"
+			message: "#^Parameter \\#1 \\$model of method App\\\\Entity\\\\FactsObjects\\\\MultimediaObject\\:\\:setModel\\(\\) expects string\\|null, mixed given\\.$#"
 			count: 2
 			path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
 
@@ -41,9 +41,19 @@ parameters:
 			path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
 
 		-
-			message: "#^Parameter \\#1 \\$operator of method App\\\\Entity\\\\FactsObject\\:\\:setOperator\\(\\) expects string\\|null, mixed given\\.$#"
+			message: "#^Parameter \\#1 \\$operator of method App\\\\Entity\\\\FactsObjects\\\\MultimediaObject\\:\\:setOperator\\(\\) expects string\\|null, mixed given\\.$#"
 			count: 2
 			path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
+
+		-
+		    message: "#^Parameter \\#1 \\$description of method App\\\\Entity\\\\FactsObjects\\\\PaymentMethod\\:\\:setDescription\\(\\) expects string, mixed given\\.$#"
+		    count: 1
+		    path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
+
+		-
+		     message: "#^Parameter \\#1 \\$bank of method App\\\\Entity\\\\FactsObjects\\\\PaymentMethod\\:\\:setBank\\(\\) expects string\\|null, mixed given\\.$#"
+		     count: 1
+		     path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
 
 		-
 			message: "#^Parameter \\#1 \\$place of method App\\\\Entity\\\\Facts\\:\\:setPlace\\(\\) expects string, mixed given\\.$#"

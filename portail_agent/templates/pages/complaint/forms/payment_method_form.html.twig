@@ -1,0 +1,67 @@
+{{ form_start(form) }}
+    <div class="row mt-3">
+        <div class="col-12">
+            {{ form_label(form.type) }} {{ loop.index }}
+            {{ form_widget(form.type) }}
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-6">
+            {{ form_row(form.description) }}
+        </div>
+        <div class="col-6">
+            {{ form_row(form.bank) }}
+        </div>
+{#        {% if form.cardType.vars.data is not null %}#}
+{#            <div class="col-6">#}
+{#                {{ form_row(form.cardType) }}#}
+{#            </div>#}
+{#        {% endif %}#}
+    </div>
+{#    <div class="row mt-3">#}
+{#        <div class="col-6">#}
+{#            {{ form_row(form.currency) }}#}
+{#        </div>#}
+{#        {% if form.bank.vars.data is not null %}#}
+{#            <div class="col-6">#}
+{#                {{ form_row(form.bank) }}#}
+{#            </div>#}
+{#        {% endif %}#}
+{#    </div>#}
+{#    {% if form.number.vars.data is not null or form.opposition.vars.data is not null %}#}
+{#        <div class="row mt-3">#}
+{#            {% if form.number.vars.data is not null %}#}
+{#                <div class="col-6">#}
+{#                    {{ form_row(form.number) }}#}
+{#                </div>#}
+{#            {% endif %}#}
+{#            {% if form.opposition.vars.data is not null %}#}
+{#                <div class="col-6">#}
+{#                    {{ form_row(form.opposition) }}#}
+{#                </div>#}
+{#            {% endif %}#}
+{#        </div>#}
+{#    {% endif %}#}
+{#    {% if form.chequeNumber.vars.data is not null %}#}
+{#        <div class="row mt-3">#}
+{#            <div class="col-6">#}
+{#                {{ form_row(form.chequeNumber) }}#}
+{#            </div>#}
+{#        </div>#}
+{#    {% endif %}#}
+{#    {% if form.firstChequeNumber.vars.data is not null or form.lastChequeNumber.vars.data is not null %}#}
+{#        <div class="row mt-3">#}
+{#            {% if form.firstChequeNumber.vars.data is not null %}#}
+{#            <div class="col-6">#}
+{#                {{ form_row(form.firstChequeNumber) }}#}
+{#            </div>#}
+{#            {% endif %}#}
+{#            {% if form.lastChequeNumber.vars.data is not null %}#}
+{#            <div class="col-6">#}
+{#                {{ form_row(form.lastChequeNumber) }}#}
+{#            </div>#}
+{#            {% endif %}#}
+{#        </div>#}
+{#    {% endif %}#}
+    {{ include('pages/complaint/forms/_object_form.html.twig', {'form' : form} ) }}
+{{ form_end(form, {render_rest: false}) }}

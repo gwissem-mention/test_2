@@ -17,8 +17,10 @@ class UnitFileFixtures extends Fixture implements FixtureGroupInterface
     private const UNIT_NAME = 22;
     private const UNIT_SHORT_NAME = 20;
     private const UNIT_EMAIL = 29;
+    private const UNIT_EMAIL_HOME_DEPARTMENT = 38;
     private const UNIT_CODE = 0;
     private const UNIT_ADDRESS = 26;
+    private const UNIT_DEPARTMENT = 12;
     private const UNIT_CALL_NUMBER = 27;
     private const BATCH_SIZE = 20;
     private const LENGTH = 1500;
@@ -46,10 +48,12 @@ class UnitFileFixtures extends Fixture implements FixtureGroupInterface
                     if ($row > 1 && in_array($data[self::UNIT_INSTITUTION], ['1', '2'], true)) {
                         $unit = new Unit(
                             'NULL' === $data[self::UNIT_EMAIL] ? null : $data[self::UNIT_EMAIL],
+                            'NULL' === $data[self::UNIT_EMAIL_HOME_DEPARTMENT] ? null : $data[self::UNIT_EMAIL_HOME_DEPARTMENT],
                             $data[self::UNIT_CODE],
                             $data[self::UNIT_NAME],
                             $data[self::UNIT_SHORT_NAME],
                             'NULL' === $data[self::UNIT_ADDRESS] ? null : $data[self::UNIT_ADDRESS],
+                            'NULL' === $data[self::UNIT_DEPARTMENT] ? null : $data[self::UNIT_DEPARTMENT],
                             'NULL' === $data[self::UNIT_CALL_NUMBER] ? null : $data[self::UNIT_CALL_NUMBER],
                             '1' === $data[self::UNIT_INSTITUTION] ? Institution::GN : Institution::PN
                         );
