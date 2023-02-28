@@ -11,8 +11,13 @@ Feature:
         And I should see the key "pel.end.thanks" translated
         And I should see the key "pel.your.appointment" translated
         And I should see the key "pel.your.opinion" translated
-        And I should see 2 "p.smiley" element
         And I should see the key "pel.back.to.homepage" translated
+
+    @func
+    Scenario: I can click on the "Je donne mon avis" button
+        Given I am on "/fin"
+        When I follow "Je donne mon avis"
+        Then I should be on JeDonneMonAvis
 
     @func
     Scenario: I can click on the back to homepage button

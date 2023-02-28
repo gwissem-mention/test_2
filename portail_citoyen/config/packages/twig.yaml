@@ -3,6 +3,8 @@ twig:
     form_themes: ['forms/theme.html.twig']
     globals:
         fr_code: '%app.france_code%'
+        jedonnemonavis_id: '%app.jedonnemonavis_id%'
+        jedonnemonavis_key: '%app.jedonnemonavis_key%'
 
 when@test:
     twig:

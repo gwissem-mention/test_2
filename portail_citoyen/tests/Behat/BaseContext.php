@@ -14,6 +14,7 @@ use Behat\MinkExtension\Context\MinkContext;
 use FriendsOfBehat\SymfonyExtension\Driver\SymfonyDriver;
 use Psr\Container\ContainerInterface;
 use Symfony\Bundle\FrameworkBundle\Test\TestBrowserToken;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\Session\SessionFactoryInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -27,7 +28,8 @@ final class BaseContext extends MinkContext
         private readonly TranslatorInterface $translator,
         private readonly UserRepository $userRepository,
         private readonly SessionFactoryInterface $sessionFactory,
-        private readonly ContainerInterface $behatDriverContainer
+        private readonly ContainerInterface $behatDriverContainer,
+        private readonly ParameterBagInterface $parameterBag
     ) {
     }
 
@@ -383,6 +385,25 @@ final class BaseContext extends MinkContext
         }
 
         $driver->getClient()->followRedirect();
+    }
+
+    /**
+     * @Then /^(?:|I )should be on JeDonneMonAvis$/
+     */
+    public function assertJeDonneMonAvis(): void
+    {
+        /** @var string $jedonnemonavisId */
+        $jedonnemonavisId = $this->parameterBag->get('app.jedonnemonavis_id');
+        /** @var string $jedonnemonavisKey */
+        $jedonnemonavisKey = $this->parameterBag->get('app.jedonnemonavis_key');
+
+        $expectedUrl = sprintf('https://jedonnemonavis.numerique.gouv.fr/Demarches/%s?&view-mode=formulaire-avis&nd_source=button&key=%s', $jedonnemonavisId, $jedonnemonavisKey);
+
+        if ($expectedUrl === $this->getSession()->getCurrentUrl()) {
+            return;
+        }
+
+        throw new ExpectationException('Current URL is not correct', $this->getSession()->getDriver());
     }
 
     private function retryStep(
