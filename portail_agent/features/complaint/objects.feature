@@ -73,11 +73,21 @@ Feature:
         And the "administrative_document_amount" field should contain ""
 #        And I should see the key "pel.object.thief.from.vehicle" translated
 #        And the "administrative_document_thiefFromVehicle" field should contain "Non"
+        And I should see the key "pel.object.label" translated
+        And the "vehicle_label" field should contain "Voiture"
+        And I should see the key "pel.object.brand" translated
+        And the "vehicle_brand" field should contain "Citroën"
+        And I should see the key "pel.object.model" translated
+        And the "vehicle_model" field should contain "C3"
+        And I should see the key "pel.vehicle.registration.number" translated
+        And the "vehicle_registrationNumber" field should contain "AA-123-AA"
+        And I should see the key "pel.vehicle.registration.country" translated
+        And the "vehicle_registrationCountry" field should contain "France"
         And I should see the key "pel.total.objects.concerned" translated
         And I should see the key "pel.there.is.a.total.of" translated
         And the "span#objects_number" element should contain "4"
         And I should see the key "pel.for.a.total.amount.of" translated
-        And I should see "2 328 €"
+        And I should see "17 999 €"
 
     @func
     Scenario: I can click on the Go to facts button

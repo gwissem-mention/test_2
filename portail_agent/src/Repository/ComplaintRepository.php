@@ -8,6 +8,7 @@ use App\Entity\Complaint;
 use App\Entity\User;
 use App\Factory\DatatableFactory;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -93,5 +94,39 @@ class ComplaintRepository extends ServiceEntityRepository
         }
 
         return new Paginator(DatatableFactory::createQuery($qb, $order, $start, $length));
+    }
+
+    public function createNotifiableComplaintsQueryBuilder(): QueryBuilder
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.processingDeadline <= :now')
+            ->andWhere('c.deadlineNotified = :bool')
+            ->setParameter('now', new \DateTimeImmutable())
+            ->setParameter('bool', false)
+        ;
+    }
+
+    /**
+     * @return Complaint[]
+     */
+    public function getNotifiableComplaintsForProcessingDeadline(): array
+    {
+        /** @var Complaint[] $result */
+        $result = $this->createNotifiableComplaintsQueryBuilder()
+            ->getQuery()
+            ->getResult();
+
+        return $result;
+    }
+
+    public function countNotifiableComplaintsForProcessingDeadline(): int
+    {
+        /** @var int $result */
+        $result = $this->createNotifiableComplaintsQueryBuilder()
+            ->select('COUNT(c.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+
+        return $result;
     }
 }

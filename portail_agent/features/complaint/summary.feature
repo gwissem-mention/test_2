@@ -90,16 +90,15 @@ Feature:
         And I should see "Apple"
         And I should see "999 €"
         And I should see "Orange"
-        And I should see "Téléphone mobile"
-        And I should see "Iphone 14 Pro"
-        And I should see "Apple"
-        And I should see "1 329 €"
-        And I should see "SFR"
+        And I should see "Voiture"
+        And I should see "Citroën"
+        And I should see "C3"
+        And I should see "17 000 €"
         And I should see "Carte Bancaire VISA"
         And I should see "Visa principale"
         And I should see "LCL"
         And I should see "Permis de conduire"
-        And I should see "Vous avez ajouté 4 objets pour un montant total de 2 328 €"
+        And I should see "Vous avez ajouté 4 objets pour un montant total de 17 999 €"
         And I should see the key "pel.additional.informations" translated
         And I should see the key "pel.facts.witnesses" translated
         And I should see the key "pel.facts.witnesses.information.text" translated

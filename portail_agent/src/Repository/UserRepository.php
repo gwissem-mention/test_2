@@ -41,4 +41,27 @@ class UserRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+
+    /**
+     * @return array<int, User>
+     */
+    public function getSupervisorsByUnit(string $unit): array
+    {
+        $users = $this->createQueryBuilder('u')
+            ->andWhere('u.serviceCode = :unit')
+            ->setParameter('unit', $unit)
+            ->getQuery()
+            ->getResult()
+        ;
+
+        $result = [];
+        /** @var User[] $users */
+        foreach ($users as $user) {
+            if (in_array('ROLE_SUPERVISOR', $user->getRoles())) {
+                $result[] = $user;
+            }
+        }
+
+        return $result;
+    }
 }

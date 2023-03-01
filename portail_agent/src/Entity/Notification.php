@@ -31,11 +31,15 @@ class Notification
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
-    public function __construct(string $title, string $redirectionUrl)
+    #[ORM\Column]
+    private ?bool $urgent = null;
+
+    public function __construct(string $title, string $redirectionUrl, bool $urgent = false)
     {
         $this->createdAt = new \DateTimeImmutable();
         $this->title = $title;
         $this->redirectionUrl = $redirectionUrl;
+        $this->urgent = $urgent;
     }
 
     public function getId(): ?int
@@ -104,6 +108,18 @@ class Notification
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function isUrgent(): ?bool
+    {
+        return $this->urgent;
+    }
+
+    public function setUrgent(bool $urgent): self
+    {
+        $this->urgent = $urgent;
 
         return $this;
     }

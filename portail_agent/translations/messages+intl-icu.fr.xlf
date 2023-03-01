@@ -178,6 +178,10 @@
                 <source>pel.declaration.assigned.to</source>
                 <target>Déclaration attribuée à</target>
             </trans-unit>
+            <trans-unit id="pel.declaration.deadline.reminder">
+                <source>pel.declaration.deadline.reminder</source>
+                <target>La déclaration {declaration_number} arrive en date limite de traitement</target>
+            </trans-unit>
             <trans-unit id="pel.data.integration">
                 <source>pel.data.integration</source>
                 <target>Intégration des données</target>
@@ -638,13 +642,25 @@
                 <source>pel.the.declaration.has.been.refused</source>
                 <target>La déclaration a bien été refusée </target>
             </trans-unit>
-           <trans-unit id="pel.the.declaration.has.been.assigned.to">
+            <trans-unit id="pel.the.declaration.has.been.assigned.to">
                 <source>pel.the.declaration.has.been.assigned.to</source>
                 <target>La déclaration a été attribuée à</target>
             </trans-unit>
             <trans-unit id="pel.the.declaration.has.been.assigned.to.you">
                 <source>pel.the.declaration.has.been.assigned.to.you</source>
                 <target>La déclaration {declaration_number} vient de vous être attribuée</target>
+            </trans-unit>
+            <trans-unit id="pel.new.declaration.to.assign.with.violence">
+                <source>pel.new.declaration.to.assign.with.violence</source>
+                <target>La déclaration {declaration_number} est une urgence violences</target>
+            </trans-unit>
+            <trans-unit id="pel.new.declaration.to.assign.with.robbery.and.degradation">
+                <source>pel.new.declaration.to.assign.with.robbery.and.degradation</source>
+                <target>La déclaration {declaration_number} est une urgence PTS</target>
+            </trans-unit>
+            <trans-unit id="pel.new.declaration.to.assign.with.stolen.registered.vehicle">
+                <source>pel.new.declaration.to.assign.with.stolen.registered.vehicle</source>
+                <target>La déclaration {declaration_number} est une urgence vol de véhicule</target>
             </trans-unit>
             <trans-unit id="pel.there.is.a.total.of">
                 <source>pel.there.is.a.total.of</source>
@@ -721,6 +737,22 @@
             <trans-unit id="pel.cheque.number">
                 <source>pel.cheque.number</source>
                 <target>Numéro du chèque</target>
+            </trans-unit>
+            <trans-unit id="pel.vehicle.registration.number">
+                <source>pel.vehicle.registration.number</source>
+                <target>Numéro d'immatriculation</target>
+            </trans-unit>
+            <trans-unit id="pel.vehicle.registration.country">
+                <source>pel.vehicle.registration.country</source>
+                <target>Pays d'immatriculation</target>
+            </trans-unit>
+            <trans-unit id="pel.vehicle.insurance.company">
+                <source>pel.vehicle.insurance.company</source>
+                <target>Compagnie d'assurance</target>
+            </trans-unit>
+            <trans-unit id="pel.vehicle.insurance.number">
+                <source>pel.vehicle.insurance.number</source>
+                <target>Numéro de police d'assurance</target>
             </trans-unit>
             <trans-unit id="pel.complaint.validation.course.to.lrp">
                 <source>pel.complaint.validation.course.to.lrp</source>

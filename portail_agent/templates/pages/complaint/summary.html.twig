@@ -195,13 +195,21 @@
                         - {{ object.model }} - {{ object.brand }}
                         - {{ object.amount|format_currency('EUR', {fraction_digit: 0}) }} - {{ object.operator }}
                     </li>
-                 {% elseif object|object_type is same as('App\\Entity\\FactsObjects\\PaymentMethod') %}
-                     <li>
-                         <strong>{{ 'pel.number'|trans }} {{ loop.index }}</strong> : {{ object.type }}
-                         - {{ object.description }} - {{ object.bank }}
-                         {% if object.amount is not null %}
-                             - {{ object.amount|format_currency('EUR', {fraction_digit: 0}) }}
-                         {% endif %}
+                {% elseif object|object_type is same as('App\\Entity\\FactsObjects\\PaymentMethod') %}
+                    <li>
+                        <strong>{{ 'pel.number'|trans }} {{ loop.index }}</strong> : {{ object.type }}
+                        - {{ object.description }} - {{ object.bank }}
+                        {% if object.amount is not null %}
+                         - {{ object.amount|format_currency('EUR', {fraction_digit: 0}) }}
+                        {% endif %}
+                    </li>
+                {% elseif object|object_type is same as('App\\Entity\\FactsObjects\\Vehicle') %}
+                    <li>
+                        <strong>{{ 'pel.number'|trans }} {{ loop.index }}</strong> : {{ object.label }}
+                        - {{ object.brand }} - {{ object.model }}
+                        {% if object.amount is not null %}
+                         - {{ object.amount|format_currency('EUR', {fraction_digit: 0}) }}
+                        {% endif %}
                      </li>
                 {% endif %}
             {% endfor %}
