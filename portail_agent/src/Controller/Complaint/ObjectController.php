@@ -8,10 +8,12 @@ use App\Entity\Complaint;
 use App\Entity\FactsObjects\AdministrativeDocument;
 use App\Entity\FactsObjects\MultimediaObject;
 use App\Entity\FactsObjects\PaymentMethod;
+use App\Entity\FactsObjects\Vehicle;
 use App\Form\Complaint\AssignType;
 use App\Form\Complaint\FactsObjects\AdministrativeDocumentType;
 use App\Form\Complaint\FactsObjects\MultimediaObjectType;
 use App\Form\Complaint\FactsObjects\PaymentMethodType;
+use App\Form\Complaint\FactsObjects\VehicleType;
 use App\Form\Complaint\RejectType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -33,6 +35,9 @@ class ObjectController extends AbstractController
                     break;
                 case $object instanceof PaymentMethod:
                     $objectForms[] = $this->createForm(PaymentMethodType::class, $object)->createView();
+                    break;
+                case $object instanceof Vehicle:
+                    $objectForms[] = $this->createForm(VehicleType::class, $object)->createView();
                     break;
             }
         }

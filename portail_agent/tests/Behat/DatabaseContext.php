@@ -23,7 +23,7 @@ class DatabaseContext implements Context
     public function __construct(
         protected readonly KernelInterface $kernel,
         protected readonly EntityManagerInterface $entityManager,
-        protected readonly NotificationFactory $notificationFactory,
+        protected readonly NotificationFactory $notificationFactory
     ) {
     }
 

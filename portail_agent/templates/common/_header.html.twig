@@ -33,7 +33,7 @@
                             </li>
                             {% for notification in notifications %}
                                 <li>
-                                    <a class="dropdown-item" href="{{ path('notification', {id:notification.id}) }}">{{ notification.title }}</a>
+                                    <a class="dropdown-item {{ notification.isUrgent ? 'fw-bold' }}" href="{{ path('notification', {id:notification.id}) }}">{{ notification.title }}</a>
                                 </li>
                             {% endfor %}
                         </ul>

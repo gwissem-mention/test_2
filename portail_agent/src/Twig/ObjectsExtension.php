@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace App\Twig;
 
 use App\Entity\FactsObjects\AbstractObject;
-use App\Entity\FactsObjects\AdministrativeDocument;
-use App\Entity\FactsObjects\MultimediaObject;
 use Doctrine\Common\Collections\Collection;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
@@ -24,7 +22,7 @@ class ObjectsExtension extends AbstractExtension
     }
 
     /**
-     * @param Collection<int, AdministrativeDocument|MultimediaObject> $objects
+     * @param Collection<int, AbstractObject> $objects
      */
     public function getQuantity(Collection $objects): int
     {
@@ -32,7 +30,7 @@ class ObjectsExtension extends AbstractExtension
     }
 
     /**
-     * @param Collection<int, AdministrativeDocument|MultimediaObject> $objects
+     * @param Collection<int, AbstractObject> $objects
      */
     public function getTotalAmount(Collection $objects): float
     {
@@ -45,7 +43,7 @@ class ObjectsExtension extends AbstractExtension
     }
 
     /**
-     * @param Collection<int, AdministrativeDocument|MultimediaObject> $objects
+     * @param Collection<int, AbstractObject> $objects
      */
     public function getAlerts(Collection $objects): int
     {

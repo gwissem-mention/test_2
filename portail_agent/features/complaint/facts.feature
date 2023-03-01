@@ -43,7 +43,7 @@ Feature:
         And the "additional_information_observationMade_0" checkbox should be checked
         And I should see the key "pel.physical.violences.and.threats" translated
         And I should see the key "pel.victim.of.violence" translated
-        And the "additional_information_victimOfViolence_1" checkbox should be checked
+        And the "additional_information_victimOfViolence_0" checkbox should be checked
         And I should see the key "pel.description.of.facts" translated
         And the "additional_information_description" field should contain "Vol d'un Iphone 13"
 

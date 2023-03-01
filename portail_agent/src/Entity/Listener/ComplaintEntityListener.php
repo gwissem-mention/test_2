@@ -5,14 +5,20 @@ namespace App\Entity\Listener;
 use App\Entity\Complaint;
 use App\Entity\ComplaintCount;
 use App\Generator\ComplaintNumber\ComplaintNumberGeneratorInterface;
+use App\Notification\ComplaintNotification;
 use App\Repository\ComplaintCountRepository;
 use Doctrine\DBAL\LockMode;
 use Doctrine\ORM\EntityManagerInterface;
 
 class ComplaintEntityListener
 {
-    public function __construct(private readonly EntityManagerInterface $entityManager, private readonly ComplaintCountRepository $complaintCountRepository, private readonly ComplaintNumberGeneratorInterface $complaintNumberGenerator)
-    {
+    public function __construct(
+        private readonly EntityManagerInterface $entityManager,
+        private readonly ComplaintCountRepository $complaintCountRepository,
+        private readonly ComplaintNumberGeneratorInterface $complaintNumberGenerator,
+        private readonly ComplaintNotification $complaintNotification,
+        private readonly int $complaintProcessingDeadline
+    ) {
     }
 
     public function prePersist(Complaint $complaint): void
@@ -35,6 +41,13 @@ class ComplaintEntityListener
             $declarationNumber = $this->complaintNumberGenerator->generate($complaintCount->getCount());
             $complaint->setDeclarationNumber($declarationNumber);
         }
+
+        $complaint->setProcessingDeadline($complaint->getCreatedAt()?->add(new \DateInterval('P'.$this->complaintProcessingDeadline.'D')));
+    }
+
+    public function postPersist(Complaint $complaint): void
+    {
+        $this->complaintNotification->setSupervisorNotifications($complaint);
     }
 
     private function createCounterForCurrentYear(): ?ComplaintCount

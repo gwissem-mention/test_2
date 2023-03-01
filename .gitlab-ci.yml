@@ -416,6 +416,21 @@ citoyen-php-cpd:
 agent-unit:
     <<: *agent-step
     <<: *unit
+    variables:
+        APP_ENV: "test"
+        POSTGRES_DB: "app_test"
+        POSTGRES_PASSWORD: "ChangeMe"
+        POSTGRES_USER: "symfony"
+        POSTGRES_HOST: "127.0.0.1"
+    script:
+        - make APP_ENV=${APP_ENV} db-ci-setup
+        - make APP_ENV=${APP_ENV} db-ci-load
+        - make APP_ENV=${APP_ENV} referential-create
+        - make APP_ENV=${APP_ENV} referential-ci-load
+        - make unit
+    services:
+        -   name: postgres:13-alpine
+            alias: database-unit-agent
 
 citoyen-unit:
     <<: *citoyen-step

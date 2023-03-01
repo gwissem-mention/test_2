@@ -2,6 +2,7 @@ parameters:
     sso.enabled: '%env(bool:ENABLE_SSO)%'
     app.file_units: '%env(FILE_UNITS)%'
     app.referentials_base_path: '%kernel.project_dir%/referentials'
+    complaint.processing_deadline: '%env(COMPLAINT_PROCESSING_DEADLINE)%'
 
 services:
     _defaults:
@@ -22,8 +23,11 @@ services:
             $unitsFixturesPath: '%app.referentials_base_path%/%app.file_units%'
 
     App\Entity\Listener\ComplaintEntityListener:
+        arguments:
+            $complaintProcessingDeadline: '%complaint.processing_deadline%'
         tags:
             - { name: 'doctrine.orm.entity_listener', event: 'prePersist', entity: 'App\Entity\Complaint'}
+            - { name: 'doctrine.orm.entity_listener', event: 'postPersist', entity: 'App\Entity\Complaint' }
 
     Faker\Generator:
         factory: [ 'Faker\Factory', 'create' ]

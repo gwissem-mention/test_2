@@ -56,6 +56,16 @@ parameters:
 		     path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
 
 		-
+		    message: "#^Parameter \\#1 \\$model of method App\\\\Entity\\\\FactsObjects\\\\Vehicle\\:\\:setModel\\(\\) expects string\\|null, mixed given\\.$#"
+		    count: 1
+		    path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
+
+		-
+		    message: "#^Parameter \\#1 \\$registrationNumber of method App\\\\Entity\\\\FactsObjects\\\\Vehicle\\:\\:setRegistrationNumber\\(\\) expects string\\|null, mixed given\\.$#"
+		    count: 1
+		    path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
+
+		-
 			message: "#^Parameter \\#1 \\$place of method App\\\\Entity\\\\Facts\\:\\:setPlace\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php

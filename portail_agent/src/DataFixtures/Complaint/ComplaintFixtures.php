@@ -12,6 +12,7 @@ use App\Entity\Facts;
 use App\Entity\FactsObjects\AdministrativeDocument;
 use App\Entity\FactsObjects\MultimediaObject;
 use App\Entity\FactsObjects\PaymentMethod;
+use App\Entity\FactsObjects\Vehicle;
 use App\Entity\Identity;
 use App\Entity\User;
 use App\Factory\NotificationFactory;
@@ -184,16 +185,6 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                     ->setAmount(999)
             )
             ->addObject(
-                (new MultimediaObject())
-                    ->setLabel('Téléphone mobile')
-                    ->setBrand('Apple')
-                    ->setModel('iPhone 14 Pro')
-                    ->setOperator('SFR')
-                    ->setSerialNumber(987654321)
-                    ->setPhoneNumber('06 21 43 65 87')
-                    ->setAmount(1329)
-            )
-            ->addObject(
                 (new AdministrativeDocument())
                     ->setType('Permis de conduire')
             )
@@ -202,6 +193,15 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                     ->setDescription('Visa principale')
                     ->setType('Carte Bancaire VISA')
                     ->setBank('LCL')
+            )
+            ->addObject(
+                (new Vehicle())
+                    ->setLabel('Voiture')
+                    ->setBrand('Citroën')
+                    ->setModel('C3')
+                    ->setRegistrationNumber('AA-123-AA')
+                    ->setRegistrationCountry('France')
+                    ->setAmount(17000)
             )
             ->setAdditionalInformation(
                 (new AdditionalInformation())
@@ -213,7 +213,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                     ->setWitnessesPresentText('Paul DUPONT')
                     ->setFsiVisit(true)
                     ->setObservationMade(true)
-                    ->setVictimOfViolence(false)
+                    ->setVictimOfViolence(true)
                     ->setDescription("Vol d'un Iphone 13")
             )
             ->addComment(

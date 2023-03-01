@@ -6,7 +6,6 @@ namespace App\Entity\FactsObjects;
 
 use App\Entity\AlertTrait;
 use App\Entity\Complaint;
-use App\Entity\Identity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\DiscriminatorColumn;
 use Doctrine\ORM\Mapping\DiscriminatorMap;
@@ -22,6 +21,7 @@ use Doctrine\ORM\Mapping\Table;
     'administrative_document' => AdministrativeDocument::class,
     'multimedia_object' => MultimediaObject::class,
     'payment_method' => PaymentMethod::class,
+    'vehicle' => Vehicle::class,
 ])]
 abstract class AbstractObject
 {

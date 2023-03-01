@@ -56,6 +56,12 @@ class Complaint
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
+    #[ORM\Column]
+    private ?\DateTimeImmutable $processingDeadline = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?bool $deadlineNotified = false;
+
 //    #[ORM\Column]
 //    private ?bool $claimsLegalAction = null;
 
@@ -85,6 +91,13 @@ class Complaint
     #[ORM\JoinColumn(nullable: false)]
     private ?Facts $facts = null;
 
+    /** @var Collection<int, AbstractObject> */
+    #[ORM\OneToMany(mappedBy: 'complaint', targetEntity: AbstractObject::class, cascade: [
+        'persist',
+        'remove',
+    ], orphanRemoval: true)]
+    private Collection $objects;
+
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?AdditionalInformation $additionalInformation = null;
@@ -109,13 +122,6 @@ class Complaint
     ], orphanRemoval: true)]
     #[ORM\OrderBy(['publishedAt' => 'ASC'])]
     private Collection $comments;
-
-    /** @var Collection<int, AbstractObject> */
-    #[ORM\OneToMany(mappedBy: 'complaint', targetEntity: AbstractObject::class, cascade: [
-        'persist',
-        'remove',
-    ], orphanRemoval: true)]
-    private Collection $objects;
 
     #[ORM\Column(length: 255)]
     private ?string $unitAssigned = null;
@@ -211,6 +217,36 @@ class Complaint
     public function setFacts(Facts $facts): self
     {
         $this->facts = $facts;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, AbstractObject>
+     */
+    public function getObjects(): Collection
+    {
+        return $this->objects;
+    }
+
+    public function addObject(AbstractObject $abstractObject): self
+    {
+        if (!$this->objects->contains($abstractObject)) {
+            $this->objects->add($abstractObject);
+            $abstractObject->setComplaint($this);
+        }
+
+        return $this;
+    }
+
+    public function removeObject(AbstractObject $abstractObject): self
+    {
+        if ($this->objects->removeElement($abstractObject)) {
+            // set the owning side to null (unless already changed)
+            if ($abstractObject->getComplaint() === $this) {
+                $abstractObject->setComplaint(null);
+            }
+        }
 
         return $this;
     }
@@ -329,32 +365,26 @@ class Complaint
         return $this;
     }
 
-    /**
-     * @return Collection<int, AbstractObject>
-     */
-    public function getObjects(): Collection
+    public function getProcessingDeadline(): ?\DateTimeImmutable
     {
-        return $this->objects;
+        return $this->processingDeadline;
     }
 
-    public function addObject(AbstractObject $abstractObject): self
+    public function setProcessingDeadline(?\DateTimeImmutable $processingDeadline): self
     {
-        if (!$this->objects->contains($abstractObject)) {
-            $this->objects->add($abstractObject);
-            $abstractObject->setComplaint($this);
-        }
+        $this->processingDeadline = $processingDeadline;
 
         return $this;
     }
 
-    public function removeObject(AbstractObject $abstractObject): self
+    public function isDeadlineNotified(): ?bool
     {
-        if ($this->objects->removeElement($abstractObject)) {
-            // set the owning side to null (unless already changed)
-            if ($abstractObject->getComplaint() === $this) {
-                $abstractObject->setComplaint(null);
-            }
-        }
+        return $this->deadlineNotified;
+    }
+
+    public function setDeadlineNotified(?bool $deadlineNotified): self
+    {
+        $this->deadlineNotified = $deadlineNotified;
 
         return $this;
     }

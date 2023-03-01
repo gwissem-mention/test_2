@@ -1,0 +1,35 @@
+{{ form_start(form) }}
+    <div class="row mt-3">
+        <div class="col-12">
+            {{ form_label(form.label) }} {{ loop.index }}
+            {{ form_widget(form.label) }}
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-6">
+            {{ form_row(form.brand) }}
+        </div>
+        <div class="col-6">
+            {{ form_row(form.model) }}
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-6">
+            {{ form_row(form.registrationNumber) }}
+        </div>
+        <div class="col-6">
+            {{ form_row(form.registrationCountry) }}
+        </div>
+    </div>
+    {% if form.insuranceCompany is not empty and form.insuranceNumber is not empty %}
+        <div class="row mt-3">
+            <div class="col-6">
+                {{ form_row(form.insuranceCompany) }}
+            </div>
+            <div class="col-6">
+                {{ form_row(form.insuranceNumber) }}
+            </div>
+        </div>
+    {% endif %}
+    {{ include('pages/complaint/forms/_object_form.html.twig', {'form' : form} ) }}
+{{ form_end(form, {render_rest: false}) }}

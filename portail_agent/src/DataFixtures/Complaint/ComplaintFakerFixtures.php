@@ -12,9 +12,12 @@ use App\Entity\Facts;
 use App\Entity\FactsObjects\AdministrativeDocument;
 use App\Entity\FactsObjects\MultimediaObject;
 use App\Entity\FactsObjects\PaymentMethod;
+use App\Entity\FactsObjects\Vehicle;
 use App\Entity\Identity;
 use App\Entity\User;
 use App\Factory\NotificationFactory;
+use App\Notification\ComplaintNotification;
+use App\Repository\ComplaintRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -25,8 +28,11 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
 {
     private const COMPLAINTS_NB = 50;
 
-    public function __construct(private readonly Generator $faker, private readonly NotificationFactory $notificationFactory)
-    {
+    public function __construct(
+        private readonly Generator $faker,
+        private readonly NotificationFactory $notificationFactory,
+        private readonly ComplaintNotification $complaintNotification
+    ) {
         $faker->seed(1);
     }
 
@@ -66,7 +72,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
 
         for ($i = 1; $i <= self::COMPLAINTS_NB; ++$i) {
             $factsStartDate = \DateTimeImmutable::createFromMutable($this->faker->dateTimeBetween('2023-01-01', '2023-01-31'));
-            $complaintDate = \DateTimeImmutable::createFromMutable($this->faker->dateTimeBetween('2023-02-01', '2023-02-15'));
+            $complaintDate = \DateTimeImmutable::createFromMutable($this->faker->dateTimeBetween('2023-02-01', '2023-02-27'));
             $factsStartHour = \DateTimeImmutable::createFromMutable($this->faker->dateTime('2023-01-31 10:00:00'));
 
             $identityGender = $this->faker->randomElement(['male', 'female']);
@@ -96,6 +102,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
             $witnessesPresent = $this->faker->boolean;
             $fsiVisit = $this->faker->boolean;
             $victimOfViolence = $this->faker->boolean;
+            $stolenVehicle = $this->faker->boolean(30);
 
             if ('103131' === $unit) {
                 $agentNumber = $this->faker->randomElement(['H3U3XCGD', 'H3U3XCGF']);
@@ -258,22 +265,42 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                 );
             }
 
+            if (true === $stolenVehicle) {
+                $complaint->addObject(
+                    (new Vehicle())
+                        ->setLabel('Voiture')
+                        ->setBrand('Citroën')
+                        ->setModel($this->faker->randomElement(['C3', 'C4', 'DS4', 'DS3']))
+                        ->setRegistrationNumber($this->faker->randomElement(['AA-123-AA', 'BB-345-BB', 'CC-432-CC', 'DD-890-DD']))
+                        ->setRegistrationCountry('France')
+                        ->setAmount($this->faker->numberBetween(5000, 20000))
+                );
+            }
+
+            if (true === $this->faker->boolean(30)) {
+                $complaint->getFacts()?->setNatures([Facts::NATURE_ROBBERY, Facts::NATURE_DEGRADATION]);
+            }
+
             $manager->persist($complaint);
         }
 
         $manager->flush();
 
-        /** @var User $user */
-        $user = $manager->getRepository(User::class)->findOneBy([]);
-
-        /** @var array<Complaint> $complaints */
-        $complaints = $manager->getRepository(Complaint::class)->findBy([], [], 2);
+        /** @var ComplaintRepository $complaintRepository */
+        $complaintRepository = $manager->getRepository(Complaint::class);
+        $complaints = $complaintRepository->findAll();
 
         foreach ($complaints as $complaint) {
-            $manager->persist(
-                $user->addNotification($this->notificationFactory->createForComplaintAssigned($complaint))
-            );
+            /** @var User $agent */
+            if ($agent = $complaint->getAssignedTo()) {
+                $manager->persist(
+                    $agent->addNotification($this->notificationFactory->createForComplaintAssigned($complaint))
+                );
+            }
         }
+
+        $this->complaintNotification->setComplaintDeadlineExceededNotification($complaintRepository->getNotifiableComplaintsForProcessingDeadline());
+
         $manager->flush();
     }
 
