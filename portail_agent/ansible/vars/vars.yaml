@@ -3,7 +3,6 @@
 symfony_root_dir: /home/pel-agent/plaintes-en-ligne-pel
 
 # Deployment variables specific for Ansistrano
-server_name: "{{ vault_server_name }}"
 server_document_root: "{{ symfony_root_dir }}/{{ ansistrano_current_dir }}/portail_agent/public"
 release_portal_path: "{{ ansistrano_release_path.stdout }}/portail_agent"
 release_console_path: "{{ release_portal_path }}/bin/console"
@@ -18,8 +17,5 @@ ansistrano_allow_anonymous_stats: false
 ansistrano_shared_paths:
   - portail_agent/referentials
   - portail_agent/config/secrets/prod
-# Integration env vars
-server_host: "{{ vault_server_host }}"
-server_user: "{{ vault_server_user }}"
 
 app_db: "{{ vault_app_db }}"

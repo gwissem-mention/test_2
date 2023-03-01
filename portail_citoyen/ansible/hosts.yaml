@@ -1,7 +1,0 @@
----
-all:
-  hosts:
-    integration:
-      ansible_connection: ssh
-      ansible_host: "{{ server_host }}"
-      ansible_user: "{{ server_user }}"
