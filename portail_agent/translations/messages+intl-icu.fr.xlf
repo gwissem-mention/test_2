@@ -810,6 +810,18 @@
                 <source>pel.notifications</source>
                 <target>Notifications</target>
             </trans-unit>
+            <trans-unit id="pel.official.informations">
+                <source>pel.official.informations</source>
+                <target>Informations officielles</target>
+            </trans-unit>
+            <trans-unit id="pel.questions.answers">
+                <source>pel.questions.answers</source>
+                <target>Questions / réponses</target>
+            </trans-unit>
+            <trans-unit id="pel.useful.phones">
+                <source>pel.useful.phones</source>
+                <target>Numéros utiles</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
