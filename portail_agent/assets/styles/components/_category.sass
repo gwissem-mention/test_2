@@ -1,0 +1,21 @@
+.category
+    @include flex(row, space-between, center)
+
+    @media screen and (max-width: $breakpoint-large)
+        @include flex(column, start, center)
+
+    &__item
+        @include reset-link
+        color: $french-blue
+        width: $width-31
+
+        @media screen and (max-width: $breakpoint-large)
+            width: $width-100
+
+            margin-bottom: $margin-medium
+
+            &:last-child
+                margin: 0
+
+        &:hover
+            background-color: $grey
