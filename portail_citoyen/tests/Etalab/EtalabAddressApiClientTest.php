@@ -1,16 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tests\Etalab;
 
-use App\Etalab\AddressEtalabHandler;
 use App\Etalab\EtalabAddressApiClient;
-use App\Form\Model\Address\AddressEtalabModel;
-use App\Form\Model\EtalabInput;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpClient\MockHttpClient;
 use Symfony\Component\HttpClient\Response\MockResponse;
 
-class AddressEtalabHandlerTest extends TestCase
+class EtalabAddressApiClientTest extends TestCase
 {
     /** @var array<string, mixed> */
     private array $expectedRequestData;
@@ -163,7 +162,7 @@ class AddressEtalabHandlerTest extends TestCase
         $this->expectedRequestData = ['q' => '8 bd du port', 'limit' => 5];
     }
 
-    public function testAddressModelIsEtalab(): void
+    public function testSearchFeatures(): void
     {
         $mockResponseJson = json_encode($this->expectedResponseData, JSON_THROW_ON_ERROR);
         $mockResponse = new MockResponse($mockResponseJson, [
@@ -171,76 +170,20 @@ class AddressEtalabHandlerTest extends TestCase
         ]);
 
         $httpClient = new MockHttpClient($mockResponse);
-        $etalabApiClient = new EtalabAddressApiClient($httpClient);
-        $addressEtalabHandler = new AddressEtalabHandler($etalabApiClient);
+        $addressEtalabHandler = new EtalabAddressApiClient($httpClient);
 
-        $etalabInput = new EtalabInput(
-            '8 Boulevard du Port 80000 Amiens',
-            '80021_6590_00008',
-            '8 bd du port'
+        $responseData = $addressEtalabHandler->search(
+            strval($this->expectedRequestData['q']),
+            intval($this->expectedRequestData['limit'])
         );
 
-        $responseData = $addressEtalabHandler->getAddressModel($etalabInput);
+        self::assertSame('GET', $mockResponse->getRequestMethod());
+        self::assertSame(
+            'https://api-adresse.data.gouv.fr/search/?q=8%20bd%20du%20port&limit=5',
+            $mockResponse->getRequestUrl()
+        );
 
-        self::assertInstanceOf(AddressEtalabModel::class, $responseData);
-        self::assertSame('80021_6590_00008', $responseData->getId());
-    }
-
-    public function testAddressModelIsNotEtalab(): void
-    {
-        $mockResponseJson = json_encode($this->expectedResponseData, JSON_THROW_ON_ERROR);
-        $mockResponse = new MockResponse($mockResponseJson, [
-            'http_code' => 200,
-        ]);
-
-        $httpClient = new MockHttpClient($mockResponse);
-        $etalabApiClient = new EtalabAddressApiClient($httpClient);
-        $addressEtalabHandler = new AddressEtalabHandler($etalabApiClient);
-
-        $etalabInput = new EtalabInput('8 Boulevard du Port 80000 Amiens', '', '');
-
-        $responseData = $addressEtalabHandler->getAddressModel($etalabInput);
-
-        self::assertNotInstanceOf(AddressEtalabModel::class, $responseData);
-        self::assertSame('8 Boulevard du Port 80000 Amiens', $responseData->getLabel());
-    }
-
-    public function testIdIsFound(): void
-    {
-        $mockResponseJson = json_encode($this->expectedResponseData, JSON_THROW_ON_ERROR);
-        $mockResponse = new MockResponse($mockResponseJson, [
-            'http_code' => 200,
-        ]);
-
-        $httpClient = new MockHttpClient($mockResponse, 'https://api-adresse.data.gouv.fr');
-        $etalabApiClient = new EtalabAddressApiClient($httpClient);
-        $addressEtalabHandler = new AddressEtalabHandler($etalabApiClient);
-
-        /** @var string $requestQuery */
-        $requestQuery = $this->expectedRequestData['q'];
-        $etalabInput = new EtalabInput($requestQuery, '80021_6590_00008', $requestQuery);
-
-        $responseData = $addressEtalabHandler->getAddressModel($etalabInput);
-        self::assertInstanceOf(AddressEtalabModel::class, $responseData);
-        self::assertSame('80021_6590_00008', $responseData->getId());
-    }
-
-    public function testIdIsNotFound(): void
-    {
-        $mockResponseJson = json_encode($this->expectedResponseData, JSON_THROW_ON_ERROR);
-        $mockResponse = new MockResponse($mockResponseJson, [
-            'http_code' => 200,
-        ]);
-
-        $httpClient = new MockHttpClient($mockResponse);
-        $etalabApiClient = new EtalabAddressApiClient($httpClient);
-        $addressEtalabHandler = new AddressEtalabHandler($etalabApiClient);
-
-        /** @var string $requestQuery */
-        $requestQuery = $this->expectedRequestData['q'];
-        $etalabInput = new EtalabInput($requestQuery, '80021_6590_00059', $requestQuery);
-
-        $responseData = $addressEtalabHandler->getAddressModel($etalabInput);
-        self::assertSame('8 bd du port', $responseData->getLabel());
+        self::assertSame($this->expectedRequestData, $mockResponse->getRequestOptions()['query']);
+        self::assertSame($this->expectedResponseData, $responseData);
     }
 }

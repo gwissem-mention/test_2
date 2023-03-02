@@ -100,6 +100,10 @@ citoyen-help:
 citoyen-yarn-%:
 	@$(CITOYEN_NODE_CONT) make --no-print-directory $*
 
+citoyen-yarn:
+	@$(eval c ?=)
+	@$(CITOYEN_NODE_CONT) make --no-print-directory yarn c="$(c)"
+
 ## Run in command in portail_citoyen
 citoyen-%:
 	@$(CITOYEN_CONT) make APP_ENV=$(APP_ENV) --no-print-directory $*

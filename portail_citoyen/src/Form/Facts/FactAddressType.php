@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Form\Facts;
 
-use App\Form\Model\Facts\AddressModel;
+use App\Form\AddressEtalabType;
+use App\Form\Model\Facts\FactAddressModel;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -17,7 +17,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\NotNull;
 
-class AddressType extends AbstractType
+class FactAddressType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -45,7 +45,7 @@ class AddressType extends AbstractType
             ->addEventListener(
                 FormEvents::PRE_SET_DATA,
                 function (FormEvent $event) {
-                    /** @var ?AddressModel $addressModel */
+                    /** @var ?FactAddressModel $addressModel */
                     $addressModel = $event->getData();
                     $this->addOffenseNatureOrNotKnownField(
                         $event->getForm(),
@@ -63,7 +63,7 @@ class AddressType extends AbstractType
                     }
                     /** @var FormInterface $parent */
                     $parent = $event->getForm()->getParent();
-                    /** @var ?AddressModel $addressModel */
+                    /** @var ?FactAddressModel $addressModel */
                     $addressModel = $parent->getData();
                     $this->addOffenseNatureOrNotKnownField($parent, boolval($choice), $addressModel);
                 }
@@ -73,19 +73,19 @@ class AddressType extends AbstractType
     private function addOffenseNatureOrNotKnownField(
         FormInterface $form,
         ?bool $choice,
-        ?AddressModel $addressModel = null,
+        ?FactAddressModel $addressModel = null,
     ): void {
         if (true === $choice) {
             $form
-                ->add('startAddress', TextType::class, [
+                ->add('startAddress', AddressEtalabType::class, [
                     'label' => 'pel.address.start.or.exact',
                     'help' => 'pel.address.start.or.exact.help',
-                    'empty_data' => $form->getConfig()->getOption('start_address'),
+                    'address_data' => $form->getConfig()->getOption('start_address'),
                     'constraints' => [
                         new NotBlank(),
                     ],
                 ])
-                ->add('endAddress', TextType::class, [
+                ->add('endAddress', AddressEtalabType::class, [
                     'required' => false,
                     'label' => 'pel.address.end',
                     'help' => 'pel.address.end.help',
@@ -102,7 +102,7 @@ class AddressType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => AddressModel::class,
+            'data_class' => FactAddressModel::class,
             'start_address' => null,
         ]);
     }

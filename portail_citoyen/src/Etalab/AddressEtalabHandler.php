@@ -5,25 +5,39 @@ declare(strict_types=1);
 namespace App\Etalab;
 
 use App\Form\Factory\AddressModelFactory;
-use App\Form\Model\AddressEtalabModel;
-use App\Form\Model\AddressModel;
-use Symfony\Contracts\HttpClient\Exception\ExceptionInterface;
-use Symfony\Contracts\HttpClient\HttpClientInterface;
+use App\Form\Model\Address\AbstractSerializableAddress;
+use App\Form\Model\Address\AddressEtalabModel;
+use App\Form\Model\EtalabInput;
 
 class AddressEtalabHandler
 {
-    private const SEARCH_LIMIT = 5;
-    private const BASE_URI = 'https://api-adresse.data.gouv.fr';
-
     public function __construct(
-        private readonly HttpClientInterface $client,
+        private readonly EtalabApiClientInterface $etalabAddressApiClient,
     ) {
+    }
+
+    public function getAddressModel(EtalabInput $etalabInput): AbstractSerializableAddress
+    {
+        if ('' === $etalabInput->getAddressId() || '' === $etalabInput->getAddressSearchSaved()) {
+            return AddressModelFactory::create($etalabInput->getAddressSearch());
+        }
+        try {
+            /** @var array<array<array<mixed>>> $datalabResponse */
+            $datalabResponse = $this->etalabAddressApiClient->search($etalabInput->getAddressSearchSaved(), 5);
+        } catch (\Exception) {
+            return AddressModelFactory::create($etalabInput->getAddressSearch());
+        }
+
+        return $this->findOneById(
+            $etalabInput->getAddressId(),
+            $datalabResponse['features']
+        ) ?? AddressModelFactory::create($etalabInput->getAddressSearch());
     }
 
     /**
      * @param array<array<mixed>> $addresses
      */
-    public function findOneById(string $id, array $addresses = []): ?AddressEtalabModel
+    private function findOneById(string $id, array $addresses = []): ?AddressEtalabModel
     {
         foreach ($addresses as $address) {
             /** @var array<string, mixed> $properties */
@@ -50,55 +64,5 @@ class AddressEtalabHandler
         }
 
         return null;
-    }
-
-    /**
-     * @return array<mixed>
-     *
-     * @throws ExceptionInterface
-     */
-    public function getSearchFeatures(string $query, int $limit = self::SEARCH_LIMIT): array
-    {
-        /** @var array<array<mixed>> $features */
-        $features = $this->search($query, $limit)['features'] ?? [];
-
-        return $features;
-    }
-
-    public function getAddressModel(string $label, string $query, string $selectionId): AddressModel
-    {
-        if ('' === $selectionId || '' === $query) {
-            return AddressModelFactory::create($label);
-        }
-        try {
-            /** @var array<array<mixed>> $datalabResponse */
-            $datalabResponse = $this->getSearchFeatures($query);
-        } catch (ExceptionInterface) {
-            return AddressModelFactory::create(
-                $label
-            );
-        }
-
-        return $this->findOneById(
-            $selectionId,
-            $datalabResponse
-        ) ?? AddressModelFactory::create($label);
-    }
-
-    /**
-     * @return array<mixed>
-     *
-     * @throws ExceptionInterface
-     */
-    private function search(string $query, int $limit = self::SEARCH_LIMIT): array
-    {
-        $response = $this->client->request('GET', self::BASE_URI.'/search/', [
-            'query' => [
-                'q' => $query,
-                'limit' => $limit,
-            ],
-        ]);
-
-        return $response->toArray();
     }
 }

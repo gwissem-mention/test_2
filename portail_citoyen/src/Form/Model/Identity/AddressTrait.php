@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace App\Form\Model\Identity;
 
-use App\Form\Model\AddressModel;
+use App\Form\Model\Address\AbstractSerializableAddress;
 
 trait AddressTrait
 {
+    private bool $sameAddress = false;
     private ?int $country = null;
-    private ?AddressModel $frenchAddress = null;
+    private ?AbstractSerializableAddress $frenchAddress = null;
     private ?string $foreignAddress = null;
 
     public function getCountry(): ?int
@@ -24,12 +25,12 @@ trait AddressTrait
         return $this;
     }
 
-    public function getFrenchAddress(): ?AddressModel
+    public function getFrenchAddress(): ?AbstractSerializableAddress
     {
         return $this->frenchAddress;
     }
 
-    public function setFrenchAddress(?AddressModel $frenchAddress): self
+    public function setFrenchAddress(?AbstractSerializableAddress $frenchAddress): self
     {
         $this->frenchAddress = $frenchAddress;
 
@@ -46,5 +47,15 @@ trait AddressTrait
         $this->foreignAddress = $foreignAddress;
 
         return $this;
+    }
+
+    public function isSameAddress(): bool
+    {
+        return $this->sameAddress;
+    }
+
+    public function setSameAddress(bool $sameAddress): void
+    {
+        $this->sameAddress = $sameAddress;
     }
 }

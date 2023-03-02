@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Form\Factory;
 
-use App\Form\Model\AddressEtalabModel;
-use App\Form\Model\AddressModel;
+use App\Form\Model\Address\AddressEtalabModel;
+use App\Form\Model\Address\AddressModel;
 
 class AddressModelFactory
 {

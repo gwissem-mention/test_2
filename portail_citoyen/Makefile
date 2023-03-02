@@ -247,7 +247,7 @@ Tests:
 
 ## Run phpunit tests
 unit:
-	@bin/phpunit --no-coverage --order-by random --process-isolation -vvv --stop-on-failure
+	@bin/phpunit --no-coverage --order-by random --process-isolation -vvv
 
 ## Run behat tests
 behat:
@@ -289,3 +289,6 @@ pool-referentials-delete-force:
 
 pool-referential-clear:
 	@$(CONSOLE) cache:pool:clear referentials.cache
+
+pool-all-clear:
+	@$(CONSOLE) cache:pool:clear cache.app

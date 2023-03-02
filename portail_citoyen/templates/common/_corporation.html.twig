@@ -7,23 +7,36 @@
     {{ form_row(form.email) }}
     {{ form_row(form.phone) }}
     {{ form_row(form.country) }}
-    {% if form.sameAddress is defined %}
+
+
+    {% set etalab_errors = [] %}
+    {% if form.frenchAddress is defined %}
+        {% for error in form.frenchAddress.address.vars.errors %}
+            {% set etalab_errors = etalab_errors|merge([error.message]) %}
+        {% endfor %}
+    {% endif %}
+
+    <div class="fr-input-group{% if etalab_errors|length > 0 %} fr-input-group--error{% endif %}">
         {% if form.frenchAddress is defined %}
             {{ form_label(form.frenchAddress, 'pel.address') }}
-            {{ form_row(form.sameAddress) }}
-            {{ form_row(form.frenchAddress, {attr:{'data-live-ignore':true}}) }}
-        {% endif %}
-        {% if form.foreignAddress is defined %}
+        {% elseif form.foreignAddress is defined %}
             {{ form_label(form.foreignAddress, 'pel.address') }}
+        {% endif %}
+
+        {% if form.sameAddress is defined %}
             {{ form_row(form.sameAddress) }}
-            {{ form_row(form.foreignAddress, {attr:{'data-live-ignore':true}}) }}
         {% endif %}
-    {% else %}
+
         {% if form.frenchAddress is defined %}
-            {{ form_row(form.frenchAddress) }}
+            {{ component('etalab_component', {
+                'data-live-id': 'corporation-address',
+                dataModel: 'addressSearch:corporationEtalabInput.addressSearch addressId:corporationEtalabInput.addressId addressSearchSaved:corporationEtalabInput.addressSearchSaved',
+                inputName: 'corporation-address',
+                disabled: form.vars.value.sameAddress,
+                errors: etalab_errors,
+            }) }}
+        {% elseif form.foreignAddress is defined %}
+            {{ form_widget(form.foreignAddress) }}
         {% endif %}
-        {% if form.foreignAddress is defined %}
-            {{ form_row(form.foreignAddress) }}
-        {% endif %}
-    {% endif %}
+    </div>
 </div>

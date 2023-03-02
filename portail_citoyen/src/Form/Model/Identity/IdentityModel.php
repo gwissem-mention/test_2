@@ -13,6 +13,11 @@ class IdentityModel
     private ?ContactInformationModel $representedPersonContactInformation = null;
     private ?CorporationModel $corporation = null;
 
+    public function __construct()
+    {
+        $this->contactInformation = new ContactInformationModel();
+    }
+
     public function getDeclarantStatus(): ?int
     {
         return $this->declarantStatus;
