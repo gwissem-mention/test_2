@@ -8,7 +8,11 @@
                     {% include 'common/_civil_state.html.twig' with {'form':form.civilState} %}
                 </div>
                 <div class="fr-py-1w">
-                    {% include 'common/_contact_information.html.twig' with {'form':form.contactInformation} %}
+                    {% include 'common/_contact_information.html.twig' with {
+                        'form':form.contactInformation,
+                        'template_id': 'contact-information',
+                        'etalabPropertyName': 'contactInformationEtalabInput',
+                    } %}
                 </div>
                 <div class="fr-py-2w">
                     {{ form_row(form.declarantStatus) }}
@@ -22,7 +26,11 @@
                         {% include 'common/_civil_state.html.twig' with {'form':form.representedPersonCivilState} %}
                     </div>
                     <div class="fr-py-1w">
-                        {% include 'common/_contact_information.html.twig' with {'form':form.representedPersonContactInformation} %}
+                        {% include 'common/_contact_information.html.twig' with {
+                            'form':form.representedPersonContactInformation,
+                            'template_id': 'represented-person',
+                            'etalabPropertyName': 'representedPersonEtalabInput',
+                        } %}
                     </div>
                 {% endif %}
             </div>
@@ -42,5 +50,5 @@
             </ul>
         </div>
     </div>
-    {{ form_end(form) }}
+    {{ form_end(form, {render_rest: false}) }}
 </div>

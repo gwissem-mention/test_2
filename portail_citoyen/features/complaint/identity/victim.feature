@@ -43,7 +43,8 @@ Feature:
         And I fill in "identity_civilState_birthDate" with "01/01/2000"
         And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
         And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
-        And I fill in "identity_contactInformation_frenchAddress_address" with "Av. de la République 75011 Paris"
+        And I fill in "contact-information-address" with "avenue de la république paris"
+        And I click the "#contact-information-address-75111_8158" element
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I fill in "identity_contactInformation_phone_number" with "0601020304"
         When I click the "label[for=identity_declarantStatus_0]" element
@@ -59,7 +60,8 @@ Feature:
         And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
         And I select "2" from "identity_civilState_civility"
         And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteuse de bestiaux" and click "2"
-        And I fill in "identity_contactInformation_frenchAddress_address" with "Av. de la République 75011 Paris"
+        And I fill in "contact-information-address" with "avenue de la république paris"
+        And I click the "#contact-information-address-75111_8158" element
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I fill in "identity_contactInformation_phone_number" with "0601020304"
         When I click the "label[for=identity_declarantStatus_0]" element
@@ -74,7 +76,8 @@ Feature:
         And I select "99134" from "identity_civilState_birthLocation_country"
         And I fill in "identity_civilState_birthLocation_otherTown" with "Madrid"
         And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
-        And I fill in "identity_contactInformation_frenchAddress_address" with "Av. de la République 75011 Paris"
+        And I fill in "contact-information-address" with "avenue de la république paris"
+        And I click the "#contact-information-address-75111_8158" element
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I fill in "identity_contactInformation_phone_number" with "0601020304"
         And I click the "label[for=identity_declarantStatus_0]" element
@@ -150,7 +153,8 @@ Feature:
         And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
         And I press "identity_submit"
         Then I should be on "/porter-plainte/identite"
-        And I should see a "#form-errors-identity_contactInformation_frenchAddress_address" element
+        And I should see a "#form-errors-contact-information-address" element
+#        And the field "contact-information-address" should have focus
 
     Scenario: Submit the form with only 7 required value for Victim declarant
         When I select "1" from "identity_civilState_civility"
@@ -159,7 +163,8 @@ Feature:
         And I fill in "identity_civilState_birthDate" with "01/01/2000"
         And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
         And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
-        And I fill in "identity_contactInformation_frenchAddress_address" with "Av. de la République 75011 Paris France"
+        And I fill in "contact-information-address" with "avenue de la république paris"
+        And I click the "#contact-information-address-75111_8158" element
         And I press "identity_submit"
         Then I should be on "/porter-plainte/identite"
         And I should see a "#form-errors-identity_contactInformation_email" element
@@ -171,7 +176,8 @@ Feature:
         And I fill in "identity_civilState_birthDate" with "01/01/2000"
         And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
         And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
-        And I fill in "identity_contactInformation_frenchAddress_address" with "Av. de la République 75011 Paris France"
+        And I fill in "contact-information-address" with "avenue de la république paris"
+        And I click the "#contact-information-address-75111_8158" element
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I press "identity_submit"
         Then I should be on "/porter-plainte/identite"
@@ -183,7 +189,8 @@ Feature:
         Then I should be on "/porter-plainte/identite"
         When I click the "label[for=identity_declarantStatus_0]" element
         And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
-        And I fill in "identity_contactInformation_frenchAddress_address" with "Av. de la République 75011 Paris France"
+        And I fill in "contact-information-address" with "avenue de la république paris"
+        And I click the "#contact-information-address-75111_8158" element
         And I fill in "identity_contactInformation_phone_number" with "0601020304"
         And I press "identity_submit"
         Then I should be on "/porter-plainte/faits"
@@ -198,7 +205,8 @@ Feature:
         And I fill in "identity_civilState_birthDate" with "01/01/2000"
         And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
         And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
-        And I fill in "identity_contactInformation_frenchAddress_address" with "Av. de la République 75011 Paris France"
+        And I fill in "contact-information-address" with "avenue de la république paris"
+        And I click the "#contact-information-address-75111_8158" element
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I fill in "identity_contactInformation_phone_number" with "0601020304"
         When I press "identity_submit"

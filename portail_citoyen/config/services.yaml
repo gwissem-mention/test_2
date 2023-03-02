@@ -34,6 +34,8 @@ services:
   Symfony\Component\EventDispatcher\EventSubscriberInterface $addAddressSubscriber: '@App\Form\EventListener\AddAddressSubscriber'
   Symfony\Component\EventDispatcher\EventSubscriberInterface $addAddressCountrySubscriber: '@App\Form\EventListener\AddAddressCountrySubscriber'
   
+  App\Etalab\EtalabApiClientInterface: '@App\Etalab\EtalabAddressApiClient'
+  
   App\Security\FranceConnectListener:
     $baseUri: '%env(FRANCE_CONNECT_BASE_URI)%'
     $logoutTargetPathMap: ~  # Replaced in LogoutTargetPass

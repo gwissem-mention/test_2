@@ -6,19 +6,24 @@ namespace App\Form\Model\Facts;
 
 class FactsModel
 {
-    private ?AddressModel $address = null;
+    private ?FactAddressModel $address = null;
     private ?OffenseDateModel $offenseDate = null;
     private ?int $placeNature = null;
     private ?bool $victimOfViolence = null;
     private ?string $victimOfViolenceText = null;
     private ?string $description = null;
 
-    public function getAddress(): ?AddressModel
+    public function __construct()
+    {
+        $this->address = new FactAddressModel();
+    }
+
+    public function getAddress(): ?FactAddressModel
     {
         return $this->address;
     }
 
-    public function setAddress(?AddressModel $address): self
+    public function setAddress(?FactAddressModel $address): self
     {
         $this->address = $address;
 

@@ -8,7 +8,8 @@ Feature:
         Given I am on "/authentification"
         When I press "france_connect_auth_button"
         And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
-        And I fill in "identity_contactInformation_frenchAddress_address" with "Av. de la République 75011 Paris France"
+        And I fill in "contact-information-address" with "avenue de la république paris"
+        And I click the "#contact-information-address-75111_8158" element
         And I fill in "identity_contactInformation_phone_number" with "0601020304"
         And I click the "label[for=identity_declarantStatus_0]" element
         And I press "identity_submit"
@@ -106,8 +107,8 @@ Feature:
         When I click the "label[for=facts_address_addressOrRouteFactsKnown_0]" element
         Then I should see the key "pel.address.start.or.exact" translated
         And I should see the key "pel.address.end" translated
-        And I should see a "input#facts_address_startAddress" element
-        And I should see a "input#facts_address_endAddress" element
+        And I should see a "input#facts-startAddress-address" element
+        And I should see a "input#facts-endAddress-address" element
 
     Scenario: I should not see 2 inputs text if I select "No" to addressOrRouteFactsKnown radio button
         When I click the "label[for=facts_address_addressOrRouteFactsKnown_1]" element
@@ -117,8 +118,8 @@ Feature:
     Scenario: Submit the facts form
         When I fill in "facts_description" with "description informations"
         And I click the "label[for=facts_address_addressOrRouteFactsKnown_0]" element
-        And I fill in "facts_address_startAddress" with "1 test street"
-        And I fill in "facts_address_endAddress" with "2 test street"
+        And I fill in "facts-startAddress-address" with "1 test street"
+        And I fill in "facts-startAddress-address" with "2 test street"
         And I click the "label[for=facts_offenseDate_exactDateKnown_0]" element
         And I fill in "facts_offenseDate_startDate" with "01/01/2022"
         And I click the "label[for=facts_offenseDate_choiceHour_0]" element
@@ -157,10 +158,10 @@ Feature:
     Scenario: The field start address should be filled with identity address when place nature is home and addressOrRouteFactsKnown is checked
         And I select "1" from "facts_placeNature"
         And I click the "label[for=facts_address_addressOrRouteFactsKnown_0]" element
-        Then the "facts_address_startAddress" field should contain "Av. de la République 75011 Paris France"
+        Then the "facts-startAddress-address" field should contain "Avenue de la République 75011 Paris"
 
     Scenario: The field start address should not be filled with identity address when place nature is not home and addressOrRouteFactsKnown is checked
         And I select "2" from "facts_placeNature"
         And I click the "label[for=facts_address_addressOrRouteFactsKnown_0]" element
-        Then the "facts_address_startAddress" field should not contain "Av. de la République 75011 Paris France"
+        Then the "facts-startAddress-address" field should not contain "Avenue de la République 75011 Paris"
 

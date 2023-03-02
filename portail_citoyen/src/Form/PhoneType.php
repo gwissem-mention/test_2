@@ -55,9 +55,9 @@ class PhoneType extends AbstractType
             ->add('number', TelType::class, [
                 'attr' => [
                     'class' => 'phone-intl',
-                    'data-controller' => 'form',
-                    'data-action' => 'input->form#trimByPattern',
-                    'data-form-pattern-param' => '[^0-9-\s]',
+                    'data-intl-tel-input-target' => 'number',
+                    'data-action' => 'input->intl-tel-input#trimByPattern',
+                    'data-intl-tel-input-pattern-param' => '[^0-9-\s]',
                 ],
                 'constraints' => $numberConstraints,
                 'required' => $options['number_required'],
@@ -67,12 +67,14 @@ class PhoneType extends AbstractType
             ->add('code', HiddenType::class, [
                 'attr' => [
                     'class' => 'phone-intl-dial-code',
+                    'data-intl-tel-input-target' => 'code',
                 ],
                 'empty_data' => self::FRANCE_DIAL_CODE,
             ])
             ->add('country', HiddenType::class, [
                 'attr' => [
                     'class' => 'phone-intl-country',
+                    'data-intl-tel-input-target' => 'country',
                 ],
                 'empty_data' => self::FRANCE_CODE,
             ]);

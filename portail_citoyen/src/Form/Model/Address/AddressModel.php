@@ -2,11 +2,16 @@
 
 declare(strict_types=1);
 
-namespace App\Form\Model;
+namespace App\Form\Model\Address;
 
-class AddressModel
+class AddressModel extends AbstractSerializableAddress implements AddressInterface
 {
     private ?string $label = null;
+
+    public function __construct()
+    {
+        $this->addressType = 'address';
+    }
 
     public function getLabel(): ?string
     {

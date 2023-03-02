@@ -1,0 +1,31 @@
+<div {{ attributes.add(stimulus_controller('etalab')) }} style="margin-top: 0.5rem;">
+    <input type="text"
+           required="required"
+           data-model="addressSearch"
+           autocomplete="off"
+           class="fr-input{% if this.errors|length > 0 %} fr-input--error{% endif %}"
+           id="{{ inputName }}"
+           name="{{ inputName }}"
+           {% if disabled %}disabled="disabled"{% endif %}
+    >
+    {% if this.autoCompleteResults|length > 0 %}
+        <ul class="list--addresses">
+            {% for addr in this.autoCompleteResults %}
+                <li class="list--addresses__item"
+                    data-action="mousedown->live#action"
+                    data-action-name="selectAddress(addressId={{ addr.properties.id }})"
+                    id="{{ inputName }}-{{ addr.properties.id }}"
+                >
+                    {{ addr.properties.label }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% if this.errors|length > 0 %}
+        {% for error in this.errors %}
+            <p class="fr-error-text" id="form-errors-{{ inputName }}">
+                {{ error }}
+            </p>
+        {% endfor %}
+    {% endif %}
+</div>

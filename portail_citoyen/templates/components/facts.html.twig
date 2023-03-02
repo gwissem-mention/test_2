@@ -37,14 +37,42 @@
     {% if form.address.startAddress is defined %}
         <div class="fr-grid-row fr-py-2w">
             <div class="fr-col">
-                {{ form_row(form.address.startAddress) }}
+                {% set etalab_errors = [] %}
+                {% if form.address.startAddress is defined %}
+                    {% for error in form.address.startAddress.address.vars.errors %}
+                        {% set etalab_errors = etalab_errors|merge([error.message]) %}
+                    {% endfor %}
+                {% endif %}
+                <div class="fr-input-group{% if etalab_errors|length > 0 %} fr-input-group--error{% endif %}">
+                    {{ form_label(form.address.startAddress) }}
+                    {{ component('etalab_component', {
+                        'data-live-id': 'facts-startAddress-address',
+                        dataModel: 'addressSearch:startAddressEtalabInput.addressSearch addressId:startAddressEtalabInput.addressId addressSearchSaved:startAddressEtalabInput.addressSearchSaved',
+                        inputName: 'facts-startAddress-address',
+                        errors: etalab_errors,
+                    }) }}
+                </div>
             </div>
         </div>
     {% endif %}
     {% if form.address.endAddress is defined %}
         <div class="fr-grid-row fr-py-2w">
             <div class="fr-col">
-                {{ form_row(form.address.endAddress) }}
+                {% set etalab_errors = [] %}
+                {% if form.address.endAddress is defined %}
+                    {% for error in form.address.endAddress.address.vars.errors %}
+                        {% set etalab_errors = etalab_errors|merge([error.message]) %}
+                    {% endfor %}
+                {% endif %}
+                <div class="fr-input-group{% if etalab_errors|length > 0 %} fr-input-group--error{% endif %}">
+                    {{ form_label(form.address.endAddress) }}
+                    {{ component('etalab_component', {
+                        'data-live-id': 'facts-endAddress-address',
+                        dataModel: 'addressSearch:endAddressEtalabInput.addressSearch addressId:endAddressEtalabInput.addressId addressSearchSaved:endAddressEtalabInput.addressSearchSaved',
+                        inputName: 'facts-endAddress-address',
+                        errors: etalab_errors,
+                    }) }}
+                </div>
             </div>
         </div>
     {% endif %}
@@ -113,5 +141,5 @@
             {% endif %}
         </ul>
     </div>
-    {{ form_end(form) }}
+    {{ form_end(form, {render_rest: false}) }}
 </div>

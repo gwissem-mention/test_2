@@ -43,20 +43,26 @@ class AddAddressSubscriber implements EventSubscriberInterface
         FormInterface $form,
         EmbedAddressInterface|null $model = null
     ): void {
+        $constraints = [
+            new NotBlank(),
+        ];
+
+        if ($model instanceof EmbedAddressInterface && $model->isSameAddress()) {
+            $constraints = [];
+        }
+
         $form
             ->remove('foreignAddress')
             ->add('frenchAddress', AddressEtalabType::class, [
                 'address_label' => $form->getConfig()->getOption('need_same_address_field') ? false : 'pel.address',
-                'address_constraints' => [
-                    new NotBlank(),
-                ],
+                'address_constraints' => $constraints,
                 'address_data' => $model?->getFrenchAddress()?->getLabel(),
                 'required' => true,
+                'disabled' => $model?->isSameAddress() ?? false,
             ]);
 
         if ($form->getConfig()->getOption('need_same_address_field')) {
             $form->add('sameAddress', CheckboxType::class, [
-                'mapped' => false,
                 'label' => 'pel.same.address.as.declarant',
                 'required' => false,
                 'attr' => [
@@ -74,17 +80,20 @@ class AddAddressSubscriber implements EventSubscriberInterface
         EmbedAddressInterface|null $model = null
     ): void {
         $form
-            ->remove('frenchAddress')
+             ->remove('frenchAddress')
             ->add('foreignAddress', TextType::class, [
                 'label' => $form->getConfig()->getOption('need_same_address_field') ? false : 'pel.address',
                 'constraints' => [
                     new NotBlank(),
                 ],
+                'attr' => [
+                    'class' => 'fr-input',
+                ],
+                'disabled' => $model?->isSameAddress() ?? false,
             ]);
 
         if ($form->getConfig()->getOption('need_same_address_field')) {
             $form->add('sameAddress', CheckboxType::class, [
-                'mapped' => false,
                 'label' => 'pel.same.address.as.declarant',
                 'required' => false,
                 'attr' => [

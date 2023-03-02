@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace App\Form\Model\Facts;
 
-class AddressModel
+use App\Form\Model\Address\AbstractSerializableAddress;
+
+class FactAddressModel
 {
     private ?bool $addressOrRouteFactsKnown = null;
     private ?string $addressAdditionalInformation = null;
-    private ?string $startAddress = null;
-    private ?string $endAddress = null;
+    private ?AbstractSerializableAddress $startAddress = null;
+    private ?AbstractSerializableAddress $endAddress = null;
 
     public function isAddressOrRouteFactsKnown(): ?bool
     {
@@ -35,24 +37,24 @@ class AddressModel
         return $this;
     }
 
-    public function getStartAddress(): ?string
+    public function getStartAddress(): ?AbstractSerializableAddress
     {
         return $this->startAddress;
     }
 
-    public function setStartAddress(?string $startAddress): self
+    public function setStartAddress(?AbstractSerializableAddress $startAddress): self
     {
         $this->startAddress = $startAddress;
 
         return $this;
     }
 
-    public function getEndAddress(): ?string
+    public function getEndAddress(): ?AbstractSerializableAddress
     {
         return $this->endAddress;
     }
 
-    public function setEndAddress(?string $endAddress): self
+    public function setEndAddress(?AbstractSerializableAddress $endAddress): self
     {
         $this->endAddress = $endAddress;
 

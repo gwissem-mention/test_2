@@ -10,7 +10,8 @@ Feature:
         Then I should be on "/porter-plainte/identite"
         When I click the "label[for=identity_declarantStatus_0]" element
         And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
-        And I fill in "identity_contactInformation_frenchAddress_address" with "Av. de la République 75011 Paris"
+        And I fill in "contact-information-address" with "avenue de la république paris"
+        And I click the "#contact-information-address-75111_8158" element
         And I fill in "identity_contactInformation_phone_number" with "0601020304"
         When I press "identity_submit"
         Then I should be on "/porter-plainte/faits"
@@ -18,8 +19,8 @@ Feature:
         And I click the "label[for=facts_victimOfViolence]" element
         And I fill in "facts_victimOfViolenceText" with "Violence informations"
         And I click the "label[for=facts_address_addressOrRouteFactsKnown_0]" element
-        And I fill in "facts_address_startAddress" with "1 test street"
-        And I fill in "facts_address_endAddress" with "2 test street"
+        And I fill in "facts-startAddress-address" with "1 test street"
+        And I fill in "facts-endAddress-address" with "2 test street"
         And I click the "label[for=facts_offenseDate_exactDateKnown_0]" element
         And I fill in "facts_offenseDate_startDate" with "01/01/2022"
         And I click the "label[for=facts_offenseDate_choiceHour_0]" element
@@ -62,7 +63,7 @@ Feature:
         And I should see the key "pel.nationality" translated
         And I should see "Française"
         And I should see the key "pel.resides.at" translated
-        And I should see "Av. de la République 75011 Paris, France"
+        And I should see "Avenue de la République 75011 Paris, France"
         And I should see the key "pel.your.job" translated
         And I should see "Abatteur de bestiaux"
         And I should see the key "pel.phone" translated

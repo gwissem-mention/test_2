@@ -5,3 +5,5 @@ services:
     _defaults:
         autowire: true
         autoconfigure: true
+
+    App\Etalab\EtalabApiClientInterface: '@App\Tests\Behat\MockedClasses\EtalabApiClient'

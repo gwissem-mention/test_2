@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Form\Model;
+namespace App\Form\Model\Address;
 
-final class AddressEtalabModel extends AddressModel
+final class AddressEtalabModel extends AbstractSerializableAddress
 {
     private ?string $id = null;
+    private ?string $label = null;
     private ?string $type = null;
     private ?float $score = null;
     private ?string $housenumber = null;
@@ -20,6 +21,11 @@ final class AddressEtalabModel extends AddressModel
     private ?float $x = null;
     private ?float $y = null;
     private ?float $importance = null;
+
+    public function __construct()
+    {
+        $this->addressType = 'etalab_address';
+    }
 
     public function getId(): ?string
     {
@@ -187,5 +193,17 @@ final class AddressEtalabModel extends AddressModel
         $this->importance = $importance;
 
         return $this;
+    }
+
+    public function setLabel(?string $label): self
+    {
+        $this->label = $label;
+
+        return $this;
+    }
+
+    public function getLabel(): ?string
+    {
+        return $this->label;
     }
 }

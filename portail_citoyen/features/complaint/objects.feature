@@ -9,7 +9,8 @@ Feature:
         When I press "france_connect_auth_button"
         Then I should be on "/porter-plainte/identite"
         And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
-        And I fill in "identity_contactInformation_frenchAddress_address" with "Av. de la République 75011 Paris France"
+        And I fill in "contact-information-address" with "avenue de la république paris"
+        And I click the "#contact-information-address-75111_8158" element
         And I fill in "identity_contactInformation_phone_number" with "0601020304"
         And I click the "label[for=identity_declarantStatus_0]" element
         And I press "identity_submit"
