@@ -113,10 +113,10 @@
                 <div class="fr-col">
                     <h3>{{ 'pel.facts.description'|trans }}</h3>
                     <ul>
-                        <li>{{ 'pel.facts.description.precise'|trans }}: {{ complaint.facts.description }}</li>
-                        <li>{{ 'pel.victim.at.time.of.facts'|trans }}: {{ complaint.facts.victimOfViolence ? 'pel.yes'|trans : 'pel.no'|trans }}</li>
-                        {% if complaint.facts.victimOfViolence is not null %}
-                            <li>{{ 'pel.victim.at.time.of.facts.precisions'|trans }}: {{ complaint.facts.victimOfViolenceText }}</li>
+                        <li>{{ 'pel.facts.description.precise'|trans }} : {{ complaint.facts.description }}</li>
+                        <li>{{ 'pel.victim.at.time.of.facts'|trans }} : {{ complaint.facts.victimOfViolence ? 'pel.yes'|trans : 'pel.no'|trans }}</li>
+                        {% if complaint.facts.victimOfViolence is same as(true) %}
+                            <li>{{ 'pel.victim.at.time.of.facts.precisions'|trans }} : {{ complaint.facts.victimOfViolenceText }}</li>
                         {% endif %}
                         {% if complaint.facts.placeNature is not null %}
                             <li>
@@ -138,17 +138,17 @@
                                 {% endif %}
                             </li>
                         {% endif %}
-                        <li>{{ 'pel.address.or.route.facts'|trans }}: {{ complaint.facts.address.addressOrRouteFactsKnown ? 'pel.yes'|trans : 'pel.no'|trans }}</li>
+                        <li>{{ 'pel.address.or.route.facts'|trans }} : {{ complaint.facts.address.addressOrRouteFactsKnown ? 'pel.yes'|trans : 'pel.no'|trans }}</li>
                         {% if complaint.facts.address.addressOrRouteFactsKnown is same as(true) %}
-                            <li>{{ 'pel.address.start.or.exact'|trans }}: {{ complaint.facts.address.startAddress.label }}</li>
-                            {% if complaint.facts.address.endAddress is not null %}
+                            <li>{{ 'pel.address.start.or.exact'|trans }} : {{ complaint.facts.address.startAddress.label }}</li>
+                            {% if complaint.facts.address.endAddress.label is not empty %}
                                 <li>{{ 'pel.address.end'|trans }} : {{ complaint.facts.address.endAddress.label }}</li>
                             {% endif %}
                         {% endif %}
                         {% if complaint.facts.address.addressAdditionalInformation is not null %}
-                            <li>{{ 'pel.additional.place.information'|trans }}: {{ complaint.facts.address.addressAdditionalInformation }}</li>
+                            <li>{{ 'pel.additional.place.information'|trans }} : {{ complaint.facts.address.addressAdditionalInformation }}</li>
                         {% endif %}
-                        <li>{{ 'pel.complaint.exact.date.known'|trans }}: {{ complaint.facts.offenseDate.exactDateKnown ? 'pel.yes'|trans : 'pel.no'|trans }}</li>
+                        <li>{{ 'pel.complaint.exact.date.known'|trans }} : {{ complaint.facts.offenseDate.exactDateKnown ? 'pel.yes'|trans : 'pel.no'|trans }}</li>
                         <li>
                             {{ 'pel.facts.date'|trans }} :
                             {% if complaint.facts.offenseDate.exactDateKnown is not null %}
@@ -216,13 +216,13 @@
                 <div class="fr-col">
                     <h3>{{ 'pel.additional.factual.information'|trans }}</h3>
                     <ul>
-                        <li>{{ 'pel.facts.witnesses'|trans }}: {{ complaint.additionalInformation.witnesses ? 'pel.yes'|trans : 'pel.no'|trans }}</li>
-                        {% if complaint.additionalInformation.witnesses  is not null %}
-                            <li>{{ 'pel.facts.witnesses.information.text'|trans }}: {{ complaint.additionalInformation.witnessesText }}</li>
+                        <li>{{ 'pel.facts.witnesses'|trans }} : {{ complaint.additionalInformation.witnesses ? 'pel.yes'|trans : 'pel.no'|trans }}</li>
+                        {% if complaint.additionalInformation.witnesses is same as(true) %}
+                            <li>{{ 'pel.facts.witnesses.information.text'|trans }} : {{ complaint.additionalInformation.witnessesText }}</li>
                         {% endif %}
-                        <li>{{ 'pel.do.you.have.informations.on.potential.suspects'|trans }}: {{ complaint.additionalInformation.suspectsChoice ? 'pel.yes'|trans : 'pel.no'|trans }}</li>
-                        {% if complaint.additionalInformation.suspectsChoice  is not null %}
-                            <li>{{ 'pel.facts.suspects.informations.text'|trans }}: {{ complaint.additionalInformation.suspectsText }}</li>
+                        <li>{{ 'pel.do.you.have.informations.on.potential.suspects'|trans }} : {{ complaint.additionalInformation.suspectsChoice ? 'pel.yes'|trans : 'pel.no'|trans }}</li>
+                        {% if complaint.additionalInformation.suspectsChoice is same as(true) %}
+                            <li>{{ 'pel.facts.suspects.informations.text'|trans }} : {{ complaint.additionalInformation.suspectsText }}</li>
                         {% endif %}
                         <li>
                             {{ 'pel.cctv.present'|trans }} :
@@ -235,11 +235,11 @@
                             {% endif %}
                         </li>
                         {% if complaint.additionalInformation.cctvPresent is same as(constant('App\\Form\\Model\\AdditionalInformation\\AdditionalInformationModel::CCTV_PRESENT_YES')) %}
-                            <li>{{ 'pel.cctv.available'|trans }}: {{ complaint.additionalInformation.cctvAvailable ? 'pel.yes'|trans : 'pel.no'|trans }}</li>
+                            <li>{{ 'pel.cctv.available'|trans }} : {{ complaint.additionalInformation.cctvAvailable ? 'pel.yes'|trans : 'pel.no'|trans }}</li>
                         {% endif %}
-                        <li>{{ 'pel.fsi.visit'|trans }}: {{ complaint.additionalInformation.fsiVisit ? 'pel.yes'|trans : 'pel.no'|trans }}</li>
+                        <li>{{ 'pel.fsi.visit'|trans }} : {{ complaint.additionalInformation.fsiVisit ? 'pel.yes'|trans : 'pel.no'|trans }}</li>
                         {% if complaint.additionalInformation.fsiVisit is not null %}
-                            <li>{{ 'pel.observation.made'|trans }}: {{ complaint.additionalInformation.observationMade ? 'pel.yes'|trans : 'pel.no'|trans }}</li>
+                            <li>{{ 'pel.observation.made'|trans }} : {{ complaint.additionalInformation.observationMade ? 'pel.yes'|trans : 'pel.no'|trans }}</li>
                         {% endif %}
                     </ul>
                     <p>
