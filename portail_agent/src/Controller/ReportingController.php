@@ -20,10 +20,18 @@ class ReportingController extends AbstractController
         /** @var User $user */
         $user = $this->getUser();
 
-        return $this->render('pages/reporting.html.twig', [
-            'user_complaints' => $complaintRepository->findBy([
+        if ($this->isGranted('ROLE_SUPERVISOR')) {
+            $complaints = $complaintRepository->findBy([
+                'unitAssigned' => $user->getServiceCode(),
+            ]);
+        } else {
+            $complaints = $complaintRepository->findBy([
                 'assignedTo' => $user->getId(),
-            ]),
+            ]);
+        }
+
+        return $this->render('pages/reporting.html.twig', [
+            'complaints' => $complaints,
         ]);
     }
 }

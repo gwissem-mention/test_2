@@ -46,9 +46,9 @@ Feature:
     @javascript
     Scenario: I can click on a complaint link on the table
         Given I am on the homepage
-        When I follow "PEL-2023-00000051"
+        When I follow "PEL-2023-00000061"
         And I go to the tab 2
-        Then I should be on "/plainte/recapitulatif/51"
+        Then I should be on "/plainte/recapitulatif/61"
 
     @javascript
     Scenario: I can click on a assignment notif and I should be redirected on the complaint and the notif should be removed
@@ -118,8 +118,8 @@ Feature:
         And I should see the key "pel.declaration.number" translated
         And I should see the key "pel.comments" translated
         And I should see 10 ".btn-secondary" element
-        And I should see 10 ".btn-success" element
-        And I should see 5 ".btn-danger" element
+        And I should see 5 ".btn-success" element
+        And I should see 10 ".btn-dark" element
 
     @javascript
     Scenario: As an authenticated agent, with no complaints assigned to me, I should see an empty table
@@ -173,11 +173,11 @@ Feature:
         Then I should see 11 "tr" element
         When I fill in "search_query" with "4"
         And I press "Rechercher"
-        Then I should see 15 "tr" element
+        Then I should see 16 "tr" element
         When I fill in "search_query" with "34"
         And I press "Rechercher"
         Then I should see 2 "tr" element
-        When I fill in "search_query" with "34"
+        When I fill in "search_query" with "44"
         And I press "Rechercher"
         Then I should see 2 "tr" element
         When I fill in "search_query" with "jean"

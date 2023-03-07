@@ -52,6 +52,11 @@ class ComplaintRepository extends ServiceEntityRepository
      */
     public function findAsPaginator(array $order = [], int $start = 0, ?int $length = null, string $unit = null, ?User $agent = null, ?string $searchQuery = null): Paginator
     {
+        $status = match ($searchQuery) {
+            'cloturee' => Complaint::STATUS_CLOSED,
+            default => null,
+        };
+
         $qb = $this
             ->createQueryBuilder('c')
             ->select('c, count(comments) as HIDDEN count_comments')
@@ -74,7 +79,11 @@ class ComplaintRepository extends ServiceEntityRepository
                 ->setParameter('agent', $agent);
         }
 
-        if (!empty($searchQuery)) {
+        if (!is_null($status)) {
+            $qb->andWhere('c.status = :status')
+                ->setParameter('status', $status)
+            ;
+        } elseif (!empty($searchQuery)) {
             $keywords = explode(' ', $searchQuery);
             $andX = $qb->expr()->andX();
             $i = 0;
