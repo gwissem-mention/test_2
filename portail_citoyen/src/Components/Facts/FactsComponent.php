@@ -8,7 +8,6 @@ use App\Etalab\AddressEtalabHandler;
 use App\Form\Facts\FactsType;
 use App\Form\Model\Address\AbstractSerializableAddress;
 use App\Form\Model\Address\AddressEtalabModel;
-use App\Form\Model\Address\AddressModel;
 use App\Form\Model\EtalabInput;
 use App\Form\Model\Facts\FactsModel;
 use App\Session\ComplaintModel;
@@ -59,18 +58,12 @@ class FactsComponent extends AbstractController
         if (isset($this->formValues['placeNature']) && '1' === $this->formValues['placeNature']) { // Nature place is home
             $contactInformation = $this->sessionHandler->getComplaint()?->getIdentity()?->getContactInformation();
 
-            if (!$this->factsModel->getAddress()?->getStartAddress() instanceof AbstractSerializableAddress) {
-                if ($contactInformation?->getFrenchAddress() instanceof AbstractSerializableAddress) {
-                    $address = $contactInformation->getFrenchAddress();
-                    $this->factsModel->getAddress()?->setStartAddress($address);
-                    if ($address instanceof AddressEtalabModel) {
-                        $this->startAddressEtalabInput->setAddressSearch($address->getLabel() ?? '');
-                        $this->startAddressEtalabInput->setAddressId($address->getId() ?? '');
-                    }
-                } else {
-                    $this->factsModel->getAddress()?->setStartAddress(
-                        (new AddressModel())->setLabel($contactInformation?->getForeignAddress())
-                    );
+            if ($contactInformation && $contactInformation->getFrenchAddress() instanceof AbstractSerializableAddress && !$this->factsModel->getAddress()?->getStartAddress() instanceof AbstractSerializableAddress) {
+                $address = $contactInformation->getFrenchAddress();
+                $this->factsModel->getAddress()?->setStartAddress($address);
+                if ($address instanceof AddressEtalabModel) {
+                    $this->startAddressEtalabInput->setAddressSearch($address->getLabel() ?? '');
+                    $this->startAddressEtalabInput->setAddressId($address->getId() ?? '');
                 }
             }
         }

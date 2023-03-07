@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Form\Model\Identity;
 
 use App\Form\Model\Address\AbstractSerializableAddress;
+use App\Form\Model\Address\AddressForeignModel;
 
 interface EmbedAddressInterface
 {
@@ -16,9 +17,11 @@ interface EmbedAddressInterface
 
     public function setFrenchAddress(?AbstractSerializableAddress $frenchAddress): self;
 
-    public function getForeignAddress(): ?string;
+    public function getForeignAddress(): ?AddressForeignModel;
 
-    public function setForeignAddress(?string $foreignAddress): self;
+    public function setForeignAddress(?AddressForeignModel $foreignAddress): self;
 
     public function isSameAddress(): bool;
+
+    public function setSameAddress(bool $sameAddress): self;
 }

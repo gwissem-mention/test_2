@@ -18,6 +18,34 @@
                 <source>pel.4.your.request.is.processed.within.48h</source>
                 <target>4 - Votre demande est prise en charge sous 48h</target>
             </trans-unit>
+            <trans-unit id="pel.address.name">
+                <source>pel.address.name</source>
+                <target>Nom de la voie</target>
+            </trans-unit>
+            <trans-unit id="pel.address.apartment">
+                <source>pel.address.apartment</source>
+                <target>Appartement, immeuble, étage, ect.</target>
+            </trans-unit>
+            <trans-unit id="pel.address.city">
+                <source>pel.address.city</source>
+                <target>Ville</target>
+            </trans-unit>
+            <trans-unit id="pel.address.context">
+                <source>pel.address.context</source>
+                <target>Etat/Province/Région</target>
+            </trans-unit>
+            <trans-unit id="pel.address.number">
+                <source>pel.address.number</source>
+                <target>Numéro de la voie</target>
+            </trans-unit>
+            <trans-unit id="pel.address.type">
+                <source>pel.address.type</source>
+                <target>Type de la voie</target>
+            </trans-unit>
+            <trans-unit id="pel.address.postcode">
+                <source>pel.address.postcode</source>
+                <target>Code postal</target>
+            </trans-unit>
             <trans-unit id="pel.amount">
                 <source>pel.amount</source>
                 <target>Montant</target>

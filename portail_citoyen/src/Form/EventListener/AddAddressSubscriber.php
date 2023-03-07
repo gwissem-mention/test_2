@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace App\Form\EventListener;
 
 use App\Form\AddressEtalabType;
+use App\Form\ForeignAddressType;
 use App\Form\Model\Identity\EmbedAddressInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
@@ -24,6 +24,7 @@ class AddAddressSubscriber implements EventSubscriberInterface
     {
         return [
             FormEvents::PRE_SET_DATA => 'addAddressField',
+            FormEvents::PRE_SUBMIT => 'addAddressFieldSubmit',
         ];
     }
 
@@ -35,7 +36,22 @@ class AddAddressSubscriber implements EventSubscriberInterface
         if (null === $location?->getCountry() || $this->franceCode === $location->getCountry()) {
             $this->addFrenchAddressField($form, $location);
         } else {
-            $this->addForeignAddressField($form, $location);
+            $this->addForeignAddressField($form, $location, $location->isSameAddress());
+        }
+    }
+
+    public function addAddressFieldSubmit(FormEvent $event): void
+    {
+        /** @var ?EmbedAddressInterface $location */
+        $location = $event->getData();
+        $form = $event->getForm();
+        $sameAddress = isset($location['sameAddress']) && $location['sameAddress'];
+
+        $country = $location['country'] ?? null;
+        if (null === $location || '' === $country || $this->franceCode === (int) $country) {
+            $this->addFrenchAddressField($form);
+        } else {
+            $this->addForeignAddressField($form, disabled: $sameAddress);
         }
     }
 
@@ -51,6 +67,16 @@ class AddAddressSubscriber implements EventSubscriberInterface
             $constraints = [];
         }
 
+        if ($form->getConfig()->getOption('need_same_address_field')) {
+            $form->add('sameAddress', CheckboxType::class, [
+                'label' => 'pel.same.address.as.declarant',
+                'required' => false,
+                'attr' => [
+                    'data-controller' => 'form',
+                    'data-action' => 'form#sameAddress',
+                ],
+            ]);
+        }
         $form
             ->remove('foreignAddress')
             ->add('frenchAddress', AddressEtalabType::class, [
@@ -61,47 +87,32 @@ class AddAddressSubscriber implements EventSubscriberInterface
                 'disabled' => $model?->isSameAddress() ?? false,
             ]);
 
-        if ($form->getConfig()->getOption('need_same_address_field')) {
-            $form->add('sameAddress', CheckboxType::class, [
-                'label' => 'pel.same.address.as.declarant',
-                'required' => false,
-                'attr' => [
-                    'data-controller' => 'form',
-                    'data-action' => 'form#sameAddress',
-                ],
-            ]);
-        }
-
         $model?->setForeignAddress(null);
     }
 
     protected function addForeignAddressField(
         FormInterface $form,
-        EmbedAddressInterface|null $model = null
+        EmbedAddressInterface|null $model = null,
+        bool $disabled = false,
     ): void {
-        $form
-             ->remove('frenchAddress')
-            ->add('foreignAddress', TextType::class, [
-                'label' => $form->getConfig()->getOption('need_same_address_field') ? false : 'pel.address',
-                'constraints' => [
-                    new NotBlank(),
-                ],
-                'attr' => [
-                    'class' => 'fr-input',
-                ],
-                'disabled' => $model?->isSameAddress() ?? false,
-            ]);
-
         if ($form->getConfig()->getOption('need_same_address_field')) {
             $form->add('sameAddress', CheckboxType::class, [
                 'label' => 'pel.same.address.as.declarant',
                 'required' => false,
                 'attr' => [
-                    'data-controller' => 'form',
-                    'data-action' => 'form#sameAddress',
+                    'data-action' => 'live#action',
+                    'data-action-name' => 'sameAddress',
                 ],
             ]);
         }
+
+        $form
+            ->remove('frenchAddress')
+            ->add('foreignAddress', ForeignAddressType::class, [
+                'label' => false,
+                'compound' => true,
+                'fields_disabled' => $disabled,
+            ]);
 
         $model?->setFrenchAddress(null);
     }

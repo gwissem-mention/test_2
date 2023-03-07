@@ -19,8 +19,6 @@
     <div class="fr-input-group{% if etalab_errors|length > 0 %} fr-input-group--error{% endif %}">
         {% if form.frenchAddress is defined %}
             {{ form_label(form.frenchAddress, 'pel.address') }}
-        {% elseif form.foreignAddress is defined %}
-            {{ form_label(form.foreignAddress, 'pel.address') }}
         {% endif %}
 
         {% if form.sameAddress is defined %}

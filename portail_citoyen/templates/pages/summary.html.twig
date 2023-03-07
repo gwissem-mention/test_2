@@ -95,10 +95,10 @@
                             </li>
                             <li>
                                 {{ 'pel.address'|trans }} :
-                                {% if complaint.identity.corporation.country == fr_code %}
+                                {% if complaint.identity.corporation.frenchAddress is not null %}
                                     {{ complaint.identity.corporation.frenchAddress.label }}
                                 {% else %}
-                                    {{ complaint.identity.corporation.foreignAddress }}
+                                    {{ complaint.identity.corporation.foreignAddress.label }}
                                 {% endif %}
                             </li>
                         </ul>

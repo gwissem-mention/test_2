@@ -10,6 +10,7 @@ use App\Form\PhoneType;
 use App\Thesaurus\NationalityThesaurusProviderInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -25,7 +26,6 @@ class CorporationType extends AbstractType
     public function __construct(
         private readonly EventSubscriberInterface $addAddressSubscriber,
         private readonly NationalityThesaurusProviderInterface $nationalityThesaurusProvider,
-        private readonly EventSubscriberInterface $addAddressCountrySubscriber,
         private readonly string $franceCode
     ) {
     }
@@ -98,8 +98,17 @@ class CorporationType extends AbstractType
                 ],
             ]);
 
+        if ($options['need_same_address_field']) {
+            $builder->add('sameAddress', CheckboxType::class, [
+                'label' => 'pel.same.address.as.declarant',
+                'required' => false,
+                'attr' => [
+                    'data-controller' => 'form',
+                    'data-action' => 'form#sameAddress',
+                ],
+            ]);
+        }
         $builder->addEventSubscriber($this->addAddressSubscriber);
-        $builder->get('country')->addEventSubscriber($this->addAddressCountrySubscriber);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

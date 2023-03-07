@@ -109,7 +109,11 @@ Feature:
         And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
         And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
         And I select "99134" from "identity_contactInformation_country"
-        And I fill in "identity_contactInformation_foreignAddress" with "C. de Alcalá Madrid"
+        And I fill in "identity_contactInformation_foreignAddress_housenumber" with "14"
+        And I fill in "identity_contactInformation_foreignAddress_type" with "Corto"
+        And I fill in "identity_contactInformation_foreignAddress_street" with "de Alcalá"
+        And I fill in "identity_contactInformation_foreignAddress_apartment" with "2"
+        And I fill in "identity_contactInformation_foreignAddress_city" with "Madrid"
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I fill in "identity_contactInformation_phone_number" with "0601020304"
         When I click the "label[for=identity_declarantStatus_0]" element
