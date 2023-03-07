@@ -17,7 +17,8 @@ Feature:
         And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
         And I fill in "contact-information-address" with "avenue de la république paris"
         And I click the "#contact-information-address-75111_8158" element
-        And I fill in "identity_contactInformation_phone_number" with "0601020304"
+        And I fill in "identity_contactInformation_phone_number" with "0101020304"
+        And I fill in "identity_contactInformation_mobile_number" with "0601020304"
         And I select "2" from "identity_representedPersonCivilState_civility"
         And I fill in "identity_representedPersonCivilState_birthName" with "Dupont"
         And I fill in "identity_representedPersonCivilState_firstnames" with "Julie"
@@ -79,6 +80,8 @@ Feature:
         And I should see the key "pel.your.job" translated
         And I should see "Abatteur de bestiaux"
         And I should see the key "pel.phone" translated
+        And I should see "+33 1 01 02 03 04"
+        And I should see the key "pel.mobile" translated
         And I should see "+33 6 01 02 03 04"
         And I should see the key "pel.email" translated
         And I should see "michel.dupont@example.com"

@@ -24,6 +24,7 @@ Feature:
         And I should see the key "pel.address" translated
         And I should see the key "pel.email" translated
         And I should see the key "pel.mobile" translated
+        And I should see the key "pel.phone" translated
         And I should see the key "pel.next" translated
         And I should see the key "pel.complaint.identity.declarant.status" translated
 
@@ -83,6 +84,22 @@ Feature:
         And I click the "label[for=identity_declarantStatus_0]" element
         And I press "identity_submit"
         Then I should be on "/porter-plainte/faits"
+
+    Scenario: Submit the form with no phones filled
+        When I select "1" from "identity_civilState_civility"
+        And I fill in "identity_civilState_birthName" with "Dupont"
+        And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
+        And I fill in "identity_civilState_birthDate" with "01/01/2000"
+        And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
+        And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
+        And I fill in "contact-information-address" with "avenue de la république paris"
+        And I click the "#contact-information-address-75111_8158" element
+        And I fill in "identity_contactInformation_email" with "jean@test.com"
+        When I click the "label[for=identity_declarantStatus_0]" element
+        And I press "identity_submit"
+        Then I should be on "/porter-plainte/identite"
+        And I should see a "#form-errors-identity_contactInformation_mobile_number" element
+        And I should see a "#form-errors-identity_contactInformation_phone_number" element
 
     Scenario: Submit the form with another addressCountry than France for victim declarant
         When I select "1" from "identity_civilState_civility"

@@ -6,16 +6,20 @@ namespace App\Form\Identity;
 
 use App\Form\CountryType;
 use App\Form\Model\Identity\ContactInformationModel;
+use App\Form\Model\Identity\PhoneModel;
 use App\Form\PhoneType;
 use App\Session\SessionHandler;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Callback;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 class ContactInformationType extends AbstractType
 {
@@ -50,10 +54,41 @@ class ContactInformationType extends AbstractType
                 'label' => 'pel.email',
                 'disabled' => $options['is_france_connected'] && $contactInformationModel?->getEmail(),
             ])
-            ->add('phone', PhoneType::class, [
+            ->add('mobile', PhoneType::class, [
+                'required' => false,
                 'label' => false,
                 'number_label' => 'pel.mobile',
-                'number_constraints' => [new NotBlank()],
+                'number_constraints' => [new Callback([
+                    'callback' => static function (?string $value, ExecutionContextInterface $context) {
+                        /** @var Form $form */
+                        $form = $context->getObject();
+                        /** @var Form $formParent */
+                        $formParent = $form->getParent()?->getParent();
+                        /** @var ?PhoneModel $phone */
+                        $phone = $formParent->get('phone')->getData();
+                        if (null === $value && null === $phone?->getNumber()) {
+                            $context->addViolation('pel.phone.or.mobile.error');
+                        }
+                    },
+                ])],
+            ])
+            ->add('phone', PhoneType::class, [
+                'required' => false,
+                'label' => false,
+                'number_label' => 'pel.phone',
+                'number_constraints' => [new Callback([
+                    'callback' => static function (?string $value, ExecutionContextInterface $context) {
+                        /** @var Form $form */
+                        $form = $context->getObject();
+                        /** @var Form $formParent */
+                        $formParent = $form->getParent()?->getParent();
+                        /** @var ?PhoneModel $mobile */
+                        $mobile = $formParent->get('mobile')->getData();
+                        if (null === $value && null === $mobile?->getNumber()) {
+                            $context->addViolation('pel.phone.or.mobile.error');
+                        }
+                    },
+                ])],
             ]);
 
         $builder->addEventSubscriber($this->addAddressSubscriber);
