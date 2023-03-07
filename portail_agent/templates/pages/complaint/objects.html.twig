@@ -19,6 +19,8 @@
                 {{ include('pages/complaint/forms/administrative_document_form.html.twig', {'form' : form} ) }}
             {% elseif form.vars.name is same as('payment_method') %}
                 {{ include('pages/complaint/forms/payment_method_form.html.twig', {'form' : form} ) }}
+            {% elseif form.vars.name is same as('simple_object') %}
+                {{ include('pages/complaint/forms/simple_object_form.html.twig', {'form' : form}) }}
             {% elseif form.vars.name is same as('vehicle') %}
                 {{ include('pages/complaint/forms/vehicle_form.html.twig', {'form' : form} ) }}
             {% endif %}

@@ -98,7 +98,10 @@ Feature:
         And I should see "Visa principale"
         And I should see "LCL"
         And I should see "Permis de conduire"
-        And I should see "Vous avez ajouté 4 objets pour un montant total de 17 999 €"
+        And I should see "Blouson"
+        And I should see "Blouson Adidas de couleur bleu"
+        And I should see "100 €"
+        And I should see "Vous avez ajouté 5 objets pour un montant total de 18 099 €"
         And I should see the key "pel.additional.informations" translated
         And I should see the key "pel.facts.witnesses" translated
         And I should see the key "pel.facts.witnesses.information.text" translated

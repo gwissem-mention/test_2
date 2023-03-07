@@ -12,6 +12,7 @@ use App\Entity\Facts;
 use App\Entity\FactsObjects\AdministrativeDocument;
 use App\Entity\FactsObjects\MultimediaObject;
 use App\Entity\FactsObjects\PaymentMethod;
+use App\Entity\FactsObjects\SimpleObject;
 use App\Entity\FactsObjects\Vehicle;
 use App\Entity\Identity;
 use App\Entity\User;
@@ -262,6 +263,15 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                         ->setType('Carte Bancaire')
                         ->setDescription($this->faker->randomElement(['Visa principale', 'Mastercard']))
                         ->setBank($this->faker->randomElement(['Crédit Agricole', 'Caisse d\'épargne', 'LCL']))
+                );
+            }
+
+            if ($this->faker->boolean(30)) {
+                $complaint->addObject(
+                    (new SimpleObject())
+                        ->setNature($this->faker->randomElement(['Blouson', 'Guitare', 'Sac à dos']))
+                        ->setDescription($this->faker->randomElement(['De couleur Rouge', 'De couleur Noire', 'De couleur Bleue']))
+                        ->setAmount($this->faker->numberBetween(100, 500))
                 );
             }
 

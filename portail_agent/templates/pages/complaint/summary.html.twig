@@ -211,6 +211,13 @@
                          - {{ object.amount|format_currency('EUR', {fraction_digit: 0}) }}
                         {% endif %}
                      </li>
+                {% elseif object|object_type is same as('App\\Entity\\FactsObjects\\SimpleObject')%}
+                    <li><strong>{{ 'pel.number'|trans }} {{ loop.index }}</strong> : {{ object.nature }}
+                        - {{ object.description }}
+                        {% if object.amount is not null %}
+                            - {{ object.amount|format_currency('EUR', {fraction_digit: 0}) }}
+                        {% endif %}
+                    </li>
                 {% endif %}
             {% endfor %}
         </ul>

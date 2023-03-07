@@ -12,6 +12,7 @@ use App\Entity\Facts;
 use App\Entity\FactsObjects\AdministrativeDocument;
 use App\Entity\FactsObjects\MultimediaObject;
 use App\Entity\FactsObjects\PaymentMethod;
+use App\Entity\FactsObjects\SimpleObject;
 use App\Entity\FactsObjects\Vehicle;
 use App\Entity\Identity;
 use App\Entity\User;
@@ -202,6 +203,12 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                     ->setRegistrationNumber('AA-123-AA')
                     ->setRegistrationCountry('France')
                     ->setAmount(17000)
+            )
+            ->addObject(
+                (new SimpleObject())
+                    ->setNature('Blouson')
+                    ->setDescription('Blouson Adidas de couleur bleu')
+                    ->setAmount(100)
             )
             ->setAdditionalInformation(
                 (new AdditionalInformation())

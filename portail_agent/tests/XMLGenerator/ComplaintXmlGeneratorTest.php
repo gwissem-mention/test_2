@@ -10,6 +10,7 @@ use App\Entity\Facts;
 use App\Entity\FactsObjects\AdministrativeDocument;
 use App\Entity\FactsObjects\MultimediaObject;
 use App\Entity\FactsObjects\PaymentMethod;
+use App\Entity\FactsObjects\SimpleObject;
 use App\Entity\Identity;
 use App\Enum\Institution;
 use App\Generator\Complaint\ComplaintXmlGenerator;
@@ -134,6 +135,12 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
                     ->setDescription('Carte gold')
                     ->setBank('LCL')
             )
+            ->addObject(
+                (new SimpleObject())
+                    ->setNature('Blouson')
+                    ->setDescription('Blouson bleu')
+                    ->setAmount(100)
+            )
             ->setAdditionalInformation(
                 (new AdditionalInformation())
                     ->setCctvPresent(AdditionalInformation::CCTV_PRESENT_YES)
@@ -249,12 +256,12 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
     {
         $this->assertStringContainsString('<Objet>', $this->xmlContent);
 //        $this->assertStringContainsString('<Objets_Prejudice_Evaluer>1</Objets_Prejudice_Evaluer>', $this->xmlContent);
-        $this->assertStringContainsString('<Objets_Prejudice_Estimation>2328</Objets_Prejudice_Estimation>', $this->xmlContent);
+        $this->assertStringContainsString('<Objets_Prejudice_Estimation>2428</Objets_Prejudice_Estimation>', $this->xmlContent);
         $this->assertStringNotContainsString('<Objet_Divers>', $this->xmlContent);
         $this->assertStringContainsString('</Objet>', $this->xmlContent);
     }
 
-    public function testObjectDocAdmin(): void
+    public function testObjectDocAdminSection(): void
     {
         $this->assertStringContainsString('<Objet_Doc_Admin>', $this->xmlContent);
 //        $this->assertStringContainsString('<Objet_Doc_Admin_Pays_Delivrance>France</Objet_Doc_Admin_Pays_Delivrance>', $this->xmlContent);
@@ -328,7 +335,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('</Objet_Multimedia>', $this->xmlContent);
     }
 
-    public function testPaymentMethodObject(): void
+    public function testPaymentMethodObjectSection(): void
     {
         $this->assertStringContainsString('<Objet_Moyen_Paiement>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_Moyen_Paiement_Type>Carte bancaire</Objet_Moyen_Paiement_Type>', $this->xmlContent);
@@ -359,6 +366,37 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         // $this->assertStringNotContainsString('<Objet_Moyen_Paiement_Identite_Residence_HidNumDep>', $this->xmlContent);
         // $this->assertStringContainsString('<Objet_Moyen_Paiement_Vol_Dans_Vl>Non</Objet_Moyen_Paiement_Vol_Dans_Vl>', $this->xmlContent);
         $this->assertStringContainsString('</Objet_Moyen_Paiement>', $this->xmlContent);
+    }
+
+    public function testSimpleObjectSection(): void
+    {
+        $this->assertStringContainsString('<Objet_simple>', $this->xmlContent);
+        $this->assertStringContainsString('<Objet_simple_Nature>Blouson</Objet_simple_Nature>', $this->xmlContent);
+//        $this->assertStringContainsString('<Objet_simple_Marque>Adidas</Objet_simple_Marque>', $this->xmlContent);
+//        $this->assertStringContainsString('<Objet_simple_Modele>Homme</Objet_simple_Modele>', $this->xmlContent);
+//        $this->assertStringContainsString('<Objet_simple_Numeros_Serie>123456</Objet_simple_Numeros_Serie>', $this->xmlContent);
+        $this->assertStringContainsString('<Objet_simple_Description>Blouson bleu</Objet_simple_Description>', $this->xmlContent);
+//        $this->assertStringContainsString('<Objet_simple_Identite_Victime>Oui</Objet_simple_Identite_Victime>', $this->xmlContent);
+//        $this->assertStringContainsString('<Objet_simple_Vol_Dans_Vl>Non</Objet_simple_Vol_Dans_Vl>', $this->xmlContent);
+//        $this->assertStringNotContainsString('<Objet_simple_Identite_Nom>', $this->xmlContent);
+//        $this->assertStringNotContainsString('<Objet_simple_Identite_Prenom>', $this->xmlContent);
+//        $this->assertStringNotContainsString('<Objet_simple_Identite_Naissance_Date>', $this->xmlContent);
+//        $this->assertStringNotContainsString('<Objet_simple_Identite_Naissance>', $this->xmlContent);
+//        $this->assertStringNotContainsString('<Objet_simple_Identite_Naissance_Departement>', $this->xmlContent);
+//        $this->assertStringNotContainsString('<Objet_simple_Identite_Naissance_Codepostal>', $this->xmlContent);
+//        $this->assertStringNotContainsString('<Objet_simple_Identite_Naissance_Commune>', $this->xmlContent);
+//        $this->assertStringNotContainsString('<Objet_simple_Identite_Naissance_Insee>', $this->xmlContent);
+//        $this->assertStringNotContainsString('<Objet_simple_Identite_Residence>', $this->xmlContent);
+//        $this->assertStringNotContainsString('<Objet_simple_Identite_Residence_Departement>', $this->xmlContent);
+//        $this->assertStringNotContainsString('<Objet_simple_Identite_Residence_Codepostal>', $this->xmlContent);
+//        $this->assertStringNotContainsString('<Objet_simple_Identite_Residence_Commune>', $this->xmlContent);
+//        $this->assertStringNotContainsString('<Objet_simple_Identite_Residence_Insee>', $this->xmlContent);
+//        $this->assertStringNotContainsString('<Objet_simple_Identite_Residence_RueNo>', $this->xmlContent);
+//        $this->assertStringNotContainsString('<Objet_simple_Identite_Residence_RueType>', $this->xmlContent);
+//        $this->assertStringNotContainsString('<Objet_simple_Identite_Residence_RueNom>', $this->xmlContent);
+//        $this->assertStringNotContainsString('<Objet_simple_Identite_Naissance_HidNumDep>', $this->xmlContent);
+//        $this->assertStringNotContainsString('<Objet_simple_Identite_Residence_HidNumDep>', $this->xmlContent);
+        $this->assertStringContainsString('</Objet_simple>', $this->xmlContent);
     }
 
     public function testContactSection(): void

@@ -83,11 +83,17 @@ Feature:
         And the "vehicle_registrationNumber" field should contain "AA-123-AA"
         And I should see the key "pel.vehicle.registration.country" translated
         And the "vehicle_registrationCountry" field should contain "France"
+        And the "vehicle_amount" field should contain "17000"
+        And I should see the key "pel.object.label" translated
+        And the "simple_object_nature" field should contain "Blouson"
+        And I should see the key "pel.object.description" translated
+        And the "simple_object_description" field should contain "Blouson Adidas de couleur bleu"
+        And the "simple_object_amount" field should contain "100"
         And I should see the key "pel.total.objects.concerned" translated
         And I should see the key "pel.there.is.a.total.of" translated
-        And the "span#objects_number" element should contain "4"
+        And the "span#objects_number" element should contain "5"
         And I should see the key "pel.for.a.total.amount.of" translated
-        And I should see "17 999 €"
+        And I should see "18 099 €"
 
     @func
     Scenario: I can click on the Go to facts button

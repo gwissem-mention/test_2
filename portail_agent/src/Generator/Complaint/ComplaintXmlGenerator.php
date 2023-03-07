@@ -8,6 +8,7 @@ use App\Entity\Complaint;
 use App\Entity\FactsObjects\AdministrativeDocument;
 use App\Entity\FactsObjects\MultimediaObject;
 use App\Entity\FactsObjects\PaymentMethod;
+use App\Entity\FactsObjects\SimpleObject;
 use App\Generator\Complaint\Model\ContactDTO;
 use App\Generator\Complaint\Model\FactsDTO;
 use App\Generator\Complaint\Model\FlagDTO;
@@ -15,6 +16,7 @@ use App\Generator\Complaint\Model\Objects\AdministrativeDocumentDTO;
 use App\Generator\Complaint\Model\Objects\MultimediaObjectDTO;
 use App\Generator\Complaint\Model\Objects\ObjectsDTO;
 use App\Generator\Complaint\Model\Objects\PaymentMethodDTO;
+use App\Generator\Complaint\Model\Objects\SimpleObjectDTO;
 use App\Generator\Complaint\Model\PersonDTO;
 use App\Referential\Entity\Unit;
 
@@ -64,6 +66,9 @@ class ComplaintXmlGenerator implements ComplaintGeneratorInterface
                     break;
                 case $object instanceof MultimediaObject:
                     $objectXml = $this->arrayToXml($objectXml, (new MultimediaObjectDTO($object))->getArray());
+                    break;
+                case $object instanceof SimpleObject:
+                    $objectXml = $this->arrayToXml($objectXml, (new SimpleObjectDTO($object))->getArray());
                     break;
                 case $object instanceof PaymentMethod:
                     $objectXml = $this->arrayToXml($objectXml, (new PaymentMethodDTO($object))->getArray());

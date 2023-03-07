@@ -1,0 +1,25 @@
+{{ form_start(form) }}
+    <div class="row mt-3">
+        <div class="col-12">
+            {{ form_label(form.nature) }} {{ loop.index }}
+            {{ form_widget(form.nature) }}
+        </div>
+    </div>
+{#    <div class="row mt-3">#}
+{#        <div class="col-6">#}
+{#            {{ form_row(form.brand) }}#}
+{#        </div>#}
+{#        <div class="col-6">#}
+{#            {{ form_row(form.model) }}#}
+{#        </div>#}
+{#    </div>#}
+    <div class="row mt-3">
+        <div class="col-6">
+            {{ form_row(form.description) }}
+        </div>
+{#        <div class="col-6">#}
+{#            {{ form_row(form.serialNumber) }}#}
+{#        </div>#}
+    </div>
+    {{ include('pages/complaint/forms/_object_form.html.twig', {'form' : form} ) }}
+{{ form_end(form) }}
