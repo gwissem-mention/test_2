@@ -63,28 +63,18 @@ export default class extends Controller {
     public sameAddress(): void {
         const checkboxRepresentedPerson: HTMLElement | null = document.getElementById("identity_representedPersonContactInformation_sameAddress");
         const checkboxCorporation: HTMLElement | null = document.getElementById("identity_corporation_sameAddress");
-        const addressDeclarant: HTMLElement | null = document.querySelector("[name=contact-information-address]");
+        const frenchAddressDeclarant: HTMLElement | null = document.querySelector("[name=contact-information-address]");
         const frenchAddressRepresentedPerson: HTMLElement | null = document.querySelector("[name=represented-person-address]");
-        const foreignAddressRepresentedPerson: HTMLElement | null = document.getElementById("identity_representedPersonContactInformation_foreignAddress");
         const frenchAddressCorporation: HTMLElement | null = document.querySelector("[name=corporation-address]");
-        const foreignAddressCorporation: HTMLElement | null = document.getElementById("identity_corporation_foreignAddress");
 
         // Must be ignored because "checked" property does not exist on HTMLElement type.
         // @ts-ignore
         if (checkboxRepresentedPerson && checkboxRepresentedPerson.checked) {
-            if (addressDeclarant && frenchAddressRepresentedPerson) {
+            if (frenchAddressDeclarant && frenchAddressRepresentedPerson) {
                 // Must be ignored because "value" property does not exist on HTMLElement type
                 // @ts-ignore
-                frenchAddressRepresentedPerson.value = addressDeclarant.value;
+                frenchAddressRepresentedPerson.value = frenchAddressDeclarant.value;
                 frenchAddressRepresentedPerson.setAttribute("disabled", "disabled");
-            }
-
-            if (addressDeclarant && foreignAddressRepresentedPerson) {
-                // Must be ignored because "value" property does not exist on HTMLElement type
-                // @ts-ignore
-                foreignAddressRepresentedPerson.value = addressDeclarant.value;
-                foreignAddressRepresentedPerson.setAttribute("disabled", "disabled");
-                foreignAddressRepresentedPerson.dispatchEvent(new Event("change", {bubbles: true}));
             }
         }
 
@@ -98,32 +88,16 @@ export default class extends Controller {
                 frenchAddressRepresentedPerson.removeAttribute("disabled");
                 frenchAddressRepresentedPerson.dispatchEvent(new Event("change", {bubbles: true}));
             }
-
-            if (foreignAddressRepresentedPerson) {
-                // Must be ignored because "value" property does not exist on HTMLElement type
-                // @ts-ignore
-                foreignAddressRepresentedPerson.value = "";
-                foreignAddressRepresentedPerson.removeAttribute("disabled");
-                foreignAddressRepresentedPerson.dispatchEvent(new Event("change", {bubbles: true}));
-            }
         }
 
         // Must be ignored because "checked" property does not exist on HTMLElement type.
         // @ts-ignore
         if (checkboxCorporation && checkboxCorporation.checked) {
-            if (addressDeclarant && frenchAddressCorporation) {
+            if (frenchAddressDeclarant && frenchAddressCorporation) {
                 // Must be ignored because "value" property does not exist on HTMLElement type
                 // @ts-ignore
-                frenchAddressCorporation.value = addressDeclarant.value;
+                frenchAddressCorporation.value = frenchAddressDeclarant.value;
                 frenchAddressCorporation.setAttribute("disabled", "disabled");
-            }
-
-            if (addressDeclarant && foreignAddressCorporation) {
-                // Must be ignored because "value" property does not exist on HTMLElement type
-                // @ts-ignore
-                foreignAddressCorporation.value = addressDeclarant.value;
-                foreignAddressCorporation.setAttribute("disabled", "disabled");
-                foreignAddressCorporation.dispatchEvent(new Event("change", {bubbles: true}));
             }
         }
 
@@ -136,14 +110,6 @@ export default class extends Controller {
                 frenchAddressCorporation.value = "";
                 frenchAddressCorporation.removeAttribute("disabled");
                 frenchAddressCorporation.dispatchEvent(new Event("change", {bubbles: true}));
-            }
-
-            if (foreignAddressCorporation) {
-                // Must be ignored because "value" property does not exist on HTMLElement type
-                // @ts-ignore
-                foreignAddressCorporation.value = "";
-                foreignAddressCorporation.removeAttribute("disabled");
-                foreignAddressCorporation.dispatchEvent(new Event("change", {bubbles: true}));
             }
         }
     }

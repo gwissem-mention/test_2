@@ -67,6 +67,28 @@ class IdentityComponent extends AbstractController
     }
 
     #[LiveAction]
+    public function sameAddress(): void
+    {
+        if (isset($this->formValues['contactInformation']['foreignAddress'])) {
+            if (isset($this->formValues['representedPersonContactInformation'])) {
+                if ($this->formValues['representedPersonContactInformation']['sameAddress']) {
+                    $this->formValues['representedPersonContactInformation']['foreignAddress'] = $this->formValues['contactInformation']['foreignAddress'];
+                } else {
+                    $this->formValues['representedPersonContactInformation']['foreignAddress'] = null;
+                }
+            }
+
+            if (isset($this->formValues['corporation'])) {
+                if ($this->formValues['corporation']['sameAddress']) {
+                    $this->formValues['corporation']['foreignAddress'] = $this->formValues['contactInformation']['foreignAddress'];
+                } else {
+                    $this->formValues['corporation']['foreignAddress'] = null;
+                }
+            }
+        }
+    }
+
+    #[LiveAction]
     public function submit(#[LiveArg] bool $redirectToSummary = false): RedirectResponse
     {
         if (isset($this->formValues['contactInformation']['frenchAddress'])) {

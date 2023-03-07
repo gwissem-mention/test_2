@@ -25,7 +25,6 @@ class ContactInformationType extends AbstractType
 {
     public function __construct(
         private readonly EventSubscriberInterface $addAddressSubscriber,
-        private readonly EventSubscriberInterface $addAddressCountrySubscriber,
         private readonly SessionHandler $sessionHandler,
         private readonly int $franceCode
     ) {
@@ -92,7 +91,6 @@ class ContactInformationType extends AbstractType
             ]);
 
         $builder->addEventSubscriber($this->addAddressSubscriber);
-        $builder->get('country')->addEventSubscriber($this->addAddressCountrySubscriber);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

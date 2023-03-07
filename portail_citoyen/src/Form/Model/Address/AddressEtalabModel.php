@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Form\Model\Address;
 
-final class AddressEtalabModel extends AbstractSerializableAddress
+class AddressEtalabModel extends AbstractSerializableAddress
 {
     private ?string $id = null;
     private ?string $label = null;

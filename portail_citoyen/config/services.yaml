@@ -32,7 +32,6 @@ services:
       - '@Redis'
 
   Symfony\Component\EventDispatcher\EventSubscriberInterface $addAddressSubscriber: '@App\Form\EventListener\AddAddressSubscriber'
-  Symfony\Component\EventDispatcher\EventSubscriberInterface $addAddressCountrySubscriber: '@App\Form\EventListener\AddAddressCountrySubscriber'
   
   App\Etalab\EtalabApiClientInterface: '@App\Etalab\EtalabAddressApiClient'
   
