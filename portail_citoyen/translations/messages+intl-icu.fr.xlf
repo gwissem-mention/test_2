@@ -924,7 +924,7 @@
             </trans-unit>
             <trans-unit id="pel.phone">
                 <source>pel.phone</source>
-                <target>Téléphone</target>
+                <target>Numéro de téléphone fixe</target>
             </trans-unit>
             <trans-unit id="pel.phone.is.invalid">
                 <source>pel.phone.is.invalid</source>

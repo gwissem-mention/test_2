@@ -6,28 +6,27 @@
             {% set etalab_errors = etalab_errors|merge([error.message]) %}
         {% endfor %}
     {% endif %}
-    <div class="fr-input-group{% if etalab_errors|length > 0 %} fr-input-group--error{% endif %}">
-        {% if form.frenchAddress is defined %}
-            {{ form_label(form.frenchAddress, 'pel.address') }}
-        {% elseif form.foreignAddress is defined %}
-            {{ form_label(form.foreignAddress, 'pel.address') }}
-        {% endif %}
-
-        {% if form.sameAddress is defined %}
-            {{ form_row(form.sameAddress) }}
-        {% endif %}
-
-        {% if form.frenchAddress is defined %}
-            {{ component('etalab_component', {
-                'data-live-id': template_id ~ '-address',
-                dataModel: 'addressSearch:' ~ etalabPropertyName ~ '.addressSearch addressId:' ~ etalabPropertyName ~ '.addressId addressSearchSaved:' ~ etalabPropertyName ~ '.addressSearchSaved',
-                inputName: template_id ~ '-address',
-                errors: etalab_errors,
-            }) }}
-        {% elseif form.foreignAddress is defined %}
-            {{ form_widget(form.foreignAddress) }}
-        {% endif %}
-    </div>
+<div class="fr-input-group{% if etalab_errors|length > 0 %} fr-input-group--error{% endif %}">
+    {% if form.frenchAddress is defined %}
+        {{ form_label(form.frenchAddress, 'pel.address') }}
+    {% elseif form.foreignAddress is defined %}
+        {{ form_label(form.foreignAddress, 'pel.address') }}
+    {% endif %}
+    {% if form.sameAddress is defined %}
+        {{ form_row(form.sameAddress) }}
+    {% endif %}
+    {% if form.frenchAddress is defined %}
+        {{ component('etalab_component', {
+            'data-live-id': template_id ~ '-address',
+            dataModel: 'addressSearch:' ~ etalabPropertyName ~ '.addressSearch addressId:' ~ etalabPropertyName ~ '.addressId addressSearchSaved:' ~ etalabPropertyName ~ '.addressSearchSaved',
+            inputName: template_id ~ '-address',
+            errors: etalab_errors,
+        }) }}
+    {% elseif form.foreignAddress is defined %}
+        {{ form_widget(form.foreignAddress) }}
+    {% endif %}
+</div>
 {{ form_row(form.email) }}
+{{ form_row(form.mobile) }}
 {{ form_row(form.phone) }}
 

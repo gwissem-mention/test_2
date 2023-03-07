@@ -18,6 +18,10 @@
                 <source>pel.date.less.than.equal.today.error</source>
                 <target>La date doit être inférieure ou égale à aujourd'hui</target>
             </trans-unit>
+            <trans-unit id="pel.phone.or.mobile.error">
+                <source>pel.phone.or.mobile.error</source>
+                <target>Vous devez saisir un numéro de téléphone fixe ou portable</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

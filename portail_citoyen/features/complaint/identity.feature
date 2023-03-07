@@ -31,8 +31,8 @@ Feature:
     Scenario: I can switch to afghanistan phone country and submit a valid phone number
         And I click the ".iti__flag-container" element
         And I click the "li[data-country-code=af]" element
-        And I fill in "identity_contactInformation_phone_number" with "70 123 4567"
-        Then I should not see a "#form-errors-identity_contactInformation_phone_number" element
+        And I fill in "identity_contactInformation_mobile_number" with "70 123 4567"
+        Then I should not see a "#form-errors-identity_contactInformation_mobile_number" element
 
     @javascript
     Scenario: I cannot enter invalid chars for phone input

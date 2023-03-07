@@ -11,6 +11,7 @@ class ContactInformationModel implements EmbedAddressInterface
     use AddressTrait;
     use EmailTrait;
 
+    private ?PhoneModel $mobile = null;
     private ?PhoneModel $phone = null;
     public EtalabInput $etalabInput;
 
@@ -27,6 +28,18 @@ class ContactInformationModel implements EmbedAddressInterface
     public function setPhone(?PhoneModel $phone): self
     {
         $this->phone = $phone;
+
+        return $this;
+    }
+
+    public function getMobile(): ?PhoneModel
+    {
+        return $this->mobile;
+    }
+
+    public function setMobile(?PhoneModel $mobile): self
+    {
+        $this->mobile = $mobile;
 
         return $this;
     }

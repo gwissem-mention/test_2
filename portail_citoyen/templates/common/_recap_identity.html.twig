@@ -39,7 +39,16 @@
     {{ 'pel.your.job'|trans }} :
     {{ civilState|job_label }}
 </li>
+{% if contactInformation.mobile is not null and contactInformation.mobile.number is not null %}
+    <li>
+        {{ 'pel.mobile'|trans }} : {{ contactInformation.mobile|phone_format_intl }}
+    </li>
+{% endif %}
+{% if contactInformation.phone is not null and contactInformation.phone.number is not null %}
+    <li>
+        {{ 'pel.phone'|trans }} : {{ contactInformation.phone|phone_format_intl }}
+    </li>
+{% endif %}
 <li>
-    {{ 'pel.phone'|trans }} : {{ contactInformation.phone|phone_format_intl }}
     {{ 'pel.email'|trans }} : {{ contactInformation.email }}
 </li>
