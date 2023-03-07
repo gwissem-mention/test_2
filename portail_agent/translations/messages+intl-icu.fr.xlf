@@ -506,6 +506,10 @@
                 <source>pel.object.opposition</source>
                 <target>Opposition</target>
             </trans-unit>
+            <trans-unit id="pel.object.serial.number">
+                <source>pel.object.serial.number</source>
+                <target>Numéro de série</target>
+            </trans-unit>
             <trans-unit id="pel.object.thief.from.vehicle">
                 <source>pel.object.thief.from.vehicle</source>
                 <target>Volé dans un véhicule</target>

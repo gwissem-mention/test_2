@@ -21,6 +21,7 @@ use Doctrine\ORM\Mapping\Table;
     'administrative_document' => AdministrativeDocument::class,
     'multimedia_object' => MultimediaObject::class,
     'payment_method' => PaymentMethod::class,
+    'simple_object' => SimpleObject::class,
     'vehicle' => Vehicle::class,
 ])]
 abstract class AbstractObject

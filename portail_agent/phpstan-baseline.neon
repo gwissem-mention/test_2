@@ -81,6 +81,16 @@ parameters:
 			path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
 
 		-
+		    message: "#^Parameter \\#1 \\$nature of method App\\\\Entity\\\\FactsObjects\\\\SimpleObject\\:\\:setNature\\(\\) expects string, mixed given\\.$#"
+		    count: 1
+		    path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
+
+		-
+		    message: "#^Parameter \\#1 \\$description of method App\\\\Entity\\\\FactsObjects\\\\SimpleObject\\:\\:setDescription\\(\\) expects string, mixed given\\.$#"
+		    count: 1
+		    path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
+
+		-
 			message: "#^Call to an undefined method Behat\\\\Testwork\\\\Environment\\\\Environment\\:\\:getContext\\(\\)\\.$#"
 			count: 1
 			path: tests/Behat/BaseContext.php
