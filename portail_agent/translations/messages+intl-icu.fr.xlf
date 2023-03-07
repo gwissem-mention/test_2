@@ -130,6 +130,10 @@
                 <source>pel.close</source>
                 <target>Fermer</target>
             </trans-unit>
+            <trans-unit id="pel.closed">
+                <source>pel.closed</source>
+                <target>Cloturée</target>
+            </trans-unit>
             <trans-unit id="pel.comment">
                 <source>pel.comment</source>
                 <target>Commentaire</target>

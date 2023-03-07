@@ -14,6 +14,7 @@ class ComplaintExtension extends AbstractExtension
     {
         return [
             new TwigFilter('count_complaints_ongoing', [$this, 'getCountComplaintsOngoing']),
+            new TwigFilter('count_complaints_closed', [$this, 'getCountComplaintsClosed']),
         ];
     }
 
@@ -30,5 +31,20 @@ class ComplaintExtension extends AbstractExtension
         }
 
         return $complaintsOngoing;
+    }
+
+    /**
+     * @param array<int, Complaint> $complaints
+     */
+    public function getCountComplaintsClosed(array $complaints): int
+    {
+        $complaintsClosed = 0;
+        foreach ($complaints as $complaint) {
+            if (Complaint::STATUS_CLOSED === $complaint->getStatus()) {
+                ++$complaintsClosed;
+            }
+        }
+
+        return $complaintsClosed;
     }
 }

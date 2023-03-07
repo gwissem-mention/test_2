@@ -91,6 +91,13 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                     ->setStatus(Complaint::STATUS_MP_DECLARANT)
                     ->setUnitAssigned($unit);
             }
+
+            for ($i = 1; $i <= self::COMPLAINTS_NB; ++$i) {
+                $complaints[] = $this->getGenericComplaint()
+                    ->setCreatedAt(new \DateTimeImmutable('2022-12-05'))
+                    ->setStatus(Complaint::STATUS_CLOSED)
+                    ->setUnitAssigned($unit);
+            }
         }
 
         foreach ($complaints as $complaint) {

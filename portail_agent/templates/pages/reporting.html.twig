@@ -6,10 +6,14 @@
     <div class="border border-secondary bg-light rounded p-3">
         <h2 class="fs-3 fw-semibold lh-lg">{{ 'pel.declarations.status'|trans }} :</h2>
         <div class="row">
-            <div class="col-4">
+            <div class="col-2 text-center">
                 {# TODO : Implement filter in <a> route when it's implemented #}
-                <a class="btn border border-secondary m-3 p-4 fs-1 fw-bold" id="ongoing_number" href="{{ path('home') }}" title="{{ 'pel.click.here.to.display.these.complaints'|trans }}">{{ user_complaints|count_complaints_ongoing }}</a>
+                <a class="btn border border-secondary m-3 p-4 fs-1 fw-bold" id="complaints_ongoing" href="{{ path('home') }}" title="{{ 'pel.click.here.to.display.these.complaints'|trans }}">{{ complaints|count_complaints_ongoing }}</a>
                 <p class="fs-3">{{ 'pel.ongoing'|trans }}</p>
+            </div>
+            <div class="col-2 text-center">
+                <a class="btn border border-secondary m-3 p-4 fs-1 fw-bold" id="complaints_closed" href="{{ path('home', {status: 'cloturee'}) }}" title="{{ 'pel.click.here.to.display.these.complaints'|trans }}">{{ complaints|count_complaints_closed }}</a>
+                <p class="fs-3">{{ 'pel.closed'|trans }}</p>
             </div>
         </div>
     </div>

@@ -16,6 +16,9 @@
 {% elseif complaint.status == constant('App\\Entity\\Complaint::STATUS_REJECTED') %}
     {% set status_btn_color = 'danger' %}
     {% set status = complaint.status %}
+{% elseif complaint.status == constant('App\\Entity\\Complaint::STATUS_CLOSED') %}
+    {% set status_btn_color = 'dark' %}
+    {% set status = complaint.status %}
 {% endif %}
 
 {{ {

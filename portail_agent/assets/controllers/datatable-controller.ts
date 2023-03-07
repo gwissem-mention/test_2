@@ -23,6 +23,7 @@ export default class extends Controller {
 
     private init(): void {
         const datatableElement: Element | null = document.querySelector(".datatable");
+        const statusFilter: string | null  = new URLSearchParams(window.location.search).get("status");
 
         if (datatableElement) {
             const columnsElements: NodeListOf<HTMLElement> | null = this.element.querySelectorAll("th[data-column]");
@@ -43,6 +44,10 @@ export default class extends Controller {
                     columns: columns,
                     searching: true,
                 });
+
+                if (statusFilter) {
+                    this.datatable.search(statusFilter);
+                }
             }
         }
     }
