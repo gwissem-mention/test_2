@@ -53,8 +53,9 @@ class ComplaintRepository extends ServiceEntityRepository
     public function findAsPaginator(array $order = [], int $start = 0, ?int $length = null, string $unit = null, ?User $agent = null, ?string $searchQuery = null): Paginator
     {
         $status = match ($searchQuery) {
-            'en-cours-lrp' => Complaint::STATUS_ONGOING_LRP,
+            'attente-rdv' => Complaint::STATUS_APPOINTMENT_PENDING,
             'cloturee' => Complaint::STATUS_CLOSED,
+            'en-cours-lrp' => Complaint::STATUS_ONGOING_LRP,
             default => null,
         };
 

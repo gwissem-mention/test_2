@@ -80,12 +80,13 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
 
             /** @var string $status */
             $status = $this->faker->randomElement([
+                Complaint::STATUS_APPOINTMENT_PENDING,
                 Complaint::STATUS_ASSIGNMENT_PENDING,
                 Complaint::STATUS_ASSIGNED,
+                Complaint::STATUS_CLOSED,
                 Complaint::STATUS_REJECTED,
                 Complaint::STATUS_ONGOING_LRP,
                 Complaint::STATUS_MP_DECLARANT,
-                Complaint::STATUS_CLOSED,
             ]);
             $identityBirthPostcode = $this->faker->randomKey($places);
             $identityAddressStreetAddress = $this->faker->streetAddress;

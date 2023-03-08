@@ -1,4 +1,7 @@
-{% if complaint.status == constant('App\\Entity\\Complaint::STATUS_ASSIGNMENT_PENDING') %}
+{% if complaint.status == constant('App\\Entity\\Complaint::STATUS_APPOINTMENT_PENDING') %}
+    {% set status_btn_color = 'info' %}
+    {% set status = complaint.status %}
+{% elseif complaint.status == constant('App\\Entity\\Complaint::STATUS_ASSIGNMENT_PENDING') %}
     {% set status_btn_color = 'secondary' %}
     {% set status = complaint.status %}
 {% elseif complaint.status == constant('App\\Entity\\Complaint::STATUS_ASSIGNED') %}
@@ -7,6 +10,9 @@
     {% if not is_granted('ROLE_SUPERVISOR') %}
         {% set status = 'pel.to.process' %}
     {% endif %}
+{% elseif complaint.status == constant('App\\Entity\\Complaint::STATUS_CLOSED') %}
+    {% set status_btn_color = 'dark' %}
+    {% set status = complaint.status %}
 {% elseif complaint.status == constant('App\\Entity\\Complaint::STATUS_ONGOING_LRP') %}
     {% set status_btn_color = 'warning' %}
     {% set status = complaint.status %}
@@ -15,9 +21,6 @@
     {% set status = complaint.status %}
 {% elseif complaint.status == constant('App\\Entity\\Complaint::STATUS_REJECTED') %}
     {% set status_btn_color = 'danger' %}
-    {% set status = complaint.status %}
-{% elseif complaint.status == constant('App\\Entity\\Complaint::STATUS_CLOSED') %}
-    {% set status_btn_color = 'dark' %}
     {% set status = complaint.status %}
 {% endif %}
 

@@ -34,6 +34,10 @@
                 <source>pel.appointment.needed</source>
                 <target>RDV nécessaire</target>
             </trans-unit>
+            <trans-unit id="pel.appointment.pending">
+                <source>pel.appointment.pending</source>
+                <target>En attente de RDV</target>
+            </trans-unit>
             <trans-unit id="pel.assignment.pending">
                 <source>pel.assignment.pending</source>
                 <target>A attribuer</target>
