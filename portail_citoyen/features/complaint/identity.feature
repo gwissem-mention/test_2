@@ -6,6 +6,7 @@ Feature:
     Background:
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
+        And I follow "Je confirme"
 
     @func
     Scenario: I can see the complaint identity page

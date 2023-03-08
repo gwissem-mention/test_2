@@ -7,6 +7,7 @@ Feature:
     Background:
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
+        And I follow "Je confirme"
 
     Scenario: I can see the fields for Victim
         Then I should see the key "pel.all.fields.are.required" translated

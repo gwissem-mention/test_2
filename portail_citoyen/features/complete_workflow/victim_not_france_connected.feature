@@ -7,6 +7,7 @@ Feature:
     Scenario: Submit the facts form as a victim not logged in with France Connect
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
+        And I follow "Je confirme"
         Then I should be on "/porter-plainte/identite"
         And I click the "label[for=identity_declarantStatus_0]" element
         And I select "1" from "identity_civilState_civility"

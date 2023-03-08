@@ -1,6 +1,33 @@
 {% extends 'layout.html.twig' %}
 
 {% block body %}
+    {% embed "common/_modal.html.twig" with {'id':'complaint-confirm', 'size':'md'} %}
+        {% block title %}
+            {{ 'pel.no.france.connect.modal.title'|trans }}
+        {% endblock %}
+        {% block body %}
+            <p>
+                {{ 'pel.no.france.connect.modal.body.1'|trans }}
+            </p>
+            <p>
+                {{ 'pel.no.france.connect.modal.body.2'|trans }}
+            </p>
+        {% endblock %}
+        {% block footer %}
+            <ul class="fr-btns-group fr-btns-group--right fr-btns-group--inline-reverse fr-btns-group--inline-lg fr-btns-group--icon-left">
+                <li>
+                    <a href="{{ path('authentication', {'france_connected': false}) }}" class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line">
+                        {{ 'pel.i.confirm'|trans }}
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('authentication', {'france_connected': true}) }}" class="fr-btn fr-btn--secondary">
+                        {{ 'pel.i.authenticate.with.france.connect'|trans }}
+                    </a>
+                </li>
+            </ul>
+        {% endblock %}
+    {% endembed %}
     <div class="france-connect">
         <h2>{{ 'pel.to.log.in'|trans }}</h2>
         {% if app.user is null %}
@@ -19,7 +46,7 @@
         {% endif %}
         <h3>{{ 'pel.or.continue.pel.without.log.in'|trans }}</h3>
         <p class="fr-text-center">
-            <a href="{{ path('authentication', {'france_connected': false}) }}">{{ 'pel.continue.pel.without.log.in'|trans }}</a>
+            <a href="#" data-fr-opened="false" aria-controls="fr-modal-complaint-confirm" id="no_france_connect_auth_button">{{ 'pel.continue.pel.without.log.in'|trans }}</a>
         </p>
         <p>{{ 'pel.continue.pel.without.log.in.explanation'|trans }}</p>
     </div>

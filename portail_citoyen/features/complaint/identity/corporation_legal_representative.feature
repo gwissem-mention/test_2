@@ -7,6 +7,7 @@ Feature:
     Background:
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
+        And I follow "Je confirme"
 
     Scenario: I can select the Corporation Legal Representative radio button
         When I click the "label[for=identity_declarantStatus_2]" element

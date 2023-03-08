@@ -7,6 +7,7 @@ Feature:
     Scenario: Submit the facts form as a corporation legal not logged in with France Connect
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
+        And I follow "Je confirme"
         Then I should be on "/porter-plainte/identite"
         When I click the "label[for=identity_declarantStatus_2]" element
         And I select "1" from "identity_civilState_civility"
