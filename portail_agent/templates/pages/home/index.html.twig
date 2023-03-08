@@ -12,12 +12,14 @@
         </div>
         <div class="row mb-5">
             <div class="col">
-                <table class="table table-striped datatable" data-order="{{ [[9,'asc']]|json_encode }}" data-column-defs="{{ [{orderable: false, targets: 0}]|json_encode }}" data-page-length="25" id="datatable" data-ajax="{{ path('home_complaints') }}">
+                <table class="table table-striped datatable" data-order="{{ [[(is_granted('ROLE_SUPERVISOR')) ? 9 : 8,'asc']]|json_encode }}" data-column-defs="{{ [{orderable: false, targets: 0}]|json_encode }}" data-page-length="25" id="datatable" data-ajax="{{ path('home_complaints') }}">
                     <thead class="table-head">
                     <tr>
-                        <th scope="col" data-column="checkbox">
-                            <input type="checkbox" class="form-check-input" id="checkOrUncheckAll">
-                        </th>
+                        {% if is_granted('ROLE_SUPERVISOR') %}
+                            <th scope="col" data-column="checkbox">
+                                <input type="checkbox" class="form-check-input" id="checkOrUncheckAll">
+                            </th>
+                        {% endif %}
                         <th scope="col" data-column="createdAt">{{ 'pel.deposit.date'|trans }}</th>
                         <th scope="col" data-column="__facts_natures">{{ 'pel.facts'|trans }}</th>
                         <th scope="col" data-column="__facts_startDate">{{ 'pel.facts.date'|trans }}</th>
