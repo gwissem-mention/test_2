@@ -133,6 +133,7 @@ Feature:
         Given I am authenticated with H3U3XCGD from PN
         And I am on the homepage
         Then I should see 21 "tr" element
+        And I should see 10 "th" element
         And I should not see "PEL-2023-00000001"
         And I should not see "PEL-2023-00000003"
         And I should not see "PEL-2023-00000005"
@@ -154,6 +155,7 @@ Feature:
         Given I am authenticated with H3U3XCGF from PN
         And I am on the homepage
         Then I should see 26 "tr" element
+        And I should see 11 "th" element
         And I should see "PEL-2023-00000001"
         And I should see "PEL-2023-00000003"
         And I should see "PEL-2023-00000005"
