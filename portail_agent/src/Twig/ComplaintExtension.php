@@ -13,7 +13,7 @@ class ComplaintExtension extends AbstractExtension
     public function getFilters(): array
     {
         return [
-            new TwigFilter('count_complaints_ongoing', [$this, 'getCountComplaintsOngoing']),
+            new TwigFilter('count_complaints_ongoing_lrp', [$this, 'getCountComplaintsOngoingLrp']),
             new TwigFilter('count_complaints_closed', [$this, 'getCountComplaintsClosed']),
         ];
     }
@@ -21,7 +21,7 @@ class ComplaintExtension extends AbstractExtension
     /**
      * @param array<int, Complaint> $complaints
      */
-    public function getCountComplaintsOngoing(array $complaints): int
+    public function getCountComplaintsOngoingLrp(array $complaints): int
     {
         $complaintsOngoing = 0;
         foreach ($complaints as $complaint) {
