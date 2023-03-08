@@ -20,7 +20,7 @@ class ComplaintDeadlineNotificationCronTest extends KernelTestCase
 
         $this->assertSame(0, $commandTester->getStatusCode());
         $output = $commandTester->getDisplay();
-        $this->assertStringContainsString(' ! [NOTE] Found 120 complaints.', $output);
+        $this->assertStringContainsString(' ! [NOTE] Found 140 complaints.', $output);
         $this->assertStringContainsString('[OK] Done!', $output);
     }
 }

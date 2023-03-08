@@ -13,24 +13,25 @@ class ComplaintExtension extends AbstractExtension
     public function getFilters(): array
     {
         return [
-            new TwigFilter('count_complaints_ongoing_lrp', [$this, 'getCountComplaintsOngoingLrp']),
+            new TwigFilter('count_complaints_appointment_pending', [$this, 'getCountComplaintsAppointmentPending']),
             new TwigFilter('count_complaints_closed', [$this, 'getCountComplaintsClosed']),
+            new TwigFilter('count_complaints_ongoing_lrp', [$this, 'getCountComplaintsOngoingLrp']),
         ];
     }
 
     /**
      * @param array<int, Complaint> $complaints
      */
-    public function getCountComplaintsOngoingLrp(array $complaints): int
+    public function getCountComplaintsAppointmentPending(array $complaints): int
     {
-        $complaintsOngoing = 0;
+        $complaintsAppointmentWaiting = 0;
         foreach ($complaints as $complaint) {
-            if (Complaint::STATUS_ONGOING_LRP === $complaint->getStatus()) {
-                ++$complaintsOngoing;
+            if (Complaint::STATUS_APPOINTMENT_PENDING === $complaint->getStatus()) {
+                ++$complaintsAppointmentWaiting;
             }
         }
 
-        return $complaintsOngoing;
+        return $complaintsAppointmentWaiting;
     }
 
     /**
@@ -46,5 +47,20 @@ class ComplaintExtension extends AbstractExtension
         }
 
         return $complaintsClosed;
+    }
+
+    /**
+     * @param array<int, Complaint> $complaints
+     */
+    public function getCountComplaintsOngoingLrp(array $complaints): int
+    {
+        $complaintsOngoing = 0;
+        foreach ($complaints as $complaint) {
+            if (Complaint::STATUS_ONGOING_LRP === $complaint->getStatus()) {
+                ++$complaintsOngoing;
+            }
+        }
+
+        return $complaintsOngoing;
     }
 }

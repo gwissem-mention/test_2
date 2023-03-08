@@ -15,8 +15,10 @@ Feature:
         And I should see the key "pel.declarations.status" translated
         And I should see the key "pel.ongoing.lrp" translated
         And I should see 1 "#complaints_ongoing_lrp" element
+        And I should see 1 "#complaints_appointment_pending" element
         And I should see 1 "#complaints_closed" element
         And the "#complaints_ongoing_lrp" element should contain "10"
+        And the "#complaints_appointment_pending" element should contain "10"
         And the "#complaints_closed" element should contain "10"
 
     @javascript
@@ -56,3 +58,22 @@ Feature:
         Then I should be on "/?status=en-cours-lrp"
         And I should see 11 "tr" element
         And I should see 10 ".btn-warning" element
+
+    @javascript
+    Scenario: As a supervisor, I should see the reporting of my unit, and I should be able to view the appointment pending complaints
+        Given I am on "/reporting"
+        And I should see 1 "#complaints_appointment_pending" element
+        When I follow "complaints_appointment_pending"
+        Then I should be on "/?status=attente-rdv"
+        And I should see 11 "tr" element
+        And I should see 10 ".btn-info" element
+
+    @javascript
+    Scenario: As a agent, I should see the reporting of my complaints, and I should be able to view the appointment pending complaints
+        Given I am authenticated with H3U3XCGD from PN
+        When I am on "/reporting"
+        And I should see 1 "#complaints_appointment_pending" element
+        When I follow "complaints_appointment_pending"
+        Then I should be on "/?status=attente-rdv"
+        And I should see 2 "tr" element
+        And I should see "Aucune donnée disponible dans le tableau"
