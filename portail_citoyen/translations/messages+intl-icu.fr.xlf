@@ -642,6 +642,10 @@
                 <source>pel.i.dont.know</source>
                 <target>Je ne sais pas</target>
             </trans-unit>
+            <trans-unit id="pel.i.authenticate.with.france.connect">
+                <source>pel.i.authenticate.with.france.connect</source>
+                <target>Je m'authentifie via FranceConnect</target>
+            </trans-unit>
             <trans-unit id="pel.i.take.note.of.legal.provisions">
                 <source>pel.i.take.note.of.legal.provisions</source>
                 <target>Je prends acte des dispositions légales portées par les articles</target>
@@ -837,6 +841,18 @@
             <trans-unit id="pel.no.but.you.know.the.time.slot">
                 <source>pel.no.but.you.know.the.time.slot</source>
                 <target>Non, mais vous connaissez le créneau horaire</target>
+            </trans-unit>
+            <trans-unit id="pel.no.france.connect.modal.body.1">
+                <source>pel.no.france.connect.modal.body.1</source>
+                <target>En l’absence d’identification par FranceConnect, vous devrez vous rendre dans un commissariat ou une unité de gendarmerie pour finaliser votre dépôt de plainte.</target>
+            </trans-unit>
+            <trans-unit id="pel.no.france.connect.modal.body.2">
+                <source>pel.no.france.connect.modal.body.2</source>
+                <target>Nous vous invitons cependant à poursuivre votre démarche même si vous n’êtes pas en mesure d’utiliser FranceConnect. Cela facilitera la suite de votre démarche et vous fera gagner du temps au moment de votre rendez-vous.</target>
+            </trans-unit>
+            <trans-unit id="pel.no.france.connect.modal.title">
+                <source>pel.no.france.connect.modal.title</source>
+                <target>Vous allez poursuivre votre dépôt de plainte sans FranceConnect</target>
             </trans-unit>
             <trans-unit id="pel.note">
                 <source>pel.note</source>

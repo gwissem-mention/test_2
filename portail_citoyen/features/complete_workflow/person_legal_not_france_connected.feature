@@ -7,6 +7,7 @@ Feature:
     Scenario: Submit the facts form as a person legal not logged in with France Connect
         Given I am on "/authentification"
         And I follow "Continuer sans m'authentifier"
+        And I follow "Je confirme"
         Then I should be on "/porter-plainte/identite"
         And I should not see the key "pel.information.transmitted.by.france.connect" translated
         And I should not see the key "pel.these.informations.has.been.transmitted.by.france.connect" translated
