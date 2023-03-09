@@ -27,7 +27,7 @@ use Faker\Generator;
 
 class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, DependentFixtureInterface
 {
-    private const COMPLAINTS_NB = 50;
+    private const COMPLAINTS_NB = 60;
 
     public function __construct(
         private readonly Generator $faker,
@@ -84,6 +84,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                 Complaint::STATUS_ASSIGNMENT_PENDING,
                 Complaint::STATUS_ASSIGNED,
                 Complaint::STATUS_CLOSED,
+                Complaint::STATUS_REASSIGNMENT_PENDING,
                 Complaint::STATUS_REJECTED,
                 Complaint::STATUS_ONGOING_LRP,
                 Complaint::STATUS_MP_DECLARANT,

@@ -20,6 +20,7 @@ class Complaint
     public const STATUS_CLOSED = 'pel.closed';
     public const STATUS_MP_DECLARANT = 'pel.mp.declarant';
     public const STATUS_ONGOING_LRP = 'pel.ongoing.lrp';
+    public const STATUS_REASSIGNMENT_PENDING = 'pel.reassignment.pending';
     public const STATUS_REJECTED = 'pel.rejected';
 
     public const REFUSAL_REASON_REORIENTATION_APPONTMENT = 1;
