@@ -28,7 +28,7 @@ Feature:
         And I fill in "represented-person-address" with "avenue de la république paris"
         And I click the "#represented-person-address-75111_8158" element
         And I fill in "identity_representedPersonContactInformation_email" with "jean@test.com"
-        And I fill in "identity_representedPersonContactInformation_phone_number" with "0601020304"
+        And I fill in "identity_representedPersonContactInformation_phone_number" with "0101020304"
         And I press "identity_submit"
         Then I should be on "/porter-plainte/faits"
         When I fill in "facts_description" with "description informations"

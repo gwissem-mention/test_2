@@ -48,7 +48,7 @@ Feature:
         And I fill in "contact-information-address" with "avenue de la république paris"
         And I click the "#contact-information-address-75111_8158" element
         And I fill in "identity_contactInformation_email" with "jean@test.com"
-        And I fill in "identity_contactInformation_phone_number" with "0601020304"
+        And I fill in "identity_contactInformation_phone_number" with "0102030405"
         When I click the "label[for=identity_declarantStatus_0]" element
         And I press "identity_submit"
         Then I should be on "/porter-plainte/faits"
@@ -65,7 +65,7 @@ Feature:
         And I fill in "contact-information-address" with "avenue de la république paris"
         And I click the "#contact-information-address-75111_8158" element
         And I fill in "identity_contactInformation_email" with "jean@test.com"
-        And I fill in "identity_contactInformation_phone_number" with "0601020304"
+        And I fill in "identity_contactInformation_phone_number" with "0102030405"
         When I click the "label[for=identity_declarantStatus_0]" element
         And I press "identity_submit"
         Then I should be on "/porter-plainte/faits"
@@ -81,7 +81,7 @@ Feature:
         And I fill in "contact-information-address" with "avenue de la république paris"
         And I click the "#contact-information-address-75111_8158" element
         And I fill in "identity_contactInformation_email" with "jean@test.com"
-        And I fill in "identity_contactInformation_phone_number" with "0601020304"
+        And I fill in "identity_contactInformation_phone_number" with "0102030405"
         And I click the "label[for=identity_declarantStatus_0]" element
         And I press "identity_submit"
         Then I should be on "/porter-plainte/faits"
@@ -116,7 +116,7 @@ Feature:
         And I fill in "identity_contactInformation_foreignAddress_apartment" with "2"
         And I fill in "identity_contactInformation_foreignAddress_city" with "Madrid"
         And I fill in "identity_contactInformation_email" with "jean@test.com"
-        And I fill in "identity_contactInformation_phone_number" with "0601020304"
+        And I fill in "identity_contactInformation_phone_number" with "0102030405"
         When I click the "label[for=identity_declarantStatus_0]" element
         And I press "identity_submit"
         Then I should be on "/porter-plainte/faits"
@@ -213,7 +213,7 @@ Feature:
         And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
         And I fill in "contact-information-address" with "avenue de la république paris"
         And I click the "#contact-information-address-75111_8158" element
-        And I fill in "identity_contactInformation_phone_number" with "0601020304"
+        And I fill in "identity_contactInformation_phone_number" with "0102030405"
         And I press "identity_submit"
         Then I should be on "/porter-plainte/faits"
         When I am on "/porter-plainte/identite"
@@ -230,7 +230,7 @@ Feature:
         And I fill in "contact-information-address" with "avenue de la république paris"
         And I click the "#contact-information-address-75111_8158" element
         And I fill in "identity_contactInformation_email" with "jean@test.com"
-        And I fill in "identity_contactInformation_phone_number" with "0601020304"
+        And I fill in "identity_contactInformation_phone_number" with "0102030405"
         When I press "identity_submit"
         Then I should be on "/porter-plainte/faits"
         When I am on "/porter-plainte/identite"

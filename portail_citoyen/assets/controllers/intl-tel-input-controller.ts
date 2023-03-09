@@ -13,6 +13,7 @@ export default class extends Controller {
             preferredCountries: ["FR"],
             separateDialCode: true,
             initialCountry: countryValue ?? "FR",
+            placeholderNumberType: this.numberTarget.getAttribute("data-placeholder-type")
         });
 
         this.numberTarget.addEventListener("countrychange", () => this.onCountryChange(telInput));
