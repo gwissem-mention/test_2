@@ -7,6 +7,7 @@
                 {{ form_start(search_form, {'attr':{'class':'d-flex mt-4 mb-4 w-50'}}) }}
                 {{ form_widget(search_form.query, {'attr':{'class':'me-2', 'aria-label':'pel.search.your.declarations'|trans}}) }}
                 <button class="btn btn-outline-primary" type="submit">{{ 'pel.search'|trans }}</button>
+                <button class="btn btn-outline-danger mx-2" type="button" id="resetButton">{{ 'pel.reset'|trans }}</button>
                 {{ form_end(search_form) }}
             </div>
         </div>
