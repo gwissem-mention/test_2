@@ -19,6 +19,9 @@
 {% elseif complaint.status == constant('App\\Entity\\Complaint::STATUS_MP_DECLARANT') %}
     {% set status_btn_color = 'success' %}
     {% set status = complaint.status %}
+{% elseif complaint.status == constant('App\\Entity\\Complaint::STATUS_REASSIGNMENT_PENDING') %}
+    {% set status_btn_color = 'reassignment-pending' %}
+    {% set status = complaint.status %}
 {% elseif complaint.status == constant('App\\Entity\\Complaint::STATUS_REJECTED') %}
     {% set status_btn_color = 'danger' %}
     {% set status = complaint.status %}

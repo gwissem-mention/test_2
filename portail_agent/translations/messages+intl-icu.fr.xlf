@@ -554,6 +554,10 @@
                 <source>pel.reasign</source>
                 <target>Réattribuer</target>
             </trans-unit>
+            <trans-unit id="pel.reassignment.pending">
+                <source>pel.reassignment.pending</source>
+                <target>En attente de réattribution</target>
+            </trans-unit>
             <trans-unit id="pel.receipt.report">
                 <source>pel.receipt.report</source>
                 <target>Réception du PV</target>

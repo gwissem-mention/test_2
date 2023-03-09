@@ -54,6 +54,7 @@ class ComplaintRepository extends ServiceEntityRepository
     {
         $status = match ($searchQuery) {
             'attente-rdv' => Complaint::STATUS_APPOINTMENT_PENDING,
+            'attente-reattribution' => Complaint::STATUS_REASSIGNMENT_PENDING,
             'cloturee' => Complaint::STATUS_CLOSED,
             'en-cours-lrp' => Complaint::STATUS_ONGOING_LRP,
             default => null,
