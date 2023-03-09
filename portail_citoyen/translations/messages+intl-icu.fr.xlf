@@ -982,6 +982,14 @@
                 <source>pel.portal</source>
                 <target>Portail</target>
             </trans-unit>
+            <trans-unit id="pel.phone.fixe.error">
+                <source>pel.phone.fixe.error</source>
+                <target>Vous devez saisir un numéro de téléphone fixe</target>
+            </trans-unit>
+            <trans-unit id="pel.phone.mobile.error">
+                <source>pel.phone.mobile.error</source>
+                <target>Vous devez saisir un numéro de téléphone portable</target>
+            </trans-unit>
             <trans-unit id="pel.nature.place">
                 <source>pel.nature.place</source>
                 <target>Nature de lieu</target>

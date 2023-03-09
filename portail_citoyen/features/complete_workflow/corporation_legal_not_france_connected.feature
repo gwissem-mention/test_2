@@ -25,7 +25,7 @@ Feature:
         And I fill in "identity_corporation_name" with "Mon entreprise"
         And I fill in "identity_corporation_function" with "Directeur"
         And I fill in "identity_corporation_email" with "contact@mon-entreprise.fr"
-        And I fill in "identity_corporation_phone_number" with "0601020304"
+        And I fill in "identity_corporation_phone_number" with "0102030405"
         And I fill in "corporation-address" with "avenue de la république paris"
         And I click the "#corporation-address-75111_8158" element
         And I press "identity_submit"

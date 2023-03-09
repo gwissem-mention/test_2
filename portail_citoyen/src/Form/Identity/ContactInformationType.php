@@ -9,6 +9,9 @@ use App\Form\Model\Identity\ContactInformationModel;
 use App\Form\Model\Identity\PhoneModel;
 use App\Form\PhoneType;
 use App\Session\SessionHandler;
+use libphonenumber\NumberParseException;
+use libphonenumber\PhoneNumberType;
+use libphonenumber\PhoneNumberUtil;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -26,7 +29,8 @@ class ContactInformationType extends AbstractType
     public function __construct(
         private readonly EventSubscriberInterface $addAddressSubscriber,
         private readonly SessionHandler $sessionHandler,
-        private readonly int $franceCode
+        private readonly int $franceCode,
+        private readonly PhoneNumberUtil $phoneUtil
     ) {
     }
 
@@ -57,37 +61,94 @@ class ContactInformationType extends AbstractType
                 'required' => false,
                 'label' => false,
                 'number_label' => 'pel.mobile',
-                'number_constraints' => [new Callback([
-                    'callback' => static function (?string $value, ExecutionContextInterface $context) {
-                        /** @var Form $form */
-                        $form = $context->getObject();
-                        /** @var Form $formParent */
-                        $formParent = $form->getParent()?->getParent();
-                        /** @var ?PhoneModel $phone */
-                        $phone = $formParent->get('phone')->getData();
-                        if (null === $value && null === $phone?->getNumber()) {
-                            $context->addViolation('pel.phone.or.mobile.error');
-                        }
-                    },
-                ])],
+                'number_constraints' => [
+                    new Callback([
+                        'callback' => function (?string $value, ExecutionContextInterface $context) {
+                            if (null === $value) {
+                                return;
+                            }
+
+                            /** @var Form $form */
+                            $form = $context->getObject();
+                            /** @var Form $formParent */
+                            $formParent = $form->getParent();
+                            /** @var string $country */
+                            $country = $formParent->get('country')->getData();
+                            try {
+                                $phone = $this->phoneUtil->parse($value, $country);
+
+                                if (!$this->phoneUtil->isValidNumber($phone)) {
+                                    $context->addViolation('pel.phone.is.invalid');
+                                }
+
+                                if (!(PhoneNumberType::MOBILE === $this->phoneUtil->getNumberType($phone))) {
+                                    $context->addViolation('pel.phone.mobile.error');
+                                }
+                            } catch (NumberParseException) {
+                                $context->addViolation('pel.phone.is.invalid');
+                            }
+                        },
+                    ]),
+                    new Callback([
+                        'callback' => static function (?string $value, ExecutionContextInterface $context) {
+                            /** @var Form $form */
+                            $form = $context->getObject();
+                            /** @var Form $formParent */
+                            $formParent = $form->getParent()?->getParent();
+                            /** @var ?PhoneModel $phone */
+                            $phone = $formParent->get('phone')->getData();
+                            if (null === $value && null === $phone?->getNumber()) {
+                                $context->addViolation('pel.phone.or.mobile.error');
+                            }
+                        },
+                    ]), ],
             ])
             ->add('phone', PhoneType::class, [
                 'required' => false,
                 'label' => false,
                 'number_label' => 'pel.phone',
-                'number_constraints' => [new Callback([
-                    'callback' => static function (?string $value, ExecutionContextInterface $context) {
-                        /** @var Form $form */
-                        $form = $context->getObject();
-                        /** @var Form $formParent */
-                        $formParent = $form->getParent()?->getParent();
-                        /** @var ?PhoneModel $mobile */
-                        $mobile = $formParent->get('mobile')->getData();
-                        if (null === $value && null === $mobile?->getNumber()) {
-                            $context->addViolation('pel.phone.or.mobile.error');
-                        }
-                    },
-                ])],
+                'number_placeholder_type' => 'FIXED_LINE',
+                'number_constraints' => [
+                    new Callback([
+                        'callback' => function (?string $value, ExecutionContextInterface $context) {
+                            if (null === $value) {
+                                return;
+                            }
+
+                            /** @var Form $form */
+                            $form = $context->getObject();
+                            /** @var Form $formParent */
+                            $formParent = $form->getParent();
+                            /** @var string $country */
+                            $country = $formParent->get('country')->getData();
+                            try {
+                                $phone = $this->phoneUtil->parse($value, $country);
+
+                                if (!$this->phoneUtil->isValidNumber($phone)) {
+                                    $context->addViolation('pel.phone.is.invalid');
+                                }
+
+                                if (!(PhoneNumberType::FIXED_LINE === $this->phoneUtil->getNumberType($phone))) {
+                                    $context->addViolation('pel.phone.fixe.error');
+                                }
+                            } catch (NumberParseException) {
+                                $context->addViolation('pel.phone.is.invalid');
+                            }
+                        },
+                    ]),
+                    new Callback([
+                        'callback' => static function (?string $value, ExecutionContextInterface $context) {
+                            /** @var Form $form */
+                            $form = $context->getObject();
+                            /** @var Form $formParent */
+                            $formParent = $form->getParent()?->getParent();
+                            /** @var ?PhoneModel $mobile */
+                            $mobile = $formParent->get('mobile')->getData();
+                            if (null === $value && null === $mobile?->getNumber()) {
+                                $context->addViolation('pel.phone.or.mobile.error');
+                            }
+                        },
+                    ]), ],
             ]);
 
         $builder->addEventSubscriber($this->addAddressSubscriber);
