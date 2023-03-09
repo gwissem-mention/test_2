@@ -188,3 +188,13 @@ Feature:
         When I fill in "search_query" with "DUPONT"
         And I press "Rechercher"
         Then I should see 26 "tr" element
+
+    @javascript
+    Scenario: I can reset search
+        Given I am authenticated with H3U3XCGF from PN
+        And I am on the homepage
+        When I fill in "search_query" with "Leo bernard"
+        And I press "Rechercher"
+        Then I should see 11 "tr" element
+        And I press "Réinitialiser"
+        Then I should see 26 "tr" element

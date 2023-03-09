@@ -838,6 +838,10 @@
                 <source>pel.useful.phones</source>
                 <target>Numéros utiles</target>
             </trans-unit>
+            <trans-unit id="pel.reset">
+                <source>pel.reset</source>
+                <target>Réinitialiser</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
