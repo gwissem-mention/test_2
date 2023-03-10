@@ -184,8 +184,12 @@ export default class extends Controller {
 
             if (empty) {
                 commentButton.setAttribute("disabled", "disabled");
+                commentButton.classList.remove("btn-primary");
+                commentButton.classList.add("btn-secondary");
             } else {
                 commentButton.removeAttribute("disabled");
+                commentButton.classList.remove("btn-secondary");
+                commentButton.classList.add("btn-primary");
             }
         }
     }
