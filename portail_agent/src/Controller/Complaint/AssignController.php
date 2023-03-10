@@ -27,6 +27,7 @@ class AssignController extends AbstractController
         NotificationFactory $notificationFactory,
         Request $request
     ): JsonResponse {
+        $reassignment = $complaint->getAssignedTo() instanceof User;
         $form = $this->createForm(AssignType::class, $complaint);
         $form->handleRequest($request);
 
@@ -47,7 +48,7 @@ class AssignController extends AbstractController
             $user = $complaint->getAssignedTo();
 
             $userRepository->save(
-                $user->addNotification($notificationFactory->createForComplaintAssigned($complaint)), true
+                $user->addNotification($notificationFactory->createForComplaintAssigned($complaint, $reassignment)), true
             );
 
             return $this->json(

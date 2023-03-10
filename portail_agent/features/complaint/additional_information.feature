@@ -8,7 +8,7 @@ Feature:
 
     @func
     Scenario: I want to show complaint additional information page
-        Given I am on "/plainte/informations-complementaires/51"
+        Given I am on "/plainte/informations-complementaires/71"
         Then the response status code should be 200
         And I should see a "body" element
         And I should see a "nav" element
@@ -49,7 +49,7 @@ Feature:
 
     @func
     Scenario: I can see the comments space on the additional information page
-        Given I am on "/plainte/informations-complementaires/52"
+        Given I am on "/plainte/informations-complementaires/71"
         And I should see a "#comment_content" element
         And I should see a ".comment-box" element
         And I should see a "#comments-feed-title" element
@@ -64,14 +64,14 @@ Feature:
 
     @javascript
     Scenario: I can click the "Comment" button, and it focus the comment field
-        Given I am on "/plainte/informations-complementaires/52"
+        Given I am on "/plainte/informations-complementaires/71"
         And I should not focus the "comment_content" element
         Then I press "complaint-comment-button"
         And I should focus the "comment_content" element
 
     @javascript
     Scenario: I can add a comment from the additional information page
-        Given I am on "/plainte/informations-complementaires/53"
+        Given I am on "/plainte/informations-complementaires/71"
         And the "#comments-feed-title" element should contain "Espace commentaires (5)"
         Then I fill in "comment_content" with "Ceci est un commentaire test."
         When I press "comment-button"

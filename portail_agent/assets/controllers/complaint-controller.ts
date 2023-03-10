@@ -22,42 +22,6 @@ export default class extends Controller {
 
                     if (modalElement) {
                         if (response.success) {
-                            const complaintAssignButton: Element | null = document.getElementById("complaint-assign-button");
-
-                            if (complaintAssignButton) {
-                                complaintAssignButton.remove();
-                            }
-
-                            const complaintRejectButton: Element | null = document.getElementById("complaint-reject-button");
-
-                            if (complaintRejectButton) {
-                                complaintRejectButton.remove();
-                            }
-
-                            const complaintSendLrpButton: Element | null = document.getElementById("complaint-send-lrp-button");
-
-                            if (complaintSendLrpButton) {
-                                complaintSendLrpButton.remove();
-                            }
-
-                            const complaintReassignButton: Element | null = document.getElementById("complaint-reassign-button");
-
-                            if (complaintReassignButton) {
-                                complaintReassignButton.remove();
-                            }
-
-                            const commentButton: Element | null = document.getElementById("complaint-comment-button");
-
-                            if (commentButton) {
-                                commentButton.remove();
-                            }
-
-                            const commentField: Element | null = document.getElementById("comment_content");
-
-                            if (commentField) {
-                                commentField.setAttribute("disabled", "disabled");
-                            }
-
                             const modal: Modal | null = Modal.getInstance(modalElement);
 
                             if (modal) {
@@ -73,6 +37,22 @@ export default class extends Controller {
                             if (toast) {
                                 toast.show();
                             }
+
+                            // Reload the page in ajax, then replace the #complaint-container div by the new one
+                            fetch(window.location.href, {
+                                method: "GET"
+                            })
+                                .then(response => response.text())
+                                .then((data: string) => {
+                                    const element: HTMLDivElement = document.createElement("div");
+                                    element.innerHTML = data;
+                                    const complaintContainerDest: HTMLElement | null = document.getElementById("complaint-container");
+                                    const complaintContainerSource: HTMLElement | null = element.querySelector("#complaint-container");
+
+                                    if (complaintContainerDest && complaintContainerSource) {
+                                        complaintContainerDest.innerHTML = complaintContainerSource.innerHTML;
+                                    }
+                                });
                         } else {
                             const modalForm: HTMLFormElement | null = modalElement.querySelector("form");
 
@@ -106,17 +86,9 @@ export default class extends Controller {
                             if (modal) {
                                 modal.hide();
                             }
-
                             document.querySelectorAll(".agent-name").forEach((element) => {
                                 element.textContent = data.agent_name;
                             });
-
-                            const complaintAgent: Element | null = document.getElementById("complaint-agent");
-
-                            if (complaintAgent) {
-                                complaintAgent.classList.remove("d-none");
-                            }
-
                             // Must be ignored because in Bootstrap types, Toast element has string | Element type
                             // however we need here to type it as Toast.
                             // @ts-ignore
@@ -126,6 +98,21 @@ export default class extends Controller {
                                 toast.show();
                             }
 
+                            // Reload the page in ajax, then replace the #complaint-container div by the new one
+                            fetch(window.location.href, {
+                                method: "GET"
+                            })
+                                .then(response => response.text())
+                                .then((data: string) => {
+                                    const element: HTMLDivElement = document.createElement("div");
+                                    element.innerHTML = data;
+                                    const complaintContainerDest: HTMLElement | null = document.getElementById("complaint-container");
+                                    const complaintContainerSource: HTMLElement | null = element.querySelector("#complaint-container");
+
+                                    if (complaintContainerDest && complaintContainerSource) {
+                                        complaintContainerDest.innerHTML = complaintContainerSource.innerHTML;
+                                    }
+                                });
                         } else if (data.form) {
                             const modalForm: HTMLFormElement | null = modalElement.querySelector("form");
 
