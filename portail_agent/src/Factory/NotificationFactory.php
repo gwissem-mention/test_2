@@ -16,10 +16,10 @@ class NotificationFactory
     {
     }
 
-    public function createForComplaintAssigned(Complaint $complaint): Notification
+    public function createForComplaintAssigned(Complaint $complaint, bool $reassignment = false): Notification
     {
         return new Notification(
-            $this->translator->trans('pel.the.declaration.has.been.assigned.to.you',
+            $this->translator->trans(true === $reassignment ? 'pel.the.declaration.has.been.reassigned.to.you' : 'pel.the.declaration.has.been.assigned.to.you',
                 ['declaration_number' => $complaint->getDeclarationNumber()]),
             $this->urlGenerator->generate('complaint_summary', ['id' => $complaint->getId()]));
     }

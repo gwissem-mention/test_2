@@ -8,7 +8,7 @@ Feature:
 
     @func
     Scenario: I want to show complaint identity page
-        Given I am on "/plainte/identite/51"
+        Given I am on "/plainte/identite/71"
         And the response status code should be 200
         And I should see a "body" element
         And I should see a "nav" element
@@ -51,14 +51,14 @@ Feature:
 
     @func
     Scenario: I can click on the Go to facts button
-        Given I am on "/plainte/identite/51"
+        Given I am on "/plainte/identite/71"
         When I follow "Accéder à l'onglet : Description des faits"
-        And I should be on "/plainte/faits/51"
+        And I should be on "/plainte/faits/71"
         And the response status code should be 200
 
     @func
     Scenario: Scenario: I can see the comments space on the identity page
-        Given I am on "/plainte/identite/52"
+        Given I am on "/plainte/identite/71"
         And I should see a "#comment_content" element
         And I should see a ".comment-box" element
         And I should see a "#comments-feed-title" element
@@ -73,14 +73,14 @@ Feature:
 
     @javascript
     Scenario: I can click the "Comment" button, and it focus the comment field
-        Given I am on "/plainte/identite/52"
+        Given I am on "/plainte/identite/71"
         And I should not focus the "comment_content" element
         Then I press "complaint-comment-button"
         And I should focus the "comment_content" element
 
     @javascript
     Scenario: I can add a comment from the identity page
-        Given I am on "/plainte/identite/55"
+        Given I am on "/plainte/identite/71"
         And the "#comments-feed-title" element should contain "Espace commentaires (5)"
         Then I fill in "comment_content" with "Ceci est un commentaire test."
         When I press "comment-button"

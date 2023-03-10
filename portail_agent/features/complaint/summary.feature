@@ -166,7 +166,7 @@ Feature:
 
     @javascript
     Scenario: I can see form errors the reject form when reject_refusalText is too short
-        Given I am on "/plainte/recapitulatif/82"
+        Given I am on "/plainte/recapitulatif/81"
         When I press "Rejeter"
         And I select "1" from "reject_refusalReason"
         And I fill in "reject_refusalText" with "Lorem ipsum dolor sit amet"
@@ -176,7 +176,7 @@ Feature:
 
     @javascript
     Scenario: I can toggle the send to LRP modal
-        Given I am on "/plainte/recapitulatif/83"
+        Given I am on "/plainte/recapitulatif/81"
         When I press "Envoi à LRP"
         Then I should see a ".modal[aria-modal=true]" element
         And I should see the key "pel.validation.sending.complain.to.lrp" translated
@@ -195,7 +195,7 @@ Feature:
 
     @javascript
     Scenario: I can validate the send to LRP action successfully
-        Given I am on "/plainte/recapitulatif/83"
+        Given I am on "/plainte/recapitulatif/81"
         When I press "Envoi à LRP"
         Then I should see a ".modal[aria-modal=true]" element
         When I press "Valider l'envoi vers le LRP"
@@ -207,7 +207,7 @@ Feature:
 
     @javascript
     Scenario: I can toggle the assign modal
-        Given I am on "/plainte/recapitulatif/83"
+        Given I am on "/plainte/recapitulatif/81"
         When I press "Attribuer la déclaration à..."
         Then I should see a ".modal[aria-modal=true]" element
         And I should see the key "pel.select.the.agent.to.assign" translated
@@ -217,8 +217,8 @@ Feature:
         Then I should not see a ".modal[aria-modal=true]" element
 
     @javascript
-    Scenario: I can submit the assign form successfully and Jean DUPONT should have a notif
-        Given I am on "/plainte/recapitulatif/83"
+    Scenario: I can submit the assign form successfully and Julie RICHARD should have a notif
+        Given I am on "/plainte/recapitulatif/81"
         When I press "Attribuer la déclaration à..."
         And I fill in the autocomplete "assign_assignedTo-ts-control" with "Julie" and click "4"
         And I press "Valider l'attribution"
@@ -230,18 +230,18 @@ Feature:
         Given I am authenticated with PR5KTZ9C from GN
         And I am on the homepage
         When I click the "#notifications-dropdown" element
-        Then I should see "La déclaration PEL-2023-00000083 vient de vous être attribuée"
+        Then I should see "La déclaration PEL-2023-00000081 vient de vous être attribuée"
 
     @javascript
     Scenario: I can submit the reassign form successfully
-        Given I am on "/plainte/recapitulatif/83"
+        Given I am on "/plainte/recapitulatif/82"
         When I press "Attribuer la déclaration à..."
         And I fill in the autocomplete "assign_assignedTo-ts-control" with "Julie" and click "4"
         And I press "Valider l'attribution"
         When I press "complaint-reassign-button"
         And I click the "#modal-complaint-assign .clear-button" element
         And I fill in the autocomplete "assign_assignedTo-ts-control" with "Philippe" and click "5"
-        And I press "Valider l'attribution"
+        And I press "Valider la réattribution"
         Then I should not see a ".modal[aria-modal=true]" element
         And I should see a ".toast" element
         And I should see the key "pel.the.declaration.has.been.assigned.to" translated
@@ -250,7 +250,7 @@ Feature:
 
     @func
     Scenario: I can see the comments space on the summary page
-        Given I am on "/plainte/recapitulatif/83"
+        Given I am on "/plainte/recapitulatif/81"
         Then I should see a "#comment_content" element
         And I should see a ".comment-box" element
         And I should see a "#comments-feed-title" element
@@ -265,14 +265,14 @@ Feature:
 
     @javascript
     Scenario: I can click the "Comment" button, and it focus the comment field
-        Given I am on "/plainte/recapitulatif/83"
+        Given I am on "/plainte/recapitulatif/81"
         And I should not focus the "comment_content" element
         Then I press "complaint-comment-button"
         And I should focus the "comment_content" element
 
     @javascript
     Scenario: I can add a comment from the summary page
-        Given I am on "/plainte/recapitulatif/87"
+        Given I am on "/plainte/recapitulatif/81"
         And the "#comments-feed-title" element should contain "Espace commentaires (5)"
         Then I fill in "comment_content" with "Ceci est un commentaire test."
         When I press "comment-button"
