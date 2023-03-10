@@ -45,6 +45,7 @@
   make:
       chdir: '{{ release_portal_path }}'
       target: referential-create
+  when: force_reload_db
   
 - name: Create referential extensions
   become: true
@@ -55,6 +56,7 @@
   make:
       chdir: '{{ release_portal_path }}'
       target: referential-load
+  when: force_reload_db
 
 - name: Install bundle assets
   command: '{{ release_console_path }} assets:install {{ release_public_path }} --symlink --no-debug'

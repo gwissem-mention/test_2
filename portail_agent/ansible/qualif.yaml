@@ -7,3 +7,4 @@ all:
             ansible_user: "{{ vault_server_user }}"
             server_name: "{{ vault_server_name }}"
             server_user: "{{ vault_server_user }}"
+            force_reload_db: True
