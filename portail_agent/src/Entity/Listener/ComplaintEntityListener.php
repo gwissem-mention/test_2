@@ -48,6 +48,7 @@ class ComplaintEntityListener
     public function postPersist(Complaint $complaint): void
     {
         $this->complaintNotification->setSupervisorNotifications($complaint);
+        $this->entityManager->flush();
     }
 
     private function createCounterForCurrentYear(): ?ComplaintCount

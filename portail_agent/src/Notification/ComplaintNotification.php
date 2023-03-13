@@ -41,7 +41,7 @@ class ComplaintNotification
 
             foreach ($supervisors as $supervisor) {
                 $this->userRepository->save(
-                    $supervisor->addNotification($this->notificationFactory->createForComplaintWithDeadlineExeeded($complaint)), true
+                    $supervisor->addNotification($this->notificationFactory->createForComplaintWithDeadlineExeeded($complaint))
                 );
                 if (!is_null($io)) {
                     $io->comment(sprintf('Complaint "%s", supervisor "%s (%s)" has been notified.',
@@ -54,7 +54,7 @@ class ComplaintNotification
 
             if ($agent = $complaint->getAssignedTo()) {
                 $this->userRepository->save(
-                    $agent->addNotification($this->notificationFactory->createForComplaintWithDeadlineExeeded($complaint)), true
+                    $agent->addNotification($this->notificationFactory->createForComplaintWithDeadlineExeeded($complaint))
                 );
                 if (!is_null($io)) {
                     $io->comment(sprintf('Complaint "%s", agent "%s (%s)" has been notified.',
@@ -76,7 +76,7 @@ class ComplaintNotification
         if ($complaint->getAdditionalInformation()?->isVictimOfViolence()) {
             foreach ($supervisors as $supervisor) {
                 $this->userRepository->save(
-                    $supervisor->addNotification($this->notificationFactory->createForComplaintWithViolence($complaint)), true
+                    $supervisor->addNotification($this->notificationFactory->createForComplaintWithViolence($complaint))
                 );
             }
         }
@@ -92,7 +92,7 @@ class ComplaintNotification
         if (in_array(Facts::NATURE_ROBBERY, $natures) && in_array(Facts::NATURE_DEGRADATION, $natures)) {
             foreach ($supervisors as $supervisor) {
                 $this->userRepository->save(
-                    $supervisor->addNotification($this->notificationFactory->createForComplaintWithRobberyAndDegradation($complaint)), true
+                    $supervisor->addNotification($this->notificationFactory->createForComplaintWithRobberyAndDegradation($complaint))
                 );
             }
         }
@@ -108,7 +108,7 @@ class ComplaintNotification
             if ($object instanceof Vehicle && $object->isRegistered()) {
                 foreach ($supervisors as $supervisor) {
                     $this->userRepository->save(
-                        $supervisor->addNotification($this->notificationFactory->createForComplaintWithStolenRegisteredVehicle($complaint)), true
+                        $supervisor->addNotification($this->notificationFactory->createForComplaintWithStolenRegisteredVehicle($complaint))
                     );
                 }
             }

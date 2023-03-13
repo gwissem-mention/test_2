@@ -25,6 +25,9 @@
 {% elseif complaint.status == constant('App\\Entity\\Complaint::STATUS_REJECTED') %}
     {% set status_btn_color = 'danger' %}
     {% set status = complaint.status %}
+{% elseif complaint.status == constant('App\\Entity\\Complaint::STATUS_UNIT_REASSIGNMENT_PENDING') %}
+    {% set status_btn_color = 'unit-reassignment-pending' %}
+    {% set status = complaint.status %}
 {% endif %}
 
 {% if is_granted('ROLE_SUPERVISOR') %}

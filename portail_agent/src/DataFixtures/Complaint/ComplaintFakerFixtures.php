@@ -27,7 +27,7 @@ use Faker\Generator;
 
 class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, DependentFixtureInterface
 {
-    private const COMPLAINTS_NB = 60;
+    private const COMPLAINTS_NB = 70;
 
     public function __construct(
         private readonly Generator $faker,
@@ -88,6 +88,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                 Complaint::STATUS_REJECTED,
                 Complaint::STATUS_ONGOING_LRP,
                 Complaint::STATUS_MP_DECLARANT,
+                Complaint::STATUS_UNIT_REASSIGNMENT_PENDING,
             ]);
             $identityBirthPostcode = $this->faker->randomKey($places);
             $identityAddressStreetAddress = $this->faker->streetAddress;
@@ -298,6 +299,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
         }
 
         $manager->flush();
+        $manager->clear();
 
         /** @var ComplaintRepository $complaintRepository */
         $complaintRepository = $manager->getRepository(Complaint::class);
@@ -315,6 +317,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
         $this->complaintNotification->setComplaintDeadlineExceededNotification($complaintRepository->getNotifiableComplaintsForProcessingDeadline());
 
         $manager->flush();
+        $manager->clear();
     }
 
     public function getDependencies(): array

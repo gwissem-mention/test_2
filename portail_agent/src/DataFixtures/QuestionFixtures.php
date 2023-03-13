@@ -38,5 +38,6 @@ class QuestionFixtures extends Fixture implements FixtureGroupInterface
         }
 
         $manager->flush();
+        $manager->clear();
     }
 }
