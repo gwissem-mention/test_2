@@ -14,6 +14,7 @@ class ComplaintExtension extends AbstractExtension
     {
         return [
             new TwigFilter('count_complaints_appointment_pending', [$this, 'getCountComplaintsAppointmentPending']),
+            new TwigFilter('count_complaints_assignment_pending', [$this, 'getCountComplaintsAssignmentPending']),
             new TwigFilter('count_complaints_closed', [$this, 'getCountComplaintsClosed']),
             new TwigFilter('count_complaints_ongoing_lrp', [$this, 'getCountComplaintsOngoingLrp']),
             new TwigFilter('count_complaints_reassignment_pending', [$this, 'getCountComplaintsReassignmentPending']),
@@ -34,6 +35,21 @@ class ComplaintExtension extends AbstractExtension
         }
 
         return $complaintsAppointmentWaiting;
+    }
+
+    /**
+     * @param array<int, Complaint> $complaints
+     */
+    public function getCountComplaintsAssignmentPending(array $complaints): int
+    {
+        $complaintsAssignmentPending = 0;
+        foreach ($complaints as $complaint) {
+            if (Complaint::STATUS_ASSIGNMENT_PENDING === $complaint->getStatus()) {
+                ++$complaintsAssignmentPending;
+            }
+        }
+
+        return $complaintsAssignmentPending;
     }
 
     /**
