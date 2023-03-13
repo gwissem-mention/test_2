@@ -870,6 +870,10 @@
                 <source>pel.reset</source>
                 <target>Réinitialiser</target>
             </trans-unit>
+            <trans-unit id="pel.click.here.to.start.searching">
+                <source>pel.click.here.to.start.searching</source>
+                <target>Cliquez ici pour lancer votre recherche</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
