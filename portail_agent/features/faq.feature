@@ -12,11 +12,15 @@ Feature:
         Then the response status code should be 200
         And I should see a "nav" element
         And I should see the key "pel.faq" translated
+        And I should see a ".form-control" element
+        And I should see 3 ".category__item" elements
+        And I should see the key "pel.official.informations" translated
+        And I should see the key "pel.questions.answers" translated
+        And I should see the key "pel.useful.phones" translated
         And I should see a ".accordion" element
         And I should see "Qu’est-ce qu’un témoin ?"
         And I should see "Qu’est-ce qu’un suspect ?"
         And I should see "Qu'est-ce qu'une plainte ?"
-
 
     @javascript
     Scenario: I can click the first FAQ question
