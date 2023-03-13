@@ -858,6 +858,10 @@
                 <source>pel.questions.answers</source>
                 <target>Questions / réponses</target>
             </trans-unit>
+            <trans-unit id="pel.unit.reassignment.pending">
+                <source>pel.unit.reassignment.pending</source>
+                <target>En attente de réaffectation</target>
+            </trans-unit>
             <trans-unit id="pel.useful.phones">
                 <source>pel.useful.phones</source>
                 <target>Numéros utiles</target>

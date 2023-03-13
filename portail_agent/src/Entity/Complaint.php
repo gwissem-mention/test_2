@@ -22,6 +22,7 @@ class Complaint
     public const STATUS_ONGOING_LRP = 'pel.ongoing.lrp';
     public const STATUS_REASSIGNMENT_PENDING = 'pel.reassignment.pending';
     public const STATUS_REJECTED = 'pel.rejected';
+    public const STATUS_UNIT_REASSIGNMENT_PENDING = 'pel.unit.reassignment.pending';
 
     public const REFUSAL_REASON_REORIENTATION_APPONTMENT = 1;
     public const REFUSAL_REASON_REORIENTATION_OTHER_SOLUTION = 2;

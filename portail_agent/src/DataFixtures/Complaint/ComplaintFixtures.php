@@ -112,13 +112,20 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                     ->setStatus(Complaint::STATUS_REASSIGNMENT_PENDING)
                     ->setUnitAssigned($unit);
             }
+
+            for ($i = 1; $i <= self::COMPLAINTS_NB; ++$i) {
+                $complaints[] = $this->getGenericComplaint()
+                    ->setCreatedAt(new \DateTimeImmutable('2022-12-05'))
+                    ->setStatus(Complaint::STATUS_UNIT_REASSIGNMENT_PENDING)
+                    ->setUnitAssigned($unit);
+            }
         }
 
         foreach ($complaints as $complaint) {
             $manager->persist($complaint);
         }
-
         $manager->flush();
+        $manager->clear();
 
         /** @var User $user */
         $user = $manager->getRepository(User::class)->findOneBy([]);
@@ -132,6 +139,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
             );
         }
         $manager->flush();
+        $manager->clear();
     }
 
     private function getGenericComplaint(): Complaint
