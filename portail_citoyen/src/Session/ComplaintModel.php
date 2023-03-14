@@ -19,6 +19,7 @@ class ComplaintModel
     private ?AdditionalInformationModel $additionalInformation = null;
     private ?ObjectsModel $objects = null;
     private bool $franceConnected = false;
+    private ?string $affectedService = null;
 
     public function __construct(Uuid $id)
     {
@@ -110,10 +111,29 @@ class ComplaintModel
         return $this;
     }
 
+    public function getAffectedService(): ?string
+    {
+        return $this->affectedService;
+    }
+
+    public function setAffectedService(?string $affectedService): self
+    {
+        $this->affectedService = $affectedService;
+
+        return $this;
+    }
+
     public function isComplaintIdentityFilled(): bool
     {
         $identity = $this->getIdentity();
 
         return $identity instanceof IdentityModel && !is_null($identity->getDeclarantStatus());
+    }
+
+    public function isComplaintFactsFilled(): bool
+    {
+        $facts = $this->getFacts();
+
+        return $facts instanceof FactsModel && !is_null($facts->getDescription());
     }
 }

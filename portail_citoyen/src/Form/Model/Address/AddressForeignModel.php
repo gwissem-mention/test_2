@@ -23,6 +23,6 @@ final class AddressForeignModel extends AddressEtalabModel
     public function __toString(): string
     {
         return $this->getHouseNumber().' '.$this->getType().' '.$this->getStreet().' '.$this->getApartment().' '
-            .$this->getContext().' '.$this->getPostcode();
+            .$this->getCity().' '.$this->getContext().' '.$this->getPostcode();
     }
 }

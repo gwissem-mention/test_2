@@ -1,60 +1,70 @@
 parameters:
-  app.france_code: 99100
-  app.file_cities: '%env(FILE_CITIES)%'
-  app.file_jobs_male: '%env(FILE_JOBS_MALE)%'
-  app.file_jobs_female: '%env(FILE_JOBS_FEMALE)%'
-  app.referentials_base_path: '%kernel.project_dir%/referentials'
-  app.jedonnemonavis_id: '%env(JEDONNEMONAVIS_ID)%'
-  app.jedonnemonavis_key: '%env(JEDONNEMONAVIS_KEY)%'
+    app.france_code: 99100
+    app.file_cities: '%env(FILE_CITIES)%'
+    app.file_jobs_male: '%env(FILE_JOBS_MALE)%'
+    app.file_jobs_female: '%env(FILE_JOBS_FEMALE)%'
+    app.file_cities_services: '%env(FILE_CITIES_SERVICES)%'
+    app.referentials_base_path: '%kernel.project_dir%/referentials'
+    app.jedonnemonavis_id: '%env(JEDONNEMONAVIS_ID)%'
+    app.jedonnemonavis_key: '%env(JEDONNEMONAVIS_KEY)%'
+    app.file_services: '%env(FILE_SERVICES)%'
 
 services:
-  _defaults:
-    autowire: true
-    autoconfigure: true
-    bind:
-      $franceCode: '%app.france_code%'
-  App\:
-    resource: '../src/'
-    exclude:
-      - '../src/DependencyInjection/'
-      - '../src/Entity/'
-      - '../src/Kernel.php'
-
-  Redis:
-    class: Redis
-    calls:
-      - connect:
-          - '%env(REDIS_HOST)%'
-          - '%env(int:REDIS_PORT)%'
-
-  Symfony\Component\HttpFoundation\Session\Storage\Handler\RedisSessionHandler:
-    arguments:
-      - '@Redis'
-
-  Symfony\Component\EventDispatcher\EventSubscriberInterface $addAddressSubscriber: '@App\Form\EventListener\AddAddressSubscriber'
-  
-  App\Etalab\EtalabApiClientInterface: '@App\Etalab\EtalabAddressApiClient'
-  
-  App\Security\FranceConnectListener:
-    $baseUri: '%env(FRANCE_CONNECT_BASE_URI)%'
-    $logoutTargetPathMap: ~  # Replaced in LogoutTargetPass
-
-  # Referentials
-  
-  App\Referential\DataFixtures\City\CityFileFixtures:
-    arguments:
-      $citiesFixturesPath: '%app.referentials_base_path%/%app.file_cities%'
-
-  App\Referential\DataFixtures\Job\JobMaleFileFixtures:
-    arguments:
-      $jobsFixturesPath: '%app.referentials_base_path%/%app.file_jobs_male%'
-
-  App\Referential\DataFixtures\Job\JobFemaleFileFixtures:
-    arguments:
-      $jobsFixturesPath: '%app.referentials_base_path%/%app.file_jobs_female%'
-
-  App\Referential\Provider\Country\CountryProviderInterface: '@App\Referential\Provider\Country\DatabaseCountryProvider'
-
-  libphonenumber\PhoneNumberUtil:
-    factory: [ 'libphonenumber\PhoneNumberUtil', 'getInstance' ]
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        bind:
+            $franceCode: '%app.france_code%'
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+    
+    Redis:
+        class: Redis
+        calls:
+            -   connect:
+                    - '%env(REDIS_HOST)%'
+                    - '%env(int:REDIS_PORT)%'
+    
+    Symfony\Component\HttpFoundation\Session\Storage\Handler\RedisSessionHandler:
+        arguments:
+            - '@Redis'
+    
+    Symfony\Component\EventDispatcher\EventSubscriberInterface $addAddressSubscriber: '@App\Form\EventListener\AddAddressSubscriber'
+    
+    App\Etalab\EtalabApiClientInterface: '@App\Etalab\EtalabAddressApiClient'
+    
+    App\Security\FranceConnectListener:
+        $baseUri: '%env(FRANCE_CONNECT_BASE_URI)%'
+        $logoutTargetPathMap: ~  # Replaced in LogoutTargetPass
+    
+    # Referentials
+    
+    App\Referential\DataFixtures\City\CityFileFixtures:
+        arguments:
+            $citiesFixturesPath: '%app.referentials_base_path%/%app.file_cities%'
+    
+    App\Referential\DataFixtures\Job\JobMaleFileFixtures:
+        arguments:
+            $jobsFixturesPath: '%app.referentials_base_path%/%app.file_jobs_male%'
+    
+    App\Referential\DataFixtures\Job\JobFemaleFileFixtures:
+        arguments:
+            $jobsFixturesPath: '%app.referentials_base_path%/%app.file_jobs_female%'
+    
+    App\Referential\DataFixtures\CityService\CityServiceFileFixtures:
+        arguments:
+            $citiesServicesFixturesPath: '%app.referentials_base_path%/%app.file_cities_services%'
+        
+    App\Referential\DataFixtures\Service\ServiceFileFixtures:
+        arguments:
+            $servicesFixturesPath: '%app.referentials_base_path%/%app.file_services%'
+    
+    App\Referential\Provider\Country\CountryProviderInterface: '@App\Referential\Provider\Country\DatabaseCountryProvider'
+    
+    libphonenumber\PhoneNumberUtil:
+        factory: [ 'libphonenumber\PhoneNumberUtil', 'getInstance' ]
 

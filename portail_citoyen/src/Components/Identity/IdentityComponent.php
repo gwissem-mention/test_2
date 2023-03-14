@@ -10,6 +10,7 @@ use App\Form\Model\Address\AbstractSerializableAddress;
 use App\Form\Model\Address\AddressEtalabModel;
 use App\Form\Model\EtalabInput;
 use App\Form\Model\Identity\IdentityModel;
+use App\Session\ComplaintHandler;
 use App\Session\ComplaintModel;
 use App\Session\SessionHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -87,8 +88,10 @@ class IdentityComponent extends AbstractController
     }
 
     #[LiveAction]
-    public function submit(#[LiveArg] bool $redirectToSummary = false): RedirectResponse
-    {
+    public function submit(
+        ComplaintHandler $complaintHandler,
+        #[LiveArg] bool $redirectToSummary = false
+    ): RedirectResponse {
         if (isset($this->formValues['contactInformation']['frenchAddress'])) {
             $this->formValues['contactInformation']['frenchAddress']['address'] = $this->contactInformationEtalabInput->getAddressSearch();
             $this->formValues['contactInformation']['frenchAddress']['selectionId'] = $this->contactInformationEtalabInput->getAddressId();
@@ -150,8 +153,11 @@ class IdentityComponent extends AbstractController
             $identity->getRepresentedPersonContactInformation()?->setFrenchAddress($address);
         }
 
-        $complaint->setIdentity($identity);
-        $this->sessionHandler->setComplaint($complaint);
+        $this->sessionHandler->setComplaint(
+            $complaint
+                ->setIdentity($identity)
+                ->setAffectedService($complaintHandler->getAffectedService($complaint))
+        );
 
         if (true === $redirectToSummary) {
             return $this->redirectToRoute('complaint_summary');

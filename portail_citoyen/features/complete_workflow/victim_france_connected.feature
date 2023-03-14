@@ -17,10 +17,10 @@ Feature:
         When I press "identity_submit"
         Then I should be on "/porter-plainte/faits"
         When I fill in "facts_description" with "description informations"
+        And I select "1" from "facts_placeNature"
         And I click the "label[for=facts_victimOfViolence]" element
         And I fill in "facts_victimOfViolenceText" with "Violence informations"
         And I click the "label[for=facts_address_addressOrRouteFactsKnown_0]" element
-        And I fill in "facts-startAddress-address" with "1 test street"
         And I fill in "facts-endAddress-address" with "2 test street"
         And I click the "label[for=facts_offenseDate_exactDateKnown_0]" element
         And I fill in "facts_offenseDate_startDate" with "01/01/2022"
@@ -78,13 +78,15 @@ Feature:
         And I should see the key "pel.complaint.identity.victim" translated
         And I should see the key "pel.of.infraction" translated
         And I should see the key "pel.facts.description" translated
+        And I should see the key "pel.nature.place" translated
+        And I should see the key "pel.nature.place.home" translated
         And I should see the key "pel.complaint.identity.victim" translated
         And I should see the key "pel.victim.at.time.of.facts" translated
         And I should see the key "pel.victim.at.time.of.facts.precisions" translated
         And I should see the key "pel.address.or.route.facts" translated
         And I should see the key "pel.address" translated
         And I should see the key "pel.address.start.or.exact" translated
-        And I should see "1 test street"
+        And I should see "Avenue de la République 75011 Paris, France"
         And I should see the key "pel.address.end" translated
         And I should see "2 test street"
         And I should see the key "pel.complaint.exact.date.known" translated
@@ -132,6 +134,8 @@ Feature:
         And I should see the key "pel.total.message.one" translated
         And I should see the key "pel.total.message.amount" translated
         And I should see "Vous avez ajouté 2 objets pour un montant total de 200,00 €"
+        And I should see the key "pel.place.complaint.handling" translated
+        And I should see "Commissariat de police de Paris 11ème arrondissement - 12 PASSAGE CHARLES DALLERY 75011 PARIS 11"
         When I press "Suivant"
         And I follow "Je confirme"
         Then I should be on "/fin"

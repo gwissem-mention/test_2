@@ -7,7 +7,9 @@
       FILE_CITIES={{ ansible_env.FILE_CITIES }}
       FILE_JOBS_MALE={{ ansible_env.FILE_JOBS_MALE }}
       FILE_JOBS_FEMALE={{ ansible_env.FILE_JOBS_FEMALE }}
-
+      FILE_SERVICES={{ ansible_env.FILE_SERVICES }}
+      FILE_CITIES_SERVICES={{ ansible_env.FILE_CITIES_SERVICES }}
+        
 - name: Install vendors for prod env
   make:
     chdir: '{{ release_portal_path }}'
