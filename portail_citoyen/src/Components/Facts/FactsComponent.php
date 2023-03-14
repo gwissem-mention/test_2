@@ -46,11 +46,9 @@ class FactsComponent extends AbstractController
         private readonly AddressEtalabHandler $addressEtalabHandler,
     ) {
         $this->factsModel = $this->sessionHandler->getComplaint()?->getFacts() ?? new FactsModel();
-        $this->startAddressEtalabInput = new EtalabInput();
-        $this->endAddressEtalabInput = new EtalabInput();
 
-        $this->startAddressEtalabInput->setAddressSearch($this->factsModel->getAddress()?->getStartAddress()?->getLabel() ?? '');
-        $this->endAddressEtalabInput->setAddressSearch($this->factsModel->getAddress()?->getEndAddress()?->getLabel() ?? '');
+        $this->startAddressEtalabInput = $this->createEtalabInput($this->factsModel->getAddress()?->getStartAddress());
+        $this->endAddressEtalabInput = $this->createEtalabInput($this->factsModel->getAddress()?->getEndAddress());
     }
 
     public function __invoke(): void
@@ -116,5 +114,23 @@ class FactsComponent extends AbstractController
         }
 
         return $this->redirectToRoute('complaint_objects');
+    }
+
+    private function createEtalabInput(?AbstractSerializableAddress $address = null): EtalabInput
+    {
+        $etalabInput = new EtalabInput();
+
+        if (null === $address) {
+            return $etalabInput;
+        }
+
+        $etalabInput->setAddressSearch($address->getLabel() ?? '');
+        if ($address instanceof AddressEtalabModel) {
+            $etalabInput
+                ->setAddressId($address->getId() ?? '')
+                ->setAddressSearchSaved($address->getLabel() ?? '');
+        }
+
+        return $etalabInput;
     }
 }

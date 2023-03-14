@@ -18,9 +18,11 @@ class EtalabInput
         return $this->addressSearch;
     }
 
-    public function setAddressSearch(string $addressSearch): void
+    public function setAddressSearch(string $addressSearch): self
     {
         $this->addressSearch = $addressSearch;
+
+        return $this;
     }
 
     public function getAddressId(): string
@@ -28,9 +30,11 @@ class EtalabInput
         return $this->addressId;
     }
 
-    public function setAddressId(string $addressId): void
+    public function setAddressId(string $addressId): self
     {
         $this->addressId = $addressId;
+
+        return $this;
     }
 
     public function getAddressSearchSaved(): string
@@ -38,8 +42,10 @@ class EtalabInput
         return $this->addressSearchSaved;
     }
 
-    public function setAddressSearchSaved(string $addressSearchSaved): void
+    public function setAddressSearchSaved(string $addressSearchSaved): self
     {
         $this->addressSearchSaved = $addressSearchSaved;
+
+        return $this;
     }
 }

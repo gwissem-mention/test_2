@@ -7,6 +7,7 @@ namespace App\Components\Identity;
 use App\Etalab\AddressEtalabHandler;
 use App\Form\Identity\IdentityType;
 use App\Form\Model\Address\AbstractSerializableAddress;
+use App\Form\Model\Address\AddressEtalabModel;
 use App\Form\Model\EtalabInput;
 use App\Form\Model\Identity\IdentityModel;
 use App\Session\ComplaintModel;
@@ -46,13 +47,10 @@ class IdentityComponent extends AbstractController
         private readonly AddressEtalabHandler $addressEtalabHandler
     ) {
         $this->identityModel = $this->sessionHandler->getComplaint()?->getIdentity() ?? new IdentityModel();
-        $this->contactInformationEtalabInput = new EtalabInput();
-        $this->corporationEtalabInput = new EtalabInput();
-        $this->representedPersonEtalabInput = new EtalabInput();
 
-        $this->contactInformationEtalabInput->setAddressSearch($this->identityModel->getContactInformation()?->getFrenchAddress()?->getLabel() ?? '');
-        $this->corporationEtalabInput->setAddressSearch($this->identityModel->getCorporation()?->getFrenchAddress()?->getLabel() ?? '');
-        $this->representedPersonEtalabInput->setAddressSearch($this->identityModel->getRepresentedPersonContactInformation()?->getFrenchAddress()?->getLabel() ?? '');
+        $this->contactInformationEtalabInput = $this->createEtalabInput($this->identityModel->getContactInformation()?->getFrenchAddress());
+        $this->corporationEtalabInput = $this->createEtalabInput($this->identityModel->getCorporation()?->getFrenchAddress());
+        $this->representedPersonEtalabInput = $this->createEtalabInput($this->identityModel->getRepresentedPersonContactInformation()?->getFrenchAddress());
     }
 
     protected function instantiateForm(): FormInterface
@@ -160,5 +158,23 @@ class IdentityComponent extends AbstractController
         }
 
         return $this->redirectToRoute('complaint_facts');
+    }
+
+    private function createEtalabInput(?AbstractSerializableAddress $address = null): EtalabInput
+    {
+        $etalabInput = new EtalabInput();
+
+        if (null === $address) {
+            return $etalabInput;
+        }
+
+        $etalabInput->setAddressSearch($address->getLabel() ?? '');
+        if ($address instanceof AddressEtalabModel) {
+            $etalabInput
+                ->setAddressId($address->getId() ?? '')
+                ->setAddressSearchSaved($address->getLabel() ?? '');
+        }
+
+        return $etalabInput;
     }
 }
