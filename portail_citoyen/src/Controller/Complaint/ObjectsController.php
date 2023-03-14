@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Controller\Complaint;
 
-use App\Form\Model\Facts\FactsModel;
 use App\Session\SessionHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,7 +18,7 @@ class ObjectsController extends AbstractController
         SessionHandler $sessionHandler,
         bool $fromSummary = false
     ): Response {
-        if (!$sessionHandler->getComplaint()?->getFacts() instanceof FactsModel) {
+        if (!$sessionHandler->getComplaint()?->isComplaintFactsFilled()) {
             return $this->redirectToRoute('home');
         }
 

@@ -9,7 +9,9 @@
     FILE_CITIES: insee_commune.csv
     FILE_JOBS_MALE: Liste_libelles_professions_hommes_2023.csv
     FILE_JOBS_FEMALE: Liste_libelles_professions_femmes_2023.csv
-
+    FILE_SERVICES: service.csv
+    FILE_CITIES_SERVICES: competence_securite_publique.csv
+        
   vars_files:
     - ../vars/vars.yaml
     - ../vault/vault.yaml

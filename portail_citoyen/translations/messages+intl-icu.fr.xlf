@@ -774,6 +774,10 @@
                 <source>pel.phone.help</source>
                 <target>Veuillez saisir votre numéro uniquement avec des chiffres</target>
             </trans-unit>
+            <trans-unit id="pel.place.complaint.handling">
+                <source>pel.place.complaint.handling</source>
+                <target>Lieu de prise en charge de votre plainte</target>
+            </trans-unit>
             <trans-unit id="pel.model">
                 <source>pel.model</source>
                 <target>Modèle</target>

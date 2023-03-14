@@ -45,7 +45,7 @@ class UnitFileFixtures extends Fixture implements FixtureGroupInterface
             $handle = fopen($this->unitsFixturesPath, 'rb');
             if (is_resource($handle)) {
                 while (is_array($data = fgetcsv($handle, self::LENGTH))) {
-                    if ($row > 1 && in_array($data[self::UNIT_INSTITUTION], ['1', '2'], true)) {
+                    if ($row > 1 && in_array($data[self::UNIT_INSTITUTION], ['1', '2', '3'], true)) {
                         $unit = new Unit(
                             'NULL' === $data[self::UNIT_EMAIL] ? null : $data[self::UNIT_EMAIL],
                             'NULL' === $data[self::UNIT_EMAIL_HOME_DEPARTMENT] ? null : $data[self::UNIT_EMAIL_HOME_DEPARTMENT],

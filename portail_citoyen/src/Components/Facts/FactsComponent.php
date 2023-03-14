@@ -10,6 +10,7 @@ use App\Form\Model\Address\AbstractSerializableAddress;
 use App\Form\Model\Address\AddressEtalabModel;
 use App\Form\Model\EtalabInput;
 use App\Form\Model\Facts\FactsModel;
+use App\Session\ComplaintHandler;
 use App\Session\ComplaintModel;
 use App\Session\SessionHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -76,8 +77,10 @@ class FactsComponent extends AbstractController
     }
 
     #[LiveAction]
-    public function submit(#[LiveArg] bool $redirectToSummary = false): RedirectResponse
-    {
+    public function submit(
+        ComplaintHandler $complaintHandler,
+        #[LiveArg] bool $redirectToSummary = false
+    ): RedirectResponse {
         if (isset($this->formValues['address']['startAddress'])) {
             $this->formValues['address']['startAddress']['address'] = $this->startAddressEtalabInput->getAddressSearch();
             $this->formValues['address']['startAddress']['selectionId'] = $this->startAddressEtalabInput->getAddressId();
@@ -107,7 +110,11 @@ class FactsComponent extends AbstractController
             $facts->getAddress()?->setEndAddress($endAddress);
         }
 
-        $this->sessionHandler->setComplaint($complaint->setFacts($facts));
+        $this->sessionHandler->setComplaint(
+            $complaint
+                ->setFacts($facts)
+                ->setAffectedService($complaintHandler->getAffectedService($complaint))
+        );
 
         if (true === $redirectToSummary) {
             return $this->redirectToRoute('complaint_summary');
