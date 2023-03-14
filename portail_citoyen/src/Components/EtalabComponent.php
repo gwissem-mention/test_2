@@ -51,6 +51,7 @@ class EtalabComponent
 
     public function __invoke(): void
     {
+        $this->addressId = '';
         if (strlen($this->addressSearch) > self::MIN_CHAR_TO_LAUNCH_SEARCH) {
             /**
              * @var array<string, array<int, array<string, array<string, int|string|float>>>> $addresses
