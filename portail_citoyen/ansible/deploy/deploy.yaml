@@ -11,6 +11,9 @@
     FILE_JOBS_FEMALE: Liste_libelles_professions_femmes_2023.csv
     FILE_SERVICES: service.csv
     FILE_CITIES_SERVICES: competence_securite_publique.csv
+    OODRIVE_BASE_URI: https://sharing.oodrive.com
+    OODRIVE_WORKSPACE: pel
+    OODRIVE_OAUTH_CLIENT_ID: pel
         
   vars_files:
     - ../vars/vars.yaml

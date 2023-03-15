@@ -9,6 +9,9 @@
       FILE_JOBS_FEMALE={{ ansible_env.FILE_JOBS_FEMALE }}
       FILE_SERVICES={{ ansible_env.FILE_SERVICES }}
       FILE_CITIES_SERVICES={{ ansible_env.FILE_CITIES_SERVICES }}
+      OODRIVE_BASE_URI={{ ansible_env.OODRIVE_BASE_URI }}
+      OODRIVE_WORKSPACE={{ ansible_env.OODRIVE_WORKSPACE }}
+      OODRIVE_OAUTH_CLIENT_ID={{ ansible_env.OODRIVE_OAUTH_CLIENT_ID }}
         
 - name: Install vendors for prod env
   make:
