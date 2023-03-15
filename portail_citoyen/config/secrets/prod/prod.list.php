@@ -6,6 +6,9 @@ return [
     'FRANCE_CONNECT_BASE_URI' => null,
     'FRANCE_CONNECT_CLIENT_ID' => null,
     'FRANCE_CONNECT_CLIENT_SECRET' => null,
+    'OODRIVE_OAUTH_CLIENT_SECRET' => null,
+    'OODRIVE_PASSWORD' => null,
+    'OODRIVE_USERNAME' => null,
     'REFERENTIALS_DATABASE_URL' => null,
     'TRUSTED_PROXIES' => null,
 ];
