@@ -68,3 +68,12 @@ services:
     libphonenumber\PhoneNumberUtil:
         factory: [ 'libphonenumber\PhoneNumberUtil', 'getInstance' ]
 
+    # Oodrive HTTP Client Oauth management service
+    App\Oodrive\OAuth2\GrantType\AuthorizationCodeGrantType:
+        arguments:
+          $tokenUrl: '%env(OODRIVE_BASE_URI)%/auth/oauth/token'
+          $workspace: '%env(OODRIVE_WORKSPACE)%'
+          $clientId: '%env(OODRIVE_OAUTH_CLIENT_ID)%'
+          $clientSecret: '%env(OODRIVE_OAUTH_CLIENT_SECRET)%'
+          $username: '%env(OODRIVE_USERNAME)%'
+          $password: '%env(OODRIVE_PASSWORD)%'
