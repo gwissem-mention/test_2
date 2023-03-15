@@ -57,9 +57,9 @@
 {% endblock %}
 
 {% block phone_row %}
-    <div class="{{ html_classes('fr-input-group', {'fr-input-group--error': errors is not empty}) }}" {{ stimulus_controller('intl-tel-input') }} data-live-id="{{ random() }}">
+    <div class="{{ html_classes('fr-input-group', {'fr-input-group--error': form.number.vars.errors is not empty}) }}" {{ stimulus_controller('intl-tel-input') }} data-live-id="{{ random() }}">
         {{ form_label(form.number) }}
-        {{ form_widget(form.number, {'attr':{'class':html_classes(attr.class ?? '', 'fr-input', {'fr-input--error':errors is not empty}),'aria-describedby':errors is not empty ? 'form-errors-'~ form.vars.id :''}}) }}
+        {{ form_widget(form.number, {'attr':{'class':html_classes(attr.class ?? '', 'fr-input', {'fr-input--error':form.number.vars.errors is not empty}),'aria-describedby':form.number.vars.errors is not empty ? 'form-errors-'~ form.vars.id :''}}) }}
         {{ form_errors(form.number) }}
         {{ form_widget(form.code) }}
         {{ form_widget(form.country) }}
