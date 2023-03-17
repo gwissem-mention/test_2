@@ -19,6 +19,8 @@ class FactsController extends AbstractController
     #[Route(path: '/plainte/faits/{id}', name: 'complaint_facts', methods: ['GET'])]
     public function __invoke(Complaint $complaint): Response
     {
+        $this->denyAccessUnlessGranted('COMPLAINT_VIEW', $complaint);
+
         return $this->render('pages/complaint/facts.html.twig', [
             'complaint' => $complaint,
             'reject_form' => $this->createForm(RejectType::class, $complaint),

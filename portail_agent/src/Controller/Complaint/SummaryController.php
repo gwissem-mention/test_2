@@ -19,6 +19,8 @@ class SummaryController extends AbstractController
     #[Route(path: '/plainte/recapitulatif/{id}', name: 'complaint_summary', methods: ['GET'])]
     public function __invoke(Complaint $complaint, UserRepository $userRepository): Response
     {
+        $this->denyAccessUnlessGranted('COMPLAINT_VIEW', $complaint);
+
         return $this->render('pages/complaint/summary.html.twig', [
             'complaint' => $complaint,
             'reject_form' => $this->createForm(RejectType::class, $complaint),
