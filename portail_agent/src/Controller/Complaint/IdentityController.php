@@ -19,6 +19,8 @@ class IdentityController extends AbstractController
     #[Route(path: '/plainte/identite/{id}', name: 'complaint_identity', methods: ['GET'])]
     public function __invoke(Complaint $complaint): Response
     {
+        $this->denyAccessUnlessGranted('COMPLAINT_VIEW', $complaint);
+
         return $this->render('pages/complaint/identity.html.twig', [
             'complaint' => $complaint,
             'reject_form' => $this->createForm(RejectType::class, $complaint),

@@ -131,7 +131,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
         $user = $manager->getRepository(User::class)->findOneBy([]);
 
         /** @var array<Complaint> $complaints */
-        $complaints = $manager->getRepository(Complaint::class)->findBy([], [], 2);
+        $complaints = $manager->getRepository(Complaint::class)->findBy(['id' => [11, 12]]);
 
         foreach ($complaints as $complaint) {
             $manager->persist(

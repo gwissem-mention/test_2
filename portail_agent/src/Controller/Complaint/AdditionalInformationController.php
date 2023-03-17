@@ -19,6 +19,8 @@ class AdditionalInformationController extends AbstractController
     #[Route(path: '/plainte/informations-complementaires/{id}', name: 'complaint_additional_information', methods: ['GET'])]
     public function __invoke(Complaint $complaint): Response
     {
+        $this->denyAccessUnlessGranted('COMPLAINT_VIEW', $complaint);
+
         return $this->render('pages/complaint/additional_information.html.twig', [
             'complaint' => $complaint,
             'reject_form' => $this->createForm(RejectType::class, $complaint),

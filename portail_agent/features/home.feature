@@ -55,11 +55,11 @@ Feature:
         Given I am authenticated with H3U3XCGD from PN
         And I am on the homepage
         When I click the "#notifications-dropdown" element
-        Then I should see "La déclaration PEL-2023-00000001 vient de vous être attribuée"
-        When I follow "La déclaration PEL-2023-00000001 vient de vous être attribuée"
-        Then I should be on "/plainte/recapitulatif/1"
+        Then I should see "La déclaration PEL-2023-00000011 vient de vous être attribuée"
+        When I follow "La déclaration PEL-2023-00000011 vient de vous être attribuée"
+        Then I should be on "/plainte/recapitulatif/11"
         When I click the "#notifications-dropdown" element
-        Then I should not see "La déclaration PEL-2023-00000001 vient de vous être attribuée"
+        Then I should not see "La déclaration PEL-2023-00000011 vient de vous être attribuée"
 
     @javascript
     Scenario: I should see a table datatables of 25 entries

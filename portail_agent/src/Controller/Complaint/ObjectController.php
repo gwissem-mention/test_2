@@ -26,6 +26,8 @@ class ObjectController extends AbstractController
     #[Route(path: '/plainte/objets/{id}', name: 'complaint_objects', methods: ['GET'])]
     public function __invoke(Complaint $complaint): Response
     {
+        $this->denyAccessUnlessGranted('COMPLAINT_VIEW', $complaint);
+
         $objectForms = [];
         foreach ($complaint->getObjects() as $object) {
             switch (true) {
