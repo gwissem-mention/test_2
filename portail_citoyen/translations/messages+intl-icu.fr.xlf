@@ -136,7 +136,7 @@
             </trans-unit>
             <trans-unit id="pel.appointment.needed.if">
                 <source>pel.appointment.needed.if</source>
-                <target>La démarche sera nécessairement finalisée par un rendez-vous si :</target>
+                <target>La démarche sera nécessairement finalisée par un rendez-vous en présentiel si :</target>
             </trans-unit>
             <trans-unit id="pel.article.10.2">
                 <source>pel.article.10.2</source>
@@ -668,7 +668,7 @@
             </trans-unit>
             <trans-unit id="pel.if.no.lawyer.needed.text">
                 <source>pel.if.no.lawyer.needed.text</source>
-                <target>Si un rendez-vous en présentiel vous est proposé, l’intégralité des données que vous aurez renseigné seront reprises par l’enquêteur qui vous recevra.</target>
+                <target>Si un rendez-vous en présentiel vous est proposé, l’intégralité des données que vous aurez renseignées sera reprise par l’enquêteur qui vous recevra.</target>
             </trans-unit>
             <trans-unit id="pel.if.no.lawyer.needed.text.bis">
                 <source>pel.if.no.lawyer.needed.text.bis</source>
@@ -1276,7 +1276,7 @@
             </trans-unit>
             <trans-unit id="pel.your.are.victim.of.a.violent.theft">
                 <source>pel.your.are.victim.of.a.violent.theft</source>
-                <target>vous êtes victimes d’un vol avec violences ;</target>
+                <target>vous êtes victime d'un vol avec violences ;</target>
             </trans-unit>
             <trans-unit id="pel.you.will.start.an.online.complaint.procedure">
                 <source>pel.you.will.start.an.online.complaint.procedure</source>
