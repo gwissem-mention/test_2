@@ -442,6 +442,10 @@
                 <source>pel.description</source>
                 <target>Description</target>
             </trans-unit>
+            <trans-unit id="pel.document.type">
+                <source>pel.document.type</source>
+                <target>Type de document</target>
+            </trans-unit>
             <trans-unit id="pel.do.you.have.informations.on.potential.suspects">
                 <source>pel.do.you.have.informations.on.potential.suspects</source>
                 <target>Avez-vous des informations sur les éventuels suspects ?</target>
@@ -457,6 +461,10 @@
             <trans-unit id="pel.dont.know.the.offense.author">
                 <source>pel.dont.know.the.offense.author</source>
                 <target>Ne pas connaître l'identité de l'auteur de l'infraction</target>
+            </trans-unit>
+            <trans-unit id="pel.driving.license">
+                <source>pel.driving.license</source>
+                <target>Permis de conduire</target>
             </trans-unit>
             <trans-unit id="pel.dropzone.cancel.upload">
                 <source>pel.dropzone.cancel.upload</source>
@@ -578,6 +586,10 @@
                 <source>pel.header.baseline</source>
                 <target>Portail officiel de déclaration de plainte pour des faits d'atteinte aux biens</target>
             </trans-unit>
+            <trans-unit id="pel.health.insurance.card">
+                <source>pel.health.insurance.card</source>
+                <target>Carte vitale</target>
+            </trans-unit>
             <trans-unit id="pel.fsi.general.orienteer">
                 <source>pel.fsi.general.orienteer</source>
                 <target>Soyez guidé vers la bonne solution !</target>
@@ -629,6 +641,10 @@
             <trans-unit id="pel.identify.with">
                 <source>pel.identify.with</source>
                 <target>S’identifier avec</target>
+            </trans-unit>
+            <trans-unit id="pel.id.card">
+                <source>pel.id.card</source>
+                <target>Carte d'identité</target>
             </trans-unit>
             <trans-unit id="pel.i.confirm">
                 <source>pel.i.confirm</source>
@@ -874,9 +890,13 @@
                 <source>pel.object.category.choose</source>
                 <target>Sélectionnez une catégorie d'objet</target>
             </trans-unit>
+            <trans-unit id="pel.object.document.type.choose">
+                <source>pel.object.document.type.choose</source>
+                <target>Sélectionnez un type de document</target>
+            </trans-unit>
             <trans-unit id="pel.object.category.documents">
                 <source>pel.object.category.documents</source>
-                <target>Documents</target>
+                <target>Document officiel</target>
             </trans-unit>
             <trans-unit id="pel.object.category.payment.ways">
                 <source>pel.object.category.payment.ways</source>
@@ -970,6 +990,10 @@
                 <source>pel.passage.fsi</source>
                 <target>Indications du passage des FSI</target>
             </trans-unit>
+            <trans-unit id="pel.passport">
+                <source>pel.passport</source>
+                <target>Passeport</target>
+            </trans-unit>
             <trans-unit id="pel.phone">
                 <source>pel.phone</source>
                 <target>Numéro de téléphone fixe</target>
@@ -993,6 +1017,10 @@
             <trans-unit id="pel.phone.mobile.error">
                 <source>pel.phone.mobile.error</source>
                 <target>Vous devez saisir un numéro de téléphone portable</target>
+            </trans-unit>
+            <trans-unit id="pel.quantity">
+                <source>pel.quantity</source>
+                <target>Quantité</target>
             </trans-unit>
             <trans-unit id="pel.nature.place">
                 <source>pel.nature.place</source>
@@ -1034,9 +1062,9 @@
                 <source>pel.previous</source>
                 <target>Précédent</target>
             </trans-unit>
-            <trans-unit id="pel.quantity">
-                <source>pel.quantity</source>
-                <target>Quantité</target>
+            <trans-unit id="pel.professional.card">
+                <source>pel.professional.card</source>
+                <target>Carte professionnelle</target>
             </trans-unit>
             <trans-unit id="pel.registration.number">
                 <source>pel.registration.number</source>
@@ -1053,6 +1081,10 @@
             <trans-unit id="pel.resides.at">
                 <source>pel.resides.at</source>
                 <target>Réside à/au</target>
+            </trans-unit>
+            <trans-unit id="pel.residence.permit">
+                <source>pel.residence.permit</source>
+                <target>Titre de séjour</target>
             </trans-unit>
             <trans-unit id="pel.results.loading">
                 <source>pel.results.loading</source>
@@ -1153,6 +1185,10 @@
             <trans-unit id="pel.validate">
                 <source>pel.validate</source>
                 <target>Valider</target>
+            </trans-unit>
+            <trans-unit id="pel.vehicle.registration.certificate">
+                <source>pel.vehicle.registration.certificate</source>
+                <target>Carte grise</target>
             </trans-unit>
             <trans-unit id="pel.victim.at.time.of.facts">
                 <source>pel.victim.at.time.of.facts</source>
@@ -1353,6 +1389,10 @@
             <trans-unit id="pel.france.connect.click.to.create.an.account">
                 <source>pel.france.connect.click.to.create.an.account</source>
                 <target>cliquez sur ce lien</target>
+            </trans-unit>
+            <trans-unit id="pel.other">
+                <source>pel.other</source>
+                <target>Autre</target>
             </trans-unit>
             <trans-unit id="pel.otherwise.you.will.have.to.go.to.the.office">
                 <source>pel.otherwise.you.will.have.to.go.to.the.office</source>

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Form\Objects;
 
+use App\Enum\DocumentType;
 use App\Form\Model\Objects\ObjectModel;
 use App\Form\PhoneType;
 use App\Thesaurus\ObjectCategoryThesaurusProviderInterface;
@@ -44,18 +45,7 @@ class ObjectType extends AbstractType
                 'constraints' => [
                     new NotBlank(),
                 ],
-            ])
-            ->add('label', TextType::class, [
-                'attr' => [
-                    'maxlength' => 30,
-                ],
-                'label' => false,
-                'constraints' => [
-                    new NotBlank(),
-                    new Length([
-                        'max' => 30,
-                    ]),
-                ],
+                'priority' => 1000,
             ])
             ->add('status', ChoiceType::class, [
                 'choices' => [
@@ -109,26 +99,51 @@ class ObjectType extends AbstractType
         $this->removeCategoryPaymentWaysFields($form, $objectModel);
         $this->removeCategoryRegisteredVehicleFields($form, $objectModel);
         $this->removeAmountField($form, $objectModel);
+        $this->removeLabelField($form, $objectModel);
+        $this->removeCategoryDocumentFields($form, $objectModel);
+
         switch ($category) {
+            case $this->objectCategories['pel.object.category.documents']:
+                $this->addCategoryDocumentFields($form);
+                $this->addAmountField($form);
+                break;
             case $this->objectCategories['pel.object.category.other']:
                 $this->addCategoryOtherFields($form);
                 $this->addAmountField($form, 'pel.amount.for.group');
+                $this->addLabelField($form);
                 break;
             case $this->objectCategories['pel.object.category.multimedia']:
                 $this->addCategoryMultimediaFields($form);
                 $this->addAmountField($form);
+                $this->addLabelField($form);
                 break;
             case $this->objectCategories['pel.object.category.payment.ways']:
                 $this->addCategoryPaymentWaysFields($form);
+                $this->addLabelField($form);
                 break;
             case $this->objectCategories['pel.object.category.registered.vehicle']:
                 $this->addCategoryRegisteredVehicleFields($form);
                 $this->addAmountField($form);
+                $this->addLabelField($form);
                 break;
             default:
                 $this->addAmountField($form);
+                $this->addLabelField($form);
                 break;
         }
+    }
+
+    private function addCategoryDocumentFields(FormInterface $form): void
+    {
+        $form->add('documentType', ChoiceType::class, [
+            'choices' => DocumentType::getChoices(),
+            'placeholder' => 'pel.object.document.type.choose',
+            'label' => 'pel.document.type',
+            'constraints' => [
+                new NotBlank(),
+            ],
+              'priority' => 999,
+        ]);
     }
 
     private function addCategoryOtherFields(FormInterface $form): void
@@ -351,6 +366,29 @@ class ObjectType extends AbstractType
         $objectModel?->setAmount(null);
     }
 
+    private function addLabelField(FormInterface $form): void
+    {
+        $form->add('label', TextType::class, [
+            'attr' => [
+                'maxlength' => 30,
+            ],
+            'label' => false,
+            'constraints' => [
+                new NotBlank(),
+                new Length([
+                    'max' => 30,
+                ]),
+            ],
+            'priority' => 999,
+        ]);
+    }
+
+    private function removeLabelField(FormInterface $form, ?ObjectModel $objectModel): void
+    {
+        $form->remove('label');
+        $objectModel?->setLabel(null);
+    }
+
     private function removeCategoryMultimediaFields(FormInterface $form, ?ObjectModel $objectModel): void
     {
         $form
@@ -404,5 +442,12 @@ class ObjectType extends AbstractType
             ->setRegistrationNumberCountry(null)
             ->setInsuranceCompany(null)
             ->setInsuranceNumber(null);
+    }
+
+    private function removeCategoryDocumentFields(FormInterface $form, ?ObjectModel $objectModel): void
+    {
+        $form->remove('documentType');
+
+        $objectModel?->setDocumentType(null);
     }
 }

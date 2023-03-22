@@ -28,7 +28,7 @@ Feature:
         Then I should be on "/porter-plainte/faits"
 
     Scenario: I can see the object category choice list
-        Then I should see "Documents" in the "#objects_objects_0_category" element
+        Then I should see "Document officiel" in the "#objects_objects_0_category" element
         And I should see "Moyens de paiement" in the "#objects_objects_0_category" element
         And I should see "Multimédia" in the "#objects_objects_0_category" element
         And I should see "Véhicules immatriculés " in the "#objects_objects_0_category" element
@@ -52,6 +52,7 @@ Feature:
         And I should see the key "pel.serial.number" translated
         And I should see the key "pel.serial.number.help" translated
         And I should see the key "pel.amount" translated
+        And I should see the key "pel.object.status" translated
 
     Scenario: I can see a list of text fields translated when I select "Moyens de paiement" from category object list
         When I select "Moyens de paiement" from "objects_objects_0_category"
@@ -59,6 +60,25 @@ Feature:
         And I should see the key "pel.bank.account.number" translated
         And I should see the key "pel.credit.card.number" translated
         And I should see the key "pel.amount" translated
+        And I should see the key "pel.object.status" translated
+
+    Scenario: I can see a list of text fields translated when I select "Document officiel" from category object list
+        When I select "Document officiel" from "objects_objects_0_category"
+        Then I should see the key "pel.document.type" translated
+        And I should see the key "pel.object.status" translated
+        And I should see the key "pel.amount" translated
+        And I should see a "select#objects_objects_0_documentType" element
+        And I should see a "select#objects_objects_0_status" element
+        And I should see a "input#objects_objects_0_amount" element
+        And I should not see a "select#objects_objects_0_label" element
+        And I should see "Carte d'identité" in the "#objects_objects_0_documentType" element
+        And I should see "Passeport" in the "#objects_objects_0_documentType" element
+        And I should see "Titre de séjour" in the "#objects_objects_0_documentType" element
+        And I should see "Permis de conduire " in the "#objects_objects_0_documentType" element
+        And I should see "Carte grise" in the "#objects_objects_0_documentType" element
+        And I should see "Carte vitale" in the "#objects_objects_0_documentType" element
+        And I should see "Carte professionnelle" in the "#objects_objects_0_documentType" element
+        And I should see "Autre" in the "#objects_objects_0_documentType" element
 
     Scenario: I can delete an input text when I click on the delete an object button
         And  I press "objects_objects_add"
@@ -71,7 +91,9 @@ Feature:
         And I should see the key "pel.quantity" translated
         And I should see a "input#objects_objects_0_description" element
         And I should see a "input#objects_objects_0_quantity" element
+        And I should see a "select#objects_objects_0_status" element
         And I should see the key "pel.amount.for.group" translated
+        And I should see the key "pel.object.status" translated
 
     Scenario: I can see a list of text fields translated when I select "Véhicules immatriculés" from category object list
         When I select "Véhicules immatriculés" from "objects_objects_0_category"
@@ -82,6 +104,7 @@ Feature:
         And I should see the key "pel.insurance.company" translated
         And I should see the key "pel.insurance.number" translated
         And I should see the key "pel.amount" translated
+        And I should see the key "pel.object.status" translated
 
     Scenario: I should see an objects quantity / amount text when I fill an object form
         When I select "6" from "objects_objects_0_category"
@@ -94,12 +117,12 @@ Feature:
         Then I should see "Vous avez ajouté 20 objets pour un montant total de 199,99 €"
 
     Scenario: Submit the complaint form as a victim logged in with France Connect
-        And I select "1" from "objects_objects_0_category"
+        And I select "5" from "objects_objects_0_category"
         And I select "1" from "objects_objects_0_status"
         And I fill in "objects_objects_0_label" with "Object 1"
         And I fill in "objects_objects_0_amount" with "100"
         And I press "objects_objects_add"
-        And I select "1" from "objects_objects_1_category"
+        And I select "5" from "objects_objects_1_category"
         And I select "1" from "objects_objects_1_status"
         And I fill in "objects_objects_1_label" with "Object 2"
         And I fill in "objects_objects_1_amount" with "100"
