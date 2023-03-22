@@ -274,6 +274,9 @@
         <li>{{ 'pel.object.category'|trans }} : {{ object.category|object_category_get_name|trans }}</li>
         {% if object.category|object_category_get_name is same as('pel.object.category.documents') %}
             <li>{{ 'pel.document.type'|trans }} : {{ object.documentType|document_type_label|trans }}</li>
+            {% if object.documentType is same as(constant('App\\Enum\\DocumentType::Other').value) and object.otherDocumentType is not null %}
+                <li>{{ 'pel.could.you.precise'|trans }} : {{ object.otherDocumentType }}</li>
+            {% endif %}
         {% elseif object.category|object_category_get_name is same as('pel.object.category.multimedia') %}
             <li>{{ 'pel.object'|trans }} : {{ object.label }}</li>
             <li>{{ 'pel.brand'|trans }} : {{ object.brand }}</li>

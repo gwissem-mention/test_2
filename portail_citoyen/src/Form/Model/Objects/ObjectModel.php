@@ -30,6 +30,7 @@ class ObjectModel
     private ?string $insuranceNumber = null;
     private ?float $amount = null;
     private ?int $documentType = null;
+    private ?string $otherDocumentType = null;
 
     public function getStatus(): ?int
     {
@@ -255,6 +256,18 @@ class ObjectModel
     public function setDocumentType(?int $documentType): self
     {
         $this->documentType = $documentType;
+
+        return $this;
+    }
+
+    public function getOtherDocumentType(): ?string
+    {
+        return $this->otherDocumentType;
+    }
+
+    public function setOtherDocumentType(?string $otherDocumentType): self
+    {
+        $this->otherDocumentType = $otherDocumentType;
 
         return $this;
     }

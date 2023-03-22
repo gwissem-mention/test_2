@@ -67,7 +67,7 @@ Feature:
         Then I should see the key "pel.document.type" translated
         And I should see the key "pel.object.status" translated
         And I should see the key "pel.amount" translated
-        And I should see a "select#objects_objects_0_documentType" element
+        And I should see a "select#objects_objects_0_documentType_documentType" element
         And I should see a "select#objects_objects_0_status" element
         And I should see a "input#objects_objects_0_amount" element
         And I should not see a "select#objects_objects_0_label" element
@@ -79,6 +79,9 @@ Feature:
         And I should see "Carte vitale" in the "#objects_objects_0_documentType" element
         And I should see "Carte professionnelle" in the "#objects_objects_0_documentType" element
         And I should see "Autre" in the "#objects_objects_0_documentType" element
+        When I select "Autre" from "objects_objects_0_documentType_documentType"
+        Then I should see a "input#objects_objects_0_documentType_otherDocumentType" element
+        And I should see the key "pel.could.you.precise" translated
 
     Scenario: I can delete an input text when I click on the delete an object button
         And  I press "objects_objects_add"

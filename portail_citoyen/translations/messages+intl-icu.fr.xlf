@@ -386,6 +386,10 @@
                 <source>pel.could.you.confirm.complaint.validity</source>
                 <target>Afin de vérifier la validité de votre plainte dans le cadre de PEL, confirmez les points suivants :</target>
             </trans-unit>
+            <trans-unit id="pel.could.you.precise">
+                <source>pel.could.you.precise</source>
+                <target>Veuillez préciser</target>
+            </trans-unit>
             <trans-unit id="pel.country.france">
                 <source>pel.country.france</source>
                 <target>France</target>
