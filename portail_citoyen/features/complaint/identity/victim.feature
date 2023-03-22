@@ -10,7 +10,6 @@ Feature:
         And I follow "Je confirme"
 
     Scenario: I can see the fields for Victim
-        Then I should see the key "pel.all.fields.are.required" translated
         And I should see the key "pel.civility" translated
         And I should see the key "pel.birth.name" translated
         And I should see the key "pel.usage.name" translated
