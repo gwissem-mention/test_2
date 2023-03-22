@@ -122,10 +122,6 @@
                 <source>pel.address.start.or.exact.help</source>
                 <target>En cas d'adresse exacte, merci de renseigner uniquement ce champ, ou dans le cas d'un trajet l'adresse de départ</target>
             </trans-unit>
-            <trans-unit id="pel.all.fields.are.required">
-                <source>pel.all.fields.are.required</source>
-                <target>Tous les champs indiqués avec un astérisque (*) sont obligatoires</target>
-            </trans-unit>
             <trans-unit id="pel.and">
                 <source>pel.and</source>
                 <target>Et</target>

@@ -11,7 +11,6 @@ Feature:
 
     Scenario: I can select the Corporation Legal Representative radio button
         When I click the "label[for=identity_declarantStatus_2]" element
-        Then I should see the key "pel.all.fields.are.required" translated
         And I should see the key "pel.civility" translated
         And I should see the key "pel.birth.name" translated
         And I should see the key "pel.usage.name" translated
