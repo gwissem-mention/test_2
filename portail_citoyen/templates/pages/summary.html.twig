@@ -272,8 +272,10 @@
 {% macro object(object) %}
     <ul>
         <li>{{ 'pel.object.category'|trans }} : {{ object.category|object_category_get_name|trans }}</li>
-        <li>{{ 'pel.object'|trans }} : {{ object.label }}</li>
-        {% if object.category|object_category_get_name|trans is same as('pel.object.category.multimedia'|trans) %}
+        {% if object.category|object_category_get_name is same as('pel.object.category.documents') %}
+            <li>{{ 'pel.document.type'|trans }} : {{ object.documentType|document_type_label|trans }}</li>
+        {% elseif object.category|object_category_get_name is same as('pel.object.category.multimedia') %}
+            <li>{{ 'pel.object'|trans }} : {{ object.label }}</li>
             <li>{{ 'pel.brand'|trans }} : {{ object.brand }}</li>
             {% if object.model is not null %}
                 <li>{{ 'pel.model'|trans }} : {{ object.model }}</li>
@@ -287,13 +289,15 @@
             {% if object.serialNumber is not null %}
                 <li>{{ 'pel.serial.number'|trans }} : {{ object.serialNumber }}</li>
             {% endif %}
-        {% elseif object.category|object_category_get_name|trans is same as('pel.object.category.payment.ways'|trans) %}
+        {% elseif object.category|object_category_get_name is same as('pel.object.category.payment.ways') %}
+            <li>{{ 'pel.object'|trans }} : {{ object.label }}</li>
             <li>{{ 'pel.organism.bank'|trans }} : {{ object.bank }}</li>
             <li>{{ 'pel.bank.account.number'|trans }} : {{ object.bankAccountNumber }}</li>
             {% if object.creditCardNumber %}
                 <li>{{ 'pel.credit.card.number'|trans }} : {{ object.creditCardNumber }}</li>
             {% endif %}
-        {% elseif object.category|object_category_get_name|trans is same as('pel.object.category.registered.vehicle'|trans) %}
+        {% elseif object.category|object_category_get_name is same as('pel.object.category.registered.vehicle') %}
+            <li>{{ 'pel.object'|trans }} : {{ object.label }}</li>
             <li>{{ 'pel.brand'|trans }} : {{ object.brand }}</li>
             {% if object.model is not null %}
                 <li>{{ 'pel.model'|trans }} : {{ object.model }}</li>
@@ -308,7 +312,10 @@
             {% if object.insuranceNumber is not null %}
                 <li>{{ 'pel.insurance.number'|trans }} : {{ object.insuranceNumber }}</li>
             {% endif %}
-        {% elseif object.category|object_category_get_name|trans is same as('pel.object.category.other'|trans) %}
+        {% elseif object.category|object_category_get_name is same as('pel.object.category.unregistered.vehicle') %}
+            <li>{{ 'pel.object'|trans }} : {{ object.label }}</li>
+        {% elseif object.category|object_category_get_name is same as('pel.object.category.other') %}
+            <li>{{ 'pel.object'|trans }} : {{ object.label }}</li>
             <li>{{ 'pel.description'|trans }} : {{ object.description }}</li>
             <li>{{ 'pel.quantity'|trans }} : {{ object.quantity }}</li>
         {% endif %}
