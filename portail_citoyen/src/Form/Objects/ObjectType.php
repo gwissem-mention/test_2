@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Form\Objects;
 
-use App\Enum\DocumentType;
 use App\Form\Model\Objects\ObjectModel;
 use App\Form\PhoneType;
 use App\Thesaurus\ObjectCategoryThesaurusProviderInterface;
@@ -92,7 +91,7 @@ class ObjectType extends AbstractType
         ]);
     }
 
-    private function addCategoryFields(FormInterface $form, ?int $category, ?ObjectModel $objectModel = null): void
+    private function addCategoryFields(FormInterface $form, ?int $category = null, ?ObjectModel $objectModel = null): void
     {
         $this->removeCategoryOtherFields($form, $objectModel);
         $this->removeCategoryMultimediaFields($form, $objectModel);
@@ -135,14 +134,13 @@ class ObjectType extends AbstractType
 
     private function addCategoryDocumentFields(FormInterface $form): void
     {
-        $form->add('documentType', ChoiceType::class, [
-            'choices' => DocumentType::getChoices(),
-            'placeholder' => 'pel.object.document.type.choose',
-            'label' => 'pel.document.type',
-            'constraints' => [
-                new NotBlank(),
+        $form->add('documentType', DocumentTypeType::class, [
+            'compound' => true,
+            'label' => false,
+            'priority' => 999,
+            'row_attr' => [
+                'class' => 'fr-select-group',
             ],
-              'priority' => 999,
         ]);
     }
 
