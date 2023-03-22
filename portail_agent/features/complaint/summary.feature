@@ -130,6 +130,20 @@ Feature:
         And I should see the key "pel.description.of.facts" translated
 
     @func
+    Scenario: If the declarant is a Person Legal Representative, I should be able to see the victim informations
+        Given I am on "/plainte/recapitulatif/151"
+        And I should see the key "pel.victim.identity" translated
+        And I should see "Monsieur DUPONT Jeremy"
+        And I should see "14/02/2000"
+        And I should see "France"
+        And I should see "92"
+        And I should see "Française"
+        And I should see "15 rue PAIRA, Meudon, 92190"
+        And I should see "Etudiant"
+        And I should see "06 76 54 32 10"
+        And I should see "jeremy.dupont@gmail.com"
+
+    @func
     Scenario: I can click on the menu's summary button
         Given I am on "/plainte/recapitulatif/91"
         When I follow "Récapitulatif"

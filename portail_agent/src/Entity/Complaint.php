@@ -92,6 +92,10 @@ class Complaint
     private ?Identity $identity = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: true)]
+    private ?Identity $personLegalRepresented = null;
+
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?Facts $facts = null;
 
@@ -389,6 +393,18 @@ class Complaint
     public function setDeadlineNotified(?bool $deadlineNotified): self
     {
         $this->deadlineNotified = $deadlineNotified;
+
+        return $this;
+    }
+
+    public function getPersonLegalRepresented(): ?Identity
+    {
+        return $this->personLegalRepresented;
+    }
+
+    public function setPersonLegalRepresented(?Identity $personLegalRepresented): self
+    {
+        $this->personLegalRepresented = $personLegalRepresented;
 
         return $this;
     }

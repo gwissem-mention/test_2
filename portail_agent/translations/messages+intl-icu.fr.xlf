@@ -98,6 +98,10 @@
                 <source>pel.birth.date</source>
                 <target>Date de naissance</target>
             </trans-unit>
+            <trans-unit id="pel.birth.department">
+                <source>pel.birth.department</source>
+                <target>Département de naissance</target>
+            </trans-unit>
             <trans-unit id="pel.body">
                 <source>pel.body</source>
                 <target>Corps</target>
@@ -806,9 +810,25 @@
                 <source>pel.victim</source>
                 <target>Victime</target>
             </trans-unit>
+            <trans-unit id="pel.victim.address">
+                <source>pel.victim.address</source>
+                <target>Adresse de la victime</target>
+            </trans-unit>
             <trans-unit id="pel.victime.carence">
                 <source>pel.victime.carence</source>
                 <target>Carence victime</target>
+            </trans-unit>
+            <trans-unit id="pel.victim.civil.status">
+                <source>pel.victim.civil.status</source>
+                <target>État civil de la victime</target>
+            </trans-unit>
+            <trans-unit id="pel.victim.contact.information">
+                <source>pel.victim.contact.information</source>
+                <target>Informations de contact de la victime</target>
+            </trans-unit>
+            <trans-unit id="pel.victim.identity">
+                <source>pel.victim.identity</source>
+                <target>Identité de la victime</target>
             </trans-unit>
             <trans-unit id="pel.victim.of.violence">
                 <source>pel.victim.of.violence</source>

@@ -3,9 +3,15 @@
 {% block main %}
     <div class="row">
         <div class="col-12 text-end">
-            <a href="{{ path('complaint_facts', {id:complaint.id}) }}" class="btn btn-secondary">
-                <i class="bi bi-arrow-right"></i> {{ 'pel.go.to.tab'|trans }} : {{ 'pel.description.of.facts'|trans }}
-            </a>
+            {% if complaint.identity.declarantStatus is same as(constant('App\\Entity\\Identity::DECLARANT_STATUS_PERSON_LEGAL_REPRESENTATIVE')) and complaint.personLegalRepresented is not null %}
+                <a href="{{ path('complaint_victim_identity', {id:complaint.id}) }}" class="btn btn-secondary">
+                    <i class="bi bi-arrow-right"></i> {{ 'pel.go.to.tab'|trans }} : {{ 'pel.victim.identity'|trans }}
+                </a>
+            {% else %}
+                <a href="{{ path('complaint_facts', {id:complaint.id}) }}" class="btn btn-secondary">
+                    <i class="bi bi-arrow-right"></i> {{ 'pel.go.to.tab'|trans }} : {{ 'pel.description.of.facts'|trans }}
+                </a>
+            {% endif %}
         </div>
     </div>
     {{ form_start(identity_form) }}
@@ -37,6 +43,14 @@
         <div class="row mt-3">
             <div class="col-6">
                 {{ form_row(identity_form.birthCity) }}
+            </div>
+            <div class="col-6">
+                {{ form_row(identity_form.birthDepartment) }}
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-6">
+                {{ form_row(identity_form.job) }}
             </div>
         </div>
     </fieldset>

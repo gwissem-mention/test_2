@@ -1,0 +1,75 @@
+{% extends 'pages/complaint/layout.html.twig' %}
+
+{% block main %}
+    <div class="row">
+        <div class="col-12 text-end">
+            <a href="{{ path('complaint_facts', {id:complaint.id}) }}" class="btn btn-secondary">
+                <i class="bi bi-arrow-right"></i> {{ 'pel.go.to.tab'|trans }} : {{ 'pel.description.of.facts'|trans }}
+            </a>
+        </div>
+    </div>
+    {{ form_start(victim_identity_form) }}
+    <fieldset class="border border-secondary bg-light rounded-3 p-3">
+        <legend class="float-none w-auto px-3">
+            {{ 'pel.victim.civil.status'|trans }}
+        </legend>
+        <div class="row">
+            <div class="col-12">
+                {{ form_row(victim_identity_form.civility) }}
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-6">
+                {{ form_row(victim_identity_form.lastname) }}
+            </div>
+            <div class="col-6">
+                {{ form_row(victim_identity_form.firstname) }}
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-6">
+                {{ form_row(victim_identity_form.birthCountry) }}
+            </div>
+            <div class="col-6">
+                {{ form_row(victim_identity_form.birthday) }}
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-6">
+                {{ form_row(victim_identity_form.birthCity) }}
+            </div>
+            <div class="col-6">
+                {{ form_row(victim_identity_form.birthDepartment) }}
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-6">
+                {{ form_row(victim_identity_form.job) }}
+            </div>
+        </div>
+    </fieldset>
+    <fieldset class="border border-secondary bg-light rounded-3 p-3 mt-3">
+        <legend class="float-none w-auto px-3">
+            {{ 'pel.victim.contact.information'|trans }}
+        </legend>
+        <div class="row">
+            <div class="col-6">
+                {{ form_row(victim_identity_form.mobilePhone) }}
+            </div>
+            <div class="col-6">
+                {{ form_row(victim_identity_form.email) }}
+            </div>
+        </div>
+    </fieldset>
+    <fieldset class="border border-secondary bg-light rounded-3 p-3 mt-3">
+        <legend class="float-none w-auto px-3">
+            {{ 'pel.victim.address'|trans }}
+        </legend>
+        <div class="row">
+            <div class="col-12">
+                {{ form_row(victim_identity_form.address) }}
+            </div>
+        </div>
+    </fieldset>
+    {{ form_end(victim_identity_form, {render_rest: false}) }}
+{% endblock %}

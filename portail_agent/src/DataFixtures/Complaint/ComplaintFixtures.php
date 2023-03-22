@@ -100,10 +100,44 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
             }
 
             for ($i = 1; $i <= self::COMPLAINTS_NB; ++$i) {
-                $complaints[] = $this->getGenericComplaint()
+                $complaint = $this
+                    ->getGenericComplaint()
                     ->setCreatedAt(new \DateTimeImmutable('2022-12-05'))
                     ->setStatus(Complaint::STATUS_APPOINTMENT_PENDING)
                     ->setUnitAssigned($unit);
+                /** @var Identity $identity */
+                $identity = $complaint->getIdentity();
+                $complaints[] = $complaint
+                    ->setIdentity($identity
+                        ->setDeclarantStatus(2))
+                    ->setpersonLegalRepresented(
+                        (new Identity())
+                            ->setFirstname('Jeremy')
+                            ->setLastname('DUPONT')
+                            ->setCivility(Identity::CIVILITY_MALE)
+                            ->setDeclarantStatus(Identity::DECLARANT_STATUS_VICTIM)
+                            ->setBirthday(new \DateTimeImmutable('2000-02-14'))
+                            ->setBirthCountry('France')
+                            ->setNationality('Française')
+                            ->setBirthDepartment('Hauts-de-Seine')
+                            ->setBirthDepartmentNumber(92)
+                            ->setBirthCity('Meudon')
+                            ->setBirthPostalCode('92190')
+                            ->setBirthInseeCode('92048')
+                            ->setAddress('15 rue PAIRA, Meudon, 92190')
+                            ->setAddressStreetNumber('15')
+                            ->setAddressStreetType('Rue')
+                            ->setAddressStreetName('PAIRA')
+                            ->setAddressCity('Meudon')
+                            ->setAddressInseeCode('92048')
+                            ->setAddressPostcode('92190')
+                            ->setAddressDepartment('Hauts-de-Seine')
+                            ->setAddressDepartmentNumber(92)
+                            ->setAddressCountry('France')
+                            ->setMobilePhone('06 76 54 32 10')
+                            ->setEmail('jeremy.dupont@gmail.com')
+                            ->setJob('Etudiant')
+                    );
             }
 
             for ($i = 1; $i <= self::COMPLAINTS_NB; ++$i) {

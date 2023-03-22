@@ -63,6 +63,41 @@
                 </strong>
                 {{ 'pel.of.infraction'|trans }}
             </li>
+
+            {% if complaint.identity.declarantStatus is same as(constant('App\\Entity\\Identity::DECLARANT_STATUS_PERSON_LEGAL_REPRESENTATIVE')) and complaint.personLegalRepresented is not null %}
+                <ul>
+                    <li>
+                        {{ 'pel.civility'|trans }} :
+                        <strong>
+                            {% if complaint.personLegalRepresented.civility is same as(constant('App\\Entity\\Identity::CIVILITY_MALE')) %}
+                                {{ 'pel.sir'|trans }}
+                            {% else %}
+                                {{ 'pel.madam'|trans }}
+                            {% endif %}
+                            {{ complaint.personLegalRepresented.lastname }}
+                            {{ complaint.personLegalRepresented.firstname }}
+                        </strong>
+                    </li>
+                    <li>
+                        {{ 'pel.born.on'|trans }} : <strong>{{ complaint.personLegalRepresented.birthday|date('d/m/Y') }}</strong>
+                        {{ 'pel.at.in'|trans }}: <strong>{{ complaint.personLegalRepresented.birthCountry }}</strong>
+                        {{ 'pel.department'|trans }} : <strong>{{ complaint.personLegalRepresented.birthDepartmentNumber }}</strong>
+                    </li>
+                    <li>
+                        {{ 'pel.nationality'|trans }} : <strong>{{ complaint.personLegalRepresented.nationality }}</strong>
+                    </li>
+                    <li>
+                        {{ 'pel.resides.at'|trans }} : <strong>{{ complaint.personLegalRepresented.address }}</strong>
+                    </li>
+                    <li>
+                        {{ 'pel.job'|trans }} : <strong>{{ complaint.personLegalRepresented.job }}</strong>
+                    </li>
+                    <li>
+                        {{ 'pel.phone'|trans }} : <strong>{{ complaint.personLegalRepresented.mobilePhone }}</strong>
+                        {{ 'pel.email'|trans }} : <strong>{{ complaint.personLegalRepresented.email }}</strong>
+                    </li>
+                </ul>
+            {% endif %}
         </ul>
 
         <hr class="border border-2 border-dark">
