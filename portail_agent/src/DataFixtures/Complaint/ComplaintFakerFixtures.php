@@ -29,6 +29,18 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
 {
     private const COMPLAINTS_NB = 70;
 
+    /** @var string[] */
+    private array $places = [];
+    /** @var string[] */
+    private array $departments = [];
+    /** @var string[] */
+    private array $insees = [];
+    private mixed $identityGender;
+    private string $identityBirthPostcode;
+    private string $identityAddressStreetAddress;
+    private string $identityAddressCity;
+    private string $identityAddressPostcode;
+
     public function __construct(
         private readonly Generator $faker,
         private readonly NotificationFactory $notificationFactory,
@@ -44,7 +56,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
 
     public function load(ObjectManager $manager): void
     {
-        $places = [
+        $this->places = [
             '06000' => 'Nice',
             '13000' => 'Marseille',
             '75000' => 'Paris',
@@ -53,7 +65,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
             '38000' => 'Grenoble',
         ];
 
-        $insees = [
+        $this->insees = [
             '06000' => '06088',
             '13000' => '13055',
             '75000' => '75056',
@@ -62,7 +74,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
             '38000' => '38185',
         ];
 
-        $departments = [
+        $this->departments = [
             '06' => 'Alpes-Maritimes',
             '13' => 'Bouches-du-Rhône',
             '75' => 'Paris',
@@ -76,7 +88,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
             $complaintDate = \DateTimeImmutable::createFromMutable($this->faker->dateTimeBetween('2023-02-01', '2023-02-27'));
             $factsStartHour = \DateTimeImmutable::createFromMutable($this->faker->dateTime('2023-01-31 10:00:00'));
 
-            $identityGender = $this->faker->randomElement(['male', 'female']);
+            $this->identityGender = $this->faker->randomElement(['male', 'female']);
 
             /** @var string $status */
             $status = $this->faker->randomElement([
@@ -90,12 +102,12 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                 Complaint::STATUS_MP_DECLARANT,
                 Complaint::STATUS_UNIT_REASSIGNMENT_PENDING,
             ]);
-            $identityBirthPostcode = $this->faker->randomKey($places);
-            $identityAddressStreetAddress = $this->faker->streetAddress;
-            $identityAddressPostcode = $this->faker->randomKey($places);
-            $identityAddressCity = $places[$identityAddressPostcode];
-            $factsAddressPostcode = $this->faker->randomKey($places);
-            $factsAddressCity = $places[$factsAddressPostcode];
+            $this->identityBirthPostcode = (string) $this->faker->randomKey($this->places);
+            $this->identityAddressStreetAddress = $this->faker->streetAddress;
+            $this->identityAddressPostcode = (string) $this->faker->randomKey($this->places);
+            $this->identityAddressCity = $this->places[$this->identityAddressPostcode];
+            $factsAddressPostcode = $this->faker->randomKey($this->places);
+            $factsAddressCity = $this->places[$factsAddressPostcode];
 
             /** @var string $unit */
             $unit = $this->faker->randomElement(['103131', '3002739']);
@@ -124,39 +136,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                 ->setAlert($this->faker->randomElement(['Alerte PTS', true === $victimOfViolence ? 'Violence' : null, null]))
                 ->setUnitAssigned($unit)
                 ->setIdentity(
-                    (new Identity())
-                        ->setFirstname($this->faker->firstName($identityGender))
-                        ->setLastname(mb_strtoupper($this->faker->lastName))
-                        ->setCivility('male' === $identityGender ? Identity::CIVILITY_MALE : Identity::CIVILITY_FEMALE)
-                        ->setDeclarantStatus(Identity::DECLARANT_STATUS_VICTIM)
-                        ->setBirthday(new \DateTimeImmutable($this->faker->randomElement([
-                                '1978-03-16',
-                                '1997-12-07',
-                                '2000-06-08',
-                                '1967-10-09',
-                            ]
-                        )))
-                        ->setBirthCountry('France')
-                        ->setNationality('Française')
-                        ->setBirthDepartment($departments[substr((string) $identityBirthPostcode, 0, 2)])
-                        ->setBirthCity($places[$identityBirthPostcode])
-                        ->setBirthPostalCode((string) $identityBirthPostcode)
-                        ->setBirthInseeCode($insees[$identityBirthPostcode])
-                        ->setBirthDepartmentNumber((int) substr((string) $identityBirthPostcode, 0, 2))
-                        ->setAddress($identityAddressStreetAddress.', '.$identityAddressCity.', '.$identityAddressPostcode)
-                        ->setAddressStreetNumber('1')
-                        ->setAddressStreetType('Rue')
-                        ->setAddressStreetName('Test')
-                        ->setAddressCity($identityAddressCity)
-                        ->setAddressInseeCode($insees[$identityAddressPostcode])
-                        ->setAddressPostcode((string) $identityAddressPostcode)
-                        ->setAddressDepartment($departments[substr((string) $identityAddressPostcode, 0, 2)])
-                        ->setAddressDepartmentNumber((int) substr((string) $identityBirthPostcode, 0, 2))
-                        ->setAddressCountry('France')
-                        ->setMobilePhone($this->faker->mobileNumber)
-                        ->setEmail($this->faker->email)
-                        ->setJob($this->faker->jobTitle)
-                        ->setAlertNumber($this->faker->randomDigit())
+                    $this->newIdentity()
                 )
                 ->setFacts(
                     (new Facts())
@@ -174,8 +154,8 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                         ]))
                         ->setCity($factsAddressCity)
                         ->setPostalCode((string) $factsAddressPostcode)
-                        ->setInseeCode($insees[$factsAddressPostcode])
-                        ->setDepartment($departments[substr((string) $factsAddressPostcode, 0, 2)])
+                        ->setInseeCode($this->insees[$factsAddressPostcode])
+                        ->setDepartment($this->departments[substr((string) $factsAddressPostcode, 0, 2)])
                         ->setDepartmentNumber((int) substr((string) $factsAddressPostcode, 0, 2))
                         ->setCountry('France')
                         ->setExactHourKnown($exactHourKnown)
@@ -254,6 +234,12 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                     null
                 );
 
+            if (Identity::DECLARANT_STATUS_PERSON_LEGAL_REPRESENTATIVE === $complaint->getIdentity()?->getDeclarantStatus()) {
+                $complaint->setPersonLegalRepresented(
+                    $this->newIdentity(true)
+                );
+            }
+
             if ($this->faker->boolean(30)) {
                 $complaint->addObject(
                     (new AdministrativeDocument())
@@ -325,5 +311,42 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
         return [
             UserFixtures::class,
         ];
+    }
+
+    public function newIdentity(bool $victim = false): Identity
+    {
+        return (new Identity())
+            ->setFirstname($this->faker->firstName($this->identityGender))
+            ->setLastname(mb_strtoupper($this->faker->lastName))
+            ->setCivility('male' === $this->identityGender ? Identity::CIVILITY_MALE : Identity::CIVILITY_FEMALE)
+            ->setDeclarantStatus($victim ? Identity::DECLARANT_STATUS_VICTIM : $this->faker->randomElement([Identity::DECLARANT_STATUS_VICTIM, Identity::DECLARANT_STATUS_PERSON_LEGAL_REPRESENTATIVE]))
+            ->setBirthday(new \DateTimeImmutable($this->faker->randomElement([
+                    '1978-03-16',
+                    '1997-12-07',
+                    '2000-06-08',
+                    '1967-10-09',
+                ]
+            )))
+            ->setBirthCountry('France')
+            ->setNationality('Française')
+            ->setBirthDepartment($this->departments[substr($this->identityBirthPostcode, 0, 2)])
+            ->setBirthCity($this->places[$this->identityBirthPostcode])
+            ->setBirthPostalCode($this->identityBirthPostcode)
+            ->setBirthInseeCode($this->insees[$this->identityBirthPostcode])
+            ->setBirthDepartmentNumber((int) substr($this->identityBirthPostcode, 0, 2))
+            ->setAddress($this->identityAddressStreetAddress.', '.$this->identityAddressCity.', '.$this->identityAddressPostcode)
+            ->setAddressStreetNumber('1')
+            ->setAddressStreetType('Rue')
+            ->setAddressStreetName('Test')
+            ->setAddressCity($this->identityAddressCity)
+            ->setAddressInseeCode($this->insees[$this->identityAddressPostcode])
+            ->setAddressPostcode($this->identityAddressPostcode)
+            ->setAddressDepartment($this->departments[substr($this->identityAddressPostcode, 0, 2)])
+            ->setAddressDepartmentNumber((int) substr($this->identityBirthPostcode, 0, 2))
+            ->setAddressCountry('France')
+            ->setMobilePhone($this->faker->mobileNumber)
+            ->setEmail($this->faker->email)
+            ->setJob($this->faker->jobTitle)
+            ->setAlertNumber($this->faker->randomDigit());
     }
 }

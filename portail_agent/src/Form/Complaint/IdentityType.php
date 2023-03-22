@@ -51,6 +51,14 @@ class IdentityType extends AbstractType
                 'label' => 'pel.birth.city',
                 'disabled' => true,
             ])
+            ->add('birthDepartment', TextType::class, [
+                'label' => 'pel.birth.department',
+                'disabled' => true,
+            ])
+            ->add('job', TextType::class, [
+                'label' => 'pel.job',
+                'disabled' => true,
+            ])
             ->add('mobilePhone', TextType::class, [
                 'label' => 'pel.phone.number',
                 'disabled' => true,

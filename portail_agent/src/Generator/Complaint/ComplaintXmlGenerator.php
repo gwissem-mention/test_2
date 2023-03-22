@@ -9,6 +9,7 @@ use App\Entity\FactsObjects\AdministrativeDocument;
 use App\Entity\FactsObjects\MultimediaObject;
 use App\Entity\FactsObjects\PaymentMethod;
 use App\Entity\FactsObjects\SimpleObject;
+use App\Entity\Identity;
 use App\Generator\Complaint\Model\ContactDTO;
 use App\Generator\Complaint\Model\FactsDTO;
 use App\Generator\Complaint\Model\FlagDTO;
@@ -18,6 +19,7 @@ use App\Generator\Complaint\Model\Objects\ObjectsDTO;
 use App\Generator\Complaint\Model\Objects\PaymentMethodDTO;
 use App\Generator\Complaint\Model\Objects\SimpleObjectDTO;
 use App\Generator\Complaint\Model\PersonDTO;
+use App\Generator\Complaint\Model\PersonLegalRepresentativeDTO;
 use App\Referential\Entity\Unit;
 
 class ComplaintXmlGenerator implements ComplaintGeneratorInterface
@@ -28,10 +30,13 @@ class ComplaintXmlGenerator implements ComplaintGeneratorInterface
 
         $xml = $this->arrayToXml($xml, (new FlagDTO($complaint, $unit))->getArray());
 
-        if ($identity = $complaint->getIdentity()) {
+        if (($identity = $complaint->getIdentity()) && Identity::DECLARANT_STATUS_VICTIM === $identity->getDeclarantStatus()) {
             $xml = $this->arrayToXml($xml, (new PersonDTO($identity))->getArray());
+        } elseif ($identity && Identity::DECLARANT_STATUS_PERSON_LEGAL_REPRESENTATIVE === $identity->getDeclarantStatus() && ($victimIdentity = $complaint->getPersonLegalRepresented())) {
+            $xml = $this->arrayToXml($xml, (new PersonDTO($victimIdentity))->getArray());
+            $xml = $this->arrayToXml($xml, (new PersonLegalRepresentativeDTO($identity))->getArray());
         }
-        if ($fact = $complaint->getFacts()) {
+        if ($complaint->getFacts()) {
             $xml = $this->arrayToXml($xml, (new FactsDTO($complaint))->getArray());
         }
         $xml = $this->setObjects($xml, $complaint);

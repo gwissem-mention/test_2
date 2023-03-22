@@ -56,7 +56,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
                     ->setFirstname('Jean')
                     ->setLastname('DUPONT')
                     ->setCivility(Identity::CIVILITY_MALE)
-                    ->setDeclarantStatus(Identity::DECLARANT_STATUS_VICTIM)
+                    ->setDeclarantStatus(Identity::DECLARANT_STATUS_PERSON_LEGAL_REPRESENTATIVE)
                     ->setBirthday(new \DateTimeImmutable('1967-03-07'))
                     ->setBirthCountry('France')
                     ->setNationality('Française')
@@ -67,7 +67,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
                     ->setBirthDepartmentNumber(75)
                     ->setAddress('15 rue PAIRA, Meudon, 92190')
                     ->setAddressStreetNumber('15')
-                    ->setAddressStreetType('rue')
+                    ->setAddressStreetType('Rue')
                     ->setAddressStreetName('PAIRA')
                     ->setAddressCity('Meudon')
                     ->setAddressPostcode('92190')
@@ -79,6 +79,34 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
                     ->setEmail('jean.dupont@gmail.com')
                     ->setJob('Boulanger')
                     ->setAlertNumber(3)
+            )
+            ->setpersonLegalRepresented(
+                (new Identity())
+                    ->setFirstname('Jeremy')
+                    ->setLastname('DUPONT')
+                    ->setCivility(Identity::CIVILITY_MALE)
+                    ->setDeclarantStatus(Identity::DECLARANT_STATUS_VICTIM)
+                    ->setBirthday(new \DateTimeImmutable('2000-02-14'))
+                    ->setBirthCountry('France')
+                    ->setNationality('Française')
+                    ->setBirthDepartment('Hauts-de-Seine')
+                    ->setBirthDepartmentNumber(92)
+                    ->setBirthCity('Meudon')
+                    ->setBirthPostalCode('92190')
+                    ->setBirthInseeCode('92048')
+                    ->setAddress('15 rue PAIRA, Meudon, 92190')
+                    ->setAddressStreetNumber('15')
+                    ->setAddressStreetType('Rue')
+                    ->setAddressStreetName('PAIRA')
+                    ->setAddressCity('Meudon')
+                    ->setAddressInseeCode('92048')
+                    ->setAddressPostcode('92190')
+                    ->setAddressDepartment('Hauts-de-Seine')
+                    ->setAddressDepartmentNumber(92)
+                    ->setAddressCountry('France')
+                    ->setMobilePhone('06 76 54 32 10')
+                    ->setEmail('jeremy.dupont@gmail.com')
+                    ->setJob('Etudiant')
             )
             ->setFacts(
                 (new Facts())
@@ -190,17 +218,17 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Personne_Civilite_Sexe>M</Personne_Civilite_Sexe>', $this->xmlContent);
         $this->assertStringContainsString('<Personne_Nom>DUPONT</Personne_Nom>', $this->xmlContent);
         $this->assertStringContainsString('<Personne_Nom_Marital/>', $this->xmlContent);
-        $this->assertStringContainsString('<Personne_Prenom>Jean</Personne_Prenom>', $this->xmlContent);
-        $this->assertStringContainsString('<Personne_Naissance_Date>07/03/1967</Personne_Naissance_Date>', $this->xmlContent);
+        $this->assertStringContainsString('<Personne_Prenom>Jeremy</Personne_Prenom>', $this->xmlContent);
+        $this->assertStringContainsString('<Personne_Naissance_Date>14/02/2000</Personne_Naissance_Date>', $this->xmlContent);
         $this->assertStringContainsString('<Personne_Naissance_Pays>France</Personne_Naissance_Pays>', $this->xmlContent);
-        $this->assertStringContainsString('<Personne_Naissance_Departement>75 - Paris</Personne_Naissance_Departement>', $this->xmlContent);
-        $this->assertStringContainsString('<Personne_Naissance_Codepostal>75000</Personne_Naissance_Codepostal>', $this->xmlContent);
-        $this->assertStringContainsString('<Personne_Naissance_Insee>75056</Personne_Naissance_Insee>', $this->xmlContent);
-        $this->assertStringContainsString('<Personne_Naissance_Commune>Paris</Personne_Naissance_Commune>', $this->xmlContent);
-        $this->assertStringContainsString('<Personne_Naissance_HidNumDep>75</Personne_Naissance_HidNumDep>', $this->xmlContent);
+        $this->assertStringContainsString('<Personne_Naissance_Departement>92 - Hauts-de-Seine</Personne_Naissance_Departement>', $this->xmlContent);
+        $this->assertStringContainsString('<Personne_Naissance_Codepostal>92190</Personne_Naissance_Codepostal>', $this->xmlContent);
+        $this->assertStringContainsString('<Personne_Naissance_Insee>92048</Personne_Naissance_Insee>', $this->xmlContent);
+        $this->assertStringContainsString('<Personne_Naissance_Commune>Meudon</Personne_Naissance_Commune>', $this->xmlContent);
+        $this->assertStringContainsString('<Personne_Naissance_HidNumDep>92</Personne_Naissance_HidNumDep>', $this->xmlContent);
 //        $this->assertStringContainsString('<Personne_Situation_Familiale>Marié(e)</Personne_Situation_Familiale>', $this->xmlContent);
         $this->assertStringContainsString('<Personne_Nationalite>Française</Personne_Nationalite>', $this->xmlContent);
-        $this->assertStringContainsString('<Personne_Profession>Boulanger</Personne_Profession>', $this->xmlContent);
+        $this->assertStringContainsString('<Personne_Profession>Etudiant</Personne_Profession>', $this->xmlContent);
         $this->assertStringContainsString('<Personne_Residence_Pays>France</Personne_Residence_Pays>', $this->xmlContent);
         $this->assertStringContainsString('<Personne_Residence_Departement>92 - Hauts-de-Seine</Personne_Residence_Departement>', $this->xmlContent);
         $this->assertStringContainsString('<Personne_Residence_Codepostal>92190</Personne_Residence_Codepostal>', $this->xmlContent);
@@ -208,12 +236,43 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Personne_Residence_Commune>Meudon</Personne_Residence_Commune>', $this->xmlContent);
         $this->assertStringContainsString('<Personne_Residence_HidNumDep>92</Personne_Residence_HidNumDep>', $this->xmlContent);
         $this->assertStringContainsString('<Personne_Residence_RueNo>15</Personne_Residence_RueNo>', $this->xmlContent);
-        $this->assertStringContainsString('<Personne_Residence_RueType>rue</Personne_Residence_RueType>', $this->xmlContent);
+        $this->assertStringContainsString('<Personne_Residence_RueType>Rue</Personne_Residence_RueType>', $this->xmlContent);
         $this->assertStringContainsString('<Personne_Residence_RueNom>PAIRA</Personne_Residence_RueNom>', $this->xmlContent);
         $this->assertStringContainsString('<Personne_Residence_Adresse>15 rue PAIRA, Meudon, 92190</Personne_Residence_Adresse>', $this->xmlContent);
         $this->assertStringContainsString('<Personne_Residence_Lieu>Meudon 92190 (France)</Personne_Residence_Lieu>', $this->xmlContent);
-        $this->assertStringContainsString('<Personne_Naissance_Lieu>Paris 75000 (France)</Personne_Naissance_Lieu>', $this->xmlContent);
+        $this->assertStringContainsString('<Personne_Naissance_Lieu>Meudon 92190 (France)</Personne_Naissance_Lieu>', $this->xmlContent);
         $this->assertStringContainsString('</Personne>', $this->xmlContent);
+    }
+
+    public function testPersonLegalRepresentativeSection(): void
+    {
+        $this->assertStringContainsString('<Representant_Legal>', $this->xmlContent);
+        $this->assertStringContainsString('<Representant_Legal_Civilite_Sexe>M</Representant_Legal_Civilite_Sexe>', $this->xmlContent);
+        $this->assertStringContainsString('<Representant_Legal_Nom>DUPONT</Representant_Legal_Nom>', $this->xmlContent);
+        $this->assertStringContainsString('<Representant_Legal_Nom_Marital/>', $this->xmlContent);
+        $this->assertStringContainsString('<Representant_Legal_Prenom>Jean</Representant_Legal_Prenom>', $this->xmlContent);
+        $this->assertStringContainsString('<Representant_Legal_Naissance_Date>07/03/1967</Representant_Legal_Naissance_Date>', $this->xmlContent);
+        $this->assertStringContainsString('<Representant_Legal_Naissance_Pays>France</Representant_Legal_Naissance_Pays>', $this->xmlContent);
+        $this->assertStringContainsString('<Representant_Legal_Naissance_Departement>75 - Paris</Representant_Legal_Naissance_Departement>', $this->xmlContent);
+        $this->assertStringContainsString('<Representant_Legal_Naissance_Codepostal>75000</Representant_Legal_Naissance_Codepostal>', $this->xmlContent);
+        $this->assertStringContainsString('<Representant_Legal_Naissance_Insee>75056</Representant_Legal_Naissance_Insee>', $this->xmlContent);
+        $this->assertStringContainsString('<Representant_Legal_Naissance_Commune>Paris</Representant_Legal_Naissance_Commune>', $this->xmlContent);
+        $this->assertStringContainsString('<Representant_Legal_Naissance_HidNumDep>75</Representant_Legal_Naissance_HidNumDep>', $this->xmlContent);
+        $this->assertStringContainsString('<Representant_Legal_Nationalite>Française</Representant_Legal_Nationalite>', $this->xmlContent);
+        $this->assertStringContainsString('<Representant_Legal_Profession>Boulanger</Representant_Legal_Profession>', $this->xmlContent);
+        $this->assertStringContainsString('<Representant_Legal_Residence_Pays>France</Representant_Legal_Residence_Pays>', $this->xmlContent);
+        $this->assertStringContainsString('<Representant_Legal_Residence_Departement>92 - Hauts-de-Seine</Representant_Legal_Residence_Departement>', $this->xmlContent);
+        $this->assertStringContainsString('<Representant_Legal_Residence_Codepostal>92190</Representant_Legal_Residence_Codepostal>', $this->xmlContent);
+        $this->assertStringContainsString('<Representant_Legal_Residence_Insee>92048</Representant_Legal_Residence_Insee>', $this->xmlContent);
+        $this->assertStringContainsString('<Representant_Legal_Residence_Commune>Meudon</Representant_Legal_Residence_Commune>', $this->xmlContent);
+        $this->assertStringContainsString('<Representant_Legal_Residence_HidNumDep>92</Representant_Legal_Residence_HidNumDep>', $this->xmlContent);
+        $this->assertStringContainsString('<Representant_Legal_Residence_RueNo>15</Representant_Legal_Residence_RueNo>', $this->xmlContent);
+        $this->assertStringContainsString('<Representant_Legal_Residence_RueType>Rue</Representant_Legal_Residence_RueType>', $this->xmlContent);
+        $this->assertStringContainsString('<Representant_Legal_Residence_RueNom>PAIRA</Representant_Legal_Residence_RueNom>', $this->xmlContent);
+        $this->assertStringContainsString('<Representant_Legal_Residence_Adresse>15 rue PAIRA, Meudon, 92190</Representant_Legal_Residence_Adresse>', $this->xmlContent);
+        $this->assertStringContainsString('<Representant_Legal_Residence_Lieu>Meudon 92190 (France)</Representant_Legal_Residence_Lieu>', $this->xmlContent);
+        $this->assertStringContainsString('<Representant_Legal_Naissance_Lieu>Paris 75000 (France)</Representant_Legal_Naissance_Lieu>', $this->xmlContent);
+        $this->assertStringContainsString('</Representant_Legal>', $this->xmlContent);
     }
 
     public function testFactsSection(): void

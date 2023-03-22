@@ -91,6 +91,11 @@ parameters:
 		    path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
 
 		-
+		    message: "#^Parameter \\#1 \\$declarantStatus of method App\\\\Entity\\\\Identity\\:\\:setDeclarantStatus\\(\\) expects int, mixed given\\.$#"
+		    count: 1
+		    path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
+
+		-
 			message: "#^Call to an undefined method Behat\\\\Testwork\\\\Environment\\\\Environment\\:\\:getContext\\(\\)\\.$#"
 			count: 1
 			path: tests/Behat/BaseContext.php
