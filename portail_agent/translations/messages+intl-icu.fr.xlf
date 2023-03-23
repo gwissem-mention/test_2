@@ -54,9 +54,21 @@
                 <source>pel.a.opj.name</source>
                 <target>Nom A/OPJ</target>
             </trans-unit>
-            <trans-unit id="pel.agent.complaint.online">
-                <source>pel.agent.complaint.online</source>
-                <target>Agent - Plainte en ligne</target>
+            <trans-unit id="pel.complaint.online">
+                <source>pel.complaint.online</source>
+                <target>Plainte en ligne</target>
+            </trans-unit>
+            <trans-unit id="pel.portal">
+                <source>pel.portal</source>
+                <target>Portail</target>
+            </trans-unit>
+            <trans-unit id="pel.supervisor">
+                <source>pel.supervisor</source>
+                <target>Superviseur</target>
+            </trans-unit>
+            <trans-unit id="pel.agent">
+                <source>pel.agent</source>
+                <target>Agent</target>
             </trans-unit>
             <trans-unit id="pel.alert">
                 <source>pel.alert</source>

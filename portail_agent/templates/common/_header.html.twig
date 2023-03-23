@@ -8,7 +8,14 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <div class="d-flex flex-column navbar-nav me-auto mb-2 mb-lg-0">
-                <h1>{{ 'pel.agent.complaint.online'|trans }}</h1>
+                <h1>
+                    {{ 'pel.complaint.online'|trans }} : {{ 'pel.portal'|trans }}
+                    {% if is_granted('ROLE_SUPERVISOR') %}
+                        {{ 'pel.supervisor'|trans }}
+                    {% else %}
+                        {{ 'pel.agent'|trans }}
+                    {% endif %}
+                </h1>
                 <p>{{ 'pel.header.baseline'|trans }}</p>
             </div>
             {% if app.user %}
