@@ -7,6 +7,7 @@ namespace App\Controller\Complaint;
 use App\Entity\Complaint;
 use App\Form\Complaint\AssignType;
 use App\Form\Complaint\RejectType;
+use App\Form\Complaint\UnitReassignType;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,6 +26,7 @@ class SummaryController extends AbstractController
             'complaint' => $complaint,
             'reject_form' => $this->createForm(RejectType::class, $complaint),
             'assign_form' => $this->createForm(AssignType::class, $complaint),
+            'unit_reassign_form' => $this->createForm(UnitReassignType::class, $complaint),
         ]);
     }
 }

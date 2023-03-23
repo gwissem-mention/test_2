@@ -8,6 +8,7 @@ use App\Entity\Complaint;
 use App\Form\Complaint\AdditionalInformationType;
 use App\Form\Complaint\AssignType;
 use App\Form\Complaint\RejectType;
+use App\Form\Complaint\UnitReassignType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -29,6 +30,7 @@ class AdditionalInformationController extends AbstractController
                 $complaint->getAdditionalInformation()
             ),
             'assign_form' => $this->createForm(AssignType::class, $complaint),
+            'unit_reassign_form' => $this->createForm(UnitReassignType::class, $complaint),
         ]);
     }
 }

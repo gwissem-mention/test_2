@@ -17,6 +17,7 @@ use App\Form\Complaint\FactsObjects\PaymentMethodType;
 use App\Form\Complaint\FactsObjects\SimpleObjectType;
 use App\Form\Complaint\FactsObjects\VehicleType;
 use App\Form\Complaint\RejectType;
+use App\Form\Complaint\UnitReassignType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -54,6 +55,7 @@ class ObjectController extends AbstractController
             'reject_form' => $this->createForm(RejectType::class, $complaint),
             'object_forms' => $objectForms,
             'assign_form' => $this->createForm(AssignType::class, $complaint),
+            'unit_reassign_form' => $this->createForm(UnitReassignType::class, $complaint),
         ]);
     }
 }

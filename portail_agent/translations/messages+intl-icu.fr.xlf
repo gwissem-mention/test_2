@@ -326,6 +326,10 @@
                 <source>pel.go.to.tab</source>
                 <target>Accéder à l'onglet</target>
             </trans-unit>
+            <trans-unit id="pel.has.been.ordered">
+                <source>pel.has.been.ordered</source>
+                <target>à été prise en compte</target>
+            </trans-unit>
             <trans-unit id="pel.home">
                 <source>pel.home</source>
                 <target>Accueil</target>
@@ -622,6 +626,10 @@
                 <source>pel.select.the.agent.to.reassign</source>
                 <target>Sélectionnez l'agent à qui vous souhaitez réattribuer cette déclaration</target>
             </trans-unit>
+            <trans-unit id="pel.select.the.unit.to.reassign">
+                <source>pel.select.the.unit.to.reassign</source>
+                <target>Sélectionner l'unité vers laquelle vous souhaitez réorienter la déclaration</target>
+            </trans-unit>
             <trans-unit id="pel.sir">
                 <source>pel.sir</source>
                 <target>Monsieur</target>
@@ -678,9 +686,21 @@
                 <source>pel.the.declaration.has.been.assigned.to</source>
                 <target>La déclaration a été attribuée à</target>
             </trans-unit>
+            <trans-unit id="pel.the.declaration.has.been.reassigned.to.your.unit">
+                <source>pel.the.declaration.has.been.reassigned.to.your.unit</source>
+                <target>La déclaration {declaration_number} a été réorientée vers votre unité</target>
+            </trans-unit>
             <trans-unit id="pel.the.declaration.has.been.reassigned.to">
                 <source>pel.the.declaration.has.been.reassigned.to</source>
                 <target>La déclaration a été réattribuée à</target>
+            </trans-unit>
+            <trans-unit id="pel.the.unit.reassignment.of.the.declaration.to">
+                <source>pel.the.unit.reassignment.of.the.declaration.to</source>
+                <target>La demande de réorientation de la déclaration vers</target>
+            </trans-unit>
+            <trans-unit id="pel.the.unit.reassignment.of.the.declaration.need.your.approval">
+                <source>pel.the.unit.reassignment.of.the.declaration.need.your.approval</source>
+                <target>La déclaration {declaration_number} est soumise pour réorientation</target>
             </trans-unit>
             <trans-unit id="pel.the.declaration.has.been.assigned.to.you">
                 <source>pel.the.declaration.has.been.assigned.to.you</source>
@@ -765,6 +785,10 @@
             <trans-unit id="pel.validate.the.reassignment">
                 <source>pel.validate.the.reassignment</source>
                 <target>Valider la réattribution</target>
+            </trans-unit>
+            <trans-unit id="pel.validate.the.unit.reassignment">
+                <source>pel.validate.the.unit.reassignment</source>
+                <target>Réorienter</target>
             </trans-unit>
             <trans-unit id="pel.validate.the.refusal">
                 <source>pel.validate.the.refusal</source>
@@ -878,9 +902,21 @@
                 <source>pel.questions.answers</source>
                 <target>Questions / réponses</target>
             </trans-unit>
+            <trans-unit id="pel.unit.name">
+                <source>pel.unit.name</source>
+                <target>Nom de l'unité</target>
+            </trans-unit>
+            <trans-unit id="pel.unit.reassign">
+                <source>pel.unit.reassign</source>
+                <target>Réorienter vers autres services</target>
+            </trans-unit>
             <trans-unit id="pel.unit.reassignment.pending">
                 <source>pel.unit.reassignment.pending</source>
                 <target>En attente de réaffectation</target>
+            </trans-unit>
+            <trans-unit id="pel.unit.reassignment.reason">
+                <source>pel.unit.reassignment.reason</source>
+                <target>Veuillez décrire le motif de la réorientation</target>
             </trans-unit>
             <trans-unit id="pel.useful.phones">
                 <source>pel.useful.phones</source>
