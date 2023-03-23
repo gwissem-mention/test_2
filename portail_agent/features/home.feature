@@ -14,7 +14,6 @@ Feature:
         And I should see a ".avatar" element
         And I should see "TD" in the ".avatar" element
         And I should see the key "pel.search" translated
-        And I should see the key "pel.agent.complaint.online" translated
         And I should see the key "pel.header.baseline" translated
         And I should see the key "pel.complaint.online.portal" translated
         And I should see "Brigade de proximité de Voiron"
@@ -127,6 +126,30 @@ Feature:
         And I am on the homepage
         Then I should see 2 "tr" element
         And I should see "Aucune donnée disponible dans le tableau"
+
+    @javascript
+    Scenario: As a guest, I should see a specific title in the header
+        When I am on the homepage
+        Then I should see the key "pel.complaint.online" translated
+        And I should see the key "pel.portal" translated
+
+    @javascript
+    Scenario: As an authenticated agent, I should see a specific title in the header
+        Given I am authenticated with H3U3XCGD from PN
+        When I am on the homepage
+        Then I should see the key "pel.complaint.online" translated
+        And I should see the key "pel.portal" translated
+        And I should see the key "pel.agent" translated
+        And I should not see the key "pel.supervisor" translated
+
+    @javascript
+    Scenario: As an authenticated supervisor, I should see a specific title in the header
+        Given I am authenticated with H3U3XCGF from PN
+        When I am on the homepage
+        Then I should see the key "pel.complaint.online" translated
+        And I should see the key "pel.portal" translated
+        And I should not see the key "pel.agent" translated
+        And I should see the key "pel.supervisor" translated
 
     @javascript
     Scenario: As an authenticated agent, with complaints assigned to me, I should see my complaints
