@@ -125,6 +125,71 @@ export default class extends Controller {
         }
     }
 
+    // Must be ignored because we can't type url, redirection and supervisor here.
+    // @ts-ignore
+    public unitReassign({params: {url, redirection, supervisor}}): void {
+        const form: HTMLFormElement | null = document.querySelector("form[name=unit_reassign]");
+
+        if (url && form) {
+            fetch(url, {
+                method: "POST",
+                body: new FormData(form)
+            })
+                .then(response => response.json())
+                .then((data: any) => {
+                    const modalElement: Element | null = document.getElementById("modal-complaint-unit-reassign");
+
+                    if (modalElement) {
+                        if (data.success) {
+                            const modal: Modal | null = Modal.getInstance(modalElement);
+
+                            if (modal) {
+                                modal.hide();
+                            }
+
+                            if (supervisor && redirection) {
+                                location.href = redirection;
+                            } else {
+                                document.querySelectorAll(".unit-name").forEach((element) => {
+                                    element.textContent = data.unit_name;
+                                });
+                                // Must be ignored because in Bootstrap types, Toast element has string | Element type
+                                // however we need here to type it as Toast.
+                                // @ts-ignore
+                                const toast: Toast = new Toast(document.getElementById("toast-complaint-unit-reassign-ordered"));
+
+                                if (toast) {
+                                    toast.show();
+                                }
+
+                                // Reload the page in ajax, then replace the #complaint-container div by the new one
+                                fetch(window.location.href, {
+                                    method: "GET"
+                                })
+                                    .then(response => response.text())
+                                    .then((data: string) => {
+                                        const element: HTMLDivElement = document.createElement("div");
+                                        element.innerHTML = data;
+                                        const complaintContainerDest: HTMLElement | null = document.getElementById("complaint-container");
+                                        const complaintContainerSource: HTMLElement | null = element.querySelector("#complaint-container");
+
+                                        if (complaintContainerDest && complaintContainerSource) {
+                                            complaintContainerDest.innerHTML = complaintContainerSource.innerHTML;
+                                        }
+                                    });
+                            }
+                        } else if (data.form) {
+                            const modalForm: HTMLFormElement | null = modalElement.querySelector("form");
+
+                            if (modalForm) {
+                                modalForm.innerHTML = data.form;
+                            }
+                        }
+                    }
+                });
+        }
+    }
+
     // Must be ignored because we can't type url here.
     // @ts-ignore
     public send({params: {url}}): void {

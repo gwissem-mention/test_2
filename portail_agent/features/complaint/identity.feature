@@ -29,11 +29,11 @@ Feature:
         And I should see a "nav" element
         And I should see a "aside" element
         And I should see a "main" element
-        And I should see 4 "button[data-bs-toggle='modal']" element
-        And I should see 20 "button" element
+        And I should see 5 "button[data-bs-toggle='modal']" element
+        And I should see 24 "button" element
         And I should see the key "pel.send.to.lrp" translated
         And I should see the key "pel.reject" translated
-        And I should see the key "pel.reasign" translated
+        And I should see the key "pel.unit.reassign" translated
         And I should see the key "pel.comment" translated
         And I should see the key "pel.summary" translated
         And I should see the key "pel.declarant.civil.status" translated

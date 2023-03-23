@@ -24,6 +24,26 @@ class NotificationFactory
             $this->urlGenerator->generate('complaint_summary', ['id' => $complaint->getId()]));
     }
 
+    public function createForComplaintUnitReassignmentOrdered(Complaint $complaint): Notification
+    {
+        return new Notification(
+            $this->translator->trans('pel.the.unit.reassignment.of.the.declaration.need.your.approval',
+                ['declaration_number' => $complaint->getDeclarationNumber()]),
+            $this->urlGenerator->generate('complaint_summary', ['id' => $complaint->getId()]),
+            true
+        );
+    }
+
+    public function createForComplaintUnitReassignment(Complaint $complaint): Notification
+    {
+        return new Notification(
+            $this->translator->trans('pel.the.declaration.has.been.reassigned.to.your.unit',
+                ['declaration_number' => $complaint->getDeclarationNumber()]),
+            $this->urlGenerator->generate('complaint_summary', ['id' => $complaint->getId()]),
+            true
+        );
+    }
+
     public function createForComplaintWithViolence(Complaint $complaint): Notification
     {
         return new Notification(

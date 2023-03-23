@@ -134,6 +134,12 @@ class Complaint
     #[ORM\Column(length: 255)]
     private ?string $unitAssigned = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $unitToReassign = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $unitReassignText = null;
+
     public function __construct()
     {
         $this->objects = new ArrayCollection();
@@ -405,6 +411,30 @@ class Complaint
     public function setPersonLegalRepresented(?Identity $personLegalRepresented): self
     {
         $this->personLegalRepresented = $personLegalRepresented;
+
+        return $this;
+    }
+
+    public function getUnitToReassign(): ?string
+    {
+        return $this->unitToReassign;
+    }
+
+    public function setUnitToReassign(?string $unitToReassign): self
+    {
+        $this->unitToReassign = $unitToReassign;
+
+        return $this;
+    }
+
+    public function getUnitReassignText(): ?string
+    {
+        return $this->unitReassignText;
+    }
+
+    public function setUnitReassignText(?string $unitReassignText): self
+    {
+        $this->unitReassignText = $unitReassignText;
 
         return $this;
     }

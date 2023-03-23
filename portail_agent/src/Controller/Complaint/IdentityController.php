@@ -8,6 +8,7 @@ use App\Entity\Complaint;
 use App\Form\Complaint\AssignType;
 use App\Form\Complaint\IdentityType;
 use App\Form\Complaint\RejectType;
+use App\Form\Complaint\UnitReassignType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -28,6 +29,7 @@ class IdentityController extends AbstractController
                 'is_optin_notification' => $complaint->isOptinNotification(),
             ]),
             'assign_form' => $this->createForm(AssignType::class, $complaint),
+            'unit_reassign_form' => $this->createForm(UnitReassignType::class, $complaint),
         ]);
     }
 }

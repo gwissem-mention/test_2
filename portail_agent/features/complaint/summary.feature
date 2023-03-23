@@ -28,12 +28,12 @@ Feature:
         And I should see a "nav" element
         And I should see a "aside" element
         And I should see a "main" element
-        And I should see 4 "button[data-bs-toggle='modal']" element
-        And I should see 20 "button" element
+        And I should see 5 "button[data-bs-toggle='modal']" element
+        And I should see 24 "button" element
         And I should see the key "pel.assign.declaration.to" translated
         And I should see the key "pel.send.to.lrp" translated
         And I should see the key "pel.reject" translated
-        And I should see the key "pel.reasign" translated
+        And I should see the key "pel.unit.reassign" translated
         And I should see the key "pel.comment" translated
         And I should see the key "pel.summary" translated
         And I should see the key "pel.declarant.identity" translated
@@ -276,6 +276,49 @@ Feature:
         And I should see the key "pel.the.declaration.has.been.assigned.to" translated
         And I should see "Déclaration attribuée à : Philippe RIVIERE"
         And I should see the key "pel.declaration.assigned.to" translated
+
+    @javascript
+    Scenario: I can toggle the unit reassign modal
+        Given I am on "/plainte/recapitulatif/98"
+        When I press "Réorienter vers autres services"
+        Then I should see a ".modal[aria-modal=true]" element
+        And I should see the key "pel.select.the.unit.to.reassign" translated
+        And I should see the key "pel.back" translated
+        And I should see the key "pel.validate.the.unit.reassignment" translated
+        When I press "complaint-unit-reassign-button-back"
+        Then I should not see a ".modal[aria-modal=true]" element
+
+    @javascript
+    Scenario: I can submit the unit reassign form successfully as a supervisor and Louise THOMAS should have a notification
+        Given I am on "/plainte/recapitulatif/95"
+        When I press "Réorienter vers autres services"
+        And I fill in the autocomplete "unit_reassign_unitToReassign-ts-control" with "CSP VOIRON/SVP/UPS/BRIGADE DE JOUR" and click "103131"
+        And I fill in "unit_reassign_unitReassignText" with "Cette plainte n'est pas censée être attribuer à mon unité."
+        And I press "Réorienter"
+        And I wait 500 ms
+        And I should be on the homepage
+        Given I am authenticated with H3U3XCGF from PN
+        And I am on the homepage
+        When I click the "#notifications-dropdown" element
+        Then I should see "La déclaration PEL-2023-00000095 a été réorientée vers votre unité"
+
+    @javascript
+    Scenario: I can submit the unit reassign form successfully as an agent and Thomas DURAND should have a notification
+        Given I am authenticated with PR5KTQSD from GN
+        And I am on "/plainte/recapitulatif/110"
+        When I press "Réorienter vers autres services"
+        And I fill in the autocomplete "unit_reassign_unitToReassign-ts-control" with "CSP VOIRON/SVP/UPS/BRIGADE DE JOUR" and click "103131"
+        And I fill in "unit_reassign_unitReassignText" with "Cette plainte n'est pas censée être attribuer à mon unité."
+        And I press "Réorienter"
+        Then I should not see a ".modal[aria-modal=true]" element
+        And I should see a ".toast" element
+        And I should see the key "pel.the.unit.reassignment.of.the.declaration.to" translated
+        And I should see the key "pel.has.been.ordered" translated
+        And I should see "La demande de réorientation de la déclaration vers CSP VOIRON/SVP/UPS/BRIGADE DE JOUR à été prise en compte"
+        Given I am authenticated with PR5KTZ9R from GN
+        And I am on the homepage
+        When I click the "#notifications-dropdown" element
+        Then I should see "La déclaration PEL-2023-00000110 est soumise pour réorientation"
 
     @func
     Scenario: I can see the comments space on the summary page
