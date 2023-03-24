@@ -29,6 +29,15 @@
             {{ form_row(form.placeNature) }}
         </div>
     </div>
+    {% if form.vars.data.placeNature in [3,6] %}
+        <div class="fr-grid-row fr-py-2w">
+            <div class="fr-col">
+                {{ component('google_maps', {
+                    'data-live-id':'google-maps'
+                }) }}
+            </div>
+        </div>
+    {% endif %}
     <div class="fr-grid-row fr-py-2w">
         <div class="fr-col">
             {{ form_row(form.address.addressOrRouteFactsKnown) }}
