@@ -27,6 +27,7 @@ class UserExtension extends AbstractExtension
         return $this->notificationRepository->createQueryBuilder('notification')
             ->where('notification.user = :user')
             ->andWhere('notification.clickedAt IS NULL')
+            ->orderBy('notification.createdAt', 'DESC')
             ->setParameter('user', $user)
             ->getQuery()
             ->getResult();
