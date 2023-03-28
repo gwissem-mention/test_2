@@ -143,6 +143,27 @@ Feature:
         And I should see "jeremy.dupont@gmail.com"
 
     @func
+    Scenario: If the declarant is a Corporation Representative, I should be able to see the victim informations
+        Given I am on "/plainte/recapitulatif/161"
+        And I should see the key "pel.victim.identity" translated
+        And I should see the key "pel.siren.number" translated
+        And I should see "123456789"
+        And I should see the key "pel.company.name" translated
+        And I should see "Netflix"
+        And I should see the key "pel.declarant.position" translated
+        And I should see "PDG"
+        And I should see the key "pel.nationality" translated
+        And I should see "Française"
+        And I should see the key "pel.email" translated
+        And I should see "pdg@netflix.com"
+        And I should see the key "pel.phone" translated
+        And I should see "0612345678"
+        And I should see the key "pel.country" translated
+        And I should see "France"
+        And I should see the key "pel.address" translated
+        And I should see "1 Rue de la république, Paris, 75000"
+
+    @func
     Scenario: I can click on the menu's summary button
         Given I am on "/plainte/recapitulatif/91"
         When I follow "Récapitulatif"

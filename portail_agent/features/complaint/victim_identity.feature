@@ -7,7 +7,7 @@ Feature:
         Given I am authenticated with PR5KTZ9R from GN
 
     @func
-    Scenario: I want to show complaint identity page
+    Scenario: I want to show complaint victim identity page as a person legal representative
         Given I am on "/plainte/victime/151"
         And the response status code should be 200
         And I should see a "body" element
@@ -46,6 +46,38 @@ Feature:
         And I should see the key "pel.victim.address" translated
         And the "identity_address" field should contain "15 Rue PAIRA, Meudon, 92190"
         And I should see the key "pel.address.france.label" translated
+
+    @func
+    Scenario: I want to show complaint victim identity page as a corporation representative
+        Given I am on "/plainte/victime/161"
+        And the response status code should be 200
+        And I should see a "body" element
+        And I should see a "nav" element
+        And I should see a "aside" element
+        And I should see a "main" element
+        And I should see 5 "button[data-bs-toggle='modal']" element
+        And I should see 24 "button" element
+        And I should see the key "pel.send.to.lrp" translated
+        And I should see the key "pel.reject" translated
+        And I should see the key "pel.unit.reassign" translated
+        And I should see the key "pel.comment" translated
+        And I should see the key "pel.summary" translated
+        And I should see the key "pel.moral.victim.information" translated
+        And I should see the key "pel.siren.number" translated
+        And the "corporation_sirenNumber" field should contain "123456789"
+        And I should see the key "pel.company.name" translated
+        And the "corporation_companyName" field should contain "Netflix"
+        And I should see the key "pel.declarant.position" translated
+        And the "corporation_declarantPosition" field should contain "PDG"
+        And I should see the key "pel.nationality" translated
+        And the "corporation_nationality" field should contain "Française"
+        And I should see the key "pel.contact.email" translated
+        And the "corporation_contactEmail" field should contain "pdg@netflix.com"
+        And I should see the key "pel.phone" translated
+        And the "corporation_phone" field should contain "0612345678"
+        And I should see the key "pel.country" translated
+        And the "corporation_country" field should contain "France"
+        And I should see the key "pel.address" translated
 
     @func
     Scenario: I can click on the Go to facts button
