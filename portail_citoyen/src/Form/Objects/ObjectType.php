@@ -195,15 +195,6 @@ class ObjectType extends AbstractType
                 'label' => 'pel.model',
                 'required' => false,
             ])
-            ->add('phoneNumberLine', TextType::class, [
-                'constraints' => [
-                    new Length([
-                        'max' => 20,
-                    ]),
-                ],
-                'label' => 'pel.phone.number.line',
-                'required' => false,
-            ])
             ->add('phoneNumberLine', PhoneType::class, [
                 'label' => false,
                 'number_label' => 'pel.phone.number.line',

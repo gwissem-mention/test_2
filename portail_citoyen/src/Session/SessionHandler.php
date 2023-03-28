@@ -18,7 +18,7 @@ class SessionHandler
     public function __construct(
         private readonly RequestStack $requestStack,
         private readonly SerializerInterface $serializer,
-        private readonly GeneratorInterface $generator
+        private readonly GeneratorInterface $generator,
     ) {
     }
 

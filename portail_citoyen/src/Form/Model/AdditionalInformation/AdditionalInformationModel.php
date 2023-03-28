@@ -114,4 +114,16 @@ class AdditionalInformationModel
 
         return $this;
     }
+
+    /**
+     * @return array<string, int>
+     */
+    public static function getCctvPresentChoices(): array
+    {
+        return [
+            'pel.yes' => self::CCTV_PRESENT_YES,
+            'pel.no' => self::CCTV_PRESENT_NO,
+            'pel.i.dont.know' => self::CCTV_PRESENT_DONT_KNOW,
+        ];
+    }
 }

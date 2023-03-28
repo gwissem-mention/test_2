@@ -59,11 +59,7 @@ class AdditionalInformationType extends AbstractType
                 ],
             ])
             ->add('cctvPresent', ChoiceType::class, [
-                'choices' => [
-                    'pel.yes' => AdditionalInformationModel::CCTV_PRESENT_YES,
-                    'pel.no' => AdditionalInformationModel::CCTV_PRESENT_NO,
-                    'pel.i.dont.know' => AdditionalInformationModel::CCTV_PRESENT_DONT_KNOW,
-                ],
+                'choices' => AdditionalInformationModel::getCctvPresentChoices(),
                 'expanded' => true,
                 'label' => 'pel.cctv.present',
                 'multiple' => false,

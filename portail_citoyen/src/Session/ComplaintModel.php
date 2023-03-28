@@ -8,6 +8,7 @@ use App\Form\Model\AdditionalInformation\AdditionalInformationModel;
 use App\Form\Model\Facts\FactsModel;
 use App\Form\Model\Identity\IdentityModel;
 use App\Form\Model\Objects\ObjectsModel;
+use Symfony\Component\Serializer\Annotation\Ignore;
 use Symfony\Component\Uid\Uuid;
 
 class ComplaintModel
@@ -123,6 +124,7 @@ class ComplaintModel
         return $this;
     }
 
+    #[Ignore]
     public function isComplaintIdentityFilled(): bool
     {
         $identity = $this->getIdentity();
@@ -130,6 +132,7 @@ class ComplaintModel
         return $identity instanceof IdentityModel && !is_null($identity->getDeclarantStatus());
     }
 
+    #[Ignore]
     public function isComplaintFactsFilled(): bool
     {
         $facts = $this->getFacts();
