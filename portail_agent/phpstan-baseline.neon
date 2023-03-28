@@ -76,6 +76,16 @@ parameters:
 		    path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
 
 		-
+		    message: "#^Parameter \\#1 \\$insuranceCompany of method App\\\\Entity\\\\FactsObjects\\\\Vehicle\\:\\:setInsuranceCompany\\(\\) expects string\\|null, mixed given\\.$#"
+		    count: 1
+		    path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
+
+		-
+		    message: "#^Parameter \\#1 \\$insuranceNumber of method App\\\\Entity\\\\FactsObjects\\\\Vehicle\\:\\:setInsuranceNumber\\(\\) expects string\\|null, mixed given\\.$#"
+		    count: 1
+		    path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
+
+		-
 			message: "#^Parameter \\#1 \\$place of method App\\\\Entity\\\\Facts\\:\\:setPlace\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php

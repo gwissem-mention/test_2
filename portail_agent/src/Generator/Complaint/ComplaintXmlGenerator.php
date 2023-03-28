@@ -9,6 +9,7 @@ use App\Entity\FactsObjects\AdministrativeDocument;
 use App\Entity\FactsObjects\MultimediaObject;
 use App\Entity\FactsObjects\PaymentMethod;
 use App\Entity\FactsObjects\SimpleObject;
+use App\Entity\FactsObjects\Vehicle;
 use App\Entity\Identity;
 use App\Generator\Complaint\Model\ContactDTO;
 use App\Generator\Complaint\Model\CorporationRepresentedDTO;
@@ -19,6 +20,7 @@ use App\Generator\Complaint\Model\Objects\MultimediaObjectDTO;
 use App\Generator\Complaint\Model\Objects\ObjectsDTO;
 use App\Generator\Complaint\Model\Objects\PaymentMethodDTO;
 use App\Generator\Complaint\Model\Objects\SimpleObjectDTO;
+use App\Generator\Complaint\Model\Objects\VehicleDTO;
 use App\Generator\Complaint\Model\PersonDTO;
 use App\Generator\Complaint\Model\PersonLegalRepresentativeDTO;
 use App\Referential\Entity\Unit;
@@ -76,11 +78,14 @@ class ComplaintXmlGenerator implements ComplaintGeneratorInterface
                 case $object instanceof MultimediaObject:
                     $objectXml = $this->arrayToXml($objectXml, (new MultimediaObjectDTO($object))->getArray());
                     break;
+                case $object instanceof PaymentMethod:
+                    $objectXml = $this->arrayToXml($objectXml, (new PaymentMethodDTO($object))->getArray());
+                    break;
                 case $object instanceof SimpleObject:
                     $objectXml = $this->arrayToXml($objectXml, (new SimpleObjectDTO($object))->getArray());
                     break;
-                case $object instanceof PaymentMethod:
-                    $objectXml = $this->arrayToXml($objectXml, (new PaymentMethodDTO($object))->getArray());
+                case $object instanceof Vehicle:
+                    $objectXml = $this->arrayToXml($objectXml, (new VehicleDTO($object))->getArray());
                     break;
             }
         }
