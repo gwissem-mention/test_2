@@ -8,6 +8,9 @@ parameters:
     app.jedonnemonavis_id: '%env(JEDONNEMONAVIS_ID)%'
     app.jedonnemonavis_key: '%env(JEDONNEMONAVIS_KEY)%'
     app.file_services: '%env(FILE_SERVICES)%'
+    app.folder_rotation.count: '%env(FOLDER_ROTATION_COUNT)%'
+    app.folder_rotation.treshold: '%env(FOLDER_ROTATION_TRESHOLD)%'
+    app.oodrive.root_folder_id: '%env(OODRIVE_ROOT_FOLDER_ID)%'
 
 services:
     _defaults:
@@ -15,6 +18,9 @@ services:
         autoconfigure: true
         bind:
             $franceCode: '%app.france_code%'
+            $folderRotationCount: '%app.folder_rotation.count%'
+            $folderRotationTreshold: '%app.folder_rotation.treshold%'
+            $oodriveRootFolderId: '%app.oodrive.root_folder_id%'
     App\:
         resource: '../src/'
         exclude:

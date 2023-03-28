@@ -15,7 +15,10 @@ class OodriveException extends ProxyHttpException
             $responseContent = json_decode($response->getContent(false), true, 512, JSON_THROW_ON_ERROR);
 
             if (isset($responseContent['code'])) {
-                $this->message .= "\n".$responseContent['code'].' : '.$responseContent['description'];
+                $this->message .= "\n".$responseContent['code'];
+            }
+            if (isset($responseContent['description'])) {
+                $this->message .= ' : '.$responseContent['description'];
             }
 
             if (isset($responseContent['details'])) {
