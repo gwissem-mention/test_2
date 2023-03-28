@@ -8,6 +8,7 @@ use App\DataFixtures\UserFixtures;
 use App\Entity\AdditionalInformation;
 use App\Entity\Comment;
 use App\Entity\Complaint;
+use App\Entity\Corporation;
 use App\Entity\Facts;
 use App\Entity\FactsObjects\AdministrativeDocument;
 use App\Entity\FactsObjects\MultimediaObject;
@@ -142,10 +143,34 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
             }
 
             for ($i = 1; $i <= self::COMPLAINTS_NB; ++$i) {
-                $complaints[] = $this->getGenericComplaint($users)
+                $complaint = $this->getGenericComplaint($users)
                     ->setCreatedAt(new \DateTimeImmutable('2022-12-05'))
                     ->setStatus(Complaint::STATUS_REASSIGNMENT_PENDING)
                     ->setUnitAssigned($unit);
+                /** @var Identity $identity */
+                $identity = $complaint->getIdentity();
+                $complaints[] = $complaint
+                    ->setIdentity($identity
+                        ->setDeclarantStatus(3))
+                    ->setCorporationRepresented(
+                        (new Corporation())
+                            ->setSirenNumber('123456789')
+                            ->setCompanyName('Netflix')
+                            ->setDeclarantPosition('PDG')
+                            ->setNationality('Française')
+                            ->setContactEmail('pdg@netflix.com')
+                            ->setPhone('0612345678')
+                            ->setCountry('France')
+                            ->setDepartment('Paris')
+                            ->setDepartmentNumber(75)
+                            ->setCity('Paris')
+                            ->setPostCode('75000')
+                            ->setInseeCode('75056')
+                            ->setStreetNumber(1)
+                            ->setStreetName('Rue de la république')
+                            ->setStreetType('Rue')
+                            ->setAddress('1 Rue de la république, Paris, 75000')
+                    );
             }
 
             for ($i = 1; $i <= self::COMPLAINTS_NB; ++$i) {

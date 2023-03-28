@@ -64,11 +64,13 @@
                                 <span class="badge bg-danger rounded-pill">{{ complaint.identity.alertNumber }}</span>
                             {% endif %}
                         </a>
-                        {% if complaint.identity.declarantStatus is same as(constant('App\\Entity\\Identity::DECLARANT_STATUS_PERSON_LEGAL_REPRESENTATIVE')) and complaint.personLegalRepresented is not null %}
+                        {% if complaint.identity.declarantStatus is same as(constant('App\\Entity\\Identity::DECLARANT_STATUS_PERSON_LEGAL_REPRESENTATIVE')) or complaint.identity.declarantStatus is same as(constant('App\\Entity\\Identity::DECLARANT_STATUS_CORPORATION_LEGAL_REPRESENTATIVE')) %}
                             <a href="{{ path('complaint_victim_identity', {id:complaint.id}) }}" class="{{ html_classes('list-group-item', 'list-group-item-action', {'list-group-item-secondary': app.current_route == 'complaint_victim_identity'}) }}" {% if app.current_route == 'complaint_victim_identity' %}aria-current="true"{% endif %}>
                                 {{ 'pel.victim.identity'|trans }}
-                                {% if complaint.personLegalRepresented.alertNumber %}
+                                {% if complaint.personLegalRepresented is not null and complaint.personLegalRepresented.alertNumber %}
                                     <span class="badge bg-danger rounded-pill">{{ complaint.personLegalRepresented.alertNumber }}</span>
+                                {% elseif complaint.corporationRepresented is not null and complaint.corporationRepresented.alertNumber %}
+                                    <span class="badge bg-danger rounded-pill">{{ complaint.corporationRepresented.alertNumber }}</span>
                                 {% endif %}
                             </a>
                         {% endif %}

@@ -140,6 +140,10 @@ class Complaint
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $unitReassignText = null;
 
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: true)]
+    private ?Corporation $corporationRepresented = null;
+
     public function __construct()
     {
         $this->objects = new ArrayCollection();
@@ -435,6 +439,18 @@ class Complaint
     public function setUnitReassignText(?string $unitReassignText): self
     {
         $this->unitReassignText = $unitReassignText;
+
+        return $this;
+    }
+
+    public function getCorporationRepresented(): ?Corporation
+    {
+        return $this->corporationRepresented;
+    }
+
+    public function setCorporationRepresented(?Corporation $corporationRepresented): self
+    {
+        $this->corporationRepresented = $corporationRepresented;
 
         return $this;
     }

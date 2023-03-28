@@ -8,6 +8,7 @@ use App\DataFixtures\UserFixtures;
 use App\Entity\AdditionalInformation;
 use App\Entity\Comment;
 use App\Entity\Complaint;
+use App\Entity\Corporation;
 use App\Entity\Facts;
 use App\Entity\FactsObjects\AdministrativeDocument;
 use App\Entity\FactsObjects\MultimediaObject;
@@ -244,6 +245,28 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                 );
             }
 
+            if (Identity::DECLARANT_STATUS_CORPORATION_LEGAL_REPRESENTATIVE === $complaint->getIdentity()?->getDeclarantStatus()) {
+                $complaint->setCorporationRepresented(
+                    (new Corporation())
+                        ->setSirenNumber($this->faker->siren)
+                        ->setCompanyName($this->faker->company)
+                        ->setDeclarantPosition('PDG')
+                        ->setContactEmail($this->faker->companyEmail)
+                        ->setPhone($this->faker->phoneNumber)
+                        ->setCountry('France')
+                        ->setNationality('Française')
+                        ->setDepartment($this->departments[substr($this->identityAddressPostcode, 0, 2)])
+                        ->setDepartmentNumber((int) substr($this->identityBirthPostcode, 0, 2))
+                        ->setCity($this->identityAddressCity)
+                        ->setPostCode($this->identityAddressPostcode)
+                        ->setInseeCode($this->insees[$this->identityAddressPostcode])
+                        ->setStreetNumber(1)
+                        ->setStreetType('Rue')
+                        ->setStreetName('Test')
+                        ->setAddress($this->faker->address)
+                );
+            }
+
             if ($this->faker->boolean(30)) {
                 $complaint->addObject(
                     (new AdministrativeDocument())
@@ -323,7 +346,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
             ->setFirstname($this->faker->firstName($this->identityGender))
             ->setLastname(mb_strtoupper($this->faker->lastName))
             ->setCivility('male' === $this->identityGender ? Identity::CIVILITY_MALE : Identity::CIVILITY_FEMALE)
-            ->setDeclarantStatus($victim ? Identity::DECLARANT_STATUS_VICTIM : $this->faker->randomElement([Identity::DECLARANT_STATUS_VICTIM, Identity::DECLARANT_STATUS_PERSON_LEGAL_REPRESENTATIVE]))
+            ->setDeclarantStatus($victim ? Identity::DECLARANT_STATUS_VICTIM : $this->faker->randomElement([Identity::DECLARANT_STATUS_VICTIM, Identity::DECLARANT_STATUS_PERSON_LEGAL_REPRESENTATIVE, Identity::DECLARANT_STATUS_CORPORATION_LEGAL_REPRESENTATIVE]))
             ->setBirthday(new \DateTimeImmutable($this->faker->randomElement([
                     '1978-03-16',
                     '1997-12-07',

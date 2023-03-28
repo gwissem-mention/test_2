@@ -178,6 +178,10 @@
                 <source>pel.corporation.legal.representative</source>
                 <target>Représentant légal d'une personne morale</target>
             </trans-unit>
+            <trans-unit id="pel.country">
+                <source>pel.country</source>
+                <target>Pays</target>
+            </trans-unit>
             <trans-unit id="pel.declarant.address">
                 <source>pel.declarant.address</source>
                 <target>Adresse du déclarant</target>
@@ -197,6 +201,10 @@
             <trans-unit id="pel.declarant.identity">
                 <source>pel.declarant.identity</source>
                 <target>Identité du déclarant</target>
+            </trans-unit>
+            <trans-unit id="pel.declarant.position">
+                <source>pel.declarant.position</source>
+                <target>En qualité de</target>
             </trans-unit>
             <trans-unit id="pel.declarant.situation">
                 <source>pel.declarant.situation</source>
@@ -417,6 +425,10 @@
             <trans-unit id="pel.mobile.phone">
                 <source>pel.mobile.phone</source>
                 <target>Téléphone portable</target>
+            </trans-unit>
+            <trans-unit id="pel.moral.victim.information">
+                <source>pel.moral.victim.information</source>
+                <target>Informations sur la personne morale représentée</target>
             </trans-unit>
             <trans-unit id="pel.mp.declarant">
                 <source>pel.mp.declarant</source>
@@ -646,6 +658,10 @@
                 <source>pel.sir</source>
                 <target>Monsieur</target>
             </trans-unit>
+            <trans-unit id="pel.siren.number">
+                <source>pel.siren.number</source>
+                <target>SIREN</target>
+            </trans-unit>
             <trans-unit id="pel.search">
                 <source>pel.search</source>
                 <target>Rechercher</target>
@@ -834,6 +850,10 @@
                 <source>pel.vehicle.insurance.number</source>
                 <target>Numéro de police d'assurance</target>
             </trans-unit>
+            <trans-unit id="pel.company.name">
+                <source>pel.company.name</source>
+                <target>Raison sociale</target>
+            </trans-unit>
             <trans-unit id="pel.complaint.validation.course.to.lrp">
                 <source>pel.complaint.validation.course.to.lrp</source>
                 <target>Parcours de validation de plainte vers le LRP :</target>
@@ -841,6 +861,10 @@
             <trans-unit id="pel.complaint.validation.sending.to.lrp">
                 <source>pel.complaint.validation.sending.to.lrp</source>
                 <target>Validation et envoi de la plainte au LRP</target>
+            </trans-unit>
+            <trans-unit id="pel.contact.email">
+                <source>pel.contact.email</source>
+                <target>Adresse électronique de contact</target>
             </trans-unit>
             <trans-unit id="pel.victim">
                 <source>pel.victim</source>

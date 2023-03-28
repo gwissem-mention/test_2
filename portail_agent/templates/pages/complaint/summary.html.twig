@@ -97,6 +97,33 @@
                         {{ 'pel.email'|trans }} : <strong>{{ complaint.personLegalRepresented.email }}</strong>
                     </li>
                 </ul>
+            {% elseif complaint.identity.declarantStatus is same as(constant('App\\Entity\\Identity::DECLARANT_STATUS_CORPORATION_LEGAL_REPRESENTATIVE')) and complaint.corporationRepresented is not null %}
+                <ul>
+                    <li>
+                        {{ 'pel.siren.number'|trans }} : <strong>{{ complaint.corporationRepresented.sirenNumber }}</strong>
+                    </li>
+                    <li>
+                        {{ 'pel.company.name'|trans }} : <strong>{{ complaint.corporationRepresented.companyName }}</strong>
+                    </li>
+                    <li>
+                        {{ 'pel.declarant.position'|trans }} : <strong>{{ complaint.corporationRepresented.declarantPosition }}</strong>
+                    </li>
+                    <li>
+                        {{ 'pel.nationality'|trans }} : <strong>{{ complaint.corporationRepresented.nationality }}</strong>
+                    </li>
+                    <li>
+                        {{ 'pel.email'|trans }} : <strong>{{ complaint.corporationRepresented.contactEmail }}</strong>
+                    </li>
+                    <li>
+                        {{ 'pel.phone'|trans }} : <strong>{{ complaint.corporationRepresented.phone }}</strong>
+                    </li>
+                    <li>
+                        {{ 'pel.country'|trans }} : <strong>{{ complaint.corporationRepresented.country }}</strong>
+                    </li>
+                    <li>
+                        {{ 'pel.address'|trans }} : <strong>{{ complaint.corporationRepresented.address }}</strong>
+                    </li>
+                </ul>
             {% endif %}
         </ul>
 

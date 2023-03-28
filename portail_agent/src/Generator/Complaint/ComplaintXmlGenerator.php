@@ -11,6 +11,7 @@ use App\Entity\FactsObjects\PaymentMethod;
 use App\Entity\FactsObjects\SimpleObject;
 use App\Entity\Identity;
 use App\Generator\Complaint\Model\ContactDTO;
+use App\Generator\Complaint\Model\CorporationRepresentedDTO;
 use App\Generator\Complaint\Model\FactsDTO;
 use App\Generator\Complaint\Model\FlagDTO;
 use App\Generator\Complaint\Model\Objects\AdministrativeDocumentDTO;
@@ -35,6 +36,9 @@ class ComplaintXmlGenerator implements ComplaintGeneratorInterface
         } elseif ($identity && Identity::DECLARANT_STATUS_PERSON_LEGAL_REPRESENTATIVE === $identity->getDeclarantStatus() && ($victimIdentity = $complaint->getPersonLegalRepresented())) {
             $xml = $this->arrayToXml($xml, (new PersonDTO($victimIdentity))->getArray());
             $xml = $this->arrayToXml($xml, (new PersonLegalRepresentativeDTO($identity))->getArray());
+        } elseif ($identity && Identity::DECLARANT_STATUS_CORPORATION_LEGAL_REPRESENTATIVE === $identity->getDeclarantStatus() && ($corporation = $complaint->getCorporationRepresented())) {
+            $xml = $this->arrayToXml($xml, (new PersonDTO($identity))->getArray());
+            $xml = $this->arrayToXml($xml, (new CorporationRepresentedDTO($corporation))->getArray());
         }
         if ($complaint->getFacts()) {
             $xml = $this->arrayToXml($xml, (new FactsDTO($complaint))->getArray());

@@ -6,6 +6,7 @@ namespace App\Tests\XMLGenerator;
 
 use App\Entity\AdditionalInformation;
 use App\Entity\Complaint;
+use App\Entity\Corporation;
 use App\Entity\Facts;
 use App\Entity\FactsObjects\AdministrativeDocument;
 use App\Entity\FactsObjects\MultimediaObject;
@@ -20,6 +21,7 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 class ComplaintXmlGeneratorTest extends KernelTestCase
 {
     private string $xmlContent = '';
+    private string $xmlContentWithCorporationRepresented = '';
 
     public function setUp(): void
     {
@@ -187,6 +189,39 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $xml = $xmlGenerator->generate($complaint, $unit)->asXML();
 
         $this->xmlContent = $xml;
+
+        /** @var Identity $identity */
+        $identity = $complaint->getIdentity();
+        $complaint
+            ->setIdentity(
+                $identity->setDeclarantStatus(Identity::DECLARANT_STATUS_CORPORATION_LEGAL_REPRESENTATIVE)
+            )
+            ->setPersonLegalRepresented(null)
+            ->setCorporationRepresented(
+                (new Corporation())
+                    ->setSirenNumber('123456789')
+                    ->setCompanyName('Netflix')
+                    ->setDeclarantPosition('PDG')
+                    ->setNationality('Française')
+                    ->setContactEmail('pdg@netflix.com')
+                    ->setPhone('0612345678')
+                    ->setCountry('France')
+                    ->setDepartment('Paris')
+                    ->setDepartmentNumber(75)
+                    ->setCity('Paris')
+                    ->setPostCode('75000')
+                    ->setInseeCode('75056')
+                    ->setStreetNumber(1)
+                    ->setStreetName('Rue de la république')
+                    ->setStreetType('Rue')
+                    ->setAddress('1 Rue de la république, Paris, 75000')
+            )
+        ;
+
+        /** @var string $xmlWithCorporationRepresented */
+        $xmlWithCorporationRepresented = $xmlGenerator->generate($complaint, $unit)->asXML();
+
+        $this->xmlContentWithCorporationRepresented = $xmlWithCorporationRepresented;
     }
 
     public function testFlagSection(): void
@@ -273,6 +308,28 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Representant_Legal_Residence_Lieu>Meudon 92190 (France)</Representant_Legal_Residence_Lieu>', $this->xmlContent);
         $this->assertStringContainsString('<Representant_Legal_Naissance_Lieu>Paris 75000 (France)</Representant_Legal_Naissance_Lieu>', $this->xmlContent);
         $this->assertStringContainsString('</Representant_Legal>', $this->xmlContent);
+    }
+
+    public function testCorporationRepresentedSection(): void
+    {
+        $this->assertStringContainsString('<Personne_Morale>', $this->xmlContentWithCorporationRepresented);
+        $this->assertStringContainsString('<Personne_Morale_Raison>Netflix</Personne_Morale_Raison>', $this->xmlContentWithCorporationRepresented);
+        $this->assertStringContainsString('<Personne_Morale_Siret>123456789</Personne_Morale_Siret>', $this->xmlContentWithCorporationRepresented);
+        $this->assertStringContainsString('<Personne_Morale_Implication>PDG</Personne_Morale_Implication>', $this->xmlContentWithCorporationRepresented);
+        $this->assertStringContainsString('<Personne_Morale_Nationalite>Française</Personne_Morale_Nationalite>', $this->xmlContentWithCorporationRepresented);
+        $this->assertStringContainsString('<Personne_Morale_Residence_Pays>France</Personne_Morale_Residence_Pays>', $this->xmlContentWithCorporationRepresented);
+        $this->assertStringContainsString('<Personne_Morale_Residence_Departement>75 - Paris</Personne_Morale_Residence_Departement>', $this->xmlContentWithCorporationRepresented);
+        $this->assertStringContainsString('<Personne_Morale_Residence_Codepostal>75000</Personne_Morale_Residence_Codepostal>', $this->xmlContentWithCorporationRepresented);
+        $this->assertStringContainsString('<Personne_Morale_Residence_Insee>75056</Personne_Morale_Residence_Insee>', $this->xmlContentWithCorporationRepresented);
+        $this->assertStringContainsString('<Personne_Morale_Residence_Commune>Paris</Personne_Morale_Residence_Commune>', $this->xmlContentWithCorporationRepresented);
+        $this->assertStringContainsString('<Personne_Morale_Residence_HidNumDep>75</Personne_Morale_Residence_HidNumDep>', $this->xmlContentWithCorporationRepresented);
+        $this->assertStringContainsString('<Personne_Morale_Residence_RueNo>1</Personne_Morale_Residence_RueNo>', $this->xmlContentWithCorporationRepresented);
+        $this->assertStringContainsString('<Personne_Morale_Residence_RueType>Rue</Personne_Morale_Residence_RueType>', $this->xmlContentWithCorporationRepresented);
+        $this->assertStringContainsString('<Personne_Morale_Residence_RueNom>Rue de la république</Personne_Morale_Residence_RueNom>', $this->xmlContentWithCorporationRepresented);
+        $this->assertStringContainsString('<Personne_Morale_Residence_Lieu>Paris 75000 (France)</Personne_Morale_Residence_Lieu>', $this->xmlContentWithCorporationRepresented);
+        $this->assertStringContainsString('<Personne_Morale_Residence_Adresse>1 Rue de la république, Paris, 75000</Personne_Morale_Residence_Adresse>', $this->xmlContentWithCorporationRepresented);
+        $this->assertStringContainsString('<Personne_Morale_Residence_Lieu>Paris 75000 (France)</Personne_Morale_Residence_Lieu>', $this->xmlContentWithCorporationRepresented);
+        $this->assertStringContainsString('</Personne_Morale>', $this->xmlContentWithCorporationRepresented);
     }
 
     public function testFactsSection(): void

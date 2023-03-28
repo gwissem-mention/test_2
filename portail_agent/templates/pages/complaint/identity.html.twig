@@ -3,7 +3,7 @@
 {% block main %}
     <div class="row">
         <div class="col-12 text-end">
-            {% if complaint.identity.declarantStatus is same as(constant('App\\Entity\\Identity::DECLARANT_STATUS_PERSON_LEGAL_REPRESENTATIVE')) and complaint.personLegalRepresented is not null %}
+            {% if complaint.identity.declarantStatus is same as(constant('App\\Entity\\Identity::DECLARANT_STATUS_PERSON_LEGAL_REPRESENTATIVE')) or complaint.identity.declarantStatus is same as(constant('App\\Entity\\Identity::DECLARANT_STATUS_CORPORATION_LEGAL_REPRESENTATIVE')) %}
                 <a href="{{ path('complaint_victim_identity', {id:complaint.id}) }}" class="btn btn-secondary">
                     <i class="bi bi-arrow-right"></i> {{ 'pel.go.to.tab'|trans }} : {{ 'pel.victim.identity'|trans }}
                 </a>
