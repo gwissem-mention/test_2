@@ -35,6 +35,8 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
     private array $departments = [];
     /** @var string[] */
     private array $insees = [];
+    /** @var User[] */
+    private array $users = [];
     private mixed $identityGender;
     private string $identityBirthPostcode;
     private string $identityAddressStreetAddress;
@@ -82,6 +84,8 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
             '33' => 'Gironde',
             '38' => 'Isère',
         ];
+
+        $this->users = $manager->getRepository(User::class)->findAll();
 
         for ($i = 1; $i <= self::COMPLAINTS_NB; ++$i) {
             $factsStartDate = \DateTimeImmutable::createFromMutable($this->faker->dateTimeBetween('2023-01-01', '2023-01-31'));
@@ -208,26 +212,26 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                 ->addComment(
                     (new Comment())
                         ->setContent('Ceci est un commentaire.')
-                        ->setAuthor(Comment::AGENT_AUTHOR)
+                        ->setAuthor($this->faker->randomElement($this->users))
                 )
                 ->addComment(
                     (new Comment())
                         ->setContent('Ceci est un autre commentaire.')
-                        ->setAuthor(Comment::ANOTHER_AGENT_AUTHOR)
+                        ->setAuthor($this->faker->randomElement($this->users))
                 )
                 ->addComment(
                     (new Comment())
                         ->setContent('Ceci est (encore) un autre commentaire.')
-                        ->setAuthor(Comment::ANOTHER_AGENT_AUTHOR)
+                        ->setAuthor($this->faker->randomElement($this->users))
                 )->addComment(
                     (new Comment())
                         ->setContent('Commentaire.')
-                        ->setAuthor(Comment::ANOTHER_AGENT_AUTHOR)
+                        ->setAuthor($this->faker->randomElement($this->users))
                 )
                 ->addComment(
                     (new Comment())
-                        ->setContent('Ceci est un commentaire de moi.')
-                        ->setAuthor(Comment::AGENT_AUTHOR)
+                        ->setContent('Ceci est un commentaire différent.')
+                        ->setAuthor($this->faker->randomElement($this->users))
                 )
                 ->setAssignedTo(Complaint::STATUS_ASSIGNED === $status ?
                     $manager->getRepository(User::class)->findOneBy(['number' => $agentNumber]) :

@@ -12,9 +12,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: CommentRepository::class)]
 class Comment
 {
-    public const AGENT_AUTHOR = 'Jean Dupont';
-    public const ANOTHER_AGENT_AUTHOR = 'André Durant';
-
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -28,8 +25,9 @@ class Comment
     #[ORM\JoinColumn(nullable: false)]
     private ?Complaint $complaint = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $author = null;
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $author = null;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $publishedAt = null;
@@ -68,12 +66,12 @@ class Comment
         return $this;
     }
 
-    public function getAuthor(): ?string
+    public function getAuthor(): ?User
     {
         return $this->author;
     }
 
-    public function setAuthor(string $author): self
+    public function setAuthor(User $author): self
     {
         $this->author = $author;
 
