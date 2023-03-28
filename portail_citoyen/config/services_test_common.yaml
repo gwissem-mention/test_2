@@ -6,6 +6,9 @@ services:
     App\Tests\Behat\:
         resource: '../tests/Behat/*'
 
+    App\Tests\Factory\:
+        resource: '../tests/Factory/*'
+        
     Symfony\Component\HttpFoundation\Session\SessionFactoryInterface: '@session.factory'
 
     Psr\Container\ContainerInterface $behatDriverContainer: '@behat.driver.service_container'
@@ -23,3 +26,9 @@ services:
         $clientId: '%env(FRANCE_CONNECT_CLIENT_ID)%'
         $clientSecret: '%env(FRANCE_CONNECT_CLIENT_SECRET)%'
         $baseUri: '%env(FRANCE_CONNECT_BASE_URI)%'
+
+    App\Generator\Complaint\ComplaintVaultGeneratorJson:
+        public: true
+
+    App\Tests\Factory\ComplaintFactory:
+        public: true

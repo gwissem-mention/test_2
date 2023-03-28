@@ -64,7 +64,7 @@ services:
     App\Referential\DataFixtures\CityService\CityServiceFileFixtures:
         arguments:
             $citiesServicesFixturesPath: '%app.referentials_base_path%/%app.file_cities_services%'
-        
+    
     App\Referential\DataFixtures\Service\ServiceFileFixtures:
         arguments:
             $servicesFixturesPath: '%app.referentials_base_path%/%app.file_services%'
@@ -77,9 +77,10 @@ services:
     # Oodrive HTTP Client Oauth management service
     App\Oodrive\OAuth2\GrantType\AuthorizationCodeGrantType:
         arguments:
-          $tokenUrl: '%env(OODRIVE_BASE_URI)%/auth/oauth/token'
-          $workspace: '%env(OODRIVE_WORKSPACE)%'
-          $clientId: '%env(OODRIVE_OAUTH_CLIENT_ID)%'
-          $clientSecret: '%env(OODRIVE_OAUTH_CLIENT_SECRET)%'
-          $username: '%env(OODRIVE_USERNAME)%'
-          $password: '%env(OODRIVE_PASSWORD)%'
+            $tokenUrl: '%env(OODRIVE_BASE_URI)%/auth/oauth/token'
+            $workspace: '%env(OODRIVE_WORKSPACE)%'
+            $clientId: '%env(OODRIVE_OAUTH_CLIENT_ID)%'
+            $clientSecret: '%env(OODRIVE_OAUTH_CLIENT_SECRET)%'
+            $username: '%env(OODRIVE_USERNAME)%'
+            $password: '%env(OODRIVE_PASSWORD)%'
+    

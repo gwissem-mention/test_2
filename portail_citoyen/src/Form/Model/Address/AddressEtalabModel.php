@@ -32,7 +32,7 @@ class AddressEtalabModel extends AbstractSerializableAddress
         return $this->id;
     }
 
-    public function setId(?string $id): self
+    public function setId(?string $id): static
     {
         $this->id = $id;
 
@@ -44,7 +44,7 @@ class AddressEtalabModel extends AbstractSerializableAddress
         return $this->type;
     }
 
-    public function setType(?string $type): self
+    public function setType(?string $type): static
     {
         $this->type = $type;
 
@@ -56,7 +56,7 @@ class AddressEtalabModel extends AbstractSerializableAddress
         return $this->score;
     }
 
-    public function setScore(?float $score): self
+    public function setScore(?float $score): static
     {
         $this->score = $score;
 
@@ -68,7 +68,7 @@ class AddressEtalabModel extends AbstractSerializableAddress
         return $this->housenumber;
     }
 
-    public function setHouseNumber(?string $housenumber): self
+    public function setHouseNumber(?string $housenumber): static
     {
         $this->housenumber = $housenumber;
 
@@ -80,7 +80,7 @@ class AddressEtalabModel extends AbstractSerializableAddress
         return $this->street;
     }
 
-    public function setStreet(?string $street): self
+    public function setStreet(?string $street): static
     {
         $this->street = $street;
 
@@ -92,7 +92,7 @@ class AddressEtalabModel extends AbstractSerializableAddress
         return $this->name;
     }
 
-    public function setName(?string $name): self
+    public function setName(?string $name): static
     {
         $this->name = $name;
 
@@ -104,7 +104,7 @@ class AddressEtalabModel extends AbstractSerializableAddress
         return $this->postcode;
     }
 
-    public function setPostcode(?string $postcode): self
+    public function setPostcode(?string $postcode): static
     {
         $this->postcode = $postcode;
 
@@ -116,7 +116,7 @@ class AddressEtalabModel extends AbstractSerializableAddress
         return $this->citycode;
     }
 
-    public function setCitycode(?string $citycode): self
+    public function setCitycode(?string $citycode): static
     {
         $this->citycode = $citycode;
 
@@ -128,7 +128,7 @@ class AddressEtalabModel extends AbstractSerializableAddress
         return $this->city;
     }
 
-    public function setCity(?string $city): self
+    public function setCity(?string $city): static
     {
         $this->city = $city;
 
@@ -140,7 +140,7 @@ class AddressEtalabModel extends AbstractSerializableAddress
         return $this->district;
     }
 
-    public function setDistrict(?string $district): self
+    public function setDistrict(?string $district): static
     {
         $this->district = $district;
 
@@ -152,7 +152,7 @@ class AddressEtalabModel extends AbstractSerializableAddress
         return $this->context;
     }
 
-    public function setContext(?string $context): self
+    public function setContext(?string $context): static
     {
         $this->context = $context;
 
@@ -164,7 +164,7 @@ class AddressEtalabModel extends AbstractSerializableAddress
         return $this->x;
     }
 
-    public function setX(?float $x): self
+    public function setX(?float $x): static
     {
         $this->x = $x;
 
@@ -176,7 +176,7 @@ class AddressEtalabModel extends AbstractSerializableAddress
         return $this->y;
     }
 
-    public function setY(?float $y): self
+    public function setY(?float $y): static
     {
         $this->y = $y;
 
@@ -188,14 +188,14 @@ class AddressEtalabModel extends AbstractSerializableAddress
         return $this->importance;
     }
 
-    public function setImportance(?float $importance): self
+    public function setImportance(?float $importance): static
     {
         $this->importance = $importance;
 
         return $this;
     }
 
-    public function setLabel(?string $label): self
+    public function setLabel(?string $label): static
     {
         $this->label = $label;
 
