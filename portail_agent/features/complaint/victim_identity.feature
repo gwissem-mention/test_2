@@ -62,12 +62,11 @@ Feature:
         And I should see a "#comments-feed-title" element
         And I should see the key "pel.comments.feed" translated
         And the "#comments-feed-title" element should contain "Espace commentaires (5)"
-        And I should see 3 ".comment-left" element
-        And I should see 2 ".comment-right" element
+        And I should see 5 ".comment-left" element
+        And I should see 0 ".comment-right" element
         And I should see 5 "#comment-author" element
         And I should see 5 "#comment-published-at" element
-        And I should see "Jean Dupont" in the ".comment-right" element
-        And I should see "André Durant" in the ".comment-left" element
+        And I should see "Jean DUPONT" in the ".comment-left" element
 
     @javascript
     Scenario: I can click the "Comment" button, and it focus the comment field
@@ -82,5 +81,5 @@ Feature:
         And the "#comments-feed-title" element should contain "Espace commentaires (5)"
         Then I fill in "comment_content" with "Ceci est un commentaire test."
         When I press "comment-button"
-        And I should see 3 ".comment-right" element
+        And I should see 1 ".comment-right" element
         And the "#comments-feed-title" element should contain "Espace commentaires (6)"

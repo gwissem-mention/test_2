@@ -6,6 +6,7 @@ namespace App\Components\Complaint;
 
 use App\Entity\Comment;
 use App\Entity\Complaint;
+use App\Entity\User;
 use App\Form\Complaint\CommentType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -71,10 +72,12 @@ class CommentsComponent extends AbstractController
 
     protected function instantiateForm(): FormInterface
     {
+        /** @var User $user */
+        $user = $this->getUser();
         $comment = new Comment();
         $comment
             ->setComplaint($this->complaint)
-            ->setAuthor(Comment::AGENT_AUTHOR);
+            ->setAuthor($user);
 
         return $this->createForm(
             CommentType::class,

@@ -42,6 +42,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
         $userUnit1 = $manager->getRepository(User::class)->findOneBy(['number' => 'H3U3XCGD']);
         /** @var User $userUnit2 */
         $userUnit2 = $manager->getRepository(User::class)->findOneBy(['number' => 'PR5KTQSD']);
+        $users = [$userUnit1, $userUnit2];
         $unitsUsers = [
             '103131' => $userUnit1,
             '3002739' => $userUnit2,
@@ -50,13 +51,13 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
         foreach ($unitsUsers as $unit => $user) {
             $unit = strval($unit);
             for ($i = 1; $i <= self::COMPLAINTS_NB; ++$i) {
-                $complaints[] = $this->getGenericComplaint()
+                $complaints[] = $this->getGenericComplaint($users)
                     ->setUnitAssigned($unit);
             }
 
             for ($i = 1; $i <= self::COMPLAINTS_NB; ++$i) {
                 $complaint = $this
-                    ->getGenericComplaint()
+                    ->getGenericComplaint($users)
                     ->setUnitAssigned($unit);
                 /** @var Identity $identity */
                 $identity = $complaint->getIdentity();
@@ -70,7 +71,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
             }
 
             for ($i = 1; $i <= self::COMPLAINTS_NB; ++$i) {
-                $complaints[] = $this->getGenericComplaint()
+                $complaints[] = $this->getGenericComplaint($users)
                     ->setStatus(Complaint::STATUS_ONGOING_LRP)
                     ->setCreatedAt(new \DateTimeImmutable('2022-12-02'))
                     ->setUnitAssigned($unit)
@@ -78,7 +79,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
             }
 
             for ($i = 1; $i <= self::COMPLAINTS_NB; ++$i) {
-                $complaints[] = $this->getGenericComplaint()
+                $complaints[] = $this->getGenericComplaint($users)
                     ->setStatus(Complaint::STATUS_REJECTED)
                     ->setCreatedAt(new \DateTimeImmutable('2022-12-03'))
                     ->setRefusalReason(Complaint::REFUSAL_REASON_REORIENTATION_APPONTMENT)
@@ -86,14 +87,14 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
             }
 
             for ($i = 1; $i <= self::COMPLAINTS_NB; ++$i) {
-                $complaints[] = $this->getGenericComplaint()
+                $complaints[] = $this->getGenericComplaint($users)
                     ->setCreatedAt(new \DateTimeImmutable('2022-12-04'))
                     ->setStatus(Complaint::STATUS_MP_DECLARANT)
                     ->setUnitAssigned($unit);
             }
 
             for ($i = 1; $i <= self::COMPLAINTS_NB; ++$i) {
-                $complaints[] = $this->getGenericComplaint()
+                $complaints[] = $this->getGenericComplaint($users)
                     ->setCreatedAt(new \DateTimeImmutable('2022-12-05'))
                     ->setStatus(Complaint::STATUS_CLOSED)
                     ->setUnitAssigned($unit);
@@ -101,7 +102,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
 
             for ($i = 1; $i <= self::COMPLAINTS_NB; ++$i) {
                 $complaint = $this
-                    ->getGenericComplaint()
+                    ->getGenericComplaint($users)
                     ->setCreatedAt(new \DateTimeImmutable('2022-12-05'))
                     ->setStatus(Complaint::STATUS_APPOINTMENT_PENDING)
                     ->setUnitAssigned($unit);
@@ -141,14 +142,14 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
             }
 
             for ($i = 1; $i <= self::COMPLAINTS_NB; ++$i) {
-                $complaints[] = $this->getGenericComplaint()
+                $complaints[] = $this->getGenericComplaint($users)
                     ->setCreatedAt(new \DateTimeImmutable('2022-12-05'))
                     ->setStatus(Complaint::STATUS_REASSIGNMENT_PENDING)
                     ->setUnitAssigned($unit);
             }
 
             for ($i = 1; $i <= self::COMPLAINTS_NB; ++$i) {
-                $complaints[] = $this->getGenericComplaint()
+                $complaints[] = $this->getGenericComplaint($users)
                     ->setCreatedAt(new \DateTimeImmutable('2022-12-05'))
                     ->setStatus(Complaint::STATUS_UNIT_REASSIGNMENT_PENDING)
                     ->setUnitAssigned($unit);
@@ -176,7 +177,8 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
         $manager->clear();
     }
 
-    private function getGenericComplaint(): Complaint
+    /** @param User[] $users */
+    private function getGenericComplaint(array $users): Complaint
     {
         return (new Complaint())
             ->setTest(true)
@@ -289,26 +291,26 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
             ->addComment(
                 (new Comment())
                     ->setContent('Ceci est un commentaire.')
-                    ->setAuthor(Comment::AGENT_AUTHOR)
+                    ->setAuthor($users[0])
             )
             ->addComment(
                 (new Comment())
                     ->setContent('Ceci est un autre commentaire.')
-                    ->setAuthor(Comment::ANOTHER_AGENT_AUTHOR)
+                    ->setAuthor($users[1])
             )
             ->addComment(
                 (new Comment())
                     ->setContent('Ceci est (encore) un autre commentaire.')
-                    ->setAuthor(Comment::ANOTHER_AGENT_AUTHOR)
+                    ->setAuthor($users[1])
             )->addComment(
                 (new Comment())
                     ->setContent('Commentaire.')
-                    ->setAuthor(Comment::ANOTHER_AGENT_AUTHOR)
+                    ->setAuthor($users[1])
             )
             ->addComment(
                 (new Comment())
-                    ->setContent('Ceci est un commentaire de moi.')
-                    ->setAuthor(Comment::AGENT_AUTHOR)
+                    ->setContent('Ceci est un commentaire différent.')
+                    ->setAuthor($users[0])
             );
     }
 

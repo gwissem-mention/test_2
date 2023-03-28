@@ -64,7 +64,8 @@ Feature:
 
     @func
     Scenario: I can see the comments space on the additional information page
-        Given I am on "/plainte/informations-complementaires/91"
+        Given I am authenticated with H3U3XCGD from PN
+        And I am on "/plainte/recapitulatif/11"
         And I should see a "#comment_content" element
         And I should see a ".comment-box" element
         And I should see a "#comments-feed-title" element
@@ -74,19 +75,21 @@ Feature:
         And I should see 2 ".comment-right" element
         And I should see 5 "#comment-author" element
         And I should see 5 "#comment-published-at" element
-        And I should see "Jean Dupont" in the ".comment-right" element
-        And I should see "André Durant" in the ".comment-left" element
+        And I should see "Jean DUPONT" in the ".comment-right" element
+        And I should see "Philippe RIVIERE" in the ".comment-left" element
 
     @javascript
     Scenario: I can click the "Comment" button, and it focus the comment field
-        Given I am on "/plainte/informations-complementaires/91"
+        Given I am authenticated with H3U3XCGD from PN
+        And I am on "/plainte/recapitulatif/11"
         And I should not focus the "comment_content" element
         Then I press "complaint-comment-button"
         And I should focus the "comment_content" element
 
     @javascript
     Scenario: I can add a comment from the additional information page
-        Given I am on "/plainte/informations-complementaires/91"
+        Given I am authenticated with H3U3XCGD from PN
+        And I am on "/plainte/recapitulatif/11"
         And the "#comments-feed-title" element should contain "Espace commentaires (5)"
         Then I fill in "comment_content" with "Ceci est un commentaire test."
         When I press "comment-button"
