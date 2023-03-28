@@ -277,6 +277,8 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                         ->setModel($this->faker->randomElement(['C3', 'C4', 'DS4', 'DS3']))
                         ->setRegistrationNumber($this->faker->randomElement(['AA-123-AA', 'BB-345-BB', 'CC-432-CC', 'DD-890-DD']))
                         ->setRegistrationCountry('France')
+                        ->setInsuranceCompany($this->faker->randomElement(['AXA', 'Matmut', 'MAAF']))
+                        ->setInsuranceNumber($this->faker->randomElement(['1458R147R', '8912T654T', '3278V265V']))
                         ->setAmount($this->faker->numberBetween(5000, 20000))
                 );
             }

@@ -11,6 +11,7 @@ use App\Entity\FactsObjects\AdministrativeDocument;
 use App\Entity\FactsObjects\MultimediaObject;
 use App\Entity\FactsObjects\PaymentMethod;
 use App\Entity\FactsObjects\SimpleObject;
+use App\Entity\FactsObjects\Vehicle;
 use App\Entity\Identity;
 use App\Enum\Institution;
 use App\Generator\Complaint\ComplaintXmlGenerator;
@@ -169,6 +170,17 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
                     ->setDescription('Blouson bleu')
                     ->setAmount(100)
             )
+            ->addObject(
+                (new Vehicle())
+                    ->setLabel('Voiture')
+                    ->setBrand('Citroën')
+                    ->setModel('C3')
+                    ->setRegistrationNumber('AA-123-AA')
+                    ->setRegistrationCountry('France')
+                    ->setInsuranceCompany('AXA')
+                    ->setInsuranceNumber('1458R147R')
+                    ->setAmount(15000)
+            )
             ->setAdditionalInformation(
                 (new AdditionalInformation())
                     ->setCctvPresent(AdditionalInformation::CCTV_PRESENT_YES)
@@ -315,7 +327,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
     {
         $this->assertStringContainsString('<Objet>', $this->xmlContent);
 //        $this->assertStringContainsString('<Objets_Prejudice_Evaluer>1</Objets_Prejudice_Evaluer>', $this->xmlContent);
-        $this->assertStringContainsString('<Objets_Prejudice_Estimation>2428</Objets_Prejudice_Estimation>', $this->xmlContent);
+        $this->assertStringContainsString('<Objets_Prejudice_Estimation>17428</Objets_Prejudice_Estimation>', $this->xmlContent);
         $this->assertStringNotContainsString('<Objet_Divers>', $this->xmlContent);
         $this->assertStringContainsString('</Objet>', $this->xmlContent);
     }
@@ -456,6 +468,17 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
 //        $this->assertStringNotContainsString('<Objet_simple_Identite_Naissance_HidNumDep>', $this->xmlContent);
 //        $this->assertStringNotContainsString('<Objet_simple_Identite_Residence_HidNumDep>', $this->xmlContent);
         $this->assertStringContainsString('</Objet_simple>', $this->xmlContent);
+    }
+
+    public function testVehicleSection(): void
+    {
+        $this->assertStringContainsString('<VL>', $this->xmlContent);
+        $this->assertStringContainsString('<VL_Nmr_Immatriculation>AA-123-AA</VL_Nmr_Immatriculation>', $this->xmlContent);
+        $this->assertStringContainsString('<VL_Type_Commercial>C3</VL_Type_Commercial>', $this->xmlContent);
+        $this->assertStringContainsString('<VL_Marque>Citroën</VL_Marque>', $this->xmlContent);
+        $this->assertStringContainsString('<VL_Assurance_Nom>AXA</VL_Assurance_Nom>', $this->xmlContent);
+        $this->assertStringContainsString('<VL_Assurance_Police>1458R147R</VL_Assurance_Police>', $this->xmlContent);
+        $this->assertStringContainsString('</VL>', $this->xmlContent);
     }
 
     public function testContactSection(): void
