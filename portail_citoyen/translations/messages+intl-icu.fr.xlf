@@ -442,6 +442,10 @@
                 <source>pel.description</source>
                 <target>Description</target>
             </trans-unit>
+            <trans-unit id="pel.document.owner.lastname.fistname">
+                <source>pel.document.owner.lastname.fistname</source>
+                <target>Nom et Prénom du titulaire du document</target>
+            </trans-unit>
             <trans-unit id="pel.document.type">
                 <source>pel.document.type</source>
                 <target>Type de document</target>
@@ -633,6 +637,10 @@
             <trans-unit id="pel.i.am.inform.of.article.434.26">
                 <source>pel.i.am.inform.of.article.434.26</source>
                 <target>Je suis informé(e) que l'article 434-26 du code pénal prévoit que le fait de dénoncer mensongèrement à l'autorité judiciaire ou administrative des faits consécutifs d'un crime ou d'un délit qui ont exposé les autorités de police ou judiciaires à d'inutiles recherches est puni de 6 mois d'emprisonnement et de 7500.00€ d'amende. Informations sur les fausses déclarations (art8-2-6CPP/art434-26CP)</target>
+            </trans-unit>
+            <trans-unit id="pel.i.am.the.owner.of.this.document">
+                <source>pel.i.am.the.owner.of.this.document</source>
+                <target>Je suis le titulaire de ce document</target>
             </trans-unit>
             <trans-unit id="pel.i.consent.use.of.data.for.fsi">
                 <source>pel.i.consent.use.of.data.for.fsi</source>
@@ -1057,6 +1065,10 @@
             <trans-unit id="pel.nature.place.unknown">
                 <source>pel.nature.place.unknown</source>
                 <target>Lieu indéterminé</target>
+            </trans-unit>
+            <trans-unit id="pel.precise.owner.lastname.and.firstname">
+                <source>pel.precise.owner.lastname.and.firstname</source>
+                <target>Veuillez préciser le nom et prénom du propriétaire</target>
             </trans-unit>
             <trans-unit id="pel.previous">
                 <source>pel.previous</source>

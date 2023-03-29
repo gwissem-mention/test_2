@@ -277,6 +277,10 @@
             {% if object.documentType is same as(constant('App\\Enum\\DocumentType::Other').value) and object.otherDocumentType is not null %}
                 <li>{{ 'pel.could.you.precise'|trans }} : {{ object.otherDocumentType }}</li>
             {% endif %}
+            <li>{{ 'pel.i.am.the.owner.of.this.document'|trans }} : {{ object.documentOwned ? 'pel.yes'|trans : 'pel.no'|trans }}</li>
+            {% if object.documentOwned is same as false and object.documentOwner is not empty %}
+                <li>{{ 'pel.document.owner.lastname.fistname'|trans }} : {{ object.documentOwner }}</li>
+            {% endif %}
         {% elseif object.category|object_category_get_name is same as('pel.object.category.multimedia') %}
             <li>{{ 'pel.object'|trans }} : {{ object.label }}</li>
             <li>{{ 'pel.brand'|trans }} : {{ object.brand }}</li>
