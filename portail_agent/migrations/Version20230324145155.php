@@ -16,8 +16,10 @@ final class Version20230324145155 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        $this->addSql('ALTER TABLE comment ADD author_id INT NOT NULL');
+        $this->addSql('ALTER TABLE comment ADD author_id INT DEFAULT NULL');
         $this->addSql('ALTER TABLE comment DROP author');
+        $this->addSql('UPDATE comment SET author_id = (SELECT id FROM "user" LIMIT 1)');
+        $this->addSql('ALTER TABLE comment ALTER COLUMN author_id SET NOT NULL');
         $this->addSql('ALTER TABLE comment ADD CONSTRAINT FK_9474526CF675F31B FOREIGN KEY (author_id) REFERENCES "user" (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('CREATE INDEX IDX_9474526CF675F31B ON comment (author_id)');
     }
