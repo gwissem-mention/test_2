@@ -132,7 +132,7 @@
             </trans-unit>
             <trans-unit id="pel.appointment.needed.if">
                 <source>pel.appointment.needed.if</source>
-                <target>La démarche sera nécessairement finalisée par un rendez-vous en présentiel si :</target>
+                <target>Votre démarche aboutira nécessairement à un rendez-vous en présentiel si :</target>
             </trans-unit>
             <trans-unit id="pel.article.10.2">
                 <source>pel.article.10.2</source>
