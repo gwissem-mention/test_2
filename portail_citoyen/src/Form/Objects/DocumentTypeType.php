@@ -20,14 +20,27 @@ class DocumentTypeType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder->add('documentType', ChoiceType::class, [
-            'choices' => DocumentType::getChoices(),
-            'placeholder' => 'pel.object.document.type.choose',
-            'label' => 'pel.document.type',
-            'constraints' => [
-                new NotBlank(),
-            ],
-        ]);
+        $builder
+            ->add('documentType', ChoiceType::class, [
+                'choices' => DocumentType::getChoices(),
+                'placeholder' => 'pel.object.document.type.choose',
+                'label' => 'pel.document.type',
+                'constraints' => [
+                    new NotBlank(),
+                ],
+            ])
+            ->add('documentOwned', ChoiceType::class, [
+                'choices' => [
+                    'pel.yes' => true,
+                    'pel.no' => false,
+                ],
+                'expanded' => true,
+                'label' => 'pel.i.am.the.owner.of.this.document',
+                'inline' => true,
+                'multiple' => false,
+                'empty_data' => '1',
+                'priority' => -1,
+            ]);
 
         $builder->get('documentType')->addEventListener(
             FormEvents::PRE_SET_DATA,
@@ -60,6 +73,38 @@ class DocumentTypeType extends AbstractType
                 }
             }
         );
+
+        $builder->get('documentOwned')->addEventListener(
+            FormEvents::PRE_SET_DATA,
+            function (FormEvent $event) {
+                /** @var bool $documentOwned */
+                $documentOwned = $event->getData();
+                /** @var FormInterface $parent */
+                $parent = $event->getForm()->getParent();
+                if (false === $documentOwned) {
+                    $this->addDocumentOwnerField($parent);
+                } else {
+                    $this->removeDocumentOwnerField($parent);
+                }
+            }
+        );
+
+        $builder->get('documentOwned')->addEventListener(
+            FormEvents::POST_SUBMIT,
+            function (FormEvent $event) {
+                /** @var bool $documentOwned */
+                $documentOwned = $event->getForm()->getData();
+                /** @var FormInterface $parent */
+                $parent = $event->getForm()->getParent();
+                /** @var ?ObjectModel $objectModel */
+                $objectModel = $parent->getData();
+                if (false === $documentOwned) {
+                    $this->addDocumentOwnerField($parent);
+                } else {
+                    $this->removeDocumentOwnerField($parent, $objectModel);
+                }
+            }
+        );
     }
 
     public function configureOptions(OptionsResolver $resolver): void
@@ -85,5 +130,21 @@ class DocumentTypeType extends AbstractType
         $form->remove('otherDocumentType');
 
         $objectModel?->setOtherDocumentType(null);
+    }
+
+    private function addDocumentOwnerField(FormInterface $form): void
+    {
+        $form->add('documentOwner', TextType::class, [
+            'label' => 'pel.precise.owner.lastname.and.firstname',
+            'required' => false,
+            'priority' => -2,
+        ]);
+    }
+
+    private function removeDocumentOwnerField(FormInterface $form, ?ObjectModel $objectModel = null): void
+    {
+        $form->remove('documentOwner');
+
+        $objectModel?->setDocumentOwner(null);
     }
 }

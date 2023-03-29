@@ -31,6 +31,8 @@ class ObjectModel
     private ?float $amount = null;
     private ?int $documentType = null;
     private ?string $otherDocumentType = null;
+    private ?bool $documentOwned = null;
+    private ?string $documentOwner = null;
 
     public function getStatus(): ?int
     {
@@ -268,6 +270,30 @@ class ObjectModel
     public function setOtherDocumentType(?string $otherDocumentType): self
     {
         $this->otherDocumentType = $otherDocumentType;
+
+        return $this;
+    }
+
+    public function getDocumentOwned(): ?bool
+    {
+        return $this->documentOwned;
+    }
+
+    public function setDocumentOwned(?bool $documentOwned): self
+    {
+        $this->documentOwned = $documentOwned;
+
+        return $this;
+    }
+
+    public function getDocumentOwner(): ?string
+    {
+        return $this->documentOwner;
+    }
+
+    public function setDocumentOwner(?string $documentOwner): self
+    {
+        $this->documentOwner = $documentOwner;
 
         return $this;
     }

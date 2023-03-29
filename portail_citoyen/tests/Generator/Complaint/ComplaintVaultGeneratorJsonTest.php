@@ -238,6 +238,8 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'insuranceNumber' => null,
                         'amount' => 100,
                         'documentType' => null,
+                        'documentOwned' => null,
+                        'documentOwner' => null,
                         'otherDocumentType' => null,
                     ],
                     [
@@ -270,6 +272,8 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'insuranceNumber' => null,
                         'amount' => 2000,
                         'documentType' => null,
+                        'documentOwned' => null,
+                        'documentOwner' => null,
                         'otherDocumentType' => null,
                     ],
                     [
@@ -298,6 +302,8 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'insuranceNumber' => null,
                         'amount' => 10,
                         'documentType' => null,
+                        'documentOwned' => null,
+                        'documentOwner' => null,
                         'otherDocumentType' => null,
                     ],
                     [
@@ -326,6 +332,8 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'insuranceNumber' => '1234567890',
                         'amount' => 10000,
                         'documentType' => null,
+                        'documentOwned' => null,
+                        'documentOwner' => null,
                         'otherDocumentType' => null,
                     ],
                 ],
@@ -616,6 +624,8 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'insuranceNumber' => null,
                         'amount' => 100,
                         'documentType' => null,
+                        'documentOwned' => null,
+                        'documentOwner' => null,
                         'otherDocumentType' => null,
                     ],
                     [
@@ -648,6 +658,8 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'insuranceNumber' => null,
                         'amount' => 2000,
                         'documentType' => null,
+                        'documentOwned' => null,
+                        'documentOwner' => null,
                         'otherDocumentType' => null,
                     ],
                     [
@@ -676,6 +688,8 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'insuranceNumber' => null,
                         'amount' => 10,
                         'documentType' => null,
+                        'documentOwned' => null,
+                        'documentOwner' => null,
                         'otherDocumentType' => null,
                     ],
                     [
@@ -704,6 +718,8 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'insuranceNumber' => '1234567890',
                         'amount' => 10000,
                         'documentType' => null,
+                        'documentOwned' => null,
+                        'documentOwner' => null,
                         'otherDocumentType' => null,
                     ],
                 ],
@@ -962,6 +978,8 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'insuranceNumber' => null,
                         'amount' => 100,
                         'documentType' => null,
+                        'documentOwned' => null,
+                        'documentOwner' => null,
                         'otherDocumentType' => null,
                     ],
                     [
@@ -994,6 +1012,8 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'insuranceNumber' => null,
                         'amount' => 2000,
                         'documentType' => null,
+                        'documentOwned' => null,
+                        'documentOwner' => null,
                         'otherDocumentType' => null,
                     ],
                     [
@@ -1022,6 +1042,8 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'insuranceNumber' => null,
                         'amount' => 10,
                         'documentType' => null,
+                        'documentOwned' => null,
+                        'documentOwner' => null,
                         'otherDocumentType' => null,
                     ],
                     [
@@ -1050,6 +1072,8 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'insuranceNumber' => '1234567890',
                         'amount' => 10000,
                         'documentType' => null,
+                        'documentOwned' => null,
+                        'documentOwner' => null,
                         'otherDocumentType' => null,
                     ],
                 ],

@@ -65,9 +65,16 @@ Feature:
     Scenario: I can see a list of text fields translated when I select "Document officiel" from category object list
         When I select "Document officiel" from "objects_objects_0_category"
         Then I should see the key "pel.document.type" translated
+        And I should see the key "pel.i.am.the.owner.of.this.document" translated
         And I should see the key "pel.object.status" translated
         And I should see the key "pel.amount" translated
         And I should see a "select#objects_objects_0_documentType_documentType" element
+        And I should see a "input#objects_objects_0_documentType_documentOwned_0" element
+        And I should see a "input#objects_objects_0_documentType_documentOwned_1" element
+        And the "objects_objects_0_documentType_documentOwned_0" checkbox should be checked
+        When I click the "label[for=objects_objects_0_documentType_documentOwned_1]" element
+        Then I should see the key "pel.precise.owner.lastname.and.firstname" translated
+        And I should see a "input#objects_objects_0_documentType_documentOwner" element
         And I should see a "select#objects_objects_0_status" element
         And I should see a "input#objects_objects_0_amount" element
         And I should not see a "select#objects_objects_0_label" element
