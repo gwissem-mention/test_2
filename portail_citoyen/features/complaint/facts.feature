@@ -165,6 +165,9 @@ Feature:
         And I click the "label[for=facts_address_addressOrRouteFactsKnown_0]" element
         Then the "facts-startAddress-address" field should not contain "Avenue de la République 75011 Paris"
 
+    Scenario: The Google Maps should not be displays at init
+        Then I should not see a "div#map" element
+
     Scenario: A Google Maps should be displayed on the facts page when I select "Street" or "Other" nature place
         And I select "3" from "facts_placeNature"
         Then I should see a "div#map" element

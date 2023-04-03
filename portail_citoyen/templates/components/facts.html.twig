@@ -29,7 +29,7 @@
             {{ form_row(form.placeNature) }}
         </div>
     </div>
-    {% if form.vars.data.placeNature in [3,6] %}
+    {% if form.vars.data.placeNature in [3,6] or (identityAddress is not null and identityAddress.addressType is not same as('etalab_address')) %}
         <div class="fr-grid-row fr-py-2w">
             <div class="fr-col">
                 {{ component('google_maps', {

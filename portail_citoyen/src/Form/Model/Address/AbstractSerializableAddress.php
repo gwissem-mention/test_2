@@ -13,4 +13,9 @@ use Symfony\Component\Serializer\Annotation\DiscriminatorMap;
 abstract class AbstractSerializableAddress implements AddressInterface
 {
     protected string $addressType;
+
+    public function getAddressType(): string
+    {
+        return $this->addressType;
+    }
 }
