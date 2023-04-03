@@ -29,7 +29,7 @@ Feature:
         And I should see a "aside" element
         And I should see a "main" element
         And I should see 5 "button[data-bs-toggle='modal']" element
-        And I should see 24 "button" element
+        And I should see 27 "button" element
         And I should see the key "pel.assign.declaration.to" translated
         And I should see the key "pel.send.to.lrp" translated
         And I should see the key "pel.reject" translated
@@ -253,6 +253,16 @@ Feature:
         And I should see the key "pel.file.generated" translated
         Given I am on the homepage
         Then I should see 6 ".btn-warning" element
+
+    @javascript
+    Scenario: I can toggle the send report to victim modal
+        Given I am on "/plainte/recapitulatif/111"
+        When I press "Envoyer PV au déclarant et clôturer"
+        Then I should see a ".modal[aria-modal=true]" element
+        And I should see the key "pel.back" translated
+        And I should see the key "pel.validate" translated
+        When I press "complaint-send-report-to-victim-button-back"
+        Then I should not see a ".modal[aria-modal=true]" element
 
     @javascript
     Scenario: I can toggle the assign modal
