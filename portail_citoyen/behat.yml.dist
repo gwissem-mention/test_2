@@ -33,6 +33,8 @@ default:
                 - FailAid\Context\FailureContext
                 - App\Tests\Behat\DatabaseContext
                 - App\Tests\Behat\FranceConnectContext
+                - App\Tests\Behat\GoogleMapsContext
+
     extensions:
         FriendsOfBehat\SymfonyExtension:
             kernel:

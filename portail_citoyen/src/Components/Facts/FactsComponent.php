@@ -36,7 +36,7 @@ class FactsComponent extends AbstractController
 
     private FactsModel $factsModel;
 
-    #[LiveProp(writable: true, exposed: ['addressSearch', 'addressId', 'addressSearchSaved'])]
+    #[LiveProp(writable: true, exposed: ['addressSearch', 'addressId', 'addressSearchSaved', 'latitude', 'longitude'])]
     public EtalabInput $startAddressEtalabInput;
 
     #[LiveProp(writable: true, exposed: ['addressSearch', 'addressId', 'addressSearchSaved'])]
@@ -131,7 +131,11 @@ class FactsComponent extends AbstractController
             return $etalabInput;
         }
 
-        $etalabInput->setAddressSearch($address->getLabel() ?? '');
+        $etalabInput
+            ->setAddressSearch($address->getLabel() ?? '')
+            ->setLongitude($address->getLongitude() ?? '')
+            ->setLatitude($address->getLatitude() ?? '');
+
         if ($address instanceof AddressEtalabModel) {
             $etalabInput
                 ->setAddressId($address->getId() ?? '')

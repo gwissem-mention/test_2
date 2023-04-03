@@ -4,12 +4,16 @@ declare(strict_types=1);
 
 namespace App\Form\Model;
 
+use App\Form\Model\Address\LatLngTrait;
+
 class EtalabInput
 {
+    use LatLngTrait;
+
     public function __construct(
         private string $addressSearch = '',
         private string $addressId = '',
-        private string $addressSearchSaved = ''
+        private string $addressSearchSaved = '',
     ) {
     }
 

@@ -9,9 +9,9 @@ use App\Form\Model\Address\AddressModel;
 
 class AddressModelFactory
 {
-    public static function create(string $label): AddressModel
+    public static function create(string $label, ?string $latitude = null, ?string $longitude = null): AddressModel
     {
-        return (new AddressModel())->setLabel($label);
+        return (new AddressModel())->setLabel($label)->setLongitude($longitude)->setLatitude($latitude);
     }
 
     public static function createFromEtalab(
@@ -29,7 +29,9 @@ class AddressModelFactory
         ?string $context = null,
         ?float $x = null,
         ?float $y = null,
-        ?float $importance = null
+        ?float $importance = null,
+        ?string $latitude = null,
+        ?string $longitude = null
     ): AddressEtalabModel {
         return (new AddressEtalabModel())
             ->setLabel($label)
@@ -46,6 +48,8 @@ class AddressModelFactory
             ->setContext($context)
             ->setX($x)
             ->setY($y)
-            ->setImportance($importance);
+            ->setImportance($importance)
+            ->setLatitude($latitude)
+            ->setLongitude($longitude);
     }
 }

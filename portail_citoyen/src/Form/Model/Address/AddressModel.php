@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\Form\Model\Address;
 
-class AddressModel extends AbstractSerializableAddress implements AddressInterface
+class AddressModel extends AbstractSerializableAddress
 {
+    use LatLngTrait;
+
     private ?string $label = null;
 
     public function __construct()

@@ -6,6 +6,8 @@ namespace App\Form\Model\Address;
 
 class AddressEtalabModel extends AbstractSerializableAddress
 {
+    use LatLngTrait;
+
     private ?string $id = null;
     private ?string $label = null;
     private ?string $type = null;

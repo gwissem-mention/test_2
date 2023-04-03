@@ -36,6 +36,12 @@ class EtalabComponent
     #[LiveProp]
     public string $inputName;
 
+    #[LiveProp(writable: true)]
+    public ?string $latitude = null;
+
+    #[LiveProp(writable: true)]
+    public ?string $longitude = null;
+
     /**
      * @var string[] $errors
      */

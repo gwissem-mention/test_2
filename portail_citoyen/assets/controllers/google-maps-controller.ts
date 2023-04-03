@@ -1,6 +1,6 @@
 import {Controller} from "@hotwired/stimulus";
 import {getComponent, Component} from "@symfony/ux-live-component";
-import {GoogleMap} from "../scripts/google/google-map";
+import {FactsAddressGoogleMap} from "../scripts/google/facts-address-google-map";
 
 export default class extends Controller {
     protected component: Component | undefined | null;
@@ -14,10 +14,12 @@ export default class extends Controller {
     }
 
     private init(): void {
-        const map: HTMLElement | null = document.getElementById("map");
+        if (this.component) {
+            const map: HTMLElement | null = document.getElementById("map");
 
-        if (map) {
-            new GoogleMap(map);
+            if (map) {
+                new FactsAddressGoogleMap(map, this.component);
+            }
         }
     }
 }

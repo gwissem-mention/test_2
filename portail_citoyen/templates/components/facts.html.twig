@@ -56,7 +56,7 @@
                     {{ form_label(form.address.startAddress) }}
                     {{ component('etalab_component', {
                         'data-live-id': 'facts-startAddress-address',
-                        dataModel: 'addressSearch:startAddressEtalabInput.addressSearch addressId:startAddressEtalabInput.addressId addressSearchSaved:startAddressEtalabInput.addressSearchSaved',
+                        dataModel: 'addressSearch:startAddressEtalabInput.addressSearch addressId:startAddressEtalabInput.addressId addressSearchSaved:startAddressEtalabInput.addressSearchSaved latitude:startAddressEtalabInput.latitude longitude:startAddressEtalabInput.longitude',
                         inputName: 'facts-startAddress-address',
                         errors: etalab_errors,
                     }) }}
