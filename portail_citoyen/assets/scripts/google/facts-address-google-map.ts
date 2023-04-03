@@ -2,9 +2,10 @@ import {Loader} from "@googlemaps/js-api-loader";
 import {Component} from "@symfony/ux-live-component";
 
 export class FactsAddressGoogleMap {
-    private readonly DEFAULT_LATITUDE: number = 48.866667;
-    private readonly DEFAULT_LONGITUDE: number = 2.333333;
+    private readonly DEFAULT_LATITUDE: number = 46.7107;
+    private readonly DEFAULT_LONGITUDE: number = 2.4321;
     private readonly DEFAULT_ZOOM: number = 14;
+    private readonly DEFAULT_ZOOM_FRANCE: number = 5;
 
     private _loader!: Loader;
     private _map!: google.maps.Map;
@@ -49,17 +50,63 @@ export class FactsAddressGoogleMap {
     private async setMap(google: any): Promise<void> {
         if (this._mapElement) {
             const latLng = await this.getLatLng();
+            const lat: number = latLng ? latLng.lat() : this.DEFAULT_LATITUDE;
+            const lng: number = latLng ? latLng.lng() : this.DEFAULT_LONGITUDE;
+            const zoom: number = latLng ? this.DEFAULT_ZOOM : this.DEFAULT_ZOOM_FRANCE;
+
+            this._map = new google.maps.Map(this._mapElement, {
+                center: {
+                    lat: lat,
+                    lng: lng
+                },
+                zoom: zoom
+            });
+
             if (latLng) {
-                this._map = new google.maps.Map(this._mapElement, {
-                    center: {
-                        lat: latLng.lat(),
-                        lng: latLng.lng()
-                    },
-                    zoom: this.DEFAULT_ZOOM
-                });
-                (window as any).map = this._map;
                 this.addMarker(latLng);
             }
+
+            this.addSearchBox();
+            (window as any).map = this._map;
+        }
+    }
+
+    private addSearchBox(): void {
+        const input: HTMLInputElement = document.getElementById("map-search") as HTMLInputElement;
+        const searchBox = new google.maps.places.SearchBox(input);
+        const controlsTopLeft = this._map.controls[google.maps.ControlPosition.LEFT_TOP];
+
+        if (controlsTopLeft) {
+            controlsTopLeft.push(input);
+
+            this._map.addListener("bounds_changed", () => {
+                searchBox.setBounds(this._map.getBounds() as google.maps.LatLngBounds);
+            });
+
+            searchBox.addListener("places_changed", () => {
+                const places: google.maps.places.PlaceResult[] | undefined = searchBox.getPlaces();
+
+                if (!places || places.length == 0) {
+                    return;
+                }
+
+                const bounds = new google.maps.LatLngBounds();
+
+                places.forEach((place: any) => {
+                    if (!place.geometry || !place.geometry.location) {
+                        return;
+                    }
+                    if (place.geometry.viewport) {
+                        bounds.union(place.geometry.viewport);
+                    } else {
+                        bounds.extend(place.geometry.location);
+                    }
+
+                    this.addMarker(place.geometry.location);
+                });
+
+                this._map.fitBounds(bounds);
+            });
         }
     }
 
@@ -148,20 +195,16 @@ export class FactsAddressGoogleMap {
         return label;
     }
 
-    private async getGoogleLatLng(): Promise<google.maps.LatLng | null> {
-        const addressInput: HTMLElement | null = document.getElementById("facts-startAddress-address");
+    private async getGoogleLatLng(address: string): Promise<google.maps.LatLng | null> {
         let coord = null;
-        if (addressInput) {
-            // @ts-ignore
-            const address = addressInput.value;
-            const geocoder = new google.maps.Geocoder();
-
-            await geocoder.geocode({"address": address}, (results, status) => {
-                if (status === google.maps.GeocoderStatus.OK && results && results[0]) {
-                    coord = results[0].geometry.location;
-                }
-            });
-        }
+        const geocoder = new google.maps.Geocoder();
+        await geocoder.geocode({"address": address}, (results, status) => {
+            if (status === google.maps.GeocoderStatus.OK && results && results[0]) {
+                coord = results[0].geometry.location;
+            }
+        }).catch(() => {
+            coord = null;
+        });
 
         return coord;
     }
@@ -185,13 +228,17 @@ export class FactsAddressGoogleMap {
         if (componentParent) {
             const lat: number = componentParent.getData("startAddressEtalabInput.latitude");
             const lng: number = componentParent.getData("startAddressEtalabInput.longitude");
+            // value prop is not present in HTMLElement type
+            // @ts-ignore
+            const factsAddress: string = document.getElementById("facts-startAddress-address")?.value;
             if (lat && lng) {
                 latLng = new google.maps.LatLng(lat, lng);
+            } else if (factsAddress) {
+                latLng = await this.getGoogleLatLng(factsAddress);
             } else {
-                latLng = await this.getGoogleLatLng();
-
-                if (latLng === null) {
-                    latLng = new google.maps.LatLng(this.DEFAULT_LATITUDE, this.DEFAULT_LONGITUDE);
+                const identityAddress = componentParent.getData("identityAddress");
+                if (identityAddress) {
+                    latLng = await this.getGoogleLatLng(identityAddress);
                 }
             }
         }

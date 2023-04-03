@@ -1102,6 +1102,10 @@
                 <source>pel.results.loading</source>
                 <target>Chargement des résultats ...</target>
             </trans-unit>
+            <trans-unit id="pel.search.in.google.maps">
+                <source>pel.search.in.google.maps</source>
+                <target>Rechercher dans Google Maps</target>
+            </trans-unit>
             <trans-unit id="pel.serial.number">
                 <source>pel.serial.number</source>
                 <target>N° de série/IMEI</target>
