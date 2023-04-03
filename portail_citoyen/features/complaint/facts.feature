@@ -165,3 +165,26 @@ Feature:
         And I click the "label[for=facts_address_addressOrRouteFactsKnown_0]" element
         Then the "facts-startAddress-address" field should not contain "Avenue de la République 75011 Paris"
 
+    Scenario: A Google Maps should be displayed on the facts page when I select "Street" or "Other" nature place
+        And I select "3" from "facts_placeNature"
+        Then I should see a "div#map" element
+        And I should see a ".gm-style" element
+        When I select "6" from "facts_placeNature"
+        Then I should see a "div#map" element
+        And I should see a ".gm-style" element
+
+    Scenario: The facts startAddress should be filled with the address selected on the map
+        And I select "3" from "facts_placeNature"
+        When I click on the map at latitude "45.768179" and longitude "4.859404"
+        Then the "facts_address_addressOrRouteFactsKnown_0" field should contain "1"
+        And the "facts-startAddress-address" field should contain "15 Place Jules Ferry 69006 Lyon"
+        When I fill in "facts_description" with "description informations"
+        And I click the "label[for=facts_offenseDate_exactDateKnown_0]" element
+        And I fill in "facts_offenseDate_startDate" with "01/01/2022"
+        And I click the "label[for=facts_offenseDate_choiceHour_0]" element
+        And I fill in "facts_offenseDate_hour" with "15:00"
+        And I press "facts_submit"
+        Then I should be on "/porter-plainte/objets"
+        Given I am on "/porter-plainte/faits"
+        Then the marker should be at latitude "45.768179" and longitude "4.859404"
+

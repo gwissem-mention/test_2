@@ -14,7 +14,8 @@
     OODRIVE_BASE_URI: https://sharing.oodrive.com
     OODRIVE_WORKSPACE: pel
     OODRIVE_OAUTH_CLIENT_ID: pel
-        
+    GOOGLE_MAPS_API_KEY: AIzaSyC0UUADE5DrNeRMqd3Dp0MMuiMSTWrI12I
+
   vars_files:
     - ../vars/vars.yaml
     - ../vault/vault.yaml

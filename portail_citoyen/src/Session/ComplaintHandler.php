@@ -19,12 +19,17 @@ class ComplaintHandler
     public function getAffectedService(ComplaintModel $complaint): ?string
     {
         $serviceCode = null;
-        // First case implementation, facts are at home, take the identity address to get the affected service
-        if ($this->naturePlaceThesaurusProvider->getChoices()['pel.nature.place.home'] === $complaint->getFacts()?->getPlaceNature()) {
-            $identityFrenchAddress = $complaint->getIdentity()?->getContactInformation()?->getFrenchAddress();
-            if ($identityFrenchAddress instanceof AddressEtalabModel) {
-                $serviceCode = $this->cityServiceRepository->findOneBy(['cityCode' => $identityFrenchAddress->getCitycode()])?->getServiceCode();
-            }
+
+        $placeNatureChoices = $this->naturePlaceThesaurusProvider->getChoices();
+        $factsStartAddress = $complaint->getFacts()?->getAddress()?->getStartAddress();
+        $identityFrenchAddress = $complaint->getIdentity()?->getContactInformation()?->getFrenchAddress();
+        $factsAddress = match ($complaint->getFacts()?->getPlaceNature()) {
+            $placeNatureChoices['pel.nature.place.home'] => $identityFrenchAddress,
+            default => $factsStartAddress instanceof AddressEtalabModel ? $factsStartAddress : $identityFrenchAddress,
+        };
+
+        if ($factsAddress instanceof AddressEtalabModel) {
+            $serviceCode = $this->cityServiceRepository->findOneBy(['cityCode' => $factsAddress->getCitycode()])?->getServiceCode();
         }
 
         return $serviceCode;

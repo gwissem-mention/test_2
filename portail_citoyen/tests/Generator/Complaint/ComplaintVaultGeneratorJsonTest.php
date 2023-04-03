@@ -38,6 +38,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
         $createdAt = new \DateTimeImmutable('2023-03-17T13:05:38+00:00', new \DateTimeZone('UTC'));
 
         $complaintJson = $this->generator->generate($this->complaintFactory->create(DeclarantStatus::Victim->value, $id, $createdAt));
+
         $complaintJsonExpected = json_encode([
             'id' => '698d4e06-c4c4-11ed-af78-973b2c1a1c97',
             'createdAt' => [
@@ -115,6 +116,8 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'y' => 6977867.14,
                         'importance' => 0.67727,
                         'label' => '8 Boulevard du Port 80000 Amiens',
+                        'latitude' => null,
+                        'longitude' => null,
                     ],
                     'foreignAddress' => null,
                     'email' => 'jean.dupont@example.com',
@@ -144,6 +147,8 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'y' => 6977867.14,
                         'importance' => 0.67727,
                         'label' => '8 Boulevard du Port 80000 Amiens',
+                        'latitude' => null,
+                        'longitude' => null,
                     ],
                     'endAddress' => [
                         'addressType' => 'etalab_address',
@@ -162,6 +167,8 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'y' => 6977867.14,
                         'importance' => 0.67727,
                         'label' => '8 Boulevard du Port 80000 Amiens',
+                        'latitude' => null,
+                        'longitude' => null,
                     ],
                 ],
                 'offenseDate' => [
@@ -238,9 +245,9 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'insuranceNumber' => null,
                         'amount' => 100,
                         'documentType' => null,
+                        'otherDocumentType' => null,
                         'documentOwned' => null,
                         'documentOwner' => null,
-                        'otherDocumentType' => null,
                     ],
                     [
                         'status' => [
@@ -272,9 +279,9 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'insuranceNumber' => null,
                         'amount' => 2000,
                         'documentType' => null,
+                        'otherDocumentType' => null,
                         'documentOwned' => null,
                         'documentOwner' => null,
-                        'otherDocumentType' => null,
                     ],
                     [
                         'status' => [
@@ -302,9 +309,9 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'insuranceNumber' => null,
                         'amount' => 10,
                         'documentType' => null,
+                        'otherDocumentType' => null,
                         'documentOwned' => null,
                         'documentOwner' => null,
-                        'otherDocumentType' => null,
                     ],
                     [
                         'status' => [
@@ -332,9 +339,9 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'insuranceNumber' => '1234567890',
                         'amount' => 10000,
                         'documentType' => null,
+                        'otherDocumentType' => null,
                         'documentOwned' => null,
                         'documentOwner' => null,
-                        'otherDocumentType' => null,
                     ],
                 ],
             ],
@@ -434,6 +441,8 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'y' => null,
                         'importance' => null,
                         'label' => null,
+                        'latitude' => null,
+                        'longitude' => null,
                     ],
                     'email' => 'jean.dupont@example.com',
                 ],
@@ -504,6 +513,8 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'y' => null,
                         'importance' => null,
                         'label' => null,
+                        'latitude' => null,
+                        'longitude' => null,
                     ],
                     'email' => 'jean.dupont@example.com',
                 ],
@@ -530,6 +541,8 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'y' => 6977867.14,
                         'importance' => 0.67727,
                         'label' => '8 Boulevard du Port 80000 Amiens',
+                        'latitude' => null,
+                        'longitude' => null,
                     ],
                     'endAddress' => [
                         'addressType' => 'etalab_address',
@@ -548,6 +561,8 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'y' => 6977867.14,
                         'importance' => 0.67727,
                         'label' => '8 Boulevard du Port 80000 Amiens',
+                        'latitude' => null,
+                        'longitude' => null,
                     ],
                 ],
                 'offenseDate' => [
@@ -818,6 +833,8 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'y' => 6977867.14,
                         'importance' => 0.67727,
                         'label' => '8 Boulevard du Port 80000 Amiens',
+                        'latitude' => null,
+                        'longitude' => null,
                     ],
                     'foreignAddress' => null,
                     'email' => 'jean.dupont@example.com',
@@ -858,6 +875,8 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'y' => 6977867.14,
                         'importance' => 0.67727,
                         'label' => '8 Boulevard du Port 80000 Amiens',
+                        'latitude' => null,
+                        'longitude' => null,
                     ],
                     'foreignAddress' => null,
                     'email' => 'entreprise@gmail.com',
@@ -884,6 +903,8 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'y' => 6977867.14,
                         'importance' => 0.67727,
                         'label' => '8 Boulevard du Port 80000 Amiens',
+                        'latitude' => null,
+                        'longitude' => null,
                     ],
                     'endAddress' => [
                         'addressType' => 'etalab_address',
@@ -902,6 +923,8 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'y' => 6977867.14,
                         'importance' => 0.67727,
                         'label' => '8 Boulevard du Port 80000 Amiens',
+                        'latitude' => null,
+                        'longitude' => null,
                     ],
                 ],
                 'offenseDate' => [

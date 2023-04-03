@@ -19,19 +19,18 @@ class AddressEtalabHandler
     public function getAddressModel(EtalabInput $etalabInput): AbstractSerializableAddress
     {
         if ('' === $etalabInput->getAddressId() || '' === $etalabInput->getAddressSearchSaved()) {
-            return AddressModelFactory::create($etalabInput->getAddressSearch());
+            return AddressModelFactory::create($etalabInput->getAddressSearch())
+                ->setLatitude($etalabInput->getLatitude())
+                ->setLongitude($etalabInput->getLongitude());
         }
         try {
             /** @var array<array<array<mixed>>> $datalabResponse */
             $datalabResponse = $this->etalabAddressApiClient->search($etalabInput->getAddressSearchSaved(), 5);
         } catch (\Exception) {
-            return AddressModelFactory::create($etalabInput->getAddressSearch());
+            return AddressModelFactory::create($etalabInput->getAddressSearch(), $etalabInput->getLatitude(), $etalabInput->getLongitude());
         }
 
-        return $this->findOneById(
-            $etalabInput->getAddressId(),
-            $datalabResponse['features']
-        ) ?? AddressModelFactory::create($etalabInput->getAddressSearch());
+        return $this->findOneById($etalabInput->getAddressId(), $datalabResponse['features'])?->setLatitude($etalabInput->getLatitude())->setLongitude($etalabInput->getLongitude()) ?? AddressModelFactory::create($etalabInput->getAddressSearch(), $etalabInput->getLatitude(), $etalabInput->getLongitude());
     }
 
     /**

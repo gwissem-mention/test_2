@@ -11,7 +11,8 @@ parameters:
     app.folder_rotation.count: '%env(FOLDER_ROTATION_COUNT)%'
     app.folder_rotation.treshold: '%env(FOLDER_ROTATION_TRESHOLD)%'
     app.oodrive.root_folder_id: '%env(OODRIVE_ROOT_FOLDER_ID)%'
-
+    app.google_maps_api_key: '%env(GOOGLE_MAPS_API_KEY)%'
+    
 services:
     _defaults:
         autowire: true
