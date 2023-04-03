@@ -1,3 +1,4 @@
 <div {{ attributes.add(stimulus_controller('google-maps')) }}>
-    <div id="map" style="height: 400px"></div>
+    <input id="map-search" type="text" placeholder="{{ 'pel.search.in.google.maps'|trans }}" class="map-search"/>
+    <div id="map" class="map"></div>
 </div>
