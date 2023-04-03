@@ -146,6 +146,10 @@
                 <source>pel.click.here.to.display.these.complaints</source>
                 <target>Cliquez ici pour afficher ces déclarations</target>
             </trans-unit>
+            <trans-unit id="pel.click.here.to.send.the.report.to.victim.and.close">
+                <source>pel.click.here.to.send.the.report.to.victim.and.close</source>
+                <target> Cliquez ici pour envoyer le PV à la victime et clôturer la déclaration</target>
+            </trans-unit>
             <trans-unit id="pel.click.here.to.send.this.declaration.to.lrp">
                 <source>pel.click.here.to.send.this.declaration.to.lrp</source>
                 <target>Cliquez ici pour envoyer cette déclaration vers LRP</target>
@@ -677,6 +681,10 @@
             <trans-unit id="pel.send.compatible.data">
                 <source>pel.send.compatible.data</source>
                 <target>Envoi des données compatibles</target>
+            </trans-unit>
+            <trans-unit id="pel.send.report.to.declarant.and.close">
+                <source>pel.send.report.to.declarant.and.close</source>
+                <target>Envoyer PV au déclarant et clôturer</target>
             </trans-unit>
             <trans-unit id="pel.send.to.lrp">
                 <source>pel.send.to.lrp</source>
