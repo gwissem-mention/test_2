@@ -80,7 +80,6 @@ class FactAddressType extends AbstractType
                 ->add('startAddress', AddressEtalabType::class, [
                     'label' => 'pel.address.start.or.exact',
                     'help' => 'pel.address.start.or.exact.help',
-                    'address_data' => $form->getConfig()->getOption('start_address'),
                     'constraints' => [
                         new NotBlank(),
                     ],
@@ -103,7 +102,6 @@ class FactAddressType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => FactAddressModel::class,
-            'start_address' => null,
         ]);
     }
 }

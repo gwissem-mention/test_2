@@ -135,6 +135,8 @@ class IdentityComponent extends AbstractController
             $contactInformation = $identity->getContactInformation();
             $contactInformation?->setFrenchAddress($address);
             $identity->setContactInformation($contactInformation);
+        } else {
+            $identity->getContactInformation()?->setFrenchAddress(null);
         }
 
         if (isset($this->formValues['corporation']['frenchAddress'])) {
@@ -144,6 +146,8 @@ class IdentityComponent extends AbstractController
             $corporation = $identity->getCorporation();
             $corporation?->setFrenchAddress($address);
             $identity->setCorporation($corporation);
+        } else {
+            $identity->getCorporation()?->setFrenchAddress(null);
         }
 
         if (isset($this->formValues['representedPersonContactInformation']['frenchAddress'])) {
@@ -151,6 +155,8 @@ class IdentityComponent extends AbstractController
                 $address = $this->addressEtalabHandler->getAddressModel($this->representedPersonEtalabInput);
             }
             $identity->getRepresentedPersonContactInformation()?->setFrenchAddress($address);
+        } else {
+            $identity->getRepresentedPersonContactInformation()?->setFrenchAddress(null);
         }
 
         $this->sessionHandler->setComplaint(

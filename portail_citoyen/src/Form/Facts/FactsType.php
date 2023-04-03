@@ -79,12 +79,11 @@ class FactsType extends AbstractType
         );
     }
 
-    private function addAddressField(FormInterface $form, ?string $address = null): void
+    private function addAddressField(FormInterface $form): void
     {
         $form->add('address', FactAddressType::class, [
             'label' => false,
             'compound' => true,
-            'start_address' => $address,
         ]);
     }
 

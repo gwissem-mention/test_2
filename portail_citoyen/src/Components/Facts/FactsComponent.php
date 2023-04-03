@@ -37,7 +37,7 @@ class FactsComponent extends AbstractController
     private FactsModel $factsModel;
 
     #[LiveProp]
-    public string $identityAddress;
+    public ?AbstractSerializableAddress $identityAddress = null;
 
     #[LiveProp(writable: true, exposed: ['addressSearch', 'addressId', 'addressSearchSaved', 'latitude', 'longitude'])]
     public EtalabInput $startAddressEtalabInput;
@@ -57,7 +57,7 @@ class FactsComponent extends AbstractController
 
     public function mount(): void
     {
-        $this->identityAddress = $this->sessionHandler->getComplaint()?->getIdentity()?->getContactInformation()?->getFrenchAddress()?->getLabel() ?? '';
+        $this->identityAddress = $this->sessionHandler->getComplaint()?->getIdentity()?->getContactInformation()?->getFrenchAddress();
     }
 
     public function __invoke(): void

@@ -41,7 +41,7 @@ class GoogleMapsContext implements Context
             return;
         }
 
-        throw new ExpectationException('Marker not found', $this->session->getDriver());
+        throw new ExpectationException(sprintf('Marker not found at good position, found at lat %s lng %s', $lat, $lng), $this->session->getDriver());
     }
 
     /**

@@ -236,7 +236,7 @@ export class FactsAddressGoogleMap {
             } else if (factsAddress) {
                 latLng = await this.getGoogleLatLng(factsAddress);
             } else {
-                const identityAddress = componentParent.getData("identityAddress");
+                const identityAddress = componentParent.getData("identityAddress")?.label;
                 if (identityAddress) {
                     latLng = await this.getGoogleLatLng(identityAddress);
                 }

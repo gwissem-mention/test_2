@@ -235,3 +235,19 @@ Feature:
         When I am on "/porter-plainte/identite"
         Then the "identity_declarantStatus_0" field should contain "1"
 
+    Scenario: I fill the identity form with an non etalab address, then I should see a google maps opened in the facts form
+        When I click the "label[for=identity_declarantStatus_0]" element
+        And I select "1" from "identity_civilState_civility"
+        And I fill in "identity_civilState_birthName" with "Dupont"
+        And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
+        And I fill in "identity_civilState_birthDate" with "01/01/2000"
+        And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
+        And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
+        And I fill in "contact-information-address" with "avenue de la république paris"
+        And I fill in "identity_contactInformation_email" with "jean@test.com"
+        And I fill in "identity_contactInformation_phone_number" with "0102030405"
+        When I press "identity_submit"
+        Then I should be on "/porter-plainte/faits"
+        And I should see a "div#map" element
+        And I should see a ".gm-style" element
+        And the marker should be at latitude "48.8650197" and longitude "2.3758909"
