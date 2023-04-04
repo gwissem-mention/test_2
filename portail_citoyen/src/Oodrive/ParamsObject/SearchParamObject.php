@@ -123,6 +123,11 @@ class SearchParamObject
         return $this;
     }
 
+    public function asUrlPart(): string
+    {
+        return http_build_query($this->asArray());
+    }
+
     /**
      * @return array<string, mixed>
      */

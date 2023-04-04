@@ -12,6 +12,9 @@
       OODRIVE_BASE_URI={{ ansible_env.OODRIVE_BASE_URI }}
       OODRIVE_WORKSPACE={{ ansible_env.OODRIVE_WORKSPACE }}
       OODRIVE_OAUTH_CLIENT_ID={{ ansible_env.OODRIVE_OAUTH_CLIENT_ID }}
+      FOLDER_ROTATION_COUNT={{ ansible_env.FOLDER_ROTATION_COUNT }}
+      FOLDER_ROTATION_TRESHOLD={{ ansible_env.FOLDER_ROTATION_TRESHOLD }}
+      OODRIVE_ROOT_FOLDER_ID={{ ansible_env.OODRIVE_ROOT_FOLDER_ID }}
       GOOGLE_MAPS_API_KEY={{ ansible_env.GOOGLE_MAPS_API_KEY }}
 
 - name: Install vendors for prod env

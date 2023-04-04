@@ -18,7 +18,7 @@ interface ApiClientInterface
 
     public function createFolder(string $folderName, string $parentId): Folder;
 
-    public function uploadFile(File $fileContent, string $fileName, string $parentName): OodriveFile;
+    public function uploadFile(File|string $fileContent, string $fileName, string $parentId): OodriveFile;
 
     public function uploadFileVersion(OodriveFile $file, File $fileContent): OodriveFile;
 

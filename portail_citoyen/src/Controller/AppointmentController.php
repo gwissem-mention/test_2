@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AppointmentController extends AbstractController
 {
-    #[Route('/rendez-vous', name: 'appointment')]
+    #[Route('/rendez-vous', name: 'complaint.appointment')]
     public function __invoke(): Response
     {
         return $this->render('pages/appointment.html.twig');

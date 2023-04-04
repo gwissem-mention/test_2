@@ -166,5 +166,5 @@ Feature:
         And I should see the key "pel.total.message.amount" translated
         And I should see "Vous avez ajouté 2 objets pour un montant total de 200,00 €"
         When I press "Suivant"
-        And I follow "Je confirme"
+        And I press "Je confirme"
         Then I should be on "/rendez-vous"

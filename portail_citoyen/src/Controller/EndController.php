@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class EndController extends AbstractController
 {
-    #[Route('/fin', name: 'end')]
+    #[Route('/fin', name: 'complaint.end')]
     public function __invoke(): Response
     {
         return $this->render('pages/end.html.twig');

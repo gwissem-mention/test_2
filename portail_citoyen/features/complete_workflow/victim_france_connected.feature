@@ -137,5 +137,5 @@ Feature:
         And I should see the key "pel.place.complaint.handling" translated
         And I should see "Commissariat de police de Paris 11ème arrondissement - 12 PASSAGE CHARLES DALLERY 75011 PARIS 11"
         When I press "Suivant"
-        And I follow "Je confirme"
+        And I press "Je confirme"
         Then I should be on "/fin"
