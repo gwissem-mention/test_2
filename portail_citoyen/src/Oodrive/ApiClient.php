@@ -64,10 +64,8 @@ class ApiClient implements ApiClientInterface
         $this->oodriveLogger->info(sprintf('Searching for %s', http_build_query($searchParamObject->asArray())));
 
         try {
-            $response = $this->oodriveClient->request('GET', 'share/api/v1/search/items', [
-                'query' => $searchParamObject->asArray(),
+            $response = $this->oodriveClient->request('GET', 'share/api/v1/search/items?'.$searchParamObject->asUrlPart(), [
                 'headers' => [
-                    'Content-Type' => 'application/json',
                     'Accept' => 'application/json',
                 ],
             ]);
@@ -176,7 +174,7 @@ class ApiClient implements ApiClientInterface
         return $folder;
     }
 
-    public function uploadFile(File $fileContent, string $fileName, string $parentId): OodriveFile
+    public function uploadFile(File|string $fileContent, string $fileName, string $parentId): OodriveFile
     {
         $this->eventDispatcher->dispatch(new PreUploadFile($fileName, $parentId), PreUploadFile::NAME);
         $this->oodriveLogger->info(sprintf('Creating a file metadata with name %s and parent %s', $fileName, $parentId));
@@ -529,17 +527,24 @@ class ApiClient implements ApiClientInterface
         return new OodriveFile($responseJson);
     }
 
-    private function doUploadFileContent(OodriveFile $fileMetadata, File $fileContent): bool
+    private function doUploadFileContent(OodriveFile $fileMetadata, File|string $fileContent): bool
     {
+        if ($fileContent instanceof File) {
+            $fileSize = $fileContent->getSize();
+            $fileContent = $fileContent->getContent();
+        } else {
+            $fileSize = strlen($fileContent);
+        }
+
         try {
             $response = $this->oodriveClient->request('PUT', sprintf('share/api/v1/io/items/%s', $fileMetadata->getId()), [
                 'headers' => [
                     'Content-Type' => 'application/octet-stream',
-                    'Content-Length' => $fileContent->getSize(),
+                    'Content-Length' => $fileSize,
                     'X-Upload-Id' => Uuid::v6(),
                     'Accept' => '*/*',
                 ],
-                'body' => $fileContent->getContent(),
+                'body' => $fileContent,
             ]);
         } catch (ClientExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface|TransportExceptionInterface $e) {
             $this->oodriveLogger->error(sprintf('Failed uploading file with ID %s. Got error %s', $fileMetadata->getId(), $e->getMessage()));

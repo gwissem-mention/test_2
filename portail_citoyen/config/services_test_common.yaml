@@ -12,6 +12,7 @@ services:
     Symfony\Component\HttpFoundation\Session\SessionFactoryInterface: '@session.factory'
 
     Psr\Container\ContainerInterface $behatDriverContainer: '@behat.driver.service_container'
+    App\Oodrive\ApiClientInterface: '@App\Tests\Behat\MockedClasses\FakeOodriveApiClient'
 
     App\Tests\Behat\FranceConnectContext:
         $baseUri: '%env(FRANCE_CONNECT_BASE_URI)%'

@@ -25,6 +25,7 @@ class FolderResolver
     private function getEmailFolder(string $email): Folder
     {
         $searchParam = (new SearchParamObject())->type(['folder'])->q($email);
+
         /** @var Folder[] $results */
         $results = $this->oodriveClient->search($searchParam);
 
@@ -34,6 +35,6 @@ class FolderResolver
 
         $folder = $this->folderRotator->getLeastUsedFolder($this->oodriveRootFolderId);
 
-        return $this->oodriveClient->createFolder(uniqid().'@oodrive.com', $folder->getId());
+        return $this->oodriveClient->createFolder($email, $folder->getId());
     }
 }
