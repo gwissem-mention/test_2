@@ -31,6 +31,8 @@ class AuthenticationController extends AbstractController
             return $this->redirectToRoute('complaint_identity');
         }
 
-        return $this->render('pages/authentication.html.twig');
+        return $this->render('pages/authentication.html.twig', [
+            'complaint' => $sessionHandler->getComplaint(),
+        ]);
     }
 }
