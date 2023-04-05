@@ -28,26 +28,38 @@
             </ul>
         {% endblock %}
     {% endembed %}
-    <div class="france-connect">
-        <h2>{{ 'pel.to.log.in'|trans }}</h2>
-        {% if app.user is null %}
-            <div class="france-connect__group">
-                <button class="fr-connect" id="france_connect_auth_button" onclick="window.location='{{ path('authentication', {'france_connected': true}) }}';">
-                    <span class="fr-connect__login">{{ 'pel.identify.with'|trans }}</span>
-                    <span class="fr-connect__brand">{{ 'pel.france.connect'|trans }}</span>
-                </button>
-                <p>
-                    <a href="https://franceconnect.gouv.fr/" target="_blank" rel="noopener" title="{{ 'pel.what.is.france.connect'|trans }} - {{ 'pel.new.window'|trans }}">{{ 'pel.what.is.france.connect'|trans }}</a>
-                </p>
-                <p class="france-connect__small">
-                    {{ 'pel.when.using.france.connect.service.you.accept.terms'|trans }} <a href="https://franceconnect.gouv.fr/cgu" target="_blank" rel="noopener" title="{{ 'pel.france.connect.terms'|trans }}">{{ 'pel.france.connect'|trans }}</a>
-                </p>
+    <div class="fr-container container">
+        <h1>{{ 'pel.complaint.my.declaration'|trans }}</h1>
+        {% include 'common/_complaint_nav.html.twig' with {'active':'identity'} %}
+        <div class="wrapper--complaint">
+            <div class="accordion__item__title" id="identity_accordion_title">
+                <span class="fr-icon-arrow-down-s-line"></span>
+                {{ 'pel.complaint.your.identity'|trans }}
             </div>
-        {% endif %}
-        <h3>{{ 'pel.or.continue.pel.without.log.in'|trans }}</h3>
-        <p class="fr-text-center">
-            <a href="#" data-fr-opened="false" aria-controls="fr-modal-complaint-confirm" id="no_france_connect_auth_button">{{ 'pel.continue.pel.without.log.in'|trans }}</a>
-        </p>
-        <p>{{ 'pel.continue.pel.without.log.in.explanation'|trans }}</p>
+            <div class="accordion__item__content" id="identity_accordion_content">
+                <div class="france-connect">
+                    <h2>{{ 'pel.to.log.in'|trans }}</h2>
+                    {% if app.user is null %}
+                        <div class="france-connect__group">
+                            <button class="fr-connect" id="france_connect_auth_button" onclick="window.location='{{ path('authentication', {'france_connected': true}) }}';">
+                                <span class="fr-connect__login">{{ 'pel.identify.with'|trans }}</span>
+                                <span class="fr-connect__brand">{{ 'pel.france.connect'|trans }}</span>
+                            </button>
+                            <p>
+                                <a href="https://franceconnect.gouv.fr/" target="_blank" rel="noopener" title="{{ 'pel.what.is.france.connect'|trans }} - {{ 'pel.new.window'|trans }}">{{ 'pel.what.is.france.connect'|trans }}</a>
+                            </p>
+                            <p class="france-connect__small">
+                                {{ 'pel.when.using.france.connect.service.you.accept.terms'|trans }} <a href="https://franceconnect.gouv.fr/cgu" target="_blank" rel="noopener" title="{{ 'pel.france.connect.terms'|trans }}">{{ 'pel.france.connect'|trans }}</a>
+                            </p>
+                        </div>
+                    {% endif %}
+                    <h3>{{ 'pel.or.continue.pel.without.log.in'|trans }}</h3>
+                    <p class="fr-text-center">
+                        <a href="#" data-fr-opened="false" aria-controls="fr-modal-complaint-confirm" id="no_france_connect_auth_button">{{ 'pel.continue.pel.without.log.in'|trans }}</a>
+                    </p>
+                    <p>{{ 'pel.continue.pel.without.log.in.explanation'|trans }}</p>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}

@@ -8,6 +8,8 @@ Feature:
         Given I am on "/authentification"
         Then the response status code should be 200
         And I should see 1 "body" element
+        And I should see the key "pel.complaint.my.declaration" translated
+        And I should see the key "pel.complaint.your.identity" translated
         And I should see the key "pel.to.log.in" translated
         And I should see the key "pel.identify.with" translated
         And I should see the key "pel.france.connect" translated
