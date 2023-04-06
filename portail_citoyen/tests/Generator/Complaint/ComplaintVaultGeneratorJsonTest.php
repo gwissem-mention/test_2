@@ -46,11 +46,13 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                 'timestamp' => 1679058338,
                 'timezone' => '+00:00',
             ],
-            'identity' => [
+            'declarantStatus' => [
                 'declarantStatus' => [
                     'code' => 1,
                     'label' => 'pel.complaint.identity.victim',
                 ],
+            ],
+            'identity' => [
                 'civilState' => [
                     'civility' => [
                         'code' => 1,
@@ -369,11 +371,13 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                 'timestamp' => 1679058338,
                 'timezone' => '+00:00',
             ],
-            'identity' => [
+            'declarantStatus' => [
                 'declarantStatus' => [
                     'code' => 2,
                     'label' => 'pel.complaint.identity.person.legal.representative',
                 ],
+            ],
+            'identity' => [
                 'civilState' => [
                     'civility' => [
                         'code' => 1,
@@ -763,11 +767,13 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                 'timestamp' => 1679058338,
                 'timezone' => '+00:00',
             ],
-            'identity' => [
+            'declarantStatus' => [
                 'declarantStatus' => [
                     'code' => 3,
                     'label' => 'pel.complaint.identity.corporation.legal.representative',
                 ],
+            ],
+            'identity' => [
                 'civilState' => [
                     'civility' => [
                         'code' => 1,

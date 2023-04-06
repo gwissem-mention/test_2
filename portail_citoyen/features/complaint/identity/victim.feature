@@ -5,12 +5,15 @@ Feature:
     I want to see the victim declarant form
 
     Background:
-        Given I am on "/authentification"
+        Given I am on "/porter-plainte/statut-declarant"
+        And I click the "label[for=declarant_status_declarantStatus_0]" element
+        And I press "declarant_status_submit"
         And I follow "Continuer sans m'authentifier"
         And I follow "Je confirme"
+        And I am on "/porter-plainte/identite"
 
     Scenario: I can see the fields for Victim
-        And I should see the key "pel.civility" translated
+        Then I should see the key "pel.civility" translated
         And I should see the key "pel.birth.name" translated
         And I should see the key "pel.usage.name" translated
         And I should see the key "pel.first.names" translated
@@ -26,7 +29,6 @@ Feature:
         And I should see the key "pel.mobile" translated
         And I should see the key "pel.phone" translated
         And I should see the key "pel.next" translated
-        And I should see the key "pel.complaint.identity.declarant.status" translated
 
     Scenario: Change country from France to Spain and check the town field is cleared
         When I select "99100" from "identity_civilState_birthLocation_country"
@@ -47,8 +49,7 @@ Feature:
         And I fill in "contact-information-address" with "avenue de la république paris"
         And I click the "#contact-information-address-75111_8158" element
         And I fill in "identity_contactInformation_email" with "jean@test.com"
-        And I fill in "identity_contactInformation_phone_number" with "0102030405"
-        When I click the "label[for=identity_declarantStatus_0]" element
+        And I fill in "identity_contactInformation_phone_number" with "0102020304"
         And I press "identity_submit"
         Then I should be on "/porter-plainte/faits"
 
@@ -64,8 +65,7 @@ Feature:
         And I fill in "contact-information-address" with "avenue de la république paris"
         And I click the "#contact-information-address-75111_8158" element
         And I fill in "identity_contactInformation_email" with "jean@test.com"
-        And I fill in "identity_contactInformation_phone_number" with "0102030405"
-        When I click the "label[for=identity_declarantStatus_0]" element
+        And I fill in "identity_contactInformation_phone_number" with "0102020304"
         And I press "identity_submit"
         Then I should be on "/porter-plainte/faits"
 
@@ -80,8 +80,7 @@ Feature:
         And I fill in "contact-information-address" with "avenue de la république paris"
         And I click the "#contact-information-address-75111_8158" element
         And I fill in "identity_contactInformation_email" with "jean@test.com"
-        And I fill in "identity_contactInformation_phone_number" with "0102030405"
-        And I click the "label[for=identity_declarantStatus_0]" element
+        And I fill in "identity_contactInformation_phone_number" with "0102020304"
         And I press "identity_submit"
         Then I should be on "/porter-plainte/faits"
 
@@ -95,7 +94,6 @@ Feature:
         And I fill in "contact-information-address" with "avenue de la république paris"
         And I click the "#contact-information-address-75111_8158" element
         And I fill in "identity_contactInformation_email" with "jean@test.com"
-        When I click the "label[for=identity_declarantStatus_0]" element
         And I press "identity_submit"
         Then I should be on "/porter-plainte/identite"
         And I should see a "#form-errors-identity_contactInformation_mobile_number" element
@@ -115,8 +113,7 @@ Feature:
         And I fill in "identity_contactInformation_foreignAddress_apartment" with "2"
         And I fill in "identity_contactInformation_foreignAddress_city" with "Madrid"
         And I fill in "identity_contactInformation_email" with "jean@test.com"
-        And I fill in "identity_contactInformation_phone_number" with "0102030405"
-        When I click the "label[for=identity_declarantStatus_0]" element
+        And I fill in "identity_contactInformation_phone_number" with "0102020304"
         And I press "identity_submit"
         Then I should be on "/porter-plainte/faits"
 
@@ -205,10 +202,10 @@ Feature:
         And I should see a "#form-errors-identity_contactInformation_phone_number" element
 
     Scenario: I fill the identity form as france connected, when I go back, the identity data should be saved
-        Given I am on "/authentification"
+        Given I am on "/porter-plainte/statut-declarant"
+        And I click the "label[for=declarant_status_declarantStatus_0]" element
+        And I press "declarant_status_submit"
         And I press "france_connect_auth_button"
-        Then I should be on "/porter-plainte/identite"
-        When I click the "label[for=identity_declarantStatus_0]" element
         And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
         And I fill in "contact-information-address" with "avenue de la république paris"
         And I click the "#contact-information-address-75111_8158" element
@@ -216,11 +213,17 @@ Feature:
         And I press "identity_submit"
         Then I should be on "/porter-plainte/faits"
         When I am on "/porter-plainte/identite"
-        Then the "identity_declarantStatus_0" field should contain "1"
+        Then the "identity_civilState_birthName" field should contain "Dupont"
+        And the "identity_civilState_firstnames" field should contain "Michel"
+        And the "identity_civilState_birthDate" field should contain "1967-03-02"
+        And the "identity_civilState_birthLocation_frenchTown" field should contain "75107"
+        And the "identity_civilState_job" field should contain "2"
+        And the "contact-information-address" field should contain "Avenue de la République 75011 Paris"
+        And the "identity_contactInformation_email" field should contain "michel.dupont@example.com"
+        And the "identity_contactInformation_phone_number" field should contain "1 02 03 04 05"
 
     Scenario: I fill the identity form as not france connected, when go back, the identity data should be saved
-        When I click the "label[for=identity_declarantStatus_0]" element
-        And I select "1" from "identity_civilState_civility"
+        When I select "1" from "identity_civilState_civility"
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I fill in "identity_civilState_birthDate" with "01/01/2000"
@@ -233,11 +236,17 @@ Feature:
         When I press "identity_submit"
         Then I should be on "/porter-plainte/faits"
         When I am on "/porter-plainte/identite"
-        Then the "identity_declarantStatus_0" field should contain "1"
+        Then the "identity_civilState_birthName" field should contain "Dupont"
+        And the "identity_civilState_firstnames" field should contain "Jean Pierre Marie"
+        And the "identity_civilState_birthDate" field should contain "2000-01-01"
+        And the "identity_civilState_birthLocation_frenchTown" field should contain "75056"
+        And the "identity_civilState_job" field should contain "2"
+        And the "contact-information-address" field should contain "Avenue de la République 75011 Paris"
+        And the "identity_contactInformation_email" field should contain "jean@test.com"
+        And the "identity_contactInformation_phone_number" field should contain "1 02 03 04 05"
 
     Scenario: I fill the identity form with an non etalab address, then I should see a google maps opened in the facts form
-        When I click the "label[for=identity_declarantStatus_0]" element
-        And I select "1" from "identity_civilState_civility"
+        When I select "1" from "identity_civilState_civility"
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I fill in "identity_civilState_birthDate" with "01/01/2000"

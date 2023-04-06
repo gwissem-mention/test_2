@@ -6,48 +6,36 @@ namespace App\Form\Model\Identity;
 
 class IdentityModel
 {
-    private ?int $declarantStatus = null;
-    private ?CivilStateModel $civilState = null;
-    private ?ContactInformationModel $contactInformation = null;
+    private CivilStateModel $civilState;
+    private ContactInformationModel $contactInformation;
     private ?CivilStateModel $representedPersonCivilState = null;
     private ?ContactInformationModel $representedPersonContactInformation = null;
     private ?CorporationModel $corporation = null;
 
     public function __construct()
     {
+        $this->civilState = new CivilStateModel();
         $this->contactInformation = new ContactInformationModel();
     }
 
-    public function getDeclarantStatus(): ?int
-    {
-        return $this->declarantStatus;
-    }
-
-    public function setDeclarantStatus(?int $declarantStatus): self
-    {
-        $this->declarantStatus = $declarantStatus;
-
-        return $this;
-    }
-
-    public function getCivilState(): ?CivilStateModel
+    public function getCivilState(): CivilStateModel
     {
         return $this->civilState;
     }
 
-    public function setCivilState(?CivilStateModel $civilState): self
+    public function setCivilState(CivilStateModel $civilState): self
     {
         $this->civilState = $civilState;
 
         return $this;
     }
 
-    public function getContactInformation(): ?ContactInformationModel
+    public function getContactInformation(): ContactInformationModel
     {
         return $this->contactInformation;
     }
 
-    public function setContactInformation(?ContactInformationModel $contactInformation): self
+    public function setContactInformation(ContactInformationModel $contactInformation): self
     {
         $this->contactInformation = $contactInformation;
 
