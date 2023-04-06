@@ -32,6 +32,7 @@ class FactsType extends AbstractType
             ->add('description', TextareaType::class, [
                 'constraints' => [
                     new Length([
+                        'min' => 30,
                         'max' => 800,
                     ]),
                     new NotBlank(),
@@ -39,6 +40,10 @@ class FactsType extends AbstractType
                 'label' => 'pel.facts.description.precise',
                 'attr' => [
                     'placeholder' => 'pel.facts.describe.whats.happened',
+                    'class' => 'fr-input',
+                    'data-counter-target' => 'parent',
+                    'minlength' => 30,
+                    'maxlength' => 800,
                 ],
             ])
             ->add('victimOfViolence', CheckboxType::class, [
