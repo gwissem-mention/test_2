@@ -8,3 +8,4 @@ all:
             server_name: "{{ vault_server_name }}"
             server_user: "{{ vault_server_user }}"
             force_reload_db: True
+            force_referential_update: True
