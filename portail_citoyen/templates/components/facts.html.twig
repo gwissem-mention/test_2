@@ -1,9 +1,23 @@
+{#{% from 'macro/counter.html.twig' import counter %}#}
+
 <div {{ attributes.add(stimulus_controller('complaint-submit')) }}>
     {{ form_start(form, {attr: {'data-action': 'live#action complaint-submit#submit','data-action-name': 'prevent|submit'}}) }}
     <div class="fr-grid-row fr-py-2w">
-        <div class="fr-col">
-            {{ form_row(form.description) }}
-        </div>
+        {% embed 'embed/counter.html.twig' with {
+            'parent': 'facts_description',
+            'minlength': form.description.vars.attr.minlength,
+            'maxlength': form.description.vars.attr.maxlength
+        } %}
+            {% block label %}
+                {{ form_label(form.description) }}
+            {% endblock %}
+            {% block widget %}
+                {{ form_widget(form.description) }}
+            {% endblock %}
+            {% block errors %}
+                {{ form_errors(form.description) }}
+            {% endblock %}
+        {% endembed %}
     </div>
     <div class="fr-grid-row fr-py-2w">
         <div class="fr-col">

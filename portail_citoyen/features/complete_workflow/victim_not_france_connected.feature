@@ -23,8 +23,8 @@ Feature:
         And I fill in "identity_contactInformation_phone_number" with "0101020304"
         And I fill in "identity_contactInformation_mobile_number" with "0601020304"
         And I press "identity_submit"
-        Then I should be on "/porter-plainte/faits"
-        When I fill in "facts_description" with "description informations"
+        And I should be on "/porter-plainte/faits"
+        When I fill in "facts_description" with "description informations lorem ipsum dol or sit amet lorem ipsum dol or sit amet"
         And I click the "label[for=facts_victimOfViolence]" element
         And I fill in "facts_victimOfViolenceText" with "Violence informations"
         And I click the "label[for=facts_address_addressOrRouteFactsKnown_0]" element
@@ -112,7 +112,7 @@ Feature:
         And I should see the key "pel.fsi.visit" translated
         And I should see the key "pel.observation.made" translated
         And I should see the key "pel.facts.description.precise" translated
-        And I should see "description informations"
+        And I should see "description informations lorem ipsum dol or sit amet lorem ipsum dol or sit amet"
         And I should see the key "pel.note" translated
         And I should see the key "pel.summary.is.not.legal.proof" translated
         When I click the "#update-identity" element
