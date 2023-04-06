@@ -5,12 +5,13 @@ Feature:
 
     @javascript
     Scenario: Submit the facts form as a corporation legal not logged in with France Connect
-        Given I am on "/authentification"
+        Given I am on "/porter-plainte/statut-declarant"
+        And I click the "label[for=declarant_status_declarantStatus_2]" element
+        And I press "declarant_status_submit"
         And I follow "Continuer sans m'authentifier"
         And I follow "Je confirme"
         Then I should be on "/porter-plainte/identite"
-        When I click the "label[for=identity_declarantStatus_2]" element
-        And I select "1" from "identity_civilState_civility"
+        When I select "1" from "identity_civilState_civility"
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I fill in "identity_civilState_birthDate" with "01/01/2000"

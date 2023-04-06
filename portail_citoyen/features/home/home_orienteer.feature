@@ -60,4 +60,4 @@ Feature:
     Scenario: Click on "Start" link
         Given I am on "/accueil-deroule"
         Then I follow "Débuter ma déclaration"
-        And I should be on "/authentification"
+        And I should be on "/porter-plainte/statut-declarant"

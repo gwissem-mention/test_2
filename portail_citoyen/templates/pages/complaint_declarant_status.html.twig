@@ -1,0 +1,23 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}{{ 'pel.complaint.create'|trans }}{% endblock %}
+
+{% block body %}
+    <div class="fr-container container" data-controller="form">
+        <h1>{{ 'pel.complaint.my.declaration'|trans }}</h1>
+        {% include 'common/_complaint_nav.html.twig' with {'active':'declarant_status'} %}
+        <p>
+            {{ 'pel.complaint.all.required.fields.are.required'|trans }}
+            <span class="fr-icon-information-line" aria-hidden="true"></span>
+        </p>
+        <div class="wrapper--complaint">
+            <div class="accordion__item__title" id="identity_accordion_title">
+                <span class="fr-icon-arrow-down-s-line"></span>
+                {{ 'pel.complaint.your.identity'|trans }}
+            </div>
+            <div class="accordion__item__content" id="identity_accordion_content">
+                {{ component('declarant_status', {class: 'fr-py-1w', fromSummary: from_summary}) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

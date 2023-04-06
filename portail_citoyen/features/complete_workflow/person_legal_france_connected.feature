@@ -5,15 +5,16 @@ Feature:
 
     @javascript
     Scenario: Submit the facts form as a person legal logged in with France Connect
-        Given I am on "/authentification"
+        Given I am on "/porter-plainte/statut-declarant"
+        And I click the "label[for=declarant_status_declarantStatus_1]" element
+        And I press "declarant_status_submit"
         And I press "france_connect_auth_button"
         Then I should be on "/porter-plainte/identite"
         And I should see the key "pel.information.transmitted.by.france.connect" translated
         And I should see the key "pel.these.informations.has.been.transmitted.by.france.connect" translated
         And I should see the key "pel.if.these.informations.contains.errors" translated
         And I should see the key "pel.click.here.to.continue.without.authentication" translated
-        When I click the "label[for=identity_declarantStatus_1]" element
-        And I select "1" from "identity_civilState_civility"
+        When I select "1" from "identity_civilState_civility"
         And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
         And I fill in "contact-information-address" with "avenue de la république paris"
         And I click the "#contact-information-address-75111_8158" element

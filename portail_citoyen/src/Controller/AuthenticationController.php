@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Form\Model\Identity\DeclarantStatusModel;
 use App\Session\FranceConnectHandler;
 use App\Session\SessionHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,7 +20,9 @@ class AuthenticationController extends AbstractController
         SessionHandler $sessionHandler,
         FranceConnectHandler $franceConnectHandler,
     ): Response {
-        $sessionHandler->init();
+        if (!$sessionHandler->getComplaint()?->getDeclarantStatus() instanceof DeclarantStatusModel) {
+            return $this->redirectToRoute('home');
+        }
 
         if ($request->query->has('france_connected')) {
             if ('1' === $request->query->get('france_connected')) {

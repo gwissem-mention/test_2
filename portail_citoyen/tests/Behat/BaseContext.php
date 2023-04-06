@@ -5,7 +5,11 @@ declare(strict_types=1);
 namespace App\Tests\Behat;
 
 use App\Entity\User;
+use App\Form\Model\Facts\FactsModel;
+use App\Form\Model\Identity\DeclarantStatusModel;
+use App\Form\Model\Identity\IdentityModel;
 use App\Repository\UserRepository;
+use App\Session\ComplaintModel;
 use Behat\Behat\Hook\Scope\AfterScenarioScope;
 use Behat\Mink\Driver\Selenium2Driver;
 use Behat\Mink\Exception\ElementNotFoundException;
@@ -17,6 +21,8 @@ use Symfony\Bundle\FrameworkBundle\Test\TestBrowserToken;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\Session\SessionFactoryInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\Uid\Uuid;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 final class BaseContext extends MinkContext
@@ -29,7 +35,8 @@ final class BaseContext extends MinkContext
         private readonly UserRepository $userRepository,
         private readonly SessionFactoryInterface $sessionFactory,
         private readonly ContainerInterface $behatDriverContainer,
-        private readonly ParameterBagInterface $parameterBag
+        private readonly ParameterBagInterface $parameterBag,
+        private readonly SerializerInterface $serializer,
     ) {
     }
 
@@ -153,6 +160,13 @@ final class BaseContext extends MinkContext
     {
         $this->retryStep(function () use ($select, $option) {
             parent::selectOption($select, $option);
+        });
+    }
+
+    public function clickLink(mixed $link): void
+    {
+        $this->retryStep(function () use ($link) {
+            parent::clickLink($link);
         });
     }
 
@@ -350,6 +364,21 @@ final class BaseContext extends MinkContext
         }
 
         $driver->getClient()->followRedirects(false);
+    }
+
+    /**
+     * @Given my declarant status is :declarantStatus
+     */
+    public function myDeclarantStatusIs(int $declarantStatus): void
+    {
+        $complaint = new ComplaintModel(Uuid::v1());
+        $complaint->setIdentity(new IdentityModel());
+        $complaint->setFacts(new FactsModel());
+        $complaint->setDeclarantStatus((new DeclarantStatusModel())->setDeclarantStatus($declarantStatus));
+        $session = $this->sessionFactory->createSession();
+        $session->set('complaint', $this->serializer->serialize($complaint, 'json'));
+        $session->save();
+        $this->getSession()->setCookie($session->getName(), $session->getId());
     }
 
     /**

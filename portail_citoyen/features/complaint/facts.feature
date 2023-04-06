@@ -5,22 +5,24 @@ Feature:
     I want to see the facts step form
 
     Background:
-        Given I am on "/authentification"
-        When I press "france_connect_auth_button"
+        Given I am on "/porter-plainte/statut-declarant"
+        And I click the "label[for=declarant_status_declarantStatus_0]" element
+        And I press "declarant_status_submit"
+        And I press "france_connect_auth_button"
+        Then I should be on "/porter-plainte/identite"
         And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
         And I fill in "contact-information-address" with "avenue de la république paris"
         And I click the "#contact-information-address-75111_8158" element
-        And I fill in "identity_contactInformation_phone_number" with "0102030405"
-        And I click the "label[for=identity_declarantStatus_0]" element
+        And I fill in "identity_contactInformation_phone_number" with "0102020304"
         And I press "identity_submit"
-        And I should be on "/porter-plainte/faits"
+        Then I should be on "/porter-plainte/faits"
 
     Scenario: I can click on the back button
         When I follow "Précédent"
         Then I should be on "/porter-plainte/identite"
 
     Scenario: I can see the place natures list
-        Then I should see "Domicile/Logement" in the "#facts_placeNature" element
+        And I should see "Domicile/Logement" in the "#facts_placeNature" element
         And I should see "Parking / garage" in the "#facts_placeNature" element
         And I should see "Voie publique / Rue" in the "#facts_placeNature" element
         And I should see "Commerce" in the "#facts_placeNature" element
@@ -29,12 +31,12 @@ Feature:
         And I should see "Lieu indéterminé" in the "#facts_placeNature" element
 
     Scenario: I can see the offense exact date known radio buttons
-        Then I should see 2 "input[type=radio][name='facts[offenseDate][exactDateKnown]']" elements
+        And I should see 2 "input[type=radio][name='facts[offenseDate][exactDateKnown]']" elements
         And I should see "Oui" in the "label[for=facts_offenseDate_exactDateKnown_0]" element
         And I should see "Non" in the "label[for=facts_offenseDate_exactDateKnown_1]" element
 
     Scenario: I can see the offense choice hour radio buttons
-        Then I should see 3 "input[type=radio][name='facts[offenseDate][choiceHour]']" elements
+        And I should see 3 "input[type=radio][name='facts[offenseDate][choiceHour]']" elements
         And I should see "Oui je connais l'heure exacte des faits" in the "label[for=facts_offenseDate_choiceHour_0]" element
         And I should see "Non mais je connais le créneau horaire" in the "label[for=facts_offenseDate_choiceHour_1]" element
         And I should see "Je ne connais pas l'heure des faits" in the "label[for=facts_offenseDate_choiceHour_2]" element

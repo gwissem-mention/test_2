@@ -5,17 +5,18 @@ Feature:
     I want to see the offense facts step page
 
     Background:
-        Given I am on "/authentification"
-        When I press "france_connect_auth_button"
+        Given I am on "/porter-plainte/statut-declarant"
+        And I click the "label[for=declarant_status_declarantStatus_0]" element
+        And I press "declarant_status_submit"
+        And I press "france_connect_auth_button"
         Then I should be on "/porter-plainte/identite"
-        And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
+        Given I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
         And I fill in "contact-information-address" with "avenue de la république paris"
         And I click the "#contact-information-address-75111_8158" element
-        And I fill in "identity_contactInformation_phone_number" with "0102030405"
-        And I click the "label[for=identity_declarantStatus_0]" element
+        And I fill in "identity_contactInformation_phone_number" with "0102020304"
         And I press "identity_submit"
         Then I should be on "/porter-plainte/faits"
-        When I fill in "facts_description" with "description informations"
+        Given I fill in "facts_description" with "description informations"
         And I click the "label[for=facts_address_addressOrRouteFactsKnown_1]" element
         And I click the "label[for=facts_offenseDate_exactDateKnown_0]" element
         And I fill in "facts_offenseDate_startDate" with "01/01/2022"
@@ -28,7 +29,7 @@ Feature:
         Then I should be on "/porter-plainte/faits"
 
     Scenario: I can see the object category choice list
-        Then I should see "Document officiel" in the "#objects_objects_0_category" element
+        And I should see "Document officiel" in the "#objects_objects_0_category" element
         And I should see "Moyens de paiement" in the "#objects_objects_0_category" element
         And I should see "Multimédia" in the "#objects_objects_0_category" element
         And I should see "Véhicules immatriculés " in the "#objects_objects_0_category" element
@@ -91,8 +92,8 @@ Feature:
         And I should see the key "pel.could.you.precise" translated
 
     Scenario: I can delete an input text when I click on the delete an object button
-        And  I press "objects_objects_add"
-        When I press "objects_objects_1_delete"
+        When I press "objects_objects_add"
+        And I press "objects_objects_1_delete"
         Then I should not see a "input#objects_objects_1_label" element
 
     Scenario: I should see 2 inputs when I select "Other" for object category
@@ -101,6 +102,7 @@ Feature:
         And I should see the key "pel.quantity" translated
         And I should see a "input#objects_objects_0_description" element
         And I should see a "input#objects_objects_0_quantity" element
+        And I should see the key "pel.amount.for.group" translated
         And I should see a "select#objects_objects_0_status" element
         And I should see the key "pel.amount.for.group" translated
         And I should see the key "pel.object.status" translated
@@ -127,7 +129,7 @@ Feature:
         Then I should see "Vous avez ajouté 20 objets pour un montant total de 199,99 €"
 
     Scenario: Submit the complaint form as a victim logged in with France Connect
-        And I select "5" from "objects_objects_0_category"
+        When I select "5" from "objects_objects_0_category"
         And I select "1" from "objects_objects_0_status"
         And I fill in "objects_objects_0_label" with "Object 1"
         And I fill in "objects_objects_0_amount" with "100"

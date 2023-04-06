@@ -49,7 +49,7 @@ class IdentityComponent extends AbstractController
     ) {
         $this->identityModel = $this->sessionHandler->getComplaint()?->getIdentity() ?? new IdentityModel();
 
-        $this->contactInformationEtalabInput = $this->createEtalabInput($this->identityModel->getContactInformation()?->getFrenchAddress());
+        $this->contactInformationEtalabInput = $this->createEtalabInput($this->identityModel->getContactInformation()->getFrenchAddress());
         $this->corporationEtalabInput = $this->createEtalabInput($this->identityModel->getCorporation()?->getFrenchAddress());
         $this->representedPersonEtalabInput = $this->createEtalabInput($this->identityModel->getRepresentedPersonContactInformation()?->getFrenchAddress());
     }
@@ -133,10 +133,10 @@ class IdentityComponent extends AbstractController
         if (isset($this->formValues['contactInformation']['frenchAddress'])) {
             $address = $this->addressEtalabHandler->getAddressModel($this->contactInformationEtalabInput);
             $contactInformation = $identity->getContactInformation();
-            $contactInformation?->setFrenchAddress($address);
+            $contactInformation->setFrenchAddress($address);
             $identity->setContactInformation($contactInformation);
         } else {
-            $identity->getContactInformation()?->setFrenchAddress(null);
+            $identity->getContactInformation()->setFrenchAddress(null);
         }
 
         if (isset($this->formValues['corporation']['frenchAddress'])) {

@@ -13,9 +13,6 @@
                         'etalabPropertyName': 'contactInformationEtalabInput',
                     } %}
                 </div>
-                <div class="fr-py-2w">
-                    {{ form_row(form.declarantStatus) }}
-                </div>
                 {% if form.corporation is defined %}
                     {% include 'common/_corporation.html.twig' with {'form':form.corporation} %}
                 {% endif %}
@@ -35,19 +32,18 @@
             </div>
         </div>
     </div>
-    <div class="fr-grid-row">
-        <div class="fr-col">
-            <ul class="fr-btns-group fr-btns-group--right fr-btns-group--inline-reverse fr-btns-group--inline-lg fr-btns-group--icon-left">
+    <div class="flex--between fr-mt-3w fr-mb-3w">
+        <a href="{{ path('complaint_declarant_status') }}" class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-arrow-left-line">{{ 'pel.previous'|trans }}</a>
+        <ul class="fr-btns-group fr-btns-group--right fr-btns-group--inline-reverse fr-btns-group--inline-lg fr-btns-group--icon-left">
+            <li>
+                <button type="submit" class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line" id="identity_submit" {% if this.fromSummary is same as(true) %}data-action="live#action" data-action-name="prevent|submit"{% endif %}>{{ this.fromSummary is same as(true) ? 'pel.save.and.go.to.next'|trans : 'pel.next'|trans }}</button>
+            </li>
+            {% if this.fromSummary is same as(true) %}
                 <li>
-                    <button type="submit" class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line" id="identity_submit" {% if this.fromSummary is same as(true) %}data-action="live#action" data-action-name="prevent|submit"{% endif %}>{{ this.fromSummary is same as(true) ? 'pel.save.and.go.to.next'|trans : 'pel.next'|trans }}</button>
+                    <button type="submit" class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line" id="identity_submit_recap" data-action="live#action" data-action-name="prevent|submit(redirectToSummary=true)">{{ 'pel.save.and.go.to.summary'|trans }}</button>
                 </li>
-                {% if this.fromSummary is same as(true) %}
-                    <li>
-                        <button type="submit" class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line" id="identity_submit_recap" data-action="live#action" data-action-name="prevent|submit(redirectToSummary=true)">{{ 'pel.save.and.go.to.summary'|trans }}</button>
-                    </li>
-                {% endif %}
-            </ul>
-        </div>
+            {% endif %}
+        </ul>
     </div>
     {{ form_end(form, {render_rest: false}) }}
 </div>

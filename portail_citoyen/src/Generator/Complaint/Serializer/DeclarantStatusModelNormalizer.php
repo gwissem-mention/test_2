@@ -5,20 +5,20 @@ declare(strict_types=1);
 namespace App\Generator\Complaint\Serializer;
 
 use App\Enum\DeclarantStatus;
-use App\Form\Model\Identity\IdentityModel;
+use App\Form\Model\Identity\DeclarantStatusModel;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
-class IdentityModelNormalizer implements NormalizerInterface
+class DeclarantStatusModelNormalizer implements NormalizerInterface
 {
     public function __construct(#[Autowire(service: ObjectNormalizer::class)] private readonly NormalizerInterface $normalizer)
     {
     }
 
     /**
-     * @param IdentityModel $object
-     * @param array<mixed>  $context
+     * @param DeclarantStatusModel $object
+     * @param array<mixed>         $context
      *
      * @return array<string, mixed>
      */
@@ -40,6 +40,6 @@ class IdentityModelNormalizer implements NormalizerInterface
      */
     public function supportsNormalization($data, string $format = null, array $context = []): bool
     {
-        return in_array('complaint_generator', $context) && $data instanceof IdentityModel;
+        return in_array('complaint_generator', $context) && $data instanceof DeclarantStatusModel;
     }
 }

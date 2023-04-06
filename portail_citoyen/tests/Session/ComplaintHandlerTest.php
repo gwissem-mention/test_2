@@ -31,7 +31,7 @@ class ComplaintHandlerTest extends KernelTestCase
         $identity = new IdentityModel();
         $facts = new FactsModel();
 
-        $identity->getContactInformation()?->setFrenchAddress(
+        $identity->getContactInformation()->setFrenchAddress(
             (new AddressEtalabModel())
                 ->setId('75111_8158')
                 ->setLabel('Avenue de la République 75011 Paris')

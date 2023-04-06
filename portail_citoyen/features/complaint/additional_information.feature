@@ -5,17 +5,18 @@ Feature:
     I want to see the additional information step form
 
     Background:
-        Given I am on "/authentification"
-        When I press "france_connect_auth_button"
+        Given I am on "/porter-plainte/statut-declarant"
+        And I click the "label[for=declarant_status_declarantStatus_0]" element
+        And I press "declarant_status_submit"
+        And I press "france_connect_auth_button"
         Then I should be on "/porter-plainte/identite"
-        And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
+        Given I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
         And I fill in "contact-information-address" with "avenue de la république paris"
         And I click the "#contact-information-address-75111_8158" element
-        And I fill in "identity_contactInformation_phone_number" with "0102030405"
-        And I click the "label[for=identity_declarantStatus_0]" element
+        And I fill in "identity_contactInformation_phone_number" with "0102020304"
         And I press "identity_submit"
         Then I should be on "/porter-plainte/faits"
-        When I fill in "facts_description" with "description informations"
+        Given I fill in "facts_description" with "description informations"
         And I click the "label[for=facts_address_addressOrRouteFactsKnown_0]" element
         And I fill in "facts-startAddress-address" with "1 test street"
         And I fill in "facts-startAddress-address" with "2 test street"
@@ -25,7 +26,7 @@ Feature:
         And I fill in "facts_offenseDate_hour" with "15:00"
         And I press "facts_submit"
         Then I should be on "/porter-plainte/objets"
-        And I select "5" from "objects_objects_0_category"
+        Given I select "5" from "objects_objects_0_category"
         And I select "1" from "objects_objects_0_status"
         And I fill in "objects_objects_0_label" with "Object 1"
         And I fill in "objects_objects_0_amount" with "100"
@@ -42,22 +43,22 @@ Feature:
         Then I should be on "/porter-plainte/objets"
 
     Scenario: I can see the suspectsChoice choices
-        Then I should see 2 "input[type=radio][name='additional_information[suspectsChoice]']" elements
+        And I should see 2 "input[type=radio][name='additional_information[suspectsChoice]']" elements
         And I should see "Oui" in the "label[for=additional_information_suspectsChoice_0]" element
         And I should see "Non" in the "label[for=additional_information_suspectsChoice_1]" element
 
     Scenario: I can see the witnesses choices
-        Then I should see 2 "input[type=radio][name='additional_information[witnesses]']" elements
+        And I should see 2 "input[type=radio][name='additional_information[witnesses]']" elements
         And I should see "Oui" in the "label[for=additional_information_witnesses_0]" element
         And I should see "Non" in the "label[for=additional_information_witnesses_1]" element
 
     Scenario: I can see the fsi visit choices
-        Then I should see 2 "input[type=radio][name='additional_information[fsiVisit]']" elements
+        And I should see 2 "input[type=radio][name='additional_information[fsiVisit]']" elements
         And I should see "Oui" in the "label[for=additional_information_fsiVisit_0]" element
         And I should see "Non" in the "label[for=additional_information_fsiVisit_1]" element
 
     Scenario: I can see the cctv choices
-        Then I should see 3 "input[type=radio][name='additional_information[cctvPresent]']" elements
+        And I should see 3 "input[type=radio][name='additional_information[cctvPresent]']" elements
         And I should see "Oui" in the "label[for=additional_information_cctvPresent_0]" element
         And I should see "Non" in the "label[for=additional_information_cctvPresent_1]" element
         And I should see "Je ne sais pas" in the "label[for=additional_information_cctvPresent_2]" element
