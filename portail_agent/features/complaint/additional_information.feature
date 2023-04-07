@@ -30,7 +30,7 @@ Feature:
         And I should see a "aside" element
         And I should see a "main" element
         And I should see 5 "button[data-bs-toggle='modal']" element
-        And I should see 29 "button" element
+        And I should see 30 "button" element
         And I should see the key "pel.send.to.lrp" translated
         And I should see the key "pel.reject" translated
         And I should see the key "pel.unit.reassign" translated

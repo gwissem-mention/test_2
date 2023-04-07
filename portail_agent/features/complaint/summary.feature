@@ -29,7 +29,7 @@ Feature:
         And I should see a "aside" element
         And I should see a "main" element
         And I should see 5 "button[data-bs-toggle='modal']" element
-        And I should see 29 "button" element
+        And I should see 30 "button" element
         And I should see the key "pel.assign.declaration.to" translated
         And I should see the key "pel.send.to.lrp" translated
         And I should see the key "pel.reject" translated
@@ -259,7 +259,7 @@ Feature:
         Given I am on "/plainte/recapitulatif/111"
         When I press "Envoyer PV au déclarant et clôturer"
         Then I should see a ".modal[aria-modal=true]" element
-        And I should see the key "pel.validate.the.report.and.send.to.the.victim" translated
+        And I should see the key "pel.please.drop.the.report.to.send.to.the.victim" translated
         And I should see the key "pel.complaint.assignation" translated
         And I should see the key "pel.complaint.validation.sending.to.lrp" translated
         And I should see the key "pel.drop.report.and.send.to.the.victim" translated
@@ -269,6 +269,26 @@ Feature:
         And I should see the key "pel.send.report.to.the.victim" translated
         When I press "complaint-send-report-to-the-victim-button-back"
         Then I should not see a ".modal[aria-modal=true]" element
+
+    @javascript
+    Scenario: I can see form errors when the send report file field is empty
+        Given I am on "/plainte/recapitulatif/111"
+        When I press "Envoyer PV au déclarant et clôturer"
+        Then I should see a ".modal[aria-modal=true]" element
+        When I press "complaint-send-report-to-the-victim-button-validate"
+        Then I should see a ".modal[aria-modal=true]" element
+        And I should see a ".invalid-feedback" element
+
+    @javascript
+    Scenario: I can submit the send report form successfully
+        Given I am on "/plainte/recapitulatif/111"
+        When I press "Envoyer PV au déclarant et clôturer"
+        Then I should see a ".modal[aria-modal=true]" element
+        When I attach the file "blank.pdf" to ".dropzone-input" field
+        And I press "complaint-send-report-to-the-victim-button-validate"
+        Then I should not see a ".modal[aria-modal=true]" element
+        And I should see a ".toast" element
+        And I should see the key "pel.the.report.has.been.sent.to.the.victim.the.complaint.is.closed" translated
 
     @javascript
     Scenario: I can toggle the assign modal

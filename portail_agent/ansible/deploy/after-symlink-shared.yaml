@@ -5,7 +5,14 @@
       APP_ENV={{ ansible_env.APP_ENV }}
       ENABLE_SSO={{ ansible_env.ENABLE_SSO }}
       FILE_UNITS={{ ansible_env.FILE_UNITS }}
-
+      OODRIVE_BASE_URI={{ ansible_env.OODRIVE_BASE_URI }}
+      OODRIVE_WORKSPACE={{ ansible_env.OODRIVE_WORKSPACE }}
+      OODRIVE_OAUTH_CLIENT_ID={{ ansible_env.OODRIVE_OAUTH_CLIENT_ID }}
+      FOLDER_ROTATION_COUNT={{ ansible_env.FOLDER_ROTATION_COUNT }}
+      FOLDER_ROTATION_TRESHOLD={{ ansible_env.FOLDER_ROTATION_TRESHOLD }}
+      OODRIVE_ROOT_FOLDER_ID={{ ansible_env.OODRIVE_ROOT_FOLDER_ID }}  
+      OODRIVE_TMP_COMPLAINT_FOLDER={{ ansible_env.OODRIVE_TMP_COMPLAINT_FOLDER }}
+        
 - name: Install vendors for prod env
   make:
     chdir: '{{ release_portal_path }}'

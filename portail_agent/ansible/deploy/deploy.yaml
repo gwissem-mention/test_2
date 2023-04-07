@@ -7,6 +7,14 @@
     APP_ENV: prod
     ENABLE_SSO: "false"
     FILE_UNITS: service.csv
+    OODRIVE_BASE_URI: https://sharing.oodrive.com
+    OODRIVE_WORKSPACE: pel
+    OODRIVE_OAUTH_CLIENT_ID: pel
+    FOLDER_ROTATION_COUNT: 10
+    FOLDER_ROTATION_TRESHOLD: 1
+    OODRIVE_ROOT_FOLDER_ID: HcxbMKkGLFo
+    OODRIVE_TMP_COMPLAINT_FOLDER: HcxbMKkGLFo
+
 
   vars_files:
     - ../vars/vars.yaml

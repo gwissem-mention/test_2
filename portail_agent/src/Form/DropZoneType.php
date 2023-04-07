@@ -6,6 +6,7 @@ namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class DropZoneType extends AbstractType
 {
@@ -17,6 +18,9 @@ class DropZoneType extends AbstractType
                 'attr' => [
                     'placeholder' => 'pel.drag.and.drop.or.click.here.to.browse',
                     'data-complaint-target' => 'dropzoneFile',
+                ],
+                'constraints' => [
+                    new NotBlank(),
                 ],
             ])
         ;

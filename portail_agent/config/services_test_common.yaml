@@ -1,0 +1,6 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    App\Oodrive\ApiClientInterface: '@App\Tests\Behat\MockedClasses\FakeOodriveApiClient'

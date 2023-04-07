@@ -36,6 +36,14 @@
                 <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="{{ 'pel.close'|trans }}"></button>
             </div>
         </div>
+        <div class="toast align-items-center text-bg-secondary" id="toast-validation-send-report-to-victim" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
+            <div class="d-flex">
+                <div class="toast-body">
+                    {{ 'pel.the.report.has.been.sent.to.the.victim.the.complaint.is.closed'|trans }}
+                </div>
+                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="{{ 'pel.close'|trans }}"></button>
+            </div>
+        </div>
     </div>
     <div id="complaint-container">
         <div class="row my-3 {{ not complaint.assignedTo ? 'd-none':'' }}" id="complaint-agent">
@@ -191,7 +199,7 @@
                         {% endblock %}
                     {% endembed %}
                     {% embed "common/_modal.html.twig" with {'id':'complaint-send-report-to-victim', 'size':'lg'} %}
-                        {% block title %}{{ 'pel.validate.the.report.and.send.to.the.victim'|trans }}{% endblock %}
+                        {% block title %}{{ 'pel.please.drop.the.report.to.send.to.the.victim'|trans }}{% endblock %}
                         {% block body %}
                             <div class="row m-3 mb-0">
                                 <div class="col-sm d-inline bg-secondary bg-opacity-75 rounded text-center text-white p-3 m-4">{{ 'pel.complaint.assignation'|trans }}</div>
@@ -210,7 +218,7 @@
                         {% endblock %}
                         {% block footer %}
                             <button type="button" class="btn btn-outline-primary btn--modal" data-bs-dismiss="modal" id="complaint-send-report-to-the-victim-button-back">{{ 'pel.back'|trans }}</button>
-                            <button type="button" class="btn btn-success btn--modal" data-controller="complaint" data-action="">{{ 'pel.send.report.to.the.victim.and.close'|trans }}</button>
+                            <button type="button" class="btn btn-success btn--modal" data-controller="complaint" data-action="complaint#sendReport" data-complaint-url-param="{{ path('complaint_send_report', {id:complaint.id}) }}" id="complaint-send-report-to-the-victim-button-validate">{{ 'pel.send.report.to.the.victim.and.close'|trans }}</button>
                         {% endblock %}
                     {% endembed %}
                     {% embed "common/_modal.html.twig" with {'id':'complaint-unit-reassign', 'size':'lg'} %}
