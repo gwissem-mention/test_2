@@ -122,6 +122,10 @@
                 <source>pel.born.on</source>
                 <target>Né(e) le</target>
             </trans-unit>
+            <trans-unit id="pel.browse">
+                <source>pel.browse</source>
+                <target>Parcourir</target>
+            </trans-unit>
             <trans-unit id="pel.cctv.available">
                 <source>pel.cctv.available</source>
                 <target>Êtes-vous en capacité de fournir des vidéos des faits ?</target>
@@ -146,8 +150,8 @@
                 <source>pel.click.here.to.display.these.complaints</source>
                 <target>Cliquez ici pour afficher ces déclarations</target>
             </trans-unit>
-            <trans-unit id="pel.click.here.to.send.the.report.to.victim.and.close">
-                <source>pel.click.here.to.send.the.report.to.victim.and.close</source>
+            <trans-unit id="pel.click.here.to.send.the.report.to.the.victim.and.close">
+                <source>pel.click.here.to.send.the.report.to.the.victim.and.close</source>
                 <target> Cliquez ici pour envoyer le PV à la victime et clôturer la déclaration</target>
             </trans-unit>
             <trans-unit id="pel.click.here.to.send.this.declaration.to.lrp">
@@ -265,6 +269,14 @@
             <trans-unit id="pel.do.you.know.hour.facts">
                 <source>pel.do.you.know.hour.facts</source>
                 <target>Connaissez-vous l'heure exacte des faits ?</target>
+            </trans-unit>
+            <trans-unit id="pel.drag.and.drop.or.click.here.to.browse">
+                <source>pel.drag.and.drop.or.click.here.to.browse</source>
+                <target>Glissez-déposez un document ou cliquez ici pour parcourir</target>
+            </trans-unit>
+            <trans-unit id="pel.drop.the.report.then.validate.the.sending.to.the.victim">
+                <source>pel.drop.the.report.then.validate.the.sending.to.the.victim</source>
+                <target>Déposez le PV puis validez l'envoi à la victime</target>
             </trans-unit>
             <trans-unit id="pel.email">
                 <source>pel.email</source>
@@ -606,6 +618,10 @@
                 <source>pel.receipt.report</source>
                 <target>Réception du PV</target>
             </trans-unit>
+            <trans-unit id="pel.drop.report.and.send.to.the.victim'">
+                <source>pel.drop.report.and.send.to.the.victim</source>
+                <target>Dépôt et envoi du PV à la victime</target>
+            </trans-unit>
             <trans-unit id="pel.refusal.reason">
                 <source>pel.refusal.reason</source>
                 <target>Motif de refus</target>
@@ -682,8 +698,12 @@
                 <source>pel.send.compatible.data</source>
                 <target>Envoi des données compatibles</target>
             </trans-unit>
-            <trans-unit id="pel.send.report.to.declarant.and.close">
-                <source>pel.send.report.to.declarant.and.close</source>
+            <trans-unit id="pel.send.report.to.the.victim">
+                <source>pel.send.report.to.the.victim</source>
+                <target>Envoi du PV à la victime</target>
+            </trans-unit>
+            <trans-unit id="pel.send.report.to.the.victim.and.close">
+                <source>pel.send.report.to.the.victim.and.close</source>
                 <target>Envoyer PV au déclarant et clôturer</target>
             </trans-unit>
             <trans-unit id="pel.send.to.lrp">
@@ -829,6 +849,10 @@
             <trans-unit id="pel.validate.the.refusal">
                 <source>pel.validate.the.refusal</source>
                 <target>Valider le refus</target>
+            </trans-unit>
+            <trans-unit id="pel.validate.the.report.and.send.to.the.victim">
+                <source>pel.validate.the.report.and.send.to.the.victim</source>
+                <target>Validation du PV et envoi à la victime</target>
             </trans-unit>
             <trans-unit id="pel.validate.the.sending.to.the.lrp">
                 <source>pel.validate.the.sending.to.the.lrp</source>

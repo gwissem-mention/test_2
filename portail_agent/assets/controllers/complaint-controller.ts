@@ -2,6 +2,10 @@ import {Controller} from "@hotwired/stimulus";
 import {Toast, Modal} from "bootstrap";
 
 export default class extends Controller {
+    static override targets: string[] = ["dropzoneFile"];
+
+    declare readonly dropzoneFileTarget: HTMLElement;
+
     public override connect() {
         this.scrollCommentFeed();
     }
@@ -252,5 +256,9 @@ export default class extends Controller {
         if (commentFeed) {
             commentFeed.scrollTo(0, commentFeed.scrollHeight);
         }
+    }
+
+    public browseReport(): void {
+        this.dropzoneFileTarget?.click();
     }
 }

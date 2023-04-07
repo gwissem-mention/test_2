@@ -29,7 +29,7 @@ Feature:
         And I should see a "aside" element
         And I should see a "main" element
         And I should see 5 "button[data-bs-toggle='modal']" element
-        And I should see 27 "button" element
+        And I should see 29 "button" element
         And I should see the key "pel.assign.declaration.to" translated
         And I should see the key "pel.send.to.lrp" translated
         And I should see the key "pel.reject" translated
@@ -259,9 +259,15 @@ Feature:
         Given I am on "/plainte/recapitulatif/111"
         When I press "Envoyer PV au déclarant et clôturer"
         Then I should see a ".modal[aria-modal=true]" element
+        And I should see the key "pel.validate.the.report.and.send.to.the.victim" translated
+        And I should see the key "pel.complaint.assignation" translated
+        And I should see the key "pel.complaint.validation.sending.to.lrp" translated
+        And I should see the key "pel.drop.report.and.send.to.the.victim" translated
+        And I should see the key "pel.drop.the.report.then.validate.the.sending.to.the.victim" translated
+        And I should see the key "pel.drag.and.drop.or.click.here.to.browse" translated
         And I should see the key "pel.back" translated
-        And I should see the key "pel.validate" translated
-        When I press "complaint-send-report-to-victim-button-back"
+        And I should see the key "pel.send.report.to.the.victim" translated
+        When I press "complaint-send-report-to-the-victim-button-back"
         Then I should not see a ".modal[aria-modal=true]" element
 
     @javascript
