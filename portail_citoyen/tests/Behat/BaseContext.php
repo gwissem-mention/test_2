@@ -268,19 +268,32 @@ final class BaseContext extends MinkContext
      */
     public function iAttachFileToField(string $selector, string $path): void
     {
-        $field = $this->getSession()->getPage()->find('css', $selector);
-
+        $fullPath = '';
         if ($this->getMinkParameter('files_path')) {
             $fullPath = rtrim(
                 strval(realpath(strval($this->getMinkParameter('files_path')))),
                 DIRECTORY_SEPARATOR
             ).DIRECTORY_SEPARATOR.$path;
-            if (is_file($fullPath)) {
-                $path = $fullPath;
-            }
         }
 
-        $field?->attachFile($path);
+        $fileContent = file_get_contents($fullPath);
+
+        if (false === $fileContent) {
+            throw new \RuntimeException(sprintf('File "%s" not found', $fullPath));
+        }
+
+        $fileContentEncoded = json_encode(base64_encode($fileContent), JSON_THROW_ON_ERROR);
+        $script = "const input = document.getElementById('$selector');
+               input.style.display = 'block';
+               const list = new DataTransfer();
+               const blob = new Blob([atob(".$fileContentEncoded.")]);
+               const file = new File([blob], '$path');
+               list.items.add(file);
+               input.files = list.files;
+               const event = new Event('change');
+               input.dispatchEvent(event);";
+
+        $this->getSession()->executeScript($script);
     }
 
     /**

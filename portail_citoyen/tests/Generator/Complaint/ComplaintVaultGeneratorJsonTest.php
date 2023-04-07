@@ -250,6 +250,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'otherDocumentType' => null,
                         'documentOwned' => null,
                         'documentOwner' => null,
+                        'files' => [],
                     ],
                     [
                         'status' => [
@@ -284,6 +285,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'otherDocumentType' => null,
                         'documentOwned' => null,
                         'documentOwner' => null,
+                        'files' => [],
                     ],
                     [
                         'status' => [
@@ -314,6 +316,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'otherDocumentType' => null,
                         'documentOwned' => null,
                         'documentOwner' => null,
+                        'files' => [],
                     ],
                     [
                         'status' => [
@@ -344,6 +347,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'otherDocumentType' => null,
                         'documentOwned' => null,
                         'documentOwner' => null,
+                        'files' => [],
                     ],
                 ],
             ],
@@ -646,6 +650,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'documentOwned' => null,
                         'documentOwner' => null,
                         'otherDocumentType' => null,
+                        'files' => [],
                     ],
                     [
                         'status' => [
@@ -680,6 +685,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'documentOwned' => null,
                         'documentOwner' => null,
                         'otherDocumentType' => null,
+                        'files' => [],
                     ],
                     [
                         'status' => [
@@ -710,6 +716,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'documentOwned' => null,
                         'documentOwner' => null,
                         'otherDocumentType' => null,
+                        'files' => [],
                     ],
                     [
                         'status' => [
@@ -740,6 +747,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'documentOwned' => null,
                         'documentOwner' => null,
                         'otherDocumentType' => null,
+                        'files' => [],
                     ],
                 ],
             ],
@@ -1010,6 +1018,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'documentOwned' => null,
                         'documentOwner' => null,
                         'otherDocumentType' => null,
+                        'files' => [],
                     ],
                     [
                         'status' => [
@@ -1044,6 +1053,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'documentOwned' => null,
                         'documentOwner' => null,
                         'otherDocumentType' => null,
+                        'files' => [],
                     ],
                     [
                         'status' => [
@@ -1074,6 +1084,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'documentOwned' => null,
                         'documentOwner' => null,
                         'otherDocumentType' => null,
+                        'files' => [],
                     ],
                     [
                         'status' => [
@@ -1104,6 +1115,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'documentOwned' => null,
                         'documentOwner' => null,
                         'otherDocumentType' => null,
+                        'files' => [],
                     ],
                 ],
             ],

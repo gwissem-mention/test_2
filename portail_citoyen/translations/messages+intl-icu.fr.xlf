@@ -146,9 +146,13 @@
                 <source>pel.at</source>
                 <target>à</target>
             </trans-unit>
-            <trans-unit id="pel.attachments">
-                <source>pel.attachments</source>
-                <target>Pièces complémentaires</target>
+            <trans-unit id="pel.add.an.attachment">
+                <source>pel.add.an.attachment</source>
+                <target>Ajouter une pièce jointe</target>
+            </trans-unit>
+           <trans-unit id="pel.attachment">
+                <source>pel.attachment</source>
+                <target>Pièce jointe</target>
             </trans-unit>
             <trans-unit id="pel.attachments.upload">
                 <source>pel.attachments.upload</source>
@@ -890,6 +894,10 @@
                 <source>pel.object</source>
                 <target>Objet</target>
             </trans-unit>
+            <trans-unit id="pel.file.must.be.image.or.pdf">
+                <source>pel.file.must.be.image.or.pdf</source>
+                <target>Le fichier doit être une image ou un PDF</target>
+            </trans-unit>
             <trans-unit id="pel.object.category">
                 <source>pel.object.category</source>
                 <target>Catégorie d'objet</target>
@@ -953,6 +961,10 @@
             <trans-unit id="pel.objects.stolen">
                 <source>pel.objects.stolen</source>
                 <target>Objets volés</target>
+            </trans-unit>
+            <trans-unit id="pel.object.files.help">
+                <source>pel.object.files.help</source>
+                <target>Formats supportés : jpg, png, pdf. Plusieurs fichiers possibles.</target>
             </trans-unit>
             <trans-unit id="pel.observation.made">
                 <source>pel.observation.made</source>
@@ -1349,6 +1361,10 @@
             <trans-unit id="pel.update">
                 <source>pel.update</source>
                 <target>Modifier</target>
+            </trans-unit>
+            <trans-unit id="pel.upload.error.messagee">
+                <source>pel.upload.error.message</source>
+                <target>Une erreur s'est produite lors de l'envoi du fichier</target>
             </trans-unit>
             <trans-unit id="pel.victim.of.damage.to.property">
                 <source>pel.victim.of.damage.to.property</source>

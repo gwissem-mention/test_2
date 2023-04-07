@@ -6,21 +6,17 @@ namespace App\Form\Objects;
 
 use App\Form\Model\Objects\ObjectModel;
 use App\Form\Model\Objects\ObjectsModel;
-use App\Session\SessionHandler;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\UX\LiveComponent\Form\Type\LiveCollectionType;
 
 class ObjectsType extends AbstractType
 {
-    public function __construct(
-        private readonly SessionHandler $sessionHandler,
-    ) {
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -48,17 +44,25 @@ class ObjectsType extends AbstractType
                 'constraints' => [
                     new NotBlank(),
                 ],
-                'data' => $this->sessionHandler->getComplaint()?->getObjects()?->getObjects() ?: new ArrayCollection(
-                    [new ObjectModel()]
-                ),
             ]);
+
+        $builder->addEventListener(
+            FormEvents::POST_SET_DATA,
+            function (FormEvent $event) {
+                /** @var ObjectsModel $objectsModel */
+                $objectsModel = $event->getData();
+                if ($objectsModel->getObjects()->isEmpty()) {
+                    $event->getForm()->get('objects')->setData(new ArrayCollection([new ObjectModel()]));
+                }
+            }
+        );
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => ObjectsModel::class,
-             'attr' => [
+            'attr' => [
                 'novalidate' => true,
             ],
         ]);

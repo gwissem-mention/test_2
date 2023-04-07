@@ -4,17 +4,21 @@ declare(strict_types=1);
 
 namespace App\Controller\File;
 
-use App\Entity\File;
+use League\Flysystem\FilesystemException;
+use League\Flysystem\FilesystemOperator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Routing\Annotation\Route;
-use Vich\UploaderBundle\Handler\DownloadHandler;
 
 class FileDownloadController extends AbstractController
 {
-    #[Route('/telecharger-fichier/{fileName}', name: 'file_download')]
-    public function __invoke(File $file, DownloadHandler $downloadHandler): Response
+    /**
+     * @throws FilesystemException
+     */
+    #[Route('/telecharger-piece-jointe/{fileName}/{originalName}', name: 'file_download')]
+    public function __invoke(string $fileName, string $originalName, FilesystemOperator $defaultStorage): BinaryFileResponse
     {
-        return $downloadHandler->downloadObject($file, 'file', File::class);
+        return $this->file(new File(stream_get_meta_data($defaultStorage->readStream($fileName))['uri']), $originalName);
     }
 }

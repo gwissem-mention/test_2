@@ -164,3 +164,12 @@
 {%- block _objects_objects_entry_row -%}
     {{ block('live_collection_entry_row') }}
 {%- endblock -%}
+
+{%- block _objects_objects_entry_files_row -%}
+    {{ component('file_upload', {
+        'parentIndex': form.parent.vars.name,
+        'inputId': 'object-files-'~form.parent.vars.name,
+        'inputLabel': form.vars.label|default('pel.files')|trans,
+        'inputHelp' : form.vars.help|default|trans
+    }) }}
+{%- endblock -%}

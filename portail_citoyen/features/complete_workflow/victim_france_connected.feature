@@ -33,6 +33,7 @@ Feature:
         And I select "1" from "objects_objects_0_status"
         And I fill in "objects_objects_0_label" with "Object 1"
         And I fill in "objects_objects_0_amount" with "100"
+        And I attach the file "blank.pdf" to "object-files-0" field
         And I press "objects_objects_add"
         And I click the "#objects_objects_1_label" element
         And I select "3" from "objects_objects_1_category"
@@ -129,7 +130,10 @@ Feature:
         And I should see the key "pel.object" translated
         And I should see "Object 1"
         And I should see "Object 2"
-        And I should see "N° de la ligne de téléphone : +33 6 01 02 03 04"
+        And I should see the key "pel.attachment" translated
+        And I should see "blank.pdf"
+        When I follow "blank.pdf"
+        Then I should see "N° de la ligne de téléphone : +33 6 01 02 03 04"
         And I should see the key "pel.objects" translated
         And I should see the key "pel.total" translated
         And I should see the key "pel.total.message.one" translated
