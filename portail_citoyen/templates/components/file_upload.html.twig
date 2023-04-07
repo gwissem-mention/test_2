@@ -1,0 +1,6 @@
+<div class="fr-upload-group fr-mb-3w" {{ attributes.add(stimulus_controller('file-upload')) }} data-general-error-text="{{ 'pel.upload.error.message'|trans }}">
+    <label class="fr-label" for="{{ inputId }}">{{ inputLabel }}
+        <span class="fr-hint-text">{{ inputHelp }}</span>
+    </label>
+    <input data-file-upload-target="input" class="fr-upload" type="file" id="{{ inputId }}" multiple accept="image/jpeg,image/png,application/pdf" data-action="change->file-upload#upload">
+</div>

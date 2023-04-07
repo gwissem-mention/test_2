@@ -326,6 +326,11 @@
             <li>{{ 'pel.description'|trans }} : {{ object.description }}</li>
             <li>{{ 'pel.quantity'|trans }} : {{ object.quantity }}</li>
         {% endif %}
+        {% if object.files is not empty %}
+            {% for file in object.files %}
+                <li>{{ 'pel.attachment'|trans }} {{ loop.index }} : <a href="{{ path('file_download', {'fileName':file.path, 'originalName':file.name}) }}" target="_blank">{{ file.name }}</a></li>
+            {% endfor %}
+        {% endif %}
         {% if object.amount is not null %}
             <li>{{ 'pel.amount'|trans }} : {{ object.amount|format_currency('EUR', {fraction_digit: 2}) }}</li>
         {% endif %}

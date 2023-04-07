@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace App\Form\Model\Objects;
 
+use App\Form\Model\FileModel;
 use App\Form\Model\Identity\PhoneModel;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 class ObjectModel
 {
@@ -33,6 +36,15 @@ class ObjectModel
     private ?string $otherDocumentType = null;
     private ?bool $documentOwned = null;
     private ?string $documentOwner = null;
+    /**
+     * @var Collection<int, FileModel>
+     */
+    private Collection $files;
+
+    public function __construct()
+    {
+        $this->files = new ArrayCollection();
+    }
 
     public function getStatus(): ?int
     {
@@ -294,6 +306,42 @@ class ObjectModel
     public function setDocumentOwner(?string $documentOwner): self
     {
         $this->documentOwner = $documentOwner;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, FileModel>
+     */
+    public function getFiles(): Collection
+    {
+        return $this->files;
+    }
+
+    public function addFile(FileModel $file): self
+    {
+        if (!$this->files->contains($file)) {
+            $this->files->add($file);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Collection<int, FileModel> $files
+     */
+    public function setFiles(Collection $files): self
+    {
+        $this->files = $files;
+
+        return $this;
+    }
+
+    public function removeFile(FileModel $file): self
+    {
+        if ($this->files->contains($file)) {
+            $this->files->removeElement($file);
+        }
 
         return $this;
     }
