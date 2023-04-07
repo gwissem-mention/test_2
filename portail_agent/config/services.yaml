@@ -2,6 +2,9 @@ parameters:
     sso.enabled: '%env(bool:ENABLE_SSO)%'
     app.file_units: '%env(FILE_UNITS)%'
     app.referentials_base_path: '%kernel.project_dir%/referentials'
+    app.folder_rotation.count: '%env(FOLDER_ROTATION_COUNT)%'
+    app.folder_rotation.treshold: '%env(FOLDER_ROTATION_TRESHOLD)%'
+    app.oodrive.root_folder_id: '%env(OODRIVE_ROOT_FOLDER_ID)%'
     complaint.processing_deadline: '%env(COMPLAINT_PROCESSING_DEADLINE)%'
 
 services:
@@ -10,6 +13,9 @@ services:
         autoconfigure: true
         bind:
             bool $ssoIsEnabled: '%sso.enabled%'
+            $folderRotationCount: '%app.folder_rotation.count%'
+            $folderRotationTreshold: '%app.folder_rotation.treshold%'
+            $oodriveRootFolderId: '%app.oodrive.root_folder_id%'
 
     App\:
         resource: '../src/'
@@ -32,3 +38,19 @@ services:
     Faker\Generator:
         factory: [ 'Faker\Factory', 'create' ]
         arguments: ['fr_FR']
+
+    App\Oodrive\ApiClientInterface: '@App\Oodrive\ApiClient'
+
+    # Oodrive HTTP Client Oauth management service
+    App\Oodrive\OAuth2\GrantType\AuthorizationCodeGrantType:
+        arguments:
+            $tokenUrl: '%env(OODRIVE_BASE_URI)%/auth/oauth/token'
+            $workspace: '%env(OODRIVE_WORKSPACE)%'
+            $clientId: '%env(OODRIVE_OAUTH_CLIENT_ID)%'
+            $clientSecret: '%env(OODRIVE_OAUTH_CLIENT_SECRET)%'
+            $username: '%env(OODRIVE_USERNAME)%'
+            $password: '%env(OODRIVE_PASSWORD)%'
+
+    App\Report\SendReportHandler:
+        arguments:
+            $tmpComplaintFolderId: '%env(OODRIVE_TMP_COMPLAINT_FOLDER)%'

@@ -58,6 +58,10 @@
                 <source>pel.complaint.online</source>
                 <target>Plainte en ligne</target>
             </trans-unit>
+            <trans-unit id="pel.please.drop.the.report.to.send.to.the.victim">
+                <source>pel.please.drop.the.report.to.send.to.the.victim</source>
+                <target>Veuillez déposer ci-dessous le PV à transmettre au déclarant</target>
+            </trans-unit>
             <trans-unit id="pel.portal">
                 <source>pel.portal</source>
                 <target>Portail</target>
@@ -750,6 +754,10 @@
                 <source>pel.the.declaration.has.been.reassigned.to</source>
                 <target>La déclaration a été réattribuée à</target>
             </trans-unit>
+            <trans-unit id="pel.the.report.has.been.sent.to.the.victim.the.complaint.is.closed">
+                <source>pel.the.report.has.been.sent.to.the.victim.the.complaint.is.closed</source>
+                <target>Le PV a bien été envoyé au déclarant, la déclaration est clôturée</target>
+            </trans-unit>
             <trans-unit id="pel.the.unit.reassignment.of.the.declaration.to">
                 <source>pel.the.unit.reassignment.of.the.declaration.to</source>
                 <target>La demande de réorientation de la déclaration vers</target>
@@ -849,10 +857,6 @@
             <trans-unit id="pel.validate.the.refusal">
                 <source>pel.validate.the.refusal</source>
                 <target>Valider le refus</target>
-            </trans-unit>
-            <trans-unit id="pel.validate.the.report.and.send.to.the.victim">
-                <source>pel.validate.the.report.and.send.to.the.victim</source>
-                <target>Validation du PV et envoi à la victime</target>
             </trans-unit>
             <trans-unit id="pel.validate.the.sending.to.the.lrp">
                 <source>pel.validate.the.sending.to.the.lrp</source>
