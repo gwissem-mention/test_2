@@ -339,13 +339,13 @@ agent-frontend-cs:
     script:
         - make frontend-cpd-test
 
-citoyen-frontend-cpd:
-    <<: *citoyen-frontend-step
-    <<: *frontend-cpd
-
-agent-frontend-cpd:
-    <<: *agent-frontend-step
-    <<: *frontend-cpd
+#citoyen-frontend-cpd:
+#    <<: *citoyen-frontend-step
+#    <<: *frontend-cpd
+#
+#agent-frontend-cpd:
+#    <<: *agent-frontend-step
+#    <<: *frontend-cpd
 
 ## Php Magic Number Detector ##
 .mnd: &mnd

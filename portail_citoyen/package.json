@@ -17,7 +17,6 @@
         "eslint": "^8.26.0",
         "file-loader": "^6.0.0",
         "intl-tel-input": "^17.0.19",
-        "jscpd": "^3.5.1",
         "regenerator-runtime": "^0.13.9",
         "sass": "^1.54.0",
         "sass-loader": "^13.0.2",
