@@ -30,6 +30,10 @@
                 <source>pel.agent.name</source>
                 <target>Nom de l'agent</target>
             </trans-unit>
+            <trans-unit id="pel.appointment.management">
+                <source>pel.appointment.management</source>
+                <target>Gestion RDV déclarant</target>
+            </trans-unit>
             <trans-unit id="pel.appointment.needed">
                 <source>pel.appointment.needed</source>
                 <target>RDV nécessaire</target>

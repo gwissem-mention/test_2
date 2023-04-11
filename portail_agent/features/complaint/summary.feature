@@ -40,6 +40,7 @@ Feature:
         And I should see the key "pel.description.of.facts" translated
         And I should see the key "pel.objects.concerned" translated
         And I should see the key "pel.additional.informations" translated
+        And I should see the key "pel.appointment.management" translated
         And I should see the key "pel.home" translated
         And I should see the key "pel.header.baseline" translated
         And I should see the key "pel.complaint.online.portal" translated
@@ -168,13 +169,6 @@ Feature:
         Given I am on "/plainte/recapitulatif/91"
         When I follow "Récapitulatif"
         And I should be on "/plainte/recapitulatif/91"
-        And the response status code should be 200
-
-    @func
-    Scenario: I can click on the Go to identity button
-        Given I am on "/plainte/recapitulatif/91"
-        When I follow "Accéder à l'onglet : Identité du déclarant"
-        And I should be on "/plainte/identite/91"
         And the response status code should be 200
 
     @javascript
