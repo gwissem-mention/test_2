@@ -63,17 +63,17 @@
             <aside class="col-12 col-md-3">
                 <div class="position-fixed">
                     <div class="list-group">
-                        <a href="{{ path('complaint_summary', {id:complaint.id}) }}" class="{{ html_classes('list-group-item', 'list-group-item-action', {'list-group-item-secondary': app.current_route == 'complaint_summary'}) }}" {% if app.current_route == 'complaint_summary' %}aria-current="true"{% endif %}>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-secondary">
                             {{ 'pel.summary'|trans }}
                         </a>
-                        <a href="{{ path('complaint_identity', {id:complaint.id}) }}" class="{{ html_classes('list-group-item', 'list-group-item-action', {'list-group-item-secondary': app.current_route == 'complaint_identity'}) }}" {% if app.current_route == 'complaint_identity' %}aria-current="true"{% endif %}>
+                        <a href="{{ path('complaint_summary', {'id': complaint.id, '_fragment': 'declarant-identity'}) }}" class="list-group-item list-group-item-action">
                             {{ 'pel.declarant.identity'|trans }}
                             {% if complaint.identity.alertNumber %}
                                 <span class="badge bg-danger rounded-pill">{{ complaint.identity.alertNumber }}</span>
                             {% endif %}
                         </a>
                         {% if complaint.identity.declarantStatus is same as(constant('App\\Entity\\Identity::DECLARANT_STATUS_PERSON_LEGAL_REPRESENTATIVE')) or complaint.identity.declarantStatus is same as(constant('App\\Entity\\Identity::DECLARANT_STATUS_CORPORATION_LEGAL_REPRESENTATIVE')) %}
-                            <a href="{{ path('complaint_victim_identity', {id:complaint.id}) }}" class="{{ html_classes('list-group-item', 'list-group-item-action', {'list-group-item-secondary': app.current_route == 'complaint_victim_identity'}) }}" {% if app.current_route == 'complaint_victim_identity' %}aria-current="true"{% endif %}>
+                            <a href="{{ path('complaint_summary', {'id': complaint.id, '_fragment': 'victim-identity'}) }}" class="list-group-item list-group-item-action">
                                 {{ 'pel.victim.identity'|trans }}
                                 {% if complaint.personLegalRepresented is not null and complaint.personLegalRepresented.alertNumber %}
                                     <span class="badge bg-danger rounded-pill">{{ complaint.personLegalRepresented.alertNumber }}</span>
@@ -82,23 +82,26 @@
                                 {% endif %}
                             </a>
                         {% endif %}
-                        <a href="{{ path('complaint_facts', {'id':complaint.id}) }}" class="{{ html_classes('list-group-item', 'list-group-item-action', {'list-group-item-secondary': app.current_route == 'complaint_facts'}) }}" {% if app.current_route == 'complaint_facts' %}aria-current="true"{% endif %}>
+                        <a href="{{ path('complaint_summary', {'id': complaint.id, '_fragment': 'facts-description'}) }}" class="list-group-item list-group-item-action">
                             {{ 'pel.description.of.facts'|trans }}
                             {% if complaint.facts.alertNumber %}
                                 <span class="badge bg-danger rounded-pill">{{ complaint.facts.alertNumber }}</span>
                             {% endif %}
                         </a>
-                        <a href="{{ path('complaint_objects', {id:complaint.id}) }}" class="{{ html_classes('list-group-item', 'list-group-item-action', {'list-group-item-secondary': app.current_route == 'complaint_objects'}) }}" {% if app.current_route == 'complaint_objects' %}aria-current="true"{% endif %}>
+                        <a href="{{ path('complaint_summary', {'id': complaint.id, '_fragment': 'additional-information'}) }}" class="list-group-item list-group-item-action">
+                            {{ 'pel.additional.informations'|trans }}
+                            {% if complaint.additionalInformation.alertNumber %}
+                                <span class="badge bg-danger rounded-pill">{{ complaint.additionalInformation.alertNumber }}</span>
+                            {% endif %}
+                        </a>
+                        <a href="{{ path('complaint_summary', {'id': complaint.id, '_fragment': 'objects-concerned'}) }}" class="list-group-item list-group-item-action">
                             {{ 'pel.objects.concerned'|trans }}
                             {% if complaint.objects|objects_alerts > 0 %}
                                 <span class="badge bg-danger rounded-pill">{{ complaint.objects|objects_alerts }}</span>
                             {% endif %}
                         </a>
-                        <a href="{{ path('complaint_additional_information', {id:complaint.id}) }}" class="{{ html_classes('list-group-item', 'list-group-item-action', {'list-group-item-secondary': app.current_route == 'complaint_additional_information'}) }}" {% if app.current_route == 'complaint_additional_information' %}aria-current="true"{% endif %}>
-                            {{ 'pel.additional.informations'|trans }}
-                            {% if complaint.additionalInformation.alertNumber %}
-                                <span class="badge bg-danger rounded-pill">{{ complaint.additionalInformation.alertNumber }}</span>
-                            {% endif %}
+                        <a href="#" class="list-group-item list-group-item-action">
+                            {{ 'pel.appointment.management'|trans }}
                         </a>
                     </div>
                     <div class="row justify-content-md-center mt-3">
