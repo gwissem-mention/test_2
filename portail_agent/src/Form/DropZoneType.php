@@ -6,6 +6,7 @@ namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 class DropZoneType extends AbstractType
@@ -21,6 +22,11 @@ class DropZoneType extends AbstractType
                 ],
                 'constraints' => [
                     new NotBlank(),
+                    new File([
+                        'mimeTypes' => [
+                            'application/pdf',
+                        ],
+                    ]),
                 ],
             ])
         ;

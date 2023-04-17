@@ -274,6 +274,16 @@ Feature:
         And I should see a ".invalid-feedback" element
 
     @javascript
+    Scenario: I can see form errors when I submit another type file than PDF
+        Given I am on "/plainte/recapitulatif/111"
+        When I press "Envoyer PV au déclarant et clôturer"
+        Then I should see a ".modal[aria-modal=true]" element
+        When I attach the file "blank.xls" to ".dropzone-input" field
+        When I press "complaint-send-report-to-the-victim-button-validate"
+        Then I should see a ".modal[aria-modal=true]" element
+        And I should see a ".invalid-feedback" element
+
+    @javascript
     Scenario: I can submit the send report form successfully
         Given I am on "/plainte/recapitulatif/111"
         When I press "Envoyer PV au déclarant et clôturer"

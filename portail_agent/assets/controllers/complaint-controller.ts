@@ -1,9 +1,12 @@
 import {Controller} from "@hotwired/stimulus";
 import {Toast, Modal} from "bootstrap";
 
-export default class extends Controller {
-    static override targets: string[] = ["dropzoneFile"];
+import {HttpMethodsEnum} from "../scripts/utils/HttpMethodsEnum";
 
+export default class extends Controller {
+    static override targets: string[] = ["complaintContainer", "dropzoneFile"];
+
+    declare readonly complaintContainerTarget: HTMLElement;
     declare readonly dropzoneFileTarget: HTMLElement;
 
     public override connect() {
@@ -17,7 +20,7 @@ export default class extends Controller {
 
         if (form) {
             fetch(url, {
-                method: "POST",
+                method: HttpMethodsEnum.POST,
                 body: new FormData(form)
             })
                 .then(response => response.json())
@@ -42,21 +45,7 @@ export default class extends Controller {
                                 toast.show();
                             }
 
-                            // Reload the page in ajax, then replace the #complaint-container div by the new one
-                            fetch(window.location.href, {
-                                method: "GET"
-                            })
-                                .then(response => response.text())
-                                .then((data: string) => {
-                                    const element: HTMLDivElement = document.createElement("div");
-                                    element.innerHTML = data;
-                                    const complaintContainerDest: HTMLElement | null = document.getElementById("complaint-container");
-                                    const complaintContainerSource: HTMLElement | null = element.querySelector("#complaint-container");
-
-                                    if (complaintContainerDest && complaintContainerSource) {
-                                        complaintContainerDest.innerHTML = complaintContainerSource.innerHTML;
-                                    }
-                                });
+                            this.reloadComplaintContainer();
                         } else {
                             const modalForm: HTMLFormElement | null = modalElement.querySelector("form");
 
@@ -76,7 +65,7 @@ export default class extends Controller {
 
         if (url && form) {
             fetch(url, {
-                method: "POST",
+                method: HttpMethodsEnum.POST,
                 body: new FormData(form)
             })
                 .then(response => response.json())
@@ -102,21 +91,7 @@ export default class extends Controller {
                                 toast.show();
                             }
 
-                            // Reload the page in ajax, then replace the #complaint-container div by the new one
-                            fetch(window.location.href, {
-                                method: "GET"
-                            })
-                                .then(response => response.text())
-                                .then((data: string) => {
-                                    const element: HTMLDivElement = document.createElement("div");
-                                    element.innerHTML = data;
-                                    const complaintContainerDest: HTMLElement | null = document.getElementById("complaint-container");
-                                    const complaintContainerSource: HTMLElement | null = element.querySelector("#complaint-container");
-
-                                    if (complaintContainerDest && complaintContainerSource) {
-                                        complaintContainerDest.innerHTML = complaintContainerSource.innerHTML;
-                                    }
-                                });
+                            this.reloadComplaintContainer();
                         } else if (data.form) {
                             const modalForm: HTMLFormElement | null = modalElement.querySelector("form");
 
@@ -136,7 +111,7 @@ export default class extends Controller {
 
         if (url && form) {
             fetch(url, {
-                method: "POST",
+                method: HttpMethodsEnum.POST,
                 body: new FormData(form)
             })
                 .then(response => response.json())
@@ -166,21 +141,7 @@ export default class extends Controller {
                                     toast.show();
                                 }
 
-                                // Reload the page in ajax, then replace the #complaint-container div by the new one
-                                fetch(window.location.href, {
-                                    method: "GET"
-                                })
-                                    .then(response => response.text())
-                                    .then((data: string) => {
-                                        const element: HTMLDivElement = document.createElement("div");
-                                        element.innerHTML = data;
-                                        const complaintContainerDest: HTMLElement | null = document.getElementById("complaint-container");
-                                        const complaintContainerSource: HTMLElement | null = element.querySelector("#complaint-container");
-
-                                        if (complaintContainerDest && complaintContainerSource) {
-                                            complaintContainerDest.innerHTML = complaintContainerSource.innerHTML;
-                                        }
-                                    });
+                                this.reloadComplaintContainer();
                             }
                         } else if (data.form) {
                             const modalForm: HTMLFormElement | null = modalElement.querySelector("form");
@@ -219,6 +180,8 @@ export default class extends Controller {
             if (toast) {
                 toast.show();
             }
+
+            this.reloadComplaintContainer();
         }
     }
 
@@ -229,7 +192,7 @@ export default class extends Controller {
 
         if (url && form) {
             fetch(url, {
-                method: "POST",
+                method: HttpMethodsEnum.POST,
                 body: new FormData(form)
             })
                 .then(response => response.json())
@@ -253,21 +216,7 @@ export default class extends Controller {
                                 toast.show();
                             }
 
-                            // Reload the page in ajax, then replace the #complaint-container div by the new one
-                            fetch(window.location.href, {
-                                method: "GET"
-                            })
-                                .then(response => response.text())
-                                .then((data: string) => {
-                                    const element: HTMLDivElement = document.createElement("div");
-                                    element.innerHTML = data;
-                                    const complaintContainerDest: HTMLElement | null = document.getElementById("complaint-container");
-                                    const complaintContainerSource: HTMLElement | null = element.querySelector("#complaint-container");
-
-                                    if (complaintContainerDest && complaintContainerSource) {
-                                        complaintContainerDest.innerHTML = complaintContainerSource.innerHTML;
-                                    }
-                                });
+                            this.reloadComplaintContainer();
                         } else if (data.form) {
                             const modalForm: HTMLFormElement | null = modalElement.querySelector("form");
 
@@ -318,5 +267,22 @@ export default class extends Controller {
 
     public browseReport(): void {
         this.dropzoneFileTarget?.click();
+    }
+
+    private reloadComplaintContainer(): void {
+        // Reload the page in ajax, then replace the #complaint-container div by the new one
+        fetch(window.location.href, {
+            method: HttpMethodsEnum.GET
+        })
+            .then(response => response.text())
+            .then((data: string) => {
+                const element: HTMLDivElement = document.createElement("div");
+                element.innerHTML = data;
+                const complaintContainerSource: HTMLElement | null = element.querySelector("#complaint-container");
+
+                if (this.complaintContainerTarget && complaintContainerSource) {
+                    this.complaintContainerTarget.innerHTML = complaintContainerSource.innerHTML;
+                }
+            });
     }
 }
