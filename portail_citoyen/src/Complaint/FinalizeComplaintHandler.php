@@ -5,6 +5,7 @@ namespace App\Complaint;
 use App\Generator\Complaint\ComplaintVaultGeneratorInterface;
 use App\Oodrive\ApiClientInterface;
 use App\Oodrive\FolderResolver;
+use League\Flysystem\FilesystemOperator;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 #[AsMessageHandler]
@@ -14,6 +15,7 @@ class FinalizeComplaintHandler
         private readonly FolderResolver $folderResolver,
         private readonly ApiClientInterface $oodriveClient,
         private readonly ComplaintVaultGeneratorInterface $generator,
+        private readonly FilesystemOperator $defaultStorage
     ) {
     }
 
@@ -29,9 +31,23 @@ class FinalizeComplaintHandler
 
         $folder = $this->folderResolver->resolve($email, $complaintId);
 
+        $complaint = $finalizeComplaint->getComplaint();
+
         /** @var string $complaintJson */
-        $complaintJson = $this->generator->generate($finalizeComplaint->getComplaint());
+        $complaintJson = $this->generator->generate($complaint);
 
         $this->oodriveClient->uploadFile($complaintJson, 'plainte.json', $folder->getId());
+
+        if ($complaint->getObjects() && !$complaint->getObjects()->getObjects()->isEmpty()) {
+            foreach ($complaint->getObjects()->getObjects() as $object) {
+                foreach ($object->getFiles() as $file) {
+                    $this->oodriveClient->uploadFile(
+                        $this->defaultStorage->read($file->getPath()),
+                        $file->getName(),
+                        $folder->getId()
+                    );
+                }
+            }
+        }
     }
 }
