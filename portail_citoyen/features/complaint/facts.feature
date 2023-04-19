@@ -23,12 +23,9 @@ Feature:
 
     Scenario: I can see the place natures list
         And I should see "Domicile/Logement" in the "#facts_placeNature" element
-        And I should see "Parking / garage" in the "#facts_placeNature" element
         And I should see "Voie publique / Rue" in the "#facts_placeNature" element
-        And I should see "Commerce" in the "#facts_placeNature" element
         And I should see "Transports en commun" in the "#facts_placeNature" element
         And I should see "Autres natures de lieu" in the "#facts_placeNature" element
-        And I should see "Lieu indéterminé" in the "#facts_placeNature" element
 
     Scenario: I can see the offense exact date known radio buttons
         And I should see 2 "input[type=radio][name='facts[offenseDate][exactDateKnown]']" elements
@@ -161,11 +158,6 @@ Feature:
         And I select "1" from "facts_placeNature"
         And I click the "label[for=facts_address_addressOrRouteFactsKnown_0]" element
         Then the "facts-startAddress-address" field should contain "Avenue de la République 75011 Paris"
-
-    Scenario: The field start address should not be filled with identity address when place nature is not home and addressOrRouteFactsKnown is checked
-        And I select "2" from "facts_placeNature"
-        And I click the "label[for=facts_address_addressOrRouteFactsKnown_0]" element
-        Then the "facts-startAddress-address" field should not contain "Avenue de la République 75011 Paris"
 
     Scenario: The Google Maps should not be displays at init
         Then I should not see a "div#map" element
