@@ -1006,6 +1006,10 @@
                 <source>pel.click.here.to.start.searching</source>
                 <target>Cliquez ici pour lancer votre recherche</target>
             </trans-unit>
+            <trans-unit id="pel.number.of.the.declaration">
+                <source>pel.number.of.the.declaration</source>
+                <target>Numéro de la déclaration</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

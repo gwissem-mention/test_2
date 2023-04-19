@@ -46,6 +46,10 @@
         </div>
     </div>
     <div data-controller="complaint" data-complaint-target="complaintContainer" id="complaint-container">
+        <div class="mb-3">
+            {{ 'pel.number.of.the.declaration'|trans }} : 
+            <span class="fw-bold">{{ complaint.declarationNumber }}</span>
+        </div>
         <div class="row my-3 {{ not complaint.assignedTo ? 'd-none':'' }}" id="complaint-agent">
             <div class="col">
                 <div class="fs-5 float-end">
