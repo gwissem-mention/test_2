@@ -1054,17 +1054,9 @@
                 <source>pel.nature.place.home</source>
                 <target>Domicile/Logement</target>
             </trans-unit>
-            <trans-unit id="pel.nature.place.market">
-                <source>pel.nature.place.market</source>
-                <target>Commerce</target>
-            </trans-unit>
             <trans-unit id="pel.nature.place.other">
                 <source>pel.nature.place.other</source>
                 <target>Autres natures de lieu</target>
-            </trans-unit>
-            <trans-unit id="pel.nature.place.park">
-                <source>pel.nature.place.park</source>
-                <target>Parking / garage</target>
             </trans-unit>
             <trans-unit id="pel.nature.place.public.transport">
                 <source>pel.nature.place.public.transport</source>
@@ -1073,10 +1065,6 @@
             <trans-unit id="pel.nature.place.street">
                 <source>pel.nature.place.street</source>
                 <target>Voie publique / Rue</target>
-            </trans-unit>
-            <trans-unit id="pel.nature.place.unknown">
-                <source>pel.nature.place.unknown</source>
-                <target>Lieu indéterminé</target>
             </trans-unit>
             <trans-unit id="pel.precise.owner.lastname.and.firstname">
                 <source>pel.precise.owner.lastname.and.firstname</source>
