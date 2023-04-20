@@ -1010,6 +1010,10 @@
                 <source>pel.number.of.the.declaration</source>
                 <target>Numéro de la déclaration</target>
             </trans-unit>
+            <trans-unit id="pel.declaration.status">
+                <source>pel.declaration.status</source>
+                <target>Statut de la déclaration</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
