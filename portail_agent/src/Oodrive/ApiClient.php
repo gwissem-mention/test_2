@@ -9,28 +9,40 @@ use App\Oodrive\DTO\Folder;
 use App\Oodrive\Event\PostBulkUploadFile;
 use App\Oodrive\Event\PostCheckItemLock;
 use App\Oodrive\Event\PostCreateFolder;
+use App\Oodrive\Event\PostDeleteFolder;
+use App\Oodrive\Event\PostDownloadFile;
+use App\Oodrive\Event\PostGetChildrenFiles;
 use App\Oodrive\Event\PostGetChildrenFolders;
 use App\Oodrive\Event\PostGetFolder;
 use App\Oodrive\Event\PostLockItem;
 use App\Oodrive\Event\PostSearch;
 use App\Oodrive\Event\PostUnlockItem;
+use App\Oodrive\Event\PostUpdateFolder;
 use App\Oodrive\Event\PostUploadFile;
 use App\Oodrive\Event\PostUploadNewVersionFile;
 use App\Oodrive\Event\PreBulkUploadFile;
 use App\Oodrive\Event\PreCheckItemLock;
 use App\Oodrive\Event\PreCreateFolder;
+use App\Oodrive\Event\PreDeleteFolder;
+use App\Oodrive\Event\PreDownloadFile;
+use App\Oodrive\Event\PreGetChildrenFiles;
 use App\Oodrive\Event\PreGetChildrenFolders;
 use App\Oodrive\Event\PreGetFolder;
 use App\Oodrive\Event\PreLockItem;
 use App\Oodrive\Event\PreSearch;
 use App\Oodrive\Event\PreUnlockItem;
+use App\Oodrive\Event\PreUpdateFolder;
 use App\Oodrive\Event\PreUploadFile;
 use App\Oodrive\Event\PreUploadNewVersionFile;
 use App\Oodrive\Exception\CheckItemLockException;
+use App\Oodrive\Exception\ChildrenFilesFetchException;
 use App\Oodrive\Exception\ChildrenFoldersFetchException;
+use App\Oodrive\Exception\FileDownloadException;
 use App\Oodrive\Exception\FileMetadataFetchException;
 use App\Oodrive\Exception\FileUploadException;
 use App\Oodrive\Exception\FolderCreationException;
+use App\Oodrive\Exception\FolderUpdateException;
+use App\Oodrive\Exception\ItemDeleteException;
 use App\Oodrive\Exception\ItemLockException;
 use App\Oodrive\Exception\ItemUnlockException;
 use App\Oodrive\Exception\SearchException;
@@ -45,6 +57,7 @@ use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
+use Symfony\Contracts\HttpClient\ResponseInterface;
 
 class ApiClient implements ApiClientInterface
 {
@@ -174,6 +187,60 @@ class ApiClient implements ApiClientInterface
         return $folder;
     }
 
+    public function updateFolder(Folder $folder): Folder
+    {
+        $this->eventDispatcher->dispatch(new PreUpdateFolder($folder), PreUpdateFolder::NAME);
+        $this->oodriveLogger->info(sprintf('Updating the folder metadata with name %s and parent %s', $folder->getName(), $folder->getParentId()));
+
+        try {
+            $folder = $this->doUpdateFolderMetadata($folder);
+        } catch (FolderUpdateException $e) {
+            /*
+             * The API call succeded but did not return 200 OK
+             * @TODO: May be retry ?
+             */
+            throw $e;
+        } catch (\Exception $e) {
+            /*
+             * The API call did not succeed
+             * @TODO: Mark the API as unavailable ? code stability issue ?
+             */
+            throw $e;
+        }
+
+        $this->oodriveLogger->info(sprintf('Successfully updated a folder with name %s and parent %s and ID %s ', $folder->getName(), $folder->getParentId(), $folder->getId()));
+        $this->eventDispatcher->dispatch(new PostUpdateFolder($folder), PostUpdateFolder::NAME);
+
+        return $folder;
+    }
+
+    public function deleteFolder(Folder $folder): Folder
+    {
+        $this->eventDispatcher->dispatch(new PreDeleteFolder($folder), PreDeleteFolder::NAME);
+        $this->oodriveLogger->info(sprintf('Deleting the folder with name %s and parent %s', $folder->getName(), $folder->getParentId()));
+
+        try {
+            $this->doDeleteItem($folder->getId());
+        } catch (ItemDeleteException $e) {
+            /*
+             * The API call succeded but did not return 202 OK
+             * @TODO: May be retry ?
+             */
+            throw $e;
+        } catch (\Exception $e) {
+            /*
+             * The API call did not succeed
+             * @TODO: Mark the API as unavailable ? code stability issue ?
+             */
+            throw $e;
+        }
+
+        $this->oodriveLogger->info(sprintf('Successfuly deleted a folder with name %s and parent %s and ID %s ', $folder->getName(), $folder->getParentId(), $folder->getId()));
+        $this->eventDispatcher->dispatch(new PostDeleteFolder($folder), PostDeleteFolder::NAME);
+
+        return $folder;
+    }
+
     public function uploadFile(File|string $fileContent, string $fileName, string $parentId): OodriveFile
     {
         $this->eventDispatcher->dispatch(new PreUploadFile($fileName, $parentId), PreUploadFile::NAME);
@@ -262,6 +329,7 @@ class ApiClient implements ApiClientInterface
         $this->oodriveLogger->info(sprintf('Successfuly uploaded a new version of file with name %s and id %s', $fileMetadata->getName(), $fileMetadata->getId()));
         $this->eventDispatcher->dispatch(new PostUploadNewVersionFile($fileMetadata), PostUploadNewVersionFile::NAME);
 
+        /* @phpstan-ignore-next-line */
         return new OodriveFile(['@todo', '@todo']);
     }
 
@@ -287,6 +355,33 @@ class ApiClient implements ApiClientInterface
         $this->eventDispatcher->dispatch(new PostBulkUploadFile($oodriveFiles), PostBulkUploadFile::NAME);
 
         return $oodriveFiles;
+    }
+
+    public function downloadFile(OodriveFile $file): ResponseInterface
+    {
+        $this->eventDispatcher->dispatch(new PreDownloadFile($file->getId()), PreDownloadFile::NAME);
+        $this->oodriveLogger->info(sprintf('Download a file with id %s', $file->getId()));
+
+        try {
+            $response = $this->doDownloadFile($file);
+        } catch (FileDownloadException $e) {
+            /*
+             * The API call succeded but did not return 200 OK
+             * @TODO: May be retry ?
+             */
+            throw $e;
+        } catch (\Exception $e) {
+            /*
+             * The API call did not succeed
+             * @TODO: Mark the API as unavailable ? code stability issue ?
+             */
+            throw $e;
+        }
+
+        $this->oodriveLogger->info(sprintf('Successfully download a file with name %s and ID %s', $file->getName(), $file->getId()));
+        $this->eventDispatcher->dispatch(new PostDownloadFile($file), PostDownloadFile::NAME);
+
+        return $response;
     }
 
     public function lockItem(string $itemId): bool
@@ -426,6 +521,48 @@ class ApiClient implements ApiClientInterface
         return $folders;
     }
 
+    /**
+     * @return array<OodriveFile>
+     */
+    public function getChildrenFiles(Folder $rootFolder): array
+    {
+        $this->eventDispatcher->dispatch(new PreGetChildrenFiles($rootFolder->getId()), PreGetChildrenFiles::NAME);
+        $this->oodriveLogger->info(sprintf('Getting children files of folder with id %s', $rootFolder->getId()));
+
+        $response = $this->oodriveClient->request('GET', sprintf('share/api/v1/items/%s/children', $rootFolder->getId()), [
+            'headers' => [
+                'Content-Type' => 'application/json',
+                'Accept' => 'application/json',
+            ],
+        ]);
+
+        if (Response::HTTP_OK !== $response->getStatusCode()) {
+            $this->oodriveLogger->error(sprintf('Failed getting children files of folder with id %s. Got status code %d', $rootFolder->getId(), $response->getStatusCode()));
+
+            throw new ChildrenFilesFetchException($response);
+        }
+
+        $responseJson = json_decode($response->getContent(), true, 512, JSON_THROW_ON_ERROR);
+
+        if (!is_array($responseJson) || empty($responseJson)) {
+            $this->oodriveLogger->error(sprintf('Unexpected API response while getting children files of folder with id %s. Got status code %d', $rootFolder->getId(), $response->getStatusCode()), [$responseJson]);
+
+            throw new FolderCreationException($response);
+        }
+
+        /* @phpstan-ignore-next-line */
+        $files = array_map(static fn (array $fileData) => new OodriveFile($fileData), $responseJson['$collection']);
+        $files = array_filter($files, static fn (OodriveFile $file) => !$file->isDir());
+
+        $this->eventDispatcher->dispatch(
+            new PostGetChildrenFiles($rootFolder->getId(), $files),
+            PostGetChildrenFiles::NAME
+        );
+        $this->oodriveLogger->info(sprintf('Successfully got children files of folder with id %s', $rootFolder->getId()));
+
+        return $files;
+    }
+
     private function doFetchFolderMetadata(string $folderId): Folder
     {
         /* @phpstan-ignore-next-line */
@@ -433,9 +570,9 @@ class ApiClient implements ApiClientInterface
     }
 
     /** Not used for moment but probably will be in future */
-    /* @phpstan-ignore-next-line */
     private function doFetchFileMetadata(string $fileId): OodriveFile
     {
+        /* @phpstan-ignore-next-line */
         return new OodriveFile($this->doFetchItemMetadata($fileId));
     }
 
@@ -469,6 +606,28 @@ class ApiClient implements ApiClientInterface
         return $responseJson;
     }
 
+    private function doDeleteItem(string $itemId): void
+    {
+        try {
+            $response = $this->oodriveClient->request('DELETE', sprintf('share/api/v1/items/%s', $itemId), [
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                    'Accept' => 'application/json',
+                ],
+            ]);
+        } catch (ClientExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface|TransportExceptionInterface $e) {
+            $this->oodriveLogger->error(sprintf('Failed deleting item with id %s. Got error %s', $itemId, $e->getMessage()));
+
+            throw $e;
+        }
+
+        if (!in_array($response->getStatusCode(), [Response::HTTP_ACCEPTED, Response::HTTP_NO_CONTENT], true)) {
+            $this->oodriveLogger->error(sprintf('Failed deleting file with id %s. Got status code %d', $itemId, $response->getStatusCode()));
+
+            throw new ItemDeleteException($response);
+        }
+    }
+
     private function doCreateFileMetadata(string $fileName, string $parentId): OodriveFile
     {
         try {
@@ -495,6 +654,7 @@ class ApiClient implements ApiClientInterface
         /** @var array<array<array<string>>> $responseJson */
         $responseJson = json_decode($response->getContent(), true, 512, JSON_THROW_ON_ERROR);
 
+        /* @phpstan-ignore-next-line */
         return new OodriveFile($responseJson['$collection'][0]);
     }
 
@@ -524,6 +684,7 @@ class ApiClient implements ApiClientInterface
         /** @var array<string> $responseJson */
         $responseJson = json_decode($response->getContent(), true, 512, JSON_THROW_ON_ERROR);
 
+        /* @phpstan-ignore-next-line */
         return new OodriveFile($responseJson);
     }
 
@@ -565,5 +726,59 @@ class ApiClient implements ApiClientInterface
         // ... Enrich eventually the File object with some additional metadata from the response
 
         return true;
+    }
+
+    private function doDownloadFile(OodriveFile $file): ResponseInterface
+    {
+        try {
+            $response = $this->oodriveClient->request('GET', sprintf('share/api/v1/io/items/%s', $file->getId()), [
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                    'Accept' => 'application/json',
+                ],
+            ]);
+        } catch (ClientExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface|TransportExceptionInterface $e) {
+            $this->oodriveLogger->error(sprintf('Failed downloading file with name %s. Got error %s', $file->getName(), $e->getMessage()));
+
+            throw $e;
+        }
+
+        if (Response::HTTP_OK !== $response->getStatusCode()) {
+            $this->oodriveLogger->error(sprintf('Failed downloading file with name %s. Got status code %d', $file->getName(), $response->getStatusCode()));
+
+            throw new FolderUpdateException($response);
+        }
+
+        // ... other checks eventually (when the folder already exists for example)
+        return $response;
+    }
+
+    private function doUpdateFolderMetadata(Folder $folder): Folder
+    {
+        try {
+            $response = $this->oodriveClient->request('PATCH', sprintf('share/api/v1/items/%s', $folder->getId()), [
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                    'Accept' => 'application/json',
+                ],
+                'body' => json_encode($folder->getPayload(), JSON_THROW_ON_ERROR),
+            ]);
+        } catch (ClientExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface|TransportExceptionInterface $e) {
+            $this->oodriveLogger->error(sprintf('Failed updating folder with name %s. Got error %s', $folder->getName(), $e->getMessage()));
+
+            throw $e;
+        }
+
+        if (Response::HTTP_OK !== $response->getStatusCode()) {
+            $this->oodriveLogger->error(sprintf('Failed updating folder with name %s. Got status code %d', $folder->getName(), $response->getStatusCode()));
+
+            throw new FolderUpdateException($response);
+        }
+
+        // ... other checks eventually (when the folder already exists for example)
+        $responseJson = json_decode($response->getContent(), true, 512, JSON_THROW_ON_ERROR);
+
+        /* @phpstan-ignore-next-line */
+        return new Folder($responseJson);
     }
 }

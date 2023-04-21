@@ -11,6 +11,7 @@
       FOLDER_ROTATION_COUNT={{ ansible_env.FOLDER_ROTATION_COUNT }}
       FOLDER_ROTATION_TRESHOLD={{ ansible_env.FOLDER_ROTATION_TRESHOLD }}
       OODRIVE_ROOT_FOLDER_ID={{ ansible_env.OODRIVE_ROOT_FOLDER_ID }}  
+      OODRIVE_FETCHED_FOLDER_ID={{ ansible_env.OODRIVE_FETCHED_FOLDER_ID }}        
       OODRIVE_TMP_COMPLAINT_FOLDER={{ ansible_env.OODRIVE_TMP_COMPLAINT_FOLDER }}
         
 - name: Install vendors for prod env

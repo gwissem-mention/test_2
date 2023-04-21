@@ -2,9 +2,11 @@ parameters:
     sso.enabled: '%env(bool:ENABLE_SSO)%'
     app.file_units: '%env(FILE_UNITS)%'
     app.referentials_base_path: '%kernel.project_dir%/referentials'
+    app.complaints_base_path: '%kernel.project_dir%/var/complaints'
     app.folder_rotation.count: '%env(FOLDER_ROTATION_COUNT)%'
     app.folder_rotation.treshold: '%env(FOLDER_ROTATION_TRESHOLD)%'
     app.oodrive.root_folder_id: '%env(OODRIVE_ROOT_FOLDER_ID)%'
+    app.oodrive.fetched_folder_id: '%env(OODRIVE_FETCHED_FOLDER_ID)%'
     complaint.processing_deadline: '%env(COMPLAINT_PROCESSING_DEADLINE)%'
 
 services:
@@ -16,6 +18,7 @@ services:
             $folderRotationCount: '%app.folder_rotation.count%'
             $folderRotationTreshold: '%app.folder_rotation.treshold%'
             $oodriveRootFolderId: '%app.oodrive.root_folder_id%'
+            $oodriveFetchedFolderId: '%app.oodrive.fetched_folder_id%'
 
     App\:
         resource: '../src/'
@@ -54,3 +57,11 @@ services:
     App\Report\SendReportHandler:
         arguments:
             $tmpComplaintFolderId: '%env(OODRIVE_TMP_COMPLAINT_FOLDER)%'
+    
+    App\Command\CRON\ComplaintFetchCron:
+        arguments:
+            $complaintsBasePath: '%app.complaints_base_path%'
+
+    App\Complaint\ComplaintFetcher:
+        arguments:
+            $complaintsBasePath: '%app.complaints_base_path%'

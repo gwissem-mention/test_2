@@ -3,9 +3,12 @@
 namespace App\Tests\Oodrive;
 
 use App\Oodrive\ApiClient;
+use App\Oodrive\DTO\Folder;
 use App\Oodrive\Exception\CheckItemLockException;
 use App\Oodrive\Exception\FileUploadException;
 use App\Oodrive\Exception\FolderCreationException;
+use App\Oodrive\Exception\FolderUpdateException;
+use App\Oodrive\Exception\ItemDeleteException;
 use App\Oodrive\Exception\ItemLockException;
 use App\Oodrive\Exception\ItemUnlockException;
 use App\Oodrive\OAuth2\Cache\TokensCacheInterface;
@@ -81,6 +84,133 @@ class ApiClientTest extends TestCase
         );
 
         $apiClient->createFolder('my_folder_name', '123');
+    }
+
+    public function testUpdateFolder(): void
+    {
+        $apiClient = new ApiClient(
+            $this->getMockedOodriveClient([
+                new MockResponse('{"id": "hVorkkoZ", "name": "my_folder_name", "parentId": "Etg5tfd"}', ['http_code' => 200]),
+            ]),
+            new NullLogger(),
+            new EventDispatcher(),
+        );
+
+        $folder = new Folder([
+            'id' => 'hVorkkoZ',
+            'name' => 'my_folder_name',
+            'parentId' => 'gtYhgfSD',
+            'childFileCount' => 0,
+            'childFolderCount' => 0,
+            'isDir' => true,
+        ]);
+        $folder->setParentId('Etg5tfd');
+
+        $updatedFolder = $apiClient->updateFolder($folder);
+
+        $this->assertSame($updatedFolder->getId(), 'hVorkkoZ');
+        $this->assertSame($updatedFolder->getName(), 'my_folder_name');
+        $this->assertSame($updatedFolder->getParentId(), 'Etg5tfd');
+    }
+
+    public function testUpdateFolderWithHttpException(): void
+    {
+        $this->expectException(FolderUpdateException::class);
+        $this->expectExceptionMessage('HTTP 403 returned for "https://example.com/share/api/v1/items/hVorkkoZ".'."\n002 : provided item name may have invalid character or forbidden item name like . or /");
+
+        $apiClient = new ApiClient(
+            $this->getMockedOodriveClient([
+                new MockResponse('{"code": "002", "description": "provided item name may have invalid character or forbidden item name like . or /"}', ['http_code' => 403]),
+            ]),
+            new NullLogger(),
+            new EventDispatcher(),
+        );
+
+        $folder = new Folder([
+            'id' => 'hVorkkoZ',
+            'name' => 'my_folder_name',
+            'parentId' => 'gtYhgfSD',
+            'childFileCount' => 0,
+            'childFolderCount' => 0,
+            'isDir' => true,
+        ]);
+        $folder->setParentId('Etg5tfd');
+
+        $updatedFolder = $apiClient->updateFolder($folder);
+    }
+
+    public function testUpdateFolderWithNonJsonBodyException(): void
+    {
+        $this->expectException(\JsonException::class);
+        $this->expectExceptionMessage('Syntax error');
+
+        $apiClient = new ApiClient(
+            $this->getMockedOodriveClient([
+                new MockResponse('Not JSON', ['http_code' => 200]),            ]),
+            new NullLogger(),
+            new EventDispatcher(),
+        );
+
+        $folder = new Folder([
+            'id' => 'hVorkkoZ',
+            'name' => 'my_folder_name',
+            'parentId' => 'gtYhgfSD',
+            'childFileCount' => 0,
+            'childFolderCount' => 0,
+            'isDir' => true,
+        ]);
+        $folder->setParentId('Etg5tfd');
+
+        $updatedFolder = $apiClient->updateFolder($folder);
+    }
+
+    public function testDeleteFolder(): void
+    {
+        $apiClient = new ApiClient(
+            $this->getMockedOodriveClient([
+                new MockResponse('', ['http_code' => 202]),
+            ]),
+            new NullLogger(),
+            new EventDispatcher(),
+        );
+
+        $folder = new Folder([
+            'id' => 'hVorkkoZ',
+            'name' => 'my_folder_name',
+            'parentId' => 'gtYhgfSD',
+            'childFileCount' => 0,
+            'childFolderCount' => 0,
+            'isDir' => true,
+        ]);
+        $folder = $apiClient->deleteFolder($folder);
+
+        $this->assertSame($folder->getId(), 'hVorkkoZ');
+        $this->assertSame($folder->getName(), 'my_folder_name');
+    }
+
+    public function testDeleteFolderWithHttpException(): void
+    {
+        $this->expectException(ItemDeleteException::class);
+        $this->expectExceptionMessage('HTTP 403 returned for "https://example.com/share/api/v1/items/hVorkkoZ".'."\n009 : you do not have the permission to modify this item");
+
+        $apiClient = new ApiClient(
+            $this->getMockedOodriveClient([
+                new MockResponse('{"code": "009", "description": "you do not have the permission to modify this item"}', ['http_code' => 403]),
+            ]),
+            new NullLogger(),
+            new EventDispatcher(),
+        );
+
+        $folder = new Folder([
+            'id' => 'hVorkkoZ',
+            'name' => 'my_folder_name',
+            'parentId' => 'gtYhgfSD',
+            'childFileCount' => 0,
+            'childFolderCount' => 0,
+            'isDir' => true,
+        ]);
+
+        $folder = $apiClient->deleteFolder($folder);
     }
 
     public function testUploadFile(): void
