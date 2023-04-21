@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Oodrive;
 
 use App\Oodrive\DTO\Folder;
@@ -24,13 +26,17 @@ class FolderResolver
 
     private function getEmailFolder(string $email): Folder
     {
-        $searchParam = (new SearchParamObject())->type(['folder'])->q($email);
+        $searchParam = (new SearchParamObject())->type(['folder'])->folderId($this->oodriveRootFolderId)->q($email);
+
+        $parentFolders = $this->oodriveClient->getChildrenFolders($this->oodriveClient->getFolder($this->oodriveRootFolderId));
+        $parentFoldersId = array_map(static fn (Folder $folderData) => $folderData->getId(), $parentFolders);
 
         /** @var Folder[] $results */
         $results = $this->oodriveClient->search($searchParam);
+        $results = array_filter($results, static fn (Folder $folder) => in_array($folder->getParentId(), $parentFoldersId));
 
         if (count($results) > 0) {
-            return $results[0];
+            return reset($results);
         }
 
         $folder = $this->folderRotator->getLeastUsedFolder($this->oodriveRootFolderId);

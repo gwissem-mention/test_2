@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Oodrive\DTO;
 
 class File
@@ -8,13 +10,20 @@ class File
 
     private string $name;
 
+    private bool $isDir;
+
     /**
-     * @param array<string> $payload
+     * @param array{
+     *     'id': string,
+     *     'name': string|null,
+     *     'isDir': bool|null
+     *     }$payload
      */
     public function __construct(array $payload)
     {
         $this->id = $payload['id'];
-        $this->name = $payload['name'];
+        $this->name = $payload['name'] ?? '';
+        $this->isDir = $payload['isDir'] ?? false;
     }
 
     public function getId(): string
@@ -33,5 +42,10 @@ class File
         return [
             'name' => $this->name,
         ];
+    }
+
+    public function isDir(): bool
+    {
+        return $this->isDir;
     }
 }

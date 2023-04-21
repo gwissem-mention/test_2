@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Oodrive\DTO;
 
 class Folder
@@ -7,6 +9,10 @@ class Folder
     private string $id;
 
     private string $name;
+
+    private string $parentId;
+
+    private int $childrenFileCount;
 
     private int $childrenFolderCount;
 
@@ -16,6 +22,8 @@ class Folder
      * @param array{
      *     'id': string,
      *     'name': string|null,
+     *     'parentId': string|null,
+     *     'childFileCount': int|null,
      *     'childFolderCount': int|null,
      *     'isDir': bool|null
      * } $payload
@@ -24,6 +32,8 @@ class Folder
     {
         $this->id = $payload['id'];
         $this->name = $payload['name'] ?? '';
+        $this->parentId = $payload['parentId'] ?? '';
+        $this->childrenFileCount = $payload['childFileCount'] ?? 0;
         $this->childrenFolderCount = $payload['childFolderCount'] ?? 0;
         $this->isDir = $payload['isDir'] ?? true;
     }
@@ -38,6 +48,23 @@ class Folder
         return $this->name;
     }
 
+    public function getParentId(): string
+    {
+        return $this->parentId;
+    }
+
+    public function setParentId(string $parentId): self
+    {
+        $this->parentId = $parentId;
+
+        return $this;
+    }
+
+    public function getChildrenFileCount(): int
+    {
+        return $this->childrenFileCount;
+    }
+
     public function getChildrenFolderCount(): int
     {
         return $this->childrenFolderCount;
@@ -46,5 +73,13 @@ class Folder
     public function isDir(): bool
     {
         return $this->isDir;
+    }
+
+    /** @return array<string, string> */
+    public function getPayload(): array
+    {
+        return [
+            'parentId' => $this->parentId,
+        ];
     }
 }
