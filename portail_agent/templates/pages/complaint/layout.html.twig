@@ -224,19 +224,19 @@
                 {% endif %}
             </aside>
             <main class="col-12 col-md-9 mt-3 mt-md-0">
-                <div class="row mb-3 {{ not complaint.assignedTo ? 'd-none':'' }}" id="complaint-agent">
-                    <div class="col d-flex align-items-center justify-content-between">
-                        <div class="w-50">
-                            <p class="m-0">
-                                {{ 'pel.number.of.the.declaration'|trans }} : 
-                                <span class="fw-bold">{{ complaint.declarationNumber }}</span>
-                            </p>
-                            <p class="m-0">
-                                {{ 'pel.declaration.status'|trans }} :
-                                {{ complaint.status|trans }}
-                            </p>
-                        </div>
-                        <div class="fs-5 w-50 text-end">
+                <div class="row mb-3">
+                    <div class="col-6">
+                        <p class="m-0">
+                            {{ 'pel.number.of.the.declaration'|trans }} :
+                            <span class="fw-bold">{{ complaint.declarationNumber }}</span>
+                        </p>
+                        <p class="m-0">
+                            {{ 'pel.declaration.status'|trans }} :
+                            {{ complaint.status|trans }}
+                        </p>
+                    </div>
+                    <div class="col-6 {{ not complaint.assignedTo ? 'd-none':'' }}" id="complaint-agent">
+                        <div class="fs-5 text-end">
                             {{ 'pel.declaration.assigned.to'|trans }} :
                             <span class="agent-name fw-bold">{{ complaint.assignedTo.appellation|default }}</span>
                             {% if is_granted('ROLE_SUPERVISOR') and complaint.status not in [constant('App\\Entity\\Complaint::STATUS_REJECTED'), constant('App\\Entity\\Complaint::STATUS_CLOSED')] %}
