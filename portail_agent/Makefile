@@ -188,6 +188,10 @@ build-ci: yarn
 dev: c=dev
 dev: yarn
 
+## Build dev nodes packages and launch webpack-dev-server
+dev-server: c=dev-server
+dev-server: yarn
+
 ## Fix TS files coding style
 frontend-cs: c=cs
 frontend-cs: yarn
