@@ -56,10 +56,10 @@ class ComplaintXmlGenerator implements ComplaintGeneratorInterface
     {
         foreach ($data as $key => $value) {
             if (is_array($value)) {
-                $subnode = $xml->addChild(utf8_encode($key));
+                $subnode = $xml->addChild($key);
                 $this->arrayToXml($subnode, $value);
             } elseif (is_string($value)) {
-                $xml->addChild(utf8_encode($key), utf8_encode($value));
+                $xml->addChild($key, $value);
             }
         }
 
