@@ -8,6 +8,9 @@ Setup env files:
  # Edit them if needed
 cp docker-compose.override.yml.dist docker-compose.override.yml
 cp .env.local.dist .env.local
+
+# In portail_agent & portail_citoyen
+cp .env.dist .env.local
 ```
 
 Install the project with following commands:
