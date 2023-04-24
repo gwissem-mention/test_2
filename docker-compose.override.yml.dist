@@ -70,3 +70,11 @@ services:
   redis-citoyen:
     ports:
       - "6379:6379"
+
+  node-citoyen:
+    ports:
+      - "8089:8089" # Port for webpack-dev-server
+
+  node-agent:
+    ports:
+      - "8090:8090" # Port for webpack-dev-server
