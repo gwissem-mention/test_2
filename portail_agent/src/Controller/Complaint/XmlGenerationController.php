@@ -45,6 +45,7 @@ class XmlGenerationController extends AbstractController
 
         $response = new BinaryFileResponse($tmpFileName);
         $response->headers->set('Content-type', 'application/xml');
+        $response->setCharset('iso-8859-1');
         $response->setContentDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT, $complaint->getDeclarationNumber().'.xml');
 
         fclose($tmpFile);

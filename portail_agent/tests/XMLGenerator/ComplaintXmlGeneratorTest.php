@@ -200,7 +200,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         /** @var string $xml */
         $xml = $xmlGenerator->generate($complaint, $unit)->asXML();
 
-        $this->xmlContent = $xml;
+        $this->xmlContent = mb_convert_encoding($xml, 'UTF-8', 'ISO-8859-1');
 
         /** @var Identity $identity */
         $identity = $complaint->getIdentity();
@@ -233,7 +233,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         /** @var string $xmlWithCorporationRepresented */
         $xmlWithCorporationRepresented = $xmlGenerator->generate($complaint, $unit)->asXML();
 
-        $this->xmlContentWithCorporationRepresented = $xmlWithCorporationRepresented;
+        $this->xmlContentWithCorporationRepresented = mb_convert_encoding($xmlWithCorporationRepresented, 'UTF-8', 'ISO-8859-1');
     }
 
     public function testFlagSection(): void
