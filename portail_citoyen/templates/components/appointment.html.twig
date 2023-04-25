@@ -1,0 +1,20 @@
+<div {{ attributes.add(stimulus_controller('complaint-submit')) }}>
+    {{ component('google_maps', {class: 'fr-py-1w', 'id':'appointment', 'searchBoxActionUrl':path('complaint_find_units')}) }}
+    <div class="fr-mt-4w">
+        {{ form_start(form, {attr: {'data-action': 'live#action complaint-submit#submit','data-action-name': 'prevent|submit'}}) }}
+        <div class="fr-grid-row fr-py-2w">
+            <div class="fr-col-12">
+                {{ form_row(form.appointmentContactText) }}
+            </div>
+        </div>
+        <div class="flex--between fr-mt-3w fr-mb-3w">
+            <a href="{{ path('complaint_summary') }}" class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-arrow-left-line">{{ 'pel.previous'|trans }}</a>
+            <ul class="fr-btns-group fr-btns-group--right fr-btns-group--inline-reverse fr-btns-group--inline-lg fr-btns-group--icon-left">
+                <li>
+                    <button class="fr-btn fr-float-right fr-btn--icon-right fr-icon-arrow-right-line" id="appointment_submit" data-action="live#action" data-action-name="prevent|submit">{{ 'pel.next'|trans }}</button>
+                </li>
+            </ul>
+        </div>
+        {{ form_end(form) }}
+    </div>
+</div>

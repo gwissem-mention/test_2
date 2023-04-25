@@ -17,6 +17,12 @@ class GoogleMapsComponent
     #[LiveProp]
     public string $apiKey;
 
+    #[LiveProp]
+    public string $id;
+
+    #[LiveProp]
+    public ?string $searchBoxActionUrl = null;
+
     public function __construct(private readonly ParameterBagInterface $parameterBag)
     {
     }

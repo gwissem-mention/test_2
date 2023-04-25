@@ -9,6 +9,7 @@ use App\Enum\DeclarantStatus;
 use App\Form\Model\AdditionalInformation\AdditionalInformationModel;
 use App\Form\Model\Address\AddressEtalabModel;
 use App\Form\Model\Address\AddressForeignModel;
+use App\Form\Model\AppointmentModel;
 use App\Form\Model\Facts\FactAddressModel;
 use App\Form\Model\Facts\FactsModel;
 use App\Form\Model\Facts\OffenseDateModel;
@@ -43,7 +44,13 @@ class ComplaintFactory
             ->setIdentity($identity)
             ->setFacts($this->createFacts())
             ->setObjects($this->createObjects())
+            ->setAppointment($this->createAppointment())
             ->setAdditionalInformation($this->createAdditionalInformation());
+    }
+
+    public function createAppointment(): AppointmentModel
+    {
+        return (new AppointmentModel())->setAppointmentContactText('Entre 10h et 14h les lundi');
     }
 
     public function createDeclarantStatus(int $declarantStatus): DeclarantStatusModel

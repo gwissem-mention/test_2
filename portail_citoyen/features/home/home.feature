@@ -72,12 +72,6 @@ Feature:
         Given I am on "/"
         When I follow "Soyez guidé vers la bonne solution !"
 
-    @func
-    Scenario: Press button to be redirect to appointment
-        Given I am on "/"
-        Then I follow "Prendre un rendez-vous"
-        And I should be on "/rendez-vous"
-
     @javascript
     Scenario Outline: I can open a confirmation modal when I click on "Continue" and I can click on modal buttons
         Given I am on "/"

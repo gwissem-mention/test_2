@@ -4,15 +4,20 @@ declare(strict_types=1);
 
 namespace App\Session;
 
+use App\Enum\DeclarantStatus;
 use App\Form\Model\Address\AddressEtalabModel;
+use App\Form\Model\Objects\ObjectModel;
+use App\Form\Model\Objects\ObjectsModel;
 use App\Referential\Repository\CityServiceRepository;
 use App\Thesaurus\NaturePlaceThesaurusProviderInterface;
+use App\Thesaurus\ObjectCategoryThesaurusProviderInterface;
 
 class ComplaintHandler
 {
     public function __construct(
         private readonly NaturePlaceThesaurusProviderInterface $naturePlaceThesaurusProvider,
         private readonly CityServiceRepository $cityServiceRepository,
+        private readonly ObjectCategoryThesaurusProviderInterface $objectCategoryThesaurusProvider
     ) {
     }
 
@@ -33,5 +38,20 @@ class ComplaintHandler
         }
 
         return $serviceCode;
+    }
+
+    public function isAppointmentRequired(ComplaintModel $complaint): bool
+    {
+        return !$complaint->isFranceConnected() ||
+            in_array($complaint->getDeclarantStatus()?->getDeclarantStatus(), [DeclarantStatus::CorporationLegalRepresentative->value, DeclarantStatus::PersonLegalRepresentative->value], true) ||
+            $complaint->getFacts()?->isVictimOfViolence() ||
+            (null !== $complaint->getObjects() && $this->hasObjectsAppointmentRequired($complaint->getObjects()));
+    }
+
+    private function hasObjectsAppointmentRequired(ObjectsModel $objects): bool
+    {
+        return $objects->getObjects()->exists(function (int $key, ObjectModel $object) {
+            return ObjectModel::STATUS_STOLEN === $object->getStatus() && $this->objectCategoryThesaurusProvider->getChoices()['pel.object.category.registered.vehicle'] === $object->getCategory();
+        });
     }
 }

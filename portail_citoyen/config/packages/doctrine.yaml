@@ -32,6 +32,12 @@ doctrine:
                 dql:
                     string_functions:
                         unaccent: App\DQL\Unaccent
+                        cast: DoctrineExtensions\Query\Mysql\Cast
+                    numeric_functions:
+                        acos: DoctrineExtensions\Query\Mysql\Acos
+                        cos: DoctrineExtensions\Query\Mysql\Cos
+                        radians: DoctrineExtensions\Query\Mysql\Radians
+                        sin: DoctrineExtensions\Query\Mysql\Sin 
 
 when@test:
     doctrine:

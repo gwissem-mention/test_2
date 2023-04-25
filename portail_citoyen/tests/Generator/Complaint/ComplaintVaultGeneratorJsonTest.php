@@ -52,6 +52,9 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                     'label' => 'pel.complaint.identity.victim',
                 ],
             ],
+            'appointment' => [
+                'appointmentContactText' => 'Entre 10h et 14h les lundi',
+            ],
             'identity' => [
                 'civilState' => [
                     'civility' => [
@@ -380,6 +383,9 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                     'code' => 2,
                     'label' => 'pel.complaint.identity.person.legal.representative',
                 ],
+            ],
+            'appointment' => [
+                'appointmentContactText' => 'Entre 10h et 14h les lundi',
             ],
             'identity' => [
                 'civilState' => [
@@ -780,6 +786,9 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                     'code' => 3,
                     'label' => 'pel.complaint.identity.corporation.legal.representative',
                 ],
+            ],
+            'appointment' => [
+                'appointmentContactText' => 'Entre 10h et 14h les lundi',
             ],
             'identity' => [
                 'civilState' => [

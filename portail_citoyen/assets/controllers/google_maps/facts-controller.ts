@@ -1,7 +1,14 @@
+import {Controller} from "@hotwired/stimulus";
+import {getComponent, Component} from "@symfony/ux-live-component";
 import {Loader} from "@googlemaps/js-api-loader";
-import {Component} from "@symfony/ux-live-component";
 
-export class FactsAddressGoogleMap {
+export default class extends Controller {
+    static override targets: string[] = ["map"];
+
+    protected component: Component | undefined | null;
+
+    declare readonly mapTarget: HTMLInputElement;
+
     private readonly DEFAULT_LATITUDE: number = 46.7107;
     private readonly DEFAULT_LONGITUDE: number = 2.4321;
     private readonly DEFAULT_ZOOM: number = 14;
@@ -9,28 +16,25 @@ export class FactsAddressGoogleMap {
 
     private _loader!: Loader;
     private _map!: google.maps.Map;
-    private readonly _mapElement!: HTMLElement | null;
-    private readonly _component!: Component | null;
     private _marker!: google.maps.Marker;
 
-    constructor(mapElement: HTMLElement | null, component: Component) {
-        this._mapElement = mapElement;
-        this._component = component;
+    override async initialize(): Promise<void> {
+        this.component = await getComponent(this.element as HTMLElement);
 
-        this.setLoader();
+        if (this.component) {
+            this.init();
+        }
     }
 
-    public get loader(): Loader {
-        return this._loader;
-    }
-
-    public get map(): google.maps.Map {
-        return this._map;
+    private init(): void {
+        if (this.component) {
+            this.setLoader();
+        }
     }
 
     private setLoader(): void {
         this._loader = new Loader({
-            apiKey: this._component?.getData("apiKey"),
+            apiKey: this.component?.getData("apiKey"),
             libraries: ["places"]
         });
 
@@ -48,13 +52,13 @@ export class FactsAddressGoogleMap {
     }
 
     private async setMap(google: any): Promise<void> {
-        if (this._mapElement) {
+        if (this.mapTarget) {
             const latLng = await this.getLatLng();
             const lat: number = latLng ? latLng.lat() : this.DEFAULT_LATITUDE;
             const lng: number = latLng ? latLng.lng() : this.DEFAULT_LONGITUDE;
             const zoom: number = latLng ? this.DEFAULT_ZOOM : this.DEFAULT_ZOOM_FRANCE;
 
-            this._map = new google.maps.Map(this._mapElement, {
+            this._map = new google.maps.Map(this.mapTarget, {
                 center: {
                     lat: lat,
                     lng: lng
@@ -139,7 +143,7 @@ export class FactsAddressGoogleMap {
                             addressKnownRadio.checked = true;
                             addressKnownRadio.dispatchEvent(new Event("change", {bubbles: true}));
 
-                            const componentParent: Component | null | undefined = this._component?.getParent();
+                            const componentParent: Component | null | undefined = this.component?.getParent();
 
                             if (componentParent) {
                                 componentParent.set("startAddressEtalabInput.addressSearch", label);
@@ -222,7 +226,7 @@ export class FactsAddressGoogleMap {
     }
 
     private async getLatLng(): Promise<google.maps.LatLng | null> {
-        const componentParent: Component | null | undefined = this._component?.getParent();
+        const componentParent: Component | null | undefined = this.component?.getParent();
         let latLng: google.maps.LatLng | null = null;
 
         if (componentParent) {
@@ -245,5 +249,4 @@ export class FactsAddressGoogleMap {
 
         return latLng;
     }
-
 }

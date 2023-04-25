@@ -35,6 +35,18 @@ class ServiceMockFixtures extends Fixture implements FixtureGroupInterface
             new Service(
                 null,
                 null,
+                '3026751',
+                'Brigade de proximité de Renage',
+                'Brigade de proximité de Renage',
+                'Renage',
+                '38',
+                '630',
+                Institution::GN,
+                null
+            ),
+            new Service(
+                null,
+                null,
                 '66459',
                 'CSP VOIRON',
                 'CSP VOIRON',
