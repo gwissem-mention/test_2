@@ -234,6 +234,10 @@
                             {{ 'pel.declaration.status'|trans }} :
                             {{ complaint.status|trans }}
                         </p>
+                        <p class="m-0 {{ not complaint.alert ? 'd-none':'' }}">
+                            {{ 'pel.declaration.alert'|trans }} :
+                            <span class="fw-bold text-danger">{{ complaint.alert }}</span>
+                        </p>
                     </div>
                     <div class="col-6 {{ not complaint.assignedTo ? 'd-none':'' }}" id="complaint-agent">
                         <div class="fs-5 text-end">

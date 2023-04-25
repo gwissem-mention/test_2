@@ -226,6 +226,10 @@
                 <source>pel.declarant.situation</source>
                 <target>Situation du déclarant</target>
             </trans-unit>
+            <trans-unit id="pel.declaration.alert">
+                <source>pel.declaration.alert</source>
+                <target>Alerte</target>
+            </trans-unit>
             <trans-unit id="pel.declaration.assigned.to">
                 <source>pel.declaration.assigned.to</source>
                 <target>Déclaration attribuée à</target>

@@ -30,8 +30,10 @@ Feature:
         And I should see a "main" element
         And I should see the key "pel.number.of.the.declaration" translated
         And I should see "PEL-2023-00000091"
-        And I should see the key "pel.declaration.status"
+        And I should see the key "pel.declaration.status" translated
         And I should see "Attribuée"
+        And I should see the key "pel.declaration.alert" translated
+        And I should see "Alert de test trop longue"
         And I should see 5 "button[data-bs-toggle='modal']" element
         And I should see 30 "button" element
         And I should see the key "pel.assign.declaration.to" translated
