@@ -29,6 +29,15 @@ class GoogleMapsContext implements Context
     }
 
     /**
+     * @When /^I click on the marker at index (?P<num>\d+)$/
+     */
+    public function iClickOnTheMarkerAtIndex(int $index): void
+    {
+        $this->session->wait(5000, 'typeof markers !== "undefined" && markers !== null');
+        $this->session->executeScript("google.maps.event.trigger(markers[$index], 'click');");
+    }
+
+    /**
      * @Then /^the marker should be at latitude "([^"]*)" and longitude "([^"]*)"$/
      */
     public function theMarkerShouldBeAtLatitudeAndLongitude(string $latitude, string $longitude): void

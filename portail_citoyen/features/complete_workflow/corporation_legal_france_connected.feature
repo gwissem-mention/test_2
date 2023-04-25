@@ -153,5 +153,8 @@ Feature:
         And I should see the key "pel.total.message.amount" translated
         And I should see "Vous avez ajouté 2 objets pour un montant total de 200,00 €"
         When I press "Suivant"
-        And I press "Je confirme"
-        Then I should be on "/fin"
+        And I follow "Je confirme"
+        Then I should be on "/porter-plainte/rendez-vous"
+        When I fill in "appointment_appointmentContactText" with "Between 10am and 12am"
+        And I press "Suivant"
+        Then I should be on "/porter-plainte/fin"

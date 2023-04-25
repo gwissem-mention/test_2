@@ -257,6 +257,6 @@ Feature:
         And I fill in "identity_contactInformation_phone_number" with "0102030405"
         When I press "identity_submit"
         Then I should be on "/porter-plainte/faits"
-        And I should see a "div#map" element
+        And I should see a "div#facts-map" element
         And I should see a ".gm-style" element
         And the marker should be at latitude "48.8650197" and longitude "2.3758909"

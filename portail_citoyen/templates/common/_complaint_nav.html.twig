@@ -6,7 +6,7 @@
                 <a class="fr-breadcrumb__link" {% if active is same as('declarant_status') %}aria-current="page" {% else %}href="{{ path('complaint_declarant_status') }}"{% endif %}>{{ 'pel.complaint.identity.declarant.status'|trans }}</a>
             </li>
             <li>
-                <a class="fr-breadcrumb__link" {% if active is same as('identity') %}aria-current="page" {% elseif complaint.declarantStatus is not null%}href="{{ path('complaint_identity') }}"{% endif %}>{{ 'pel.complaint.your.identity'|trans }}</a>
+                <a class="fr-breadcrumb__link" {% if active is same as('identity') %}aria-current="page" {% elseif complaint.declarantStatus is not null %}href="{{ path('complaint_identity') }}"{% endif %}>{{ 'pel.complaint.your.identity'|trans }}</a>
             </li>
             <li>
                 <a class="fr-breadcrumb__link" {% if active is same as('facts') %}aria-current="page" {% elseif complaint.complaintIdentityFilled %}href="{{ path('complaint_facts') }}"{% endif %}>{{ 'pel.complaint.description.of.facts'|trans }}</a>
@@ -19,6 +19,9 @@
             </li>
             <li>
                 <a class="fr-breadcrumb__link" {% if active is same as('summary') %}aria-current="page" {% elseif complaint.additionalInformation is not null %}href="{{ path('complaint_summary') }}"{% endif %}>{{ 'pel.complaint.summary'|trans }}</a>
+            </li>
+            <li>
+                <a class="fr-breadcrumb__link" {% if active is same as('appointment') %}aria-current="page" {% elseif complaint.additionalInformation is not null %}href="{{ path('complaint_appointment') }}"{% endif %}>{{ 'pel.make.appointment'|trans }}</a>
             </li>
         </ol>
     </div>

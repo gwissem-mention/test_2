@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Session;
 
 use App\Form\Model\AdditionalInformation\AdditionalInformationModel;
+use App\Form\Model\AppointmentModel;
 use App\Form\Model\Facts\FactsModel;
 use App\Form\Model\Identity\DeclarantStatusModel;
 use App\Form\Model\Identity\IdentityModel;
@@ -21,6 +22,7 @@ class ComplaintModel
     private ?FactsModel $facts = null;
     private ?AdditionalInformationModel $additionalInformation = null;
     private ?ObjectsModel $objects = null;
+    private ?AppointmentModel $appointment = null;
     private bool $franceConnected = false;
     private ?string $affectedService = null;
 
@@ -134,6 +136,18 @@ class ComplaintModel
     public function setAffectedService(?string $affectedService): self
     {
         $this->affectedService = $affectedService;
+
+        return $this;
+    }
+
+    public function getAppointment(): ?AppointmentModel
+    {
+        return $this->appointment;
+    }
+
+    public function setAppointment(?AppointmentModel $appointment): self
+    {
+        $this->appointment = $appointment;
 
         return $this;
     }

@@ -18,6 +18,10 @@
                 <source>pel.4.your.request.is.processed.within.48h</source>
                 <target>4 - Votre demande est prise en charge sous 48h</target>
             </trans-unit>
+            <trans-unit id="pel.address.city.postcode">
+                <source>pel.address.city.postcode</source>
+                <target>Adresse, ville, code postal</target>
+            </trans-unit>
             <trans-unit id="pel.address.name">
                 <source>pel.address.name</source>
                 <target>Nom de la voie</target>
@@ -130,9 +134,21 @@
                 <source>pel.and.overseas</source>
                 <target>et des outre-mer</target>
             </trans-unit>
+            <trans-unit id="pel.appointment.text.label">
+                <source>pel.appointment.text.label</source>
+                <target>Veuillez nous indiquer vos disponibilités pour être recontacté</target>
+            </trans-unit>
             <trans-unit id="pel.appointment.needed.if">
                 <source>pel.appointment.needed.if</source>
                 <target>Votre démarche aboutira nécessairement à un rendez-vous en présentiel si :</target>
+            </trans-unit>
+            <trans-unit id="pel.appointment.message.1">
+                <source>pel.appointment.message.1</source>
+                <target>Au regards des éléments, nous vous proposons de vous recevoir à cette unité par défaut</target>
+            </trans-unit>
+            <trans-unit id="pel.appointment.message.2">
+                <source>pel.appointment.message.2</source>
+                <target>Si cette unité ne vous convient pas, merci de sélectionner une autre commune ci-dessous.</target>
             </trans-unit>
             <trans-unit id="pel.article.10.2">
                 <source>pel.article.10.2</source>
@@ -237,6 +253,14 @@
             <trans-unit id="pel.cctv.present">
                 <source>pel.cctv.present</source>
                 <target>Y a-t-il un système de vidéoprotection disponible sur le lieu des faits ?</target>
+            </trans-unit>
+            <trans-unit id="pel.choose">
+                <source>pel.choose</source>
+                <target>Choisir</target>
+            </trans-unit>
+            <trans-unit id="pel.chosen">
+                <source>pel.chosen</source>
+                <target>Choisi</target>
             </trans-unit>
             <trans-unit id="pel.choose.your.address.town">
                 <source>pel.choose.your.address.town</source>
@@ -1101,6 +1125,14 @@
             <trans-unit id="pel.results.loading">
                 <source>pel.results.loading</source>
                 <target>Chargement des résultats ...</target>
+            </trans-unit>
+            <trans-unit id="pel.results">
+                <source>pel.results</source>
+                <target>Résultats</target>
+            </trans-unit>
+           <trans-unit id="pel.result">
+                <source>pel.result</source>
+                <target>Résultat</target>
             </trans-unit>
             <trans-unit id="pel.search.in.google.maps">
                 <source>pel.search.in.google.maps</source>

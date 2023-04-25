@@ -142,5 +142,8 @@ Feature:
         And I should see the key "pel.place.complaint.handling" translated
         And I should see "Commissariat de police de Paris 11ème arrondissement - 12 PASSAGE CHARLES DALLERY 75011 PARIS 11"
         When I press "Suivant"
-        And I press "Je confirme"
-        Then I should be on "/fin"
+        And I follow "Je confirme"
+        Then I should be on "/porter-plainte/rendez-vous"
+        When I fill in "appointment_appointmentContactText" with "Between 10am and 12am"
+        And I press "Suivant"
+        Then I should be on "/porter-plainte/fin"

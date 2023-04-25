@@ -25,12 +25,13 @@ use Symfony\Component\Validator\Constraints\Positive;
 
 class ObjectType extends AbstractType
 {
+    private const FRANCE_CODE = 'FR';
+
     /** @var array|mixed[] */
     private readonly array $objectCategories;
 
     public function __construct(
         private readonly ObjectCategoryThesaurusProviderInterface $objectCategoryThesaurusProvider,
-        private readonly string $franceCode
     ) {
         $this->objectCategories = $this->objectCategoryThesaurusProvider->getChoices();
     }
@@ -310,9 +311,9 @@ class ObjectType extends AbstractType
                 ],
             ])
             ->add('registrationNumberCountry', CountryType::class, [
-                'empty_data' => $this->franceCode,
+                'empty_data' => self::FRANCE_CODE,
                 'label' => 'pel.registration.number.country',
-                'preferred_choices' => [$this->franceCode],
+                'preferred_choices' => [self::FRANCE_CODE],
             ])
             ->add('insuranceCompany', TextType::class, [
                 'attr' => [
