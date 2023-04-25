@@ -144,6 +144,9 @@ class Complaint
     #[ORM\JoinColumn(nullable: true)]
     private ?Corporation $corporationRepresented = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $priority = null;
+
     public function __construct()
     {
         $this->objects = new ArrayCollection();
@@ -451,6 +454,18 @@ class Complaint
     public function setCorporationRepresented(?Corporation $corporationRepresented): self
     {
         $this->corporationRepresented = $corporationRepresented;
+
+        return $this;
+    }
+
+    public function getPriority(): ?int
+    {
+        return $this->priority;
+    }
+
+    public function setPriority(?int $priority): self
+    {
+        $this->priority = $priority;
 
         return $this;
     }
