@@ -79,6 +79,8 @@ class ComplaintRepository extends ServiceEntityRepository
             ->setParameter('unit', $unit)
             ->setParameter('status', Complaint::STATUS_ASSIGNMENT_PENDING);
 
+        $order = $this->addOrderByPriority($order);
+
         if ($agent instanceof User) {
             $qb->andWhere('assignedTo = :agent')
                 ->setParameter('agent', $agent);
@@ -142,5 +144,27 @@ class ComplaintRepository extends ServiceEntityRepository
             ->getSingleScalarResult();
 
         return $result;
+    }
+
+    /**
+     * @param array<int, array<string, string>> $order
+     *
+     * @return array<int, array<string, string>>
+     */
+    private function addOrderByPriority(array $order): array
+    {
+        if ('status' != $order[0]['field']) {
+            $order[] = [
+                'field' => 'status',
+                'dir' => 'asc',
+            ];
+        }
+
+        $order[] = [
+            'field' => 'priority',
+            'dir' => 'asc',
+        ];
+
+        return $order;
     }
 }
