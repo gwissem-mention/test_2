@@ -21,7 +21,7 @@ class FindUnitsController extends AbstractController
             throw new BadRequestException('Missing lat or lng parameters');
         }
 
-        $inseeCode = strval($request->get('insee_code'));
+        $inseeCode = strval($request->get('inseeCode'));
 
         $units = $unitRepository->findForMap(
             floatval($request->get('lat')),
