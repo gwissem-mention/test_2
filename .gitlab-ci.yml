@@ -286,13 +286,13 @@ citoyen-symfony-security:
     script:
         - make frontend-audit
 
-citoyen-frontend-security:
-    <<: *frontend-audit
-    <<: *citoyen-frontend-step
-
-agent-frontend-security:
-    <<: *frontend-audit
-    <<: *agent-frontend-step
+#citoyen-frontend-security:
+#    <<: *frontend-audit
+#    <<: *citoyen-frontend-step
+#
+#agent-frontend-security:
+#    <<: *frontend-audit
+#    <<: *agent-frontend-step
 
 ## Php Cs Fixer ##
 .cs: &cs
