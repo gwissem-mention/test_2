@@ -4,10 +4,17 @@ import {Toast, Modal} from "bootstrap";
 import {HttpMethodsEnum} from "../scripts/utils/HttpMethodsEnum";
 
 export default class extends Controller {
-    static override targets: string[] = ["complaintContainer", "dropzoneFile"];
+    static override targets: string[] = [
+        "complaintContainer",
+        "dropzoneFile",
+        "rejectForm",
+        "rejectModal"
+    ];
 
     declare readonly complaintContainerTarget: HTMLElement;
     declare readonly dropzoneFileTarget: HTMLElement;
+    declare readonly rejectFormTarget: HTMLFormElement;
+    declare readonly rejectModalTarget: HTMLElement;
 
     public override connect() {
         this.scrollCommentFeed();
@@ -16,46 +23,34 @@ export default class extends Controller {
     // Must be ignored because we can't type url here.
     // @ts-ignore
     public reject({params: {url}}): void {
-        const form: HTMLFormElement | null = document.querySelector("form[name=reject]");
+        fetch(url, {
+            method: HttpMethodsEnum.POST,
+            body: new FormData(this.rejectFormTarget)
+        })
+            .then(response => response.json())
+            .then((response: any) => {
+                if (response.success) {
+                    const modal: Modal | null = Modal.getInstance(this.rejectModalTarget);
 
-        if (form) {
-            fetch(url, {
-                method: HttpMethodsEnum.POST,
-                body: new FormData(form)
-            })
-                .then(response => response.json())
-                .then((response: any) => {
-                    const modalElement: Element | null = document.getElementById("modal-complaint-reject");
-
-                    if (modalElement) {
-                        if (response.success) {
-                            const modal: Modal | null = Modal.getInstance(modalElement);
-
-                            if (modal) {
-                                modal.hide();
-                                modal.dispose();
-                            }
-
-                            // Must be ignored because in Bootstrap types, Toast element has string | Element type
-                            // however we need here to type it as Toast.
-                            // @ts-ignore
-                            const toast: Toast = new Toast(document.getElementById("toast-complaint-reject"));
-
-                            if (toast) {
-                                toast.show();
-                            }
-
-                            this.reloadComplaintContainer();
-                        } else {
-                            const modalForm: HTMLFormElement | null = modalElement.querySelector("form");
-
-                            if (modalForm) {
-                                modalForm.innerHTML = response.form;
-                            }
-                        }
+                    if (modal) {
+                        modal.hide();
+                        modal.dispose();
                     }
-                });
-        }
+
+                    // Must be ignored because in Bootstrap types, Toast element has string | Element type
+                    // however we need here to type it as Toast.
+                    // @ts-ignore
+                    const toast: Toast = new Toast(document.getElementById("toast-complaint-reject"));
+
+                    if (toast) {
+                        toast.show();
+                    }
+
+                    this.reloadComplaintContainer();
+                } else {
+                    this.rejectFormTarget.innerHTML = response.form;
+                }
+            });
     }
 
     // Must be ignored because we can't type url here.

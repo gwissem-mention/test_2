@@ -1,0 +1,26 @@
+{% embed "common/_modal.html.twig" with {'id':'complaint-unit-reassign', 'size':'lg'} %}
+    {% block title %}{{ 'pel.select.the.unit.to.reassign' |trans }}{% endblock %}
+    {% block body %}
+        {{ form(unitReassignForm) }}
+    {% endblock %}
+    {% block footer %}
+        <button
+            type="button"
+            class="btn btn-outline-primary btn--modal"
+            id="complaint-unit-reassign-button-back"
+            data-bs-dismiss="modal"
+        >
+            {{ 'pel.back'|trans }}
+        </button>
+        <button
+            type="button"
+            class="btn btn-success btn--modal"
+            data-action="complaint#unitReassign"
+            data-complaint-url-param="{{ path('complaint_unit_reassign', { 'id': complaintId }) }}"
+            data-complaint-redirection-param="{{ path('home') }}"
+            data-complaint-supervisor-param="{{ is_granted('ROLE_SUPERVISOR') }}"
+        >
+            {{ 'pel.validate.the.unit.reassignment'|trans }}
+        </button>
+    {% endblock %}
+{% endembed %}

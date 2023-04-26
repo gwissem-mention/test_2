@@ -1,0 +1,62 @@
+{% embed "common/_modal.html.twig" with {'id':'complaint-send-to-lrp', 'size':'lg'} %}
+    {% block title %}{{ 'pel.validation.sending.complain.to.lrp'|trans }}{% endblock %}
+    {% block body %}
+        <div class="row m-3 mb-0">
+            <div class="col-sm d-inline bg-secondary bg-opacity-75 rounded text-center text-white p-3 m-4">
+                {{ 'pel.complaint.assignation'|trans }}
+            </div>
+            <div class="col-sm d-inline bg-light border border-secondary border-bottom-0 rounded-top text-center p-3">
+                {{ 'pel.complaint.validation.sending.to.lrp'|trans }}
+            </div>
+            <div class="col-sm d-inline bg-secondary bg-opacity-75 rounded text-center text-white p-3 m-4">
+                {{ 'pel.receipt.report'|trans }}
+            </div>
+        </div>
+        <div class="row bg-light align-items-baseline border border-secondary rounded p-3 m-3 mt-0">
+            <div class="fw-bold">{{ 'pel.complaint.validation.course.to.lrp'|trans }}</div>
+            <div class="col-sm text-center">
+                <img class="rounded-circle modal__send-lrp--placeholder" src="{{ asset('build/images/placeholder.jpeg') }}" alt="placeholder">
+                <p>{{ 'pel.send.compatible.data'|trans }}</p>
+            </div>
+            <div class="col-sm text-center fs-1 align-self-center">
+                <i class="bi bi-arrow-right"></i>
+            </div>
+            <div class="col-sm text-center">
+                <img class="rounded-circle modal__send-lrp--placeholder" src="{{ asset('build/images/placeholder.jpeg') }}" alt="placeholder">
+                <p>{{ 'pel.data.integration'|trans }}</p>
+            </div>
+            <div class="col-sm text-center fs-1 align-self-center">
+                <i class="bi bi-arrow-right"></i>
+            </div>
+            <div class="col-sm text-center">
+                <img class="rounded-circle modal__send-lrp--placeholder" src="{{ asset('build/images/placeholder.jpeg') }}" alt="placeholder">
+                <p>{{ 'pel.data.modification.by.agent'|trans }}</p>
+            </div>
+            <div class="col-sm text-center fs-1 align-self-center">
+                <i class="bi bi-arrow-right"></i>
+            </div>
+            <div class="col-sm text-center">
+                <img class="rounded-circle modal__send-lrp--placeholder" src="{{ asset('build/images/placeholder.jpeg') }}" alt="placeholder">
+                <p>{{ 'pel.report.generation.in.lrp'|trans }}</p>
+            </div>
+        </div>
+    {% endblock %}
+    {% block footer %}
+        <button
+            type="button"
+            class="btn btn-outline-primary btn--modal"
+            data-bs-dismiss="modal"
+            id="complaint-send-to-lrp-button-back"
+        >
+            {{ 'pel.back'|trans }}
+        </button>
+        <button
+            type="button"
+            class="btn btn-success btn--modal"
+            data-action="complaint#send"
+            data-complaint-url-param="{{ path('complaint_xml', { id: complaintId }) }}"
+        >
+            {{ 'pel.validate.the.sending.to.the.lrp'|trans }}
+        </button>
+    {% endblock %}
+{% endembed %}

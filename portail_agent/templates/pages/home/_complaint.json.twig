@@ -30,14 +30,10 @@
     {% set status = complaint.status %}
 {% endif %}
 
-{% if is_granted('ROLE_SUPERVISOR') %}
-    {% set checkbox = '<input type="checkbox" class="form-check-input">' %}
-{% else %}
-    {% set checkbox = null %}
-{% endif %}
+
 
 {{ {
-    checkbox,
+    checkbox: include('pages/complaint/_partial/json/checkbox.html.twig', {'complaintId': complaint.id}),
     'createdAt':complaint.createdAt|date('d/m/Y', app.user.timezone),
     '__facts_natures':include('common/_complaint_natures.html.twig', {'natures':complaint.facts.natures}),
     '__facts_startDate':complaint.facts.startDate|date('d/m/Y'),

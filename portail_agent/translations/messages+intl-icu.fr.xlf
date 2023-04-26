@@ -1018,6 +1018,10 @@
                 <source>pel.declaration.status</source>
                 <target>Statut de la déclaration</target>
             </trans-unit>
+            <trans-unit id="0">
+                <source>pel.assign.to</source>
+                <target>Attribuer à</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

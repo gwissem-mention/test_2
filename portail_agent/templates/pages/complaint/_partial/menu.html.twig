@@ -1,0 +1,77 @@
+<aside class="col-12 col-md-3">
+    <div class="position-fixed">
+        <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action list-group-item-secondary">
+                {{ 'pel.summary'|trans }}
+            </a>
+            <a href="{{ path('complaint_summary', {'id': complaint.id, '_fragment': 'declarant-identity'}) }}" class="list-group-item list-group-item-action">
+                {{ 'pel.declarant.identity'|trans }}
+                {% if complaint.identity.alertNumber %}
+                    <span class="badge bg-danger rounded-pill">{{ complaint.identity.alertNumber }}</span>
+                {% endif %}
+            </a>
+            {% if complaint.identity.declarantStatus is same as(constant('App\\Entity\\Identity::DECLARANT_STATUS_PERSON_LEGAL_REPRESENTATIVE')) or complaint.identity.declarantStatus is same as(constant('App\\Entity\\Identity::DECLARANT_STATUS_CORPORATION_LEGAL_REPRESENTATIVE')) %}
+                <a href="{{ path('complaint_summary', {'id': complaint.id, '_fragment': 'victim-identity'}) }}" class="list-group-item list-group-item-action">
+                    {{ 'pel.victim.identity'|trans }}
+                    {% if complaint.personLegalRepresented is not null and complaint.personLegalRepresented.alertNumber %}
+                        <span class="badge bg-danger rounded-pill">{{ complaint.personLegalRepresented.alertNumber }}</span>
+                    {% elseif complaint.corporationRepresented is not null and complaint.corporationRepresented.alertNumber %}
+                        <span class="badge bg-danger rounded-pill">{{ complaint.corporationRepresented.alertNumber }}</span>
+                    {% endif %}
+                </a>
+            {% endif %}
+            <a href="{{ path('complaint_summary', {'id': complaint.id, '_fragment': 'facts-description'}) }}" class="list-group-item list-group-item-action">
+                {{ 'pel.description.of.facts'|trans }}
+                {% if complaint.facts.alertNumber %}
+                    <span class="badge bg-danger rounded-pill">{{ complaint.facts.alertNumber }}</span>
+                {% endif %}
+            </a>
+            <a href="{{ path('complaint_summary', {'id': complaint.id, '_fragment': 'additional-information'}) }}" class="list-group-item list-group-item-action">
+                {{ 'pel.additional.informations'|trans }}
+                {% if complaint.additionalInformation.alertNumber %}
+                    <span class="badge bg-danger rounded-pill">{{ complaint.additionalInformation.alertNumber }}</span>
+                {% endif %}
+            </a>
+            <a href="{{ path('complaint_summary', {'id': complaint.id, '_fragment': 'objects-concerned'}) }}" class="list-group-item list-group-item-action">
+                {{ 'pel.objects.concerned'|trans }}
+                {% if complaint.objects|objects_alerts > 0 %}
+                    <span class="badge bg-danger rounded-pill">{{ complaint.objects|objects_alerts }}</span>
+                {% endif %}
+            </a>
+            <a href="#" class="list-group-item list-group-item-action">
+                {{ 'pel.appointment.management'|trans }}
+            </a>
+        </div>
+        <div class="row justify-content-md-center mt-3">
+            <div class="col-12">
+                <div class="d-grid gap-2 d-block">
+                    {% if complaint.status not in [constant('App\\Entity\\Complaint::STATUS_REJECTED'), constant('App\\Entity\\Complaint::STATUS_CLOSED')] %}
+                        {% if is_granted('ROLE_SUPERVISOR') %}
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-complaint-assign" title="{{ (complaint.assignedTo is not null ? 'pel.click.here.to.reassign.the.declaration.to.an.agent': 'pel.click.here.to.assign.the.declaration.to.an.agent')|trans }}" id="complaint-assign-button">
+                                <i class="bi bi-person-plus"></i> {{ (complaint.assignedTo is not null ? 'pel.reassign.declaration.to':'pel.assign.declaration.to')|trans }}...
+                            </button>
+                        {% endif %}
+                        {% if complaint.status is not same as(constant('App\\Entity\\Complaint::STATUS_ONGOING_LRP')) %}
+                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-complaint-send-to-lrp" title="{{ 'pel.click.here.to.send.this.declaration.to.lrp'|trans }}" id="complaint-send-lrp-button">
+                                <i class="bi bi-arrow-right"></i> {{ 'pel.send.to.lrp'|trans }}
+                            </button>
+                        {% else %}
+                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-complaint-send-report-to-victim" title="{{ 'pel.click.here.to.send.the.report.to.the.victim.and.close'|trans }}" id="complaint-send-report-to-victim-button">
+                                <i class="bi bi-arrow-right"></i> {{ 'pel.send.report.to.the.victim.and.close'|trans }}
+                            </button>
+                        {% endif %}
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-complaint-reject" title="{{ 'pel.you.will.reject.the.declaration'|trans }}" id="complaint-reject-button">
+                            <i class="bi bi-x-lg"></i> {{ 'pel.reject'|trans }}
+                        </button>
+                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modal-complaint-unit-reassign" id="complaint-unit-reassign-button">
+                            <i class="bi bi-arrow-return-right"></i> {{ 'pel.unit.reassign'|trans }}
+                        </button>
+                    {% endif %}
+                    <button type="button" class="btn btn-outline-primary" data-action="complaint#commentFocus" id="complaint-comment-button">
+                        <i class="bi bi-chat-left"></i> {{ 'pel.comment'|trans }}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</aside>

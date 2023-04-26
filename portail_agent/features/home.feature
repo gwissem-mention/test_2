@@ -61,11 +61,11 @@ Feature:
         Then I should not see "La déclaration PEL-2023-00000011 vient de vous être attribuée"
 
     @javascript
-    Scenario: I should see a table datatables of 25 entries
+    Scenario: I should see a table datatables of 26 entries
         Given I am authenticated with H3U3XCGF from PN
         And I am on the homepage
         Then I should see a "table#datatable" element
-        And I should see 26 "tr" element
+        And I should see 26 "table#datatable tr" element
         And I should see the key "pel.deposit.date" translated
         And I should see the key "pel.facts" translated
         And I should see the key "pel.facts.date" translated
@@ -76,16 +76,16 @@ Feature:
         And I should see the key "pel.a.opj.name" translated
         And I should see the key "pel.declaration.number" translated
         And I should see the key "pel.comments" translated
-        And I should see 10 ".btn-primary" element
-        And I should see 10 ".btn-secondary" element
-        And I should see 5 ".btn-warning" element
+        And I should see 10 "table#datatable .btn-primary" element
+        And I should see 10 "table#datatable .btn-secondary" element
+        And I should see 5 "table#datatable .btn-warning" element
 
     @javascript
     Scenario: I can paginate to page 2 of the complaints table
         Given I am authenticated with H3U3XCGF from PN
         And I am on the homepage
         When I click the "a[data-dt-idx='1']" element
-        And I should see 26 "tr" element
+        And I should see 26 "table#datatable tr" element
         And I should see the key "pel.deposit.date" translated
         And I should see the key "pel.facts" translated
         And I should see the key "pel.facts.date" translated
@@ -96,16 +96,16 @@ Feature:
         And I should see the key "pel.a.opj.name" translated
         And I should see the key "pel.declaration.number" translated
         And I should see the key "pel.comments" translated
-        And I should see 10 ".btn-danger" element
-        And I should see 10 ".btn-success" element
-        And I should see 5 ".btn-warning" element
+        And I should see 10 "table#datatable .btn-danger" element
+        And I should see 10 "table#datatable .btn-success" element
+        And I should see 5 "table#datatable .btn-warning" element
 
     @javascript
     Scenario: I can sort the columns of the complaints table
         Given I am authenticated with H3U3XCGF from PN
         And I am on the homepage
         When I click the "th:nth-of-type(10)" element
-        And I should see 26 "tr" element
+        And I should see 26 "table#datatable tr" element
         And I should see the key "pel.deposit.date" translated
         And I should see the key "pel.facts" translated
         And I should see the key "pel.facts.date" translated
@@ -116,15 +116,15 @@ Feature:
         And I should see the key "pel.a.opj.name" translated
         And I should see the key "pel.declaration.number" translated
         And I should see the key "pel.comments" translated
-        And I should see 10 ".btn-secondary" element
-        And I should see 10 ".btn-unit-reassignment-pending" element
-        And I should see 5 ".btn-reassignment-pending" element
+        And I should see 10 "table#datatable .btn-secondary" element
+        And I should see 10 "table#datatable .btn-unit-reassignment-pending" element
+        And I should see 5 "table#datatable .btn-reassignment-pending" element
 
     @javascript
     Scenario: As an authenticated agent, with no complaints assigned to me, I should see an empty table
         Given I am authenticated with PR5KTZ9C from GN
         And I am on the homepage
-        Then I should see 2 "tr" element
+        Then I should see 2 "table#datatable tr" element
         And I should see "Aucune donnée disponible dans le tableau"
 
     @javascript
@@ -155,8 +155,8 @@ Feature:
     Scenario: As an authenticated agent, with complaints assigned to me, I should see my complaints
         Given I am authenticated with H3U3XCGD from PN
         And I am on the homepage
-        Then I should see 21 "tr" element
-        And I should see 10 "th" element
+        Then I should see 21 "table#datatable tr" element
+        And I should see 10 "table#datatable th" element
         And I should not see "PEL-2023-00000001"
         And I should not see "PEL-2023-00000003"
         And I should not see "PEL-2023-00000005"
@@ -170,15 +170,15 @@ Feature:
         And I should see "PEL-2023-00000027"
         And I should see "PEL-2023-00000030"
         And I should see the key "pel.to.process" translated
-        And I should see 10 ".btn-primary" element
-        And I should see 10 ".btn-warning" element
+        And I should see 10 "table#datatable .btn-primary" element
+        And I should see 10 "table#datatable .btn-warning" element
 
     @javascript
     Scenario: As an authenticated supervisor, I should see all complaints
         Given I am authenticated with H3U3XCGF from PN
         And I am on the homepage
-        Then I should see 26 "tr" element
-        And I should see 11 "th" element
+        Then I should see 26 "table#datatable tr" element
+        And I should see 11 "table#datatable th" element
         And I should see "PEL-2023-00000001"
         And I should see "PEL-2023-00000003"
         And I should see "PEL-2023-00000005"
@@ -195,22 +195,22 @@ Feature:
         And I am on the homepage
         When I fill in "search_query" with "Leo bernard"
         And I press "Rechercher"
-        Then I should see 11 "tr" element
+        Then I should see 11 "table#datatable tr" element
         When I fill in "search_query" with "4"
         And I press "Rechercher"
-        Then I should see 19 "tr" element
+        Then I should see 19 "table#datatable tr" element
         When I fill in "search_query" with "34"
         And I press "Rechercher"
-        Then I should see 2 "tr" element
+        Then I should see 2 "table#datatable tr" element
         When I fill in "search_query" with "44"
         And I press "Rechercher"
-        Then I should see 2 "tr" element
+        Then I should see 2 "table#datatable tr" element
         When I fill in "search_query" with "jean"
         And I press "Rechercher"
-        Then I should see 26 "tr" element
+        Then I should see 26 "table#datatable tr" element
         When I fill in "search_query" with "DUPONT"
         And I press "Rechercher"
-        Then I should see 26 "tr" element
+        Then I should see 26 "table#datatable tr" element
 
     @javascript
     Scenario: I can reset search
@@ -218,6 +218,6 @@ Feature:
         And I am on the homepage
         When I fill in "search_query" with "Leo bernard"
         And I press "Rechercher"
-        Then I should see 11 "tr" element
+        Then I should see 11 "table#datatable tr" element
         And I press "Réinitialiser"
-        Then I should see 26 "tr" element
+        Then I should see 26 "table#datatable tr" element

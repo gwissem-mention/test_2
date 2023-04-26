@@ -1,7 +1,13 @@
 {% extends 'layout.html.twig' %}
 
 {% block body %}
-    <div data-controller="datatable">
+    {% include 'pages/home/_partial/toaster/toaster.html.twig' %}
+    <div
+        data-controller="datatable checkbox-group dashboard-bulk-action"
+        data-action="checkbox-group:updateChecked->dashboard-bulk-action#setBulkTarget dashboard-bulk-action:finished->datatable#refresh dashboard-bulk-action:finished->checkbox-group#resetAll"
+        data-dashboard-bulk-action-url-bulk-assign-value="{{ path('complaint_bulk_assign') }}"
+        data-dashboard-bulk-action-url-bulk-reassign-value="{{ path('complaint_bulk_reassign') }}"
+    >
         <div class="row">
             <div class="col">
                 {{ form_start(search_form, {'attr':{'class':'d-flex mt-4 mb-4 w-50'}}) }}
@@ -13,24 +19,44 @@
         </div>
         <div class="row mb-5">
             <div class="col">
-                <table class="table table-striped datatable" data-order="{{ [[(is_granted('ROLE_SUPERVISOR')) ? 9 : 8,'asc']]|json_encode }}" data-column-defs="{{ [{orderable: false, targets: 0}]|json_encode }}" data-page-length="25" id="datatable" data-ajax="{{ path('home_complaints') }}">
+                {% if is_granted('ROLE_SUPERVISOR') %}
+                    <div id="groupActionsList" data-checkbox-group-target="groupAction" class="mb-3 d-none">
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-complaint-assign">
+                            <i class="bi bi-person-add"></i>
+                            {{ 'pel.assign.to'|trans }}
+                        </button>
+                        <button class="btn btn-outline-primary mx-2" data-bs-toggle="modal" data-bs-target="#modal-complaint-unit-reassign">
+                            <i class="bi bi-arrow-return-right"></i>
+                            {{ 'pel.validate.the.unit.reassignment'|trans }}
+                        </button>
+                    </div>
+                {% endif %}
+                <table
+                    class="table table-striped datatable"
+                    data-order="{{ [[(is_granted('ROLE_SUPERVISOR')) ? 9 : 8,'asc']]|json_encode }}"
+                    data-column-defs="{{ [{orderable: false, targets: 0}]|json_encode }}"
+                    data-page-length="25"
+                    data-datatable-target="table"
+                    id="datatable"
+                    data-ajax="{{ path('home_complaints') }}"
+                >
                     <thead class="table-head">
                     <tr>
                         {% if is_granted('ROLE_SUPERVISOR') %}
-                            <th scope="col" data-column="checkbox">
-                                <input type="checkbox" class="form-check-input" id="checkOrUncheckAll">
+                            <th scope="col" data-datatable-target="theadCell" data-column="checkbox">
+                                <input type="checkbox" class="form-check-input" id="mainSelectorGroupAction" data-checkbox-group-target="main" data-action="click->checkbox-group#mainClick">
                             </th>
                         {% endif %}
-                        <th scope="col" data-column="createdAt">{{ 'pel.deposit.date'|trans }}</th>
-                        <th scope="col" data-column="__facts_natures">{{ 'pel.facts'|trans }}</th>
-                        <th scope="col" data-column="__facts_startDate">{{ 'pel.facts.date'|trans }}</th>
-                        <th scope="col" data-column="alert">{{ 'pel.alert'|trans }}</th>
-                        <th scope="col" data-column="appointmentDate">{{ 'pel.meeting.date'|trans }}</th>
-                        <th scope="col" data-column="__identity_firstname">{{ 'pel.firstname.lastname'|trans }}</th>
-                        <th scope="col" data-column="status">{{ 'pel.status'|trans }}</th>
-                        <th scope="col" data-column="__assignedTo_appellation">{{ 'pel.a.opj.name'|trans }}</th>
-                        <th scope="col" data-column="declarationNumber">{{ 'pel.declaration.number'|trans }}</th>
-                        <th scope="col" data-column="___count_comments">{{ 'pel.comments'|trans }}</th>
+                        <th scope="col" data-datatable-target="theadCell" data-column="createdAt">{{ 'pel.deposit.date'|trans }}</th>
+                        <th scope="col" data-datatable-target="theadCell" data-column="__facts_natures">{{ 'pel.facts'|trans }}</th>
+                        <th scope="col" data-datatable-target="theadCell" data-column="__facts_startDate">{{ 'pel.facts.date'|trans }}</th>
+                        <th scope="col" data-datatable-target="theadCell" data-column="alert">{{ 'pel.alert'|trans }}</th>
+                        <th scope="col" data-datatable-target="theadCell" data-column="appointmentDate">{{ 'pel.meeting.date'|trans }}</th>
+                        <th scope="col" data-datatable-target="theadCell" data-column="__identity_firstname">{{ 'pel.firstname.lastname'|trans }}</th>
+                        <th scope="col" data-datatable-target="theadCell" data-column="status">{{ 'pel.status'|trans }}</th>
+                        <th scope="col" data-datatable-target="theadCell" data-column="__assignedTo_appellation">{{ 'pel.a.opj.name'|trans }}</th>
+                        <th scope="col" data-datatable-target="theadCell" data-column="declarationNumber">{{ 'pel.declaration.number'|trans }}</th>
+                        <th scope="col" data-datatable-target="theadCell" data-column="___count_comments">{{ 'pel.comments'|trans }}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -38,5 +64,13 @@
                 </table>
             </div>
         </div>
+        {% if is_granted('ROLE_SUPERVISOR') %}
+            {% include 'pages/home/_partial/modals/bulk_assign.html.twig' with {
+                'bulk_assign_form': bulk_assign_form
+            } %}
+            {% include 'pages/home/_partial/modals/bulk_reassign.html.twig' with {
+                'bulk_reassign_form': bulk_reassign_form
+            } %}
+        {% endif %}
     </div>
 {% endblock %}

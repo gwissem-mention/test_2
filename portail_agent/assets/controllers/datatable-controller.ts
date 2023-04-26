@@ -8,6 +8,14 @@ import {Api} from "datatables.net-bs5";
 export default class extends Controller {
     protected datatable: Api<any> | undefined;
 
+    static override targets = [
+        "table",
+        "theadCell"
+    ];
+
+    declare readonly tableTarget: HTMLElement;
+    declare readonly theadCellTargets: HTMLElement[];
+
     public override initialize() {
         this.init();
     }
@@ -21,33 +29,35 @@ export default class extends Controller {
         }
     }
 
+    public refresh(): void {
+        console.log("reload");
+        if (this.datatable) {
+            this.datatable.ajax.reload(() => console.log("reloaded"));
+        }
+    }
+
     private init(): void {
-        const datatableElement: Element | null = document.querySelector(".datatable");
         const statusFilter: string | null  = new URLSearchParams(window.location.search).get("status");
+        const columns: { data: string | null; }[] = [];
 
-        if (datatableElement) {
-            const columnsElements: NodeListOf<HTMLElement> | null = this.element.querySelectorAll("th[data-column]");
-            const columns: { data: string | null; }[] = [];
+        this.theadCellTargets.forEach(theadCell => {
+            columns.push({data: theadCell.getAttribute("data-column")});
+        });
 
-            columnsElements.forEach(value => {
-                columns.push({data: value.getAttribute("data-column")});
+        if (columns) {
+            this.datatable = new DataTable("#" + this.tableTarget.id, {
+                language: {
+                    url: "build/json/datatables/fr_FR.json"
+                },
+                dom: "<\"top\">rt<\"bottom\"p><\"clear\">",
+                processing: true,
+                serverSide: true,
+                columns: columns,
+                searching: true,
             });
 
-            if (columns) {
-                this.datatable = new DataTable("#" + datatableElement.id, {
-                    language: {
-                        url: "build/json/datatables/fr_FR.json"
-                    },
-                    dom: "<\"top\">rt<\"bottom\"p><\"clear\">",
-                    processing: true,
-                    serverSide: true,
-                    columns: columns,
-                    searching: true,
-                });
-
-                if (statusFilter) {
-                    this.datatable.search(statusFilter);
-                }
+            if (statusFilter) {
+                this.datatable.search(statusFilter);
             }
         }
     }

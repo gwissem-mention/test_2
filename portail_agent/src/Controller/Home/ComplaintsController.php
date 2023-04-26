@@ -29,8 +29,15 @@ class ComplaintsController extends AbstractController
         $columns = $request->query->all()['columns'] ?? [];
         $order = $request->query->all()['order'][0] ?? [];
         $search = $request->query->all()['search'] ?? [];
-        $complaints = $complaintRepository->findAsPaginator([['field' => $columns[$order['column']]['data'], 'dir' => $order['dir']]], $request->query->getInt('start'), $request->query->getInt('length'),
-            $user->getServiceCode(), $agent, $search['value']);
+        $complaints = $complaintRepository->findAsPaginator(
+            [[
+                'field' => $columns[$order['column']]['data'],
+                'dir' => $order['dir'],
+            ]],
+            $request->query->getInt('start'),
+            $request->query->getInt('length'),
+            $user->getServiceCode(), $agent, $search['value']
+        );
         $json = ['data' => []];
         foreach ($complaints as $complaint) {
             $json['data'][] = json_decode($this->renderView('pages/home/_complaint.json.twig', ['complaint' => $complaint]), true, 512, JSON_THROW_ON_ERROR);

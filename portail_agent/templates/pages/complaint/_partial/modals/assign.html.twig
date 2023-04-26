@@ -1,0 +1,26 @@
+{% embed "common/_modal.html.twig" with {'id':'complaint-assign', 'size':'lg'} %}
+    {% block title %}
+        {{ (assignedTo is not null ? 'pel.select.the.agent.to.reassign':'pel.select.the.agent.to.assign')|trans }}
+    {% endblock %}
+    {% block body %}
+        {{ form(assignForm) }}
+    {% endblock %}
+    {% block footer %}
+        <button
+            type="button"
+            class="btn btn-outline-primary btn--modal"
+            id="complaint-assign-button-back"
+            data-bs-dismiss="modal"
+        >
+            {{ 'pel.back'|trans }}
+        </button>
+        <button
+            type="button"
+            class="btn btn-success btn--modal"
+            data-action="complaint#assign"
+            data-complaint-url-param="{{ path('complaint_assign', {'id':complaintId}) }}"
+        >
+            {{ (assignedTo is not null ? 'pel.validate.the.reassignment':'pel.validate.the.assignment')|trans }}
+        </button>
+    {% endblock %}
+{% endembed %}

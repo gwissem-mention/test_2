@@ -8,6 +8,7 @@ use App\Generator\ComplaintNumber\ComplaintNumberGeneratorInterface;
 use Behat\Behat\Hook\Scope\AfterScenarioScope;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\Mink\Driver\Selenium2Driver;
+use Behat\Mink\Element\NodeElement;
 use Behat\Mink\Exception\ElementNotFoundException;
 use Behat\Mink\Exception\ExpectationException;
 use Behat\MinkExtension\Context\MinkContext;
@@ -445,5 +446,39 @@ final class BaseContext extends MinkContext
         }
 
         $callback();
+    }
+
+    /**
+     * @Given /^I should see at least (\d+) "([^"]*)" elements$/
+     */
+    public function iShouldSeeAtLeastElements(int $elementMinCount, string $elementSelector): void
+    {
+        $this->retryStep(function () use ($elementSelector, $elementMinCount) {
+            $page = $this->getSession()->getPage();
+            $element = $page->findAll('css', $elementSelector);
+
+            if (count($element) < $elementMinCount) {
+                throw new ExpectationException('Minimum element expected not found', $this->getSession()->getDriver());
+            }
+        });
+    }
+
+    /**
+     * @Given /^I should see all "([^"]*)" checked$/
+     */
+    public function iShouldSeeAllCheckboxesCheckedInTheTable(string $selector): void
+    {
+        $this->retryStep(function () use ($selector) {
+            $page = $this->getSession()->getPage();
+
+            /** @var NodeElement[] $element */
+            $element = $page->findAll('css', $selector);
+
+            foreach ($element as $el) {
+                if (false === $el->isChecked()) {
+                    throw new ExpectationException('All checkbox are not checked', $this->getSession()->getDriver());
+                }
+            }
+        });
     }
 }
