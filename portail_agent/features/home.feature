@@ -76,9 +76,9 @@ Feature:
         And I should see the key "pel.a.opj.name" translated
         And I should see the key "pel.declaration.number" translated
         And I should see the key "pel.comments" translated
-        And I should see 10 "table#datatable .btn-primary" element
+        And I should see 5 "table#datatable .btn-primary" element
         And I should see 10 "table#datatable .btn-secondary" element
-        And I should see 5 "table#datatable .btn-warning" element
+        And I should see 10 "table#datatable .btn-info" element
 
     @javascript
     Scenario: I can paginate to page 2 of the complaints table
@@ -96,9 +96,9 @@ Feature:
         And I should see the key "pel.a.opj.name" translated
         And I should see the key "pel.declaration.number" translated
         And I should see the key "pel.comments" translated
-        And I should see 10 "table#datatable .btn-danger" element
+        And I should see 5 "table#datatable .btn-primary" element
         And I should see 10 "table#datatable .btn-success" element
-        And I should see 5 "table#datatable .btn-warning" element
+        And I should see 10 "table#datatable .btn-dark" element
 
     @javascript
     Scenario: I can sort the columns of the complaints table
@@ -117,8 +117,8 @@ Feature:
         And I should see the key "pel.declaration.number" translated
         And I should see the key "pel.comments" translated
         And I should see 10 "table#datatable .btn-secondary" element
-        And I should see 10 "table#datatable .btn-unit-reassignment-pending" element
-        And I should see 5 "table#datatable .btn-reassignment-pending" element
+        And I should see 10 "table#datatable .btn-primary" element
+        And I should see 5 "table#datatable .btn-warning" element
 
     @javascript
     Scenario: As an authenticated agent, with no complaints assigned to me, I should see an empty table
@@ -186,8 +186,8 @@ Feature:
         And I should see "PEL-2023-00000010"
         And I should see "PEL-2023-00000011"
         And I should see "PEL-2023-00000018"
-        And I should see "PEL-2023-00000022"
-        And I should see "PEL-2023-00000025"
+        And I should see "PEL-2023-00000061"
+        And I should see "PEL-2023-00000066"
 
     @javascript
     Scenario: I can search complaints

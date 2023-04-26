@@ -211,6 +211,7 @@ Feature:
         And I should see a ".toast" element
         And I should see the key "pel.the.declaration.has.been.refused" translated
         And I am on "/"
+        When I click the "th:nth-of-type(10)" element
         And I should see 1 ".btn-danger" element
 
     @javascript
@@ -252,6 +253,7 @@ Feature:
         And I should see a ".toast" element
         And I should see the key "pel.file.generated" translated
         Given I am on the homepage
+        When I click the "th:nth-of-type(10)" element
         Then I should see 6 ".btn-warning" element
 
     @javascript

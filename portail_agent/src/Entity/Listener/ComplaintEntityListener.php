@@ -43,6 +43,7 @@ class ComplaintEntityListener
         }
 
         $complaint->setProcessingDeadline($complaint->getCreatedAt()?->add(new \DateInterval('P'.$this->complaintProcessingDeadline.'D')));
+        $this->prioritizeComplaint($complaint);
     }
 
     public function postPersist(Complaint $complaint): void
@@ -56,5 +57,26 @@ class ComplaintEntityListener
         $this->complaintCountRepository->save(new ComplaintCount(), true);
 
         return $this->complaintCountRepository->findOneBy(['year' => date('Y')]);
+    }
+
+    private function prioritizeComplaint(Complaint $complaint): void
+    {
+        switch ($complaint->getAlert()) {
+            case Complaint::ALERT_VIOLENCE:
+                $complaint->setPriority(1);
+                break;
+            case Complaint::ALERT_TSP:
+                $complaint->setPriority(2);
+                break;
+            case Complaint::ALERT_REGISTERED_VEHICLE:
+                $complaint->setPriority(3);
+                break;
+            case Complaint::ALERT_TOTAL_AMOUNT:
+                $complaint->setPriority(4);
+                break;
+            case Complaint::ALERT_FOREIGN_VICTIM:
+                $complaint->setPriority(5);
+                break;
+        }
     }
 }

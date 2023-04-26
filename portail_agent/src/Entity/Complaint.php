@@ -31,6 +31,12 @@ class Complaint
     public const REFUSAL_REASON_VICTIM_CARENCE = 5;
     public const REFUSAL_REASON_OTHER = 6;
 
+    public const ALERT_VIOLENCE = 'pel.alert.violence';
+    public const ALERT_TSP = 'pel.alert.tsp';
+    public const ALERT_REGISTERED_VEHICLE = 'pel.alert.registered.vehicle';
+    public const ALERT_TOTAL_AMOUNT = 'pel.alert.total.amount';
+    public const ALERT_FOREIGN_VICTIM = 'pel.alert.forein.victim';
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]

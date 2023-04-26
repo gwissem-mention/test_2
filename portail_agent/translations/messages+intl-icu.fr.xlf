@@ -82,6 +82,26 @@
                 <source>pel.alert</source>
                 <target>Alerte</target>
             </trans-unit>
+            <trans-unit id="pel.alert.forein.victim">
+                <source>pel.alert.forein.victim</source>
+                <target>Victime réside à l'étranger</target>
+            </trans-unit>
+            <trans-unit id="pel.alert.registered.vehicle">
+                <source>pel.alert.registered.vehicle</source>
+                <target>Vol de véhicule immatriculé</target>
+            </trans-unit>
+            <trans-unit id="pel.alert.total.amount">
+                <source>pel.alert.total.amount</source>
+                <target>Montant du préjudice supérieur à 10 000€</target>
+            </trans-unit>
+            <trans-unit id="pel.alert.tsp">
+                <source>pel.alert.tsp</source>
+                <target>Alerte PTS</target>
+            </trans-unit>
+            <trans-unit id="pel.alert.violence">
+                <source>pel.alert.violence</source>
+                <target>Présence de violence</target>
+            </trans-unit>
             <trans-unit id="pel.and">
                 <source>pel.and</source>
                 <target>Et</target>

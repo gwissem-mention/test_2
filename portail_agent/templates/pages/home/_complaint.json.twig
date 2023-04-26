@@ -37,7 +37,7 @@
     'createdAt':complaint.createdAt|date('d/m/Y', app.user.timezone),
     '__facts_natures':include('common/_complaint_natures.html.twig', {'natures':complaint.facts.natures}),
     '__facts_startDate':complaint.facts.startDate|date('d/m/Y'),
-    'alert':complaint.alert|u.truncate(15, '...'),
+    'alert':complaint.alert|trans|u.truncate(15, '...'),
     'appointmentDate':complaint.appointmentDate|date('d/m/Y'),
     '__identity_firstname':(complaint.identity.firstName ~ ' ' ~ complaint.identity.lastName)|u.truncate(15, '...'),
     'status': include('common/_link.html.twig', {path: path('complaint_summary', {id: complaint.id}), label: status|trans|u.truncate(15, '...'), class:'btn btn-sm btn-' ~ status_btn_color}),
