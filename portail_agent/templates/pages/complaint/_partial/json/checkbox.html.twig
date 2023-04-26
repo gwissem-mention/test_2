@@ -1,0 +1,9 @@
+{% if is_granted('ROLE_SUPERVISOR') %}
+    <input
+        type="checkbox"
+        id="complaint_{{ complaintId }}"
+        class="form-check-input secondarySelectorGroupAction"
+        data-checkbox-group-target="secondary"
+        data-action="click->checkbox-group#secondaryClick"
+    >
+{% endif %}

@@ -1,7 +1,7 @@
-import {GroupActionsHandler} from "./GroupActionsHandler/GroupActionsHandler";
-import {ResetButtonHandler} from "./ResetButtonHandler/ResetButtonHandler";
+// import {GroupActionsCheckbox} from "./group-actions/group-actions-checkbox";
+import {ButtonReset} from "./button/button-reset";
 
 document.addEventListener("DOMContentLoaded", () => {
-    (new GroupActionsHandler()).bind();
-    (new ResetButtonHandler()).bind();
+    // (new GroupActionsCheckbox()).bind();
+    (new ButtonReset()).bind();
 });

@@ -1,0 +1,22 @@
+{% embed "common/_modal.html.twig" with {'id':'complaint-unit-reassign', 'size':'lg'} %}
+    {% block attr_sup %}data-dashboard-bulk-action-target="bulkReassignModal"{% endblock %}
+    {% block title %}{{ 'pel.select.the.unit.to.reassign' |trans }}{% endblock %}
+    {% block body %}
+        {{ form(bulk_reassign_form, {
+            attr: {
+                'data-dashboard-bulk-action-target': 'bulkReassignForm',
+            }
+        }) }}
+    {% endblock %}
+    {% block footer %}
+        <button type="button" class="btn btn-outline-primary btn--modal" id="complaint-unit-reassign-button-back" data-bs-dismiss="modal">{{ 'pel.back'|trans }}</button>
+        <button
+            type="button"
+            class="btn btn-success btn--modal"
+            id="bulk-unit-reassign-button"
+            data-action="dashboard-bulk-action#bulkReassign"
+        >
+            {{ 'pel.validate.the.unit.reassignment'|trans }}
+        </button>
+    {% endblock %}
+{% endembed %}

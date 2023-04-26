@@ -1,0 +1,25 @@
+{% embed "common/_modal.html.twig" with {'id':'complaint-reject', 'size':'lg'} %}
+    {% block attr_sup %}data-complaint-target="rejectModal"{% endblock %}
+    {% block title %}{{ 'pel.you.will.reject.the.declaration'|trans }}{% endblock %}
+    {% block body %}
+        {{ form(rejectForm, { attr: {'data-complaint-target': 'rejectForm'}}) }}
+    {% endblock %}
+    {% block footer %}
+        <button
+            type="button"
+            class="btn btn-outline-primary btn--modal"
+            id="complaint-reject-button-back"
+            data-bs-dismiss="modal"
+        >
+            {{ 'pel.back'|trans }}
+        </button>
+        <button
+            type="button"
+            class="btn btn-danger btn--modal"
+            data-action="complaint#reject"
+            data-complaint-url-param="{{ path('complaint_reject', { id:complaintId }) }}"
+        >
+            {{ 'pel.validate.the.refusal'|trans }}
+        </button>
+    {% endblock %}
+{% endembed %}

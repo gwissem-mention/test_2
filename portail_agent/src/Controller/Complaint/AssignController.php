@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace App\Controller\Complaint;
 
+use App\Complaint\ComplaintAssignementer;
 use App\Entity\Complaint;
 use App\Entity\User;
-use App\Factory\NotificationFactory;
 use App\Form\Complaint\AssignType;
-use App\Repository\ComplaintRepository;
-use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,10 +20,8 @@ class AssignController extends AbstractController
     #[Route(path: '/plainte/attribuer/{id}', name: 'complaint_assign', methods: ['POST'])]
     public function __invoke(
         Complaint $complaint,
-        ComplaintRepository $complaintRepository,
-        UserRepository $userRepository,
-        NotificationFactory $notificationFactory,
-        Request $request
+        Request $request,
+        ComplaintAssignementer $complaintAssignementer,
     ): JsonResponse {
         $reassignment = $complaint->getAssignedTo() instanceof User;
         $form = $this->createForm(AssignType::class, $complaint);
@@ -42,19 +38,16 @@ class AssignController extends AbstractController
                 ], 422);
             }
 
-            $complaintRepository->save($complaint->setStatus(Complaint::STATUS_ASSIGNED));
-
-            /** @var User $user */
             $user = $complaint->getAssignedTo();
 
-            $userRepository->save(
-                $user->addNotification($notificationFactory->createForComplaintAssigned($complaint, $reassignment)), true
-            );
+            if (!is_null($user)) {
+                $complaintAssignementer->assignOneTo($complaint, $user, $reassignment);
+            }
 
             return $this->json(
                 [
                     'success' => true,
-                    'agent_name' => $user->getAppellation(),
+                    'agent_name' => $user?->getAppellation(),
                 ]
             );
         }

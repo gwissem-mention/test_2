@@ -1,0 +1,23 @@
+{% embed "common/_modal.html.twig" with {'id':'complaint-assign', 'size':'lg'} %}
+    {% block attr_sup %}data-dashboard-bulk-action-target="bulkAssignModal"{% endblock %}
+    {% block title %}{{ 'pel.select.the.agent.to.assign'|trans }}{% endblock %}
+    {% block body %}
+        {{ form(bulk_assign_form, {
+            attr: {
+                'data-dashboard-bulk-action-target': 'bulkAssignForm',
+            }
+        }) }}
+    {% endblock %}
+    {% block footer %}
+        <button type="button" class="btn btn-outline-primary btn--modal" id="complaint-assign-button-back" data-bs-dismiss="modal">
+            {{ 'pel.back'|trans }}
+        </button>
+        <button
+            type="button"
+            class="btn btn-success btn--modal"
+            data-action="dashboard-bulk-action#bulkAssign"
+        >
+            {{ 'pel.validate.the.assignment'|trans }}
+        </button>
+    {% endblock %}
+{% endembed %}

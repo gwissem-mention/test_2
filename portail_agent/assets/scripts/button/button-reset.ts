@@ -1,7 +1,5 @@
-export class ResetButtonHandler
-{
-    public bind(): void
-    {
+export class ButtonReset {
+    public bind(): void {
         const resetButton: Element | null = document.getElementById("resetButton");
 
         if (resetButton) {

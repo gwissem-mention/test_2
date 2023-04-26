@@ -1,270 +1,90 @@
 {% extends 'layout.html.twig' %}
 
 {% block body %}
-    <div class="toast-container top-0 end-0 p-3 position-fixed">
-        <div class="toast align-items-center text-bg-secondary" id="toast-complaint-reject" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="2000">
-            <div class="d-flex">
-                <div class="toast-body">
-                    {{ 'pel.the.declaration.has.been.refused'|trans }}
-                </div>
-                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="{{ 'pel.close'|trans }}"></button>
+    {% block mainContainer %}
+        {% block toaster %}
+            {% include 'pages/complaint/_partial/toaster.html.twig' %}
+        {% endblock %}
+        <div data-controller="complaint" data-complaint-target="complaintContainer" id="complaint-container">
+            {# <div class="mb-3">
+                {{ 'pel.number.of.the.declaration'|trans }} :
+                <span class="fw-bold">{{ complaint.declarationNumber }}</span>
             </div>
-        </div>
-        {% if is_granted('ROLE_SUPERVISOR') and complaint.status not in [constant('App\\Entity\\Complaint::STATUS_REJECTED'), constant('App\\Entity\\Complaint::STATUS_CLOSED')] %}
-            <div class="toast align-items-center text-bg-secondary" id="toast-complaint-assign" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
-                <div class="d-flex">
-                    <div class="toast-body">
-                        {{ (complaint.assignedTo is not null ? 'pel.the.declaration.has.been.reassigned.to':'pel.the.declaration.has.been.assigned.to')|trans }} <span class="agent-name"></span>
-                    </div>
-                    <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="{{ 'pel.close'|trans }}"></button>
-                </div>
-            </div>
-        {% endif %}
-        <div class="toast align-items-center text-bg-secondary" id="toast-complaint-unit-reassign-ordered" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
-            <div class="d-flex">
-                <div class="toast-body">
-                    {{ 'pel.the.unit.reassignment.of.the.declaration.to'|trans }} <span class="unit-name"></span> {{ 'pel.has.been.ordered'|trans }}
-                </div>
-                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="{{ 'pel.close'|trans }}"></button>
-            </div>
-        </div>
-        <div class="toast align-items-center text-bg-secondary" id="toast-validation-send-to-lrp" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
-            <div class="d-flex">
-                <div class="toast-body">
-                    {{ 'pel.file.generated'|trans }}
-                </div>
-                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="{{ 'pel.close'|trans }}"></button>
-            </div>
-        </div>
-        <div class="toast align-items-center text-bg-secondary" id="toast-validation-send-report-to-victim" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
-            <div class="d-flex">
-                <div class="toast-body">
-                    {{ 'pel.the.report.has.been.sent.to.the.victim.the.complaint.is.closed'|trans }}
-                </div>
-                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="{{ 'pel.close'|trans }}"></button>
-            </div>
-        </div>
-    </div>
-    <div data-controller="complaint" data-complaint-target="complaintContainer" id="complaint-container">
-        <div class="row my-3">
-            <aside class="col-12 col-md-3">
-                <div class="position-fixed">
-                    <div class="list-group">
-                        <a href="#" class="list-group-item list-group-item-action list-group-item-secondary">
-                            {{ 'pel.summary'|trans }}
-                        </a>
-                        <a href="{{ path('complaint_summary', {'id': complaint.id, '_fragment': 'declarant-identity'}) }}" class="list-group-item list-group-item-action">
-                            {{ 'pel.declarant.identity'|trans }}
-                            {% if complaint.identity.alertNumber %}
-                                <span class="badge bg-danger rounded-pill">{{ complaint.identity.alertNumber }}</span>
-                            {% endif %}
-                        </a>
-                        {% if complaint.identity.declarantStatus is same as(constant('App\\Entity\\Identity::DECLARANT_STATUS_PERSON_LEGAL_REPRESENTATIVE')) or complaint.identity.declarantStatus is same as(constant('App\\Entity\\Identity::DECLARANT_STATUS_CORPORATION_LEGAL_REPRESENTATIVE')) %}
-                            <a href="{{ path('complaint_summary', {'id': complaint.id, '_fragment': 'victim-identity'}) }}" class="list-group-item list-group-item-action">
-                                {{ 'pel.victim.identity'|trans }}
-                                {% if complaint.personLegalRepresented is not null and complaint.personLegalRepresented.alertNumber %}
-                                    <span class="badge bg-danger rounded-pill">{{ complaint.personLegalRepresented.alertNumber }}</span>
-                                {% elseif complaint.corporationRepresented is not null and complaint.corporationRepresented.alertNumber %}
-                                    <span class="badge bg-danger rounded-pill">{{ complaint.corporationRepresented.alertNumber }}</span>
-                                {% endif %}
-                            </a>
+            <div class="row my-3 {{ not complaint.assignedTo ? 'd-none':'' }}" id="complaint-agent">
+                <div class="col">
+                    <div class="fs-5 float-end">
+                        {{ 'pel.declaration.assigned.to'|trans }} :
+                        <span class="agent-name fw-bold">{{ complaint.assignedTo.appellation|default }}</span>
+                        {% if is_granted('ROLE_SUPERVISOR') and complaint.status not in [constant('App\\Entity\\Complaint::STATUS_REJECTED'), constant('App\\Entity\\Complaint::STATUS_CLOSED')] %}
+                            <button class="btn" data-bs-toggle="modal" data-bs-target="#modal-complaint-assign" id="complaint-reassign-button">
+                                <i class="bi bi-pencil-fill"></i>
+                            </button>
                         {% endif %}
-                        <a href="{{ path('complaint_summary', {'id': complaint.id, '_fragment': 'facts-description'}) }}" class="list-group-item list-group-item-action">
-                            {{ 'pel.description.of.facts'|trans }}
-                            {% if complaint.facts.alertNumber %}
-                                <span class="badge bg-danger rounded-pill">{{ complaint.facts.alertNumber }}</span>
-                            {% endif %}
-                        </a>
-                        <a href="{{ path('complaint_summary', {'id': complaint.id, '_fragment': 'additional-information'}) }}" class="list-group-item list-group-item-action">
-                            {{ 'pel.additional.informations'|trans }}
-                            {% if complaint.additionalInformation.alertNumber %}
-                                <span class="badge bg-danger rounded-pill">{{ complaint.additionalInformation.alertNumber }}</span>
-                            {% endif %}
-                        </a>
-                        <a href="{{ path('complaint_summary', {'id': complaint.id, '_fragment': 'objects-concerned'}) }}" class="list-group-item list-group-item-action">
-                            {{ 'pel.objects.concerned'|trans }}
-                            {% if complaint.objects|objects_alerts > 0 %}
-                                <span class="badge bg-danger rounded-pill">{{ complaint.objects|objects_alerts }}</span>
-                            {% endif %}
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action">
-                            {{ 'pel.appointment.management'|trans }}
-                        </a>
                     </div>
-                    <div class="row justify-content-md-center mt-3">
-                        <div class="col-12">
-                            <div class="d-grid gap-2 d-block">
-                                {% if complaint.status not in [constant('App\\Entity\\Complaint::STATUS_REJECTED'), constant('App\\Entity\\Complaint::STATUS_CLOSED')] %}
-                                    {% if is_granted('ROLE_SUPERVISOR') %}
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-complaint-assign" title="{{ (complaint.assignedTo is not null ? 'pel.click.here.to.reassign.the.declaration.to.an.agent': 'pel.click.here.to.assign.the.declaration.to.an.agent')|trans }}" id="complaint-assign-button">
-                                            <i class="bi bi-person-plus"></i> {{ (complaint.assignedTo is not null ? 'pel.reassign.declaration.to':'pel.assign.declaration.to')|trans }}...
-                                        </button>
-                                    {% endif %}
-                                    {% if complaint.status is not same as(constant('App\\Entity\\Complaint::STATUS_ONGOING_LRP')) %}
-                                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-complaint-send-to-lrp" title="{{ 'pel.click.here.to.send.this.declaration.to.lrp'|trans }}" id="complaint-send-lrp-button">
-                                            <i class="bi bi-arrow-right"></i> {{ 'pel.send.to.lrp'|trans }}
-                                        </button>
-                                    {% else %}
-                                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-complaint-send-report-to-victim" title="{{ 'pel.click.here.to.send.the.report.to.the.victim.and.close'|trans }}" id="complaint-send-report-to-victim-button">
-                                            <i class="bi bi-arrow-right"></i> {{ 'pel.send.report.to.the.victim.and.close'|trans }}
-                                        </button>
-                                    {% endif %}
-                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-complaint-reject" title="{{ 'pel.you.will.reject.the.declaration'|trans }}" id="complaint-reject-button">
-                                        <i class="bi bi-x-lg"></i> {{ 'pel.reject'|trans }}
-                                    </button>
-                                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modal-complaint-unit-reassign" id="complaint-unit-reassign-button">
-                                        <i class="bi bi-arrow-return-right"></i> {{ 'pel.unit.reassign'|trans }}
+                </div>
+            </div> #}
+            <div class="row my-3">
+                {% include 'pages/complaint/_partial/menu.html.twig' %}
+                <main class="col-12 col-md-9 mt-3 mt-md-0">
+                    <div class="row mb-3">
+                        <div class="col-6">
+                            <p class="m-0">
+                                {{ 'pel.number.of.the.declaration'|trans }} :
+                                <span class="fw-bold">{{ complaint.declarationNumber }}</span>
+                            </p>
+                            <p class="m-0">
+                                {{ 'pel.declaration.status'|trans }} :
+                                {{ complaint.status|trans }}
+                            </p>
+                            <p class="m-0 {{ not complaint.alert ? 'd-none' : '' }}">
+                                {{ 'pel.declaration.alert'|trans }} :
+                                <span class="fw-bold text-danger">{{ complaint.alert }}</span>
+                            </p>
+                        </div>
+                        <div class="col-6 {{ not complaint.assignedTo ? 'd-none':'' }}" id="complaint-agent">
+                            <div class="fs-5 text-end">
+                                {{ 'pel.declaration.assigned.to'|trans }} :
+                                <span class="agent-name fw-bold">{{ complaint.assignedTo.appellation|default }}</span>
+                                {% if is_granted('ROLE_SUPERVISOR') and complaint.status not in [constant('App\\Entity\\Complaint::STATUS_REJECTED'), constant('App\\Entity\\Complaint::STATUS_CLOSED')] %}
+                                    <button class="btn" data-bs-toggle="modal" data-bs-target="#modal-complaint-assign" id="complaint-reassign-button">
+                                        <i class="bi bi-pencil-fill"></i>
                                     </button>
                                 {% endif %}
-                                <button type="button" class="btn btn-outline-primary" data-action="complaint#commentFocus" id="complaint-comment-button">
-                                    <i class="bi bi-chat-left"></i> {{ 'pel.comment'|trans }}
-                                </button>
                             </div>
                         </div>
                     </div>
-                </div>
+                    {% block main %}{% endblock %}
+                    {% block comment %}
+                        {% include 'pages/complaint/_partial/comments.html.twig' %}
+                    {% endblock %}
+                </main>
+            </div>
+            {% block modal %}
                 {% if complaint.status not in [constant('App\\Entity\\Complaint::STATUS_REJECTED'), constant('App\\Entity\\Complaint::STATUS_CLOSED')] %}
                     {% if is_granted('ROLE_SUPERVISOR') %}
-                        {% embed "common/_modal.html.twig" with {'id':'complaint-assign', 'size':'lg'} %}
-                            {% block title %}{{ (complaint.assignedTo is not null ? 'pel.select.the.agent.to.reassign':'pel.select.the.agent.to.assign')|trans }}{% endblock %}
-                            {% block body %}
-                                {{ form(assign_form) }}
-                            {% endblock %}
-                            {% block footer %}
-                                <button type="button" class="btn btn-outline-primary btn--modal" id="complaint-assign-button-back" data-bs-dismiss="modal">{{ 'pel.back'|trans }}</button>
-                                <button type="button" class="btn btn-success btn--modal" data-action="complaint#assign" data-complaint-url-param="{{ path('complaint_assign', {'id':complaint.id}) }}">{{ (complaint.assignedTo is not null ? 'pel.validate.the.reassignment':'pel.validate.the.assignment')|trans }}</button>
-                            {% endblock %}
-                        {% endembed %}
+                        {% include 'pages/complaint/_partial/modals/assign.html.twig' with {
+                            'assignedTo': complaint.assignedTo,
+                            'complaintId': complaint.id,
+                            'assignForm': assign_form
+                        } %}
                     {% endif %}
-                    {% embed "common/_modal.html.twig" with {'id':'complaint-reject', 'size':'lg'} %}
-                        {% block title %}{{ 'pel.you.will.reject.the.declaration'|trans }}{% endblock %}
-                        {% block body %}
-                            {{ form(reject_form) }}
-                        {% endblock %}
-                        {% block footer %}
-                            <button type="button" class="btn btn-outline-primary btn--modal" id="complaint-reject-button-back" data-bs-dismiss="modal">{{ 'pel.back'|trans }}</button>
-                            <button type="button" class="btn btn-danger btn--modal" data-action="complaint#reject" data-complaint-url-param="{{ path('complaint_reject', {id:complaint.id}) }}">{{ 'pel.validate.the.refusal'|trans }}</button>
-                        {% endblock %}
-                    {% endembed %}
-                    {% embed "common/_modal.html.twig" with {'id':'complaint-send-to-lrp', 'size':'lg'} %}
-                        {% block title %}{{ 'pel.validation.sending.complain.to.lrp'|trans }}{% endblock %}
-                        {% block body %}
-                            <div class="row m-3 mb-0">
-                                <div class="col-sm d-inline bg-secondary bg-opacity-75 rounded text-center text-white p-3 m-4">{{ 'pel.complaint.assignation'|trans }}</div>
-                                <div class="col-sm d-inline bg-light border border-secondary border-bottom-0 rounded-top text-center p-3">{{ 'pel.complaint.validation.sending.to.lrp'|trans }}</div>
-                                <div class="col-sm d-inline bg-secondary bg-opacity-75 rounded text-center text-white p-3 m-4">{{ 'pel.receipt.report'|trans }}</div>
-                            </div>
-                            <div class="row bg-light align-items-baseline border border-secondary rounded p-3 m-3 mt-0">
-                                <div class="fw-bold">{{ 'pel.complaint.validation.course.to.lrp'|trans }}</div>
-                                <div class="col-sm text-center">
-                                    <img class="rounded-circle modal__send-lrp--placeholder" src="{{ asset('build/images/placeholder.jpeg') }}" alt="placeholder">
-                                    <p>{{ 'pel.send.compatible.data'|trans }}</p>
-                                </div>
-                                <div class="col-sm text-center fs-1 align-self-center">
-                                    <i class="bi bi-arrow-right"></i>
-                                </div>
-                                <div class="col-sm text-center">
-                                    <img class="rounded-circle modal__send-lrp--placeholder" src="{{ asset('build/images/placeholder.jpeg') }}" alt="placeholder">
-                                    <p>{{ 'pel.data.integration'|trans }}</p>
-                                </div>
-                                <div class="col-sm text-center fs-1 align-self-center">
-                                    <i class="bi bi-arrow-right"></i>
-                                </div>
-                                <div class="col-sm text-center">
-                                    <img class="rounded-circle modal__send-lrp--placeholder" src="{{ asset('build/images/placeholder.jpeg') }}" alt="placeholder">
-                                    <p>{{ 'pel.data.modification.by.agent'|trans }}</p>
-                                </div>
-                                <div class="col-sm text-center fs-1 align-self-center">
-                                    <i class="bi bi-arrow-right"></i>
-                                </div>
-                                <div class="col-sm text-center">
-                                    <img class="rounded-circle modal__send-lrp--placeholder" src="{{ asset('build/images/placeholder.jpeg') }}" alt="placeholder">
-                                    <p>{{ 'pel.report.generation.in.lrp'|trans }}</p>
-                                </div>
-                            </div>
-                        {% endblock %}
-                        {% block footer %}
-                            <button type="button" class="btn btn-outline-primary btn--modal" data-bs-dismiss="modal" id="complaint-send-to-lrp-button-back">{{ 'pel.back'|trans }}</button>
-                            <button type="button" class="btn btn-success btn--modal" data-action="complaint#send" data-complaint-url-param="{{ path('complaint_xml', {id:complaint.id}) }}">{{ 'pel.validate.the.sending.to.the.lrp'|trans }}</button>
-                        {% endblock %}
-                    {% endembed %}
-                    {% embed "common/_modal.html.twig" with {'id':'complaint-send-report-to-victim', 'size':'lg'} %}
-                        {% block title %}{{ 'pel.please.drop.the.report.to.send.to.the.victim'|trans }}{% endblock %}
-                        {% block body %}
-                            <div class="row m-3 mb-0">
-                                <div class="col-sm d-inline bg-secondary bg-opacity-75 rounded text-center text-white p-3 m-4">{{ 'pel.complaint.assignation'|trans }}</div>
-                                <div class="col-sm d-inline bg-secondary bg-opacity-75 rounded text-center text-white p-3 m-4">{{ 'pel.complaint.validation.sending.to.lrp'|trans }}</div>
-                                <div class="col-sm d-inline bg-light border border-secondary border-bottom-0 rounded-top text-center p-3 pt-4">{{ 'pel.drop.report.and.send.to.the.victim'|trans }}</div>
-                            </div>
-                            <div class="row bg-light align-items-baseline border border-secondary rounded-start rounded-bottom p-3 m-3 mt-0">
-                                <div class="fw-bold">{{ 'pel.drop.the.report.then.validate.the.sending.to.the.victim'|trans }} :</div>
-                                <div class="mt-3">
-                                    {{ form(drag_drop_form) }}
-                                </div>
-                                <div class="d-flex justify-content-end">
-                                    <button type="button" class="btn btn-primary btn--modal" data-action="complaint#browseReport">{{ 'pel.browse'|trans }}</button>
-                                </div>
-                            </div>
-                        {% endblock %}
-                        {% block footer %}
-                            <button type="button" class="btn btn-outline-primary btn--modal" data-bs-dismiss="modal" id="complaint-send-report-to-the-victim-button-back">{{ 'pel.back'|trans }}</button>
-                            <button type="button" class="btn btn-success btn--modal" data-controller="spinner" data-action="complaint#sendReport spinner#show" data-complaint-url-param="{{ path('complaint_send_report', {id:complaint.id}) }}" data-spinner-target="button" id="complaint-send-report-to-the-victim-button-validate">{{ 'pel.send.report.to.the.victim.and.close'|trans }}</button>
-                        {% endblock %}
-                    {% endembed %}
-                    {% embed "common/_modal.html.twig" with {'id':'complaint-unit-reassign', 'size':'lg'} %}
-                        {% block title %}{{ 'pel.select.the.unit.to.reassign' |trans }}{% endblock %}
-                        {% block body %}
-                            {{ form(unit_reassign_form) }}
-                        {% endblock %}
-                        {% block footer %}
-                            <button type="button" class="btn btn-outline-primary btn--modal" id="complaint-unit-reassign-button-back" data-bs-dismiss="modal">{{ 'pel.back'|trans }}</button>
-                            <button type="button" class="btn btn-success btn--modal" data-action="complaint#unitReassign" data-complaint-url-param="{{ path('complaint_unit_reassign', {'id':complaint.id}) }}" data-complaint-redirection-param="{{ path('home') }}" data-complaint-supervisor-param="{{ is_granted('ROLE_SUPERVISOR') }}">{{ 'pel.validate.the.unit.reassignment'|trans }}</button>
-                        {% endblock %}
-                    {% endembed %}
+                    {% include 'pages/complaint/_partial/modals/reject.html.twig' with {
+                        'rejectForm': reject_form,
+                        'complaintId': complaint.id
+                    } %}
+                    {% include 'pages/complaint/_partial/modals/send_to_lrp.html.twig' with {
+                        'complaintId': complaint.id
+                    } %}
+                    {% include 'pages/complaint/_partial/modals/send_to_victim.html.twig' with {
+                        'dragDropForm': drag_drop_form,
+                        'complaintId': complaint.id
+                    } %}
+                    {% include 'pages/complaint/_partial/modals/reassign.html.twig' with {
+                        'unitReassignForm': unit_reassign_form,
+                        'complaintId': complaint.id
+                    } %}
                 {% endif %}
-            </aside>
-            <main class="col-12 col-md-9 mt-3 mt-md-0">
-                <div class="row mb-3">
-                    <div class="col-6">
-                        <p class="m-0">
-                            {{ 'pel.number.of.the.declaration'|trans }} :
-                            <span class="fw-bold">{{ complaint.declarationNumber }}</span>
-                        </p>
-                        <p class="m-0">
-                            {{ 'pel.declaration.status'|trans }} :
-                            {{ complaint.status|trans }}
-                        </p>
-                        <p class="m-0 {{ not complaint.alert ? 'd-none':'' }}">
-                            {{ 'pel.declaration.alert'|trans }} :
-                            <span class="fw-bold text-danger">{{ complaint.alert }}</span>
-                        </p>
-                    </div>
-                    <div class="col-6 {{ not complaint.assignedTo ? 'd-none':'' }}" id="complaint-agent">
-                        <div class="fs-5 text-end">
-                            {{ 'pel.declaration.assigned.to'|trans }} :
-                            <span class="agent-name fw-bold">{{ complaint.assignedTo.appellation|default }}</span>
-                            {% if is_granted('ROLE_SUPERVISOR') and complaint.status not in [constant('App\\Entity\\Complaint::STATUS_REJECTED'), constant('App\\Entity\\Complaint::STATUS_CLOSED')] %}
-                                <button class="btn" data-bs-toggle="modal" data-bs-target="#modal-complaint-assign" id="complaint-reassign-button">
-                                    <i class="bi bi-pencil-fill"></i>
-                                </button>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-                {% block main %}{% endblock %}
-                <div class="row p-0 m-0">
-                    <div class="col-12 p-0">
-                        <div class="border border-secondary bg-light rounded-3 p-3 mt-5">
-                            <div class="fs-3 fw-semibold lh-lg m-3 mt-0" id="comments-feed-title">
-                                {{ 'pel.comments.feed'|trans }} ({{ complaint.comments|length }})
-                            </div>
-                            <div class="bg-white rounded-3 p-3 m-3">
-                                {{ component('comments', {complaint: complaint, field_disabled: (complaint.status != constant('App\\Entity\\Complaint::STATUS_REJECTED') ? false : true), current_route:app.request.attributes.get('_route')}) }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </main>
+            {% endblock %}
         </div>
-    </div>
+    {% endblock %}
 {% endblock %}
