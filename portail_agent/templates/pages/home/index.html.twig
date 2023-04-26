@@ -33,7 +33,7 @@
                 {% endif %}
                 <table
                     class="table table-striped datatable"
-                    data-order="{{ [[(is_granted('ROLE_SUPERVISOR')) ? 9 : 8,'asc']]|json_encode }}"
+                    data-order="{{ [[(is_granted('ROLE_SUPERVISOR')) ? 7 : 6,'asc']]|json_encode }}"
                     data-column-defs="{{ [{orderable: false, targets: 0}]|json_encode }}"
                     data-page-length="25"
                     data-datatable-target="table"

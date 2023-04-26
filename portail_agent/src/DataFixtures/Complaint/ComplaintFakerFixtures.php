@@ -138,7 +138,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                 ->setAppointmentDate($complaintDate->add(new \DateInterval('P1D')))
                 ->setStatus($status)
                 ->setOptinNotification($this->faker->boolean)
-                ->setAlert($this->faker->randomElement(['Alerte PTS', true === $victimOfViolence ? 'Violence' : null, null]))
+                ->setAlert($this->faker->randomElement([Complaint::ALERT_TSP, Complaint::ALERT_REGISTERED_VEHICLE, true === $victimOfViolence ? Complaint::ALERT_VIOLENCE : null, null]))
                 ->setUnitAssigned($unit)
                 ->setIdentity(
                     $this->newIdentity()
@@ -292,7 +292,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                 );
             }
 
-            if (true === $stolenVehicle) {
+            if (Complaint::ALERT_REGISTERED_VEHICLE === $complaint->getAlert()) {
                 $complaint->addObject(
                     (new Vehicle())
                         ->setLabel('Voiture')
