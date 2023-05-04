@@ -1,7 +1,7 @@
 <aside class="col-12 col-md-3">
     <div class="position-fixed">
         <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action list-group-item-secondary">
+            <a href="{{ path('complaint_summary', {'id': complaint.id}) }}" class="list-group-item list-group-item-action {% if app.request.attributes.get('_route') is same as('complaint_summary') %}list-group-item-secondary{% endif %}">
                 {{ 'pel.summary'|trans }}
             </a>
             <a href="{{ path('complaint_summary', {'id': complaint.id, '_fragment': 'declarant-identity'}) }}" class="list-group-item list-group-item-action">
@@ -38,7 +38,7 @@
                     <span class="badge bg-danger rounded-pill">{{ complaint.objects|objects_alerts }}</span>
                 {% endif %}
             </a>
-            <a href="#" class="list-group-item list-group-item-action">
+            <a href="{{ path('complaint_appointment', {'id': complaint.id}) }}" class="list-group-item list-group-item-action {% if app.request.attributes.get('_route') is same as('complaint_appointment') %}list-group-item-secondary{% endif %}">
                 {{ 'pel.appointment.management'|trans }}
             </a>
         </div>

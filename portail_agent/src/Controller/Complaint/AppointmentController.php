@@ -14,15 +14,15 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-class SummaryController extends AbstractController
+class AppointmentController extends AbstractController
 {
     #[IsGranted('IS_AUTHENTICATED')]
-    #[Route(path: '/plainte/recapitulatif/{id}', name: 'complaint_summary', methods: ['GET'])]
+    #[Route(path: '/plainte/rendez-vous/{id}', name: 'complaint_appointment', methods: ['GET'])]
     public function __invoke(Complaint $complaint): Response
     {
         $this->denyAccessUnlessGranted('COMPLAINT_VIEW', $complaint);
 
-        return $this->render('pages/complaint/summary.html.twig', [
+        return $this->render('pages/complaint/appointment.html.twig', [
             'complaint' => $complaint,
             'reject_form' => $this->createForm(RejectType::class, $complaint),
             'assign_form' => $this->createForm(AssignType::class, $complaint),
