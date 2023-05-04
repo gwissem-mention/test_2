@@ -58,7 +58,7 @@ final class BaseContext extends MinkContext
         $this->retryStep(function () use ($arg1) {
             parent::assertPageNotContainsText($arg1);
             parent::assertResponseNotContains($arg1);
-            parent::assertPageContainsText($this->translator->trans($arg1));
+            parent::assertPageContainsText(strip_tags($this->translator->trans($arg1)));
         });
     }
 
@@ -70,7 +70,7 @@ final class BaseContext extends MinkContext
         $this->retryStep(function () use ($arg1) {
             parent::assertPageNotContainsText($arg1);
             parent::assertResponseNotContains($arg1);
-            parent::assertPageNotContainsText($this->translator->trans($arg1));
+            parent::assertPageNotContainsText(strip_tags($this->translator->trans($arg1)));
         });
     }
 
@@ -82,7 +82,7 @@ final class BaseContext extends MinkContext
         $this->retryStep(function () use ($arg1) {
             parent::assertPageNotContainsText($arg1);
             parent::assertResponseNotContains($arg1);
-            parent::assertResponseContains($this->translator->trans($arg1));
+            parent::assertResponseContains(strip_tags($this->translator->trans($arg1)));
         });
     }
 

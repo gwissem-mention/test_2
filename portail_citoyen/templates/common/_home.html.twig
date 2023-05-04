@@ -1,0 +1,56 @@
+{% extends 'layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('app') }}
+{% endblock %}
+
+{% block body %}
+    {% embed "common/_modal.html.twig" with {'id':'complaint-confirm', 'size':'md'} %}
+        {% block title %}
+            {{ 'pel.offense.context'|trans }}
+        {% endblock %}
+
+        {% block body %}
+            {{ 'pel.could.you.confirm.complaint.validity'|trans }}
+            <ul>
+                <li>{{ 'pel.being.major'|trans }}</li>
+                <li>{{ 'pel.being.victim.or.representative'|trans }}</li>
+                <li>{{ 'pel.dont.know.the.offense.author'|trans }}</li>
+            </ul>
+        {% endblock %}
+
+        {% block footer %}
+            <ul class="fr-btns-group fr-btns-group--right fr-btns-group--inline-reverse fr-btns-group--inline-lg fr-btns-group--icon-left">
+                <li>
+                    <a href="{{ path('home_unfolding') }}" class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line">
+                        {{ 'pel.i.confirm'|trans }}
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('home') }}" class="fr-btn fr-btn--secondary">
+                        {{ 'pel.back.to.homepage'|trans }}
+                    </a>
+                </li>
+            </ul>
+        {% endblock %}
+    {% endembed %}
+    <div class="fr-container--fluid md:bg-hero-pattern">
+        <div class="fr-container fr-container--fluid fr-container-md">
+            <div class="fr-grid-row md:flex-nowrap">
+                <div class="fr-background-action-high--blue-france fr-col-12 fr-col-md-6 fr-pt-5w fr-pr-2w fr-pb-4w fr-pl-2w fr-pt-md-10w fr-pr-md-23v fr-pl-md-3v md:-ml-3">
+                    <div class="fr-mb-md-5w">
+                        <h1 class="text-[28px]/[36px] fr-text-inverted--blue-france fr-mb-2w fr-mb-md-6w md:text-[56px]/[64px]">{{ 'pel.home.title'|trans }}</h1>
+                        <h2 class="text-xl fr-text-inverted--blue-france fr-mb-3w fr-mb-md-7w fr-text--regular md:text-[32px]/[48px]">{{ 'pel.home.intro'|trans|raw }}</h2>
+                        <div class="fr-alert fr-alert--info fr-pr-md-6v fr-pb-2w fr-mb-2w">
+                            <h6 class="text-lgfr-alert__title fr-text-inverted--blue-france fr-mb-1v">{{ 'pel.in.case.of.emergency.compose.the.17.or.the.112.title'|trans }}</h6>
+                            <p class="fr-callout__text fr-text-inverted--blue-france fr-mb-0 text-[14px]/[22px] md:text-base">{{ 'pel.in.case.of.emergency.compose.the.17.or.the.112.text.1'|trans }}</p>
+                            <p class="fr-callout__text fr-text-inverted--blue-france text-[14px]/[22px] md:text-base">{{ 'pel.in.case.of.emergency.compose.the.17.or.the.112.text.2'|trans }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

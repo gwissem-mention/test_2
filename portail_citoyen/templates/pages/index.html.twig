@@ -1,208 +1,29 @@
-{% extends 'layout.html.twig' %}
+{% extends 'common/_home.html.twig' %}
 
-{% block stylesheets %}
-    {{ parent() }}
-    {{ encore_entry_link_tags('pages_home') }}
-{% endblock %}
-
-{% block body %}
-    {% embed "common/_modal.html.twig" with {'id':'complaint-confirm', 'size':'md'} %}
-        {% block title %}
-            {{ 'pel.offense.context'|trans }}
-        {% endblock %}
-
-        {% block body %}
-            {{ 'pel.could.you.confirm.complaint.validity'|trans }}
-            <ul>
-                <li>{{ 'pel.being.major'|trans }}</li>
-                <li>{{ 'pel.being.victim.or.representative'|trans }}</li>
-                <li>{{ 'pel.dont.know.the.offense.author'|trans }}</li>
-            </ul>
-        {% endblock %}
-
-        {% block footer %}
-            <ul class="fr-btns-group fr-btns-group--right fr-btns-group--inline-reverse fr-btns-group--inline-lg fr-btns-group--icon-left">
-                <li>
-                    <a href="{{ path('home_unfolding') }}" class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line">
-                        {{ 'pel.i.confirm'|trans }}
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ path('home') }}" class="fr-btn fr-btn--secondary">
-                        {{ 'pel.back.to.homepage'|trans }}
-                    </a>
-                </li>
-            </ul>
-        {% endblock %}
-    {% endembed %}
-    <div class="fr-container">
-        <div class="fr-grid-row">
-            <div class="fr-col-12 fr-position-relative">
-                <figure class="fr-content-media fr-my-0" role="group" id="image-top">
-                    <div class="fr-content-media__img">
-                        <img class="fr-responsive-img fr-ratio-32x9" src="{{ asset('build/images/callout.jpg') }}" alt="{{ 'pel.online.complaint'|trans }}">
-                    </div>
-                </figure>
-                <div class="fr-grid-row">
-                    <div class="fr-col-12 fr-col-lg-6">
-                        <div class="fr-callout fr-callout--top">
-                            <h2 class="fr-callout__title">{{ 'pel.portal'|trans }}</h2>
-                            <p class="fr-callout__text fr-text--md">
-                                {{ 'pel.home.intro'|trans }}
-                            </p>
-                        </div>
-                    </div>
-                </div>
+{% block content %}
+<div class="fr-grid-row fr-grid-row--center fr-col-12 fr-col-md-6 fr-pt-5w fr-pr-3w fr-pb-6w fr-pl-3w fr-pt-md-10w fr-pr-md-0 fr-pb-md-10w fr-pl-md-11v fr-ml-md-11v">
+    <div class="fr-grid-row fr-col-md-12">
+        <h4 class="fr-mb-3w fr-mb-4w md:text-[28px]/[36px]">{{ 'pel.use.online.complaint.for'|trans }}</h4>
+        <ul class="fr-callout__text my-0">
+            <li class="text-lg fr-mb-5v fr-mb-md-7v md:text-xl/8">{{ 'pel.victim.of.damage.to.property'|trans|raw }}</li>
+            <li class="text-lg fr-mb-5v fr-mb-md-7v md:text-xl/8">{{ 'pel.theft.victim'|trans|raw }}</li>
+            <li class="text-lg fr-mb-5v fr-mb-md-7v md:text-xl/8">{{ 'pel.victim.of.credit.card.theft'|trans|raw }}</li>
+            <li class="text-lg fr-mb-5v fr-mb-md-7v md:text-xl/8">{{ 'pel.victim.of.offline.scams'|trans|raw }}</li>
+            <li class="text-lg fr-mb-5v fr-mb-md-7v md:text-xl/8">{{ 'pel.victim.of.other.property.crimes'|trans|raw }}</li>
+        </ul>
+        <a class="text-lg/6 fr-text-title--blue-france" href="/centre-d-aide">{{ 'pel.check.our.faq'|trans }}</a>
+        <div class="fr-col-12 fr-grid-row flex-col-reverse items-start fr-mt-md-3w md:flex-row md:justify-between">
+            <div class="fr-text-center fr-mt-2w fr-mt-md-3w">
+                <a href="#" class="fr-btn fr-btn--secondary fr-translate__language fr-text--lg py-2.5">
+                    {{ 'pel.fsi.general.orienteer'|trans }}
+                </a>
             </div>
-        </div>
-        <div class="fr-grid-row fr-mt-2w fr-mt-md-4w">
-            <div class="fr-col-12 fr-col-md-6 fr-col-lg-7 fr-col-offset-lg-1">
-                <h3 class="fr-text-center">{{ 'pel.a.public.service.on.internet'|trans }}</h3>
-                <p>
-                    {{ 'pel.a.public.service.on.internet.text.1'|trans }}
-                </p>
-                <p>
-                    {{ 'pel.a.public.service.on.internet.text.2'|trans }}
-                </p>
-                <ul>
-                    <li>{{ 'pel.a.public.service.on.internet.text.3'|trans }}</li>
-                    <li>{{ 'pel.a.public.service.on.internet.text.4'|trans }}</li>
-                    <li>{{ 'pel.a.public.service.on.internet.text.5'|trans }}</li>
-                </ul>
-            </div>
-            <div class="fr-col-12 fr-col-md-5 fr-col-lg-3 fr-col-offset-md-1">
-                <div class="fr-callout fr-callout--pink-tuile">
-                    <div class="fr-callout__title">{{ 'pel.in.case.of.emergency.compose.the.17.or.the.112.or.send.sms.to.114'|trans }}</div>
-                    <p class="fr-callout__text">
-                        <ul>
-                            <li>{{ 'pel.if.accident.ongoing'|trans }}</li>
-                            <li>{{ 'pel.if.suspect.still.present'|trans }}</li>
-                            <li>{{ 'pel.if.person.injured.or.in.danger'|trans }}</li>
-                        </ul>
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="fr-grid-row fr-background-alt--grey fr-mt-1w fr-pt-3w fr-pb-5w fr-mb-5w">
-            <div class="fr-col-12 fr-col--vertical">
-                <p class="fr-callout__title fr-text-center">{{ 'pel.be.sure.facts.are.relevant.for.this.service'|trans }}</p>
-                <div class="fr-grid-row fr-grid-row--home">
-                    <div class="fr-col-12 fr-col-md-5 fr-col--home">
-                        <div class="fr-callout fr-callout--vertical fr-callout--pink-tuile">
-                            <div class="fr-callout__title fr-text-center">{{ 'pel.dont.use.online.complaint'|trans }}</div>
-                            <ul class="fr-callout__text">
-                                <li>{{ 'pel.if.you.know.offense.author'|trans }}</li>
-                                <li>{{ 'pel.if.you.are.minor'|trans }}</li>
-                                <li>{{ 'pel.if.you.are.victim.of.online.scam'|trans }}</li>
-                                <li>{{ 'pel.if.you.are.victim.of.credit.card.fraudulent.use'|trans }}</li>
-                                <li>{{ 'pel.if.you.are.victim.of.violence'|trans }}</li>
-                            </ul>
-                        </div>
-                        <p class="fr-text--bold fr-text--push-sides">{{ 'pel.fsi.general.orienteer.message'|trans }}</p>
-                        <div class="fr-text-center fr-text-center-show-mobile fr-text-center-push-mobile">
-                            <a href="#" class="fr-btn fr-btn--secondary fr-btn--icon-right fr-icon-logout-box-r-line">
-                                {{ 'pel.fsi.general.orienteer'|trans }}
-                            </a>
-                        </div>
-                    </div>
-                    <div class="fr-col-12 fr-col-md-5 fr-col--home">
-                        <div class="fr-callout fr-callout--vertical fr-callout--green-emeraude">
-                            <div class="fr-callout__title fr-text-center">{{ 'pel.use.online.complaint.for'|trans }}</div>
-                            <ul class="fr-callout__text">
-                                <li>{{ 'pel.victim.of.damage.to.property'|trans }}</li>
-                                <li>{{ 'pel.theft.victim'|trans }}</li>
-                                <li>{{ 'pel.victim.of.credit.card.theft'|trans }}</li>
-                                <li>{{ 'pel.victim.of.offline.scams'|trans }}</li>
-                                <li>{{ 'pel.victim.of.other.property.crimes'|trans }}</li>
-                            </ul>
-                            <p class="fr-text-center m-0">{{ 'pel.you.dont.know.offense.author'|trans }}</p>
-                        </div>
-                        <div class="fr-text-center fr-text-center-show-mobile">
-                            <button class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line" data-fr-opened="false" aria-controls="fr-modal-complaint-confirm" id="continue_button_mobile">
-                                {{ 'pel.fill.a.complaint'|trans }}
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="fr-grid-row fr-grid-row--home fr-grid-row--home-hide-mobile">
-                    <div class="fr-col-12 fr-col-md-5 fr-col--home">
-                        <div class="fr-text-center">
-                            <a href="#" class="fr-btn fr-btn--secondary fr-btn--icon-right fr-icon-logout-box-r-line">
-                                {{ 'pel.fsi.general.orienteer'|trans }}
-                            </a>
-                        </div>
-                    </div>
-                    <div class="fr-col-12 fr-col-md-5 fr-col--home">
-                        <div class="fr-text-center">
-                            <button class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line" data-fr-opened="false" aria-controls="fr-modal-complaint-confirm" id="continue_button">
-                                {{ 'pel.fill.a.complaint'|trans }}
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="fr-grid-row fr-background-alt--grey fr-mt-1w fr-pt-3w fr-pb-5w fr-mb-5w fr-grid-row--center">
-            <div class="fr-col-11 fr-col-md-10 fr-col-lg-8">
-                <h3 class="fr-text-center">{{ 'pel.check.our.faq'|trans }}</h3>
-                <div class="fr-accordions-group">
-                    <section class="fr-accordion">
-                        <h4 class="fr-accordion__title fr-accordion__title--background-default-grey">
-                            <button class="fr-accordion__btn" aria-expanded="false" aria-controls="faq-accordion-1">
-                                {{ 'pel.can.i.make.a.physical.appointment'|trans }}
-                            </button>
-                        </h4>
-                        <div class="fr-collapse" id="faq-accordion-1">
-                            <p>
-                                {{ 'pel.can.i.make.a.physical.appointment.text'|trans }}
-                            </p>
-                            <p>
-                                <a href="{{ path('complaint_appointment') }}" class="fr-btn fr-btn--secondary fr-btn--icon-right fr-icon-arrow-right-line">{{ 'pel.make.appointment'|trans }}</a>
-                            </p>
-                        </div>
-                    </section>
-                    <section class="fr-accordion">
-                        <h4 class="fr-accordion__title fr-accordion__title--background-default-grey">
-                            <button class="fr-accordion__btn" aria-expanded="false" aria-controls="faq-accordion-2">
-                                {{ 'pel.what.is.online.complaint'|trans }}
-                            </button>
-                        </h4>
-                        <div class="fr-collapse" id="faq-accordion-2">
-                            <p>{{ 'pel.what.is.online.complaint.text'|trans }}</p>
-                        </div>
-                    </section>
-                    <section class="fr-accordion">
-                        <h4 class="fr-accordion__title fr-accordion__title--background-default-grey">
-                            <button class="fr-accordion__btn" aria-expanded="false" aria-controls="faq-accordion-3">
-                                {{ 'pel.what.is.goods.damages'|trans }}
-                            </button>
-                        </h4>
-                        <div class="fr-collapse" id="faq-accordion-3">
-                            <p>{{ 'pel.what.is.goods.damages.text'|trans }}</p>
-                        </div>
-                    </section>
-                    <section class="fr-accordion">
-                        <h4 class="fr-accordion__title fr-accordion__title--background-default-grey">
-                            <button class="fr-accordion__btn" aria-expanded="false" aria-controls="faq-accordion-4">
-                                {{ 'pel.why.we.ask.me.to.be.france.connected'|trans }}
-                            </button>
-                        </h4>
-                        <div class="fr-collapse" id="faq-accordion-4">
-                            <p>{{ 'pel.identity.of.the.complainant.is.mandatory'|trans }}</p>
-                            <p>{{ 'pel.france.connect.allow.this.verification'|trans }}</p>
-                            <p>{{ 'pel.guaranteed.identity.informations'|trans }}</p>
-                            <p>
-                                {{ 'pel.if.you.dont.have.a.france.connect.account'|trans }}
-                                <a href="https://franceconnect.gouv.fr" target="_blank" rel="noopener" title="{{ 'pel.france.connect.click.to.create.an.account'|trans }}">{{ 'pel.france.connect.click.to.create.an.account'|trans }}</a>
-                            </p>
-                            <p>{{ 'pel.otherwise.you.will.have.to.go.to.the.office'|trans }}</p>
-                            <p>
-                                <a href="https://franceconnect.gouv.fr/cgu" target="_blank" rel="noopener" title="{{ 'pel.read.more.about.france.connect'|trans }}">{{ 'pel.read.more.about.france.connect'|trans }}</a>
-                            </p>
-                        </div>
-                    </section>
-                </div>
+            <div class="fr-text-center fr-mt-7w fr-mt-md-3w">
+                <button class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line fr-text--lg py-2.5" data-fr-opened="false" aria-controls="fr-modal-complaint-confirm" id="continue_button">
+                    {{ 'pel.fill.a.complaint'|trans }}
+                </button>
             </div>
         </div>
     </div>
+</div>
 {% endblock %}

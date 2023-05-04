@@ -7,4 +7,7 @@
     <main role="main">
         {% block body %}{% endblock %}
     </main>
+    {% block footer %}
+        {{ include('common/_footer.html.twig') }}
+    {% endblock %}
 {% endblock %}
