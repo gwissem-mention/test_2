@@ -244,7 +244,7 @@
             </trans-unit>
             <trans-unit id="pel.check.our.faq">
                 <source>pel.check.our.faq</source>
-                <target>Une question ? Consultez notre FAQ</target>
+                <target>J'ai un doute sur mon cas</target>
             </trans-unit>
             <trans-unit id="pel.cctv.available">
                 <source>pel.cctv.available</source>
@@ -337,10 +337,6 @@
             <trans-unit id="pel.complaint.offense.nature.degradation">
                 <source>pel.complaint.offense.nature.degradation</source>
                 <target>Dégradation</target>
-            </trans-unit>
-            <trans-unit id="pel.compose.the.17">
-                <source>pel.compose.the.17</source>
-                <target>Composez le 17</target>
             </trans-unit>
             <trans-unit id="pel.complaint.offense.nature.other">
                 <source>pel.complaint.offense.nature.other</source>
@@ -486,10 +482,6 @@
                 <source>pel.do.you.know.hour.facts</source>
                 <target>Connaissez-vous l'heure des faits ?</target>
             </trans-unit>
-            <trans-unit id="pel.dont.use.online.complaint">
-                <source>pel.dont.use.online.complaint</source>
-                <target>N'UTILISEZ PAS Plainte en ligne si :</target>
-            </trans-unit>
             <trans-unit id="pel.dont.know.the.offense.author">
                 <source>pel.dont.know.the.offense.author</source>
                 <target>Ne pas connaître l'identité de l'auteur de l'infraction</target>
@@ -592,7 +584,7 @@
             </trans-unit>
             <trans-unit id="pel.fill.a.complaint">
                 <source>pel.fill.a.complaint</source>
-                <target>Poursuivre ma télédéclaration</target>
+                <target>Je continue</target>
             </trans-unit>
             <trans-unit id="pel.files">
                 <source>pel.files</source>
@@ -610,6 +602,78 @@
                 <source>pel.first.names</source>
                 <target>Prénom(s)</target>
             </trans-unit>
+            <trans-unit id="pel.footer.copyright">
+                <source>pel.footer.copyright</source>
+                <target>Sauf mention contraire, tous les contenus de ce site sont sous</target>
+            </trans-unit>
+            <trans-unit id="pel.footer.copyright.license">
+                <source>pel.footer.copyright.license</source>
+                <target>licence etalab-2.0</target>
+            </trans-unit>
+            <trans-unit id="pel.footer.copyright.license.title">
+                <source>pel.footer.copyright.license.title</source>
+                <target>licence etalab-2.0 - nouvelle fenêtre</target>
+            </trans-unit>
+            <trans-unit id="pel.footer.description">
+                <source>pel.footer.description</source>
+                <target>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consectetur et vel quam auctor semper. Cras si amet mollis dolor.</target>
+            </trans-unit>
+            <trans-unit id="pel.footer.link.data">
+                <source>pel.footer.link.data</source>
+                <target>data.gouv.fr</target>
+            </trans-unit>
+            <trans-unit id="pel.footer.link.data.title">
+                <source>pel.footer.link.data.title</source>
+                <target>data.gouv.fr - nouvelle fenêtre</target>
+            </trans-unit>
+            <trans-unit id="pel.footer.link.gouvernement">
+                <source>pel.footer.link.gouvernement</source>
+                <target>gouvernement.fr</target>
+            </trans-unit>
+            <trans-unit id="pel.footer.link.gouvernement.title">
+                <source>pel.footer.link.gouvernement.title</source>
+                <target>gouvernement.fr - nouvelle fenêtre</target>
+            </trans-unit>
+            <trans-unit id="pel.footer.link.legifrance">
+                <source>pel.footer.link.legifrance</source>
+                <target>legifrance.gouv.fr</target>
+            </trans-unit>
+            <trans-unit id="pel.footer.link.legifrance.title">
+                <source>pel.footer.link.legifrance.title</source>
+                <target>legifrance.gouv.fr - nouvelle fenêtre</target>
+            </trans-unit>
+            <trans-unit id="pel.footer.link.service-public">
+                <source>pel.footer.link.service-public</source>
+                <target>service-public.fr</target>
+            </trans-unit>
+            <trans-unit id="pel.footer.link.service-public.title">
+                <source>pel.footer.link.service-public.title</source>
+                <target>service-public.fr - nouvelle fenêtre</target>
+            </trans-unit>
+            <trans-unit id="pel.footer.link-bottom.accessibility">
+                <source>pel.footer.link-bottom.accessibility</source>
+                <target>Accessibilité</target>
+            </trans-unit>
+            <trans-unit id="pel.footer.link-bottom.cookies">
+                <source>pel.footer.link-bottom.cookies</source>
+                <target>Gestion des cookies</target>
+            </trans-unit>
+            <trans-unit id="pel.footer.link-bottom.legal">
+                <source>pel.footer.link-bottom.legal</source>
+                <target>Mentions légales</target>
+            </trans-unit>
+            <trans-unit id="pel.footer.link-bottom.privacy">
+                <source>pel.footer.link-bottom.privacy</source>
+                <target>Données personnelles</target>
+            </trans-unit>
+            <trans-unit id="pel.footer.link-bottom.sitemap">
+                <source>pel.footer.link-bottom.sitemap</source>
+                <target>Plan du site</target>
+            </trans-unit>
+            <trans-unit id="pel.footer.logo">
+                <source>pel.footer.logo</source>
+                <target>République<![CDATA[<br>]]>française</target>
+            </trans-unit>
             <trans-unit id="pel.france.connect">
                 <source>pel.france.connect</source>
                 <target>France Connect</target>
@@ -618,25 +682,33 @@
                 <source>pel.header.baseline</source>
                 <target>Portail officiel de déclaration de plainte pour des faits d'atteinte aux biens</target>
             </trans-unit>
+            <trans-unit id="pel.header.menu">
+                <source>pel.header.menu</source>
+                <target>Menu</target>
+            </trans-unit>
+            <trans-unit id="pel.header.help">
+                <source>pel.header.help</source>
+                <target>Centre d'aide</target>
+            </trans-unit>
             <trans-unit id="pel.health.insurance.card">
                 <source>pel.health.insurance.card</source>
                 <target>Carte vitale</target>
             </trans-unit>
             <trans-unit id="pel.fsi.general.orienteer">
                 <source>pel.fsi.general.orienteer</source>
-                <target>Soyez guidé vers la bonne solution !</target>
-            </trans-unit>
-            <trans-unit id="pel.fsi.general.orienteer.message">
-                <source>pel.fsi.general.orienteer.message</source>
-                <target>Vous avez un doute, consultez le site du Ministère de l'intérieur pour être orienté vers le service approprié.</target>
+                <target>Je suis dans une autre situation</target>
             </trans-unit>
             <trans-unit id="pel.fsi.visit">
                 <source>pel.fsi.visit</source>
                 <target>Y a-t-il eu intervention d’un équipage de police ou de gendarmerie ?</target>
             </trans-unit>
+            <trans-unit id="pel.home.title">
+                <source>pel.home.title</source>
+                <target>Déclarez une plainte en ligne</target>
+            </trans-unit>
             <trans-unit id="pel.home.intro">
                 <source>pel.home.intro</source>
-                <target>Ce téléservice vous permet d'effectuer une déclaration en ligne pour une atteinte aux biens (vol, dégradation ...) par une personne inconnue.</target>
+                <target><![CDATA[<strong>Escroquerie</strong>]]>, <![CDATA[<strong>vol</strong>]]> ou <![CDATA[<strong>dégradation d’un bien</strong>]]> par une personne dont vous ignorez l’identité.</target>
             </trans-unit>
             <trans-unit id="pel.home.orienteer.information.message.1">
                 <source>pel.home.orienteer.information.message.1</source>
@@ -722,29 +794,17 @@
                 <source>pel.if.person.injured.or.in.danger</source>
                 <target>Si une personne est gravement blessée ou en danger immédiat</target>
             </trans-unit>
-            <trans-unit id="pel.if.you.are.minor">
-                <source>pel.if.you.are.minor</source>
-                <target>Vous êtes mineur</target>
+            <trans-unit id="pel.in.case.of.emergency.compose.the.17.or.the.112.title">
+                <source>pel.in.case.of.emergency.compose.the.17.or.the.112.title</source>
+                <target>En cas d’urgence</target>
             </trans-unit>
-            <trans-unit id="pel.if.you.are.victim.of.online.scam">
-                <source>pel.if.you.are.victim.of.online.scam</source>
-                <target>Vous avez été victime d'une escroquerie sur Internet</target>
+            <trans-unit id="pel.in.case.of.emergency.compose.the.17.or.the.112.text.1">
+                <source>pel.in.case.of.emergency.compose.the.17.or.the.112.text.1</source>
+                <target>Composez le 17 ou le 112.</target>
             </trans-unit>
-            <trans-unit id="pel.if.you.are.victim.of.credit.card.fraudulent.use">
-                <source>pel.if.you.are.victim.of.credit.card.fraudulent.use</source>
-                <target>Vous êtes victime d'utilisation frauduleuse de votre carte bancaire toujours en votre possession</target>
-            </trans-unit>
-            <trans-unit id="pel.if.you.are.victim.of.violence">
-                <source>pel.if.you.are.victim.of.violence</source>
-                <target>Vous avez été victime de viol, violence, harcèlement, discrimination et autres atteintes à votre personne</target>
-            </trans-unit>
-            <trans-unit id="pel.if.you.know.offense.author">
-                <source>pel.if.you.know.offense.author</source>
-                <target>Vous connaissez l'identité de l'auteur</target>
-            </trans-unit>
-            <trans-unit id="pel.in.case.of.emergency.compose.the.17.or.the.112">
-                <source>pel.in.case.of.emergency.compose.the.17.or.the.112.or.send.sms.to.114</source>
-                <target>EN CAS D'URGENCE, composez le 17 ou le 112. Ou envoyez un SMS au 114.</target>
+            <trans-unit id="pel.in.case.of.emergency.compose.the.17.or.the.112.text.2">
+                <source>pel.in.case.of.emergency.compose.the.17.or.the.112.text.2</source>
+                <target>Ou envoyez un SMS au 114 (sourds et mal-entendants)</target>
             </trans-unit>
             <trans-unit id="pel.infraction.type">
                 <source>pel.infraction.type</source>
@@ -1228,7 +1288,7 @@
             </trans-unit>
             <trans-unit id="pel.use.online.complaint.for">
                 <source>pel.use.online.complaint.for</source>
-                <target>Utilisez Plainte en ligne si :</target>
+                <target>Avant de continuer, assurez-vous d'être dans l'un des cas suivants :</target>
             </trans-unit>
             <trans-unit id="pel.validate">
                 <source>pel.validate</source>
@@ -1388,23 +1448,23 @@
             </trans-unit>
             <trans-unit id="pel.victim.of.damage.to.property">
                 <source>pel.victim.of.damage.to.property</source>
-                <target>Vous êtes victime de dégradation(s) sur un/des bien(s)</target>
+                <target>Vous êtes victime de <![CDATA[<strong>dégradation sur un bien</strong>]]></target>
             </trans-unit>
             <trans-unit id="pel.theft.victim">
                 <source>pel.theft.victim</source>
-                <target>Vous êtes victime de vol(s)</target>
+                <target>Vous êtes victime de <![CDATA[<strong>vol</strong>]]></target>
             </trans-unit>
             <trans-unit id="pel.victim.of.credit.card.theft">
                 <source>pel.victim.of.credit.card.theft</source>
-                <target>Vous êtes victime de vol de votre carte bancaire suivi d'utilisation(s) frauduleuse(s)</target>
+                <target>Vous êtes victime de <![CDATA[<strong>vol de votre carte bancaire</strong>]]> suivi d'utilisations frauduleuses</target>
             </trans-unit>
             <trans-unit id="pel.victim.of.offline.scams">
                 <source>pel.victim.of.offline.scams</source>
-                <target>Vous êtes victime d'escroqueries « Hors Internet »</target>
+                <target>Vous êtes victime d'<![CDATA[<strong>escroquerie hors Internet</strong>]]></target>
             </trans-unit>
             <trans-unit id="pel.victim.of.other.property.crimes">
                 <source>pel.victim.of.other.property.crimes</source>
-                <target>Vous êtes victime d'autres atteintes aux biens</target>
+                <target>Vous êtes victime d'<![CDATA[<strong>autres atteintes aux biens</strong>]]></target>
             </trans-unit>
             <trans-unit id="pel.when.using.france.connect.service.you.accept.terms">
                 <source>pel.when.using.france.connect.service.you.accept.terms</source>

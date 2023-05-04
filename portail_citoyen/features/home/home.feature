@@ -15,62 +15,32 @@ Feature:
         Then I should see the key "<trans>" translated
 
         Examples:
-            | trans                                               |
-            | pel.ministry                                        |
-            | pel.inside                                          |
-            | pel.and.overseas                                    |
-            | pel.header.baseline                                 |
-            | pel.online.complaint                                |
-            | pel.portal                                          |
-            | pel.home.intro                                      |
-            | pel.a.public.service.on.internet                    |
-            | pel.a.public.service.on.internet.text.1             |
-            | pel.a.public.service.on.internet.text.2             |
-            | pel.a.public.service.on.internet.text.3             |
-            | pel.a.public.service.on.internet.text.4             |
-            | pel.a.public.service.on.internet.text.5             |
-            | pel.compose.the.17                                  |
-            | pel.if.accident.ongoing                             |
-            | pel.if.suspect.still.present                        |
-            | pel.if.person.injured.or.in.danger                  |
-            | pel.be.sure.facts.are.relevant.for.this.service     |
-            | pel.use.online.complaint.for                        |
-            | pel.victim.of.damage.to.property                    |
-            | pel.theft.victim                                    |
-            | pel.victim.of.credit.card.theft                     |
-            | pel.victim.of.offline.scams                         |
-            | pel.victim.of.other.property.crimes                 |
-            | pel.you.dont.know.offense.author                    |
-            | pel.fill.a.complaint                                |
-            | pel.dont.use.online.complaint                       |
-            | pel.if.you.know.offense.author                      |
-            | pel.if.you.are.minor                                |
-            | pel.if.you.are.victim.of.online.scam                |
-            | pel.if.you.are.victim.of.credit.card.fraudulent.use |
-            | pel.if.you.are.victim.of.violence                   |
-            | pel.fsi.general.orienteer.message                   |
-            | pel.fsi.general.orienteer                           |
-            | pel.check.our.faq                                   |
-            | pel.can.i.make.a.physical.appointment               |
-            | pel.can.i.make.a.physical.appointment.text          |
-            | pel.make.appointment                                |
-            | pel.what.is.online.complaint                        |
-            | pel.what.is.online.complaint.text                   |
-            | pel.what.is.goods.damages                           |
-            | pel.what.is.goods.damages.text                      |
-            | pel.why.we.ask.me.to.be.france.connected            |
-            | pel.identity.of.the.complainant.is.mandatory        |
-            | pel.france.connect.allow.this.verification          |
-            | pel.guaranteed.identity.informations                |
-            | pel.if.you.dont.have.a.france.connect.account       |
-            | pel.france.connect.click.to.create.an.account       |
-            | pel.otherwise.you.will.have.to.go.to.the.office     |
-            | pel.read.more.about.france.connect                  |
+            | trans                                                     |
+            | pel.ministry                                              |
+            | pel.inside                                                |
+            | pel.and.overseas                                          |
+            | pel.header.baseline                                       |
+            | pel.online.complaint                                      |
+            | pel.portal                                                |
+            | pel.home.title                                            |
+            | pel.home.intro                                            |
+            | pel.in.case.of.emergency.compose.the.17.or.the.112.title  |
+            | pel.in.case.of.emergency.compose.the.17.or.the.112.text.1 |
+            | pel.in.case.of.emergency.compose.the.17.or.the.112.text.2 |
+            | pel.use.online.complaint.for                              |
+            | pel.victim.of.damage.to.property                          |
+            | pel.theft.victim                                          |
+            | pel.victim.of.credit.card.theft                           |
+            | pel.victim.of.offline.scams                               |
+            | pel.victim.of.other.property.crimes                       |
+            | pel.fill.a.complaint                                      |
+            | pel.fsi.general.orienteer                                 |
+            | pel.check.our.faq                                         |
 
     @func
     Scenario: Press button to be fsi general orienteer
         Given I am on "/"
-        When I follow "Soyez guidé vers la bonne solution !"
+        When I follow "Je suis dans une autre situation"
 
     @javascript
     Scenario Outline: I can open a confirmation modal when I click on "Continue" and I can click on modal buttons

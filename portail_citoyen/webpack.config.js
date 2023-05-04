@@ -8,7 +8,6 @@ Encore
     .setOutputPath("public/build/")
     .setPublicPath("/build")
     .addEntry("app", "./assets/app.ts")
-    .addStyleEntry("pages_home", "./assets/styles/styles.sass")
     .enableTypeScriptLoader()
     .enableStimulusBridge("./assets/controllers.json")
     .splitEntryChunks()
@@ -25,6 +24,7 @@ Encore
         config.corejs = 3;
     })
     .enableSassLoader()
+    .enablePostCssLoader()
     .copyFiles([
         {from: "./assets/images", to: "images/[path][name].[hash:8].[ext]"},
         {from: "./node_modules/@gouvfr/dsfr/dist/favicon", to: "favicon/[path][name].[hash:8].[ext]"},
@@ -60,7 +60,7 @@ Encore
         // https://stackoverflow.com/a/68671321
         // https://stackoverflow.com/a/75365211
         options.watchFiles = {
-            paths: ['templates/**/*.twig', 'assets/**/*.ts', 'assets/**/*.sass'],
+            paths: ['templates/**/*.html.twig', 'assets/**/*.ts', 'assets/**/*.sass', 'translations/**/*.xlf'],
         }
     })
 

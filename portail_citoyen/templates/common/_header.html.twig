@@ -11,6 +11,11 @@
                                 <br>{{ 'pel.and.overseas'|trans }}
                             </p>
                         </div>
+                        <div class="fr-header__navbar">
+							<button class="fr-btn--menu fr-btn" data-fr-opened="false" aria-controls="modal-menu" aria-haspopup="menu" title="{{ 'pel.header.menu'|trans }}">
+                                {{ 'pel.header.menu'|trans }}
+							</button>
+						</div>
                     </div>
                     <div class="fr-header__service">
                         <a href="{{ path('home') }}" title="Accueil - {{ 'pel.ministry'| trans }} {{ 'pel.inside'|trans }} {{ 'pel.and.overseas'|trans }}">
@@ -18,9 +23,20 @@
                                 {{ 'pel.complaint.online'|trans }}
                             </h1>
                         </a>
-                        <p class="fr-header__service-tagline">
+                        <p class="fr-header__service-tagline fr-hidden fr-unhidden-lg">
                             {{ 'pel.header.baseline'|trans }}
                         </p>
+                    </div>
+                </div>
+                <div class="fr-header__tools">
+                    <div class="fr-header__tools-links">
+                        <ul class="fr-btns-group">
+                            <li>
+                                <a href="/centre-d-aide" class="fr-btn fr-icon-information-fill">
+                                    {{ 'pel.header.help'|trans }}
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
