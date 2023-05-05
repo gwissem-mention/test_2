@@ -1,0 +1,165 @@
+{
+    "id": "a69d5186-d2f4-11ed-a0cd-f584fca4b5b8",
+    "createdAt": {
+        "date": "2023-04-04T14:26:12+00:00",
+        "timestamp": 1680618372,
+        "timezone": "+00:00"
+    },
+    "identity": {
+        "declarantStatus": {
+            "code": 1,
+            "label": "pel.complaint.identity.victim"
+        },
+        "civilState": {
+            "civility": {
+                "code": 2,
+                "label": "pel.mme"
+            },
+            "birthName": "DUBOIS",
+            "usageName": null,
+            "firstnames": "Angela Claire Louise",
+            "birthDate": {
+                "date": "1962-08-24T00:00:00+00:00",
+                "timestamp": -232156800,
+                "timezone": "+00:00"
+            },
+            "birthLocation": {
+                "country": {
+                    "inseeCode": 99100,
+                    "label": "France"
+                },
+                "frenchTown": {
+                    "inseeCode": "75107",
+                    "label": "Paris 7e arrondissement"
+                },
+                "otherTown": null
+            },
+            "nationality": {
+                "code": 1,
+                "label": "pel.nationality.france"
+            },
+            "job": {
+                "code": "1",
+                "label": "Abat-jouriste"
+            }
+        },
+        "contactInformation": {
+            "phone": {
+                "country": "FR",
+                "code": "33",
+                "number": null
+            },
+            "mobile": {
+                "country": "FR",
+                "code": "33",
+                "number": "612345678"
+            },
+            "country": {
+                "inseeCode": 99100,
+                "label": "France"
+            },
+            "frenchAddress": {
+                "addressType": "etalab_address",
+                "id": "31555_2580_00007",
+                "type": "housenumber",
+                "score": 0.8947636363636363,
+                "houseNumber": "7",
+                "street": "Boulevard Deltour",
+                "name": "7 Boulevard Deltour",
+                "postcode": "31500",
+                "citycode": "31555",
+                "city": "Toulouse",
+                "district": null,
+                "context": "31, Haute-Garonne, Occitanie",
+                "x": 576400.03,
+                "y": 6278141.84,
+                "importance": 0.8424,
+                "label": "7 Boulevard Deltour 31500 Toulouse",
+                "latitude": null,
+                "longitude": null
+            },
+            "foreignAddress": null,
+            "email": "wossewodda-3728@yopmail.com"
+        },
+        "representedPersonCivilState": null,
+        "representedPersonContactInformation": null,
+        "corporation": null
+    },
+    "facts": {
+        "address": {
+            "addressOrRouteFactsKnown": false,
+            "addressAdditionalInformation": null,
+            "startAddress": null,
+            "endAddress": null
+        },
+        "offenseDate": {
+            "exactDateKnown": true,
+            "choiceHour": "no",
+            "startDate": {
+                "date": "2023-04-04T00:00:00+00:00",
+                "timestamp": 1680566400,
+                "timezone": "+00:00"
+            },
+            "endDate": null,
+            "hour": null,
+            "startHour": null,
+            "endHour": null
+        },
+        "placeNature": {
+            "code": null,
+            "label": false
+        },
+        "victimOfViolence": false,
+        "victimOfViolenceText": null,
+        "description": "afdfeazfzef"
+    },
+    "additionalInformation": {
+        "suspectsChoice": false,
+        "witnesses": false,
+        "fsiVisit": false,
+        "cctvPresent": {
+            "code": 3,
+            "label": "pel.i.dont.know"
+        },
+        "suspectsText": null,
+        "witnessesText": null,
+        "observationMade": null,
+        "cctvAvailable": null
+    },
+    "objects": {
+        "objects": [
+            {
+                "status": {
+                    "code": 1,
+                    "label": "pel.stolen"
+                },
+                "category": {
+                    "code": 1,
+                    "label": "pel.object.category.documents"
+                },
+                "label": null,
+                "brand": null,
+                "model": null,
+                "phoneNumberLine": null,
+                "operator": null,
+                "serialNumber": null,
+                "description": null,
+                "quantity": null,
+                "bank": null,
+                "bankAccountNumber": null,
+                "creditCardNumber": null,
+                "registrationNumber": null,
+                "registrationNumberCountry": null,
+                "insuranceCompany": null,
+                "insuranceNumber": null,
+                "amount": 100.0,
+                "documentType": 1,
+                "otherDocumentType": null,
+                "documentOwned": true,
+                "documentOwner": null
+            }
+        ]
+    },
+    "franceConnected": true,
+    "affectedService": null
+}

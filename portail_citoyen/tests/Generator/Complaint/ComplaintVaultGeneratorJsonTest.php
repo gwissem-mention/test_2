@@ -82,7 +82,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                     ],
                     'nationality' => [
                         'code' => 1,
-                        'label' => 'pel.nationality.france',
+                        'label' => 'Française',
                     ],
                     'job' => [
                         'code' => '1',
@@ -414,7 +414,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                     ],
                     'nationality' => [
                         'code' => 1,
-                        'label' => 'pel.nationality.france',
+                        'label' => 'Française',
                     ],
                     'job' => [
                         'code' => '1',
@@ -486,7 +486,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                     ],
                     'nationality' => [
                         'code' => 1,
-                        'label' => 'pel.nationality.france',
+                        'label' => 'Française',
                     ],
                     'job' => [
                         'code' => '1',
@@ -817,7 +817,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                     ],
                     'nationality' => [
                         'code' => 1,
-                        'label' => 'pel.nationality.france',
+                        'label' => 'Française',
                     ],
                     'job' => [
                         'code' => '1',

@@ -37,13 +37,13 @@ class FactsDTO
     private string $start;
     private string $end;
     private string $noViolence;
-//    private string $noOrientation;
+    //    private string $noOrientation;
     private string $violenceDescription;
-//    private string $orientation;
-//    private string $physicalPrejudice;
-//    private string $otherPrejudice;
-//    private string $physicalPrejudiceDescription;
-//    private string $otherPrejudiceDescription;
+    //    private string $orientation;
+    //    private string $physicalPrejudice;
+    //    private string $otherPrejudice;
+    //    private string $physicalPrejudiceDescription;
+    //    private string $otherPrejudiceDescription;
 
     public function __construct(Complaint $complaint)
     {
@@ -83,14 +83,15 @@ class FactsDTO
         $this->endMinutesFormatted = !is_null($hour = $facts->getEndHour()) ? $hour->format('i') : '';
         $this->start = (!is_null($date = $facts->getStartDate()) && !is_null($hour = $facts->getStartHour())) ? ($date->format('d/m/Y').' à '.$hour->format('H:i:s')) : '';
         $this->end = (!is_null($date = $facts->getEndDate()) && !is_null($hour = $facts->getEndHour())) ? ($date->format('d/m/Y').' à '.$hour->format('H:i:s')) : '';
-        $this->noViolence = !is_null($noViolence = !$complaint->getAdditionalInformation()?->isVictimOfViolence()) ? strval($noViolence) : '';
-//        $this->noOrientation = !is_null($noOrientation = $facts->isNoOrientation()) ? strval($noOrientation) : '';
-        $this->violenceDescription = $complaint->getAdditionalInformation()?->getVictimOfViolenceText() ?? '';
-//        $this->orientation = $facts->getOrientation() ?? '';
-//        $this->physicalPrejudice = true === $facts->isPhysicalPrejudice() ? 'Oui' : 'Non';
-//        $this->otherPrejudice = true === $facts->isOtherPrejudice() ? '1' : '0';
-//        $this->physicalPrejudiceDescription = $facts->getPhysicalPrejudiceDescription() ?? '';
-//        $this->otherPrejudiceDescription = $facts->getOtherPrejudiceDescription() ?? '';
+        $this->noViolence = strval(!$complaint->getFacts()?->isVictimOfViolence()) ?: '';
+        $this->violenceDescription = $complaint->getFacts()?->getVictimOfViolenceText() ?? '';
+
+        //        $this->noOrientation = !is_null($noOrientation = $facts->isNoOrientation()) ? strval($noOrientation) : '';
+        //        $this->orientation = $facts->getOrientation() ?? '';
+        //        $this->physicalPrejudice = true === $facts->isPhysicalPrejudice() ? 'Oui' : 'Non';
+        //        $this->otherPrejudice = true === $facts->isOtherPrejudice() ? '1' : '0';
+        //        $this->physicalPrejudiceDescription = $facts->getPhysicalPrejudiceDescription() ?? '';
+        //        $this->otherPrejudiceDescription = $facts->getOtherPrejudiceDescription() ?? '';
     }
 
     /**

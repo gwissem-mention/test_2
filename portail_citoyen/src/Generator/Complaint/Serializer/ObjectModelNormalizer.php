@@ -4,17 +4,20 @@ declare(strict_types=1);
 
 namespace App\Generator\Complaint\Serializer;
 
+use App\Enum\DocumentType;
 use App\Form\Model\Objects\ObjectModel;
 use App\Thesaurus\ObjectCategoryThesaurusProviderInterface;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class ObjectModelNormalizer implements NormalizerInterface
 {
     public function __construct(
         #[Autowire(service: ObjectNormalizer::class)] private readonly NormalizerInterface $normalizer,
         private readonly ObjectCategoryThesaurusProviderInterface $objectCategoryThesaurusProvider,
+        private readonly TranslatorInterface $translator,
     ) {
     }
 
@@ -38,6 +41,10 @@ class ObjectModelNormalizer implements NormalizerInterface
             'code' => $data['category'],
             'label' => array_search($object->getCategory(), $this->objectCategoryThesaurusProvider->getChoices(), true),
         ];
+
+        if ($documentTypeLabel = DocumentType::getLabel($object->getDocumentType())) {
+            $data['documentType'] = $this->translator->trans($documentTypeLabel);
+        }
 
         return $data;
     }

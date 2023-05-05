@@ -9,21 +9,21 @@ use App\Entity\FactsObjects\AdministrativeDocument;
 class AdministrativeDocumentDTO extends AbstractObjectDTO
 {
     private string $type;
-//    private string $issuingCountry;
-//    private string $number;
-//    private string $deliveryDate;
-//    private string $authority;
-//    private string $description;
+    //    private string $issuingCountry;
+    //    private string $number;
+    //    private string $deliveryDate;
+    //    private string $authority;
+    //    private string $description;
 
     public function __construct(AdministrativeDocument $object)
     {
         // parent::__construct($object);
         $this->type = $object->getType() ?? '';
-//        $this->number = $object->getNumber() ?? '';
-//        $this->description = $object->getDescription() ?? '';
-//        $this->issuingCountry = $object->getIssuingCountry() ?? '';
-//        $this->deliveryDate = $object->getDeliveryDate() ? $object->getDeliveryDate()->format('d/m/Y') : '';
-//        $this->authority = $object->getAuthority() ?? '';
+        //        $this->number = $object->getNumber() ?? '';
+        //        $this->description = $object->getDescription() ?? '';
+        //        $this->issuingCountry = $object->getIssuingCountry() ?? '';
+        //        $this->deliveryDate = $object->getDeliveryDate() ? $object->getDeliveryDate()->format('d/m/Y') : '';
+        //        $this->authority = $object->getAuthority() ?? '';
     }
 
     /**

@@ -13,8 +13,8 @@ class MultimediaObjectDTO extends AbstractObjectDTO
     private string $description;
     private ?string $phoneNumber;
     private ?string $operator;
-//    private ?string $opposition;
-//    private ?string $simNumber;
+    //    private ?string $opposition;
+    //    private ?string $simNumber;
 
     public function __construct(MultimediaObject $object)
     {
@@ -24,8 +24,8 @@ class MultimediaObjectDTO extends AbstractObjectDTO
         $this->description = $object->getModel() ?? '';
         $this->phoneNumber = $object->getPhoneNumber() ?? '';
         $this->operator = $object->getOperator() ?? '';
-//        $this->opposition = $object->isOpposition() ? 'Oui' : 'Non';
-//        $this->simNumber = $object->getSimNumber();
+        //        $this->opposition = $object->isOpposition() ? 'Oui' : 'Non';
+        //        $this->simNumber = $object->getSimNumber();
     }
 
     /**

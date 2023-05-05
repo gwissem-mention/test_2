@@ -11,6 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 class AdditionalInformation
 {
     use AlertTrait;
+
     public const CCTV_PRESENT_YES = 1;
     public const CCTV_PRESENT_NO = 2;
     public const CCTV_PRESENT_DONT_KNOW = 3;
@@ -38,9 +39,19 @@ class AdditionalInformation
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $witnessesPresentText = null;
 
+    /**
+     * @deprecated
+     *
+     * Moved to Facts
+     */
     #[ORM\Column(nullable: true)]
     private ?bool $victimOfViolence = null;
 
+    /**
+     * @deprecated
+     *
+     * Moved to Facts
+     */
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $victimOfViolenceText = null;
 
@@ -49,9 +60,6 @@ class AdditionalInformation
 
     #[ORM\Column(nullable: true)]
     private ?bool $observationMade = null;
-
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $description = null;
 
     public function getId(): ?int
     {
@@ -130,11 +138,17 @@ class AdditionalInformation
         return $this;
     }
 
+    /**
+     * @deprecated
+     */
     public function isVictimOfViolence(): ?bool
     {
         return $this->victimOfViolence;
     }
 
+    /**
+     * @deprecated
+     */
     public function setVictimOfViolence(?bool $victimOfViolence): self
     {
         $this->victimOfViolence = $victimOfViolence;
@@ -142,11 +156,17 @@ class AdditionalInformation
         return $this;
     }
 
+    /**
+     * @deprecated
+     */
     public function getVictimOfViolenceText(): ?string
     {
         return $this->victimOfViolenceText;
     }
 
+    /**
+     * @deprecated
+     */
     public function setVictimOfViolenceText(?string $victimOfViolenceText): self
     {
         $this->victimOfViolenceText = $victimOfViolenceText;
@@ -174,18 +194,6 @@ class AdditionalInformation
     public function setObservationMade(?bool $observationMade): self
     {
         $this->observationMade = $observationMade;
-
-        return $this;
-    }
-
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(string $description): self
-    {
-        $this->description = $description;
 
         return $this;
     }

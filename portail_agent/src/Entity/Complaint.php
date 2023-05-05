@@ -44,24 +44,24 @@ class Complaint
 
     #[ORM\Column]
     private ?bool $test = null;
-//
-//    #[ORM\Column]
-//    private ?\DateTimeImmutable $start = null;
-//
-//    #[ORM\Column]
-//    private ?\DateTimeImmutable $finish = null;
-//
-//    #[ORM\Column(length: 255)]
-//    private ?string $declarantIp = null;
-//
-//    #[ORM\Column]
-//    private ?int $TcHome = null;
-//
-//    #[ORM\Column]
-//    private ?int $TcFacts = null;
-//
-//    #[ORM\Column]
-//    private ?int $unitCodeTcFacts = null;
+    //
+    //    #[ORM\Column]
+    //    private ?\DateTimeImmutable $start = null;
+    //
+    //    #[ORM\Column]
+    //    private ?\DateTimeImmutable $finish = null;
+    //
+    //    #[ORM\Column(length: 255)]
+    //    private ?string $declarantIp = null;
+    //
+    //    #[ORM\Column]
+    //    private ?int $TcHome = null;
+    //
+    //    #[ORM\Column]
+    //    private ?int $TcFacts = null;
+    //
+    //    #[ORM\Column]
+    //    private ?int $unitCodeTcFacts = null;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
@@ -72,17 +72,17 @@ class Complaint
     #[ORM\Column(nullable: true)]
     private ?bool $deadlineNotified = false;
 
-//    #[ORM\Column]
-//    private ?bool $claimsLegalAction = null;
+    //    #[ORM\Column]
+    //    private ?bool $claimsLegalAction = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $appointmentDate = null;
 
-//    #[ORM\Column]
-//    private ?string $contactWindow = null;
-//
-//    #[ORM\Column]
-//    private ?string $contactPeriod = null;
+    //    #[ORM\Column]
+    //    private ?string $contactWindow = null;
+    //
+    //    #[ORM\Column]
+    //    private ?string $contactPeriod = null;
 
     #[ORM\Column(length: 255)]
     private ?string $status = null;
@@ -152,6 +152,12 @@ class Complaint
 
     #[ORM\Column(nullable: true)]
     private ?int $priority = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private string $frontId = '';
+
+    #[ORM\Column]
+    private bool $franceConnected = false;
 
     public function __construct()
     {
@@ -474,5 +480,27 @@ class Complaint
         $this->priority = $priority;
 
         return $this;
+    }
+
+    public function setFrontId(string $frontId): self
+    {
+        $this->frontId = $frontId;
+
+        return $this;
+    }
+
+    public function getFrontId(): string
+    {
+        return $this->frontId;
+    }
+
+    public function isFranceConnected(): bool
+    {
+        return $this->franceConnected;
+    }
+
+    public function setFranceConnected(bool $franceConnected): void
+    {
+        $this->franceConnected = $franceConnected;
     }
 }

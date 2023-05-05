@@ -10,9 +10,9 @@ use App\Referential\Entity\Unit;
 class FlagDTO
 {
     private ?string $flagTest;
-//    private string $flagBeginning;
-//    private string $flagEnd;
-//    private string $flagIp;
+    //    private string $flagBeginning;
+    //    private string $flagEnd;
+    //    private string $flagIp;
     private string $unitEmail;
     private string $unitDepartmentEmail;
     private string $unitCode;
@@ -21,16 +21,16 @@ class FlagDTO
     private string $unitAddress;
     private string $unitPhone;
     private string $unitInstitution;
-//    private string $tcHome;
-//    private string $tcFacts;
-//    private ?string $unitCodeTcFacts;
+    //    private string $tcHome;
+    //    private string $tcFacts;
+    //    private ?string $unitCodeTcFacts;
 
     public function __construct(Complaint $complaint, Unit $unit)
     {
         $this->flagTest = $complaint->isTest() ? 'test' : '';
-//        $this->flagBeginning = $complaint->getStart()?->format('d/m/Y H:i:s') ?? '';
-//        $this->flagEnd = $complaint->getFinish()?->format('d/m/Y H:i:s') ?? '';
-//        $this->flagIp = $complaint->getDeclarantIp() ?? '';
+        //        $this->flagBeginning = $complaint->getStart()?->format('d/m/Y H:i:s') ?? '';
+        //        $this->flagEnd = $complaint->getFinish()?->format('d/m/Y H:i:s') ?? '';
+        //        $this->flagIp = $complaint->getDeclarantIp() ?? '';
         $this->unitEmail = $unit->getEmail() ?? '';
         $this->unitDepartmentEmail = $unit->getHomeDepartmentEmail() ?? '';
         $this->unitCode = $unit->getCode();
@@ -39,9 +39,9 @@ class FlagDTO
         $this->unitAddress = $unit->getAddress() ?? '';
         $this->unitPhone = $unit->getPhone() ?? '';
         $this->unitInstitution = $unit->getInstitutionCode()->value ?? '';
-//        $this->tcHome = strval($complaint->getTcHome()); // TODO : Still don't know what it is
-//        $this->tcFacts = strval($complaint->getTcFacts()); // TODO : Still don't know what it is
-//        $this->unitCodeTcFacts = strval($complaint->getUnitCodeTcFacts()); // TODO : Still don't know what it is
+        //        $this->tcHome = strval($complaint->getTcHome()); // TODO : Still don't know what it is
+        //        $this->tcFacts = strval($complaint->getTcFacts()); // TODO : Still don't know what it is
+        //        $this->unitCodeTcFacts = strval($complaint->getUnitCodeTcFacts()); // TODO : Still don't know what it is
     }
 
     /**

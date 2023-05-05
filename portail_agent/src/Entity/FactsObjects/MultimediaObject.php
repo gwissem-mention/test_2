@@ -21,14 +21,14 @@ class MultimediaObject extends AbstractObject
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $operator = null;
 
-//    #[ORM\Column(nullable: true)]
-//    private ?bool $opposition = null;
+    //    #[ORM\Column(nullable: true)]
+    //    private ?bool $opposition = null;
 
-//    #[ORM\Column(length: 255, nullable: true)]
-//    private ?string $simNumber = null;
+    //    #[ORM\Column(length: 255, nullable: true)]
+    //    private ?string $simNumber = null;
 
     #[ORM\Column(nullable: true)]
-    private ?int $serialNumber = null;
+    private ?string $serialNumber = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $phoneNumber = null;
@@ -81,12 +81,12 @@ class MultimediaObject extends AbstractObject
         return $this;
     }
 
-    public function getSerialNumber(): ?int
+    public function getSerialNumber(): ?string
     {
         return $this->serialNumber;
     }
 
-    public function setSerialNumber(?int $serialNumber): self
+    public function setSerialNumber(?string $serialNumber): self
     {
         $this->serialNumber = $serialNumber;
 

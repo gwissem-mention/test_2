@@ -13,10 +13,6 @@ use Behat\Mink\Exception\ElementNotFoundException;
 use Behat\Mink\Exception\ExpectationException;
 use Behat\MinkExtension\Context\MinkContext;
 use FriendsOfBehat\SymfonyExtension\Driver\SymfonyDriver;
-
-use function PHPUnit\Framework\assertFalse;
-use function PHPUnit\Framework\assertTrue;
-
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 final class BaseContext extends MinkContext
@@ -359,7 +355,7 @@ final class BaseContext extends MinkContext
      */
     public function IShouldFocus(string $arg1): void
     {
-        assertTrue((bool) $this->getSession()->evaluateScript(
+        assert((bool) $this->getSession()->evaluateScript(
             '(document.getElementById("'.$arg1.'") === document.activeElement)'
         ));
     }
@@ -369,7 +365,7 @@ final class BaseContext extends MinkContext
      */
     public function IShouldNotFocus(string $arg1): void
     {
-        assertFalse((bool) $this->getSession()->evaluateScript(
+        assert(!$this->getSession()->evaluateScript(
             '(document.getElementById("'.$arg1.'") === document.activeElement)'
         ));
     }

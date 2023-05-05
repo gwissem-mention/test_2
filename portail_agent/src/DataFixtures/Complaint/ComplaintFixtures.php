@@ -271,7 +271,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                     ->setBrand('Apple')
                     ->setModel('iPhone 13')
                     ->setOperator('Orange')
-                    ->setSerialNumber(1234567890)
+                    ->setSerialNumber('1234567890')
                     ->setPhoneNumber('06 12 34 56 67')
                     ->setAmount(999)
             )
@@ -311,7 +311,6 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                     ->setFsiVisit(true)
                     ->setObservationMade(true)
                     ->setVictimOfViolence(true)
-                    ->setDescription("Vol d'un Iphone 13")
             )
             ->addComment(
                 (new Comment())

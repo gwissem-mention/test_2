@@ -29,7 +29,7 @@ class Facts
     #[ORM\Column(type: Types::SIMPLE_ARRAY)]
     private ?array $natures = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
     #[ORM\Column]
@@ -82,23 +82,29 @@ class Facts
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $addressAdditionalInformation = null;
 
-//    #[ORM\Column]
-//    private ?bool $noOrientation = null;
-//
-//    #[ORM\Column(length: 255)]
-//    private ?string $orientation = null;
+    #[ORM\Column(nullable: true)]
+    private ?bool $victimOfViolence = null;
 
-//    #[ORM\Column]
-//    private ?bool $physicalPrejudice = null;
-//
-//    #[ORM\Column(length: 255)]
-//    private ?string $physicalPrejudiceDescription = null;
-//
-//    #[ORM\Column(length: 255)]
-//    private ?bool $otherPrejudice = null;
-//
-//    #[ORM\Column(length: 255)]
-//    private ?string $otherPrejudiceDescription = null;
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $victimOfViolenceText = null;
+
+    //    #[ORM\Column]
+    //    private ?bool $noOrientation = null;
+    //
+    //    #[ORM\Column(length: 255)]
+    //    private ?string $orientation = null;
+
+    //    #[ORM\Column]
+    //    private ?bool $physicalPrejudice = null;
+    //
+    //    #[ORM\Column(length: 255)]
+    //    private ?string $physicalPrejudiceDescription = null;
+    //
+    //    #[ORM\Column(length: 255)]
+    //    private ?bool $otherPrejudice = null;
+    //
+    //    #[ORM\Column(length: 255)]
+    //    private ?string $otherPrejudiceDescription = null;
 
     public function getId(): ?int
     {
@@ -335,6 +341,30 @@ class Facts
     public function setExactPlaceUnknown(?bool $exactPlaceUnknown): self
     {
         $this->exactPlaceUnknown = $exactPlaceUnknown;
+
+        return $this;
+    }
+
+    public function isVictimOfViolence(): ?bool
+    {
+        return $this->victimOfViolence;
+    }
+
+    public function setVictimOfViolence(?bool $victimOfViolence): self
+    {
+        $this->victimOfViolence = $victimOfViolence;
+
+        return $this;
+    }
+
+    public function getVictimOfViolenceText(): ?string
+    {
+        return $this->victimOfViolenceText;
+    }
+
+    public function setVictimOfViolenceText(?string $victimOfViolenceText): self
+    {
+        $this->victimOfViolenceText = $victimOfViolenceText;
 
         return $this;
     }
