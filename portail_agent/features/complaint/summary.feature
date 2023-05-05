@@ -79,6 +79,7 @@ Feature:
         And I should see "Meudon"
         And I should see "06 12 34 45 57"
         And I should see "jean.dupont@gmail.com"
+        And I should see "Le vol à eu lieu à mon domicile"
         And I should see the key "pel.victim" translated
         And I should see the key "pel.yes" translated
         And I should see the key "pel.description.of.facts" translated

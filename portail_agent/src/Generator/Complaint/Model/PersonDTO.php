@@ -8,13 +8,13 @@ use App\Entity\Identity;
 
 class PersonDTO extends AbstractIdentityDTO
 {
-//    private ?string $relationship;
+    //    private ?string $relationship;
     private ?string $implication;
 
     public function __construct(Identity $identity)
     {
         parent::__construct($identity);
-//        $this->relationship = $identity->getRelationshipWithVictime();
+        //        $this->relationship = $identity->getRelationshipWithVictime();
         $this->implication = Identity::DECLARANT_STATUS_VICTIM === $identity->getDeclarantStatus() ? 'victime' : (Identity::DECLARANT_STATUS_PERSON_LEGAL_REPRESENTATIVE === $identity->getDeclarantStatus() ? 'physique' : (Identity::DECLARANT_STATUS_CORPORATION_LEGAL_REPRESENTATIVE === $identity->getDeclarantStatus() ? 'morale' : null));
     }
 

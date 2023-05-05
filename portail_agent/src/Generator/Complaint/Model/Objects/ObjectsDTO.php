@@ -10,15 +10,15 @@ use Doctrine\Common\Collections\Collection;
 
 class ObjectsDTO
 {
-//    private ?string $prejudiceAssess;
+    //    private ?string $prejudiceAssess;
     private ?string $prejudiceEstimation;
-//    private ?string $miscellaneousObject;
+    //    private ?string $miscellaneousObject;
 
     public function __construct(Complaint $complaint)
     {
-//        $this->prejudiceAssess = '1'; // TODO: Still don't know what it is
+        //        $this->prejudiceAssess = '1'; // TODO: Still don't know what it is
         $this->prejudiceEstimation = $this->getPrejudiceEstimation($complaint->getObjects());
-//        $this->miscellaneousObject = null; // TODO: Map this property when we know the data
+        //        $this->miscellaneousObject = null; // TODO: Map this property when we know the data
     }
 
     /**

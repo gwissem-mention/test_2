@@ -1,22 +1,397 @@
 parameters:
 	ignoreErrors:
 		-
+			message: "#^Access to an undefined property object\\:\\:\\$additionalInformation\\.$#"
+			count: 1
+			path: src/Complaint/ComplaintFileParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$affectedService\\.$#"
+			count: 1
+			path: src/Complaint/ComplaintFileParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$createdAt\\.$#"
+			count: 2
+			path: src/Complaint/ComplaintFileParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$declarantStatus\\.$#"
+			count: 1
+			path: src/Complaint/ComplaintFileParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$facts\\.$#"
+			count: 1
+			path: src/Complaint/ComplaintFileParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$franceConnected\\.$#"
+			count: 1
+			path: src/Complaint/ComplaintFileParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$id\\.$#"
+			count: 1
+			path: src/Complaint/ComplaintFileParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$identity\\.$#"
+			count: 7
+			path: src/Complaint/ComplaintFileParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$objects\\.$#"
+			count: 1
+			path: src/Complaint/ComplaintFileParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$cctvAvailable\\.$#"
+			count: 1
+			path: src/Complaint/Parser/AdditionalInformationParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$cctvPresent\\.$#"
+			count: 1
+			path: src/Complaint/Parser/AdditionalInformationParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$fsiVisit\\.$#"
+			count: 1
+			path: src/Complaint/Parser/AdditionalInformationParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$observationMade\\.$#"
+			count: 1
+			path: src/Complaint/Parser/AdditionalInformationParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$suspectsChoice\\.$#"
+			count: 1
+			path: src/Complaint/Parser/AdditionalInformationParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$suspectsText\\.$#"
+			count: 1
+			path: src/Complaint/Parser/AdditionalInformationParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$witnesses\\.$#"
+			count: 1
+			path: src/Complaint/Parser/AdditionalInformationParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$witnessesText\\.$#"
+			count: 1
+			path: src/Complaint/Parser/AdditionalInformationParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$country\\.$#"
+			count: 1
+			path: src/Complaint/Parser/CorporationParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$email\\.$#"
+			count: 1
+			path: src/Complaint/Parser/CorporationParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$foreignAddress\\.$#"
+			count: 1
+			path: src/Complaint/Parser/CorporationParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$frenchAddress\\.$#"
+			count: 1
+			path: src/Complaint/Parser/CorporationParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$function\\.$#"
+			count: 1
+			path: src/Complaint/Parser/CorporationParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$name\\.$#"
+			count: 1
+			path: src/Complaint/Parser/CorporationParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$nationality\\.$#"
+			count: 1
+			path: src/Complaint/Parser/CorporationParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$phone\\.$#"
+			count: 1
+			path: src/Complaint/Parser/CorporationParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$siren\\.$#"
+			count: 1
+			path: src/Complaint/Parser/CorporationParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$date\\.$#"
+			count: 2
+			path: src/Complaint/Parser/DateParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$timezone\\.$#"
+			count: 2
+			path: src/Complaint/Parser/DateParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$address\\.$#"
+			count: 3
+			path: src/Complaint/Parser/FactsParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$description\\.$#"
+			count: 1
+			path: src/Complaint/Parser/FactsParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$offenseDate\\.$#"
+			count: 9
+			path: src/Complaint/Parser/FactsParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$placeNature\\.$#"
+			count: 1
+			path: src/Complaint/Parser/FactsParser.php
+
+		-
+			message: "#^Match expression does not handle remaining value\\: mixed$#"
+			count: 1
+			path: src/Complaint/Parser/FactsParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$birthDate\\.$#"
+			count: 1
+			path: src/Complaint/Parser/IdentityParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$birthLocation\\.$#"
+			count: 1
+			path: src/Complaint/Parser/IdentityParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$birthName\\.$#"
+			count: 1
+			path: src/Complaint/Parser/IdentityParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$city\\.$#"
+			count: 2
+			path: src/Complaint/Parser/IdentityParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$citycode\\.$#"
+			count: 1
+			path: src/Complaint/Parser/IdentityParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$civility\\.$#"
+			count: 1
+			path: src/Complaint/Parser/IdentityParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$context\\.$#"
+			count: 1
+			path: src/Complaint/Parser/IdentityParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$country\\.$#"
+			count: 2
+			path: src/Complaint/Parser/IdentityParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$declarantStatus\\.$#"
+			count: 1
+			path: src/Complaint/Parser/IdentityParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$email\\.$#"
+			count: 1
+			path: src/Complaint/Parser/IdentityParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$firstnames\\.$#"
+			count: 1
+			path: src/Complaint/Parser/IdentityParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$foreignAddress\\.$#"
+			count: 1
+			path: src/Complaint/Parser/IdentityParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$frenchAddress\\.$#"
+			count: 1
+			path: src/Complaint/Parser/IdentityParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$frenchTown\\.$#"
+			count: 1
+			path: src/Complaint/Parser/IdentityParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$job\\.$#"
+			count: 1
+			path: src/Complaint/Parser/IdentityParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$label\\.$#"
+			count: 2
+			path: src/Complaint/Parser/IdentityParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$mobile\\.$#"
+			count: 1
+			path: src/Complaint/Parser/IdentityParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$nationality\\.$#"
+			count: 1
+			path: src/Complaint/Parser/IdentityParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$number\\.$#"
+			count: 1
+			path: src/Complaint/Parser/IdentityParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$otherTown\\.$#"
+			count: 1
+			path: src/Complaint/Parser/IdentityParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$phone\\.$#"
+			count: 1
+			path: src/Complaint/Parser/IdentityParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$postcode\\.$#"
+			count: 2
+			path: src/Complaint/Parser/IdentityParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$street\\.$#"
+			count: 2
+			path: src/Complaint/Parser/IdentityParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$usageName\\.$#"
+			count: 1
+			path: src/Complaint/Parser/IdentityParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$addressType\\.$#"
+			count: 1
+			path: src/Complaint/Parser/IdentityParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$amount\\.$#"
+			count: 1
+			path: src/Complaint/Parser/ObjectsParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$bank\\.$#"
+			count: 1
+			path: src/Complaint/Parser/ObjectsParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$brand\\.$#"
+			count: 1
+			path: src/Complaint/Parser/ObjectsParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$category\\.$#"
+			count: 1
+			path: src/Complaint/Parser/ObjectsParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$description\\.$#"
+			count: 1
+			path: src/Complaint/Parser/ObjectsParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$insuranceCompany\\.$#"
+			count: 1
+			path: src/Complaint/Parser/ObjectsParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$insuranceNumber\\.$#"
+			count: 1
+			path: src/Complaint/Parser/ObjectsParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$label\\.$#"
+			count: 4
+			path: src/Complaint/Parser/ObjectsParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$model\\.$#"
+			count: 2
+			path: src/Complaint/Parser/ObjectsParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$operator\\.$#"
+			count: 1
+			path: src/Complaint/Parser/ObjectsParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$phoneNumberLine\\.$#"
+			count: 1
+			path: src/Complaint/Parser/ObjectsParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$registrationNumber\\.$#"
+			count: 1
+			path: src/Complaint/Parser/ObjectsParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$registrationNumberCountry\\.$#"
+			count: 1
+			path: src/Complaint/Parser/ObjectsParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$serialNumber\\.$#"
+			count: 1
+			path: src/Complaint/Parser/ObjectsParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$code\\.$#"
+			count: 1
+			path: src/Complaint/Parser/PhoneParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$number\\.$#"
+			count: 1
+			path: src/Complaint/Parser/PhoneParser.php
+
+		-
 			message: "#^Access to an undefined property Faker\\\\Generator\\:\\:\\$mobileNumber\\.$#"
 			count: 3
 			path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
 
 		-
-		    message: "#^Access to an undefined property Faker\\\\Generator\\:\\:\\$siren\\.$#"
-		    count: 1
-		    path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
-
-		-
-		    message: "#^Parameter \\#1 \\$author of method App\\\\Entity\\\\Comment\\:\\:setAuthor\\(\\) expects App\\\\Entity\\\\User, mixed given\\.$#"
-		    count: 5
-		    path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
+			message: "#^Access to an undefined property Faker\\\\Generator\\:\\:\\$siren\\.$#"
+			count: 1
+			path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
 
 		-
 			message: "#^Parameter \\#1 \\$alert of method App\\\\Entity\\\\Complaint\\:\\:setAlert\\(\\) expects string\\|null, mixed given\\.$#"
+			count: 1
+			path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
+
+		-
+			message: "#^Parameter \\#1 \\$author of method App\\\\Entity\\\\Comment\\:\\:setAuthor\\(\\) expects App\\\\Entity\\\\User, mixed given\\.$#"
+			count: 5
+			path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
+
+		-
+			message: "#^Parameter \\#1 \\$bank of method App\\\\Entity\\\\FactsObjects\\\\PaymentMethod\\:\\:setBank\\(\\) expects string\\|null, mixed given\\.$#"
 			count: 1
 			path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
 
@@ -31,6 +406,21 @@ parameters:
 			path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
 
 		-
+			message: "#^Parameter \\#1 \\$declarantStatus of method App\\\\Entity\\\\Identity\\:\\:setDeclarantStatus\\(\\) expects int\\|null, mixed given\\.$#"
+			count: 1
+			path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
+
+		-
+			message: "#^Parameter \\#1 \\$description of method App\\\\Entity\\\\FactsObjects\\\\PaymentMethod\\:\\:setDescription\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
+
+		-
+			message: "#^Parameter \\#1 \\$description of method App\\\\Entity\\\\FactsObjects\\\\SimpleObject\\:\\:setDescription\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
+
+		-
 			message: "#^Parameter \\#1 \\$endAddress of method App\\\\Entity\\\\Facts\\:\\:setEndAddress\\(\\) expects string\\|null, mixed given\\.$#"
 			count: 1
 			path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
@@ -41,8 +431,28 @@ parameters:
 			path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
 
 		-
+			message: "#^Parameter \\#1 \\$insuranceCompany of method App\\\\Entity\\\\FactsObjects\\\\Vehicle\\:\\:setInsuranceCompany\\(\\) expects string\\|null, mixed given\\.$#"
+			count: 1
+			path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
+
+		-
+			message: "#^Parameter \\#1 \\$insuranceNumber of method App\\\\Entity\\\\FactsObjects\\\\Vehicle\\:\\:setInsuranceNumber\\(\\) expects string\\|null, mixed given\\.$#"
+			count: 1
+			path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
+
+		-
 			message: "#^Parameter \\#1 \\$model of method App\\\\Entity\\\\FactsObjects\\\\MultimediaObject\\:\\:setModel\\(\\) expects string\\|null, mixed given\\.$#"
 			count: 2
+			path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
+
+		-
+			message: "#^Parameter \\#1 \\$model of method App\\\\Entity\\\\FactsObjects\\\\Vehicle\\:\\:setModel\\(\\) expects string\\|null, mixed given\\.$#"
+			count: 1
+			path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
+
+		-
+			message: "#^Parameter \\#1 \\$nature of method App\\\\Entity\\\\FactsObjects\\\\SimpleObject\\:\\:setNature\\(\\) expects string, mixed given\\.$#"
+			count: 1
 			path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
 
 		-
@@ -56,37 +466,12 @@ parameters:
 			path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
 
 		-
-		    message: "#^Parameter \\#1 \\$description of method App\\\\Entity\\\\FactsObjects\\\\PaymentMethod\\:\\:setDescription\\(\\) expects string, mixed given\\.$#"
-		    count: 1
-		    path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
-
-		-
-		     message: "#^Parameter \\#1 \\$bank of method App\\\\Entity\\\\FactsObjects\\\\PaymentMethod\\:\\:setBank\\(\\) expects string\\|null, mixed given\\.$#"
-		     count: 1
-		     path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
-
-		-
-		    message: "#^Parameter \\#1 \\$model of method App\\\\Entity\\\\FactsObjects\\\\Vehicle\\:\\:setModel\\(\\) expects string\\|null, mixed given\\.$#"
-		    count: 1
-		    path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
-
-		-
-		    message: "#^Parameter \\#1 \\$registrationNumber of method App\\\\Entity\\\\FactsObjects\\\\Vehicle\\:\\:setRegistrationNumber\\(\\) expects string\\|null, mixed given\\.$#"
-		    count: 1
-		    path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
-
-		-
-		    message: "#^Parameter \\#1 \\$insuranceCompany of method App\\\\Entity\\\\FactsObjects\\\\Vehicle\\:\\:setInsuranceCompany\\(\\) expects string\\|null, mixed given\\.$#"
-		    count: 1
-		    path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
-
-		-
-		    message: "#^Parameter \\#1 \\$insuranceNumber of method App\\\\Entity\\\\FactsObjects\\\\Vehicle\\:\\:setInsuranceNumber\\(\\) expects string\\|null, mixed given\\.$#"
-		    count: 1
-		    path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
-
-		-
 			message: "#^Parameter \\#1 \\$place of method App\\\\Entity\\\\Facts\\:\\:setPlace\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
+
+		-
+			message: "#^Parameter \\#1 \\$registrationNumber of method App\\\\Entity\\\\FactsObjects\\\\Vehicle\\:\\:setRegistrationNumber\\(\\) expects string\\|null, mixed given\\.$#"
 			count: 1
 			path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
 
@@ -99,21 +484,6 @@ parameters:
 			message: "#^Parameter \\#1 \\$witnessesPresentText of method App\\\\Entity\\\\AdditionalInformation\\:\\:setWitnessesPresentText\\(\\) expects string\\|null, mixed given\\.$#"
 			count: 1
 			path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
-
-		-
-		    message: "#^Parameter \\#1 \\$nature of method App\\\\Entity\\\\FactsObjects\\\\SimpleObject\\:\\:setNature\\(\\) expects string, mixed given\\.$#"
-		    count: 1
-		    path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
-
-		-
-		    message: "#^Parameter \\#1 \\$description of method App\\\\Entity\\\\FactsObjects\\\\SimpleObject\\:\\:setDescription\\(\\) expects string, mixed given\\.$#"
-		    count: 1
-		    path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
-
-		-
-		    message: "#^Parameter \\#1 \\$declarantStatus of method App\\\\Entity\\\\Identity\\:\\:setDeclarantStatus\\(\\) expects int, mixed given\\.$#"
-		    count: 1
-		    path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
 
 		-
 			message: "#^Call to an undefined method Behat\\\\Testwork\\\\Environment\\\\Environment\\:\\:getContext\\(\\)\\.$#"

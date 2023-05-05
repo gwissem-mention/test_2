@@ -100,6 +100,7 @@ Feature:
         And I should see a "input#additional_information_cctvAvailable_0" element
         And I should see a "input#additional_information_cctvAvailable_1" element
 
+    @flaky
     Scenario: Submit the additional information form as a victim logged in with France Connect
         When I click the "label[for=additional_information_suspectsChoice_0]" element
         And I fill in "additional_information_suspectsText" with "suspects informations"

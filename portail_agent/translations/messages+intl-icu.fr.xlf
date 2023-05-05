@@ -1042,6 +1042,34 @@
                 <source>pel.assign.to</source>
                 <target>Attribuer à</target>
             </trans-unit>
+            <trans-unit id="pel.nationality.france">
+                <source>pel.nationality.france</source>
+                <target>Française</target>
+            </trans-unit>
+            <trans-unit id="pel.nationality.germany">
+                <source>pel.nationality.germany</source>
+                <target>Allemande</target>
+            </trans-unit>
+            <trans-unit id="pel.nationality.spain">
+                <source>pel.nationality.spain</source>
+                <target>Espagnole</target>
+            </trans-unit>
+            <trans-unit id="pel.nature.place.home">
+                <source>pel.nature.place.home</source>
+                <target>Domicile/Logement</target>
+            </trans-unit>
+            <trans-unit id="pel.nature.place.other">
+                <source>pel.nature.place.other</source>
+                <target>Autres natures de lieu</target>
+            </trans-unit>
+            <trans-unit id="pel.nature.place.public.transport">
+                <source>pel.nature.place.public.transport</source>
+                <target>Transports en commun</target>
+            </trans-unit>
+            <trans-unit id="pel.nature.place.street">
+                <source>pel.nature.place.street</source>
+                <target>Voie publique / Rue</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

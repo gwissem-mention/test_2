@@ -9,23 +9,23 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity]
 class AdministrativeDocument extends AbstractObject
 {
-//    #[ORM\Column(length: 255)]
-//    private ?string $issuingCountry = null;
+    //    #[ORM\Column(length: 255)]
+    //    private ?string $issuingCountry = null;
 
     #[ORM\Column(length: 255)]
     private ?string $type = null;
 
-//    #[ORM\Column(length: 255)]
-//    private ?string $number = null;
-//
-//    #[ORM\Column]
-//    private ?\DateTimeImmutable $deliveryDate = null;
-//
-//    #[ORM\Column(length: 255)]
-//    private ?string $authority = null;
-//
-//    #[ORM\Column(length: 255)]
-//    private ?string $description = null;
+    //    #[ORM\Column(length: 255)]
+    //    private ?string $number = null;
+    //
+    //    #[ORM\Column]
+    //    private ?\DateTimeImmutable $deliveryDate = null;
+    //
+    //    #[ORM\Column(length: 255)]
+    //    private ?string $authority = null;
+    //
+    //    #[ORM\Column(length: 255)]
+    //    private ?string $description = null;
 
     public function getType(): ?string
     {

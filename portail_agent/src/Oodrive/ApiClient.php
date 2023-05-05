@@ -569,13 +569,6 @@ class ApiClient implements ApiClientInterface
         return new Folder($this->doFetchItemMetadata($folderId));
     }
 
-    /** Not used for moment but probably will be in future */
-    private function doFetchFileMetadata(string $fileId): OodriveFile
-    {
-        /* @phpstan-ignore-next-line */
-        return new OodriveFile($this->doFetchItemMetadata($fileId));
-    }
-
     /**
      * @return array<string>
      */

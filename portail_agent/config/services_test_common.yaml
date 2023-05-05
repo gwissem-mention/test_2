@@ -4,3 +4,12 @@ services:
         autoconfigure: true
 
     App\Oodrive\ApiClientInterface: '@App\Tests\Behat\MockedClasses\FakeOodriveApiClient'
+    
+    App\Complaint\Parser\CorporationParser:
+        public: true
+
+    App\Complaint\Parser\FactsParser:
+        public: true
+
+    App\Complaint\Parser\AdditionalInformationParser:
+        public: true

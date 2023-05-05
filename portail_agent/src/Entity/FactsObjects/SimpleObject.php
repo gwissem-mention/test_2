@@ -12,14 +12,14 @@ class SimpleObject extends AbstractObject
     #[ORM\Column(length: 255)]
     private ?string $nature = null;
 
-//    #[ORM\Column(length: 255)]
-//    private ?string $brand = null;
-//
-//    #[ORM\Column(length: 255)]
-//    private ?string $model = null;
-//
-//    #[ORM\Column(length: 255)]
-//    private ?string $serialNumber = null;
+    //    #[ORM\Column(length: 255)]
+    //    private ?string $brand = null;
+    //
+    //    #[ORM\Column(length: 255)]
+    //    private ?string $model = null;
+    //
+    //    #[ORM\Column(length: 255)]
+    //    private ?string $serialNumber = null;
 
     #[ORM\Column(length: 255)]
     private ?string $description = null;

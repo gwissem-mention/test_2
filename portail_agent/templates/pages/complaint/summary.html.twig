@@ -124,6 +124,10 @@
         <span id="facts-description" class="fs-3 fw-semibold lh-lg text-decoration-underline">{{ 'pel.description.of.facts'|trans }}</span>
         <ul>
             <li>
+                {{ 'pel.description.of.facts'|trans }} :
+                <strong>{{ complaint.facts.description }}</strong>
+            </li>
+            <li>
                 {{ 'pel.nature.of.the.facts'|trans }} :
                 <strong>{% include 'common/_complaint_natures.html.twig' with {'natures':complaint.facts.natures} only %}</strong>
             </li>
@@ -227,10 +231,6 @@
                     <strong>{{ complaint.additionalInformation.victimOfViolenceText }}</strong>
                 </li>
             {% endif %}
-            <li>
-                {{ 'pel.description.of.facts'|trans }} :
-                <strong>{{ complaint.additionalInformation.description }}</strong>
-            </li>
         </ul>
         <hr class="border border-2 border-dark">
         <span id="objects-concerned" class="fs-3 fw-semibold lh-lg text-decoration-underline">{{ 'pel.objects.description'|trans }}</span>
@@ -255,7 +255,7 @@
                         <strong>{{ 'pel.number'|trans }} {{ loop.index }}</strong> : {{ object.type }}
                         - {{ object.description }} - {{ object.bank }}
                         {% if object.amount is not null %}
-                         - {{ object.amount|format_currency('EUR', {fraction_digit: 0}) }}
+                            - {{ object.amount|format_currency('EUR', {fraction_digit: 0}) }}
                         {% endif %}
                     </li>
                 {% elseif object|object_type is same as('App\\Entity\\FactsObjects\\Vehicle') %}
@@ -263,10 +263,10 @@
                         <strong>{{ 'pel.number'|trans }} {{ loop.index }}</strong> : {{ object.label }}
                         - {{ object.brand }} - {{ object.model }}
                         {% if object.amount is not null %}
-                         - {{ object.amount|format_currency('EUR', {fraction_digit: 0}) }}
+                            - {{ object.amount|format_currency('EUR', {fraction_digit: 0}) }}
                         {% endif %}
-                     </li>
-                {% elseif object|object_type is same as('App\\Entity\\FactsObjects\\SimpleObject')%}
+                    </li>
+                {% elseif object|object_type is same as('App\\Entity\\FactsObjects\\SimpleObject') %}
                     <li><strong>{{ 'pel.number'|trans }} {{ loop.index }}</strong> : {{ object.nature }}
                         - {{ object.description }}
                         {% if object.amount is not null %}

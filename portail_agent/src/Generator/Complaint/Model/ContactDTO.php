@@ -8,25 +8,25 @@ use App\Entity\Complaint;
 
 class ContactDTO
 {
-//    private string $claimsLegalAction;
+    //    private string $claimsLegalAction;
     private string $declarantEmail;
-//    private string $declarantHomePhone;
-//    private string $declarantOfficePhone;
+    //    private string $declarantHomePhone;
+    //    private string $declarantOfficePhone;
     private string $declarantMobilePhone;
-//    private string $appointementChoice;
-//    private string $contactWindow;
-//    private string $contactPeriod;
+    //    private string $appointementChoice;
+    //    private string $contactWindow;
+    //    private string $contactPeriod;
 
     public function __construct(Complaint $complaint)
     {
-//        $this->claimsLegalAction = true === $complaint->getClaimsLegalAction() ? 'Oui' : 'Non';
+        //        $this->claimsLegalAction = true === $complaint->getClaimsLegalAction() ? 'Oui' : 'Non';
         $this->declarantEmail = $complaint->getIdentity()?->getEmail() ?? '';
-//        $this->declarantHomePhone = $complaint->getIdentity()?->getHomePhone() ?? '';
-//        $this->declarantOfficePhone = $complaint->getIdentity()?->getOfficePhone() ?? '';
+        //        $this->declarantHomePhone = $complaint->getIdentity()?->getHomePhone() ?? '';
+        //        $this->declarantOfficePhone = $complaint->getIdentity()?->getOfficePhone() ?? '';
         $this->declarantMobilePhone = $complaint->getIdentity()?->getMobilePhone() ?? '';
-//        $this->appointementChoice = !is_null($complaint->getAppointmentDate()) ? $complaint->getAppointmentDate()->format('d/m/Y H').'h' : '';
-//        $this->contactWindow = $complaint->getContactWindow() ?? '';
-//        $this->contactPeriod = $complaint->getContactPeriod() ?? '';
+        //        $this->appointementChoice = !is_null($complaint->getAppointmentDate()) ? $complaint->getAppointmentDate()->format('d/m/Y H').'h' : '';
+        //        $this->contactWindow = $complaint->getContactWindow() ?? '';
+        //        $this->contactPeriod = $complaint->getContactPeriod() ?? '';
     }
 
     /**

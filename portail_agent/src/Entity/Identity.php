@@ -23,11 +23,11 @@ class Identity
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?int $declarantStatus = null;
 
-//    #[ORM\Column(length: 255, nullable: true)]
-//    private ?string $relationshipWithVictim = null;
+    //    #[ORM\Column(length: 255, nullable: true)]
+    //    private ?string $relationshipWithVictim = null;
 
     #[ORM\Column(length: 255)]
     private ?int $civility = null;
@@ -40,9 +40,9 @@ class Identity
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $marriedName = null;
-//
-//    #[ORM\Column(length: 255)]
-//    private ?string $familyStatus = null;
+    //
+    //    #[ORM\Column(length: 255)]
+    //    private ?string $familyStatus = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $birthday = null;
@@ -92,17 +92,17 @@ class Identity
     #[ORM\Column(length: 255)]
     private ?string $addressDepartment = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $addressDepartmentNumber = null;
 
     #[ORM\Column(length: 255)]
     private ?string $mobilePhone = null;
-//
-//    #[ORM\Column(length: 255)]
-//    private ?string $homePhone = null;
-//
-//    #[ORM\Column(length: 255)]
-//    private ?string $officePhone = null;
+    //
+    //    #[ORM\Column(length: 255)]
+    //    private ?string $homePhone = null;
+    //
+    //    #[ORM\Column(length: 255)]
+    //    private ?string $officePhone = null;
 
     #[ORM\Column(length: 255)]
     private ?string $email = null;
@@ -123,7 +123,7 @@ class Identity
         return $this->declarantStatus;
     }
 
-    public function setDeclarantStatus(int $declarantStatus): self
+    public function setDeclarantStatus(?int $declarantStatus): self
     {
         $this->declarantStatus = $declarantStatus;
 

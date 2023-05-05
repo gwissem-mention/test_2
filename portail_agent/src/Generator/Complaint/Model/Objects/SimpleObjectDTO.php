@@ -7,18 +7,18 @@ use App\Entity\FactsObjects\SimpleObject;
 class SimpleObjectDTO extends AbstractObjectDTO
 {
     private string $nature;
-//    private string $brand;
-//    private string $model;
-//    private string $serialNumber;
+    //    private string $brand;
+    //    private string $model;
+    //    private string $serialNumber;
     private string $description;
 
     public function __construct(SimpleObject $object)
     {
-//        parent::__construct($object);
+        //        parent::__construct($object);
         $this->nature = $object->getNature() ?? '';
-//        $this->brand = $object->getBrand() ?? '';
-//        $this->model = $object->getModel() ?? '';
-//        $this->serialNumber = $object->getSerialNumber() ?? '';
+        //        $this->brand = $object->getBrand() ?? '';
+        //        $this->model = $object->getModel() ?? '';
+        //        $this->serialNumber = $object->getSerialNumber() ?? '';
         $this->description = $object->getDescription() ?? '';
     }
 

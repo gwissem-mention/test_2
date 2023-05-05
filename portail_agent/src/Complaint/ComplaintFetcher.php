@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace App\Complaint;
 
+use App\Complaint\Exceptions\NoAffectedServiceException;
 use App\Oodrive\ApiClientInterface;
 use App\Oodrive\DTO\File;
 use App\Oodrive\DTO\Folder;
 use App\Oodrive\FolderRotation\FolderRotator;
 use App\Oodrive\ParamsObject\SearchParamObject;
+use App\Repository\ComplaintRepository;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\Filesystem\Filesystem;
 
 class ComplaintFetcher
@@ -19,7 +22,10 @@ class ComplaintFetcher
         private readonly Filesystem $filesystem,
         private readonly string $oodriveRootFolderId,
         private readonly string $oodriveFetchedFolderId,
-        private readonly string $complaintsBasePath
+        private readonly string $complaintsBasePath,
+        private readonly ComplaintFileParser $complaintFileParser,
+        private readonly ComplaintRepository $complaintRepository,
+        private readonly LoggerInterface $logger,
     ) {
     }
 
@@ -35,18 +41,31 @@ class ComplaintFetcher
                 $complaintFolders = $this->oodriveClient->getChildrenFolders($emailFolder);
                 foreach ($complaintFolders as $complaintFolder) {
                     $files = $this->oodriveClient->getChildrenFiles($complaintFolder);
-                    foreach ($files as $file) {
-                        if (false === $file->isDir()) {
-                            try {
-                                $this->downloadFile($file, $complaintFolder->getName());
-                            } catch (\Exception $e) {
-                                // @TODO: Mark the complaint as not fetched? Send report Email?
-                                throw $e;
+
+                    try {
+                        foreach ($files as $file) {
+                            if (false === $file->isDir()) {
+                                try {
+                                    $this->logger->info(sprintf('Fetching file %s in folder %s', $file->getName(), $complaintFolder->getId()));
+                                    $this->downloadFile($file, $complaintFolder->getName());
+                                    $this->logger->info(sprintf('File %s fetched', $file->getName()));
+
+                                    if ('plainte.json' === $file->getName()) {
+                                        $this->logger->info(sprintf('Parsing file %s from folder %s', $file->getName(), $complaintFolder->getId()));
+                                        $this->parseAndPersistComplaint($this->complaintsBasePath.'/'.$complaintFolder->getName().'/'.$file->getName());
+                                        $this->logger->info(sprintf('File %s parsed', $file->getName()));
+                                    }
+                                } catch (\Exception $e) {
+                                    // @TODO: Mark the complaint as not fetched? Send report Email?
+                                    throw $e;
+                                }
                             }
                         }
+                        ++$complaintsFetchedCount;
+                        $this->moveToFetchedFolder($complaintFolder, $emailFolder->getName());
+                    } catch (NoAffectedServiceException $e) {
+                        $this->logger->error(sprintf('No affected service found for file %s. Skipped.', $file->getName()));
                     }
-                    ++$complaintsFetchedCount;
-                    $this->moveToFetchedFolder($complaintFolder, $emailFolder->getName());
                 }
                 $this->deleteEmailFolder($emailFolder);
             }
@@ -70,7 +89,6 @@ class ComplaintFetcher
     private function moveToFetchedFolder(Folder $folder, string $email): void
     {
         $destinationEmailFolder = $this->getEmailFolder($email, $this->oodriveFetchedFolderId);
-
         $folder->setParentId($destinationEmailFolder->getId());
 
         $this->oodriveClient->updateFolder($folder);
@@ -102,5 +120,13 @@ class ComplaintFetcher
         $folder = $this->folderRotator->getLeastUsedFolder($rootFolderId);
 
         return $this->oodriveClient->createFolder($email, $folder->getId());
+    }
+
+    private function parseAndPersistComplaint(string $complaintPath): void
+    {
+        /** @var string $complaintContent */
+        $complaintContent = file_get_contents($complaintPath);
+
+        $this->complaintRepository->save($this->complaintFileParser->parse($complaintContent), true);
     }
 }
