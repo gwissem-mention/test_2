@@ -362,6 +362,10 @@
                 <source>pel.complaint.online</source>
                 <target>Plainte en ligne</target>
             </trans-unit>
+            <trans-unit id="pel.complaint.online.welcome">
+                <source>pel.complaint.online.welcome</source>
+                <target>Accueil - Plainte en ligne</target>
+            </trans-unit>
             <trans-unit id="pel.complaint.summary">
                 <source>pel.complaint.summary</source>
                 <target>Récapitulatif de déclaration de plainte initiale</target>
@@ -1448,23 +1452,23 @@
             </trans-unit>
             <trans-unit id="pel.victim.of.damage.to.property">
                 <source>pel.victim.of.damage.to.property</source>
-                <target>Vous êtes victime de <![CDATA[<strong>dégradation sur un bien</strong>]]></target>
+                <target>Victime de <![CDATA[<strong>dégradation sur un bien</strong>]]></target>
             </trans-unit>
             <trans-unit id="pel.theft.victim">
                 <source>pel.theft.victim</source>
-                <target>Vous êtes victime de <![CDATA[<strong>vol</strong>]]></target>
+                <target>Victime de <![CDATA[<strong>vol</strong>]]></target>
             </trans-unit>
             <trans-unit id="pel.victim.of.credit.card.theft">
                 <source>pel.victim.of.credit.card.theft</source>
-                <target>Vous êtes victime de <![CDATA[<strong>vol de votre carte bancaire</strong>]]> suivi d'utilisations frauduleuses</target>
+                <target>Victime de <![CDATA[<strong>vol de votre carte bancaire</strong>]]> suivi d'utilisations frauduleuses</target>
             </trans-unit>
             <trans-unit id="pel.victim.of.offline.scams">
                 <source>pel.victim.of.offline.scams</source>
-                <target>Vous êtes victime d'<![CDATA[<strong>escroquerie hors Internet</strong>]]></target>
+                <target>Victime d'<![CDATA[<strong>escroquerie hors Internet</strong>]]></target>
             </trans-unit>
             <trans-unit id="pel.victim.of.other.property.crimes">
                 <source>pel.victim.of.other.property.crimes</source>
-                <target>Vous êtes victime d'<![CDATA[<strong>autres atteintes aux biens</strong>]]></target>
+                <target>Victime d'<![CDATA[<strong>autres atteintes aux biens</strong>]]></target>
             </trans-unit>
             <trans-unit id="pel.when.using.france.connect.service.you.accept.terms">
                 <source>pel.when.using.france.connect.service.you.accept.terms</source>
