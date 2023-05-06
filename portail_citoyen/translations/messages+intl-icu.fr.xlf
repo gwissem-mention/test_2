@@ -394,6 +394,10 @@
                 <source>pel.corporation.siren</source>
                 <target>SIREN</target>
             </trans-unit>
+            <trans-unit id="pel.confirm.online.complaint.that">
+                <source>pel.confirm.online.complaint.that</source>
+                <target>Pour accéder à la démarche en ligne, veuillez confirmer que :</target>
+            </trans-unit>
             <trans-unit id="pel.contact.information">
                 <source>pel.contact.information</source>
                 <target>Coordonnées</target>
@@ -590,6 +594,10 @@
                 <source>pel.fill.a.complaint</source>
                 <target>Je continue</target>
             </trans-unit>
+            <trans-unit id="pel.fill.a.complaint.confirm">
+                <source>pel.fill.a.complaint.confirm</source>
+                <target>Je confirme</target>
+            </trans-unit>
             <trans-unit id="pel.files">
                 <source>pel.files</source>
                 <target>Fichiers</target>
@@ -701,6 +709,10 @@
             <trans-unit id="pel.fsi.general.orienteer">
                 <source>pel.fsi.general.orienteer</source>
                 <target>Je suis dans une autre situation</target>
+            </trans-unit>
+            <trans-unit id="pel.fsi.general.orienteer.criteria">
+                <source>pel.fsi.general.orienteer.criteria</source>
+                <target>Je ne remplis pas ces critères</target>
             </trans-unit>
             <trans-unit id="pel.fsi.visit">
                 <source>pel.fsi.visit</source>
@@ -861,10 +873,6 @@
             <trans-unit id="pel.madam">
                 <source>pel.madam</source>
                 <target>Madame</target>
-            </trans-unit>
-            <trans-unit id="pel.major">
-                <source>pel.major</source>
-                <target>majeur</target>
             </trans-unit>
             <trans-unit id="pel.make.appointment">
                 <source>pel.make.appointment</source>
@@ -1294,6 +1302,10 @@
                 <source>pel.use.online.complaint.for</source>
                 <target>Avant de continuer, assurez-vous d'être dans l'un des cas suivants :</target>
             </trans-unit>
+            <trans-unit id="pel.use.online.complaint.for.list">
+                <source>pel.use.online.complaint.for.list</source>
+                <target>retour vers les infractions que je peux déclarer en ligne</target>
+            </trans-unit>
             <trans-unit id="pel.validate">
                 <source>pel.validate</source>
                 <target>Valider</target>
@@ -1358,9 +1370,17 @@
                 <source>pel.yes.i.know.the.exact.time.of.facts</source>
                 <target>Oui je connais l'heure exacte des faits</target>
             </trans-unit>
+            <trans-unit id="pel.you.are.major">
+                <source>pel.you.are.major</source>
+                <target>Vous êtes <![CDATA[<strong>majeur</strong>]]></target>
+            </trans-unit>
+            <trans-unit id="pel.you.are.victim.or.representative">
+                <source>pel.you.are.victim.or.representative</source>
+                <target>Vous êtes <![CDATA[<strong>la victime</strong>]]> ou son <![CDATA[<strong>représentant légal</strong>]]> (physique ou moral)</target>
+            </trans-unit>
             <trans-unit id="pel.you.dont.know.offense.author">
                 <source>pel.you.dont.know.offense.author</source>
-                <target>Vous ne connaissez pas l'identité de l'auteur de l'infraction</target>
+                <target>Vous ne connaissez pas l'<![CDATA[<strong>identité de l'auteur</strong>]]> de l'infraction</target>
             </trans-unit>
             <trans-unit id="pel.your.appointment">
                 <source>pel.your.appointment</source>
