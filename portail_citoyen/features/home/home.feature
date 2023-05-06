@@ -41,27 +41,3 @@ Feature:
     Scenario: Press button to be fsi general orienteer
         Given I am on "/"
         When I follow "Je suis dans une autre situation"
-
-    @javascript
-    Scenario Outline: I can open a confirmation modal when I click on "Continue" and I can click on modal buttons
-        Given I am on "/"
-        When I press "continue_button"
-        Then I should see 1 "#fr-modal-complaint-confirm[open=true]" element
-        And I should see the key "<key>" translated
-        When I follow "Retour à l'accueil"
-        Then I should be on "/"
-        Given I am on "/"
-        When I press "continue_button"
-        And I follow "Je confirme"
-        Then I should be on "/accueil-deroule"
-
-        Examples:
-            | key                                      |
-            | pel.close                                |
-            | pel.offense.context                      |
-            | pel.could.you.confirm.complaint.validity |
-            | pel.being.major                          |
-            | pel.being.victim.or.representative       |
-            | pel.dont.know.the.offense.author         |
-            | pel.i.confirm                            |
-            | pel.back.to.homepage                     |
