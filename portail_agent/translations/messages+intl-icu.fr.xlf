@@ -30,9 +30,17 @@
                 <source>pel.agent.name</source>
                 <target>Nom de l'agent</target>
             </trans-unit>
+            <trans-unit id="pel.appointment.cancel">
+                <source>pel.appointment.cancel</source>
+                <target>Annuler RDV</target>
+            </trans-unit>
             <trans-unit id="pel.appointment.management">
                 <source>pel.appointment.management</source>
                 <target>Gestion RDV déclarant</target>
+            </trans-unit>
+            <trans-unit id="pel.appointment.modify">
+                <source>pel.appointment.modify</source>
+                <target>Modifier RDV</target>
             </trans-unit>
             <trans-unit id="pel.appointment.needed">
                 <source>pel.appointment.needed</source>
@@ -41,6 +49,10 @@
             <trans-unit id="pel.appointment.pending">
                 <source>pel.appointment.pending</source>
                 <target>En attente de RDV</target>
+            </trans-unit>
+            <trans-unit id="pel.appointment.validate">
+                <source>pel.appointment.validate</source>
+                <target>Valider RDV</target>
             </trans-unit>
             <trans-unit id="pel.assignment.pending">
                 <source>pel.assignment.pending</source>
@@ -314,6 +326,10 @@
                 <source>pel.email</source>
                 <target>Email</target>
             </trans-unit>
+            <trans-unit id="pel.enter.the.date.and.time.of.the.appointment.with.the.victim">
+                <source>pel.enter.the.date.and.time.of.the.appointment.with.the.victim</source>
+                <target>Saisir la date et l'heure du RDV convenu avec la victime</target>
+            </trans-unit>
             <trans-unit id="pel.exact.date.known">
                 <source>pel.exact.date.known</source>
                 <target>Connaissez-vous la date exacte des faits ?</target>
@@ -421,6 +437,10 @@
             <trans-unit id="pel.is.designated.as">
                 <source>pel.is.designated.as</source>
                 <target>Se désigne comme</target>
+            </trans-unit>
+            <trans-unit id="pel.information.entered.by.the.victim.to.make.an.appointment">
+                <source>pel.information.entered.by.the.victim.to.make.an.appointment</source>
+                <target>Informations saisies par la victime pour la prise de RDV</target>
             </trans-unit>
             <trans-unit id="pel.insufisant.quality.to.act">
                 <source>pel.insufisant.quality.to.act</source>

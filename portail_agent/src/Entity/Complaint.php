@@ -75,8 +75,14 @@ class Complaint
     //    #[ORM\Column]
     //    private ?bool $claimsLegalAction = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $appointmentContactInformation = null;
+
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $appointmentDate = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $appointmentTime = null;
 
     //    #[ORM\Column]
     //    private ?string $contactWindow = null;
@@ -478,6 +484,30 @@ class Complaint
     public function setPriority(?int $priority): self
     {
         $this->priority = $priority;
+
+        return $this;
+    }
+
+    public function getAppointmentContactInformation(): ?string
+    {
+        return $this->appointmentContactInformation;
+    }
+
+    public function setAppointmentContactInformation(?string $appointmentContactInformation): self
+    {
+        $this->appointmentContactInformation = $appointmentContactInformation;
+
+        return $this;
+    }
+
+    public function getAppointmentTime(): ?\DateTimeImmutable
+    {
+        return $this->appointmentTime;
+    }
+
+    public function setAppointmentTime(?\DateTimeImmutable $appointmentTime): self
+    {
+        $this->appointmentTime = $appointmentTime;
 
         return $this;
     }

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="fr" target-language="fr" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="pel.date.greater.than.equal.today.error">
+                <source>pel.date.greater.than.equal.today.error</source>
+                <target>La date doit être supérieure ou égale à aujourd'hui</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
