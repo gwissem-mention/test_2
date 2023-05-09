@@ -17,47 +17,20 @@ Feature:
             | pel.and.overseas                                  |
             | pel.header.baseline                               |
             | pel.online.complaint                              |
-            | pel.my.journey                                    |
-            | pel.you.will.start.an.online.complaint.procedure  |
-            | pel.appointment.needed.if                         |
-            | pel.your.are.not.logged.in.with.france.connect    |
-            | pel.your.are.victim.of.a.registered.vehicle.theft |
-            | pel.your.are.victim.of.a.violent.theft            |
-            | pel.other.complex.offenses                        |
-            | pel.if.no.lawyer.needed.text                      |
-            | pel.if.no.lawyer.needed.text.bis                  |
             | pel.online.complaint.process                      |
             | pel.1.fill.your.form                              |
-            | pel.2.upload.your.files                           |
-            | pel.3.your.request.is.sent.to.an.agent            |
-            | pel.4.your.request.is.processed.within.48h        |
-            | pel.i.take.note.of.legal.provisions               |
-            | pel.article.10.2                                  |
-            | pel.of.the.penal.procedure                        |
-            | pel.article.d.8.2.2                               |
-            | pel.back                                          |
-            | pel.start.my.declaration                          |
-
-    @func
-    Scenario: Click on "Article 10-2" link
-        Given I am on "/accueil-deroule"
-        Then I follow "Article 10-2"
-        And I should be on "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044569870"
-
-    @func
-    Scenario: Click on "Article D8-2-2" link
-        Given I am on "/accueil-deroule"
-        Then I follow "Article D8-2-2"
-        And I should be on "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038552381"
+            | pel.2.your.request.is.sent.to.an.agent            |
+            | pel.3.your.request.is.processed.within.48h        |
+            | pel.complaint.create                              |
 
     @func
     Scenario: Click on "Back" link
         Given I am on "/accueil-deroule"
-        Then I follow "Retour"
-        And I should be on "/"
+        Then I follow "retour vers les critères d'éligibilité pour la démarche"
+        And I should be on "/accueil-confirmation"
 
     @func
     Scenario: Click on "Start" link
         Given I am on "/accueil-deroule"
-        Then I follow "Débuter ma déclaration"
+        Then I follow "Déposer plainte"
         And I should be on "/porter-plainte/statut-declarant"

@@ -1,82 +1,43 @@
-{% extends 'layout.html.twig' %}
+{% extends 'common/_home.html.twig' %}
 
-{% block body %}
-    <div class="fr-container--fluid">
-        <div class="fr-grid-row fr-background-alt--blue-france">
-            <div class="fr-col fr-pl-2w fr-py-3w fr-pr-3w">
-                <div class="fr-my-3w fr-text-center">
-                    <h2><strong>{{ 'pel.my.journey'|trans }}</strong></h2>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="fr-container">
-        <div class="fr-grid-row fr-mt-6w">
-            <div class="fr-col-12 fr-col-md-6 fr-col-lg-4">
-                <div class="fr-content-media fr-my-0">
-                    <iframe class="fr-responsive-vid fr-ratio-4x3" src="https://www.youtube.com/embed/HyirpmPL43I" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-            </div>
-            <div class="fr-col-12 fr-col-md-6 fr-col-lg-8 fr-pl-md-4w fr-mt-3w fr-mt-md-0">
-                <p class="fr-text--lg">
-                    <strong>{{ 'pel.you.will.start.an.online.complaint.procedure'|trans }}</strong>
-                </p>
-                <p>
-                    {{ 'pel.appointment.needed.if'|trans }}
-                </p>
-                <ul>
-                    <li>{{ 'pel.your.are.not.logged.in.with.france.connect'|trans }}</li>
-                    <li>{{ 'pel.your.are.victim.of.a.violent.theft'|trans }}</li>
-                    <li>{{ 'pel.your.are.victim.of.a.registered.vehicle.theft'|trans }}</li>
-                    <li>{{ 'pel.other.complex.offenses'|trans }}</li>
-                </ul>
-                <p class="fr-mt-4w">
-                    {{ 'pel.if.no.lawyer.needed.text'|trans }}
-                </p>
-                <p class="fr-mt-4w">
-                    {{ 'pel.if.no.lawyer.needed.text.bis'|trans }}
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="fr-container--fluid">
-        <div class="fr-background-alt--grey fr-mt-6w">
-            <div class="fr-container">
-                <div class="fr-pl-2w fr-py-3w fr-pr-3w">
-                    <div class="fr-my-3w">
-                        <h3 class="fr-text-center">{{ 'pel.online.complaint.process'|trans }}</h3>
-                        <div class="fr-grid-row  fr-px-1w">
-                            <div class="fr-col-6 fr-col-md-3 fr-text-center">
-                                <img src="{{ asset('build/images/document.svg') }}" alt="{{ 'pel.1.fill.your.form'|trans }}">
-                                <p><strong>{{ 'pel.1.fill.your.form'|trans }}</strong></p>
-                            </div>
-                            <div class="fr-col-6 fr-col-md-3 fr-text-center">
-                                <img src="{{ asset('build/images/national-identity-card.svg') }}" alt="{{ 'pel.2.upload.your.files'|trans }}">
-                                <p><strong>{{ 'pel.2.upload.your.files'|trans }}</strong></p>
-                            </div>
-                            <div class="fr-col-6 fr-col-md-3 fr-text-center">
-                                <img src="{{ asset('build/images/police.svg') }}" alt="{{ 'pel.3.your.request.is.sent.to.an.agent'|trans }}">
-                                <p><strong>{{ 'pel.3.your.request.is.sent.to.an.agent'|trans }}</strong></p>
-                            </div>
-                            <div class="fr-col-6 fr-col-md-3 fr-text-center">
-                                <img src="{{ asset('build/images/calendar.svg') }}" alt="{{ 'pel.4.your.request.is.processed.within.48h'|trans }}">
-                                <p><strong>{{ 'pel.4.your.request.is.processed.within.48h'|trans }}</strong></p>
-                            </div>
-                        </div>
-                        <div class="fr-grid-row fr-mt-3w">
-                            <div class="fr-col-12">
-                                <strong>{{ 'pel.i.take.note.of.legal.provisions'|trans }} <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044569870" target="_blank">{{ 'pel.article.10.2'|trans }}</a> {{ 'pel.of.the.penal.procedure'|trans }}, <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038552381" target="_blank">{{ 'pel.article.d.8.2.2'|trans }}</a> {{ 'pel.of.the.penal.procedure'|trans }}.</strong>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="fr-container">
-        <div class="flex--between fr-mt-3w fr-mb-3w">
-            <a href="{{ path('home') }}" class="fr-btn fr-btn--secondary">{{ 'pel.back'|trans }}</a>
-            <a href="{{ path('complaint_declarant_status') }}" class="fr-btn fr-float-right fr-btn--icon-right fr-icon-arrow-right-line">{{ 'pel.start.my.declaration'|trans }}</a>
-        </div>
-    </div>
+{% block content %}
+	<div class="fr-grid-row fr-grid-row--center fr-col-12 fr-col-md-6 fr-pt-10v fr-pr-6v pb-12 fr-pl-6v fr-pt-md-20v fr-pr-md-0 fr-pb-md-20v fr-pl-md-11v fr-ml-md-11v">
+		<div class="fr-grid-row fr-col-md-12">
+			<h4 class="fr-mb-6v fr-mb-md-10v md:text-[28px]/[36px]">{{ 'pel.online.complaint.process'|trans }}</h4>
+			<ul class="fr-callout__text list-none fr-pl-0">
+				<li class="relative text-lg fr-pb-0 pl-14 md:pl-[86px] fr-mb-8v fr-mb-md-12v md:text-xl before:content-[''] before:absolute before:left-0.5 before:w-14 before:h-full before:bg-no-repeat before:bg-[length:40px_40px] before:bg-[url('/assets/images/document.svg')] md:before:bg-[length:56px_56px]">
+					<div class="flex gap-x-2.5 items-center fr-mb-2v">
+						<p class="fr-badge fr-badge--purple-glycine fr-badge--no-icon fr-text--xs min-h-fit">{{ 'pel.1'|trans }}</p>
+						<span class="text-sm">{{ 'pel.1.duration'|trans }}</span>
+					</div>
+					<h6 class="">{{ 'pel.1.fill.your.form'|trans }}</h6>
+				</li>
+				<li class="relative text-lg fr-pb-0 pl-14 md:pl-[86px] fr-mb-8v fr-mb-md-12v md:text-xl before:content-[''] before:absolute before:left-0.5 before:w-14 before:h-full before:bg-no-repeat before:bg-[length:40px_40px] before:bg-[url('/assets/images/police.svg')] md:before:bg-[length:56px_56px]">
+					<div class="flex gap-x-2.5 items-center fr-mb-2v">
+						<p class="fr-badge fr-badge--purple-glycine fr-badge--no-icon fr-text--xs min-h-fit">{{ 'pel.2'|trans }}</p>
+					</div>
+					<h6 class="">{{ 'pel.2.your.request.is.sent.to.an.agent'|trans }}</h6>
+				</li>
+				<li class="relative text-lg fr-pb-0 pl-14 md:pl-[86px] fr-mb-6v fr-mb-md-0 md:text-xl before:content-[''] before:absolute before:left-0.5 before:w-14 before:h-full before:bg-no-repeat before:bg-[length:40px_40px] before:bg-[url('/assets/images/calendar.svg')] md:before:bg-[length:56px_56px]">
+					<div class="flex gap-x-2.5 items-center fr-mb-2v">
+						<p class="fr-badge fr-badge--purple-glycine fr-badge--no-icon fr-text--xs min-h-fit">{{ 'pel.3'|trans }}</p>
+						<span class="text-sm">{{ 'pel.3.duration'|trans|raw }}</span>
+					</div>
+					<h6 class="fr-mb-3v">{{ 'pel.3.your.request.is.processed.within.48h'|trans }}</h6>
+					<p class="text-sm/6 md:text-base fr-mb-0">{{ 'pel.appointment.needed.if'|trans|raw }}</p>
+					<a class="text-sm/6 fr-text-title--blue-france" href="/centre-d-aide" title="{{ 'pel.appointment.needed.if.more.title'|trans }}">{{ 'pel.appointment.needed.if.more'|trans }}</a>
+				</li>
+			</ul>
+			<div class="fr-col-12 fr-grid-row gap-x-4 items-start fr-mt-2v fr-mt-md-7v md:flex-row md:justify-between">
+				<div class="fr-text-center fr-mt-4v fr-mt-md-3v">
+					<a href="{{ path('home_confirmation') }}" class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-arrow-left-line py-3 pr-[5px] pl-[13px] before:content-[''] before:w-6 before:h-6" title="{{ 'pel.use.online.complaint.for.criteria'|trans }}"></a>
+				</div>
+				<div class="fr-text-center fr-mt-4v fr-mt-md-3v">
+					<a href="{{ path('complaint_declarant_status') }}" class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line fr-text--lg fr-pr-5v fr-pl-6v py-2.5 after:w-6 after:h-6">
+						{{ 'pel.complaint.create'|trans }}
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
 {% endblock %}
