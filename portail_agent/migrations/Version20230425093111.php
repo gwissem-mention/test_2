@@ -11,7 +11,7 @@ final class Version20230425093111 extends AbstractMigration
 {
     public function up(Schema $schema): void
     {
-        $this->addSql('ALTER TABLE complaint ADD france_connected BOOLEAN NOT NULL');
+        $this->addSql('ALTER TABLE complaint ADD france_connected BOOLEAN NOT NULL DEFAULT FALSE');
     }
 
     public function down(Schema $schema): void
