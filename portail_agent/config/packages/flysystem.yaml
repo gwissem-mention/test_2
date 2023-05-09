@@ -5,3 +5,10 @@ flysystem:
             adapter: 'local'
             options:
                 directory: '%kernel.project_dir%/var/storage/default'
+                permissions:
+                    file:
+                        public: 755
+                        private: 755
+                    dir:
+                        public: 755
+                        private: 755

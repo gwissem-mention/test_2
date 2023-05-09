@@ -274,6 +274,18 @@
                         {% endif %}
                     </li>
                 {% endif %}
+
+                {% if object.files is not empty %}
+                    <ul>
+                        {% for file in object.files %}
+                            <li>
+                                <a href="{{ path('file_view', {'id':complaint.id, 'name':file}) }}" target="_blank">Pièce jointe {{ loop.index }}</a>
+                                <a href="{{ path('file_download', {'id':complaint.id, 'name':file}) }}" target="_blank" title="{{ 'pel.click.here.to.save.this.attachment'|trans }}"><i class="bi bi-save-fill ms-1"></i></a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
             {% endfor %}
         </ul>
         <p>

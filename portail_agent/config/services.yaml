@@ -35,12 +35,12 @@ services:
         arguments:
             $complaintProcessingDeadline: '%complaint.processing_deadline%'
         tags:
-            - { name: 'doctrine.orm.entity_listener', event: 'prePersist', entity: 'App\Entity\Complaint'}
+            - { name: 'doctrine.orm.entity_listener', event: 'prePersist', entity: 'App\Entity\Complaint' }
             - { name: 'doctrine.orm.entity_listener', event: 'postPersist', entity: 'App\Entity\Complaint' }
 
     Faker\Generator:
         factory: [ 'Faker\Factory', 'create' ]
-        arguments: ['fr_FR']
+        arguments: [ 'fr_FR' ]
 
     App\Oodrive\ApiClientInterface: '@App\Oodrive\ApiClient'
 
@@ -63,5 +63,9 @@ services:
             $complaintsBasePath: '%app.complaints_base_path%'
 
     App\Complaint\ComplaintFetcher:
+        arguments:
+            $complaintsBasePath: '%app.complaints_base_path%'
+
+    App\Complaint\Parser\FileParser:
         arguments:
             $complaintsBasePath: '%app.complaints_base_path%'

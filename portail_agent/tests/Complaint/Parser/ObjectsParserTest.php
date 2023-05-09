@@ -3,16 +3,17 @@
 namespace App\Tests\Complaint\Parser;
 
 use App\Complaint\Parser\ObjectsParser;
-use App\Complaint\Parser\PhoneParser;
 use App\Entity\FactsObjects\AdministrativeDocument;
 use App\Entity\FactsObjects\MultimediaObject;
 use App\Entity\FactsObjects\PaymentMethod;
 use App\Entity\FactsObjects\SimpleObject;
 use App\Entity\FactsObjects\Vehicle;
-use PHPUnit\Framework\TestCase;
+use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
-class ObjectsParserTest extends TestCase
+class ObjectsParserTest extends KernelTestCase
 {
+    private const TEST_FILE_DIR = 'var/complaints/123456789/';
+
     private const OBJECTS_JSON = <<<JSON
 {
     "objects": [
@@ -45,7 +46,14 @@ class ObjectsParserTest extends TestCase
             "otherDocumentType": null,
             "documentOwned": true,
             "documentOwner": null,
-            "files": []
+            "files": [
+                {
+                "name":"iphone.png",
+                "path":"92de373d10aa4332c27ed8356b02b7a7293d9fca.png",
+                "type":"image\/png",
+                "size":16355
+                }
+            ]
         },
         {
             "status": {
@@ -241,15 +249,34 @@ class ObjectsParserTest extends TestCase
 }
 JSON;
 
-    protected function getObjectsParser(): ObjectsParser
+    public function setUp(): void
     {
-        return new ObjectsParser(new PhoneParser());
+        parent::setUp();
+
+        // Testing file
+        if (!file_exists(self::TEST_FILE_DIR)) {
+            mkdir(self::TEST_FILE_DIR, 0777, true);
+        }
+
+        fopen(self::TEST_FILE_DIR.'iphone.png', 'wb');
+    }
+
+    public function getParser(): ObjectsParser
+    {
+        self::bootKernel();
+        $container = static::getContainer();
+
+        /** @var ObjectsParser $parser */
+        $parser = $container->get(ObjectsParser::class);
+        $parser->setComplaintFrontId('123456789');
+
+        return $parser;
     }
 
     public function testParseAll(): void
     {
         $objectsInput = json_decode(self::OBJECTS_JSON);
-        $objectsParser = $this->getObjectsParser();
+        $objectsParser = $this->getParser();
 
         $objects = $objectsParser->parseAll($objectsInput->objects);
 
@@ -259,7 +286,7 @@ JSON;
     public function testParseAdministrativeDocument(): void
     {
         $objectsInput = json_decode(self::OBJECTS_JSON);
-        $objectsParser = $this->getObjectsParser();
+        $objectsParser = $this->getParser();
 
         // $objects[0] is an AdministrativeDocument
         $administrativeDocument = $objectsParser->parse($objectsInput->objects[0]);
@@ -269,12 +296,13 @@ JSON;
         // @TODO Voir comment récupérer ça
         // $this->assertSame(1, $administrativeDocument->getType());
         $this->assertSame(1500.0, $administrativeDocument->getAmount());
+        $this->assertNotEmpty($administrativeDocument->getFiles());
     }
 
     public function testParsePaymentMethod(): void
     {
         $objectsInput = json_decode(self::OBJECTS_JSON);
-        $objectsParser = $this->getObjectsParser();
+        $objectsParser = $this->getParser();
 
         // $objects[1] is a PaymentMethod
         $paymentMethod = $objectsParser->parse($objectsInput->objects[1]);
@@ -288,7 +316,7 @@ JSON;
     public function testParseMultimediaObject(): void
     {
         $objectsInput = json_decode(self::OBJECTS_JSON);
-        $objectsParser = $this->getObjectsParser();
+        $objectsParser = $this->getParser();
 
         // $objects[2] is a MultimediaObject
         $object = $objectsParser->parse($objectsInput->objects[2]);
@@ -317,7 +345,7 @@ JSON;
     public function testParseRegisteredVehicle(): void
     {
         $objectsInput = json_decode(self::OBJECTS_JSON);
-        $objectsParser = $this->getObjectsParser();
+        $objectsParser = $this->getParser();
 
         // $objects[3] is a Registered Vehicle
         $object = $objectsParser->parse($objectsInput->objects[3]);
@@ -336,7 +364,7 @@ JSON;
     public function testParseUnregisteredVehicle(): void
     {
         $objectsInput = json_decode(self::OBJECTS_JSON);
-        $objectsParser = $this->getObjectsParser();
+        $objectsParser = $this->getParser();
 
         // $objects[4] is a Unregistered Vehicle
         $object = $objectsParser->parse($objectsInput->objects[4]);
@@ -355,7 +383,7 @@ JSON;
     public function testParseSimpleObject(): void
     {
         $objectsInput = json_decode(self::OBJECTS_JSON);
-        $objectsParser = $this->getObjectsParser();
+        $objectsParser = $this->getParser();
 
         // $objects[5] is a SimpleObject
         $object = $objectsParser->parse($objectsInput->objects[5]);

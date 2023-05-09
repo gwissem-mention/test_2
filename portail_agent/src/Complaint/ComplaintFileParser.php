@@ -44,6 +44,7 @@ class ComplaintFileParser
             $complaint->setPersonLegalRepresented($this->identityParser->parse($complaintJson->identity->representedPersonCivilState, $complaintJson->identity->representedPersonContactInformation));
         }
 
+        $this->objectsParser->setComplaintFrontId($complaint->getFrontId());
         foreach ($complaintJson->objects as $objects) {
             foreach ($objects as $object) {
                 $complaint->addObject($this->objectsParser->parse($object));
