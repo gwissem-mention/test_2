@@ -33,7 +33,7 @@ class ComplaintFetcher
     {
         $toFetchFolder = $this->oodriveClient->getFolder($this->oodriveRootFolderId);
         $complaintsFetchedCount = 0;
-
+        $complaintFile = null;
         $toFetchFolderChildren = $this->oodriveClient->getChildrenFolders($toFetchFolder);
         foreach ($toFetchFolderChildren as $childFolder) {
             $emailFolders = $this->oodriveClient->getChildrenFolders($childFolder);

@@ -135,6 +135,8 @@ Feature:
         And I should see the key "pel.observation.made" translated
         And I should see the key "pel.victim.of.violence" translated
         And I should see the key "pel.description.of.facts" translated
+        And I should see "Pièce jointe 1"
+        And I should see "Pièce jointe 2"
 
     @func
     Scenario: If the declarant is a Person Legal Representative, I should be able to see the victim informations
@@ -422,3 +424,13 @@ Feature:
         When I press "comment-button"
         And I should see 3 ".comment-right" element
         And the "#comments-feed-title" element should contain "Espace commentaires (6)"
+
+    @func
+    Scenario: I can open the attachments
+        Given I am authenticated with H3U3XCGD from PN
+        And I am on "/plainte/recapitulatif/11"
+        When I follow "Pièce jointe 1"
+        Then I should be on "/voir-piece-jointe/11/blank.pdf"
+        Given I am on "/plainte/recapitulatif/11"
+        When I follow "Pièce jointe 2"
+        Then I should be on "/voir-piece-jointe/11/iphone.png"

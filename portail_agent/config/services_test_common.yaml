@@ -13,3 +13,8 @@ services:
 
     App\Complaint\Parser\AdditionalInformationParser:
         public: true
+
+    App\Complaint\Parser\FileParser:
+        public: true`
+        arguments:
+            $complaintsBasePath: '%app.complaints_base_path%'

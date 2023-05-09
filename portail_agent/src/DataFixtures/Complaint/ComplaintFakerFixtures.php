@@ -25,6 +25,8 @@ use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Generator;
+use League\Flysystem\FilesystemOperator;
+use Symfony\Component\HttpKernel\KernelInterface;
 
 class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, DependentFixtureInterface
 {
@@ -47,7 +49,9 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
     public function __construct(
         private readonly Generator $faker,
         private readonly NotificationFactory $notificationFactory,
-        private readonly ComplaintNotification $complaintNotification
+        private readonly ComplaintNotification $complaintNotification,
+        private readonly FilesystemOperator $defaultStorage,
+        private readonly KernelInterface $kernel
     ) {
         $faker->seed(1);
     }
@@ -87,6 +91,8 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
         ];
 
         $this->users = $manager->getRepository(User::class)->findAll();
+        $this->defaultStorage->writeStream('/blank.pdf', fopen($this->kernel->getProjectDir().'/tests/Behat/Files/blank.pdf', 'rb'));
+        $this->defaultStorage->writeStream('/iphone.png', fopen($this->kernel->getProjectDir().'/tests/Behat/Files/iphone.png', 'rb'));
 
         for ($i = 1; $i <= self::COMPLAINTS_NB; ++$i) {
             $factsStartDate = \DateTimeImmutable::createFromMutable($this->faker->dateTimeBetween('2023-01-01', '2023-01-31'));
@@ -177,6 +183,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                         ->setSerialNumber('1234567890')
                         ->setPhoneNumber($this->faker->mobileNumber)
                         ->setAmount($this->faker->numberBetween(500, 2000))
+                        ->setFiles(['blank.pdf', 'iphone.png'])
                 )
                 ->addObject(
                     (new MultimediaObject())
@@ -343,11 +350,14 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
 
     public function newIdentity(bool $victim = false): Identity
     {
+        /** @var int $declarantStatus */
+        $declarantStatus = $victim ? Identity::DECLARANT_STATUS_VICTIM : $this->faker->randomElement([Identity::DECLARANT_STATUS_VICTIM, Identity::DECLARANT_STATUS_PERSON_LEGAL_REPRESENTATIVE, Identity::DECLARANT_STATUS_CORPORATION_LEGAL_REPRESENTATIVE]);
+
         return (new Identity())
             ->setFirstname($this->faker->firstName($this->identityGender))
             ->setLastname(mb_strtoupper($this->faker->lastName))
             ->setCivility('male' === $this->identityGender ? Identity::CIVILITY_MALE : Identity::CIVILITY_FEMALE)
-            ->setDeclarantStatus($victim ? Identity::DECLARANT_STATUS_VICTIM : $this->faker->randomElement([Identity::DECLARANT_STATUS_VICTIM, Identity::DECLARANT_STATUS_PERSON_LEGAL_REPRESENTATIVE, Identity::DECLARANT_STATUS_CORPORATION_LEGAL_REPRESENTATIVE]))
+            ->setDeclarantStatus($declarantStatus)
             ->setBirthday(new \DateTimeImmutable($this->faker->randomElement([
                     '1978-03-16',
                     '1997-12-07',

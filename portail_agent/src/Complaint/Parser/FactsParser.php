@@ -18,8 +18,9 @@ class FactsParser
         $exactHourKnown = match ($facts->offenseDate->choiceHour) {
             'yes' => Facts::EXACT_HOUR_KNOWN_YES,
             'no' => Facts::EXACT_HOUR_KNOWN_NO,
-            'maybe' => Facts::EXACT_HOUR_KNOWN_DONT_KNOW,
+            default => Facts::EXACT_HOUR_KNOWN_DONT_KNOW,
         };
+
         $department = isset($facts->address->startAddress->citycode) ? substr($facts->address->startAddress->citycode, 0, 2) : '';
 
         $factsParsed

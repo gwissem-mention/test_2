@@ -22,13 +22,17 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
+use League\Flysystem\FilesystemOperator;
+use Symfony\Component\HttpKernel\KernelInterface;
 
 class ComplaintFixtures extends Fixture implements FixtureGroupInterface, DependentFixtureInterface
 {
     private const COMPLAINTS_NB = 10;
 
-    public function __construct(private readonly NotificationFactory $notificationFactory)
-    {
+    public function __construct(private readonly NotificationFactory $notificationFactory,
+                                private readonly FilesystemOperator $defaultStorage,
+                                private readonly KernelInterface $kernel,
+    ) {
     }
 
     public static function getGroups(): array
@@ -48,6 +52,8 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
             '103131' => $userUnit1,
             '3002739' => $userUnit2,
         ];
+        $this->defaultStorage->writeStream('/blank.pdf', fopen($this->kernel->getProjectDir().'/tests/Behat/Files/blank.pdf', 'rb'));
+        $this->defaultStorage->writeStream('/iphone.png', fopen($this->kernel->getProjectDir().'/tests/Behat/Files/iphone.png', 'rb'));
 
         foreach ($unitsUsers as $unit => $user) {
             $unit = strval($unit);
@@ -274,6 +280,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                     ->setSerialNumber('1234567890')
                     ->setPhoneNumber('06 12 34 56 67')
                     ->setAmount(999)
+                    ->setFiles(['blank.pdf', 'iphone.png'])
             )
             ->addObject(
                 (new AdministrativeDocument())

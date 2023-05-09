@@ -6,6 +6,7 @@ namespace App\Entity\FactsObjects;
 
 use App\Entity\AlertTrait;
 use App\Entity\Complaint;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\DiscriminatorColumn;
 use Doctrine\ORM\Mapping\DiscriminatorMap;
@@ -27,6 +28,7 @@ use Doctrine\ORM\Mapping\Table;
 abstract class AbstractObject
 {
     use AlertTrait;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -47,6 +49,10 @@ abstract class AbstractObject
 
     // #[ORM\Column]
     // private ?bool $thiefFromVehicle = null;
+
+    /** @var array<string>|null */
+    #[ORM\Column(type: Types::SIMPLE_ARRAY, nullable: true)]
+    private ?array $files = null;
 
     public function getId(): ?int
     {
@@ -73,6 +79,31 @@ abstract class AbstractObject
     public function setComplaint(?Complaint $complaint): self
     {
         $this->complaint = $complaint;
+
+        return $this;
+    }
+
+    /**
+     * @return array<string>|null
+     */
+    public function getFiles(): ?array
+    {
+        return $this->files;
+    }
+
+    /**
+     * @param array<string>|null $files
+     */
+    public function setFiles(?array $files): self
+    {
+        $this->files = $files;
+
+        return $this;
+    }
+
+    public function addFile(string $file): self
+    {
+        $this->files[] = $file;
 
         return $this;
     }

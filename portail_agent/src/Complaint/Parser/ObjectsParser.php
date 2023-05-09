@@ -17,8 +17,17 @@ class ObjectsParser
     private const REGISTERED_VEHICLE = 4;
     private const UNREGISTERED_VEHICLE = 5;
 
-    public function __construct(private readonly PhoneParser $phoneParser)
+    private string $complaintFrontId;
+
+    public function __construct(
+        private readonly PhoneParser $phoneParser,
+        private readonly FileParser $fileParser,
+    ) {
+    }
+
+    public function setComplaintFrontId(string $complaintFrontId): void
     {
+        $this->complaintFrontId = $complaintFrontId;
     }
 
     /**
@@ -47,6 +56,7 @@ class ObjectsParser
         };
 
         $this->parseObjectBasic($object, $objectInput);
+        $this->parseFiles($object, $objectInput);
 
         return $object;
     }
@@ -118,5 +128,12 @@ class ObjectsParser
         $simpleObject->setDescription($objectInput->description);
 
         return $simpleObject;
+    }
+
+    private function parseFiles(AbstractObject $object, object $objectInput): void
+    {
+        foreach ($objectInput->files as $fileInput) {
+            $object->addFile($this->fileParser->parse($fileInput, $this->complaintFrontId));
+        }
     }
 }

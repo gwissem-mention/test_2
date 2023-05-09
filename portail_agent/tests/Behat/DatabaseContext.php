@@ -14,6 +14,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Tools\SchemaTool;
 use Faker\Factory;
 use Faker\Generator;
+use League\Flysystem\FilesystemOperator;
 use Symfony\Component\HttpKernel\KernelInterface;
 
 class DatabaseContext implements Context
@@ -23,7 +24,8 @@ class DatabaseContext implements Context
     public function __construct(
         protected readonly KernelInterface $kernel,
         protected readonly EntityManagerInterface $entityManager,
-        protected readonly NotificationFactory $notificationFactory
+        protected readonly NotificationFactory $notificationFactory,
+        protected readonly FilesystemOperator $defaultStorage,
     ) {
     }
 
@@ -48,7 +50,7 @@ class DatabaseContext implements Context
 
         $loader = new Loader();
         $loader->addFixture(new UserFixtures());
-        $loader->addFixture(new ComplaintFixtures($this->notificationFactory));
+        $loader->addFixture(new ComplaintFixtures($this->notificationFactory, $this->defaultStorage, $this->kernel));
         $loader->addFixture(new QuestionFixtures());
         $purger = new ORMPurger();
         $purger->setPurgeMode(ORMPurger::PURGE_MODE_DELETE);

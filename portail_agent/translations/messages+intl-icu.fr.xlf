@@ -198,6 +198,10 @@
                 <source>pel.click.here.to.send.this.declaration.to.lrp</source>
                 <target>Cliquez ici pour envoyer cette déclaration vers LRP</target>
             </trans-unit>
+            <trans-unit id="pel.click.here.to.save.this.attachment">
+                <source>pel.click.here.to.save.this.attachment</source>
+                <target>Cliquez ici pour enregistrer cette pièce jointe</target>
+            </trans-unit>
             <trans-unit id="pel.close">
                 <source>pel.close</source>
                 <target>Fermer</target>
