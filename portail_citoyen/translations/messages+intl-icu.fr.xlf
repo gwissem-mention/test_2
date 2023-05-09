@@ -2,21 +2,37 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="fr" target-language="fr" datatype="plaintext" original="file.ext">
         <body>
+            <trans-unit id="pel.1">
+                <source>pel.1</source>
+                <target>Étape 1</target>
+            </trans-unit>
+            <trans-unit id="pel.1.duration">
+                <source>pel.1.duration</source>
+                <target>10 minutes</target>
+            </trans-unit>
             <trans-unit id="pel.1.fill.your.form">
                 <source>pel.1.fill.your.form</source>
-                <target>1 - Remplissez votre formulaire</target>
+                <target>Complétez votre plainte en ligne</target>
             </trans-unit>
-            <trans-unit id="pel.2.upload.your.files">
-                <source>pel.2.upload.your.files</source>
-                <target>2 - Joignez vos documents</target>
+            <trans-unit id="pel.2">
+                <source>pel.2</source>
+                <target>Étape 2</target>
             </trans-unit>
-            <trans-unit id="pel.3.your.request.is.sent.to.an.agent">
-                <source>pel.3.your.request.is.sent.to.an.agent</source>
-                <target>3 - Votre demande est transmise à un agent pour traitement</target>
+            <trans-unit id="pel.2.your.request.is.sent.to.an.agent">
+                <source>pel.2.your.request.is.sent.to.an.agent</source>
+                <target>Votre demande est transmise à nos services</target>
             </trans-unit>
-            <trans-unit id="pel.4.your.request.is.processed.within.48h">
-                <source>pel.4.your.request.is.processed.within.48h</source>
-                <target>4 - Votre demande est prise en charge sous 48h</target>
+            <trans-unit id="pel.3">
+                <source>pel.3</source>
+                <target>Étape 3</target>
+            </trans-unit>
+            <trans-unit id="pel.3.duration">
+                <source>pel.3.duration</source>
+                <target>Sous <![CDATA[<strong>48 heures</strong>]]></target>
+            </trans-unit>
+            <trans-unit id="pel.3.your.request.is.processed.within.48h">
+                <source>pel.3.your.request.is.processed.within.48h</source>
+                <target>Votre demande sera traitée par un agent</target>
             </trans-unit>
             <trans-unit id="pel.address.city.postcode">
                 <source>pel.address.city.postcode</source>
@@ -140,23 +156,15 @@
             </trans-unit>
             <trans-unit id="pel.appointment.needed.if">
                 <source>pel.appointment.needed.if</source>
-                <target>Votre démarche aboutira nécessairement à un rendez-vous en présentiel si :</target>
+                <target>Notez que la démarche pourrait éventuellement nécessiter un <![CDATA[<strong>rendez-vous physique</strong>]]> au regard des éléments déclarés.</target>
             </trans-unit>
-            <trans-unit id="pel.appointment.message.1">
-                <source>pel.appointment.message.1</source>
-                <target>Au regards des éléments, nous vous proposons de vous recevoir à cette unité par défaut</target>
+            <trans-unit id="pel.appointment.needed.if.more">
+                <source>pel.appointment.needed.if.more</source>
+                <target>En savoir plus</target>
             </trans-unit>
-            <trans-unit id="pel.appointment.message.2">
-                <source>pel.appointment.message.2</source>
-                <target>Si cette unité ne vous convient pas, merci de sélectionner une autre commune ci-dessous.</target>
-            </trans-unit>
-            <trans-unit id="pel.article.10.2">
-                <source>pel.article.10.2</source>
-                <target>Article 10-2</target>
-            </trans-unit>
-            <trans-unit id="pel.article.d.8.2.2">
-                <source>pel.article.d.8.2.2</source>
-                <target>Article D8-2-2</target>
+            <trans-unit id="pel.appointment.needed.if.more.title">
+                <source>pel.appointment.needed.if.more.title</source>
+                <target>En savoir plus sur les possibilités de rendez-vous physique</target>
             </trans-unit>
             <trans-unit id="pel.at">
                 <source>pel.at</source>
@@ -786,18 +794,6 @@
                 <source>pel.i.authenticate.with.france.connect</source>
                 <target>Je m'authentifie via FranceConnect</target>
             </trans-unit>
-            <trans-unit id="pel.i.take.note.of.legal.provisions">
-                <source>pel.i.take.note.of.legal.provisions</source>
-                <target>Je prends acte des dispositions légales portées par les articles</target>
-            </trans-unit>
-            <trans-unit id="pel.if.no.lawyer.needed.text">
-                <source>pel.if.no.lawyer.needed.text</source>
-                <target>Si un rendez-vous en présentiel vous est proposé, l’intégralité des données que vous aurez renseignées sera reprise par l’enquêteur qui vous recevra.</target>
-            </trans-unit>
-            <trans-unit id="pel.if.no.lawyer.needed.text.bis">
-                <source>pel.if.no.lawyer.needed.text.bis</source>
-                <target>Si vous souhaitez vous faire assister d’un avocat ou d’un interprète, ces droits demeurent incompatibles avec une procédure dématérialisée. Vous devez vous rendre dans une unité de police ou de gendarmerie de votre choix.</target>
-            </trans-unit>
             <trans-unit id="pel.if.accident.ongoing">
                 <source>pel.if.accident.ongoing</source>
                 <target>Si l'incident est en cours</target>
@@ -909,10 +905,6 @@
             <trans-unit id="pel.my.identity">
                 <source>pel.my.identity</source>
                 <target>Mon identité</target>
-            </trans-unit>
-            <trans-unit id="pel.my.journey">
-                <source>pel.my.journey</source>
-                <target>Mon parcours</target>
             </trans-unit>
             <trans-unit id="pel.nationality.france">
                 <source>pel.nationality.france</source>
@@ -1084,7 +1076,7 @@
             </trans-unit>
             <trans-unit id="pel.online.complaint.process">
                 <source>pel.online.complaint.process</source>
-                <target>DEROULEMENT DE VOTRE DEMARCHE</target>
+                <target>Vous pouvez déclarer votre plainte. La démarche s'effectue en trois étapes :</target>
             </trans-unit>
             <trans-unit id="pel.only.integers.are.allowed">
                 <source>pel.only.integers.are.allowed</source>
@@ -1246,10 +1238,6 @@
                 <source>pel.start.redacting.my.online.complaint</source>
                 <target>Démarrer la rédaction de ma plainte en ligne</target>
             </trans-unit>
-            <trans-unit id="pel.start.my.declaration">
-                <source>pel.start.my.declaration</source>
-                <target>Débuter ma déclaration</target>
-            </trans-unit>
             <trans-unit id="pel.stolen">
                 <source>pel.stolen</source>
                 <target>Volé</target>
@@ -1301,6 +1289,10 @@
             <trans-unit id="pel.use.online.complaint.for">
                 <source>pel.use.online.complaint.for</source>
                 <target>Avant de continuer, assurez-vous d'être dans l'un des cas suivants :</target>
+            </trans-unit>
+            <trans-unit id="pel.use.online.complaint.for.criteria">
+                <source>pel.use.online.complaint.for.criteria</source>
+                <target>retour vers les critères d'éligibilité pour la démarche</target>
             </trans-unit>
             <trans-unit id="pel.use.online.complaint.for.list">
                 <source>pel.use.online.complaint.for.list</source>
@@ -1397,22 +1389,6 @@
             <trans-unit id="pel.your.opinion">
                 <source>pel.your.opinion</source>
                 <target>Votre avis</target>
-            </trans-unit>
-            <trans-unit id="pel.your.are.not.logged.in.with.france.connect">
-                <source>pel.your.are.not.logged.in.with.france.connect</source>
-                <target>vous ne vous êtes pas identifié via France Connect ;</target>
-            </trans-unit>
-            <trans-unit id="pel.your.are.victim.of.a.registered.vehicle.theft">
-                <source>pel.your.are.victim.of.a.registered.vehicle.theft</source>
-                <target>vous êtes victime d’un vol de véhicule immatriculé ;</target>
-            </trans-unit>
-            <trans-unit id="pel.your.are.victim.of.a.violent.theft">
-                <source>pel.your.are.victim.of.a.violent.theft</source>
-                <target>vous êtes victime d'un vol avec violences ;</target>
-            </trans-unit>
-            <trans-unit id="pel.you.will.start.an.online.complaint.procedure">
-                <source>pel.you.will.start.an.online.complaint.procedure</source>
-                <target>Vous allez débuter une procédure de plainte en ligne</target>
             </trans-unit>
             <trans-unit id="pel.cancel">
                 <source>pel.cancel</source>
