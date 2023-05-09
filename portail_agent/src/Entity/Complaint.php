@@ -193,7 +193,7 @@ class Complaint
         return $this->appointmentDate;
     }
 
-    public function setAppointmentDate(\DateTimeImmutable $appointmentDate): self
+    public function setAppointmentDate(?\DateTimeImmutable $appointmentDate): self
     {
         $this->appointmentDate = $appointmentDate;
 

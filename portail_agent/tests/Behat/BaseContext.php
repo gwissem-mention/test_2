@@ -400,6 +400,23 @@ final class BaseContext extends MinkContext
         $field?->attachFile($path);
     }
 
+    /**
+     * @Then /^the field "(?P<field>(?:[^"]|\\")*)" should be disabled$/
+     */
+    public function isDisabled(string $selector): void
+    {
+        $this->retryStep(function () use ($selector) {
+            $field = $this->getSession()->getPage()->find('css', $selector);
+            if (null === $field) {
+                throw new ElementNotFoundException($this->getSession(), null, 'named', $field);
+            }
+
+            if (false === $field->hasAttribute('disabled')) {
+                throw new ExpectationException('The field is not disabled', $this->getSession()->getDriver());
+            }
+        });
+    }
+
     private function retryStep(
         callable $step,
         int $maxTime = self::RETRY_MAX_TIME,

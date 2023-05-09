@@ -5,12 +5,14 @@ import {HttpMethodsEnum} from "../scripts/utils/HttpMethodsEnum";
 
 export default class extends Controller {
     static override targets: string[] = [
+        "appointmentForm",
         "complaintContainer",
         "dropzoneFile",
         "rejectForm",
         "rejectModal"
     ];
 
+    declare readonly appointmentFormTarget: HTMLFormElement;
     declare readonly complaintContainerTarget: HTMLElement;
     declare readonly dropzoneFileTarget: HTMLElement;
     declare readonly rejectFormTarget: HTMLFormElement;
@@ -262,6 +264,25 @@ export default class extends Controller {
 
     public browseReport(): void {
         this.dropzoneFileTarget?.click();
+    }
+
+    // Must be ignored because we can't type url here.
+    // @ts-ignore
+    public validateAppointment({params: {url}}): void {
+        if (url) {
+            fetch(url, {
+                method: HttpMethodsEnum.POST,
+                body: new FormData(this.appointmentFormTarget)
+            })
+                .then(response => response.json())
+                .then((data: any) => {
+                    if (data.success) {
+                        this.reloadComplaintContainer();
+                    } else {
+                        this.appointmentFormTarget.innerHTML = data.form;
+                    }
+                });
+        }
     }
 
     private reloadComplaintContainer(): void {

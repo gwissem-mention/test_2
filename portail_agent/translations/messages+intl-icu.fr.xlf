@@ -50,9 +50,13 @@
                 <source>pel.appointment.pending</source>
                 <target>En attente de RDV</target>
             </trans-unit>
+            <trans-unit id="pel.appointment.planned.with.the.victim">
+                <source>pel.appointment.planned.with.the.victim</source>
+                <target>RDV planifié avec le déclarant</target>
+            </trans-unit>
             <trans-unit id="pel.appointment.validate">
                 <source>pel.appointment.validate</source>
-                <target>Valider RDV</target>
+                <target>Valider le RDV avec le déclarant</target>
             </trans-unit>
             <trans-unit id="pel.assignment.pending">
                 <source>pel.assignment.pending</source>
