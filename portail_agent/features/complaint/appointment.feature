@@ -30,10 +30,23 @@ Feature:
         And I should see "jean.dupont@gmail.com"
         And I should see "Disponible entre 10h et 12h le lundi"
 
-    @func
+    @javascript
     Scenario: I can see form errors if the date is before today
         Given I am on "/plainte/rendez-vous/91"
-        When I fill in "appointment[appointmentDate]" with "01/01/2023"
-        And I fill in "appointment[appointmentTime]" with "10:00"
-        And I press "Valider RDV"
+        When I fill in "appointment_appointmentDate" with "01/01/2023"
+        And I fill in "appointment_appointmentTime" with "10:00am"
+        And I press "Valider le RDV avec le déclarant"
         Then I should see 1 ".invalid-feedback" element
+
+    @javascript
+    Scenario: I can submit the appointment form successfully
+        Given I am on "/plainte/rendez-vous/91"
+        And I should not see the key "pel.appointment.planned.with.the.victim" translated
+        When I fill in "appointment_appointmentDate" with "01/01/2025"
+        And I fill in "appointment_appointmentTime" with "10:00am"
+        And I press "Valider le RDV avec le déclarant"
+        Then the field "#appointment_appointmentDate" should be disabled
+        Then the field "#appointment_appointmentTime" should be disabled
+        And I should see the key "pel.appointment.planned.with.the.victim" translated
+        When I am on homepage
+        Then I should see "01/01/2025 10:00"

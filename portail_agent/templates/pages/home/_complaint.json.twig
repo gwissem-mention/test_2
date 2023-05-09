@@ -38,7 +38,7 @@
     '__facts_natures':include('common/_complaint_natures.html.twig', {'natures':complaint.facts.natures}),
     '__facts_startDate':complaint.facts.startDate|date('d/m/Y'),
     'alert':complaint.alert|trans|u.truncate(15, '...'),
-    'appointmentDate':complaint.appointmentDate|date('d/m/Y'),
+    'appointmentDate': complaint.appointmentDate is empty or complaint.appointmentDate is empty ? "" : complaint.appointmentDate|date('d/m/Y') ~ ' ' ~ complaint.appointmentTime|format_time('short', timezone=app.user.timezone),
     '__identity_firstname':(complaint.identity.firstName ~ ' ' ~ complaint.identity.lastName)|u.truncate(15, '...'),
     'status': include('common/_link.html.twig', {path: path('complaint_summary', {id: complaint.id}), label: status|trans|u.truncate(15, '...'), class:'btn btn-sm btn-' ~ status_btn_color}),
     '__assignedTo_appellation':complaint.assignedTo|u.truncate(15, '...'),

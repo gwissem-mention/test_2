@@ -1,0 +1,40 @@
+{{ form_start(appointment_form, {attr: {
+    'data-complaint-target': 'appointmentForm'
+}}) }}
+    <div class="row mt-3">
+        <div class="col-1">
+            <span class="appointment-icon"><i class="bi bi-person-fill"></i></span>
+        </div>
+        <div class="col-4">
+            <ul>
+                <li>{{ 'pel.civility'|trans }} :
+                    {% if complaint.identity.civility is same as(constant('App\\Entity\\Identity::CIVILITY_MALE')) %}
+                        {{ 'pel.sir'|trans }}
+                    {% else %}
+                        {{ 'pel.madam'|trans }}
+                    {% endif %}
+                </li>
+                <li>{{ 'pel.lastname'|trans }} : {{ complaint.identity.lastname }}</li>
+                <li>{{ 'pel.firstname'|trans }} : {{ complaint.identity.firstname }}</li>
+                <li>{{ 'pel.phone'|trans }} : {{ complaint.identity.mobilePhone }}</li>
+                <li>{{ 'pel.email'|trans }} : {{ complaint.identity.email }}</li>
+            </ul>
+        </div>
+        <div class="col-6">
+            <div class="row">
+                {{ form_row(appointment_form.appointmentContactInformation) }}
+            </div>
+        </div>
+    </div>
+    <div class="row form-inline">
+        <div class="col-4 text-center">
+            <p>{{ 'pel.enter.the.date.and.time.of.the.appointment.with.the.victim'|trans }}</p>
+        </div>
+        <div class="col-4 mt-2">
+            {{ form_row(appointment_form.appointmentDate) }}
+        </div>
+        <div class="col-4 mt-2">
+            {{ form_row(appointment_form.appointmentTime) }}
+        </div>
+    </div>
+{{ form_end(appointment_form) }}

@@ -3,46 +3,17 @@
 {% block main %}
     <div class="border border-secondary bg-light rounded p-3">
         <span id="declarant-identity" class="fs-3 fw-semibold lh-lg">{{ 'pel.appointment.management'|trans }}</span>
-        {{ form_start(appointment_form) }}
-            <div class="row mt-3">
-                <div class="col-1">
-                    <span class="appointment-icon"><i class="bi bi-person-fill"></i></span>
-                </div>
-                <div class="col-4">
-                    <ul>
-                        <li>{{ 'pel.civility'|trans }} :
-                            {% if complaint.identity.civility is same as(constant('App\\Entity\\Identity::CIVILITY_MALE')) %}
-                                {{ 'pel.sir'|trans }}
-                            {% else %}
-                                {{ 'pel.madam'|trans }}
-                            {% endif %}
-                        </li>
-                        <li>{{ 'pel.lastname'|trans }} : {{ complaint.identity.lastname }}</li>
-                        <li>{{ 'pel.firstname'|trans }} : {{ complaint.identity.firstname }}</li>
-                        <li>{{ 'pel.phone'|trans }} : {{ complaint.identity.mobilePhone }}</li>
-                        <li>{{ 'pel.email'|trans }} : {{ complaint.identity.email }}</li>
-                    </ul>
-                </div>
-                <div class="col-6">
-                    {{ form_row(appointment_form.appointmentContactInformation) }}
-                </div>
-            </div>
-            <div class="row form-inline">
-                <div class="col-4 text-center">
-                    <p>{{ 'pel.enter.the.date.and.time.of.the.appointment.with.the.victim'|trans }}</p>
-                </div>
-                <div class="col-4 mt-2">
-                    {{ form_row(appointment_form.appointmentDate) }}
-                </div>
-                <div class="col-4 mt-2">
-                    {{ form_row(appointment_form.appointmentTime) }}
-                </div>
-            </div>
-            <div class="d-flex appointment-footer m-3">
-                <button type="button" class="btn btn-danger btn-appointment">{{ 'pel.appointment.cancel'|trans }}</button>
-                <button type="button" class="btn btn-primary btn-appointment">{{ 'pel.appointment.modify'|trans }}</button>
-                <button type="submit" class="btn btn-success btn-appointment">{{ 'pel.appointment.validate'|trans }}</button>
-            </div>
-        {{ form_end(appointment_form) }}
+        {{ include('pages/complaint/_partial/appointment_content.html.twig') }}
+        <div class="d-flex appointment-footer m-3">
+            <button type="button" class="btn btn-danger btn-appointment">{{ 'pel.appointment.cancel'|trans }}</button>
+            <button type="button" class="btn btn-primary btn-appointment">{{ 'pel.appointment.modify'|trans }}</button>
+            <button type="button"
+                    class="btn btn-success btn-appointment"
+                    data-action="complaint#validateAppointment"
+                    data-complaint-url-param="{{ path('complaint_appointment_validate', { id: complaint.id }) }}"
+            >
+                {{ 'pel.appointment.validate'|trans }}
+            </button>
+        </div>
     </div>
 {% endblock %}

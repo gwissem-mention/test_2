@@ -41,8 +41,11 @@
                                 <span class="fw-bold text-danger">{{ complaint.alert|trans }}</span>
                             </p>
                         </div>
-                        <div class="col-6 {{ not complaint.assignedTo ? 'd-none':'' }}" id="complaint-agent">
-                            <div class="fs-5 text-end">
+                        <div class="col-6">
+                            <div class="text-end {{ not complaint.appointmentDate ? 'd-none':'' }}">
+                                {{ 'pel.appointment.planned.with.the.victim'|trans }} <i class="bi bi-calendar-check-fill p-3"></i>
+                            </div>
+                            <div class="fs-5 text-end {{ not complaint.assignedTo ? 'd-none':'' }}" id="complaint-agent">
                                 {{ 'pel.declaration.assigned.to'|trans }} :
                                 <span class="agent-name fw-bold">{{ complaint.assignedTo.appellation|default }}</span>
                                 {% if is_granted('ROLE_SUPERVISOR') and complaint.status not in [constant('App\\Entity\\Complaint::STATUS_REJECTED'), constant('App\\Entity\\Complaint::STATUS_CLOSED')] %}
