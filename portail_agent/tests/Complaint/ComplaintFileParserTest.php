@@ -421,6 +421,9 @@ class ComplaintFileParserTest extends KernelTestCase
 			"files": []
 		}]
 	},
+	"appointment": {
+        "appointmentContactText": "Je suis disponible le lundi et le mercredi entre 9h et 11h et entre 15h et 16h."
+    },
 	"franceConnected": false,
 	"affectedService": "66459"
 }
@@ -432,6 +435,7 @@ JSON;
         $this->assertFalse($complaint->isFranceConnected());
         $this->assertEquals('66459', $complaint->getUnitAssigned());
         $this->assertEquals('2023-03-17T13:05:38+00:00', $complaint->getCreatedAt()?->format(DATE_ATOM));
+        $this->assertEquals('Je suis disponible le lundi et le mercredi entre 9h et 11h et entre 15h et 16h.', $complaint->getAppointmentContactInformation());
         $this->assertInstanceOf(Identity::class, $complaint->getIdentity());
         $this->assertInstanceOf(Corporation::class, $complaint->getCorporationRepresented());
         $this->assertInstanceOf(Facts::class, $complaint->getFacts());

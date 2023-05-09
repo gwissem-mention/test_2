@@ -448,7 +448,7 @@
             </trans-unit>
             <trans-unit id="pel.information.entered.by.the.victim.to.make.an.appointment">
                 <source>pel.information.entered.by.the.victim.to.make.an.appointment</source>
-                <target>Informations saisies par la victime pour la prise de RDV</target>
+                <target>Demande de rendez-vous, renseignée par le déclarant</target>
             </trans-unit>
             <trans-unit id="pel.insufisant.quality.to.act">
                 <source>pel.insufisant.quality.to.act</source>
@@ -1097,6 +1097,10 @@
             <trans-unit id="pel.nature.place.street">
                 <source>pel.nature.place.street</source>
                 <target>Voie publique / Rue</target>
+            </trans-unit>
+            <trans-unit id="pel.assign.to">
+                <source>pel.assign.to</source>
+                <target>Attribuer à</target>
             </trans-unit>
         </body>
     </file>

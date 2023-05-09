@@ -66,7 +66,8 @@ class ComplaintFileParser
             ->setFrontId($importedComplaint->id)
             ->setStatus(Complaint::STATUS_ASSIGNMENT_PENDING)
             ->setCreatedAt(new \DateTimeImmutable($importedComplaint->createdAt->date, $dateTimeZone))
-            ->setFranceConnected($importedComplaint->franceConnected);
+            ->setFranceConnected($importedComplaint->franceConnected)
+            ->setAppointmentContactInformation($importedComplaint->appointment->appointmentContactText);
 
         if (!is_null($importedComplaint->affectedService)) {
             $complaint->setUnitAssigned($importedComplaint->affectedService);

@@ -529,8 +529,10 @@ class Complaint
         return $this->franceConnected;
     }
 
-    public function setFranceConnected(bool $franceConnected): void
+    public function setFranceConnected(bool $franceConnected): self
     {
         $this->franceConnected = $franceConnected;
+
+        return $this;
     }
 }
