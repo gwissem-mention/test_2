@@ -128,6 +128,20 @@
                 <strong>{{ complaint.facts.description }}</strong>
             </li>
             <li>
+                {{ 'pel.victim.of.violence'|trans }} :
+                <strong>{{ complaint.facts.victimOfViolence ? 'pel.yes'|trans : 'pel.no'|trans }}</strong>
+            </li>
+            {% if complaint.facts.victimOfViolence %}
+                <li>
+                    {{ 'pel.victim.of.violence.text'|trans }} :
+                    <strong>{{ complaint.facts.victimOfViolenceText }}</strong>
+                </li>
+            {% endif %}
+            <li>
+                {{ 'pel.other.victim.present'|trans }} :
+                <strong>{{ 'pel.yes'|trans }}</strong>
+            </li>
+            <li>
                 {{ 'pel.nature.of.the.facts'|trans }} :
                 <strong>{% include 'common/_complaint_natures.html.twig' with {'natures':complaint.facts.natures} only %}</strong>
             </li>
@@ -215,20 +229,6 @@
                 <li>
                     {{ 'pel.observation.made'|trans }} :
                     <strong>{{ complaint.additionalInformation.observationMade ? 'pel.yes'|trans : 'pel.no'|trans }}</strong>
-                </li>
-            {% endif %}
-            <li>
-                {{ 'pel.other.victim.present'|trans }} :
-                <strong>{{ 'pel.yes'|trans }}</strong>
-            </li>
-            <li>
-                {{ 'pel.victim.of.violence'|trans }} :
-                <strong>{{ complaint.additionalInformation.victimOfViolence ? 'pel.yes'|trans : 'pel.no'|trans }}</strong>
-            </li>
-            {% if complaint.additionalInformation.victimOfViolence %}
-                <li>
-                    {{ 'pel.victim.of.violence.text'|trans }} :
-                    <strong>{{ complaint.additionalInformation.victimOfViolenceText }}</strong>
                 </li>
             {% endif %}
         </ul>

@@ -39,22 +39,6 @@ class AdditionalInformation
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $witnessesPresentText = null;
 
-    /**
-     * @deprecated
-     *
-     * Moved to Facts
-     */
-    #[ORM\Column(nullable: true)]
-    private ?bool $victimOfViolence = null;
-
-    /**
-     * @deprecated
-     *
-     * Moved to Facts
-     */
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $victimOfViolenceText = null;
-
     #[ORM\Column]
     private ?bool $fsiVisit = null;
 
@@ -134,42 +118,6 @@ class AdditionalInformation
     public function setWitnessesPresentText(?string $witnessesPresentText): self
     {
         $this->witnessesPresentText = $witnessesPresentText;
-
-        return $this;
-    }
-
-    /**
-     * @deprecated
-     */
-    public function isVictimOfViolence(): ?bool
-    {
-        return $this->victimOfViolence;
-    }
-
-    /**
-     * @deprecated
-     */
-    public function setVictimOfViolence(?bool $victimOfViolence): self
-    {
-        $this->victimOfViolence = $victimOfViolence;
-
-        return $this;
-    }
-
-    /**
-     * @deprecated
-     */
-    public function getVictimOfViolenceText(): ?string
-    {
-        return $this->victimOfViolenceText;
-    }
-
-    /**
-     * @deprecated
-     */
-    public function setVictimOfViolenceText(?string $victimOfViolenceText): self
-    {
-        $this->victimOfViolenceText = $victimOfViolenceText;
 
         return $this;
     }

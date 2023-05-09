@@ -193,7 +193,6 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
                     ->setWitnessesPresentText('Paul DUPONT')
                     ->setFsiVisit(true)
                     ->setObservationMade(true)
-                    ->setVictimOfViolence(false)
             );
 
         /** @var string $xml */

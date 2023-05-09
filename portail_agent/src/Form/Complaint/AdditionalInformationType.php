@@ -126,12 +126,6 @@ class AdditionalInformationType extends AbstractType
                 'multiple' => false,
             ]);
         }
-
-        if ($additionalInformation->isVictimOfViolence()) {
-            $builder->add('victimOfViolenceText', TextType::class, [
-                'label' => 'pel.victim.of.violence.text',
-            ]);
-        }
     }
 
     public function configureOptions(OptionsResolver $resolver): void
