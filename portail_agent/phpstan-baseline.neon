@@ -46,6 +46,11 @@ parameters:
 			path: src/Complaint/ComplaintFileParser.php
 
 		-
+		    message: "#^Access to an undefined property object\\:\\:\\$appointment\\.$#"
+		    count: 1
+		    path: src/Complaint/ComplaintFileParser.php
+
+		-
 			message: "#^Access to an undefined property object\\:\\:\\$cctvAvailable\\.$#"
 			count: 1
 			path: src/Complaint/Parser/AdditionalInformationParser.php
