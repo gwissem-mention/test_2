@@ -151,6 +151,8 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                 )
                 ->setFacts(
                     (new Facts())
+                        ->setVictimOfViolence($victimOfViolence)
+                        ->setVictimOfViolenceText(true === $victimOfViolence ? 'Frappé au visage' : null)
                         ->setNatures([$this->faker->randomElement([Facts::NATURE_ROBBERY, Facts::NATURE_DEGRADATION])])
                         ->setDescription($this->faker->text())
                         ->setExactDateKnown($exactDateKnown)
@@ -213,8 +215,6 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                         ]) : null)
                         ->setFsiVisit($fsiVisit)
                         ->setObservationMade(true === $fsiVisit ? $this->faker->boolean : null)
-                        ->setVictimOfViolence($victimOfViolence)
-                        ->setVictimOfViolenceText(true === $victimOfViolence ? 'Frappé au visage' : null)
                 )
                 ->addComment(
                     (new Comment())

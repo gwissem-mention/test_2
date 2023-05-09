@@ -73,7 +73,7 @@ class ComplaintNotification
      */
     private function setNotificationForViolence(Complaint $complaint, array $supervisors): void
     {
-        if ($complaint->getAdditionalInformation()?->isVictimOfViolence()) {
+        if ($complaint->getFacts()?->isVictimOfViolence()) {
             foreach ($supervisors as $supervisor) {
                 $this->userRepository->save(
                     $supervisor->addNotification($this->notificationFactory->createForComplaintWithViolence($complaint))

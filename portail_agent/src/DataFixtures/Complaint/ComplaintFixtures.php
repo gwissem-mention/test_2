@@ -249,6 +249,8 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
             )
             ->setFacts(
                 (new Facts())
+                    ->setVictimOfViolence(true)
+                    ->setVictimOfViolenceText("J'ai été victime de violences")
                     ->setNatures([Facts::NATURE_ROBBERY, Facts::NATURE_DEGRADATION])
                     ->setDescription('Le vol à eu lieu à mon domicile')
                     ->setExactDateKnown(true)
@@ -317,7 +319,6 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                     ->setWitnessesPresentText('Paul DUPONT')
                     ->setFsiVisit(true)
                     ->setObservationMade(true)
-                    ->setVictimOfViolence(true)
             )
             ->addComment(
                 (new Comment())
