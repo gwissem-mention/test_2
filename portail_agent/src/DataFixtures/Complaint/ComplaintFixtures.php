@@ -208,7 +208,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
         return (new Complaint())
             ->setTest(true)
             ->setCreatedAt(new \DateTimeImmutable('2022-12-01'))
-            ->setAppointmentDate(new \DateTimeImmutable('2022-12-03'))
+            ->setAppointmentContactInformation('Disponible entre 10h et 12h le lundi')
             ->setStatus(Complaint::STATUS_ASSIGNMENT_PENDING)
             ->setOptinNotification(true)
             ->setAlert('Alert de test trop longue')

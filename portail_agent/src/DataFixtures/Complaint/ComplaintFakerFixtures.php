@@ -135,7 +135,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
             $complaint = (new Complaint())
                 ->setTest(true)
                 ->setCreatedAt($complaintDate)
-                ->setAppointmentDate($complaintDate->add(new \DateInterval('P1D')))
+                ->setAppointmentContactInformation('Disponible entre 10h et 12h le lundi')
                 ->setStatus($status)
                 ->setOptinNotification($this->faker->boolean)
                 ->setAlert($this->faker->randomElement([Complaint::ALERT_TSP, Complaint::ALERT_REGISTERED_VEHICLE, true === $victimOfViolence ? Complaint::ALERT_VIOLENCE : null, null]))
