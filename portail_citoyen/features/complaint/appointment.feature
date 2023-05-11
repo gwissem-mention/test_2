@@ -91,7 +91,7 @@ Feature:
     Scenario: I should see error if I valid with no filling the appointment textarea when I am not france connected
         Given I am on "/authentification"
         When I follow "no_france_connect_auth_button"
-        And I follow "Je confirme"
+        And I follow "no_france_connect_auth_button_confirm"
         Then I should be on "/porter-plainte/statut-declarant"
         And I click the "label[for=declarant_status_declarantStatus_0]" element
         And I press "declarant_status_submit"

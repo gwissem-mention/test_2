@@ -31,7 +31,7 @@ Feature:
             | pel.you.dont.know.offense.author                          |
             | pel.you.are.major                                         |
             | pel.you.are.victim.or.representative                      |
-            | pel.fill.a.complaint.confirm                              |
+            | pel.i.confirm                              |
             | pel.fsi.general.orienteer.criteria                        |
 
     @func

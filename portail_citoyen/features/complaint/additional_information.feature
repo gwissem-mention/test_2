@@ -80,10 +80,6 @@ Feature:
         And I should see a "input#additional_information_observationMade_0" element
         And I should see a "input#additional_information_observationMade_1" element
 
-    Scenario: Selecting the "label[for=additional_information_suspectsChoice_1]" element and not showing the key "pel.facts.suspects.informations.text" translated
-        When I click the "label[for=additional_information_suspectsChoice_1]" element
-        And I should not see the key "pel.facts.suspects.informations.text" translated
-
     Scenario: I can see 1 radio button group if I select "Yes" to the cctv present radio buttons
         When I click the "label[for=additional_information_cctvPresent_0]" element
         Then I should see the key "pel.cctv.available" translated

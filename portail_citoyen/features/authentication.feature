@@ -17,7 +17,7 @@ Feature:
         And I should see the key "pel.continue.pel.without.log.in" translated
         And I should see the key "pel.continue.pel.without.log.in.explanation" translated
         And I follow "no_france_connect_auth_button"
-        And I follow "Je confirme"
+        And I follow "no_france_connect_auth_button_confirm"
         Then I should be on "/porter-plainte/statut-declarant"
 
     @javascript
@@ -40,7 +40,7 @@ Feature:
     Scenario: I should be redirected on "/porter-plainte/identite" with no FranceConnect auth
         Given I am on "/authentification"
         When I follow "no_france_connect_auth_button"
-        And I follow "Je confirme"
+        And I follow "no_france_connect_auth_button_confirm"
         Then I should be on "/porter-plainte/statut-declarant"
         And I click the "label[for=declarant_status_declarantStatus_0]" element
         And I press "declarant_status_submit"
