@@ -602,10 +602,6 @@
                 <source>pel.fill.a.complaint</source>
                 <target>Je continue</target>
             </trans-unit>
-            <trans-unit id="pel.fill.a.complaint.confirm">
-                <source>pel.fill.a.complaint.confirm</source>
-                <target>Je confirme</target>
-            </trans-unit>
             <trans-unit id="pel.files">
                 <source>pel.files</source>
                 <target>Fichiers</target>
@@ -792,7 +788,15 @@
             </trans-unit>
             <trans-unit id="pel.i.authenticate.with.france.connect">
                 <source>pel.i.authenticate.with.france.connect</source>
-                <target>Je m'authentifie via FranceConnect</target>
+                <target>Annuler</target>
+            </trans-unit>
+            <trans-unit id="pel.i.authenticate.with.france.connect.title">
+                <source>pel.i.authenticate.with.france.connect.title</source>
+                <target>revenir sur l'écran de connexion</target>
+            </trans-unit>
+            <trans-unit id="pel.i.understood">
+                <source>pel.i.understood</source>
+                <target>J'ai compris</target>
             </trans-unit>
             <trans-unit id="pel.if.accident.ongoing">
                 <source>pel.if.accident.ongoing</source>
@@ -964,15 +968,11 @@
             </trans-unit>
             <trans-unit id="pel.no.france.connect.modal.body.1">
                 <source>pel.no.france.connect.modal.body.1</source>
-                <target>En l’absence d’identification par FranceConnect, vous devrez vous rendre dans un commissariat ou une unité de gendarmerie pour finaliser votre dépôt de plainte.</target>
-            </trans-unit>
-            <trans-unit id="pel.no.france.connect.modal.body.2">
-                <source>pel.no.france.connect.modal.body.2</source>
-                <target>Nous vous invitons cependant à poursuivre votre démarche même si vous n’êtes pas en mesure d’utiliser FranceConnect. Cela facilitera la suite de votre démarche et vous fera gagner du temps au moment de votre rendez-vous.</target>
+                <target>En choisissant de ne pas vous authentifier avec FranceConnect, vous comprenez qu'un rendez-vous physique sera à planifier en fin de déclaration dans le commissariat de police ou à la gendarmerie de votre choix.</target>
             </trans-unit>
             <trans-unit id="pel.no.france.connect.modal.title">
                 <source>pel.no.france.connect.modal.title</source>
-                <target>Vous allez poursuivre votre dépôt de plainte sans FranceConnect</target>
+                <target>Sans FranceConnect, votre plainte en ligne va nécessiter un rendez-vous physique</target>
             </trans-unit>
             <trans-unit id="pel.note">
                 <source>pel.note</source>

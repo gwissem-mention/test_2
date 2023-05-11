@@ -7,7 +7,7 @@ Feature:
     Background:
         Given I am on "/authentification"
         And I follow "no_france_connect_auth_button"
-        And I follow "Je confirme"
+        And I follow "no_france_connect_auth_button_confirm"
         Then I should be on "/porter-plainte/statut-declarant"
         And I click the "label[for=declarant_status_declarantStatus_1]" element
         And I press "declarant_status_submit"

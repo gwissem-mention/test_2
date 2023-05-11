@@ -1,29 +1,26 @@
 {% extends 'common/_home.html.twig' %}
 
 {% block content %}
-	{% embed "common/_modal.html.twig" with {'id':'complaint-confirm', 'size':'md'} %}
+	{% embed "common/_modal.html.twig" with {'id':'complaint-confirm', 'className': 'fr-pr-7v fr-pl-7v fr-pr-md-0 fr-pl-md-0', 'footerClassName': 'border-solid border-0 border-t border-t-[#dddddd] md:border-t-0'} %}
 		{% block title %}
-			{{ 'pel.no.france.connect.modal.title'|trans }}
+		
+			<div class="flex gap-x-2 md:items-center fr-mb-4v">
+				<span class="fr-fi-arrow-right-line fr-fi--lg" aria-hidden="true"></span>
+				<h4 class="text-2xl fr-mb-0">{{ 'pel.no.france.connect.modal.title'|trans }}</h4>
+			</div>
 		{% endblock %}
 		{% block body %}
-			<p>
-				{{ 'pel.no.france.connect.modal.body.1'|trans }}
-			</p>
-			<p>
-				{{ 'pel.no.france.connect.modal.body.2'|trans }}
-			</p>
+			{{ 'pel.no.france.connect.modal.body.1'|trans }}
 		{% endblock %}
 		{% block footer %}
 			<ul class="fr-btns-group fr-btns-group--right fr-btns-group--inline-reverse fr-btns-group--inline-lg fr-btns-group--icon-left">
 				<li>
-					<a href="{{ path('authentication', {'france_connected': false}) }}" class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line">
-						{{ 'pel.i.confirm'|trans }}
+					<a href="{{ path('authentication', {'france_connected': false}) }}" class="fr-btn" id="no_france_connect_auth_button_confirm">
+						{{ 'pel.i.understood'|trans }}
 					</a>
 				</li>
 				<li>
-					<a href="{{ path('authentication', {'france_connected': true}) }}" class="fr-btn fr-btn--secondary">
-						{{ 'pel.i.authenticate.with.france.connect'|trans }}
-					</a>
+					<button class="fr-btn fr-btn--secondary" aria-controls="fr-modal-complaint-confirm" data-fr-js-modal-button="true" title="{{ 'pel.i.authenticate.with.france.connect.title'|trans }}">{{ 'pel.i.authenticate.with.france.connect'|trans }}</button>
 				</li>
 			</ul>
 		{% endblock %}
@@ -51,7 +48,7 @@
 					</div>
 				{% endif %}
 			</div>
-			<div class="france-connect__without fr-pt-8v fr-mr-2v fr-pt-md-15v fr-mr-md-0  border-solid border-0 border-t border-t-[#dddddd]">
+			<div class="france-connect__without fr-pt-8v fr-mr-2v fr-pt-md-15v fr-mr-md-0 border-solid border-0 border-t border-t-[#dddddd]">
 				<h4 class="fr-mb-2v fr-mb-md-4v md:text-[28px]/[36px]">{{ 'pel.or.continue.pel.without.log.in'|trans }}</h4>
 				<p class="fr-text md:text-lg fr-mb-2v fr-mb-md-5v">{{ 'pel.continue.pel.without.log.in.explanation'|trans|raw }}</p>
 			</div>
