@@ -55,6 +55,12 @@ services:
       - ./portail_citoyen/docker/php/conf.d/symfony.dev.ini:/usr/local/etc/php/conf.d/symfony.ini
     environment:
       APP_ENV: dev
+    deploy: # We need this for a fresh install
+        resources:
+            limits:
+                memory: 1G
+            reservations:
+                memory: 1G
 
   php-agent:
     volumes:
