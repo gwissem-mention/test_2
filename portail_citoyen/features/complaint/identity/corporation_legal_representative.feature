@@ -5,11 +5,12 @@ Feature:
     I want to see the corporation legal representative declarant form
 
     Background:
-        Given I am on "/porter-plainte/statut-declarant"
+        Given I am on "/authentification"
+        And I follow "no_france_connect_auth_button"
+        And I follow "Je confirme"
+        Then I should be on "/porter-plainte/statut-declarant"
         And I click the "label[for=declarant_status_declarantStatus_2]" element
         And I press "declarant_status_submit"
-        And I follow "Continuer sans m'authentifier"
-        And I follow "Je confirme"
         And I am on "/porter-plainte/identite"
 
     Scenario: I can select the Corporation Legal Representative radio button

@@ -7,7 +7,7 @@ Feature:
     Scenario: France Connect successful authentication
         Given my declarant status is 1
         When I go to "/authentification?france_connected=1"
-        Then I should be on "/porter-plainte/identite"
+        Then I should be on "/porter-plainte/statut-declarant"
         And I should be connected as "Michel DUPONT"
 
     Scenario: Error on access token retrieval

@@ -5,10 +5,11 @@ Feature:
     I want to see the appointment step form
 
     Background:
-        Given I am on "/porter-plainte/statut-declarant"
+        Given I am on "/authentification"
+        When I press "france_connect_auth_button"
+        Then I should be on "/porter-plainte/statut-declarant"
         And I click the "label[for=declarant_status_declarantStatus_0]" element
         And I press "declarant_status_submit"
-        And I press "france_connect_auth_button"
         Then I should be on "/porter-plainte/identite"
         Given I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
         And I fill in "contact-information-address" with "avenue de la république paris"
@@ -88,9 +89,12 @@ Feature:
         And I should see a "#form-errors-appointment_appointmentContactText" element
 
     Scenario: I should see error if I valid with no filling the appointment textarea when I am not france connected
-        Given I am on "authentification"
+        Given I am on "/authentification"
         When I follow "no_france_connect_auth_button"
         And I follow "Je confirme"
+        Then I should be on "/porter-plainte/statut-declarant"
+        And I click the "label[for=declarant_status_declarantStatus_0]" element
+        And I press "declarant_status_submit"
         Then I should be on "/porter-plainte/identite"
         When I select "1" from "identity_civilState_civility"
         And I fill in "identity_civilState_birthName" with "Dupont"
@@ -147,8 +151,7 @@ Feature:
         Given I am on "/porter-plainte/statut-declarant"
         And I click the "label[for=declarant_status_declarantStatus_1]" element
         When I press "declarant_status_submit"
-        Then I should be on "/authentification"
-        Given I am on "/porter-plainte/identite"
+        Then I should be on "/porter-plainte/identite"
         When I select "1" from "identity_representedPersonCivilState_civility"
         And I fill in "identity_representedPersonCivilState_birthName" with "Dupont"
         And I fill in "identity_representedPersonCivilState_firstnames" with "Jean Pierre Marie"
@@ -170,8 +173,7 @@ Feature:
         Given I am on "/porter-plainte/statut-declarant"
         And I click the "label[for=declarant_status_declarantStatus_2]" element
         When I press "declarant_status_submit"
-        Then I should be on "/authentification"
-        Given I am on "/porter-plainte/identite"
+        Then I should be on "/porter-plainte/identite"
         When I fill in "identity_corporation_siren" with "123456789"
         And I fill in "identity_corporation_name" with "Test Company"
         And I fill in "identity_corporation_function" with "Developer"

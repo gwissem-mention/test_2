@@ -412,11 +412,11 @@
             </trans-unit>
             <trans-unit id="pel.continue.pel.without.log.in">
                 <source>pel.continue.pel.without.log.in</source>
-                <target>Continuer sans m'authentifier</target>
+                <target>S'identifier manuellement</target>
             </trans-unit>
             <trans-unit id="pel.continue.pel.without.log.in.explanation">
                 <source>pel.continue.pel.without.log.in.explanation</source>
-                <target>Dans le cas où vous choisissez de ne pas vous authentifier avec France Connect, un RDV sera à planifier obligatoirement en fin de déclaration.</target>
+                <target>En choisissant de ne pas vous authentifier avec FranceConnect, <![CDATA[<strong>notez qu'un rendez-vous physique devra obligatoirement être planifié</strong>]]> à la fin de votre démarche.</target>
             </trans-unit>
             <trans-unit id="pel.could.you.confirm.complaint.validity">
                 <source>pel.could.you.confirm.complaint.validity</source>
@@ -1078,6 +1078,10 @@
                 <source>pel.online.complaint.process</source>
                 <target>Vous pouvez déclarer votre plainte. La démarche s'effectue en trois étapes :</target>
             </trans-unit>
+            <trans-unit id="pel.online.complaint.process.back">
+                <source>pel.online.complaint.process.back</source>
+                <target>retour vers le déroulé de la démarche</target>
+            </trans-unit>
             <trans-unit id="pel.only.integers.are.allowed">
                 <source>pel.only.integers.are.allowed</source>
                 <target>Seuls les chiffres sont autorisés.</target>
@@ -1260,7 +1264,11 @@
             </trans-unit>
             <trans-unit id="pel.to.log.in">
                 <source>pel.to.log.in</source>
-                <target>Se connecter</target>
+                <target>Identifiez-vous avec FranceConnect</target>
+            </trans-unit>
+            <trans-unit id="pel.to.log.in.badge">
+                <source>pel.to.log.in.badge</source>
+                <target>Recommandé</target>
             </trans-unit>
             <trans-unit id="pel.total">
                 <source>pel.total</source>
@@ -1468,7 +1476,7 @@
             </trans-unit>
             <trans-unit id="pel.when.using.france.connect.service.you.accept.terms">
                 <source>pel.when.using.france.connect.service.you.accept.terms</source>
-                <target>En utilisant le service France Connect, vous acceptez les conditions générales d'utilisation de</target>
+                <target><![CDATA[<strong>Accédez facilement au service Plainte en ligne</strong>]]> en utilisant un compte et un mot de passe que vous possédez déjà.</target>
             </trans-unit>
             <trans-unit id="pel.france.connect.terms">
                 <source>pel.france.connect.terms</source>
@@ -1476,7 +1484,7 @@
             </trans-unit>
             <trans-unit id="pel.or.continue.pel.without.log.in">
                 <source>pel.or.continue.pel.without.log.in</source>
-                <target>Ou continuer sans m'authentifier</target>
+                <target>Ou identifiez-vous manuellement</target>
             </trans-unit>
             <trans-unit id="pel.why.we.ask.me.to.be.france.connected">
                 <source>pel.why.we.ask.me.to.be.france.connected</source>

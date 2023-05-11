@@ -33,4 +33,4 @@ Feature:
     Scenario: Click on "Start" link
         Given I am on "/accueil-deroule"
         Then I follow "Déposer plainte"
-        And I should be on "/porter-plainte/statut-declarant"
+        And I should be on "/authentification"

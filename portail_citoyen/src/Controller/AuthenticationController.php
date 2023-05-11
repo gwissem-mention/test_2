@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Form\Model\Identity\DeclarantStatusModel;
 use App\Session\FranceConnectHandler;
 use App\Session\SessionHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,9 +19,7 @@ class AuthenticationController extends AbstractController
         SessionHandler $sessionHandler,
         FranceConnectHandler $franceConnectHandler,
     ): Response {
-        if (!$sessionHandler->getComplaint()?->getDeclarantStatus() instanceof DeclarantStatusModel) {
-            return $this->redirectToRoute('home');
-        }
+        $sessionHandler->init();
 
         if ($request->query->has('france_connected')) {
             if ('1' === $request->query->get('france_connected')) {
@@ -31,11 +28,9 @@ class AuthenticationController extends AbstractController
                 $franceConnectHandler->clear();
             }
 
-            return $this->redirectToRoute('complaint_identity');
+            return $this->redirectToRoute('complaint_declarant_status');
         }
 
-        return $this->render('pages/authentication.html.twig', [
-            'complaint' => $sessionHandler->getComplaint(),
-        ]);
+        return $this->render('pages/authentication.html.twig');
     }
 }
