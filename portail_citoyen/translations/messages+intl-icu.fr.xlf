@@ -974,6 +974,38 @@
                 <source>pel.no.france.connect.modal.title</source>
                 <target>Sans FranceConnect, votre plainte en ligne va nécessiter un rendez-vous physique</target>
             </trans-unit>
+            <trans-unit id="pel.not.found.welcome">
+                <source>pel.not.found.welcome</source>
+                <target>Accueil</target>
+            </trans-unit>
+            <trans-unit id="pel.not.found.can">
+                <source>pel.not.found.can</source>
+                <target>Vous pouvez</target>
+            </trans-unit>
+            <trans-unit id="pel.not.found.can.menu">
+                <source>pel.not.found.can.menu</source>
+                <target>ou reprendre votre navigation à l’aide du menu.</target>
+            </trans-unit>            
+            <trans-unit id="pel.not.found.can.sitemap.1">
+                <source>pel.not.found.can.sitemap.1</source>
+                <target>, utiliser le</target>
+            </trans-unit>
+            <trans-unit id="pel.not.found.can.sitemap.2">
+                <source>pel.not.found.can.sitemap.2</source>
+                <target>plan du site</target>
+            </trans-unit>
+            <trans-unit id="pel.not.found.can.welcome">
+                <source>pel.not.found.can.welcome</source>
+                <target>retourner à l’accueil</target>
+            </trans-unit>
+            <trans-unit id="pel.not.found.text">
+                <source>pel.not.found.text</source>
+                <target>Cette page n’existe pas ou n’a pas été trouvée :(</target>
+            </trans-unit>
+            <trans-unit id="pel.not.found.title">
+                <source>pel.not.found.title</source>
+                <target>Page non trouvée</target>
+            </trans-unit>
             <trans-unit id="pel.note">
                 <source>pel.note</source>
                 <target>Note</target>
@@ -1405,6 +1437,10 @@
             <trans-unit id="pel.complaint.create">
                 <source>pel.complaint.create</source>
                 <target>Déposer plainte</target>
+            </trans-unit>
+            <trans-unit id="pel.complaint.see.ariannes.here">
+                <source>pel.complaint.see.ariannes.thread</source>
+                <target>vous êtes ici :</target>
             </trans-unit>
             <trans-unit id="pel.complaint.see.ariannes.thread">
                 <source>pel.complaint.see.ariannes.thread</source>
