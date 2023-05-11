@@ -1,65 +1,70 @@
-{% extends 'layout.html.twig' %}
+{% extends 'common/_home.html.twig' %}
 
-{% block body %}
-    {% embed "common/_modal.html.twig" with {'id':'complaint-confirm', 'size':'md'} %}
-        {% block title %}
-            {{ 'pel.no.france.connect.modal.title'|trans }}
-        {% endblock %}
-        {% block body %}
-            <p>
-                {{ 'pel.no.france.connect.modal.body.1'|trans }}
-            </p>
-            <p>
-                {{ 'pel.no.france.connect.modal.body.2'|trans }}
-            </p>
-        {% endblock %}
-        {% block footer %}
-            <ul class="fr-btns-group fr-btns-group--right fr-btns-group--inline-reverse fr-btns-group--inline-lg fr-btns-group--icon-left">
-                <li>
-                    <a href="{{ path('authentication', {'france_connected': false}) }}" class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line">
-                        {{ 'pel.i.confirm'|trans }}
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ path('authentication', {'france_connected': true}) }}" class="fr-btn fr-btn--secondary">
-                        {{ 'pel.i.authenticate.with.france.connect'|trans }}
-                    </a>
-                </li>
-            </ul>
-        {% endblock %}
-    {% endembed %}
-    <div class="fr-container container">
-        <h1>{{ 'pel.complaint.my.declaration'|trans }}</h1>
-        {% include 'common/_complaint_nav.html.twig' with {'active':'identity'} %}
-        <div class="wrapper--complaint">
-            <div class="accordion__item__title" id="identity_accordion_title">
-                <span class="fr-icon-arrow-down-s-line"></span>
-                {{ 'pel.complaint.your.identity'|trans }}
-            </div>
-            <div class="accordion__item__content" id="identity_accordion_content">
-                <div class="france-connect">
-                    <h2>{{ 'pel.to.log.in'|trans }}</h2>
-                    {% if app.user is null %}
-                        <div class="france-connect__group">
-                            <button class="fr-connect" id="france_connect_auth_button" onclick="window.location='{{ path('authentication', {'france_connected': true}) }}';">
-                                <span class="fr-connect__login">{{ 'pel.identify.with'|trans }}</span>
-                                <span class="fr-connect__brand">{{ 'pel.france.connect'|trans }}</span>
-                            </button>
-                            <p>
-                                <a href="https://franceconnect.gouv.fr/" target="_blank" rel="noopener" title="{{ 'pel.what.is.france.connect'|trans }} - {{ 'pel.new.window'|trans }}">{{ 'pel.what.is.france.connect'|trans }}</a>
-                            </p>
-                            <p class="france-connect__small">
-                                {{ 'pel.when.using.france.connect.service.you.accept.terms'|trans }} <a href="https://franceconnect.gouv.fr/cgu" target="_blank" rel="noopener" title="{{ 'pel.france.connect.terms'|trans }}">{{ 'pel.france.connect'|trans }}</a>
-                            </p>
-                        </div>
-                    {% endif %}
-                    <h3>{{ 'pel.or.continue.pel.without.log.in'|trans }}</h3>
-                    <p class="fr-text-center">
-                        <a href="#" data-fr-opened="false" aria-controls="fr-modal-complaint-confirm" id="no_france_connect_auth_button">{{ 'pel.continue.pel.without.log.in'|trans }}</a>
-                    </p>
-                    <p>{{ 'pel.continue.pel.without.log.in.explanation'|trans }}</p>
-                </div>
-            </div>
-        </div>
-    </div>
-{% endblock %}
+{% block content %}
+	{% embed "common/_modal.html.twig" with {'id':'complaint-confirm', 'size':'md'} %}
+		{% block title %}
+			{{ 'pel.no.france.connect.modal.title'|trans }}
+		{% endblock %}
+		{% block body %}
+			<p>
+				{{ 'pel.no.france.connect.modal.body.1'|trans }}
+			</p>
+			<p>
+				{{ 'pel.no.france.connect.modal.body.2'|trans }}
+			</p>
+		{% endblock %}
+		{% block footer %}
+			<ul class="fr-btns-group fr-btns-group--right fr-btns-group--inline-reverse fr-btns-group--inline-lg fr-btns-group--icon-left">
+				<li>
+					<a href="{{ path('authentication', {'france_connected': false}) }}" class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line">
+						{{ 'pel.i.confirm'|trans }}
+					</a>
+				</li>
+				<li>
+					<a href="{{ path('authentication', {'france_connected': true}) }}" class="fr-btn fr-btn--secondary">
+						{{ 'pel.i.authenticate.with.france.connect'|trans }}
+					</a>
+				</li>
+			</ul>
+		{% endblock %}
+	{% endembed %}
+	<div class="fr-grid-row fr-grid-row--center fr-col-12 fr-col-md-6 fr-pt-10v fr-pr-3v fr-pb-12v fr-pl-6v fr-pt-md-20v fr-pr-md-0 fr-pb-md-20v fr-pl-md-11v fr-ml-md-11v">
+		<div class="fr-grid-row fr-col-md-12">
+			<div class="france-connect fr-mr-2v fr-pb-2v fr-mr-md-0 fr-pb-md-9v">
+				<div class="flex flex-wrap items-center gap-x-6 gap-y-2 fr-mb-4v md:flex-nowrap">
+					<h4 class="fr-mb-0 md:text-[28px]/[36px]">{{ 'pel.to.log.in'|trans }}</h4>
+					<p class="fr-badge fr-badge--new fr-badge--no-icon text-xs/5 min-h-fit md:text-sm/6">{{ 'pel.to.log.in.badge'|trans }}</p>
+				</div>
+				<p class="fr-text md:text-lg fr-mb-md-10v">
+					{{ 'pel.when.using.france.connect.service.you.accept.terms'|trans|raw }}
+				</p>
+				{% if app.user is null %}
+					<div class="france-connect__group">
+						<button class="fr-connect" id="france_connect_auth_button" onclick="window.location='{{ path('authentication', {'france_connected': true}) }}';">
+							<span class="fr-connect__login">{{ 'pel.identify.with'|trans }}</span>
+							<span class="fr-connect__brand">{{ 'pel.france.connect'|trans }}</span>
+						</button>
+						<p>
+							<a href="https://franceconnect.gouv.fr/" class="fr-text--sm fr-text-title--blue-france" target="_blank" rel="noopener" title="{{ 'pel.what.is.france.connect'|trans }} - {{ 'pel.new.window'|trans }}">{{ 'pel.what.is.france.connect'|trans }}</a>
+						</p>
+
+					</div>
+				{% endif %}
+			</div>
+			<div class="france-connect__without fr-pt-8v fr-mr-2v fr-pt-md-15v fr-mr-md-0  border-solid border-0 border-t border-t-[#dddddd]">
+				<h4 class="fr-mb-2v fr-mb-md-4v md:text-[28px]/[36px]">{{ 'pel.or.continue.pel.without.log.in'|trans }}</h4>
+				<p class="fr-text md:text-lg fr-mb-2v fr-mb-md-5v">{{ 'pel.continue.pel.without.log.in.explanation'|trans|raw }}</p>
+			</div>
+		</div>
+		<div class="fr-col-12 fr-grid-row gap-x-4 items-start">
+			<div class="fr-text-center fr-mt-4v fr-mt-md-3v">
+				<a href="{{ path('home_unfolding') }}" class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-arrow-left-line py-3 pr-[5px] pl-[13px] before:content-[''] before:w-6 before:h-6" title="{{ 'pel.online.complaint.process.back'|trans }}"></a>
+			</div>
+			<div class="fr-text-center fr-mt-4v fr-mt-md-3v">
+				<a href="#" class="fr-btn fr-btn--secondary fr-text--lg fr-pr-6v fr-pl-6v py-2.5 after:w-6 after:h-6" data-fr-opened="false" aria-controls="fr-modal-complaint-confirm" id="no_france_connect_auth_button">
+					{{ 'pel.continue.pel.without.log.in'|trans }}
+				</a>
+			</div>
+		</div>
+	</div>
+</div>{% endblock %}

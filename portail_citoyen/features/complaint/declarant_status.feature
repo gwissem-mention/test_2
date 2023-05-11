@@ -36,4 +36,4 @@ Feature:
         Given I am on "/porter-plainte/statut-declarant"
         When I click the "label[for=declarant_status_declarantStatus_0]" element
         And I press "declarant_status_submit"
-        Then I should be on "/authentification"
+        Then I should be on "/porter-plainte/identite"

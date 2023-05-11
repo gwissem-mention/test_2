@@ -5,11 +5,12 @@ Feature:
     I want to see the victim declarant form
 
     Background:
-        Given I am on "/porter-plainte/statut-declarant"
+        Given I am on "/authentification"
+        And I follow "no_france_connect_auth_button"
+        And I follow "Je confirme"
+        Then I should be on "/porter-plainte/statut-declarant"
         And I click the "label[for=declarant_status_declarantStatus_0]" element
         And I press "declarant_status_submit"
-        And I follow "Continuer sans m'authentifier"
-        And I follow "Je confirme"
         And I am on "/porter-plainte/identite"
 
     Scenario: I can see the fields for Victim
@@ -202,10 +203,11 @@ Feature:
         And I should see a "#form-errors-identity_contactInformation_phone_number" element
 
     Scenario: I fill the identity form as france connected, when I go back, the identity data should be saved
-        Given I am on "/porter-plainte/statut-declarant"
+        Given I am on "/authentification"
+        When I press "france_connect_auth_button"
+        Then I should be on "/porter-plainte/statut-declarant"
         And I click the "label[for=declarant_status_declarantStatus_0]" element
         And I press "declarant_status_submit"
-        And I press "france_connect_auth_button"
         And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
         And I fill in "contact-information-address" with "avenue de la république paris"
         And I click the "#contact-information-address-75111_8158" element

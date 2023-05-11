@@ -5,10 +5,11 @@ Feature:
 
     @javascript
     Scenario: Submit the facts form as a person legal logged in with France Connect
-        Given I am on "/porter-plainte/statut-declarant"
+        Given I am on "/authentification"
+        When I press "france_connect_auth_button"
+        Then I should be on "/porter-plainte/statut-declarant"
         And I click the "label[for=declarant_status_declarantStatus_1]" element
         And I press "declarant_status_submit"
-        And I press "france_connect_auth_button"
         Then I should be on "/porter-plainte/identite"
         And I should see the key "pel.information.transmitted.by.france.connect" translated
         And I should see the key "pel.these.informations.has.been.transmitted.by.france.connect" translated

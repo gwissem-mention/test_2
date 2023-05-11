@@ -55,6 +55,6 @@ class DeclarantStatusComponent extends AbstractController
             return $this->redirectToRoute('complaint_summary');
         }
 
-        return $this->redirectToRoute('authentication');
+        return $this->redirectToRoute('complaint_identity');
     }
 }
