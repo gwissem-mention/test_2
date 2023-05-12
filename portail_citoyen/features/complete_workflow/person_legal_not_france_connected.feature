@@ -1,7 +1,7 @@
 Feature:
     In order to fill a complaint
     As a user
-    I don't want to authenticate with France Connect, fill in identity step, facts step and see the recap
+    I don’t want to authenticate with France Connect, fill in identity step, facts step and see the recap
 
     @javascript
     Scenario: Submit the facts form as a person legal not logged in with France Connect

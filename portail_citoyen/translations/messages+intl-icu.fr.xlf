@@ -72,7 +72,7 @@
             </trans-unit>
             <trans-unit id="pel.amount.for.group">
                 <source>pel.amount.for.group</source>
-                <target>Montant estimé pour le groupe d'objets :</target>
+                <target>Montant estimé pour le groupe d’objets :</target>
             </trans-unit>
             <trans-unit id="pel.a.public.service.on.internet">
                 <source>pel.a.public.service.on.internet</source>
@@ -112,7 +112,7 @@
             </trans-unit>
             <trans-unit id="pel.additional.place.information.help">
                 <source>pel.additional.place.information.help</source>
-                <target>Vous pouvez indiquer ici des informations complémentaires qui vous semblent pertinentes ou des éléments d'étapes sur votre trajet</target>
+                <target>Vous pouvez indiquer ici des informations complémentaires qui vous semblent pertinentes ou des éléments d’étapes sur votre trajet</target>
             </trans-unit>
             <trans-unit id="pel.address">
                 <source>pel.address</source>
@@ -124,7 +124,7 @@
             </trans-unit>
             <trans-unit id="pel.address.end">
                 <source>pel.address.end</source>
-                <target>Adresse d'arrivée</target>
+                <target>Adresse d’arrivée</target>
             </trans-unit>
             <trans-unit id="pel.address.end.help">
                 <source>pel.address.end.help</source>
@@ -132,7 +132,7 @@
             </trans-unit>
             <trans-unit id="pel.address.or.route.facts">
                 <source>pel.address.or.route.facts</source>
-                <target>Connaissez vous l'adresse exacte ou le trajet sur lequel se sont déroulés les faits ?</target>
+                <target>Connaissez vous l’adresse exacte ou le trajet sur lequel se sont déroulés les faits ?</target>
             </trans-unit>
             <trans-unit id="pel.address.start.or.exact">
                 <source>pel.address.start.or.exact</source>
@@ -140,7 +140,7 @@
             </trans-unit>
             <trans-unit id="pel.address.start.or.exact.help">
                 <source>pel.address.start.or.exact.help</source>
-                <target>En cas d'adresse exacte, merci de renseigner uniquement ce champ, ou dans le cas d'un trajet l'adresse de départ</target>
+                <target>En cas d’adresse exacte, merci de renseigner uniquement ce champ, ou dans le cas d’un trajet l’adresse de départ</target>
             </trans-unit>
             <trans-unit id="pel.and">
                 <source>pel.and</source>
@@ -188,7 +188,7 @@
             </trans-unit>
             <trans-unit id="pel.back.to.homepage">
                  <source>pel.back.to.homepage</source>
-                 <target>Retour à l'accueil</target>
+                 <target>Retour à l’accueil</target>
              </trans-unit>
             <trans-unit id="pel.bank.account.number">
                 <source>pel.bank.account.number</source>
@@ -252,7 +252,7 @@
             </trans-unit>
             <trans-unit id="pel.check.our.faq">
                 <source>pel.check.our.faq</source>
-                <target>J'ai un doute sur mon cas</target>
+                <target>J’ai un doute sur mon cas</target>
             </trans-unit>
             <trans-unit id="pel.cctv.available">
                 <source>pel.cctv.available</source>
@@ -304,7 +304,7 @@
             </trans-unit>
             <trans-unit id="pel.complaint.continuation.offense.author.known">
                 <source>pel.complaint.continuation.offense.author.known</source>
-                <target>Connaissez-vous l'identité de l'auteur de l'infraction ?</target>
+                <target>Connaissez-vous l’identité de l’auteur de l’infraction ?</target>
             </trans-unit>
             <trans-unit id="pel.complaint.exact.date.known">
                 <source>pel.complaint.exact.date.known</source>
@@ -320,7 +320,7 @@
             </trans-unit>
             <trans-unit id="pel.complaint.identity.corporation.legal.representative">
                 <source>pel.complaint.identity.corporation.legal.representative</source>
-                <target>Représentant légal d'une personne morale</target>
+                <target>Représentant légal d’une personne morale</target>
             </trans-unit>
             <trans-unit id="pel.complaint.identity.declarant.status">
                 <source>pel.complaint.identity.declarant.status</source>
@@ -328,7 +328,7 @@
             </trans-unit>
             <trans-unit id="pel.complaint.identity.person.legal.representative">
                 <source>pel.complaint.identity.person.legal.representative</source>
-                <target>Représentant légal d'une personne physique</target>
+                <target>Représentant légal d’une personne physique</target>
             </trans-unit>
             <trans-unit id="pel.complaint.identity.victim">
                 <source>pel.complaint.identity.victim</source>
@@ -336,7 +336,7 @@
             </trans-unit>
             <trans-unit id="pel.complaint.location">
                 <source>pel.complaint.location</source>
-                <target>Lieu de l'infraction</target>
+                <target>Lieu de l’infraction</target>
             </trans-unit>
             <trans-unit id="pel.complaint.nature.of.the.facts">
                 <source>pel.complaint.nature.of.the.facts</source>
@@ -352,7 +352,7 @@
             </trans-unit>
             <trans-unit id="pel.complaint.offense.nature.other.aab.text">
                 <source>pel.complaint.offense.nature.other.aab.text</source>
-                <target>Préciser le type d'infraction</target>
+                <target>Préciser le type d’infraction</target>
             </trans-unit>
             <trans-unit id="pel.complaint.offense.nature.robbery">
                 <source>pel.complaint.offense.nature.robbery</source>
@@ -360,7 +360,7 @@
             </trans-unit>
             <trans-unit id="pel.complaint.offense.nature.technical.police.visit">
                 <source>pel.complaint.offense.nature.technical.police.visit</source>
-                <target>La police technique et scientifique est-elle intervenue sur les lieux de l'infraction ?</target>
+                <target>La police technique et scientifique est-elle intervenue sur les lieux de l’infraction ?</target>
             </trans-unit>
             <trans-unit id="pel.complaint.offense.nature.warning.text">
                 <source>pel.complaint.offense.nature.warning.text</source>
@@ -380,7 +380,7 @@
             </trans-unit>
             <trans-unit id="pel.corporation.email">
                 <source>pel.corporation.email</source>
-                <target>Adresse électronique professionnelle d'un point de contact de l'organisation</target>
+                <target>Adresse électronique professionnelle d’un point de contact de l’organisation</target>
             </trans-unit>
             <trans-unit id="pel.corporation.function">
                 <source>pel.corporation.function</source>
@@ -412,11 +412,11 @@
             </trans-unit>
             <trans-unit id="pel.continue.pel.without.log.in">
                 <source>pel.continue.pel.without.log.in</source>
-                <target>S'identifier manuellement</target>
+                <target>S’identifier manuellement</target>
             </trans-unit>
             <trans-unit id="pel.continue.pel.without.log.in.explanation">
                 <source>pel.continue.pel.without.log.in.explanation</source>
-                <target>En choisissant de ne pas vous authentifier avec FranceConnect, <![CDATA[<b>notez qu'un rendez-vous physique devra obligatoirement être planifié</b>]]> à la fin de votre démarche.</target>
+                <target>En choisissant de ne pas vous authentifier avec FranceConnect, <![CDATA[<b>notez qu’un rendez-vous physique devra obligatoirement être planifié</b>]]> à la fin de votre démarche.</target>
             </trans-unit>
             <trans-unit id="pel.could.you.confirm.complaint.validity">
                 <source>pel.could.you.confirm.complaint.validity</source>
@@ -496,11 +496,11 @@
             </trans-unit>
             <trans-unit id="pel.do.you.know.hour.facts">
                 <source>pel.do.you.know.hour.facts</source>
-                <target>Connaissez-vous l'heure des faits ?</target>
+                <target>Connaissez-vous l’heure des faits ?</target>
             </trans-unit>
             <trans-unit id="pel.dont.know.the.offense.author">
                 <source>pel.dont.know.the.offense.author</source>
-                <target>Ne pas connaître l'identité de l'auteur de l'infraction</target>
+                <target>Ne pas connaître l’identité de l’auteur de l’infraction</target>
             </trans-unit>
             <trans-unit id="pel.driving.license">
                 <source>pel.driving.license</source>
@@ -508,11 +508,11 @@
             </trans-unit>
             <trans-unit id="pel.dropzone.cancel.upload">
                 <source>pel.dropzone.cancel.upload</source>
-                <target>Annuler l'envoi</target>
+                <target>Annuler l’envoi</target>
             </trans-unit>
             <trans-unit id="pel.dropzone.cancel.upload.confirmation">
                 <source>pel.dropzone.cancel.upload.confirmation</source>
-                <target>Êtes-vous sûr de vouloir annuler l'envoi ?</target>
+                <target>Êtes-vous sûr de vouloir annuler l’envoi ?</target>
             </trans-unit>
             <trans-unit id="pel.dropzone.default.message">
                 <source>pel.dropzone.default.message</source>
@@ -528,7 +528,7 @@
             </trans-unit>
             <trans-unit id="pel.dropzone.max.files.exceeded">
                 <source>pel.dropzone.max.files.exceeded</source>
-                <target>Limite d'envois de fichiers simultanés atteinte</target>
+                <target>Limite d’envois de fichiers simultanés atteinte</target>
             </trans-unit>
             <trans-unit id="pel.dropzone.remove.file">
                 <source>pel.dropzone.remove.file</source>
@@ -544,7 +544,7 @@
             </trans-unit>
             <trans-unit id="pel.end.hour.is.invalid">
                 <source>pel.end.hour.is.invalid</source>
-                <target>L'heure de fin est invalide</target>
+                <target>L’heure de fin est invalide</target>
             </trans-unit>
             <trans-unit id="pel.end.thanks">
                 <source>pel.end.thanks</source>
@@ -696,7 +696,7 @@
             </trans-unit>
             <trans-unit id="pel.header.baseline">
                 <source>pel.header.baseline</source>
-                <target>Portail officiel de déclaration de plainte pour des faits d'atteinte aux biens</target>
+                <target>Portail officiel de déclaration de plainte pour des faits d’atteinte aux biens</target>
             </trans-unit>
             <trans-unit id="pel.header.menu">
                 <source>pel.header.menu</source>
@@ -704,7 +704,7 @@
             </trans-unit>
             <trans-unit id="pel.header.help">
                 <source>pel.header.help</source>
-                <target>Centre d'aide</target>
+                <target>Centre d’aide</target>
             </trans-unit>
             <trans-unit id="pel.health.insurance.card">
                 <source>pel.health.insurance.card</source>
@@ -756,7 +756,7 @@
             </trans-unit>
             <trans-unit id="pel.i.am.inform.of.article.434.26">
                 <source>pel.i.am.inform.of.article.434.26</source>
-                <target>Je suis informé(e) que l'article 434-26 du code pénal prévoit que le fait de dénoncer mensongèrement à l'autorité judiciaire ou administrative des faits consécutifs d'un crime ou d'un délit qui ont exposé les autorités de police ou judiciaires à d'inutiles recherches est puni de 6 mois d'emprisonnement et de 7500.00€ d'amende. Informations sur les fausses déclarations (art8-2-6CPP/art434-26CP)</target>
+                <target>Je suis informé(e) que l’article 434-26 du code pénal prévoit que le fait de dénoncer mensongèrement à l’autorité judiciaire ou administrative des faits consécutifs d’un crime ou d’un délit qui ont exposé les autorités de police ou judiciaires à d’inutiles recherches est puni de 6 mois d’emprisonnement et de 7500.00€ d’amende. Informations sur les fausses déclarations (art8-2-6CPP/art434-26CP)</target>
             </trans-unit>
             <trans-unit id="pel.i.am.the.owner.of.this.document">
                 <source>pel.i.am.the.owner.of.this.document</source>
@@ -764,7 +764,7 @@
             </trans-unit>
             <trans-unit id="pel.i.consent.use.of.data.for.fsi">
                 <source>pel.i.consent.use.of.data.for.fsi</source>
-                <target>En validant ma déclaration, je consens à l'utilisation et à la transmission des informations précédemment renseignées par les Forces de l'ordre et tout autre organisme impliqué dans le traitement de ma déclaration</target>
+                <target>En validant ma déclaration, je consens à l’utilisation et à la transmission des informations précédemment renseignées par les Forces de l’ordre et tout autre organisme impliqué dans le traitement de ma déclaration</target>
             </trans-unit>
             <trans-unit id="pel.identify.with">
                 <source>pel.identify.with</source>
@@ -772,7 +772,7 @@
             </trans-unit>
             <trans-unit id="pel.id.card">
                 <source>pel.id.card</source>
-                <target>Carte d'identité</target>
+                <target>Carte d’identité</target>
             </trans-unit>
             <trans-unit id="pel.i.confirm">
                 <source>pel.i.confirm</source>
@@ -780,7 +780,7 @@
             </trans-unit>
             <trans-unit id="pel.i.confirm.declaration.is.complete">
                 <source>pel.i.confirm.declaration.is.complete</source>
-                <target>Je confirme que ma déclaration est bien complète et confirme l'exactitude des informations fournies dans la déclaration</target>
+                <target>Je confirme que ma déclaration est bien complète et confirme l’exactitude des informations fournies dans la déclaration</target>
             </trans-unit>
             <trans-unit id="pel.i.dont.know">
                 <source>pel.i.dont.know</source>
@@ -792,15 +792,15 @@
             </trans-unit>
             <trans-unit id="pel.i.authenticate.with.france.connect.title">
                 <source>pel.i.authenticate.with.france.connect.title</source>
-                <target>revenir sur l'écran de connexion</target>
+                <target>revenir sur l’écran de connexion</target>
             </trans-unit>
             <trans-unit id="pel.i.understood">
                 <source>pel.i.understood</source>
-                <target>J'ai compris</target>
+                <target>J’ai compris</target>
             </trans-unit>
             <trans-unit id="pel.if.accident.ongoing">
                 <source>pel.if.accident.ongoing</source>
-                <target>Si l'incident est en cours</target>
+                <target>Si l’incident est en cours</target>
             </trans-unit>
             <trans-unit id="pel.if.suspect.still.present">
                 <source>pel.if.suspect.still.present</source>
@@ -824,19 +824,19 @@
             </trans-unit>
             <trans-unit id="pel.infraction.type">
                 <source>pel.infraction.type</source>
-                <target>Type d'infraction</target>
+                <target>Type d’infraction</target>
             </trans-unit>
             <trans-unit id="pel.inside">
                 <source>pel.inside</source>
-                <target>de l'intérieur</target>
+                <target>de l’intérieur</target>
             </trans-unit>
             <trans-unit id="pel.insurance.company">
                 <source>pel.insurance.company</source>
-                <target>Compagnie d'assurance</target>
+                <target>Compagnie d’assurance</target>
             </trans-unit>
             <trans-unit id="pel.insurance.number">
                 <source>pel.insurance.number</source>
-                <target>N° de police d'assurance</target>
+                <target>N° de police d’assurance</target>
             </trans-unit>
             <trans-unit id="pel.is.amount.known">
                 <source>pel.is.amount.known</source>
@@ -864,7 +864,7 @@
             </trans-unit>
             <trans-unit id="pel.law.informations">
                 <source>pel.law.informations</source>
-                <target>Conformément à la loi 78-17 du 6 janvier 1978 modifiée relative à l’informatique, aux fichiers et aux libertés, vous disposez d’un droit d’accès et de rectification aux informations. Vous pouvez exercer ce droit auprès de l'unité de gendarmerie ou du service de police où vous irez signer votre plainte.</target>
+                <target>Conformément à la loi 78-17 du 6 janvier 1978 modifiée relative à l’informatique, aux fichiers et aux libertés, vous disposez d’un droit d’accès et de rectification aux informations. Vous pouvez exercer ce droit auprès de l’unité de gendarmerie ou du service de police où vous irez signer votre plainte.</target>
             </trans-unit>
             <trans-unit id="pel.m">
                 <source>pel.m</source>
@@ -960,7 +960,7 @@
             </trans-unit>
             <trans-unit id="pel.no.but.i.don.t.know.at.all.the.time.of.facts">
                 <source>pel.no.but.i.don.t.know.at.all.the.time.of.facts</source>
-                <target>Je ne connais pas l'heure des faits</target>
+                <target>Je ne connais pas l’heure des faits</target>
             </trans-unit>
             <trans-unit id="pel.no.but.you.know.the.time.slot">
                 <source>pel.no.but.you.know.the.time.slot</source>
@@ -968,7 +968,7 @@
             </trans-unit>
             <trans-unit id="pel.no.france.connect.modal.body.1">
                 <source>pel.no.france.connect.modal.body.1</source>
-                <target>En choisissant de ne pas vous authentifier avec FranceConnect, vous comprenez qu'un rendez-vous physique sera à planifier en fin de déclaration dans le commissariat de police ou à la gendarmerie de votre choix.</target>
+                <target>En choisissant de ne pas vous authentifier avec FranceConnect, vous comprenez qu’un rendez-vous physique sera à planifier en fin de déclaration dans le commissariat de police ou à la gendarmerie de votre choix.</target>
             </trans-unit>
             <trans-unit id="pel.no.france.connect.modal.title">
                 <source>pel.no.france.connect.modal.title</source>
@@ -1020,11 +1020,11 @@
             </trans-unit>
             <trans-unit id="pel.object.category">
                 <source>pel.object.category</source>
-                <target>Catégorie d'objet</target>
+                <target>Catégorie d’objet</target>
             </trans-unit>
             <trans-unit id="pel.object.category.choose">
                 <source>pel.object.category.choose</source>
-                <target>Sélectionnez une catégorie d'objet</target>
+                <target>Sélectionnez une catégorie d’objet</target>
             </trans-unit>
             <trans-unit id="pel.object.document.type.choose">
                 <source>pel.object.document.type.choose</source>
@@ -1056,11 +1056,11 @@
             </trans-unit>
             <trans-unit id="pel.object.status">
                 <source>pel.object.status</source>
-                <target>Statut de l'objet</target>
+                <target>Statut de l’objet</target>
             </trans-unit>
             <trans-unit id="pel.object.status.choose">
                 <source>pel.object.status.choose</source>
-                <target>Choisissez le statut de l'objet</target>
+                <target>Choisissez le statut de l’objet</target>
             </trans-unit>
             <trans-unit id="pel.objects">
                 <source>pel.objects</source>
@@ -1092,11 +1092,11 @@
             </trans-unit>
             <trans-unit id="pel.of.infraction">
                 <source>pel.of.infraction</source>
-                <target>de l'infraction</target>
+                <target>de l’infraction</target>
             </trans-unit>
             <trans-unit id="pel.offense.context">
                 <source>pel.offense.context</source>
-                <target>Contexte de l'infraction</target>
+                <target>Contexte de l’infraction</target>
             </trans-unit>
             <trans-unit id="pel.of.the.penal.procedure">
                 <source>pel.of.the.penal.procedure</source>
@@ -1108,7 +1108,7 @@
             </trans-unit>
             <trans-unit id="pel.online.complaint.process">
                 <source>pel.online.complaint.process</source>
-                <target>Vous pouvez déclarer votre plainte. La démarche s'effectue en trois étapes :</target>
+                <target>Vous pouvez déclarer votre plainte. La démarche s’effectue en trois étapes :</target>
             </trans-unit>
             <trans-unit id="pel.online.complaint.process.back">
                 <source>pel.online.complaint.process.back</source>
@@ -1144,7 +1144,7 @@
             </trans-unit>
             <trans-unit id="pel.phone.is.invalid">
                 <source>pel.phone.is.invalid</source>
-                <target>Le numéro de téléphone n'est pas valide</target>
+                <target>Le numéro de téléphone n’est pas valide</target>
             </trans-unit>
             <trans-unit id="pel.phone.number.line">
                 <source>pel.phone.number.line</source>
@@ -1204,15 +1204,15 @@
             </trans-unit>
             <trans-unit id="pel.registration.number">
                 <source>pel.registration.number</source>
-                <target>N° d'immatriculation</target>
+                <target>N° d’immatriculation</target>
             </trans-unit>
             <trans-unit id="pel.registration.number.country">
                 <source>pel.registration.number.country</source>
-                <target>Pays d'immatriculation</target>
+                <target>Pays d’immatriculation</target>
             </trans-unit>
             <trans-unit id="pel.represented.person.identity">
                 <source>pel.represented.person.identity</source>
-                <target>L'identité de la personne physique représentée</target>
+                <target>L’identité de la personne physique représentée</target>
             </trans-unit>
             <trans-unit id="pel.resides.at">
                 <source>pel.resides.at</source>
@@ -1244,7 +1244,7 @@
             </trans-unit>
             <trans-unit id="pel.serial.number.help">
                 <source>pel.serial.number.help</source>
-                <target>Ce numéro est nécessaire pour identifier votre téléphone. Si vous n'êtes pas en mesure de le fournir sur ce formulaire, il vous sera demandé plus tard</target>
+                <target>Ce numéro est nécessaire pour identifier votre téléphone. Si vous n’êtes pas en mesure de le fournir sur ce formulaire, il vous sera demandé plus tard</target>
             </trans-unit>
             <trans-unit id="pel.sir">
                 <source>pel.sir</source>
@@ -1264,11 +1264,11 @@
             </trans-unit>
             <trans-unit id="pel.start.hour.after.end.hour">
                 <source>pel.start.hour.after.end.hour</source>
-                <target>L'heure de début est après l'heure de fin</target>
+                <target>L’heure de début est après l’heure de fin</target>
             </trans-unit>
             <trans-unit id="pel.start.hour.same.as.end.hour">
                 <source>pel.start.hour.same.as.end.hour</source>
-                <target>L'heure de début est similaire à l'heure de fin. Veuillez sélectionner que vous connaissez l'heure exacte des faits.</target>
+                <target>L’heure de début est similaire à l’heure de fin. Veuillez sélectionner que vous connaissez l’heure exacte des faits.</target>
             </trans-unit>
             <trans-unit id="pel.start.redacting.my.online.complaint">
                 <source>pel.start.redacting.my.online.complaint</source>
@@ -1284,7 +1284,7 @@
             </trans-unit>
             <trans-unit id="pel.summary.is.not.legal.proof">
                 <source>pel.summary.is.not.legal.proof</source>
-                <target>Ce récapitulatif n'est pas un document officiel et n'a pas de valeur juridique. Des documents officiels vous seront transmis après le traitement de votre dépôt de plainte par un agent accrédité.</target>
+                <target>Ce récapitulatif n’est pas un document officiel et n’a pas de valeur juridique. Des documents officiels vous seront transmis après le traitement de votre dépôt de plainte par un agent accrédité.</target>
             </trans-unit>
             <trans-unit id="pel.suspect">
                 <source>pel.suspect</source>
@@ -1324,15 +1324,15 @@
             </trans-unit>
             <trans-unit id="pel.usage.name">
                 <source>pel.usage.name</source>
-                <target>Nom d'usage</target>
+                <target>Nom d’usage</target>
             </trans-unit>
             <trans-unit id="pel.use.online.complaint.for">
                 <source>pel.use.online.complaint.for</source>
-                <target>Avant de continuer, assurez-vous d'être dans l'un des cas suivants :</target>
+                <target>Avant de continuer, assurez-vous d’être dans l’un des cas suivants :</target>
             </trans-unit>
             <trans-unit id="pel.use.online.complaint.for.criteria">
                 <source>pel.use.online.complaint.for.criteria</source>
-                <target>retour vers les critères d'éligibilité pour la démarche</target>
+                <target>retour vers les critères d’éligibilité pour la démarche</target>
             </trans-unit>
             <trans-unit id="pel.use.online.complaint.for.list">
                 <source>pel.use.online.complaint.for.list</source>
@@ -1356,7 +1356,7 @@
             </trans-unit>
             <trans-unit id="pel.victim.of.violence">
                 <source>pel.victim.of.violence</source>
-                <target>J'ai été victime de violences au moment des faits</target>
+                <target>J’ai été victime de violences au moment des faits</target>
             </trans-unit>
             <trans-unit id="pel.victim.of.violence.text">
                 <source>pel.victim.of.violence.text</source>
@@ -1372,7 +1372,7 @@
             </trans-unit>
             <trans-unit id="pel.visitor.agree">
                 <source>pel.visitor.agree</source>
-                <target>J'autorise la collecte de mes données personnelles et poursuit ma déclaration</target>
+                <target>J’autorise la collecte de mes données personnelles et poursuit ma déclaration</target>
             </trans-unit>
             <trans-unit id="pel.what.is.france.connect">
                 <source>pel.what.is.france.connect</source>
@@ -1380,7 +1380,7 @@
             </trans-unit>
             <trans-unit id="pel.what.is.goods.damages">
                 <source>pel.what.is.goods.damages</source>
-                <target>Qu'est-ce qu'une atteinte aux biens ?</target>
+                <target>Qu’est-ce qu’une atteinte aux biens ?</target>
             </trans-unit>
             <trans-unit id="pel.what.is.goods.damages.text">
                 <source>pel.what.is.goods.damages.text</source>
@@ -1388,7 +1388,7 @@
             </trans-unit>
             <trans-unit id="pel.what.is.online.complaint">
                 <source>pel.what.is.online.complaint</source>
-                <target>Qu'est-ce que plainte en ligne ?</target>
+                <target>Qu’est-ce que plainte en ligne ?</target>
             </trans-unit>
             <trans-unit id="pel.what.is.online.complaint.text">
                 <source>pel.what.is.online.complaint.text</source>
@@ -1400,7 +1400,7 @@
             </trans-unit>
             <trans-unit id="pel.yes.i.know.the.exact.time.of.facts">
                 <source>pel.yes.i.know.the.exact.time.of.facts</source>
-                <target>Oui je connais l'heure exacte des faits</target>
+                <target>Oui je connais l’heure exacte des faits</target>
             </trans-unit>
             <trans-unit id="pel.you.are.major">
                 <source>pel.you.are.major</source>
@@ -1412,7 +1412,7 @@
             </trans-unit>
             <trans-unit id="pel.you.dont.know.offense.author">
                 <source>pel.you.dont.know.offense.author</source>
-                <target>Vous ne connaissez pas l'<![CDATA[<b>identité de l'auteur</b>]]> de l'infraction</target>
+                <target>Vous ne connaissez pas l’<![CDATA[<b>identité de l’auteur</b>]]> de l’infraction</target>
             </trans-unit>
             <trans-unit id="pel.your.appointment">
                 <source>pel.your.appointment</source>
@@ -1468,19 +1468,19 @@
             </trans-unit>
             <trans-unit id="pel.complaint.all.required.fields.are.required">
                 <source>pel.complaint.all.required.fields.are.required</source>
-                <target>Tous les champs sont obligatoires à l'exception de ceux mentionnés comme facultatifs.</target>
+                <target>Tous les champs sont obligatoires à l’exception de ceux mentionnés comme facultatifs.</target>
             </trans-unit>
             <trans-unit id="pel.authentication_failed">
                 <source>pel.authentication_failed</source>
-                <target>Echec de l'authentification</target>
+                <target>Échec de l’authentification</target>
             </trans-unit>
             <trans-unit id="pel.authentication_failed.details">
                 <source>pel.authentication_failed.details</source>
-                <target>Une erreur est survenue lors de l'authentification.</target>
+                <target>Une erreur est survenue lors de l’authentification.</target>
             </trans-unit>
             <trans-unit id="pel.go.back.homepage">
                 <source>pel.go.back.homepage</source>
-                <target>Retourner à la page d'accueil</target>
+                <target>Retourner à la page d’accueil</target>
             </trans-unit>
             <trans-unit id="pel.update">
                 <source>pel.update</source>
@@ -1488,7 +1488,7 @@
             </trans-unit>
             <trans-unit id="pel.upload.error.messagee">
                 <source>pel.upload.error.message</source>
-                <target>Une erreur s'est produite lors de l'envoi du fichier</target>
+                <target>Une erreur s’est produite lors de l’envoi du fichier</target>
             </trans-unit>
             <trans-unit id="pel.victim.of.damage.to.property">
                 <source>pel.victim.of.damage.to.property</source>
@@ -1500,15 +1500,15 @@
             </trans-unit>
             <trans-unit id="pel.victim.of.credit.card.theft">
                 <source>pel.victim.of.credit.card.theft</source>
-                <target>Victime de <![CDATA[<b>vol de votre carte bancaire</b>]]> suivi d'utilisations frauduleuses</target>
+                <target>Victime de <![CDATA[<b>vol de votre carte bancaire</b>]]> suivi d’utilisations frauduleuses</target>
             </trans-unit>
             <trans-unit id="pel.victim.of.offline.scams">
                 <source>pel.victim.of.offline.scams</source>
-                <target>Victime d'<![CDATA[<b>escroquerie hors Internet</b>]]></target>
+                <target>Victime d’<![CDATA[<b>escroquerie hors Internet</b>]]></target>
             </trans-unit>
             <trans-unit id="pel.victim.of.other.property.crimes">
                 <source>pel.victim.of.other.property.crimes</source>
-                <target>Victime d'<![CDATA[<b>autres atteintes aux biens</b>]]></target>
+                <target>Victime d’<![CDATA[<b>autres atteintes aux biens</b>]]></target>
             </trans-unit>
             <trans-unit id="pel.when.using.france.connect.service.you.accept.terms">
                 <source>pel.when.using.france.connect.service.you.accept.terms</source>
@@ -1516,7 +1516,7 @@
             </trans-unit>
             <trans-unit id="pel.france.connect.terms">
                 <source>pel.france.connect.terms</source>
-                <target>Conditions générales d'utilisation de France Connect</target>
+                <target>Conditions générales d’utilisation de France Connect</target>
             </trans-unit>
             <trans-unit id="pel.or.continue.pel.without.log.in">
                 <source>pel.or.continue.pel.without.log.in</source>
@@ -1528,19 +1528,19 @@
             </trans-unit>
             <trans-unit id="pel.identity.of.the.complainant.is.mandatory">
                 <source>pel.identity.of.the.complainant.is.mandatory</source>
-                <target>Dans le cadre d'une démarche de dépôt de plainte, la vérification de l'identité du plaignant est obligatoire.</target>
+                <target>Dans le cadre d’une démarche de dépôt de plainte, la vérification de l’identité du plaignant est obligatoire.</target>
             </trans-unit>
             <trans-unit id="pel.france.connect.allow.this.verification">
                 <source>pel.france.connect.allow.this.verification</source>
-                <target>Votre identification par France Connect nous permet de réaliser cette vérification. Il est donc nécessaire que vous vous identifiez par France Connect si vous souhaitez que l'ensemble de votre démarche puisse se dérouler en ligne.</target>
+                <target>Votre identification par France Connect nous permet de réaliser cette vérification. Il est donc nécessaire que vous vous identifiez par France Connect si vous souhaitez que l’ensemble de votre démarche puisse se dérouler en ligne.</target>
             </trans-unit>
             <trans-unit id="pel.guaranteed.identity.informations">
                 <source>pel.guaranteed.identity.informations</source>
-                <target>L'identification par France Connect nous permet également de récupérer automatiquement des informations d'identité garanties (Civilité, Nom, Prénom, Date, Ville, Département et Pays de Naissance, adresse mail) vous évitant ainsi de les ressaisir. Des informations complémentaires, non disponibles dans France Connect, vous seront demandées.</target>
+                <target>L’identification par France Connect nous permet également de récupérer automatiquement des informations d’identité garanties (Civilité, Nom, Prénom, Date, Ville, Département et Pays de Naissance, adresse mail) vous évitant ainsi de les ressaisir. Des informations complémentaires, non disponibles dans France Connect, vous seront demandées.</target>
             </trans-unit>
             <trans-unit id="pel.if.you.dont.have.a.france.connect.account">
                 <source>pel.if.you.dont.have.a.france.connect.account</source>
-                <target>Si vous n'avez pas de compte France Connect, nous vous recommandons d'en créer un pour faciliter la suite de votre démarche. Pour créer un compte</target>
+                <target>Si vous n’avez pas de compte France Connect, nous vous recommandons d’en créer un pour faciliter la suite de votre démarche. Pour créer un compte</target>
             </trans-unit>
             <trans-unit id="pel.france.connect.click.to.create.an.account">
                 <source>pel.france.connect.click.to.create.an.account</source>
@@ -1552,7 +1552,7 @@
             </trans-unit>
             <trans-unit id="pel.otherwise.you.will.have.to.go.to.the.office">
                 <source>pel.otherwise.you.will.have.to.go.to.the.office</source>
-                <target>A défaut, vous devrez vous rendre dans un commissariat ou une unité de gendarmerie pour finaliser votre dépôt de plainte. Nous vous invitons cependant à poursuivre votre démarche même si vous n'êtes pas en mesure d'utiliser France Connect. Cela facilitera la suite de votre démarche et vous fera gagner du temps au moment de votre rendez-vous.</target>
+                <target>A défaut, vous devrez vous rendre dans un commissariat ou une unité de gendarmerie pour finaliser votre dépôt de plainte. Nous vous invitons cependant à poursuivre votre démarche même si vous n’êtes pas en mesure d’utiliser France Connect. Cela facilitera la suite de votre démarche et vous fera gagner du temps au moment de votre rendez-vous.</target>
             </trans-unit>
             <trans-unit id="pel.read.more.about.france.connect">
                 <source>pel.read.more.about.france.connect</source>
@@ -1576,7 +1576,7 @@
             </trans-unit>
             <trans-unit id="pel.facts.describe.whats.happened">
                 <source>pel.facts.describe.whats.happened</source>
-                <target>Merci de nous décrire ce qui vous est arrivé. N'hésitez pas à mentionner toutes les informations qui peuvent vous paraître utiles dans le cadre de l'enquête.&#10;&#10;Dans la suite du parcours, nous reviendrons plus en détail sur le lieu, la date et l'heure, les objets volés et/ou dégradés et différentes autres informations de nature à faciliter la prise en compte de votre demande.&#10;&#10;Votre déclaration sera relue par un membre des forces de l'ordre. Ne vous inquiétez pas de ne pas utiliser les bons termes juridiques. Utilisez le vocabulaire qui vous est le plus familier.</target>
+                <target>Merci de nous décrire ce qui vous est arrivé. N’hésitez pas à mentionner toutes les informations qui peuvent vous paraître utiles dans le cadre de l’enquête.&#10;&#10;Dans la suite du parcours, nous reviendrons plus en détail sur le lieu, la date et l’heure, les objets volés et/ou dégradés et différentes autres informations de nature à faciliter la prise en compte de votre demande.&#10;&#10;Votre déclaration sera relue par un membre des forces de l’ordre. Ne vous inquiétez pas de ne pas utiliser les bons termes juridiques. Utilisez le vocabulaire qui vous est le plus familier.</target>
             </trans-unit>
             <trans-unit id="pel.you.must.enter.between">
                 <source>pel.you.must.enter.between</source>

@@ -59,5 +59,5 @@ Feature:
         When I follow "Je donne mon avis"
         Then I should be on JeDonneMonAvis
         Given I am on "/porter-plainte/fin"
-        When I follow "Retour à l'accueil"
+        When I follow "Retour à l’accueil"
         And I should be on "/"

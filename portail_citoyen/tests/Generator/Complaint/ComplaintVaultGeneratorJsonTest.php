@@ -381,7 +381,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
             'declarantStatus' => [
                 'declarantStatus' => [
                     'code' => 2,
-                    'label' => 'Représentant légal d\'une personne physique',
+                    'label' => 'Représentant légal d’une personne physique',
                 ],
             ],
             'appointment' => [
@@ -784,7 +784,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
             'declarantStatus' => [
                 'declarantStatus' => [
                     'code' => 3,
-                    'label' => 'Représentant légal d\'une personne morale',
+                    'label' => 'Représentant légal d’une personne morale',
                 ],
             ],
             'appointment' => [
