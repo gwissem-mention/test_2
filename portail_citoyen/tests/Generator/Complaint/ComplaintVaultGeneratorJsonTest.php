@@ -49,7 +49,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
             'declarantStatus' => [
                 'declarantStatus' => [
                     'code' => 1,
-                    'label' => 'pel.complaint.identity.victim',
+                    'label' => 'Victime',
                 ],
             ],
             'appointment' => [
@@ -59,7 +59,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                 'civilState' => [
                     'civility' => [
                         'code' => 1,
-                        'label' => 'pel.m',
+                        'label' => 'M',
                     ],
                     'birthName' => 'Dupont',
                     'usageName' => 'Paul',
@@ -203,7 +203,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                 ],
                 'placeNature' => [
                     'code' => 1,
-                    'label' => 'pel.nature.place.home',
+                    'label' => 'Domicile/Logement',
                 ],
                 'victimOfViolence' => true,
                 'victimOfViolenceText' => 'Violence text',
@@ -215,7 +215,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                 'fsiVisit' => true,
                 'cctvPresent' => [
                     'code' => 1,
-                    'label' => 'pel.yes',
+                    'label' => 'Oui',
                 ],
                 'suspectsText' => 'Suspects text',
                 'witnessesText' => 'Witnesses text',
@@ -227,11 +227,11 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                     [
                         'status' => [
                             'code' => 1,
-                            'label' => 'pel.stolen',
+                            'label' => 'Volé',
                         ],
                         'category' => [
                             'code' => 1,
-                            'label' => 'pel.object.category.documents',
+                            'label' => 'Document officiel',
                         ],
                         'label' => 'CI',
                         'brand' => null,
@@ -258,11 +258,11 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                     [
                         'status' => [
                             'code' => 2,
-                            'label' => 'pel.degraded',
+                            'label' => 'Dégradé',
                         ],
                         'category' => [
                             'code' => 3,
-                            'label' => 'pel.object.category.multimedia',
+                            'label' => 'Multimédia',
                         ],
                         'label' => 'iPhone',
                         'brand' => 'Apple',
@@ -293,11 +293,11 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                     [
                         'status' => [
                             'code' => 1,
-                            'label' => 'pel.stolen',
+                            'label' => 'Volé',
                         ],
                         'category' => [
                             'code' => 2,
-                            'label' => 'pel.object.category.payment.ways',
+                            'label' => 'Moyens de paiement',
                         ],
                         'label' => 'CB',
                         'brand' => null,
@@ -324,11 +324,11 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                     [
                         'status' => [
                             'code' => 2,
-                            'label' => 'pel.degraded',
+                            'label' => 'Dégradé',
                         ],
                         'category' => [
                             'code' => 4,
-                            'label' => 'pel.object.category.registered.vehicle',
+                            'label' => 'Véhicules immatriculés',
                         ],
                         'label' => 'Voiture',
                         'brand' => 'Peugeot',
@@ -381,7 +381,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
             'declarantStatus' => [
                 'declarantStatus' => [
                     'code' => 2,
-                    'label' => 'pel.complaint.identity.person.legal.representative',
+                    'label' => 'Représentant légal d\'une personne physique',
                 ],
             ],
             'appointment' => [
@@ -391,7 +391,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                 'civilState' => [
                     'civility' => [
                         'code' => 1,
-                        'label' => 'pel.m',
+                        'label' => 'M',
                     ],
                     'birthName' => 'Dupont',
                     'usageName' => 'Paul',
@@ -463,7 +463,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                 'representedPersonCivilState' => [
                     'civility' => [
                         'code' => 1,
-                        'label' => 'pel.m',
+                        'label' => 'M',
                     ],
                     'birthName' => 'Dupont',
                     'usageName' => 'Paul',
@@ -606,7 +606,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                 ],
                 'placeNature' => [
                     'code' => 1,
-                    'label' => 'pel.nature.place.home',
+                    'label' => 'Domicile/Logement',
                 ],
                 'victimOfViolence' => true,
                 'victimOfViolenceText' => 'Violence text',
@@ -618,7 +618,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                 'fsiVisit' => true,
                 'cctvPresent' => [
                     'code' => 1,
-                    'label' => 'pel.yes',
+                    'label' => 'Oui',
                 ],
                 'suspectsText' => 'Suspects text',
                 'witnessesText' => 'Witnesses text',
@@ -630,11 +630,11 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                     [
                         'status' => [
                             'code' => 1,
-                            'label' => 'pel.stolen',
+                            'label' => 'Volé',
                         ],
                         'category' => [
                             'code' => 1,
-                            'label' => 'pel.object.category.documents',
+                            'label' => 'Document officiel',
                         ],
                         'label' => 'CI',
                         'brand' => null,
@@ -661,11 +661,11 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                     [
                         'status' => [
                             'code' => 2,
-                            'label' => 'pel.degraded',
+                            'label' => 'Dégradé',
                         ],
                         'category' => [
                             'code' => 3,
-                            'label' => 'pel.object.category.multimedia',
+                            'label' => 'Multimédia',
                         ],
                         'label' => 'iPhone',
                         'brand' => 'Apple',
@@ -696,11 +696,11 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                     [
                         'status' => [
                             'code' => 1,
-                            'label' => 'pel.stolen',
+                            'label' => 'Volé',
                         ],
                         'category' => [
                             'code' => 2,
-                            'label' => 'pel.object.category.payment.ways',
+                            'label' => 'Moyens de paiement',
                         ],
                         'label' => 'CB',
                         'brand' => null,
@@ -727,11 +727,11 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                     [
                         'status' => [
                             'code' => 2,
-                            'label' => 'pel.degraded',
+                            'label' => 'Dégradé',
                         ],
                         'category' => [
                             'code' => 4,
-                            'label' => 'pel.object.category.registered.vehicle',
+                            'label' => 'Véhicules immatriculés',
                         ],
                         'label' => 'Voiture',
                         'brand' => 'Peugeot',
@@ -784,7 +784,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
             'declarantStatus' => [
                 'declarantStatus' => [
                     'code' => 3,
-                    'label' => 'pel.complaint.identity.corporation.legal.representative',
+                    'label' => 'Représentant légal d\'une personne morale',
                 ],
             ],
             'appointment' => [
@@ -794,7 +794,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                 'civilState' => [
                     'civility' => [
                         'code' => 1,
-                        'label' => 'pel.m',
+                        'label' => 'M',
                     ],
                     'birthName' => 'Dupont',
                     'usageName' => 'Paul',
@@ -870,7 +870,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                     'function' => 'CEO',
                     'nationality' => [
                         'code' => '1',
-                        'label' => 'pel.nationality.france',
+                        'label' => 'Française',
                     ],
                     'phone' => [
                         'country' => 'FR',
@@ -977,7 +977,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                 ],
                 'placeNature' => [
                     'code' => 1,
-                    'label' => 'pel.nature.place.home',
+                    'label' => 'Domicile/Logement',
                 ],
                 'victimOfViolence' => true,
                 'victimOfViolenceText' => 'Violence text',
@@ -989,7 +989,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                 'fsiVisit' => true,
                 'cctvPresent' => [
                     'code' => 1,
-                    'label' => 'pel.yes',
+                    'label' => 'Oui',
                 ],
                 'suspectsText' => 'Suspects text',
                 'witnessesText' => 'Witnesses text',
@@ -1001,11 +1001,11 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                     [
                         'status' => [
                             'code' => 1,
-                            'label' => 'pel.stolen',
+                            'label' => 'Volé',
                         ],
                         'category' => [
                             'code' => 1,
-                            'label' => 'pel.object.category.documents',
+                            'label' => 'Document officiel',
                         ],
                         'label' => 'CI',
                         'brand' => null,
@@ -1032,11 +1032,11 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                     [
                         'status' => [
                             'code' => 2,
-                            'label' => 'pel.degraded',
+                            'label' => 'Dégradé',
                         ],
                         'category' => [
                             'code' => 3,
-                            'label' => 'pel.object.category.multimedia',
+                            'label' => 'Multimédia',
                         ],
                         'label' => 'iPhone',
                         'brand' => 'Apple',
@@ -1067,11 +1067,11 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                     [
                         'status' => [
                             'code' => 1,
-                            'label' => 'pel.stolen',
+                            'label' => 'Volé',
                         ],
                         'category' => [
                             'code' => 2,
-                            'label' => 'pel.object.category.payment.ways',
+                            'label' => 'Moyens de paiement',
                         ],
                         'label' => 'CB',
                         'brand' => null,
@@ -1098,11 +1098,11 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                     [
                         'status' => [
                             'code' => 2,
-                            'label' => 'pel.degraded',
+                            'label' => 'Dégradé',
                         ],
                         'category' => [
                             'code' => 4,
-                            'label' => 'pel.object.category.registered.vehicle',
+                            'label' => 'Véhicules immatriculés',
                         ],
                         'label' => 'Voiture',
                         'brand' => 'Peugeot',

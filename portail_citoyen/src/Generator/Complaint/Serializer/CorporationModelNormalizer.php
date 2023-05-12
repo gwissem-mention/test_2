@@ -11,6 +11,7 @@ use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class CorporationModelNormalizer implements NormalizerInterface
 {
@@ -18,6 +19,7 @@ class CorporationModelNormalizer implements NormalizerInterface
         #[Autowire(service: ObjectNormalizer::class)] private readonly NormalizerInterface $normalizer,
         private readonly CountryProviderInterface $countryProvider,
         private readonly NationalityThesaurusProviderInterface $nationalityThesaurusProvider,
+        private readonly TranslatorInterface $translator,
     ) {
     }
 
@@ -43,7 +45,7 @@ class CorporationModelNormalizer implements NormalizerInterface
 
         $data['nationality'] = [
             'code' => $data['nationality'],
-            'label' => array_search(intval($data['nationality']), $this->nationalityThesaurusProvider->getChoices(), true),
+            'label' => $this->translator->trans((string) array_search(intval($data['nationality']), $this->nationalityThesaurusProvider->getChoices(), true)),
         ];
 
         return $data;

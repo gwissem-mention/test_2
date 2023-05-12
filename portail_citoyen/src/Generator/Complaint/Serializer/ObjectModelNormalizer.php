@@ -34,12 +34,12 @@ class ObjectModelNormalizer implements NormalizerInterface
 
         $data['status'] = [
             'code' => $data['status'],
-            'label' => ObjectModel::STATUS_STOLEN === $object->getStatus() ? 'pel.stolen' : 'pel.degraded',
+            'label' => $this->translator->trans(ObjectModel::STATUS_STOLEN === $object->getStatus() ? 'pel.stolen' : 'pel.degraded'),
         ];
 
         $data['category'] = [
             'code' => $data['category'],
-            'label' => array_search($object->getCategory(), $this->objectCategoryThesaurusProvider->getChoices(), true),
+            'label' => $this->translator->trans((string) array_search($object->getCategory(), $this->objectCategoryThesaurusProvider->getChoices(), true)),
         ];
 
         if ($documentTypeLabel = DocumentType::getLabel($object->getDocumentType())) {
