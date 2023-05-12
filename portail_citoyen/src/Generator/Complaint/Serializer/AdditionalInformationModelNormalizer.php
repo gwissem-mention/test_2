@@ -8,11 +8,13 @@ use App\Form\Model\AdditionalInformation\AdditionalInformationModel;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class AdditionalInformationModelNormalizer implements NormalizerInterface
 {
     public function __construct(
         #[Autowire(service: ObjectNormalizer::class)] private readonly NormalizerInterface $normalizer,
+        private readonly TranslatorInterface $translator,
     ) {
     }
 
@@ -29,7 +31,7 @@ class AdditionalInformationModelNormalizer implements NormalizerInterface
 
         $data['cctvPresent'] = [
             'code' => $data['cctvPresent'],
-            'label' => array_search($data['cctvPresent'], AdditionalInformationModel::getCctvPresentChoices(), true),
+            'label' => $this->translator->trans((string) array_search($data['cctvPresent'], AdditionalInformationModel::getCctvPresentChoices(), true)),
         ];
 
         return $data;

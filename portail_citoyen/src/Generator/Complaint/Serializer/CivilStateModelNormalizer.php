@@ -35,7 +35,7 @@ class CivilStateModelNormalizer implements NormalizerInterface
         $data = $this->normalizer->normalize($object, $format, $context);
         $data['civility'] = [
             'code' => $data['civility'],
-            'label' => array_search($data['civility'], Civility::getChoices(), true),
+            'label' => $this->translator->trans((string) array_search($data['civility'], Civility::getChoices(), true)),
         ];
 
         /** @var string $nationalityLabel */

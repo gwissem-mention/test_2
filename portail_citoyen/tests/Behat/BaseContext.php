@@ -448,6 +448,14 @@ final class BaseContext extends MinkContext
         throw new ExpectationException('Current URL is not correct', $this->getSession()->getDriver());
     }
 
+    /**
+     * @When I wait for :element to appear
+     */
+    public function iWaitForElementToAppear(string $element, int $seconds = 10): void
+    {
+        $this->getSession()->wait($seconds * 1000, 'document.querySelectorAll("'.$element.'") !== null');
+    }
+
     private function retryStep(
         callable $step,
         int $maxTime = self::RETRY_MAX_TIME,

@@ -9,11 +9,15 @@ use App\Form\Model\Identity\DeclarantStatusModel;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class DeclarantStatusModelNormalizer implements NormalizerInterface
 {
-    public function __construct(#[Autowire(service: ObjectNormalizer::class)] private readonly NormalizerInterface $normalizer)
-    {
+    public function __construct(
+        #[Autowire(service: ObjectNormalizer::class)]
+        private readonly NormalizerInterface $normalizer,
+        private readonly TranslatorInterface $translator,
+    ) {
     }
 
     /**
@@ -29,7 +33,7 @@ class DeclarantStatusModelNormalizer implements NormalizerInterface
 
         $data['declarantStatus'] = [
             'code' => $data['declarantStatus'],
-            'label' => array_search($data['declarantStatus'], DeclarantStatus::getChoices(), true),
+            'label' => $this->translator->trans((string) array_search($data['declarantStatus'], DeclarantStatus::getChoices(), true)),
         ];
 
         return $data;

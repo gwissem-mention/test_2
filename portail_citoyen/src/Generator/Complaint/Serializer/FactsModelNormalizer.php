@@ -9,12 +9,14 @@ use App\Thesaurus\NaturePlaceThesaurusProviderInterface;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class FactsModelNormalizer implements NormalizerInterface
 {
     public function __construct(
         #[Autowire(service: ObjectNormalizer::class)] private readonly NormalizerInterface $normalizer,
         private readonly NaturePlaceThesaurusProviderInterface $naturePlaceThesaurusProvider,
+        private readonly TranslatorInterface $translator,
     ) {
     }
 
@@ -31,7 +33,7 @@ class FactsModelNormalizer implements NormalizerInterface
 
         $data['placeNature'] = [
             'code' => $data['placeNature'],
-            'label' => array_search($data['placeNature'], $this->naturePlaceThesaurusProvider->getChoices(), true),
+            'label' => $this->translator->trans((string) array_search($data['placeNature'], $this->naturePlaceThesaurusProvider->getChoices(), true)),
         ];
 
         return $data;

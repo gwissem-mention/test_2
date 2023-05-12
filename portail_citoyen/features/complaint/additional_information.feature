@@ -22,6 +22,7 @@ Feature:
         And I fill in "facts-startAddress-address" with "1 test street"
         And I fill in "facts-startAddress-address" with "2 test street"
         And I click the "label[for=facts_offenseDate_exactDateKnown_0]" element
+        And I wait for "#facts_offenseDate_startDate" to appear
         And I fill in "facts_offenseDate_startDate" with "01/01/2022"
         And I click the "label[for=facts_offenseDate_choiceHour_0]" element
         And I fill in "facts_offenseDate_hour" with "15:00"
