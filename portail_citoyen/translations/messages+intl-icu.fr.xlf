@@ -1190,6 +1190,10 @@
                 <source>pel.nature.place.street</source>
                 <target>Voie publique / Rue</target>
             </trans-unit>
+            <trans-unit id="pel.navigation.mobile">
+                <source>pel.navigation.mobile</source>
+                <target>Menu principal</target>
+            </trans-unit>
             <trans-unit id="pel.precise.owner.lastname.and.firstname">
                 <source>pel.precise.owner.lastname.and.firstname</source>
                 <target>Veuillez préciser le nom et prénom du propriétaire</target>
