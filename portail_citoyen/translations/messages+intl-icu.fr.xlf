@@ -28,7 +28,7 @@
             </trans-unit>
             <trans-unit id="pel.3.duration">
                 <source>pel.3.duration</source>
-                <target>Sous <![CDATA[<strong>48 heures</strong>]]></target>
+                <target>Sous <![CDATA[<b>48 heures</b>]]></target>
             </trans-unit>
             <trans-unit id="pel.3.your.request.is.processed.within.48h">
                 <source>pel.3.your.request.is.processed.within.48h</source>
@@ -156,7 +156,7 @@
             </trans-unit>
             <trans-unit id="pel.appointment.needed.if">
                 <source>pel.appointment.needed.if</source>
-                <target>Notez que la démarche pourrait éventuellement nécessiter un <![CDATA[<strong>rendez-vous physique</strong>]]> au regard des éléments déclarés.</target>
+                <target>Notez que la démarche pourrait éventuellement nécessiter un <![CDATA[<b>rendez-vous physique</b>]]> au regard des éléments déclarés.</target>
             </trans-unit>
             <trans-unit id="pel.appointment.needed.if.more">
                 <source>pel.appointment.needed.if.more</source>
@@ -416,7 +416,7 @@
             </trans-unit>
             <trans-unit id="pel.continue.pel.without.log.in.explanation">
                 <source>pel.continue.pel.without.log.in.explanation</source>
-                <target>En choisissant de ne pas vous authentifier avec FranceConnect, <![CDATA[<strong>notez qu'un rendez-vous physique devra obligatoirement être planifié</strong>]]> à la fin de votre démarche.</target>
+                <target>En choisissant de ne pas vous authentifier avec FranceConnect, <![CDATA[<b>notez qu'un rendez-vous physique devra obligatoirement être planifié</b>]]> à la fin de votre démarche.</target>
             </trans-unit>
             <trans-unit id="pel.could.you.confirm.complaint.validity">
                 <source>pel.could.you.confirm.complaint.validity</source>
@@ -728,7 +728,7 @@
             </trans-unit>
             <trans-unit id="pel.home.intro">
                 <source>pel.home.intro</source>
-                <target><![CDATA[<strong>Escroquerie</strong>]]>, <![CDATA[<strong>vol</strong>]]> ou <![CDATA[<strong>dégradation d’un bien</strong>]]> par une personne dont vous ignorez l’identité.</target>
+                <target><![CDATA[<b>Escroquerie</b>]]>, <![CDATA[<b>vol</b>]]> ou <![CDATA[<b>dégradation d’un bien</b>]]> par une personne dont vous ignorez l’identité.</target>
             </trans-unit>
             <trans-unit id="pel.home.orienteer.information.message.1">
                 <source>pel.home.orienteer.information.message.1</source>
@@ -1404,15 +1404,15 @@
             </trans-unit>
             <trans-unit id="pel.you.are.major">
                 <source>pel.you.are.major</source>
-                <target>Vous êtes <![CDATA[<strong>majeur</strong>]]></target>
+                <target>Vous êtes <![CDATA[<b>majeur</b>]]></target>
             </trans-unit>
             <trans-unit id="pel.you.are.victim.or.representative">
                 <source>pel.you.are.victim.or.representative</source>
-                <target>Vous êtes <![CDATA[<strong>la victime</strong>]]> ou son <![CDATA[<strong>représentant légal</strong>]]> (physique ou moral)</target>
+                <target>Vous êtes <![CDATA[<b>la victime</b>]]> ou son <![CDATA[<b>représentant légal</b>]]> (physique ou moral)</target>
             </trans-unit>
             <trans-unit id="pel.you.dont.know.offense.author">
                 <source>pel.you.dont.know.offense.author</source>
-                <target>Vous ne connaissez pas l'<![CDATA[<strong>identité de l'auteur</strong>]]> de l'infraction</target>
+                <target>Vous ne connaissez pas l'<![CDATA[<b>identité de l'auteur</b>]]> de l'infraction</target>
             </trans-unit>
             <trans-unit id="pel.your.appointment">
                 <source>pel.your.appointment</source>
@@ -1492,27 +1492,27 @@
             </trans-unit>
             <trans-unit id="pel.victim.of.damage.to.property">
                 <source>pel.victim.of.damage.to.property</source>
-                <target>Victime de <![CDATA[<strong>dégradation sur un bien</strong>]]></target>
+                <target>Victime de <![CDATA[<b>dégradation sur un bien</b>]]></target>
             </trans-unit>
             <trans-unit id="pel.theft.victim">
                 <source>pel.theft.victim</source>
-                <target>Victime de <![CDATA[<strong>vol</strong>]]></target>
+                <target>Victime de <![CDATA[<b>vol</b>]]></target>
             </trans-unit>
             <trans-unit id="pel.victim.of.credit.card.theft">
                 <source>pel.victim.of.credit.card.theft</source>
-                <target>Victime de <![CDATA[<strong>vol de votre carte bancaire</strong>]]> suivi d'utilisations frauduleuses</target>
+                <target>Victime de <![CDATA[<b>vol de votre carte bancaire</b>]]> suivi d'utilisations frauduleuses</target>
             </trans-unit>
             <trans-unit id="pel.victim.of.offline.scams">
                 <source>pel.victim.of.offline.scams</source>
-                <target>Victime d'<![CDATA[<strong>escroquerie hors Internet</strong>]]></target>
+                <target>Victime d'<![CDATA[<b>escroquerie hors Internet</b>]]></target>
             </trans-unit>
             <trans-unit id="pel.victim.of.other.property.crimes">
                 <source>pel.victim.of.other.property.crimes</source>
-                <target>Victime d'<![CDATA[<strong>autres atteintes aux biens</strong>]]></target>
+                <target>Victime d'<![CDATA[<b>autres atteintes aux biens</b>]]></target>
             </trans-unit>
             <trans-unit id="pel.when.using.france.connect.service.you.accept.terms">
                 <source>pel.when.using.france.connect.service.you.accept.terms</source>
-                <target><![CDATA[<strong>Accédez facilement au service Plainte en ligne</strong>]]> en utilisant un compte et un mot de passe que vous possédez déjà.</target>
+                <target><![CDATA[<b>Accédez facilement au service Plainte en ligne</b>]]> en utilisant un compte et un mot de passe que vous possédez déjà.</target>
             </trans-unit>
             <trans-unit id="pel.france.connect.terms">
                 <source>pel.france.connect.terms</source>
