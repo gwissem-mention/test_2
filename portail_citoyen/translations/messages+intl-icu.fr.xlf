@@ -618,6 +618,10 @@
                 <source>pel.first.names</source>
                 <target>Prénom(s)</target>
             </trans-unit>
+            <trans-unit id="pel.footer">
+                <source>pel.footer</source>
+                <target>Pied de page</target>
+            </trans-unit>
             <trans-unit id="pel.footer.copyright">
                 <source>pel.footer.copyright</source>
                 <target>Sauf mention contraire, tous les contenus de ce site sont sous</target>
@@ -873,6 +877,10 @@
             <trans-unit id="pel.madam">
                 <source>pel.madam</source>
                 <target>Madame</target>
+            </trans-unit>
+            <trans-unit id="pel.main">
+                <source>pel.main</source>
+                <target>Contenu</target>
             </trans-unit>
             <trans-unit id="pel.make.appointment">
                 <source>pel.make.appointment</source>
@@ -1189,6 +1197,10 @@
             <trans-unit id="pel.nature.place.street">
                 <source>pel.nature.place.street</source>
                 <target>Voie publique / Rue</target>
+            </trans-unit>
+            <trans-unit id="pel.navigation">
+                <source>pel.navigation</source>
+                <target>Accès rapide</target>
             </trans-unit>
             <trans-unit id="pel.navigation.mobile">
                 <source>pel.navigation.mobile</source>

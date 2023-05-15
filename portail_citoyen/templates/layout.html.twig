@@ -1,10 +1,13 @@
 {% extends 'base.html.twig' %}
 
 {% block layout %}
+    {% block skiplinks %}
+        {{ include('common/_skiplinks.html.twig') }}
+    {% endblock %}
     {% block header %}
         {{ include('common/_header.html.twig') }}
     {% endblock %}
-    <main role="main">
+    <main role="main" id="contenu" tabindex="-1">
         {% block body %}{% endblock %}
     </main>
     {% block footer %}
