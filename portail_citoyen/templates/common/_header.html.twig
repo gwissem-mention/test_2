@@ -12,7 +12,7 @@
                             </p>
                         </div>
                         <div class="fr-header__navbar">
-							<button class="fr-btn--menu fr-btn" data-fr-opened="false" aria-controls="modal-menu" aria-haspopup="menu" title="{{ 'pel.header.menu'|trans }}">
+							<button class="fr-btn--menu fr-btn" data-fr-opened="false" aria-controls="modal-menu-mobile" aria-haspopup="menu" id="fr-btn-menu-mobile" title="{{ 'pel.header.menu'|trans }}">
                                 {{ 'pel.header.menu'|trans }}
 							</button>
 						</div>
@@ -30,9 +30,9 @@
                 </div>
                 <div class="fr-header__tools">
                     <div class="fr-header__tools-links">
-                        <ul class="fr-btns-group">
+                        <ul class="fr-links-group">
                             <li>
-                                <a href="/centre-d-aide" class="fr-btn fr-icon-question-fill">
+                                <a href="/centre-d-aide" class="fr-link fr-icon-question-fill">
                                     {{ 'pel.header.help'|trans }}
                                 </a>
                             </li>
@@ -42,4 +42,16 @@
             </div>
         </div>
     </div>
+    <div class="fr-header__menu fr-modal" id="modal-menu-mobile" aria-labelledby="fr-btn-menu-mobile">
+		<div class="fr-container">
+			<button class="fr-btn--close fr-btn" aria-controls="modal-menu-mobile" title="{{ 'pel.close'|trans }}">
+				{{ 'pel.close'|trans }}
+			</button>
+			<div class="fr-header__menu-links"></div>
+			<nav class="fr-nav fr-hidden-lg" id="header-navigation" role="navigation" aria-label="{{ 'pel.navigation.mobile'|trans }}">
+				<ul class="fr-nav__list">
+				</ul>
+			</nav>
+		</div>
+	</div>
 </header>
