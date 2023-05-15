@@ -26,7 +26,7 @@ Feature:
     @func
     Scenario: Click on "Back" link
         Given I am on "/accueil-deroule"
-        Then I follow "retour vers les critères d'éligibilité pour la démarche"
+        Then I follow "retour vers les critères d’éligibilité pour la démarche"
         And I should be on "/accueil-confirmation"
 
     @func

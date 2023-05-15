@@ -80,7 +80,7 @@ Feature:
         And I should see a "select#objects_objects_0_status" element
         And I should see a "input#objects_objects_0_amount" element
         And I should not see a "select#objects_objects_0_label" element
-        And I should see "Carte d'identité" in the "#objects_objects_0_documentType" element
+        And I should see "Carte d’identité" in the "#objects_objects_0_documentType" element
         And I should see "Passeport" in the "#objects_objects_0_documentType" element
         And I should see "Titre de séjour" in the "#objects_objects_0_documentType" element
         And I should see "Permis de conduire " in the "#objects_objects_0_documentType" element

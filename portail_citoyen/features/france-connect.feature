@@ -14,14 +14,14 @@ Feature:
         Given my declarant status is 1
         And An error will occur during France Connect access token retrieval
         When I go to "/authentification?france_connected=1"
-        Then I should see "Echec de l'authentification"
+        Then I should see "Échec de l’authentification"
         And I should not be connected
 
     Scenario: Error on user info retrieval
         Given my declarant status is 1
         And An error will occur during France Connect user info retrieval
         When I go to "/authentification?france_connected=1"
-        Then I should see "Echec de l'authentification"
+        Then I should see "Échec de l’authentification"
         And I should not be connected
 
     Scenario: Redirection to France Connect logout on app logout
