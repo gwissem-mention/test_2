@@ -7,7 +7,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        'hero-pattern': "linear-gradient(to right, #000091 0%,#000091 calc(708/1440 * 100%), transparent calc(708/1440 * 100%),transparent 100%)",
+        'hero-pattern': "linear-gradient(to right, var(--background-action-high-blue-france) 0%,var(--background-action-high-blue-france) calc(708/1440 * 100%), transparent calc(708/1440 * 100%),transparent 100%)",
      },
     },
   },

@@ -1116,7 +1116,7 @@
             </trans-unit>
             <trans-unit id="pel.online.complaint.process">
                 <source>pel.online.complaint.process</source>
-                <target>Vous pouvez déclarer votre plainte. La démarche s’effectue en trois étapes :</target>
+                <target>Vous pouvez déclarer votre plainte.<![CDATA[<br class="fr-hidden fr-unhidden-md">]]> La démarche s’effectue en trois étapes :</target>
             </trans-unit>
             <trans-unit id="pel.online.complaint.process.back">
                 <source>pel.online.complaint.process.back</source>

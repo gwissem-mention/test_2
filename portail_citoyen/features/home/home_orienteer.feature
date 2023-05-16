@@ -27,10 +27,10 @@ Feature:
     Scenario: Click on "Back" link
         Given I am on "/accueil-deroule"
         Then I follow "retour vers les critères d’éligibilité pour la démarche"
-        And I should be on "/accueil-confirmation"
+        And I should be on "/accueil-confirmation#pel-confirm-online-complaint-that"
 
     @func
     Scenario: Click on "Start" link
         Given I am on "/accueil-deroule"
         Then I follow "Déposer plainte"
-        And I should be on "/authentification"
+        And I should be on "/authentification#pel-to-log-in"

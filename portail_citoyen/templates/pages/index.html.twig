@@ -3,7 +3,7 @@
 {% block content %}
 <div class="fr-grid-row fr-grid-row--center fr-col-12 fr-col-md-6 fr-pt-10v fr-pr-6v fr-pb-12v fr-pl-6v fr-pt-md-20v fr-pr-md-0 fr-pb-md-20v fr-pl-md-11v fr-ml-md-11v">
     <div class="fr-grid-row fr-col-md-12">
-        <h4 class="fr-mb-6v fr-mb-8v md:text-[28px]/[36px]">{{ 'pel.use.online.complaint.for'|trans }}</h4>
+        <h4 id="pel-use-online-complaint-for" class="fr-mb-6v fr-mb-8v md:text-[28px]/[36px]">{{ 'pel.use.online.complaint.for'|trans }}</h4>
         <ul class="fr-callout__text fr-pl-8v my-0 fr-pl-md-4v">
             <li class="text-lg fr-mb-5v fr-mb-md-7v md:text-xl/8">{{ 'pel.victim.of.damage.to.property'|trans|raw }}</li>
             <li class="text-lg fr-mb-5v fr-mb-md-7v md:text-xl/8">{{ 'pel.theft.victim'|trans|raw }}</li>
@@ -20,7 +20,7 @@
                     </a>
                 </div>
                 <div class="fr-text-center fr-mt-4v fr-mt-md-6v order-first md:order-none @[489.5px]:order-none @[0px]:md:order-first @[489.5px]:md:order-none">
-                    <a href="{{ path('home_confirmation') }}" class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line fr-text--lg fr-pr-5v fr-pl-6v py-2.5 after:w-6 after:h-6">
+                    <a href="{{ path('home_confirmation') }}#pel-confirm-online-complaint-that" class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line fr-text--lg fr-pr-5v fr-pl-6v py-2.5 after:w-6 after:h-6">
                         {{ 'pel.fill.a.complaint'|trans }}
                     </a>
                 </div>
