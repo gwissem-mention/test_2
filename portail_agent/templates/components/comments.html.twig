@@ -6,6 +6,7 @@
                     <div class="col-7 align-self-end rounded-3 m-3 p-3 {{ comment.author is same as app.user ? 'comment-author-color' : 'comment-agent-color' }}">
                         <div id="comment-author">
                             <strong>
+                                <small id="comment-title" class="{{ not comment.title ? 'd-none':'' }}">{{ comment.title|trans }} :</small>
                                 <small>{{ comment.author.appellation }}</small>
                             </strong>
                         </div>

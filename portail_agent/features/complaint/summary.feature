@@ -368,10 +368,13 @@ Feature:
         And I press "Réorienter"
         And I wait 500 ms
         And I should be on the homepage
-        Given I am authenticated with H3U3XCGF from PN
+        When I am authenticated with H3U3XCGF from PN
         And I am on the homepage
         When I click the "#notifications-dropdown" element
         Then I should see "La déclaration PEL-2023-00000095 a été réorientée vers votre unité"
+        When I am on "/plainte/recapitulatif/95"
+        Then I should see a "#comment-title" element
+        And I should see the key "pel.comment.unit.reassignment.reason" translated
 
     @javascript
     Scenario: I can submit the unit reassign form successfully as an agent and Thomas DURAND should have a notification
