@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Controller\Complaint;
 
+use App\Entity\Comment;
 use App\Entity\Complaint;
+use App\Entity\User;
 use App\Factory\NotificationFactory;
 use App\Form\Complaint\UnitReassignType;
 use App\Referential\Repository\UnitRepository;
@@ -47,11 +49,22 @@ class UnitReassignController extends AbstractController
             $unitToReassign = $unitRepository->findOneBy(['code' => $unitCodeToReassign]);
 
             if ($this->isGranted('ROLE_SUPERVISOR')) {
+                /** @var User $user */
+                $user = $this->getUser();
+
+                $unitReassignmentReason = (new Comment())
+                    ->setAuthor($user)
+                    ->setTitle(Comment::UNIT_REASSIGNMENT_REASON)
+                    ->setContent($complaint->getUnitReassignText() ?? '')
+                ;
+
                 $complaint
                     ->setUnitAssigned($unitCodeToReassign)
                     ->setUnitToReassign(null)
                     ->setUnitReassignText(null)
-                    ->setAssignedTo(null);
+                    ->setAssignedTo(null)
+                    ->addComment($unitReassignmentReason)
+                ;
 
                 /** @var string $unitCode */
                 $unitCode = $complaint->getUnitAssigned();

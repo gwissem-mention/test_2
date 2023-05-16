@@ -226,6 +226,10 @@
                 <source>pel.comments.feed</source>
                 <target>Espace commentaires</target>
             </trans-unit>
+            <trans-unit id="pel.comment.unit.reassignment.reason">
+                <source>pel.comment.unit.reassignment.reason</source>
+                <target>Motif de réorientation de</target>
+            </trans-unit>
             <trans-unit id="pel.complaint.online.portal">
                 <source>pel.complaint.online.portal</source>
                 <target>Portail Plainte en Ligne</target>

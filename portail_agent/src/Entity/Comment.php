@@ -12,10 +12,15 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: CommentRepository::class)]
 class Comment
 {
+    public const UNIT_REASSIGNMENT_REASON = 'pel.comment.unit.reassignment.reason';
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT)]
     #[Assert\Length(max: 2000)]
@@ -40,6 +45,18 @@ class Comment
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(?string $title): self
+    {
+        $this->title = $title;
+
+        return $this;
     }
 
     public function getContent(): ?string

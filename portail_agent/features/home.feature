@@ -185,7 +185,7 @@ Feature:
         And I should see "PEL-2023-00000008"
         And I should see "PEL-2023-00000010"
         And I should see "PEL-2023-00000011"
-        And I should see "PEL-2023-00000018"
+        And I should see "PEL-2023-00000014"
         And I should see "PEL-2023-00000061"
         And I should see "PEL-2023-00000066"
 
