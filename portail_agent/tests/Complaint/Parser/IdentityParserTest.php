@@ -32,7 +32,10 @@ class IdentityParserTest extends KernelTestCase
         },
         "frenchTown": {
           "inseeCode": "75107",
-          "label": "Paris 7e arrondissement"
+          "label": "Paris 7e arrondissement",
+          "postalCode": "75007",
+          "departmentCode": "75",
+          "departmentLabel": "Paris"
         },
         "otherTown": null
       },
@@ -110,7 +113,10 @@ class IdentityParserTest extends KernelTestCase
         },
         "frenchTown": {
           "inseeCode": "75107",
-          "label": "Paris 7e arrondissement"
+          "label": "Paris 7e arrondissement",
+          "postalCode": "75007",
+          "departmentCode": "75",
+          "departmentLabel": "Paris"
         },
         "otherTown": null
       },
@@ -204,15 +210,13 @@ JSON;
         $this->assertSame('1962-08-24T00:00:00+00:00', $identity->getBirthday()?->format('c'));
         $this->assertSame('Paris 7e arrondissement', $identity->getBirthCity());
 
-        // @TODO Find how to fetch that
-        // $this->assertSame('Paris 7e arrondissement', $identity->getBirthPostalCode());
+        $this->assertSame('75007', $identity->getBirthPostalCode());
 
         $this->assertSame('75107', $identity->getBirthInseeCode());
         $this->assertSame('France', $identity->getBirthCountry());
 
-        // @TODO Find how to fetch that
-        // $this->assertSame('France', $identity->getBirthDepartment());
-        // $this->assertSame('France', $identity->getBirthDepartmentNumber());
+        $this->assertSame('Paris', $identity->getBirthDepartment());
+        $this->assertSame(75, $identity->getBirthDepartmentNumber());
 
         $this->assertSame('1 Route de Dracy 71490 Couches', $identity->getAddress());
         $this->assertSame('1', $identity->getAddressStreetNumber());
@@ -317,15 +321,13 @@ JSON;
         $this->assertSame('1962-08-24T00:00:00+00:00', $identity->getBirthday()?->format('c'));
         $this->assertSame('Paris 7e arrondissement', $identity->getBirthCity());
 
-        // @TODO Find how to fetch that
-        // $this->assertSame('Paris 7e arrondissement', $identity->getBirthPostalCode());
+        $this->assertSame('75007', $identity->getBirthPostalCode());
 
         $this->assertSame('75107', $identity->getBirthInseeCode());
         $this->assertSame('France', $identity->getBirthCountry());
 
-        // @TODO Find how to fetch that
-        // $this->assertSame('France', $identity->getBirthDepartment());
-        // $this->assertSame('France', $identity->getBirthDepartmentNumber());
+        $this->assertSame('Paris', $identity->getBirthDepartment());
+        $this->assertSame(75, $identity->getBirthDepartmentNumber());
 
         $this->assertSame('1 Route de Dracy 71490 Couches', $identity->getAddress());
         $this->assertSame('1', $identity->getAddressStreetNumber());

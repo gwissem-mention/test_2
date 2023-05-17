@@ -44,15 +44,12 @@ class IdentityParser
 
     private function parseBirthdayPlace(Identity $identity, object $birthDayPlaceInput): void
     {
-        // TODO replace by a pure department value from the FO json
-        $department = $birthDayPlaceInput->frenchTown?->inseeCode ? substr($birthDayPlaceInput->frenchTown->inseeCode, 0, 2) : '';
-
         $identity
             ->setBirthCity($birthDayPlaceInput->frenchTown->label ?? $birthDayPlaceInput->otherTown)
-            ->setBirthDepartment($department)
-            ->setBirthDepartmentNumber((int) $department)
+            ->setBirthDepartment($birthDayPlaceInput->frenchTown?->departmentLabel ?? '')
+            ->setBirthDepartmentNumber((int) $birthDayPlaceInput->frenchTown?->departmentCode)
             ->setBirthInseeCode($birthDayPlaceInput->frenchTown?->inseeCode ?? '')
-            ->setBirthPostalCode('')  // TODO replace by a pure postalCode value from the FO json
+            ->setBirthPostalCode($birthDayPlaceInput->frenchTown?->postalCode ?? '')
             ->setBirthCountry($birthDayPlaceInput->country->label);
     }
 

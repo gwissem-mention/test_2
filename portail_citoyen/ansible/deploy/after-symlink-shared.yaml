@@ -5,6 +5,7 @@
       APP_ENV={{ ansible_env.APP_ENV }}
       REDIS_HOST={{ ansible_env.REDIS_HOST }}
       FILE_CITIES={{ ansible_env.FILE_CITIES }}
+      FILE_DEPARTMENTS={{ ansible_env.FILE_DEPARTMENTS  
       FILE_JOBS_MALE={{ ansible_env.FILE_JOBS_MALE }}
       FILE_JOBS_FEMALE={{ ansible_env.FILE_JOBS_FEMALE }}
       FILE_SERVICES={{ ansible_env.FILE_SERVICES }}
