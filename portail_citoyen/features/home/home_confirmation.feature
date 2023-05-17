@@ -16,6 +16,7 @@ Feature:
 
         Examples:
             | trans                                                     |
+            | pel.complaint.online.confirmation                         |
             | pel.ministry                                              |
             | pel.inside                                                |
             | pel.and.overseas                                          |
