@@ -370,6 +370,18 @@
                 <source>pel.complaint.online</source>
                 <target>Plainte en ligne</target>
             </trans-unit>
+            <trans-unit id="pel.complaint.online.authentification">
+                <source>pel.complaint.online.authentification</source>
+                <target>Authentification - Plainte en ligne</target>
+            </trans-unit>
+            <trans-unit id="pel.complaint.online.confirmation">
+                <source>pel.complaint.online.confirmation</source>
+                <target>Confirmation des critères - Plainte en ligne</target>
+            </trans-unit>
+            <trans-unit id="pel.complaint.online.unfolding">
+                <source>pel.complaint.online.unfolding</source>
+                <target>Déroulé des étapes - Plainte en ligne</target>
+            </trans-unit>
             <trans-unit id="pel.complaint.online.welcome">
                 <source>pel.complaint.online.welcome</source>
                 <target>Accueil - Plainte en ligne</target>
