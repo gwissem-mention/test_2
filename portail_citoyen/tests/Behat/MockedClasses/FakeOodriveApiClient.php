@@ -60,8 +60,8 @@ class FakeOodriveApiClient implements ApiClientInterface
     public function getChildrenFolders(Folder $rootFolder): array
     {
         return [
-            new Folder(['id' => uniqid(), 'name' => 'folder1', 'childFolderCount' => 0, 'isDir' => true]),
-            new Folder(['id' => uniqid(), 'name' => 'folder2', 'childFolderCount' => 0, 'isDir' => true]),
+            new Folder(['id' => uniqid(), 'name' => 'folder1', 'childFolderCount' => 0, 'isDir' => true, 'parentId' => $rootFolder->getId()]),
+            new Folder(['id' => uniqid(), 'name' => 'folder2', 'childFolderCount' => 0, 'isDir' => true, 'parentId' => $rootFolder->getId()]),
         ];
     }
 }

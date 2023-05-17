@@ -29,8 +29,14 @@ class FolderResolver
         /** @var Folder[] $results */
         $results = $this->oodriveClient->search($searchParam);
 
-        if (count($results) > 0) {
-            return $results[0];
+        foreach ($results as $result) {
+            if ($result->getName() === $email) {
+                $parentFolder = $this->oodriveClient->getFolder($result->getParentId());
+
+                if ($parentFolder->getId() === $this->oodriveRootFolderId) {
+                    return $result;
+                }
+            }
         }
 
         $folder = $this->folderRotator->getLeastUsedFolder($this->oodriveRootFolderId);

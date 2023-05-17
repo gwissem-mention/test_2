@@ -12,12 +12,15 @@ class Folder
 
     private bool $isDir;
 
+    private string $parentId;
+
     /**
      * @param array{
      *     'id': string,
      *     'name': string|null,
      *     'childFolderCount': int|null,
-     *     'isDir': bool|null
+     *     'isDir': bool|null,
+     *     'parentId': string|null
      * } $payload
      */
     public function __construct(array $payload)
@@ -26,6 +29,7 @@ class Folder
         $this->name = $payload['name'] ?? '';
         $this->childrenFolderCount = $payload['childFolderCount'] ?? 0;
         $this->isDir = $payload['isDir'] ?? true;
+        $this->parentId = $payload['parentId'] ?? '';
     }
 
     public function getId(): string
@@ -46,5 +50,10 @@ class Folder
     public function isDir(): bool
     {
         return $this->isDir;
+    }
+
+    public function getParentId(): string
+    {
+        return $this->parentId;
     }
 }
