@@ -67,7 +67,6 @@ class ComplaintFetcher
                         $this->logger->error(sprintf('No affected service found for file %s. Skipped.', $file->getName()));
                     }
                 }
-                $this->deleteEmailFolder($emailFolder);
             }
         }
 
@@ -92,14 +91,6 @@ class ComplaintFetcher
         $folder->setParentId($destinationEmailFolder->getId());
 
         $this->oodriveClient->updateFolder($folder);
-    }
-
-    private function deleteEmailFolder(Folder $emailFolder): void
-    {
-        $emailFolder = $this->getEmailFolder($emailFolder->getName(), $this->oodriveRootFolderId);
-        if (0 === $emailFolder->getChildrenFolderCount()) {
-            $this->oodriveClient->deleteFolder($emailFolder);
-        }
     }
 
     private function getEmailFolder(string $email, string $rootFolderId): Folder
