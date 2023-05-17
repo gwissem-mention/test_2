@@ -77,6 +77,9 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'frenchTown' => [
                             'inseeCode' => '75107',
                             'label' => 'Paris 7e arrondissement',
+                            'postalCode' => '75007',
+                            'departmentCode' => '75',
+                            'departmentLabel' => 'Paris',
                         ],
                         'otherTown' => null,
                     ],
@@ -409,6 +412,9 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'frenchTown' => [
                             'inseeCode' => null,
                             'label' => null,
+                            'postalCode' => null,
+                            'departmentCode' => null,
+                            'departmentLabel' => null,
                         ],
                         'otherTown' => 'Madrid',
                     ],
@@ -481,6 +487,9 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'frenchTown' => [
                             'inseeCode' => null,
                             'label' => null,
+                            'postalCode' => null,
+                            'departmentCode' => null,
+                            'departmentLabel' => null,
                         ],
                         'otherTown' => 'Madrid',
                     ],
@@ -812,6 +821,9 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'frenchTown' => [
                             'inseeCode' => '75107',
                             'label' => 'Paris 7e arrondissement',
+                            'postalCode' => '75007',
+                            'departmentCode' => '75',
+                            'departmentLabel' => 'Paris',
                         ],
                         'otherTown' => null,
                     ],

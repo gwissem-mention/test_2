@@ -72,7 +72,10 @@ class ComplaintFileParserTest extends KernelTestCase
 				"frenchTown":
 				{
 					"inseeCode": "75107",
-					"label": "Paris 7e arrondissement"
+					"label": "Paris 7e arrondissement",
+					"postalCode": "75007",
+					"departmentCode": "75",
+					"departmentLabel": "Paris"
 				},
 				"otherTown": null
 			},
