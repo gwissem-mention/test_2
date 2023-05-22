@@ -1,6 +1,6 @@
 <li>
     {{ 'pel.civility'|trans }} :
-    {% if civilState.civility is same as(constant('App\\Enum\\Civility::M').value) %}
+    {% if civilState.civility is same as(constant('App\\AppEnum\\Civility::M').value) %}
         {{ 'pel.sir'|trans }}
     {% else %}
         {{ 'pel.madam'|trans }}

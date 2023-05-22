@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Form\Objects;
 
-use App\Enum\DocumentType;
+use App\AppEnum\DocumentType;
 use App\Form\Model\Objects\ObjectModel;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;

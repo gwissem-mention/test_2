@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Form\Factory;
 
-use App\Enum\Civility;
+use App\AppEnum\Civility;
 use App\Form\Model\Identity\CivilStateModel;
 use App\Form\Model\Identity\ContactInformationModel;
 use App\Form\Model\Identity\IdentityModel;

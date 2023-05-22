@@ -2,8 +2,8 @@
 
 namespace App\Tests\Behat;
 
+use App\AppEnum\Gender;
 use App\Entity\User;
-use App\Enum\Gender;
 use Behat\Behat\Context\Context;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Doctrine\ORM\EntityManagerInterface;

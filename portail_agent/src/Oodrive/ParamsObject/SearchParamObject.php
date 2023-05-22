@@ -2,8 +2,6 @@
 
 namespace App\Oodrive\ParamsObject;
 
-use Safe\DateTimeImmutable;
-
 class SearchParamObject
 {
     private ?string $q = null;
@@ -15,9 +13,9 @@ class SearchParamObject
 
     private ?string $folderId = null;
 
-    private ?DateTimeImmutable $after = null;
+    private ?\DateTimeImmutable $after = null;
 
-    private ?DateTimeImmutable $before = null;
+    private ?\DateTimeImmutable $before = null;
 
     /**
      * @var array<string>|null
@@ -37,7 +35,7 @@ class SearchParamObject
      */
     private ?array $metadata = null;
 
-    public function q(?string $q): SearchParamObject
+    public function q(?string $q): self
     {
         $this->q = $q;
 
@@ -47,28 +45,28 @@ class SearchParamObject
     /**
      * @param array<string>|null $in
      */
-    public function in(?array $in): SearchParamObject
+    public function in(?array $in): self
     {
         $this->in = $in;
 
         return $this;
     }
 
-    public function folderId(?string $folderId): SearchParamObject
+    public function folderId(?string $folderId): self
     {
         $this->folderId = $folderId;
 
         return $this;
     }
 
-    public function after(?DateTimeImmutable $after): SearchParamObject
+    public function after(?\DateTimeImmutable $after): self
     {
         $this->after = $after;
 
         return $this;
     }
 
-    public function before(?DateTimeImmutable $before): SearchParamObject
+    public function before(?\DateTimeImmutable $before): self
     {
         $this->before = $before;
 
@@ -78,35 +76,35 @@ class SearchParamObject
     /**
      * @param array<string>|null $type
      */
-    public function type(?array $type): SearchParamObject
+    public function type(?array $type): self
     {
         $this->type = $type;
 
         return $this;
     }
 
-    public function sortBy(?string $sortBy): SearchParamObject
+    public function sortBy(?string $sortBy): self
     {
         $this->sortBy = $sortBy;
 
         return $this;
     }
 
-    public function sortOrder(?string $sortOrder): SearchParamObject
+    public function sortOrder(?string $sortOrder): self
     {
         $this->sortOrder = $sortOrder;
 
         return $this;
     }
 
-    public function count(?int $count): SearchParamObject
+    public function count(?int $count): self
     {
         $this->count = $count;
 
         return $this;
     }
 
-    public function position(?string $position): SearchParamObject
+    public function position(?string $position): self
     {
         $this->position = $position;
 
@@ -116,7 +114,7 @@ class SearchParamObject
     /**
      * @param array<string>|null $metadata
      */
-    public function metadata(?array $metadata): SearchParamObject
+    public function metadata(?array $metadata): self
     {
         $this->metadata = $metadata;
 

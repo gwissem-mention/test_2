@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Generator\Complaint\Serializer;
 
-use App\Enum\DeclarantStatus;
+use App\AppEnum\DeclarantStatus;
 use App\Form\Model\Identity\DeclarantStatusModel;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;

@@ -2,8 +2,8 @@
 
 namespace App\Tests\Session;
 
+use App\AppEnum\Gender;
 use App\Entity\User;
-use App\Enum\Gender;
 use App\Form\Model\Identity\CivilStateModel;
 use App\Form\Model\Identity\ContactInformationModel;
 use App\Form\Model\Identity\IdentityModel;

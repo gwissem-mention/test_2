@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Form\Identity;
 
-use App\Enum\Civility;
+use App\AppEnum\Civility;
 use App\Form\JobAutocompleteType;
 use App\Form\LocationType;
 use App\Form\Model\Identity\CivilStateModel;

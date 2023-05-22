@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Tests\Factory;
 
-use App\Enum\Civility;
-use App\Enum\DeclarantStatus;
+use App\AppEnum\Civility;
+use App\AppEnum\DeclarantStatus;
 use App\Form\Model\AdditionalInformation\AdditionalInformationModel;
 use App\Form\Model\Address\AddressEtalabModel;
 use App\Form\Model\Address\AddressForeignModel;

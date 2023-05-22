@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Form\Identity;
 
-use App\Enum\DeclarantStatus;
+use App\AppEnum\DeclarantStatus;
 use App\Form\Model\Identity\IdentityModel;
 use App\Session\SessionHandler;
 use Symfony\Component\Form\AbstractType;

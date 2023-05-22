@@ -323,20 +323,23 @@ final class BaseContext extends MinkContext
 
             $this->iWait(500);
 
-            $autocompletes = $this->getSession()->getPage()->findAll('css', '.ts-dropdown-content');
+            $autocompletes = $this->getSession()->getPage()->findField($field)?->getParent()->getParent()->find('css', '.ts-dropdown-content');
+
             if (empty($autocompletes)) {
                 throw new \RuntimeException('Could not find the autocomplete popup box');
             }
 
-            foreach ($autocompletes as $autocomplete) {
-                if ($autocomplete->isVisible()) {
-                    $matchedElement = $autocomplete->find('xpath', "//div[@data-value='{$foundValue}']");
-                    if (!empty($matchedElement)) {
-                        $matchedElement->click();
-                        $this->iWait(500);
-                    }
-                }
+            $valueToAutocomplete = $autocompletes->find('xpath', "//div[@data-value='{$foundValue}']");
+
+            if (empty($valueToAutocomplete)) {
+                throw new \RuntimeException('Could not find the autocomplete value');
             }
+
+            if (!$valueToAutocomplete->isVisible()) {
+                throw new \RuntimeException('The selected value is not visible');
+            }
+
+            $valueToAutocomplete->click();
         });
     }
 

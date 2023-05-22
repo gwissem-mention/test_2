@@ -41,9 +41,9 @@
                         <li>{{ 'pel.want.to.receive.sms.notifications'|trans }}</li>
                         <li>
                             {{ 'pel.is.designated.as'|trans }}
-                            {% if complaint.declarantStatus.declarantStatus is same as(constant('App\\Enum\\DeclarantStatus::Victim').value) %}
+                            {% if complaint.declarantStatus.declarantStatus is same as(constant('App\\AppEnum\\DeclarantStatus::Victim').value) %}
                                 {{ 'pel.complaint.identity.victim'|trans }}
-                            {% elseif complaint.declarantStatus.declarantStatus is same as(constant('App\\Enum\\DeclarantStatus::PersonLegalRepresentative').value) %}
+                            {% elseif complaint.declarantStatus.declarantStatus is same as(constant('App\\AppEnum\\DeclarantStatus::PersonLegalRepresentative').value) %}
                                 {{ 'pel.complaint.identity.person.legal.representative'|trans }}
                             {% else %}
                                 {{ 'pel.complaint.identity.corporation.legal.representative'|trans }}
@@ -51,14 +51,14 @@
                             {{ 'pel.of.infraction'|trans }}
                         </li>
                     </ul>
-                    {% if complaint.declarantStatus.declarantStatus is same as(constant('App\\Enum\\DeclarantStatus::PersonLegalRepresentative').value) %}
+                    {% if complaint.declarantStatus.declarantStatus is same as(constant('App\\AppEnum\\DeclarantStatus::PersonLegalRepresentative').value) %}
                         <p>{{ 'pel.represented.person.identity'|trans }}</p>
                         {{ include('common/_recap_identity.html.twig', {
                             civilState: complaint.identity.representedPersonCivilState,
                             contactInformation: complaint.identity.representedPersonContactInformation
                         }) }}
                     {% endif %}
-                    {% if complaint.declarantStatus.declarantStatus is same as(constant('App\\Enum\\DeclarantStatus::CorporationLegalRepresentative').value) %}
+                    {% if complaint.declarantStatus.declarantStatus is same as(constant('App\\AppEnum\\DeclarantStatus::CorporationLegalRepresentative').value) %}
                         <p><b>{{ 'pel.corporation.legal.information'|trans }}</b></p>
                         <ul>
                             <li>
@@ -272,7 +272,7 @@
         <li>{{ 'pel.object.category'|trans }} : {{ object.category|object_category_get_name|trans }}</li>
         {% if object.category|object_category_get_name is same as('pel.object.category.documents') %}
             <li>{{ 'pel.document.type'|trans }} : {{ object.documentType|document_type_label|trans }}</li>
-            {% if object.documentType is same as(constant('App\\Enum\\DocumentType::Other').value) and object.otherDocumentType is not null %}
+            {% if object.documentType is same as(constant('App\\AppEnum\\DocumentType::Other').value) and object.otherDocumentType is not null %}
                 <li>{{ 'pel.could.you.precise'|trans }} : {{ object.otherDocumentType }}</li>
             {% endif %}
             <li>{{ 'pel.i.am.the.owner.of.this.document'|trans }} : {{ object.documentOwned ? 'pel.yes'|trans : 'pel.no'|trans }}</li>

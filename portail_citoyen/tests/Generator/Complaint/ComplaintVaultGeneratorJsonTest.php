@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Generator\Complaint;
 
-use App\Enum\DeclarantStatus;
+use App\AppEnum\DeclarantStatus;
 use App\Generator\Complaint\ComplaintVaultGeneratorJson;
 use App\Tests\Factory\ComplaintFactory;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
