@@ -27,7 +27,7 @@ class ContactInformationModelNormalizer implements NormalizerInterface
      */
     public function normalize($object, string $format = null, array $context = []): array
     {
-        /** @var array<string, mixed> $data */
+        /** @var array<string, string|int> $data */
         $data = $this->normalizer->normalize($object, $format, array_merge($context, [
             AbstractNormalizer::IGNORED_ATTRIBUTES => ['etalabInput', 'sameAddress'],
         ]));

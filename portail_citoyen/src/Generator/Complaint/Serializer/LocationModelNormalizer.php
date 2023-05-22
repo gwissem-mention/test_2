@@ -30,7 +30,7 @@ class LocationModelNormalizer implements NormalizerInterface
      */
     public function normalize($object, string $format = null, array $context = []): array
     {
-        /** @var array<string, mixed> $data */
+        /** @var array<string, string|int> $data */
         $data = $this->normalizer->normalize($object, $format, $context);
 
         $country = $this->countryProvider->getByInseeCode(strval($data['country']));

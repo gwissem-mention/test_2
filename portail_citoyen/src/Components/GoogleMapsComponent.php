@@ -29,6 +29,8 @@ class GoogleMapsComponent
 
     public function mount(): void
     {
-        $this->apiKey = strval($this->parameterBag->get('app.google_maps_api_key'));
+        /** @var string|null $googleMapsApiKey */
+        $googleMapsApiKey = $this->parameterBag->get('app.google_maps_api_key');
+        $this->apiKey = strval($googleMapsApiKey);
     }
 }

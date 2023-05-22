@@ -21,11 +21,21 @@ class FindUnitsController extends AbstractController
             throw new BadRequestException('Missing lat or lng parameters');
         }
 
-        $inseeCode = strval($request->get('inseeCode'));
+        /** @var string|int $inseeCode */
+        $inseeCode = $request->get('inseeCode');
+        $inseeCode = strval($inseeCode);
+
+        /** @var string|int|float $lat */
+        $lat = $request->get('lat');
+        $lat = floatval($lat);
+
+        /** @var string|int|float $lng */
+        $lng = $request->get('lng');
+        $lng = floatval($lng);
 
         $units = $unitRepository->findForMap(
-            floatval($request->get('lat')),
-            floatval($request->get('lng')),
+            $lat,
+            $lng,
             $inseeCode,
             preg_match("/^75\d{3}$/", $inseeCode) ? 10 : 5
         );

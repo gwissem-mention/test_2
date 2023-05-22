@@ -272,11 +272,13 @@ final class BaseContext extends MinkContext
     public function iAttachFileToField(string $selector, string $path): void
     {
         $fullPath = '';
-        if ($this->getMinkParameter('files_path')) {
-            $fullPath = rtrim(
-                strval(realpath(strval($this->getMinkParameter('files_path')))),
-                DIRECTORY_SEPARATOR
-            ).DIRECTORY_SEPARATOR.$path;
+        if ($filesPaths = $this->getMinkParameter('files_path')) {
+            /** @var string $filesPaths */
+            $realFilesPaths = realpath($filesPaths);
+
+            if ($realFilesPaths) {
+                $fullPath = rtrim($realFilesPaths, DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR.$path;
+            }
         }
 
         $fileContent = file_get_contents($fullPath);

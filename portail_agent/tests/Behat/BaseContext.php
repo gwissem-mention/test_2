@@ -390,13 +390,16 @@ final class BaseContext extends MinkContext
     {
         $field = $this->getSession()->getPage()->find('css', $selector);
 
-        if ($this->getMinkParameter('files_path')) {
-            $fullPath = rtrim(
-                strval(realpath(strval($this->getMinkParameter('files_path')))),
-                DIRECTORY_SEPARATOR
-            ).DIRECTORY_SEPARATOR.$path;
-            if (is_file($fullPath)) {
-                $path = $fullPath;
+        if ($filesPaths = $this->getMinkParameter('files_path')) {
+            /** @var string $filesPaths */
+            $realFilesPaths = realpath($filesPaths);
+
+            if ($realFilesPaths) {
+                $fullPath = rtrim($realFilesPaths, DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR.$path;
+
+                if (is_file($fullPath)) {
+                    $path = $fullPath;
+                }
             }
         }
 
