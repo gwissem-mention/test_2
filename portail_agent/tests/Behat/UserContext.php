@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Tests\Behat;
 
+use App\AppEnum\Institution;
 use App\Entity\User;
-use App\Enum\Institution;
 use App\Repository\UserRepository;
 use App\Security\AgentAuthenticator;
 use Behat\Behat\Hook\Scope\AfterScenarioScope;

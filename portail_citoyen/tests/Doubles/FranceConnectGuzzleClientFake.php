@@ -2,7 +2,7 @@
 
 namespace App\Tests\Doubles;
 
-use App\Enum\Gender;
+use App\AppEnum\Gender;
 use App\Security\FranceConnectAuthenticator;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Promise\PromiseInterface;

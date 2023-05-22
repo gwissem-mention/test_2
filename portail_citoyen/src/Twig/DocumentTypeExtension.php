@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Twig;
 
-use App\Enum\DocumentType;
+use App\AppEnum\DocumentType;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 

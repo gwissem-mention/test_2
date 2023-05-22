@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Controller\SSOLess;
 
 use App\Entity\User;
-use App\Security\SSOLess;
+use App\Security\SSOLessInterface;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -45,7 +45,7 @@ class StartSessionController extends AbstractController
 
             $response = $this->redirectToRoute('home');
             $response->headers->setCookie(
-                Cookie::create(SSOLess::COOKIE_NAME, (string) $user->getId())
+                Cookie::create(SSOLessInterface::COOKIE_NAME, (string) $user->getId())
             );
 
             return $response;

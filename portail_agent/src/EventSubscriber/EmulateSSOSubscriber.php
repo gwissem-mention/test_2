@@ -6,7 +6,7 @@ namespace App\EventSubscriber;
 
 use App\Repository\UserRepository;
 use App\Security\AgentAuthenticator;
-use App\Security\SSOLess;
+use App\Security\SSOLessInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 
@@ -31,7 +31,7 @@ final class EmulateSSOSubscriber implements EventSubscriberInterface
 
         $request = $event->getRequest();
 
-        if (null === $userId = $request->cookies->get(SSOLess::COOKIE_NAME)) {
+        if (null === $userId = $request->cookies->get(SSOLessInterface::COOKIE_NAME)) {
             return;
         }
 

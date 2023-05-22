@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Security;
 
+use App\AppEnum\Institution;
 use App\Entity\User;
-use App\Enum\Institution;
 use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -106,7 +106,7 @@ final class AgentAuthenticator extends AbstractAuthenticator implements Authenti
     public function start(Request $request, AuthenticationException $authException = null): Response
     {
         if (false === $this->ssoIsEnabled) {
-            return new RedirectResponse($this->urlGenerator->generate(SSOLess::START_SESSION_ROUTE));
+            return new RedirectResponse($this->urlGenerator->generate(SSOLessInterface::START_SESSION_ROUTE));
         }
 
         return new Response(null, 401);

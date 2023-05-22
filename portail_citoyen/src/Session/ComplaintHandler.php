@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Session;
 
-use App\Enum\DeclarantStatus;
+use App\AppEnum\DeclarantStatus;
 use App\Form\Model\Address\AddressEtalabModel;
 use App\Form\Model\Objects\ObjectModel;
 use App\Form\Model\Objects\ObjectsModel;

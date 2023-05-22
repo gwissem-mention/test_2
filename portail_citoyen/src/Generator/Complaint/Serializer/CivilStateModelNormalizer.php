@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Generator\Complaint\Serializer;
 
-use App\Enum\Civility;
+use App\AppEnum\Civility;
 use App\Form\Model\Identity\CivilStateModel;
 use App\Referential\Repository\JobRepository;
 use App\Thesaurus\NationalityThesaurusProviderInterface;

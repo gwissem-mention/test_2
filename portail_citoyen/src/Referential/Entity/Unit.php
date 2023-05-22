@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Referential\Entity;
 
-use App\Enum\Institution;
+use App\AppEnum\Institution;
 use App\Referential\Repository\UnitRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;

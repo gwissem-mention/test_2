@@ -4,6 +4,7 @@ framework:
     trusted_proxies: '%env(TRUSTED_PROXIES)%'
 
     session:
+        name: PHPPELSESSID
         handler_id: Symfony\Component\HttpFoundation\Session\Storage\Handler\RedisSessionHandler
         cookie_secure: auto
         cookie_samesite: lax

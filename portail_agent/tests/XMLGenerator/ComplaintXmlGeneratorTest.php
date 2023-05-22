@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\XMLGenerator;
 
+use App\AppEnum\Institution;
 use App\Entity\AdditionalInformation;
 use App\Entity\Complaint;
 use App\Entity\Corporation;
@@ -14,7 +15,6 @@ use App\Entity\FactsObjects\PaymentMethod;
 use App\Entity\FactsObjects\SimpleObject;
 use App\Entity\FactsObjects\Vehicle;
 use App\Entity\Identity;
-use App\Enum\Institution;
 use App\Generator\Complaint\ComplaintXmlGenerator;
 use App\Referential\Entity\Unit;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;

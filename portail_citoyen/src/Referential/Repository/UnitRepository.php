@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Referential\Repository;
 
-use App\Enum\Institution;
+use App\AppEnum\Institution;
 use App\Referential\Entity\CityUnit;
 use App\Referential\Entity\Unit;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;

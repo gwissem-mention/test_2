@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Referential\DataFixtures\Unit;
 
-use App\Enum\Institution;
+use App\AppEnum\Institution;
 use App\Referential\Entity\Unit;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
