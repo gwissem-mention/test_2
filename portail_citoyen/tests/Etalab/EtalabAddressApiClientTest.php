@@ -11,7 +11,7 @@ use Symfony\Component\HttpClient\Response\MockResponse;
 
 class EtalabAddressApiClientTest extends TestCase
 {
-    /** @var array<string, mixed> */
+    /** @var array<string, string|int> */
     private array $expectedRequestData;
     /** @var array<mixed> */
     private array $expectedResponseData;

@@ -39,7 +39,7 @@ class AddressEtalabHandler
     private function findOneById(string $id, array $addresses = []): ?AddressEtalabModel
     {
         foreach ($addresses as $address) {
-            /** @var array<string, mixed> $properties */
+            /** @var array<string, string|float|int|null> $properties */
             $properties = $address['properties'];
             if (!empty($properties) && $id === $properties['id']) {
                 return AddressModelFactory::createFromEtalab(

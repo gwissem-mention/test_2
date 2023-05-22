@@ -61,7 +61,7 @@ class LocationType extends AbstractType
             ->addEventListener(
                 FormEvents::PRE_SUBMIT,
                 function (FormEvent $event) use ($locationModel) {
-                    /** @var array<string, mixed> $location */
+                    /** @var array<string, int|string> $location */
                     $location = $event->getData();
                     $this->addTownField(
                         $event->getForm(),
@@ -84,6 +84,7 @@ class LocationType extends AbstractType
                     $this->addTownField(
                         $parent,
                         $country,
+                        /* @phpstan-ignore-next-line */
                         $parent->has('frenchTown') ? strval($parent->get('frenchTown')->getData()) : null,
                         $locationModel
                     );

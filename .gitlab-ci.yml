@@ -280,6 +280,32 @@ agent-symfony-security:
 citoyen-symfony-security:
     <<: *citoyen-step
     <<: *symfony-security
+    
+.tools-security: &tools-security
+    stage: security
+    script:
+        - make tools-security
+
+agent-tools-security:
+    <<: *agent-step
+    <<: *tools-security
+
+citoyen-tools-security:
+    <<: *citoyen-step
+    <<: *tools-security
+
+.tools-outdated: &tools-outdated
+    stage: security
+    script:
+        - make tools-outdated
+
+agent-tools-outdated:
+    <<: *agent-step
+    <<: *tools-security
+
+citoyen-tools-outdated:
+    <<: *citoyen-step
+    <<: *tools-security
 
 .frontend-audit: &frontend-audit
     stage: security

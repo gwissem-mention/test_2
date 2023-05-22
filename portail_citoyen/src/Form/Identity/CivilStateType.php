@@ -128,7 +128,7 @@ class CivilStateType extends AbstractType
             ->addEventListener(
                 FormEvents::PRE_SUBMIT,
                 function (FormEvent $event) {
-                    /** @var array<string, mixed> $civilState */
+                    /** @var array<string, int|string> $civilState */
                     $civilState = $event->getData();
                     $this->addJobField(
                         $event->getForm(),

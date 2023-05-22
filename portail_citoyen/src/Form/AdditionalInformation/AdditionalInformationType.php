@@ -121,6 +121,7 @@ class AdditionalInformationType extends AbstractType
         $builder->get('cctvPresent')->addEventListener(
             FormEvents::POST_SUBMIT,
             function (FormEvent $event) {
+                /** @var int|string|null $choice */
                 $choice = $event->getData();
                 /** @var FormInterface $parent */
                 $parent = $event->getForm()->getParent();

@@ -30,8 +30,8 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
     private const COMPLAINTS_NB = 10;
 
     public function __construct(private readonly NotificationFactory $notificationFactory,
-                                private readonly FilesystemOperator $defaultStorage,
-                                private readonly KernelInterface $kernel,
+        private readonly FilesystemOperator $defaultStorage,
+        private readonly KernelInterface $kernel,
     ) {
     }
 

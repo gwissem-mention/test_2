@@ -52,9 +52,12 @@ class FranceConnectContext implements Context
         $this->assert(rtrim($this->baseUri, '/').'/logout', $url, sprintf('Wrong url'));
 
         parse_str($qs, $result);
+
+        /* @phpstan-ignore-next-line */
         $this->assert('my-id-token', strval($result['id_token_hint']), 'Wrong id_token_hint query param');
         $this->assert(
             $this->urlGenerator->generate(FranceConnectListener::LOGOUT_CALLBACK_ROUTE, [], UrlGeneratorInterface::ABSOLUTE_URL),
+            /* @phpstan-ignore-next-line */
             strval($result['post_logout_redirect_uri']), 'Wrong post_logout_redirect_uri query param',
         );
 

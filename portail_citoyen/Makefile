@@ -242,6 +242,14 @@ infection:
 security:
 	@local-php-security-checker
 
+## Run composer audit on tools
+tools-security:
+	@composer audit --working-dir=tools
+
+## Run composer audit on tools
+tools-outdated:
+	@composer outdated --working-dir=tools
+
 ## Run PHP Copy/Paste Detector
 cpd:
 	@$(PHP) tools/phpcpd.phar src
