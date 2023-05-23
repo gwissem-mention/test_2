@@ -63,7 +63,7 @@
                         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-complaint-reject" title="{{ 'pel.you.will.reject.the.declaration'|trans }}" id="complaint-reject-button">
                             <i class="bi bi-x-lg"></i> {{ 'pel.reject'|trans }}
                         </button>
-                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modal-complaint-unit-reassign" id="complaint-unit-reassign-button">
+                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="{{ complaint.unitReassignmentAsked ? '#modal-complaint-unit-reassign-validation' : '#modal-complaint-unit-reassign' }}" id="complaint-unit-reassign-button">
                             <i class="bi bi-arrow-return-right"></i> {{ 'pel.unit.reassign'|trans }}
                         </button>
                     {% endif %}

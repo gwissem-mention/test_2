@@ -82,10 +82,17 @@
                         'dragDropForm': drag_drop_form,
                         'complaintId': complaint.id
                     } %}
-                    {% include 'pages/complaint/_partial/modals/reassign.html.twig' with {
-                        'unitReassignForm': unit_reassign_form,
-                        'complaintId': complaint.id
-                    } %}
+                    {% if complaint.unitReassignmentAsked %}
+                        {% include 'pages/complaint/_partial/modals/reassign_validation.html.twig' with {
+                            'unitReassignForm': unit_reassign_form,
+                            'complaintId': complaint.id
+                        } %}
+                    {% else %}
+                        {% include 'pages/complaint/_partial/modals/reassign.html.twig' with {
+                            'unitReassignForm': unit_reassign_form,
+                            'complaintId': complaint.id
+                        } %}
+                    {% endif %}
                 {% endif %}
             {% endblock %}
         </div>

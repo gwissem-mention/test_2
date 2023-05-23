@@ -1,0 +1,13 @@
+{{ form_start(unitReassignForm, { attr: { 'data-complaint-target': 'unitReassignmentForm' }}) }}
+    <div class="row">
+        <div class="col-6">{{ 'pel.agent.name.who.asked'|trans }} :</div>
+        <div class="col-6">{{ complaint.assignedTo.appellation }}</div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-6">{{ 'pel.unit.to.reassign'|trans }} :</div>
+        <div class="col-6">{{ form_row(unitReassignForm.unitToReassign, { 'label': false }) }}</div>
+    </div>
+    <div>
+        {{ form_row(unitReassignForm.unitReassignText, { 'label': 'pel.unit.reassignment.text' }) }}
+    </div>
+{{ form_end(unitReassignForm) }}

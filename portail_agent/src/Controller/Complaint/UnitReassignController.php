@@ -35,12 +35,22 @@ class UnitReassignController extends AbstractController
 
         if ($form->isSubmitted()) {
             if (false === $form->isValid()) {
-                return $this->json([
-                    'success' => false,
-                    'form' => $this->renderView(
+                $form = $complaint->isUnitReassignmentAsked() ?
+                    $this->renderView(
+                        'pages/complaint/forms/unit_reassignment_validation_form.html.twig',
+                        [
+                            'unitReassignForm' => $form->createView(),
+                            'complaint' => $complaint,
+                        ]
+                    ) :
+                    $this->renderView(
                         'common/_form.html.twig',
                         ['form' => $form->createView()]
-                    ),
+                    );
+
+                return $this->json([
+                    'success' => false,
+                    'form' => $form,
                 ], 422);
             }
 
@@ -62,6 +72,7 @@ class UnitReassignController extends AbstractController
                     ->setUnitAssigned($unitCodeToReassign)
                     ->setUnitToReassign(null)
                     ->setUnitReassignText(null)
+                    ->setUnitReassignmentAsked(false)
                     ->setAssignedTo(null)
                     ->addComment($unitReassignmentReason)
                 ;
@@ -83,7 +94,11 @@ class UnitReassignController extends AbstractController
                 /** @var string $unitCode */
                 $unitCode = $complaint->getUnitAssigned();
 
-                $complaintRepository->save($complaint->setStatus(Complaint::STATUS_UNIT_REASSIGNMENT_PENDING));
+                $complaintRepository->save(
+                    $complaint
+                        ->setStatus(Complaint::STATUS_UNIT_REASSIGNMENT_PENDING)
+                        ->setUnitReassignmentAsked(true)
+                );
 
                 $supervisors = $userRepository->getSupervisorsByUnit($unitCode);
 

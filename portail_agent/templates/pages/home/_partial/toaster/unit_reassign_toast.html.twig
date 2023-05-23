@@ -1,10 +1,18 @@
 {% if is_granted('ROLE_SUPERVISOR') %}
-<div class="toast align-items-center text-bg-secondary" id="toast-complaint-unit-reassign-ordered" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
-    <div class="d-flex">
-        <div class="toast-body">
-            {{ 'pel.the.unit.reassignment.of.the.declaration.to'|trans }} <span class="unit-name"></span> {{ 'pel.has.been.ordered'|trans }}
+    <div class="toast align-items-center text-bg-secondary" id="toast-complaint-unit-reassign-ordered" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
+        <div class="d-flex">
+            <div class="toast-body">
+                {{ 'pel.the.unit.reassignment.of.the.declaration.to'|trans }} <span class="unit-name"></span> {{ 'pel.has.been.ordered'|trans }}
+            </div>
+            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="{{ 'pel.close'|trans }}"></button>
         </div>
-        <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="{{ 'pel.close'|trans }}"></button>
     </div>
-</div>
+    <div class="toast align-items-center text-bg-secondary" id="toast-complaint-unit-reassign-validated" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
+        <div class="d-flex">
+            <div class="toast-body">
+                {{ 'pel.the.unit.reassignment.has.been.accepted'|trans }}
+            </div>
+            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="{{ 'pel.close'|trans }}"></button>
+        </div>
+    </div>
 {% endif %}

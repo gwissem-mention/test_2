@@ -30,6 +30,10 @@
                 <source>pel.agent.name</source>
                 <target>Nom de l'agent</target>
             </trans-unit>
+            <trans-unit id="pel.agent.name.who.asked">
+                <source>pel.agent.name.who.asked</source>
+                <target>Nom de l'agent demandeur</target>
+            </trans-unit>
             <trans-unit id="pel.appointment.cancel">
                 <source>pel.appointment.cancel</source>
                 <target>Annuler RDV</target>
@@ -818,6 +822,14 @@
                 <source>pel.the.report.has.been.sent.to.the.victim.the.complaint.is.closed</source>
                 <target>Le PV a bien été envoyé au déclarant, la déclaration est clôturée</target>
             </trans-unit>
+            <trans-unit id="pel.the.unit.reassignment.has.been.accepted">
+                <source>pel.the.unit.reassignment.has.been.accepted</source>
+                <target>La déclaration a bien été réorientée vers un autre service</target>
+            </trans-unit>
+            <trans-unit id="pel.the.unit.reassignment.has.been.rejected.your.agent.stays.assigned">
+                <source>pel.the.unit.reassignment.has.been.rejected.your.agent.stays.assigned</source>
+                <target>La déclaration n'a pas été réorientée, votre agent reste responsable de celle-ci</target>
+            </trans-unit>
             <trans-unit id="pel.the.unit.reassignment.of.the.declaration.to">
                 <source>pel.the.unit.reassignment.of.the.declaration.to</source>
                 <target>La demande de réorientation de la déclaration vers</target>
@@ -925,6 +937,10 @@
             <trans-unit id="pel.validation.sending.complain.to.lrp">
                 <source>pel.validation.sending.complain.to.lrp</source>
                 <target>Validation de l'envoi de la plainte vers le LRP</target>
+            </trans-unit>
+            <trans-unit id="pel.check.unit.reassignment.asked">
+                <source>pel.check.unit.reassignment.asked</source>
+                <target>Analyse de demande de réorientation vers autre service</target>
             </trans-unit>
             <trans-unit id="pel.cheque.number">
                 <source>pel.cheque.number</source>
@@ -1042,6 +1058,10 @@
                 <source>pel.unit.reassign</source>
                 <target>Réorienter vers autres services</target>
             </trans-unit>
+            <trans-unit id="pel.unit.reassignment.accept">
+                <source>pel.unit.reassignment.accept</source>
+                <target>Accepter la demande de réorientation</target>
+            </trans-unit>
             <trans-unit id="pel.unit.reassignment.pending">
                 <source>pel.unit.reassignment.pending</source>
                 <target>En attente de réaffectation</target>
@@ -1049,6 +1069,18 @@
             <trans-unit id="pel.unit.reassignment.reason">
                 <source>pel.unit.reassignment.reason</source>
                 <target>Veuillez décrire le motif de la réorientation</target>
+            </trans-unit>
+            <trans-unit id="pel.unit.reassignment.reject">
+                <source>pel.unit.reassignment.reject</source>
+                <target>Refuser la réorientation</target>
+            </trans-unit>
+            <trans-unit id="pel.unit.reassignment.text">
+                <source>pel.unit.reassignment.text</source>
+                <target>Motif de réorientation</target>
+            </trans-unit>
+            <trans-unit id="pel.unit.to.reassign">
+                <source>pel.unit.to.reassign</source>
+                <target>Réorientation à l'unité</target>
             </trans-unit>
             <trans-unit id="pel.useful.phones">
                 <source>pel.useful.phones</source>

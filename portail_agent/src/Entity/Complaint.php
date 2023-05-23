@@ -152,6 +152,9 @@ class Complaint
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $unitReassignText = null;
 
+    #[ORM\Column]
+    private ?bool $unitReassignmentAsked = false;
+
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: true)]
     private ?Corporation $corporationRepresented = null;
@@ -532,6 +535,18 @@ class Complaint
     public function setFranceConnected(bool $franceConnected): self
     {
         $this->franceConnected = $franceConnected;
+
+        return $this;
+    }
+
+    public function isUnitReassignmentAsked(): ?bool
+    {
+        return $this->unitReassignmentAsked;
+    }
+
+    public function setUnitReassignmentAsked(bool $unitReassignmentAsked): self
+    {
+        $this->unitReassignmentAsked = $unitReassignmentAsked;
 
         return $this;
     }
