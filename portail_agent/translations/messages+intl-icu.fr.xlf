@@ -824,7 +824,7 @@
             </trans-unit>
             <trans-unit id="pel.the.unit.reassignment.of.the.declaration.need.your.approval">
                 <source>pel.the.unit.reassignment.of.the.declaration.need.your.approval</source>
-                <target>La déclaration {declaration_number} est soumise pour réorientation</target>
+                <target>{agent_identity} vient de vous adresser une demande de réorientation vers autre service {declaration_number}</target>
             </trans-unit>
             <trans-unit id="pel.the.declaration.has.been.assigned.to.you">
                 <source>pel.the.declaration.has.been.assigned.to.you</source>

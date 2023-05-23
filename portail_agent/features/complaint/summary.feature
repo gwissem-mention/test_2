@@ -377,7 +377,7 @@ Feature:
         And I should see the key "pel.comment.unit.reassignment.reason" translated
 
     @javascript
-    Scenario: I can submit the unit reassign form successfully as an agent and Thomas DURAND should have a notification
+    Scenario: I can submit the unit reassign form successfully as an agent and Thomas DURAND should have a notification. When Thomas DURAND click the notification he should be redirected on the complaint page and the unit reassignment modal should be open
         Given I am authenticated with PR5KTQSD from GN
         And I am on "/plainte/recapitulatif/110"
         When I press "Réorienter vers autres services"
@@ -392,7 +392,10 @@ Feature:
         Given I am authenticated with PR5KTZ9R from GN
         And I am on the homepage
         When I click the "#notifications-dropdown" element
-        Then I should see "La déclaration PEL-2023-00000110 est soumise pour réorientation"
+        Then I should see "Philippe RIVIERE vient de vous adresser une demande de réorientation vers autre service PEL-2023-00000110"
+        When I follow "Philippe RIVIERE vient de vous adresser une demande de réorientation vers autre service PEL-2023-00000110"
+        Then I should be on "/plainte/recapitulatif/110?showUnitReassignmentValidationModal=1"
+        And I should see a ".modal[aria-modal=true]" element
 
     @func
     Scenario: I can see the comments space on the summary page
