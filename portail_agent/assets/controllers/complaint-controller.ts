@@ -10,7 +10,8 @@ export default class extends Controller {
         "dropzoneFile",
         "rejectForm",
         "rejectModal",
-        "unitReassignmentModal",
+        "unitReassignmentForm",
+        "unitReassignmentModal"
     ];
 
     declare readonly appointmentFormTarget: HTMLFormElement;
@@ -20,6 +21,7 @@ export default class extends Controller {
     declare readonly rejectModalTarget: HTMLElement;
     declare readonly hasUnitReassignmentModalTarget: boolean;
     declare readonly unitReassignmentModalTarget: HTMLElement;
+    declare readonly unitReassignmentFormTarget: HTMLFormElement;
 
     public override connect() {
         this.scrollCommentFeed();
@@ -108,49 +110,61 @@ export default class extends Controller {
     // Must be ignored because we can't type url, redirection and supervisor here.
     // @ts-ignore
     public unitReassign({params: {url, redirection, supervisor}}): void {
-        const form: HTMLFormElement | null = document.querySelector("form[name=unit_reassign]");
-
-        if (url && form) {
+        if (url) {
             fetch(url, {
                 method: HttpMethodsEnum.POST,
-                body: new FormData(form)
+                body: new FormData(this.unitReassignmentFormTarget)
             })
                 .then(response => response.json())
                 .then((data: any) => {
-                    const modalElement: Element | null = document.getElementById("modal-complaint-unit-reassign");
+                    if (data.success) {
+                        Modal.getInstance(this.unitReassignmentModalTarget)?.hide();
 
-                    if (modalElement) {
-                        if (data.success) {
-                            const modal: Modal | null = Modal.getInstance(modalElement);
+                        if (supervisor && redirection) {
+                            location.href = redirection;
+                        } else {
+                            document.querySelectorAll(".unit-name").forEach((element) => {
+                                element.textContent = data.unit_name;
+                            });
+                            // Must be ignored because in Bootstrap types, Toast element has string | Element type
+                            // however we need here to type it as Toast.
+                            // @ts-ignore
+                            const toast: Toast = new Toast(document.getElementById("toast-complaint-unit-reassign-ordered"));
 
-                            if (modal) {
-                                modal.hide();
+                            if (toast) {
+                                toast.show();
                             }
 
-                            if (supervisor && redirection) {
-                                location.href = redirection;
-                            } else {
-                                document.querySelectorAll(".unit-name").forEach((element) => {
-                                    element.textContent = data.unit_name;
-                                });
-                                // Must be ignored because in Bootstrap types, Toast element has string | Element type
-                                // however we need here to type it as Toast.
-                                // @ts-ignore
-                                const toast: Toast = new Toast(document.getElementById("toast-complaint-unit-reassign-ordered"));
-
-                                if (toast) {
-                                    toast.show();
-                                }
-
-                                this.reloadComplaintContainer();
-                            }
-                        } else if (data.form) {
-                            const modalForm: HTMLFormElement | null = modalElement.querySelector("form");
-
-                            if (modalForm) {
-                                modalForm.innerHTML = data.form;
-                            }
+                            this.reloadComplaintContainer();
                         }
+                    } else if (data.form) {
+                        this.unitReassignmentFormTarget.innerHTML = data.form;
+                    }
+                });
+        }
+    }
+
+    // Must be ignored because we can't type url here.
+    // @ts-ignore
+    public unitReassignReject({params: {url}}): void {
+        if (url) {
+            fetch(url, {
+                method: HttpMethodsEnum.POST,
+            })
+                .then(response => {
+                    if (response.status === 200) {
+                        Modal.getInstance(this.unitReassignmentModalTarget)?.hide();
+
+                        // Must be ignored because in Bootstrap types, Toast element has string | Element type
+                        // however we need here to type it as Toast.
+                        // @ts-ignore
+                        const toast: Toast = new Toast(document.getElementById("toast-complaint-unit-reassign-rejected"));
+
+                        if (toast) {
+                            toast.show();
+                        }
+
+                        this.reloadComplaintContainer();
                     }
                 });
         }

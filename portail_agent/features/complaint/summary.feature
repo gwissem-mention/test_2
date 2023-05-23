@@ -35,7 +35,7 @@ Feature:
         And I should see the key "pel.declaration.alert" translated
         And I should see "Alert de test trop longue"
         And I should see 5 "button[data-bs-toggle='modal']" element
-        And I should see 30 "button" element
+        And I should see 31 "button" element
         And I should see the key "pel.assign.declaration.to" translated
         And I should see the key "pel.send.to.lrp" translated
         And I should see the key "pel.reject" translated
@@ -377,7 +377,7 @@ Feature:
         And I should see the key "pel.comment.unit.reassignment.reason" translated
 
     @javascript
-    Scenario: I can submit the unit reassign form successfully as an agent and Thomas DURAND should have a notification. When Thomas DURAND click the notification he should be redirected on the complaint page and the unit reassignment modal should be open
+    Scenario: I can submit the unit reassign form successfully as an agent and validate it as a supervisor
         Given I am authenticated with PR5KTQSD from GN
         And I am on "/plainte/recapitulatif/110"
         When I press "Réorienter vers autres services"
@@ -389,13 +389,42 @@ Feature:
         And I should see the key "pel.the.unit.reassignment.of.the.declaration.to" translated
         And I should see the key "pel.has.been.ordered" translated
         And I should see "La demande de réorientation de la déclaration vers CSP VOIRON/SVP/UPS/BRIGADE DE JOUR à été prise en compte"
-        Given I am authenticated with PR5KTZ9R from GN
+        Then I am authenticated with PR5KTZ9R from GN
         And I am on the homepage
         When I click the "#notifications-dropdown" element
         Then I should see "Philippe RIVIERE vient de vous adresser une demande de réorientation vers autre service PEL-2023-00000110"
         When I follow "Philippe RIVIERE vient de vous adresser une demande de réorientation vers autre service PEL-2023-00000110"
         Then I should be on "/plainte/recapitulatif/110?showUnitReassignmentValidationModal=1"
         And I should see a ".modal[aria-modal=true]" element
+        When I press "Accepter la demande de réorientation"
+        And I wait 500 ms
+        Then I should be on the homepage
+        And I should see a ".toast" element
+        And I should see the key "pel.the.unit.reassignment.has.been.accepted" translated
+
+    @javascript
+    Scenario: I can submit the unit reassign form successfully as an agent and reject it as a supervisor
+        Given I am authenticated with PR5KTQSD from GN
+        And I am on "/plainte/recapitulatif/110"
+        When I press "Réorienter vers autres services"
+        And I fill in the autocomplete "unit_reassign_unitToReassign-ts-control" with "CSP VOIRON/SVP/UPS/BRIGADE DE JOUR" and click "103131"
+        And I fill in "unit_reassign_unitReassignText" with "Cette plainte n'est pas censée être attribuer à mon unité."
+        And I press "Réorienter"
+        Then I should not see a ".modal[aria-modal=true]" element
+        And I should see a ".toast" element
+        And I should see the key "pel.the.unit.reassignment.of.the.declaration.to" translated
+        And I should see the key "pel.has.been.ordered" translated
+        And I should see "La demande de réorientation de la déclaration vers CSP VOIRON/SVP/UPS/BRIGADE DE JOUR à été prise en compte"
+        Then I am authenticated with PR5KTZ9R from GN
+        And I am on the homepage
+        When I click the "#notifications-dropdown" element
+        Then I should see "Philippe RIVIERE vient de vous adresser une demande de réorientation vers autre service PEL-2023-00000110"
+        When I follow "Philippe RIVIERE vient de vous adresser une demande de réorientation vers autre service PEL-2023-00000110"
+        Then I should be on "/plainte/recapitulatif/110?showUnitReassignmentValidationModal=1"
+        And I should see a ".modal[aria-modal=true]" element
+        When I press "Refuser la réorientation"
+        And I should see a ".toast" element
+        And I should see the key "pel.the.unit.reassignment.has.been.rejected.your.agent.stays.assigned" translated
 
     @func
     Scenario: I can see the comments space on the summary page

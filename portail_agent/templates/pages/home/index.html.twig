@@ -3,7 +3,7 @@
 {% block body %}
     {% include 'pages/home/_partial/toaster/toaster.html.twig' %}
     <div
-        data-controller="datatable checkbox-group dashboard-bulk-action"
+        data-controller="home datatable checkbox-group dashboard-bulk-action"
         data-action="checkbox-group:updateChecked->dashboard-bulk-action#setBulkTarget dashboard-bulk-action:finished->datatable#refresh dashboard-bulk-action:finished->checkbox-group#resetAll"
         data-dashboard-bulk-action-url-bulk-assign-value="{{ path('complaint_bulk_assign') }}"
         data-dashboard-bulk-action-url-bulk-reassign-value="{{ path('complaint_bulk_reassign') }}"
