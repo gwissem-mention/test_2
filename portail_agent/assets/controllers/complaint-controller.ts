@@ -9,7 +9,8 @@ export default class extends Controller {
         "complaintContainer",
         "dropzoneFile",
         "rejectForm",
-        "rejectModal"
+        "rejectModal",
+        "unitReassignmentModal",
     ];
 
     declare readonly appointmentFormTarget: HTMLFormElement;
@@ -17,9 +18,12 @@ export default class extends Controller {
     declare readonly dropzoneFileTarget: HTMLElement;
     declare readonly rejectFormTarget: HTMLFormElement;
     declare readonly rejectModalTarget: HTMLElement;
+    declare readonly hasUnitReassignmentModalTarget: boolean;
+    declare readonly unitReassignmentModalTarget: HTMLElement;
 
     public override connect() {
         this.scrollCommentFeed();
+        this.openUnitReassignmentValidationModal();
     }
 
     // Must be ignored because we can't type url here.
@@ -282,6 +286,18 @@ export default class extends Controller {
                         this.appointmentFormTarget.innerHTML = data.form;
                     }
                 });
+        }
+    }
+
+    public openUnitReassignmentValidationModal(): void {
+        const urlParams: URLSearchParams = new URLSearchParams(window.location.search);
+
+        if (urlParams.get("showUnitReassignmentValidationModal") == "1" && this.hasUnitReassignmentModalTarget) {
+            const modal: Modal | null = new Modal(this.unitReassignmentModalTarget);
+
+            if (modal) {
+                modal.show();
+            }
         }
     }
 

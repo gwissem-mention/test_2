@@ -1,4 +1,5 @@
 {% embed "common/_modal.html.twig" with {'id':'complaint-unit-reassign', 'size':'lg'} %}
+    {% block attr_sup %}data-complaint-target="unitReassignmentModal"{% endblock %}
     {% block title %}{{ 'pel.select.the.unit.to.reassign' |trans }}{% endblock %}
     {% block body %}
         {{ form(unitReassignForm) }}

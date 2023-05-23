@@ -28,8 +28,14 @@ class NotificationFactory
     {
         return new Notification(
             $this->translator->trans('pel.the.unit.reassignment.of.the.declaration.need.your.approval',
-                ['declaration_number' => $complaint->getDeclarationNumber()]),
-            $this->urlGenerator->generate('complaint_summary', ['id' => $complaint->getId()]),
+                [
+                    'declaration_number' => $complaint->getDeclarationNumber(),
+                    'agent_identity' => $complaint->getAssignedTo()?->getAppellation(),
+                ]),
+            $this->urlGenerator->generate('complaint_summary', [
+                'id' => $complaint->getId(),
+                'showUnitReassignmentValidationModal' => 1,
+            ]),
             true
         );
     }
