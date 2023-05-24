@@ -234,6 +234,10 @@
                 <source>pel.comment.unit.reassignment.reason</source>
                 <target>Motif de réorientation de</target>
             </trans-unit>
+            <trans-unit id="pel.comment.unit.reassignment.reject.reason">
+                <source>pel.comment.unit.reassignment.reject.reason</source>
+                <target>Motif de refus de réorientation de</target>
+            </trans-unit>
             <trans-unit id="pel.complaint.online.portal">
                 <source>pel.complaint.online.portal</source>
                 <target>Portail Plainte en Ligne</target>
