@@ -6,22 +6,38 @@ import {HttpMethodsEnum} from "../scripts/utils/HttpMethodsEnum";
 export default class extends Controller {
     static override targets: string[] = [
         "appointmentForm",
+        "assignmentForm",
+        "assignmentModal",
+        "commentButton",
+        "commentContent",
+        "commentBox",
         "complaintContainer",
         "dropzoneFile",
+        "dropZoneForm",
         "rejectForm",
         "rejectModal",
         "unitReassignmentForm",
-        "unitReassignmentModal"
+        "unitReassignmentModal",
+        "sendReportModal",
+        "sendToLrpModal"
     ];
 
     declare readonly appointmentFormTarget: HTMLFormElement;
+    declare readonly assignmentFormTarget: HTMLFormElement;
+    declare readonly assignmentModalTarget: HTMLElement;
+    declare readonly commentButtonTarget: HTMLElement;
+    declare readonly commentContentTarget: HTMLElement;
+    declare readonly commentBoxTarget: HTMLElement;
     declare readonly complaintContainerTarget: HTMLElement;
     declare readonly dropzoneFileTarget: HTMLElement;
+    declare readonly dropZoneFormTarget: HTMLFormElement;
     declare readonly rejectFormTarget: HTMLFormElement;
     declare readonly rejectModalTarget: HTMLElement;
     declare readonly hasUnitReassignmentModalTarget: boolean;
     declare readonly unitReassignmentModalTarget: HTMLElement;
     declare readonly unitReassignmentFormTarget: HTMLFormElement;
+    declare readonly sendReportModalTarget: HTMLElement;
+    declare readonly sendToLrpModalTarget: HTMLElement;
 
     public override connect() {
         this.scrollCommentFeed();
@@ -35,60 +51,17 @@ export default class extends Controller {
             method: HttpMethodsEnum.POST,
             body: new FormData(this.rejectFormTarget)
         })
-            .then(response => response.json())
-            .then((response: any) => {
-                if (response.success) {
-                    const modal: Modal | null = Modal.getInstance(this.rejectModalTarget);
+            .then((response: Response) => {
+                response.json()
+                    .then((data: any) => {
+                        if (response.status === 200) {
+                            Modal.getInstance(this.rejectModalTarget)?.hide();
+                            Modal.getInstance(this.rejectModalTarget)?.dispose();
 
-                    if (modal) {
-                        modal.hide();
-                        modal.dispose();
-                    }
-
-                    // Must be ignored because in Bootstrap types, Toast element has string | Element type
-                    // however we need here to type it as Toast.
-                    // @ts-ignore
-                    const toast: Toast = new Toast(document.getElementById("toast-complaint-reject"));
-
-                    if (toast) {
-                        toast.show();
-                    }
-
-                    this.reloadComplaintContainer();
-                } else {
-                    this.rejectFormTarget.innerHTML = response.form;
-                }
-            });
-    }
-
-    // Must be ignored because we can't type url here.
-    // @ts-ignore
-    public assign({params: {url}}): void {
-        const form: HTMLFormElement | null = document.querySelector("form[name=assign]");
-
-        if (url && form) {
-            fetch(url, {
-                method: HttpMethodsEnum.POST,
-                body: new FormData(form)
-            })
-                .then(response => response.json())
-                .then((data: any) => {
-                    const modalElement: Element | null = document.getElementById("modal-complaint-assign");
-
-                    if (modalElement) {
-                        if (data.success) {
-                            const modal: Modal | null = Modal.getInstance(modalElement);
-
-                            if (modal) {
-                                modal.hide();
-                            }
-                            document.querySelectorAll(".agent-name").forEach((element) => {
-                                element.textContent = data.agent_name;
-                            });
                             // Must be ignored because in Bootstrap types, Toast element has string | Element type
                             // however we need here to type it as Toast.
                             // @ts-ignore
-                            const toast: Toast = new Toast(document.getElementById("toast-complaint-assign"));
+                            const toast: Toast = new Toast(document.getElementById("toast-complaint-reject"));
 
                             if (toast) {
                                 toast.show();
@@ -96,13 +69,43 @@ export default class extends Controller {
 
                             this.reloadComplaintContainer();
                         } else if (data.form) {
-                            const modalForm: HTMLFormElement | null = modalElement.querySelector("form");
-
-                            if (modalForm) {
-                                modalForm.innerHTML = data.form;
-                            }
+                            this.rejectFormTarget.innerHTML = data.form;
                         }
-                    }
+                    });
+            });
+    }
+
+    // Must be ignored because we can't type url here.
+    // @ts-ignore
+    public assign({params: {url}}): void {
+        if (url) {
+            fetch(url, {
+                method: HttpMethodsEnum.POST,
+                body: new FormData(this.assignmentFormTarget)
+            })
+                .then((response: Response) => {
+                    response.json()
+                        .then(data => {
+                            if (response.status === 200) {
+                                Modal.getInstance(this.assignmentModalTarget)?.hide();
+
+                                document.querySelectorAll(".agent-name").forEach((element) => {
+                                    element.textContent = data.agent_name;
+                                });
+                                // Must be ignored because in Bootstrap types, Toast element has string | Element type
+                                // however we need here to type it as Toast.
+                                // @ts-ignore
+                                const toast: Toast = new Toast(document.getElementById("toast-complaint-assign"));
+
+                                if (toast) {
+                                    toast.show();
+                                }
+
+                                this.reloadComplaintContainer();
+                            } else if (data.form) {
+                                this.assignmentModalTarget.innerHTML = data.form;
+                            }
+                        });
                 });
         }
     }
@@ -115,31 +118,33 @@ export default class extends Controller {
                 method: HttpMethodsEnum.POST,
                 body: new FormData(this.unitReassignmentFormTarget)
             })
-                .then(response => response.json())
-                .then((data: any) => {
-                    if (data.success) {
-                        Modal.getInstance(this.unitReassignmentModalTarget)?.hide();
+                .then((response: Response) => {
+                    response.json()
+                        .then((data: any) => {
+                            if (response.status === 200) {
+                                Modal.getInstance(this.unitReassignmentModalTarget)?.hide();
 
-                        if (supervisor && redirection) {
-                            location.href = redirection;
-                        } else {
-                            document.querySelectorAll(".unit-name").forEach((element) => {
-                                element.textContent = data.unit_name;
-                            });
-                            // Must be ignored because in Bootstrap types, Toast element has string | Element type
-                            // however we need here to type it as Toast.
-                            // @ts-ignore
-                            const toast: Toast = new Toast(document.getElementById("toast-complaint-unit-reassign-ordered"));
+                                if (supervisor && redirection) {
+                                    location.href = redirection;
+                                } else {
+                                    document.querySelectorAll(".unit-name").forEach((element) => {
+                                        element.textContent = data.unit_name;
+                                    });
+                                    // Must be ignored because in Bootstrap types, Toast element has string | Element type
+                                    // however we need here to type it as Toast.
+                                    // @ts-ignore
+                                    const toast: Toast = new Toast(document.getElementById("toast-complaint-unit-reassign-ordered"));
 
-                            if (toast) {
-                                toast.show();
+                                    if (toast) {
+                                        toast.show();
+                                    }
+
+                                    this.reloadComplaintContainer();
+                                }
+                            } else if (data.form) {
+                                this.unitReassignmentFormTarget.innerHTML = data.form;
                             }
-
-                            this.reloadComplaintContainer();
-                        }
-                    } else if (data.form) {
-                        this.unitReassignmentFormTarget.innerHTML = data.form;
-                    }
+                        });
                 });
         }
     }
@@ -176,16 +181,8 @@ export default class extends Controller {
         if (url) {
             location.href = url;
 
-            const modalElement: Element | null = document.getElementById("modal-complaint-send-to-lrp");
-
-            if (modalElement) {
-                const modal: Modal | null = Modal.getInstance(modalElement);
-
-                if (modal) {
-                    modal.hide();
-                    modal.dispose();
-                }
-            }
+            Modal.getInstance(this.sendToLrpModalTarget)?.hide();
+            Modal.getInstance(this.sendToLrpModalTarget)?.dispose();
 
             // Must be ignored because in Bootstrap types, Toast element has string | Element type
             // however we need here to type it as Toast.
@@ -203,81 +200,57 @@ export default class extends Controller {
     // Must be ignored because we can't type url here.
     // @ts-ignore
     public sendReport({params: {url}}): void {
-        const form: HTMLFormElement | null = document.querySelector("form[name=drop_zone]");
-
-        if (url && form) {
+        if (url) {
             fetch(url, {
                 method: HttpMethodsEnum.POST,
-                body: new FormData(form)
+                body: new FormData(this.dropZoneFormTarget)
             })
-                .then(response => response.json())
-                .then((data: any) => {
-                    const modalElement: Element | null = document.getElementById("modal-complaint-send-report-to-victim");
+                .then((response: Response) => {
+                    response.json()
+                        .then((data:any) => {
+                            if (response.status === 200) {
+                                Modal.getInstance(this.sendReportModalTarget)?.hide();
 
-                    if (modalElement) {
-                        if (data.success) {
-                            const modal: Modal | null = Modal.getInstance(modalElement);
+                                // Must be ignored because in Bootstrap types, Toast element has string | Element type
+                                // however we need here to type it as Toast.
+                                // @ts-ignore
+                                const toast: Toast = new Toast(document.getElementById("toast-validation-send-report-to-victim"));
 
-                            if (modal) {
-                                modal.hide();
+                                if (toast) {
+                                    toast.show();
+                                }
+
+                                this.reloadComplaintContainer();
+                            } else if (data.form) {
+                                this.dropZoneFormTarget.innerHTML = data.form;
                             }
-
-                            // Must be ignored because in Bootstrap types, Toast element has string | Element type
-                            // however we need here to type it as Toast.
-                            // @ts-ignore
-                            const toast: Toast = new Toast(document.getElementById("toast-validation-send-report-to-victim"));
-
-                            if (toast) {
-                                toast.show();
-                            }
-
-                            this.reloadComplaintContainer();
-                        } else if (data.form) {
-                            const modalForm: HTMLFormElement | null = modalElement.querySelector("form");
-
-                            if (modalForm) {
-                                modalForm.innerHTML = data.form;
-                            }
-                        }
-                    }
+                        });
                 });
         }
     }
 
     public commentFocus(): void {
-        const commentContent: HTMLElement | null = document.getElementById("comment_content");
-
-        if (commentContent) {
-            commentContent.focus();
-        }
+        this.commentContentTarget?.focus();
     }
 
     public commentButton(): void {
-        // Type any must be used here because the value attribute needs to be retrieved and did not exist on HTMLElement | null type
-        const commentContent: any | null = document.getElementById("comment_content");
-        const commentButton: HTMLElement | null = document.getElementById("comment-button");
+        // Must be ignored because HTMLElement doesn't have value property
+        // @ts-ignore
+        const empty = (this.commentContentTarget.value === "");
 
-        if (commentContent && commentButton) {
-            const empty = (commentContent.value === "");
-
-            if (empty) {
-                commentButton.setAttribute("disabled", "disabled");
-                commentButton.classList.remove("btn-primary");
-                commentButton.classList.add("btn-secondary");
-            } else {
-                commentButton.removeAttribute("disabled");
-                commentButton.classList.remove("btn-secondary");
-                commentButton.classList.add("btn-primary");
-            }
+        if (empty) {
+            this.commentButtonTarget.setAttribute("disabled", "disabled");
+            this.commentButtonTarget.classList.remove("btn-primary");
+            this.commentButtonTarget.classList.add("btn-secondary");
+        } else {
+            this.commentButtonTarget.removeAttribute("disabled");
+            this.commentButtonTarget.classList.remove("btn-secondary");
+            this.commentButtonTarget.classList.add("btn-primary");
         }
     }
 
     public scrollCommentFeed(): void {
-        const commentFeed: HTMLElement | null = document.getElementById("comment-box");
-
-        if (commentFeed) {
-            commentFeed.scrollTo(0, commentFeed.scrollHeight);
-        }
+        this.commentBoxTarget.scrollTo(0, this.commentBoxTarget.scrollHeight);
     }
 
     public browseReport(): void {
@@ -292,13 +265,15 @@ export default class extends Controller {
                 method: HttpMethodsEnum.POST,
                 body: new FormData(this.appointmentFormTarget)
             })
-                .then(response => response.json())
-                .then((data: any) => {
-                    if (data.success) {
-                        this.reloadComplaintContainer();
-                    } else {
-                        this.appointmentFormTarget.innerHTML = data.form;
-                    }
+                .then((response: Response) => {
+                    response.json()
+                        .then((data: any) => {
+                            if (response.status === 200) {
+                                this.reloadComplaintContainer();
+                            } else {
+                                this.appointmentFormTarget.innerHTML = data.form;
+                            }
+                        });
                 });
         }
     }

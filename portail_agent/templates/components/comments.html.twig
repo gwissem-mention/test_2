@@ -1,5 +1,5 @@
 <div id="comment-feed" {{ attributes }}>
-    <div class="container comment-box overflow-scroll mb-4" id="comment-box">
+    <div class="container comment-box overflow-scroll mb-4" id="comment-box" data-complaint-target="commentBox" >
         {% if this.complaint %}
             {% for comment in this.complaint.comments %}
                 <div class="row {{ comment.author is same as app.user ? 'comment-right' : 'comment-left' }}">
@@ -27,10 +27,10 @@
     <div>
         {{ form_start(form) }}
             <div class="form-group mb-3">
-                {{ form_row(form.content, {'attr': {'data-controller': 'complaint', 'data-action': 'input->complaint#commentButton'}}) }}
+                {{ form_row(form.content, {'attr': {'data-complaint-target': 'commentContent', 'data-action': 'input->complaint#commentButton'}}) }}
             </div>
             <div class="form-group d-flex justify-content-end">
-                <button class="btn btn-secondary" id="comment-button" type="submit" data-action="live#action" data-action-name="prevent|save" disabled data-live-ignore>
+                <button class="btn btn-secondary" id="comment-button" type="submit" data-complaint-target="commentButton" data-action="live#action" data-action-name="prevent|save" disabled data-live-ignore>
                     <i class="bi bi-arrow-right"></i> {{ 'pel.send'|trans }}
                 </button>
             </div>

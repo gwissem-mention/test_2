@@ -1,6 +1,8 @@
 import {Controller} from "@hotwired/stimulus";
 import {Modal, Toast} from "bootstrap";
 
+import {HttpMethodsEnum} from "../scripts/utils/HttpMethodsEnum";
+
 export default class extends Controller {
     static override targets = [
         "bulkAssignComplaints",
@@ -33,76 +35,76 @@ export default class extends Controller {
 
     public bulkAssign(): void {
         const fetchOptions: RequestInit = {
-            method: "POST",
+            method: HttpMethodsEnum.POST,
             body: new FormData(this.bulkAssignFormTarget)
         };
 
         fetch(this.urlBulkAssignValue, fetchOptions)
-            .then(response => response.json())
-            .then((data: any) => {
-                if (data.success) {
-                    Modal.getInstance(this.bulkAssignModalTarget)?.hide();
+            .then((response: Response) => {
+                response.json()
+                    .then((data: any) => {
+                        if (response.status === 200) {
+                            Modal.getInstance(this.bulkAssignModalTarget)?.hide();
 
-                    console.log(new FormData(this.bulkAssignFormTarget));
+                            // TODO: Find a stimulus way to control TomSelect
+                            // this.bulkAssignFormTarget.querySelectorAll("[data-ts-item]").forEach((element) => {
+                            //     element.remove();
+                            // });
 
-                    // TODO: Find a stimulus way to control TomSelect
-                    // this.bulkAssignFormTarget.querySelectorAll("[data-ts-item]").forEach((element) => {
-                    //     element.remove();
-                    // });
+                            document.querySelectorAll(".agent-name").forEach((element) => {
+                                element.textContent = data.agent_name;
+                            });
 
-                    document.querySelectorAll(".agent-name").forEach((element) => {
-                        element.textContent = data.agent_name;
-                        console.log(data);
+                            // @ts-ignore
+                            const toast: Toast = new Toast(document.getElementById("toast-complaint-assign"));
+
+                            if (toast) {
+                                toast.show();
+                            }
+
+                            this.clearSelectedComplaints();
+                            this.dispatch("finished");
+                        } else if (data.form) {
+                            this.bulkAssignFormTarget.innerHTML = data.form;
+                        }
                     });
-
-                    // @ts-ignore
-                    const toast: Toast = new Toast(document.getElementById("toast-complaint-assign"));
-
-                    if (toast) {
-                        toast.show();
-                    }
-
-                    this.clearSelectedComplaints();
-                    this.dispatch("finished");
-                } else if (data.form) {
-                    this.bulkAssignFormTarget.innerHTML = data.form;
-                }
             });
     }
 
     public bulkReassign(): void {
-        console.log(this.urlBulkReassignValue);
         const fetchOptions: RequestInit = {
-            method: "POST",
+            method: HttpMethodsEnum.POST,
             body: new FormData(this.bulkReassignFormTarget)
         };
 
         fetch(this.urlBulkReassignValue, fetchOptions)
-            .then(response => response.json())
-            .then((data: any) => {
-                if (data.success) {
-                    Modal.getInstance(this.bulkReassignModalTarget)?.hide();
-                    // TODO: Find a stimulus way to control TomSelect
-                    // this.bulkReassignFormTarget.querySelectorAll("[data-ts-item]").forEach((element) => {
-                    //     element.remove();
-                    // });
+            .then((response: Response) => {
+                response.json()
+                    .then((data: any) => {
+                        if (response.status === 200) {
+                            Modal.getInstance(this.bulkReassignModalTarget)?.hide();
+                            // TODO: Find a stimulus way to control TomSelect
+                            // this.bulkReassignFormTarget.querySelectorAll("[data-ts-item]").forEach((element) => {
+                            //     element.remove();
+                            // });
 
-                    document.querySelectorAll(".unit-name").forEach((element) => {
-                        element.textContent = data.unit_name;
+                            document.querySelectorAll(".unit-name").forEach((element) => {
+                                element.textContent = data.unit_name;
+                            });
+
+                            // @ts-ignore
+                            const toast: Toast = new Toast(document.getElementById("toast-complaint-unit-reassign-ordered"));
+
+                            if (toast) {
+                                toast.show();
+                            }
+
+                            this.clearSelectedComplaints();
+                            this.dispatch("finished");
+                        } else if (data.form) {
+                            this.bulkReassignFormTarget.innerHTML = data.form;
+                        }
                     });
-
-                    // @ts-ignore
-                    const toast: Toast = new Toast(document.getElementById("toast-complaint-unit-reassign-ordered"));
-
-                    if (toast) {
-                        toast.show();
-                    }
-
-                    this.clearSelectedComplaints();
-                    this.dispatch("finished");
-                } else if (data.form) {
-                    this.bulkReassignFormTarget.innerHTML = data.form;
-                }
             });
     }
 

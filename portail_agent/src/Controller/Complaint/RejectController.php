@@ -28,11 +28,10 @@ class RejectController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $complaintRepository->save($complaint->setStatus(Complaint::STATUS_REJECTED), true);
 
-            return $this->json(['success' => true]);
+            return new JsonResponse();
         }
 
         return $this->json([
-            'success' => false,
             'form' => $this->renderView(
                 'common/_form.html.twig',
                 ['form' => $form->createView()]

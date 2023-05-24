@@ -1,9 +1,10 @@
 {% embed "common/_modal.html.twig" with {'id':'complaint-assign', 'size':'lg'} %}
+    {% block attr_sup %}data-complaint-target="assignmentModal"{% endblock %}
     {% block title %}
         {{ (assignedTo is not null ? 'pel.select.the.agent.to.reassign':'pel.select.the.agent.to.assign')|trans }}
     {% endblock %}
     {% block body %}
-        {{ form(assignForm) }}
+        {{ form(assignForm, { attr: { 'data-complaint-target': 'assignmentForm' }}) }}
     {% endblock %}
     {% block footer %}
         <button
