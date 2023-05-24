@@ -32,7 +32,6 @@ class SendReportController extends AbstractController
         if ($form->isSubmitted()) {
             if (false === $form->isValid()) {
                 return $this->json([
-                    'success' => false,
                     'form' => $this->renderView(
                         'common/_form.html.twig',
                         ['form' => $form->createView()]
@@ -48,11 +47,10 @@ class SendReportController extends AbstractController
 
             $complaintRepository->save($complaint->setStatus(Complaint::STATUS_CLOSED), true);
 
-            return $this->json(['success' => true]);
+            return new JsonResponse();
         }
 
         return $this->json([
-            'success' => false,
         ], 422);
     }
 }

@@ -31,11 +31,10 @@ class AppointmentValidationController extends AbstractController
 
             $messageBus->dispatch(new AppointmentMessage($complaint));
 
-            return $this->json(['success' => true]);
+            return new JsonResponse();
         }
 
         return $this->json([
-            'success' => false,
             'form' => $this->renderView(
                 'pages/complaint/_partial/appointment_content.html.twig',
                 [

@@ -46,7 +46,6 @@ class BulkAssignController extends AbstractController
             }
 
             return $this->json([
-                'success' => true,
                 'agent_name' => $bulkAssignAction->getAssignedTo()?->getAppellation(),
             ]);
         }
@@ -56,9 +55,7 @@ class BulkAssignController extends AbstractController
 
     private function errorResponse(FormInterface|null $form = null): JsonResponse
     {
-        $response = [
-            'success' => false,
-        ];
+        $response = [];
 
         if ($form instanceof FormInterface) {
             $response['form'] = $this->renderView('common/_form.html.twig', ['form' => $form->createView()]);

@@ -30,7 +30,6 @@ class AssignController extends AbstractController
         if ($form->isSubmitted()) {
             if (false === $form->isValid()) {
                 return $this->json([
-                    'success' => false,
                     'form' => $this->renderView(
                         'common/_form.html.twig',
                         ['form' => $form->createView()]
@@ -46,14 +45,11 @@ class AssignController extends AbstractController
 
             return $this->json(
                 [
-                    'success' => true,
                     'agent_name' => $user?->getAppellation(),
                 ]
             );
         }
 
-        return $this->json([
-            'success' => false,
-        ], 422);
+        return $this->json([], 422);
     }
 }

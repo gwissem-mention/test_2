@@ -52,7 +52,6 @@ class BulkReassignController extends AbstractController
             }
 
             return $this->json([
-                'success' => true,
                 'unit_name' => $this->unitRepository->findOneBy(['code' => $bulkReassignAction->getUnitCodeToReassign()])?->getName(),
             ]);
         }
@@ -62,9 +61,7 @@ class BulkReassignController extends AbstractController
 
     private function errorResponse(FormInterface|null $form = null): JsonResponse
     {
-        $response = [
-            'success' => false,
-        ];
+        $response = [];
 
         if ($form instanceof FormInterface) {
             $response['form'] = $this->renderView('common/_form.html.twig', ['form' => $form->createView()]);

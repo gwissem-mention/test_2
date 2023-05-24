@@ -49,7 +49,6 @@ class UnitReassignController extends AbstractController
                     );
 
                 return $this->json([
-                    'success' => false,
                     'form' => $form,
                 ], 422);
             }
@@ -112,14 +111,11 @@ class UnitReassignController extends AbstractController
 
             return $this->json(
                 [
-                    'success' => true,
                     'unit_name' => $unitToReassign?->getName(),
                 ]
             );
         }
 
-        return $this->json([
-            'success' => false,
-        ], 422);
+        return $this->json([], 422);
     }
 }

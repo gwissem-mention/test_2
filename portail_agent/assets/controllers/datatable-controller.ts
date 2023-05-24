@@ -30,9 +30,8 @@ export default class extends Controller {
     }
 
     public refresh(): void {
-        console.log("reload");
         if (this.datatable) {
-            this.datatable.ajax.reload(() => console.log("reloaded"));
+            this.datatable.ajax.reload();
         }
     }
 
