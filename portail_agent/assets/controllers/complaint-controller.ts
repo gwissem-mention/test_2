@@ -155,22 +155,29 @@ export default class extends Controller {
         if (url) {
             fetch(url, {
                 method: HttpMethodsEnum.POST,
+                body: new FormData(this.unitReassignmentFormTarget)
             })
-                .then(response => {
-                    if (response.status === 200) {
-                        Modal.getInstance(this.unitReassignmentModalTarget)?.hide();
+                .then((response: Response) => {
+                    response.json()
+                        .then((data: any) => {
+                            if (response.status === 200) {
+                                Modal.getInstance(this.unitReassignmentModalTarget)?.hide();
 
-                        // Must be ignored because in Bootstrap types, Toast element has string | Element type
-                        // however we need here to type it as Toast.
-                        // @ts-ignore
-                        const toast: Toast = new Toast(document.getElementById("toast-complaint-unit-reassign-rejected"));
+                                // Must be ignored because in Bootstrap types, Toast element has string | Element type
+                                // however we need here to type it as Toast.
+                                // @ts-ignore
+                                const toast: Toast = new Toast(document.getElementById("toast-complaint-unit-reassign-rejected"));
 
-                        if (toast) {
-                            toast.show();
-                        }
+                                if (toast) {
+                                    toast.show();
+                                }
 
-                        this.reloadComplaintContainer();
-                    }
+                                this.reloadComplaintContainer();
+                            } else if (data.form) {
+                                this.unitReassignmentFormTarget.innerHTML = data.form;
+                            }
+                        });
+
                 });
         }
     }

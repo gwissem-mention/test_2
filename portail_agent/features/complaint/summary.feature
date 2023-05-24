@@ -422,9 +422,12 @@ Feature:
         When I follow "Philippe RIVIERE vient de vous adresser une demande de réorientation vers autre service PEL-2023-00000110"
         Then I should be on "/plainte/recapitulatif/110?showUnitReassignmentValidationModal=1"
         And I should see a ".modal[aria-modal=true]" element
+        And I fill in "unit_reassign_unitReassignText" with "Je refuse cette réorientation."
         When I press "Refuser la réorientation"
         And I should see a ".toast" element
         And I should see the key "pel.the.unit.reassignment.has.been.rejected.your.agent.stays.assigned" translated
+        And I should see the key "pel.comment.unit.reassignment.reject.reason" translated
+        And I should see "Je refuse cette réorientation."
 
     @func
     Scenario: I can see the comments space on the summary page

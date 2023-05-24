@@ -13,6 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Comment
 {
     public const UNIT_REASSIGNMENT_REASON = 'pel.comment.unit.reassignment.reason';
+    public const UNIT_REASSIGNMENT_REJECT_REASON = 'pel.comment.unit.reassignment.reject.reason';
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
