@@ -62,7 +62,7 @@ services:
         arguments:
             $complaintsBasePath: '%app.complaints_base_path%'
 
-    App\Complaint\ComplaintFetcher:
+    App\Messenger\ComplaintFetch\ComplaintFetchHandler:
         arguments:
             $complaintsBasePath: '%app.complaints_base_path%'
 
