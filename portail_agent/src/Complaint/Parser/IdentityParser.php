@@ -78,10 +78,10 @@ class IdentityParser
             ->setAddress($addressInput->label)
             ->setAddressStreetType('') // TODO: extract street type from street name for french address if possible
             ->setAddressStreetNumber($addressInput->houseNumber ?? '')
-            ->setAddressStreetName($addressInput->street)
-            ->setAddressInseeCode($addressInput->citycode)
-            ->setAddressPostcode($addressInput->postcode)
-            ->setAddressCity($addressInput->city);
+            ->setAddressStreetName($addressInput->street ?? '')
+            ->setAddressInseeCode($addressInput->citycode ?? '')
+            ->setAddressPostcode($addressInput->postcode ?? '')
+            ->setAddressCity($addressInput->city ?? '');
 
         $context = array_map('trim', explode(',', $addressInput->context));
         $identity
@@ -106,10 +106,10 @@ class IdentityParser
         $identity->setAddress('')
             ->setAddressStreetType('')
             ->setAddressStreetNumber($foreignAddress->houseNumber ?? '')
-            ->setAddressStreetName($foreignAddress->street)
+            ->setAddressStreetName($foreignAddress->street ?? '')
             ->setAddressInseeCode('')
-            ->setAddressPostcode($foreignAddress->postcode)
-            ->setAddressCity($foreignAddress->city)
+            ->setAddressPostcode($foreignAddress->postcode ?? '')
+            ->setAddressCity($foreignAddress->city ?? '')
             ->setAddressDepartment('');
     }
 
