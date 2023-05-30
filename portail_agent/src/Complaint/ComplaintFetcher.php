@@ -49,18 +49,17 @@ class ComplaintFetcher
                                     $this->logger->info(sprintf('Fetching file %s in folder %s', $file->getName(), $complaintFolder->getId()));
                                     $this->downloadFile($file, $complaintFolder->getName());
                                     $this->logger->info(sprintf('File %s fetched', $file->getName()));
-
-                                    if ('plainte.json' === $file->getName()) {
-                                        $this->logger->info(sprintf('Parsing file %s from folder %s', $file->getName(), $complaintFolder->getId()));
-                                        $this->parseAndPersistComplaint($this->complaintsBasePath.'/'.$complaintFolder->getName().'/'.$file->getName());
-                                        $this->logger->info(sprintf('File %s parsed', $file->getName()));
-                                    }
                                 } catch (\Exception $e) {
                                     // @TODO: Mark the complaint as not fetched? Send report Email?
                                     throw $e;
                                 }
                             }
                         }
+
+                        $this->logger->info(sprintf('Parsing file "plainte.json" from folder %s', $complaintFolder->getId()));
+                        $this->parseAndPersistComplaint($this->complaintsBasePath.'/'.$complaintFolder->getName().'/plainte.json');
+                        $this->logger->info(sprintf('File "plainte.json" from folder %s parsed', $complaintFolder->getId()));
+
                         ++$complaintsFetchedCount;
                         $this->moveToFetchedFolder($complaintFolder, $emailFolder->getName());
                     } catch (NoAffectedServiceException $e) {
