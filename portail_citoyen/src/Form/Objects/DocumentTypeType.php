@@ -125,7 +125,7 @@ class DocumentTypeType extends AbstractType
         ]);
     }
 
-    private function removeDocumentTypeOtherFields(FormInterface $form, ?ObjectModel $objectModel = null): void
+    private function removeDocumentTypeOtherFields(FormInterface $form, ObjectModel $objectModel = null): void
     {
         $form->remove('otherDocumentType');
 
@@ -141,7 +141,7 @@ class DocumentTypeType extends AbstractType
         ]);
     }
 
-    private function removeDocumentOwnerField(FormInterface $form, ?ObjectModel $objectModel = null): void
+    private function removeDocumentOwnerField(FormInterface $form, ObjectModel $objectModel = null): void
     {
         $form->remove('documentOwner');
 

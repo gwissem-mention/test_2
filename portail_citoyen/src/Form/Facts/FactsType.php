@@ -95,7 +95,7 @@ class FactsType extends AbstractType
     private function addVictimOfViolenceField(
         FormInterface $form,
         ?bool $victimOfViolence,
-        ?FactsModel $factsModel = null
+        FactsModel $factsModel = null
     ): void {
         if (true === $victimOfViolence) {
             $form->add('victimOfViolenceText', TextType::class, [

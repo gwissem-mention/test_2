@@ -135,7 +135,7 @@ class AdditionalInformationType extends AbstractType
     private function addInformationTextField(
         FormInterface $form,
         ?bool $choice,
-        ?AdditionalInformationModel $additionalInformationModel = null
+        AdditionalInformationModel $additionalInformationModel = null
     ): void {
         if (true === $choice) {
             $form->add('suspectsText', TextType::class, [
@@ -156,7 +156,7 @@ class AdditionalInformationType extends AbstractType
     private function addWitnessesTextField(
         FormInterface $form,
         ?bool $choice,
-        ?AdditionalInformationModel $additionalInformationModel = null
+        AdditionalInformationModel $additionalInformationModel = null
     ): void {
         if (true === $choice) {
             $form->add('witnessesText', TextType::class, [
@@ -180,7 +180,7 @@ class AdditionalInformationType extends AbstractType
     private function addFSIVisitField(
         FormInterface $form,
         ?bool $choice,
-        ?AdditionalInformationModel $additionalInformationModel = null
+        AdditionalInformationModel $additionalInformationModel = null
     ): void {
         if (true === $choice) {
             $form->add('observationMade', ChoiceType::class, [
@@ -204,7 +204,7 @@ class AdditionalInformationType extends AbstractType
     private function addCCTVAvailableField(
         FormInterface $form,
         ?int $choice,
-        ?AdditionalInformationModel $additionalInformationModel = null
+        AdditionalInformationModel $additionalInformationModel = null
     ): void {
         if (AdditionalInformationModel::CCTV_PRESENT_YES === $choice) {
             $form->add('cctvAvailable', ChoiceType::class, [

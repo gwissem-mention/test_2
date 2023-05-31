@@ -27,7 +27,7 @@ class Job
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $labelFemale;
 
-    public function __construct(string $code, ?string $labelMale = null, ?string $labelFemale = null)
+    public function __construct(string $code, string $labelMale = null, string $labelFemale = null)
     {
         $this->code = $code;
         $this->labelMale = $labelMale;

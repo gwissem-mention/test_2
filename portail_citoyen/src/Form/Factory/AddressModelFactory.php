@@ -9,29 +9,29 @@ use App\Form\Model\Address\AddressModel;
 
 class AddressModelFactory
 {
-    public static function create(string $label, ?string $latitude = null, ?string $longitude = null): AddressModel
+    public static function create(string $label, string $latitude = null, string $longitude = null): AddressModel
     {
         return (new AddressModel())->setLabel($label)->setLongitude($longitude)->setLatitude($latitude);
     }
 
     public static function createFromEtalab(
-        ?string $label = null,
-        ?string $id = null,
-        ?string $type = null,
-        ?float $score = null,
-        ?string $houseNumber = null,
-        ?string $street = null,
-        ?string $name = null,
-        ?string $postcode = null,
-        ?string $citycode = null,
-        ?string $city = null,
-        ?string $district = null,
-        ?string $context = null,
-        ?float $x = null,
-        ?float $y = null,
-        ?float $importance = null,
-        ?string $latitude = null,
-        ?string $longitude = null
+        string $label = null,
+        string $id = null,
+        string $type = null,
+        float $score = null,
+        string $houseNumber = null,
+        string $street = null,
+        string $name = null,
+        string $postcode = null,
+        string $citycode = null,
+        string $city = null,
+        string $district = null,
+        string $context = null,
+        float $x = null,
+        float $y = null,
+        float $importance = null,
+        string $latitude = null,
+        string $longitude = null
     ): AddressEtalabModel {
         return (new AddressEtalabModel())
             ->setLabel($label)

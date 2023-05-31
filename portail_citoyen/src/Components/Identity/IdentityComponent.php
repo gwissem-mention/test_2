@@ -172,7 +172,7 @@ class IdentityComponent extends AbstractController
         return $this->redirectToRoute('complaint_facts');
     }
 
-    private function createEtalabInput(?AbstractSerializableAddress $address = null): EtalabInput
+    private function createEtalabInput(AbstractSerializableAddress $address = null): EtalabInput
     {
         $etalabInput = new EtalabInput();
 
