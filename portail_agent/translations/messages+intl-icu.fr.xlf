@@ -1066,9 +1066,9 @@
                 <source>pel.unit.reassignment.accept</source>
                 <target>Accepter la demande de réorientation</target>
             </trans-unit>
-            <trans-unit id="pel.unit.reassignment.pending">
-                <source>pel.unit.reassignment.pending</source>
-                <target>En attente de réaffectation</target>
+            <trans-unit id="pel.unit.redirection.pending">
+                <source>pel.unit.redirection.pending</source>
+                <target>En attente de réorientation</target>
             </trans-unit>
             <trans-unit id="pel.unit.reassignment.reason">
                 <source>pel.unit.reassignment.reason</source>

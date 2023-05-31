@@ -95,7 +95,7 @@ class UnitReassignController extends AbstractController
 
                 $complaintRepository->save(
                     $complaint
-                        ->setStatus(Complaint::STATUS_UNIT_REASSIGNMENT_PENDING)
+                        ->setStatus(Complaint::STATUS_UNIT_REDIRECTION_PENDING)
                         ->setUnitReassignmentAsked(true)
                 );
 

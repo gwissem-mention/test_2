@@ -111,7 +111,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                 Complaint::STATUS_REJECTED,
                 Complaint::STATUS_ONGOING_LRP,
                 Complaint::STATUS_MP_DECLARANT,
-                Complaint::STATUS_UNIT_REASSIGNMENT_PENDING,
+                Complaint::STATUS_UNIT_REDIRECTION_PENDING,
             ]);
             $this->identityBirthPostcode = (string) $this->faker->randomKey($this->places);
             $this->identityAddressStreetAddress = $this->faker->streetAddress;

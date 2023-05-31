@@ -50,7 +50,7 @@ class ComplaintReassignementer
 
     public function askReassignement(Complaint $complaint, string $targetUnitCode, string $reassignText): void
     {
-        $complaint->setStatus(Complaint::STATUS_UNIT_REASSIGNMENT_PENDING);
+        $complaint->setStatus(Complaint::STATUS_UNIT_REDIRECTION_PENDING);
         $complaint->setUnitToReassign($targetUnitCode);
         $complaint->setUnitReassignText($reassignText);
 
