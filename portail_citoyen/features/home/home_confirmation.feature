@@ -32,7 +32,7 @@ Feature:
             | pel.you.dont.know.offense.author                          |
             | pel.you.are.major                                         |
             | pel.you.are.victim.or.representative                      |
-            | pel.i.confirm                              |
+            | pel.i.confirm                                             |
             | pel.fsi.general.orienteer.criteria                        |
 
     @func
