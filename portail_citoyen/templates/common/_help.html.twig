@@ -1,0 +1,19 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+	<div class="fr-container--fluid fr-background-alt--beige-gris-galet">
+		<div
+			class="fr-container pt-6 pr-0 pl-0 lg:pt-10 lg:pr-6 lg:pl-6 lg:pb-[120px] lg:mb-0">
+			<nav role="navigation" class="fr-breadcrumb pr-3 pl-3 mb-4 lg:pr-0 lg:pl-0 lg:mb-6" aria-label="{{ 'pel.complaint.see.ariannes.here'|trans }}" data-fr-js-breadcrumb="true">
+				<button class="fr-breadcrumb__button" aria-expanded="false" aria-controls="breadcrumb" data-fr-js-collapse-button="true">{{ 'pel.complaint.see.ariannes.thread'|trans }}</button>
+				<div class="fr-collapse" id="breadcrumb" data-fr-js-collapse="true">
+					{% block breadcrumb %}{% endblock %}
+				</div>
+			</nav>
+			<h1 class="lg:mb-10 pr-3 pl-3 lg:pr-0 lg:pl-0 text-[28px]/[36px] md:text-[40px]/[48px]">
+				{% block heading %}{% endblock %}
+			</h1>
+			{% block content %}{% endblock %}
+		</div>
+	</div>
+{% endblock %}

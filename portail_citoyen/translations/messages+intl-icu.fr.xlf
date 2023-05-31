@@ -242,6 +242,14 @@
                 <source>pel.brand</source>
                 <target>Marque</target>
             </trans-unit>
+            <trans-unit id="pel.breadcrumb.help.faq">
+                <source>pel.breadcrumb.help.faq</source>
+                <target>Centre d’aide de Plainte en ligne</target>
+            </trans-unit>     
+            <trans-unit id="pel.breadcrumb.welcome">
+                <source>pel.breadcrumb.welcome</source>
+                <target>Accueil</target>
+            </trans-unit>            
             <trans-unit id="pel.can.i.make.a.physical.appointment">
                 <source>pel.can.i.make.a.physical.appointment</source>
                 <target>Est-ce que je peux prendre directement rendez-vous en commissariat ou en gendarmerie ?</target>
@@ -253,6 +261,10 @@
             <trans-unit id="pel.check.our.faq">
                 <source>pel.check.our.faq</source>
                 <target>J’ai un doute sur mon cas</target>
+            </trans-unit>
+            <trans-unit id="pel.check.our.faq.heading">
+                <source>pel.check.our.faq.heading</source>
+                <target>Questions fréquentes</target>
             </trans-unit>
             <trans-unit id="pel.cctv.available">
                 <source>pel.cctv.available</source>
@@ -726,6 +738,62 @@
                 <source>pel.health.insurance.card</source>
                 <target>Carte vitale</target>
             </trans-unit>
+            <trans-unit id="pel.help.faq.concerned.with">
+                <source>pel.help.faq.concerned.with</source>
+                <target>Êtes-vous concerné par l’un des cas suivants :</target>
+            </trans-unit>
+            <trans-unit id="pel.help.faq.fill.a.complaint">
+                <source>pel.help.faq.fill.a.complaint</source>
+                <target>Oui, je peux continuer</target>
+            </trans-unit>            
+            <trans-unit id="pel.help.faq.heading">
+                <source>pel.help.faq.heading</source>
+                <target>Centre d'aide du service plainte en ligne</target>
+            </trans-unit>
+            <trans-unit id="pel.help.faq.title">
+                <source>pel.help.faq.title</source>
+                <target>Centre d’aide - Plainte en ligne</target>
+            </trans-unit>
+            <trans-unit id="pel.help.faq.theft.victim">
+                <source>pel.help.faq.theft.victim</source>
+                <target><![CDATA[<b>Vol</b>]]></target>
+            </trans-unit>
+            <trans-unit id="pel.help.faq.theft.victim.examples">
+                <source>pel.help.faq.theft.victim.examples</source>
+                <target>Exemples : détérioration d’un véhicule, graffitis, dégradation de votre logement, dommages sur lorem ipsum dolor sit amet, consectetur adipiscing elit</target>
+            </trans-unit>
+           <trans-unit id="pel.help.faq.victim.of.credit.card.theft">
+                <source>pel.help.faq.victim.of.credit.card.theft</source>
+                <target><![CDATA[<b>Vol de votre carte bancaire suivi d'utilisations frauduleuses</b>]]></target>
+            </trans-unit>
+            <trans-unit id="pel.help.faq.victim.of.credit.card.theft.examples">
+                <source>pel.help.faq.victim.of.credit.card.theft.examples</source>
+                <target>Exemples : détérioration d’un véhicule, graffitis, dégradation de votre logement, dommages sur lorem ipsum dolor sit amet, consectetur adipiscing elit</target>
+            </trans-unit>
+            <trans-unit id="pel.help.faq.victim.of.damage.to.property">
+                <source>pel.help.faq.victim.of.damage.to.property</source>
+                <target><![CDATA[<b>Dégradation sur un bien</b>]]></target>
+            </trans-unit>
+            <trans-unit id="pel.help.faq.victim.of.damage.to.property.examples">
+                <source>pel.help.faq.victim.of.damage.to.property.examples</source>
+                <target>Exemples : détérioration d’un véhicule, graffitis, dégradation de votre logement, dommages sur lorem ipsum dolor sit amet, consectetur adipiscing elit</target>
+            </trans-unit>
+            <trans-unit id="pel.help.faq.victim.of.offline.scams">
+                <source>pel.help.faq.victim.of.offline.scams</source>
+                <target><![CDATA[<b>Escroquerie hors Internet</b>]]></target>
+            </trans-unit>
+            <trans-unit id="pel.help.faq.victim.of.offline.scams.examples">
+                <source>pel.help.faq.victim.of.offline.scams.examples</source>
+                <target>Exemples : détérioration d’un véhicule, graffitis, dégradation de votre logement, dommages sur lorem ipsum dolor sit amet, consectetur adipiscing elit</target>
+            </trans-unit>
+            <trans-unit id="pel.help.faq.victim.of.other.property.crimes">
+                <source>pel.help.faq.victim.of.other.property.crimes</source>
+                <target><![CDATA[<b>Autres atteintes aux biens</b>]]></target>
+            </trans-unit>
+            <trans-unit id="pel.help.faq.victim.of.other.property.crimes.examples">
+                <source>pel.help.faq.victim.of.other.property.crimes.examples</source>
+                <target>Exemples : détérioration d’un véhicule, graffitis, dégradation de votre logement, dommages sur lorem ipsum dolor sit amet, consectetur adipiscing elit</target>
+            </trans-unit>
             <trans-unit id="pel.fsi.general.orienteer">
                 <source>pel.fsi.general.orienteer</source>
                 <target>Je suis dans une autre situation</target>
@@ -993,10 +1061,6 @@
             <trans-unit id="pel.no.france.connect.modal.title">
                 <source>pel.no.france.connect.modal.title</source>
                 <target>Sans FranceConnect, votre plainte en ligne va nécessiter un rendez-vous physique</target>
-            </trans-unit>
-            <trans-unit id="pel.not.found.welcome">
-                <source>pel.not.found.welcome</source>
-                <target>Accueil</target>
             </trans-unit>
             <trans-unit id="pel.not.found.can">
                 <source>pel.not.found.can</source>
@@ -1402,6 +1466,14 @@
                 <source>pel.visitor.agree</source>
                 <target>J’autorise la collecte de mes données personnelles et poursuit ma déclaration</target>
             </trans-unit>
+            <trans-unit id="pel.what.if.i.know.the.offense.author">
+                <source>pel.what.if.i.know.the.offense.author</source>
+                <target>Je connais l’auteur de l’infraction. Que dois-je faire ?</target>
+            </trans-unit>
+            <trans-unit id="pel.what.if.i.know.the.offense.author.text">
+                <source>pel.what.if.i.know.the.offense.author.text</source>
+                <target>Lorem ipsum dolor sit amet, consectetur adipiscing, incididunt, ut labore et dolore magna aliqua. Vitae sapien pellentesque habitant morbi tristique senectus et. Diam maecenas sed enim ut. Accumsan lacus vel facilisis volutpat est. Ut aliquam purus sit amet luctus. Lorem ipsum dolor sit amet consectetur adipiscing elit ut.</target>
+            </trans-unit>
             <trans-unit id="pel.what.is.france.connect">
                 <source>pel.what.is.france.connect</source>
                 <target>Qu’est-ce que France Connect ?</target>
@@ -1421,6 +1493,46 @@
             <trans-unit id="pel.what.is.online.complaint.text">
                 <source>pel.what.is.online.complaint.text</source>
                 <target>Lorem ipsum dolor sit amet, consectetur adipiscing, incididunt, ut labore et dolore magna aliqua. Vitae sapien pellentesque habitant morbi tristique senectus et. Diam maecenas sed enim ut. Accumsan lacus vel facilisis volutpat est. Ut aliquam purus sit amet luctus. Lorem ipsum dolor sit amet consectetur adipiscing elit ut.</target>
+            </trans-unit>
+            <trans-unit id="pel.what.is.legal.representative">
+                <source>pel.what.is.legal.representative</source>
+                <target>Qui peut être le représentant légal de la victime ?</target>
+            </trans-unit>
+            <trans-unit id="pel.what.is.legal.representative.text">
+                <source>pel.what.is.legal.representative.text</source>
+                <target>Lorem ipsum dolor sit amet, consectetur adipiscing, incididunt, ut labore et dolore magna aliqua. Vitae sapien pellentesque habitant morbi tristique senectus et. Diam maecenas sed enim ut. Accumsan lacus vel facilisis volutpat est. Ut aliquam purus sit amet luctus. Lorem ipsum dolor sit amet consectetur adipiscing elit ut.</target>
+            </trans-unit>
+            <trans-unit id="pel.what.subsidiary.question">
+                <source>pel.what.subsidiary.question</source>
+                <target>Question subsidiaire</target>
+            </trans-unit>
+            <trans-unit id="pel.what.subsidiary.question.text">
+                <source>pel.what.subsidiary.question.text</source>
+                <target>Lorem ipsum dolor sit amet, consectetur adipiscing, incididunt, ut labore et dolore magna aliqua. Vitae sapien pellentesque habitant morbi tristique senectus et. Diam maecenas sed enim ut. Accumsan lacus vel facilisis volutpat est. Ut aliquam purus sit amet luctus. Lorem ipsum dolor sit amet consectetur adipiscing elit ut.</target>
+            </trans-unit>
+            <trans-unit id="pel.why.i.require.a.physical.appointment">
+                <source>pel.why.i.require.a.physical.appointment</source>
+                <target>Pourquoi ma démarche peut nécessiter un rendez-vous physique ?</target>
+            </trans-unit>
+            <trans-unit id="pel.why.i.require.a.physical.appointment.text">
+                <source>pel.why.i.require.a.physical.appointment.text</source>
+                <target>Votre déclaration de plainte en ligne peut éventuellement passer par une étape supplémentaire vous invitant à vous rendre dans un commissariat de police ou une gendarmerie. Ce rendez-vous physique sera notamment obligatoire si :</target>
+            </trans-unit>
+            <trans-unit id="pel.why.i.require.a.physical.appointment.text.continue.pel.without.log.in">
+                <source>pel.why.i.require.a.physical.appointment.text.continue.pel.without.log.in</source>
+                <target>Vous choisissez de <![CDATA[<b>ne pas vous authentifier avec FranceConnect</b>]]></target>
+            </trans-unit>
+            <trans-unit id="pel.why.i.require.a.physical.appointment.text.other.complex.offenses">
+                <source>pel.why.i.require.a.physical.appointment.text.other.complex.offenses</source>
+                <target><![CDATA[<b>L’agent estime cela nécessaire</b>]]> au vu des éléments déclarés </target>
+            </trans-unit>            
+            <trans-unit id="pel.why.i.require.a.physical.appointment.text.theft.of.registered.vehicle">
+                <source>pel.why.i.require.a.physical.appointment.text.theft.of.registered.vehicle</source>
+                <target>Vous êtes victime d'un <![CDATA[<b>vol de véhicule immatriculé</b>]]></target>
+            </trans-unit>
+            <trans-unit id="pel.why.i.require.a.physical.appointment.text.theft.with.violence">
+                <source>pel.why.i.require.a.physical.appointment.text.theft.with.violence</source>
+                <target>Vous êtes victime d'un <![CDATA[<b>vol avec violences</b>]]></target>
             </trans-unit>
             <trans-unit id="pel.yes">
                 <source>pel.yes</source>
