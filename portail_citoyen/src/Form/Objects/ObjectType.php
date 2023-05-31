@@ -100,7 +100,7 @@ class ObjectType extends AbstractType
         ]);
     }
 
-    private function addCategoryFields(FormInterface $form, ?int $category = null, ?ObjectModel $objectModel = null): void
+    private function addCategoryFields(FormInterface $form, int $category = null, ObjectModel $objectModel = null): void
     {
         $this->removeCategoryOtherFields($form, $objectModel);
         $this->removeCategoryMultimediaFields($form, $objectModel);

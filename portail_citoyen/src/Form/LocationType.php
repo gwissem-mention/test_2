@@ -104,9 +104,9 @@ class LocationType extends AbstractType
 
     private function addTownField(
         FormInterface $form,
-        ?int $country = null,
-        ?string $frenchTown = null,
-        ?LocationModel $locationModel = null
+        int $country = null,
+        string $frenchTown = null,
+        LocationModel $locationModel = null
     ): void {
         if (null === $country || $this->franceCode === $country) {
             $this->addFormPartForFrenchPlace($form, $frenchTown, $locationModel);
@@ -115,7 +115,7 @@ class LocationType extends AbstractType
         }
     }
 
-    private function addFormPartForForeignPlace(FormInterface $form, ?LocationModel $locationModel = null): void
+    private function addFormPartForForeignPlace(FormInterface $form, LocationModel $locationModel = null): void
     {
         $form
             ->remove('frenchTown')
@@ -136,8 +136,8 @@ class LocationType extends AbstractType
 
     private function addFormPartForFrenchPlace(
         FormInterface $form,
-        ?string $frenchTown = null,
-        ?LocationModel $locationModel = null
+        string $frenchTown = null,
+        LocationModel $locationModel = null
     ): void {
         $choices = [];
         $city = null;

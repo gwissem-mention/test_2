@@ -139,7 +139,7 @@ class CivilStateType extends AbstractType
             );
     }
 
-    private function addJobField(FormInterface $form, ?int $civility = null, ?string $jobCode = null): void
+    private function addJobField(FormInterface $form, int $civility = null, string $jobCode = null): void
     {
         $choices = [];
         $job = null;

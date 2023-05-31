@@ -87,8 +87,8 @@ class IdentityType extends AbstractType
 
     private function buildFieldsForDeclarantStatus(
         FormInterface $form,
-        ?int $declarantStatus = null,
-        ?IdentityModel $identityModel = null
+        int $declarantStatus = null,
+        IdentityModel $identityModel = null
     ): void {
         if (null === $declarantStatus) {
             return;
@@ -118,7 +118,7 @@ class IdentityType extends AbstractType
         ]);
     }
 
-    private function removeCorporationFields(FormInterface $form, ?IdentityModel $identityModel = null): void
+    private function removeCorporationFields(FormInterface $form, IdentityModel $identityModel = null): void
     {
         $form->remove('corporation');
         $identityModel?->setCorporation(null);
@@ -136,7 +136,7 @@ class IdentityType extends AbstractType
             ]);
     }
 
-    private function removeRepresentedPersonFields(FormInterface $form, ?IdentityModel $identityModel = null): void
+    private function removeRepresentedPersonFields(FormInterface $form, IdentityModel $identityModel = null): void
     {
         $form
             ->remove('representedPersonCivilState')

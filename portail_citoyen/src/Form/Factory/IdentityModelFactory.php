@@ -20,7 +20,7 @@ class IdentityModelFactory
         string $birthPlace,
         string $birthCountry,
         string $email,
-        ?string $usageName = null
+        string $usageName = null
     ): IdentityModel {
         $identity = new IdentityModel();
         $civilState = new CivilStateModel();

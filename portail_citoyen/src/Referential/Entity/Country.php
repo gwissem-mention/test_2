@@ -24,7 +24,7 @@ class Country
     #[ORM\Column(type: Types::INTEGER, nullable: true)]
     private ?int $inseeCode;
 
-    public function __construct(string $code, string $label, ?int $inseeCode = null)
+    public function __construct(string $code, string $label, int $inseeCode = null)
     {
         $this->code = $code;
         $this->label = $label;

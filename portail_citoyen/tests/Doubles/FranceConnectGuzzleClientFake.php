@@ -145,7 +145,7 @@ class FranceConnectGuzzleClientFake implements ClientInterface
         throw new \BadMethodCallException('sendAsync should not be called');
     }
 
-    public function getConfig(?string $option = null): never
+    public function getConfig(string $option = null): never
     {
         throw new \BadMethodCallException('sendAsync should not be called');
     }

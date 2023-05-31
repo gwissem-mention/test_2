@@ -131,7 +131,7 @@ class FactsComponent extends AbstractController
         return $this->redirectToRoute('complaint_objects');
     }
 
-    private function createEtalabInput(?AbstractSerializableAddress $address = null): EtalabInput
+    private function createEtalabInput(AbstractSerializableAddress $address = null): EtalabInput
     {
         $etalabInput = new EtalabInput();
 

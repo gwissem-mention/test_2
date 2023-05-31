@@ -32,7 +32,7 @@ enum DocumentType: int
         ];
     }
 
-    public static function getLabel(?int $documentType = null): ?string
+    public static function getLabel(int $documentType = null): ?string
     {
         if (null === $documentType) {
             return null;

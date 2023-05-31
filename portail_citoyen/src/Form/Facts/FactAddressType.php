@@ -73,7 +73,7 @@ class FactAddressType extends AbstractType
     private function addOffenseNatureOrNotKnownField(
         FormInterface $form,
         ?bool $choice,
-        ?FactAddressModel $addressModel = null,
+        FactAddressModel $addressModel = null,
     ): void {
         if (true === $choice) {
             $form

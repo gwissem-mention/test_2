@@ -94,8 +94,8 @@ class OffenseDateType extends AbstractType
 
     private function addDateFields(
         FormInterface $form,
-        ?bool $exactDateKnown = null,
-        ?OffenseDateModel $offenseDateModel = null
+        bool $exactDateKnown = null,
+        OffenseDateModel $offenseDateModel = null
     ): void {
         if (null === $exactDateKnown) {
             return;
@@ -153,8 +153,8 @@ class OffenseDateType extends AbstractType
 
     private function addDateTimeHourField(
         FormInterface $form,
-        ?string $choice = null,
-        ?OffenseDateModel $offenseDateModel = null
+        string $choice = null,
+        OffenseDateModel $offenseDateModel = null
     ): void {
         if ('yes' === $choice) {
             $form

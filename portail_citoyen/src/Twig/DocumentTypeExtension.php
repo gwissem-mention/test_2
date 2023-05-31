@@ -17,7 +17,7 @@ class DocumentTypeExtension extends AbstractExtension
         ];
     }
 
-    public function getLabel(?int $value = null): ?string
+    public function getLabel(int $value = null): ?string
     {
         return DocumentType::getLabel($value);
     }

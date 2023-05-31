@@ -39,8 +39,8 @@ class FranceConnectListener
     {
         $request = $event->getRequest();
         if (
-            null === $this->security->getUser() &&
-            'authentication' === $event->getRequest()->attributes->get('_route')
+            null === $this->security->getUser()
+            && 'authentication' === $event->getRequest()->attributes->get('_route')
             && 1 === $request->query->getInt('france_connected')
         ) {
             throw new AuthenticationException('authentication needed');
