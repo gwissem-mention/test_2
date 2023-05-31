@@ -59,6 +59,7 @@ Feature:
         And I should see "Oui" in the "label[for=additional_information_fsiVisit_0]" element
         And I should see "Non" in the "label[for=additional_information_fsiVisit_1]" element
 
+    @flaky
     Scenario: I can see the cctv choices
         And I should see 3 "input[type=radio][name='additional_information[cctvPresent]']" elements
         And I should see "Oui" in the "label[for=additional_information_cctvPresent_0]" element

@@ -18,7 +18,7 @@ class ComplaintExtension extends AbstractExtension
             new TwigFilter('count_complaints_closed', [$this, 'getCountComplaintsClosed']),
             new TwigFilter('count_complaints_ongoing_lrp', [$this, 'getCountComplaintsOngoingLrp']),
             new TwigFilter('count_complaints_reassignment_pending', [$this, 'getCountComplaintsReassignmentPending']),
-            new TwigFilter('count_complaints_unit_reassignment_pending', [$this, 'getCountComplaintsUnitReassignmentPending']),
+            new TwigFilter('count_complaints_unit_redirection_pending', [$this, 'getCountComplaintsUnitRedirectionPending']),
         ];
     }
 
@@ -100,15 +100,15 @@ class ComplaintExtension extends AbstractExtension
     /**
      * @param array<int, Complaint> $complaints
      */
-    public function getCountComplaintsUnitReassignmentPending(array $complaints): int
+    public function getCountComplaintsUnitRedirectionPending(array $complaints): int
     {
-        $complaintsUnitReassignmentPending = 0;
+        $complaintsUnitRedirectionPending = 0;
         foreach ($complaints as $complaint) {
-            if (Complaint::STATUS_UNIT_REASSIGNMENT_PENDING === $complaint->getStatus()) {
-                ++$complaintsUnitReassignmentPending;
+            if (Complaint::STATUS_UNIT_REDIRECTION_PENDING === $complaint->getStatus()) {
+                ++$complaintsUnitRedirectionPending;
             }
         }
 
-        return $complaintsUnitReassignmentPending;
+        return $complaintsUnitRedirectionPending;
     }
 }

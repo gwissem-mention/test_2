@@ -25,8 +25,8 @@
                 <p class="fs-3">{{ 'pel.reassignment.pending'|trans }}</p>
             </div>
             <div class="col-2 text-center">
-                <a class="btn border border-secondary m-3 p-4 fs-1 fw-bold" id="complaints_unit_reassignment_pending" href="{{ path('home', {status: 'attente-reaffectation'}) }}" title="{{ 'pel.click.here.to.display.these.complaints'|trans }}">{{ complaints|count_complaints_unit_reassignment_pending }}</a>
-                <p class="fs-3">{{ 'pel.unit.reassignment.pending'|trans }}</p>
+                <a class="btn border border-secondary m-3 p-4 fs-1 fw-bold" id="complaints_unit_redirection_pending" href="{{ path('home', {status: 'attente-reorientation'}) }}" title="{{ 'pel.click.here.to.display.these.complaints'|trans }}">{{ complaints|count_complaints_unit_redirection_pending }}</a>
+                <p class="fs-3">{{ 'pel.unit.redirection.pending'|trans }}</p>
             </div>
             <div class="col-2 text-center">
                 <a class="btn border border-secondary m-3 p-4 fs-1 fw-bold" id="complaints_closed" href="{{ path('home', {status: 'cloturee'}) }}" title="{{ 'pel.click.here.to.display.these.complaints'|trans }}">{{ complaints|count_complaints_closed }}</a>
