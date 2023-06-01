@@ -11,8 +11,36 @@ cp .env.local.dist .env.local
 
 # In portail_agent & portail_citoyen
 cp .env.dist .env.local
-```
 
+```
+```bash
+#In .env.local in portail agent
+add ENABLE_SSO=false
+add OODRIVE configuration (It will be communicated to you during the onboarding meeting)
+add FILE_UNITS=service.csv (It will be communicated to you during the onboarding meeting. It should be copied to portail_agent/referentials/ )
+```
+```bash
+#In .env.local in portail citoyen
+
+add FRANCE_CONNECT configuration (It will be communicated to you during the onboarding meeting)
+    OODRIVE configuration (It will be communicated to you during the onboarding meeting)
+add    
+    FILE_CITIES=insee_commune.csv 
+    FILE_JOBS_MALE=Liste_libelles_professions_hommes_2023.csv
+    FILE_JOBS_FEMALE=Liste_libelles_professions_femmes_2023.csv
+    FILE_SERVICES=service.csv
+    FILE_CITIES_SERVICES=competence_securite_publique.csv
+    FILE_UNITS_GN=pwb_ref_unite_gn.csv
+    FILE_CITIES_UNITS=pwb_ref_insee_unite.csv
+    FILE_DEPARTMENTS=departement_2022.csv
+(All this files will be communicated to you during the onboarding meeting. It should be copied to portail_citoyen/referentials/)
+```
+After adding those files:
+```bash
+make referential-create-extensions
+make agent-db-create-extensions
+make agent-referential-load
+```
 Install the project with following commands:
 
 ```bash
@@ -37,15 +65,36 @@ make agent-db-load
 You can find more commands to use in the [Makefile](./Makefile) file.
 Also, each project has his own Makefile too.
 
-
-## Tests
-
-Run tests:
-
+use this address to access the agent portail locally
 ```bash
-make tests
+https://agent.pel.localhost
+```
+use this address to access the citoyen portail locally
+```bash
+https://citoyen.pel.localhost
+```
+## Tests
+Run phpunit tests
+```bash
+make unit
 ```
 
+Run agent functional tests
+```bash
+make agent-db-setup agent-db-load APP_ENV=test
+
+make agent-behat
+```
+Run agent e2e tests
+```bash
+make start E2E=true
+make agent-e2e 
+```
+### Quality code
+```bash
+make cs
+make phpstan
+```
 
 ## Performance
 
