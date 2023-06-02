@@ -7,8 +7,10 @@ namespace App\Controller\Complaint;
 use App\Entity\Comment;
 use App\Entity\Complaint;
 use App\Entity\User;
+use App\Factory\NotificationFactory;
 use App\Form\Complaint\UnitReassignType;
 use App\Repository\ComplaintRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,6 +24,8 @@ class UnitReassignRejectController extends AbstractController
     public function __invoke(
         Complaint $complaint,
         ComplaintRepository $complaintRepository,
+        NotificationFactory $notificationFactory,
+        UserRepository $userRepository,
         Request $request
     ): JsonResponse {
         $this->denyAccessUnlessGranted('ROLE_SUPERVISOR');
@@ -47,8 +51,7 @@ class UnitReassignRejectController extends AbstractController
         $unitReassignmentRejectReason = (new Comment())
             ->setAuthor($user)
             ->setTitle(Comment::UNIT_REASSIGNMENT_REJECT_REASON)
-            ->setContent($complaint->getUnitReassignText() ?? '')
-        ;
+            ->setContent($complaint->getUnitReassignText() ?? '');
 
         $complaintRepository->save(
             $complaint
@@ -58,6 +61,15 @@ class UnitReassignRejectController extends AbstractController
                 ->setUnitReassignmentAsked(false)
                 ->addComment($unitReassignmentRejectReason), true
         );
+
+        if ($complaint->getAssignedTo() instanceof User) {
+            $userRepository->save(
+                $complaint->getAssignedTo()->addNotification(
+                    $notificationFactory->createForComplaintReassignmentRefused($complaint, $user)
+                ),
+                true
+            );
+        }
 
         return new JsonResponse();
     }

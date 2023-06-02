@@ -6,6 +6,7 @@ namespace App\Factory;
 
 use App\Entity\Complaint;
 use App\Entity\Notification;
+use App\Entity\User;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -87,6 +88,28 @@ class NotificationFactory
                 ['declaration_number' => $complaint->getDeclarationNumber()]),
             $this->urlGenerator->generate('complaint_summary', ['id' => $complaint->getId()]),
             true
+        );
+    }
+
+    public function createForComplaintReassignmentValidated(Complaint $complaint, User $supervisor): Notification
+    {
+        return new Notification(
+            $this->translator->trans('pel.supervisor.has.validated.your.reassignment.request', [
+                'declaration_number' => $complaint->getDeclarationNumber(),
+                'user' => $supervisor->getAppellation(),
+            ]),
+            $this->urlGenerator->generate('home'),
+        );
+    }
+
+    public function createForComplaintReassignmentRefused(Complaint $complaint, User $supervisor): Notification
+    {
+        return new Notification(
+            $this->translator->trans('pel.supervisor.has.refused.your.reassignment.request', [
+                'declaration_number' => $complaint->getDeclarationNumber(),
+                'user' => $supervisor->getAppellation(),
+            ]),
+            $this->urlGenerator->generate('complaint_summary', ['id' => $complaint->getId()]),
         );
     }
 }

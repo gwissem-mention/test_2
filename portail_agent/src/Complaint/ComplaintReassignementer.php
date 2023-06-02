@@ -2,7 +2,9 @@
 
 namespace App\Complaint;
 
+use App\Entity\Comment;
 use App\Entity\Complaint;
+use App\Entity\User;
 use App\Messenger\UnitReassignement\AskUnitReassignementMessage;
 use App\Messenger\UnitReassignement\UnitReassignementMessage;
 use Doctrine\ORM\EntityManagerInterface;
@@ -25,7 +27,7 @@ class ComplaintReassignementer
     {
         if ($this->security->isGranted('ROLE_SUPERVISOR')) {
             foreach ($complaints as $complaint) {
-                $this->reassignAsSupervisor($complaint, $assignedUnitCode);
+                $this->reassignAsSupervisor($complaint, $assignedUnitCode, $reassignText);
             }
         } else {
             foreach ($complaints as $complaint) {
@@ -36,24 +38,39 @@ class ComplaintReassignementer
         $this->entityManager->flush();
     }
 
-    public function reassignAsSupervisor(Complaint $complaint, string $targetUnitCode): void
+    public function reassignAsSupervisor(Complaint $complaint, string $targetUnitCode, string $reassignText): void
     {
-        $complaint->setStatus(Complaint::STATUS_ASSIGNMENT_PENDING);
+        /** @var User $user */
+        $user = $this->security->getUser();
 
-        $complaint->setUnitAssigned($targetUnitCode);
-        $complaint->setUnitToReassign(null);
-        $complaint->setUnitReassignText(null);
-        $complaint->setAssignedTo(null);
+        $reassignmentAsked = $complaint->isUnitReassignmentAsked();
+        $reassignmentAskBy = $complaint->getAssignedTo();
 
-        $this->messageBus->dispatch(new UnitReassignementMessage($complaint, $targetUnitCode));
+        $comment = (new Comment())
+            ->setAuthor($user)
+            ->setTitle(Comment::UNIT_REASSIGNMENT_REASON)
+            ->setContent($reassignText);
+
+        $complaint
+            ->setStatus(Complaint::STATUS_ASSIGNMENT_PENDING)
+            ->setUnitAssigned($targetUnitCode)
+            ->setUnitToReassign(null)
+            ->setUnitReassignText(null)
+            ->setAssignedTo(null)
+            ->setUnitReassignmentAsked(false)
+            ->addComment($comment);
+
+        $this->messageBus->dispatch(new UnitReassignementMessage($complaint, $targetUnitCode, (bool) $reassignmentAsked, $reassignmentAskBy));
     }
 
     public function askReassignement(Complaint $complaint, string $targetUnitCode, string $reassignText): void
     {
-        $complaint->setStatus(Complaint::STATUS_UNIT_REDIRECTION_PENDING);
-        $complaint->setUnitToReassign($targetUnitCode);
-        $complaint->setUnitReassignText($reassignText);
+        $complaint
+            ->setStatus(Complaint::STATUS_UNIT_REDIRECTION_PENDING)
+            ->setUnitToReassign($targetUnitCode)
+            ->setUnitReassignText($reassignText)
+            ->setUnitReassignmentAsked(true);
 
-        $this->messageBus->dispatch(new AskUnitReassignementMessage($complaint, $targetUnitCode));
+        $this->messageBus->dispatch(new AskUnitReassignementMessage($complaint, (string) $complaint->getUnitAssigned()));
     }
 }
