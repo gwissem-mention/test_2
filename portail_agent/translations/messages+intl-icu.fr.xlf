@@ -94,6 +94,14 @@
                 <source>pel.supervisor</source>
                 <target>Superviseur</target>
             </trans-unit>
+            <trans-unit id="pel.supervisor.has.validated.your.reassignment.request">
+                <source>pel.supervisor.has.validated.your.reassignment.request</source>
+                <target>{user} vient de valider votre demande de réorientation vers un autre service pour la déclaration {declaration_number}</target>
+            </trans-unit>
+            <trans-unit id="pel.supervisor.has.refused.your.reassignment.request">
+                <source>pel.supervisor.has.refused.your.reassignment.request</source>
+                <target>{user} vient de refuser votre demande de réorientation vers un autre service pour la déclaration {declaration_number}</target>
+            </trans-unit>
             <trans-unit id="pel.agent">
                 <source>pel.agent</source>
                 <target>Agent</target>

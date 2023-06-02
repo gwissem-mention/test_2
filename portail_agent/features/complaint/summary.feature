@@ -401,6 +401,12 @@ Feature:
         Then I should be on the homepage
         And I should see a ".toast" element
         And I should see the key "pel.the.unit.reassignment.has.been.accepted" translated
+        Given I am authenticated with PR5KTQSD from GN
+        And I am on the homepage
+        When I click the "#notifications-dropdown" element
+        Then I should see "Thomas DURAND vient de valider votre demande de réorientation vers un autre service pour la déclaration PEL-2023-00000110"
+        When I follow "Thomas DURAND vient de valider votre demande de réorientation vers un autre service pour la déclaration PEL-2023-00000110"
+        Then I should be on "/"
 
     @javascript
     Scenario: I can submit the unit reassign form successfully as an agent and reject it as a supervisor
@@ -428,6 +434,12 @@ Feature:
         And I should see the key "pel.the.unit.reassignment.has.been.rejected.your.agent.stays.assigned" translated
         And I should see the key "pel.comment.unit.reassignment.reject.reason" translated
         And I should see "Je refuse cette réorientation."
+        Given I am authenticated with PR5KTQSD from GN
+        And I am on the homepage
+        When I click the "#notifications-dropdown" element
+        Then I should see "Thomas DURAND vient de refuser votre demande de réorientation vers un autre service pour la déclaration PEL-2023-00000110"
+        When I follow "Thomas DURAND vient de refuser votre demande de réorientation vers un autre service pour la déclaration PEL-2023-00000110"
+        Then I should be on "/plainte/recapitulatif/110"
 
     @func
     Scenario: I can see the comments space on the summary page
