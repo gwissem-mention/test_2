@@ -150,6 +150,14 @@
                 <source>pel.and.overseas</source>
                 <target>et des outre-mer</target>
             </trans-unit>
+            <trans-unit id="pel.appointment.message.1">
+                <source>pel.appointment.message.1</source>
+                <target>Au regards des éléments, nous vous proposons de vous recevoir à cette unité par défaut</target>
+            </trans-unit>
+            <trans-unit id="pel.appointment.message.2">
+                <source>pel.appointment.message.2</source>
+                <target>Si cette unité ne vous convient pas, merci de sélectionner une autre commune ci-dessous</target>
+            </trans-unit>
             <trans-unit id="pel.appointment.text.label">
                 <source>pel.appointment.text.label</source>
                 <target>Veuillez nous indiquer vos disponibilités pour être recontacté</target>
@@ -245,11 +253,11 @@
             <trans-unit id="pel.breadcrumb.help.faq">
                 <source>pel.breadcrumb.help.faq</source>
                 <target>Centre d’aide de Plainte en ligne</target>
-            </trans-unit>     
+            </trans-unit>
             <trans-unit id="pel.breadcrumb.welcome">
                 <source>pel.breadcrumb.welcome</source>
                 <target>Accueil</target>
-            </trans-unit>            
+            </trans-unit>
             <trans-unit id="pel.can.i.make.a.physical.appointment">
                 <source>pel.can.i.make.a.physical.appointment</source>
                 <target>Est-ce que je peux prendre directement rendez-vous en commissariat ou en gendarmerie ?</target>
@@ -745,7 +753,7 @@
             <trans-unit id="pel.help.faq.fill.a.complaint">
                 <source>pel.help.faq.fill.a.complaint</source>
                 <target>Oui, je peux continuer</target>
-            </trans-unit>            
+            </trans-unit>
             <trans-unit id="pel.help.faq.heading">
                 <source>pel.help.faq.heading</source>
                 <target>Centre d'aide du service plainte en ligne</target>
@@ -1525,7 +1533,7 @@
             <trans-unit id="pel.why.i.require.a.physical.appointment.text.other.complex.offenses">
                 <source>pel.why.i.require.a.physical.appointment.text.other.complex.offenses</source>
                 <target><![CDATA[<b>L’agent estime cela nécessaire</b>]]> au vu des éléments déclarés </target>
-            </trans-unit>            
+            </trans-unit>
             <trans-unit id="pel.why.i.require.a.physical.appointment.text.theft.of.registered.vehicle">
                 <source>pel.why.i.require.a.physical.appointment.text.theft.of.registered.vehicle</source>
                 <target>Vous êtes victime d'un <![CDATA[<b>vol de véhicule immatriculé</b>]]></target>
