@@ -2,6 +2,7 @@ import {Controller} from "@hotwired/stimulus";
 import {Toast, Modal} from "bootstrap";
 
 import {HttpMethodsEnum} from "../scripts/utils/HttpMethodsEnum";
+import {HttpStatusCodeEnum} from "../scripts/utils/HttpStatusCodeEnum";
 
 export default class extends Controller {
     static override targets: string[] = [
@@ -53,8 +54,8 @@ export default class extends Controller {
         })
             .then((response: Response) => {
                 response.json()
-                    .then((data: any) => {
-                        if (response.status === 200) {
+                    .then((data: any) => { // TODO: Remove any type, create a specific type for this.
+                        if (response.status === HttpStatusCodeEnum.OK) {
                             Modal.getInstance(this.rejectModalTarget)?.hide();
                             Modal.getInstance(this.rejectModalTarget)?.dispose();
 
@@ -86,7 +87,7 @@ export default class extends Controller {
                 .then((response: Response) => {
                     response.json()
                         .then(data => {
-                            if (response.status === 200) {
+                            if (response.status === HttpStatusCodeEnum.OK) {
                                 Modal.getInstance(this.assignmentModalTarget)?.hide();
 
                                 document.querySelectorAll(".agent-name").forEach((element) => {
@@ -120,8 +121,8 @@ export default class extends Controller {
             })
                 .then((response: Response) => {
                     response.json()
-                        .then((data: any) => {
-                            if (response.status === 200) {
+                        .then((data: any) => { // TODO: Remove any type, create a specific type for this.
+                            if (response.status === HttpStatusCodeEnum.OK) {
                                 Modal.getInstance(this.unitReassignmentModalTarget)?.hide();
 
                                 if (supervisor && redirection) {
@@ -159,8 +160,8 @@ export default class extends Controller {
             })
                 .then((response: Response) => {
                     response.json()
-                        .then((data: any) => {
-                            if (response.status === 200) {
+                        .then((data: any) => { // TODO: Remove any type, create a specific type for this.
+                            if (response.status === HttpStatusCodeEnum.OK) {
                                 Modal.getInstance(this.unitReassignmentModalTarget)?.hide();
 
                                 // Must be ignored because in Bootstrap types, Toast element has string | Element type
@@ -214,8 +215,8 @@ export default class extends Controller {
             })
                 .then((response: Response) => {
                     response.json()
-                        .then((data:any) => {
-                            if (response.status === 200) {
+                        .then((data: any) => { // TODO: Remove any type, create a specific type for this.
+                            if (response.status === HttpStatusCodeEnum.OK) {
                                 Modal.getInstance(this.sendReportModalTarget)?.hide();
 
                                 // Must be ignored because in Bootstrap types, Toast element has string | Element type
@@ -274,8 +275,8 @@ export default class extends Controller {
             })
                 .then((response: Response) => {
                     response.json()
-                        .then((data: any) => {
-                            if (response.status === 200) {
+                        .then((data: any) => { // TODO: Remove any type, create a specific type for this.
+                            if (response.status === HttpStatusCodeEnum.OK) {
                                 this.reloadComplaintContainer();
                             } else {
                                 this.appointmentFormTarget.innerHTML = data.form;
@@ -312,5 +313,31 @@ export default class extends Controller {
                     this.complaintContainerTarget.innerHTML = complaintContainerSource.innerHTML;
                 }
             });
+    }
+
+    // Must be ignored because we can't type url here.
+    // @ts-ignore
+    public selfAssign({params: {url}}): void {
+        if (url) {
+            fetch(url, {
+                method: HttpMethodsEnum.POST,
+            })
+                .then((response: Response) => {
+                    response.json()
+                        .then(() => {
+                            if (response.status === HttpStatusCodeEnum.OK) {
+                                this.reloadComplaintContainer();
+                                // Must be ignored because in Bootstrap types, Toast element has string | Element type
+                                // however we need here to type it as Toast.
+                                // @ts-ignore
+                                const toast: Toast = new Toast(document.getElementById("toast-complaint-self-assign"));
+
+                                if (toast) {
+                                    toast.show();
+                                }
+                            }
+                        });
+                });
+        }
     }
 }

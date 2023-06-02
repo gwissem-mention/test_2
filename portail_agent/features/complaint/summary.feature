@@ -35,7 +35,7 @@ Feature:
         And I should see the key "pel.declaration.alert" translated
         And I should see "Alert de test trop longue"
         And I should see 5 "button[data-bs-toggle='modal']" element
-        And I should see 31 "button" element
+        And I should see 33 "button" element
         And I should see the key "pel.assign.declaration.to" translated
         And I should see the key "pel.send.to.lrp" translated
         And I should see the key "pel.reject" translated
@@ -484,3 +484,19 @@ Feature:
         Given I am on "/plainte/recapitulatif/11"
         When I follow "Pièce jointe 2"
         Then I should be on "/voir-piece-jointe/11/iphone.png"
+
+    @javascript
+    Scenario: I can self assign a declaration as a supervisor
+        Given I am authenticated with PR5KTZ9R from GN
+        And I am on "/plainte/recapitulatif/93"
+        When I press "M'attribuer la déclaration"
+        Then I should see a ".toast" element
+        And I should see the key "pel.the.declaration.has.been.self.assigned" translated
+        And I should see "Déclaration attribuée à : Thomas DURAND"
+        And I should see the key "pel.declaration.assigned.to" translated
+
+    @javascript
+    Scenario: I can't self assign a declaration as a supervisor when the declaration is already assigned
+        Given I am authenticated with PR5KTZ9R from GN
+        And I am on "/plainte/recapitulatif/110"
+        Then I should not see a "#complaint-self-assign-button" element
