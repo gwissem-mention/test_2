@@ -500,3 +500,25 @@ Feature:
         Given I am authenticated with PR5KTZ9R from GN
         And I am on "/plainte/recapitulatif/110"
         Then I should not see a "#complaint-self-assign-button" element
+
+    @func
+    Scenario: I can see owner information when an Administrative document doesn't belongs to the declarant
+        Given I am on "/plainte/recapitulatif/151"
+        And I should see the key "pel.owner.lastname.firstname" translated
+        And I should see "Dulac Raymond"
+        And I should see the key "pel.owner.email" translated
+        And I should see "raymond.dulac@example.fr"
+        And I should see the key "pel.owner.company" translated
+        And I should see "Amazon"
+        And I should see the key "pel.owner.address" translated
+        And I should see "100 Rue de l'église 69000 Lyon"
+        And I should see the key "pel.owner.phone" translated
+        And I should see "0612345678"
+        And I should see the key "pel.document.issued.by" translated
+        And I should see "Préfecture de Lyon"
+        And I should see the key "pel.document.issued.on" translated
+        And I should see "10/03/2022"
+        And I should see the key "pel.document.number" translated
+        And I should see "123"
+        And I should see the key "pel.document.validity.end.date" translated
+        And I should see "05/12/2025"

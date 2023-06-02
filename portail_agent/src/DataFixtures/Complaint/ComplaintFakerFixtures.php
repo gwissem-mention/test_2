@@ -277,6 +277,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                 $complaint->addObject(
                     (new AdministrativeDocument())
                         ->setType('Permis de conduire')
+                        ->setOwned(true)
                 );
             }
 

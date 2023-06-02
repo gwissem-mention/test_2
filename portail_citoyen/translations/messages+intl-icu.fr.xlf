@@ -514,13 +514,53 @@
                 <source>pel.description</source>
                 <target>Description</target>
             </trans-unit>
-            <trans-unit id="pel.document.owner.lastname.fistname">
-                <source>pel.document.owner.lastname.fistname</source>
+            <trans-unit id="pel.document.issued.by">
+                <source>pel.document.issued.by</source>
+                <target>Délivré par</target>
+            </trans-unit>
+            <trans-unit id="pel.document.issued.on">
+                <source>pel.document.issued.on</source>
+                <target>Délivré le</target>
+            </trans-unit>
+            <trans-unit id="pel.document.owner.address">
+                <source>pel.document.owner.address</source>
+                <target>Adresse du titulaire</target>
+            </trans-unit>
+            <trans-unit id="pel.document.owner.company">
+                <source>pel.document.owner.company</source>
+                <target>Société</target>
+            </trans-unit>
+            <trans-unit id="pel.document.owner.email">
+                <source>pel.document.owner.email</source>
+                <target>Adresse email du titulaire</target>
+            </trans-unit>
+            <trans-unit id="pel.document.owner.firstname">
+                <source>pel.document.owner.firstname</source>
+                <target>Prénom du titulaire</target>
+            </trans-unit>
+            <trans-unit id="pel.document.owner.lastname.firstname">
+                <source>pel.document.owner.lastname.firstname</source>
                 <target>Nom et Prénom du titulaire du document</target>
+            </trans-unit>
+            <trans-unit id="pel.document.owner.lastname">
+                <source>pel.document.owner.lastname</source>
+                <target>Nom du titulaire</target>
+            </trans-unit>
+            <trans-unit id="pel.document.owner.phone">
+                <source>pel.document.owner.phone</source>
+                <target>Numéro de téléphone du titulaire</target>
+            </trans-unit>
+            <trans-unit id="pel.document.number">
+                <source>pel.document.number</source>
+                <target>Numéro du document</target>
             </trans-unit>
             <trans-unit id="pel.document.type">
                 <source>pel.document.type</source>
                 <target>Type de document</target>
+            </trans-unit>
+            <trans-unit id="pel.document.validity.end.date">
+                <source>pel.document.validity.end.date</source>
+                <target>Date de fin de validité</target>
             </trans-unit>
             <trans-unit id="pel.do.you.have.informations.on.potential.suspects">
                 <source>pel.do.you.have.informations.on.potential.suspects</source>
@@ -1077,7 +1117,7 @@
             <trans-unit id="pel.not.found.can.menu">
                 <source>pel.not.found.can.menu</source>
                 <target>ou reprendre votre navigation à l’aide du menu.</target>
-            </trans-unit>            
+            </trans-unit>
             <trans-unit id="pel.not.found.can.sitemap.1">
                 <source>pel.not.found.can.sitemap.1</source>
                 <target>, utiliser le</target>

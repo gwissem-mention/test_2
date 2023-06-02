@@ -240,6 +240,37 @@
                 {% if object|object_type is same as('App\\Entity\\FactsObjects\\AdministrativeDocument') %}
                     <li>
                         <strong>{{ 'pel.number'|trans }} {{ loop.index }}</strong> : {{ object.type }}
+                        {% if object.owned is same as(false) %}
+                            <ul>
+                                {% if object.ownerLastname is not null and object.ownerFirstname is not null %}
+                                    <li>{{ 'pel.owner.lastname.firstname'|trans }} : <strong>{{ object.ownerLastname }} {{ object.ownerFirstname }}</strong></li>
+                                {% endif %}
+                                {% if object.ownerCompany is not null %}
+                                    <li>{{ 'pel.owner.company'|trans }} : <strong>{{ object.ownerCompany }}</strong></li>
+                                {% endif %}
+                                {% if object.ownerPhone is not null and object.ownerPhone is not same as('+33 ') %}
+                                    <li>{{ 'pel.owner.phone'|trans }}: <strong>{{ object.ownerPhone }}</strong></li>
+                                {% endif %}
+                                {% if object.ownerEmail is not null %}
+                                    <li>{{ 'pel.owner.email'|trans }}: <strong>{{ object.ownerEmail }}</strong></li>
+                                {% endif %}
+                                {% if object.ownerAddress is not null %}
+                                    <li>{{ 'pel.owner.address'|trans }}: <strong>{{ object.ownerAddress }}</strong></li>
+                                {% endif %}
+                                {% if object.number is not null %}
+                                    <li>{{ 'pel.document.number'|trans }}: <strong>{{ object.number }}</strong></li>
+                                {% endif %}
+                                {% if object.issuedBy is not null %}
+                                    <li>{{ 'pel.document.issued.by'|trans }}: <strong>{{ object.issuedBy }}</strong></li>
+                                {% endif %}
+                                {% if object.issuedOn is not null %}
+                                    <li>{{ 'pel.document.issued.on'|trans }}: <strong>{{ object.issuedOn|date('d/m/Y') }}</strong></li>
+                                {% endif %}
+                                {% if object.validityEndDate is not null %}
+                                    <li>{{ 'pel.document.validity.end.date'|trans }}: <strong>{{ object.validityEndDate|date('d/m/Y') }}</strong></li>
+                                {% endif %}
+                            </ul>
+                        {% endif %}
                         {% if object.amount is not null %}
                             - {{ object.amount|format_currency('EUR', {fraction_digit: 0}) }}
                         {% endif %}

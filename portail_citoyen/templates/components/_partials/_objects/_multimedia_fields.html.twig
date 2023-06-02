@@ -1,0 +1,15 @@
+{% if object.brand is defined %}
+    {{ form_row(object.brand) }}
+{% endif %}
+{% if object.model is defined %}
+    {{ form_row(object.model) }}
+{% endif %}
+{% if object.phoneNumberLine is defined %}
+    {{ form_row(object.phoneNumberLine) }}
+{% endif %}
+{% if object.operator is defined %}
+    {{ form_row(object.operator) }}
+{% endif %}
+{% if object.serialNumber is defined %}
+    {{ form_row(object.serialNumber) }}
+{% endif %}

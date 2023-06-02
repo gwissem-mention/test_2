@@ -1,0 +1,53 @@
+{% if object.documentType.documentType is defined %}
+    {{ form_row(object.documentType.documentType) }}
+{% endif %}
+{% if object.documentType.otherDocumentType is defined %}
+    {{ form_row(object.documentType.otherDocumentType) }}
+{% endif %}
+{% if object.documentType.documentOwned is defined %}
+    {{ form_row(object.documentType.documentOwned) }}
+{% endif %}
+{% if object.documentType.documentAdditionalInformation.documentOwnerLastName is defined %}
+    {{ form_row(object.documentType.documentAdditionalInformation.documentOwnerLastName) }}
+{% endif %}
+{% if object.documentType.documentAdditionalInformation.documentOwnerFirstName is defined %}
+    {{ form_row(object.documentType.documentAdditionalInformation.documentOwnerFirstName) }}
+{% endif %}
+{% if object.documentType.documentAdditionalInformation.documentOwnerCompany is defined %}
+    {{ form_row(object.documentType.documentAdditionalInformation.documentOwnerCompany) }}
+{% endif %}
+{% if object.documentType.documentAdditionalInformation.documentOwnerPhone is defined %}
+    {{ form_row(object.documentType.documentAdditionalInformation.documentOwnerPhone) }}
+{% endif %}
+{% if object.documentType.documentAdditionalInformation.documentOwnerEmail is defined %}
+    {{ form_row(object.documentType.documentAdditionalInformation.documentOwnerEmail) }}
+{% endif %}
+{% if object.documentType.documentAdditionalInformation.documentOwnerAddress is defined %}
+    {% set etalab_errors = [] %}
+    {% if object.documentType.documentAdditionalInformation.documentOwnerAddress is defined %}
+        {% for error in object.documentType.documentAdditionalInformation.documentOwnerAddress.address.vars.errors %}
+            {% set etalab_errors = etalab_errors|merge([error.message]) %}
+        {% endfor %}
+    {% endif %}
+    <div class="fr-input-group{% if etalab_errors|length > 0 %} fr-input-group--error{% endif %}">
+        {{ form_label(object.documentType.documentAdditionalInformation.documentOwnerAddress) }}
+        {{ component('etalab_component', {
+            'data-live-id': 'document-owner-address-' ~loop.index0,
+            dataModel: 'addressSearch:documentOwnerAddresses[' ~ loop.index0 ~ '][addressSearch] addressId:documentOwnerAddresses[' ~ loop.index0 ~ '][addressId] addressSearchSaved:documentOwnerAddresses[' ~ loop.index0 ~ '][addressSearchSaved]',
+            inputName: 'document_owner_address_' ~ loop.index0,
+            errors: etalab_errors,
+        }) }}
+    </div>
+{% endif %}
+{% if object.documentType.documentAdditionalInformation.documentNumber is defined %}
+    {{ form_row(object.documentType.documentAdditionalInformation.documentNumber) }}
+{% endif %}
+{% if object.documentType.documentAdditionalInformation.documentIssuedBy is defined %}
+    {{ form_row(object.documentType.documentAdditionalInformation.documentIssuedBy) }}
+{% endif %}
+{% if object.documentType.documentAdditionalInformation.documentIssuedOn is defined %}
+    {{ form_row(object.documentType.documentAdditionalInformation.documentIssuedOn) }}
+{% endif %}
+{% if object.documentType.documentAdditionalInformation.documentValidityEndDate is defined %}
+    {{ form_row(object.documentType.documentAdditionalInformation.documentValidityEndDate) }}
+{% endif %}

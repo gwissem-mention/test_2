@@ -317,7 +317,7 @@ parameters:
 
 		-
 			message: "#^Access to an undefined property object\\:\\:\\$label\\.$#"
-			count: 4
+			count: 6
 			path: src/Complaint/Parser/ObjectsParser.php
 
 		-
@@ -347,6 +347,51 @@ parameters:
 
 		-
 			message: "#^Access to an undefined property object\\:\\:\\$serialNumber\\.$#"
+			count: 1
+			path: src/Complaint/Parser/ObjectsParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$documentOwned\\.$#"
+			count: 1
+			path: src/Complaint/Parser/ObjectsParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$documentAdditionalInformation\\.$#"
+			count: 10
+			path: src/Complaint/Parser/ObjectsParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$addressType\\.$#"
+			count: 1
+			path: src/Complaint/Parser/ObjectsParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$houseNumber\\.$#"
+			count: 1
+			path: src/Complaint/Parser/ObjectsParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$street\\.$#"
+			count: 1
+			path: src/Complaint/Parser/ObjectsParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$citycode\\.$#"
+			count: 1
+			path: src/Complaint/Parser/ObjectsParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$postcode\\.$#"
+			count: 1
+			path: src/Complaint/Parser/ObjectsParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$city\\.$#"
+			count: 1
+			path: src/Complaint/Parser/ObjectsParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$context\\.$#"
 			count: 1
 			path: src/Complaint/Parser/ObjectsParser.php
 

@@ -276,8 +276,32 @@
                 <li>{{ 'pel.could.you.precise'|trans }} : {{ object.otherDocumentType }}</li>
             {% endif %}
             <li>{{ 'pel.i.am.the.owner.of.this.document'|trans }} : {{ object.documentOwned ? 'pel.yes'|trans : 'pel.no'|trans }}</li>
-            {% if object.documentOwned is same as false and object.documentOwner is not empty %}
-                <li>{{ 'pel.document.owner.lastname.fistname'|trans }} : {{ object.documentOwner }}</li>
+            {% if object.documentOwned is same as false and object.documentAdditionalInformation is not empty %}
+                <li>{{ 'pel.document.owner.lastname.firstname'|trans }} : {{ object.documentAdditionalInformation.documentOwnerLastname }} {{ object.documentAdditionalInformation.documentOwnerFirstname }}</li>
+                {% if object.documentAdditionalInformation.documentOwnerCompany is not empty %}
+                    <li>{{ 'pel.document.owner.company'|trans }} : {{ object.documentAdditionalInformation.documentOwnerCompany }}</li>
+                {% endif %}
+                {% if object.documentAdditionalInformation.documentOwnerPhone is not null and object.documentAdditionalInformation.documentOwnerPhone.number is not null%}
+                    <li>{{ 'pel.document.owner.phone'|trans }} : {{ object.documentAdditionalInformation.documentOwnerPhone|phone_format_intl }}</li>
+                {% endif %}
+                {% if object.documentAdditionalInformation.documentOwnerEmail is not empty %}
+                    <li>{{ 'pel.document.owner.email'|trans }} : {{ object.documentAdditionalInformation.documentOwnerEmail }}</li>
+                {% endif %}
+                {% if object.documentAdditionalInformation.documentOwnerAddress is not empty %}
+                    <li>{{ 'pel.document.owner.address'|trans }} : {{ object.documentAdditionalInformation.documentOwnerAddress.label }}</li>
+                {% endif %}
+                {% if object.documentAdditionalInformation.documentNumber is not empty %}
+                    <li>{{ 'pel.document.number'|trans }} : {{ object.documentAdditionalInformation.documentNumber }}</li>
+                {% endif %}
+                {% if object.documentAdditionalInformation.documentIssuedBy is not empty %}
+                    <li>{{ 'pel.document.issued.by'|trans }} : {{ object.documentAdditionalInformation.documentIssuedBy }}</li>
+                {% endif %}
+                {% if object.documentAdditionalInformation.documentIssuedOn is not empty %}
+                    <li>{{ 'pel.document.issued.on'|trans }} : {{ object.documentAdditionalInformation.documentIssuedOn|date('d/m/Y') }}</li>
+                {% endif %}
+                {% if object.documentAdditionalInformation.documentValidityEndDate is not empty %}
+                    <li>{{ 'pel.document.validity.end.date'|trans }} : {{ object.documentAdditionalInformation.documentValidityEndDate|date('d/m/Y') }}</li>
+                {% endif %}
             {% endif %}
         {% elseif object.category|object_category_get_name is same as('pel.object.category.multimedia') %}
             <li>{{ 'pel.object'|trans }} : {{ object.label }}</li>

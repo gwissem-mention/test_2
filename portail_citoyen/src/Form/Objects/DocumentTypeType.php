@@ -82,9 +82,9 @@ class DocumentTypeType extends AbstractType
                 /** @var FormInterface $parent */
                 $parent = $event->getForm()->getParent();
                 if (false === $documentOwned) {
-                    $this->addDocumentOwnerField($parent);
+                    $this->addDocumentOwnerFields($parent);
                 } else {
-                    $this->removeDocumentOwnerField($parent);
+                    $this->removeDocumentOwnerFields($parent);
                 }
             }
         );
@@ -99,9 +99,9 @@ class DocumentTypeType extends AbstractType
                 /** @var ?ObjectModel $objectModel */
                 $objectModel = $parent->getData();
                 if (false === $documentOwned) {
-                    $this->addDocumentOwnerField($parent);
+                    $this->addDocumentOwnerFields($parent);
                 } else {
-                    $this->removeDocumentOwnerField($parent, $objectModel);
+                    $this->removeDocumentOwnerFields($parent, $objectModel);
                 }
             }
         );
@@ -132,19 +132,20 @@ class DocumentTypeType extends AbstractType
         $objectModel?->setOtherDocumentType(null);
     }
 
-    private function addDocumentOwnerField(FormInterface $form): void
+    private function addDocumentOwnerFields(FormInterface $form): void
     {
-        $form->add('documentOwner', TextType::class, [
-            'label' => 'pel.precise.owner.lastname.and.firstname',
-            'required' => false,
-            'priority' => -2,
-        ]);
+        $form
+            ->add('documentAdditionalInformation', DocumentAdditionalInformationType::class, [
+                'label' => false,
+                'priority' => -2,
+            ])
+        ;
     }
 
-    private function removeDocumentOwnerField(FormInterface $form, ObjectModel $objectModel = null): void
+    private function removeDocumentOwnerFields(FormInterface $form, ObjectModel $objectModel = null): void
     {
-        $form->remove('documentOwner');
+        $form->remove('documentAdditionalInformation');
 
-        $objectModel?->setDocumentOwner(null);
+        $objectModel?->setDocumentAdditionalInformation(null);
     }
 }

@@ -145,6 +145,29 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                             ->setMobilePhone('06 76 54 32 10')
                             ->setEmail('jeremy.dupont@gmail.com')
                             ->setJob('Etudiant')
+                    )
+                    ->addObject(
+                        (new AdministrativeDocument())
+                            ->setType('Passeport')
+                            ->setOwned(false)
+                            ->setOwnerLastname('Dulac')
+                            ->setOwnerFirstname('Raymond')
+                            ->setOwnerCompany('Amazon')
+                            ->setOwnerPhone('0612345678')
+                            ->setOwnerEmail('raymond.dulac@example.fr')
+                            ->setOwnerAddress('100 Rue de l\'église 69000 Lyon')
+                            ->setNumber('123')
+                            ->setIssuedBy('Préfecture de Lyon')
+                            ->setIssuedOn(new \DateTimeImmutable('2022-03-10'))
+                            ->setValidityEndDate(new \DateTimeImmutable('2025-12-05'))
+                            ->setOwnerAddressStreetType('Rue')
+                            ->setOwnerAddressStreetNumber('100')
+                            ->setOwnerAddressStreetName('de l\'église')
+                            ->setOwnerAddressInseeCode('69123')
+                            ->setOwnerAddressPostcode('69000')
+                            ->setOwnerAddressCity('Lyon')
+                            ->setOwnerAddressDepartmentNumber('69')
+                            ->setOwnerAddressDepartment('Rhône')
                     );
             }
 
@@ -287,6 +310,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
             ->addObject(
                 (new AdministrativeDocument())
                     ->setType('Permis de conduire')
+                    ->setOwned(true)
             )
             ->addObject(
                 (new PaymentMethod())
