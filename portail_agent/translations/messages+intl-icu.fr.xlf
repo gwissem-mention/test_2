@@ -210,6 +210,10 @@
                 <source>pel.click.here.to.save.this.attachment</source>
                 <target>Cliquez ici pour enregistrer cette pièce jointe</target>
             </trans-unit>
+            <trans-unit id="pel.click.here.to.self.assign.the.declaration">
+                <source>pel.click.here.to.self.assign.the.declaration</source>
+                <target>Cliquez ici pour vous attribuer la déclaration</target>
+            </trans-unit>
             <trans-unit id="pel.close">
                 <source>pel.close</source>
                 <target>Fermer</target>
@@ -746,6 +750,10 @@
                 <source>pel.select.the.unit.to.reassign</source>
                 <target>Sélectionner l'unité vers laquelle vous souhaitez réorienter la déclaration</target>
             </trans-unit>
+            <trans-unit id="pel.self.assign.the.declaration">
+                <source>pel.self.assign.the.declaration</source>
+                <target>M'attribuer la déclaration</target>
+            </trans-unit>
             <trans-unit id="pel.sir">
                 <source>pel.sir</source>
                 <target>Monsieur</target>
@@ -809,6 +817,10 @@
             <trans-unit id="pel.the.declaration.has.been.refused">
                 <source>pel.the.declaration.has.been.refused</source>
                 <target>La déclaration a bien été refusée </target>
+            </trans-unit>
+            <trans-unit id="pel.the.declaration.has.been.self.assigned">
+                <source>pel.the.declaration.has.been.self.assigned</source>
+                <target>La déclaration vous a bien été attribué</target>
             </trans-unit>
             <trans-unit id="pel.the.declaration.has.been.assigned.to">
                 <source>pel.the.declaration.has.been.assigned.to</source>

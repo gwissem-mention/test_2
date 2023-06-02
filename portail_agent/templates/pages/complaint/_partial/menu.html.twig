@@ -66,6 +66,11 @@
                         <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="{{ complaint.unitReassignmentAsked ? '#modal-complaint-unit-reassign-validation' : '#modal-complaint-unit-reassign' }}" id="complaint-unit-reassign-button">
                             <i class="bi bi-arrow-return-right"></i> {{ 'pel.unit.reassign'|trans }}
                         </button>
+                        {% if complaint.assignedTo is null %}
+                            <button type="button" class="btn btn-warning" title="{{ 'pel.click.here.to.self.assign.the.declaration'|trans }}" id="complaint-self-assign-button" data-action="complaint#selfAssign" data-complaint-url-param="{{ path('complaint_self_assign', {'id':complaint.id}) }}">
+                                <i class="bi bi-person-plus"></i> {{ 'pel.self.assign.the.declaration'|trans }}
+                            </button>
+                        {% endif %}
                     {% endif %}
                     <button type="button" class="btn btn-outline-primary" data-action="complaint#commentFocus" id="complaint-comment-button">
                         <i class="bi bi-chat-left"></i> {{ 'pel.comment'|trans }}
