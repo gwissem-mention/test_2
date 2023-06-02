@@ -53,6 +53,10 @@ Feature:
         When I press "Suivant"
         And I follow "Je confirme"
         Then I should be on "/porter-plainte/rendez-vous"
+        
+    Scenario: I should see the informative text
+        Then I should see the key "pel.appointment.message.1" translated
+        And I should see the key "pel.appointment.message.2" translated
 
     Scenario: I can click on the back button
         When I follow "Précédent"
