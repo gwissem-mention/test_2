@@ -1774,6 +1774,18 @@
                 <source>pel.characters</source>
                 <target>caractères</target>
             </trans-unit>
+            <trans-unit id="pel.step">
+                <source>pel.step</source>
+                <target>Étape</target>
+            </trans-unit>
+            <trans-unit id="pel.on">
+                <source>pel.on</source>
+                <target>sur</target>
+            </trans-unit>
+            <trans-unit id="pel.next.step">
+                <source>pel.next.step</source>
+                <target>Étape suivante</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
