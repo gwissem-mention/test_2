@@ -33,7 +33,7 @@ class FactsType extends AbstractType
                 'constraints' => [
                     new Length([
                         'min' => 30,
-                        'max' => 800,
+                        'max' => 1500,
                     ]),
                     new NotBlank(),
                 ],
@@ -43,7 +43,7 @@ class FactsType extends AbstractType
                     'class' => 'fr-input',
                     'data-counter-target' => 'parent',
                     'minlength' => 30,
-                    'maxlength' => 800,
+                    'maxlength' => 1500,
                 ],
             ])
             ->add('victimOfViolence', CheckboxType::class, [
