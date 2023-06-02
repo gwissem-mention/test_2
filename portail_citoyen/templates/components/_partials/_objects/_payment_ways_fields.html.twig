@@ -1,0 +1,9 @@
+{% if object.bank is defined %}
+    {{ form_row(object.bank) }}
+{% endif %}
+{% if object.bankAccountNumber is defined %}
+    {{ form_row(object.bankAccountNumber) }}
+{% endif %}
+{% if object.creditCardNumber is defined %}
+    {{ form_row(object.creditCardNumber) }}
+{% endif %}

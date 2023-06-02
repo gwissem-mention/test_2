@@ -315,8 +315,42 @@ class ComplaintFileParserTest extends KernelTestCase
 			"amount": 100,
 			"documentType": null,
 			"otherDocumentType": null,
-			"documentOwned": null,
-			"documentOwner": null,
+			"documentOwned": false,
+			"documentAdditionalInformation": {
+                  "documentOwnerLastName": "DUPONT",
+                  "documentOwnerFirstName": "Jean",
+                  "documentOwnerCompany": "Test",
+                  "documentOwnerPhone": {
+                        "country": "FR",
+                        "code": "33",
+                        "number": null
+                  },
+                  "documentOwnerEmail": null,
+                  "documentOwnerAddress": {
+                        "addressType": "etalab_address",
+                        "id": "67482_4385_00104",
+                        "type": "housenumber",
+                        "score": 0.8910672727272726,
+                        "houseNumber": "104",
+                        "street": "Rue Mélanie",
+                        "name": "104 Rue Mélanie",
+                        "postcode": "67000",
+                        "citycode": "67482",
+                        "city": "Strasbourg",
+                        "district": null,
+                        "context": "67, Bas-Rhin, Grand Est",
+                        "x": 1053502.2,
+                        "y": 6844466.66,
+                        "importance": 0.80174,
+                        "label": "104 Rue Mélanie 67000 Strasbourg",
+                        "latitude": null,
+                        "longitude": null
+                  },
+                  "documentNumber": null,
+                  "documentIssuedBy": null,
+                  "documentIssuedOn": null,
+                  "documentValidityEndDate": null
+            },
 			"files": []
 		},
 		{
@@ -354,7 +388,7 @@ class ComplaintFileParserTest extends KernelTestCase
 			"documentType": null,
 			"otherDocumentType": null,
 			"documentOwned": null,
-			"documentOwner": null,
+			"documentAdditionalInformation": null,
 			"files": []
 		},
 		{
@@ -387,7 +421,7 @@ class ComplaintFileParserTest extends KernelTestCase
 			"documentType": null,
 			"otherDocumentType": null,
 			"documentOwned": null,
-			"documentOwner": null,
+			"documentAdditionalInformation": null,
 			"files": []
 		},
 		{
@@ -420,7 +454,7 @@ class ComplaintFileParserTest extends KernelTestCase
 			"documentType": null,
 			"otherDocumentType": null,
 			"documentOwned": null,
-			"documentOwner": null,
+			"documentAdditionalInformation": null,
 			"files": []
 		}]
 	},

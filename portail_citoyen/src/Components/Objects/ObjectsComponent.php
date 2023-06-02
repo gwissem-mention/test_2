@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\Components\Objects;
 
+use App\Etalab\AddressEtalabHandler;
+use App\Form\Model\Address\AddressEtalabModel;
+use App\Form\Model\EtalabInput;
 use App\Form\Model\FileModel;
 use App\Form\Model\Objects\ObjectsModel;
 use App\Form\Objects\ObjectsType;
@@ -39,13 +42,57 @@ class ObjectsComponent extends AbstractController
     #[LiveProp(writable: true)]
     public array $files = [];
 
-    public function __construct(private readonly SessionHandler $sessionHandler)
-    {
+    /**
+     * @var array<int, array<string, string>>
+     */
+    #[LiveProp(writable: true)]
+    public array $documentOwnerAddresses = [];
+
+    private ObjectsModel $objectsModel;
+
+    public function __construct(
+        private readonly SessionHandler $sessionHandler,
+        private readonly AddressEtalabHandler $addressEtalabHandler,
+    ) {
+        $this->objectsModel = $this->sessionHandler->getComplaint()?->getObjects() ?? new ObjectsModel();
+
+        if ($this->objectsModel->getObjects()->isEmpty()) {
+            $this->documentOwnerAddresses[] = [
+                'addressSearch' => '',
+                'addressId' => '',
+                'addressSearchSaved' => '',
+            ];
+        } else {
+            foreach ($this->objectsModel->getObjects() as $object) {
+                $documentOwnerAddress = $object->getDocumentAdditionalInformation()?->getDocumentOwnerAddress();
+                $this->documentOwnerAddresses[] = [
+                    'addressSearch' => $documentOwnerAddress?->getLabel() ?? '',
+                    'addressId' => ($documentOwnerAddress instanceof AddressEtalabModel) ? $documentOwnerAddress->getId() ?? '' : '',
+                    'addressSearchSaved' => ($documentOwnerAddress instanceof AddressEtalabModel) ? $documentOwnerAddress->getLabel() ?? '' : '',
+                ];
+            }
+        }
     }
 
     protected function instantiateForm(): FormInterface
     {
         return $this->createForm(ObjectsType::class, $this->sessionHandler->getComplaint()?->getObjects() ?? new ObjectsModel());
+    }
+
+    #[LiveAction]
+    public function addObject(): void
+    {
+        $this->documentOwnerAddresses[] = [
+            'addressSearch' => '',
+            'addressId' => '',
+            'addressSearchSaved' => '',
+        ];
+    }
+
+    #[LiveAction]
+    public function removeObject(#[LiveArg] int $index): void
+    {
+        array_splice($this->documentOwnerAddresses, $index, 1);
     }
 
     /**
@@ -54,6 +101,14 @@ class ObjectsComponent extends AbstractController
     #[LiveAction]
     public function submit(FilesystemOperator $defaultStorage, #[LiveArg] bool $redirectToSummary = false): RedirectResponse
     {
+        foreach ($this->documentOwnerAddresses as $addressIndex => $address) {
+            if (isset($this->formValues['objects'][$addressIndex]['documentType']['documentAdditionalInformation']['documentOwnerAddress'])) {
+                $this->formValues['objects'][$addressIndex]['documentType']['documentAdditionalInformation']['documentOwnerAddress']['address'] = $address['addressSearch'];
+                $this->formValues['objects'][$addressIndex]['documentType']['documentAdditionalInformation']['documentOwnerAddress']['selectionId'] = $address['addressId'];
+                $this->formValues['objects'][$addressIndex]['documentType']['documentAdditionalInformation']['documentOwnerAddress']['query'] = $address['addressSearchSaved'];
+            }
+        }
+
         $this->submitForm();
 
         /** @var ComplaintModel $complaint */
@@ -61,6 +116,19 @@ class ObjectsComponent extends AbstractController
 
         /** @var ObjectsModel $objects */
         $objects = $this->getFormInstance()->getData();
+
+        foreach ($this->documentOwnerAddresses as $addressIndex => $address) {
+            if (isset($this->formValues['objects'][$addressIndex]['documentType']['documentAdditionalInformation']['documentOwnerAddress'])) {
+                $documentOwnerAddress = $this->addressEtalabHandler->getAddressModel(
+                    new EtalabInput(
+                        $address['addressSearch'],
+                        $address['addressId'],
+                        $address['addressSearchSaved']
+                    )
+                );
+                $objects->getObjects()[$addressIndex]?->getDocumentAdditionalInformation()?->setDocumentOwnerAddress($documentOwnerAddress);
+            }
+        }
 
         foreach ($this->files as $objectIndex => $files) {
             foreach ($files as $originalName => $name) {

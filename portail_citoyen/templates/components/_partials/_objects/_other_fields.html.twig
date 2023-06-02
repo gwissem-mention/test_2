@@ -1,0 +1,6 @@
+{% if object.description is defined %}
+    {{ form_row(object.description) }}
+{% endif %}
+{% if object.quantity is defined %}
+    {{ form_row(object.quantity) }}
+{% endif %}

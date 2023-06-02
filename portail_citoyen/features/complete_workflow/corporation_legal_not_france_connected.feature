@@ -54,6 +54,19 @@ Feature:
         And I select "2" from "objects_objects_1_status"
         And I fill in "objects_objects_1_label" with "Object 2"
         And I fill in "objects_objects_1_amount" with "100"
+        And I press "objects_objects_add"
+        And I select "1" from "objects_objects_2_category"
+        And I select "1" from "objects_objects_2_documentType_documentType"
+        And I click the "label[for=objects_objects_2_documentType_documentOwned_1]" element
+        And I fill in "objects_objects_2_documentType_documentAdditionalInformation_documentOwnerLastName" with "DUPONT"
+        And I fill in "objects_objects_2_documentType_documentAdditionalInformation_documentOwnerFirstName" with "Jean"
+        And I fill in "objects_objects_2_documentType_documentAdditionalInformation_documentOwnerCompany" with "Amazon"
+        And I fill in "objects_objects_2_documentType_documentAdditionalInformation_documentOwnerPhone_number" with "0612345678"
+        And I fill in "objects_objects_2_documentType_documentAdditionalInformation_documentOwnerEmail" with "jean.dupont@example.com"
+        And I fill in "document_owner_address_2" with "Avenue de la République 75011 Paris"
+        And I fill in "objects_objects_2_documentType_documentAdditionalInformation_documentNumber" with "123"
+        And I fill in "objects_objects_2_documentType_documentAdditionalInformation_documentIssuedBy" with "Préfecture de Paris"
+        And I select "2" from "objects_objects_2_status"
         And I press "objects_submit"
         Then I should be on "/porter-plainte/informations-complementaires"
         And I click the "label[for=additional_information_suspectsChoice_0]" element
@@ -150,14 +163,32 @@ Feature:
         And I should see the key "pel.object.category" translated
         And I should see the key "pel.objects.stolen" translated
         And I should see the key "pel.objects.gradient" translated
+        And I should see the key "pel.document.type" translated
+        And I should see the key "pel.i.am.the.owner.of.this.document" translated
+        And I should see the key "pel.document.owner.lastname.firstname" translated
+        And I should see the key "pel.document.owner.company" translated
+        And I should see the key "pel.document.owner.email" translated
+        And I should see the key "pel.document.owner.address" translated
+        And I should see the key "pel.document.number" translated
+        And I should see the key "pel.document.issued.by" translated
         And I should see "Véhicules non immatriculés"
         And I should see the key "pel.object" translated
         And I should see "Object 1"
         And I should see "Object 2"
+        And I should see "Document officiel"
+        And I should see "Carte d’identité"
+        And I should see "Non"
+        And I should see "DUPONT Jean"
+        And I should see "Amazon"
+        And I should see "+33 6 12 34 56 78"
+        And I should see "jean.dupont@example.com"
+        And I should see "Avenue de la république 75011 Paris"
+        And I should see "123"
+        And I should see "Préfecture de Paris"
         And I should see the key "pel.total" translated
         And I should see the key "pel.total.message.one" translated
         And I should see the key "pel.total.message.amount" translated
-        And I should see "Vous avez ajouté 2 objets pour un montant total de 200,00 €"
+        And I should see "Vous avez ajouté 3 objets pour un montant total de 200,00 €"
         When I press "Suivant"
         And I follow "Je confirme"
         Then I should be on "/porter-plainte/rendez-vous"

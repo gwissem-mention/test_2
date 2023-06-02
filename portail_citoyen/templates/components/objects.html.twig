@@ -2,7 +2,42 @@
     {{ form_start(form, {attr: {'data-action': 'live#action complaint-submit#submit','data-action-name': 'prevent|submit'}}) }}
     <div class="fr-grid-row fr-py-2w">
         <div class="fr-col-6">
-            {{ form_row(form.objects) }}
+            {% for object in form.objects %}
+                <div class="fr-mt-2w">
+                    {% if object.category is defined %}
+                        {{ form_row(object.category) }}
+                    {% endif %}
+                    {% if object.label is defined %}
+                        {{ form_row(object.label) }}
+                    {% endif %}
+
+                    {{ include('components/_partials/_objects/_document_fields.html.twig') }}
+
+                    {% if object.status is defined %}
+                        {{ form_row(object.status) }}
+                    {% endif %}
+                    {% if object.files is defined %}
+                        {{ form_row(object.files) }}
+                    {% endif %}
+
+                    {{ include('components/_partials/_objects/_payment_ways_fields.html.twig') }}
+                    {{ include('components/_partials/_objects/_multimedia_fields.html.twig') }}
+                    {{ include('components/_partials/_objects/_vehicle_fields.html.twig') }}
+                    {{ include('components/_partials/_objects/_other_fields.html.twig') }}
+
+                    {% if object.amount is defined %}
+                        {{ form_row(object.amount) }}
+                    {% endif %}
+                </div>
+                {% if form.objects|length > 1 %}
+                    <div>
+                        {{ form_widget(object.vars.button_delete, {attr: {'data-action': 'live#action', 'data-action-name': 'removeObject(index=' ~ loop.index0 ~ ') removeCollectionItem(name=objects[objects], index=' ~ loop.index0 ~ ')'}}) }}
+                    </div>
+                {% endif %}
+            {% endfor %}
+            <div class="fr-mt-2w">
+                {{ form_widget(form.objects.vars.button_add, {attr: {'data-action': 'live#action', 'data-action-name': 'prevent|addObject addCollectionItem(name=objects[objects])'}}) }}
+            </div>
         </div>
     </div>
     <div class="fr-grid-row fr-py-2w">
@@ -27,5 +62,5 @@
             {% endif %}
         </ul>
     </div>
-    {{ form_end(form) }}
+    {{ form_end(form, { render_rest: false }) }}
 </div>

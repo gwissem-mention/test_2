@@ -43,6 +43,18 @@ Feature:
         And I fill in "objects_objects_1_amount" with "100"
         And I fill in "objects_objects_1_brand" with "Apple"
         And I fill in "objects_objects_1_phoneNumberLine_number" with "0601020304"
+        And I press "objects_objects_add"
+        And I select "1" from "objects_objects_2_category"
+        And I select "1" from "objects_objects_2_documentType_documentType"
+        And I click the "label[for=objects_objects_2_documentType_documentOwned_1]" element
+        And I fill in "objects_objects_2_documentType_documentAdditionalInformation_documentOwnerLastName" with "DUPONT"
+        And I fill in "objects_objects_2_documentType_documentAdditionalInformation_documentOwnerFirstName" with "Jean"
+        And I fill in "objects_objects_2_documentType_documentAdditionalInformation_documentOwnerPhone_number" with "0612345678"
+        And I fill in "objects_objects_2_documentType_documentAdditionalInformation_documentOwnerEmail" with "jean.dupont@example.com"
+        And I fill in "document_owner_address_2" with "Avenue de la République 75011 Paris"
+        And I fill in "objects_objects_2_documentType_documentAdditionalInformation_documentNumber" with "123"
+        And I fill in "objects_objects_2_documentType_documentAdditionalInformation_documentIssuedBy" with "Préfecture de Paris"
+        And I select "2" from "objects_objects_2_status"
         And I press "objects_submit"
         Then I should be on "/porter-plainte/informations-complementaires"
         When I click the "label[for=additional_information_suspectsChoice_0]" element
@@ -127,6 +139,14 @@ Feature:
         And I should see the key "pel.object.category" translated
         And I should see the key "pel.objects.stolen" translated
         And I should see the key "pel.objects.gradient" translated
+        And I should see the key "pel.document.type" translated
+        And I should see the key "pel.i.am.the.owner.of.this.document" translated
+        And I should see the key "pel.document.owner.lastname.firstname" translated
+        And I should not see the key "pel.document.owner.company" translated
+        And I should see the key "pel.document.owner.email" translated
+        And I should see the key "pel.document.owner.address" translated
+        And I should see the key "pel.document.number" translated
+        And I should see the key "pel.document.issued.by" translated
         And I should see "Véhicules non immatriculés"
         And I should see the key "pel.object" translated
         And I should see "Object 1"
@@ -135,11 +155,20 @@ Feature:
         And I should see "blank.pdf"
         When I follow "blank.pdf"
         Then I should see "N° de la ligne de téléphone : +33 6 01 02 03 04"
+        And I should see "Document officiel"
+        And I should see "Carte d’identité"
+        And I should see "Non"
+        And I should see "DUPONT Jean"
+        And I should see "+33 6 12 34 56 78"
+        And I should see "jean.dupont@example.com"
+        And I should see "Avenue de la république 75011 Paris"
+        And I should see "123"
+        And I should see "Préfecture de Paris"
         And I should see the key "pel.objects" translated
         And I should see the key "pel.total" translated
         And I should see the key "pel.total.message.one" translated
         And I should see the key "pel.total.message.amount" translated
-        And I should see "Vous avez ajouté 2 objets pour un montant total de 200,00 €"
+        And I should see "Vous avez ajouté 3 objets pour un montant total de 200,00 €"
         And I should see the key "pel.place.complaint.handling" translated
         And I should see "Commissariat de police de Paris 11ème arrondissement - 12 PASSAGE CHARLES DALLERY 75011 PARIS 11"
         When I press "Suivant"

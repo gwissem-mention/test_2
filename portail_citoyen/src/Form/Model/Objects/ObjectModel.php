@@ -35,7 +35,7 @@ class ObjectModel
     private ?int $documentType = null;
     private ?string $otherDocumentType = null;
     private ?bool $documentOwned = null;
-    private ?string $documentOwner = null;
+    private ?DocumentAdditionalInformationModel $documentAdditionalInformation = null;
     /**
      * @var Collection<int, FileModel>
      */
@@ -298,14 +298,14 @@ class ObjectModel
         return $this;
     }
 
-    public function getDocumentOwner(): ?string
+    public function getDocumentAdditionalInformation(): ?DocumentAdditionalInformationModel
     {
-        return $this->documentOwner;
+        return $this->documentAdditionalInformation;
     }
 
-    public function setDocumentOwner(?string $documentOwner): self
+    public function setDocumentAdditionalInformation(?DocumentAdditionalInformationModel $documentAdditionalInformation): self
     {
-        $this->documentOwner = $documentOwner;
+        $this->documentAdditionalInformation = $documentAdditionalInformation;
 
         return $this;
     }

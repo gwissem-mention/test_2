@@ -346,6 +346,22 @@
                 <source>pel.do.you.know.hour.facts</source>
                 <target>Connaissez-vous l'heure exacte des faits ?</target>
             </trans-unit>
+            <trans-unit id="pel.document.issued.by">
+                <source>pel.document.issued.by</source>
+                <target>Délivré par</target>
+            </trans-unit>
+            <trans-unit id="pel.document.issued.on">
+                <source>pel.document.issued.on</source>
+                <target>Délivré le</target>
+            </trans-unit>
+            <trans-unit id="pel.document.number">
+                <source>pel.document.number</source>
+                <target>Numéro du document</target>
+            </trans-unit>
+            <trans-unit id="pel.document.validity.end.date">
+                <source>pel.document.validity.end.date</source>
+                <target>Date de fin de validité</target>
+            </trans-unit>
             <trans-unit id="pel.drag.and.drop.or.click.here.to.browse">
                 <source>pel.drag.and.drop.or.click.here.to.browse</source>
                 <target>Glissez-déposez un document ou cliquez ici pour parcourir</target>
@@ -573,6 +589,26 @@
             <trans-unit id="pel.other.victim.present">
                 <source>pel.other.victim.present</source>
                 <target>Y a-t-il d'autres victimes de cette infraction ?</target>
+            </trans-unit>
+            <trans-unit id="pel.owner.address">
+                <source>pel.owner.address</source>
+                <target>Adresse du titulaire</target>
+            </trans-unit>
+            <trans-unit id="pel.owner.company">
+                <source>pel.owner.company</source>
+                <target>Société</target>
+            </trans-unit>
+            <trans-unit id="pel.owner.email">
+                <source>pel.owner.email</source>
+                <target>Adresse email du titulaire</target>
+            </trans-unit>
+            <trans-unit id="pel.owner.lastname.firstname">
+                <source>pel.owner.lastname.firstname</source>
+                <target>Nom/Prénom du titulaire</target>
+            </trans-unit>
+            <trans-unit id="pel.owner.phone">
+                <source>pel.owner.phone</source>
+                <target>Numéro de téléphone du titulaire</target>
             </trans-unit>
             <trans-unit id="pel.nature.place">
                 <source>pel.nature.place</source>

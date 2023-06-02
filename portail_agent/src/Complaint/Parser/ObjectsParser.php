@@ -22,6 +22,7 @@ class ObjectsParser
     public function __construct(
         private readonly PhoneParser $phoneParser,
         private readonly FileParser $fileParser,
+        private readonly DateParser $dateParser,
     ) {
     }
 
@@ -65,7 +66,32 @@ class ObjectsParser
     {
         $documentObject = new AdministrativeDocument();
 
-        $documentObject->setType($objectInput->documentType ?? '');
+        $documentObject
+            ->setType($objectInput->documentType ?? '')
+            ->setOwned($objectInput->documentOwned)
+            ->setOwnerLastname($objectInput->documentAdditionalInformation?->documentOwnerLastName)
+            ->setOwnerFirstname($objectInput->documentAdditionalInformation?->documentOwnerFirstName)
+            ->setOwnerCompany($objectInput->documentAdditionalInformation?->documentOwnerCompany)
+            ->setOwnerEmail($objectInput->documentAdditionalInformation?->documentOwnerEmail)
+            ->setNumber($objectInput->documentAdditionalInformation?->documentNumber)
+            ->setIssuedBy($objectInput->documentAdditionalInformation?->documentIssuedBy)
+        ;
+
+        if ($objectInput->documentAdditionalInformation?->documentOwnerPhone) {
+            $documentObject->setOwnerPhone($this->phoneParser->parse($objectInput->documentAdditionalInformation?->documentOwnerPhone));
+        }
+
+        if ($objectInput->documentAdditionalInformation?->documentIssuedOn) {
+            $documentObject->setIssuedOn($this->dateParser->parse($objectInput->documentAdditionalInformation?->documentIssuedOn));
+        }
+
+        if ($objectInput->documentAdditionalInformation?->documentValidityEndDate) {
+            $documentObject->setValidityEndDate($this->dateParser->parse($objectInput->documentAdditionalInformation?->documentValidityEndDate));
+        }
+
+        if ($objectInput->documentAdditionalInformation?->documentOwnerAddress) {
+            $this->parseAddress($documentObject, $objectInput->documentAdditionalInformation?->documentOwnerAddress);
+        }
 
         return $documentObject;
     }
@@ -134,6 +160,48 @@ class ObjectsParser
     {
         foreach ($objectInput->files as $fileInput) {
             $object->addFile($this->fileParser->parse($fileInput, $this->complaintFrontId));
+        }
+    }
+
+    private function parseAddress(AbstractObject $object, object $addressInput): void
+    {
+        match ($addressInput->addressType) {
+            'etalab_address' => $this->parseEtalabAddress($object, $addressInput),
+            default => $this->parseStandardAddress($object, $addressInput),
+        };
+    }
+
+    private function parseEtalabAddress(AbstractObject $object, object $addressInput): void
+    {
+        if ($object instanceof AdministrativeDocument) {
+            $object
+                ->setOwnerAddress($addressInput->label)
+                ->setOwnerAddressStreetType(null) // TODO: extract street type from street name for french address if possible
+                ->setOwnerAddressStreetNumber($addressInput->houseNumber)
+                ->setOwnerAddressStreetName($addressInput->street)
+                ->setOwnerAddressInseeCode($addressInput->citycode)
+                ->setOwnerAddressPostcode($addressInput->postcode)
+                ->setOwnerAddressCity($addressInput->city);
+
+            $context = array_map('trim', explode(',', $addressInput->context));
+            $object
+                ->setOwnerAddressDepartmentNumber($context[0])
+                ->setOwnerAddressDepartment($context[1]);
+        }
+    }
+
+    private function parseStandardAddress(AbstractObject $object, object $addressInput): void
+    {
+        if ($object instanceof AdministrativeDocument) {
+            $object
+                ->setOwnerAddress($addressInput->label)
+                ->setOwnerAddressStreetType(null)
+                ->setOwnerAddressStreetNumber(null)
+                ->setOwnerAddressStreetName(null)
+                ->setOwnerAddressInseeCode(null)
+                ->setOwnerAddressPostcode(null)
+                ->setOwnerAddressCity(null)
+                ->setOwnerAddressDepartment(null);
         }
     }
 }
