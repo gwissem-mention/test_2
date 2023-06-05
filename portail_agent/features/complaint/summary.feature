@@ -71,7 +71,7 @@ Feature:
         And I should see "DUPONT"
         And I should see "07/03/1967"
         And I should see "France"
-        And I should see "Française"
+        And I should see "FRANCAISE"
         And I should see "Boulanger"
         And I should see "75"
         And I should see "15 rue PAIRA, Meudon, 92190"
@@ -146,7 +146,7 @@ Feature:
         And I should see "14/02/2000"
         And I should see "France"
         And I should see "92"
-        And I should see "Française"
+        And I should see "FRANCAISE"
         And I should see "15 rue PAIRA, Meudon, 92190"
         And I should see "Etudiant"
         And I should see "06 76 54 32 10"
@@ -163,7 +163,7 @@ Feature:
         And I should see the key "pel.declarant.position" translated
         And I should see "PDG"
         And I should see the key "pel.nationality" translated
-        And I should see "Française"
+        And I should see "FRANCAISE"
         And I should see the key "pel.email" translated
         And I should see "pdg@netflix.com"
         And I should see the key "pel.phone" translated

@@ -1,5 +1,6 @@
 parameters:
     app.france_code: 99100
+    app.french_nationality_code: '23'
     app.file_cities: '%env(FILE_CITIES)%'
     app.file_jobs_male: '%env(FILE_JOBS_MALE)%'
     app.file_jobs_female: '%env(FILE_JOBS_FEMALE)%'
@@ -7,6 +8,7 @@ parameters:
     app.file_cities_units: '%env(FILE_CITIES_UNITS)%'
     app.file_units_gn: '%env(FILE_UNITS_GN)%'
     app.file_departments: '%env(FILE_DEPARTMENTS)%'
+    app.file_nationalities: '%env(FILE_NATIONALITIES)%'
     app.referentials_base_path: '%kernel.project_dir%/referentials'
     app.jedonnemonavis_id: '%env(JEDONNEMONAVIS_ID)%'
     app.jedonnemonavis_key: '%env(JEDONNEMONAVIS_KEY)%'
@@ -22,6 +24,7 @@ services:
         autoconfigure: true
         bind:
             $franceCode: '%app.france_code%'
+            $frenchNationalityCode: '%app.french_nationality_code%'
             $folderRotationCount: '%app.folder_rotation.count%'
             $folderRotationTreshold: '%app.folder_rotation.treshold%'
             $oodriveRootFolderId: '%app.oodrive.root_folder_id%'
@@ -86,8 +89,14 @@ services:
         arguments:
             $citiesUnitsFixturesPath: '%app.referentials_base_path%/%app.file_cities_units%'
 
+    App\Referential\DataFixtures\Nationality\NationalityFileFixtures:
+        arguments:
+            $nationalitiesFixturesPath: '%app.referentials_base_path%/%app.file_nationalities%'
+
     App\Referential\Provider\Country\CountryProviderInterface: '@App\Referential\Provider\Country\DatabaseCountryProvider'
     
+    App\Referential\Provider\Nationality\NationalityProviderInterface: '@App\Referential\Provider\Nationality\DatabaseNationalityProvider'
+
     libphonenumber\PhoneNumberUtil:
         factory: [ 'libphonenumber\PhoneNumberUtil', 'getInstance' ]
 

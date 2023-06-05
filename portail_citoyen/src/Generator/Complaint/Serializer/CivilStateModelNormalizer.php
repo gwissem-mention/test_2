@@ -6,8 +6,8 @@ namespace App\Generator\Complaint\Serializer;
 
 use App\AppEnum\Civility;
 use App\Form\Model\Identity\CivilStateModel;
+use App\Referential\Provider\Nationality\NationalityProviderInterface;
 use App\Referential\Repository\JobRepository;
-use App\Thesaurus\NationalityThesaurusProviderInterface;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
@@ -17,9 +17,9 @@ class CivilStateModelNormalizer implements NormalizerInterface
 {
     public function __construct(
         #[Autowire(service: ObjectNormalizer::class)] private readonly NormalizerInterface $normalizer,
-        private readonly NationalityThesaurusProviderInterface $nationalityThesaurusProvider,
         private readonly JobRepository $jobRepository,
         private readonly TranslatorInterface $translator,
+        private readonly NationalityProviderInterface $nationalityProvider,
     ) {
     }
 
@@ -38,11 +38,14 @@ class CivilStateModelNormalizer implements NormalizerInterface
             'label' => $this->translator->trans((string) array_search($data['civility'], Civility::getChoices(), true)),
         ];
 
-        /** @var string $nationalityLabel */
-        $nationalityLabel = array_search($data['nationality'], $this->nationalityThesaurusProvider->getChoices(), true);
+        /** @var string $dataNationality */
+        $dataNationality = $data['nationality'];
+
+        $nationality = $this->nationalityProvider->getByCode($dataNationality);
+
         $data['nationality'] = [
             'code' => $data['nationality'],
-            'label' => $this->translator->trans($nationalityLabel),
+            'label' => $nationality->getLabel(),
         ];
 
         $job = $this->jobRepository->findOneBy(['code' => $data['job']]);

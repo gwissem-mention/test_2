@@ -62,7 +62,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
                     ->setDeclarantStatus(Identity::DECLARANT_STATUS_PERSON_LEGAL_REPRESENTATIVE)
                     ->setBirthday(new \DateTimeImmutable('1967-03-07'))
                     ->setBirthCountry('France')
-                    ->setNationality('Française')
+                    ->setNationality('FRANCAISE')
                     ->setBirthDepartment('Paris')
                     ->setBirthCity('Paris')
                     ->setBirthPostalCode('75000')
@@ -91,7 +91,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
                     ->setDeclarantStatus(Identity::DECLARANT_STATUS_VICTIM)
                     ->setBirthday(new \DateTimeImmutable('2000-02-14'))
                     ->setBirthCountry('France')
-                    ->setNationality('Française')
+                    ->setNationality('FRANCAISE')
                     ->setBirthDepartment('Hauts-de-Seine')
                     ->setBirthDepartmentNumber(92)
                     ->setBirthCity('Meudon')
@@ -212,7 +212,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
                     ->setSirenNumber('123456789')
                     ->setCompanyName('Netflix')
                     ->setDeclarantPosition('PDG')
-                    ->setNationality('Française')
+                    ->setNationality('FRANCAISE')
                     ->setContactEmail('pdg@netflix.com')
                     ->setPhone('0612345678')
                     ->setCountry('France')
@@ -272,7 +272,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Personne_Naissance_Commune>Meudon</Personne_Naissance_Commune>', $this->xmlContent);
         $this->assertStringContainsString('<Personne_Naissance_HidNumDep>92</Personne_Naissance_HidNumDep>', $this->xmlContent);
         //        $this->assertStringContainsString('<Personne_Situation_Familiale>Marié(e)</Personne_Situation_Familiale>', $this->xmlContent);
-        $this->assertStringContainsString('<Personne_Nationalite>Française</Personne_Nationalite>', $this->xmlContent);
+        $this->assertStringContainsString('<Personne_Nationalite>FRANCAISE</Personne_Nationalite>', $this->xmlContent);
         $this->assertStringContainsString('<Personne_Profession>Etudiant</Personne_Profession>', $this->xmlContent);
         $this->assertStringContainsString('<Personne_Residence_Pays>France</Personne_Residence_Pays>', $this->xmlContent);
         $this->assertStringContainsString('<Personne_Residence_Departement>92 - Hauts-de-Seine</Personne_Residence_Departement>', $this->xmlContent);
@@ -303,7 +303,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Representant_Legal_Naissance_Insee>75056</Representant_Legal_Naissance_Insee>', $this->xmlContent);
         $this->assertStringContainsString('<Representant_Legal_Naissance_Commune>Paris</Representant_Legal_Naissance_Commune>', $this->xmlContent);
         $this->assertStringContainsString('<Representant_Legal_Naissance_HidNumDep>75</Representant_Legal_Naissance_HidNumDep>', $this->xmlContent);
-        $this->assertStringContainsString('<Representant_Legal_Nationalite>Française</Representant_Legal_Nationalite>', $this->xmlContent);
+        $this->assertStringContainsString('<Representant_Legal_Nationalite>FRANCAISE</Representant_Legal_Nationalite>', $this->xmlContent);
         $this->assertStringContainsString('<Representant_Legal_Profession>Boulanger</Representant_Legal_Profession>', $this->xmlContent);
         $this->assertStringContainsString('<Representant_Legal_Residence_Pays>France</Representant_Legal_Residence_Pays>', $this->xmlContent);
         $this->assertStringContainsString('<Representant_Legal_Residence_Departement>92 - Hauts-de-Seine</Representant_Legal_Residence_Departement>', $this->xmlContent);
@@ -326,7 +326,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Personne_Morale_Raison>Netflix</Personne_Morale_Raison>', $this->xmlContentWithCorporationRepresented);
         $this->assertStringContainsString('<Personne_Morale_Siret>123456789</Personne_Morale_Siret>', $this->xmlContentWithCorporationRepresented);
         $this->assertStringContainsString('<Personne_Morale_Implication>PDG</Personne_Morale_Implication>', $this->xmlContentWithCorporationRepresented);
-        $this->assertStringContainsString('<Personne_Morale_Nationalite>Française</Personne_Morale_Nationalite>', $this->xmlContentWithCorporationRepresented);
+        $this->assertStringContainsString('<Personne_Morale_Nationalite>FRANCAISE</Personne_Morale_Nationalite>', $this->xmlContentWithCorporationRepresented);
         $this->assertStringContainsString('<Personne_Morale_Residence_Pays>France</Personne_Morale_Residence_Pays>', $this->xmlContentWithCorporationRepresented);
         $this->assertStringContainsString('<Personne_Morale_Residence_Departement>75 - Paris</Personne_Morale_Residence_Departement>', $this->xmlContentWithCorporationRepresented);
         $this->assertStringContainsString('<Personne_Morale_Residence_Codepostal>75000</Personne_Morale_Residence_Codepostal>', $this->xmlContentWithCorporationRepresented);

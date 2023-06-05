@@ -3,11 +3,10 @@
 namespace App\Complaint\Parser;
 
 use App\Entity\Corporation;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 class CorporationParser
 {
-    public function __construct(private readonly TranslatorInterface $translator, private readonly PhoneParser $phoneParser)
+    public function __construct(private readonly PhoneParser $phoneParser)
     {
     }
 
@@ -51,7 +50,7 @@ class CorporationParser
             ->setSirenNumber($corporation->siren)
             ->setCompanyName($corporation->name)
             ->setDeclarantPosition($corporation->function)
-            ->setNationality($this->translator->trans($corporation->nationality->label))
+            ->setNationality($corporation->nationality->label)
             ->setContactEmail($corporation->email)
             ->setPhone($this->phoneParser->parse($corporation->phone))
             ->setCountry($corporation->country->label)

@@ -1110,18 +1110,6 @@
                 <source>pel.assign.to</source>
                 <target>Attribuer à</target>
             </trans-unit>
-            <trans-unit id="pel.nationality.france">
-                <source>pel.nationality.france</source>
-                <target>Française</target>
-            </trans-unit>
-            <trans-unit id="pel.nationality.germany">
-                <source>pel.nationality.germany</source>
-                <target>Allemande</target>
-            </trans-unit>
-            <trans-unit id="pel.nationality.spain">
-                <source>pel.nationality.spain</source>
-                <target>Espagnole</target>
-            </trans-unit>
             <trans-unit id="pel.nature.place.home">
                 <source>pel.nature.place.home</source>
                 <target>Domicile/Logement</target>

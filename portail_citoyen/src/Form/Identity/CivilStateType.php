@@ -8,10 +8,10 @@ use App\AppEnum\Civility;
 use App\Form\JobAutocompleteType;
 use App\Form\LocationType;
 use App\Form\Model\Identity\CivilStateModel;
+use App\Form\NationalityType;
 use App\Referential\Entity\Job;
 use App\Referential\Repository\JobRepository;
 use App\Session\SessionHandler;
-use App\Thesaurus\NationalityThesaurusProviderInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -30,7 +30,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class CivilStateType extends AbstractType
 {
     public function __construct(
-        private readonly NationalityThesaurusProviderInterface $nationalityThesaurusProvider,
+        private readonly string $frenchNationalityCode,
         private readonly SessionHandler $sessionHandler,
         private readonly JobRepository $jobRepository,
         private readonly UrlGeneratorInterface $urlGenerator,
@@ -40,8 +40,6 @@ class CivilStateType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $nationalityChoices = $this->nationalityThesaurusProvider->getChoices();
-
         /** @var ?CivilStateModel $civilStateModel */
         $civilStateModel = $this->sessionHandler->getComplaint()?->getIdentity()?->getCivilState();
 
@@ -109,13 +107,13 @@ class CivilStateType extends AbstractType
                 'department_label' => 'pel.birth.department',
                 'disabled' => $options['is_france_connected'] && $civilStateModel?->birthLocationIsDefined(),
             ])
-            ->add('nationality', ChoiceType::class, [
+            ->add('nationality', NationalityType::class, [
                 'constraints' => [
                     new NotBlank(),
                 ],
-                'choices' => $nationalityChoices,
                 'label' => 'pel.nationality',
-                'empty_data' => $nationalityChoices['pel.nationality.france'],
+                'preferred_choices' => [$this->frenchNationalityCode],
+                'empty_data' => $this->frenchNationalityCode,
             ])
             ->addEventListener(
                 FormEvents::PRE_SET_DATA,

@@ -84,8 +84,8 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'otherTown' => null,
                     ],
                     'nationality' => [
-                        'code' => 1,
-                        'label' => 'Française',
+                        'code' => '23',
+                        'label' => 'FRANCAISE',
                     ],
                     'job' => [
                         'code' => '1',
@@ -419,8 +419,8 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'otherTown' => 'Madrid',
                     ],
                     'nationality' => [
-                        'code' => 1,
-                        'label' => 'Française',
+                        'code' => '23',
+                        'label' => 'FRANCAISE',
                     ],
                     'job' => [
                         'code' => '1',
@@ -494,8 +494,8 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'otherTown' => 'Madrid',
                     ],
                     'nationality' => [
-                        'code' => 1,
-                        'label' => 'Française',
+                        'code' => '23',
+                        'label' => 'FRANCAISE',
                     ],
                     'job' => [
                         'code' => '1',
@@ -828,8 +828,8 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'otherTown' => null,
                     ],
                     'nationality' => [
-                        'code' => 1,
-                        'label' => 'Française',
+                        'code' => '23',
+                        'label' => 'FRANCAISE',
                     ],
                     'job' => [
                         'code' => '1',
@@ -881,8 +881,8 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                     'name' => 'Entreprise',
                     'function' => 'CEO',
                     'nationality' => [
-                        'code' => '1',
-                        'label' => 'Française',
+                        'code' => '23',
+                        'label' => 'FRANCAISE',
                     ],
                     'phone' => [
                         'country' => 'FR',
