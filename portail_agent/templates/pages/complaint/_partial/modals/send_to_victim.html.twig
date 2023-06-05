@@ -35,13 +35,13 @@
         <button
             type="button"
             class="btn btn-success btn--modal"
-            data-controller="spinner"
-            data-action="complaint#sendReport spinner#show"
+            data-action="complaint#sendReport"
+            data-complaint-target="sendReportValidationButton"
             data-complaint-url-param="{{ path('complaint_send_report', { id: complaintId }) }}"
-            data-spinner-target="button"
             id="complaint-send-report-to-the-victim-button-validate"
         >
-            {{ 'pel.send.report.to.the.victim.and.close'|trans }}
+            <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+            <span class="sr-only">{{ 'pel.send.report.to.the.victim.and.close'|trans }}</span>
         </button>
     {% endblock %}
 {% endembed %}

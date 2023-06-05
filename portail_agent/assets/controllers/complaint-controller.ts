@@ -20,6 +20,7 @@ export default class extends Controller {
         "unitReassignmentForm",
         "unitReassignmentModal",
         "sendReportModal",
+        "sendReportValidationButton",
         "sendToLrpModal"
     ];
 
@@ -38,6 +39,7 @@ export default class extends Controller {
     declare readonly unitReassignmentModalTarget: HTMLElement;
     declare readonly unitReassignmentFormTarget: HTMLFormElement;
     declare readonly sendReportModalTarget: HTMLElement;
+    declare readonly sendReportValidationButtonTarget: HTMLButtonElement;
     declare readonly sendToLrpModalTarget: HTMLElement;
 
     public override connect() {
@@ -209,6 +211,7 @@ export default class extends Controller {
     // @ts-ignore
     public sendReport({params: {url}}): void {
         if (url) {
+            this.setSpinnerState(this.sendReportValidationButtonTarget);
             fetch(url, {
                 method: HttpMethodsEnum.POST,
                 body: new FormData(this.dropZoneFormTarget)
@@ -231,6 +234,7 @@ export default class extends Controller {
                                 this.reloadComplaintContainer();
                             } else if (data.form) {
                                 this.dropZoneFormTarget.innerHTML = data.form;
+                                this.setSpinnerState(this.sendReportValidationButtonTarget);
                             }
                         });
                 });
@@ -338,6 +342,17 @@ export default class extends Controller {
                             }
                         });
                 });
+        }
+    }
+
+    private setSpinnerState(button: HTMLButtonElement): void
+    {
+        button.querySelector(".spinner-border")?.classList.toggle("d-none");
+
+        if (button.disabled) {
+            button.removeAttribute("disabled");
+        } else {
+            button.setAttribute("disabled", "disabled");
         }
     }
 }
