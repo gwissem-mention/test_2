@@ -7,6 +7,7 @@ namespace App\Components\Complaint;
 use App\Entity\Comment;
 use App\Entity\Complaint;
 use App\Entity\User;
+use App\Factory\NotificationFactory;
 use App\Form\Complaint\CommentType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -37,6 +38,7 @@ class CommentsComponent extends AbstractController
     public function __construct(
         private readonly EntityManagerInterface $entityManager,
         private readonly UrlGeneratorInterface $urlGenerator,
+        private readonly NotificationFactory $notificationFactory
     ) {
     }
 
@@ -93,6 +95,10 @@ class CommentsComponent extends AbstractController
         /** @var Comment $comment */
         $comment = $this->getFormInstance()->getData();
         $this->entityManager->persist($comment);
+        if ($comment->getAuthor() !== $comment->getComplaint()?->getAssignedTo()) {
+            $notification = $this->notificationFactory->createForComplaintComments($comment);
+            $comment->getComplaint()?->getAssignedTo()?->addNotification($notification);
+        }
         $this->entityManager->flush();
 
         return new RedirectResponse(

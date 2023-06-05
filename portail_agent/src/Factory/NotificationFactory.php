@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Factory;
 
+use App\Entity\Comment;
 use App\Entity\Complaint;
 use App\Entity\Notification;
 use App\Entity\User;
@@ -87,6 +88,24 @@ class NotificationFactory
             $this->translator->trans('pel.declaration.deadline.reminder',
                 ['declaration_number' => $complaint->getDeclarationNumber()]),
             $this->urlGenerator->generate('complaint_summary', ['id' => $complaint->getId()]),
+            true
+        );
+    }
+
+    public function createForComplaintComments(Comment $comment): Notification
+    {
+        return new Notification(
+            $this->translator->trans('pel.the.supervisor.comment.on.your.declaration',
+                [
+                    'declaration_number' => $comment->getComplaint()?->getDeclarationNumber(),
+                    'agent_identity' => $comment->getAuthor(),
+                    'agent_grade' => true === in_array('ROLE_SUPERVISOR',
+                        (array) $comment->getAuthor()?->getRoles()) ? $this->translator->trans('pel.supervisor.grade') :
+                        $this->translator->trans('pel.agent.grade'),
+                ]),
+            $this->urlGenerator->generate('complaint_summary', [
+                'id' => $comment->getComplaint()?->getId(),
+            ]),
             true
         );
     }
