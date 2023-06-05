@@ -1,7 +1,7 @@
 Feature:
     In order to show faq
     As a user
-    I need to see a page with 2 buttons and 29 information texts
+    I need to see a page with 2 buttons and 41 information texts
 
     @func
     Scenario: Show faq on /faq route with 200 status code and a body
@@ -16,6 +16,8 @@ Feature:
 
         Examples:
             | trans                                                                     |
+            | pel.help.faq.title                                                        |
+            | pel.help.faq.heading                                                      |
             | pel.check.our.faq                                                         |
             | pel.help.faq.concerned.with                                               |
             | pel.help.faq.victim.of.damage.to.property                                 |
