@@ -75,7 +75,7 @@
                             </li>
                             <li>
                                 {{ 'pel.nationality'|trans }} :
-                                {{ complaint.identity.corporation.nationality|nationality_get_name|trans }}
+                                {{ complaint.identity.corporation.nationality|nationality_referential_label }}
                             </li>
                             {% if complaint.identity.corporation.email %}
                                 <li>

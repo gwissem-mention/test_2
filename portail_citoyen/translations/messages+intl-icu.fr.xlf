@@ -1046,21 +1046,9 @@
                 <source>pel.my.identity</source>
                 <target>Mon identité</target>
             </trans-unit>
-            <trans-unit id="pel.nationality.france">
-                <source>pel.nationality.france</source>
-                <target>Française</target>
-            </trans-unit>
-            <trans-unit id="pel.nationality.germany">
-                <source>pel.nationality.germany</source>
-                <target>Allemande</target>
-            </trans-unit>
             <trans-unit id="pel.nationality">
                 <source>pel.nationality</source>
                 <target>Nationalité</target>
-            </trans-unit>
-            <trans-unit id="pel.nationality.spain">
-                <source>pel.nationality.spain</source>
-                <target>Espagnole</target>
             </trans-unit>
             <trans-unit id="pel.next">
                 <source>pel.next</source>

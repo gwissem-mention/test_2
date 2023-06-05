@@ -6,12 +6,11 @@ namespace App\Form\Identity;
 
 use App\Form\CountryType;
 use App\Form\Model\Identity\CorporationModel;
+use App\Form\NationalityType;
 use App\Form\PhoneType;
-use App\Thesaurus\NationalityThesaurusProviderInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -25,14 +24,13 @@ class CorporationType extends AbstractType
 {
     public function __construct(
         private readonly EventSubscriberInterface $addAddressSubscriber,
-        private readonly NationalityThesaurusProviderInterface $nationalityThesaurusProvider,
-        private readonly string $franceCode
+        private readonly string $franceCode,
+        private readonly string $frenchNationalityCode,
     ) {
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $nationalityChoices = $this->nationalityThesaurusProvider->getChoices();
         $builder
             ->add('siren', TextType::class, [
                 'attr' => [
@@ -65,13 +63,13 @@ class CorporationType extends AbstractType
                 ],
                 'label' => 'pel.corporation.function',
             ])
-            ->add('nationality', ChoiceType::class, [
+            ->add('nationality', NationalityType::class, [
                 'constraints' => [
                     new NotBlank(),
                 ],
-                'choices' => $nationalityChoices,
                 'label' => 'pel.nationality',
-                'empty_data' => $nationalityChoices['pel.nationality.france'],
+                'preferred_choices' => [$this->frenchNationalityCode],
+                'empty_data' => $this->frenchNationalityCode,
             ])
             ->add('email', EmailType::class, [
                 'attr' => [

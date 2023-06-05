@@ -297,7 +297,7 @@ pools-list:
 	@$(CONSOLE) cache:pool:list
 
 pool-referentials-delete-force:
-	@$(CONSOLE) cache:pool:delete referentials.cache countries
+	@$(CONSOLE) cache:pool:delete referentials.cache countries nationalities
 
 pool-referential-clear:
 	@$(CONSOLE) cache:pool:clear referentials.cache

@@ -88,7 +88,7 @@ Feature:
         And I should see the key "pel.born.on" translated
         And I should see "Né(e) le : 02/03/1967 à Paris 7e arrondissement (75)"
         And I should see the key "pel.nationality" translated
-        And I should see "Française"
+        And I should see "FRANCAISE"
         And I should see the key "pel.resides.at" translated
         And I should see "Avenue de la République 75011 Paris, France"
         And I should see the key "pel.your.job" translated
@@ -112,7 +112,7 @@ Feature:
         And I should see the key "pel.at" translated
         And I should see "Né(e) le : 01/01/2010 à Paris (75)"
         And I should see the key "pel.nationality" translated
-        And I should see "Française"
+        And I should see "FRANCAISE"
         And I should see the key "pel.resides.at" translated
         And I should see "Avenue de la République 75011 Paris, France"
         And I should see the key "pel.your.job" translated

@@ -91,7 +91,7 @@ class ComplaintFactory
             ->setUsageName('Paul')
             ->setBirthDate(new \DateTimeImmutable('1980-01-01'))
             ->setBirthLocation($frenchAddress ? $this->createLocationFrance() : $this->createLocationForeign())
-            ->setNationality(1)
+            ->setNationality('23')
             ->setJob('1');
     }
 
@@ -116,7 +116,7 @@ class ComplaintFactory
             ->setEmail('entreprise@gmail.com')
             ->setFunction('CEO')
             ->setName('Entreprise')
-            ->setNationality('1')
+            ->setNationality('23')
             ->setCountry($frenchAddress ? 99100 : 99134);
     }
 

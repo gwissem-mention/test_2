@@ -35,8 +35,8 @@
                 "otherTown": null
             },
             "nationality": {
-                "code": 1,
-                "label": "pel.nationality.france"
+                "code": "23",
+                "label": "FRANCAISE"
             },
             "job": {
                 "code": "1",

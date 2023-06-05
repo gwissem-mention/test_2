@@ -32,8 +32,8 @@ class CorporationParserTest extends KernelTestCase
 		"function": "CEO",
 		"nationality":
 		{
-            "code": "1",
-			"label": "pel.nationality.france"
+            "code": "23",
+			"label": "FRANCAISE"
 		},
 		"phone":
 		{
@@ -78,7 +78,7 @@ class CorporationParserTest extends KernelTestCase
         $this->assertEquals('123456789', $corporation->getSirenNumber());
         $this->assertEquals('Entreprise', $corporation->getCompanyName());
         $this->assertEquals('CEO', $corporation->getDeclarantPosition());
-        $this->assertEquals('Française', $corporation->getNationality());
+        $this->assertEquals('FRANCAISE', $corporation->getNationality());
         $this->assertEquals('entreprise@gmail.com', $corporation->getContactEmail());
         $this->assertEquals('+33 0601020304', $corporation->getPhone());
         $this->assertEquals('France', $corporation->getCountry());
@@ -104,8 +104,8 @@ class CorporationParserTest extends KernelTestCase
 		"function": "CEO",
 		"nationality":
 		{
-            "code": "1",
-			"label": "pel.nationality.france"
+            "code": "23",
+			"label": "FRANCAISE"
 		},
 		"phone":
 		{
@@ -150,7 +150,7 @@ class CorporationParserTest extends KernelTestCase
         $this->assertEquals('123456789', $corporation->getSirenNumber());
         $this->assertEquals('Entreprise', $corporation->getCompanyName());
         $this->assertEquals('CEO', $corporation->getDeclarantPosition());
-        $this->assertEquals('Française', $corporation->getNationality());
+        $this->assertEquals('FRANCAISE', $corporation->getNationality());
         $this->assertEquals('+33 0601020304', $corporation->getPhone());
         $this->assertEquals('Espagne', $corporation->getCountry());
         $this->assertEquals('134 Av. Roque Nublo 2 Madrid Pozuelo de Alarcón 28223', $corporation->getAddress());
@@ -176,8 +176,8 @@ class CorporationParserTest extends KernelTestCase
 		"function": "CEO",
 		"nationality":
 		{
-            "code": "1",
-			"label": "pel.nationality.france"
+            "code": "23",
+			"label": "FRANCAISE"
 		},
 		"phone":
 		{
@@ -205,7 +205,7 @@ class CorporationParserTest extends KernelTestCase
         $this->assertEquals('123456789', $corporation->getSirenNumber());
         $this->assertEquals('Entreprise', $corporation->getCompanyName());
         $this->assertEquals('CEO', $corporation->getDeclarantPosition());
-        $this->assertEquals('Française', $corporation->getNationality());
+        $this->assertEquals('FRANCAISE', $corporation->getNationality());
         $this->assertEquals('+33 0601020304', $corporation->getPhone());
         $this->assertEquals('Espagne', $corporation->getCountry());
         $this->assertEquals('Avenue de la république Paris', $corporation->getAddress());

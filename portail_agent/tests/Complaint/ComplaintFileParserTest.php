@@ -81,8 +81,8 @@ class ComplaintFileParserTest extends KernelTestCase
 			},
 			"nationality":
 			{
-				"code": 1,
-				"label": "pel.nationality.france"
+				"code": 23,
+				"label": "FRANCAISE"
 			},
 			"job":
 			{
@@ -141,8 +141,8 @@ class ComplaintFileParserTest extends KernelTestCase
             "function": "CEO",
             "nationality":
             {
-                "code": "1",
-                "label": "pel.nationality.france"
+                "code": "23",
+                "label": "FRANCAISE"
             },
             "phone":
             {

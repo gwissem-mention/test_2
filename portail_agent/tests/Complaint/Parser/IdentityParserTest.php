@@ -40,8 +40,8 @@ class IdentityParserTest extends KernelTestCase
         "otherTown": null
       },
       "nationality": {
-        "code": 1,
-        "label": "pel.nationality.france"
+        "code": "23",
+        "label": "FRANCAISE"
       },
       "job": {
         "code": "4699",
@@ -121,8 +121,8 @@ class IdentityParserTest extends KernelTestCase
         "otherTown": null
       },
       "nationality": {
-        "code": 1,
-        "label": "pel.nationality.france"
+        "code": "23",
+        "label": "FRANCAISE"
       },
       "job": {
         "code": "4699",
@@ -237,7 +237,7 @@ JSON;
         $this->assertSame('+33 612389328', $identity->getMobilePhone());
         $this->assertSame('wossewodda-3728@yopmail.com', $identity->getEmail());
 
-        $this->assertSame('pel.nationality.france', $identity->getNationality());
+        $this->assertSame('FRANCAISE', $identity->getNationality());
         $this->assertSame('Professeure vacataire en lycée', $identity->getJob());
     }
 
@@ -348,7 +348,7 @@ JSON;
         $this->assertSame('+33 612389328', $identity->getMobilePhone());
         $this->assertSame('wossewodda-3728@yopmail.com', $identity->getEmail());
 
-        $this->assertSame('pel.nationality.france', $identity->getNationality());
+        $this->assertSame('FRANCAISE', $identity->getNationality());
         $this->assertSame('Professeure vacataire en lycée', $identity->getJob());
     }
 }

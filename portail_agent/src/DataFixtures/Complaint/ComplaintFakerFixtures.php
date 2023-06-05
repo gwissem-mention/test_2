@@ -260,7 +260,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                         ->setContactEmail($this->faker->companyEmail)
                         ->setPhone($this->faker->phoneNumber)
                         ->setCountry('France')
-                        ->setNationality('Française')
+                        ->setNationality('FRANCAISE')
                         ->setDepartment($this->departments[substr($this->identityAddressPostcode, 0, 2)])
                         ->setDepartmentNumber((int) substr($this->identityBirthPostcode, 0, 2))
                         ->setCity($this->identityAddressCity)
@@ -367,7 +367,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                 ]
             )))
             ->setBirthCountry('France')
-            ->setNationality('Française')
+            ->setNationality('FRANCAISE')
             ->setBirthDepartment($this->departments[substr($this->identityBirthPostcode, 0, 2)])
             ->setBirthCity($this->places[$this->identityBirthPostcode])
             ->setBirthPostalCode($this->identityBirthPostcode)
