@@ -65,6 +65,9 @@
                         </button>
                         <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="{{ complaint.unitReassignmentAsked ? '#modal-complaint-unit-reassign-validation' : '#modal-complaint-unit-reassign' }}" id="complaint-unit-reassign-button">
                             <i class="bi bi-arrow-return-right"></i> {{ 'pel.unit.reassign'|trans }}
+                            {% if complaint.isUnitReassignmentAsked %}
+                                <span class="badge bg-danger rounded-pill" id="badge-unit-reassignment-asked">!</span>
+                            {% endif %}
                         </button>
                         {% if complaint.assignedTo is null %}
                             <button type="button" class="btn btn-warning" title="{{ 'pel.click.here.to.self.assign.the.declaration'|trans }}" id="complaint-self-assign-button" data-action="complaint#selfAssign" data-complaint-url-param="{{ path('complaint_self_assign', {'id':complaint.id}) }}">
