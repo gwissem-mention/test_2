@@ -10,7 +10,6 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
-use Symfony\Component\Filesystem\Filesystem;
 
 #[AsCommand(
     name: 'app:cron:complaint:fetch',
@@ -18,11 +17,8 @@ use Symfony\Component\Filesystem\Filesystem;
 )]
 class ComplaintFetchCron extends Command
 {
-    public function __construct(
-        private readonly ComplaintFetcher $complaintFetcher,
-        private readonly Filesystem $filesystem,
-        private readonly string $complaintsBasePath
-    ) {
+    public function __construct(private readonly ComplaintFetcher $complaintFetcher)
+    {
         parent::__construct(self::getDefaultName());
     }
 
@@ -34,8 +30,6 @@ class ComplaintFetchCron extends Command
         $complaintsFetchedCount = $this->complaintFetcher->fetch();
 
         $io->note(sprintf('%s complaints fetched.', $complaintsFetchedCount));
-
-        $this->filesystem->remove($this->complaintsBasePath);
 
         $io->success('You have fetch new complaints successfully!');
 

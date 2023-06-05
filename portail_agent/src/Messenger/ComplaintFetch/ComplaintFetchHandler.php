@@ -56,6 +56,7 @@ class ComplaintFetchHandler
             $this->logger->info(sprintf('File "plainte.json" from folder %s parsed', $complaintFolder->getId()));
 
             $this->moveToFetchedFolder($complaintFolder, $message->getEmailFolder()->getName());
+            $this->filesystem->remove($this->complaintsBasePath.'/'.$complaintFolder->getName());
         } catch (NoAffectedServiceException $e) {
             $this->logger->error(sprintf('No affected service found for file %s. Skipped.', $file->getName()));
         }
