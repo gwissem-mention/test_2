@@ -522,3 +522,17 @@ Feature:
         And I should see "123"
         And I should see the key "pel.document.validity.end.date" translated
         And I should see "05/12/2025"
+
+    @javascript
+    Scenario: As a supervisor, I can see a badge on the unit reassignment button is an agent asks for a redirection on this complaint
+        Given I am on "/plainte/recapitulatif/110"
+        And I should not see a "#badge-unit-reassignment-asked" element
+        Then I am authenticated with PR5KTQSD from GN
+        And I am on "/plainte/recapitulatif/110"
+        When I press "Réorienter vers autres services"
+        And I fill in the autocomplete "unit_reassign_unitToReassign-ts-control" with "CSP VOIRON/SVP/UPS/BRIGADE DE JOUR" and click "103131"
+        And I fill in "unit_reassign_unitReassignText" with "Cette plainte n'est pas censée être attribuer à mon unité."
+        And I press "Réorienter"
+        Then I am authenticated with PR5KTZ9R from GN
+        And I am on "/plainte/recapitulatif/110"
+        Then I should see a "#badge-unit-reassignment-asked" element
