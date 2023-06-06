@@ -11,7 +11,10 @@ class FactsParser
     {
     }
 
-    public function parse(object $facts): Facts
+    /**
+     * @param array<int, object> $objects
+     */
+    public function parse(object $facts, array $objects): Facts
     {
         $factsParsed = new Facts();
 
@@ -23,8 +26,17 @@ class FactsParser
 
         $department = isset($facts->address->startAddress->citycode) ? substr($facts->address->startAddress->citycode, 0, 2) : '';
 
+        $natures = [];
+        foreach ($objects as $object) {
+            if (Facts::NATURE_ROBBERY === $object->status->code) {
+                $natures[] = Facts::NATURE_ROBBERY;
+            } else {
+                $natures[] = Facts::NATURE_DEGRADATION;
+            }
+        }
+
         $factsParsed
-            ->setNatures([Facts::NATURE_ROBBERY]) // TODO to be removed when the summary contains the nature by object, in the meantime,setNatures in ObjectsParser
+            ->setNatures(array_unique($natures))
             ->setDescription($facts->description)
             ->setExactPlaceUnknown(!$facts->address->addressOrRouteFactsKnown)
             ->setPlace($this->translator->trans($facts->placeNature->label))

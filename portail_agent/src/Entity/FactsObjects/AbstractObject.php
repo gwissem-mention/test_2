@@ -29,6 +29,9 @@ abstract class AbstractObject
 {
     use AlertTrait;
 
+    public const STATUS_STOLEN = 1;
+    public const STATUS_DEGRADED = 2;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -53,6 +56,9 @@ abstract class AbstractObject
     /** @var array<string>|null */
     #[ORM\Column(type: Types::SIMPLE_ARRAY, nullable: true)]
     private ?array $files = null;
+
+    #[ORM\Column]
+    private ?int $status = null;
 
     public function getId(): ?int
     {
@@ -104,6 +110,18 @@ abstract class AbstractObject
     public function addFile(string $file): self
     {
         $this->files[] = $file;
+
+        return $this;
+    }
+
+    public function getStatus(): ?int
+    {
+        return $this->status;
+    }
+
+    public function setStatus(?int $status): static
+    {
+        $this->status = $status;
 
         return $this;
     }

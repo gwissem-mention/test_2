@@ -103,6 +103,7 @@ Feature:
         And I should see "11h00"
         And I should see the key "pel.objects.description" translated
         And I should see the key "pel.objects.stolen" translated
+        And I should see the key "pel.objects.degraded" translated
         And I should see the key "pel.number" translated
         And I should see the key "pel.total" translated
         And I should see the key "pel.total.message.one" translated

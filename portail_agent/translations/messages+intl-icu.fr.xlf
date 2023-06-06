@@ -962,6 +962,10 @@
                 <source>pel.objects.stolen</source>
                 <target>Objets volés</target>
             </trans-unit>
+            <trans-unit id="pel.objects.degraded">
+                <source>pel.objects.degraded</source>
+                <target>Objets dégradés</target>
+            </trans-unit>
             <trans-unit id="pel.person.legal.representative">
                 <source>pel.person.legal.representative</source>
                 <target>Représentant légal d'une personne physique</target>

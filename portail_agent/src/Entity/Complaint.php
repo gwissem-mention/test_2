@@ -8,6 +8,7 @@ use App\Entity\FactsObjects\AbstractObject;
 use App\Repository\ComplaintRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ReadableCollection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -290,6 +291,26 @@ class Complaint
         }
 
         return $this;
+    }
+
+    /**
+     * @return ReadableCollection<int, AbstractObject>
+     */
+    public function getStolenObjects(): ReadableCollection
+    {
+        return $this->objects->filter(function (AbstractObject $object) {
+            return AbstractObject::STATUS_STOLEN === $object->getStatus();
+        });
+    }
+
+    /**
+     * @return ReadableCollection<int, AbstractObject>
+     */
+    public function getDegradedObjects(): ReadableCollection
+    {
+        return $this->objects->filter(function (AbstractObject $object) {
+            return AbstractObject::STATUS_DEGRADED === $object->getStatus();
+        });
     }
 
     public function getAdditionalInformation(): ?AdditionalInformation
