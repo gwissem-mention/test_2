@@ -1,0 +1,73 @@
+{% extends 'common/_help.html.twig' %}
+
+{% block title %}
+	{{ 'pel.help.tos.title'|trans }}
+{% endblock %}
+
+{% block breadcrumb %}
+	<ol class="fr-breadcrumb__list">
+		<li>
+			<a class="fr-breadcrumb__link" href="/">{{ 'pel.breadcrumb.welcome'|trans }}</a>
+		</li>
+		<li>
+			<a class="fr-breadcrumb__link" aria-current="page">{{ 'pel.breadcrumb.help.tos'|trans }}</a>
+		</li>
+	</ol>
+{% endblock %}
+
+{% block heading %}
+	<h1 class="mb-8 lg:mb-14 pr-3 pl-3 lg:pr-0 lg:pl-0 text-[28px]/[36px] lg:text-[40px]/[48px]">
+		{{ 'pel.help.tos.heading'|trans }}
+	</h1>
+{% endblock %}
+
+{% block content %}
+	<div class="fr-grid-row gap-x-6 gap-y-10 lg:flex-nowrap">
+		<div class="fr-background-default--grey fr-col-12 fr-col-lg-6 lg:shrink fr-pt-10v fr-pr-6v pb-12 fr-pl-6v fr-pt-md-14v fr-pr-md-10v fr-pb-md-10v fr-pl-md-10v border-solid border-0 border-t border-t-[var(--grey-925-125)] border-r border-r-[transparent] lg:border-r-[var(--grey-925-125)] border-b border-b-[var(--grey-925-125)] border-l border-l-[transparent] lg:border-l-[var(--grey-925-125)]">
+			<div class="fr-grid-row flex-col fr-pr-md-4v fr-pl-md-4v">
+				<h2 id="pel-help-procedures-type-of-offence" class="fr-mb-6v fr-mb-md-10v">{{ 'pel.help.tos.type.of.offence'|trans }}</h2>
+				<ul class="fr-callout__text list-none fr-pl-0">
+					<li class="relative text-lg/6 fr-pb-0 fr-pl-10v fr-pl-md-12v fr-mb-6v fr-mb-md-12v lg:text-[22px]/[28px] fr-icon-bank-card-line before:content-[''] before:absolute before:left-[2px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[var(--grey-425-625)]  lg:before:top-1">{{ 'pel.help.tos.type.of.offence.credit.card.theft'|trans|raw }}</li>
+					<li class="relative text-lg/6 fr-pb-0 fr-pl-10v fr-pl-md-12v fr-mb-6v fr-mb-md-12v lg:text-[22px]/[28px] fr-icon-alarm-warning-line before:content-[''] before:absolute before:left-[2px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[var(--grey-425-625)] lg:before:top-1">{{ 'pel.help.tos.type.of.offence.personal.offences'|trans|raw }}</li>
+				</ul>
+			</div>
+			<div class="fr-tile fr-tile--horizontal items-start [&.fr-tile]:h-auto flex-col-reverse lg:flex-row-reverse">
+				<div class="fr-tile__body fr-mt-0 fr-mt-md-10v fr-mb-12v [&.fr-tile\_\_body]:ml-6">
+					<h3 class="fr-mb-4v text-[22px]/[28px] lg:text-[28px]/[36px]">
+						{{ 'pel.help.tos.visit.masecurite.website'|trans }}
+					</h3>
+					<p class="text-lg/6 fr-mb-4v">{{ 'pel.help.tos.take.appropriate.action'|trans }}</p>
+					<a id="masecurite" href="https://www.masecurite.interieur.gouv.fr/" class="fr-btn fr-btn--icon-right fr-icon-external-link-line text-base lg:text-lg py-2 pr-3 pl-4 lg:py-2.5 lg:pr-5 lg:pl-6 lg:[&.fr-btn[target=\_blank]]:after:content-[''] lg:[&.fr-btn[target=\_blank]]:after:w-6 lg:[&.fr-btn[target=\_blank]]:after:h-6" title="{{ 'pel.footer.link.legifrance.title'|trans }}" rel="noreferrer noopener" target="_blank">
+						{{ 'pel.help.tos.find.my.procedure'|trans }}
+					</a>
+				</div>
+				<div class="flex fr-mt-10v fr-mb-2v fr-ml-6v fr-ml-md-8v">
+					<img src="{{ asset('build/images/document-download.svg') }}" width="80" height="80">
+				</div>
+			</div>
+		</div>
+		<div class="fr-background-default--grey fr-col-12 fr-col-lg-6 lg:shrink fr-pt-10v fr-pr-6v pb-12 fr-pl-6v fr-pt-md-14v fr-pr-md-10v fr-pb-md-10v fr-pl-md-10v border-solid border-0 border-t border-t-[var(--grey-925-125)] border-r border-r-[transparent] lg:border-r-[var(--grey-925-125)] border-b border-b-[var(--grey-925-125)] border-l border-l-[transparent] lg:border-l-[var(--grey-925-125)] mb-0.5 lg:mb-0">
+			<div class="fr-grid-row flex-col fr-pr-md-4v fr-pl-md-4v">
+				<h2 id="pel-help-procedures-my-status" class="fr-mb-6v fr-mb-md-10v">{{ 'pel.help.tos.my.status'|trans }}</h2>
+				<ul class="fr-callout__text list-none fr-pl-0">
+					<li class="relative text-lg/6 fr-pb-0 fr-pl-10v fr-pl-md-12v fr-mb-6v fr-mb-md-12v lg:text-[22px]/[28px] before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/user-unfollow.svg')] lg:before:top-1.5">{{ 'pel.help.tos.i.know.the.offense.author'|trans|raw }}</li>
+					<li class="relative text-lg/6 fr-pb-0 fr-pl-10v fr-pl-md-12v fr-mb-6v fr-mb-md-12v lg:text-[22px]/[28px] fr-icon-calendar-event-line before:content-[''] before:absolute before:top-0.5 before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[var(--grey-425-625)] lg:before:top-1">{{ 'pel.help.tos.i.am.minor'|trans|raw }}</li>
+					<li class="relative text-lg/6 fr-pb-0 fr-pl-10v fr-pl-md-12v fr-mb-6v fr-mb-md-12v lg:text-[22px]/[28px] fr-icon-user-line before:content-[''] before:absolute before:top-0.5 before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[var(--grey-425-625)] lg:before:top-1">{{ 'pel.help.tos.i.am.neither.victim.nor.legal.representative'|trans|raw }}</li>
+				</ul>
+			</div>
+			<div class="fr-tile fr-tile--horizontal items-start [&.fr-tile]:h-auto flex-col-reverse lg:flex-row-reverse lg:mt-2">
+				<div class="fr-tile__body fr-mt-0 fr-mt-md-10v fr-mb-12v [&.fr-tile\_\_body]:ml-6">
+					<h3 class="fr-mb-4v text-[22px]/[28px] lg:text-[28px]/[36px]">
+						{{ 'pel.help.tos.visit.police.station'|trans }}
+					</h3>
+					<a id="masecurite-locate-police-station" href="https://www.masecurite.interieur.gouv.fr/fr/trouver-un-commissariat-une-gendarmerie" class="fr-btn fr-btn--icon-right fr-icon-external-link-line text-base lg:text-lg py-2 pr-3 pl-4 lg:py-2.5 lg:pr-5 lg:pl-6 lg:[&.fr-btn[target=\_blank]]:after:content-[''] lg:[&.fr-btn[target=\_blank]]:after:w-6 lg:[&.fr-btn[target=\_blank]]:after:h-6" title="{{ 'pel.footer.link.legifrance.title'|trans }}" rel="noreferrer noopener" target="_blank">
+						{{ 'pel.help.tos.locate.police.station'|trans }}
+					</a>
+				</div>
+				<div class="flex fr-mt-10v fr-mb-2v fr-ml-6v fr-ml-md-8v">
+					<img src="{{ asset('build/images/map.svg') }}" width="80" height="80">
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

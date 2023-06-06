@@ -254,6 +254,10 @@
                 <source>pel.breadcrumb.help.faq</source>
                 <target>Centre d’aide de Plainte en ligne</target>
             </trans-unit>
+            <trans-unit id="pel.breadcrumb.help.tos">
+                <source>pel.breadcrumb.help.tos</source>
+                <target>Conditions d’utilisation de Plainte en ligne</target>
+            </trans-unit>
             <trans-unit id="pel.breadcrumb.welcome">
                 <source>pel.breadcrumb.welcome</source>
                 <target>Accueil</target>
@@ -570,10 +574,6 @@
                 <source>pel.do.you.know.hour.facts</source>
                 <target>Connaissez-vous l’heure des faits ?</target>
             </trans-unit>
-            <trans-unit id="pel.dont.know.the.offense.author">
-                <source>pel.dont.know.the.offense.author</source>
-                <target>Ne pas connaître l’identité de l’auteur de l’infraction</target>
-            </trans-unit>
             <trans-unit id="pel.driving.license">
                 <source>pel.driving.license</source>
                 <target>Permis de conduire</target>
@@ -734,6 +734,14 @@
                 <source>pel.footer.link.legifrance.title</source>
                 <target>legifrance.gouv.fr - nouvelle fenêtre</target>
             </trans-unit>
+            <trans-unit id="pel.footer.link.masecurite">
+                <source>pel.footer.link.masecurite</source>
+                <target>masecurite.gouv.fr</target>
+            </trans-unit>
+            <trans-unit id="pel.footer.link.masecurite.title">
+                <source>pel.footer.link.masecurite.title</source>
+                <target>masecurite.gouv.fr - nouvelle fenêtre</target>
+            </trans-unit>
             <trans-unit id="pel.footer.link.service-public">
                 <source>pel.footer.link.service-public</source>
                 <target>service-public.fr</target>
@@ -796,7 +804,7 @@
             </trans-unit>
             <trans-unit id="pel.help.faq.heading">
                 <source>pel.help.faq.heading</source>
-                <target>Centre d'aide du service plainte en ligne</target>
+                <target>Centre d’aide du service plainte en ligne</target>
             </trans-unit>
             <trans-unit id="pel.help.faq.title">
                 <source>pel.help.faq.title</source>
@@ -812,7 +820,7 @@
             </trans-unit>
            <trans-unit id="pel.help.faq.victim.of.credit.card.theft">
                 <source>pel.help.faq.victim.of.credit.card.theft</source>
-                <target><![CDATA[<b>Vol de votre carte bancaire suivi d'utilisations frauduleuses</b>]]></target>
+                <target><![CDATA[<b>Vol de votre carte bancaire suivi d’utilisations frauduleuses</b>]]></target>
             </trans-unit>
             <trans-unit id="pel.help.faq.victim.of.credit.card.theft.examples">
                 <source>pel.help.faq.victim.of.credit.card.theft.examples</source>
@@ -841,6 +849,62 @@
             <trans-unit id="pel.help.faq.victim.of.other.property.crimes.examples">
                 <source>pel.help.faq.victim.of.other.property.crimes.examples</source>
                 <target>Exemples : détérioration d’un véhicule, graffitis, dégradation de votre logement, dommages sur lorem ipsum dolor sit amet, consectetur adipiscing elit</target>
+            </trans-unit>
+            <trans-unit id="pel.help.tos.find.my.procedure">
+                <source>pel.help.tos.find.my.procedure</source>
+                <target>Trouvez ma démarche</target>
+            </trans-unit>
+            <trans-unit id="pel.help.tos.heading">
+                <source>pel.help.tos.heading</source>
+                <target>Trouvez la démarche adaptée à votre situation</target>
+            </trans-unit>
+            <trans-unit id="pel.help.tos.i.am.minor">
+                <source>pel.help.tos.i.am.minor</source>
+                <target>Je suis actuellement <![CDATA[<b>mineur</b>]]></target>
+            </trans-unit>
+            <trans-unit id="pel.help.tos.i.am.neither.victim.nor.legal.representative">
+                <source>pel.help.tos.i.am.neither.victim.nor.legal.representative</source>
+                <target>Je ne suis <![CDATA[<b>ni la victime, ni son représentant légal</b>]]></target>
+            </trans-unit>
+            <trans-unit id="pel.help.tos.i.know.the.offense.author">
+                <source>pel.help.tos.i.know.the.offense.author</source>
+                <target>Je connais l’<![CDATA[<b>identité de l’auteur</b>]]> de l’infraction</target>
+            </trans-unit>
+            <trans-unit id="pel.help.tos.locate.police.station">
+                <source>pel.help.tos.locate.police.station</source>
+                <target>Trouver un établissement</target>
+            </trans-unit>
+           <trans-unit id="pel.help.tos.my.status">
+                <source>pel.help.tos.my.status</source>
+                <target>Ma situation</target>
+            </trans-unit>
+           <trans-unit id="pel.help.tos.title">
+                <source>pel.help.tos.title</source>
+                <target>Trouvez la démarche adaptée - Plainte en ligne</target>
+            </trans-unit>
+            <trans-unit id="pel.help.tos.type.of.offence">
+                <source>pel.help.tos.type.of.offence</source>
+                <target>Type d’infraction</target>
+            </trans-unit>
+            <trans-unit id="pel.help.tos.type.of.offence.credit.card.theft">
+                <source>pel.help.tos.type.of.offence.credit.card.theft</source>
+                <target>Je suis victime d’<![CDATA[<b>utilisation frauduleuse de ma carte bancaire toujours en ma possession</b>]]></target>
+            </trans-unit>
+            <trans-unit id="pel.help.tos.type.of.offence.personal.offences">
+                <source>pel.help.tos.type.of.offence.personal.offences</source>
+                <target>J’ai été victime de <![CDATA[<b>viol, violence, harcèlement, discrimination</b>]]> et autres atteintes à ma personne</target>
+            </trans-unit>
+            <trans-unit id="pel.help.tos.take.appropriate.action">
+                <source>pel.help.tos.take.appropriate.action</source>
+                <target>Pour effectuer la démarche correspondant à votre cas</target>
+            </trans-unit>
+            <trans-unit id="pel.help.tos.visit.masecurite.website">
+                <source>pel.help.tos.visit.masecurite.website</source>
+                <target>Rendez-vous sur le site Ma Sécurité</target>
+            </trans-unit>
+            <trans-unit id="pel.help.tos.visit.police.station">
+                <source>pel.help.tos.visit.police.station</source>
+                <target>Rendez-vous dans un commissariat de police ou une gendarmerie</target>
             </trans-unit>
             <trans-unit id="pel.fsi.general.orienteer">
                 <source>pel.fsi.general.orienteer</source>
@@ -1564,11 +1628,11 @@
             </trans-unit>
             <trans-unit id="pel.why.i.require.a.physical.appointment.text.theft.of.registered.vehicle">
                 <source>pel.why.i.require.a.physical.appointment.text.theft.of.registered.vehicle</source>
-                <target>Vous êtes victime d'un <![CDATA[<b>vol de véhicule immatriculé</b>]]></target>
+                <target>Vous êtes victime d’un <![CDATA[<b>vol de véhicule immatriculé</b>]]></target>
             </trans-unit>
             <trans-unit id="pel.why.i.require.a.physical.appointment.text.theft.with.violence">
                 <source>pel.why.i.require.a.physical.appointment.text.theft.with.violence</source>
-                <target>Vous êtes victime d'un <![CDATA[<b>vol avec violences</b>]]></target>
+                <target>Vous êtes victime d’un <![CDATA[<b>vol avec violences</b>]]></target>
             </trans-unit>
             <trans-unit id="pel.yes">
                 <source>pel.yes</source>
