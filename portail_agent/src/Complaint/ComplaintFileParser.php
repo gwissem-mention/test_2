@@ -31,9 +31,10 @@ class ComplaintFileParser
         $complaintJson = json_decode($complaintFileContent, false, 512, JSON_THROW_ON_ERROR);
 
         $complaint = $this->parseComplaint($complaintJson);
+
         $complaint
             ->setIdentity($this->identityParser->parse($complaintJson->identity->civilState, $complaintJson->identity->contactInformation, $complaintJson->declarantStatus))
-            ->setFacts($this->factsParser->parse($complaintJson->facts))
+            ->setFacts($this->factsParser->parse($complaintJson->facts, $complaintJson->objects->objects))
             ->setAdditionalInformation($this->additionalInformationParser->parse($complaintJson->additionalInformation));
 
         if ($complaintJson->identity->corporation) {

@@ -8,6 +8,275 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class FactsParserTest extends KernelTestCase
 {
+    private const OBJECTS_JSON = <<<JSON
+{
+    "objects": [
+        {
+            "status": {
+                "code": 1,
+                "label": "pel.stolen"
+            },
+            "category": {
+                "code": 1,
+                "label": "pel.object.category.documents"
+            },
+            "label": null,
+            "brand": null,
+            "model": null,
+            "phoneNumberLine": null,
+            "operator": null,
+            "serialNumber": null,
+            "description": null,
+            "quantity": null,
+            "bank": null,
+            "bankAccountNumber": null,
+            "creditCardNumber": null,
+            "registrationNumber": null,
+            "registrationNumberCountry": null,
+            "insuranceCompany": null,
+            "insuranceNumber": null,
+            "amount": 1500.0,
+            "documentType": 1,
+            "otherDocumentType": null,
+            "documentOwned": false,
+            "documentAdditionalInformation": {
+                  "documentOwnerLastName": "DUPONT",
+                  "documentOwnerFirstName": "Jean",
+                  "documentOwnerCompany": "Test",
+                  "documentOwnerPhone": {
+                        "country": "FR",
+                        "code": "33",
+                        "number": null
+                  },
+                  "documentOwnerEmail": null,
+                  "documentOwnerAddress": {
+                        "addressType": "etalab_address",
+                        "id": "67482_4385_00104",
+                        "type": "housenumber",
+                        "score": 0.8910672727272726,
+                        "houseNumber": "104",
+                        "street": "Rue Mélanie",
+                        "name": "104 Rue Mélanie",
+                        "postcode": "67000",
+                        "citycode": "67482",
+                        "city": "Strasbourg",
+                        "district": null,
+                        "context": "67, Bas-Rhin, Grand Est",
+                        "x": 1053502.2,
+                        "y": 6844466.66,
+                        "importance": 0.80174,
+                        "label": "104 Rue Mélanie 67000 Strasbourg",
+                        "latitude": null,
+                        "longitude": null
+                  },
+                  "documentNumber": null,
+                  "documentIssuedBy": null,
+                  "documentIssuedOn": null,
+                  "documentValidityEndDate": null
+            },
+            "files": [
+                {
+                "name":"iphone.png",
+                "path":"92de373d10aa4332c27ed8356b02b7a7293d9fca.png",
+                "type":"image\/png",
+                "size":16355
+                }
+            ]
+        },
+        {
+            "status": {
+                "code": 2,
+                "label": "pel.degraded"
+            },
+            "category": {
+                "code": 2,
+                "label": "pel.object.category.payment.ways"
+            },
+            "label": "Carte bleu",
+            "brand": null,
+            "model": null,
+            "phoneNumberLine": null,
+            "operator": null,
+            "serialNumber": null,
+            "description": null,
+            "quantity": null,
+            "bank": "BNP",
+            "bankAccountNumber": "4564654654654",
+            "creditCardNumber": "879879879879",
+            "registrationNumber": null,
+            "registrationNumberCountry": null,
+            "insuranceCompany": null,
+            "insuranceNumber": null,
+            "amount": null,
+            "documentType": null,
+            "otherDocumentType": null,
+            "documentOwned": null,
+            "documentAdditionalInformation": null,
+            "files": []
+        },
+        {
+            "status": {
+                "code": 1,
+                "label": "pel.stolen"
+            },
+            "category": {
+                "code": 3,
+                "label": "pel.object.category.multimedia"
+            },
+            "label": "PC",
+            "brand": "Dell",
+            "model": "Inspiron 7",
+            "phoneNumberLine": null,
+            "operator": null,
+            "serialNumber": null,
+            "description": null,
+            "quantity": null,
+            "bank": null,
+            "bankAccountNumber": null,
+            "creditCardNumber": null,
+            "registrationNumber": null,
+            "registrationNumberCountry": null,
+            "insuranceCompany": null,
+            "insuranceNumber": null,
+            "amount": 4000.0,
+            "documentType": null,
+            "otherDocumentType": null,
+            "documentOwned": null,
+            "documentAdditionalInformation": null,
+            "files": []
+        },
+        {
+            "status": {
+                "code": 2,
+                "label": "pel.degraded"
+            },
+            "category": {
+                "code": 4,
+                "label": "pel.object.category.registered.vehicle"
+            },
+            "label": "Voiture",
+            "brand": "BMW",
+            "model": "X3",
+            "phoneNumberLine": null,
+            "operator": null,
+            "serialNumber": null,
+            "description": null,
+            "quantity": null,
+            "bank": null,
+            "bankAccountNumber": null,
+            "creditCardNumber": null,
+            "registrationNumber": "123BG30",
+            "registrationNumberCountry": "FR",
+            "insuranceCompany": "AXA",
+            "insuranceNumber": "123456789",
+            "amount": 15000.0,
+            "documentType": null,
+            "otherDocumentType": null,
+            "documentOwned": null,
+            "documentAdditionalInformation": null,
+            "files": []
+        },
+        {
+            "status": {
+                "code": 1,
+                "label": "pel.stolen"
+            },
+            "category": {
+                "code": 5,
+                "label": "pel.object.category.unregistered.vehicle"
+            },
+            "label": "V\u00e9lo",
+            "brand": null,
+            "model": null,
+            "phoneNumberLine": null,
+            "operator": null,
+            "serialNumber": null,
+            "description": null,
+            "quantity": null,
+            "bank": null,
+            "bankAccountNumber": null,
+            "creditCardNumber": null,
+            "registrationNumber": null,
+            "registrationNumberCountry": null,
+            "insuranceCompany": null,
+            "insuranceNumber": null,
+            "amount": 560.0,
+            "documentType": null,
+            "otherDocumentType": null,
+            "documentOwned": null,
+            "documentAdditionalInformation": null,
+            "files": []
+        },
+        {
+            "status": {
+                "code": 1,
+                "label": "pel.stolen"
+            },
+            "category": {
+                "code": 6,
+                "label": "pel.object.category.other"
+            },
+            "label": "oeil d'ophidia",
+            "brand": null,
+            "model": null,
+            "phoneNumberLine": null,
+            "operator": null,
+            "serialNumber": null,
+            "description": "Carte de collection",
+            "quantity": 1,
+            "bank": null,
+            "bankAccountNumber": null,
+            "creditCardNumber": null,
+            "registrationNumber": null,
+            "registrationNumberCountry": null,
+            "insuranceCompany": null,
+            "insuranceNumber": null,
+            "amount": 650.0,
+            "documentType": null,
+            "otherDocumentType": null,
+            "documentOwned": null,
+            "documentAdditionalInformation": null,
+            "files": []
+        },
+        {
+            "status": {
+                "code": 1,
+                "label": "pel.stolen"
+            },
+            "category": {
+                "code": 3,
+                "label": "pel.object.category.multimedia"
+            },
+            "label": "iPhone 11",
+            "brand": "Apple",
+            "model": "Iphone 11",
+            "phoneNumberLine": {
+                "country": "FR",
+                "code": "33",
+                "number": "649956685"
+            },
+            "operator": "SFR",
+            "serialNumber": "111222333343",
+            "description": null,
+            "quantity": null,
+            "bank": null,
+            "bankAccountNumber": null,
+            "creditCardNumber": null,
+            "registrationNumber": null,
+            "registrationNumberCountry": null,
+            "insuranceCompany": null,
+            "insuranceNumber": null,
+            "amount": 1200.0,
+            "documentType": null,
+            "otherDocumentType": null,
+            "documentOwned": null,
+            "documentAdditionalInformation": null,
+            "files": []
+        }
+    ]
+}
+JSON;
+
     public function getParser(): FactsParser
     {
         self::bootKernel();
@@ -112,7 +381,9 @@ class FactsParserTest extends KernelTestCase
 	"description": "Description"
 }', false, 512, JSON_THROW_ON_ERROR);
 
-        $facts = $parser->parse($factsContent);
+        $objectsContent = json_decode(self::OBJECTS_JSON, false, 512, JSON_THROW_ON_ERROR);
+
+        $facts = $parser->parse($factsContent, $objectsContent->objects);
 
         $this->assertInstanceOf(Facts::class, $facts);
         $this->assertEquals('Additional information', $facts->getAddressAdditionalInformation());
@@ -124,7 +395,7 @@ class FactsParserTest extends KernelTestCase
         $this->assertEquals('2021-01-02T00:00:00+00:00', $facts->getEndDate()?->format('c'));
         $this->assertEquals('2021-01-01T12:00:00+00:00', $facts->getStartHour()?->format('c'));
         $this->assertEquals('2021-01-01T13:00:00+00:00', $facts->getEndHour()?->format('c'));
-        $this->assertEquals([Facts::NATURE_ROBBERY], $facts->getNatures());
+        $this->assertEquals([Facts::NATURE_ROBBERY, Facts::NATURE_DEGRADATION], $facts->getNatures());
         $this->assertTrue($facts->isVictimOfViolence());
         $this->assertEquals('Violence text', $facts->getVictimOfViolenceText());
         $this->assertEquals('Description', $facts->getDescription());
@@ -199,7 +470,8 @@ class FactsParserTest extends KernelTestCase
 	"description": "Description"
 }', false, 512, JSON_THROW_ON_ERROR);
 
-        $facts = $parser->parse($factsContent);
+        $objectsContent = json_decode(self::OBJECTS_JSON, false, 512, JSON_THROW_ON_ERROR);
+        $facts = $parser->parse($factsContent, $objectsContent->objects);
 
         $this->assertInstanceOf(Facts::class, $facts);
         $this->assertEquals('Additional information', $facts->getAddressAdditionalInformation());
@@ -211,7 +483,7 @@ class FactsParserTest extends KernelTestCase
         $this->assertEquals('2021-01-02T00:00:00+00:00', $facts->getEndDate()?->format('c'));
         $this->assertEquals('2021-01-01T12:00:00+00:00', $facts->getStartHour()?->format('c'));
         $this->assertEquals('2021-01-01T13:00:00+00:00', $facts->getEndHour()?->format('c'));
-        $this->assertEquals([Facts::NATURE_ROBBERY], $facts->getNatures());
+        $this->assertEquals([Facts::NATURE_ROBBERY, Facts::NATURE_DEGRADATION], $facts->getNatures());
         $this->assertTrue($facts->isVictimOfViolence());
         $this->assertEquals('Violence text', $facts->getVictimOfViolenceText());
         $this->assertEquals('Description', $facts->getDescription());

@@ -74,8 +74,7 @@ class ObjectsParser
             ->setOwnerCompany($objectInput->documentAdditionalInformation?->documentOwnerCompany)
             ->setOwnerEmail($objectInput->documentAdditionalInformation?->documentOwnerEmail)
             ->setNumber($objectInput->documentAdditionalInformation?->documentNumber)
-            ->setIssuedBy($objectInput->documentAdditionalInformation?->documentIssuedBy)
-        ;
+            ->setIssuedBy($objectInput->documentAdditionalInformation?->documentIssuedBy);
 
         if ($objectInput->documentAdditionalInformation?->documentOwnerPhone) {
             $documentObject->setOwnerPhone($this->phoneParser->parse($objectInput->documentAdditionalInformation?->documentOwnerPhone));
@@ -116,7 +115,9 @@ class ObjectsParser
 
     private function parseObjectBasic(AbstractObject $abstractObject, object $objectInput): void
     {
-        $abstractObject->setAmount($objectInput->amount);
+        $abstractObject
+            ->setAmount($objectInput->amount)
+            ->setStatus(AbstractObject::STATUS_STOLEN === $objectInput->status->code ? AbstractObject::STATUS_STOLEN : AbstractObject::STATUS_DEGRADED);
     }
 
     private function parsePaymentMethod(object $objectInput): PaymentMethod

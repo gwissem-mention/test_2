@@ -234,91 +234,22 @@
         </ul>
         <hr class="border border-2 border-dark">
         <span id="objects-concerned" class="fs-3 fw-semibold lh-lg text-decoration-underline">{{ 'pel.objects.description'|trans }}</span>
-        <p>{{ 'pel.objects.stolen'|trans }}</p>
-        <ul>
-            {% for object in complaint.objects %}
-                {% if object|object_type is same as('App\\Entity\\FactsObjects\\AdministrativeDocument') %}
-                    <li>
-                        <strong>{{ 'pel.number'|trans }} {{ loop.index }}</strong> : {{ object.type }}
-                        {% if object.owned is same as(false) %}
-                            <ul>
-                                {% if object.ownerLastname is not null and object.ownerFirstname is not null %}
-                                    <li>{{ 'pel.owner.lastname.firstname'|trans }} : <strong>{{ object.ownerLastname }} {{ object.ownerFirstname }}</strong></li>
-                                {% endif %}
-                                {% if object.ownerCompany is not null %}
-                                    <li>{{ 'pel.owner.company'|trans }} : <strong>{{ object.ownerCompany }}</strong></li>
-                                {% endif %}
-                                {% if object.ownerPhone is not null and object.ownerPhone is not same as('+33 ') %}
-                                    <li>{{ 'pel.owner.phone'|trans }}: <strong>{{ object.ownerPhone }}</strong></li>
-                                {% endif %}
-                                {% if object.ownerEmail is not null %}
-                                    <li>{{ 'pel.owner.email'|trans }}: <strong>{{ object.ownerEmail }}</strong></li>
-                                {% endif %}
-                                {% if object.ownerAddress is not null %}
-                                    <li>{{ 'pel.owner.address'|trans }}: <strong>{{ object.ownerAddress }}</strong></li>
-                                {% endif %}
-                                {% if object.number is not null %}
-                                    <li>{{ 'pel.document.number'|trans }}: <strong>{{ object.number }}</strong></li>
-                                {% endif %}
-                                {% if object.issuedBy is not null %}
-                                    <li>{{ 'pel.document.issued.by'|trans }}: <strong>{{ object.issuedBy }}</strong></li>
-                                {% endif %}
-                                {% if object.issuedOn is not null %}
-                                    <li>{{ 'pel.document.issued.on'|trans }}: <strong>{{ object.issuedOn|date('d/m/Y') }}</strong></li>
-                                {% endif %}
-                                {% if object.validityEndDate is not null %}
-                                    <li>{{ 'pel.document.validity.end.date'|trans }}: <strong>{{ object.validityEndDate|date('d/m/Y') }}</strong></li>
-                                {% endif %}
-                            </ul>
-                        {% endif %}
-                        {% if object.amount is not null %}
-                            - {{ object.amount|format_currency('EUR', {fraction_digit: 0}) }}
-                        {% endif %}
-                    </li>
-                {% elseif object|object_type is same as('App\\Entity\\FactsObjects\\MultimediaObject') %}
-                    <li>
-                        <strong>{{ 'pel.number'|trans }} {{ loop.index }}</strong> : {{ object.label }}
-                        - {{ object.model }} - {{ object.brand }}
-                        - {{ object.amount|format_currency('EUR', {fraction_digit: 0}) }} - {{ object.operator }}
-                    </li>
-                {% elseif object|object_type is same as('App\\Entity\\FactsObjects\\PaymentMethod') %}
-                    <li>
-                        <strong>{{ 'pel.number'|trans }} {{ loop.index }}</strong> : {{ object.type }}
-                        - {{ object.description }} - {{ object.bank }}
-                        {% if object.amount is not null %}
-                            - {{ object.amount|format_currency('EUR', {fraction_digit: 0}) }}
-                        {% endif %}
-                    </li>
-                {% elseif object|object_type is same as('App\\Entity\\FactsObjects\\Vehicle') %}
-                    <li>
-                        <strong>{{ 'pel.number'|trans }} {{ loop.index }}</strong> : {{ object.label }}
-                        - {{ object.brand }} - {{ object.model }}
-                        {% if object.amount is not null %}
-                            - {{ object.amount|format_currency('EUR', {fraction_digit: 0}) }}
-                        {% endif %}
-                    </li>
-                {% elseif object|object_type is same as('App\\Entity\\FactsObjects\\SimpleObject') %}
-                    <li><strong>{{ 'pel.number'|trans }} {{ loop.index }}</strong> : {{ object.nature }}
-                        - {{ object.description }}
-                        {% if object.amount is not null %}
-                            - {{ object.amount|format_currency('EUR', {fraction_digit: 0}) }}
-                        {% endif %}
-                    </li>
-                {% endif %}
-
-                {% if object.files is not empty %}
-                    <ul>
-                        {% for file in object.files %}
-                            <li>
-                                <a href="{{ path('file_view', {'id':complaint.id, 'name':file}) }}" target="_blank">Pièce jointe {{ loop.index }}</a>
-                                <a href="{{ path('file_download', {'id':complaint.id, 'name':file}) }}" target="_blank" title="{{ 'pel.click.here.to.save.this.attachment'|trans }}"><i class="bi bi-save-fill ms-1"></i></a>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
-
-            {% endfor %}
-        </ul>
+        {% if complaint.stolenObjects is not empty %}
+            <p>{{ 'pel.objects.stolen'|trans }}</p>
+            <ul>
+                {% for object in complaint.stolenObjects %}
+                    {{ _self.object(complaint, object, loop.index) }}
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% if complaint.degradedObjects is not empty %}
+            <p>{{ 'pel.objects.degraded'|trans }}</p>
+            <ul>
+                {% for object in complaint.degradedObjects %}
+                    {{ _self.object(complaint, object, loop.index) }}
+                {% endfor %}
+            </ul>
+        {% endif %}
         <p>
             <strong>{{ 'pel.total'|trans }}</strong> :
             {{ 'pel.total.message.one'|trans }}
@@ -328,3 +259,85 @@
         </p>
     </div>
 {% endblock %}
+
+{% macro object(complaint, object, index) %}
+    {% if object|object_type is same as('App\\Entity\\FactsObjects\\AdministrativeDocument') %}
+        <li>
+            <strong>{{ 'pel.number'|trans }} {{ index }}</strong> : {{ object.type }}
+            {% if object.owned is same as(false) %}
+                <ul>
+                    {% if object.ownerLastname is not null and object.ownerFirstname is not null %}
+                        <li>{{ 'pel.owner.lastname.firstname'|trans }} : <strong>{{ object.ownerLastname }} {{ object.ownerFirstname }}</strong></li>
+                    {% endif %}
+                    {% if object.ownerCompany is not null %}
+                        <li>{{ 'pel.owner.company'|trans }} : <strong>{{ object.ownerCompany }}</strong></li>
+                    {% endif %}
+                    {% if object.ownerPhone is not null and object.ownerPhone is not same as('+33 ') %}
+                        <li>{{ 'pel.owner.phone'|trans }}: <strong>{{ object.ownerPhone }}</strong></li>
+                    {% endif %}
+                    {% if object.ownerEmail is not null %}
+                        <li>{{ 'pel.owner.email'|trans }}: <strong>{{ object.ownerEmail }}</strong></li>
+                    {% endif %}
+                    {% if object.ownerAddress is not null %}
+                        <li>{{ 'pel.owner.address'|trans }}: <strong>{{ object.ownerAddress }}</strong></li>
+                    {% endif %}
+                    {% if object.number is not null %}
+                        <li>{{ 'pel.document.number'|trans }}: <strong>{{ object.number }}</strong></li>
+                    {% endif %}
+                    {% if object.issuedBy is not null %}
+                        <li>{{ 'pel.document.issued.by'|trans }}: <strong>{{ object.issuedBy }}</strong></li>
+                    {% endif %}
+                    {% if object.issuedOn is not null %}
+                        <li>{{ 'pel.document.issued.on'|trans }}: <strong>{{ object.issuedOn|date('d/m/Y') }}</strong></li>
+                    {% endif %}
+                    {% if object.validityEndDate is not null %}
+                        <li>{{ 'pel.document.validity.end.date'|trans }}: <strong>{{ object.validityEndDate|date('d/m/Y') }}</strong></li>
+                    {% endif %}
+                </ul>
+            {% endif %}
+            {% if object.amount is not null %}
+                - {{ object.amount|format_currency('EUR', {fraction_digit: 0}) }}
+            {% endif %}
+        </li>
+    {% elseif object|object_type is same as('App\\Entity\\FactsObjects\\MultimediaObject') %}
+        <li>
+            <strong>{{ 'pel.number'|trans }} {{ index }}</strong> : {{ object.label }}
+            - {{ object.model }} - {{ object.brand }}
+            - {{ object.amount|format_currency('EUR', {fraction_digit: 0}) }} - {{ object.operator }}
+        </li>
+    {% elseif object|object_type is same as('App\\Entity\\FactsObjects\\PaymentMethod') %}
+        <li>
+            <strong>{{ 'pel.number'|trans }} {{ index }}</strong> : {{ object.type }}
+            - {{ object.description }} - {{ object.bank }}
+            {% if object.amount is not null %}
+                - {{ object.amount|format_currency('EUR', {fraction_digit: 0}) }}
+            {% endif %}
+        </li>
+    {% elseif object|object_type is same as('App\\Entity\\FactsObjects\\Vehicle') %}
+        <li>
+            <strong>{{ 'pel.number'|trans }} {{ index }}</strong> : {{ object.label }}
+            - {{ object.brand }} - {{ object.model }}
+            {% if object.amount is not null %}
+                - {{ object.amount|format_currency('EUR', {fraction_digit: 0}) }}
+            {% endif %}
+        </li>
+    {% elseif object|object_type is same as('App\\Entity\\FactsObjects\\SimpleObject') %}
+        <li><strong>{{ 'pel.number'|trans }} {{ index }}</strong> : {{ object.nature }}
+            - {{ object.description }}
+            {% if object.amount is not null %}
+                - {{ object.amount|format_currency('EUR', {fraction_digit: 0}) }}
+            {% endif %}
+        </li>
+    {% endif %}
+
+    {% if object.files is not empty %}
+        <ul>
+            {% for file in object.files %}
+                <li>
+                    <a href="{{ path('file_view', {'id':complaint.id, 'name':file}) }}" target="_blank">Pièce jointe {{ loop.index }}</a>
+                    <a href="{{ path('file_download', {'id':complaint.id, 'name':file}) }}" target="_blank" title="{{ 'pel.click.here.to.save.this.attachment'|trans }}"><i class="bi bi-save-fill ms-1"></i></a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endmacro %}

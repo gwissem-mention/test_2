@@ -10,6 +10,7 @@ use App\Entity\Comment;
 use App\Entity\Complaint;
 use App\Entity\Corporation;
 use App\Entity\Facts;
+use App\Entity\FactsObjects\AbstractObject;
 use App\Entity\FactsObjects\AdministrativeDocument;
 use App\Entity\FactsObjects\MultimediaObject;
 use App\Entity\FactsObjects\PaymentMethod;
@@ -153,7 +154,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                     (new Facts())
                         ->setVictimOfViolence($victimOfViolence)
                         ->setVictimOfViolenceText(true === $victimOfViolence ? 'Frappé au visage' : null)
-                        ->setNatures([$this->faker->randomElement([Facts::NATURE_ROBBERY, Facts::NATURE_DEGRADATION])])
+                        ->setNatures([Facts::NATURE_ROBBERY, Facts::NATURE_DEGRADATION])
                         ->setDescription($this->faker->text())
                         ->setExactDateKnown($exactDateKnown)
                         ->setStartDate($factsStartDate)
@@ -178,6 +179,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                 )
                 ->addObject(
                     (new MultimediaObject())
+                        ->setStatus(AbstractObject::STATUS_STOLEN)
                         ->setLabel('Téléphone mobile')
                         ->setBrand('Apple')
                         ->setModel($this->faker->randomElement(['Iphone', 'Iphone 13', 'Iphone 14']))
@@ -189,6 +191,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                 )
                 ->addObject(
                     (new MultimediaObject())
+                        ->setStatus(AbstractObject::STATUS_DEGRADED)
                         ->setLabel('Téléphone mobile')
                         ->setBrand('Samsung')
                         ->setModel($this->faker->randomElement(['S20', 'S21', 'S22', 'S23']))
@@ -276,6 +279,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
             if ($this->faker->boolean(30)) {
                 $complaint->addObject(
                     (new AdministrativeDocument())
+                        ->setStatus(AbstractObject::STATUS_STOLEN)
                         ->setType('Permis de conduire')
                         ->setOwned(true)
                 );
@@ -284,6 +288,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
             if ($this->faker->boolean(30)) {
                 $complaint->addObject(
                     (new PaymentMethod())
+                        ->setStatus(AbstractObject::STATUS_STOLEN)
                         ->setType('Carte Bancaire')
                         ->setDescription($this->faker->randomElement(['Visa principale', 'Mastercard']))
                         ->setBank($this->faker->randomElement(['Crédit Agricole', 'Caisse d\'épargne', 'LCL']))
@@ -293,6 +298,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
             if ($this->faker->boolean(30)) {
                 $complaint->addObject(
                     (new SimpleObject())
+                        ->setStatus(AbstractObject::STATUS_DEGRADED)
                         ->setNature($this->faker->randomElement(['Blouson', 'Guitare', 'Sac à dos']))
                         ->setDescription($this->faker->randomElement(['De couleur Rouge', 'De couleur Noire', 'De couleur Bleue']))
                         ->setAmount($this->faker->numberBetween(100, 500))
@@ -302,6 +308,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
             if (Complaint::ALERT_REGISTERED_VEHICLE === $complaint->getAlert()) {
                 $complaint->addObject(
                     (new Vehicle())
+                        ->setStatus(AbstractObject::STATUS_STOLEN)
                         ->setLabel('Voiture')
                         ->setBrand('Citroën')
                         ->setModel($this->faker->randomElement(['C3', 'C4', 'DS4', 'DS3']))

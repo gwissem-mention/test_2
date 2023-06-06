@@ -10,6 +10,7 @@ use App\Entity\Comment;
 use App\Entity\Complaint;
 use App\Entity\Corporation;
 use App\Entity\Facts;
+use App\Entity\FactsObjects\AbstractObject;
 use App\Entity\FactsObjects\AdministrativeDocument;
 use App\Entity\FactsObjects\MultimediaObject;
 use App\Entity\FactsObjects\PaymentMethod;
@@ -148,6 +149,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                     )
                     ->addObject(
                         (new AdministrativeDocument())
+                            ->setStatus(AbstractObject::STATUS_STOLEN)
                             ->setType('Passeport')
                             ->setOwned(false)
                             ->setOwnerLastname('Dulac')
@@ -298,6 +300,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
             )
             ->addObject(
                 (new MultimediaObject())
+                    ->setStatus(AbstractObject::STATUS_STOLEN)
                     ->setLabel('Téléphone mobile')
                     ->setBrand('Apple')
                     ->setModel('iPhone 13')
@@ -309,17 +312,20 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
             )
             ->addObject(
                 (new AdministrativeDocument())
+                    ->setStatus(AbstractObject::STATUS_STOLEN)
                     ->setType('Permis de conduire')
                     ->setOwned(true)
             )
             ->addObject(
                 (new PaymentMethod())
+                    ->setStatus(AbstractObject::STATUS_DEGRADED)
                     ->setDescription('Visa principale')
                     ->setType('Carte Bancaire VISA')
                     ->setBank('LCL')
             )
             ->addObject(
                 (new Vehicle())
+                    ->setStatus(AbstractObject::STATUS_DEGRADED)
                     ->setLabel('Voiture')
                     ->setBrand('Citroën')
                     ->setModel('C3')
@@ -329,6 +335,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
             )
             ->addObject(
                 (new SimpleObject())
+                    ->setStatus(AbstractObject::STATUS_STOLEN)
                     ->setNature('Blouson')
                     ->setDescription('Blouson Adidas de couleur bleu')
                     ->setAmount(100)
