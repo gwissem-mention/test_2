@@ -736,11 +736,11 @@
             </trans-unit>
             <trans-unit id="pel.footer.link.masecurite">
                 <source>pel.footer.link.masecurite</source>
-                <target>masecurite.gouv.fr</target>
+                <target>masecurite.interieur.gouv.fr</target>
             </trans-unit>
             <trans-unit id="pel.footer.link.masecurite.title">
                 <source>pel.footer.link.masecurite.title</source>
-                <target>masecurite.gouv.fr - nouvelle fenêtre</target>
+                <target>masecurite.interieur.gouv.fr - nouvelle fenêtre</target>
             </trans-unit>
             <trans-unit id="pel.footer.link.service-public">
                 <source>pel.footer.link.service-public</source>
