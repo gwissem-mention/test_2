@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Form\Identity;
 
-use App\Form\CountryType;
+use App\Form\CountryAutocompleteType;
 use App\Form\Model\Identity\ContactInformationModel;
 use App\Form\Model\Identity\PhoneModel;
 use App\Form\PhoneType;
@@ -40,7 +40,7 @@ class ContactInformationType extends AbstractType
         $contactInformationModel = $this->sessionHandler->getComplaint()?->getIdentity()?->getContactInformation();
 
         $builder
-            ->add('country', CountryType::class, [
+            ->add('country', CountryAutocompleteType::class, [
                 'label' => 'pel.address.country',
                 'preferred_choices' => [$this->franceCode],
                 'empty_data' => $this->franceCode,

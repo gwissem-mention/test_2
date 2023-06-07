@@ -66,7 +66,7 @@ class ComplaintFileParserTest extends KernelTestCase
 			{
 				"country":
 				{
-					"inseeCode": 99100,
+					"inseeCode": 99160,
 					"label": "France"
 				},
 				"frenchTown":
@@ -106,7 +106,7 @@ class ComplaintFileParserTest extends KernelTestCase
 			},
 			"country":
 			{
-				"inseeCode": 99100,
+				"inseeCode": 99160,
 				"label": "France"
 			},
 			"frenchAddress":
@@ -152,7 +152,7 @@ class ComplaintFileParserTest extends KernelTestCase
             },
             "country":
             {
-                "inseeCode": 99100,
+                "inseeCode": 99160,
                 "label": "France"
             },
             "frenchAddress":

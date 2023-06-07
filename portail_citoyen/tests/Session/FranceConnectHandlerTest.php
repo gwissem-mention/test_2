@@ -57,7 +57,7 @@ class FranceConnectHandlerTest extends KernelTestCase
             '',
             '1982-04-23',
             '75107',
-            '99100',
+            '99160',
             Gender::MALE->value,
             'jean.dupond@example.org',
         );

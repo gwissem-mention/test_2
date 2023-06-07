@@ -52,9 +52,6 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                     'label' => 'Victime',
                 ],
             ],
-            'appointment' => [
-                'appointmentContactText' => 'Entre 10h et 14h les lundi',
-            ],
             'identity' => [
                 'civilState' => [
                     'civility' => [
@@ -71,7 +68,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                     ],
                     'birthLocation' => [
                         'country' => [
-                            'inseeCode' => 99100,
+                            'inseeCode' => 99160,
                             'label' => 'France',
                         ],
                         'frenchTown' => [
@@ -104,7 +101,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'number' => '0601020304',
                     ],
                     'country' => [
-                        'inseeCode' => 99100,
+                        'inseeCode' => 99160,
                         'label' => 'France',
                     ],
                     'frenchAddress' => [
@@ -254,8 +251,8 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'amount' => 100,
                         'documentType' => null,
                         'otherDocumentType' => null,
-                        'documentAdditionalInformation' => null,
                         'documentOwned' => null,
+                        'documentAdditionalInformation' => null,
                         'files' => [],
                     ],
                     [
@@ -289,8 +286,8 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'amount' => 2000,
                         'documentType' => null,
                         'otherDocumentType' => null,
-                        'documentAdditionalInformation' => null,
                         'documentOwned' => null,
+                        'documentAdditionalInformation' => null,
                         'files' => [],
                     ],
                     [
@@ -320,8 +317,8 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'amount' => 10,
                         'documentType' => null,
                         'otherDocumentType' => null,
-                        'documentAdditionalInformation' => null,
                         'documentOwned' => null,
+                        'documentAdditionalInformation' => null,
                         'files' => [],
                     ],
                     [
@@ -351,11 +348,14 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'amount' => 10000,
                         'documentType' => null,
                         'otherDocumentType' => null,
-                        'documentAdditionalInformation' => null,
                         'documentOwned' => null,
+                        'documentAdditionalInformation' => null,
                         'files' => [],
                     ],
                 ],
+            ],
+            'appointment' => [
+                'appointmentContactText' => 'Entre 10h et 14h les lundi',
             ],
             'franceConnected' => false,
             'affectedService' => '66459',
@@ -386,9 +386,6 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                     'code' => 2,
                     'label' => 'Représentant légal d’une personne physique',
                 ],
-            ],
-            'appointment' => [
-                'appointmentContactText' => 'Entre 10h et 14h les lundi',
             ],
             'identity' => [
                 'civilState' => [
@@ -662,9 +659,9 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'insuranceNumber' => null,
                         'amount' => 100,
                         'documentType' => null,
-                        'documentAdditionalInformation' => null,
-                        'documentOwned' => null,
                         'otherDocumentType' => null,
+                        'documentOwned' => null,
+                        'documentAdditionalInformation' => null,
                         'files' => [],
                     ],
                     [
@@ -697,9 +694,9 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'insuranceNumber' => null,
                         'amount' => 2000,
                         'documentType' => null,
-                        'documentAdditionalInformation' => null,
-                        'documentOwned' => null,
                         'otherDocumentType' => null,
+                        'documentOwned' => null,
+                        'documentAdditionalInformation' => null,
                         'files' => [],
                     ],
                     [
@@ -728,9 +725,9 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'insuranceNumber' => null,
                         'amount' => 10,
                         'documentType' => null,
-                        'documentAdditionalInformation' => null,
-                        'documentOwned' => null,
                         'otherDocumentType' => null,
+                        'documentOwned' => null,
+                        'documentAdditionalInformation' => null,
                         'files' => [],
                     ],
                     [
@@ -759,12 +756,15 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'insuranceNumber' => '1234567890',
                         'amount' => 10000,
                         'documentType' => null,
-                        'documentAdditionalInformation' => null,
-                        'documentOwned' => null,
                         'otherDocumentType' => null,
+                        'documentOwned' => null,
+                        'documentAdditionalInformation' => null,
                         'files' => [],
                     ],
                 ],
+            ],
+            'appointment' => [
+                'appointmentContactText' => 'Entre 10h et 14h les lundi',
             ],
             'franceConnected' => false,
             'affectedService' => '66459',
@@ -796,9 +796,6 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                     'label' => 'Représentant légal d’une personne morale',
                 ],
             ],
-            'appointment' => [
-                'appointmentContactText' => 'Entre 10h et 14h les lundi',
-            ],
             'identity' => [
                 'civilState' => [
                     'civility' => [
@@ -815,7 +812,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                     ],
                     'birthLocation' => [
                         'country' => [
-                            'inseeCode' => 99100,
+                            'inseeCode' => 99160,
                             'label' => 'France',
                         ],
                         'frenchTown' => [
@@ -848,7 +845,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'number' => '0601020304',
                     ],
                     'country' => [
-                        'inseeCode' => 99100,
+                        'inseeCode' => 99160,
                         'label' => 'France',
                     ],
                     'frenchAddress' => [
@@ -890,7 +887,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'number' => '0601020304',
                     ],
                     'country' => [
-                        'inseeCode' => 99100,
+                        'inseeCode' => 99160,
                         'label' => 'France',
                     ],
                     'frenchAddress' => [
@@ -1036,9 +1033,9 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'insuranceNumber' => null,
                         'amount' => 100,
                         'documentType' => null,
-                        'documentAdditionalInformation' => null,
-                        'documentOwned' => null,
                         'otherDocumentType' => null,
+                        'documentOwned' => null,
+                        'documentAdditionalInformation' => null,
                         'files' => [],
                     ],
                     [
@@ -1071,9 +1068,9 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'insuranceNumber' => null,
                         'amount' => 2000,
                         'documentType' => null,
-                        'documentAdditionalInformation' => null,
-                        'documentOwned' => null,
                         'otherDocumentType' => null,
+                        'documentOwned' => null,
+                        'documentAdditionalInformation' => null,
                         'files' => [],
                     ],
                     [
@@ -1102,9 +1099,9 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'insuranceNumber' => null,
                         'amount' => 10,
                         'documentType' => null,
-                        'documentAdditionalInformation' => null,
-                        'documentOwned' => null,
                         'otherDocumentType' => null,
+                        'documentOwned' => null,
+                        'documentAdditionalInformation' => null,
                         'files' => [],
                     ],
                     [
@@ -1133,12 +1130,15 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'insuranceNumber' => '1234567890',
                         'amount' => 10000,
                         'documentType' => null,
-                        'documentAdditionalInformation' => null,
-                        'documentOwned' => null,
                         'otherDocumentType' => null,
+                        'documentOwned' => null,
+                        'documentAdditionalInformation' => null,
                         'files' => [],
                     ],
                 ],
+            ],
+            'appointment' => [
+                'appointmentContactText' => 'Entre 10h et 14h les lundi',
             ],
             'franceConnected' => false,
             'affectedService' => '66459',

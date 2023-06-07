@@ -33,7 +33,7 @@ export default class extends Controller {
             // Must be ignored because "value" property does not exist on Element type.
             // @ts-ignore
             const value = country.value;
-            const frenchTown = 99100;
+            const frenchTown = 99160;
 
             if (value !== frenchTown) {
                 // @ts-ignore

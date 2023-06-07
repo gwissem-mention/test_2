@@ -12,6 +12,10 @@ use App\Form\Model\LocationModel;
 
 class IdentityModelFactory
 {
+    public function __construct(private readonly int $franceCode, private readonly int $franceConnectCode)
+    {
+    }
+
     public function createFromFranceConnect(
         string $givenName,
         string $familyName,
@@ -26,7 +30,7 @@ class IdentityModelFactory
         $civilState = new CivilStateModel();
         $birthLocation = new LocationModel();
         $birthLocation
-            ->setCountry(intval($birthCountry))
+            ->setCountry(intval($birthCountry == $this->franceConnectCode ? $this->franceCode : $birthCountry))
             ->setFrenchTown($birthPlace);
 
         $civilState

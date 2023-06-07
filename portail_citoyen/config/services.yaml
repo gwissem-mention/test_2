@@ -1,5 +1,6 @@
 parameters:
-    app.france_code: 99100
+    app.france_code: 99160
+    app.france_connect_code: 99100
     app.french_nationality_code: '23'
     app.file_cities: '%env(FILE_CITIES)%'
     app.file_jobs_male: '%env(FILE_JOBS_MALE)%'
@@ -8,6 +9,7 @@ parameters:
     app.file_cities_units: '%env(FILE_CITIES_UNITS)%'
     app.file_units_gn: '%env(FILE_UNITS_GN)%'
     app.file_departments: '%env(FILE_DEPARTMENTS)%'
+    app.file_countries: '%env(FILE_COUNTRIES)%'
     app.file_nationalities: '%env(FILE_NATIONALITIES)%'
     app.referentials_base_path: '%kernel.project_dir%/referentials'
     app.jedonnemonavis_id: '%env(JEDONNEMONAVIS_ID)%'
@@ -24,6 +26,7 @@ services:
         autoconfigure: true
         bind:
             $franceCode: '%app.france_code%'
+            $franceConnectCode: '%app.france_connect_code%'
             $frenchNationalityCode: '%app.french_nationality_code%'
             $folderRotationCount: '%app.folder_rotation.count%'
             $folderRotationTreshold: '%app.folder_rotation.treshold%'
@@ -60,6 +63,10 @@ services:
     App\Referential\DataFixtures\City\CityFileFixtures:
         arguments:
             $citiesFixturesPath: '%app.referentials_base_path%/%app.file_cities%'
+            
+    App\Referential\DataFixtures\Country\CountryFileFixtures:
+        arguments:
+            $countryFixturesPath: '%app.referentials_base_path%/%app.file_countries%'
     
     App\Referential\DataFixtures\Department\DepartmentFileFixtures:
         arguments:

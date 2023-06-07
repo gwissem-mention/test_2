@@ -98,7 +98,7 @@ class ComplaintFactory
     private function createContactInformation(bool $frenchAddress = true): ContactInformationModel
     {
         return (new ContactInformationModel())
-            ->setCountry($frenchAddress ? 99100 : 99134)
+            ->setCountry($frenchAddress ? 99160 : 99134)
             ->setEmail('jean.dupont@example.com')
             ->setFrenchAddress(true === $frenchAddress ? $this->createAddressEtalab() : null)
             ->setForeignAddress(false === $frenchAddress ? $this->createAddressForeign() : null)
@@ -117,13 +117,13 @@ class ComplaintFactory
             ->setFunction('CEO')
             ->setName('Entreprise')
             ->setNationality('23')
-            ->setCountry($frenchAddress ? 99100 : 99134);
+            ->setCountry($frenchAddress ? 99160 : 99134);
     }
 
     private function createLocationFrance(): LocationModel
     {
         return (new LocationModel())
-            ->setCountry(99100)
+            ->setCountry(99160)
             ->setFrenchTown('75107');
     }
 

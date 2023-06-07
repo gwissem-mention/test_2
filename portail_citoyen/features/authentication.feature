@@ -32,7 +32,7 @@ Feature:
         And the "identity_civilState_firstnames" field should contain "Michel"
         And the "identity_civilState_birthDate" field should contain "1967-03-02"
         And the "identity_civilState_civility" field should contain "1"
-        And the "identity_civilState_birthLocation_country" field should contain "99100"
+        And the "identity_civilState_birthLocation_country" field should contain "99160"
         And the "identity_civilState_birthLocation_frenchTown" field should contain "75107"
         And the "identity_contactInformation_email" field should contain "michel.dupont@example.com"
 

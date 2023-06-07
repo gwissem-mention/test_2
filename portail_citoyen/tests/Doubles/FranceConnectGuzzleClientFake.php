@@ -115,7 +115,7 @@ class FranceConnectGuzzleClientFake implements ClientInterface
             'preferred_username' => '',
             'birthdate' => '1967-03-02',
             'birthplace' => '75107',
-            'birthcountry' => '99100',
+            'birthcountry' => '99160',
             'gender' => Gender::MALE->value,
             'email' => 'michel.dupont@example.com',
         ]));
