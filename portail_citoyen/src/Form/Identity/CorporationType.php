@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Form\Identity;
 
-use App\Form\CountryType;
+use App\Form\CountryAutocompleteType;
 use App\Form\Model\Identity\CorporationModel;
 use App\Form\NationalityType;
 use App\Form\PhoneType;
@@ -87,7 +87,7 @@ class CorporationType extends AbstractType
                 'number_label' => 'pel.corporation.phone',
                 'number_constraints' => [new NotBlank()],
             ])
-            ->add('country', CountryType::class, [
+            ->add('country', CountryAutocompleteType::class, [
                 'label' => 'pel.address.country',
                 'preferred_choices' => [$this->franceCode],
                 'empty_data' => $this->franceCode,

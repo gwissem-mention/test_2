@@ -32,7 +32,7 @@ Feature:
         And I should see the key "pel.next" translated
 
     Scenario: Change country from France to Spain and check the town field is cleared
-        When I select "99100" from "identity_civilState_birthLocation_country"
+        When I select "99160" from "identity_civilState_birthLocation_country"
         And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
         And I should see "Paris (75000)" in the "#identity_civilState_birthLocation_frenchTown" element
         And I select "99134" from "identity_civilState_birthLocation_country"

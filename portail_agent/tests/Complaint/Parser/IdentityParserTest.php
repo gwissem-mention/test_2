@@ -27,7 +27,7 @@ class IdentityParserTest extends KernelTestCase
       },
       "birthLocation": {
         "country": {
-          "inseeCode": 99100,
+          "inseeCode": 99160,
           "label": "France"
         },
         "frenchTown": {
@@ -60,7 +60,7 @@ class IdentityParserTest extends KernelTestCase
         "number": "612389328"
       },
       "country": {
-        "inseeCode": 99100,
+        "inseeCode": 99160,
         "label": "France"
       },
       "frenchAddress": {
@@ -108,7 +108,7 @@ class IdentityParserTest extends KernelTestCase
       },
       "birthLocation": {
         "country": {
-          "inseeCode": 99100,
+          "inseeCode": 99160,
           "label": "France"
         },
         "frenchTown": {
@@ -141,7 +141,7 @@ class IdentityParserTest extends KernelTestCase
         "number": "612389328"
       },
       "country": {
-        "inseeCode": 99100,
+        "inseeCode": 99160,
         "label": "France"
       },
       "frenchAddress": {

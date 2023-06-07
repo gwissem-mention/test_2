@@ -31,7 +31,7 @@ class LocationType extends AbstractType
         /** @var ?LocationModel $locationModel */
         $locationModel = $this->sessionHandler->getComplaint()?->getIdentity()?->getCivilState()?->getBirthLocation();
         $builder
-            ->add('country', CountryType::class, [
+            ->add('country', CountryAutocompleteType::class, [
                 'attr' => [
                     // Temp fix for https://github.com/symfony/ux/issues/515
                     // TODO Remove when this PR https://github.com/symfony/ux/pull/519 is merged and pulled to the

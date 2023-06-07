@@ -7,6 +7,7 @@
     APP_ENV: prod
     REDIS_HOST: 127.0.0.1
     FILE_CITIES: insee_commune.csv
+    FILE_COUNTRIES: insee_pays.csv
     FILE_DEPARTMENTS: departement_2022.csv
     FILE_JOBS_MALE: Liste_libelles_professions_hommes_2023.csv
     FILE_JOBS_FEMALE: Liste_libelles_professions_femmes_2023.csv

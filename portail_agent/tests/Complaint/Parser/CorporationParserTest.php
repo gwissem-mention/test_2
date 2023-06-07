@@ -43,7 +43,7 @@ class CorporationParserTest extends KernelTestCase
 		},
 		"country":
 		{
-            "inseeCode": 99100,
+            "inseeCode": 99160,
 			"label": "France"
 		},
 		"frenchAddress":
