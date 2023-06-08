@@ -25,15 +25,17 @@
                                        - "--disable-dev-shm-usage"
                                        - "--window-size=1920,1080"
                                        - "--force-prefers-reduced-motion"
+.contexts: &contexts
+    contexts:
+        - App\Tests\Behat\BaseContext
+        - App\Tests\Behat\DatabaseContext
+        - App\Tests\Behat\FranceConnectContext
+        - App\Tests\Behat\GoogleMapsContext
+
 default:
     suites:
         default:
-            contexts:
-                - App\Tests\Behat\BaseContext
-                - FailAid\Context\FailureContext
-                - App\Tests\Behat\DatabaseContext
-                - App\Tests\Behat\FranceConnectContext
-                - App\Tests\Behat\GoogleMapsContext
+            <<: *contexts
 
     extensions:
         FriendsOfBehat\SymfonyExtension:
@@ -63,7 +65,24 @@ func:
 
 e2e:
     suites:
+        complete_workflow:
+            paths: [ '%paths.base%/features/complete_workflow' ]
+            <<: *contexts
+            filters:
+                tags: '~@func&&~@flaky'
+        complaint:
+            paths: [ '%paths.base%/features/complaint' ]
+            <<: *contexts
+            filters:
+                tags: '~@func&&~@flaky'
         default:
+            paths:
+                - '%paths.base%/features/help'
+                - '%paths.base%/features/home'
+                - '%paths.base%/features/authentication.feature'
+                - '%paths.base%/features/france-connect.feature'
+                - '%paths.base%/features/not-found.feature'
+            <<: *contexts
             filters:
                 tags: '~@func&&~@flaky'
     <<: *extensions

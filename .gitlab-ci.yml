@@ -542,7 +542,7 @@ citoyen-e2e:
         - make APP_ENV=${APP_ENV} db-ci-setup
         - make APP_ENV=${APP_ENV} referential-ci-create
         - make APP_ENV=${APP_ENV} referential-ci-load
-        - make e2e
+        - make leftover-e2e
     artifacts:
         name: "citoyen-e2e-$CI_COMMIT_REF_NAME"
         paths:
@@ -555,6 +555,76 @@ citoyen-e2e:
             alias: database-e2e-citoyen
         -   name: selenium/standalone-chrome:4.5.3
             alias: chrome-citoyen
+        -   name: redislabs/rejson:latest
+            alias: redis-citoyen
+
+citoyen-complaint-e2e:
+    <<: *citoyen-step
+    variables:
+        APP_ENV: "e2e"
+        POSTGRES_DB: "app"
+        POSTGRES_PASSWORD: "ChangeMe"
+        POSTGRES_USER: "symfony"
+        POSTGRES_REFERENTIAL_HOST: "127.0.0.1"
+        POSTGRES_REFERENTIAL_DB: "reference"
+        POSTGRES_REFERENTIAL_PASSWORD: "ChangeMe"
+        POSTGRES_REFERENTIAL_USER: "symfony"
+    script:
+        - php bin/console cache:clear --env=${APP_ENV}
+        - echo "APP_ENV=${APP_ENV}" >> .env.local
+        - php -S 127.0.0.1:8080 -t public/ > /dev/null 2>&1 &
+        - sed -i "s/nginx-citoyen/127.0.0.1:8080/g" behat.yml.dist
+        - make APP_ENV=${APP_ENV} db-ci-setup
+        - make APP_ENV=${APP_ENV} referential-ci-create
+        - make APP_ENV=${APP_ENV} referential-ci-load
+        - make complaint-e2e
+    artifacts:
+        name: "citoyen-flaky-e2e-$CI_COMMIT_REF_NAME"
+        paths:
+            - /builds/ministere-de-l-interieur/plaintes-en-ligne-pel/portail_citoyen/var/log
+            - /builds/ministere-de-l-interieur/plaintes-en-ligne-pel/portail_citoyen/build/screenshots
+        expire_in: 1 week
+        when: on_failure
+    services:
+        -   name: postgres:13-alpine
+            alias: database-e2e-citoyen
+        -   name: selenium/standalone-chrome:4.5.3
+            alias: chrome
+        -   name: redislabs/rejson:latest
+            alias: redis-citoyen
+
+citoyen-complete-workflow-e2e:
+    <<: *citoyen-step
+    variables:
+        APP_ENV: "e2e"
+        POSTGRES_DB: "app"
+        POSTGRES_PASSWORD: "ChangeMe"
+        POSTGRES_USER: "symfony"
+        POSTGRES_REFERENTIAL_HOST: "127.0.0.1"
+        POSTGRES_REFERENTIAL_DB: "reference"
+        POSTGRES_REFERENTIAL_PASSWORD: "ChangeMe"
+        POSTGRES_REFERENTIAL_USER: "symfony"
+    script:
+        - php bin/console cache:clear --env=${APP_ENV}
+        - echo "APP_ENV=${APP_ENV}" >> .env.local
+        - php -S 127.0.0.1:8080 -t public/ > /dev/null 2>&1 &
+        - sed -i "s/nginx-citoyen/127.0.0.1:8080/g" behat.yml.dist
+        - make APP_ENV=${APP_ENV} db-ci-setup
+        - make APP_ENV=${APP_ENV} referential-ci-create
+        - make APP_ENV=${APP_ENV} referential-ci-load
+        - make complete-workflow-e2e
+    artifacts:
+        name: "citoyen-flaky-e2e-$CI_COMMIT_REF_NAME"
+        paths:
+            - /builds/ministere-de-l-interieur/plaintes-en-ligne-pel/portail_citoyen/var/log
+            - /builds/ministere-de-l-interieur/plaintes-en-ligne-pel/portail_citoyen/build/screenshots
+        expire_in: 1 week
+        when: on_failure
+    services:
+        -   name: postgres:13-alpine
+            alias: database-e2e-citoyen
+        -   name: selenium/standalone-chrome:4.5.3
+            alias: chrome
         -   name: redislabs/rejson:latest
             alias: redis-citoyen
 
