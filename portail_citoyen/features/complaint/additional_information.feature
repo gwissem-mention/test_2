@@ -45,22 +45,25 @@ Feature:
         Then I should be on "/porter-plainte/objets"
 
     Scenario: I can see the suspectsChoice choices
+        And I wait for "input[type=radio][name='additional_information[suspectsChoice]']" to appear
         And I should see 2 "input[type=radio][name='additional_information[suspectsChoice]']" elements
         And I should see "Oui" in the "label[for=additional_information_suspectsChoice_0]" element
         And I should see "Non" in the "label[for=additional_information_suspectsChoice_1]" element
 
     Scenario: I can see the witnesses choices
+        And I wait for "input[type=radio][name='additional_information[witnesses]']" to appear
         And I should see 2 "input[type=radio][name='additional_information[witnesses]']" elements
         And I should see "Oui" in the "label[for=additional_information_witnesses_0]" element
         And I should see "Non" in the "label[for=additional_information_witnesses_1]" element
 
     Scenario: I can see the fsi visit choices
+        And I wait for "input[type=radio][name='additional_information[fsiVisit]']" to appear
         And I should see 2 "input[type=radio][name='additional_information[fsiVisit]']" elements
         And I should see "Oui" in the "label[for=additional_information_fsiVisit_0]" element
         And I should see "Non" in the "label[for=additional_information_fsiVisit_1]" element
 
-    @flaky
     Scenario: I can see the cctv choices
+        And I wait for "input[type=radio][name='additional_information[cctvPresent]']" to appear
         And I should see 3 "input[type=radio][name='additional_information[cctvPresent]']" elements
         And I should see "Oui" in the "label[for=additional_information_cctvPresent_0]" element
         And I should see "Non" in the "label[for=additional_information_cctvPresent_1]" element
@@ -68,28 +71,32 @@ Feature:
 
     Scenario: Selecting the "label[for=additional_information_suspectsChoice_1]" element and not showing
     the key "pel.facts.suspects.informations.text" translated
+        And I wait for "label[for=additional_information_suspectsChoice_1]" to appear
         When I click the "label[for=additional_information_suspectsChoice_1]" element
         And I should not see the key "pel.facts.suspects.informations.text" translated
 
     Scenario: I can see 1 text input if I select "Yes" to the witnesses radio buttons
+        And I wait for "label[for=additional_information_witnesses_0]" to appear
         When I click the "label[for=additional_information_witnesses_0]" element
         Then I should see the key "pel.facts.witnesses.information.text" translated
         And I should see a "input#additional_information_witnessesText" element
 
     Scenario: I can see 1 radio button group if I select "Yes" to the fsi visit radio buttons
+        And I wait for "label[for=additional_information_fsiVisit_0]" to appear
         When I click the "label[for=additional_information_fsiVisit_0]" element
         Then I should see the key "pel.observation.made" translated
         And I should see a "input#additional_information_observationMade_0" element
         And I should see a "input#additional_information_observationMade_1" element
 
     Scenario: I can see 1 radio button group if I select "Yes" to the cctv present radio buttons
+        And I wait for "label[for=additional_information_cctvPresent_0]" to appear
         When I click the "label[for=additional_information_cctvPresent_0]" element
         Then I should see the key "pel.cctv.available" translated
         And I should see a "input#additional_information_cctvAvailable_0" element
         And I should see a "input#additional_information_cctvAvailable_1" element
 
-    @flaky
     Scenario: Submit the additional information form as a victim logged in with France Connect
+        And I wait for "label[for=additional_information_suspectsChoice_0]" to appear
         When I click the "label[for=additional_information_suspectsChoice_0]" element
         And I fill in "additional_information_suspectsText" with "suspects informations"
         And I should see the key "pel.facts.suspects.informations.text" translated

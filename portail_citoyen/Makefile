@@ -269,6 +269,15 @@ behat:
 e2e:
 	@vendor/bin/behat -c behat.yml.dist --format=pretty --profile e2e
 
+complaint-e2e:
+	@vendor/bin/behat -c behat.yml.dist --format=pretty --profile e2e --suite complaint
+
+complete-workflow-e2e:
+	@vendor/bin/behat -c behat.yml.dist --format=pretty --profile e2e --suite complete_workflow
+
+leftover-e2e:
+	@vendor/bin/behat -c behat.yml.dist --format=pretty --profile e2e --suite default
+
 flaky-e2e:
 	@vendor/bin/behat -c behat.yml.dist --format=pretty --profile flaky-e2e
 
