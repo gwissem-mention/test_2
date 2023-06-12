@@ -16,7 +16,7 @@ class Unit
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 254, nullable: true)]
     private ?string $email;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -25,13 +25,13 @@ class Unit
     #[ORM\Column(length: 255, unique: true)]
     private string $code;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 150)]
     private string $name;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 150)]
     private string $shortName;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 150, nullable: true)]
     private ?string $address;
 
     #[ORM\Column(length: 255, nullable: true)]

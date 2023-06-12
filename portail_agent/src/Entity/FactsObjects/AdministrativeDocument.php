@@ -31,7 +31,7 @@ class AdministrativeDocument extends AbstractObject
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $ownerPhone = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 254, nullable: true)]
     private ?string $ownerEmail = null;
 
     #[ORM\Column(length: 255, nullable: true)]
