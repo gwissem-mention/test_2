@@ -324,9 +324,12 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
     {
         $this->assertStringContainsString('<Personne_Morale>', $this->xmlContentWithCorporationRepresented);
         $this->assertStringContainsString('<Personne_Morale_Raison>Netflix</Personne_Morale_Raison>', $this->xmlContentWithCorporationRepresented);
+        $this->assertStringContainsString('<Personne_Morale_Num_Registre_Commerce/>', $this->xmlContentWithCorporationRepresented);
         $this->assertStringContainsString('<Personne_Morale_Siret>123456789</Personne_Morale_Siret>', $this->xmlContentWithCorporationRepresented);
         $this->assertStringContainsString('<Personne_Morale_Implication>PDG</Personne_Morale_Implication>', $this->xmlContentWithCorporationRepresented);
         $this->assertStringContainsString('<Personne_Morale_Nationalite>FRANCAISE</Personne_Morale_Nationalite>', $this->xmlContentWithCorporationRepresented);
+        $this->assertStringContainsString('<Personne_Morale_Secteur/>', $this->xmlContentWithCorporationRepresented);
+        $this->assertStringContainsString('<Personne_Morale_Juridique/>', $this->xmlContentWithCorporationRepresented);
         $this->assertStringContainsString('<Personne_Morale_Residence_Pays>France</Personne_Morale_Residence_Pays>', $this->xmlContentWithCorporationRepresented);
         $this->assertStringContainsString('<Personne_Morale_Residence_Departement>75 - Paris</Personne_Morale_Residence_Departement>', $this->xmlContentWithCorporationRepresented);
         $this->assertStringContainsString('<Personne_Morale_Residence_Codepostal>75000</Personne_Morale_Residence_Codepostal>', $this->xmlContentWithCorporationRepresented);
@@ -371,10 +374,10 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         //        $this->assertStringContainsString('<Faits_Orientation_Aucune>1</Faits_Orientation_Aucune>', $this->xmlContent);
         //        $this->assertStringContainsString('<Faits_Violences_Description>Je n\'ai pas subit de violences</Faits_Violences_Description>', $this->xmlContent);
         //        $this->assertStringContainsString('<Faits_Orientation>Je n\'ai pas d\'éléments succeptibles de faire avancer l\'enquête.</Faits_Orientation>', $this->xmlContent);
-        //        $this->assertStringContainsString('<Faits_Prejudice_Physique>Non</Faits_Prejudice_Physique>', $this->xmlContent);
-        //        $this->assertStringContainsString('<Faits_Prejudice_Autre>0</Faits_Prejudice_Autre>', $this->xmlContent);
-        //        $this->assertStringContainsString('<Faits_Prejudice_Physique_Description>Je n\'ai pas subit de préjudice physique</Faits_Prejudice_Physique_Description>', $this->xmlContent);
-        //        $this->assertStringContainsString('<Faits_Prejudice_Autre_Description>Je n\'ai pas subit d\'autre préjudice</Faits_Prejudice_Autre_Description>', $this->xmlContent);
+        $this->assertStringContainsString('<Faits_Prejudice_Physique/>', $this->xmlContent);
+        $this->assertStringContainsString('<Faits_Prejudice_Autre/>', $this->xmlContent);
+        $this->assertStringContainsString('<Faits_Prejudice_Physique_Description/>', $this->xmlContent);
+        $this->assertStringContainsString('<Faits_Prejudice_Autre_Description/>', $this->xmlContent);
         $this->assertStringContainsString('</Faits>', $this->xmlContent);
     }
 

@@ -53,9 +53,12 @@ class CorporationRepresentedDTO
     {
         return ['Personne_Morale' => [
             'Personne_Morale_Raison' => $this->companyName,
+            'Personne_Morale_Num_Registre_Commerce' => '',
             'Personne_Morale_Siret' => $this->sirenNumber,
             'Personne_Morale_Implication' => $this->implication,
             'Personne_Morale_Nationalite' => $this->nationality,
+            'Personne_Morale_Secteur' => '',
+            'Personne_Morale_Juridique' => '',
             'Personne_Morale_Residence_Pays' => $this->country,
             'Personne_Morale_Residence_Departement' => $this->departmentNumber.' - '.$this->department,
             'Personne_Morale_Residence_Codepostal' => $this->postCode,

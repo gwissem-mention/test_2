@@ -40,10 +40,6 @@ class FactsDTO
     //    private string $noOrientation;
     private string $violenceDescription;
     //    private string $orientation;
-    //    private string $physicalPrejudice;
-    //    private string $otherPrejudice;
-    //    private string $physicalPrejudiceDescription;
-    //    private string $otherPrejudiceDescription;
 
     public function __construct(Complaint $complaint)
     {
@@ -88,10 +84,6 @@ class FactsDTO
 
         //        $this->noOrientation = !is_null($noOrientation = $facts->isNoOrientation()) ? strval($noOrientation) : '';
         //        $this->orientation = $facts->getOrientation() ?? '';
-        //        $this->physicalPrejudice = true === $facts->isPhysicalPrejudice() ? 'Oui' : 'Non';
-        //        $this->otherPrejudice = true === $facts->isOtherPrejudice() ? '1' : '0';
-        //        $this->physicalPrejudiceDescription = $facts->getPhysicalPrejudiceDescription() ?? '';
-        //        $this->otherPrejudiceDescription = $facts->getOtherPrejudiceDescription() ?? '';
     }
 
     /**
@@ -126,10 +118,10 @@ class FactsDTO
 //            'Faits_Orientation_Aucune' => $this->noOrientation,
             'Faits_Violences_Description' => $this->violenceDescription,
 //            'Faits_Orientation' => $this->orientation,
-//            'Faits_Prejudice_Physique' => $this->physicalPrejudice,
-//            'Faits_Prejudice_Autre' => $this->otherPrejudice,
-//            'Faits_Prejudice_Physique_Description' => $this->physicalPrejudiceDescription,
-//            'Faits_Prejudice_Autre_Description' => $this->otherPrejudiceDescription,
+            'Faits_Prejudice_Physique' => '',
+            'Faits_Prejudice_Autre' => '',
+            'Faits_Prejudice_Physique_Description' => '',
+            'Faits_Prejudice_Autre_Description' => '',
         ]];
     }
 }
