@@ -104,7 +104,7 @@ class Identity
     //    #[ORM\Column(length: 255)]
     //    private ?string $officePhone = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 254)]
     private ?string $email = null;
 
     #[ORM\Column(length: 255)]

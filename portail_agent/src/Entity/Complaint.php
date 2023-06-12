@@ -9,7 +9,6 @@ use App\Repository\ComplaintRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ReadableCollection;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ComplaintRepository::class)]
@@ -128,7 +127,7 @@ class Complaint
     #[ORM\Column(nullable: true)]
     private ?int $refusalReason = null;
 
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[ORM\Column(length: 3000, nullable: true)]
     private ?string $refusalText = null;
 
     #[ORM\ManyToOne(inversedBy: 'complaints')]

@@ -28,7 +28,7 @@ class Corporation
     #[ORM\Column(length: 255)]
     private ?string $nationality = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 254, nullable: true)]
     private ?string $contactEmail = null;
 
     #[ORM\Column(length: 255)]

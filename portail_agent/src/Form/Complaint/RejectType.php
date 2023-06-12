@@ -37,10 +37,10 @@ class RejectType extends AbstractType
                 'required' => false,
                 'attr' => [
                     'minlength' => 100,
-                    'maxlength' => 5000,
+                    'maxlength' => 3000,
                 ],
                 'constraints' => [
-                    new Length(['min' => 100, 'max' => 5000]),
+                    new Length(['min' => 100, 'max' => 3000]),
                     new Callback([
                         'callback' => static function (?string $value, ExecutionContextInterface $context) {
                             /** @var Form $form */
