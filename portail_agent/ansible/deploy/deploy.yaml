@@ -6,7 +6,9 @@
   environment:
     APP_ENV: prod
     ENABLE_SSO: "false"
-    FILE_UNITS: service.csv
+    FILE_SERVICES: service.csv
+    FILE_UNITS_GN: pwb_ref_unite_gn.csv
+    FILE_UNITS_PN: pwb_ref_unite_pn_exp.csv
     OODRIVE_BASE_URI: https://sharing.oodrive.com
     OODRIVE_WORKSPACE: pel
     OODRIVE_OAUTH_CLIENT_ID: pel

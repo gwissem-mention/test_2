@@ -16,7 +16,7 @@ use App\Entity\FactsObjects\SimpleObject;
 use App\Entity\FactsObjects\Vehicle;
 use App\Entity\Identity;
 use App\Generator\Complaint\ComplaintXmlGenerator;
-use App\Referential\Entity\Unit;
+use App\Referential\Entity\Service;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class ComplaintXmlGeneratorTest extends KernelTestCase
@@ -34,7 +34,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         /** @var ComplaintXmlGenerator $xmlGenerator */
         $xmlGenerator = $container->get(ComplaintXmlGenerator::class);
 
-        $unit = (new Unit(
+        $service = (new Service(
             null,
             null,
             '103131',
@@ -43,7 +43,8 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
             'Voiron',
             '75',
             '630',
-            Institution::PN
+            Institution::PN,
+            null
         ));
 
         $complaint = (new Complaint())
@@ -196,7 +197,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
             );
 
         /** @var string $xml */
-        $xml = $xmlGenerator->generate($complaint, $unit)->asXML();
+        $xml = $xmlGenerator->generate($complaint, $service)->asXML();
 
         $this->xmlContent = mb_convert_encoding($xml, 'UTF-8', 'ISO-8859-1');
 
@@ -229,7 +230,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         ;
 
         /** @var string $xmlWithCorporationRepresented */
-        $xmlWithCorporationRepresented = $xmlGenerator->generate($complaint, $unit)->asXML();
+        $xmlWithCorporationRepresented = $xmlGenerator->generate($complaint, $service)->asXML();
 
         $this->xmlContentWithCorporationRepresented = mb_convert_encoding($xmlWithCorporationRepresented, 'UTF-8', 'ISO-8859-1');
     }

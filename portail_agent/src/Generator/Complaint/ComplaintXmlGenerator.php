@@ -23,15 +23,15 @@ use App\Generator\Complaint\Model\Objects\SimpleObjectDTO;
 use App\Generator\Complaint\Model\Objects\VehicleDTO;
 use App\Generator\Complaint\Model\PersonDTO;
 use App\Generator\Complaint\Model\PersonLegalRepresentativeDTO;
-use App\Referential\Entity\Unit;
+use App\Referential\Entity\Service;
 
 class ComplaintXmlGenerator implements ComplaintGeneratorInterface
 {
-    public function generate(Complaint $complaint, Unit $unit): \SimpleXMLElement
+    public function generate(Complaint $complaint, Service $service): \SimpleXMLElement
     {
         $xml = new \SimpleXMLElement('<?xml version="1.0" encoding="ISO-8859-1"?><PlainteWeb></PlainteWeb>');
 
-        $xml = $this->arrayToXml($xml, (new FlagDTO($complaint, $unit))->getArray());
+        $xml = $this->arrayToXml($xml, (new FlagDTO($complaint, $service))->getArray());
 
         if (($identity = $complaint->getIdentity()) && Identity::DECLARANT_STATUS_VICTIM === $identity->getDeclarantStatus()) {
             $xml = $this->arrayToXml($xml, (new PersonDTO($identity))->getArray());

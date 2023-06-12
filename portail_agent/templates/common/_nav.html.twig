@@ -2,7 +2,7 @@
     <div class="fs-2">
         {{ 'pel.complaint.online.portal'|trans }}
         {% if app.user %}
-            : {{ app.user.serviceCode|unit_name }}
+            : {{ app.user.serviceCode|service_name }}
         {% endif %}
     </div>
     <ul class="list-group list-group-horizontal">

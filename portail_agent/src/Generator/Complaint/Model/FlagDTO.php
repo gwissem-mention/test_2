@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Generator\Complaint\Model;
 
 use App\Entity\Complaint;
-use App\Referential\Entity\Unit;
+use App\Referential\Entity\Service;
 
 class FlagDTO
 {
@@ -25,20 +25,20 @@ class FlagDTO
     //    private string $tcFacts;
     //    private ?string $unitCodeTcFacts;
 
-    public function __construct(Complaint $complaint, Unit $unit)
+    public function __construct(Complaint $complaint, Service $service)
     {
         $this->flagTest = $complaint->isTest() ? 'test' : '';
         //        $this->flagBeginning = $complaint->getStart()?->format('d/m/Y H:i:s') ?? '';
         //        $this->flagEnd = $complaint->getFinish()?->format('d/m/Y H:i:s') ?? '';
         //        $this->flagIp = $complaint->getDeclarantIp() ?? '';
-        $this->unitEmail = $unit->getEmail() ?? '';
-        $this->unitDepartmentEmail = $unit->getHomeDepartmentEmail() ?? '';
-        $this->unitCode = $unit->getCode();
-        $this->unitDepartment = $unit->getDepartment() ?? '';
-        $this->unitName = $unit->getName();
-        $this->unitAddress = $unit->getAddress() ?? '';
-        $this->unitPhone = $unit->getPhone() ?? '';
-        $this->unitInstitution = $unit->getInstitutionCode()->value ?? '';
+        $this->unitEmail = $service->getEmail() ?? '';
+        $this->unitDepartmentEmail = $service->getHomeDepartmentEmail() ?? '';
+        $this->unitCode = $service->getCode();
+        $this->unitDepartment = $service->getDepartment() ?? '';
+        $this->unitName = $service->getName();
+        $this->unitAddress = $service->getAddress() ?? '';
+        $this->unitPhone = $service->getPhone() ?? '';
+        $this->unitInstitution = $service->getInstitutionCode()->value ?? '';
         //        $this->tcHome = strval($complaint->getTcHome()); // TODO : Still don't know what it is
         //        $this->tcFacts = strval($complaint->getTcFacts()); // TODO : Still don't know what it is
         //        $this->unitCodeTcFacts = strval($complaint->getUnitCodeTcFacts()); // TODO : Still don't know what it is

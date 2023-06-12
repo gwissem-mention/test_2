@@ -15,6 +15,7 @@
     FILE_CITIES_SERVICES: competence_securite_publique.csv
     FILE_CITIES_UNITS: pwb_ref_insee_unite.csv
     FILE_UNITS_GN: pwb_ref_unite_gn.csv
+    FILE_UNITS_PN: pwb_ref_unite_pn_exp.csv
     FILE_NATIONALITIES: Nationalites.csv
     OODRIVE_BASE_URI: https://sharing.oodrive.com
     OODRIVE_WORKSPACE: pel

@@ -4,20 +4,20 @@ declare(strict_types=1);
 
 namespace App\Twig;
 
-use App\Referential\Repository\UnitRepository;
+use App\Referential\Repository\ServiceRepository;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
-class UnitExtension extends AbstractExtension
+class ServiceExtension extends AbstractExtension
 {
-    public function __construct(private readonly UnitRepository $unitRepository)
+    public function __construct(private readonly ServiceRepository $serviceRepository)
     {
     }
 
     public function getFilters(): array
     {
         return [
-            new TwigFilter('unit_name', [$this, 'getName']),
+            new TwigFilter('service_name', [$this, 'getName']),
         ];
     }
 
@@ -27,6 +27,6 @@ class UnitExtension extends AbstractExtension
             return null;
         }
 
-        return $this->unitRepository->findOneBy(['code' => $code])?->getName();
+        return $this->serviceRepository->findOneBy(['code' => $code])?->getName();
     }
 }

@@ -20,7 +20,7 @@ class AskUnitReassignementHandler
     public function __invoke(AskUnitReassignementMessage $message): void
     {
         $notification = $this->notificationFactory->createForComplaintUnitReassignmentOrdered($message->getComplaint());
-        $supervisors = $this->userRepository->getSupervisorsByUnit($message->getUnitCode());
+        $supervisors = $this->userRepository->getSupervisorsByService($message->getUnitCode());
 
         foreach ($supervisors as $supervisor) {
             $supervisor->addNotification($notification);

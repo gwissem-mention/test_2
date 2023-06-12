@@ -19,33 +19,60 @@ class UnitMockFixtures extends Fixture implements FixtureGroupInterface
 
     public function load(ObjectManager $manager): void
     {
-        $unit = (new Unit(
-            null,
-            null,
-            '3002739',
-            'Brigade de proximité de Voiron',
-            'Brigade de proximité de Voiron',
-            'Voiron',
-            '75',
-            '630',
-            Institution::GN
-        ));
+        $units = [
+            new Unit(
+                '3002739',
+                '2739',
+                'Brigade de proximité de Voiron',
+                '45.36849',
+                '5.58565',
+                '2 Rue Danton 38500 VOIRON',
+                '04 76 05 01 83',
+                '$Vendredi : 14h00-18h00',
+                '1008952',
+                Institution::GN
+            ),
+            new Unit(
+                '3026751',
+                '26751',
+                'Brigade de proximité de Renage',
+                '45.33741',
+                '5.48426',
+                '339 Rue de la République 38140 RENAGE',
+                '04 76 65 30 17',
+                '$Lundi : 8h00-12h00 14h00-18h00$Mardi : 8h00-12h00 14h00-18h00$Mercredi : 8h00-12h00 14h00-18h00$Jeudi : 8h00-12h00 14h00-18h00$Vendredi : 8h00-12h00 14h00-18h00$Samedi : 8h00-12h00 14h00-18h00$Dimanche : 9h00-12h00 15h00-18h00$Jours Fériés : 9h00-12h00 15h00-18h00',
+                '1008950',
+                Institution::GN
+            ),
+            new Unit(
+                '72903',
+                '72903',
+                'Commissariat de police de Toulouse',
+                '43.6152',
+                '1.433501',
+                '23 Boulevard de l\'Embouchure 31000 TOULOUSE',
+                '05 61 12 77 77',
+                '24h/24 - 7j/7',
+                '4007',
+                Institution::PN
+            ),
+            new Unit(
+                '103131',
+                '103131',
+                'Commissariat de police de Voiron',
+                '45.362186',
+                '5.59077',
+                '114 cours Becquart Castelbon 38500 VOIRON',
+                '04 76 65 93 93',
+                '24h/24 - 7j/7',
+                '4083',
+                Institution::PN
+            ),
+        ];
 
-        $manager->persist($unit);
-
-        $unit = (new Unit(
-            null,
-            null,
-            '103131',
-            'CSP VOIRON/SVP/UPS/BRIGADE DE JOUR',
-            'CSP VOIRON/SVP/UPS/BRIGADE DE JOUR',
-            'Voiron',
-            '75',
-            '630',
-            Institution::PN
-        ));
-
-        $manager->persist($unit);
+        foreach ($units as $unit) {
+            $manager->persist($unit);
+        }
 
         $manager->flush();
     }

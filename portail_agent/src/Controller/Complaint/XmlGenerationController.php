@@ -7,8 +7,8 @@ namespace App\Controller\Complaint;
 use App\Entity\Complaint;
 use App\Entity\User;
 use App\Generator\Complaint\ComplaintGeneratorInterface;
-use App\Referential\Entity\Unit;
-use App\Referential\Repository\UnitRepository;
+use App\Referential\Entity\Service;
+use App\Referential\Repository\ServiceRepository;
 use App\Repository\ComplaintRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Filesystem\Filesystem;
@@ -22,13 +22,13 @@ class XmlGenerationController extends AbstractController
 {
     #[IsGranted('IS_AUTHENTICATED')]
     #[Route(path: '/plainte/xml/{id}', name: 'complaint_xml', methods: ['GET'])]
-    public function __invoke(Complaint $complaint, ComplaintGeneratorInterface $generatorXml, UnitRepository $unitRepository, ComplaintRepository $complaintRepository): Response
+    public function __invoke(Complaint $complaint, ComplaintGeneratorInterface $generatorXml, ServiceRepository $serviceRepository, ComplaintRepository $complaintRepository): Response
     {
         $complaintRepository->save($complaint->setStatus(Complaint::STATUS_ONGOING_LRP), true);
         /** @var User $user */
         $user = $this->getUser();
-        /** @var Unit $unit */
-        $unit = $unitRepository->findOneBy(['code' => $user->getServiceCode()]);
+        /** @var Service $service */
+        $service = $serviceRepository->findOneBy(['code' => $user->getServiceCode()]);
 
         $tmpFileName = (new Filesystem())->tempnam(sys_get_temp_dir(), 'sb_');
         $tmpFile = fopen($tmpFileName, 'wb+');
@@ -38,7 +38,7 @@ class XmlGenerationController extends AbstractController
         }
 
         /** @var \SimpleXMLElement $xml */
-        $xml = $generatorXml->generate($complaint, $unit);
+        $xml = $generatorXml->generate($complaint, $service);
         if (is_string($xml->asXML())) {
             fputs($tmpFile, $xml->asXML());
         }
