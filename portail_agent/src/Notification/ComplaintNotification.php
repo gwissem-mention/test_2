@@ -22,7 +22,7 @@ class ComplaintNotification
     {
         /** @var string $unit */
         $unit = $complaint->getUnitAssigned();
-        $supervisors = $this->userRepository->getSupervisorsByUnit($unit);
+        $supervisors = $this->userRepository->getSupervisorsByService($unit);
 
         $this->setNotificationForViolence($complaint, $supervisors);
         $this->setNotificationForRobberyAndDegradation($complaint, $supervisors);
@@ -37,7 +37,7 @@ class ComplaintNotification
         foreach ($complaints as $complaint) {
             /** @var string $unit */
             $unit = $complaint->getUnitAssigned();
-            $supervisors = $this->userRepository->getSupervisorsByUnit($unit);
+            $supervisors = $this->userRepository->getSupervisorsByService($unit);
 
             foreach ($supervisors as $supervisor) {
                 $this->userRepository->save(

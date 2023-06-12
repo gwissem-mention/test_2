@@ -13,6 +13,7 @@
       FILE_CITIES_SERVICES={{ ansible_env.FILE_CITIES_SERVICES }}
       FILE_CITIES_UNITS={{ ansible_env.FILE_CITIES_UNITS }}
       FILE_UNITS_GN={{ ansible_env.FILE_UNITS_GN }}
+      FILE_UNITS_PN={{ ansible_env.FILE_UNITS_PN }}
       FILE_NATIONALITIES={{ ansible_env.FILE_NATIONALITIES }}
       OODRIVE_BASE_URI={{ ansible_env.OODRIVE_BASE_URI }}
       OODRIVE_WORKSPACE={{ ansible_env.OODRIVE_WORKSPACE }}

@@ -44,6 +44,18 @@ class UnitMockFixtures extends Fixture implements FixtureGroupInterface
                 '1008950',
                 Institution::GN
             ),
+            new Unit(
+                '72903',
+                '72903',
+                'Commissariat de police de Toulouse',
+                '43.6152',
+                '1.433501',
+                '23 Boulevard de l\'Embouchure 31000 TOULOUSE',
+                '05 61 12 77 77',
+                '24h/24 - 7j/7',
+                '4007',
+                Institution::PN
+            ),
         ];
 
         foreach ($units as $unit) {

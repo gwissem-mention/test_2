@@ -45,11 +45,11 @@ class UserRepository extends ServiceEntityRepository
     /**
      * @return array<int, User>
      */
-    public function getSupervisorsByUnit(string $unit): array
+    public function getSupervisorsByService(string $service): array
     {
         $users = $this->createQueryBuilder('u')
-            ->andWhere('u.serviceCode = :unit')
-            ->setParameter('unit', $unit)
+            ->andWhere('u.serviceCode = :service')
+            ->setParameter('service', $service)
             ->getQuery()
             ->getResult()
         ;

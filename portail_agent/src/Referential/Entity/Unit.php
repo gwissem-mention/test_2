@@ -6,62 +6,66 @@ namespace App\Referential\Entity;
 
 use App\AppEnum\Institution;
 use App\Referential\Repository\UnitRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\Ignore;
 
 #[ORM\Entity(repositoryClass: UnitRepository::class)]
 class Unit
 {
+    #[Ignore]
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 254, nullable: true)]
-    private ?string $email;
+    #[Ignore]
+    #[ORM\Column(type: Types::STRING)]
+    private string $serviceId;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $homeDepartmentEmail;
-
-    #[ORM\Column(length: 255, unique: true)]
+    #[ORM\Column(type: Types::STRING)]
     private string $code;
 
-    #[ORM\Column(length: 150)]
+    #[ORM\Column(type: Types::STRING)]
     private string $name;
 
-    #[ORM\Column(length: 150)]
-    private string $shortName;
+    #[Groups(['appointment_map'])]
+    #[ORM\Column(type: Types::STRING)]
+    private string $latitude;
 
-    #[ORM\Column(length: 150, nullable: true)]
-    private ?string $address;
+    #[Groups(['appointment_map'])]
+    #[ORM\Column(type: Types::STRING)]
+    private string $longitude;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $department;
+    #[ORM\Column(type: Types::STRING)]
+    private string $address;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $phone;
+    #[ORM\Column(type: Types::STRING)]
+    private string $phone;
 
+    #[ORM\Column(type: Types::TEXT)]
+    private string $openingHours;
+
+    #[Groups(['appointment_map'])]
+    #[ORM\Column(type: Types::STRING)]
+    private string $idAnonym;
+
+    #[Ignore]
     #[ORM\Column(length: 255, nullable: true, enumType: Institution::class)]
     private ?Institution $institutionCode;
 
-    public function __construct(
-        ?string $email,
-        ?string $homeDepartmentEmail,
-        string $code,
-        string $name,
-        string $shortName,
-        ?string $address,
-        ?string $department,
-        ?string $phone,
-        ?Institution $institutionCode
-    ) {
-        $this->email = $email;
-        $this->homeDepartmentEmail = $homeDepartmentEmail;
+    public function __construct(string $serviceId, string $code, string $name, string $latitude, string $longitude, string $address, string $phone, string $openingHours, string $idAnonym, ?Institution $institutionCode)
+    {
+        $this->serviceId = $serviceId;
         $this->code = $code;
         $this->name = $name;
-        $this->shortName = $shortName;
+        $this->latitude = $latitude;
+        $this->longitude = $longitude;
         $this->address = $address;
-        $this->department = $department;
         $this->phone = $phone;
+        $this->openingHours = $openingHours;
+        $this->idAnonym = $idAnonym;
         $this->institutionCode = $institutionCode;
     }
 
@@ -70,28 +74,9 @@ class Unit
         return $this->id;
     }
 
-    public function getEmail(): ?string
+    public function getServiceId(): string
     {
-        return $this->email;
-    }
-
-    public function setEmail(?string $email): self
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    public function getCode(): string
-    {
-        return $this->code;
-    }
-
-    public function setCode(string $code): self
-    {
-        $this->code = $code;
-
-        return $this;
+        return $this->serviceId;
     }
 
     public function getName(): string
@@ -99,82 +84,43 @@ class Unit
         return $this->name;
     }
 
-    public function setName(string $name): self
+    public function getLatitude(): string
     {
-        $this->name = $name;
-
-        return $this;
+        return $this->latitude;
     }
 
-    public function getAddress(): ?string
+    public function getLongitude(): string
+    {
+        return $this->longitude;
+    }
+
+    public function getAddress(): string
     {
         return $this->address;
     }
 
-    public function setAddress(?string $address): self
+    public function getCode(): string
     {
-        $this->address = $address;
-
-        return $this;
+        return $this->code;
     }
 
-    public function getPhone(): ?string
+    public function getPhone(): string
     {
         return $this->phone;
     }
 
-    public function setPhone(?string $phone): self
+    public function getOpeningHours(): string
     {
-        $this->phone = $phone;
+        return $this->openingHours;
+    }
 
-        return $this;
+    public function getIdAnonym(): string
+    {
+        return $this->idAnonym;
     }
 
     public function getInstitutionCode(): ?Institution
     {
         return $this->institutionCode;
-    }
-
-    public function setInstitutionCode(?Institution $institutionCode): self
-    {
-        $this->institutionCode = $institutionCode;
-
-        return $this;
-    }
-
-    public function getShortName(): string
-    {
-        return $this->shortName;
-    }
-
-    public function setShortName(string $shortName): self
-    {
-        $this->shortName = $shortName;
-
-        return $this;
-    }
-
-    public function getHomeDepartmentEmail(): ?string
-    {
-        return $this->homeDepartmentEmail;
-    }
-
-    public function setHomeDepartmentEmail(?string $homeDepartmentEmail): self
-    {
-        $this->homeDepartmentEmail = $homeDepartmentEmail;
-
-        return $this;
-    }
-
-    public function getDepartment(): ?string
-    {
-        return $this->department;
-    }
-
-    public function setDepartment(?string $department): self
-    {
-        $this->department = $department;
-
-        return $this;
     }
 }

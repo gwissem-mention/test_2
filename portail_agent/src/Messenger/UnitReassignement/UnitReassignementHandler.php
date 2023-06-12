@@ -4,6 +4,8 @@ namespace App\Messenger\UnitReassignement;
 
 use App\Entity\User;
 use App\Factory\NotificationFactory;
+use App\Referential\Entity\Unit;
+use App\Referential\Repository\UnitRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
@@ -17,13 +19,18 @@ class UnitReassignementHandler
         private readonly UserRepository $userRepository,
         private readonly EntityManagerInterface $entityManager,
         private readonly Security $security,
+        private readonly UnitRepository $unitRepository,
     ) {
     }
 
     public function __invoke(UnitReassignementMessage $message): void
     {
         $notification = $this->notificationFactory->createForComplaintUnitReassignment($message->getComplaint());
-        $supervisors = $this->userRepository->getSupervisorsByUnit($message->getUnitCode());
+
+        /** @var Unit $unit */
+        $unit = $this->unitRepository->findOneBy(['code' => $message->getUnitCode()]);
+
+        $supervisors = $this->userRepository->getSupervisorsByService($unit->getServiceId());
 
         foreach ($supervisors as $supervisor) {
             $supervisor->addNotification($notification);

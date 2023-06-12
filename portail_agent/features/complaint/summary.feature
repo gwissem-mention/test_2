@@ -364,7 +364,7 @@ Feature:
     Scenario: I can submit the unit reassign form successfully as a supervisor and Louise THOMAS should have a notification
         Given I am on "/plainte/recapitulatif/95"
         When I press "Réorienter vers autres services"
-        And I fill in the autocomplete "unit_reassign_unitToReassign-ts-control" with "CSP VOIRON/SVP/UPS/BRIGADE DE JOUR" and click "103131"
+        And I fill in the autocomplete "unit_reassign_unitToReassign-ts-control" with "Commissariat de police de Voiron" and click "103131"
         And I fill in "unit_reassign_unitReassignText" with "Cette plainte n'est pas censée être attribuer à mon unité."
         And I press "Réorienter"
         And I wait 500 ms
@@ -382,14 +382,14 @@ Feature:
         Given I am authenticated with PR5KTQSD from GN
         And I am on "/plainte/recapitulatif/110"
         When I press "Réorienter vers autres services"
-        And I fill in the autocomplete "unit_reassign_unitToReassign-ts-control" with "CSP VOIRON/SVP/UPS/BRIGADE DE JOUR" and click "103131"
+        And I fill in the autocomplete "unit_reassign_unitToReassign-ts-control" with "Commissariat de police de Voiron" and click "103131"
         And I fill in "unit_reassign_unitReassignText" with "Cette plainte n'est pas censée être attribuer à mon unité."
         And I press "Réorienter"
         Then I should not see a ".modal[aria-modal=true]" element
         And I should see a ".toast" element
         And I should see the key "pel.the.unit.reassignment.of.the.declaration.to" translated
         And I should see the key "pel.has.been.ordered" translated
-        And I should see "La demande de réorientation de la déclaration vers CSP VOIRON/SVP/UPS/BRIGADE DE JOUR à été prise en compte"
+        And I should see "La demande de réorientation de la déclaration vers Commissariat de police de Voiron à été prise en compte"
         Then I am authenticated with PR5KTZ9R from GN
         And I am on the homepage
         When I click the "#notifications-dropdown" element
@@ -414,14 +414,14 @@ Feature:
         Given I am authenticated with PR5KTQSD from GN
         And I am on "/plainte/recapitulatif/110"
         When I press "Réorienter vers autres services"
-        And I fill in the autocomplete "unit_reassign_unitToReassign-ts-control" with "CSP VOIRON/SVP/UPS/BRIGADE DE JOUR" and click "103131"
+        And I fill in the autocomplete "unit_reassign_unitToReassign-ts-control" with "Commissariat de police de Voiron" and click "103131"
         And I fill in "unit_reassign_unitReassignText" with "Cette plainte n'est pas censée être attribuer à mon unité."
         And I press "Réorienter"
         Then I should not see a ".modal[aria-modal=true]" element
         And I should see a ".toast" element
         And I should see the key "pel.the.unit.reassignment.of.the.declaration.to" translated
         And I should see the key "pel.has.been.ordered" translated
-        And I should see "La demande de réorientation de la déclaration vers CSP VOIRON/SVP/UPS/BRIGADE DE JOUR à été prise en compte"
+        And I should see "La demande de réorientation de la déclaration vers Commissariat de police de Voiron à été prise en compte"
         Then I am authenticated with PR5KTZ9R from GN
         And I am on the homepage
         When I click the "#notifications-dropdown" element
@@ -531,7 +531,7 @@ Feature:
         Then I am authenticated with PR5KTQSD from GN
         And I am on "/plainte/recapitulatif/110"
         When I press "Réorienter vers autres services"
-        And I fill in the autocomplete "unit_reassign_unitToReassign-ts-control" with "CSP VOIRON/SVP/UPS/BRIGADE DE JOUR" and click "103131"
+        And I fill in the autocomplete "unit_reassign_unitToReassign-ts-control" with "Commissariat de police de Voiron" and click "103131"
         And I fill in "unit_reassign_unitReassignText" with "Cette plainte n'est pas censée être attribuer à mon unité."
         And I press "Réorienter"
         Then I am authenticated with PR5KTZ9R from GN
