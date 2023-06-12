@@ -40,4 +40,9 @@ class UnitRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+
+    public function findByService(string $serviceCode): ?Unit
+    {
+        return $this->findOneBy(['serviceId' => $serviceCode]);
+    }
 }

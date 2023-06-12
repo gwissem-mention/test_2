@@ -94,7 +94,7 @@ class UserContext extends RawMinkContext
         $this->getSession()->visit($this->locatePath('/sso-less/start-session'));
         $this->getSession()->getPage()->selectFieldOption(
             'form_user',
-            $user->getAppellation().' ('.$user->getInstitution()->name.')'
+            (string) $user->getAppellation()
         );
         $this->getSession()->getPage()->pressButton('Connexion');
     }
