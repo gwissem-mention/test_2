@@ -72,7 +72,8 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                 $complaints[] = $complaint
                     ->setIdentity($identity
                         ->setFirstname('Léo')
-                        ->setLastname('BERNARD'))
+                        ->setLastname('BERNARD')
+                        ->setHomePhone('01 23 45 67 89'))
                     ->setStatus(Complaint::STATUS_ASSIGNED)
                     ->setUnitAssigned($unit)
                     ->setAssignedTo($user);

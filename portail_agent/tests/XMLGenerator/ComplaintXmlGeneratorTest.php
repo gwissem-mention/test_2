@@ -79,6 +79,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
                     ->setAddressDepartment('Hauts-de-Seine')
                     ->setAddressDepartmentNumber(92)
                     ->setMobilePhone('06 12 34 45 57')
+                    ->setHomePhone('01 23 45 67 89')
                     ->setEmail('jean.dupont@gmail.com')
                     ->setJob('Boulanger')
                     ->setAlertNumber(3)
@@ -541,7 +542,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Contact>', $this->xmlContent);
         //        $this->assertStringContainsString('<Demandes_Suites_Judiciaires>Oui</Demandes_Suites_Judiciaires>', $this->xmlContent);
         $this->assertStringContainsString('<Mail_Declarant>jean.dupont@gmail.com</Mail_Declarant>', $this->xmlContent);
-        //        $this->assertStringContainsString('<Tel_Domicile_Declarant>01 02 03 04 05</Tel_Domicile_Declarant>', $this->xmlContent);
+        $this->assertStringContainsString('<Tel_Domicile_Declarant>01 23 45 67 89</Tel_Domicile_Declarant>', $this->xmlContent);
         //        $this->assertStringContainsString('<Tel_Bureau_Declarant>09 01 02 03 04</Tel_Bureau_Declarant>', $this->xmlContent);
         $this->assertStringContainsString('<Tel_Portable_Declarant>06 12 34 45 57</Tel_Portable_Declarant>', $this->xmlContent);
         //        $this->assertStringContainsString('<Choix_Rendez_Vous>03/12/2022 00h</Choix_Rendez_Vous>', $this->xmlContent);

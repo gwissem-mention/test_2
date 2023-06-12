@@ -10,7 +10,7 @@ class ContactDTO
 {
     //    private string $claimsLegalAction;
     private string $declarantEmail;
-    //    private string $declarantHomePhone;
+    private string $declarantHomePhone;
     //    private string $declarantOfficePhone;
     private string $declarantMobilePhone;
     //    private string $appointementChoice;
@@ -21,7 +21,7 @@ class ContactDTO
     {
         //        $this->claimsLegalAction = true === $complaint->getClaimsLegalAction() ? 'Oui' : 'Non';
         $this->declarantEmail = $complaint->getIdentity()?->getEmail() ?? '';
-        //        $this->declarantHomePhone = $complaint->getIdentity()?->getHomePhone() ?? '';
+        $this->declarantHomePhone = $complaint->getIdentity()?->getHomePhone() ?? '';
         //        $this->declarantOfficePhone = $complaint->getIdentity()?->getOfficePhone() ?? '';
         $this->declarantMobilePhone = $complaint->getIdentity()?->getMobilePhone() ?? '';
         //        $this->appointementChoice = !is_null($complaint->getAppointmentDate()) ? $complaint->getAppointmentDate()->format('d/m/Y H').'h' : '';
@@ -37,7 +37,7 @@ class ContactDTO
         return ['Contact' => [
 //            'Demandes_Suites_Judiciaires' => $this->claimsLegalAction,
             'Mail_Declarant' => $this->declarantEmail,
-//            'Tel_Domicile_Declarant' => $this->declarantHomePhone,
+            'Tel_Domicile_Declarant' => $this->declarantHomePhone,
 //            'Tel_Bureau_Declarant' => $this->declarantOfficePhone,
             'Tel_Portable_Declarant' => $this->declarantMobilePhone,
 //            'Choix_Rendez_Vous' => $this->appointementChoice,

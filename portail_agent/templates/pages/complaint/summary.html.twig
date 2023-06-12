@@ -31,7 +31,14 @@
                 {{ 'pel.job'|trans }} : <strong>{{ complaint.identity.job }}</strong>
             </li>
             <li>
-                {{ 'pel.phone'|trans }} : <strong>{{ complaint.identity.mobilePhone }}</strong>
+                {% if complaint.identity.homePhone %}
+                    {{ 'pel.home.phone'|trans }} : <strong>{{ complaint.identity.homePhone }}</strong>
+                {% endif %}
+                {% if complaint.identity.mobilePhone %}
+                    {{ 'pel.mobile.phone'|trans }} : <strong>{{ complaint.identity.mobilePhone }}</strong>
+                {% endif %}
+            </li>
+            <li>
                 {{ 'pel.email'|trans }} : <strong>{{ complaint.identity.email }}</strong>
             </li>
             <li>{{ 'pel.want.to.receive.sms.notifications'|trans }} :

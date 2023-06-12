@@ -466,6 +466,10 @@
                 <source>pel.home</source>
                 <target>Accueil</target>
             </trans-unit>
+            <trans-unit id="pel.home.phone">
+                <source>pel.home.phone</source>
+                <target>Téléphone fixe</target>
+            </trans-unit>
             <trans-unit id="pel.home.title">
                 <source>pel.home.title</source>
                 <target>Accéder à la gestion des déclarations</target>
