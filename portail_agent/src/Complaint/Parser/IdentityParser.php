@@ -27,12 +27,13 @@ class IdentityParser
         $this->parseBirthdayPlace($identity, $civilStateInput->birthLocation);
         $this->parseAddress($identity, $contactInformationInput);
 
-        $identity->setMobilePhone(
-            $this->choosePhoneNumber(
-                $contactInformationInput->phone,
-                $contactInformationInput->mobile,
-            )
-        );
+        if ($contactInformationInput->phone) {
+            $identity->setHomePhone($this->phoneParser->parse($contactInformationInput->phone));
+        }
+
+        if ($contactInformationInput->mobile) {
+            $identity->setMobilePhone($this->phoneParser->parse($contactInformationInput->mobile));
+        }
 
         $identity
             ->setEmail($contactInformationInput->email)
@@ -111,14 +112,5 @@ class IdentityParser
             ->setAddressPostcode($foreignAddress->postcode ?? '')
             ->setAddressCity($foreignAddress->city ?? '')
             ->setAddressDepartment('');
-    }
-
-    private function choosePhoneNumber(object $fixPhone, object $mobilePhone): string
-    {
-        if ($fixPhone->number) {
-            return $this->phoneParser->parse($fixPhone);
-        }
-
-        return $this->phoneParser->parse($mobilePhone);
     }
 }

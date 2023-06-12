@@ -537,3 +537,16 @@ Feature:
         Then I am authenticated with PR5KTZ9R from GN
         And I am on "/plainte/recapitulatif/110"
         Then I should see a "#badge-unit-reassignment-asked" element
+
+    @func
+    Scenario: As a user, I should see the home phone number if it has been filled by the victim
+        Given I am authenticated with PR5KTZ9R from GN
+        And I am on "/plainte/recapitulatif/91"
+        Then I should not see the key "pel.home.phone" translated
+        And I should not see "01 23 45 67 89"
+        When I am on "/plainte/recapitulatif/102"
+        Then I should see the key "pel.home.phone" translated
+        And I should see "01 23 45 67 89"
+        When I am on "plainte/rendez-vous/102"
+        Then I should see the key "pel.home.phone" translated
+        And I should see "01 23 45 67 89"

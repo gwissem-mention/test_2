@@ -5,7 +5,7 @@
         <div class="col-1">
             <span class="appointment-icon"><i class="bi bi-person-fill"></i></span>
         </div>
-        <div class="col-4">
+        <div class="col-5">
             <ul>
                 <li>{{ 'pel.civility'|trans }} :
                     {% if complaint.identity.civility is same as(constant('App\\Entity\\Identity::CIVILITY_MALE')) %}
@@ -16,7 +16,12 @@
                 </li>
                 <li>{{ 'pel.lastname'|trans }} : {{ complaint.identity.lastname }}</li>
                 <li>{{ 'pel.firstname'|trans }} : {{ complaint.identity.firstname }}</li>
-                <li>{{ 'pel.phone'|trans }} : {{ complaint.identity.mobilePhone }}</li>
+                {% if complaint.identity.homePhone %}
+                    <li>{{ 'pel.home.phone'|trans }} : {{ complaint.identity.homePhone }}</li>
+                {% endif %}
+                {% if complaint.identity.mobilePhone %}
+                    <li>{{ 'pel.mobile.phone'|trans }} : {{ complaint.identity.mobilePhone }}</li>
+                {% endif %}
                 <li>{{ 'pel.email'|trans }} : {{ complaint.identity.email }}</li>
             </ul>
         </div>

@@ -95,12 +95,12 @@ class Identity
     #[ORM\Column(nullable: true)]
     private ?int $addressDepartmentNumber = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $mobilePhone = null;
-    //
-    //    #[ORM\Column(length: 255)]
-    //    private ?string $homePhone = null;
-    //
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $homePhone = null;
+
     //    #[ORM\Column(length: 255)]
     //    private ?string $officePhone = null;
 
@@ -258,6 +258,18 @@ class Identity
     public function setMobilePhone(string $mobilePhone): self
     {
         $this->mobilePhone = $mobilePhone;
+
+        return $this;
+    }
+
+    public function getHomePhone(): ?string
+    {
+        return $this->homePhone;
+    }
+
+    public function setHomePhone(?string $homePhone): self
+    {
+        $this->homePhone = $homePhone;
 
         return $this;
     }
