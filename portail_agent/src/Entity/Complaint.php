@@ -9,6 +9,7 @@ use App\Repository\ComplaintRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ReadableCollection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ComplaintRepository::class)]
@@ -74,7 +75,7 @@ class Complaint
     //    #[ORM\Column]
     //    private ?bool $claimsLegalAction = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $appointmentContactInformation = null;
 
     #[ORM\Column(nullable: true)]
