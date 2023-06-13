@@ -1838,6 +1838,130 @@
                 <source>pel.next.step</source>
                 <target>Étape suivante</target>
             </trans-unit>
+            <trans-unit id="pel.before.online.complaint">
+                <source>pel.before.online.complaint</source>
+                <target>Avant de déclarer ma plainte en ligne, je prends acte des dispositions légales suivantes</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.dispositions">
+                <source>pel.legal.dispositions</source>
+                <target>Dispositions légales</target>
+            </trans-unit>
+            <trans-unit id="pel.before.starting.complaint">
+                <source>pel.before.starting.complaint</source>
+                <target>Avant de déclarer ma plainte, je prends acte des dispositions légales suivantes</target>
+            </trans-unit>
+            <trans-unit id="pel.article.10.2">
+                <source>pel.article.10.2</source>
+                <target>Article 10-2</target>
+            </trans-unit>
+            <trans-unit id="pel.officers.and.agents">
+                <source>pel.officers.and.agents</source>
+                <target>Les officiers et les agents de police judiciaire ou, sous leur contrôle, les assistants d'enquête informent par tout moyen les victimes de leur droit :</target>
+            </trans-unit>
+            <trans-unit id="pel.obtain.compensation.for.their.loss">
+                <source>pel.obtain.compensation.for.their.loss</source>
+                <target>D'obtenir la réparation de leur préjudice, par l'indemnisation de celui-ci ou par tout autre moyen adapté, y compris, s'il y a lieu, une mesure de justice restaurative</target>
+            </trans-unit>
+            <trans-unit id="pel.filing.a.civil.suit">
+                <source>pel.filing.a.civil.suit</source>
+                <target>De se constituer une partie civile soit dans le cadre d'une mise en mouvement de l'action publique par le parquet, soit par la voie d'une citation directe de l'auteur des faits devant la juridiction compétente ou d'une plainte portée devant le juge d'instruction</target>
+            </trans-unit>
+            <trans-unit id="pel.to.be.assisted">
+                <source>pel.to.be.assisted</source>
+                <target>D'être, si elles souhaitent se constituer partie civile, assistées d'un avocat qu'elles peuvent choisir ou qui, à leur demande, est désigné par le bâtonnier de l'ordre des avocats près la juridiction compétente, les frais étant à la charge des victimes sauf si elles remplissent les conditions d'accès à l'aide juridictionnelle ou si elles bénéficient d'une assurance de protection juridique</target>
+            </trans-unit>
+            <trans-unit id="pel.to.be.assisted.by.a.service">
+                <source>pel.to.be.assisted.by.a.service</source>
+                <target>D'être aidées par un service relevant d'une ou de plusieurs collectivités publiques ou par une association d'aide aux victimes agréée dans des conditions définies par décret</target>
+            </trans-unit>
+            <trans-unit id="pel.refer.the.matter">
+                <source>pel.refer.the.matter</source>
+                <target>De saisir, le cas échéant, la commission d'indemnisation des victimes d'infraction, lorsqu'il s'agit d'une infraction mentionnée aux articles</target>
+            </trans-unit>
+            <trans-unit id="pel.706.3">
+                <source>pel.706.3</source>
+                <target>706-3</target>
+            </trans-unit>
+            <trans-unit id="pel.706.14">
+                <source>pel.706.14</source>
+                <target>706-14</target>
+            </trans-unit>
+            <trans-unit id="pel.of.this.code">
+                <source>pel.of.this.code</source>
+                <target>du présent code</target>
+            </trans-unit>
+            <trans-unit id="pel.to.be.informed.of.the.protective.measures">
+                <source>pel.to.be.informed.of.the.protective.measures</source>
+                <target>D'être informées sur les mesures de protection dont elles peuvent bénéficier, notamment les ordonnances de protection prévues au titre XIV du livre Ier du code civil. Les victimes sont également informées des peines encourues par les auteurs des violences et les conditions d'exécution des éventuelles condamnations qui pourraient être prononcées</target>
+            </trans-unit>
+            <trans-unit id="pel.for.victims">
+                <source>pel.for.victims</source>
+                <target>Pour les victimes qui ne comprennent pas la langue française, de bénéficier d'un interprète et d'une traduction des informations indispensables à l'exercice de leurs droits</target>
+            </trans-unit>
+            <trans-unit id="pel.to.be.accompanied">
+                <source>pel.to.be.accompanied</source>
+                <target>D'être accompagnées chacune, à leur demande, à tous les stades de la procédure, par leur représentant légal et par la personne majeure de leur choix, y compris par un avocat, sauf décision contraire motiviée prise par l'autorité judiciaire compétente</target>
+            </trans-unit>
+            <trans-unit id="pel.to.declare.a.third.party.address">
+                <source>pel.to.declare.a.third.party.address</source>
+                <target>De déclarer comme domicile l'adresse d'un tiers, sous réserve de l'accord exprès de celui-ci. Toutefois, lorsque la victime est une personne dépositaire de l'autorité publique ou chargée d'une mission de service public et que l'infraction a été commise en raison de ses fonctions ou de sa mission, elle est informée qu'elle peut déclarer, sans cet accord, son adresse professionnelle</target>
+            </trans-unit>
+            <trans-unit id="pel.in.the.case.of.violence">
+                <source>pel.in.the.case.of.violence</source>
+                <target>S'il s'agit de victimes de violences pour lesquelles un examen médical a été requis par un officier de police judiciaire ou un magistrat, de se voir remettre le certificat d'examen médical constatant leur état de santé</target>
+            </trans-unit>
+            <trans-unit id="pel.article.8.2.2">
+                <source>pel.article.8.2.2</source>
+                <target>Article D8-2-2</target>
+            </trans-unit>
+            <trans-unit id="pel.when.a.victim.is.about.to.lodge">
+                <source>pel.when.a.victim.is.about.to.lodge</source>
+                <target>Lorsqu'une victime s'apprête à déposer une plainte en ligne, elle doit être informée par des mentions apparaissant de façon lisible sur les écrans d'accueil du site :</target>
+            </trans-unit>
+            <trans-unit id="pel.that.the.online.complaint">
+                <source>pel.that.the.online.complaint</source>
+                <target>Que la plainte en ligne ne constitue qu'une faculté et qu'elle conserve la possibilité de se déplacer au commisariat de police ou à la brigade de gendarmerie de son choix pour déposer plainte, conformément aux dispositions de l'article</target>
+            </trans-unit>
+            <trans-unit id="pel.filing.a.complaint.online">
+                <source>pel.filing.a.complaint.online</source>
+                <target>Que le dépôt d'une plainte en ligne ne lui interdit pas de demander à être entendue, ultérieurement, par les enquêteurs</target>
+            </trans-unit>
+            <trans-unit id="pel.in.any.case">
+                <source>pel.in.any.case</source>
+                <target>Qu'en tout état de cause, la plainte en ligne ne dispense pas les enquêteurs de procéder à son audition si ceux-ci estiment que la nature ou la gravité des faits le justifie</target>
+            </trans-unit>
+            <trans-unit id="pel.in.addition.to.cases">
+                <source>pel.in.addition.to.cases</source>
+                <target>Outre les cas dans lesquels la nature ou la gravité des faits rend nécessaire l'audition ultérieure de la victime, les officiers ou agents de police judiciaire doivent procéder à cette audition en cas de plainte en ligne portant sur des infractions d'agressions sexuelles ou d'atteintes sexuelles prévues par les articles</target>
+            </trans-unit>
+            <trans-unit id="pel.to.the.penal.code">
+                <source>pel.to.the.penal.code</source>
+                <target>du code pénal</target>
+            </trans-unit>
+            <trans-unit id="pel.nota">
+                <source>pel.nota</source>
+                <target>Nota</target>
+            </trans-unit>
+            <trans-unit id="pel.in.accordance.to.article.11">
+                <source>pel.in.accordance.to.article.11</source>
+                <target>Conformément à l'article 11 du décret n°2019-507 du 24 avril 2019, ces dispositions entreront en vigueur aux dates fixées par les arrêtés pris en application de l'article D. 8-2-1 du code de procédure pénale dans sa rédaction résultant du présent décret, pour les infractions prévues par ces arrêtés</target>
+            </trans-unit>
+            <trans-unit id="pel.in.accordance.to.article.2">
+                <source>pel.in.accordance.to.article.2</source>
+                <target>Conformément à l'article 2 de l'arrêté du 26 juin 2020 relatif aux plaintes par voie électronique, ces dispositions entrent en vigueur le 1er juillet 2020</target>
+            </trans-unit>
+            <trans-unit id="pel.complete.my.declaration">
+                <source>pel.complete.my.declaration</source>
+                <target>Compléter ma déclaration</target>
+            </trans-unit>
+            <trans-unit id="pel.your.identity">
+                <source>pel.your.identity</source>
+                <target>Votre identité</target>
+            </trans-unit>
+            <trans-unit id="pel.my.online.complaint.declaration">
+                <source>pel.my.online.complaint.declaration</source>
+                <target>Ma déclaration de plainte en ligne</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

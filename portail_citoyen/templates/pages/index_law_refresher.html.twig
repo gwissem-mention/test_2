@@ -1,11 +1,46 @@
 {% extends 'common/_complaint.html.twig' %}
 
-{% set icon = 'user' %}
-{% set title = 'pel.complaint.online.unfolding'|trans %}
-{% set current_step_title = 'Une super étape !' %}
+{% set icon = 'law-refresher' %}
+{% set title = 'pel.my.online.complaint.declaration'|trans %}
+{% set current_step_title = 'pel.legal.dispositions'|trans %}
 {% set current_step_number = '1' %}
-{% set next_step_title = 'Le prochain titre' %}
+{% set next_step_title = 'pel.your.identity'|trans %}
+{% set display_footer = true %}
 
 {% block content %}
-    Hello world !
+    <div class="hidden lg:block absolute m-auto left-0 right-0 w-36 h-full bg-no-repeat bg-[length:110px_110px] bg-[url('/assets/images/icons/sign-document.svg')]"></div>
+    <h1 class="hidden lg:block mt-32 text-4xl font-bold text-center mb-10">{{ 'pel.before.online.complaint'|trans }} :</h1>
+    <h1 class="block lg:hidden text-3xl font-bold mb-3">{{ 'pel.legal.dispositions'|trans }}</h1>
+    <div class="block lg:hidden mb-5">{{ 'pel.before.starting.complaint'|trans }} :</div>
+    <hr>
+    <h2 class="text-xl font-bold mb-5 lg:text-center">{{ 'pel.article.10.2'|trans }}</h2>
+    <p class="font-bold lg:font-normal">{{ 'pel.officers.and.agents'|trans }}</p>
+    <ol class="mb-7 list-none [counter-reset:step-counter]">
+        <li class="[counter-increment:step-counter] marker:[content:counters(step-counter,'.')'\00b0'] pl-1.5 mb-3">{{ 'pel.obtain.compensation.for.their.loss'|trans }} ;</li>
+        <li class="[counter-increment:step-counter] marker:[content:counters(step-counter,'.')'\00b0'] pl-1.5 mb-3">{{ 'pel.filing.a.civil.suit'|trans }} ;</li>
+        <li class="[counter-increment:step-counter] marker:[content:counters(step-counter,'.')'\00b0'] pl-1.5 mb-3">{{ 'pel.to.be.assisted'|trans }} ;</li>
+        <li class="[counter-increment:step-counter] marker:[content:counters(step-counter,'.')'\00b0'] pl-1.5 mb-3">{{ 'pel.to.be.assisted.by.a.service'|trans }} ;</li>
+        <li class="[counter-increment:step-counter] marker:[content:counters(step-counter,'.')'\00b0'] pl-1.5 mb-3">{{ 'pel.refer.the.matter'|trans}} <a href="#" target="_self">{{ 'pel.706.3'|trans }}</a> {{ 'pel.or'|trans }} <a href="#" target="_self">{{ 'pel.706.14'|trans }}</a> {{ 'pel.of.this.code'|trans }} ;</li>
+        <li class="[counter-increment:step-counter] marker:[content:counters(step-counter,'.')'\00b0'] pl-1.5 mb-3">{{ 'pel.to.be.informed.of.the.protective.measures'|trans }} ;</li>
+        <li class="[counter-increment:step-counter] marker:[content:counters(step-counter,'.')'\00b0'] pl-1.5 mb-3">{{ 'pel.for.victims'|trans }} ;</li>
+        <li class="[counter-increment:step-counter] marker:[content:counters(step-counter,'.')'\00b0'] pl-1.5 mb-3">{{ 'pel.to.be.accompanied'|trans }} ;</li>
+        <li class="[counter-increment:step-counter] marker:[content:counters(step-counter,'.')'\00b0'] pl-1.5 mb-3">{{ 'pel.to.declare.a.third.party.address'|trans }}.</li>
+        <li class="[counter-increment:step-counter] marker:[content:counters(step-counter,'.')'\00b0'] pl-1.5 mb-3">{{ 'pel.in.the.case.of.violence'|trans }}.</li>
+    </ol>
+    <hr>
+    <h2 class="text-xl font-bold mb-5 lg:text-center">{{ 'pel.article.8.2.2'|trans }}</h2>
+    <p class="font-bold lg:font-normal">{{ 'pel.when.a.victim.is.about.to.lodge'|trans }}</p>
+    <ol class="mb-7 list-none [counter-reset:step-counter]">
+        <li class="[counter-increment:step-counter] marker:[content:counters(step-counter,'.')'\00b0'] pl-1.5 mb-3">{{ 'pel.that.the.online.complaint'|trans}} <a href="#" target="_self">15-3</a> ;</li>
+        <li class="[counter-increment:step-counter] marker:[content:counters(step-counter,'.')'\00b0'] pl-1.5 mb-3">{{ 'pel.filing.a.complaint.online'|trans }} ;</li>
+        <li class="[counter-increment:step-counter] marker:[content:counters(step-counter,'.')'\00b0'] pl-1.5 mb-3">{{ 'pel.in.any.case'|trans }}.</li>
+    </ol>
+    <p>{{ 'pel.in.addition.to.cases'|trans }} <a href="#" target="_self">222-22 à 222-31-2</a> et <a href="#" target="_self">227-25 à 227-27-3</a> {{ 'pel.to.the.penal.code'|trans }}.</p>
+    <div class="text-lg font-bold mb-3">{{ 'pel.nota'|trans }}</div>
+    <p>{{ 'pel.in.accordance.to.article.11'|trans }}.</p>
+    <p class="m-0">{{ 'pel.in.accordance.to.article.2'|trans }}.</p>
+{% endblock %}
+
+{% block end %}
+    <a class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line" href="{{ path('complaint_declarant_status') }}">{{ 'pel.complete.my.declaration'|trans }}</a>
 {% endblock %}
