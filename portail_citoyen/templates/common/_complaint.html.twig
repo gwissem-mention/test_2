@@ -8,20 +8,19 @@
 {% block body %}
     <div class="fr-background-action-high--blue-france">
         <div class="fr-container p-0 md:p-5 lg:p-10 pb-0 md:pb-5 lg:pb-10">
-            <div class="fr-grid-row py-5 lg:py-10 flex items-center">
-                <div class="fr-col-md-6 px-3 lg:px-3 m-0">
+            <div class="fr-grid-row flex flex-column lg:flex-row items-center py-5 lg:py-10">
+                <div class="fr-col-md-6 w-full px-3 lg:px-3 m-0">
                     <div class="flex items-center">
-                        <div class="block mr-3 w-20 h-20 bg-center bg-no-repeat bg-[length:40px_40px] bg-[url('/assets/images/icons/{{ icon }}.svg')] md:bg-[length:56px_56px]"></div>
-                        <div class="text-white font-bold text-3xl">{{ current_step_title }}</div>
+                        <div class="relative text-white font-bold text-3xl fr-pb-0 pl-14 md:pl-[86px] before:content-[''] before:absolute before:left-0.5 before:w-16 before:h-full before:bg-no-repeat before:bg-[length:40px_40px] before:bg-[url('/assets/images/icons/law-refresher.svg')] md:before:bg-[length:64px_64px]">{{ title }}</div>
                     </div>
                 </div>
-                <div class="fr-col-md-6 px-5 lg:px-10 m-0 mt-3 lg:mt-0 fr-col--border-left">
+                <div class="fr-col-md-6 w-full px-5 lg:px-10 m-0 mt-3 lg:mt-0 fr-col--border-left">
                     <div class="fr-stepper m-0 mb-1">
                         <div class="fr-stepper__title text-white">
-                            <span class="fr-stepper__state text-white">{{ 'pel.step'|trans}} {{ current_step_number }} {{ 'pel.on'|trans }} 5</span>
+                            <span class="fr-stepper__state text-white">{{ 'pel.step'|trans}} {{ current_step_number }} {{ 'pel.on'|trans }} 7</span>
                             {{ current_step_title }}
                         </div>
-                        <div class="fr-stepper__steps mt-3" data-fr-current-step="{{ current_step_number }}" data-fr-steps="5"></div>
+                        <div class="fr-stepper__steps mt-3" data-fr-current-step="{{ current_step_number }}" data-fr-steps="7"></div>
                         <p class="fr-stepper__details text-white">
                             <span class="fr-text--bold">{{ 'pel.next.step'|trans }} :</span>
                             {{ next_step_title }}
@@ -29,8 +28,16 @@
                     </div>
                 </div>
             </div>
-            <div class="fr-container bg-white p-5">
-                {% block content %}{% endblock %}
+            <div class="fr-container bg-white p-0">
+                <div class="p-5 lg:p-20">
+                    {% block content %}{% endblock %}
+                </div>
+                {% if display_footer is defined and display_footer is same as(true) %}
+                    <hr>
+                    <div class="p-10 pt-5 lg:p-16 lg:pt-10 text-center">
+                        {% block end %}{% endblock %}
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>
