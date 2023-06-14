@@ -269,8 +269,11 @@ behat:
 e2e:
 	@vendor/bin/behat -c behat.yml.dist --format=pretty --profile e2e
 
-complaint-e2e:
-	@vendor/bin/behat -c behat.yml.dist --format=pretty --profile e2e --suite complaint
+complaint-1-e2e:
+	@vendor/bin/behat -c behat.yml.dist --format=pretty --profile e2e --suite complaint_1
+
+complaint-2-e2e:
+	@vendor/bin/behat -c behat.yml.dist --format=pretty --profile e2e --suite complaint_2
 
 complete-workflow-e2e:
 	@vendor/bin/behat -c behat.yml.dist --format=pretty --profile e2e --suite complete_workflow

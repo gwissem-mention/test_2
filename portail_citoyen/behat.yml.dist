@@ -70,8 +70,21 @@ e2e:
             <<: *contexts
             filters:
                 tags: '~@func&&~@flaky'
-        complaint:
-            paths: [ '%paths.base%/features/complaint' ]
+        complaint_1:
+            paths:
+                - '%paths.base%/features/complaint/identity'
+                - '%paths.base%/features/complaint/additional_information.feature'
+            <<: *contexts
+            filters:
+                tags: '~@func&&~@flaky'
+        complaint_2:
+            paths:
+                - '%paths.base%/features/complaint/declarant_status.feature'
+                - '%paths.base%/features/complaint/end.feature'
+                - '%paths.base%/features/complaint/facts.feature'
+                - '%paths.base%/features/complaint/identity.feature'
+                - '%paths.base%/features/complaint/objects.feature'
+                - '%paths.base%/features/complaint/appointment.feature'
             <<: *contexts
             filters:
                 tags: '~@func&&~@flaky'

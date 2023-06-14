@@ -25,16 +25,19 @@
                                          - "--disable-dev-shm-usage"
                                          - "--window-size=1920,1080"
                                          - "--force-prefers-reduced-motion"
+.contexts: &contexts
+    contexts:
+        - App\Tests\Behat\BaseContext
+        - App\Tests\Behat\DatabaseContext:
+            kernel: '@kernel'
+        - App\Tests\Behat\HttpContext
+        - App\Tests\Behat\UserContext
+        - FailAid\Context\FailureContext
+
 default:
     suites:
         default:
-            contexts:
-                - App\Tests\Behat\BaseContext
-                - App\Tests\Behat\DatabaseContext:
-                    kernel: '@kernel'
-                - App\Tests\Behat\HttpContext
-                - App\Tests\Behat\UserContext
-                - FailAid\Context\FailureContext
+            <<: *contexts
 
     extensions:
         FriendsOfBehat\SymfonyExtension:
@@ -64,7 +67,21 @@ func:
 
 e2e:
     suites:
+        complaint:
+            paths:
+                - '%paths.base%/features/complaint'
+            <<: *contexts
+            filters:
+                tags: '~@func&&~@flaky'
         default:
+            paths:
+                - '%paths.base%/features/authenticate_user.feature'
+                - '%paths.base%/features/bulk_actions.feature'
+                - '%paths.base%/features/faq.feature'
+                - '%paths.base%/features/home.feature'
+                - '%paths.base%/features/notification.feature'
+                - '%paths.base%/features/reporting.feature'
+            <<: *contexts
             filters:
                 tags: '~@func&&~@flaky'
     <<: *extensions
