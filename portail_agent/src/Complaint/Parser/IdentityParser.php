@@ -9,6 +9,7 @@ class IdentityParser
     public function __construct(
         private readonly DateParser $dateParser,
         private readonly PhoneParser $phoneParser,
+        private readonly AddressParser $addressParser
     ) {
     }
 
@@ -57,60 +58,21 @@ class IdentityParser
     private function parseAddress(Identity $identity, object $addressInput): void
     {
         if ($addressInput->frenchAddress) {
-            $this->parseFrenchAddress($identity, $addressInput->frenchAddress);
+            $address = $this->addressParser->parseFrenchAddress($addressInput->frenchAddress);
         } else {
-            $this->parseForeignAddress($identity, $addressInput->foreignAddress);
+            $address = $this->addressParser->parseForeignAddress($addressInput->foreignAddress);
         }
 
-        $identity->setAddressCountry($addressInput->country->label);
-    }
-
-    private function parseFrenchAddress(Identity $identity, object $addressInput): void
-    {
-        match ($addressInput->addressType) {
-            'etalab_address' => $this->parseEtalabFrenchAddress($identity, $addressInput),
-            default => $this->parseStandardFrenchAddress($identity, $addressInput),
-        };
-    }
-
-    private function parseEtalabFrenchAddress(Identity $identity, object $addressInput): void
-    {
         $identity
-            ->setAddress($addressInput->label)
-            ->setAddressStreetType('') // TODO: extract street type from street name for french address if possible
-            ->setAddressStreetNumber($addressInput->houseNumber ?? '')
-            ->setAddressStreetName($addressInput->street ?? '')
-            ->setAddressInseeCode($addressInput->citycode ?? '')
-            ->setAddressPostcode($addressInput->postcode ?? '')
-            ->setAddressCity($addressInput->city ?? '');
-
-        $context = array_map('trim', explode(',', $addressInput->context));
-        $identity
-            ->setAddressDepartmentNumber((int) $context[0])
-            ->setAddressDepartment($context[1]);
-    }
-
-    private function parseStandardFrenchAddress(Identity $identity, object $addressInput): void
-    {
-        $identity->setAddress($addressInput->label)
-            ->setAddressStreetType('')
-            ->setAddressStreetNumber('')
-            ->setAddressStreetName('')
-            ->setAddressInseeCode('')
-            ->setAddressPostcode('')
-            ->setAddressCity('')
-            ->setAddressDepartment('');
-    }
-
-    private function parseForeignAddress(Identity $identity, object $foreignAddress): void
-    {
-        $identity->setAddress('')
-            ->setAddressStreetType('')
-            ->setAddressStreetNumber($foreignAddress->houseNumber ?? '')
-            ->setAddressStreetName($foreignAddress->street ?? '')
-            ->setAddressInseeCode('')
-            ->setAddressPostcode($foreignAddress->postcode ?? '')
-            ->setAddressCity($foreignAddress->city ?? '')
-            ->setAddressDepartment('');
+            ->setAddressCountry($addressInput->country->label)
+            ->setAddress($address->getAddress())
+            ->setAddressStreetType($address->getStreetType())
+            ->setAddressStreetNumber($address->getStreetNumber())
+            ->setAddressStreetName($address->getStreetName())
+            ->setAddressInseeCode($address->getInseeCode())
+            ->setAddressPostcode($address->getPostcode())
+            ->setAddressCity($address->getCity())
+            ->setAddressDepartment($address->getDepartment())
+            ->setAddressDepartmentNumber($address->getDepartmentNumber());
     }
 }
