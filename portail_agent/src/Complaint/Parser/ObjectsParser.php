@@ -23,6 +23,7 @@ class ObjectsParser
         private readonly PhoneParser $phoneParser,
         private readonly FileParser $fileParser,
         private readonly DateParser $dateParser,
+        private readonly AddressParser $addressParser,
     ) {
     }
 
@@ -164,45 +165,19 @@ class ObjectsParser
         }
     }
 
-    private function parseAddress(AbstractObject $object, object $addressInput): void
+    private function parseAddress(AdministrativeDocument $object, object $addressInput): void
     {
-        match ($addressInput->addressType) {
-            'etalab_address' => $this->parseEtalabAddress($object, $addressInput),
-            default => $this->parseStandardAddress($object, $addressInput),
-        };
-    }
+        $address = $this->addressParser->parseFrenchAddress($addressInput);
 
-    private function parseEtalabAddress(AbstractObject $object, object $addressInput): void
-    {
-        if ($object instanceof AdministrativeDocument) {
-            $object
-                ->setOwnerAddress($addressInput->label)
-                ->setOwnerAddressStreetType(null) // TODO: extract street type from street name for french address if possible
-                ->setOwnerAddressStreetNumber($addressInput->houseNumber)
-                ->setOwnerAddressStreetName($addressInput->street)
-                ->setOwnerAddressInseeCode($addressInput->citycode)
-                ->setOwnerAddressPostcode($addressInput->postcode)
-                ->setOwnerAddressCity($addressInput->city);
-
-            $context = array_map('trim', explode(',', $addressInput->context));
-            $object
-                ->setOwnerAddressDepartmentNumber($context[0])
-                ->setOwnerAddressDepartment($context[1]);
-        }
-    }
-
-    private function parseStandardAddress(AbstractObject $object, object $addressInput): void
-    {
-        if ($object instanceof AdministrativeDocument) {
-            $object
-                ->setOwnerAddress($addressInput->label)
-                ->setOwnerAddressStreetType(null)
-                ->setOwnerAddressStreetNumber(null)
-                ->setOwnerAddressStreetName(null)
-                ->setOwnerAddressInseeCode(null)
-                ->setOwnerAddressPostcode(null)
-                ->setOwnerAddressCity(null)
-                ->setOwnerAddressDepartment(null);
-        }
+        $object
+            ->setOwnerAddress($address->getAddress())
+            ->setOwnerAddressStreetType($address->getStreetType())
+            ->setOwnerAddressStreetNumber($address->getStreetNumber())
+            ->setOwnerAddressStreetName($address->getStreetName())
+            ->setOwnerAddressInseeCode($address->getInseeCode())
+            ->setOwnerAddressPostCode($address->getPostcode())
+            ->setOwnerAddressCity($address->getCity())
+            ->setOwnerAddressDepartment($address->getDepartment())
+            ->setOwnerAddressDepartmentNumber((string) $address->getDepartmentNumber());
     }
 }

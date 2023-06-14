@@ -2,6 +2,7 @@
 
 namespace App\Tests\Complaint\Parser;
 
+use App\Complaint\Parser\AddressParser;
 use App\Complaint\Parser\DateParser;
 use App\Complaint\Parser\IdentityParser;
 use App\Complaint\Parser\PhoneParser;
@@ -83,14 +84,28 @@ class IdentityParserTest extends KernelTestCase
         "latitude": null,
         "longitude": null
       },
-      "foreignAddress": {
-        "addressType": "foreign_address",
-        "type": "housenumber",
-        "houseNumber": "1",
-        "street": "Route de Dracy",
-        "postcode": "71490",
-        "city": "Couches"
-      },
+      "foreignAddress":
+		{
+            "addressType": "etalab_address",
+            "apartment": "2",
+            "id": null,
+            "type": "Av.",
+            "score": null,
+            "houseNumber": "134",
+            "street": "Roque Nublo",
+            "name": null,
+            "postcode": "28223",
+            "citycode": null,
+            "city": "Madrid",
+            "district": null,
+            "context": "Pozuelo de Alarc\u00f3n",
+            "x": null,
+            "y": null,
+            "importance": null,
+            "label": null,
+            "latitude": null,
+            "longitude": null
+        },
       "email": "wossewodda-3728@yopmail.com"
     },
     "representedPersonCivilState": {
@@ -173,12 +188,7 @@ JSON;
 
     public function getParser(): IdentityParser
     {
-        // self::bootKernel();
-        // $container = static::getContainer();
-        //
-        // return $container->get(IdentityParser::class);
-
-        return new IdentityParser(new DateParser(), new PhoneParser());
+        return new IdentityParser(new DateParser(), new PhoneParser(), new AddressParser());
     }
 
     public function testParse(): void
@@ -201,7 +211,6 @@ JSON;
         $identity = $parser->parse($identityParsed->civilState, $identityParsed->contactInformation, $declarantStatusParsed);
 
         $this->assertInstanceOf(Identity::class, $identity);
-
         $this->assertSame(1, $identity->getDeclarantStatus());
         $this->assertSame(2, $identity->getCivility());
         $this->assertSame('Angela Claire Louise', $identity->getFirstname());
@@ -286,10 +295,15 @@ JSON;
         $identity = $parser->parse($identityParsed->civilState, $identityParsed->contactInformation, $declarantStatusParsed);
 
         $this->assertInstanceOf(Identity::class, $identity);
-        $this->assertSame('1', $identity->getAddressStreetNumber());
-        $this->assertSame('Route de Dracy', $identity->getAddressStreetName());
-        $this->assertSame('71490', $identity->getAddressPostcode());
-        $this->assertSame('Couches', $identity->getAddressCity());
+        $this->assertEquals('134 Av. Roque Nublo 2 Madrid Pozuelo de Alarcón 28223', $identity->getAddress());
+        $this->assertEquals('', $identity->getAddressDepartment());
+        $this->assertEquals(0, $identity->getAddressDepartmentNumber());
+        $this->assertEquals('Madrid', $identity->getAddressCity());
+        $this->assertEquals('', $identity->getAddressInseeCode());
+        $this->assertEquals('134', $identity->getAddressStreetNumber());
+        $this->assertEquals('Av.', $identity->getAddressStreetType());
+        $this->assertEquals('Roque Nublo', $identity->getAddressStreetName());
+        $this->assertEquals('28223', $identity->getAddressPostcode());
     }
 
     public function testParseReprensentedPerson(): void
