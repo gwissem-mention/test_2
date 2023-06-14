@@ -24,13 +24,6 @@ class Complaint
     public const STATUS_REASSIGNMENT_PENDING = 'pel.reassignment.pending';
     public const STATUS_REJECTED = 'pel.rejected';
     public const STATUS_UNIT_REDIRECTION_PENDING = 'pel.unit.redirection.pending';
-    public const REFUSAL_REASON_REORIENTATION_APPONTMENT = 1;
-    public const REFUSAL_REASON_REORIENTATION_OTHER_SOLUTION = 2;
-    public const REFUSAL_REASON_ABSENCE_PENAL_OFFENSE = 3;
-    public const REFUSAL_REASON_INSUFISANT_QUALITY_TO_ACT = 4;
-    public const REFUSAL_REASON_VICTIM_CARENCE = 5;
-    public const REFUSAL_REASON_OTHER = 6;
-
     public const ALERT_VIOLENCE = 'pel.alert.violence';
     public const ALERT_TSP = 'pel.alert.tsp';
     public const ALERT_REGISTERED_VEHICLE = 'pel.alert.registered.vehicle';
@@ -125,8 +118,8 @@ class Complaint
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $alert = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?int $refusalReason = null;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $refusalReason = null;
 
     #[ORM\Column(length: 3000, nullable: true)]
     private ?string $refusalText = null;
@@ -337,12 +330,12 @@ class Complaint
         return $this;
     }
 
-    public function getRefusalReason(): ?int
+    public function getRefusalReason(): ?string
     {
         return $this->refusalReason;
     }
 
-    public function setRefusalReason(?int $refusalReason): self
+    public function setRefusalReason(?string $refusalReason): self
     {
         $this->refusalReason = $refusalReason;
 

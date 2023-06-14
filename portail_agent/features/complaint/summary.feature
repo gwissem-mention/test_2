@@ -204,7 +204,7 @@ Feature:
     Scenario: I can submit the reject form successfully
         Given I am on "/plainte/recapitulatif/91"
         When I press "Rejeter"
-        And I select "1" from "reject_refusalReason"
+        And I select "appointment-needed" from "reject_refusalReason"
         And I fill in "reject_refusalText" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus scelerisque ante id dui lacinia eu."
         And I press "Valider le refus"
         Then I should not see a ".modal[aria-modal=true]" element
@@ -222,7 +222,7 @@ Feature:
     Scenario: I can see form errors the reject form when reject_refusalText is too short
         Given I am on "/plainte/recapitulatif/92"
         When I press "Rejeter"
-        And I select "1" from "reject_refusalReason"
+        And I select "appointment-needed" from "reject_refusalReason"
         And I fill in "reject_refusalText" with "Lorem ipsum dolor sit amet"
         And I press "Valider le refus"
         Then I should see a ".modal[aria-modal=true]" element
