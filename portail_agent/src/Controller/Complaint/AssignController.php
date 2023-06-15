@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller\Complaint;
 
 use App\Complaint\ComplaintAssignementer;
+use App\Complaint\ComplaintWorkflowException;
 use App\Entity\Complaint;
 use App\Entity\User;
 use App\Form\Complaint\AssignType;
@@ -16,7 +17,11 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class AssignController extends AbstractController
 {
+    /**
+     * @throws ComplaintWorkflowException
+     */
     #[IsGranted('ROLE_SUPERVISOR')]
+    #[IsGranted('COMPLAINT_VIEW', subject: 'complaint')]
     #[Route(path: '/plainte/attribuer/{id}', name: 'complaint_assign', methods: ['POST'])]
     public function __invoke(
         Complaint $complaint,
@@ -26,7 +31,6 @@ class AssignController extends AbstractController
         $reassignment = $complaint->getAssignedTo() instanceof User;
         $form = $this->createForm(AssignType::class, $complaint);
         $form->handleRequest($request);
-
         if ($form->isSubmitted()) {
             if (false === $form->isValid()) {
                 return $this->json([
@@ -40,7 +44,7 @@ class AssignController extends AbstractController
             $user = $complaint->getAssignedTo();
 
             if (!is_null($user)) {
-                $complaintAssignementer->assignOneTo($complaint, $user, $reassignment);
+                $complaintAssignementer->assignOneTo($complaint, $user, $reassignment, false);
             }
 
             return $this->json(

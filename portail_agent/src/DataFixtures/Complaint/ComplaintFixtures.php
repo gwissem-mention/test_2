@@ -178,7 +178,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
             for ($i = 1; $i <= self::COMPLAINTS_NB; ++$i) {
                 $complaint = $this->getGenericComplaint($users)
                     ->setCreatedAt(new \DateTimeImmutable('2022-12-05'))
-                    ->setStatus(Complaint::STATUS_REASSIGNMENT_PENDING)
+                    ->setStatus(Complaint::STATUS_ASSIGNED)
                     ->setUnitAssigned($unit);
                 /** @var Identity $identity */
                 $identity = $complaint->getIdentity();

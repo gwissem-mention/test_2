@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Complaint;
 
+use App\Complaint\ComplaintWorkflowManager;
 use App\Entity\Complaint;
 use App\Entity\User;
 use App\Generator\Complaint\ComplaintGeneratorInterface;
@@ -22,9 +23,15 @@ class XmlGenerationController extends AbstractController
 {
     #[IsGranted('IS_AUTHENTICATED')]
     #[Route(path: '/plainte/xml/{id}', name: 'complaint_xml', methods: ['GET'])]
-    public function __invoke(Complaint $complaint, ComplaintGeneratorInterface $generatorXml, ServiceRepository $serviceRepository, ComplaintRepository $complaintRepository): Response
-    {
-        $complaintRepository->save($complaint->setStatus(Complaint::STATUS_ONGOING_LRP), true);
+    public function __invoke(
+        Complaint $complaint,
+        ComplaintGeneratorInterface $generatorXml,
+        ServiceRepository $serviceRepository,
+        ComplaintRepository $complaintRepository,
+        ComplaintWorkflowManager $complaintWorkflowManager
+    ): Response {
+        $complaintWorkflowManager->sendToLRP($complaint);
+        $complaintRepository->save($complaint, true);
         /** @var User $user */
         $user = $this->getUser();
         /** @var Service $service */

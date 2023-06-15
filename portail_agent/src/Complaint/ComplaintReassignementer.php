@@ -22,12 +22,15 @@ class ComplaintReassignementer
         private readonly Security $security,
         private readonly EntityManagerInterface $entityManager,
         private readonly MessageBusInterface $messageBus,
+        private readonly ComplaintWorkflowManager $complaintWorkflowManager,
         private readonly UnitRepository $unitRepository
     ) {
     }
 
     /**
      * @param array<Complaint> $complaints
+     *
+     * @throws ComplaintWorkflowException
      */
     public function reassignBulkTo(array $complaints, string $assignedUnitCode, string $reassignText): void
     {
@@ -44,6 +47,9 @@ class ComplaintReassignementer
         $this->entityManager->flush();
     }
 
+    /**
+     * @throws ComplaintWorkflowException
+     */
     public function reassignAsSupervisor(Complaint $complaint, string $targetUnitCode, string $reassignText): void
     {
         /** @var User $user */
@@ -57,11 +63,12 @@ class ComplaintReassignementer
             ->setTitle(Comment::UNIT_REASSIGNMENT_REASON)
             ->setContent($reassignText);
 
+        $this->complaintWorkflowManager->unitRedirect($complaint);
+
         /** @var Unit $unit */
         $unit = $this->unitRepository->findOneBy(['code' => $targetUnitCode]);
 
         $complaint
-            ->setStatus(Complaint::STATUS_ASSIGNMENT_PENDING)
             ->setUnitAssigned($unit->getServiceId())
             ->setUnitToReassign(null)
             ->setUnitReassignText(null)
@@ -69,14 +76,18 @@ class ComplaintReassignementer
             ->setUnitReassignmentAsked(false)
             ->addComment($comment);
 
-        $this->messageBus->dispatch(new UnitReassignementMessage($complaint, $targetUnitCode, (bool) $reassignmentAsked, $reassignmentAskBy)); // Notification
+        $this->messageBus->dispatch(new UnitReassignementMessage($complaint, $targetUnitCode, (bool) $reassignmentAsked, $reassignmentAskBy));
         $this->messageBus->dispatch(new UnitReassignmentMessage((int) $complaint->getId())); // Salesforce email
     }
 
+    /**
+     * @throws ComplaintWorkflowException
+     */
     public function askReassignement(Complaint $complaint, string $targetUnitCode, string $reassignText): void
     {
+        $this->complaintWorkflowManager->askUnitRedirection($complaint);
+
         $complaint
-            ->setStatus(Complaint::STATUS_UNIT_REDIRECTION_PENDING)
             ->setUnitToReassign($targetUnitCode)
             ->setUnitReassignText($reassignText)
             ->setUnitReassignmentAsked(true);

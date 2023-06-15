@@ -1,31 +1,28 @@
-{% if complaint.status == constant('App\\Entity\\Complaint::STATUS_APPOINTMENT_PENDING') %}
+{% if workflow_has_marked_place(complaint, constant('App\\Entity\\Complaint::STATUS_APPOINTMENT_PENDING')) %}
     {% set status_btn_color = 'info' %}
     {% set status = complaint.status %}
-{% elseif complaint.status == constant('App\\Entity\\Complaint::STATUS_ASSIGNMENT_PENDING') %}
+{% elseif workflow_has_marked_place(complaint, constant('App\\Entity\\Complaint::STATUS_ASSIGNMENT_PENDING')) %}
     {% set status_btn_color = 'secondary' %}
     {% set status = complaint.status %}
-{% elseif complaint.status == constant('App\\Entity\\Complaint::STATUS_ASSIGNED') %}
+{% elseif workflow_has_marked_place(complaint, constant('App\\Entity\\Complaint::STATUS_ASSIGNED')) %}
     {% set status_btn_color = 'primary' %}
     {% set status = complaint.status %}
     {% if not is_granted('ROLE_SUPERVISOR') %}
         {% set status = 'pel.to.process' %}
     {% endif %}
-{% elseif complaint.status == constant('App\\Entity\\Complaint::STATUS_CLOSED') %}
+{% elseif workflow_has_marked_place(complaint, constant('App\\Entity\\Complaint::STATUS_CLOSED')) %}
     {% set status_btn_color = 'dark' %}
     {% set status = complaint.status %}
-{% elseif complaint.status == constant('App\\Entity\\Complaint::STATUS_ONGOING_LRP') %}
+{% elseif workflow_has_marked_place(complaint, constant('App\\Entity\\Complaint::STATUS_ONGOING_LRP')) %}
     {% set status_btn_color = 'warning' %}
     {% set status = complaint.status %}
-{% elseif complaint.status == constant('App\\Entity\\Complaint::STATUS_MP_DECLARANT') %}
+{% elseif workflow_has_marked_place(complaint, constant('App\\Entity\\Complaint::STATUS_MP_DECLARANT')) %}
     {% set status_btn_color = 'success' %}
     {% set status = complaint.status %}
-{% elseif complaint.status == constant('App\\Entity\\Complaint::STATUS_REASSIGNMENT_PENDING') %}
-    {% set status_btn_color = 'reassignment-pending' %}
-    {% set status = complaint.status %}
-{% elseif complaint.status == constant('App\\Entity\\Complaint::STATUS_REJECTED') %}
+{% elseif workflow_has_marked_place(complaint, constant('App\\Entity\\Complaint::STATUS_REJECTED')) %}
     {% set status_btn_color = 'danger' %}
     {% set status = complaint.status %}
-{% elseif complaint.status == constant('App\\Entity\\Complaint::STATUS_UNIT_REDIRECTION_PENDING') %}
+{% elseif workflow_has_marked_place(complaint, constant('App\\Entity\\Complaint::STATUS_UNIT_REDIRECTION_PENDING')) %}
     {% set status_btn_color = 'unit-redirection-pending' %}
     {% set status = complaint.status %}
 {% endif %}

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Controller\Complaint;
 
+use App\Complaint\ComplaintWorkflowException;
+use App\Complaint\ComplaintWorkflowManager;
 use App\Entity\Complaint;
 use App\Form\Complaint\RejectType;
 use App\Repository\ComplaintRepository;
@@ -17,19 +19,24 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class RejectController extends AbstractController
 {
-    #[IsGranted('IS_AUTHENTICATED')]
+    /**
+     * @throws ComplaintWorkflowException
+     */
+    #[IsGranted('COMPLAINT_VIEW', subject: 'complaint')]
     #[Route(path: '/plainte/rejeter/{id}', name: 'complaint_reject', methods: ['POST'])]
     public function __invoke(
         Complaint $complaint,
         ComplaintRepository $complaintRepository,
         Request $request,
-        MessageBusInterface $bus
+        MessageBusInterface $bus,
+        ComplaintWorkflowManager $complaintWorkflowManager
     ): JsonResponse {
         $form = $this->createForm(RejectType::class, $complaint);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $complaintRepository->save($complaint->setStatus(Complaint::STATUS_REJECTED), true);
+            $complaintWorkflowManager->reject($complaint);
+            $complaintRepository->save($complaint, true);
 
             $bus->dispatch(new ComplaintRejectionMessage((int) $complaint->getId())); // Salesforce email
 

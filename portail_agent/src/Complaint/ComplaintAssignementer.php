@@ -16,34 +16,48 @@ class ComplaintAssignementer
     public function __construct(
         private readonly EntityManagerInterface $entityManager,
         private readonly MessageBusInterface $messageBus,
+        private readonly ComplaintWorkflowManager $complaintWorkflowManager,
     ) {
     }
 
-    public function assignOneTo(Complaint $complaint, User $user, bool $reassignment): void
+    /**
+     * @throws ComplaintWorkflowException
+     */
+    public function assignOneTo(Complaint $complaint, User $user, bool $isReassignment, bool $isSelfAssignment): void
     {
-        $this->assignTo($complaint, $user, $reassignment);
+        $this->assignTo($complaint, $user, $isReassignment, $isSelfAssignment);
         $this->entityManager->flush();
     }
 
     /**
      * @param Complaint[] $complaints
+     *
+     * @throws ComplaintWorkflowException
      */
     public function assignBulkTo(array $complaints, User $user): void
     {
         foreach ($complaints as $complaint) {
-            $reassignment = $complaint->getAssignedTo() instanceof User;
-            $this->assignTo($complaint, $user, $reassignment);
+            $isReassignment = $complaint->getAssignedTo() instanceof User;
+            $this->assignTo($complaint, $user, $isReassignment, false);
         }
 
         $this->entityManager->flush();
     }
 
-    private function assignTo(Complaint $complaint, User $user, bool $isReassignement): void
+    /**
+     * @throws ComplaintWorkflowException
+     */
+    private function assignTo(Complaint $complaint, User $user, bool $isReassignment, bool $isSelfAssignment): void
     {
-        $complaint->setAssignedTo($user);
-        $complaint->setStatus(Complaint::STATUS_ASSIGNED);
+        if ($isSelfAssignment) {
+            $this->complaintWorkflowManager->selfAssign($complaint);
+        } else {
+            $this->complaintWorkflowManager->assign($complaint);
+        }
 
-        $this->messageBus->dispatch(new AssignementMessage($complaint, $user, $isReassignement)); // Notification
+        $complaint->setAssignedTo($user);
+
+        $this->messageBus->dispatch(new AssignementMessage($complaint, $user, $isReassignment));
         $this->messageBus->dispatch(new ComplaintAssignmentMessage((int) $complaint->getId())); // Salesforce email
     }
 }
