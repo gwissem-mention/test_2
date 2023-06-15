@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Controller\Complaint;
 
+use App\Complaint\Messenger\SendReport\SendReportMessage;
 use App\Entity\Complaint;
 use App\Factory\NotificationFactory;
 use App\Form\DropZoneType;
-use App\Report\SendReport;
 use App\Repository\ComplaintRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -43,7 +43,7 @@ class SendReportController extends AbstractController
             $data = $form->getData();
             $report = $data['file'];
 
-            $bus->dispatch(new SendReport($report));
+            $bus->dispatch(new SendReportMessage($report, (int) $complaint->getId()));
 
             $complaintRepository->save($complaint->setStatus(Complaint::STATUS_CLOSED), true);
 

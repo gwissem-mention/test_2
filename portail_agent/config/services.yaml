@@ -64,11 +64,11 @@ services:
             $username: '%env(OODRIVE_USERNAME)%'
             $password: '%env(OODRIVE_PASSWORD)%'
 
-    App\Report\SendReportHandler:
+    App\Complaint\Messenger\SendReport\SendReportHandler:
         arguments:
             $tmpComplaintFolderId: '%env(OODRIVE_TMP_COMPLAINT_FOLDER)%'
 
-    App\Messenger\ComplaintFetch\ComplaintFetchHandler:
+    App\Complaint\Messenger\ComplaintFetch\ComplaintFetchHandler:
         arguments:
             $complaintsBasePath: '%app.complaints_base_path%'
 

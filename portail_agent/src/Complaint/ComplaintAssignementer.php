@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Complaint;
 
 use App\Entity\Complaint;
 use App\Entity\User;
-use App\Messenger\Assignement\AssignementMessage;
+use App\Notification\Messenger\Assignement\AssignementMessage;
+use App\Salesforce\Messenger\ComplaintAssignment\ComplaintAssignmentMessage;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
 
@@ -40,6 +43,7 @@ class ComplaintAssignementer
         $complaint->setAssignedTo($user);
         $complaint->setStatus(Complaint::STATUS_ASSIGNED);
 
-        $this->messageBus->dispatch(new AssignementMessage($complaint, $user, $isReassignement));
+        $this->messageBus->dispatch(new AssignementMessage($complaint, $user, $isReassignement)); // Notification
+        $this->messageBus->dispatch(new ComplaintAssignmentMessage((int) $complaint->getId())); // Salesforce email
     }
 }
