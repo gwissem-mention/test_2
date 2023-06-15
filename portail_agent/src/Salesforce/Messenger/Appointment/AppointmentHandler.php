@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Messenger\Appointment;
+namespace App\Salesforce\Messenger\Appointment;
 
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
@@ -11,6 +11,6 @@ class AppointmentHandler
 {
     public function __invoke(AppointmentMessage $message): void
     {
-        // TODO: Send appointment confirmation email to the victim
+        // TODO: Send salesforce email
     }
 }

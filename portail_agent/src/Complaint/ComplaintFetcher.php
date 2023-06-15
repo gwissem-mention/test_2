@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Complaint;
 
-use App\Messenger\ComplaintFetch\ComplaintFetchMessage;
+use App\Complaint\Messenger\ComplaintFetch\ComplaintFetchMessage;
 use App\Oodrive\ApiClientInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
 

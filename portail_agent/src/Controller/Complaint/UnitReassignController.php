@@ -8,6 +8,7 @@ use App\Complaint\ComplaintReassignementer;
 use App\Entity\Complaint;
 use App\Form\Complaint\UnitReassignType;
 use App\Referential\Repository\UnitRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,7 +23,8 @@ class UnitReassignController extends AbstractController
         Complaint $complaint,
         UnitRepository $unitRepository,
         ComplaintReassignementer $complaintReassignementer,
-        Request $request
+        Request $request,
+        EntityManagerInterface $entityManager
     ): JsonResponse {
         $form = $this->createForm(UnitReassignType::class, $complaint);
         $form->handleRequest($request);
@@ -56,6 +58,8 @@ class UnitReassignController extends AbstractController
             } else {
                 $complaintReassignementer->askReassignement($complaint, $unitCodeToReassign, (string) $complaint->getUnitReassignText());
             }
+
+            $entityManager->flush();
 
             return $this->json(
                 [

@@ -1,14 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Complaint;
 
 use App\Entity\Comment;
 use App\Entity\Complaint;
 use App\Entity\User;
-use App\Messenger\UnitReassignement\AskUnitReassignementMessage;
-use App\Messenger\UnitReassignement\UnitReassignementMessage;
+use App\Notification\Messenger\UnitReassignement\AskUnitReassignementMessage;
+use App\Notification\Messenger\UnitReassignement\UnitReassignementMessage;
 use App\Referential\Entity\Unit;
 use App\Referential\Repository\UnitRepository;
+use App\Salesforce\Messenger\UnitReassignment\UnitReassignmentMessage;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Messenger\MessageBusInterface;
@@ -66,7 +69,8 @@ class ComplaintReassignementer
             ->setUnitReassignmentAsked(false)
             ->addComment($comment);
 
-        $this->messageBus->dispatch(new UnitReassignementMessage($complaint, $targetUnitCode, (bool) $reassignmentAsked, $reassignmentAskBy));
+        $this->messageBus->dispatch(new UnitReassignementMessage($complaint, $targetUnitCode, (bool) $reassignmentAsked, $reassignmentAskBy)); // Notification
+        $this->messageBus->dispatch(new UnitReassignmentMessage((int) $complaint->getId())); // Salesforce email
     }
 
     public function askReassignement(Complaint $complaint, string $targetUnitCode, string $reassignText): void

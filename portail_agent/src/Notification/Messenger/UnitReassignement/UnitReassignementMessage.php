@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Messenger\UnitReassignement;
+declare(strict_types=1);
+
+namespace App\Notification\Messenger\UnitReassignement;
 
 use App\Entity\Complaint;
 use App\Entity\User;

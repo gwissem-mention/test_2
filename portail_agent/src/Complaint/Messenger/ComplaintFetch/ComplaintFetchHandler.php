@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Messenger\ComplaintFetch;
+namespace App\Complaint\Messenger\ComplaintFetch;
 
 use App\Complaint\ComplaintFileParser;
 use App\Complaint\Exceptions\NoAffectedServiceException;

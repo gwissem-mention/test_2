@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Messenger\Assignement;
+declare(strict_types=1);
+
+namespace App\Notification\Messenger\Assignement;
 
 use App\Factory\NotificationFactory;
 use App\Repository\UserRepository;
