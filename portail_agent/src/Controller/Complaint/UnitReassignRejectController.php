@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Controller\Complaint;
 
+use App\Complaint\ComplaintWorkflowException;
+use App\Complaint\ComplaintWorkflowManager;
 use App\Entity\Comment;
 use App\Entity\Complaint;
 use App\Entity\User;
@@ -19,17 +21,20 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class UnitReassignRejectController extends AbstractController
 {
-    #[IsGranted('IS_AUTHENTICATED')]
+    /**
+     * @throws ComplaintWorkflowException
+     */
+    #[IsGranted('ROLE_SUPERVISOR')]
+    #[IsGranted('COMPLAINT_VIEW', subject: 'complaint')]
     #[Route(path: '/plainte/refuser-reorientation/{id}', name: 'complaint_unit_reassign_reject', methods: ['POST'])]
     public function __invoke(
         Complaint $complaint,
         ComplaintRepository $complaintRepository,
         NotificationFactory $notificationFactory,
         UserRepository $userRepository,
-        Request $request
+        Request $request,
+        ComplaintWorkflowManager $complaintWorkflowManager
     ): JsonResponse {
-        $this->denyAccessUnlessGranted('ROLE_SUPERVISOR');
-
         $form = $this->createForm(UnitReassignType::class, $complaint);
         $form->handleRequest($request);
 
@@ -53,9 +58,10 @@ class UnitReassignRejectController extends AbstractController
             ->setTitle(Comment::UNIT_REASSIGNMENT_REJECT_REASON)
             ->setContent($complaint->getUnitReassignText() ?? '');
 
+        $complaintWorkflowManager->rejectUnitRedirection($complaint);
+
         $complaintRepository->save(
             $complaint
-                ->setStatus(Complaint::STATUS_ASSIGNED)
                 ->setUnitToReassign(null)
                 ->setUnitReassignText(null)
                 ->setUnitReassignmentAsked(false)

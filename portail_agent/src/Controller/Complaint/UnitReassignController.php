@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller\Complaint;
 
 use App\Complaint\ComplaintReassignementer;
+use App\Complaint\ComplaintWorkflowException;
 use App\Entity\Complaint;
 use App\Form\Complaint\UnitReassignType;
 use App\Referential\Repository\UnitRepository;
@@ -17,7 +18,10 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class UnitReassignController extends AbstractController
 {
-    #[IsGranted('IS_AUTHENTICATED')]
+    /**
+     * @throws ComplaintWorkflowException
+     */
+    #[IsGranted('COMPLAINT_VIEW', subject: 'complaint')]
     #[Route(path: '/plainte/reorienter/{id}', name: 'complaint_unit_reassign', methods: ['POST'])]
     public function __invoke(
         Complaint $complaint,

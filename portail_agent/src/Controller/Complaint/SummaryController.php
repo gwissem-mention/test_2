@@ -16,12 +16,10 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class SummaryController extends AbstractController
 {
-    #[IsGranted('IS_AUTHENTICATED')]
+    #[IsGranted('COMPLAINT_VIEW', subject: 'complaint')]
     #[Route(path: '/plainte/recapitulatif/{id}', name: 'complaint_summary', methods: ['GET'])]
     public function __invoke(Complaint $complaint): Response
     {
-        $this->denyAccessUnlessGranted('COMPLAINT_VIEW', $complaint);
-
         return $this->render('pages/complaint/summary.html.twig', [
             'complaint' => $complaint,
             'reject_form' => $this->createForm(RejectType::class, $complaint),

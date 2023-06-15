@@ -1,0 +1,54 @@
+framework:
+    workflows: 
+        complaint:
+            type: 'state_machine' 
+            audit_trail:
+                enabled: true
+            marking_store:
+                type: 'method'
+                property: 'status'
+            supports:
+                - App\Entity\Complaint
+            initial_marking: !php/const App\Entity\Complaint::STATUS_ASSIGNMENT_PENDING
+            places:
+                - !php/const App\Entity\Complaint::STATUS_ASSIGNMENT_PENDING
+                - !php/const App\Entity\Complaint::STATUS_ASSIGNED
+                - !php/const App\Entity\Complaint::STATUS_CLOSED
+                - !php/const App\Entity\Complaint::STATUS_MP_DECLARANT
+                - !php/const App\Entity\Complaint::STATUS_ONGOING_LRP
+                - !php/const App\Entity\Complaint::STATUS_APPOINTMENT_PENDING
+                - !php/const App\Entity\Complaint::STATUS_REJECTED
+                - !php/const App\Entity\Complaint::STATUS_UNIT_REDIRECTION_PENDING
+            transitions:
+                assign:
+                    guard: "is_granted('ROLE_SUPERVISOR')"
+                    from: [ !php/const App\Entity\Complaint::STATUS_ASSIGNMENT_PENDING, !php/const App\Entity\Complaint::STATUS_UNIT_REDIRECTION_PENDING, !php/const App\Entity\Complaint::STATUS_ASSIGNED, !php/const App\Entity\Complaint::STATUS_MP_DECLARANT, !php/const App\Entity\Complaint::STATUS_ONGOING_LRP, !php/const App\Entity\Complaint::STATUS_APPOINTMENT_PENDING]
+                    to: !php/const App\Entity\Complaint::STATUS_ASSIGNED
+                reject:
+                    from: [ !php/const App\Entity\Complaint::STATUS_ASSIGNMENT_PENDING, !php/const App\Entity\Complaint::STATUS_UNIT_REDIRECTION_PENDING, !php/const App\Entity\Complaint::STATUS_ASSIGNED, !php/const App\Entity\Complaint::STATUS_MP_DECLARANT, !php/const App\Entity\Complaint::STATUS_ONGOING_LRP, !php/const App\Entity\Complaint::STATUS_APPOINTMENT_PENDING]
+                    to: !php/const App\Entity\Complaint::STATUS_REJECTED
+                send_to_lrp:
+                    from: [ !php/const App\Entity\Complaint::STATUS_ASSIGNMENT_PENDING, !php/const App\Entity\Complaint::STATUS_UNIT_REDIRECTION_PENDING, !php/const App\Entity\Complaint::STATUS_ASSIGNED, !php/const App\Entity\Complaint::STATUS_MP_DECLARANT, !php/const App\Entity\Complaint::STATUS_APPOINTMENT_PENDING]
+                    to: !php/const App\Entity\Complaint::STATUS_ONGOING_LRP
+                close:
+                    from: !php/const App\Entity\Complaint::STATUS_ONGOING_LRP
+                    to: !php/const App\Entity\Complaint::STATUS_CLOSED
+                unit_redirect:
+                    guard: "is_granted('ROLE_SUPERVISOR')"
+                    from: [ !php/const App\Entity\Complaint::STATUS_ASSIGNMENT_PENDING, !php/const App\Entity\Complaint::STATUS_UNIT_REDIRECTION_PENDING, !php/const App\Entity\Complaint::STATUS_ASSIGNED, !php/const App\Entity\Complaint::STATUS_MP_DECLARANT, !php/const App\Entity\Complaint::STATUS_ONGOING_LRP, !php/const App\Entity\Complaint::STATUS_APPOINTMENT_PENDING]
+                    to: !php/const App\Entity\Complaint::STATUS_ASSIGNMENT_PENDING
+                ask_unit_redirection:
+                    guard: "!is_granted('ROLE_SUPERVISOR')"
+                    from: [ !php/const App\Entity\Complaint::STATUS_ASSIGNMENT_PENDING, !php/const App\Entity\Complaint::STATUS_UNIT_REDIRECTION_PENDING, !php/const App\Entity\Complaint::STATUS_ASSIGNED, !php/const App\Entity\Complaint::STATUS_MP_DECLARANT, !php/const App\Entity\Complaint::STATUS_ONGOING_LRP, !php/const App\Entity\Complaint::STATUS_APPOINTMENT_PENDING]
+                    to: !php/const App\Entity\Complaint::STATUS_UNIT_REDIRECTION_PENDING
+                reject_unit_redirection:
+                    guard: "is_granted('ROLE_SUPERVISOR')"
+                    from: !php/const App\Entity\Complaint::STATUS_UNIT_REDIRECTION_PENDING
+                    to: !php/const App\Entity\Complaint::STATUS_ASSIGNED
+                wait_for_appointment:
+                    from: !php/const App\Entity\Complaint::STATUS_ASSIGNED
+                    to: !php/const App\Entity\Complaint::STATUS_APPOINTMENT_PENDING
+                self_assign:
+                    guard: "subject.getAssignedTo() === null"
+                    from: [ !php/const App\Entity\Complaint::STATUS_ASSIGNMENT_PENDING, !php/const App\Entity\Complaint::STATUS_UNIT_REDIRECTION_PENDING, !php/const App\Entity\Complaint::STATUS_ASSIGNED, !php/const App\Entity\Complaint::STATUS_MP_DECLARANT, !php/const App\Entity\Complaint::STATUS_ONGOING_LRP, !php/const App\Entity\Complaint::STATUS_APPOINTMENT_PENDING]
+                    to: !php/const App\Entity\Complaint::STATUS_ASSIGNED    

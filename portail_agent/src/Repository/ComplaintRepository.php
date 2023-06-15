@@ -56,7 +56,6 @@ class ComplaintRepository extends ServiceEntityRepository
             'a-attribuer' => Complaint::STATUS_ASSIGNMENT_PENDING,
             'attente-rdv' => Complaint::STATUS_APPOINTMENT_PENDING,
             'attente-reorientation' => Complaint::STATUS_UNIT_REDIRECTION_PENDING,
-            'attente-reattribution' => Complaint::STATUS_REASSIGNMENT_PENDING,
             'cloturee' => Complaint::STATUS_CLOSED,
             'en-cours-lrp' => Complaint::STATUS_ONGOING_LRP,
             default => null,

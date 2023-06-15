@@ -13,9 +13,11 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class AppointmentValidationController extends AbstractController
 {
+    #[IsGranted('COMPLAINT_VIEW', subject: 'complaint')]
     #[Route(path: '/plainte/validation-rendez-vous/{id}', name: 'complaint_appointment_validate', methods: ['POST'])]
     public function __invoke(
         Complaint $complaint,

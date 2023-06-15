@@ -730,10 +730,6 @@
                 <source>pel.reasign</source>
                 <target>Réattribuer</target>
             </trans-unit>
-            <trans-unit id="pel.reassignment.pending">
-                <source>pel.reassignment.pending</source>
-                <target>En attente de réattribution</target>
-            </trans-unit>
             <trans-unit id="pel.reassign.declaration.to">
                 <source>pel.reassign.declaration.to</source>
                 <target>Réattribuer la déclaration à</target>

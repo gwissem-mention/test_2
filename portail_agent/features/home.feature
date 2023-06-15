@@ -96,8 +96,7 @@ Feature:
         And I should see the key "pel.a.opj.name" translated
         And I should see the key "pel.declaration.number" translated
         And I should see the key "pel.comments" translated
-        And I should see 5 "table#datatable .btn-primary" element
-        And I should see 10 "table#datatable .btn-success" element
+        And I should see 15 "table#datatable .btn-primary" element
         And I should see 10 "table#datatable .btn-dark" element
 
     @javascript
