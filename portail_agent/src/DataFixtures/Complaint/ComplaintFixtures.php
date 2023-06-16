@@ -34,6 +34,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
     public function __construct(private readonly NotificationFactory $notificationFactory,
         private readonly FilesystemOperator $defaultStorage,
         private readonly KernelInterface $kernel,
+        private readonly string $tmpComplaintFolderId,
     ) {
     }
 
@@ -240,6 +241,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
     {
         return (new Complaint())
             ->setTest(true)
+            ->setOodriveFolder($this->tmpComplaintFolderId)
             ->setCreatedAt(new \DateTimeImmutable('2022-12-01'))
             ->setAppointmentContactInformation('Disponible entre 10h et 12h le lundi')
             ->setStatus(Complaint::STATUS_ASSIGNMENT_PENDING)

@@ -9,6 +9,7 @@ parameters:
     app.folder_rotation.treshold: '%env(FOLDER_ROTATION_TRESHOLD)%'
     app.oodrive.root_folder_id: '%env(OODRIVE_ROOT_FOLDER_ID)%'
     app.oodrive.fetched_folder_id: '%env(OODRIVE_FETCHED_FOLDER_ID)%'
+    app.oodrive.tmp_complaint_folder: '%env(OODRIVE_TMP_COMPLAINT_FOLDER)%'
     complaint.processing_deadline: '%env(COMPLAINT_PROCESSING_DEADLINE)%'
 
 services:
@@ -21,6 +22,7 @@ services:
             $folderRotationTreshold: '%app.folder_rotation.treshold%'
             $oodriveRootFolderId: '%app.oodrive.root_folder_id%'
             $oodriveFetchedFolderId: '%app.oodrive.fetched_folder_id%'
+            $tmpComplaintFolderId: '%app.oodrive.tmp_complaint_folder%'
 
     App\:
         resource: '../src/'
@@ -63,10 +65,6 @@ services:
             $clientSecret: '%env(OODRIVE_OAUTH_CLIENT_SECRET)%'
             $username: '%env(OODRIVE_USERNAME)%'
             $password: '%env(OODRIVE_PASSWORD)%'
-
-    App\Complaint\Messenger\SendReport\SendReportHandler:
-        arguments:
-            $tmpComplaintFolderId: '%env(OODRIVE_TMP_COMPLAINT_FOLDER)%'
 
     App\Complaint\Messenger\ComplaintFetch\ComplaintFetchHandler:
         arguments:
