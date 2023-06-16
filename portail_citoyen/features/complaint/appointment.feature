@@ -11,6 +11,7 @@ Feature:
         And I click the "label[for=declarant_status_declarantStatus_0]" element
         And I press "declarant_status_submit"
         Then I should be on "/porter-plainte/identite"
+        And I select "1" from "identity_civilState_familySituation"
         Given I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
         And I fill in "contact-information-address" with "avenue de la république paris"
         And I click the "#contact-information-address-75111_8158" element
@@ -53,7 +54,7 @@ Feature:
         When I press "Suivant"
         And I follow "Je confirme"
         Then I should be on "/porter-plainte/rendez-vous"
-        
+
     Scenario: I should see the informative text
         Then I should see the key "pel.appointment.message.1" translated
         And I should see the key "pel.appointment.message.2" translated
@@ -104,6 +105,7 @@ Feature:
         When I select "1" from "identity_civilState_civility"
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
+        And I select "1" from "identity_civilState_familySituation"
         And I fill in "identity_civilState_birthDate" with "01/01/2000"
         And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
         And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
@@ -160,6 +162,7 @@ Feature:
         When I select "1" from "identity_representedPersonCivilState_civility"
         And I fill in "identity_representedPersonCivilState_birthName" with "Dupont"
         And I fill in "identity_representedPersonCivilState_firstnames" with "Jean Pierre Marie"
+        And I select "1" from "identity_representedPersonCivilState_familySituation"
         And I fill in "identity_representedPersonCivilState_birthDate" with "01/01/2000"
         And I fill in the autocomplete "identity_representedPersonCivilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
         And I fill in the autocomplete "identity_representedPersonCivilState_job-ts-control" with "Abatteur de bestiaux" and click "2"

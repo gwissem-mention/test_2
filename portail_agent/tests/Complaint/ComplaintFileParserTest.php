@@ -56,6 +56,10 @@ class ComplaintFileParserTest extends KernelTestCase
 			"birthName": "Dupont",
 			"usageName": "Paul",
 			"firstnames": "Jean",
+			"familySituation": {
+                "code": 1,
+                "label": "Célibataire"
+            },
 			"birthDate":
 			{
 				"date": "1980-01-01T00:00:00+00:00",

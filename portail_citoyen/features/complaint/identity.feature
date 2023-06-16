@@ -29,6 +29,14 @@ Feature:
         And I should see the key "pel.and.overseas" translated
         And I should see the key "pel.header.baseline" translated
 
+    Scenario: I can see the family situation choice list
+        And I should see "Célibataire" in the "#identity_civilState_familySituation" element
+        And I should see "Concubinage" in the "#identity_civilState_familySituation" element
+        And I should see "Marié(e)" in the "#identity_civilState_familySituation" element
+        And I should see "Divorcé(e)" in the "#identity_civilState_familySituation" element
+        And I should see "Pacsé(e)" in the "#identity_civilState_familySituation" element
+        And I should see "Veuf(ve)" in the "#identity_civilState_familySituation" element
+
     Scenario: I can switch to afghanistan phone country and submit a valid phone number
         When I click the ".iti__flag-container" element
         And I click the "li[data-country-code=af]" element

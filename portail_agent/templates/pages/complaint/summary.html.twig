@@ -17,8 +17,12 @@
                 </strong>
             </li>
             <li>
+                {{ 'pel.family.situation'|trans }} :
+                <strong>{{ complaint.identity.familySituation }}</strong>
+            </li>
+            <li>
                 {{ 'pel.born.on'|trans }} : <strong>{{ complaint.identity.birthday|date('d/m/Y') }}</strong>
-                {{ 'pel.at.in'|trans }}: <strong>{{ complaint.identity.birthCountry }}</strong>
+                {{ 'pel.at.in'|trans }} : <strong>{{ complaint.identity.birthCountry }}</strong>
                 {{ 'pel.department'|trans }} : <strong>{{ complaint.identity.birthDepartmentNumber }}</strong>
             </li>
             <li>
@@ -77,6 +81,10 @@
                             {{ complaint.personLegalRepresented.lastname }}
                             {{ complaint.personLegalRepresented.firstname }}
                         </strong>
+                    </li>
+                    <li>
+                        {{ 'pel.family.situation'|trans }} :
+                        <strong>{{ complaint.personLegalRepresented.familySituation }}</strong>
                     </li>
                     <li>
                         {{ 'pel.born.on'|trans }} : <strong>{{ complaint.personLegalRepresented.birthday|date('d/m/Y') }}</strong>

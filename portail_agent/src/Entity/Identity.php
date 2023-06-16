@@ -40,9 +40,9 @@ class Identity
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $marriedName = null;
-    //
-    //    #[ORM\Column(length: 255)]
-    //    private ?string $familyStatus = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $familySituation = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $birthday = null;
@@ -162,6 +162,18 @@ class Identity
     public function setLastname(string $lastname): self
     {
         $this->lastname = $lastname;
+
+        return $this;
+    }
+
+    public function getFamilySituation(): ?string
+    {
+        return $this->familySituation;
+    }
+
+    public function setFamilySituation(?string $familySituation): self
+    {
+        $this->familySituation = $familySituation;
 
         return $this;
     }

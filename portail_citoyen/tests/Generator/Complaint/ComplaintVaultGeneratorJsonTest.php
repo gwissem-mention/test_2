@@ -61,6 +61,10 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                     'birthName' => 'Dupont',
                     'usageName' => 'Paul',
                     'firstnames' => 'Jean',
+                    'familySituation' => [
+                        'code' => 3,
+                        'label' => 'Marié(e)',
+                    ],
                     'birthDate' => [
                         'date' => '1980-01-01T00:00:00+00:00',
                         'timestamp' => 315532800,
@@ -396,6 +400,10 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                     'birthName' => 'Dupont',
                     'usageName' => 'Paul',
                     'firstnames' => 'Jean',
+                    'familySituation' => [
+                        'code' => 3,
+                        'label' => 'Marié(e)',
+                    ],
                     'birthDate' => [
                         'date' => '1980-01-01T00:00:00+00:00',
                         'timestamp' => 315532800,
@@ -471,6 +479,10 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                     'birthName' => 'Dupont',
                     'usageName' => 'Paul',
                     'firstnames' => 'Jean',
+                    'familySituation' => [
+                        'code' => 3,
+                        'label' => 'Marié(e)',
+                    ],
                     'birthDate' => [
                         'date' => '1980-01-01T00:00:00+00:00',
                         'timestamp' => 315532800,
@@ -805,6 +817,10 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                     'birthName' => 'Dupont',
                     'usageName' => 'Paul',
                     'firstnames' => 'Jean',
+                    'familySituation' => [
+                        'code' => 3,
+                        'label' => 'Marié(e)',
+                    ],
                     'birthDate' => [
                         'date' => '1980-01-01T00:00:00+00:00',
                         'timestamp' => 315532800,

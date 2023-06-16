@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Form\Identity;
 
 use App\AppEnum\Civility;
+use App\AppEnum\FamilySituation;
 use App\Form\JobAutocompleteType;
 use App\Form\LocationType;
 use App\Form\Model\Identity\CivilStateModel;
@@ -93,6 +94,15 @@ class CivilStateType extends AbstractType
                 ],
                 'label' => 'pel.first.names',
                 'disabled' => $options['is_france_connected'] && $civilStateModel?->firstnamesIsDefined(),
+            ])
+            ->add('familySituation', ChoiceType::class, [
+                'label' => 'pel.family.situation',
+                'rich' => true,
+                'choices' => FamilySituation::getChoices(),
+                'placeholder' => 'pel.choose.a.family.situation',
+                'constraints' => [
+                    new NotBlank(),
+                ],
             ])
             ->add('birthDate', DateType::class, [
                 'constraints' => $options['birthDate_constraints'],

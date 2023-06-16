@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Generator\Complaint\Serializer;
 
 use App\AppEnum\Civility;
+use App\AppEnum\FamilySituation;
 use App\Form\Model\Identity\CivilStateModel;
 use App\Referential\Provider\Nationality\NationalityProviderInterface;
 use App\Referential\Repository\JobRepository;
@@ -36,6 +37,11 @@ class CivilStateModelNormalizer implements NormalizerInterface
         $data['civility'] = [
             'code' => $data['civility'],
             'label' => $this->translator->trans((string) array_search($data['civility'], Civility::getChoices(), true)),
+        ];
+
+        $data['familySituation'] = [
+            'code' => $data['familySituation'],
+            'label' => $this->translator->trans((string) array_search($data['familySituation'], FamilySituation::getChoices(), true)),
         ];
 
         /** @var string $dataNationality */
