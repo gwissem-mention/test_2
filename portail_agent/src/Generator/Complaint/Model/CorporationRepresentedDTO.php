@@ -38,12 +38,7 @@ class CorporationRepresentedDTO
         $this->streetNumber = (string) $corporation->getStreetNumber();
         $this->streetName = $corporation->getStreetName() ?? '';
         $this->address = $corporation->getAddress() ?? '';
-
-        if ($corporation->getCity() && $corporation->getPostCode() && $corporation->getCountry()) {
-            $this->place = $corporation->getCity().' '.$corporation->getPostCode().' ('.$corporation->getCountry().')';
-        } else {
-            $this->place = '';
-        }
+        $this->place = ($corporation->getCity() ? strtoupper($corporation->getCity()).' ' : '').($corporation->getPostCode() ? $corporation->getPostCode().' ' : '').($corporation->getCountry() ? '('.$corporation->getCountry().')' : '');
     }
 
     /**

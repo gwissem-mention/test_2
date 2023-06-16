@@ -25,12 +25,12 @@ abstract class AbstractIdentityDTO
     protected string $inseeCode;
     protected string $city;
     protected string $departmentNumber;
-    //    protected string $familyStatus;
+    protected string $familySituation;
     protected string $streetNumber;
     protected string $streetType;
     protected string $streetName;
     protected string $address;
-    protected string $place;
+    protected string $homePlace;
     protected string $birthplace;
 
     public function __construct(Identity $identity)
@@ -46,7 +46,7 @@ abstract class AbstractIdentityDTO
         $this->birthInseeCode = $identity->getBirthInseeCode() ?? '';
         $this->birthCity = $identity->getBirthCity() ?? '';
         $this->birthDepartmentNumber = !is_null($identity->getBirthDepartmentNumber()) ? strval($identity->getBirthDepartmentNumber()) : '';
-        //        $this->familyStatus = $identity->getFamilyStatus() ?? '';
+        $this->familySituation = $identity->getFamilySituation() ?? '';
         $this->nationality = $identity->getNationality() ?? '';
         $this->job = $identity->getJob() ?? '';
         $this->country = $identity->getAddressCountry() ?? '';
@@ -59,17 +59,7 @@ abstract class AbstractIdentityDTO
         $this->streetType = $identity->getAddressStreetType() ?? '';
         $this->streetName = $identity->getAddressStreetName() ?? '';
         $this->address = $identity->getAddress() ?? '';
-
-        if ($identity->getAddressCity() && $identity->getAddressPostcode() && $identity->getAddressCountry()) {
-            $this->place = $identity->getAddressCity().' '.$identity->getAddressPostcode().' ('.$identity->getAddressCountry().')';
-        } else {
-            $this->place = '';
-        }
-
-        if ($identity->getBirthCity() && $identity->getBirthPostalCode() && $identity->getBirthCountry()) {
-            $this->birthplace = $identity->getBirthCity().' '.$identity->getBirthPostalCode().' ('.$identity->getBirthCountry().')';
-        } else {
-            $this->birthplace = '';
-        }
+        $this->homePlace = ($identity->getAddressCity() ? strtoupper($identity->getAddressCity()).' ' : '').($identity->getAddressPostcode() ? $identity->getAddressPostcode().' ' : '').($identity->getAddressCountry() ? '('.$identity->getAddressCountry().')' : '');
+        $this->birthplace = ($identity->getBirthCity() ? strtoupper($identity->getBirthCity()).' ' : '').($identity->getBirthPostalCode() ? $identity->getBirthPostalCode().' ' : '').($identity->getBirthCountry() ? '('.$identity->getBirthCountry().')' : '');
     }
 }
