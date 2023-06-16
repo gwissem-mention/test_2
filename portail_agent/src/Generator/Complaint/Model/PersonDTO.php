@@ -37,7 +37,7 @@ class PersonDTO extends AbstractIdentityDTO
             'Personne_Naissance_Insee' => $this->birthInseeCode,
             'Personne_Naissance_Commune' => $this->birthCity,
             'Personne_Naissance_HidNumDep' => $this->birthDepartmentNumber,
-//            'Personne_Situation_Familiale' => $this->familyStatus,
+            'Personne_Situation_Familiale' => $this->familySituation,
             'Personne_Nationalite' => $this->nationality,
             'Personne_Profession' => $this->job,
             'Personne_Residence_Pays' => $this->country,
@@ -50,7 +50,7 @@ class PersonDTO extends AbstractIdentityDTO
             'Personne_Residence_RueType' => $this->streetType,
             'Personne_Residence_RueNom' => $this->streetName,
             'Personne_Residence_Adresse' => $this->address,
-            'Personne_Residence_Lieu' => $this->place,
+            'Personne_Residence_Lieu' => $this->homePlace,
             'Personne_Naissance_Lieu' => $this->birthplace,
         ]];
     }
