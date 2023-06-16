@@ -160,6 +160,9 @@ class Complaint
     #[ORM\Column]
     private bool $franceConnected = false;
 
+    #[ORM\Column(nullable: true)]
+    private ?string $oodriveFolder = null;
+
     public function __construct()
     {
         $this->objects = new ArrayCollection();
@@ -559,6 +562,18 @@ class Complaint
     public function setUnitReassignmentAsked(bool $unitReassignmentAsked): self
     {
         $this->unitReassignmentAsked = $unitReassignmentAsked;
+
+        return $this;
+    }
+
+    public function getOodriveFolder(): ?string
+    {
+        return $this->oodriveFolder;
+    }
+
+    public function setOodriveFolder(?string $oodriveFolder): self
+    {
+        $this->oodriveFolder = $oodriveFolder;
 
         return $this;
     }

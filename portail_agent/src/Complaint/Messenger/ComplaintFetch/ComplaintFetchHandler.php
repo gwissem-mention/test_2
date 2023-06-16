@@ -52,7 +52,7 @@ class ComplaintFetchHandler
             }
 
             $this->logger->info(sprintf('Parsing file "plainte.json" from folder %s', $complaintFolder->getId()));
-            $this->parseAndPersistComplaint($this->complaintsBasePath.'/'.$complaintFolder->getName().'/plainte.json');
+            $this->parseAndPersistComplaint($this->complaintsBasePath.'/'.$complaintFolder->getName().'/plainte.json', $complaintFolder->getId());
             $this->logger->info(sprintf('File "plainte.json" from folder %s parsed', $complaintFolder->getId()));
 
             $this->moveToFetchedFolder($complaintFolder, $message->getEmailFolder()->getName());
@@ -62,12 +62,15 @@ class ComplaintFetchHandler
         }
     }
 
-    private function parseAndPersistComplaint(string $complaintPath): void
+    private function parseAndPersistComplaint(string $complaintPath, string $complaintFolderId): void
     {
         /** @var string $complaintContent */
         $complaintContent = file_get_contents($complaintPath);
 
-        $this->complaintRepository->save($this->complaintFileParser->parse($complaintContent), true);
+        $this->complaintRepository->save(
+            $this->complaintFileParser->parse($complaintContent)->setOodriveFolder($complaintFolderId),
+            true
+        );
     }
 
     private function moveToFetchedFolder(Folder $folder, string $email): void

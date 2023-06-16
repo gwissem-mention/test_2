@@ -27,6 +27,7 @@ class DatabaseContext implements Context
         protected readonly EntityManagerInterface $entityManager,
         protected readonly NotificationFactory $notificationFactory,
         protected readonly FilesystemOperator $defaultStorage,
+        protected readonly string $tmpComplaintFolderId,
     ) {
     }
 
@@ -51,7 +52,7 @@ class DatabaseContext implements Context
 
         $loader = new Loader();
         $loader->addFixture(new UserFixtures());
-        $loader->addFixture(new ComplaintFixtures($this->notificationFactory, $this->defaultStorage, $this->kernel));
+        $loader->addFixture(new ComplaintFixtures($this->notificationFactory, $this->defaultStorage, $this->kernel, $this->tmpComplaintFolderId));
         $loader->addFixture(new QuestionFixtures());
         $loader->addFixture(new RejectReasonFixtures());
         $purger = new ORMPurger();

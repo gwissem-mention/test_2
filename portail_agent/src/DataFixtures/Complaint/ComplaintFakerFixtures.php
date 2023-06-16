@@ -52,7 +52,8 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
         private readonly NotificationFactory $notificationFactory,
         private readonly ComplaintNotification $complaintNotification,
         private readonly FilesystemOperator $defaultStorage,
-        private readonly KernelInterface $kernel
+        private readonly KernelInterface $kernel,
+        private readonly string $tmpComplaintFolderId,
     ) {
         $faker->seed(1);
     }
@@ -140,6 +141,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
 
             $complaint = (new Complaint())
                 ->setTest(true)
+                ->setOodriveFolder($this->tmpComplaintFolderId)
                 ->setCreatedAt($complaintDate)
                 ->setAppointmentContactInformation('Disponible entre 10h et 12h le lundi')
                 ->setStatus($status)
