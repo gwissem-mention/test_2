@@ -23,6 +23,7 @@ class IdentityParser
             ->setFirstname($civilStateInput->firstnames)
             ->setLastname($civilStateInput->birthName)
             ->setMarriedName($civilStateInput->usageName)
+            ->setFamilySituation($civilStateInput->familySituation->label)
             ->setBirthday($this->dateParser->parseImmutable($civilStateInput->birthDate));
 
         $this->parseBirthdayPlace($identity, $civilStateInput->birthLocation);

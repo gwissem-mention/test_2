@@ -56,6 +56,7 @@ Feature:
         And I should see the key "pel.home" translated
         And I should see the key "pel.identification" translated
         And I should see the key "pel.civility" translated
+        And I should see the key "pel.family.situation" translated
         And I should see the key "pel.born.on" translated
         And I should see the key "pel.at.in" translated
         And I should see the key "pel.department" translated
@@ -69,6 +70,7 @@ Feature:
         And I should see the key "pel.nationality" translated
         And I should see "Jean"
         And I should see "DUPONT"
+        And I should see "Célibataire"
         And I should see "07/03/1967"
         And I should see "France"
         And I should see "FRANCAISE"
@@ -144,6 +146,7 @@ Feature:
         Given I am on "/plainte/recapitulatif/151"
         And I should see the key "pel.victim.identity" translated
         And I should see "Monsieur DUPONT Jeremy"
+        And I should see "Célibataire"
         And I should see "14/02/2000"
         And I should see "France"
         And I should see "92"

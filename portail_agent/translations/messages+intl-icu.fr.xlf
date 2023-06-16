@@ -394,6 +394,10 @@
                 <source>pel.facts.date.and.hour</source>
                 <target>Date et heure des faits</target>
             </trans-unit>
+            <trans-unit id="pel.family.situation">
+                <source>pel.family.situation</source>
+                <target>Situation familiale</target>
+            </trans-unit>
             <trans-unit id="pel.faq">
                 <source>pel.faq</source>
                 <target>Espace FAQ</target>

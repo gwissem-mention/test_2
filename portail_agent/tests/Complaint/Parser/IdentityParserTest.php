@@ -21,6 +21,10 @@ class IdentityParserTest extends KernelTestCase
       "birthName": "DUBOIS",
       "usageName": null,
       "firstnames": "Angela Claire Louise",
+      "familySituation": {
+        "code": 1,
+        "label": "Célibataire"
+      },
       "birthDate": {
         "date": "1962-08-24T00:00:00+00:00",
         "timestamp": -232156800,
@@ -116,6 +120,10 @@ class IdentityParserTest extends KernelTestCase
       "birthName": "DUBOIS",
       "usageName": null,
       "firstnames": "Angela Claire Louise",
+      "familySituation": {
+        "code": 1,
+        "label": "Célibataire"
+      },
       "birthDate": {
         "date": "1962-08-24T00:00:00+00:00",
         "timestamp": -232156800,

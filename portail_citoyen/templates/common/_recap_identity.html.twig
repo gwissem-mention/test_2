@@ -15,6 +15,22 @@
     </li>
 {% endif %}
 <li>
+    {{ 'pel.family.situation'|trans }} :
+    {% if civilState.familySituation is same as(constant('App\\AppEnum\\FamilySituation::Single').value) %}
+        {{ 'pel.family.situation.single'|trans }}
+    {% elseif civilState.familySituation is same as(constant('App\\AppEnum\\FamilySituation::Cohabitation').value) %}
+        {{ 'pel.family.situation.cohabitation'|trans }}
+    {% elseif civilState.familySituation is same as(constant('App\\AppEnum\\FamilySituation::Married').value) %}
+        {{ 'pel.family.situation.married'|trans }}
+    {% elseif civilState.familySituation is same as(constant('App\\AppEnum\\FamilySituation::Divorced').value) %}
+        {{ 'pel.family.situation.divorced'|trans }}
+    {% elseif civilState.familySituation is same as(constant('App\\AppEnum\\FamilySituation::CivilPartnership').value) %}
+        {{ 'pel.family.situation.civil.partnership'|trans }}
+    {% elseif civilState.familySituation is same as(constant('App\\AppEnum\\FamilySituation::Widowed').value) %}
+        {{ 'pel.family.situation.widowed'|trans }}
+    {% endif %}
+</li>
+<li>
     {{ 'pel.born.on'|trans }} : {{ civilState.birthDate|date('d/m/Y') }} {{ 'pel.at'|trans }}
     {% if civilState.birthLocation.frenchTown %}
         {% set city = civilState.birthLocation.frenchTown|city %}

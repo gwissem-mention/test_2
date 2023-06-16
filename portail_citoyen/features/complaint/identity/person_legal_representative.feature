@@ -18,6 +18,7 @@ Feature:
         And I should see the key "pel.birth.name" translated
         And I should see the key "pel.usage.name" translated
         And I should see the key "pel.first.names" translated
+        And I should see the key "pel.family.situation" translated
         And I should see the key "pel.birth.date" translated
         And I should see the key "pel.birth.country" translated
         And I should see the key "pel.birth.town" translated
@@ -36,6 +37,7 @@ Feature:
         When I select "1" from "identity_civilState_civility"
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
+        And I select "1" from "identity_civilState_familySituation"
         And I fill in "identity_civilState_birthDate" with "01/01/2000"
         And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
         And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
@@ -46,6 +48,7 @@ Feature:
         And I select "1" from "identity_representedPersonCivilState_civility"
         And I fill in "identity_representedPersonCivilState_birthName" with "Dupont"
         And I fill in "identity_representedPersonCivilState_firstnames" with "Jean Pierre Marie"
+        And I select "1" from "identity_representedPersonCivilState_familySituation"
         And I fill in "identity_representedPersonCivilState_birthDate" with "01/01/2000"
         And I fill in the autocomplete "identity_representedPersonCivilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
         And I fill in the autocomplete "identity_representedPersonCivilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
@@ -60,6 +63,7 @@ Feature:
         When I select "1" from "identity_civilState_civility"
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
+        And I select "1" from "identity_civilState_familySituation"
         And I fill in "identity_civilState_birthDate" with "01/01/2000"
         And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
         And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
@@ -70,6 +74,7 @@ Feature:
         And I select "1" from "identity_representedPersonCivilState_civility"
         And I fill in "identity_representedPersonCivilState_birthName" with "Dupont"
         And I fill in "identity_representedPersonCivilState_firstnames" with "Jean Pierre Marie"
+        And I select "1" from "identity_representedPersonCivilState_familySituation"
         And I fill in "identity_representedPersonCivilState_birthDate" with "01/01/2000"
         And I fill in the autocomplete "identity_representedPersonCivilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
         And I fill in the autocomplete "identity_representedPersonCivilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
@@ -84,6 +89,7 @@ Feature:
         When I select "1" from "identity_civilState_civility"
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
+        And I select "1" from "identity_civilState_familySituation"
         And I fill in "identity_civilState_birthDate" with "01/01/2000"
         And I select "99134" from "identity_civilState_birthLocation_country"
         And I fill in "identity_civilState_birthLocation_otherTown" with "Madrid"
@@ -95,6 +101,7 @@ Feature:
         And I select "1" from "identity_representedPersonCivilState_civility"
         And I fill in "identity_representedPersonCivilState_birthName" with "Dupont"
         And I fill in "identity_representedPersonCivilState_firstnames" with "Jean Pierre Marie"
+        And I select "1" from "identity_representedPersonCivilState_familySituation"
         And I fill in "identity_representedPersonCivilState_birthDate" with "01/01/2000"
         And I fill in the autocomplete "identity_representedPersonCivilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
         And I fill in the autocomplete "identity_representedPersonCivilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
@@ -109,6 +116,7 @@ Feature:
         When I select "1" from "identity_civilState_civility"
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
+        And I select "1" from "identity_civilState_familySituation"
         And I fill in "identity_civilState_birthDate" with "01/01/2000"
         And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
         And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
@@ -121,6 +129,7 @@ Feature:
         And I select "1" from "identity_representedPersonCivilState_civility"
         And I fill in "identity_representedPersonCivilState_birthName" with "Dupont"
         And I fill in "identity_representedPersonCivilState_firstnames" with "Jean Pierre Marie"
+        And I select "1" from "identity_representedPersonCivilState_familySituation"
         And I fill in "identity_representedPersonCivilState_birthDate" with "01/01/2000"
         And I fill in the autocomplete "identity_representedPersonCivilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
         And I fill in the autocomplete "identity_representedPersonCivilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
@@ -135,6 +144,7 @@ Feature:
         When I select "1" from "identity_civilState_civility"
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
+        And I select "1" from "identity_civilState_familySituation"
         And I fill in "identity_civilState_birthDate" with "01/01/2000"
         And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
         And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
@@ -147,6 +157,7 @@ Feature:
         And I select "1" from "identity_representedPersonCivilState_civility"
         And I fill in "identity_representedPersonCivilState_birthName" with "Dupont"
         And I fill in "identity_representedPersonCivilState_firstnames" with "Jean Pierre Marie"
+        And I select "1" from "identity_representedPersonCivilState_familySituation"
         And I fill in "identity_representedPersonCivilState_birthDate" with "01/01/2000"
         And I fill in the autocomplete "identity_representedPersonCivilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
         And I fill in the autocomplete "identity_representedPersonCivilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
@@ -165,6 +176,7 @@ Feature:
         When I select "1" from "identity_civilState_civility"
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
+        And I select "1" from "identity_civilState_familySituation"
         And I fill in "identity_civilState_birthDate" with "01/01/2000"
         And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
         And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
@@ -175,6 +187,7 @@ Feature:
         And I select "1" from "identity_representedPersonCivilState_civility"
         And I fill in "identity_representedPersonCivilState_birthName" with "Dupont"
         And I fill in "identity_representedPersonCivilState_firstnames" with "Jean Pierre Marie"
+        And I select "1" from "identity_representedPersonCivilState_familySituation"
         And I fill in "identity_representedPersonCivilState_birthDate" with "01/01/2000"
         And I fill in the autocomplete "identity_representedPersonCivilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
         And I fill in the autocomplete "identity_representedPersonCivilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
@@ -210,31 +223,43 @@ Feature:
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I press "identity_submit"
         Then I should be on "/porter-plainte/identite"
-        And I should see a "#form-errors-identity_civilState_birthDate" element
+        And I should see a "#form-errors-identity_civilState_familySituation" element
 
     Scenario: Submit the form with only 4 required value for Person Legal Representative declarant
         When I select "1" from "identity_civilState_civility"
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
-        And I fill in "identity_civilState_birthDate" with "01/01/2000"
+        And I select "1" from "identity_civilState_familySituation"
         And I press "identity_submit"
         Then I should be on "/porter-plainte/identite"
-        And I should see a "#form-errors-identity_civilState_birthLocation_frenchTown" element
+        And I should see a "#form-errors-identity_civilState_birthDate" element
 
     Scenario: Submit the form with only 5 required value for Person Legal Representative declarant
         When I select "1" from "identity_civilState_civility"
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
+        And I select "1" from "identity_civilState_familySituation"
+        And I fill in "identity_civilState_birthDate" with "01/01/2000"
+        And I press "identity_submit"
+        Then I should be on "/porter-plainte/identite"
+        And I should see a "#form-errors-identity_civilState_birthLocation_frenchTown" element
+
+    Scenario: Submit the form with only 6 required value for Person Legal Representative declarant
+        When I select "1" from "identity_civilState_civility"
+        And I fill in "identity_civilState_birthName" with "Dupont"
+        And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
+        And I select "1" from "identity_civilState_familySituation"
         And I fill in "identity_civilState_birthDate" with "01/01/2000"
         And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
         And I press "identity_submit"
         Then I should be on "/porter-plainte/identite"
         And I should see a "#form-errors-identity_civilState_job" element
 
-    Scenario: Submit the form with only 6 required value for Person Legal Representative declarant
+    Scenario: Submit the form with only 7 required value for Person Legal Representative declarant
         When I select "1" from "identity_civilState_civility"
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
+        And I select "1" from "identity_civilState_familySituation"
         And I fill in "identity_civilState_birthDate" with "01/01/2000"
         And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
         And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
@@ -243,10 +268,11 @@ Feature:
         And I should see a "#form-errors-contact-information-address" element
 #        And the field "contact-information-address" should have focus
 
-    Scenario: Submit the form with only 7 required value for Person Legal Representative declarant
+    Scenario: Submit the form with only 8 required value for Person Legal Representative declarant
         When I select "1" from "identity_civilState_civility"
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
+        And I select "1" from "identity_civilState_familySituation"
         And I fill in "identity_civilState_birthDate" with "01/01/2000"
         And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
         And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
@@ -256,10 +282,11 @@ Feature:
         Then I should be on "/porter-plainte/identite"
         And I should see a "#form-errors-identity_contactInformation_email" element
 
-    Scenario: Submit the form with only 8 required value for Person Legal Representative declarant
+    Scenario: Submit the form with only 9 required value for Person Legal Representative declarant
         When I select "1" from "identity_civilState_civility"
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
+        And I select "1" from "identity_civilState_familySituation"
         And I fill in "identity_civilState_birthDate" with "01/01/2000"
         And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
         And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
@@ -269,6 +296,213 @@ Feature:
         And I press "identity_submit"
         Then I should be on "/porter-plainte/identite"
         And I should see a "#form-errors-identity_contactInformation_phone_number" element
+
+    Scenario: Submit the form with only 10 required values for Person Legal Representative Declarant
+        When I select "1" from "identity_civilState_civility"
+        And I fill in "identity_civilState_birthName" with "Dupont"
+        And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
+        And I select "1" from "identity_civilState_familySituation"
+        And I fill in "identity_civilState_birthDate" with "01/01/2000"
+        And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
+        And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
+        And I fill in "contact-information-address" with "avenue de la république paris"
+        And I click the "#contact-information-address-75111_8158" element
+        And I fill in "identity_contactInformation_email" with "jean@test.com"
+        And I fill in "identity_contactInformation_phone_number" with "0102020304"
+        And I press "identity_submit"
+        Then I should be on "/porter-plainte/identite"
+        And I should see a "#form-errors-identity_representedPersonCivilState_civility" element
+
+    Scenario: Submit the form with only 11 required values for Person Legal Representative Declarant
+        When I select "1" from "identity_civilState_civility"
+        And I fill in "identity_civilState_birthName" with "Dupont"
+        And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
+        And I select "1" from "identity_civilState_familySituation"
+        And I fill in "identity_civilState_birthDate" with "01/01/2000"
+        And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
+        And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
+        And I fill in "contact-information-address" with "avenue de la république paris"
+        And I click the "#contact-information-address-75111_8158" element
+        And I fill in "identity_contactInformation_email" with "jean@test.com"
+        And I fill in "identity_contactInformation_phone_number" with "0102020304"
+        And I select "1" from "identity_representedPersonCivilState_civility"
+        And I press "identity_submit"
+        Then I should be on "/porter-plainte/identite"
+        And I should see a "#form-errors-identity_representedPersonCivilState_birthName" element
+
+    Scenario: Submit the form with only 12 required values for Person Legal Representative Declarant
+        When I select "1" from "identity_civilState_civility"
+        And I fill in "identity_civilState_birthName" with "Dupont"
+        And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
+        And I select "1" from "identity_civilState_familySituation"
+        And I fill in "identity_civilState_birthDate" with "01/01/2000"
+        And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
+        And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
+        And I fill in "contact-information-address" with "avenue de la république paris"
+        And I click the "#contact-information-address-75111_8158" element
+        And I fill in "identity_contactInformation_email" with "jean@test.com"
+        And I fill in "identity_contactInformation_phone_number" with "0102020304"
+        And I select "1" from "identity_representedPersonCivilState_civility"
+        And I fill in "identity_representedPersonCivilState_birthName" with "Dupont"
+        And I press "identity_submit"
+        Then I should be on "/porter-plainte/identite"
+        And I should see a "#form-errors-identity_representedPersonCivilState_firstnames" element
+
+    Scenario: Submit the form with only 13 required values for Person Legal Representative Declarant
+        When I select "1" from "identity_civilState_civility"
+        And I fill in "identity_civilState_birthName" with "Dupont"
+        And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
+        And I select "1" from "identity_civilState_familySituation"
+        And I fill in "identity_civilState_birthDate" with "01/01/2000"
+        And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
+        And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
+        And I fill in "contact-information-address" with "avenue de la république paris"
+        And I click the "#contact-information-address-75111_8158" element
+        And I fill in "identity_contactInformation_email" with "jean@test.com"
+        And I fill in "identity_contactInformation_phone_number" with "0102020304"
+        And I select "1" from "identity_representedPersonCivilState_civility"
+        And I fill in "identity_representedPersonCivilState_birthName" with "Dupont"
+        And I fill in "identity_representedPersonCivilState_firstnames" with "Jean Pierre Marie"
+        And I press "identity_submit"
+        Then I should be on "/porter-plainte/identite"
+        And I should see a "#form-errors-identity_representedPersonCivilState_familySituation" element
+
+    Scenario: Submit the form with only 14 required values for Person Legal Representative Declarant
+        When I select "1" from "identity_civilState_civility"
+        And I fill in "identity_civilState_birthName" with "Dupont"
+        And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
+        And I select "1" from "identity_civilState_familySituation"
+        And I fill in "identity_civilState_birthDate" with "01/01/2000"
+        And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
+        And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
+        And I fill in "contact-information-address" with "avenue de la république paris"
+        And I click the "#contact-information-address-75111_8158" element
+        And I fill in "identity_contactInformation_email" with "jean@test.com"
+        And I fill in "identity_contactInformation_phone_number" with "0102020304"
+        And I select "1" from "identity_representedPersonCivilState_civility"
+        And I fill in "identity_representedPersonCivilState_birthName" with "Dupont"
+        And I fill in "identity_representedPersonCivilState_firstnames" with "Jean Pierre Marie"
+        And I select "1" from "identity_representedPersonCivilState_familySituation"
+        And I press "identity_submit"
+        Then I should be on "/porter-plainte/identite"
+        And I should see a "#form-errors-identity_representedPersonCivilState_birthDate" element
+
+    Scenario: Submit the form with only 15 required values for Person Legal Representative Declarant
+        When I select "1" from "identity_civilState_civility"
+        And I fill in "identity_civilState_birthName" with "Dupont"
+        And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
+        And I select "1" from "identity_civilState_familySituation"
+        And I fill in "identity_civilState_birthDate" with "01/01/2000"
+        And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
+        And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
+        And I fill in "contact-information-address" with "avenue de la république paris"
+        And I click the "#contact-information-address-75111_8158" element
+        And I fill in "identity_contactInformation_email" with "jean@test.com"
+        And I fill in "identity_contactInformation_phone_number" with "0102020304"
+        And I select "1" from "identity_representedPersonCivilState_civility"
+        And I fill in "identity_representedPersonCivilState_birthName" with "Dupont"
+        And I fill in "identity_representedPersonCivilState_firstnames" with "Jean Pierre Marie"
+        And I select "1" from "identity_representedPersonCivilState_familySituation"
+        And I fill in "identity_representedPersonCivilState_birthDate" with "01/01/2000"
+        And I press "identity_submit"
+        Then I should be on "/porter-plainte/identite"
+        And I should see a "#form-errors-identity_representedPersonCivilState_birthLocation_frenchTown" element
+
+    Scenario: Submit the form with only 16 required values for Person Legal Representative Declarant
+        When I select "1" from "identity_civilState_civility"
+        And I fill in "identity_civilState_birthName" with "Dupont"
+        And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
+        And I select "1" from "identity_civilState_familySituation"
+        And I fill in "identity_civilState_birthDate" with "01/01/2000"
+        And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
+        And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
+        And I fill in "contact-information-address" with "avenue de la république paris"
+        And I click the "#contact-information-address-75111_8158" element
+        And I fill in "identity_contactInformation_email" with "jean@test.com"
+        And I fill in "identity_contactInformation_phone_number" with "0102020304"
+        And I select "1" from "identity_representedPersonCivilState_civility"
+        And I fill in "identity_representedPersonCivilState_birthName" with "Dupont"
+        And I fill in "identity_representedPersonCivilState_firstnames" with "Jean Pierre Marie"
+        And I select "1" from "identity_representedPersonCivilState_familySituation"
+        And I fill in "identity_representedPersonCivilState_birthDate" with "01/01/2000"
+        And I fill in the autocomplete "identity_representedPersonCivilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
+        And I press "identity_submit"
+        Then I should be on "/porter-plainte/identite"
+        And I should see a "#form-errors-identity_representedPersonCivilState_job" element
+
+    Scenario: Submit the form with only 17 required values for Person Legal Representative Declarant
+        When I select "1" from "identity_civilState_civility"
+        And I fill in "identity_civilState_birthName" with "Dupont"
+        And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
+        And I select "1" from "identity_civilState_familySituation"
+        And I fill in "identity_civilState_birthDate" with "01/01/2000"
+        And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
+        And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
+        And I fill in "contact-information-address" with "avenue de la république paris"
+        And I click the "#contact-information-address-75111_8158" element
+        And I fill in "identity_contactInformation_email" with "jean@test.com"
+        And I fill in "identity_contactInformation_phone_number" with "0102020304"
+        And I select "1" from "identity_representedPersonCivilState_civility"
+        And I fill in "identity_representedPersonCivilState_birthName" with "Dupont"
+        And I fill in "identity_representedPersonCivilState_firstnames" with "Jean Pierre Marie"
+        And I select "1" from "identity_representedPersonCivilState_familySituation"
+        And I fill in "identity_representedPersonCivilState_birthDate" with "01/01/2000"
+        And I fill in the autocomplete "identity_representedPersonCivilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
+        And I fill in the autocomplete "identity_representedPersonCivilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
+        And I press "identity_submit"
+        Then I should be on "/porter-plainte/identite"
+        And I should see a "#form-errors-represented-person-address" element
+
+    Scenario: Submit the form with only 18 required values for Person Legal Representative Declarant
+        When I select "1" from "identity_civilState_civility"
+        And I fill in "identity_civilState_birthName" with "Dupont"
+        And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
+        And I select "1" from "identity_civilState_familySituation"
+        And I fill in "identity_civilState_birthDate" with "01/01/2000"
+        And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
+        And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
+        And I fill in "contact-information-address" with "avenue de la république paris"
+        And I click the "#contact-information-address-75111_8158" element
+        And I fill in "identity_contactInformation_email" with "jean@test.com"
+        And I fill in "identity_contactInformation_phone_number" with "0102020304"
+        And I select "1" from "identity_representedPersonCivilState_civility"
+        And I fill in "identity_representedPersonCivilState_birthName" with "Dupont"
+        And I fill in "identity_representedPersonCivilState_firstnames" with "Jean Pierre Marie"
+        And I select "1" from "identity_representedPersonCivilState_familySituation"
+        And I fill in "identity_representedPersonCivilState_birthDate" with "01/01/2000"
+        And I fill in the autocomplete "identity_representedPersonCivilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
+        And I fill in the autocomplete "identity_representedPersonCivilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
+        And I fill in "represented-person-address" with "avenue de la république paris"
+        And I click the "#represented-person-address-75111_8158" element
+        And I press "identity_submit"
+        Then I should be on "/porter-plainte/identite"
+        And I should see a "#form-errors-identity_representedPersonContactInformation_email" element
+
+    Scenario: Submit the form with only 19 required values for Person Legal Representative Declarant
+        When I select "1" from "identity_civilState_civility"
+        And I fill in "identity_civilState_birthName" with "Dupont"
+        And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
+        And I select "1" from "identity_civilState_familySituation"
+        And I fill in "identity_civilState_birthDate" with "01/01/2000"
+        And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
+        And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
+        And I fill in "contact-information-address" with "avenue de la république paris"
+        And I click the "#contact-information-address-75111_8158" element
+        And I fill in "identity_contactInformation_email" with "jean@test.com"
+        And I fill in "identity_contactInformation_phone_number" with "0102020304"
+        And I select "1" from "identity_representedPersonCivilState_civility"
+        And I fill in "identity_representedPersonCivilState_birthName" with "Dupont"
+        And I fill in "identity_representedPersonCivilState_firstnames" with "Jean Pierre Marie"
+        And I select "1" from "identity_representedPersonCivilState_familySituation"
+        And I fill in "identity_representedPersonCivilState_birthDate" with "01/01/2000"
+        And I fill in the autocomplete "identity_representedPersonCivilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
+        And I fill in the autocomplete "identity_representedPersonCivilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
+        And I fill in "represented-person-address" with "avenue de la république paris"
+        And I click the "#represented-person-address-75111_8158" element
+        And I fill in "identity_representedPersonContactInformation_email" with "jean@test.com"
+        And I press "identity_submit"
+        Then I should be on "/porter-plainte/identite"
+        And I should see a "#form-errors-identity_representedPersonContactInformation_mobile_number" element
 
     Scenario: Submit the form with an invalid birth date (under 18) for declarant
         When I fill in "identity_civilState_birthDate" with "01/01/2020"

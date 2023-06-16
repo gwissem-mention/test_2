@@ -579,7 +579,7 @@ citoyen-complaint-1-e2e:
         - make APP_ENV=${APP_ENV} referential-ci-load
         - make complaint-1-e2e
     artifacts:
-        name: "citoyen-flaky-e2e-$CI_COMMIT_REF_NAME"
+        name: "citoyen-complaint-1-e2e-$CI_COMMIT_REF_NAME"
         paths:
             - /builds/ministere-de-l-interieur/plaintes-en-ligne-pel/portail_citoyen/var/log
             - /builds/ministere-de-l-interieur/plaintes-en-ligne-pel/portail_citoyen/build/screenshots
@@ -614,7 +614,7 @@ citoyen-complaint-2-e2e:
         - make APP_ENV=${APP_ENV} referential-ci-load
         - make complaint-2-e2e
     artifacts:
-        name: "citoyen-flaky-e2e-$CI_COMMIT_REF_NAME"
+        name: "citoyen-complaint-2-e2e-$CI_COMMIT_REF_NAME"
         paths:
             - /builds/ministere-de-l-interieur/plaintes-en-ligne-pel/portail_citoyen/var/log
             - /builds/ministere-de-l-interieur/plaintes-en-ligne-pel/portail_citoyen/build/screenshots
@@ -649,7 +649,7 @@ citoyen-complete-workflow-e2e:
         - make APP_ENV=${APP_ENV} referential-ci-load
         - make complete-workflow-e2e
     artifacts:
-        name: "citoyen-flaky-e2e-$CI_COMMIT_REF_NAME"
+        name: "citoyen-complete-workflow-e2e-$CI_COMMIT_REF_NAME"
         paths:
             - /builds/ministere-de-l-interieur/plaintes-en-ligne-pel/portail_citoyen/var/log
             - /builds/ministere-de-l-interieur/plaintes-en-ligne-pel/portail_citoyen/build/screenshots
@@ -753,7 +753,7 @@ agent-complaint-e2e:
         -   name: selenium/standalone-chrome:4.5.3
             alias: chrome
     artifacts:
-        name: "agent-e2e-$CI_COMMIT_REF_NAME"
+        name: "agent-complaint-e2e-$CI_COMMIT_REF_NAME"
         paths:
             - /builds/ministere-de-l-interieur/plaintes-en-ligne-pel/portail_agent/var/log
             - /builds/ministere-de-l-interieur/plaintes-en-ligne-pel/portail_agent/build/screenshots

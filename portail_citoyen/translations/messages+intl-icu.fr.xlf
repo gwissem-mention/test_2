@@ -294,6 +294,10 @@
                 <source>pel.chosen</source>
                 <target>Choisi</target>
             </trans-unit>
+            <trans-unit id="pel.choose.a.family.situation">
+                <source>pel.choose.a.family.situation</source>
+                <target>Choisissez une situation familiale</target>
+            </trans-unit>
             <trans-unit id="pel.choose.your.address.town">
                 <source>pel.choose.your.address.town</source>
                 <target>Choisissez votre commune</target>
@@ -333,6 +337,34 @@
             <trans-unit id="pel.complaint.exact.date.known">
                 <source>pel.complaint.exact.date.known</source>
                 <target>Connaissez-vous la date exacte des faits ?</target>
+            </trans-unit>
+            <trans-unit id="pel.family.situation">
+                <source>pel.family.situation</source>
+                <target>Situation familiale</target>
+            </trans-unit>
+            <trans-unit id="pel.family.situation.civil.partnership">
+                <source>pel.family.situation.civil.partnership</source>
+                <target>Pacsé(e)</target>
+            </trans-unit>
+            <trans-unit id="pel.family.situation.cohabitation">
+                <source>pel.family.situation.cohabitation</source>
+                <target>Concubinage</target>
+            </trans-unit>
+            <trans-unit id="pel.family.situation.divorced">
+                <source>pel.family.situation.divorced</source>
+                <target>Divorcé(e)</target>
+            </trans-unit>
+            <trans-unit id="pel.family.situation.married">
+                <source>pel.family.situation.married</source>
+                <target>Marié(e)</target>
+            </trans-unit>
+            <trans-unit id="pel.family.situation.single">
+                <source>pel.family.situation.single</source>
+                <target>Célibataire</target>
+            </trans-unit>
+            <trans-unit id="pel.family.situation.widowed">
+                <source>pel.family.situation.widowed</source>
+                <target>Veuf(ve)</target>
             </trans-unit>
             <trans-unit id="pel.complaint.identity">
                 <source>pel.complaint.identity</source>

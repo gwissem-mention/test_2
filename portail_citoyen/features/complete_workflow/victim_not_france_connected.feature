@@ -15,6 +15,7 @@ Feature:
         When I select "1" from "identity_civilState_civility"
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
+        And I select "1" from "identity_civilState_familySituation"
         And I fill in "identity_civilState_birthDate" with "01/01/2000"
         And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
         And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
@@ -77,6 +78,8 @@ Feature:
         And I should see "DUPONT"
         And I should see "Jean Pierre Marie"
         And I should not see the key "pel.usage.name" translated
+        And I should see the key "pel.family.situation" translated
+        And I should see "Célibataire"
         And I should see the key "pel.born.on" translated
         And I should see the key "pel.at" translated
         And I should see "Né(e) le : 01/01/2000 à Paris (75)"

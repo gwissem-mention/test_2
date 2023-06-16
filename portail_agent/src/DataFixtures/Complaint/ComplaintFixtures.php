@@ -75,6 +75,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                     ->setIdentity($identity
                         ->setFirstname('Léo')
                         ->setLastname('BERNARD')
+                        ->setFamilySituation('Marié(e)')
                         ->setHomePhone('01 23 45 67 89'))
                     ->setStatus(Complaint::STATUS_ASSIGNED)
                     ->setUnitAssigned($unit)
@@ -121,12 +122,14 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                 $identity = $complaint->getIdentity();
                 $complaints[] = $complaint
                     ->setIdentity($identity
-                        ->setDeclarantStatus(2))
+                        ->setDeclarantStatus(2)
+                        ->setFamilySituation('Concubinage'))
                     ->setpersonLegalRepresented(
                         (new Identity())
                             ->setFirstname('Jeremy')
                             ->setLastname('DUPONT')
                             ->setCivility(Identity::CIVILITY_MALE)
+                            ->setFamilySituation('Célibataire')
                             ->setDeclarantStatus(Identity::DECLARANT_STATUS_VICTIM)
                             ->setBirthday(new \DateTimeImmutable('2000-02-14'))
                             ->setBirthCountry('France')
@@ -185,7 +188,8 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                 $identity = $complaint->getIdentity();
                 $complaints[] = $complaint
                     ->setIdentity($identity
-                        ->setDeclarantStatus(3))
+                        ->setDeclarantStatus(3)
+                        ->setFamilySituation('Divorcé(e)'))
                     ->setCorporationRepresented(
                         (new Corporation())
                             ->setSirenNumber('123456789')
@@ -252,6 +256,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                     ->setFirstname('Jean')
                     ->setLastname('DUPONT')
                     ->setCivility(Identity::CIVILITY_MALE)
+                    ->setFamilySituation('Célibataire')
                     ->setDeclarantStatus(Identity::DECLARANT_STATUS_VICTIM)
                     ->setBirthday(new \DateTimeImmutable('1967-03-07'))
                     ->setBirthCountry('France')

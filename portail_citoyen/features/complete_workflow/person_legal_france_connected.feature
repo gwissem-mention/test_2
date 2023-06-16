@@ -16,6 +16,7 @@ Feature:
         And I should see the key "pel.if.these.informations.contains.errors" translated
         And I should see the key "pel.click.here.to.continue.without.authentication" translated
         When I select "1" from "identity_civilState_civility"
+        And I select "1" from "identity_civilState_familySituation"
         And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
         And I fill in "contact-information-address" with "avenue de la république paris"
         And I click the "#contact-information-address-75111_8158" element
@@ -24,6 +25,7 @@ Feature:
         And I select "2" from "identity_representedPersonCivilState_civility"
         And I fill in "identity_representedPersonCivilState_birthName" with "Dupont"
         And I fill in "identity_representedPersonCivilState_firstnames" with "Julie"
+        And I select "1" from "identity_representedPersonCivilState_familySituation"
         And I fill in "identity_representedPersonCivilState_birthDate" with "01/01/2010"
         And I fill in the autocomplete "identity_representedPersonCivilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
         And I fill in the autocomplete "identity_representedPersonCivilState_job-ts-control" with "Abatteuse de bestiaux" and click "2"
@@ -85,6 +87,8 @@ Feature:
         And I should see "DUPONT"
         And I should see "Michel"
         And I should not see the key "pel.usage.name" translated
+        And I should see the key "pel.family.situation" translated
+        And I should see "Célibataire"
         And I should see the key "pel.born.on" translated
         And I should see "Né(e) le : 02/03/1967 à Paris 7e arrondissement (75)"
         And I should see the key "pel.nationality" translated
@@ -108,6 +112,8 @@ Feature:
         And I should see "DUPONT"
         And I should see "Julie"
         And I should not see the key "pel.usage.name" translated
+        And I should see the key "pel.family.situation" translated
+        And I should see "Célibataire"
         And I should see the key "pel.born.on" translated
         And I should see the key "pel.at" translated
         And I should see "Né(e) le : 01/01/2010 à Paris (75)"

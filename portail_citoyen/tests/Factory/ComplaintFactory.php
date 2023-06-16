@@ -89,6 +89,7 @@ class ComplaintFactory
             ->setFirstnames('Jean')
             ->setBirthName('Dupont')
             ->setUsageName('Paul')
+            ->setFamilySituation(3)
             ->setBirthDate(new \DateTimeImmutable('1980-01-01'))
             ->setBirthLocation($frenchAddress ? $this->createLocationFrance() : $this->createLocationForeign())
             ->setNationality('23')

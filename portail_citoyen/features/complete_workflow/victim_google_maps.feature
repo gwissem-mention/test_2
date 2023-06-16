@@ -11,6 +11,7 @@ Feature:
         And I click the "label[for=declarant_status_declarantStatus_0]" element
         And I press "declarant_status_submit"
         Then I should be on "/porter-plainte/identite"
+        And I select "1" from "identity_civilState_familySituation"
         When I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
         And I fill in "contact-information-address" with "avenue de la république paris"
         And I click the "#contact-information-address-75111_8158" element
@@ -75,6 +76,8 @@ Feature:
         And I should see "DUPONT"
         And I should see "Michel"
         And I should not see the key "pel.usage.name" translated
+        And I should see the key "pel.family.situation" translated
+        And I should see "Célibataire"
         And I should see the key "pel.born.on" translated
         And I should see the key "pel.at" translated
         And I should see "Né(e) le : 02/03/1967 à Paris 7e arrondissement (75)"

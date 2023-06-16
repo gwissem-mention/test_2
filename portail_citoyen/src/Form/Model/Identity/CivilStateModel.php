@@ -12,6 +12,7 @@ class CivilStateModel
     private ?string $birthName = null;
     private ?string $usageName = null;
     private ?string $firstnames = null;
+    private ?int $familySituation = null;
     private ?\DateTimeInterface $birthDate = null;
     private ?LocationModel $birthLocation = null;
     private ?string $nationality = null;
@@ -83,6 +84,18 @@ class CivilStateModel
     public function firstnamesIsDefined(): bool
     {
         return is_string($this->firstnames) && strlen($this->firstnames) > 0;
+    }
+
+    public function getFamilySituation(): ?int
+    {
+        return $this->familySituation;
+    }
+
+    public function setFamilySituation(?int $familySituation): self
+    {
+        $this->familySituation = $familySituation;
+
+        return $this;
     }
 
     public function getBirthDate(): ?\DateTimeInterface
