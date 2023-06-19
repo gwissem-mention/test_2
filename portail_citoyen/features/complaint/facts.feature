@@ -72,6 +72,11 @@ Feature:
         And I should not see a "input#facts_offenseDate_endHour" element
         And I should not see a "input#facts_offenseDate_hour" element
 
+    Scenario: I can see only the start hour input When I fill the end hour input
+        When I click the "label[for=facts_offenseDate_choiceHour_1]" element
+        And I fill in "facts_offenseDate_endHour" with "15:00"
+        Then I should see a "input#facts_offenseDate_startHour" element
+
     Scenario: I can see 1 date input if I select "Yes" to offense exact date known radio buttons
         When I click the "label[for=facts_offenseDate_exactDateKnown_0]" element
         Then I should see the key "pel.the" translated

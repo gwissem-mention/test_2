@@ -204,6 +204,10 @@ class OffenseDateType extends AbstractType
                                 /** @var Form $formParent */
                                 $formParent = $form->getParent();
 
+                                if (null === $formParent->get('startHour')->getData()) {
+                                    return;
+                                }
+
                                 if (!$formParent->has('endDate')) {
                                     /** @var \DateTime $startHour */
                                     $startHour = $formParent->get('startHour')->getData();
