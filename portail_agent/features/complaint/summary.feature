@@ -190,13 +190,17 @@ Feature:
         When I press "Rejeter"
         Then I should see a ".modal[aria-modal=true]" element
         And I should see the key "pel.you.will.reject.the.declaration" translated
-        And I should see the key "pel.refusal.reason" translated
-        And I should see the key "pel.appointment.needed" translated
-        And I should see the key "pel.reorientation.other.solution" translated
-        And I should see the key "pel.absence.of.penal.offense" translated
-        And I should see the key "pel.insufisant.quality.to.act" translated
-        And I should see the key "pel.victime.carence" translated
         And I should see the key "pel.other" translated
+        And I should see the key "pel.reorientation.other.solution" translated
+        And I should see the key "pel.drafting.victim.to.another.teleservice" translated
+        And I should see the key "pel.drafting.a.handrail.declaration" translated
+        And I should see the key "pel.insufisant.quality.to.act" translated
+        And I should see the key "pel.absence.of.penal.offense.object.loss" translated
+        And I should see the key "pel.absence.of.penal.offense" translated
+        And I should see the key "pel.incoherent.statements" translated
+        And I should see the key "pel.victime.carence.at.appointment" translated
+        And I should see the key "pel.victime.carence.at.appointment.booking" translated
+        And I should see the key "pel.abandonment.of.the.procedure.by.victim" translated
         And I should see the key "pel.free.text" translated
         And I should see the key "pel.back" translated
         And I should see the key "pel.validate.the.refusal" translated
@@ -207,7 +211,7 @@ Feature:
     Scenario: I can submit the reject form successfully
         Given I am on "/plainte/recapitulatif/91"
         When I press "Rejeter"
-        And I select "appointment-needed" from "reject_refusalReason"
+        And I select "reorientation-other-solution" from "reject_refusalReason"
         And I fill in "reject_refusalText" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus scelerisque ante id dui lacinia eu."
         And I press "Valider le refus"
         Then I should not see a ".modal[aria-modal=true]" element
@@ -225,7 +229,7 @@ Feature:
     Scenario: I can see form errors the reject form when reject_refusalText is too short
         Given I am on "/plainte/recapitulatif/92"
         When I press "Rejeter"
-        And I select "appointment-needed" from "reject_refusalReason"
+        And I select "reorientation-other-solution" from "reject_refusalReason"
         And I fill in "reject_refusalText" with "Lorem ipsum dolor sit amet"
         And I press "Valider le refus"
         Then I should see a ".modal[aria-modal=true]" element

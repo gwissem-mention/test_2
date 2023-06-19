@@ -2,9 +2,17 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="fr" target-language="fr" datatype="plaintext" original="file.ext">
         <body>
+            <trans-unit id="pel.abandonment.of.the.procedure.by.victim">
+                <source>pel.abandonment.of.the.procedure.by.victim</source>
+                <target>Abandon de la démarche par la victime</target>
+            </trans-unit>
             <trans-unit id="pel.absence.of.penal.offense">
                 <source>pel.absence.of.penal.offense</source>
                 <target>Absence d’infraction pénale</target>
+            </trans-unit>
+            <trans-unit id="pel.absence.of.penal.offense.object.loss">
+                <source>pel.absence.of.penal.offense.object.loss</source>
+                <target>Absence d’infraction pénale (perte d'objet)</target>
             </trans-unit>
             <trans-unit id="pel.additional.informations">
                 <source>pel.additional.informations</source>
@@ -494,6 +502,10 @@
                 <source>pel.is.designated.as</source>
                 <target>Se désigne comme</target>
             </trans-unit>
+            <trans-unit id="pel.incoherent.statements">
+                <source>pel.incoherent.statements</source>
+                <target>Propos incohérents</target>
+            </trans-unit>
             <trans-unit id="pel.information.entered.by.the.victim.to.make.an.appointment">
                 <source>pel.information.entered.by.the.victim.to.make.an.appointment</source>
                 <target>Demande de rendez-vous, renseignée par le déclarant</target>
@@ -742,7 +754,15 @@
                 <source>pel.receipt.report</source>
                 <target>Réception du PV</target>
             </trans-unit>
-            <trans-unit id="pel.drop.report.and.send.to.the.victim'">
+            <trans-unit id="pel.drafting.a.handrail.declaration">
+                <source>pel.drafting.a.handrail.declaration</source>
+                <target>Rédaction d'une déclaration de main courante</target>
+            </trans-unit>
+            <trans-unit id="pel.drafting.victim.to.another.teleservice">
+                <source>pel.drafting.victim.to.another.teleservice</source>
+                <target>Rédaction de la victime vers un autre téléservice</target>
+            </trans-unit>
+            <trans-unit id="pel.drop.report.and.send.to.the.victim">
                 <source>pel.drop.report.and.send.to.the.victim</source>
                 <target>Dépôt et envoi du PV à la victime</target>
             </trans-unit>
@@ -760,7 +780,7 @@
             </trans-unit>
             <trans-unit id="pel.reorientation.other.solution">
                 <source>pel.reorientation.other.solution</source>
-                <target>Réorientation autre solution</target>
+                <target>Réorientation de la victime vers autre démarche (civil, prudhomme, médiation...)</target>
             </trans-unit>
             <trans-unit id="pel.resides.at">
                 <source>pel.resides.at</source>
@@ -1054,9 +1074,13 @@
                 <source>pel.victim.address</source>
                 <target>Adresse de la victime</target>
             </trans-unit>
-            <trans-unit id="pel.victime.carence">
-                <source>pel.victime.carence</source>
-                <target>Carence victime</target>
+            <trans-unit id="pel.victime.carence.at.appointment">
+                <source>pel.victime.carence.at.appointment</source>
+                <target>Carence victime aux RDV</target>
+            </trans-unit>
+            <trans-unit id="pel.victime.carence.at.appointment.booking">
+                <source>pel.victime.carence.at.appointment.booking</source>
+                <target>Carence victime prise de RDV</target>
             </trans-unit>
             <trans-unit id="pel.victim.civil.status">
                 <source>pel.victim.civil.status</source>

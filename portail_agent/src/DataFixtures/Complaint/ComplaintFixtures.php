@@ -29,7 +29,7 @@ use Symfony\Component\HttpKernel\KernelInterface;
 class ComplaintFixtures extends Fixture implements FixtureGroupInterface, DependentFixtureInterface
 {
     private const COMPLAINTS_NB = 10;
-    private const REFUSAL_REASON_NEEDED_APPONTMENT = 'appointment-needed';
+    private const REFUSAL_REASON_REORIENTATION_OTHER_SOLUTION = 'reorientation-other-solution';
 
     public function __construct(private readonly NotificationFactory $notificationFactory,
         private readonly FilesystemOperator $defaultStorage,
@@ -94,7 +94,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                 $complaints[] = $this->getGenericComplaint($users)
                     ->setStatus(Complaint::STATUS_REJECTED)
                     ->setCreatedAt(new \DateTimeImmutable('2022-12-03'))
-                    ->setRefusalReason(self::REFUSAL_REASON_NEEDED_APPONTMENT)
+                    ->setRefusalReason(self::REFUSAL_REASON_REORIENTATION_OTHER_SOLUTION)
                     ->setUnitAssigned($unit);
             }
 

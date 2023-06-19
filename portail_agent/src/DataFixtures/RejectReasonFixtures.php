@@ -19,27 +19,25 @@ class RejectReasonFixtures extends Fixture implements FixtureGroupInterface
     public function load(ObjectManager $manager): void
     {
         $rejectReasons = [
-            (new RejectReason())
-                ->setLabel('pel.appointment.needed')
-                ->setCode('appointment-needed'),
-            (new RejectReason())
-                ->setLabel('pel.reorientation.other.solution')
-                ->setCode('reorientation-other-solution'),
-            (new RejectReason())
-                ->setLabel('pel.absence.of.penal.offense')
-                ->setCode('absence-of-penal-offense'),
-            (new RejectReason())
-                ->setLabel('pel.insufisant.quality.to.act')
-                ->setCode('pel-insufisant-quality-to-act'),
-            (new RejectReason())
-                ->setLabel('pel.victime.carence')
-                ->setCode('pel-victime-carence'),
-            (new RejectReason())
-                ->setLabel('pel.other')
-                ->setCode('pel-other'),
+            'pel.other' => 'pel-other',
+            'pel.reorientation.other.solution' => 'reorientation-other-solution',
+            'pel.drafting.victim.to.another.teleservice' => 'drafting-victim-to-another-teleservice',
+            'pel.drafting.a.handrail.declaration' => 'drafting-a-handrail-declaration',
+            'pel.insufisant.quality.to.act' => 'pel-insufisant-quality-to-act',
+            'pel.absence.of.penal.offense.object.loss' => 'absence-of-penal-offense-object-loss',
+            'pel.absence.of.penal.offense' => 'absence-of-penal-offense',
+            'pel.incoherent.statements' => 'incoherent-statements',
+            'pel.victime.carence.at.appointment' => 'pel-victime-carence-at-appointment',
+            'pel.victime.carence.at.appointment.booking' => 'pel-victime-carence-at-appointment-booking',
+            'pel.abandonment.of.the.procedure.by.victim' => 'abandonment-of-the-procedure-by-victim',
         ];
 
-        foreach ($rejectReasons as $rejectReason) {
+        foreach ($rejectReasons as $label => $code) {
+            $rejectReason = new RejectReason();
+            $rejectReason
+                ->setLabel($label)
+                ->setCode($code);
+
             $manager->persist($rejectReason);
         }
 
