@@ -9,15 +9,18 @@ use App\Complaint\ComplaintWorkflowManager;
 use App\Complaint\Messenger\SendReport\SendReportMessage;
 use App\Entity\Complaint;
 use App\Factory\NotificationFactory;
-use App\Form\DropZoneType;
+use App\Form\Complaint\SendReportType;
 use App\Repository\ComplaintRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
+use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class SendReportController extends AbstractController
 {
@@ -32,12 +35,36 @@ class SendReportController extends AbstractController
         NotificationFactory $notificationFactory,
         Request $request,
         MessageBusInterface $bus,
-        ComplaintWorkflowManager $complaintWorkflowManager
+        ComplaintWorkflowManager $complaintWorkflowManager,
+        ValidatorInterface $validator
     ): JsonResponse {
-        $form = $this->createForm(DropZoneType::class);
+        $form = $this->createForm(SendReportType::class);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted()) {
+            /** @var array<string, array<UploadedFile>> $data */
+            $data = $form->getData();
+            $files = $data['files'];
+
+            $fileConstraint = new File([
+                'mimeTypes' => [
+                    'image/jpeg',
+                    'image/png',
+                    'application/pdf',
+                ],
+                'mimeTypesMessage' => 'pel.file.must.be.image.or.pdf',
+            ]);
+
+            foreach ($files as $file) {
+                $violations = $validator->validate($file, $fileConstraint);
+                if ($violations->count() > 0) {
+                    foreach ($violations as $violation) {
+                        $form->addError(new FormError((string) $violation->getMessage()));
+                    }
+                }
+            }
+
             if (false === $form->isValid()) {
                 return $this->json([
                     'form' => $this->renderView(
@@ -47,11 +74,7 @@ class SendReportController extends AbstractController
                 ], 422);
             }
 
-            /** @var array<string, UploadedFile> $data */
-            $data = $form->getData();
-            $report = $data['file'];
-
-            $bus->dispatch(new SendReportMessage($report, (int) $complaint->getId()));
+            $bus->dispatch(new SendReportMessage($files, (int) $complaint->getId()));
             $complaintWorkflowManager->close($complaint);
             $complaintRepository->save($complaint, true);
 

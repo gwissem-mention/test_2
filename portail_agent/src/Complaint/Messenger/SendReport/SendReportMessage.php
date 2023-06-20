@@ -8,15 +8,21 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class SendReportMessage
 {
+    /**
+     * @param array<UploadedFile> $files
+     */
     public function __construct(
-        private readonly UploadedFile $report,
+        private readonly array $files,
         private readonly int $complaintId,
     ) {
     }
 
-    public function getReport(): UploadedFile
+    /**
+     * @return array<UploadedFile>
+     */
+    public function getFiles(): array
     {
-        return $this->report;
+        return $this->files;
     }
 
     public function getComplaintId(): int

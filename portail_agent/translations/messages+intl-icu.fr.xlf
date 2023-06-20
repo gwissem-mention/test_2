@@ -374,6 +374,30 @@
                 <source>pel.drag.and.drop.or.click.here.to.browse</source>
                 <target>Glissez-déposez un document ou cliquez ici pour parcourir</target>
             </trans-unit>
+            <trans-unit id="pel.dropzone.cancel.upload">
+                <source>pel.dropzone.cancel.upload</source>
+                <target>Annuler l’envoi</target>
+            </trans-unit>
+            <trans-unit id="pel.dropzone.cancel.upload.confirmation">
+                <source>pel.dropzone.cancel.upload.confirmation</source>
+                <target>Êtes-vous sûr de vouloir annuler l’envoi ?</target>
+            </trans-unit>
+            <trans-unit id="pel.dropzone.file.too.big">
+                <source>pel.dropzone.file.too.big</source>
+                <target>Fichier trop volumineux</target>
+            </trans-unit>
+            <trans-unit id="pel.dropzone.invalid.file.type">
+                <source>pel.dropzone.invalid.file.type</source>
+                <target>Type de fichier non autorisé</target>
+            </trans-unit>
+            <trans-unit id="pel.dropzone.max.files.exceeded">
+                <source>pel.dropzone.max.files.exceeded</source>
+                <target>Limite d’envois de fichiers simultanés atteinte</target>
+            </trans-unit>
+            <trans-unit id="pel.dropzone.remove.file">
+                <source>pel.dropzone.remove.file</source>
+                <target>Supprimer</target>
+            </trans-unit>
             <trans-unit id="pel.drop.the.report.then.validate.the.sending.to.the.victim">
                 <source>pel.drop.the.report.then.validate.the.sending.to.the.victim</source>
                 <target>Déposez le PV puis validez l'envoi à la victime</target>
@@ -1129,6 +1153,10 @@
             <trans-unit id="pel.your.identity">
                 <source>pel.your.identity</source>
                 <target>Votre identité</target>
+            </trans-unit>
+            <trans-unit id="pel.you.must.choose.a.file">
+                <source>pel.you.must.choose.a.file</source>
+                <target>Vous devez sélectionner au moins un fichier</target>
             </trans-unit>
             <trans-unit id="pel.notifications">
                 <source>pel.notifications</source>

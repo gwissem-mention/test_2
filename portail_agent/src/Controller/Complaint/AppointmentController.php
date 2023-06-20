@@ -8,8 +8,8 @@ use App\Entity\Complaint;
 use App\Form\Complaint\AppointmentType;
 use App\Form\Complaint\AssignType;
 use App\Form\Complaint\RejectType;
+use App\Form\Complaint\SendReportType;
 use App\Form\Complaint\UnitReassignType;
-use App\Form\DropZoneType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -26,7 +26,7 @@ class AppointmentController extends AbstractController
             'reject_form' => $this->createForm(RejectType::class, $complaint),
             'assign_form' => $this->createForm(AssignType::class, $complaint),
             'unit_reassign_form' => $this->createForm(UnitReassignType::class, $complaint),
-            'drag_drop_form' => $this->createForm(DropZoneType::class),
+            'send_report_form' => $this->createForm(SendReportType::class),
             'appointment_form' => $this->createForm(AppointmentType::class, $complaint),
         ]);
     }
