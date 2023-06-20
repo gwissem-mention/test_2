@@ -9,7 +9,7 @@ use App\AppEnum\FamilySituation;
 use App\Form\JobAutocompleteType;
 use App\Form\LocationType;
 use App\Form\Model\Identity\CivilStateModel;
-use App\Form\NationalityType;
+use App\Form\NationalityAutocompleteType;
 use App\Referential\Entity\Job;
 use App\Referential\Repository\JobRepository;
 use App\Session\SessionHandler;
@@ -117,7 +117,7 @@ class CivilStateType extends AbstractType
                 'department_label' => 'pel.birth.department',
                 'disabled' => $options['is_france_connected'] && $civilStateModel?->birthLocationIsDefined(),
             ])
-            ->add('nationality', NationalityType::class, [
+            ->add('nationality', NationalityAutocompleteType::class, [
                 'constraints' => [
                     new NotBlank(),
                 ],

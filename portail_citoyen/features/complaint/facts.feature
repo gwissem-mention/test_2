@@ -73,7 +73,7 @@ Feature:
         And I should see a "input#facts_offenseDate_hour" element
 
     Scenario: I can see only the start hour input When I fill the end hour input
-        When I click the "label[for=facts_offenseDate_choiceHour_1]" element
+        When I click the "label[for=facts_offenseDate_choiceHour_2]" element
         And I fill in "facts_offenseDate_endHour" with "15:00"
         Then I should see a "input#facts_offenseDate_startHour" element
 

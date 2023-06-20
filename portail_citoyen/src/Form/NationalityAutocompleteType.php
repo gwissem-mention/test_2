@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Form;
 
-use App\Referential\Provider\Country\CachedCountryProvider;
+use App\Referential\Provider\Nationality\CachedNationalityProvider;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -13,11 +13,11 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 use Symfony\UX\Autocomplete\Form\AsEntityAutocompleteField;
 
 #[AsEntityAutocompleteField]
-class CountryAutocompleteType extends AbstractType
+class NationalityAutocompleteType extends AbstractType
 {
     public function __construct(
+        private readonly CachedNationalityProvider $nationalityProvider,
         private readonly TranslatorInterface $translator,
-        private readonly CachedCountryProvider $countryProvider
     ) {
     }
 
@@ -26,7 +26,7 @@ class CountryAutocompleteType extends AbstractType
         $resolver->setDefaults([
             'autocomplete' => true,
             'preload' => false,
-            'choices' => $this->countryProvider->getChoices(),
+            'choices' => $this->nationalityProvider->getChoices(),
             'constraints' => [
                 new NotBlank(),
             ],
