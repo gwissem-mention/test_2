@@ -672,7 +672,7 @@
             </trans-unit>
             <trans-unit id="pel.facts.description.precise">
                 <source>pel.facts.description.precise</source>
-                <target>Description précise des faits</target>
+                <target>Description des faits en quelques mots</target>
             </trans-unit>
             <trans-unit id="pel.facts.hour">
                 <source>pel.facts.hour</source>
@@ -1850,10 +1850,6 @@
                 <source>pel.facts.describe.whats.happened</source>
                 <target>Merci de nous décrire ce qui vous est arrivé. N’hésitez pas à mentionner toutes les informations qui peuvent vous paraître utiles dans le cadre de l’enquête.&#10;&#10;Dans la suite du parcours, nous reviendrons plus en détail sur le lieu, la date et l’heure, les objets volés et/ou dégradés et différentes autres informations de nature à faciliter la prise en compte de votre demande.&#10;&#10;Votre déclaration sera relue par un membre des forces de l’ordre. Ne vous inquiétez pas de ne pas utiliser les bons termes juridiques. Utilisez le vocabulaire qui vous est le plus familier.</target>
             </trans-unit>
-            <trans-unit id="pel.you.must.enter.between">
-                <source>pel.you.must.enter.between</source>
-                <target>Vous devez saisir entre</target>
-            </trans-unit>
             <trans-unit id="pel.characters">
                 <source>pel.characters</source>
                 <target>caractères</target>
@@ -1993,6 +1989,54 @@
             <trans-unit id="pel.my.online.complaint.declaration">
                 <source>pel.my.online.complaint.declaration</source>
                 <target>Ma déclaration de plainte en ligne</target>
+            </trans-unit>
+            <trans-unit id="pel.goods.concerned">
+                <source>pel.goods.concerned</source>
+                <target>Biens concernés</target>
+            </trans-unit>
+            <trans-unit id="pel.potential.start.date">
+                <source>pel.potential.start.date</source>
+                <target>Date potentielle de début</target>
+            </trans-unit>
+            <trans-unit id="pel.potential.end.date">
+                <source>pel.potential.end.date</source>
+                <target>Date potentielle de fin</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.dispositions.step.1">
+                <source>pel.legal.dispositions.step.1</source>
+                <target>Dispositions légales (étape 1 sur 7) - Plainte en ligne</target>
+            </trans-unit>
+            <trans-unit id="pel.what.is.the.date.of.the.infraction">
+                <source>pel.what.is.the.date.of.the.infraction</source>
+                <target>Quelle est la date de l'infraction ?</target>
+            </trans-unit>
+            <trans-unit id="pel.what.is.the.place.of.the.infraction">
+                <source>pel.what.is.the.place.of.the.infraction</source>
+                <target>Quel est le lieu de l'infraction ?</target>
+            </trans-unit>
+            <trans-unit id="pel.describe.whats.happened">
+                <source>pel.describe.whats.happened</source>
+                <target>Décrivez en détails ce qu'il vous est arrivé</target>
+            </trans-unit>
+            <trans-unit id="pel.resume.the.infraction.in.few.words">
+                <source>pel.resume.the.infraction.in.few.words</source>
+                <target>Résumez l'infraction en quelques mots en mentionnant toutes les informations pouvant paraître utiles dans le cadre de l'enquête.</target>
+            </trans-unit>
+            <trans-unit id="pel.your.declaration.will.be.reviewed.by.an.agent">
+                <source>pel.your.declaration.will.be.reviewed.by.an.agent</source>
+                <target>Votre déclaration sera relue par un agent. Aucune importance si vous n'utilisez pas les bons termes juridiques. Utilisez le vocabulaire qui vous est le plus familier.</target>
+            </trans-unit>
+            <trans-unit id="pel.all.fields.marked.with">
+                <source>pel.all.fields.marked.with</source>
+                <target>Tous les champs marqués du symbole</target>
+            </trans-unit>
+            <trans-unit id="pel.are.mandatory">
+                <source>pel.are.mandatory</source>
+                <target>sont obligatoires.</target>
+            </trans-unit>
+            <trans-unit id="pel.description.of.facts.step.3">
+                <source>pel.description.of.facts.step.3</source>
+                <target>Description des faits (étape 3 sur 7) - Plainte en ligne</target>
             </trans-unit>
         </body>
     </file>

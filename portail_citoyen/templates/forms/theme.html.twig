@@ -2,7 +2,7 @@
 
 {% block choice_row %}
     {% if expanded is same as(true) %}
-        <div class="fr-form-group">
+        <div class="fr-form-group m-0">
             <fieldset class="{{ html_classes('fr-fieldset', 'fr-input-group', {'fr-fieldset--inline': inline is same as(true),'fr-fieldset--error': errors is not empty}) }}" {% if errors is not empty %}role="group" aria-labelledby="legend-{{ form.vars.id }} form-errors-{{ form.vars.id }}"{% endif %}>
                 <legend class="fr-fieldset__legend fr-text--regular" id="legend-{{ form.vars.id }}">
                     {{ form_label(form) }}
@@ -98,7 +98,7 @@
             {%- endif -%}
         {%- endif -%}
         {% if required and required_help -%}
-            &nbsp;(*)
+            &nbsp;<span class="fr-label--error font-bold">*</span>
         {% endif %}
         {{ form_help(form) }}
         </{{ element|default('label') }}>

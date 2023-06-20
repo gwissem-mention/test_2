@@ -41,9 +41,9 @@ class OffenseDateType extends AbstractType
             ])
             ->add('choiceHour', ChoiceType::class, [
                 'choices' => [
-                    'pel.yes.i.know.the.exact.time.of.facts' => 'yes',
+                    'pel.yes' => 'yes',
+                    'pel.no' => 'no',
                     'pel.no.but.i.know.the.time.slot' => 'maybe',
-                    'pel.no.but.i.don.t.know.at.all.the.time.of.facts' => 'no',
                 ],
                 'expanded' => true,
                 'label' => 'pel.do.you.know.hour.facts',
@@ -106,9 +106,8 @@ class OffenseDateType extends AbstractType
                 new NotBlank(),
                 new LessThanOrEqual('today', message: 'pel.date.less.than.equal.today.error'),
             ],
-            'label' => true === $exactDateKnown ? 'pel.the' : 'pel.between',
+            'label' => true === $exactDateKnown ? 'pel.the' : 'pel.potential.start.date',
             'widget' => 'single_text',
-            'help' => 'pel.date.help',
         ]);
 
         if (false === $exactDateKnown) {
@@ -141,9 +140,8 @@ class OffenseDateType extends AbstractType
                     new NotBlank(),
                     new LessThanOrEqual('today', message: 'pel.date.less.than.equal.today.error'),
                 ],
-                'label' => 'pel.and',
+                'label' => 'pel.potential.end.date',
                 'widget' => 'single_text',
-                'help' => 'pel.date.help',
             ]);
         } else {
             $form->remove('endDate');
@@ -162,7 +160,7 @@ class OffenseDateType extends AbstractType
                 ->remove('endHour')
                 ->add('hour', TimeType::class, [
                     'attr' => [
-                        'class' => 'fr-btn',
+                        'class' => 'fr-input',
                     ],
                     'label' => 'pel.exact.hour',
                     'widget' => 'single_text',
@@ -177,7 +175,7 @@ class OffenseDateType extends AbstractType
                 ->remove('hour')
                 ->add('startHour', TimeType::class, [
                     'attr' => [
-                        'class' => 'fr-btn',
+                        'class' => 'fr-input',
                     ],
                     'label' => 'pel.start.hour',
                     'widget' => 'single_text',
@@ -187,7 +185,7 @@ class OffenseDateType extends AbstractType
                 ])
                 ->add('endHour', TimeType::class, [
                     'attr' => [
-                        'class' => 'fr-btn',
+                        'class' => 'fr-input',
                     ],
                     'constraints' => [
                         new Callback([

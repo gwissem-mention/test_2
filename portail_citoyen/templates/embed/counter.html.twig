@@ -1,12 +1,12 @@
 <div class="fr-col" data-controller="counter" data-counter-minlength-value="{{ minlength }}" data-counter-maxlength-value="{{ maxlength }}">
     {% block label %}{% endblock %}
-    <div class="fr-hint-text fr-text--red-marianne" data-counter-target="counterContainer" data-live-ignore>
-        {{ 'pel.you.must.enter.between'|trans }}
+    <div class="fr-hint-text" data-counter-target="counterContainer" data-live-ignore>
+        {{ 'pel.between'|trans }}
         <span data-counter-target="counterMinLength"></span>
         {{ 'pel.and'|trans|lower }}
         <span data-counter-target="counterMaxLength"></span>
         {{ 'pel.characters'|trans }}
-        <span data-counter-target="counter"></span>
+        <span data-counter-target="counter" class="fr-text--red-marianne font-bold"></span>
     </div>
     {% block widget %}{% endblock %}
     {% block errors %}{% endblock %}
