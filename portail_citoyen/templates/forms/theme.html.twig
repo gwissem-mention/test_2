@@ -19,10 +19,12 @@
             </fieldset>
         </div>
     {% else %}
-        <div class="{{ html_classes('fr-select-group', {'fr-select-group--error':  errors is not empty}) }}">
-            {{ form_label(form) }}
-            {{ form_widget(form, {'attr':{'class':html_classes(attr.class ?? '', 'autocomplete' not in form.vars['block_prefixes'] ? 'fr-select' : '',{'fr-select--error':errors is not empty})}}) }}
-            {{ form_errors(form) }}
+        <div class="fr-form-group">
+            <div class="{{ html_classes('fr-select-group', {'fr-select-group--error':  errors is not empty}) }}">
+                {{ form_label(form) }}
+                {{ form_widget(form, {'attr':{'class':html_classes(attr.class ?? '', 'autocomplete' not in form.vars['block_prefixes'] ? 'fr-select' : '',{'fr-select--error':errors is not empty})}}) }}
+                {{ form_errors(form) }}
+            </div>
         </div>
     {% endif %}
 {% endblock %}

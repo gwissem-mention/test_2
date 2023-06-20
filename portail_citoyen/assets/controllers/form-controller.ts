@@ -35,7 +35,7 @@ export default class extends Controller {
             const value = country.value;
             const frenchTown = 99160;
 
-            if (value !== frenchTown) {
+            if (value && value !== frenchTown) {
                 // @ts-ignore
                 const parent: Element = country.parentElement;
                 // @ts-ignore

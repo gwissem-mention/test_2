@@ -6,7 +6,7 @@ namespace App\Form\Identity;
 
 use App\Form\CountryAutocompleteType;
 use App\Form\Model\Identity\CorporationModel;
-use App\Form\NationalityType;
+use App\Form\NationalityAutocompleteType;
 use App\Form\PhoneType;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\AbstractType;
@@ -63,7 +63,7 @@ class CorporationType extends AbstractType
                 ],
                 'label' => 'pel.corporation.function',
             ])
-            ->add('nationality', NationalityType::class, [
+            ->add('nationality', NationalityAutocompleteType::class, [
                 'constraints' => [
                     new NotBlank(),
                 ],
