@@ -39,7 +39,6 @@ class FactsType extends AbstractType
                 ],
                 'label' => 'pel.facts.description.precise',
                 'attr' => [
-                    'placeholder' => 'pel.facts.describe.whats.happened',
                     'class' => 'fr-input',
                     'data-counter-target' => 'parent',
                     'minlength' => 30,
@@ -58,6 +57,7 @@ class FactsType extends AbstractType
             ])
             ->add('offenseDate', OffenseDateType::class, [
                 'label' => false,
+                'required' => true,
             ])
             ->addEventListener(
                 FormEvents::PRE_SET_DATA,

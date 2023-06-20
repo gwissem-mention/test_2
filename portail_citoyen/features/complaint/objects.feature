@@ -22,7 +22,7 @@ Feature:
         And I click the "label[for=facts_address_addressOrRouteFactsKnown_1]" element
         And I click the "label[for=facts_offenseDate_exactDateKnown_0]" element
         And I fill in "facts_offenseDate_startDate" with "01/01/2022"
-        And I click the "label[for=facts_offenseDate_choiceHour_2]" element
+        And I click the "label[for=facts_offenseDate_choiceHour_1]" element
         And I press "facts_submit"
         Then I should be on "/porter-plainte/objets"
 

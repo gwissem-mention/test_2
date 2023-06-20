@@ -5,7 +5,7 @@ Feature:
 
     @func
     Scenario: Show law refresher on /rappel-a-la-loi route with 200 status code
-        Given I am on "/rappel-a-la-loi"
+        Given I am on "/porter-plainte/rappel-a-la-loi"
         Then the response status code should be 200
         And I should see the key "pel.step" translated
         And I should see the key "pel.on" translated

@@ -29,11 +29,11 @@ export default class extends Controller {
     private bind(): void {
         this.parentTarget.addEventListener("keydown", () => {
             this.counterTarget.textContent = `(${this.parentTarget.value.length}/${this.maxlengthValue})`;
-            this.counterContainerTarget.classList.toggle(
+            this.counterTarget.classList.toggle(
                 "fr-text--red-marianne",
                 this.parentTarget.value.length < this.minlengthValue
             );
-            this.counterContainerTarget.classList.toggle(
+            this.counterTarget.classList.toggle(
                 "fr-text--high-green-emeraude",
                 this.parentTarget.value.length >= this.minlengthValue
             );

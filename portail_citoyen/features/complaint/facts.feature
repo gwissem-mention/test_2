@@ -36,9 +36,9 @@ Feature:
 
     Scenario: I can see the offense choice hour radio buttons
         And I should see 3 "input[type=radio][name='facts[offenseDate][choiceHour]']" elements
-        And I should see "Oui je connais l’heure exacte des faits" in the "label[for=facts_offenseDate_choiceHour_0]" element
-        And I should see "Non mais je connais le créneau horaire" in the "label[for=facts_offenseDate_choiceHour_1]" element
-        And I should see "Je ne connais pas l’heure des faits" in the "label[for=facts_offenseDate_choiceHour_2]" element
+        And I should see "Oui" in the "label[for=facts_offenseDate_choiceHour_0]" element
+        And I should see "Non" in the "label[for=facts_offenseDate_choiceHour_1]" element
+        And I should see "Non mais je connais le créneau horaire" in the "label[for=facts_offenseDate_choiceHour_2]" element
 
     Scenario: I can see 1 date input if I select "Yes" to offense exact date known radio buttons
         When I click the "label[for=facts_offenseDate_exactDateKnown_0]" element
@@ -54,23 +54,23 @@ Feature:
         And I should see the key "pel.and" translated
         And I should see a "input#facts_offenseDate_endDate" element
 
-    Scenario: I can see only the hour input When I wait and select "Oui je connais l’heure exacte des faits" to the offense hour radio buttons
+    Scenario: I can see only the hour input When I wait and select "Oui" to the offense hour radio buttons
         When I click the "label[for=facts_offenseDate_choiceHour_0]" element
         Then I should see a "input#facts_offenseDate_hour" element
         And I should not see a "input#facts_offenseDate_startHour" element
         And I should not see a "input#facts_offenseDate_endHour" element
 
-    Scenario: I can see only the hour input When I wait and select "Oui je connais l’heure exacte des faits" to the offense hour radio buttons
-        When I click the "label[for=facts_offenseDate_choiceHour_1]" element
+    Scenario: I can see only the hour input When I wait and select "Oui" to the offense hour radio buttons
+        When I click the "label[for=facts_offenseDate_choiceHour_2]" element
         Then I should see a "input#facts_offenseDate_startHour" element
         And I should see a "input#facts_offenseDate_endHour" element
         And I should not see a "input#facts_offenseDate_hour" element
 
-    Scenario: I can see only the hour input When I wait and select "Oui je connais l’heure exacte des faits" to the offense hour radio buttons
-        When I click the "label[for=facts_offenseDate_choiceHour_2]" element
+    Scenario: I can see only the hour input When I wait and select "Oui" to the offense hour radio buttons
+        When I click the "label[for=facts_offenseDate_choiceHour_0]" element
         Then I should not see a "input#facts_offenseDate_startHour" element
         And I should not see a "input#facts_offenseDate_endHour" element
-        And I should not see a "input#facts_offenseDate_hour" element
+        And I should see a "input#facts_offenseDate_hour" element
 
     Scenario: I can see only the start hour input When I fill the end hour input
         When I click the "label[for=facts_offenseDate_choiceHour_1]" element
@@ -91,20 +91,20 @@ Feature:
         And I should see the key "pel.and" translated
         And I should see a "input#facts_offenseDate_endDate" element
 
-    Scenario: I can see only the hour input When I wait and select "Oui je connais l’heure exacte des faits" to the offense hour radio buttons
+    Scenario: I can see only the hour input When I wait and select "Oui" to the offense hour radio buttons
         When I click the "label[for=facts_offenseDate_choiceHour_0]" element
         Then I should see a "input#facts_offenseDate_hour" element
         And I should not see a "input#facts_offenseDate_startHour" element
         And I should not see a "input#facts_offenseDate_endHour" element
 
-    Scenario: I can see only the hour input When I wait and select "Oui je connais l’heure exacte des faits" to the offense hour radio buttons
-        When I click the "label[for=facts_offenseDate_choiceHour_1]" element
+    Scenario: I can see only the hour input When I wait and select "Oui" to the offense hour radio buttons
+        When I click the "label[for=facts_offenseDate_choiceHour_2]" element
         Then I should see a "input#facts_offenseDate_startHour" element
         And I should see a "input#facts_offenseDate_endHour" element
         And I should not see a "input#facts_offenseDate_hour" element
 
-    Scenario: I can see only the hour input When I wait and select "Oui je connais l’heure exacte des faits" to the offense hour radio buttons
-        When I click the "label[for=facts_offenseDate_choiceHour_2]" element
+    Scenario: I can see only the hour input When I wait and select "Oui" to the offense hour radio buttons
+        When I click the "label[for=facts_offenseDate_choiceHour_1]" element
         Then I should not see a "input#facts_offenseDate_startHour" element
         And I should not see a "input#facts_offenseDate_endHour" element
         And I should not see a "input#facts_offenseDate_hour" element
@@ -148,7 +148,7 @@ Feature:
     Scenario: I should see a error when I put a offense end hour < offense start hour
         When I click the "label[for=facts_offenseDate_exactDateKnown_0]" element
         And I fill in "facts_offenseDate_startDate" with "01/01/2023"
-        And I click the "label[for=facts_offenseDate_choiceHour_1]" element
+        And I click the "label[for=facts_offenseDate_choiceHour_2]" element
         And I fill in "facts_offenseDate_startHour" with "18:00"
         And I fill in "facts_offenseDate_endHour" with "16:00"
         Then I should see the key "pel.start.hour.after.end.hour" translated
@@ -156,7 +156,7 @@ Feature:
     Scenario: I should see a error when I put a offense end hour = offense start hour
         When I click the "label[for=facts_offenseDate_exactDateKnown_0]" element
         And I fill in "facts_offenseDate_startDate" with "01/01/2023"
-        And I click the "label[for=facts_offenseDate_choiceHour_1]" element
+        And I click the "label[for=facts_offenseDate_choiceHour_2]" element
         And I fill in "facts_offenseDate_startHour" with "13:00"
         And I fill in "facts_offenseDate_endHour" with "13:00"
         Then I should see the key "pel.start.hour.same.as.end.hour" translated
