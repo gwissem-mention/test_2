@@ -291,13 +291,14 @@ Feature:
         When I press "complaint-send-report-to-the-victim-button-validate"
         Then I should see a ".modal[aria-modal=true]" element
         And I should see a ".invalid-feedback" element
+        And I should see the key 'pel.you.must.choose.a.file' translated
 
     @javascript
     Scenario: I can see form errors when I submit another type file than PDF
         Given I am on "/plainte/recapitulatif/111"
         When I press "Envoyer PV au déclarant et clôturer"
         Then I should see a ".modal[aria-modal=true]" element
-        When I attach the file "blank.xls" to ".dropzone-input" field
+        When I attach the file "blank.xls" to ".dz-hidden-input" field
         When I press "complaint-send-report-to-the-victim-button-validate"
         Then I should see a ".modal[aria-modal=true]" element
         And I should see a ".invalid-feedback" element
@@ -307,9 +308,33 @@ Feature:
         Given I am on "/plainte/recapitulatif/111"
         When I press "Envoyer PV au déclarant et clôturer"
         Then I should see a ".modal[aria-modal=true]" element
-        When I attach the file "blank.pdf" to ".dropzone-input" field
+        When I attach the file "blank.pdf" to ".dz-hidden-input" field
         And I press "complaint-send-report-to-the-victim-button-validate"
         Then I should not see a ".modal[aria-modal=true]" element
+        And I should see a ".toast" element
+        And I should see the key "pel.the.report.has.been.sent.to.the.victim.the.complaint.is.closed" translated
+
+    @javascript
+    Scenario: I can submit the send report form successfully with a png file
+        Given I am on "/plainte/recapitulatif/111"
+        When I press "Envoyer PV au déclarant et clôturer"
+        Then I should see a ".modal[aria-modal=true]" element
+        When I attach the file "iphone.png" to ".dz-hidden-input" field
+        And I press "complaint-send-report-to-the-victim-button-validate"
+        Then I should not see a ".modal[aria-modal=true]" element
+        And I should see a ".toast" element
+        And I should see the key "pel.the.report.has.been.sent.to.the.victim.the.complaint.is.closed" translated
+
+    @javascript
+    Scenario: I can submit the send report form successfully with a jpg file and a pdf file
+        Given I am on "/plainte/recapitulatif/111"
+        When I press "Envoyer PV au déclarant et clôturer"
+        Then I should see a ".modal[aria-modal=true]" element
+        When I attach the file "iphone.png" to ".dz-hidden-input" field
+        And I attach the file "blank.pdf" to ".dz-hidden-input" field
+        And I press "complaint-send-report-to-the-victim-button-validate"
+        Then I should see 2 ".dz-preview" element
+        And I should not see a ".modal[aria-modal=true]" element
         And I should see a ".toast" element
         And I should see the key "pel.the.report.has.been.sent.to.the.victim.the.complaint.is.closed" translated
 

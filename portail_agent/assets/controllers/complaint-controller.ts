@@ -4,6 +4,8 @@ import {Toast, Modal} from "bootstrap";
 import {HttpMethodsEnum} from "../scripts/utils/HttpMethodsEnum";
 import {HttpStatusCodeEnum} from "../scripts/utils/HttpStatusCodeEnum";
 
+const {Dropzone} = require("dropzone");
+
 export default class extends Controller {
     static override targets: string[] = [
         "appointmentForm",
@@ -13,7 +15,6 @@ export default class extends Controller {
         "commentContent",
         "commentBox",
         "complaintContainer",
-        "dropzoneFile",
         "dropZoneForm",
         "rejectForm",
         "rejectModal",
@@ -21,7 +22,8 @@ export default class extends Controller {
         "unitReassignmentModal",
         "sendReportModal",
         "sendReportValidationButton",
-        "sendToLrpModal"
+        "sendToLrpModal",
+        "dropZoneError"
     ];
 
     declare readonly appointmentFormTarget: HTMLFormElement;
@@ -31,7 +33,6 @@ export default class extends Controller {
     declare readonly commentContentTarget: HTMLElement;
     declare readonly commentBoxTarget: HTMLElement;
     declare readonly complaintContainerTarget: HTMLElement;
-    declare readonly dropzoneFileTarget: HTMLElement;
     declare readonly dropZoneFormTarget: HTMLFormElement;
     declare readonly rejectFormTarget: HTMLFormElement;
     declare readonly rejectModalTarget: HTMLElement;
@@ -41,6 +42,7 @@ export default class extends Controller {
     declare readonly sendReportModalTarget: HTMLElement;
     declare readonly sendReportValidationButtonTarget: HTMLButtonElement;
     declare readonly sendToLrpModalTarget: HTMLElement;
+    declare readonly dropZoneErrorTarget: HTMLFormElement;
 
     public override connect() {
         this.scrollCommentFeed();
@@ -210,34 +212,33 @@ export default class extends Controller {
     // Must be ignored because we can't type url here.
     // @ts-ignore
     public sendReport({params: {url}}): void {
-        if (url) {
+        const dropzone: Dropzone = Dropzone.forElement(this.dropZoneFormTarget.querySelector(".dropzone"));
+        dropzone.options.url = url;
+        if (dropzone.getQueuedFiles().length >= 1) {
             this.setSpinnerState(this.sendReportValidationButtonTarget);
-            fetch(url, {
-                method: HttpMethodsEnum.POST,
-                body: new FormData(this.dropZoneFormTarget)
-            })
-                .then((response: Response) => {
-                    response.json()
-                        .then((data: any) => { // TODO: Remove any type, create a specific type for this.
-                            if (response.status === HttpStatusCodeEnum.OK) {
-                                Modal.getInstance(this.sendReportModalTarget)?.hide();
+            dropzone.processQueue();
+            dropzone.on("successmultiple", () => {
+                Modal.getInstance(this.sendReportModalTarget)?.hide();
 
-                                // Must be ignored because in Bootstrap types, Toast element has string | Element type
-                                // however we need here to type it as Toast.
-                                // @ts-ignore
-                                const toast: Toast = new Toast(document.getElementById("toast-validation-send-report-to-victim"));
+                // Must be ignored because in Bootstrap types, Toast element has string | Element type
+                // however we need here to type it as Toast.
+                // @ts-ignore
+                const toast: Toast = new Toast(document.getElementById("toast-validation-send-report-to-victim"));
 
-                                if (toast) {
-                                    toast.show();
-                                }
+                if (toast) {
+                    toast.show();
+                }
 
-                                this.reloadComplaintContainer();
-                            } else if (data.form) {
-                                this.dropZoneFormTarget.innerHTML = data.form;
-                                this.setSpinnerState(this.sendReportValidationButtonTarget);
-                            }
-                        });
-                });
+                this.reloadComplaintContainer();
+            });
+            dropzone.on("errormultiple", (files: any, response: any) => {
+                if (response.form) {
+                    this.dropZoneFormTarget.innerHTML = response.form;
+                    this.setSpinnerState(this.sendReportValidationButtonTarget);
+                }
+            });
+        } else {
+            this.dropZoneErrorTarget.innerText = this.dropZoneFormTarget.getAttribute("data-empty-message") ?? "";
         }
     }
 
@@ -266,7 +267,11 @@ export default class extends Controller {
     }
 
     public browseReport(): void {
-        this.dropzoneFileTarget?.click();
+        const dropzone: Dropzone = Dropzone.forElement(this.dropZoneFormTarget.querySelector(".dropzone"));
+
+        if (dropzone.hiddenFileInput) {
+            dropzone.hiddenFileInput.click();
+        }
     }
 
     // Must be ignored because we can't type url here.
@@ -345,8 +350,7 @@ export default class extends Controller {
         }
     }
 
-    private setSpinnerState(button: HTMLButtonElement): void
-    {
+    private setSpinnerState(button: HTMLButtonElement): void {
         button.querySelector(".spinner-border")?.classList.toggle("d-none");
 
         if (button.disabled) {

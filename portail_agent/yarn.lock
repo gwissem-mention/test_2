@@ -1085,6 +1085,11 @@
   resolved "https://registry.npmjs.org/@sinclair/typebox/-/typebox-0.24.51.tgz"
   integrity sha512-1P1OROm/rdubP5aFDSZQILU0vrLCJ4fvHt6EoqHEM+2D/G5MK3bIaymUKLit8Js9gbns5UyJnkP/TZROLw4tUA==
 
+"@swc/helpers@^0.2.13":
+  version "0.2.14"
+  resolved "https://registry.yarnpkg.com/@swc/helpers/-/helpers-0.2.14.tgz#20288c3627442339dd3d743c944f7043ee3590f0"
+  integrity sha512-wpCQMhf5p5GhNg2MmGKXzUNwxe7zRiCsmqYsamez2beP7mKPCSiu+BjZcdN95yYSzO857kr0VfQewmGpS77nqA==
+
 "@symfony/stimulus-bridge@^3.2.0":
   version "3.2.1"
   resolved "https://registry.npmjs.org/@symfony/stimulus-bridge/-/stimulus-bridge-3.2.1.tgz"
@@ -1179,6 +1184,13 @@
   version "1.10.24"
   resolved "https://registry.npmjs.org/@types/datatables.net/-/datatables.net-1.10.24.tgz"
   integrity sha512-Qb82/7Gn0bU36YLiv0MdaqKzhTLfRO9qPvFdkW0miQ6ATMG47aoPn2r//zTvGd3oPSt+Lzp1HSsjP6rZRuki8g==
+  dependencies:
+    "@types/jquery" "*"
+
+"@types/dropzone@^5.7.4":
+  version "5.7.4"
+  resolved "https://registry.yarnpkg.com/@types/dropzone/-/dropzone-5.7.4.tgz#667e6f22fac6428db7553663fd1e31547d994161"
+  integrity sha512-9kLJ2YAmVRWYrHvDoa95pQzHF0HUMKcznsS7FM1Mht5Yieec+HMB6Ybfm+ocvLjvFCvgyYGFTp4nzNFxhZmo3g==
   dependencies:
     "@types/jquery" "*"
 
@@ -2364,6 +2376,14 @@ domutils@^2.5.2, domutils@^2.8.0:
     domelementtype "^2.2.0"
     domhandler "^4.2.0"
 
+dropzone@^6.0.0-beta.2:
+  version "6.0.0-beta.2"
+  resolved "https://registry.yarnpkg.com/dropzone/-/dropzone-6.0.0-beta.2.tgz#098be8fa84bdc08674cf0b74f4c889e2679083d6"
+  integrity sha512-k44yLuFFhRk53M8zP71FaaNzJYIzr99SKmpbO/oZKNslDjNXQsBTdfLs+iONd0U0L94zzlFzRnFdqbLcs7h9fQ==
+  dependencies:
+    "@swc/helpers" "^0.2.13"
+    just-extend "^5.0.0"
+
 ee-first@1.1.1:
   version "1.1.1"
   resolved "https://registry.npmjs.org/ee-first/-/ee-first-1.1.1.tgz"
@@ -3269,6 +3289,11 @@ json5@^2.1.2, json5@^2.2.2:
   version "2.2.3"
   resolved "https://registry.npmjs.org/json5/-/json5-2.2.3.tgz"
   integrity sha512-XmOWe7eyHYH14cLdVPoyg+GOH3rYX++KpzrylJwSW98t3Nk+U8XOl8FWKOgwtzdb8lXGf6zYwDUzeHMWfxasyg==
+
+just-extend@^5.0.0:
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/just-extend/-/just-extend-5.1.1.tgz#4f33b1fc719964f816df55acc905776694b713ab"
+  integrity sha512-b+z6yF1d4EOyDgylzQo5IminlUmzSeqR1hs/bzjBNjuGras4FXq/6TrzjxfN0j+TmI0ltJzTNlqXUMCniciwKQ==
 
 kind-of@^6.0.2:
   version "6.0.3"

@@ -34,7 +34,9 @@ class SendReportHandler
             throw new NoOodriveComplaintFolderException("No Oodrive folder for complaint {$complaint->getId()}");
         }
 
-        $this->oodriveClient->uploadFile($message->getReport(), 'PV.pdf', $complaint->getOodriveFolder());
+        foreach ($message->getFiles() as $file) {
+            $this->oodriveClient->uploadFile($file, $file->getClientOriginalName(), $complaint->getOodriveFolder());
+        }
 
         $this->bus->dispatch(new ComplaintReportSendMessage($message->getComplaintId())); // Salesforce email
     }

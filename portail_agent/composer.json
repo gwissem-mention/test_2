@@ -46,7 +46,6 @@
         "symfony/twig-bundle": "6.3.*",
         "symfony/uid": "6.3.*",
         "symfony/ux-autocomplete": "2.7.1",
-        "symfony/ux-dropzone": "2.7.1",
         "symfony/ux-live-component": "2.7.1",
         "symfony/validator": "6.3.*",
         "symfony/web-link": "6.3.*",
