@@ -261,8 +261,9 @@ Feature:
         Then I should see a ".modal[aria-modal=true]" element
         When I press "Valider l'envoi vers le LRP"
         Then I should not see a ".modal[aria-modal=true]" element
-        And I should see a ".toast" element
-        And I should see the key "pel.file.generated" translated
+        Given I am on "/plainte/recapitulatif/93"
+        Then I should see the key "pel.declaration.status" translated
+        Then I should see "En cours LRP"
         Given I am on the homepage
         When I click the "th:nth-of-type(10)" element
         Then I should see 6 ".btn-warning" element

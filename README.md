@@ -39,6 +39,7 @@ After adding those files:
 ```bash
 make referential-create-extensions
 make agent-db-create-extensions
+make agent-referential-create
 make agent-referential-load
 ```
 Install the project with following commands:

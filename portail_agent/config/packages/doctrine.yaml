@@ -6,6 +6,8 @@ doctrine:
                 url: '%env(resolve:DATABASE_URL)%'
             referentials:
                 url: '%env(resolve:REFERENTIALS_DATABASE_URL)%'
+            ppel:
+                url: '%env(resolve:PPEL_DATABASE_URL)%'
     orm:
         default_entity_manager: default
         entity_managers:
