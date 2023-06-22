@@ -22,6 +22,7 @@ services:
             $folderRotationTreshold: '%app.folder_rotation.treshold%'
             $oodriveRootFolderId: '%app.oodrive.root_folder_id%'
             $oodriveFetchedFolderId: '%app.oodrive.fetched_folder_id%'
+            $ppelConnection: '@doctrine.dbal.ppel_connection'
             $tmpComplaintFolderId: '%app.oodrive.tmp_complaint_folder%'
 
     App\:

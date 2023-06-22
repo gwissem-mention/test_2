@@ -5,17 +5,17 @@ declare(strict_types=1);
 namespace App\Controller\Complaint;
 
 use App\Complaint\ComplaintWorkflowManager;
+use App\Complaint\DTO\Objects\PreComplaintHistory;
 use App\Entity\Complaint;
 use App\Entity\User;
 use App\Generator\Complaint\ComplaintGeneratorInterface;
 use App\Referential\Entity\Service;
 use App\Referential\Repository\ServiceRepository;
 use App\Repository\ComplaintRepository;
+use App\Repository\DQLComplaintRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
@@ -28,7 +28,8 @@ class XmlGenerationController extends AbstractController
         ComplaintGeneratorInterface $generatorXml,
         ServiceRepository $serviceRepository,
         ComplaintRepository $complaintRepository,
-        ComplaintWorkflowManager $complaintWorkflowManager
+        ComplaintWorkflowManager $complaintWorkflowManager,
+        DQLComplaintRepository $DQLComplaintRepository
     ): Response {
         $complaintWorkflowManager->sendToLRP($complaint);
         $complaintRepository->save($complaint, true);
@@ -50,13 +51,17 @@ class XmlGenerationController extends AbstractController
             fputs($tmpFile, $xml->asXML());
         }
 
-        $response = new BinaryFileResponse($tmpFileName);
-        $response->headers->set('Content-type', 'application/xml');
-        $response->setCharset('iso-8859-1');
-        $response->setContentDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT, $complaint->getDeclarationNumber().'.xml');
+        $DQLComplaintRepository->save(PreComplaintHistory::new(
+            [
+                'complaint' => $complaint,
+                'prejudiceObject' => false !== $xml->Objet->asXML() ? $xml->Objet->asXML() : null,
+                'file' => file_get_contents($tmpFileName),
+                'service' => $service,
+            ]
+        ));
 
         fclose($tmpFile);
 
-        return $response;
+        return $this->redirectToRoute('complaint_summary', ['id' => $complaint->getId()]);
     }
 }

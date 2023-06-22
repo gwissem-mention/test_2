@@ -86,7 +86,7 @@ class Complaint
     private ?string $status = null;
 
     #[ORM\Column(length: 255, unique: true)]
-    private ?string $declarationNumber = null;
+    private string $declarationNumber;
 
     #[ORM\Column]
     private ?bool $optinNotification = null;
@@ -210,7 +210,7 @@ class Complaint
         return $this;
     }
 
-    public function getDeclarationNumber(): ?string
+    public function getDeclarationNumber(): string
     {
         return $this->declarationNumber;
     }

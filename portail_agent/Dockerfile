@@ -36,6 +36,9 @@ RUN set -eux; \
 	docker-php-ext-install \
 		intl \
 		zip \
+    	mysqli \
+        pdo \
+        pdo_mysql \
 	; \
 	pecl install \
 		apcu-${APCU_VERSION} \
@@ -44,6 +47,9 @@ RUN set -eux; \
 	docker-php-ext-enable \
 		apcu \
 		opcache \
+        mysqli \
+        pdo \
+        pdo_mysql \
 	; \
 	\
 	runDeps="$( \
@@ -95,7 +101,7 @@ WORKDIR /srv/agent
 ###> recipes ###
 ###> doctrine/doctrine-bundle ###
 RUN apk add --no-cache --virtual .pgsql-deps postgresql-dev; \
-	docker-php-ext-install -j$(nproc) pdo_pgsql; \
+	docker-php-ext-install -j$(nproc) pdo_pgsql pdo_mysql; \
 	apk add --no-cache --virtual .pgsql-rundeps so:libpq.so.5; \
 	apk del .pgsql-deps
 ###< doctrine/doctrine-bundle ###

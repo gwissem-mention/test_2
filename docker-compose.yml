@@ -40,6 +40,7 @@ services:
     restart: unless-stopped
     depends_on:
       - database-agent
+      - database-ppel
     volumes:
       - agent-public:/srv/agent/public:ro
     healthcheck:
@@ -50,7 +51,8 @@ services:
     environment:
       DATABASE_URL: postgresql://${POSTGRES_AGENT_USER:-symfony}:${POSTGRES_AGENT_PASSWORD:-ChangeMe}@database-agent:5432/${POSTGRES_AGENT_DB:-app}?serverVersion=${POSTGRES_AGENT_VERSION:-13}
       REFERENTIALS_DATABASE_URL: postgresql://${POSTGRES_REFERENTIAL_USER:-symfony}:${POSTGRES_REFERENTIAL_PASSWORD:-ChangeMe}@database-agent:5432/${POSTGRES_REFERENTIAL_DB:-reference}?serverVersion=${POSTGRES_REFERENTIAL_VERSION:-13}
-
+      PPEL_DATABASE_URL: mysql://${PPEL_USER:-ppel}:${PPEL_PASSWORD:-ppel}@database-ppel:3306/${PPEL_DB:-plainteinternet}?serverVersion=${PPEL_VERSION:-5.7.33}
+  
   nginx-citoyen:
     image: nginx
     depends_on:
@@ -111,6 +113,21 @@ services:
       POSTGRES_USER: ${POSTGRES_REFERENTIAL_USER:-symfony}
     volumes:
       - db-data-referentials:/var/lib/postgresql/data:rw
+  
+  database-ppel:
+    image: mysql:5.7.33
+    environment:
+      MYSQL_DATABASE: plainteinternet
+      MYSQL_USER: ppel
+      MYSQL_PASSWORD: ppel
+      MYSQL_ROOT_PASSWORD: ppel
+    ports:
+      - "9906:3306"
+    volumes:
+        - ./docker/ppel:/docker-entrypoint-initdb.d
+        - db-ppel:/var/lib/mysql
+    command: [ 'mysqld', '--character-set-server=latin1', '--collation-server=latin1_swedish_ci' ]
+  
   ###< doctrine/doctrine-bundle ###
 
   redis-citoyen:
@@ -124,3 +141,4 @@ volumes:
   db-data-agent:
   db-data-referentials:
   ###< doctrine/doctrine-bundle ###
+  db-ppel:
