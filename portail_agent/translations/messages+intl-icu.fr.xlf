@@ -618,6 +618,10 @@
                 <source>pel.online.complaint</source>
                 <target>Plainte en ligne</target>
             </trans-unit>
+            <trans-unit id="pel.only.assigned.complaint.can.be.reassigned">
+                <source>pel.only.assigned.complaint.can.be.reassigned</source>
+                <target>Seules des déclarations attribuées peuvent être réorientées.</target>
+            </trans-unit>
             <trans-unit id="pel.ongoing">
                 <source>pel.ongoing</source>
                 <target>En cours</target>

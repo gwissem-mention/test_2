@@ -31,15 +31,15 @@ Feature:
         And I should see the key "pel.number.of.the.declaration" translated
         And I should see "PEL-2023-00000091"
         And I should see the key "pel.declaration.status" translated
-        And I should see "Attribuée"
+        And I should see "A attribuer"
         And I should see the key "pel.declaration.alert" translated
         And I should see "Alert de test trop longue"
-        And I should see 5 "button[data-bs-toggle='modal']" element
-        And I should see 25 "button" element
+        And I should see 2 "button[data-bs-toggle='modal']" element
+        And I should see 11 "button" element
         And I should see the key "pel.assign.declaration.to" translated
-        And I should see the key "pel.send.to.lrp" translated
-        And I should see the key "pel.reject" translated
-        And I should see the key "pel.unit.reassign" translated
+        And I should not see the key "pel.send.to.lrp" translated
+        And I should not see the key "pel.reject" translated
+        And I should not see the key "pel.unit.reassign" translated
         And I should see the key "pel.comment" translated
         And I should see the key "pel.summary" translated
         And I should see the key "pel.declarant.identity" translated
@@ -186,7 +186,7 @@ Feature:
 
     @javascript
     Scenario: I can toggle the reject modal
-        Given I am on "/plainte/recapitulatif/91"
+        Given I am on "/plainte/recapitulatif/101"
         When I press "Rejeter"
         Then I should see a ".modal[aria-modal=true]" element
         And I should see the key "pel.you.will.reject.the.declaration" translated
@@ -209,7 +209,7 @@ Feature:
 
     @javascript
     Scenario: I can submit the reject form successfully
-        Given I am on "/plainte/recapitulatif/91"
+        Given I am on "/plainte/recapitulatif/101"
         When I press "Rejeter"
         And I select "reorientation-other-solution" from "reject_refusalReason"
         And I fill in "reject_refusalText" with "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus scelerisque ante id dui lacinia eu."
@@ -227,7 +227,7 @@ Feature:
 
     @javascript
     Scenario: I can see form errors the reject form when reject_refusalText is too short
-        Given I am on "/plainte/recapitulatif/92"
+        Given I am on "/plainte/recapitulatif/102"
         When I press "Rejeter"
         And I select "reorientation-other-solution" from "reject_refusalReason"
         And I fill in "reject_refusalText" with "Lorem ipsum dolor sit amet"
@@ -237,7 +237,7 @@ Feature:
 
     @javascript
     Scenario: I can toggle the send to LRP modal
-        Given I am on "/plainte/recapitulatif/93"
+        Given I am on "/plainte/recapitulatif/103"
         When I press "Envoi à LRP"
         Then I should see a ".modal[aria-modal=true]" element
         And I should see the key "pel.validation.sending.complain.to.lrp" translated
@@ -256,12 +256,12 @@ Feature:
 
     @javascript
     Scenario: I can validate the send to LRP action successfully
-        Given I am on "/plainte/recapitulatif/93"
+        Given I am on "/plainte/recapitulatif/103"
         When I press "Envoi à LRP"
         Then I should see a ".modal[aria-modal=true]" element
         When I press "Valider l'envoi vers le LRP"
         Then I should not see a ".modal[aria-modal=true]" element
-        Given I am on "/plainte/recapitulatif/93"
+        Given I am on "/plainte/recapitulatif/103"
         Then I should see the key "pel.declaration.status" translated
         Then I should see "En cours LRP"
         Given I am on the homepage
@@ -384,7 +384,7 @@ Feature:
 
     @javascript
     Scenario: I can toggle the unit reassign modal
-        Given I am on "/plainte/recapitulatif/98"
+        Given I am on "/plainte/recapitulatif/101"
         When I press "Réorienter vers autres services"
         Then I should see a ".modal[aria-modal=true]" element
         And I should see the key "pel.select.the.unit.to.reassign" translated
@@ -395,7 +395,7 @@ Feature:
 
     @javascript
     Scenario: I can submit the unit reassign form successfully as a supervisor and Louise THOMAS should have a notification
-        Given I am on "/plainte/recapitulatif/95"
+        Given I am on "/plainte/recapitulatif/101"
         When I press "Réorienter vers autres services"
         And I fill in the autocomplete "unit_reassign_unitToReassign-ts-control" with "Commissariat de police de Voiron" and click "103131"
         And I fill in "unit_reassign_unitReassignText" with "Cette plainte n'est pas censée être attribuer à mon unité."
@@ -405,8 +405,8 @@ Feature:
         When I am authenticated with H3U3XCGF from PN
         And I am on the homepage
         When I click the "#notifications-dropdown" element
-        Then I should see "La déclaration PEL-2023-00000095 a été réorientée vers votre unité"
-        When I am on "/plainte/recapitulatif/95"
+        Then I should see "La déclaration PEL-2023-00000101 a été réorientée vers votre unité"
+        When I am on "/plainte/recapitulatif/101"
         Then I should see a "#comment-title" element
         And I should see the key "pel.comment.unit.reassignment.reason" translated
 
