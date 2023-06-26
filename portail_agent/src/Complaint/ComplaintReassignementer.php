@@ -7,6 +7,8 @@ namespace App\Complaint;
 use App\Entity\Comment;
 use App\Entity\Complaint;
 use App\Entity\User;
+use App\Logger\ApplicationTracesLogger;
+use App\Logger\ApplicationTracesMessage;
 use App\Notification\Messenger\UnitReassignement\AskUnitReassignementMessage;
 use App\Notification\Messenger\UnitReassignement\UnitReassignementMessage;
 use App\Referential\Entity\Unit;
@@ -14,6 +16,7 @@ use App\Referential\Repository\UnitRepository;
 use App\Salesforce\Messenger\UnitReassignment\UnitReassignmentMessage;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Messenger\MessageBusInterface;
 
 class ComplaintReassignementer
@@ -23,7 +26,9 @@ class ComplaintReassignementer
         private readonly EntityManagerInterface $entityManager,
         private readonly MessageBusInterface $messageBus,
         private readonly ComplaintWorkflowManager $complaintWorkflowManager,
-        private readonly UnitRepository $unitRepository
+        private readonly UnitRepository $unitRepository,
+        private readonly RequestStack $requestStack,
+        private readonly ApplicationTracesLogger $logger
     ) {
     }
 
@@ -76,6 +81,13 @@ class ComplaintReassignementer
             ->setUnitReassignmentAsked(false)
             ->addComment($comment);
 
+        $this->logger->log(ApplicationTracesMessage::message(
+            ApplicationTracesMessage::REDIRECT,
+            $complaint->getDeclarationNumber(),
+            $user->getUserIdentifier(),
+            $this->requestStack->getCurrentRequest()?->getClientIp()
+        ));
+
         $this->messageBus->dispatch(new UnitReassignementMessage($complaint, $targetUnitCode, (bool) $reassignmentAsked, $reassignmentAskBy));
         $this->messageBus->dispatch(new UnitReassignmentMessage((int) $complaint->getId())); // Salesforce email
     }
@@ -85,6 +97,9 @@ class ComplaintReassignementer
      */
     public function askReassignement(Complaint $complaint, string $targetUnitCode, string $reassignText): void
     {
+        /** @var User $user */
+        $user = $this->security->getUser();
+
         $this->complaintWorkflowManager->askUnitRedirection($complaint);
 
         $complaint
@@ -92,6 +107,12 @@ class ComplaintReassignementer
             ->setUnitReassignText($reassignText)
             ->setUnitReassignmentAsked(true);
 
+        $this->logger->log(ApplicationTracesMessage::message(
+            ApplicationTracesMessage::REDIRECT,
+            $complaint->getDeclarationNumber(),
+            $user->getUserIdentifier(),
+            $this->requestStack->getCurrentRequest()?->getClientIp()
+        ));
         $this->messageBus->dispatch(new AskUnitReassignementMessage($complaint, (string) $complaint->getUnitAssigned()));
     }
 }

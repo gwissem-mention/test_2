@@ -6,9 +6,12 @@ namespace App\Complaint;
 
 use App\Entity\Complaint;
 use App\Entity\User;
+use App\Logger\ApplicationTracesLogger;
+use App\Logger\ApplicationTracesMessage;
 use App\Notification\Messenger\Assignement\AssignementMessage;
 use App\Salesforce\Messenger\ComplaintAssignment\ComplaintAssignmentMessage;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Messenger\MessageBusInterface;
 
 class ComplaintAssignementer
@@ -17,6 +20,8 @@ class ComplaintAssignementer
         private readonly EntityManagerInterface $entityManager,
         private readonly MessageBusInterface $messageBus,
         private readonly ComplaintWorkflowManager $complaintWorkflowManager,
+        private readonly ApplicationTracesLogger $logger,
+        private readonly RequestStack $requestStack
     ) {
     }
 
@@ -27,6 +32,15 @@ class ComplaintAssignementer
     {
         $this->assignTo($complaint, $user, $isReassignment, $isSelfAssignment);
         $this->entityManager->flush();
+
+        $clientIp = $this->requestStack->getCurrentRequest()?->getClientIp();
+        $type = $isSelfAssignment ? ApplicationTracesMessage::SELF_ASSIGNMENT : ApplicationTracesMessage::ASSIGNMENT;
+        $this->logger->log(ApplicationTracesMessage::message(
+            $type,
+            $complaint->getDeclarationNumber(),
+            $user->getUserIdentifier(),
+            $clientIp
+        ));
     }
 
     /**

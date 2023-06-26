@@ -8,6 +8,7 @@ use App\Complaint\ComplaintReassignementer;
 use App\Complaint\ComplaintWorkflowException;
 use App\Entity\Complaint;
 use App\Form\Complaint\UnitReassignType;
+use App\Logger\ApplicationTracesLogger;
 use App\Referential\Repository\UnitRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -28,7 +29,8 @@ class UnitReassignController extends AbstractController
         UnitRepository $unitRepository,
         ComplaintReassignementer $complaintReassignementer,
         Request $request,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
+        ApplicationTracesLogger $logger
     ): JsonResponse {
         $form = $this->createForm(UnitReassignType::class, $complaint);
         $form->handleRequest($request);
