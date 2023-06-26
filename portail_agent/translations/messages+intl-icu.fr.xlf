@@ -468,7 +468,7 @@
             </trans-unit>
             <trans-unit id="pel.file.generated">
                 <source>pel.file.generated</source>
-                <target>Le fichier a bien été généré.</target>
+                <target>Le fichier à bien été généré, veuillez poursuivre le parcours dans l'outil LRP</target>
             </trans-unit>
             <trans-unit id="pel.firstname.lastname">
                 <source>pel.firstname.lastname</source>
