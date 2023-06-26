@@ -3,16 +3,19 @@
 namespace App\Controller\Complaint;
 
 use App\Complaint\ComplaintReassignementer;
+use App\Complaint\ComplaintWorkflowException;
 use App\Form\Complaint\BulkReassignType;
 use App\Form\DTO\BulkReassignAction;
 use App\Referential\Repository\UnitRepository;
 use App\Repository\ComplaintRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 #[Route(path: '/plainte/reorienter-en-masse', name: 'complaint_bulk_reassign', methods: ['POST'])]
 class BulkReassignController extends AbstractController
@@ -21,6 +24,7 @@ class BulkReassignController extends AbstractController
         private readonly ComplaintReassignementer $complaintReassignementer,
         private readonly ComplaintRepository $complaintRepository,
         private readonly UnitRepository $unitRepository,
+        private readonly TranslatorInterface $translator
     ) {
     }
 
@@ -44,11 +48,17 @@ class BulkReassignController extends AbstractController
             ));
 
             if (!is_null($bulkReassignAction->getUnitCodeToReassign()) && !is_null($bulkReassignAction->getReassignText())) {
-                $this->complaintReassignementer->reassignBulkTo(
-                    $complaints,
-                    $bulkReassignAction->getUnitCodeToReassign(),
-                    $bulkReassignAction->getReassignText()
-                );
+                try {
+                    $this->complaintReassignementer->reassignBulkTo(
+                        $complaints,
+                        $bulkReassignAction->getUnitCodeToReassign(),
+                        $bulkReassignAction->getReassignText()
+                    );
+                } catch (ComplaintWorkflowException) {
+                    $form->addError(new FormError($this->translator->trans('pel.only.assigned.complaint.can.be.reassigned')));
+
+                    return $this->errorResponse($form);
+                }
             }
 
             return $this->json([
