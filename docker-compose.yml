@@ -18,6 +18,7 @@ services:
     volumes:
       - citoyen-public:/srv/citoyen/public:rw
       - ./portail_citoyen/public/robots.txt:/srv/citoyen/public/robots.txt:ro
+      - ./portail_citoyen/var:/srv/citoyen/var
     healthcheck:
       interval: 10s
       timeout: 3s
@@ -43,6 +44,7 @@ services:
       - database-ppel
     volumes:
       - agent-public:/srv/agent/public:ro
+      - ./portail_agent/var:/srv/agent/var
     healthcheck:
       interval: 10s
       timeout: 3s

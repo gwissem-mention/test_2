@@ -8,8 +8,11 @@ use App\Complaint\ComplaintWorkflowException;
 use App\Complaint\ComplaintWorkflowManager;
 use App\Complaint\Messenger\SendReport\SendReportMessage;
 use App\Entity\Complaint;
+use App\Entity\User;
 use App\Factory\NotificationFactory;
 use App\Form\Complaint\SendReportType;
+use App\Logger\ApplicationTracesLogger;
+use App\Logger\ApplicationTracesMessage;
 use App\Repository\ComplaintRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormError;
@@ -36,6 +39,7 @@ class SendReportController extends AbstractController
         Request $request,
         MessageBusInterface $bus,
         ComplaintWorkflowManager $complaintWorkflowManager,
+        ApplicationTracesLogger $logger,
         ValidatorInterface $validator
     ): JsonResponse {
         $form = $this->createForm(SendReportType::class);
@@ -73,10 +77,18 @@ class SendReportController extends AbstractController
                     ),
                 ], 422);
             }
+            /** @var User $user */
+            $user = $this->getUser();
 
             $bus->dispatch(new SendReportMessage($files, (int) $complaint->getId()));
             $complaintWorkflowManager->close($complaint);
             $complaintRepository->save($complaint, true);
+            $logger->log(ApplicationTracesMessage::message(
+                ApplicationTracesMessage::SENDING_DOCUMENTS,
+                $complaint->getDeclarationNumber(),
+                $user->getNumber(),
+                $request->getClientIp()
+            ));
 
             return new JsonResponse();
         }

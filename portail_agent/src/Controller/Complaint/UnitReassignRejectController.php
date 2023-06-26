@@ -11,6 +11,8 @@ use App\Entity\Complaint;
 use App\Entity\User;
 use App\Factory\NotificationFactory;
 use App\Form\Complaint\UnitReassignType;
+use App\Logger\ApplicationTracesLogger;
+use App\Logger\ApplicationTracesMessage;
 use App\Repository\ComplaintRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -33,7 +35,8 @@ class UnitReassignRejectController extends AbstractController
         NotificationFactory $notificationFactory,
         UserRepository $userRepository,
         Request $request,
-        ComplaintWorkflowManager $complaintWorkflowManager
+        ComplaintWorkflowManager $complaintWorkflowManager,
+        ApplicationTracesLogger $logger
     ): JsonResponse {
         $form = $this->createForm(UnitReassignType::class, $complaint);
         $form->handleRequest($request);
@@ -67,6 +70,12 @@ class UnitReassignRejectController extends AbstractController
                 ->setUnitReassignmentAsked(false)
                 ->addComment($unitReassignmentRejectReason), true
         );
+        $logger->log(ApplicationTracesMessage::message(
+            ApplicationTracesMessage::REJECT,
+            $complaint->getDeclarationNumber(),
+            $user->getNumber(),
+            $request->getClientIp()
+        ));
 
         if ($complaint->getAssignedTo() instanceof User) {
             $userRepository->save(

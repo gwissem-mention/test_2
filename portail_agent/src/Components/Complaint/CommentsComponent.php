@@ -9,10 +9,14 @@ use App\Entity\Complaint;
 use App\Entity\User;
 use App\Factory\NotificationFactory;
 use App\Form\Complaint\CommentType;
+use App\Logger\ApplicationTracesLogger;
+use App\Logger\ApplicationTracesMessage;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 use Symfony\UX\LiveComponent\Attribute\LiveAction;
@@ -38,7 +42,10 @@ class CommentsComponent extends AbstractController
     public function __construct(
         private readonly EntityManagerInterface $entityManager,
         private readonly UrlGeneratorInterface $urlGenerator,
-        private readonly NotificationFactory $notificationFactory
+        private readonly NotificationFactory $notificationFactory,
+        private readonly Security $security,
+        private readonly ApplicationTracesLogger $logger,
+        private readonly RequestStack $requestStack
     ) {
     }
 
@@ -91,6 +98,9 @@ class CommentsComponent extends AbstractController
     #[LiveAction]
     public function save(): RedirectResponse
     {
+        /** @var User $user */
+        $user = $this->security->getUser();
+
         $this->submitForm();
         /** @var Comment $comment */
         $comment = $this->getFormInstance()->getData();
@@ -100,6 +110,12 @@ class CommentsComponent extends AbstractController
             $comment->getComplaint()?->getAssignedTo()?->addNotification($notification);
         }
         $this->entityManager->flush();
+        $this->logger->log(ApplicationTracesMessage::message(
+            ApplicationTracesMessage::ADD_COMMENTS,
+            $comment->getComplaint()?->getDeclarationNumber(),
+            $user->getUserIdentifier(),
+            $this->requestStack->getCurrentRequest()?->getClientIp()
+        ));
 
         return new RedirectResponse(
             $this->urlGenerator->generate($this->currentRoute, [
