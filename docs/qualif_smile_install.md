@@ -78,7 +78,7 @@ node -v
 yarn -v
 ```
 
-### 2.7. Install Postgresql (Only if needed)
+### 2.6. Install Postgresql (Only if needed)
 
 ```bash
 # As root
@@ -96,6 +96,22 @@ apt install redis-server -y
 
 # Check Redis
 systemctl status redis
+```
+
+### 2.8. Install PPEL Database (Only if needed)
+
+```bash
+wget https://dev.mysql.com/get/mysql-apt-config_0.8.25-1_all.deb
+dpkg -i mysql-apt-config_0.8.25-1_all.deb
+apt update
+apt install php8.1-mysql mysql-community-server
+mysql -uroot -p
+> CREATE USER 'ppel'@'localhost' IDENTIFIED BY '<password>';
+> CREATE DATABASE plainteinternet;
+> GRANT CREATE, ALTER, DROP, INSERT, UPDATE, DELETE, SELECT, REFERENCES on plainteinternet.* TO 'ppel'@'localhost' WITH GRANT OPTION;
+> FLUSH PRIVILEGES;
+> exit
+mysql -hlocalhost -uppel -p plainteinternet < /home/pel-agent/plaintes-en-ligne-pel/current/docker/ppel/setup_preplainte_historique.sql
 ```
 
 ## 3. Configuration
