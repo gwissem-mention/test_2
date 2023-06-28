@@ -4,6 +4,12 @@ framework:
         # failure_transport: failed
 
         transports:
+            activemq: 
+                dsn: '%env(ACTIVEMQ_DSN)%'
+                options:
+                    queue: '%env(ACTIVEMQ_QUEUE_NAME)%'
+            sync: 'sync://'
+                
         # https://symfony.com/doc/current/messenger.html#transport-configuration
         # async: '%env(MESSENGER_TRANSPORT_DSN)%'
         # failed: 'doctrine://default?queue_name=failed'
@@ -12,11 +18,23 @@ framework:
         routing:
         # Route your messages to the transports
         # 'App\Message\YourMessage': async
+            'App\Salesforce\Messenger\Appointment\AppointmentMessage': sync
+            'App\Salesforce\Messenger\AppointmentInformations\AppointmentInformationsMessage': sync
+            'App\Salesforce\Messenger\ComplaintAssignment\ComplaintAssignmentMessage': sync
+            'App\Salesforce\Messenger\ComplaintFetch\ComplaintFetchMessage': sync
+            'App\Salesforce\Messenger\ComplaintRejection\ComplaintRejectionMessage': sync
+            'App\Salesforce\Messenger\ComplaintReportSend\ComplaintReportSendMessage': sync
+            'App\Salesforce\Messenger\UnitReassignment\UnitReassignmentMessage': sync
+            
+            'App\Notification\Messenger\Assignement\AssignementMessage': sync
+            'App\Complaint\Messenger\ComplaintFetch\ComplaintFetchMessage': sync
+            'App\Notification\Messenger\UnitReassignement\AskUnitReassignementMessage': sync
+            'App\Notification\Messenger\UnitReassignement\UnitReassignementMessage': sync
+            
+            'App\Messenger\InformationCenter\InfocentreMessage': activemq
 
-# when@test:
-#    framework:
-#        messenger:
-#            transports:
-#                # replace with your transport name here (e.g., my_transport: 'in-memory://')
-#                # For more Messenger testing tools, see https://github.com/zenstruck/messenger-test
-#                async: 'in-memory://'
+when@test:
+    framework:
+        messenger:
+            transports:
+                activemq: 'in-memory://'

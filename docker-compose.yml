@@ -1,6 +1,14 @@
 version: '3.4'
 
 services:
+  activemq:
+    image: symptoma/activemq:5.18.0
+    environment:
+        ACTIVEMQ_WEBADMIN_USERNAME: admin
+        ACTIVEMQ_WEBADMIN_PASSWORD: admin
+        ACTIVEMQ_USERNAME: system
+        ACTIVEMQ_PASSWORD: manager
+    
   php-citoyen:
     build:
       context: ./portail_citoyen
