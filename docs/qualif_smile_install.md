@@ -114,6 +114,40 @@ mysql -uroot -p
 mysql -hlocalhost -uppel -p plainteinternet < /home/pel-agent/plaintes-en-ligne-pel/current/docker/ppel/setup_preplainte_historique.sql
 ```
 
+### 2.9. Install ActiveMQ (Only if needed)
+
+```bash
+apt install default-jdk default-jre
+wget https://dlcdn.apache.org//activemq/5.18.1/apache-activemq-5.18.1-bin.tar.gz
+tar -xzvf apache-activemq-5.18.1-bin.tar.gz
+mv apache-activemq-5.18.1 /opt/activemq
+useradd -d /opt/activemq -r -s /bin/false -U activemq
+chown -R activemq:activemq /opt/activemq/
+# Copy the following into /etc/systemd/system/activemq.service
+```
+
+```ini
+[Unit]
+Description=Apache ActiveMQ
+After=network.target
+
+[Service]
+Type=forking
+User=activemq
+Group=activemq
+ExecStart=/opt/activemq/bin/activemq start
+ExecStop=/opt/activemq/bin/activemq stop
+
+[Install]
+WantedBy=multi-user.target
+```
+
+```bash
+systemctl daemon-reload
+systemctl enable activemq
+systemctl start activemq
+```
+
 ## 3. Configuration
 
 ### 3.1. Generate user
