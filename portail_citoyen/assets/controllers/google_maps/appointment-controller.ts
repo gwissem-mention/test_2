@@ -3,12 +3,13 @@ import {getComponent, Component} from "@symfony/ux-live-component";
 import {Loader} from "@googlemaps/js-api-loader";
 
 export default class extends Controller {
-    static override targets: string[] = ["map", "leftMenu"];
+    static override targets: string[] = ["map", "leftMenu", "modal"];
 
     protected component: Component | undefined | null;
 
     declare readonly mapTarget: HTMLInputElement;
     declare readonly leftMenuTarget: HTMLInputElement;
+    declare readonly modalTarget: HTMLInputElement;
     private readonly DEFAULT_LATITUDE: number = 46.7107;
     private readonly DEFAULT_LONGITUDE: number = 2.4321;
     private readonly DEFAULT_ZOOM_FRANCE: number = 5;
@@ -53,6 +54,23 @@ export default class extends Controller {
             this._markers[li.dataset["unitIdAnonym"] as unknown as number]?.setIcon(this.getMarkerIcon());
 
         }
+    }
+
+    // Must be ignored because we can't type url here.
+    // @ts-ignore
+    public accessibilityInformation({params: {url}}): void {
+        fetch(url, {
+            method: "GET",
+        }).then((response: Response) => {
+            response.json()
+                .then(data => {
+                    const modalContent: Element | null = this.modalTarget.querySelector(".fr-modal__content");
+
+                    if (modalContent) {
+                        modalContent.innerHTML = data.content;
+                    }
+                });
+        });
     }
 
     private init(): void {

@@ -1,4 +1,4 @@
-<dialog data-live-ignore aria-labelledby="fr-modal-{{ id }}-title" id="fr-modal-{{ id }}" class="fr-modal" role="dialog">
+<dialog {% if attribute is defined %}{{ attribute }}{% endif %} data-live-ignore aria-labelledby="fr-modal-{{ id }}-title" id="fr-modal-{{ id }}" class="fr-modal" role="dialog">
     <div class="fr-container fr-container--fluid fr-container-md">
         <div class="fr-grid-row fr-grid-row--center">
             <div class="fr-col-12 fr-col-md-8 {% if (size is defined) and (size is same as('md')) %}fr-col-lg-6{% endif %}{% if className is defined %}{{ className }}{% endif %}">

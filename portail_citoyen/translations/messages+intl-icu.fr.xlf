@@ -98,9 +98,21 @@
                 <source>pel.a.public.service.on.internet.text.5</source>
                 <target>soit de vous proposer un rendez-vous dans un service de Police ou de Gendarmerie dès lors que la situation le nécessite.</target>
             </trans-unit>
+            <trans-unit id="pel.acces.libre.api">
+                <source>pel.acces.libre.api</source>
+                <target>AccèsLibre</target>
+            </trans-unit>
             <trans-unit id="pel.access.to.the.form">
                 <source>pel.access.to.the.form</source>
                 <target>Accéder au formulaire</target>
+            </trans-unit>
+            <trans-unit id="pel.accessibility.information">
+                <source>pel.accessibility.information</source>
+                <target>Accessibilité du site</target>
+            </trans-unit>
+            <trans-unit id="pel.accessibility.information.provided.by">
+                <source>pel.accessibility.information.provided.by</source>
+                <target>Informations sur l'accessibilité des établissements accueillant du public par</target>
             </trans-unit>
             <trans-unit id="pel.additional.factual.information">
                 <source>pel.additional.factual.information</source>
@@ -521,6 +533,10 @@
             <trans-unit id="pel.end.date.is.invalid">
                 <source>pel.end.date.is.invalid</source>
                 <target>La date de fin est invalide</target>
+            </trans-unit>
+            <trans-unit id="pel.entrance">
+                <source>pel.entrance</source>
+                <target>Entrée de l'établissement</target>
             </trans-unit>
             <trans-unit id="pel.declaration.confirmation">
                 <source>pel.declaration.confirmation</source>
@@ -1134,6 +1150,10 @@
                 <source>pel.phone.help</source>
                 <target>Veuillez saisir votre numéro uniquement avec des chiffres</target>
             </trans-unit>
+            <trans-unit id="pel.phone.shortened">
+                <source>pel.phone.shortened</source>
+                <target>tél.</target>
+            </trans-unit>
             <trans-unit id="pel.place.complaint.handling">
                 <source>pel.place.complaint.handling</source>
                 <target>Lieu de prise en charge de votre plainte</target>
@@ -1149,6 +1169,10 @@
             <trans-unit id="pel.nationality">
                 <source>pel.nationality</source>
                 <target>Nationalité</target>
+            </trans-unit>
+            <trans-unit id="pel.nearby.transport">
+                <source>pel.nearby.transport</source>
+                <target>Transport en commun à proximité</target>
             </trans-unit>
             <trans-unit id="pel.next">
                 <source>pel.next</source>
@@ -1177,6 +1201,10 @@
             <trans-unit id="pel.no">
                 <source>pel.no</source>
                 <target>Non</target>
+            </trans-unit>
+            <trans-unit id="pel.no.accessibility.information.found">
+                <source>pel.no.accessibility.information.found</source>
+                <target>Aucune information disponible pour cette brigade de gendarmerie ou ce commissariat de police</target>
             </trans-unit>
             <trans-unit id="pel.no.but.i.know.the.time.slot">
                 <source>pel.no.but.i.know.the.time.slot</source>
@@ -1350,6 +1378,14 @@
                 <source>pel.other.complex.offenses</source>
                 <target>l’enquêteur estime que cela est nécessaire au regard des éléments télédéclarés.</target>
             </trans-unit>
+            <trans-unit id="pel.outer.path">
+                <source>pel.outer.path</source>
+                <target>Chemin extérieur depuis la voirie jusqu'à l'entrée</target>
+            </trans-unit>
+            <trans-unit id="pel.parking.on.the.premises">
+                <source>pel.parking.on.the.premises</source>
+                <target>Stationnement aux abords de l'établissement</target>
+            </trans-unit>
             <trans-unit id="pel.passage.fsi">
                 <source>pel.passage.fsi</source>
                 <target>Indications du passage des FSI</target>
@@ -1429,6 +1465,10 @@
             <trans-unit id="pel.professional.card">
                 <source>pel.professional.card</source>
                 <target>Carte professionnelle</target>
+            </trans-unit>
+            <trans-unit id="pel.reception.and.services">
+                <source>pel.reception.and.services</source>
+                <target>Accueil et prestations</target>
             </trans-unit>
             <trans-unit id="pel.registration.number">
                 <source>pel.registration.number</source>
@@ -1529,6 +1569,10 @@
             <trans-unit id="pel.to.log.in.badge">
                 <source>pel.to.log.in.badge</source>
                 <target>Recommandé</target>
+            </trans-unit>
+            <trans-unit id="pel.toilets">
+                <source>pel.toilets</source>
+                <target>Sanitaires : Toilettes, WC</target>
             </trans-unit>
             <trans-unit id="pel.total">
                 <source>pel.total</source>
