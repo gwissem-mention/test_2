@@ -6,6 +6,8 @@ namespace App\Logger;
 
 final class ApplicationTracesMessage
 {
+    public const LOGIN = 'CONNEXION';
+    public const LOGOUT = 'DECONNEXION';
     public const REJECT = 'REJET';
     public const ASSIGNMENT = 'ATTRIBUTION';
     public const VALIDATION = 'VALIDATION';
@@ -20,12 +22,17 @@ final class ApplicationTracesMessage
 
     public static function message(string $action, ?string $declarationNumber, ?string $userIdentifier, ?string $clientIp): string
     {
-        return json_encode([
+        $information = [
             'horodatage' => (new \DateTimeImmutable())->format('Y-m-d H:i:s'),
             'IP' => $clientIp,
             'matricule' => $userIdentifier,
             'action' => $action,
-            'DOSSIER' => $declarationNumber,
-        ]).PHP_EOL;
+        ];
+
+        if (null !== $declarationNumber) {
+            $information['DOSSIER'] = $declarationNumber;
+        }
+
+        return json_encode($information).PHP_EOL;
     }
 }

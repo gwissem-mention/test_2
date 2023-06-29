@@ -76,4 +76,4 @@ services:
             $complaintsBasePath: '%app.complaints_base_path%'
 
     app.logger.formatter.json_traces:
-        class: App\Logger\ApplicationTracesFormatter
+        class: App\Logger\Formatter\ApplicationTracesFormatter

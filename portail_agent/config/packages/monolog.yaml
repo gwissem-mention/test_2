@@ -87,11 +87,13 @@ when@prod:
                 path: "%kernel.logs_dir%/application_traces_gn_%kernel.environment%.log"
                 level: info
                 channels: [ "application_traces_gn" ]
+                formatter: 'app.logger.formatter.json_traces'
             application_traces_pn_log:
                 type: stream
                 path: "%kernel.logs_dir%/application_traces_pn_%kernel.environment%.log"
                 level: info
-                channels: [ "application_traces_pn" ]    
+                channels: [ "application_traces_pn" ]
+                formatter: 'app.logger.formatter.json_traces'
             console:
                 type: console
                 process_psr_3_messages: false

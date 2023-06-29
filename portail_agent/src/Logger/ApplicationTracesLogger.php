@@ -18,17 +18,19 @@ class ApplicationTracesLogger
     ) {
     }
 
-    public function log(string $message): void
+    public function log(string $message, ?User $user = null): void
     {
-        $logger = $this->getLogger();
+        $logger = $this->getLogger($user);
 
         $logger->info($message);
     }
 
-    private function getLogger(): LoggerInterface
+    private function getLogger(?User $user): LoggerInterface
     {
-        /** @var User $user */
-        $user = $this->security->getUser();
+        if (null === $user) {
+            /** @var User $user */
+            $user = $this->security->getUser();
+        }
 
         return match ($user->getInstitution()) {
             Institution::GN => $this->applicationTracesGnLogger,
