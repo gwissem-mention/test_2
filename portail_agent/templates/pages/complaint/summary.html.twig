@@ -58,7 +58,7 @@
                 {{ 'pel.is.designated.as'|trans }}
                 <strong>
                     {% if complaint.identity.declarantStatus is same as(constant('App\\Entity\\Identity::DECLARANT_STATUS_VICTIM')) %}
-                        {{ 'pel.victim'|trans }}
+                        {{ 'pel.victim.or.minor.child.representative'|trans }}
                     {% elseif complaint.identity.declarantStatus is same as(constant('App\\Entity\\Identity::DECLARANT_STATUS_PERSON_LEGAL_REPRESENTATIVE')) %}
                         {{ 'pel.person.legal.representative'|trans }}
                     {% else %}
