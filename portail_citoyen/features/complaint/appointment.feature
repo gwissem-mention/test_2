@@ -237,3 +237,59 @@ Feature:
         Given I am on "/porter-plainte/recapitulatif"
         Then I should see "Brigade de proximité de Renage - Renage"
 
+    Scenario: I can see the gendarmerie accessibility information
+        When I fill in the map autocomplete "map-search" with "voiron" and click on the first result
+        And I click on the marker at index 1008950
+        And I should see a "li[data-unit-id-anonym=1008952]" element
+        When I press "unit-id-1008952"
+        Then I should see a "#fr-modal-unit-accessibility-information" element
+        And I should see "Gendarmerie - Brigade de Voiron"
+        And I should see "2 Rue Danton 38500 Voiron"
+        And I should see "tél. 04 76 05 01 83"
+        And I should see the key "pel.nearby.transport" translated
+        Then I click the "#accordion-1" element
+        And I should see "Arrêt de transport en commun à moins de 200 mètres de l'établissement"
+        And I should see "Informations sur l'accessibilité par les transports en commun : Bus desservant rue Danton"
+        And I should see the key "pel.parking.on.the.premises" translated
+        Then I click the "#accordion-1" element
+        And I click the "#accordion-2" element
+        And I should see "Des places de stationnement sont disponibles au sein de la parcelle de l'établissement"
+        And I should see "Des places de stationnement adaptées sont disponibles au sein de la parcelle de l'établissement"
+        And I should see "Des places de stationnement sont disponibles à moins de 200 mètres de l'établissement"
+        And I should see "Des places de stationnement adaptées sont disponibles à moins de 200 mètres de l'établissement"
+        And I should see the key "pel.outer.path" translated
+        Then I click the "#accordion-2" element
+        And I click the "#accordion-3" element
+        And I should see "Pas de chemin extérieur entre le trottoir et l'entrée principale du bâtiment"
+        And I should see the key "pel.entrance" translated
+        Then I click the "#accordion-3" element
+        And I click the "#accordion-4" element
+        And I should see "L'entrée de l'établissement est facilement repérable"
+        And I should see "Présence d'une porte à l'entrée de l'établissement"
+        And I should see "Mode d'ouverture de la porte : Porte battante"
+        And I should see "Type de porte : Manuelle"
+        And I should see "La porte d'entrée est vitrée"
+        And I should see "Pas d'éléments contrastés permettant de visualiser les parties vitrées de l'entrée"
+        And I should see "L'entrée se fait de plain-pied, c'est à dire sans rupture brutale de niveau"
+        And I should see "Présence d'un dispositif comme une sonnette pour signaler sa présence"
+        And I should see "Dispositifs d'appels présents : Interphone"
+        And I should see "Pas de balise sonore facilitant son repérage par une personne aveugle ou malvoyante"
+        And I should see "Possibilité d'une aide humaine au déplacement"
+        And I should see "Largeur minimale de la porte d'entrée : 100"
+        And I should see "Pas d'entrée secondaire spécifique dédiée aux personnes à mobilité réduite"
+        And I should see the key "pel.reception.and.services" translated
+        Then I click the "#accordion-4" element
+        And I click the "#accordion-5" element
+        And I should see "La zone d'accueil (guichet d'accueil, caisse, secrétariat, etc) est visible depuis l'entrée du bâtiment"
+        And I should see "L'accès à cet espace se fait de plain-pied, c'est à dire sans rupture brutale de niveau"
+        And I should see "Pas de rétrécissement inférieur à 90 centimètres du chemin pour atteindre la zone d'accueil"
+        And I should see "Personnel à l'accueil des personnes handicapées : Personnels sensibilisés ou formés"
+        And I should see "Présence de produits ou prestations dédiés aux personnes sourdes ou malentendantes"
+        And I should see "Équipements ou prestations disponibles : langue des signes française (LSF)"
+        And I should see the key "pel.toilets" translated
+        Then I click the "#accordion-5" element
+        And I click the "#accordion-6" element
+        And I should see "Des sanitaires sont mis à disposition dans l'établissement"
+        And I should see "Aucun sanitaire adapté mis à disposition dans l'établissement"
+        And I should see the key "pel.accessibility.information.provided.by" translated
+        And I should see the key "pel.acces.libre.api" translated

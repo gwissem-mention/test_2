@@ -1,0 +1,76 @@
+<div>
+    <p class="fr-text-center"><b>{{ name }}</b></p>
+    <p class="fr-m-0 fr-text-center">{{ address }}</p>
+    <p class="fr-m-0 fr-text-center">{{ 'pel.phone.shortened'|trans }} {{ phone }}</p>
+</div>
+<div class="fr-accordions-group fr-my-5v">
+    <section class="fr-accordion">
+        <h3 class="fr-accordion__title">
+            <button class="fr-accordion__btn" id="accordion-1" aria-expanded="false" aria-controls="accordion-1">{{ 'pel.nearby.transport'|trans }}</button>
+        </h3>
+        <div class="fr-collapse" id="accordion-1">
+            <ul>
+                {% for transport in nearby_transports %}
+                    <li>{{ transport }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </section>
+    <section class="fr-accordion">
+        <h3 class="fr-accordion__title">
+            <button class="fr-accordion__btn" id="accordion-2" aria-expanded="false" aria-controls="accordion-2">{{ 'pel.parking.on.the.premises'|trans }}</button>
+        </h3>
+        <div class="fr-collapse" id="accordion-2">
+            <ul>
+                {% for parking in nearby_parkings %}
+                    <li>{{ parking }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </section><section class="fr-accordion">
+        <h3 class="fr-accordion__title">
+            <button class="fr-accordion__btn" id="accordion-3" aria-expanded="false" aria-controls="accordion-3">{{ 'pel.outer.path'|trans }}</button>
+        </h3>
+        <div class="fr-collapse" id="accordion-3">
+            <ul>
+                {% for outer_path in outer_paths %}
+                    <li>{{ outer_path }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </section><section class="fr-accordion">
+        <h3 class="fr-accordion__title">
+            <button class="fr-accordion__btn" id="accordion-4" aria-expanded="false" aria-controls="accordion-4">{{ 'pel.entrance'|trans }}</button>
+        </h3>
+        <div class="fr-collapse" id="accordion-4">
+            <ul>
+                {% for entrance in entrances %}
+                    <li>{{ entrance }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </section><section class="fr-accordion">
+        <h3 class="fr-accordion__title">
+            <button class="fr-accordion__btn" id="accordion-5" aria-expanded="false" aria-controls="accordion-5">{{ 'pel.reception.and.services'|trans }}</button>
+        </h3>
+        <div class="fr-collapse" id="accordion-5">
+            <ul>
+                {% for service in services %}
+                    <li>{{ service }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </section><section class="fr-accordion">
+        <h3 class="fr-accordion__title">
+            <button class="fr-accordion__btn" id="accordion-6" aria-expanded="false" aria-controls="accordion-6">{{ 'pel.toilets'|trans }}</button>
+        </h3>
+        <div class="fr-collapse" id="accordion-6">
+            <ul>
+                {% for toilet in toilets %}
+                    <li>{{ toilet }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </section>
+</div>
+<div class="fr-text-center">{{ 'pel.accessibility.information.provided.by'|trans }} <a href="{{ url }}" target="_blank">{{ 'pel.acces.libre.api'|trans }}</a></div>
