@@ -42,7 +42,7 @@
                         <li>
                             {{ 'pel.is.designated.as'|trans }}
                             {% if complaint.declarantStatus.declarantStatus is same as(constant('App\\AppEnum\\DeclarantStatus::Victim').value) %}
-                                {{ 'pel.complaint.identity.victim'|trans }}
+                                {{ 'pel.complaint.summary.identity.victim'|trans }}
                             {% elseif complaint.declarantStatus.declarantStatus is same as(constant('App\\AppEnum\\DeclarantStatus::PersonLegalRepresentative').value) %}
                                 {{ 'pel.complaint.identity.person.legal.representative'|trans }}
                             {% else %}

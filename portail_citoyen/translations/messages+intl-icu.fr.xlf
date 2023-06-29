@@ -388,7 +388,11 @@
             </trans-unit>
             <trans-unit id="pel.complaint.identity.victim">
                 <source>pel.complaint.identity.victim</source>
-                <target>Victime</target>
+                <target>Vous êtes victime ou vous représentez votre enfant mineur</target>
+            </trans-unit>
+            <trans-unit id="pel.complaint.summary.identity.victim">
+                <source>pel.complaint.summary.identity.victim</source>
+                <target>Victime ou représentant de son enfant mineur</target>
             </trans-unit>
             <trans-unit id="pel.complaint.location">
                 <source>pel.complaint.location</source>

@@ -97,10 +97,9 @@ Feature:
         And I should see "jean@test.com"
         And I should see the key "pel.want.to.receive.sms.notifications" translated
         And I should see the key "pel.is.designated.as" translated
-        And I should see the key "pel.complaint.identity.victim" translated
+        And I should see the key "pel.complaint.summary.identity.victim" translated
         And I should see the key "pel.of.infraction" translated
         And I should see the key "pel.facts.description" translated
-        And I should see the key "pel.complaint.identity.victim" translated
         And I should see the key "pel.victim.at.time.of.facts" translated
         And I should see the key "pel.victim.at.time.of.facts.precisions" translated
         And I should see the key "pel.address.or.route.facts" translated

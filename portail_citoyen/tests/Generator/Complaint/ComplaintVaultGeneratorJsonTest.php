@@ -49,7 +49,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
             'declarantStatus' => [
                 'declarantStatus' => [
                     'code' => 1,
-                    'label' => 'Victime',
+                    'label' => 'Vous êtes victime ou vous représentez votre enfant mineur',
                 ],
             ],
             'identity' => [
