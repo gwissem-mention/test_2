@@ -2,8 +2,8 @@
 
 namespace App\Session;
 
-use App\Entity\User;
 use App\Form\Factory\IdentityModelFactory;
+use App\Security\User;
 use Symfony\Bundle\SecurityBundle\Security;
 
 class FranceConnectHandler

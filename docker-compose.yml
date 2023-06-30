@@ -33,7 +33,6 @@ services:
       retries: 3
       start_period: 30s
     environment:
-      DATABASE_URL: postgresql://${POSTGRES_CITOYEN_USER:-symfony}:${POSTGRES_CITOYEN_PASSWORD:-ChangeMe}@database-citoyen:5432/${POSTGRES_CITOYEN_DB:-app}?serverVersion=${POSTGRES_CITOYEN_VERSION:-13}
       REFERENTIALS_DATABASE_URL: postgresql://${POSTGRES_REFERENTIAL_USER:-symfony}:${POSTGRES_REFERENTIAL_PASSWORD:-ChangeMe}@database-citoyen:5432/${POSTGRES_REFERENTIAL_DB:-reference}?serverVersion=${POSTGRES_REFERENTIAL_VERSION:-13}
 
   php-agent:
@@ -96,16 +95,6 @@ services:
       - agent-public:/srv/agent/public:rw
     working_dir: /srv/agent
 
-  ###> doctrine/doctrine-bundle ###
-  database-citoyen:
-    image: postgres:${POSTGRES_CITOYEN_VERSION:-13}-alpine
-    environment:
-      POSTGRES_DB: ${POSTGRES_CITOYEN_DB:-app}
-      POSTGRES_PASSWORD: ${POSTGRES_CITOYEN_PASSWORD:-ChangeMe}
-      POSTGRES_USER: ${POSTGRES_USER_CITOYEN:-symfony}
-    volumes:
-      - db-data-citoyen:/var/lib/postgresql/data:rw
-
   database-agent:
     image: postgres:${POSTGRES_AGENT_VERSION:-13}-alpine
     environment:
@@ -115,15 +104,15 @@ services:
     volumes:
       - db-data-agent:/var/lib/postgresql/data:rw
 
-  database-referential:
-    image: postgres:${POSTGRES_REFERENTIAL_VERSION:-13}-alpine
+  database-citoyen:
+    image: postgres:${POSTGRES_CITOYEN_VERSION:-13}-alpine
     environment:
-      POSTGRES_DB: ${POSTGRES_REFERENTIAL_DB:-app}
-      POSTGRES_PASSWORD: ${POSTGRES_REFERENTIAL_PASSWORD:-ChangeMe}
-      POSTGRES_USER: ${POSTGRES_REFERENTIAL_USER:-symfony}
+      POSTGRES_DB: ${POSTGRES_CITOYEN_DB:-app}
+      POSTGRES_PASSWORD: ${POSTGRES_CITOYEN_PASSWORD:-ChangeMe}
+      POSTGRES_USER: ${POSTGRES_CITOYEN_USER:-symfony}
     volumes:
-      - db-data-referentials:/var/lib/postgresql/data:rw
-  
+      - db-data-citoyen:/var/lib/postgresql/data:rw
+
   database-ppel:
     image: mysql:5.7.33
     environment:
@@ -147,8 +136,7 @@ volumes:
   citoyen-public:
   agent-public:
   ###> doctrine/doctrine-bundle ###
-  db-data-citoyen:
   db-data-agent:
-  db-data-referentials:
+  db-data-citoyen:
   ###< doctrine/doctrine-bundle ###
   db-ppel:

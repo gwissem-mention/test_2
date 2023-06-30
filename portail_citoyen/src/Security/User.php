@@ -1,53 +1,25 @@
 <?php
 
-namespace App\Entity;
+namespace App\Security;
 
 use App\AppEnum\Gender;
-use App\Repository\UserRepository;
-use Doctrine\DBAL\Types\Types;
-use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-#[ORM\Entity(repositoryClass: UserRepository::class)]
-#[ORM\Table(name: '`user`')]
 class User implements UserInterface
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
-
-    #[ORM\Column(type: Types::STRING, length: 255, unique: true)]
     private string $sub;
-
-    #[ORM\Column(type: Types::STRING, length: 255)]
     private string $familyName;
-
-    #[ORM\Column(type: Types::STRING, length: 255)]
     private string $givenName;
-
-    #[ORM\Column(type: Types::STRING, length: 255)]
     private string $preferredUsername;
-
-    #[ORM\Column(type: Types::DATE_IMMUTABLE)]
     private \DateTimeImmutable $birthDate;
-
-    #[ORM\Column(type: Types::STRING, length: 5)]
     private string $birthPlace;
-
-    #[ORM\Column(type: Types::STRING, length: 5)]
     private string $birthCountry;
-
-    #[ORM\Column(type: Types::STRING, length: 6, enumType: Gender::class)]
     private Gender $gender;
-
-    #[ORM\Column(type: Types::STRING, length: 255)]
     private string $email;
 
     /**
      * @var string[]
      */
-    #[ORM\Column(type: Types::SIMPLE_ARRAY, nullable: true)]
     private array $roles = [];
 
     public function __construct(
@@ -102,15 +74,6 @@ class User implements UserInterface
         $this->birthCountry = $birthCountry;
         $this->gender = Gender::from($gender);
         $this->email = $email;
-    }
-
-    public function getId(): int
-    {
-        if (null === $this->id) {
-            throw new \LogicException(sprintf('User %s is not persisted', $this->sub));
-        }
-
-        return $this->id;
     }
 
     public function getUserIdentifier(): string

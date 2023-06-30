@@ -1,25 +1,13 @@
 doctrine:
     dbal:
-        default_connection: default
+        default_connection: referentials
         connections:
-            default:
-                url: '%env(resolve:DATABASE_URL)%'
             referentials:
                 url: '%env(resolve:REFERENTIALS_DATABASE_URL)%'
     orm:
-        default_entity_manager: default
+        default_entity_manager: referentials
         entity_managers:
-            auto_generate_proxy_classes: true
-            default:
-                connection: default
-                naming_strategy: doctrine.orm.naming_strategy.underscore
-                auto_mapping: true
-                mappings:
-                    App:
-                        is_bundle: false
-                        dir: '%kernel.project_dir%/src/Entity'
-                        prefix: 'App\Entity'
-                        alias: App        
+            auto_generate_proxy_classes: true      
             referentials:
                 connection: referentials
                 naming_strategy: doctrine.orm.naming_strategy.underscore

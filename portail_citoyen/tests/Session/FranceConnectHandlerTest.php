@@ -3,11 +3,11 @@
 namespace App\Tests\Session;
 
 use App\AppEnum\Gender;
-use App\Entity\User;
 use App\Form\Model\Identity\CivilStateModel;
 use App\Form\Model\Identity\ContactInformationModel;
 use App\Form\Model\Identity\IdentityModel;
 use App\Form\Model\LocationModel;
+use App\Security\User;
 use App\Session\ComplaintModel;
 use App\Session\FranceConnectHandler;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
