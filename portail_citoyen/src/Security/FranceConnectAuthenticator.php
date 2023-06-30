@@ -2,8 +2,6 @@
 
 namespace App\Security;
 
-use App\Entity\User;
-use App\Repository\UserRepository;
 use KnpU\OAuth2ClientBundle\Client\OAuth2Client;
 use KnpU\OAuth2ClientBundle\Security\Authenticator\OAuth2Authenticator;
 use League\OAuth2\Client\Token\AccessToken;
@@ -26,7 +24,6 @@ class FranceConnectAuthenticator extends OAuth2Authenticator implements Authenti
 
     public function __construct(
         private readonly OAuth2Client $franceConnectClient,
-        private readonly UserRepository $userRepository,
         private readonly LoggerInterface $securityLogger,
         private readonly UrlGeneratorInterface $urlGenerator,
     ) {
@@ -71,12 +68,9 @@ class FranceConnectAuthenticator extends OAuth2Authenticator implements Authenti
                     throw new \RuntimeException(sprintf('User identifier %s is not a string', get_debug_type($sub)));
                 }
 
-                if ($user = $this->userRepository->findOneByIdentifier($sub)) {
-                    return $user;
-                }
-
                 $userData = $resourceOwner->toArray();
-                $user = new User(
+
+                return new User(
                     $sub,
                     $userData['family_name'] ?? '',
                     $userData['given_name'] ?? '',
@@ -87,9 +81,6 @@ class FranceConnectAuthenticator extends OAuth2Authenticator implements Authenti
                     $userData['gender'] ?? '',
                     $userData['email'] ?? '',
                 );
-                $this->userRepository->save($user);
-
-                return $user;
             })
         );
     }

@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Tests\Behat;
 
-use App\Entity\User;
+use App\AppEnum\Gender;
 use App\Form\Model\Facts\FactsModel;
 use App\Form\Model\Identity\DeclarantStatusModel;
 use App\Form\Model\Identity\IdentityModel;
-use App\Repository\UserRepository;
+use App\Security\User;
 use App\Session\ComplaintModel;
 use Behat\Behat\Hook\Scope\AfterScenarioScope;
 use Behat\Mink\Driver\Selenium2Driver;
@@ -32,7 +32,6 @@ final class BaseContext extends MinkContext
 
     public function __construct(
         private readonly TranslatorInterface $translator,
-        private readonly UserRepository $userRepository,
         private readonly SessionFactoryInterface $sessionFactory,
         private readonly ContainerInterface $behatDriverContainer,
         private readonly ParameterBagInterface $parameterBag,
@@ -324,11 +323,17 @@ final class BaseContext extends MinkContext
      */
     public function iAmConnectedAs(string $id): void
     {
-        $user = $this->userRepository->findOneByIdentifier($id);
-
-        if (!$user instanceof User) {
-            throw new \RuntimeException(sprintf('User %s not found', $id));
-        }
+        $user = new User(
+            'jean-dupond-id',
+            'DUPOND',
+            'Jean',
+            '',
+            '1982-04-23',
+            '75107',
+            '99160',
+            Gender::MALE->value,
+            'jean.dupond@example.org',
+        );
 
         /** @var SymfonyDriver|Selenium2Driver $driver */
         $driver = $this->getSession()->getDriver();

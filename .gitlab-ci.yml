@@ -454,7 +454,6 @@ citoyen-unit:
         POSTGRES_USER: "symfony"
         POSTGRES_HOST: "127.0.0.1"
     script:
-        - make APP_ENV=${APP_ENV} db-ci-setup
         - make APP_ENV=${APP_ENV} referential-create
         - make APP_ENV=${APP_ENV} referential-ci-load
         - make unit
@@ -507,7 +506,6 @@ citoyen-func:
         POSTGRES_REFERENTIAL_PASSWORD: "ChangeMe"
         POSTGRES_REFERENTIAL_USER: "symfony"
     script:
-        - make APP_ENV=${APP_ENV} db-ci-setup
         - make APP_ENV=${APP_ENV} referential-ci-create
         - make APP_ENV=${APP_ENV} referential-ci-load
         - make behat
@@ -539,7 +537,6 @@ citoyen-e2e:
         - php -S 127.0.0.1:8080 -t public/ > /dev/null 2>&1 &
         - sed -i "s/nginx-citoyen/127.0.0.1:8080/g" behat.yml.dist
         - sed -i "s/chrome:4444/chrome-citoyen:4444/g" behat.yml.dist
-        - make APP_ENV=${APP_ENV} db-ci-setup
         - make APP_ENV=${APP_ENV} referential-ci-create
         - make APP_ENV=${APP_ENV} referential-ci-load
         - make leftover-e2e
@@ -574,7 +571,6 @@ citoyen-complaint-1-e2e:
         - echo "APP_ENV=${APP_ENV}" >> .env.local
         - php -S 127.0.0.1:8080 -t public/ > /dev/null 2>&1 &
         - sed -i "s/nginx-citoyen/127.0.0.1:8080/g" behat.yml.dist
-        - make APP_ENV=${APP_ENV} db-ci-setup
         - make APP_ENV=${APP_ENV} referential-ci-create
         - make APP_ENV=${APP_ENV} referential-ci-load
         - make complaint-1-e2e
@@ -609,7 +605,6 @@ citoyen-complaint-2-e2e:
         - echo "APP_ENV=${APP_ENV}" >> .env.local
         - php -S 127.0.0.1:8080 -t public/ > /dev/null 2>&1 &
         - sed -i "s/nginx-citoyen/127.0.0.1:8080/g" behat.yml.dist
-        - make APP_ENV=${APP_ENV} db-ci-setup
         - make APP_ENV=${APP_ENV} referential-ci-create
         - make APP_ENV=${APP_ENV} referential-ci-load
         - make complaint-2-e2e
@@ -644,7 +639,6 @@ citoyen-complete-workflow-e2e:
         - echo "APP_ENV=${APP_ENV}" >> .env.local
         - php -S 127.0.0.1:8080 -t public/ > /dev/null 2>&1 &
         - sed -i "s/nginx-citoyen/127.0.0.1:8080/g" behat.yml.dist
-        - make APP_ENV=${APP_ENV} db-ci-setup
         - make APP_ENV=${APP_ENV} referential-ci-create
         - make APP_ENV=${APP_ENV} referential-ci-load
         - make complete-workflow-e2e
@@ -679,7 +673,6 @@ citoyen-flaky-e2e:
         - echo "APP_ENV=${APP_ENV}" >> .env.local
         - php -S 127.0.0.1:8080 -t public/ > /dev/null 2>&1 &
         - sed -i "s/nginx-citoyen/127.0.0.1:8080/g" behat.yml.dist
-        - make APP_ENV=${APP_ENV} db-ci-setup
         - make APP_ENV=${APP_ENV} referential-ci-create
         - make APP_ENV=${APP_ENV} referential-ci-load
         - make flaky-e2e

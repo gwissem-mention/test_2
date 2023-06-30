@@ -44,20 +44,6 @@
     params:
       APP_ENV: "{{ ansible_env.APP_ENV }}"
 
-- name: Create DB if not exists
-  make:
-    chdir: '{{ release_portal_path }}'
-    target: db-create
-  register: create_db_output
-  changed_when: create_db_output.stdout is not search('already exists. Skipped')
-
-- name: Run migrations
-  make:
-    chdir: '{{ release_portal_path }}'
-    target: db-migrate
-  register: run_migrations_output
-  changed_when: run_migrations_output.stdout is not search('No migrations to execute')
-  
 - name: Recreate referential database
   make:
       chdir: '{{ release_portal_path }}'
