@@ -163,6 +163,24 @@ class Complaint
     #[ORM\Column(nullable: true)]
     private ?string $oodriveFolder = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?string $oodriveReportFolder = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $oodriveCleanedUpDeclarationAt = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $oodriveCleanedUpAttachmentsAt = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $oodriveCleanedUpReportAt = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $rejectedAt = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $closedAt = null;
+
     public function __construct()
     {
         $this->objects = new ArrayCollection();
@@ -574,6 +592,78 @@ class Complaint
     public function setOodriveFolder(?string $oodriveFolder): self
     {
         $this->oodriveFolder = $oodriveFolder;
+
+        return $this;
+    }
+
+    public function getOodriveCleanedUpDeclarationAt(): ?\DateTimeImmutable
+    {
+        return $this->oodriveCleanedUpDeclarationAt;
+    }
+
+    public function setOodriveCleanedUpDeclarationAt(?\DateTimeImmutable $oodriveCleanedUpDeclarationAt): self
+    {
+        $this->oodriveCleanedUpDeclarationAt = $oodriveCleanedUpDeclarationAt;
+
+        return $this;
+    }
+
+    public function getOodriveCleanedUpReportAt(): ?\DateTimeImmutable
+    {
+        return $this->oodriveCleanedUpReportAt;
+    }
+
+    public function setOodriveCleanedUpReportAt(?\DateTimeImmutable $oodriveCleanedUpReportAt): self
+    {
+        $this->oodriveCleanedUpReportAt = $oodriveCleanedUpReportAt;
+
+        return $this;
+    }
+
+    public function getClosedAt(): ?\DateTimeImmutable
+    {
+        return $this->closedAt;
+    }
+
+    public function setClosedAt(?\DateTimeImmutable $closedAt): self
+    {
+        $this->closedAt = $closedAt;
+
+        return $this;
+    }
+
+    public function getRejectedAt(): ?\DateTimeImmutable
+    {
+        return $this->rejectedAt;
+    }
+
+    public function setRejectedAt(?\DateTimeImmutable $rejectedAt): self
+    {
+        $this->rejectedAt = $rejectedAt;
+
+        return $this;
+    }
+
+    public function getOodriveCleanedUpAttachmentsAt(): ?\DateTimeImmutable
+    {
+        return $this->oodriveCleanedUpAttachmentsAt;
+    }
+
+    public function setOodriveCleanedUpAttachmentsAt(?\DateTimeImmutable $oodriveCleanedUpAttachmentsAt): self
+    {
+        $this->oodriveCleanedUpAttachmentsAt = $oodriveCleanedUpAttachmentsAt;
+
+        return $this;
+    }
+
+    public function getOodriveReportFolder(): ?string
+    {
+        return $this->oodriveReportFolder;
+    }
+
+    public function setOodriveReportFolder(?string $oodriveReportFolder): self
+    {
+        $this->oodriveReportFolder = $oodriveReportFolder;
 
         return $this;
     }

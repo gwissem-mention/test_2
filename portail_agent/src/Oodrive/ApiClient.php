@@ -9,6 +9,7 @@ use App\Oodrive\DTO\Folder;
 use App\Oodrive\Event\PostBulkUploadFile;
 use App\Oodrive\Event\PostCheckItemLock;
 use App\Oodrive\Event\PostCreateFolder;
+use App\Oodrive\Event\PostDeleteFile;
 use App\Oodrive\Event\PostDeleteFolder;
 use App\Oodrive\Event\PostDownloadFile;
 use App\Oodrive\Event\PostGetChildrenFiles;
@@ -23,6 +24,7 @@ use App\Oodrive\Event\PostUploadNewVersionFile;
 use App\Oodrive\Event\PreBulkUploadFile;
 use App\Oodrive\Event\PreCheckItemLock;
 use App\Oodrive\Event\PreCreateFolder;
+use App\Oodrive\Event\PreDeleteFile;
 use App\Oodrive\Event\PreDeleteFolder;
 use App\Oodrive\Event\PreDownloadFile;
 use App\Oodrive\Event\PreGetChildrenFiles;
@@ -561,6 +563,33 @@ class ApiClient implements ApiClientInterface
         $this->oodriveLogger->info(sprintf('Successfully got children files of folder with id %s', $rootFolder->getId()));
 
         return $files;
+    }
+
+    public function deleteFile(OodriveFile $file): OodriveFile
+    {
+        $this->eventDispatcher->dispatch(new PreDeleteFile($file), PreDeleteFile::NAME);
+        $this->oodriveLogger->info(sprintf('Deleting the file with name %s', $file->getName()));
+
+        try {
+            $this->doDeleteItem($file->getId());
+        } catch (ItemDeleteException $e) {
+            /*
+             * The API call succeded but did not return 202 OK
+             * @TODO: May be retry ?
+             */
+            throw $e;
+        } catch (\Exception $e) {
+            /*
+             * The API call did not succeed
+             * @TODO: Mark the API as unavailable ? code stability issue ?
+             */
+            throw $e;
+        }
+
+        $this->oodriveLogger->info(sprintf('Successfuly deleted a file with name %s and ID %s ', $file->getName(), $file->getId()));
+        $this->eventDispatcher->dispatch(new PostDeleteFile($file), PostDeleteFile::NAME);
+
+        return $file;
     }
 
     private function doFetchFolderMetadata(string $folderId): Folder

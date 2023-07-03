@@ -17,9 +17,10 @@
     OODRIVE_ROOT_FOLDER_ID: HcxbMKkGLFo
     OODRIVE_FETCHED_FOLDER_ID: a6mxUkP9a9A
     OODRIVE_TMP_COMPLAINT_FOLDER: HcxbMKkGLFo
+    OODRIVE_REPORT_FOLDER: PV
+    OODRIVE_COMPLAINT_FILENAME: plainte.json
     ACTIVEMQ_DSN: stomp://localhost:61613
     ACTIVEMQ_QUEUE_NAME: /queue/pel
-    OODRIVE_REPORT_FOLDER: PV
     
   vars_files:
     - ../vars/vars.yaml

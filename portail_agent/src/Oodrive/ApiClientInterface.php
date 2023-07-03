@@ -53,4 +53,6 @@ interface ApiClientInterface
      * @return array<OodriveFile>
      */
     public function getChildrenFiles(Folder $rootFolder): array;
+
+    public function deleteFile(OodriveFile $file): OodriveFile;
 }

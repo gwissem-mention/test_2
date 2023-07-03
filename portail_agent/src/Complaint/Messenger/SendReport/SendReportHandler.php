@@ -41,6 +41,10 @@ class SendReportHandler
             $this->oodriveClient->uploadFile($file, $file->getClientOriginalName(), $reportFolder->getId());
         }
 
+        $complaint->setOodriveReportFolder($reportFolder->getId());
+
+        $this->complaintRepository->save($complaint, true);
+
         $this->bus->dispatch(new ComplaintReportSendMessage($message->getComplaintId())); // Salesforce email
     }
 }

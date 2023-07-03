@@ -109,6 +109,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                 $complaints[] = $this->getGenericComplaint($users)
                     ->setCreatedAt(new \DateTimeImmutable('2022-12-05'))
                     ->setStatus(Complaint::STATUS_CLOSED)
+                    ->setClosedAt((new \DateTimeImmutable())->sub(new \DateInterval('P200D')))
                     ->setUnitAssigned($unit);
             }
 
