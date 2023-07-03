@@ -19,7 +19,8 @@
     OODRIVE_TMP_COMPLAINT_FOLDER: HcxbMKkGLFo
     ACTIVEMQ_DSN: stomp://localhost:61613
     ACTIVEMQ_QUEUE_NAME: /queue/pel
-
+    OODRIVE_REPORT_FOLDER: PV
+    
   vars_files:
     - ../vars/vars.yaml
     - ../vault/vault.yaml

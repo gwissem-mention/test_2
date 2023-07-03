@@ -13,6 +13,7 @@ services:
 
     Psr\Container\ContainerInterface $behatDriverContainer: '@behat.driver.service_container'
     App\Oodrive\ApiClientInterface: '@App\Tests\Behat\MockedClasses\FakeOodriveApiClient'
+    App\Oodrive\ReportsFetcher\ReportsFetcherInterface: '@App\Tests\Behat\MockedClasses\FakeReportFetcher'
 
     App\Tests\Behat\FranceConnectContext:
         $baseUri: '%env(FRANCE_CONNECT_BASE_URI)%'

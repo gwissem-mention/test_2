@@ -14,13 +14,16 @@ class Folder
 
     private string $parentId;
 
+    private \DateTimeImmutable $creationDate;
+
     /**
      * @param array{
      *     'id': string,
      *     'name': string|null,
      *     'childFolderCount': int|null,
      *     'isDir': bool|null,
-     *     'parentId': string|null
+     *     'parentId': string|null,
+     *     'creationDate': string|null
      * } $payload
      */
     public function __construct(array $payload)
@@ -30,6 +33,7 @@ class Folder
         $this->childrenFolderCount = $payload['childFolderCount'] ?? 0;
         $this->isDir = $payload['isDir'] ?? true;
         $this->parentId = $payload['parentId'] ?? '';
+        $this->creationDate = new \DateTimeImmutable($payload['creationDate'] ?? 'now');
     }
 
     public function getId(): string
@@ -55,5 +59,10 @@ class Folder
     public function getParentId(): string
     {
         return $this->parentId;
+    }
+
+    public function getCreationDate(): \DateTimeImmutable
+    {
+        return $this->creationDate;
     }
 }

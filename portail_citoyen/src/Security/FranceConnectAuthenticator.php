@@ -96,7 +96,12 @@ class FranceConnectAuthenticator extends OAuth2Authenticator implements Authenti
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): Response
     {
-        return new RedirectResponse($this->urlGenerator->generate('authentication', ['france_connected' => 1]));
+        $parameters = [];
+        /** @var string $targetPath */
+        $targetPath = $request->getSession()->get('_security.main.target_path');
+        parse_str($targetPath, $parameters);
+
+        return new RedirectResponse($this->urlGenerator->generate('authentication', ['france_connected' => 1, 'my_complaints_reports' => $parameters['my_complaints_reports'] ?? '0']));
     }
 
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response

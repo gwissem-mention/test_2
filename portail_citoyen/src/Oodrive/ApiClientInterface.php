@@ -6,6 +6,7 @@ use App\Oodrive\DTO\File as OodriveFile;
 use App\Oodrive\DTO\Folder;
 use App\Oodrive\ParamsObject\SearchParamObject;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Contracts\HttpClient\ResponseInterface;
 
 interface ApiClientInterface
 {
@@ -29,6 +30,8 @@ interface ApiClientInterface
      */
     public function bulkUploadFiles(array $files, string $parentId): array;
 
+    public function downloadFile(OodriveFile $file): ResponseInterface;
+
     public function lockItem(string $itemId): bool;
 
     public function unlockItem(string $itemId): bool;
@@ -39,4 +42,9 @@ interface ApiClientInterface
      * @return array<Folder>
      */
     public function getChildrenFolders(Folder $rootFolder): array;
+
+    /**
+     * @return array<OodriveFile>
+     */
+    public function getChildrenFiles(Folder $rootFolder): array;
 }
