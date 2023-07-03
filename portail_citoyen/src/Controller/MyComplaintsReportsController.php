@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Entity\User;
 use App\Oodrive\ApiClientInterface;
 use App\Oodrive\DTO\File;
 use App\Oodrive\DTO\ReportFolder;
 use App\Oodrive\ReportsFetcher\ReportsFetcherInterface;
+use App\Security\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\HeaderUtils;
 use Symfony\Component\HttpFoundation\Response;
