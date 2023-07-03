@@ -18,7 +18,8 @@ class SendReportHandler
     public function __construct(
         private readonly ApiClientInterface $oodriveClient,
         private readonly MessageBusInterface $bus,
-        private readonly ComplaintRepository $complaintRepository
+        private readonly ComplaintRepository $complaintRepository,
+        private readonly string $oodriveReportFolderName
     ) {
     }
 
@@ -34,8 +35,10 @@ class SendReportHandler
             throw new NoOodriveComplaintFolderException("No Oodrive folder for complaint {$complaint->getId()}");
         }
 
+        $reportFolder = $this->oodriveClient->createFolder($this->oodriveReportFolderName, $complaint->getOodriveFolder());
+
         foreach ($message->getFiles() as $file) {
-            $this->oodriveClient->uploadFile($file, $file->getClientOriginalName(), $complaint->getOodriveFolder());
+            $this->oodriveClient->uploadFile($file, $file->getClientOriginalName(), $reportFolder->getId());
         }
 
         $this->bus->dispatch(new ComplaintReportSendMessage($message->getComplaintId())); // Salesforce email

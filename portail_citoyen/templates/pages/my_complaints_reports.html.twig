@@ -1,0 +1,38 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+    <div class="fr-container fr-py-2w">
+        <h1>{{ 'pel.my.complaints.reports'|trans }}</h1>
+        {% if app.user is null %}
+            <div class="france-connect__group">
+                <button class="fr-connect" id="france_connect_auth_button" onclick="window.location='{{ path('authentication', {'france_connected': '1', 'my_complaints_reports':'1'}) }}';">
+                    <span class="fr-connect__login">{{ 'pel.identify.with'|trans }}</span>
+                    <span class="fr-connect__brand">{{ 'pel.france.connect'|trans }}</span>
+                </button>
+                <p>
+                    <a href="https://franceconnect.gouv.fr/" class="fr-text--sm fr-text-title--blue-france" target="_blank" rel="noopener" title="{{ 'pel.what.is.france.connect'|trans }} - {{ 'pel.new.window'|trans }}">{{ 'pel.what.is.france.connect'|trans }}</a>
+                </p>
+            </div>
+        {% else %}
+            <div class="fr-grid-row fr-py-2w">
+                {% for report in reports %}
+                    <div class="fr-col-6">
+                        {{ 'pel.complaint'|trans }} {{ 'pel.of'|trans }} {{ report.creationDate|date('d/m/Y') }}
+                        <ul>
+                            {% for file in report.files %}
+                                <li>
+                                    <a href="{{ path('download_report', {id:file.id,name:file.name}) }}">{{ 'pel.download'|trans }} {{ file.name }}</a>
+                                </li>
+                            {% endfor %}
+                            {% if report.files|length > 1 %}
+                                <li>
+                                    <a href="{{ path('download_report', {id:report.id,name:oodrive_fetched_zip_name}) }}">{{ 'pel.download'|trans }} ZIP</a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

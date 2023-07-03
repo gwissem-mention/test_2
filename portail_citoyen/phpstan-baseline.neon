@@ -41,6 +41,46 @@ parameters:
 			path: tests/Doubles/FranceConnectGuzzleClientFake.php
 
 		-
+			message: "#^Parameter \\#1 \\$payload of class App\\\\Oodrive\\\\DTO\\\\File constructor expects array\\{id\\: string, name\\: string\\|null, isDir\\: bool\\|null\\}, array\\{id\\: 'X_LIEqrTLuk', name\\: 'test\\.jpg'\\} given\\.$#"
+			count: 1
+			path: tests/Oodrive/ReportsFetcherTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$payload of class App\\\\Oodrive\\\\DTO\\\\File constructor expects array\\{id\\: string, name\\: string\\|null, isDir\\: bool\\|null\\}, array\\{id\\: 'slwS30\\-lxUA', name\\: 'test\\.pdf'\\} given\\.$#"
+			count: 1
+			path: tests/Oodrive/ReportsFetcherTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$payload of class App\\\\Oodrive\\\\DTO\\\\File constructor expects array\\{id\\: string, name\\: string\\|null, isDir\\: bool\\|null\\}, array\\{id\\: 'slwS30\\-lxUE', name\\: 'test\\.pdf'\\} given\\.$#"
+			count: 1
+			path: tests/Oodrive/ReportsFetcherTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$payload of class App\\\\Oodrive\\\\DTO\\\\Folder constructor expects array\\{id\\: string, name\\: string\\|null, childFolderCount\\: int\\|null, isDir\\: bool\\|null, parentId\\: string\\|null, creationDate\\: string\\|null\\}, array\\{id\\: '\\-40wbGIH_7I', name\\: 'PV', parentId\\: 'I1L3LTGTjps'\\} given\\.$#"
+			count: 1
+			path: tests/Oodrive/ReportsFetcherTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$payload of class App\\\\Oodrive\\\\DTO\\\\Folder constructor expects array\\{id\\: string, name\\: string\\|null, childFolderCount\\: int\\|null, isDir\\: bool\\|null, parentId\\: string\\|null, creationDate\\: string\\|null\\}, array\\{id\\: 'GvT36KDZknI', name\\: '67198d2a\\-1509\\-11ee…', parentId\\: '75gVIUofzDA'\\} given\\.$#"
+			count: 1
+			path: tests/Oodrive/ReportsFetcherTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$payload of class App\\\\Oodrive\\\\DTO\\\\Folder constructor expects array\\{id\\: string, name\\: string\\|null, childFolderCount\\: int\\|null, isDir\\: bool\\|null, parentId\\: string\\|null, creationDate\\: string\\|null\\}, array\\{id\\: 'I1L3LTGTjps', name\\: '67198d2a\\-1509\\-11ee…', parentId\\: '75gVIUofzDA'\\} given\\.$#"
+			count: 1
+			path: tests/Oodrive/ReportsFetcherTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$payload of class App\\\\Oodrive\\\\DTO\\\\Folder constructor expects array\\{id\\: string, name\\: string\\|null, childFolderCount\\: int\\|null, isDir\\: bool\\|null, parentId\\: string\\|null, creationDate\\: string\\|null\\}, array\\{id\\: 'jpaWBwgWE9k', name\\: 'PV', parentId\\: 'GvT36KDZknI'\\} given\\.$#"
+			count: 1
+			path: tests/Oodrive/ReportsFetcherTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$payload of class App\\\\Oodrive\\\\DTO\\\\Folder constructor expects array\\{id\\: string, name\\: string\\|null, childFolderCount\\: int\\|null, isDir\\: bool\\|null, parentId\\: string\\|null, creationDate\\: string\\|null\\}, array\\{id\\: 'kxP5HZEXlGI', name\\: '649b11d9f266e', parentId\\: 'XeCnU6awkHc'\\} given\\.$#"
+			count: 1
+			path: tests/Oodrive/ReportsFetcherTest.php
+
+		-
 			message: "#^Call to an undefined method object\\:\\:setToken\\(\\)\\.$#"
 			count: 1
 			path: tests/Session/FranceConnectHandlerTest.php

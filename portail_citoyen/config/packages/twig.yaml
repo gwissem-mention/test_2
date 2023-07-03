@@ -5,6 +5,7 @@ twig:
         fr_code: '%app.france_code%'
         jedonnemonavis_id: '%app.jedonnemonavis_id%'
         jedonnemonavis_key: '%app.jedonnemonavis_key%'
+        oodrive_fetched_zip_name: '%app.oodrive.fetched_zip_name%'
 
 when@test:
     twig:

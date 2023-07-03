@@ -19,6 +19,9 @@ parameters:
     app.folder_rotation.count: '%env(FOLDER_ROTATION_COUNT)%'
     app.folder_rotation.treshold: '%env(FOLDER_ROTATION_TRESHOLD)%'
     app.oodrive.root_folder_id: '%env(OODRIVE_ROOT_FOLDER_ID)%'
+    app.oodrive.fetched_folder_id: '%env(OODRIVE_FETCHED_FOLDER_ID)%'
+    app.oodrive.fetched_zip_name: '%env(OODRIVE_FETCHED_ZIP_NAME)%'
+    app.oodrive.report.folder: '%env(OODRIVE_REPORT_FOLDER)%'
     app.google_maps_api_key: '%env(GOOGLE_MAPS_API_KEY)%'
     app.acces_libre_api_base_uri: '%env(ACCES_LIBRE_API_BASE_URI)%'
     app.acces_libre_api_key: '%env(ACCES_LIBRE_API_KEY)%'
@@ -34,6 +37,9 @@ services:
             $folderRotationCount: '%app.folder_rotation.count%'
             $folderRotationTreshold: '%app.folder_rotation.treshold%'
             $oodriveRootFolderId: '%app.oodrive.root_folder_id%'
+            $oodriveFetchedFolderId: '%app.oodrive.fetched_folder_id%'
+            $oodriveFetchedZIPName: '%app.oodrive.fetched_zip_name%'
+            $oodriveReportFolderName: '%app.oodrive.report.folder%'
     App\:
         resource: '../src/'
         exclude:

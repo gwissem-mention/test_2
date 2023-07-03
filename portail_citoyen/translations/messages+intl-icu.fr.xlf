@@ -626,6 +626,10 @@
                 <source>pel.do.you.know.hour.facts</source>
                 <target>Connaissez-vous l’heure des faits ?</target>
             </trans-unit>
+            <trans-unit id="pel.download">
+                <source>pel.download</source>
+                <target>Télécharger</target>
+            </trans-unit>
             <trans-unit id="pel.driving.license">
                 <source>pel.driving.license</source>
                 <target>Permis de conduire</target>
@@ -1161,6 +1165,10 @@
             <trans-unit id="pel.model">
                 <source>pel.model</source>
                 <target>Modèle</target>
+            </trans-unit>
+            <trans-unit id="pel.my.complaints.reports">
+                <source>pel.my.complaints.reports</source>
+                <target>Mes PV de plaintes</target>
             </trans-unit>
             <trans-unit id="pel.my.identity">
                 <source>pel.my.identity</source>
@@ -1754,6 +1762,10 @@
                 <source>pel.cancel</source>
                 <target>Annuler</target>
             </trans-unit>
+            <trans-unit id="pel.complaint">
+                <source>pel.complaint</source>
+                <target>Plainte</target>
+            </trans-unit>
             <trans-unit id="pel.complaint.create">
                 <source>pel.complaint.create</source>
                 <target>Déposer plainte</target>
@@ -1929,6 +1941,10 @@
             <trans-unit id="pel.article.10.2">
                 <source>pel.article.10.2</source>
                 <target>Article 10-2</target>
+            </trans-unit>
+            <trans-unit id="pel.of">
+                <source>pel.of</source>
+                <target>du</target>
             </trans-unit>
             <trans-unit id="pel.officers.and.agents">
                 <source>pel.officers.and.agents</source>

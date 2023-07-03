@@ -94,6 +94,7 @@ e2e:
                 - '%paths.base%/features/authentication.feature'
                 - '%paths.base%/features/france-connect.feature'
                 - '%paths.base%/features/not-found.feature'
+                - '%paths.base%/features/my-complaints-reports.feature'
             <<: *contexts
             filters:
                 tags: '~@func&&~@flaky'

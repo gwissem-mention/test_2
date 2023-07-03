@@ -21,6 +21,10 @@ class AuthenticationController extends AbstractController
     ): Response {
         $sessionHandler->init();
 
+        if ('1' === $request->query->get('my_complaints_reports')) {
+            return $this->redirectToRoute('my_complaints_reports');
+        }
+
         if ($request->query->has('france_connected')) {
             if ('1' === $request->query->get('france_connected')) {
                 $franceConnectHandler->setIdentityToComplaint();
