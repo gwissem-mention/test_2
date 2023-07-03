@@ -22,8 +22,12 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class ComplaintRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
-    {
+    public function __construct(
+        ManagerRegistry $registry,
+        private readonly string $oodriveDeclarationCleanUpPeriod,
+        private readonly string $oodriveAttachmentsOnlyCleanUpPeriod,
+        private readonly string $oodriveReportCleanUpPeriod,
+    ) {
         parent::__construct($registry, Complaint::class);
     }
 
@@ -87,8 +91,7 @@ class ComplaintRepository extends ServiceEntityRepository
 
         if (!is_null($status)) {
             $qb->andWhere('c.status = :status')
-                ->setParameter('status', $status)
-            ;
+                ->setParameter('status', $status);
         } elseif (!empty($searchQuery)) {
             $keywords = explode(' ', $searchQuery);
             $andX = $qb->expr()->andX();
@@ -117,8 +120,7 @@ class ComplaintRepository extends ServiceEntityRepository
             ->andWhere('c.processingDeadline <= :now')
             ->andWhere('c.deadlineNotified = :bool')
             ->setParameter('now', new \DateTimeImmutable())
-            ->setParameter('bool', false)
-        ;
+            ->setParameter('bool', false);
     }
 
     /**
@@ -143,6 +145,57 @@ class ComplaintRepository extends ServiceEntityRepository
             ->getSingleScalarResult();
 
         return $result;
+    }
+
+    /**
+     * @return array<Complaint>
+     */
+    public function findComplaintsForOodriveDeclarationCleanUp(): array
+    {
+        $date = new \DateTimeImmutable("-$this->oodriveDeclarationCleanUpPeriod");
+        $qb = $this->createQueryBuilder('c')
+            ->andWhere('c.createdAt < :date')
+            ->andWhere('c.oodriveCleanedUpDeclarationAt IS NULL')
+            ->setParameter('date', $date);
+
+        /** @var array<Complaint> $complaints */
+        $complaints = $qb->getQuery()->getResult();
+
+        return $complaints;
+    }
+
+    /**
+     * @return array<Complaint>
+     */
+    public function findComplaintsForOodriveAttachmentsOnlyCleanUp(): array
+    {
+        $date = new \DateTimeImmutable("-$this->oodriveAttachmentsOnlyCleanUpPeriod");
+        $qb = $this->createQueryBuilder('c')
+            ->andWhere('c.rejectedAt < :date OR c.closedAt < :date')
+            ->andWhere('c.oodriveCleanedUpAttachmentsAt IS NULL')
+            ->setParameter('date', $date);
+
+        /** @var array<Complaint> $complaints */
+        $complaints = $qb->getQuery()->getResult();
+
+        return $complaints;
+    }
+
+    /**
+     * @return array<Complaint>
+     */
+    public function findComplaintsForOodriveReportCleanUp(): array
+    {
+        $date = new \DateTimeImmutable("-$this->oodriveReportCleanUpPeriod");
+        $qb = $this->createQueryBuilder('c')
+            ->andWhere('c.closedAt < :date')
+            ->andWhere('c.oodriveCleanedUpReportAt IS NULL')
+            ->setParameter('date', $date);
+
+        /** @var array<Complaint> $complaints */
+        $complaints = $qb->getQuery()->getResult();
+
+        return $complaints;
     }
 
     /**

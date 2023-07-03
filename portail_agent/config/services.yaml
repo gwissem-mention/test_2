@@ -11,7 +11,11 @@ parameters:
     app.oodrive.fetched_folder_id: '%env(OODRIVE_FETCHED_FOLDER_ID)%'
     app.oodrive.tmp_complaint_folder: '%env(OODRIVE_TMP_COMPLAINT_FOLDER)%'
     complaint.processing_deadline: '%env(COMPLAINT_PROCESSING_DEADLINE)%'
+    app.oodrive.declaration.cleanup.period: '%env(OODRIVE_DECLARATION_CLEANUP_PERIOD)%'
+    app.oodrive.attachments.only.cleanup.period: '%env(OODRIVE_ATTACHMENTS_ONLY_CLEANUP_PERIOD)%'
+    app.oodrive.report.cleanup.period: '%env(OODRIVE_REPORT_CLEANUP_PERIOD)%'
     app.oodrive.report.folder: '%env(OODRIVE_REPORT_FOLDER)%'
+    app.oodrive.complaint.filename: '%env(OODRIVE_COMPLAINT_FILENAME)%'
     
 services:
     _defaults:
@@ -26,7 +30,7 @@ services:
             $ppelConnection: '@doctrine.dbal.ppel_connection'
             $tmpComplaintFolderId: '%app.oodrive.tmp_complaint_folder%'
             $oodriveReportFolderName: '%app.oodrive.report.folder%'
-
+            $oodriveComplaintFilename: '%app.oodrive.complaint.filename%'
     App\:
         resource: '../src/'
         exclude:
@@ -76,6 +80,12 @@ services:
     App\Complaint\Parser\FileParser:
         arguments:
             $complaintsBasePath: '%app.complaints_base_path%'
+            
+    App\Repository\ComplaintRepository:
+        arguments:
+            $oodriveDeclarationCleanUpPeriod: '%app.oodrive.declaration.cleanup.period%'
+            $oodriveAttachmentsOnlyCleanUpPeriod: '%app.oodrive.attachments.only.cleanup.period%'
+            $oodriveReportCleanUpPeriod: '%app.oodrive.report.cleanup.period%'       
 
     app.logger.formatter.json_traces:
         class: App\Logger\Formatter\ApplicationTracesFormatter

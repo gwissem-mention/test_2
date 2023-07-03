@@ -43,7 +43,7 @@ class RejectController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $complaintWorkflowManager->reject($complaint);
-            $complaintRepository->save($complaint, true);
+            $complaintRepository->save($complaint->setRejectedAt(new \DateTimeImmutable()), true);
 
             $logger->log(ApplicationTracesMessage::message(
                 ApplicationTracesMessage::REJECT,

@@ -91,4 +91,10 @@ class FakeOodriveApiClient implements ApiClientInterface
             new OodriveFile(['id' => uniqid(), 'name' => 'file2', 'isDir' => false]),
         ];
     }
+
+    public function deleteFile(OodriveFile $file): OodriveFile
+    {
+        /* @phpstan-ignore-next-line */
+        return new OodriveFile([$file->getId(), $file->getName()]);
+    }
 }
