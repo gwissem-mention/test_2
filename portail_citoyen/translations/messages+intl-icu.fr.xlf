@@ -2052,7 +2052,7 @@
             </trans-unit>
             <trans-unit id="pel.my.online.complaint.declaration">
                 <source>pel.my.online.complaint.declaration</source>
-                <target>Ma déclaration de plainte en ligne</target>
+                <target>Ma déclaration<![CDATA[<br>]]>de plainte en ligne</target>
             </trans-unit>
             <trans-unit id="pel.goods.concerned">
                 <source>pel.goods.concerned</source>
@@ -2102,6 +2102,18 @@
                 <source>pel.description.of.facts.step.3</source>
                 <target>Description des faits (étape 3 sur 7) - Plainte en ligne</target>
             </trans-unit>
+            <trans-unit id="pel.further.information">
+                <source>pel.further.information</source>
+                <target>Complément d'informations</target>
+            </trans-unit>
+            <trans-unit id="pel.summary.of.complaint">
+                <source>pel.summary.of.complaint</source>
+                <target>Récapitulatif de la plainte</target>
+            </trans-unit>
+            <trans-unit id="pel.registered.complaint">
+                <source>pel.registered.complaint</source>
+                <target>Plainte enregistrée</target>
+            </trans-unit>       
         </body>
     </file>
 </xliff>
