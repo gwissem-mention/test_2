@@ -1,6 +1,7 @@
 <div class="fr-col" data-controller="counter" data-counter-minlength-value="{{ minlength }}" data-counter-maxlength-value="{{ maxlength }}">
     {% block label %}{% endblock %}
     <div class="fr-hint-text" data-counter-target="counterContainer" data-live-ignore>
+        {{ 'pel.resume.the.infraction.in.few.words'|trans }}
         {{ 'pel.between'|trans }}
         <span data-counter-target="counterMinLength"></span>
         {{ 'pel.and'|trans|lower }}

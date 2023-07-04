@@ -47,6 +47,7 @@ class FactsType extends AbstractType
             ])
             ->add('victimOfViolence', CheckboxType::class, [
                 'label' => 'pel.victim.of.violence',
+                'help' => 'pel.victim.of.violence.help',
                 'required' => false,
             ])
             ->add('placeNature', ChoiceType::class, [
@@ -101,6 +102,7 @@ class FactsType extends AbstractType
             $form->add('victimOfViolenceText', TextType::class, [
                 'label' => 'pel.victim.of.violence.text',
                 'attr' => [
+                    'placeholder' => 'pel.victim.of.violence.text.placeholder',
                     'maxlength' => 250,
                 ],
                 'constraints' => [
