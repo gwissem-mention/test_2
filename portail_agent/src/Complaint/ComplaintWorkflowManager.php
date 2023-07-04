@@ -12,7 +12,8 @@ class ComplaintWorkflowManager
 {
     public const TRANSITION_ASSIGN = 'assign';
     public const TRANSITION_REJECT = 'reject';
-    public const TRANSITION_CLOSE = 'close';
+    public const TRANSITION_CLOSE_AFTER_SENDING_THE_REPORT = 'close_after_sending_the_report';
+    public const TRANSITION_CLOSE_AFTER_APPOINTMENT = 'close_after_appointment';
     public const TRANSITION_SEND_TO_LRP = 'send_to_lrp';
     public const TRANSITION_SELF_ASSIGN = 'self_assign';
     public const TRANSITION_ASK_UNIT_REDIRECTION = 'ask_unit_redirection';
@@ -63,13 +64,25 @@ class ComplaintWorkflowManager
     /**
      * @throws ComplaintWorkflowException
      */
-    public function close(Complaint $complaint): Marking
+    public function closeAfterSendingTheReport(Complaint $complaint): Marking
     {
-        if (!$this->complaintStateMachine->can($complaint, self::TRANSITION_CLOSE)) {
-            throw new ComplaintWorkflowException('This complaint cannot be closed');
+        if (!$this->complaintStateMachine->can($complaint, self::TRANSITION_CLOSE_AFTER_SENDING_THE_REPORT)) {
+            throw new ComplaintWorkflowException('This complaint cannot be closed after sending the report');
         }
 
-        return $this->complaintStateMachine->apply($complaint, self::TRANSITION_CLOSE);
+        return $this->complaintStateMachine->apply($complaint, self::TRANSITION_CLOSE_AFTER_SENDING_THE_REPORT);
+    }
+
+    /**
+     * @throws ComplaintWorkflowException
+     */
+    public function closeAfterAppointment(Complaint $complaint): Marking
+    {
+        if (!$this->complaintStateMachine->can($complaint, self::TRANSITION_CLOSE_AFTER_APPOINTMENT)) {
+            throw new ComplaintWorkflowException('This complaint cannot be closed after the appointment');
+        }
+
+        return $this->complaintStateMachine->apply($complaint, self::TRANSITION_CLOSE_AFTER_APPOINTMENT);
     }
 
     /**

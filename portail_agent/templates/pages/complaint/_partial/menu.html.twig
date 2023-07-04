@@ -54,7 +54,11 @@
                         <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-complaint-send-to-lrp" title="{{ 'pel.click.here.to.send.this.declaration.to.lrp'|trans }}" id="complaint-send-lrp-button">
                             <i class="bi bi-arrow-right"></i> {{ 'pel.send.to.lrp'|trans }}
                         </button>
-                    {% elseif workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_CLOSE') ) %}
+                    {% elseif workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_CLOSE_AFTER_APPOINTMENT') ) %}
+                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-complaint-close-after-appointment" title="{{ 'pel.click.here.to.close.the.complaint.after.the.appointment'|trans }}" id="complaint-close-after-appointment-button">
+                            <i class="bi bi-arrow-right"></i> {{ 'pel.close.after.appointment'|trans }}
+                        </button>
+                    {% elseif workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_CLOSE_AFTER_SENDING_THE_REPORT') ) %}
                         <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-complaint-send-report-to-victim" title="{{ 'pel.click.here.to.send.the.report.to.the.victim.and.close'|trans }}" id="complaint-send-report-to-victim-button">
                             <i class="bi bi-arrow-right"></i> {{ 'pel.send.report.to.the.victim.and.close'|trans }}
                         </button>

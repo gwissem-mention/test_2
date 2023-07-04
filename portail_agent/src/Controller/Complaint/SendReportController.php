@@ -81,7 +81,7 @@ class SendReportController extends AbstractController
             $user = $this->getUser();
 
             $bus->dispatch(new SendReportMessage($files, (int) $complaint->getId()));
-            $complaintWorkflowManager->close($complaint);
+            $complaintWorkflowManager->closeAfterSendingTheReport($complaint);
             $complaintRepository->save($complaint->setClosedAt(new \DateTimeImmutable()), true);
             $logger->log(ApplicationTracesMessage::message(
                 ApplicationTracesMessage::SENDING_DOCUMENTS,
