@@ -258,6 +258,11 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'documentOwned' => null,
                         'documentAdditionalInformation' => null,
                         'files' => [],
+                        'stillOnWhenMobileStolen' => null,
+                        'keyboardLockedWhenMobileStolen' => null,
+                        'pinEnabledWhenMobileStolen' => null,
+                        'mobileInsured' => null,
+                        'allowOperatorCommunication' => null,
                     ],
                     [
                         'status' => [
@@ -293,6 +298,11 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'documentOwned' => null,
                         'documentAdditionalInformation' => null,
                         'files' => [],
+                        'stillOnWhenMobileStolen' => null,
+                        'keyboardLockedWhenMobileStolen' => null,
+                        'pinEnabledWhenMobileStolen' => null,
+                        'mobileInsured' => null,
+                        'allowOperatorCommunication' => null,
                     ],
                     [
                         'status' => [
@@ -324,6 +334,11 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'documentOwned' => null,
                         'documentAdditionalInformation' => null,
                         'files' => [],
+                        'stillOnWhenMobileStolen' => null,
+                        'keyboardLockedWhenMobileStolen' => null,
+                        'pinEnabledWhenMobileStolen' => null,
+                        'mobileInsured' => null,
+                        'allowOperatorCommunication' => null,
                     ],
                     [
                         'status' => [
@@ -355,6 +370,11 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'documentOwned' => null,
                         'documentAdditionalInformation' => null,
                         'files' => [],
+                        'stillOnWhenMobileStolen' => null,
+                        'keyboardLockedWhenMobileStolen' => null,
+                        'pinEnabledWhenMobileStolen' => null,
+                        'mobileInsured' => null,
+                        'allowOperatorCommunication' => null,
                     ],
                 ],
             ],
@@ -675,6 +695,11 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'documentOwned' => null,
                         'documentAdditionalInformation' => null,
                         'files' => [],
+                        'stillOnWhenMobileStolen' => null,
+                        'keyboardLockedWhenMobileStolen' => null,
+                        'pinEnabledWhenMobileStolen' => null,
+                        'mobileInsured' => null,
+                        'allowOperatorCommunication' => null,
                     ],
                     [
                         'status' => [
@@ -710,6 +735,11 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'documentOwned' => null,
                         'documentAdditionalInformation' => null,
                         'files' => [],
+                        'stillOnWhenMobileStolen' => null,
+                        'keyboardLockedWhenMobileStolen' => null,
+                        'pinEnabledWhenMobileStolen' => null,
+                        'mobileInsured' => null,
+                        'allowOperatorCommunication' => null,
                     ],
                     [
                         'status' => [
@@ -741,6 +771,11 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'documentOwned' => null,
                         'documentAdditionalInformation' => null,
                         'files' => [],
+                        'stillOnWhenMobileStolen' => null,
+                        'keyboardLockedWhenMobileStolen' => null,
+                        'pinEnabledWhenMobileStolen' => null,
+                        'mobileInsured' => null,
+                        'allowOperatorCommunication' => null,
                     ],
                     [
                         'status' => [
@@ -772,6 +807,11 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'documentOwned' => null,
                         'documentAdditionalInformation' => null,
                         'files' => [],
+                        'stillOnWhenMobileStolen' => null,
+                        'keyboardLockedWhenMobileStolen' => null,
+                        'pinEnabledWhenMobileStolen' => null,
+                        'mobileInsured' => null,
+                        'allowOperatorCommunication' => null,
                     ],
                 ],
             ],
@@ -1053,6 +1093,11 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'documentOwned' => null,
                         'documentAdditionalInformation' => null,
                         'files' => [],
+                        'stillOnWhenMobileStolen' => null,
+                        'keyboardLockedWhenMobileStolen' => null,
+                        'pinEnabledWhenMobileStolen' => null,
+                        'mobileInsured' => null,
+                        'allowOperatorCommunication' => null,
                     ],
                     [
                         'status' => [
@@ -1088,6 +1133,11 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'documentOwned' => null,
                         'documentAdditionalInformation' => null,
                         'files' => [],
+                        'stillOnWhenMobileStolen' => null,
+                        'keyboardLockedWhenMobileStolen' => null,
+                        'pinEnabledWhenMobileStolen' => null,
+                        'mobileInsured' => null,
+                        'allowOperatorCommunication' => null,
                     ],
                     [
                         'status' => [
@@ -1119,6 +1169,11 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'documentOwned' => null,
                         'documentAdditionalInformation' => null,
                         'files' => [],
+                        'stillOnWhenMobileStolen' => null,
+                        'keyboardLockedWhenMobileStolen' => null,
+                        'pinEnabledWhenMobileStolen' => null,
+                        'mobileInsured' => null,
+                        'allowOperatorCommunication' => null,
                     ],
                     [
                         'status' => [
@@ -1150,6 +1205,11 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'documentOwned' => null,
                         'documentAdditionalInformation' => null,
                         'files' => [],
+                        'stillOnWhenMobileStolen' => null,
+                        'keyboardLockedWhenMobileStolen' => null,
+                        'pinEnabledWhenMobileStolen' => null,
+                        'mobileInsured' => null,
+                        'allowOperatorCommunication' => null,
                     ],
                 ],
             ],

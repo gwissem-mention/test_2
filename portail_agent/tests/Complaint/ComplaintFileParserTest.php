@@ -355,7 +355,12 @@ class ComplaintFileParserTest extends KernelTestCase
                   "documentIssuedOn": null,
                   "documentValidityEndDate": null
             },
-			"files": []
+			"files": [],
+            "stillOnWhenMobileStolen": null,
+            "keyboardLockedWhenMobileStolen": null,
+            "pinEnabledWhenMobileStolen": null,
+            "mobileInsured": null,
+            "allowOperatorCommunication": null
 		},
 		{
 			"status":
@@ -393,7 +398,12 @@ class ComplaintFileParserTest extends KernelTestCase
 			"otherDocumentType": null,
 			"documentOwned": null,
 			"documentAdditionalInformation": null,
-			"files": []
+			"files": [],
+            "stillOnWhenMobileStolen": true,
+            "keyboardLockedWhenMobileStolen": true,
+            "pinEnabledWhenMobileStolen": true,
+            "mobileInsured": true,
+            "allowOperatorCommunication": true
 		},
 		{
 			"status":
@@ -426,7 +436,12 @@ class ComplaintFileParserTest extends KernelTestCase
 			"otherDocumentType": null,
 			"documentOwned": null,
 			"documentAdditionalInformation": null,
-			"files": []
+			"files": [],
+            "stillOnWhenMobileStolen": null,
+            "keyboardLockedWhenMobileStolen": null,
+            "pinEnabledWhenMobileStolen": null,
+            "mobileInsured": null,
+            "allowOperatorCommunication": null
 		},
 		{
 			"status":
@@ -459,7 +474,12 @@ class ComplaintFileParserTest extends KernelTestCase
 			"otherDocumentType": null,
 			"documentOwned": null,
 			"documentAdditionalInformation": null,
-			"files": []
+			"files": [],
+            "stillOnWhenMobileStolen": null,
+            "keyboardLockedWhenMobileStolen": null,
+            "pinEnabledWhenMobileStolen": null,
+            "mobileInsured": null,
+            "allowOperatorCommunication": null
 		}]
 	},
 	"appointment": {

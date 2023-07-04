@@ -42,7 +42,7 @@ class ObjectsParserTest extends KernelTestCase
             "insuranceCompany": null,
             "insuranceNumber": null,
             "amount": 1500.0,
-            "documentType": 1,
+            "documentType": "1",
             "otherDocumentType": null,
             "documentOwned": false,
             "documentAdditionalInformation": {
@@ -87,7 +87,12 @@ class ObjectsParserTest extends KernelTestCase
                 "type":"image\/png",
                 "size":16355
                 }
-            ]
+            ],
+            "stillOnWhenMobileStolen": null,
+            "keyboardLockedWhenMobileStolen": null,
+            "pinEnabledWhenMobileStolen": null,
+            "mobileInsured": null,
+            "allowOperatorCommunication": null
         },
         {
             "status": {
@@ -118,7 +123,12 @@ class ObjectsParserTest extends KernelTestCase
             "otherDocumentType": null,
             "documentOwned": null,
             "documentAdditionalInformation": null,
-            "files": []
+            "files": [],
+            "stillOnWhenMobileStolen": null,
+            "keyboardLockedWhenMobileStolen": null,
+            "pinEnabledWhenMobileStolen": null,
+            "mobileInsured": null,
+            "allowOperatorCommunication": null
         },
         {
             "status": {
@@ -149,7 +159,12 @@ class ObjectsParserTest extends KernelTestCase
             "otherDocumentType": null,
             "documentOwned": null,
             "documentAdditionalInformation": null,
-            "files": []
+            "files": [],
+            "stillOnWhenMobileStolen": true,
+            "keyboardLockedWhenMobileStolen": true,
+            "pinEnabledWhenMobileStolen": true,
+            "mobileInsured": true,
+            "allowOperatorCommunication": true
         },
         {
             "status": {
@@ -180,7 +195,12 @@ class ObjectsParserTest extends KernelTestCase
             "otherDocumentType": null,
             "documentOwned": null,
             "documentAdditionalInformation": null,
-            "files": []
+            "files": [],
+            "stillOnWhenMobileStolen": null,
+            "keyboardLockedWhenMobileStolen": null,
+            "pinEnabledWhenMobileStolen": null,
+            "mobileInsured": null,
+            "allowOperatorCommunication": null
         },
         {
             "status": {
@@ -242,7 +262,12 @@ class ObjectsParserTest extends KernelTestCase
             "otherDocumentType": null,
             "documentOwned": null,
             "documentAdditionalInformation": null,
-            "files": []
+            "files": [],
+            "stillOnWhenMobileStolen": null,
+            "keyboardLockedWhenMobileStolen": null,
+            "pinEnabledWhenMobileStolen": null,
+            "mobileInsured": null,
+            "allowOperatorCommunication": null
         },
         {
             "status": {
@@ -277,7 +302,12 @@ class ObjectsParserTest extends KernelTestCase
             "otherDocumentType": null,
             "documentOwned": null,
             "documentAdditionalInformation": null,
-            "files": []
+            "files": [],
+            "stillOnWhenMobileStolen": true,
+            "keyboardLockedWhenMobileStolen": true,
+            "pinEnabledWhenMobileStolen": true,
+            "mobileInsured": true,
+            "allowOperatorCommunication": true
         }
     ]
 }
@@ -392,6 +422,10 @@ JSON;
         $this->assertSame('111222333343', $object->getSerialNumber());
         $this->assertSame('+33 649956685', $object->getPhoneNumber());
         $this->assertSame(1200.0, $object->getAmount());
+        $this->assertTrue($object->isKeyboardLockedWhenMobileStolen());
+        $this->assertTrue($object->isMobileInsured());
+        $this->assertTrue($object->isStillOnWhenMobileStolen());
+        $this->assertTrue($object->isPinEnabledWhenMobileStolen());
     }
 
     public function testParseRegisteredVehicle(): void

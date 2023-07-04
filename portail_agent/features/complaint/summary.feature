@@ -140,6 +140,10 @@ Feature:
         And I should see the key "pel.description.of.facts" translated
         And I should see "Pièce jointe 1"
         And I should see "Pièce jointe 2"
+        And I should see the key "pel.still.on.when.mobile.stolen" translated
+        And I should see the key "pel.keyboard.locked.when.mobile.stolen" translated
+        And I should see the key "pel.pin.enabled.when.mobile.stolen" translated
+        And I should see the key "pel.mobile.insured" translated
 
     @func
     Scenario: If the declarant is a Person Legal Representative, I should be able to see the victim informations
