@@ -1,6 +1,6 @@
-{% embed "common/_modal.html.twig" with {'id':'complaint-send-report-to-victim', 'size':'lg'} %}
+{% embed "common/_modal.html.twig" with {'id':'complaint-close-after-appointment', 'size':'lg'} %}
     {% block attr_sup %}data-complaint-target="sendReportModal"{% endblock %}
-    {% block title %}{{ 'pel.please.drop.the.report.to.send.to.the.victim'|trans }}{% endblock %}
+    {% block title %}{{ 'pel.close.after.appointment'|trans }}{% endblock %}
     {% block body %}
         <div class="row m-3 mb-0">
             <div class="col-sm d-inline bg-secondary bg-opacity-75 rounded text-center text-white p-3 m-4">
@@ -14,9 +14,9 @@
             </div>
         </div>
         <div class="row bg-light align-items-baseline border border-secondary rounded-start rounded-bottom p-3 m-3 mt-0">
-            <div class="fw-bold">{{ 'pel.drop.the.report.then.validate.the.sending.to.the.victim'|trans }} :</div>
+            <div class="fw-bold">{{ 'pel.close.after.appointment'|trans }} :</div>
             <div class="mt-3">
-                {{ form(sendReportForm , { attr: {'data-complaint-target': 'dropZoneForm', 'data-empty-message':'pel.you.must.choose.a.file'|trans}}) }}
+                {{ form(sendReportForm , { attr: { 'data-complaint-target': 'dropZoneForm', 'data-is-after-appointment': "true", 'data-error-message':'pel.you.must.do.the.appointment'|trans } }) }}
             </div>
             <div class="invalid-feedback d-block" data-complaint-target="dropZoneError"></div>
             <div class="d-flex justify-content-end mt-3">
@@ -29,7 +29,7 @@
             type="button"
             class="btn btn-outline-primary btn--modal"
             data-bs-dismiss="modal"
-            id="complaint-send-report-to-the-victim-button-back"
+            id="complaint-validate-the-report-and-close-button-back"
         >
             {{ 'pel.back'|trans }}
         </button>
@@ -40,10 +40,11 @@
             data-complaint-target="sendReportValidationButton"
             data-complaint-url-send-report-param="{{ path('complaint_send_report', { id: complaintId }) }}"
             data-complaint-url-close-param="{{ path('complaint_close', { id: complaintId }) }}"
-            id="complaint-send-report-to-the-victim-button-validate"
+            id="complaint-validate-the-report-and-close-button-validate"
+            disabled
         >
             <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
-            <span class="sr-only">{{ 'pel.send.report.to.the.victim.and.close'|trans }}</span>
+            <span class="sr-only">{{ 'pel.validate.the.report.and.close'|trans }}</span>
         </button>
     {% endblock %}
 {% endembed %}

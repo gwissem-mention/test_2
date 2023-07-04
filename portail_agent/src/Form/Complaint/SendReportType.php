@@ -6,7 +6,9 @@ namespace App\Form\Complaint;
 
 use App\Form\DropzoneType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 class SendReportType extends AbstractType
@@ -15,11 +17,37 @@ class SendReportType extends AbstractType
     {
         $builder
             ->add('files', DropzoneType::class, [
-                'label' => false,
+                'label' => $options['is_after_appointment'] ? 'pel.upload.report.optional' : false,
                 'accepted_files' => 'image/jpeg,image/png,application/pdf',
-                'constraints' => [
-                    new NotBlank(),
-                ],
+                'constraints' => $options['is_after_appointment'] ? [] : [new NotBlank()],
             ]);
+
+        if ($options['is_after_appointment']) {
+            $builder
+                ->add('appointment_done', ChoiceType::class, [
+                    'label' => 'pel.do.you.confirm.that.you.made.the.appointment',
+                    'choices' => [
+                        'pel.yes' => true,
+                        'pel.no' => false,
+                    ],
+                    'expanded' => true,
+                    'multiple' => false,
+                    'label_attr' => [
+                        'class' => 'radio-inline',
+                    ],
+                    'attr' => [
+                        'data-complaint-target' => 'appointmentDoneRadioButton',
+                        'data-action' => 'change->complaint#isClosableAfterAppointment',
+                    ],
+                    'priority' => 1,
+                ]);
+        }
+    }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'is_after_appointment' => 'false',
+        ]);
     }
 }

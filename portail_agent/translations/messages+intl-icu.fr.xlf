@@ -350,6 +350,10 @@
                 <source>pel.description.of.facts</source>
                 <target>Description des faits</target>
             </trans-unit>
+            <trans-unit id="pel.do.you.confirm.that.you.made.the.appointment">
+                <source>pel.do.you.confirm.that.you.made.the.appointment</source>
+                <target>Confirmez-vous que vous avez réalisé le rendez-vous avec le déclarant ?</target>
+            </trans-unit>
             <trans-unit id="pel.do.you.have.informations.on.potential.suspects">
                 <source>pel.do.you.have.informations.on.potential.suspects</source>
                 <target>Avez-vous des informations sur les éventuels suspects ?</target>
@@ -1034,6 +1038,10 @@
                 <source>pel.validate</source>
                 <target>Valider</target>
             </trans-unit>
+            <trans-unit id="pel.validate.the.report.and.close">
+                <source>pel.validate.the.report.and.close</source>
+                <target>Valider le PV et clôturer</target>
+            </trans-unit>
             <trans-unit id="pel.validate.the.assignment">
                 <source>pel.validate.the.assignment</source>
                 <target>Valider l'attribution</target>
@@ -1170,6 +1178,10 @@
                 <source>pel.you.must.choose.a.file</source>
                 <target>Vous devez sélectionner au moins un fichier</target>
             </trans-unit>
+            <trans-unit id="pel.you.must.do.the.appointment">
+                <source>pel.you.must.do.the.appointment</source>
+                <target>Vous devez réaliser le rendez-vous</target>
+            </trans-unit>
             <trans-unit id="pel.notifications">
                 <source>pel.notifications</source>
                 <target>Notifications</target>
@@ -1213,6 +1225,10 @@
             <trans-unit id="pel.unit.to.reassign">
                 <source>pel.unit.to.reassign</source>
                 <target>Réorientation à l'unité</target>
+            </trans-unit>
+            <trans-unit id="pel.upload.report.optional">
+                <source>pel.upload.report.optional</source>
+                <target>Dépôt du PV facultatif</target>
             </trans-unit>
             <trans-unit id="pel.useful.phones">
                 <source>pel.useful.phones</source>
