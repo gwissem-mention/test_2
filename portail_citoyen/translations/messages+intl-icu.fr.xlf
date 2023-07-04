@@ -1006,6 +1006,10 @@
                 <source>pel.hour</source>
                 <target>Heure</target>
             </trans-unit>
+            <trans-unit id="pel.i.am.inform.of.article.34">
+                <source>pel.i.am.inform.of.article.34</source>
+                <target>Je prends acte de ces dispositions légales et j'autorise les services de police ou de gendarmerie à communiquer cette fiche de renseignement par courriel à mon opérateur téléphonique afin de bloquer le terminal volé</target>
+            </trans-unit>
             <trans-unit id="pel.i.am.inform.of.article.434.26">
                 <source>pel.i.am.inform.of.article.434.26</source>
                 <target>Je suis informé(e) que l’article 434-26 du code pénal prévoit que le fait de dénoncer mensongèrement à l’autorité judiciaire ou administrative des faits consécutifs d’un crime ou d’un délit qui ont exposé les autorités de police ou judiciaires à d’inutiles recherches est puni de 6 mois d’emprisonnement et de 7500.00€ d’amende. Informations sur les fausses déclarations (art8-2-6CPP/art434-26CP)</target>
@@ -1114,6 +1118,10 @@
                 <source>pel.keep.going</source>
                 <target>Continuer</target>
             </trans-unit>
+            <trans-unit id="pel.keyboard.locked.when.mobile.stolen">
+                <source>pel.keyboard.locked.when.mobile.stolen</source>
+                <target>Verrouillage du clavier activé au moment du vol ?</target>
+            </trans-unit>
             <trans-unit id="pel.law.informations">
                 <source>pel.law.informations</source>
                 <target>Conformément à la loi 78-17 du 6 janvier 1978 modifiée relative à l’informatique, aux fichiers et aux libertés, vous disposez d’un droit d’accès et de rectification aux informations. Vous pouvez exercer ce droit auprès de l’unité de gendarmerie ou du service de police où vous irez signer votre plainte.</target>
@@ -1150,6 +1158,10 @@
                 <source>pel.mobile</source>
                 <target>Numéro de téléphone portable</target>
             </trans-unit>
+            <trans-unit id="pel.mobile.insured">
+                <source>pel.mobile.insured</source>
+                <target>Téléphone assuré contre le vol ?</target>
+            </trans-unit>
             <trans-unit id="pel.phone.help">
                 <source>pel.phone.help</source>
                 <target>Veuillez saisir votre numéro uniquement avec des chiffres</target>
@@ -1157,6 +1169,10 @@
             <trans-unit id="pel.phone.shortened">
                 <source>pel.phone.shortened</source>
                 <target>tél.</target>
+            </trans-unit>
+            <trans-unit id="pel.pin.enabled.when.mobile.stolen">
+                <source>pel.pin.enabled.when.mobile.stolen</source>
+                <target>Code PIN activé au moment du vol ?</target>
             </trans-unit>
             <trans-unit id="pel.place.complaint.handling">
                 <source>pel.place.complaint.handling</source>
@@ -1554,6 +1570,10 @@
                 <source>pel.stolen</source>
                 <target>Volé</target>
             </trans-unit>
+            <trans-unit id="pel.still.on.when.mobile.stolen">
+                <source>pel.still.on.when.mobile.stolen</source>
+                <target>Téléphone allumé au moment du vol ?</target>
+            </trans-unit>
             <trans-unit id="pel.submit">
                 <source>pel.submit</source>
                 <target>Enregistrer</target>
@@ -1937,6 +1957,10 @@
             <trans-unit id="pel.before.starting.complaint">
                 <source>pel.before.starting.complaint</source>
                 <target>Avant de déclarer ma plainte, je prends acte des dispositions légales suivantes</target>
+            </trans-unit>
+            <trans-unit id="pel.article.34">
+                <source>pel.article.34</source>
+                <target>Je suis informé(e) que l'article 434-26 du Code pénal prévoit que le fait de dénoncer mensongèrement à l'autorité judiciaire ou administrative des faits constitutifs d'un crime ou délit qui ont exposé les autorités de police ou de gendarmerie ou judiciaires à d'inutile recherches est puni de 6 mois d'emprisonnement et de 7500.00€ d'amende.</target>
             </trans-unit>
             <trans-unit id="pel.article.10.2">
                 <source>pel.article.10.2</source>

@@ -36,6 +36,12 @@ class ObjectModel
     private ?string $otherDocumentType = null;
     private ?bool $documentOwned = null;
     private ?DocumentAdditionalInformationModel $documentAdditionalInformation = null;
+    private ?bool $stillOnWhenMobileStolen = null;
+    private ?bool $keyboardLockedWhenMobileStolen = null;
+    private ?bool $pinEnabledWhenMobileStolen = null;
+    private ?bool $mobileInsured = null;
+    private ?bool $allowOperatorCommunication = null;
+
     /**
      * @var Collection<int, FileModel>
      */
@@ -342,6 +348,66 @@ class ObjectModel
         if ($this->files->contains($file)) {
             $this->files->removeElement($file);
         }
+
+        return $this;
+    }
+
+    public function isStillOnWhenMobileStolen(): ?bool
+    {
+        return $this->stillOnWhenMobileStolen;
+    }
+
+    public function setStillOnWhenMobileStolen(?bool $stillOnWhenMobileStolen): self
+    {
+        $this->stillOnWhenMobileStolen = $stillOnWhenMobileStolen;
+
+        return $this;
+    }
+
+    public function isKeyboardLockedWhenMobileStolen(): ?bool
+    {
+        return $this->keyboardLockedWhenMobileStolen;
+    }
+
+    public function setKeyboardLockedWhenMobileStolen(?bool $keyboardLockedWhenMobileStolen): self
+    {
+        $this->keyboardLockedWhenMobileStolen = $keyboardLockedWhenMobileStolen;
+
+        return $this;
+    }
+
+    public function isPinEnabledWhenMobileStolen(): ?bool
+    {
+        return $this->pinEnabledWhenMobileStolen;
+    }
+
+    public function setPinEnabledWhenMobileStolen(?bool $pinEnabledWhenMobileStolen): self
+    {
+        $this->pinEnabledWhenMobileStolen = $pinEnabledWhenMobileStolen;
+
+        return $this;
+    }
+
+    public function isMobileInsured(): ?bool
+    {
+        return $this->mobileInsured;
+    }
+
+    public function setMobileInsured(?bool $mobileInsured): self
+    {
+        $this->mobileInsured = $mobileInsured;
+
+        return $this;
+    }
+
+    public function isAllowOperatorCommunication(): ?bool
+    {
+        return $this->allowOperatorCommunication;
+    }
+
+    public function setAllowOperatorCommunication(?bool $allowOperatorCommunication): self
+    {
+        $this->allowOperatorCommunication = $allowOperatorCommunication;
 
         return $this;
     }

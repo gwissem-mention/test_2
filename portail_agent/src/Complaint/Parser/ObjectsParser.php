@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Complaint\Parser;
 
 use App\Entity\FactsObjects\AbstractObject;
@@ -100,12 +102,16 @@ class ObjectsParser
     {
         $multimediaObject = new MultimediaObject();
 
-        $multimediaObject->setLabel($objectInput->label);
-
-        $multimediaObject->setBrand($objectInput->brand);
-        $multimediaObject->setModel($objectInput->model);
-        $multimediaObject->setOperator($objectInput->operator);
-        $multimediaObject->setSerialNumber($objectInput->serialNumber);
+        $multimediaObject
+            ->setLabel($objectInput->label)
+            ->setBrand($objectInput->brand)
+            ->setModel($objectInput->model)
+            ->setOperator($objectInput->operator)
+            ->setSerialNumber($objectInput->serialNumber)
+            ->setStillOnWhenMobileStolen($objectInput->stillOnWhenMobileStolen)
+            ->setPinEnabledWhenMobileStolen($objectInput->pinEnabledWhenMobileStolen)
+            ->setMobileInsured($objectInput->mobileInsured)
+            ->setKeyboardLockedWhenMobileStolen($objectInput->keyboardLockedWhenMobileStolen);
 
         if ($objectInput->phoneNumberLine) {
             $multimediaObject->setPhoneNumber($this->phoneParser->parse($objectInput->phoneNumberLine));

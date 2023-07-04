@@ -546,6 +546,10 @@
                 <source>pel.job</source>
                 <target>Profession</target>
             </trans-unit>
+            <trans-unit id="pel.keyboard.locked.when.mobile.stolen">
+                <source>pel.keyboard.locked.when.mobile.stolen</source>
+                <target>Verrouillage du clavier activé au moment du vol ?</target>
+            </trans-unit>
             <trans-unit id="pel.last.cheque.number">
                 <source>pel.last.cheque.number</source>
                 <target>Numéro du dernier chèque</target>
@@ -589,6 +593,10 @@
             <trans-unit id="pel.mobile.phone">
                 <source>pel.mobile.phone</source>
                 <target>Téléphone portable</target>
+            </trans-unit>
+            <trans-unit id="pel.mobile.insured">
+                <source>pel.mobile.insured</source>
+                <target>Téléphone assuré contre le vol ?</target>
             </trans-unit>
             <trans-unit id="pel.moral.victim.information">
                 <source>pel.moral.victim.information</source>
@@ -774,6 +782,10 @@
                 <source>pel.phone.number.line</source>
                 <target>N° de la ligne de téléphone</target>
             </trans-unit>
+            <trans-unit id="pel.pin.enabled.when.mobile.stolen">
+                <source>pel.pin.enabled.when.mobile.stolen</source>
+                <target>Code PIN activé au moment du vol ?</target>
+            </trans-unit>
             <trans-unit id="pel.reasign">
                 <source>pel.reasign</source>
                 <target>Réattribuer</target>
@@ -897,6 +909,10 @@
             <trans-unit id="pel.stolen.objects">
                 <source>pel.stolen.objects</source>
                 <target>Objets volés</target>
+            </trans-unit>
+            <trans-unit id="pel.still.on.when.mobile.stolen">
+                <source>pel.still.on.when.mobile.stolen</source>
+                <target>Téléphone allumé au moment du vol ?</target>
             </trans-unit>
             <trans-unit id="pel.sms.notification">
                 <source>pel.sms.notification</source>

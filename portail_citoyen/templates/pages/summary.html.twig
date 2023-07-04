@@ -318,6 +318,18 @@
             {% if object.serialNumber is not null %}
                 <li>{{ 'pel.serial.number'|trans }} : {{ object.serialNumber }}</li>
             {% endif %}
+            {% if object.stillOnWhenMobileStolen is not null %}
+                <li>{{ 'pel.still.on.when.mobile.stolen'|trans }} : {{ object.stillOnWhenMobileStolen|bool_to_string }}</li>
+            {% endif %}
+            {% if object.keyboardLockedWhenMobileStolen is not null %}
+                <li>{{ 'pel.keyboard.locked.when.mobile.stolen'|trans }} : {{ object.keyboardLockedWhenMobileStolen|bool_to_string }}</li>
+            {% endif %}
+            {% if object.pinEnabledWhenMobileStolen is not null %}
+                <li>{{ 'pel.pin.enabled.when.mobile.stolen'|trans }} : {{ object.pinEnabledWhenMobileStolen|bool_to_string }}</li>
+            {% endif %}
+            {% if object.mobileInsured is not null %}
+                <li>{{ 'pel.mobile.insured'|trans }} : {{ object.mobileInsured|bool_to_string }}</li>
+            {% endif %}
         {% elseif object.category|object_category_get_name is same as('pel.object.category.payment.ways') %}
             <li>{{ 'pel.object'|trans }} : {{ object.label }}</li>
             <li>{{ 'pel.organism.bank'|trans }} : {{ object.bank }}</li>

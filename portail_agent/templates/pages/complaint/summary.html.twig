@@ -2,7 +2,8 @@
 
 {% block main %}
     <div class="border border-secondary bg-light rounded p-3">
-        <span id="declarant-identity" class="fs-3 fw-semibold lh-lg text-decoration-underline">{{ 'pel.identification'|trans }}</span>
+        <span id="declarant-identity"
+              class="fs-3 fw-semibold lh-lg text-decoration-underline">{{ 'pel.identification'|trans }}</span>
         <ul>
             <li>
                 {{ 'pel.civility'|trans }} :
@@ -87,12 +88,15 @@
                         <strong>{{ complaint.personLegalRepresented.familySituation }}</strong>
                     </li>
                     <li>
-                        {{ 'pel.born.on'|trans }} : <strong>{{ complaint.personLegalRepresented.birthday|date('d/m/Y') }}</strong>
+                        {{ 'pel.born.on'|trans }} :
+                        <strong>{{ complaint.personLegalRepresented.birthday|date('d/m/Y') }}</strong>
                         {{ 'pel.at.in'|trans }}: <strong>{{ complaint.personLegalRepresented.birthCountry }}</strong>
-                        {{ 'pel.department'|trans }} : <strong>{{ complaint.personLegalRepresented.birthDepartmentNumber }}</strong>
+                        {{ 'pel.department'|trans }} :
+                        <strong>{{ complaint.personLegalRepresented.birthDepartmentNumber }}</strong>
                     </li>
                     <li>
-                        {{ 'pel.nationality'|trans }} : <strong>{{ complaint.personLegalRepresented.nationality }}</strong>
+                        {{ 'pel.nationality'|trans }} :
+                        <strong>{{ complaint.personLegalRepresented.nationality }}</strong>
                     </li>
                     <li>
                         {{ 'pel.resides.at'|trans }} : <strong>{{ complaint.personLegalRepresented.address }}</strong>
@@ -108,16 +112,20 @@
             {% elseif complaint.identity.declarantStatus is same as(constant('App\\Entity\\Identity::DECLARANT_STATUS_CORPORATION_LEGAL_REPRESENTATIVE')) and complaint.corporationRepresented is not null %}
                 <ul>
                     <li>
-                        {{ 'pel.siren.number'|trans }} : <strong>{{ complaint.corporationRepresented.sirenNumber }}</strong>
+                        {{ 'pel.siren.number'|trans }} :
+                        <strong>{{ complaint.corporationRepresented.sirenNumber }}</strong>
                     </li>
                     <li>
-                        {{ 'pel.company.name'|trans }} : <strong>{{ complaint.corporationRepresented.companyName }}</strong>
+                        {{ 'pel.company.name'|trans }} :
+                        <strong>{{ complaint.corporationRepresented.companyName }}</strong>
                     </li>
                     <li>
-                        {{ 'pel.declarant.position'|trans }} : <strong>{{ complaint.corporationRepresented.declarantPosition }}</strong>
+                        {{ 'pel.declarant.position'|trans }} :
+                        <strong>{{ complaint.corporationRepresented.declarantPosition }}</strong>
                     </li>
                     <li>
-                        {{ 'pel.nationality'|trans }} : <strong>{{ complaint.corporationRepresented.nationality }}</strong>
+                        {{ 'pel.nationality'|trans }} :
+                        <strong>{{ complaint.corporationRepresented.nationality }}</strong>
                     </li>
                     <li>
                         {{ 'pel.email'|trans }} : <strong>{{ complaint.corporationRepresented.contactEmail }}</strong>
@@ -136,7 +144,8 @@
         </ul>
 
         <hr class="border border-2 border-dark">
-        <span id="facts-description" class="fs-3 fw-semibold lh-lg text-decoration-underline">{{ 'pel.description.of.facts'|trans }}</span>
+        <span id="facts-description"
+              class="fs-3 fw-semibold lh-lg text-decoration-underline">{{ 'pel.description.of.facts'|trans }}</span>
         <ul>
             <li>
                 {{ 'pel.description.of.facts'|trans }} :
@@ -196,7 +205,8 @@
 
         </ul>
         <hr class="border border-2 border-dark">
-        <span id="additional-information" class="fs-3 fw-semibold lh-lg text-decoration-underline">{{ 'pel.additional.informations'|trans }}</span>
+        <span id="additional-information"
+              class="fs-3 fw-semibold lh-lg text-decoration-underline">{{ 'pel.additional.informations'|trans }}</span>
         <ul>
             <li>
                 {{ 'pel.facts.witnesses'|trans }} :
@@ -248,7 +258,8 @@
             {% endif %}
         </ul>
         <hr class="border border-2 border-dark">
-        <span id="objects-concerned" class="fs-3 fw-semibold lh-lg text-decoration-underline">{{ 'pel.objects.description'|trans }}</span>
+        <span id="objects-concerned"
+              class="fs-3 fw-semibold lh-lg text-decoration-underline">{{ 'pel.objects.description'|trans }}</span>
         {% if complaint.stolenObjects is not empty %}
             <p>{{ 'pel.objects.stolen'|trans }}</p>
             <ul>
@@ -282,7 +293,8 @@
             {% if object.owned is same as(false) %}
                 <ul>
                     {% if object.ownerLastname is not null and object.ownerFirstname is not null %}
-                        <li>{{ 'pel.owner.lastname.firstname'|trans }} : <strong>{{ object.ownerLastname }} {{ object.ownerFirstname }}</strong></li>
+                        <li>{{ 'pel.owner.lastname.firstname'|trans }} :
+                            <strong>{{ object.ownerLastname }} {{ object.ownerFirstname }}</strong></li>
                     {% endif %}
                     {% if object.ownerCompany is not null %}
                         <li>{{ 'pel.owner.company'|trans }} : <strong>{{ object.ownerCompany }}</strong></li>
@@ -303,10 +315,12 @@
                         <li>{{ 'pel.document.issued.by'|trans }}: <strong>{{ object.issuedBy }}</strong></li>
                     {% endif %}
                     {% if object.issuedOn is not null %}
-                        <li>{{ 'pel.document.issued.on'|trans }}: <strong>{{ object.issuedOn|date('d/m/Y') }}</strong></li>
+                        <li>{{ 'pel.document.issued.on'|trans }}: <strong>{{ object.issuedOn|date('d/m/Y') }}</strong>
+                        </li>
                     {% endif %}
                     {% if object.validityEndDate is not null %}
-                        <li>{{ 'pel.document.validity.end.date'|trans }}: <strong>{{ object.validityEndDate|date('d/m/Y') }}</strong></li>
+                        <li>{{ 'pel.document.validity.end.date'|trans }}:
+                            <strong>{{ object.validityEndDate|date('d/m/Y') }}</strong></li>
                     {% endif %}
                 </ul>
             {% endif %}
@@ -319,6 +333,14 @@
             <strong>{{ 'pel.number'|trans }} {{ index }}</strong> : {{ object.label }}
             - {{ object.model }} - {{ object.brand }}
             - {{ object.amount|format_currency('EUR', {fraction_digit: 0}) }} - {{ object.operator }}
+            {% if object.stillOnWhenMobileStolen is not null %}
+                <ul>
+                    <li>{{ 'pel.still.on.when.mobile.stolen'|trans }} : <strong>{{ object.stillOnWhenMobileStolen|bool_to_string }}</strong></li>
+                    <li>{{ 'pel.keyboard.locked.when.mobile.stolen'|trans }} : <strong>{{ object.keyboardLockedWhenMobileStolen|bool_to_string }}</strong></li>
+                    <li>{{ 'pel.pin.enabled.when.mobile.stolen'|trans }} : <strong>{{ object.pinEnabledWhenMobileStolen|bool_to_string }}</strong></li>
+                    <li>{{ 'pel.mobile.insured'|trans }} : <strong>{{ object.mobileInsured|bool_to_string }}</strong></li>
+                </ul>
+            {% endif %}
         </li>
     {% elseif object|object_type is same as('App\\Entity\\FactsObjects\\PaymentMethod') %}
         <li>
@@ -349,8 +371,10 @@
         <ul>
             {% for file in object.files %}
                 <li>
-                    <a href="{{ path('file_view', {'id':complaint.id, 'name':file}) }}" target="_blank">Pièce jointe {{ loop.index }}</a>
-                    <a href="{{ path('file_download', {'id':complaint.id, 'name':file}) }}" target="_blank" title="{{ 'pel.click.here.to.save.this.attachment'|trans }}"><i class="bi bi-save-fill ms-1"></i></a>
+                    <a href="{{ path('file_view', {'id':complaint.id, 'name':file}) }}" target="_blank">Pièce
+                        jointe {{ loop.index }}</a>
+                    <a href="{{ path('file_download', {'id':complaint.id, 'name':file}) }}" target="_blank"
+                       title="{{ 'pel.click.here.to.save.this.attachment'|trans }}"><i class="bi bi-save-fill ms-1"></i></a>
                 </li>
             {% endfor %}
         </ul>

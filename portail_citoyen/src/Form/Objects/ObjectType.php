@@ -8,6 +8,7 @@ use App\Form\Model\Objects\ObjectModel;
 use App\Form\PhoneType;
 use App\Thesaurus\ObjectCategoryThesaurusProviderInterface;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -19,8 +20,10 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\NotNull;
 use Symfony\Component\Validator\Constraints\Positive;
 
 class ObjectType extends AbstractType
@@ -73,6 +76,24 @@ class ObjectType extends AbstractType
                 /** @var ?ObjectModel $objectModel */
                 $objectModel = $event->getData();
                 $this->addCategoryFields($event->getForm(), $objectModel?->getCategory());
+
+                if (ObjectModel::STATUS_STOLEN === $objectModel?->getStatus() && !empty($objectModel->getSerialNumber())) {
+                    $this->addAdditionalMobileFields($event->getForm());
+                }
+            }
+        );
+
+        $builder->addEventListener(
+            FormEvents::PRE_SUBMIT,
+            function (FormEvent $event) {
+                /** @var array|mixed[] $data */
+                $data = $event->getData();
+
+                if (!empty($data['status']) && (string) ObjectModel::STATUS_STOLEN === $data['status'] && !empty($data['serialNumber'])) {
+                    $this->addAdditionalMobileFields($event->getForm());
+                } else {
+                    $this->removeAdditionalMobileFields($event->getForm());
+                }
             }
         );
 
@@ -447,5 +468,86 @@ class ObjectType extends AbstractType
         $form->remove('documentType');
 
         $objectModel?->setDocumentType(null);
+    }
+
+    private function addAdditionalMobileFields(FormInterface $form): void
+    {
+        $form
+            ->add('stillOnWhenMobileStolen', ChoiceType::class, [
+                'label' => 'pel.still.on.when.mobile.stolen',
+                'expanded' => true,
+                'multiple' => false,
+                'inline' => true,
+                'choices' => [
+                    'pel.yes' => true,
+                    'pel.no' => false,
+                ],
+                'constraints' => [
+                    new NotNull(),
+                ],
+            ])
+            ->add('keyboardLockedWhenMobileStolen', ChoiceType::class, [
+                'label' => 'pel.keyboard.locked.when.mobile.stolen',
+                'expanded' => true,
+                'multiple' => false,
+                'inline' => true,
+                'choices' => [
+                    'pel.yes' => true,
+                    'pel.no' => false,
+                ],
+                'constraints' => [
+                    new NotNull(),
+                ],
+            ])
+            ->add('pinEnabledWhenMobileStolen', ChoiceType::class, [
+                'label' => 'pel.pin.enabled.when.mobile.stolen',
+                'expanded' => true,
+                'multiple' => false,
+                'inline' => true,
+                'choices' => [
+                    'pel.yes' => true,
+                    'pel.no' => false,
+                ],
+                'constraints' => [
+                    new NotNull(),
+                ],
+            ])
+            ->add('mobileInsured', ChoiceType::class, [
+                'label' => 'pel.mobile.insured',
+                'expanded' => true,
+                'multiple' => false,
+                'inline' => true,
+                'choices' => [
+                    'pel.yes' => true,
+                    'pel.no' => false,
+                ],
+                'constraints' => [
+                    new NotNull(),
+                ],
+            ])
+            ->add('allowOperatorCommunication', CheckboxType::class, [
+                'required' => true,
+                'label' => 'pel.i.am.inform.of.article.34',
+                'constraints' => [
+                    new IsTrue(),
+                ],
+            ]);
+    }
+
+    private function removeAdditionalMobileFields(FormInterface $form, ObjectModel $objectModel = null): void
+    {
+        $form
+            ->remove('stillOnWhenMobileStolen')
+            ->remove('keyboardLockedWhenMobileStolen')
+            ->remove('pinEnabledWhenMobileStolen')
+            ->remove('mobileInsured')
+            ->remove('allowOperatorCommunication');
+
+        $objectModel
+            ?->setStillOnWhenMobileStolen(null)
+            ->setKeyboardLockedWhenMobileStolen(null)
+            ->setPinEnabledWhenMobileStolen(null)
+            ->setMobileInsured(null)
+            ->setAllowOperatorCommunication(null);
     }
 }

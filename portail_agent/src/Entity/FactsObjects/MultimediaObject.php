@@ -33,6 +33,18 @@ class MultimediaObject extends AbstractObject
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $phoneNumber = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $stillOnWhenMobileStolen = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?bool $keyboardLockedWhenMobileStolen = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?bool $pinEnabledWhenMobileStolen = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?bool $mobileInsured = null;
+
     public function getLabel(): ?string
     {
         return $this->label;
@@ -101,6 +113,54 @@ class MultimediaObject extends AbstractObject
     public function setPhoneNumber(?string $phoneNumber): self
     {
         $this->phoneNumber = $phoneNumber;
+
+        return $this;
+    }
+
+    public function isStillOnWhenMobileStolen(): ?bool
+    {
+        return $this->stillOnWhenMobileStolen;
+    }
+
+    public function setStillOnWhenMobileStolen(?bool $stillOnWhenMobileStolen): self
+    {
+        $this->stillOnWhenMobileStolen = $stillOnWhenMobileStolen;
+
+        return $this;
+    }
+
+    public function isKeyboardLockedWhenMobileStolen(): ?bool
+    {
+        return $this->keyboardLockedWhenMobileStolen;
+    }
+
+    public function setKeyboardLockedWhenMobileStolen(?bool $keyboardLockedWhenMobileStolen): self
+    {
+        $this->keyboardLockedWhenMobileStolen = $keyboardLockedWhenMobileStolen;
+
+        return $this;
+    }
+
+    public function isPinEnabledWhenMobileStolen(): ?bool
+    {
+        return $this->pinEnabledWhenMobileStolen;
+    }
+
+    public function setPinEnabledWhenMobileStolen(?bool $pinEnabledWhenMobileStolen): self
+    {
+        $this->pinEnabledWhenMobileStolen = $pinEnabledWhenMobileStolen;
+
+        return $this;
+    }
+
+    public function isMobileInsured(): ?bool
+    {
+        return $this->mobileInsured;
+    }
+
+    public function setMobileInsured(?bool $mobileInsured): self
+    {
+        $this->mobileInsured = $mobileInsured;
 
         return $this;
     }

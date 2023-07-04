@@ -251,9 +251,9 @@ parameters:
 			path: src/Complaint/Parser/IdentityParser.php
 
 		-
-		    message: "#^Access to an undefined property object\\:\\:\\$familySituation\\.$#"
-		    count: 1
-		    path: src/Complaint/Parser/IdentityParser.php
+			message: "#^Access to an undefined property object\\:\\:\\$familySituation\\.$#"
+			count: 1
+			path: src/Complaint/Parser/IdentityParser.php
 
 		-
 			message: "#^Access to an undefined property object\\:\\:\\$firstnames\\.$#"
@@ -356,8 +356,18 @@ parameters:
 			path: src/Complaint/Parser/ObjectsParser.php
 
 		-
+			message: "#^Access to an undefined property object\\:\\:\\$keyboardLockedWhenMobileStolen\\.$#"
+			count: 1
+			path: src/Complaint/Parser/ObjectsParser.php
+
+		-
 			message: "#^Access to an undefined property object\\:\\:\\$label\\.$#"
 			count: 4
+			path: src/Complaint/Parser/ObjectsParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$mobileInsured\\.$#"
+			count: 1
 			path: src/Complaint/Parser/ObjectsParser.php
 
 		-
@@ -372,6 +382,11 @@ parameters:
 
 		-
 			message: "#^Access to an undefined property object\\:\\:\\$phoneNumberLine\\.$#"
+			count: 1
+			path: src/Complaint/Parser/ObjectsParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$pinEnabledWhenMobileStolen\\.$#"
 			count: 1
 			path: src/Complaint/Parser/ObjectsParser.php
 
@@ -392,6 +407,11 @@ parameters:
 
 		-
 			message: "#^Access to an undefined property object\\:\\:\\$status\\.$#"
+			count: 1
+			path: src/Complaint/Parser/ObjectsParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$stillOnWhenMobileStolen\\.$#"
 			count: 1
 			path: src/Complaint/Parser/ObjectsParser.php
 
@@ -461,6 +481,11 @@ parameters:
 			path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
 
 		-
+			message: "#^Parameter \\#1 \\$familySituation of method App\\\\Entity\\\\Identity\\:\\:setFamilySituation\\(\\) expects string\\|null, mixed given\\.$#"
+			count: 1
+			path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
+
+		-
 			message: "#^Parameter \\#1 \\$insuranceCompany of method App\\\\Entity\\\\FactsObjects\\\\Vehicle\\:\\:setInsuranceCompany\\(\\) expects string\\|null, mixed given\\.$#"
 			count: 1
 			path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
@@ -509,11 +534,6 @@ parameters:
 			message: "#^Parameter \\#1 \\$witnessesPresentText of method App\\\\Entity\\\\AdditionalInformation\\:\\:setWitnessesPresentText\\(\\) expects string\\|null, mixed given\\.$#"
 			count: 1
 			path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
-
-		-
-		    message: "#^Parameter \\#1 \\$familySituation of method App\\\\Entity\\\\Identity\\:\\:setFamilySituation\\(\\) expects string\\|null, mixed given\\.$#"
-		    count: 1
-		    path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
 
 		-
 			message: "#^Call to an undefined method Behat\\\\Testwork\\\\Environment\\\\Environment\\:\\:getContext\\(\\)\\.$#"

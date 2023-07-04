@@ -1,0 +1,20 @@
+{% if object.stillOnWhenMobileStolen is defined %}
+    <div class="fr-my-2w">
+        {{ form_row(object.stillOnWhenMobileStolen) }}
+    </div>
+    <div class="fr-my-2w">
+        {{ form_row(object.keyboardLockedWhenMobileStolen) }}
+    </div>
+    <div class="fr-my-2w">
+        {{ form_row(object.pinEnabledWhenMobileStolen) }}
+    </div>
+    <div class="fr-my-2w">
+        {{ form_row(object.mobileInsured) }}
+    </div>
+    <div class="fr-my-3w">
+        {{ 'pel.article.34'|trans }}
+    </div>
+    <div class="fr-my-3w">
+        {{ form_row(object.allowOperatorCommunication) }}
+    </div>
+{% endif %}

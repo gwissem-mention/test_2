@@ -171,3 +171,38 @@ Feature:
         And I should see the key "pel.document.owner.phone" translated
         And I should see the key "pel.document.number" translated
         And I should see the key "pel.document.validity.end.date" translated
+
+    Scenario: I can see 4 radios buttons, a text and a required checkbox when I have a multimedia stolen mobile object
+        When I select "Multimédia" from "objects_objects_0_category"
+        And I select "1" from "objects_objects_0_status"
+        And I fill in "objects_objects_0_serialNumber" with "1234"
+        Then I should see the key "pel.still.on.when.mobile.stolen" translated
+        And I should see a "input[type=radio]#objects_objects_0_stillOnWhenMobileStolen_0" element
+        And I should see a "input[type=radio]#objects_objects_0_stillOnWhenMobileStolen_1" element
+        And I should see the key "pel.keyboard.locked.when.mobile.stolen" translated
+        And I should see a "input[type=radio]#objects_objects_0_keyboardLockedWhenMobileStolen_0" element
+        And I should see a "input[type=radio]#objects_objects_0_keyboardLockedWhenMobileStolen_1" element
+        And I should see the key "pel.pin.enabled.when.mobile.stolen" translated
+        And I should see a "input[type=radio]#objects_objects_0_pinEnabledWhenMobileStolen_0" element
+        And I should see a "input[type=radio]#objects_objects_0_pinEnabledWhenMobileStolen_1" element
+        And I should see the key "pel.mobile.insured" translated
+        And I should see a "input[type=radio]#objects_objects_0_mobileInsured_0" element
+        And I should see a "input[type=radio]#objects_objects_0_mobileInsured_1" element
+        And I should see the key "pel.article.34" translated
+        And I should see the key "pel.i.am.inform.of.article.34" translated
+        And I should see a "input[type=checkbox]#objects_objects_0_allowOperatorCommunication" element
+
+    Scenario: I should not see 4 radios buttons, a text and a required checkbox when I have not a multimedia stolen mobile object
+        When I select "Multimédia" from "objects_objects_0_category"
+        And I select "2" from "objects_objects_0_status"
+        Then I should not see the key "pel.still.on.when.mobile.stolen" translated
+        And I should not see a "input[type=radio]#objects_objects_0_stillOnWhenMobileStolen_0" element
+        And I should not see the key "pel.keyboard.locked.when.mobile.stolen" translated
+        And I should not see a "input[type=radio]#objects_objects_0_keyboardLockedWhenMobileStolen_0" element
+        And I should not see the key "pel.pin.enabled.when.mobile.stolen" translated
+        And I should not see a "input[type=radio]#objects_objects_0_pinEnabledWhenMobileStolen_0" element
+        And I should not see the key "pel.mobile.insured" translated
+        And I should not see a "input[type=radio]#objects_objects_0_mobileInsured_0" element
+        And I should not see the key "pel.article.34" translated
+        And I should not see the key "pel.i.am.inform.of.article.34" translated
+        And I should not see a "input[type=checkbox]#objects_objects_0_allowOperatorCommunication" element
