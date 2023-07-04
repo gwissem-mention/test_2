@@ -30,7 +30,11 @@ framework:
                 send_to_lrp:
                     from: [ !php/const App\Entity\Complaint::STATUS_UNIT_REDIRECTION_PENDING, !php/const App\Entity\Complaint::STATUS_ASSIGNED, !php/const App\Entity\Complaint::STATUS_MP_DECLARANT, !php/const App\Entity\Complaint::STATUS_APPOINTMENT_PENDING]
                     to: !php/const App\Entity\Complaint::STATUS_ONGOING_LRP
-                close:
+                close_after_sending_the_report:
+                    from: !php/const App\Entity\Complaint::STATUS_ONGOING_LRP
+                    to: !php/const App\Entity\Complaint::STATUS_CLOSED
+                close_after_appointment:
+                    guard: "subject.getAppointmentDate() !== null || subject.getAppointmentTime() !== null"
                     from: !php/const App\Entity\Complaint::STATUS_ONGOING_LRP
                     to: !php/const App\Entity\Complaint::STATUS_CLOSED
                 unit_redirect:

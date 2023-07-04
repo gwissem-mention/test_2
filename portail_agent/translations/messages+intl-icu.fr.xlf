@@ -238,6 +238,10 @@
                 <source>pel.closed</source>
                 <target>Cloturée</target>
             </trans-unit>
+            <trans-unit id="pel.close.after.appointment">
+                <source>pel.close.after.appointment</source>
+                <target>Clôturer le PV suite au RDV</target>
+            </trans-unit>
             <trans-unit id="pel.comment">
                 <source>pel.comment</source>
                 <target>Commentaire</target>
@@ -1217,6 +1221,10 @@
             <trans-unit id="pel.reset">
                 <source>pel.reset</source>
                 <target>Réinitialiser</target>
+            </trans-unit>
+            <trans-unit id="pel.click.here.to.close.the.complaint.after.the.appointment">
+                <source>pel.click.here.to.close.the.complaint.after.the.appointment</source>
+                <target>Cliquer ici pour clôturer le PV suite au RDV</target>
             </trans-unit>
             <trans-unit id="pel.click.here.to.start.searching">
                 <source>pel.click.here.to.start.searching</source>

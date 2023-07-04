@@ -50,3 +50,18 @@ Feature:
         And I should see the key "pel.appointment.planned.with.the.victim" translated
         When I am on homepage
         Then I should see "01/01/2025 10:00"
+
+    @javascript
+    Scenario: When I plan an appointment with the victim, the button "Send Report and Close" become "Close after the appointment"
+        Given I am on "/plainte/rendez-vous/111"
+        And I should see the key "pel.send.report.to.the.victim.and.close" translated
+        And I should see a "#complaint-send-report-to-victim-button" element
+        And I should not see the key "pel.close.after.appointment" translated
+        And I should not see a "#complaint-close-after-appointment-button" element
+        When I fill in "appointment_appointmentDate" with "01/01/2025"
+        And I fill in "appointment_appointmentTime" with "10:00am"
+        And I press "Valider le RDV avec le déclarant"
+        Then I should not see the key "pel.send.report.to.the.victim.and.close" translated
+        And I should not see a "#complaint-send-report-to-victim-button" element
+        And I should see the key "pel.close.after.appointment" translated
+        And I should see a "#complaint-close-after-appointment-button" element
