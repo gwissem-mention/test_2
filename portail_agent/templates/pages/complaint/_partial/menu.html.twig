@@ -64,7 +64,8 @@
                             <i class="bi bi-x-lg"></i> {{ 'pel.reject'|trans }}
                         </button>
                     {% endif %}
-                    {% if workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_ASK_UNIT_REDIRECTION') ) %}
+{#                    PEL-987:Hide redirection for experimentation phase#}
+                    {#  {% if workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_ASK_UNIT_REDIRECTION') ) %}
                         <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modal-complaint-unit-reassign" id="complaint-unit-reassign-button">
                             <i class="bi bi-arrow-return-right"></i> {{ 'pel.unit.reassign'|trans }}
                         </button>
@@ -75,7 +76,7 @@
                                 <span class="badge bg-danger rounded-pill" id="badge-unit-reassignment-asked">!</span>
                             {% endif %}
                         </button>
-                    {% endif %}
+                    {% endif %}#}
                     {% if workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_SELF_ASSIGN') ) %}
                         <button type="button" class="btn btn-warning" title="{{ 'pel.click.here.to.self.assign.the.declaration'|trans }}" id="complaint-self-assign-button" data-action="complaint#selfAssign" data-complaint-url-param="{{ path('complaint_self_assign', {'id':complaint.id}) }}">
                             <i class="bi bi-person-plus"></i> {{ 'pel.self.assign.the.declaration'|trans }}

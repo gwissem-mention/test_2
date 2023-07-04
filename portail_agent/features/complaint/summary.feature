@@ -39,7 +39,8 @@ Feature:
         And I should see the key "pel.assign.declaration.to" translated
         And I should not see the key "pel.send.to.lrp" translated
         And I should not see the key "pel.reject" translated
-        And I should not see the key "pel.unit.reassign" translated
+        # PEL-987:Hide redirection for experimentation phase
+        #And I should not see the key "pel.unit.reassign" translated
         And I should see the key "pel.comment" translated
         And I should see the key "pel.summary" translated
         And I should see the key "pel.declarant.identity" translated
@@ -382,98 +383,100 @@ Feature:
         And I should see "Déclaration attribuée à : Philippe RIVIERE"
         And I should see the key "pel.declaration.assigned.to" translated
 
-    @javascript
-    Scenario: I can toggle the unit reassign modal
-        Given I am on "/plainte/recapitulatif/101"
-        When I press "Réorienter vers autres services"
-        Then I should see a ".modal[aria-modal=true]" element
-        And I should see the key "pel.select.the.unit.to.reassign" translated
-        And I should see the key "pel.back" translated
-        And I should see the key "pel.validate.the.unit.reassignment" translated
-        When I press "complaint-unit-reassign-button-back"
-        Then I should not see a ".modal[aria-modal=true]" element
+  # PEL-987:Hide redirection for experimentation phase
 
-    @javascript
-    Scenario: I can submit the unit reassign form successfully as a supervisor and Louise THOMAS should have a notification
-        Given I am on "/plainte/recapitulatif/101"
-        When I press "Réorienter vers autres services"
-        And I fill in the autocomplete "unit_reassign_unitToReassign-ts-control" with "Commissariat de police de Voiron" and click "103131"
-        And I fill in "unit_reassign_unitReassignText" with "Cette plainte n'est pas censée être attribuer à mon unité."
-        And I press "Réorienter"
-        And I wait 500 ms
-        And I should be on the homepage
-        When I am authenticated with H3U3XCGF from PN
-        And I am on the homepage
-        When I click the "#notifications-dropdown" element
-        Then I should see "La déclaration PEL-2023-00000101 a été réorientée vers votre unité"
-        When I am on "/plainte/recapitulatif/101"
-        Then I should see a "#comment-title" element
-        And I should see the key "pel.comment.unit.reassignment.reason" translated
+#    @javascript
+#    Scenario: I can toggle the unit reassign modal
+#        Given I am on "/plainte/recapitulatif/101"
+#        When I press "Réorienter vers autres services"
+#        Then I should see a ".modal[aria-modal=true]" element
+#        And I should see the key "pel.select.the.unit.to.reassign" translated
+#        And I should see the key "pel.back" translated
+#        And I should see the key "pel.validate.the.unit.reassignment" translated
+#        When I press "complaint-unit-reassign-button-back"
+#        Then I should not see a ".modal[aria-modal=true]" element
 
-    @javascript
-    Scenario: I can submit the unit reassign form successfully as an agent and validate it as a supervisor
-        Given I am authenticated with PR5KTQSD from GN
-        And I am on "/plainte/recapitulatif/110"
-        When I press "Réorienter vers autres services"
-        And I fill in the autocomplete "unit_reassign_unitToReassign-ts-control" with "Commissariat de police de Voiron" and click "103131"
-        And I fill in "unit_reassign_unitReassignText" with "Cette plainte n'est pas censée être attribuer à mon unité."
-        And I press "Réorienter"
-        Then I should not see a ".modal[aria-modal=true]" element
-        And I should see a ".toast" element
-        And I should see the key "pel.the.unit.reassignment.of.the.declaration.to" translated
-        And I should see the key "pel.has.been.ordered" translated
-        And I should see "La demande de réorientation de la déclaration vers Commissariat de police de Voiron à été prise en compte"
-        Then I am authenticated with PR5KTZ9R from GN
-        And I am on the homepage
-        When I click the "#notifications-dropdown" element
-        Then I should see "Philippe RIVIERE vient de vous adresser une demande de réorientation vers autre service PEL-2023-00000110"
-        When I follow "Philippe RIVIERE vient de vous adresser une demande de réorientation vers autre service PEL-2023-00000110"
-        Then I should be on "/plainte/recapitulatif/110?showUnitReassignmentValidationModal=1"
-        And I should see a ".modal[aria-modal=true]" element
-        When I press "Accepter la demande de réorientation"
-        And I wait 500 ms
-        Then I should be on the homepage
-        And I should see a ".toast" element
-        And I should see the key "pel.the.unit.reassignment.has.been.accepted" translated
-        Given I am authenticated with PR5KTQSD from GN
-        And I am on the homepage
-        When I click the "#notifications-dropdown" element
-        Then I should see "Thomas DURAND vient de valider votre demande de réorientation vers un autre service pour la déclaration PEL-2023-00000110"
-        When I follow "Thomas DURAND vient de valider votre demande de réorientation vers un autre service pour la déclaration PEL-2023-00000110"
-        Then I should be on "/"
+#    @javascript
+#    Scenario: I can submit the unit reassign form successfully as a supervisor and Louise THOMAS should have a notification
+#        Given I am on "/plainte/recapitulatif/101"
+#        When I press "Réorienter vers autres services"
+#        And I fill in the autocomplete "unit_reassign_unitToReassign-ts-control" with "Commissariat de police de Voiron" and click "103131"
+#        And I fill in "unit_reassign_unitReassignText" with "Cette plainte n'est pas censée être attribuer à mon unité."
+#        And I press "Réorienter"
+#        And I wait 500 ms
+#        And I should be on the homepage
+#        When I am authenticated with H3U3XCGF from PN
+#        And I am on the homepage
+#        When I click the "#notifications-dropdown" element
+#        Then I should see "La déclaration PEL-2023-00000101 a été réorientée vers votre unité"
+#        When I am on "/plainte/recapitulatif/101"
+#        Then I should see a "#comment-title" element
+#        And I should see the key "pel.comment.unit.reassignment.reason" translated
 
-    @javascript
-    Scenario: I can submit the unit reassign form successfully as an agent and reject it as a supervisor
-        Given I am authenticated with PR5KTQSD from GN
-        And I am on "/plainte/recapitulatif/110"
-        When I press "Réorienter vers autres services"
-        And I fill in the autocomplete "unit_reassign_unitToReassign-ts-control" with "Commissariat de police de Voiron" and click "103131"
-        And I fill in "unit_reassign_unitReassignText" with "Cette plainte n'est pas censée être attribuer à mon unité."
-        And I press "Réorienter"
-        Then I should not see a ".modal[aria-modal=true]" element
-        And I should see a ".toast" element
-        And I should see the key "pel.the.unit.reassignment.of.the.declaration.to" translated
-        And I should see the key "pel.has.been.ordered" translated
-        And I should see "La demande de réorientation de la déclaration vers Commissariat de police de Voiron à été prise en compte"
-        Then I am authenticated with PR5KTZ9R from GN
-        And I am on the homepage
-        When I click the "#notifications-dropdown" element
-        Then I should see "Philippe RIVIERE vient de vous adresser une demande de réorientation vers autre service PEL-2023-00000110"
-        When I follow "Philippe RIVIERE vient de vous adresser une demande de réorientation vers autre service PEL-2023-00000110"
-        Then I should be on "/plainte/recapitulatif/110?showUnitReassignmentValidationModal=1"
-        And I should see a ".modal[aria-modal=true]" element
-        And I fill in "unit_reassign_unitReassignText" with "Je refuse cette réorientation."
-        When I press "Refuser la réorientation"
-        And I should see a ".toast" element
-        And I should see the key "pel.the.unit.reassignment.has.been.rejected.your.agent.stays.assigned" translated
-        And I should see the key "pel.comment.unit.reassignment.reject.reason" translated
-        And I should see "Je refuse cette réorientation."
-        Given I am authenticated with PR5KTQSD from GN
-        And I am on the homepage
-        When I click the "#notifications-dropdown" element
-        Then I should see "Thomas DURAND vient de refuser votre demande de réorientation vers un autre service pour la déclaration PEL-2023-00000110"
-        When I follow "Thomas DURAND vient de refuser votre demande de réorientation vers un autre service pour la déclaration PEL-2023-00000110"
-        Then I should be on "/plainte/recapitulatif/110"
+#    @javascript
+#    Scenario: I can submit the unit reassign form successfully as an agent and validate it as a supervisor
+#        Given I am authenticated with PR5KTQSD from GN
+#        And I am on "/plainte/recapitulatif/110"
+#        When I press "Réorienter vers autres services"
+#        And I fill in the autocomplete "unit_reassign_unitToReassign-ts-control" with "Commissariat de police de Voiron" and click "103131"
+#        And I fill in "unit_reassign_unitReassignText" with "Cette plainte n'est pas censée être attribuer à mon unité."
+#        And I press "Réorienter"
+#        Then I should not see a ".modal[aria-modal=true]" element
+#        And I should see a ".toast" element
+#        And I should see the key "pel.the.unit.reassignment.of.the.declaration.to" translated
+#        And I should see the key "pel.has.been.ordered" translated
+#        And I should see "La demande de réorientation de la déclaration vers Commissariat de police de Voiron à été prise en compte"
+#        Then I am authenticated with PR5KTZ9R from GN
+#        And I am on the homepage
+#        When I click the "#notifications-dropdown" element
+#        Then I should see "Philippe RIVIERE vient de vous adresser une demande de réorientation vers autre service PEL-2023-00000110"
+#        When I follow "Philippe RIVIERE vient de vous adresser une demande de réorientation vers autre service PEL-2023-00000110"
+#        Then I should be on "/plainte/recapitulatif/110?showUnitReassignmentValidationModal=1"
+#        And I should see a ".modal[aria-modal=true]" element
+#        When I press "Accepter la demande de réorientation"
+#        And I wait 500 ms
+#        Then I should be on the homepage
+#        And I should see a ".toast" element
+#        And I should see the key "pel.the.unit.reassignment.has.been.accepted" translated
+#        Given I am authenticated with PR5KTQSD from GN
+#        And I am on the homepage
+#        When I click the "#notifications-dropdown" element
+#        Then I should see "Thomas DURAND vient de valider votre demande de réorientation vers un autre service pour la déclaration PEL-2023-00000110"
+#        When I follow "Thomas DURAND vient de valider votre demande de réorientation vers un autre service pour la déclaration PEL-2023-00000110"
+#        Then I should be on "/"
+
+#    @javascript
+#    Scenario: I can submit the unit reassign form successfully as an agent and reject it as a supervisor
+#        Given I am authenticated with PR5KTQSD from GN
+#        And I am on "/plainte/recapitulatif/110"
+#        When I press "Réorienter vers autres services"
+#        And I fill in the autocomplete "unit_reassign_unitToReassign-ts-control" with "Commissariat de police de Voiron" and click "103131"
+#        And I fill in "unit_reassign_unitReassignText" with "Cette plainte n'est pas censée être attribuer à mon unité."
+#        And I press "Réorienter"
+#        Then I should not see a ".modal[aria-modal=true]" element
+#        And I should see a ".toast" element
+#        And I should see the key "pel.the.unit.reassignment.of.the.declaration.to" translated
+#        And I should see the key "pel.has.been.ordered" translated
+#        And I should see "La demande de réorientation de la déclaration vers Commissariat de police de Voiron à été prise en compte"
+#        Then I am authenticated with PR5KTZ9R from GN
+#        And I am on the homepage
+#        When I click the "#notifications-dropdown" element
+#        Then I should see "Philippe RIVIERE vient de vous adresser une demande de réorientation vers autre service PEL-2023-00000110"
+#        When I follow "Philippe RIVIERE vient de vous adresser une demande de réorientation vers autre service PEL-2023-00000110"
+#        Then I should be on "/plainte/recapitulatif/110?showUnitReassignmentValidationModal=1"
+#        And I should see a ".modal[aria-modal=true]" element
+#        And I fill in "unit_reassign_unitReassignText" with "Je refuse cette réorientation."
+#        When I press "Refuser la réorientation"
+#        And I should see a ".toast" element
+#        And I should see the key "pel.the.unit.reassignment.has.been.rejected.your.agent.stays.assigned" translated
+#        And I should see the key "pel.comment.unit.reassignment.reject.reason" translated
+#        And I should see "Je refuse cette réorientation."
+#        Given I am authenticated with PR5KTQSD from GN
+#        And I am on the homepage
+#        When I click the "#notifications-dropdown" element
+#        Then I should see "Thomas DURAND vient de refuser votre demande de réorientation vers un autre service pour la déclaration PEL-2023-00000110"
+#        When I follow "Thomas DURAND vient de refuser votre demande de réorientation vers un autre service pour la déclaration PEL-2023-00000110"
+#        Then I should be on "/plainte/recapitulatif/110"
 
     @func
     Scenario: I can see the comments space on the summary page
@@ -557,19 +560,20 @@ Feature:
         And I should see the key "pel.document.validity.end.date" translated
         And I should see "05/12/2025"
 
-    @javascript
-    Scenario: As a supervisor, I can see a badge on the unit reassignment button is an agent asks for a redirection on this complaint
-        Given I am on "/plainte/recapitulatif/110"
-        And I should not see a "#badge-unit-reassignment-asked" element
-        Then I am authenticated with PR5KTQSD from GN
-        And I am on "/plainte/recapitulatif/110"
-        When I press "Réorienter vers autres services"
-        And I fill in the autocomplete "unit_reassign_unitToReassign-ts-control" with "Commissariat de police de Voiron" and click "103131"
-        And I fill in "unit_reassign_unitReassignText" with "Cette plainte n'est pas censée être attribuer à mon unité."
-        And I press "Réorienter"
-        Then I am authenticated with PR5KTZ9R from GN
-        And I am on "/plainte/recapitulatif/110"
-        Then I should see a "#badge-unit-reassignment-asked" element
+     #PEL-987:Hide redirection for experimentation phase
+#    @javascript
+#    Scenario: As a supervisor, I can see a badge on the unit reassignment button is an agent asks for a redirection on this complaint
+#        Given I am on "/plainte/recapitulatif/110"
+#        And I should not see a "#badge-unit-reassignment-asked" element
+#        Then I am authenticated with PR5KTQSD from GN
+#        And I am on "/plainte/recapitulatif/110"
+#        When I press "Réorienter vers autres services"
+#        And I fill in the autocomplete "unit_reassign_unitToReassign-ts-control" with "Commissariat de police de Voiron" and click "103131"
+#        And I fill in "unit_reassign_unitReassignText" with "Cette plainte n'est pas censée être attribuer à mon unité."
+#        And I press "Réorienter"
+#        Then I am authenticated with PR5KTZ9R from GN
+#        And I am on "/plainte/recapitulatif/110"
+#        Then I should see a "#badge-unit-reassignment-asked" element
 
     @func
     Scenario: As a user, I should see the home phone number if it has been filled by the victim
