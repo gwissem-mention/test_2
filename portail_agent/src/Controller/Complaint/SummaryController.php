@@ -25,7 +25,9 @@ class SummaryController extends AbstractController
             'reject_form' => $this->createForm(RejectType::class, $complaint),
             'assign_form' => $this->createForm(AssignType::class, $complaint),
             'unit_reassign_form' => $this->createForm(UnitReassignType::class, $complaint),
-            'send_report_form' => $this->createForm(SendReportType::class),
+            'send_report_form' => $this->createForm(SendReportType::class, null, [
+                'is_after_appointment' => null !== $complaint->getAppointmentDate(),
+            ]),
         ]);
     }
 }

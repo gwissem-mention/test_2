@@ -8,6 +8,7 @@ const {Dropzone} = require("dropzone");
 
 export default class extends Controller {
     static override targets: string[] = [
+        "appointmentDoneRadioButton",
         "appointmentForm",
         "assignmentForm",
         "assignmentModal",
@@ -26,6 +27,8 @@ export default class extends Controller {
         "dropZoneError"
     ];
 
+    declare readonly appointmentDoneRadioButtonTarget: HTMLInputElement;
+    declare readonly hasAppointmentDoneRadioButtonTarget: boolean;
     declare readonly appointmentFormTarget: HTMLFormElement;
     declare readonly assignmentFormTarget: HTMLFormElement;
     declare readonly assignmentModalTarget: HTMLElement;
@@ -209,14 +212,19 @@ export default class extends Controller {
         }
     }
 
-    // Must be ignored because we can't type url here.
+    // Must be ignored because we can't type urlSendReport and urlClose here.
     // @ts-ignore
-    public sendReport({params: {url}}): void {
+    private sendReport({params: {urlSendReport, urlClose}}): void {
         const dropzone: Dropzone = Dropzone.forElement(this.dropZoneFormTarget.querySelector(".dropzone"));
-        dropzone.options.url = url;
-        if (dropzone.getQueuedFiles().length >= 1) {
+        const isAfterAppointment: string | null = this.dropZoneFormTarget.getAttribute("data-is-after-appointment");
+        const radioInput: HTMLInputElement | null = this.hasAppointmentDoneRadioButtonTarget ? this.appointmentDoneRadioButtonTarget.querySelector("input[name=\"send_report[appointment_done]\"]:checked") : null;
+
+        dropzone.options.url = urlSendReport;
+
+        if (dropzone.getQueuedFiles().length >= 1 && (isAfterAppointment !== "true" || (isAfterAppointment === "true" && radioInput?.value === "1"))) {
             this.setSpinnerState(this.sendReportValidationButtonTarget);
             dropzone.processQueue();
+
             dropzone.on("successmultiple", () => {
                 Modal.getInstance(this.sendReportModalTarget)?.hide();
 
@@ -231,14 +239,47 @@ export default class extends Controller {
 
                 this.reloadComplaintContainer();
             });
+
             dropzone.on("errormultiple", (files: any, response: any) => {
                 if (response.form) {
                     this.dropZoneFormTarget.innerHTML = response.form;
                     this.setSpinnerState(this.sendReportValidationButtonTarget);
                 }
             });
+        } else if (urlClose && isAfterAppointment === "true" && radioInput?.value === "1") {
+            fetch(urlClose, {
+                method: HttpMethodsEnum.POST,
+                body: new FormData(this.dropZoneFormTarget)
+            })
+                .then((response: Response) => {
+                    response.json()
+                        .then((data: any) => { // TODO: Remove any type, create a specific type for this.
+                            if (response.status === HttpStatusCodeEnum.OK) {
+                                Modal.getInstance(this.sendReportModalTarget)?.hide();
+
+                                this.reloadComplaintContainer();
+                            } else {
+                                this.dropZoneFormTarget.innerHTML = data.form;
+                                this.dropZoneErrorTarget.innerText = this.dropZoneFormTarget.getAttribute("data-error-message") ?? "";
+                            }
+                        });
+                });
         } else {
-            this.dropZoneErrorTarget.innerText = this.dropZoneFormTarget.getAttribute("data-empty-message") ?? "";
+            if (this.dropZoneFormTarget.getAttribute("data-empty-message")) {
+                this.dropZoneErrorTarget.innerText = this.dropZoneFormTarget.getAttribute("data-empty-message") ?? "";
+            } else if (this.dropZoneFormTarget.getAttribute("data-error-message")) {
+                this.dropZoneErrorTarget.innerText = this.dropZoneFormTarget.getAttribute("data-error-message") ?? "";
+            }
+        }
+    }
+
+    public isClosableAfterAppointment(): void {
+        const radioInput: HTMLInputElement | null = this.appointmentDoneRadioButtonTarget.querySelector("input[name=\"send_report[appointment_done]\"]:checked");
+
+        if (radioInput?.value === "1") {
+            this.sendReportValidationButtonTarget.removeAttribute("disabled");
+        } else {
+            this.sendReportValidationButtonTarget.setAttribute("disabled", "disabled");
         }
     }
 

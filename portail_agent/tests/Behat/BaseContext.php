@@ -407,7 +407,7 @@ final class BaseContext extends MinkContext
     }
 
     /**
-     * @Then /^the field "(?P<field>(?:[^"]|\\")*)" should be disabled$/
+     * @Then /^the "(?P<element>(?:[^"]|\\")*)" element should be disabled$/
      */
     public function isDisabled(string $selector): void
     {
@@ -419,6 +419,23 @@ final class BaseContext extends MinkContext
 
             if (false === $field->hasAttribute('disabled')) {
                 throw new ExpectationException('The field is not disabled', $this->getSession()->getDriver());
+            }
+        });
+    }
+
+    /**
+     * @Then /^the "(?P<element>(?:[^"]|\\")*)" element should not be disabled$/
+     */
+    public function isNotDisabled(string $selector): void
+    {
+        $this->retryStep(function () use ($selector) {
+            $field = $this->getSession()->getPage()->find('css', $selector);
+            if (null === $field) {
+                throw new ElementNotFoundException($this->getSession(), null, 'named', $field);
+            }
+
+            if (true === $field->hasAttribute('disabled')) {
+                throw new ExpectationException('The field is disabled', $this->getSession()->getDriver());
             }
         });
     }

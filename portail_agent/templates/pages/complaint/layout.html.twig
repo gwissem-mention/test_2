@@ -64,7 +64,12 @@
                         'complaintId': complaint.id
                     } %}
                 {% endif %}
-                {% if workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_CLOSE_AFTER_SENDING_THE_REPORT')) %}
+                {% if workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_CLOSE_AFTER_APPOINTMENT')) %}
+                    {% include 'pages/complaint/_partial/modals/close_after_appointment.html.twig' with {
+                        'sendReportForm': send_report_form,
+                        'complaintId': complaint.id
+                    } %}
+                {% elseif workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_CLOSE_AFTER_SENDING_THE_REPORT')) %}
                     {% include 'pages/complaint/_partial/modals/send_to_victim.html.twig' with {
                         'sendReportForm': send_report_form,
                         'complaintId': complaint.id
