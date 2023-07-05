@@ -20,14 +20,14 @@ Feature:
         When I press "identity_submit"
         Then I should be on "/porter-plainte/faits"
         When I fill in "facts_description" with "description informations lorem ipsum dol or sit amet lorem ipsum dol or sit amet"
-        And I select "3" from "facts_placeNature"
+        And I select "5" from "facts_placeNature"
         And I click the "label[for=facts_victimOfViolence]" element
         And I fill in "facts_victimOfViolenceText" with "Violence informations"
         Then the marker should be at latitude "48.8650197" and longitude "2.3758909"
-        When I click on the map at latitude "48.863931" and longitude "2.381328"
-        Then the marker should be at latitude "48.863931" and longitude "2.381328"
+        When I click on the map at latitude "48.8650197" and longitude "2.3758909"
+        Then the marker should be at latitude "48.8650197" and longitude "2.3758909"
         And the "facts_address_addressOrRouteFactsKnown_0" field should contain "1"
-        And the "facts-startAddress-address" field should contain "81 Avenue de la République 75011 Paris"
+        And the "facts-startAddress-address" field should contain "45 Avenue de la République 75011 Paris"
         When I click the "label[for=facts_offenseDate_exactDateKnown_0]" element
         And I fill in "facts_offenseDate_startDate" with "01/01/2022"
         And I click the "label[for=facts_offenseDate_choiceHour_0]" element
@@ -105,7 +105,7 @@ Feature:
         And I should see the key "pel.address.or.route.facts" translated
         And I should see the key "pel.address" translated
         And I should see the key "pel.address.start.or.exact" translated
-        And I should see "81 Avenue de la République 75011 Paris"
+        And I should see "45 Avenue de la République 75011 Paris"
         And I should see the key "pel.complaint.exact.date.known" translated
         And I should see the key "pel.facts.date" translated
         And I should see the key "pel.the" translated

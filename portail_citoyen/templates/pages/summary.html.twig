@@ -124,12 +124,22 @@
                                 {% elseif complaint.facts.placeNature is same as(2) %}
                                     {{ 'pel.nature.place.park'|trans }}
                                 {% elseif complaint.facts.placeNature is same as(3) %}
-                                    {{ 'pel.nature.place.street'|trans }}
+                                    {{ 'pel.nature.place.educational.establishmen'|trans}}
                                 {% elseif complaint.facts.placeNature is same as(4) %}
-                                    {{ 'pel.nature.place.market'|trans }}
+                                    {{ 'pel.nature.place.internet'|trans }}
                                 {% elseif complaint.facts.placeNature is same as(5) %}
-                                    {{ 'pel.nature.place.public.transport'|trans }}
+                                    {{ 'pel.nature.place.street'|trans }}
                                 {% elseif complaint.facts.placeNature is same as(6) %}
+                                    {{ 'pel.nature.place.public.transport'|trans }}
+                                {% elseif complaint.facts.placeNature is same as(7) %}
+                                    {{ 'pel.nature.place.worship'|trans }}
+                                {% elseif complaint.facts.placeNature is same as(8) %}
+                                    {{ 'pel.nature.place.business'|trans }}
+                                {% elseif complaint.facts.placeNature is same as(9) %}
+                                    {{ 'pel.nature.place.market'|trans }}
+                                {% elseif complaint.facts.placeNature is same as(10) %}
+                                    {{ 'pel.nature.place.leisure.place'|trans }}
+                                {% elseif complaint.facts.placeNature is same as(11) %}
                                     {{ 'pel.nature.place.other'|trans }}
                                 {% else %}
                                     {{ 'pel.nature.place.unknown'|trans }}

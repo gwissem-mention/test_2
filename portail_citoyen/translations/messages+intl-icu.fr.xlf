@@ -1456,7 +1456,7 @@
             </trans-unit>
             <trans-unit id="pel.nature.place.home">
                 <source>pel.nature.place.home</source>
-                <target>Domicile/Logement</target>
+                <target>Domicile/Logement et dépendances</target>
             </trans-unit>
             <trans-unit id="pel.nature.place.other">
                 <source>pel.nature.place.other</source>
@@ -1466,9 +1466,37 @@
                 <source>pel.nature.place.public.transport</source>
                 <target>Transports en commun</target>
             </trans-unit>
+            <trans-unit id="pel.nature.place.park">
+                <source>pel.nature.place.park</source>
+                <target>Parking</target>
+            </trans-unit>
+            <trans-unit id="pel.nature.place.educational.establishment">
+                <source>pel.nature.place.educational.establishment</source>
+                <target>Établissement scolaire</target>
+            </trans-unit>
+            <trans-unit id="pel.nature.place.internet">
+                <source>pel.nature.place.internet</source>
+                <target>INTERNET</target>
+            </trans-unit>
+            <trans-unit id="pel.nature.place.worship">
+                <source>pel.nature.place.worship</source>
+                <target>Lieu de culte, de prière ou de recueillement</target>
+            </trans-unit>
+            <trans-unit id="pel.nature.place.business">
+                <source>pel.nature.place.business</source>
+                <target>Local professionnel/industriel</target>
+            </trans-unit>
+            <trans-unit id="pel.nature.place.leisure.place">
+                <source>pel.nature.place.leisure.place</source>
+                <target>Lieu de loisirs </target>
+            </trans-unit>
+            <trans-unit id="pel.nature.place.market">
+                <source>pel.nature.place.market</source>
+                <target>Commerce</target>
+            </trans-unit>
             <trans-unit id="pel.nature.place.street">
                 <source>pel.nature.place.street</source>
-                <target>Voie publique / Rue</target>
+                <target>Rue</target>
             </trans-unit>
             <trans-unit id="pel.navigation">
                 <source>pel.navigation</source>

@@ -207,7 +207,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                 ],
                 'placeNature' => [
                     'code' => 1,
-                    'label' => 'Domicile/Logement',
+                    'label' => 'Domicile/Logement et dépendances',
                 ],
                 'victimOfViolence' => true,
                 'victimOfViolenceText' => 'Violence text',
@@ -644,7 +644,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                 ],
                 'placeNature' => [
                     'code' => 1,
-                    'label' => 'Domicile/Logement',
+                    'label' => 'Domicile/Logement et dépendances',
                 ],
                 'victimOfViolence' => true,
                 'victimOfViolenceText' => 'Violence text',
@@ -1042,7 +1042,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                 ],
                 'placeNature' => [
                     'code' => 1,
-                    'label' => 'Domicile/Logement',
+                    'label' => 'Domicile/Logement et dépendances',
                 ],
                 'victimOfViolence' => true,
                 'victimOfViolenceText' => 'Violence text',
