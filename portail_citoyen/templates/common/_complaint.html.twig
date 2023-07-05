@@ -1,36 +1,17 @@
 {% extends 'layout.html.twig' %}
 
 {% block stylesheets %}
-    {{ parent() }}
-    {{ encore_entry_link_tags('app') }}
+	{{ parent() }}
+	{{ encore_entry_link_tags('app') }}
 {% endblock %}
 
 {% block body %}
-    <div class="fr-background-action-high--blue-france">
-        <div class="fr-container p-0 md:p-5 lg:p-10 pb-0 md:pb-5 lg:pb-10">
-            <div class="fr-grid-row flex flex-column lg:flex-row items-center py-5 lg:py-10">
-                <div class="fr-col-md-6 w-full px-3 lg:px-3 m-0">
-                    <div class="flex items-center">
-                        <div class="relative text-white font-bold text-3xl fr-pb-0 pl-14 md:pl-[86px] before:content-[''] before:absolute before:left-0.5 before:w-16 before:h-full before:bg-no-repeat before:bg-[length:40px_40px] before:bg-[url('/assets/images/icons/complaint.svg')] md:before:bg-[length:64px_64px]">{{ title }}</div>
-                    </div>
-                </div>
-                <div class="fr-col-md-6 w-full px-5 lg:px-10 m-0 mt-3 lg:mt-0 fr-col--border-left">
-                    <div class="fr-stepper m-0 mb-1">
-                        <div class="fr-stepper__title text-white">
-                            <span class="fr-stepper__state text-white">{{ 'pel.step'|trans}} {{ current_step_number }} {{ 'pel.on'|trans }} 7</span>
-                            {{ current_step_title }}
-                        </div>
-                        <div class="fr-stepper__steps mt-3" data-fr-current-step="{{ current_step_number }}" data-fr-steps="7"></div>
-                        <p class="fr-stepper__details text-white">
-                            <span class="fr-text--bold">{{ 'pel.next.step'|trans }} :</span>
-                            {{ next_step_title }}
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="fr-container bg-white p-0">
-                {% block content %}{% endblock %}
-            </div>
-        </div>
-    </div>
+	<div class="fr-background-action-high--blue-france">
+		<div class="fr-container flex flex-col md:flex-row items-start fr-pt-md-16v fr-px-md-8v fr-pb-md-30v">
+			{{ include('common/_stepper.html.twig') }}
+			<div class="fr-container fr-background-default--grey p-0">
+				{% block content %}{% endblock %}
+			</div>
+		</div>
+	</div>
 {% endblock %}
