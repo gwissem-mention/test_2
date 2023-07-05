@@ -21,18 +21,22 @@ class AuthenticationController extends AbstractController
     ): Response {
         $sessionHandler->init();
 
-        if ('1' === $request->query->get('my_complaints_reports')) {
+        if (true === $request->query->getBoolean('my_complaints_reports')) {
             return $this->redirectToRoute('my_complaints_reports');
         }
 
         if ($request->query->has('france_connected')) {
-            if ('1' === $request->query->get('france_connected')) {
+            if (true === $request->query->getBoolean('france_connected')) {
                 $franceConnectHandler->setIdentityToComplaint();
-            } elseif ('0' === $request->query->get('france_connected')) {
+
+                if (true === $request->query->getBoolean('identity')) {
+                    return $this->redirectToRoute('complaint_identity');
+                }
+            } elseif (false === $request->query->getBoolean('france_connected')) {
                 $franceConnectHandler->clear();
             }
 
-            return $this->redirectToRoute('complaint_declarant_status');
+            return $this->redirectToRoute('complaint_law_refresher');
         }
 
         return $this->render('pages/authentication.html.twig');

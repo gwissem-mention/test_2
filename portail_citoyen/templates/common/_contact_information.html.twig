@@ -1,32 +1,39 @@
-<h2>{{ 'pel.contact.information'|trans }}</h2>
-{{ form_row(form.country) }}
-    {% set etalab_errors = [] %}
-    {% if form.frenchAddress is defined %}
-        {% for error in form.frenchAddress.address.vars.errors %}
-            {% set etalab_errors = etalab_errors|merge([error.message]) %}
-        {% endfor %}
-    {% endif %}
-    <div class="fr-input-group{% if etalab_errors|length > 0 %} fr-input-group--error{% endif %}">
-        {% if form.frenchAddress is defined %}
-            {{ form_label(form.frenchAddress, 'pel.address') }}
-        {% endif %}
+<h2 class="text-[22px]/7 md:text-[28px]/9 fr-mb-8v fr-mb-md-12v">{% if representedPerson is same as(false) %}{{ 'pel.contact.information'|trans }}{% else %}{{ 'pel.contact.information.represented.person'|trans }}{% endif %}</h2>
+<div class="fr-form-group md:w-1/2 fr-mb-6v">
+	<div class="{{ html_classes('fr-select-group', {'fr-select-group--error': form.country.vars.errors is not empty}) }}">
+		{{ form_label(form.country) }}
+		<div class="fr-input-wrap fr-icon-arrow-down-s-line before:content-[''] before:z-10">
+			{{ form_widget(form.country, {'attr':{'class':html_classes(attr.class ?? '', 'autocomplete' not in form.country.vars['block_prefixes'] ? 'fr-select' : '',{'fr-select--error':form.country.vars.errors is not empty})}}) }}
+		</div>
+		{{ form_errors(form.country) }}
+	</div>
+</div>
+{% set etalab_errors = [] %}
+{% if form.frenchAddress is defined %}
+	{% for error in form.frenchAddress.address.vars.errors %}
+		{% set etalab_errors = etalab_errors|merge([error.message]) %}
+	{% endfor %}
+{% endif %}
+<div class="fr-input-group{% if etalab_errors|length > 0 %} fr-input-group--error{% endif %}">
+	{% if form.frenchAddress is defined %}
+		{{ form_label(form.frenchAddress, 'pel.address') }}
+	{% endif %}
 
-        {% if form.sameAddress is defined %}
-            {{ form_row(form.sameAddress) }}
-        {% endif %}
+	{% if form.sameAddress is defined %}
+		{{ form_row(form.sameAddress) }}
+	{% endif %}
 
-        {% if form.frenchAddress is defined %}
-            {{ component('etalab_component', {
+	{% if form.frenchAddress is defined %}
+		{{ component('etalab_component', {
                 'data-live-id': template_id ~ '-address',
                 dataModel: 'addressSearch:' ~ etalabPropertyName ~ '.addressSearch addressId:' ~ etalabPropertyName ~ '.addressId addressSearchSaved:' ~ etalabPropertyName ~ '.addressSearchSaved',
                 inputName: template_id ~ '-address',
                 errors: etalab_errors,
             }) }}
-        {% elseif form.foreignAddress is defined %}
-            {{ form_widget(form.foreignAddress) }}
-        {% endif %}
-    </div>
+	{% elseif form.foreignAddress is defined %}
+		{{ form_widget(form.foreignAddress) }}
+	{% endif %}
+</div>
 {{ form_row(form.email) }}
 {{ form_row(form.mobile) }}
 {{ form_row(form.phone) }}
-

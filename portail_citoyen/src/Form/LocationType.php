@@ -123,6 +123,7 @@ class LocationType extends AbstractType
             ->add('otherTown', TextType::class, [
                 'attr' => [
                     'maxlength' => 50,
+                    'autocomplete' => 'address-level2',
                 ],
                 'constraints' => [
                     new NotBlank(),
@@ -157,6 +158,7 @@ class LocationType extends AbstractType
                 'attr' => [
                     'class' => 'french-town',
                     'required' => true,
+                    'autocomplete' => 'address-level2',
                 ],
                 'constraints' => [
                     new NotBlank(),

@@ -6,6 +6,7 @@ CONSOLE		:= @bin/console
 SF_CLI		:= @symfony
 YARN		:= @yarn
 ANSIBLE		:= @ansible-playbook
+BEHAT		:= @vendor/bin/behat
 
 NPROC	:= 1
 OS		:= $(shell uname)
@@ -242,7 +243,8 @@ unit:
 
 ## Run behat tests
 behat:
-	@vendor/bin/behat -c behat.yml.dist --profile func
+	@$(eval c ?=)
+	@$(BEHAT) -c behat.yml.dist --profile func $(c)
 
 ## Run e2e behat tests
 e2e:

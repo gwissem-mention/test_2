@@ -6,6 +6,7 @@ namespace App\Form\Model\Identity;
 
 class IdentityModel
 {
+    private ?int $declarantStatus = null;
     private CivilStateModel $civilState;
     private ContactInformationModel $contactInformation;
     private ?CivilStateModel $representedPersonCivilState = null;
@@ -16,6 +17,18 @@ class IdentityModel
     {
         $this->civilState = new CivilStateModel();
         $this->contactInformation = new ContactInformationModel();
+    }
+
+    public function getDeclarantStatus(): ?int
+    {
+        return $this->declarantStatus;
+    }
+
+    public function setDeclarantStatus(?int $declarantStatus): self
+    {
+        $this->declarantStatus = $declarantStatus;
+
+        return $this;
     }
 
     public function getCivilState(): CivilStateModel

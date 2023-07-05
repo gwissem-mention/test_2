@@ -8,15 +8,15 @@ Feature:
         Given I am on "/authentification"
         And I follow "no_france_connect_auth_button"
         And I follow "no_france_connect_auth_button_confirm"
-        Then I should be on "/porter-plainte/statut-declarant"
-        And I click the "label[for=declarant_status_declarantStatus_1]" element
-        And I press "declarant_status_submit"
+        Then I should be on "/porter-plainte/rappel-a-la-loi"
+        And I follow "complaint_identity_link"
         Then I should be on "/porter-plainte/identite"
+        And I click the "label[for=identity_declarantStatus_1]" element
         And I should not see the key "pel.information.transmitted.by.france.connect" translated
         And I should not see the key "pel.these.informations.has.been.transmitted.by.france.connect" translated
         And I should not see the key "pel.if.these.informations.contains.errors" translated
         And I should not see the key "pel.click.here.to.continue.without.authentication" translated
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"
@@ -28,7 +28,7 @@ Feature:
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I fill in "identity_contactInformation_phone_number" with "0101020304"
         And I fill in "identity_contactInformation_mobile_number" with "0601020304"
-        And I select "2" from "identity_representedPersonCivilState_civility"
+        And I click the "label[for=identity_representedPersonCivilState_civility_1]" element
         And I fill in "identity_representedPersonCivilState_birthName" with "Dupont"
         And I fill in "identity_representedPersonCivilState_firstnames" with "Julie"
         And I select "1" from "identity_representedPersonCivilState_familySituation"
@@ -164,7 +164,7 @@ Feature:
         And I should see "description informations lorem ipsum dol or sit amet lorem ipsum dol or sit amet"
         And I should see the key "pel.note" translated
         And I should see the key "pel.summary.is.not.legal.proof" translated
-        When I press "Suivant"
+        When I press "Continuer"
         Then I should see 1 "#fr-modal-complaint-confirm[open=true]" element
         And I should see the key "pel.declaration.confirmation" translated
         And I should see the key "pel.i.confirm.declaration.is.complete" translated
@@ -202,9 +202,9 @@ Feature:
         And I should see the key "pel.total.message.one" translated
         And I should see the key "pel.total.message.amount" translated
         And I should see "Vous avez ajouté 3 objets pour un montant total de 200,00 €"
-        When I press "Suivant"
+        When I press "Continuer"
         And I follow "Je confirme"
         Then I should be on "/porter-plainte/rendez-vous"
         When I fill in "appointment_appointmentContactText" with "Between 10am and 12am"
-        And I press "Suivant"
+        And I press "Continuer"
         Then I should be on "/porter-plainte/fin"

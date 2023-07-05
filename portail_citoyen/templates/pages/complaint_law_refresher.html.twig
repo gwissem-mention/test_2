@@ -4,7 +4,7 @@
 {% set title = 'pel.my.online.complaint.declaration'|trans %}
 {% set current_step_title = 'pel.legal.dispositions'|trans %}
 {% set current_step_number = 1 %}
-{% set next_step_title = 'pel.your.identity'|trans %}
+{% set next_step_title = 'pel.complaint.your.identity'|trans %}
 {% set display_footer = true %}
 
 {% block title %}{{ 'pel.legal.dispositions.step.1'|trans }}{% endblock %}
@@ -48,6 +48,6 @@
     </div>
     <hr>
     <div class="p-10 pt-5 lg:p-11 lg:pt-7 text-center">
-        <a class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line" href="{{ path('complaint_declarant_status') }}">{{ 'pel.complete.my.declaration'|trans }}</a>
+        <a class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line" href="{{ path('complaint_identity') }}" id="complaint_identity_link">{{ 'pel.complete.my.declaration'|trans }}</a>
     </div>
 {% endblock %}

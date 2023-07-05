@@ -15,6 +15,8 @@ class ChoiceTypeExtension extends AbstractTypeExtension
         $resolver->setDefaults([
             'rich' => false,
             'inline' => false,
+            'choices_help' => [],
+            'choices_img' => [],
         ]);
     }
 
@@ -25,6 +27,8 @@ class ChoiceTypeExtension extends AbstractTypeExtension
     {
         if (true === $options['expanded']) {
             $view->vars['inline'] = $options['inline'];
+            $view->vars['choices_help'] = $options['choices_help'];
+            $view->vars['choices_img'] = $options['choices_img'];
             if (false === $options['multiple']) {
                 $view->vars['rich'] = $options['rich'];
             }

@@ -8,10 +8,10 @@ Feature:
         Given I am on "/authentification"
         And I follow "no_france_connect_auth_button"
         And I follow "no_france_connect_auth_button_confirm"
-        Then I should be on "/porter-plainte/statut-declarant"
-        And I click the "label[for=declarant_status_declarantStatus_2]" element
-        And I press "declarant_status_submit"
-        And I am on "/porter-plainte/identite"
+        Then I should be on "/porter-plainte/rappel-a-la-loi"
+        And I follow "complaint_identity_link"
+        Then I should be on "/porter-plainte/identite"
+        And I click the "label[for=identity_declarantStatus_2]" element
 
     Scenario: I can select the Corporation Legal Representative radio button
         Then I should see the key "pel.civility" translated
@@ -22,7 +22,6 @@ Feature:
         And I should see the key "pel.birth.date" translated
         And I should see the key "pel.birth.country" translated
         And I should see the key "pel.birth.town" translated
-        And I should see the key "pel.birth.department" translated
         And I should see the key "pel.nationality" translated
         And I should see the key "pel.your.job" translated
         And I should see the key "pel.address.country" translated
@@ -39,7 +38,7 @@ Feature:
         And I should see the key "pel.next" translated
 
     Scenario: Submit the form with minimal valid values for Corporation Legal Representative declarant
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"
@@ -61,7 +60,7 @@ Feature:
         Then I should be on "/porter-plainte/faits"
 
     Scenario: Submit the form with the same address as the declarant checkbox
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"
@@ -88,20 +87,20 @@ Feature:
         And I should see a "#form-errors-identity_civilState_civility" element
 
     Scenario: Submit the form with only 1 required value for Corporation Legal Representative declarant
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I press "identity_submit"
         Then I should be on "/porter-plainte/identite"
         And I should see a "#form-errors-identity_civilState_birthName" element
 
     Scenario: Submit the form with only 2 required value for Corporation Legal Representative declarant
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I press "identity_submit"
         Then I should be on "/porter-plainte/identite"
         And I should see a "#form-errors-identity_civilState_firstnames" element
 
     Scenario: Submit the form with only 3 required value for Corporation Legal Representative declarant
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I press "identity_submit"
@@ -109,7 +108,7 @@ Feature:
         And I should see a "#form-errors-identity_civilState_familySituation" element
 
     Scenario: Submit the form with only 4 required value for Corporation Legal Representative declarant
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"
@@ -118,7 +117,7 @@ Feature:
         And I should see a "#form-errors-identity_civilState_birthDate" element
 
     Scenario: Submit the form with only 5 required value for Corporation Legal Representative declarant
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"
@@ -128,7 +127,7 @@ Feature:
         And I should see a "#form-errors-identity_civilState_birthLocation_frenchTown" element
 
     Scenario: Submit the form with only 6 required value for Corporation Legal Representative declarant
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"
@@ -139,7 +138,7 @@ Feature:
         And I should see a "#form-errors-identity_civilState_job" element
 
     Scenario: Submit the form with only 7 required value for Corporation Legal Representative declarant
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"
@@ -152,7 +151,7 @@ Feature:
 #        And the field "contact-information-address" should have focus
 
     Scenario: Submit the form with only 8 required value for Corporation Legal Representative declarant
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"
@@ -166,7 +165,7 @@ Feature:
         And I should see a "#form-errors-identity_contactInformation_email" element
 
     Scenario: Submit the form with only 9 required value for Corporation Legal Representative declarant
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"
@@ -181,7 +180,7 @@ Feature:
         And I should see a "#form-errors-identity_contactInformation_phone_number" element
 
     Scenario: Submit the form with only 10 required value for Corporation Legal Representative declarant
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"
@@ -197,7 +196,7 @@ Feature:
         And I should see a "#form-errors-identity_corporation_siren" element
 
     Scenario: Submit the form with only 11 required value for Corporation Legal Representative declarant
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"
@@ -214,7 +213,7 @@ Feature:
         And I should see a "#form-errors-identity_corporation_name" element
 
     Scenario: Submit the form with only 12 required value for Corporation Legal Representative declarant
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"
@@ -232,7 +231,7 @@ Feature:
         And I should see a "#form-errors-identity_corporation_function" element
 
     Scenario: Submit the form with only 13 required value for Corporation Legal Representative declarant
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"
@@ -251,7 +250,7 @@ Feature:
         And I should see a "#form-errors-identity_corporation_phone_number" element
 
     Scenario: Submit the form with only 14 required value for Corporation Legal Representative declarant
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"
@@ -282,7 +281,7 @@ Feature:
         And I should see "Seuls les chiffres sont autorisés." in the "#form-errors-identity_corporation_siren" element
 
     Scenario: Submit the form with another addressCountry than France
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"
@@ -308,7 +307,7 @@ Feature:
         Then I should be on "/porter-plainte/faits"
 
     Scenario: Submit the form with another addressCountry than France and same address as declarant
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"

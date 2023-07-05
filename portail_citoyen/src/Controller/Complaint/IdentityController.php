@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Controller\Complaint;
 
-use App\Form\Model\Identity\DeclarantStatusModel;
 use App\Session\SessionHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,9 +18,7 @@ class IdentityController extends AbstractController
         SessionHandler $sessionHandler,
         bool $fromSummary = false
     ): Response {
-        if (!$sessionHandler->getComplaint()?->getDeclarantStatus() instanceof DeclarantStatusModel) {
-            return $this->redirectToRoute('home');
-        }
+        $sessionHandler->init();
 
         return $this->render('pages/complaint_identity.html.twig', ['complaint' => $sessionHandler->getComplaint(), 'from_summary' => $fromSummary]);
     }

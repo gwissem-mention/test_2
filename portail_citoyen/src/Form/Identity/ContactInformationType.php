@@ -41,6 +41,9 @@ class ContactInformationType extends AbstractType
 
         $builder
             ->add('country', CountryAutocompleteType::class, [
+                'attr' => [
+                    'autocomplete' => 'country-name',
+                ],
                 'label' => 'pel.address.country',
                 'preferred_choices' => [$this->franceCode],
                 'empty_data' => $this->franceCode,
@@ -48,6 +51,7 @@ class ContactInformationType extends AbstractType
             ->add('email', EmailType::class, [
                 'attr' => [
                     'maxlength' => 50,
+                    'autocomplete' => 'email',
                 ],
                 'constraints' => [
                     new NotBlank(),

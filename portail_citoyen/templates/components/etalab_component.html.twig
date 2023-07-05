@@ -1,13 +1,15 @@
-<div {{ attributes.add(stimulus_controller('etalab')) }} style="margin-top: 0.5rem;">
-    <input type="text"
-           required="required"
-           data-model="addressSearch"
-           autocomplete="off"
-           class="fr-input{% if this.errors|length > 0 %} fr-input--error{% endif %}"
-           id="{{ inputName }}"
-           name="{{ inputName }}"
-           {% if disabled %}disabled="disabled"{% endif %}
-    >
+<div {{ attributes.add(stimulus_controller('etalab')) }} class="mt-2">
+	<div class="fr-input-wrap fr-icon-map-pin-2-line before:content-[''] before:z-10">
+        <input type="text"
+            required="required"
+            data-model="addressSearch"
+            autocomplete="off"
+            class="fr-input{% if this.errors|length > 0 %} fr-input--error{% endif %}"
+            id="{{ inputName }}"
+            name="{{ inputName }}"
+            {% if disabled %}disabled="disabled"{% endif %}
+        >
+    </div>
     {% if this.autoCompleteResults|length > 0 %}
         <ul class="list--addresses">
             {% for addr in this.autoCompleteResults %}

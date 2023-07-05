@@ -1186,8 +1186,8 @@
                 <source>pel.you.will.reject.the.declaration</source>
                 <target>Vous allez rejeter la déclaration</target>
             </trans-unit>
-            <trans-unit id="pel.your.identity">
-                <source>pel.your.identity</source>
+            <trans-unit id="pel.complaint.your.identity">
+                <source>pel.complaint.your.identity</source>
                 <target>Votre identité</target>
             </trans-unit>
             <trans-unit id="pel.you.must.choose.a.file">

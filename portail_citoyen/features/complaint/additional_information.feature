@@ -7,10 +7,10 @@ Feature:
     Background:
         Given I am on "/authentification"
         And I press "france_connect_auth_button"
-        Then I should be on "/porter-plainte/statut-declarant"
-        And I click the "label[for=declarant_status_declarantStatus_0]" element
-        And I press "declarant_status_submit"
+        Then I should be on "/porter-plainte/rappel-a-la-loi"
+        And I follow "complaint_identity_link"
         Then I should be on "/porter-plainte/identite"
+        And I click the "label[for=identity_declarantStatus_0]" element
         And I select "1" from "identity_civilState_familySituation"
         Given I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
         And I fill in "contact-information-address" with "avenue de la république paris"
@@ -42,7 +42,7 @@ Feature:
         Then I should be on "/porter-plainte/informations-complementaires"
 
     Scenario: I can click on the back button
-        When I follow "Précédent"
+        When I follow "Étape précédente"
         Then I should be on "/porter-plainte/objets"
 
     Scenario: I can see the suspectsChoice choices
@@ -109,7 +109,7 @@ Feature:
         And I click the "label[for=additional_information_cctvAvailable_0]" element
         And I press "additional_information_submit"
         Then I should be on "/porter-plainte/recapitulatif"
-        When I follow "Précédent"
+        When I follow "Étape précédente"
         Then I am on "/porter-plainte/informations-complementaires"
         And the "additional_information_suspectsChoice_0" field should contain "1"
         And the "additional_information_suspectsText" field should contain "suspects informations"

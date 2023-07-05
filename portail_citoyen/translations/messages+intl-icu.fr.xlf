@@ -132,7 +132,7 @@
             </trans-unit>
             <trans-unit id="pel.address.country">
                 <source>pel.address.country</source>
-                <target>Pays</target>
+                <target>Pays de résidence</target>
             </trans-unit>
             <trans-unit id="pel.address.end">
                 <source>pel.address.end</source>
@@ -328,7 +328,7 @@
             </trans-unit>
             <trans-unit id="pel.civil.state">
                 <source>pel.civil.state</source>
-                <target>État civil</target>
+                <target>Complétez votre état civil</target>
             </trans-unit>
             <trans-unit id="pel.civility">
                 <source>pel.civility</source>
@@ -390,6 +390,10 @@
                 <source>pel.complaint.identity.corporation.legal.representative</source>
                 <target>Représentant légal d’une personne morale</target>
             </trans-unit>
+            <trans-unit id="pel.complaint.identity.corporation.legal.representative.hint">
+                <source>pel.complaint.identity.corporation.legal.representative.hint</source>
+                <target>Dirigeant ou mandataire d’une entité.</target>
+            </trans-unit>
             <trans-unit id="pel.complaint.identity.declarant.status">
                 <source>pel.complaint.identity.declarant.status</source>
                 <target>Statut du déclarant</target>
@@ -398,6 +402,10 @@
                 <source>pel.complaint.identity.person.legal.representative</source>
                 <target>Représentant légal d’une personne physique</target>
             </trans-unit>
+            <trans-unit id="pel.complaint.identity.person.legal.representative.hint">
+                <source>pel.complaint.identity.person.legal.representative.hint</source>
+                <target>Parent, tuteur ou curateur légal.</target>
+            </trans-unit>
             <trans-unit id="pel.complaint.identity.victim">
                 <source>pel.complaint.identity.victim</source>
                 <target>Vous êtes victime ou vous représentez votre enfant mineur</target>
@@ -405,6 +413,10 @@
             <trans-unit id="pel.complaint.summary.identity.victim">
                 <source>pel.complaint.summary.identity.victim</source>
                 <target>Victime ou représentant de son enfant mineur</target>
+            </trans-unit>
+            <trans-unit id="pel.complaint.identity.victim.hint">
+                <source>pel.complaint.identity.victim.hint</source>
+                <target>Personne physique ayant subit un préjudice suite à l’infraction</target>
             </trans-unit>
             <trans-unit id="pel.complaint.location">
                 <source>pel.complaint.location</source>
@@ -492,7 +504,11 @@
             </trans-unit>
             <trans-unit id="pel.contact.information">
                 <source>pel.contact.information</source>
-                <target>Coordonnées</target>
+                <target>Renseignez vos coordonnées</target>
+            </trans-unit>
+            <trans-unit id="pel.contact.information.represented.person">
+                <source>pel.contact.information.represented.person</source>
+                <target>Les coordonnées de la personne physique représentée</target>
             </trans-unit>
             <trans-unit id="pel.continue.pel.without.log.in">
                 <source>pel.continue.pel.without.log.in</source>
@@ -664,7 +680,7 @@
             </trans-unit>
             <trans-unit id="pel.email">
                 <source>pel.email</source>
-                <target>Email</target>
+                <target>Adresse e-mail</target>
             </trans-unit>
             <trans-unit id="pel.end.hour">
                 <source>pel.end.hour</source>
@@ -834,6 +850,10 @@
                 <source>pel.france.connect</source>
                 <target>France Connect</target>
             </trans-unit>
+            <trans-unit id="pel.frequently.asked.questions">
+                <source>pel.frequently.asked.questions</source>
+                <target>Foire aux questions</target>
+            </trans-unit>
             <trans-unit id="pel.header.baseline">
                 <source>pel.header.baseline</source>
                 <target>Portail officiel de déclaration de plainte pour des faits d’atteinte aux biens</target>
@@ -936,7 +956,7 @@
             </trans-unit>
            <trans-unit id="pel.help.tos.title">
                 <source>pel.help.tos.title</source>
-                <target>Trouvez la démarche adaptée - Plainte en ligne</target>
+                <target>Conditions d’utilisation du service - Plainte en ligne</target>
             </trans-unit>
             <trans-unit id="pel.help.tos.type.of.offence">
                 <source>pel.help.tos.type.of.offence</source>
@@ -1164,7 +1184,7 @@
             </trans-unit>
             <trans-unit id="pel.phone.help">
                 <source>pel.phone.help</source>
-                <target>Veuillez saisir votre numéro uniquement avec des chiffres</target>
+                <target>Format attendu : (+33) 1 22 33 44 55</target>
             </trans-unit>
             <trans-unit id="pel.phone.shortened">
                 <source>pel.phone.shortened</source>
@@ -1200,7 +1220,7 @@
             </trans-unit>
             <trans-unit id="pel.next">
                 <source>pel.next</source>
-                <target>Suivant</target>
+                <target>Continuer</target>
             </trans-unit>
             <trans-unit id="pel.same.address.as.declarant">
                 <source>pel.same.address.as.declarant</source>
@@ -1512,7 +1532,7 @@
             </trans-unit>
             <trans-unit id="pel.previous">
                 <source>pel.previous</source>
-                <target>Précédent</target>
+                <target>Étape précédente</target>
             </trans-unit>
             <trans-unit id="pel.professional.card">
                 <source>pel.professional.card</source>
@@ -1570,6 +1590,10 @@
                 <source>pel.sir</source>
                 <target>Monsieur</target>
             </trans-unit>
+            <trans-unit id="pel.specify.your.status.in.this.process">
+                <source>pel.specify.your.status.in.this.process</source>
+                <target>Précisez votre statut dans le cadre de cette démarche</target>
+            </trans-unit>            
             <trans-unit id="pel.start.date.after.end.date">
                 <source>pel.start.date.after.end.date</source>
                 <target>La date de début est après la date de fin</target>
@@ -1830,10 +1854,6 @@
                 <source>pel.complaint.your.identity</source>
                 <target>Votre identité</target>
             </trans-unit>
-            <trans-unit id="pel.complaint.description.of.facts">
-                <source>pel.complaint.description.of.facts</source>
-                <target>Description des faits</target>
-            </trans-unit>
             <trans-unit id="pel.complaint.objects.concerned">
                 <source>pel.complaint.objects.concerned</source>
                 <target>Objets concernés</target>
@@ -1938,13 +1958,9 @@
                 <source>pel.read.more.about.france.connect</source>
                 <target>En savoir plus sur France Connect</target>
             </trans-unit>
-            <trans-unit id="pel.information.transmitted.by.france.connect">
-                <source>pel.information.transmitted.by.france.connect</source>
-                <target>Information transmise par France Connect</target>
-            </trans-unit>
             <trans-unit id="pel.these.informations.has.been.transmitted.by.france.connect">
                 <source>pel.these.informations.has.been.transmitted.by.france.connect</source>
-                <target>Les champs grisés correspondent à des informations qui nous ont été transmises par France Connect et ne peuvent pas être modifiées dans le cadre de cette démarche. Si les informations sont erronées, nous vous invitons à contacter France Connect pour les faire rectifier et à ne pas utiliser France Connect dans le cadre de cette démarche tant que les corrections n’auront pas été prises en compte.</target>
+                <target>Vous êtes identifié avec <![CDATA[<b>FranceConnect</b>]]>, par conséquent certains champs affichés ci-dessous ne sont pas modifiables.</target>
             </trans-unit>
             <trans-unit id="pel.if.these.informations.contains.errors">
                 <source>pel.if.these.informations.contains.errors</source>
@@ -1982,6 +1998,10 @@
                 <source>pel.legal.dispositions</source>
                 <target>Dispositions légales</target>
             </trans-unit>
+            <trans-unit id="pel.legal.dispositions.title">
+                <source>pel.legal.dispositions.title</source>
+                <target>Dispositions légales (étape 1 sur 7) - Plainte en ligne</target>
+            </trans-unit>            
             <trans-unit id="pel.before.starting.complaint">
                 <source>pel.before.starting.complaint</source>
                 <target>Avant de déclarer ma plainte, je prends acte des dispositions légales suivantes</target>
@@ -2098,10 +2118,10 @@
                 <source>pel.complete.my.declaration</source>
                 <target>Compléter ma déclaration</target>
             </trans-unit>
-            <trans-unit id="pel.your.identity">
-                <source>pel.your.identity</source>
-                <target>Votre identité</target>
-            </trans-unit>
+            <trans-unit id="pel.your.identity.title">
+                <source>pel.your.identity.title</source>
+                <target>Votre identité (étape 2 sur 7) - Plainte en ligne</target>
+            </trans-unit>            
             <trans-unit id="pel.my.online.complaint.declaration">
                 <source>pel.my.online.complaint.declaration</source>
                 <target>Ma déclaration<![CDATA[<br>]]>de plainte en ligne</target>
@@ -2150,6 +2170,10 @@
                 <source>pel.are.mandatory</source>
                 <target>sont obligatoires.</target>
             </trans-unit>
+            <trans-unit id="pel.all.fields.marked.with.an.asterisk.are.mandatory">
+                <source>pel.all.fields.marked.with.an.asterisk.are.mandatory</source>
+                <target>Tous les champs marqués du symbole <![CDATA[<span class="fr-label--error font-bold">*</span>]]> sont obligatoires.</target>
+            </trans-unit>         
             <trans-unit id="pel.description.of.facts.step.3">
                 <source>pel.description.of.facts.step.3</source>
                 <target>Description des faits (étape 3 sur 7) - Plainte en ligne</target>

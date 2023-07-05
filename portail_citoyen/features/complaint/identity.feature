@@ -8,26 +8,13 @@ Feature:
         Given I am on "/authentification"
         And I follow "no_france_connect_auth_button"
         And I follow "no_france_connect_auth_button_confirm"
-        Then I should be on "/porter-plainte/statut-declarant"
-        And I click the "label[for=declarant_status_declarantStatus_0]" element
-        And I press "declarant_status_submit"
+        Then I should be on "/porter-plainte/rappel-a-la-loi"
+        And I follow "complaint_identity_link"
         Then I should be on "/porter-plainte/identite"
 
     Scenario: I can click on the back button
-        When I follow "Précédent"
-        Then I should be on "/porter-plainte/statut-declarant"
-
-    Scenario: I can see the complaint identity page
-        And I should see "Statut du déclarant" in the ".fr-breadcrumb__list" element
-        And I should see "Identité" in the ".fr-breadcrumb__list" element
-        And I should see "Faits" in the ".fr-breadcrumb__list" element
-        And I should see "Objets concernés" in the ".fr-breadcrumb__list" element
-        And I should see "Informations complémentaires" in the ".fr-breadcrumb__list" element
-        And I should see "Récapitulatif de déclaration de plainte initiale" in the ".fr-breadcrumb__list" element
-        And I should see the key "pel.ministry" translated
-        And I should see the key "pel.inside" translated
-        And I should see the key "pel.and.overseas" translated
-        And I should see the key "pel.header.baseline" translated
+        When I follow "Étape précédente"
+        Then I should be on "/porter-plainte/rappel-a-la-loi"
 
     Scenario: I can see the family situation choice list
         And I should see "Célibataire" in the "#identity_civilState_familySituation" element

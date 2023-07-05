@@ -33,7 +33,7 @@ class ComplaintFileParser
         $complaint = $this->parseComplaint($complaintJson);
 
         $complaint
-            ->setIdentity($this->identityParser->parse($complaintJson->identity->civilState, $complaintJson->identity->contactInformation, $complaintJson->declarantStatus))
+            ->setIdentity($this->identityParser->parse($complaintJson->identity->civilState, $complaintJson->identity->contactInformation, $complaintJson->identity->declarantStatus))
             ->setFacts($this->factsParser->parse($complaintJson->facts, $complaintJson->objects->objects))
             ->setAdditionalInformation($this->additionalInformationParser->parse($complaintJson->additionalInformation));
 

@@ -1,25 +1,97 @@
-<h2>{{ 'pel.civil.state'|trans }}</h2>
-<div>
-    {{ form_row(form.civility) }}
-    {{ form_row(form.birthName) }}
-    {{ form_row(form.usageName) }}
-    {{ form_row(form.firstnames) }}
-    {{ form_row(form.familySituation) }}
-    {{ form_row(form.birthDate) }}
-    {{ form_row(form.birthLocation.country) }}
-    {% if form.birthLocation.frenchTown is defined %}
-        {{ form_row(form.birthLocation.frenchTown) }}
-    {% endif %}
-    {% if form.birthLocation.otherTown is defined %}
-        {{ form_row(form.birthLocation.otherTown) }}
-    {% endif %}
-    {% if form.birthLocation.frenchTown is defined and form.birthLocation.department is defined %}
-        {{ form_row(form.birthLocation.department, {'value':form.birthLocation.frenchTown.vars.value|city_department }) }}
-    {% endif %}
-    <p> {# Add div, little hack to avoid js issues #}
-        {{ form_row(form.nationality) }}
-    </p>
-    <div> {# Add div, little hack to avoid js issues #}
-        {{ form_row(form.job) }}
-    </div>
+<div class="flex flex-col">
+	{% if representedPerson is same as(false) %}
+		<h2 class="text-[22px]/7 md:text-[28px]/9 fr-mb-8v fr-mb-md-6v">{{ 'pel.civil.state'|trans }}</h2>
+	{% endif %}
+	{% if app.user is null and representedPerson is same as(false) %}
+		<div class="france-connect__group fr-mt-md-6v">
+			<button class="fr-connect" id="france_connect_auth_button" onclick="window.location='{{ path('authentication', {'france_connected': true, 'identity':true}) }}'; return false;">
+				<span class="fr-connect__login">{{ 'pel.identify.with'|trans }}</span>
+				<span class="fr-connect__brand">{{ 'pel.france.connect'|trans }}</span>
+			</button>
+			<p class="fr-mb-8v">
+				<a href="https://franceconnect.gouv.fr/" class="fr-text--sm fr-text-title--blue-france" target="_blank" rel="noopener" title="{{ 'pel.what.is.france.connect'|trans }} - {{ 'pel.new.window'|trans }}">{{ 'pel.what.is.france.connect'|trans }}</a>
+			</p>
+		</div>
+		<p class="fr-text md:text-lg fr-mb-8v">{{ 'pel.continue.pel.without.log.in.explanation'|trans|raw }}</p>
+		<hr>
+	{% endif %}
+	{% if is_france_connected() is same as(true) and representedPerson is same as(false) %}
+		<p class="fr-mt-md-4v">{{ 'pel.these.informations.has.been.transmitted.by.france.connect'|trans|raw }}</p>
+	{% endif %}
+	<fieldset class="{{ html_classes('fr-fieldset', 'fr-input-group', 'fr-mt-2v', 'fr-mt-md-6v', 'fr-mb-2v', {'fr-fieldset--error': form.civility.vars.errors is not empty}) }}" {% if form.civility.vars.errors is not empty %} role="group" aria-labelledby="legend-{{ form.civility.vars.id }} form-errors-{{ form.civility.vars.id }}" {% endif %}>
+		<div class="flex gap-x-8">
+			<legend class="fr-fieldset__legend--regular fr-fieldset__legend fr-text--regular" id="legend-{{ form.civility.vars.id }}">
+				{{ form.civility.vars.label|trans }}&nbsp;<span class="text-[var(--text-default-error)]">*</span>
+			</legend>
+			{% for child in form.civility.children %}
+				<div class="fr-fieldset__element fr-fieldset__element--inline">
+					<div class="fr-radio-group">
+                        {{ form_widget(child, {'attr':child.vars.attr|merge({'data-controller':'form', 'data-action':'change->form#changeJobUrl'})}) }}
+						<label class="fr-label" for="{{ child.vars.id }}">
+							{{ child.vars.label|trans }}
+						</label>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+		{{ form_errors(form.civility) }}
+	</fieldset>
+</div>
+{{ form_row(form.birthName) }}
+{{ form_row(form.usageName) }}
+{{ form_row(form.firstnames) }}
+<div class="md:w-1/2 fr-mb-6v">
+	{{ form_row(form.familySituation) }}
+</div>
+<div class="md:w-1/2 fr-mb-6v">
+	{{ form_row(form.birthDate) }}
+</div>
+<div class="fr-form-group md:w-1/2 fr-mb-6v">
+	<div class="{{ html_classes('fr-select-group', {'fr-select-group--error': form.birthLocation.country.vars.errors is not empty}) }}">
+		{{ form_label(form.birthLocation.country) }}
+		<div class="fr-input-wrap fr-icon-arrow-down-s-line before:content-[''] before:z-10">
+			{{ form_widget(form.birthLocation.country, {'attr':{'class':html_classes(attr.class ?? '', 'autocomplete' not in form.birthLocation.country.vars['block_prefixes'] ? 'fr-select' : '',{'fr-select--error':form.birthLocation.country.vars.errors is not empty})}}) }}
+		</div>
+		{{ form_errors(form.birthLocation.country) }}
+	</div>
+</div>
+{% if form.birthLocation.frenchTown is defined %}
+	<div class="fr-form-group md:w-1/2 fr-mb-6v">
+		<div class="{{ html_classes('fr-select-group', {'fr-select-group--error': form.birthLocation.frenchTown.vars.errors is not empty}) }}">
+			{{ form_label(form.birthLocation.frenchTown) }}
+			<div class="fr-input-wrap fr-icon-map-pin-2-line before:content-[''] before:z-10">
+				{{ form_widget(form.birthLocation.frenchTown, {'attr':{'class':html_classes(attr.class ?? 'french-town', 'autocomplete' not in form.birthLocation.frenchTown.vars['block_prefixes'] ? 'fr-select' : '',{'fr-select--error':form.birthLocation.frenchTown.vars.errors is not empty})}}) }}
+			</div>
+			{{ form_errors(form.birthLocation.frenchTown) }}
+		</div>
+	</div>
+{% endif %}
+{% if form.birthLocation.otherTown is defined %}
+	<div class="fr-form-group md:w-1/2 fr-mb-6v">
+		<div class="{{ html_classes('fr-select-group', {'fr-select-group--error': form.birthLocation.otherTown.vars.errors is not empty}) }}">
+			{{ form_label(form.birthLocation.otherTown) }}
+			<div class="fr-input-wrap fr-icon-map-pin-2-line before:content-[''] before:z-10">
+				{{ form_widget(form.birthLocation.otherTown, {'attr':{'class':html_classes(attr.class ?? '', 'autocomplete' not in form.birthLocation.otherTown.vars['block_prefixes'] ? 'fr-select' : '',{'fr-select--error':form.birthLocation.otherTown.vars.errors is not empty})}}) }}
+			</div>
+			{{ form_errors(form.birthLocation.otherTown) }}
+		</div>
+	</div>
+{% endif %}
+<div class="fr-form-group md:w-1/2 fr-mb-6v">
+	<div class="{{ html_classes('fr-select-group', {'fr-select-group--error': form.nationality.vars.errors is not empty}) }}">
+		{{ form_label(form.nationality) }}
+		<div class="fr-input-wrap fr-icon-arrow-down-s-line before:content-[''] before:z-10">
+			{{ form_widget(form.nationality, {'attr':{'class':html_classes(attr.class ?? '', 'autocomplete' not in form.nationality.vars['block_prefixes'] ? 'fr-select' : '',{'fr-select--error':form.nationality.vars.errors is not empty})}}) }}
+		</div>
+		{{ form_errors(form.nationality) }}
+	</div>
+</div>
+<div class="fr-form-group md:w-1/2 fr-mb-6v">
+	<div class="{{ html_classes('fr-select-group', {'fr-select-group--error': form.job.vars.errors is not empty}) }}">
+		{{ form_label(form.job) }}
+		<div class="fr-input-wrap fr-icon-briefcase-line before:content-[''] before:z-10">
+			{{ form_widget(form.job, {'attr':{'class':html_classes(attr.class ?? 'job', 'autocomplete' not in form.job.vars['block_prefixes'] ? 'fr-select' : '',{'fr-select--error':form.job.vars.errors is not empty})}}) }}
+		</div>
+		{{ form_errors(form.job) }}
+	</div>
 </div>

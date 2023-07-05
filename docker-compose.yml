@@ -25,6 +25,7 @@ services:
       - redis-citoyen
     volumes:
       - citoyen-public:/srv/citoyen/public:rw
+      - ./portail_citoyen/public/index.php:/srv/citoyen/public/index.php:ro
       - ./portail_citoyen/public/robots.txt:/srv/citoyen/public/robots.txt:ro
       - ./portail_citoyen/var:/srv/citoyen/var
     healthcheck:

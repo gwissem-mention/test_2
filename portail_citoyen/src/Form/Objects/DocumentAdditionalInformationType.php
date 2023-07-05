@@ -143,7 +143,7 @@ class DocumentAdditionalInformationType extends AbstractType
         /** @var ?ComplaintModel $complaint */
         $complaint = $this->sessionHandler->getComplaint();
 
-        if ($complaint?->getDeclarantStatus()?->getDeclarantStatus() === DeclarantStatus::CorporationLegalRepresentative->value) {
+        if ($complaint?->getIdentity()?->getDeclarantStatus() === DeclarantStatus::CorporationLegalRepresentative->value) {
             $form
                 ->add('documentOwnerCompany', TextType::class, [
                     'label' => 'pel.document.owner.company',

@@ -51,18 +51,18 @@ class CivilStateType extends AbstractType
                     new NotBlank(),
                 ],
                 'label' => 'pel.civility',
-                'placeholder' => 'pel.choose.your.civility',
+                'expanded' => true,
+                'multiple' => false,
+                'rich' => false,
+                'inline' => true,
                 'disabled' => $options['is_france_connected'] && $civilStateModel?->civilityIsDefined(),
-                'attr' => [
-                    'data-controller' => 'form',
-                    'data-action' => 'change->form#changeJobUrl',
-                ],
             ])
             ->add('birthName', TextType::class, [
                 'attr' => [
                     'data-controller' => 'form',
                     'data-action' => 'keyup->form#toUpperCase change->form#toUpperCase',
                     'maxlength' => 70,
+                    'autocomplete' => 'family-name',
                 ],
                 'constraints' => [
                     new NotBlank(),
@@ -87,6 +87,7 @@ class CivilStateType extends AbstractType
             ->add('firstnames', TextType::class, [
                 'attr' => [
                     'maxlength' => 40,
+                    'autocomplete' => 'given-name',
                 ],
                 'constraints' => [
                     new NotBlank(),
@@ -105,6 +106,9 @@ class CivilStateType extends AbstractType
                 ],
             ])
             ->add('birthDate', DateType::class, [
+                'attr' => [
+                    'autocomplete' => 'bday',
+                ],
                 'constraints' => $options['birthDate_constraints'],
                 'help' => 'pel.birth.date.help',
                 'label' => 'pel.birth.date',
@@ -114,7 +118,6 @@ class CivilStateType extends AbstractType
             ->add('birthLocation', LocationType::class, [
                 'country_label' => 'pel.birth.country',
                 'town_label' => 'pel.birth.town',
-                'department_label' => 'pel.birth.department',
                 'disabled' => $options['is_france_connected'] && $civilStateModel?->birthLocationIsDefined(),
             ])
             ->add('nationality', NationalityAutocompleteType::class, [

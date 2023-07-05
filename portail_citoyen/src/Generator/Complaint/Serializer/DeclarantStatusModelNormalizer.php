@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Generator\Complaint\Serializer;
 
 use App\AppEnum\DeclarantStatus;
-use App\Form\Model\Identity\DeclarantStatusModel;
+use App\Form\Model\Identity\IdentityModel;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
@@ -21,8 +21,8 @@ class DeclarantStatusModelNormalizer implements NormalizerInterface
     }
 
     /**
-     * @param DeclarantStatusModel $object
-     * @param array<mixed>         $context
+     * @param IdentityModel $object
+     * @param array<mixed>  $context
      *
      * @return array<string, mixed>
      */
@@ -44,6 +44,6 @@ class DeclarantStatusModelNormalizer implements NormalizerInterface
      */
     public function supportsNormalization($data, string $format = null, array $context = []): bool
     {
-        return in_array('complaint_generator', $context) && $data instanceof DeclarantStatusModel;
+        return in_array('complaint_generator', $context) && $data instanceof IdentityModel;
     }
 }
