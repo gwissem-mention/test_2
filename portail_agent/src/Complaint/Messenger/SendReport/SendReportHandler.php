@@ -7,6 +7,7 @@ namespace App\Complaint\Messenger\SendReport;
 use App\Complaint\Exceptions\NoOodriveComplaintFolderException;
 use App\Entity\Complaint;
 use App\Oodrive\ApiClientInterface;
+use App\Oodrive\Exception\FolderCreationException;
 use App\Repository\ComplaintRepository;
 use App\Salesforce\Messenger\ComplaintReportSend\ComplaintReportSendMessage;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
@@ -35,7 +36,27 @@ class SendReportHandler
             throw new NoOodriveComplaintFolderException("No Oodrive folder for complaint {$complaint->getId()}");
         }
 
-        $reportFolder = $this->oodriveClient->createFolder($this->oodriveReportFolderName, $complaint->getOodriveFolder());
+        try {
+            $reportFolder = $this->oodriveClient->createFolder($this->oodriveReportFolderName, $complaint->getOodriveFolder());
+        } catch (FolderCreationException $exception) {
+            // TODO improve this
+            if (str_contains($exception->getMessage(), '006 : Name Already Exists')) {
+                $complaintFolder = $this->oodriveClient->getFolder($complaint->getOodriveFolder());
+                $complaintFolderChildren = $this->oodriveClient->getChildrenFolders($complaintFolder);
+                foreach ($complaintFolderChildren as $child) {
+                    if ($this->oodriveReportFolderName === $child->getName()) {
+                        $reportFolder = $child;
+                        break;
+                    }
+                }
+
+                if (!isset($reportFolder)) {
+                    throw $exception;
+                }
+            } else {
+                throw $exception;
+            }
+        }
 
         foreach ($message->getFiles() as $file) {
             $this->oodriveClient->uploadFile($file, $file->getClientOriginalName(), $reportFolder->getId());
