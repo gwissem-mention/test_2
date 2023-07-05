@@ -257,6 +257,15 @@ export default class extends Controller {
                             if (response.status === HttpStatusCodeEnum.OK) {
                                 Modal.getInstance(this.sendReportModalTarget)?.hide();
 
+                                // Must be ignored because in Bootstrap types, Toast element has string | Element type
+                                // however we need here to type it as Toast.
+                                // @ts-ignore
+                                const toast: Toast = new Toast(document.getElementById("toast-close-complaint-after-the-appointment"));
+
+                                if (toast) {
+                                    toast.show();
+                                }
+
                                 this.reloadComplaintContainer();
                             } else {
                                 this.dropZoneFormTarget.innerHTML = data.form;

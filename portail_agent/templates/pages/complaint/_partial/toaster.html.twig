@@ -49,7 +49,15 @@
             </div>
         </div>
     {% endif %}
-    {% if workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_CLOSE_AFTER_SENDING_THE_REPORT') ) %}
+    {% if workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_CLOSE_AFTER_APPOINTMENT') ) or workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_CLOSE_AFTER_SENDING_THE_REPORT') )%}
+        <div class="toast align-items-center text-bg-secondary" id="toast-close-complaint-after-the-appointment" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
+            <div class="d-flex">
+                <div class="toast-body">
+                    {{ 'pel.the.complaint.is.closed'|trans }}
+                </div>
+                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="{{ 'pel.close'|trans }}"></button>
+            </div>
+        </div>
         <div class="toast align-items-center text-bg-secondary" id="toast-validation-send-report-to-victim" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
             <div class="d-flex">
                 <div class="toast-body">
