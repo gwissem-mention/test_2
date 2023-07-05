@@ -24,9 +24,16 @@ Feature:
         Then I should be on "/porter-plainte/identite"
 
     Scenario: I can see the place natures list
-        And I should see "Domicile/Logement" in the "#facts_placeNature" element
-        And I should see "Voie publique / Rue" in the "#facts_placeNature" element
+        And I should see "Domicile/Logement et dépendances" in the "#facts_placeNature" element
+        And I should see "Parking" in the "#facts_placeNature" element
+        And I should see "Établissement scolaire" in the "#facts_placeNature" element
+        And I should see "INTERNET" in the "#facts_placeNature" element
+        And I should see "Rue" in the "#facts_placeNature" element
         And I should see "Transports en commun" in the "#facts_placeNature" element
+        And I should see "Lieu de culte, de prière ou de recueillement" in the "#facts_placeNature" element
+        And I should see "Local professionnel/industriel" in the "#facts_placeNature" element
+        And I should see "Lieu de loisirs" in the "#facts_placeNature" element
+        And I should see "Commerce" in the "#facts_placeNature" element
         And I should see "Autres natures de lieu" in the "#facts_placeNature" element
 
     Scenario: I can see the offense exact date known radio buttons
@@ -170,14 +177,14 @@ Feature:
         Then I should not see a "div#facts-map" element
 
     Scenario: A Google Maps should be displayed on the facts page when I select "Street" or "Other" nature place
-        And I select "3" from "facts_placeNature"
+        And I select "5" from "facts_placeNature"
         Then I should see a "div#facts-map" element
         And I should see a ".gm-style" element
-        When I select "6" from "facts_placeNature"
+        When I select "11" from "facts_placeNature"
         Then I should see a "div#facts-map" element
         And I should see a ".gm-style" element
 
     Scenario: I can fill the map autocomplete and the marker should be at the right place
-        And I select "3" from "facts_placeNature"
+        And I select "5" from "facts_placeNature"
         And I fill in the map autocomplete "map-search" with "81 Avenue de la République 75011 Paris" and click on the first result
         Then the marker should be at latitude "48.8641471" and longitude "2.3815167"
