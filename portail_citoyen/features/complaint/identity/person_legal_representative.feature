@@ -8,10 +8,10 @@ Feature:
         Given I am on "/authentification"
         And I follow "no_france_connect_auth_button"
         And I follow "no_france_connect_auth_button_confirm"
-        Then I should be on "/porter-plainte/statut-declarant"
-        And I click the "label[for=declarant_status_declarantStatus_1]" element
-        And I press "declarant_status_submit"
-        And I am on "/porter-plainte/identite"
+        Then I should be on "/porter-plainte/rappel-a-la-loi"
+        And I follow "complaint_identity_link"
+        Then I should be on "/porter-plainte/identite"
+        And I click the "label[for=identity_declarantStatus_1]" element
 
     Scenario: I can select the person legal representative radio button
         Then I should see the key "pel.civility" translated
@@ -22,7 +22,6 @@ Feature:
         And I should see the key "pel.birth.date" translated
         And I should see the key "pel.birth.country" translated
         And I should see the key "pel.birth.town" translated
-        And I should see the key "pel.birth.department" translated
         And I should see the key "pel.nationality" translated
         And I should see the key "pel.your.job" translated
         And I should see the key "pel.address.country" translated
@@ -34,7 +33,7 @@ Feature:
         And I should see the key "pel.next" translated
 
     Scenario: Submit the form with minimal valid values for person legal representative declarant
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"
@@ -45,7 +44,7 @@ Feature:
         And I click the "#contact-information-address-75111_8158" element
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I fill in "identity_contactInformation_phone_number" with "0102020304"
-        And I select "1" from "identity_representedPersonCivilState_civility"
+        And I click the "label[for=identity_representedPersonCivilState_civility_0]" element
         And I fill in "identity_representedPersonCivilState_birthName" with "Dupont"
         And I fill in "identity_representedPersonCivilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_representedPersonCivilState_familySituation"
@@ -60,7 +59,7 @@ Feature:
         Then I should be on "/porter-plainte/faits"
 
     Scenario: Submit the form with the same address as the declarant checkbox with french address
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"
@@ -71,7 +70,7 @@ Feature:
         And I click the "#contact-information-address-75111_8158" element
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I fill in "identity_contactInformation_phone_number" with "0102020304"
-        And I select "1" from "identity_representedPersonCivilState_civility"
+        And I click the "label[for=identity_representedPersonCivilState_civility_0]" element
         And I fill in "identity_representedPersonCivilState_birthName" with "Dupont"
         And I fill in "identity_representedPersonCivilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_representedPersonCivilState_familySituation"
@@ -86,7 +85,7 @@ Feature:
         Then I should be on "/porter-plainte/faits"
 
     Scenario: Submit the form with another birthCountry than France for person legal representative declarant
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"
@@ -98,7 +97,7 @@ Feature:
         And I click the "#contact-information-address-75111_8158" element
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I fill in "identity_contactInformation_phone_number" with "0102020304"
-        And I select "1" from "identity_representedPersonCivilState_civility"
+        And I click the "label[for=identity_representedPersonCivilState_civility_0]" element
         And I fill in "identity_representedPersonCivilState_birthName" with "Dupont"
         And I fill in "identity_representedPersonCivilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_representedPersonCivilState_familySituation"
@@ -113,7 +112,7 @@ Feature:
         Then I should be on "/porter-plainte/faits"
 
     Scenario: Submit the form with another addressCountry than France for person legal representative declarant
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"
@@ -126,7 +125,7 @@ Feature:
         And I fill in "identity_contactInformation_foreignAddress_street" with "de Alcalá Madrid España"
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I fill in "identity_contactInformation_phone_number" with "0102020304"
-        And I select "1" from "identity_representedPersonCivilState_civility"
+        And I click the "label[for=identity_representedPersonCivilState_civility_0]" element
         And I fill in "identity_representedPersonCivilState_birthName" with "Dupont"
         And I fill in "identity_representedPersonCivilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_representedPersonCivilState_familySituation"
@@ -141,7 +140,7 @@ Feature:
         Then I should be on "/porter-plainte/faits"
 
     Scenario: Submit the form with the same address as the declarant checkbox with foreign address
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"
@@ -154,7 +153,7 @@ Feature:
         And I fill in "identity_contactInformation_foreignAddress_street" with "de Alcalá Madrid España"
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I fill in "identity_contactInformation_phone_number" with "0102020304"
-        And I select "1" from "identity_representedPersonCivilState_civility"
+        And I click the "label[for=identity_representedPersonCivilState_civility_0]" element
         And I fill in "identity_representedPersonCivilState_birthName" with "Dupont"
         And I fill in "identity_representedPersonCivilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_representedPersonCivilState_familySituation"
@@ -173,7 +172,7 @@ Feature:
         Then I should be on "/porter-plainte/faits"
 
     Scenario: Submit the form with no phones filled for represented person
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"
@@ -184,7 +183,7 @@ Feature:
         And I click the "#contact-information-address-75111_8158" element
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I fill in "identity_contactInformation_phone_number" with "0102020304"
-        And I select "1" from "identity_representedPersonCivilState_civility"
+        And I click the "label[for=identity_representedPersonCivilState_civility_0]" element
         And I fill in "identity_representedPersonCivilState_birthName" with "Dupont"
         And I fill in "identity_representedPersonCivilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_representedPersonCivilState_familySituation"
@@ -205,20 +204,20 @@ Feature:
         And I should see a "#form-errors-identity_civilState_civility" element
 
     Scenario: Submit the form with only 1 required value for Person Legal Representative declarant
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I press "identity_submit"
         Then I should be on "/porter-plainte/identite"
         And I should see a "#form-errors-identity_civilState_birthName" element
 
     Scenario: Submit the form with only 2 required value for Person Legal Representative declarant
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I press "identity_submit"
         Then I should be on "/porter-plainte/identite"
         And I should see a "#form-errors-identity_civilState_firstnames" element
 
     Scenario: Submit the form with only 3 required value for Person Legal Representative declarant
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I press "identity_submit"
@@ -226,7 +225,7 @@ Feature:
         And I should see a "#form-errors-identity_civilState_familySituation" element
 
     Scenario: Submit the form with only 4 required value for Person Legal Representative declarant
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"
@@ -235,7 +234,7 @@ Feature:
         And I should see a "#form-errors-identity_civilState_birthDate" element
 
     Scenario: Submit the form with only 5 required value for Person Legal Representative declarant
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"
@@ -245,7 +244,7 @@ Feature:
         And I should see a "#form-errors-identity_civilState_birthLocation_frenchTown" element
 
     Scenario: Submit the form with only 6 required value for Person Legal Representative declarant
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"
@@ -256,7 +255,7 @@ Feature:
         And I should see a "#form-errors-identity_civilState_job" element
 
     Scenario: Submit the form with only 7 required value for Person Legal Representative declarant
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"
@@ -269,7 +268,7 @@ Feature:
 #        And the field "contact-information-address" should have focus
 
     Scenario: Submit the form with only 8 required value for Person Legal Representative declarant
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"
@@ -283,7 +282,7 @@ Feature:
         And I should see a "#form-errors-identity_contactInformation_email" element
 
     Scenario: Submit the form with only 9 required value for Person Legal Representative declarant
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"
@@ -298,7 +297,7 @@ Feature:
         And I should see a "#form-errors-identity_contactInformation_phone_number" element
 
     Scenario: Submit the form with only 10 required values for Person Legal Representative Declarant
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"
@@ -314,7 +313,7 @@ Feature:
         And I should see a "#form-errors-identity_representedPersonCivilState_civility" element
 
     Scenario: Submit the form with only 11 required values for Person Legal Representative Declarant
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"
@@ -325,13 +324,13 @@ Feature:
         And I click the "#contact-information-address-75111_8158" element
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I fill in "identity_contactInformation_phone_number" with "0102020304"
-        And I select "1" from "identity_representedPersonCivilState_civility"
+        And I click the "label[for=identity_representedPersonCivilState_civility_0]" element
         And I press "identity_submit"
         Then I should be on "/porter-plainte/identite"
         And I should see a "#form-errors-identity_representedPersonCivilState_birthName" element
 
     Scenario: Submit the form with only 12 required values for Person Legal Representative Declarant
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"
@@ -342,14 +341,14 @@ Feature:
         And I click the "#contact-information-address-75111_8158" element
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I fill in "identity_contactInformation_phone_number" with "0102020304"
-        And I select "1" from "identity_representedPersonCivilState_civility"
+        And I click the "label[for=identity_representedPersonCivilState_civility_0]" element
         And I fill in "identity_representedPersonCivilState_birthName" with "Dupont"
         And I press "identity_submit"
         Then I should be on "/porter-plainte/identite"
         And I should see a "#form-errors-identity_representedPersonCivilState_firstnames" element
 
     Scenario: Submit the form with only 13 required values for Person Legal Representative Declarant
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"
@@ -360,7 +359,7 @@ Feature:
         And I click the "#contact-information-address-75111_8158" element
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I fill in "identity_contactInformation_phone_number" with "0102020304"
-        And I select "1" from "identity_representedPersonCivilState_civility"
+        And I click the "label[for=identity_representedPersonCivilState_civility_0]" element
         And I fill in "identity_representedPersonCivilState_birthName" with "Dupont"
         And I fill in "identity_representedPersonCivilState_firstnames" with "Jean Pierre Marie"
         And I press "identity_submit"
@@ -368,7 +367,7 @@ Feature:
         And I should see a "#form-errors-identity_representedPersonCivilState_familySituation" element
 
     Scenario: Submit the form with only 14 required values for Person Legal Representative Declarant
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"
@@ -379,7 +378,7 @@ Feature:
         And I click the "#contact-information-address-75111_8158" element
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I fill in "identity_contactInformation_phone_number" with "0102020304"
-        And I select "1" from "identity_representedPersonCivilState_civility"
+        And I click the "label[for=identity_representedPersonCivilState_civility_0]" element
         And I fill in "identity_representedPersonCivilState_birthName" with "Dupont"
         And I fill in "identity_representedPersonCivilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_representedPersonCivilState_familySituation"
@@ -388,7 +387,7 @@ Feature:
         And I should see a "#form-errors-identity_representedPersonCivilState_birthDate" element
 
     Scenario: Submit the form with only 15 required values for Person Legal Representative Declarant
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"
@@ -399,7 +398,7 @@ Feature:
         And I click the "#contact-information-address-75111_8158" element
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I fill in "identity_contactInformation_phone_number" with "0102020304"
-        And I select "1" from "identity_representedPersonCivilState_civility"
+        And I click the "label[for=identity_representedPersonCivilState_civility_0]" element
         And I fill in "identity_representedPersonCivilState_birthName" with "Dupont"
         And I fill in "identity_representedPersonCivilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_representedPersonCivilState_familySituation"
@@ -409,7 +408,7 @@ Feature:
         And I should see a "#form-errors-identity_representedPersonCivilState_birthLocation_frenchTown" element
 
     Scenario: Submit the form with only 16 required values for Person Legal Representative Declarant
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"
@@ -420,7 +419,7 @@ Feature:
         And I click the "#contact-information-address-75111_8158" element
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I fill in "identity_contactInformation_phone_number" with "0102020304"
-        And I select "1" from "identity_representedPersonCivilState_civility"
+        And I click the "label[for=identity_representedPersonCivilState_civility_0]" element
         And I fill in "identity_representedPersonCivilState_birthName" with "Dupont"
         And I fill in "identity_representedPersonCivilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_representedPersonCivilState_familySituation"
@@ -431,7 +430,7 @@ Feature:
         And I should see a "#form-errors-identity_representedPersonCivilState_job" element
 
     Scenario: Submit the form with only 17 required values for Person Legal Representative Declarant
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"
@@ -442,7 +441,7 @@ Feature:
         And I click the "#contact-information-address-75111_8158" element
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I fill in "identity_contactInformation_phone_number" with "0102020304"
-        And I select "1" from "identity_representedPersonCivilState_civility"
+        And I click the "label[for=identity_representedPersonCivilState_civility_0]" element
         And I fill in "identity_representedPersonCivilState_birthName" with "Dupont"
         And I fill in "identity_representedPersonCivilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_representedPersonCivilState_familySituation"
@@ -454,7 +453,7 @@ Feature:
         And I should see a "#form-errors-represented-person-address" element
 
     Scenario: Submit the form with only 18 required values for Person Legal Representative Declarant
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"
@@ -465,7 +464,7 @@ Feature:
         And I click the "#contact-information-address-75111_8158" element
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I fill in "identity_contactInformation_phone_number" with "0102020304"
-        And I select "1" from "identity_representedPersonCivilState_civility"
+        And I click the "label[for=identity_representedPersonCivilState_civility_0]" element
         And I fill in "identity_representedPersonCivilState_birthName" with "Dupont"
         And I fill in "identity_representedPersonCivilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_representedPersonCivilState_familySituation"
@@ -479,7 +478,7 @@ Feature:
         And I should see a "#form-errors-identity_representedPersonContactInformation_email" element
 
     Scenario: Submit the form with only 19 required values for Person Legal Representative Declarant
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"
@@ -490,7 +489,7 @@ Feature:
         And I click the "#contact-information-address-75111_8158" element
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I fill in "identity_contactInformation_phone_number" with "0102020304"
-        And I select "1" from "identity_representedPersonCivilState_civility"
+        And I click the "label[for=identity_representedPersonCivilState_civility_0]" element
         And I fill in "identity_representedPersonCivilState_birthName" with "Dupont"
         And I fill in "identity_representedPersonCivilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_representedPersonCivilState_familySituation"

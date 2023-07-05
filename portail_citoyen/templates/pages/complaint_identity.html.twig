@@ -1,33 +1,22 @@
-{% extends 'layout.html.twig' %}
+{% extends 'common/_complaint.html.twig' %}
 
-{% block title %}{{ 'pel.complaint.create'|trans }}{% endblock %}
+{% set icon = 'law-refresher' %}
+{% set title = 'pel.my.online.complaint.declaration'|trans %}
+{% set current_step_title = 'pel.complaint.your.identity'|trans %}
+{% set current_step_number = 2 %}
+{% set next_step_title = 'pel.facts.description'|trans %}
+{% set display_footer = false %}
 
-{% block body %}
-    <div class="fr-container container" data-controller="form">
-        <h1>{{ 'pel.complaint.my.declaration'|trans }}</h1>
-        {% include 'common/_complaint_nav.html.twig' with {'active':'identity'} %}
-        {% if is_france_connected() is same as(true) %}
-            <div class="fr-alert fr-alert--info">
-                <h3 class="fr-alert__title">{{ 'pel.information.transmitted.by.france.connect'|trans }}</h3>
-                <p>{{ 'pel.these.informations.has.been.transmitted.by.france.connect'|trans }}</p>
-                <p>
-                    {{ 'pel.if.these.informations.contains.errors'|trans }}
-                    <a href="{{ path('authentication', {'france_connected': false}) }}">{{ 'pel.click.here.to.continue.without.authentication'|trans }}</a>
-                </p>
-            </div>
-        {% endif %}
-        <p>
-            {{ 'pel.complaint.all.required.fields.are.required'|trans }}
-            <span class="fr-icon-information-line" aria-hidden="true"></span>
-        </p>
-        <div class="wrapper--complaint">
-            <div class="accordion__item__title" id="identity_accordion_title">
-                <span class="fr-icon-arrow-down-s-line"></span>
-                {{ 'pel.complaint.your.identity'|trans }}
-            </div>
-            <div class="accordion__item__content" id="identity_accordion_content">
-                {{ component('identity', {class: 'fr-py-1w', fromSummary: from_summary}) }}
-            </div>
-        </div>
-    </div>
+{% block title %}
+	{{ 'pel.your.identity.title'|trans }}
+{% endblock %}
+
+{% block content %}
+	<div data-controller="form">
+		{{ component('identity', {fromSummary: from_summary}) }}
+	</div>
+{% endblock %}
+
+{% block end %}
+	<a class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line" href="{{ path('complaint_facts') }}">{{ 'pel.complete.my.declaration'|trans }}</a>
 {% endblock %}

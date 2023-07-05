@@ -1,12 +1,16 @@
-<h2>{{ 'pel.corporation.legal.information'|trans }}</h2>
+<h2 class="text-[22px]/7 md:text-[28px]/9 fr-mb-8v fr-mb-md-12v">{{ 'pel.corporation.legal.information'|trans }}</h2>
 <div>
     {{ form_row(form.siren) }}
     {{ form_row(form.name) }}
     {{ form_row(form.function) }}
-    {{ form_row(form.nationality) }}
+    <div class="fr-mb-6v">
+        {{ form_row(form.nationality) }}
+    </div>
     {{ form_row(form.email) }}
     {{ form_row(form.phone) }}
-    {{ form_row(form.country) }}
+    <div class="fr-mb-6v">
+        {{ form_row(form.country) }}
+    </div>
 
 
     {% set etalab_errors = [] %}
@@ -16,7 +20,7 @@
         {% endfor %}
     {% endif %}
 
-    <div class="fr-input-group{% if etalab_errors|length > 0 %} fr-input-group--error{% endif %}">
+    <div class="fr-input-group fr-mb-6v {% if etalab_errors|length > 0 %} fr-input-group--error{% endif %}">
         {% if form.frenchAddress is defined %}
             {{ form_label(form.frenchAddress, 'pel.address') }}
         {% endif %}

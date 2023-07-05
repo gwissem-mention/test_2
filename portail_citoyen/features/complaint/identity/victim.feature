@@ -8,10 +8,10 @@ Feature:
         Given I am on "/authentification"
         And I follow "no_france_connect_auth_button"
         And I follow "no_france_connect_auth_button_confirm"
-        Then I should be on "/porter-plainte/statut-declarant"
-        And I click the "label[for=declarant_status_declarantStatus_0]" element
-        And I press "declarant_status_submit"
-        And I am on "/porter-plainte/identite"
+        Then I should be on "/porter-plainte/rappel-a-la-loi"
+        And I follow "complaint_identity_link"
+        Then I should be on "/porter-plainte/identite"
+        And I click the "label[for=identity_declarantStatus_0]" element
 
     Scenario: I can see the fields for Victim
         Then I should see the key "pel.civility" translated
@@ -22,7 +22,6 @@ Feature:
         And I should see the key "pel.birth.date" translated
         And I should see the key "pel.birth.country" translated
         And I should see the key "pel.birth.town" translated
-        And I should see the key "pel.birth.department" translated
         And I should see the key "pel.nationality" translated
         And I should see the key "pel.your.job" translated
         And I should see the key "pel.address.country" translated
@@ -42,7 +41,7 @@ Feature:
         And I should not see "Paris (75000)" in the "#identity_civilState_birthLocation_otherTown" element
 
     Scenario: Submit the form with minimal valid values for victim declarant
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"
@@ -57,14 +56,14 @@ Feature:
         Then I should be on "/porter-plainte/faits"
 
     Scenario: Submit the form with male job then female job
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"
         And I fill in "identity_civilState_birthDate" with "01/01/2000"
         And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
         And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
-        And I select "2" from "identity_civilState_civility"
+        And I click the "label[for=identity_civilState_civility_1]" element
         And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteuse de bestiaux" and click "2"
         And I fill in "contact-information-address" with "avenue de la république paris"
         And I click the "#contact-information-address-75111_8158" element
@@ -74,7 +73,7 @@ Feature:
         Then I should be on "/porter-plainte/faits"
 
     Scenario: Submit the form with another birthCountry than France for victim declarant
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"
@@ -90,7 +89,7 @@ Feature:
         Then I should be on "/porter-plainte/faits"
 
     Scenario: Submit the form with no phones filled
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"
@@ -106,7 +105,7 @@ Feature:
         And I should see a "#form-errors-identity_contactInformation_phone_number" element
 
     Scenario: Submit the form with another addressCountry than France for victim declarant
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"
@@ -130,20 +129,20 @@ Feature:
         And I should see a "#form-errors-identity_civilState_civility" element
 
     Scenario: Submit the form with only 1 required value for Victim declarant
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I press "identity_submit"
         Then I should be on "/porter-plainte/identite"
         And I should see a "#form-errors-identity_civilState_birthName" element
 
     Scenario: Submit the form with only 2 required value for Victim declarant
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I press "identity_submit"
         Then I should be on "/porter-plainte/identite"
         And I should see a "#form-errors-identity_civilState_firstnames" element
 
     Scenario: Submit the form with only 3 required value for Victim declarant
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I press "identity_submit"
@@ -151,7 +150,7 @@ Feature:
         And I should see a "#form-errors-identity_civilState_familySituation" element
 
     Scenario: Submit the form with only 4 required value for Victim declarant
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"
@@ -160,7 +159,7 @@ Feature:
         And I should see a "#form-errors-identity_civilState_birthDate" element
 
     Scenario: Submit the form with only 5 required value for Victim declarant
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"
@@ -170,7 +169,7 @@ Feature:
         And I should see a "#form-errors-identity_civilState_birthLocation_frenchTown" element
 
     Scenario: Submit the form with only 6 required value for Victim declarant
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"
@@ -181,7 +180,7 @@ Feature:
         And I should see a "#form-errors-identity_civilState_job" element
 
     Scenario: Submit the form with only 7 required value for Victim declarant
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"
@@ -194,7 +193,7 @@ Feature:
 #        And the field "contact-information-address" should have focus
 
     Scenario: Submit the form with only 8 required value for Victim declarant
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"
@@ -208,7 +207,7 @@ Feature:
         And I should see a "#form-errors-identity_contactInformation_email" element
 
     Scenario: Submit the form with only 9 required value for Victim declarant
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"
@@ -225,9 +224,9 @@ Feature:
     Scenario: I fill the identity form as france connected, when I go back, the identity data should be saved
         Given I am on "/authentification"
         When I press "france_connect_auth_button"
-        Then I should be on "/porter-plainte/statut-declarant"
-        And I click the "label[for=declarant_status_declarantStatus_0]" element
-        And I press "declarant_status_submit"
+        Then I should be on "/porter-plainte/rappel-a-la-loi"
+        And I follow "complaint_identity_link"
+        And I click the "label[for=identity_declarantStatus_0]" element
         And I select "1" from "identity_civilState_familySituation"
         And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
         And I fill in "contact-information-address" with "avenue de la république paris"
@@ -247,7 +246,7 @@ Feature:
         And the "identity_contactInformation_phone_number" field should contain "1 02 03 04 05"
 
     Scenario: I fill the identity form as not france connected, when go back, the identity data should be saved
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"
@@ -272,7 +271,7 @@ Feature:
         And the "identity_contactInformation_phone_number" field should contain "1 02 03 04 05"
 
     Scenario: I fill the identity form with an non etalab address, then I should see a google maps opened in the facts form
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"
@@ -289,7 +288,7 @@ Feature:
         And the marker should be at latitude "48.8650197" and longitude "2.3758909"
 
     Scenario: Submit the form, selecting birth country France, then Spain, then France again
-        When I select "1" from "identity_civilState_civility"
+        When I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"

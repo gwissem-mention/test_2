@@ -21,11 +21,6 @@ parameters:
 			path: src/Complaint/ComplaintFileParser.php
 
 		-
-			message: "#^Access to an undefined property object\\:\\:\\$declarantStatus\\.$#"
-			count: 1
-			path: src/Complaint/ComplaintFileParser.php
-
-		-
 			message: "#^Access to an undefined property object\\:\\:\\$facts\\.$#"
 			count: 1
 			path: src/Complaint/ComplaintFileParser.php
@@ -42,7 +37,7 @@ parameters:
 
 		-
 			message: "#^Access to an undefined property object\\:\\:\\$identity\\.$#"
-			count: 7
+			count: 8
 			path: src/Complaint/ComplaintFileParser.php
 
 		-
@@ -236,13 +231,13 @@ parameters:
 			path: src/Complaint/Parser/IdentityParser.php
 
 		-
-			message: "#^Access to an undefined property object\\:\\:\\$country\\.$#"
-			count: 2
+			message: "#^Access to an undefined property object\\:\\:\\$code\\.$#"
+			count: 1
 			path: src/Complaint/Parser/IdentityParser.php
 
 		-
-			message: "#^Access to an undefined property object\\:\\:\\$declarantStatus\\.$#"
-			count: 1
+			message: "#^Access to an undefined property object\\:\\:\\$country\\.$#"
+			count: 2
 			path: src/Complaint/Parser/IdentityParser.php
 
 		-

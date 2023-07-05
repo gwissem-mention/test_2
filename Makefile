@@ -126,6 +126,11 @@ citoyen-composer:
 citoyen-permfix:
 	@$(CITOYEN_CONT) make --no-print-directory permfix uid=$(UID) gid=$(GID)
 
+## Run composer command in portail_citoyen container, example: make citoyen-composer c='req symfony/orm-pack'
+citoyen-behat:
+	@$(eval c ?=)
+	@$(CITOYEN_CONT) make --no-print-directory behat c="$(c)"
+
 #################################
 Project:
 

@@ -7,7 +7,6 @@ namespace App\Session;
 use App\Form\Model\AdditionalInformation\AdditionalInformationModel;
 use App\Form\Model\AppointmentModel;
 use App\Form\Model\Facts\FactsModel;
-use App\Form\Model\Identity\DeclarantStatusModel;
 use App\Form\Model\Identity\IdentityModel;
 use App\Form\Model\Objects\ObjectsModel;
 use Symfony\Component\Serializer\Annotation\Ignore;
@@ -17,7 +16,6 @@ class ComplaintModel
 {
     private Uuid $id;
     private \DateTimeInterface $createdAt;
-    private ?DeclarantStatusModel $declarantStatus = null;
     private ?IdentityModel $identity = null;
     private ?FactsModel $facts = null;
     private ?AdditionalInformationModel $additionalInformation = null;
@@ -30,18 +28,6 @@ class ComplaintModel
     {
         $this->createdAt = new \DateTimeImmutable('now');
         $this->id = $id;
-    }
-
-    public function getDeclarantStatus(): ?DeclarantStatusModel
-    {
-        return $this->declarantStatus;
-    }
-
-    public function setDeclarantStatus(?DeclarantStatusModel $declarantStatus): self
-    {
-        $this->declarantStatus = $declarantStatus;
-
-        return $this;
     }
 
     public function getIdentity(): ?IdentityModel

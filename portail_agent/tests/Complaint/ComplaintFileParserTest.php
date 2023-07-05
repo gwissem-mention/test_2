@@ -36,16 +36,13 @@ class ComplaintFileParserTest extends KernelTestCase
 		"timestamp": 1679058338,
 		"timezone": "+00:00"
 	},
-	"declarantStatus":
+	"identity":
 	{
-		"declarantStatus":
+	    "declarantStatus":
 		{
 			"code": 1,
 			"label": "pel.complaint.identity.victim"
-		}
-	},
-	"identity":
-	{
+		},
 		"civilState":
 		{
 			"civility":

@@ -7,10 +7,10 @@ Feature:
     Background:
         Given I am on "/authentification"
         When I press "france_connect_auth_button"
-        Then I should be on "/porter-plainte/statut-declarant"
-        And I click the "label[for=declarant_status_declarantStatus_0]" element
-        And I press "declarant_status_submit"
+        Then I should be on "/porter-plainte/rappel-a-la-loi"
+        And I follow "complaint_identity_link"
         Then I should be on "/porter-plainte/identite"
+        And I click the "label[for=identity_declarantStatus_0]" element
         And I select "1" from "identity_civilState_familySituation"
         Given I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
         And I fill in "contact-information-address" with "avenue de la république paris"
@@ -51,7 +51,7 @@ Feature:
         And I click the "label[for=additional_information_cctvAvailable_0]" element
         And I press "additional_information_submit"
         Then I should be on "/porter-plainte/recapitulatif"
-        When I press "Suivant"
+        When I press "Continuer"
         And I follow "Je confirme"
         Then I should be on "/porter-plainte/rendez-vous"
 
@@ -60,7 +60,7 @@ Feature:
         And I should see the key "pel.appointment.message.2" translated
 
     Scenario: I can click on the back button
-        When I follow "Précédent"
+        When I follow "Étape précédente"
         Then I should be on "/porter-plainte/recapitulatif"
 
     Scenario: I can fill the appointment textarea and submit
@@ -98,11 +98,11 @@ Feature:
         Given I am on "/authentification"
         When I follow "no_france_connect_auth_button"
         And I follow "no_france_connect_auth_button_confirm"
-        Then I should be on "/porter-plainte/statut-declarant"
-        And I click the "label[for=declarant_status_declarantStatus_0]" element
-        And I press "declarant_status_submit"
+        Then I should be on "/porter-plainte/rappel-a-la-loi"
+        And I follow "complaint_identity_link"
         Then I should be on "/porter-plainte/identite"
-        When I select "1" from "identity_civilState_civility"
+        And I click the "label[for=identity_declarantStatus_0]" element
+        And I click the "label[for=identity_civilState_civility_0]" element
         And I fill in "identity_civilState_birthName" with "Dupont"
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"
@@ -147,7 +147,7 @@ Feature:
         And I click the "label[for=additional_information_cctvAvailable_0]" element
         And I press "additional_information_submit"
         Then I should be on "/porter-plainte/recapitulatif"
-        When I press "Suivant"
+        When I press "Continuer"
         And I follow "Je confirme"
         Then I should be on "/porter-plainte/rendez-vous"
         When I press "appointment_submit"
@@ -155,11 +155,9 @@ Feature:
         And I should see a "#form-errors-appointment_appointmentContactText" element
 
     Scenario: I should see error if I valid with no filling the appointment textarea when I am person legal representative
-        Given I am on "/porter-plainte/statut-declarant"
-        And I click the "label[for=declarant_status_declarantStatus_1]" element
-        When I press "declarant_status_submit"
-        Then I should be on "/porter-plainte/identite"
-        When I select "1" from "identity_representedPersonCivilState_civility"
+        Given I am on "/porter-plainte/identite"
+        And I click the "label[for=identity_declarantStatus_1]" element
+        When I click the "label[for=identity_representedPersonCivilState_civility_0]" element
         And I fill in "identity_representedPersonCivilState_birthName" with "Dupont"
         And I fill in "identity_representedPersonCivilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_representedPersonCivilState_familySituation"
@@ -178,10 +176,8 @@ Feature:
         And I should see a "#form-errors-appointment_appointmentContactText" element
 
     Scenario: I should see error if I valid with no filling the appointment textarea when I am corporation legal representative
-        Given I am on "/porter-plainte/statut-declarant"
-        And I click the "label[for=declarant_status_declarantStatus_2]" element
-        When I press "declarant_status_submit"
-        Then I should be on "/porter-plainte/identite"
+        Given I am on "/porter-plainte/identite"
+        And I click the "label[for=identity_declarantStatus_2]" element
         When I fill in "identity_corporation_siren" with "123456789"
         And I fill in "identity_corporation_name" with "Test Company"
         And I fill in "identity_corporation_function" with "Developer"

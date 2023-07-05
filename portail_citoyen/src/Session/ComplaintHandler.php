@@ -43,7 +43,7 @@ class ComplaintHandler
     public function isAppointmentRequired(ComplaintModel $complaint): bool
     {
         return !$complaint->isFranceConnected()
-            || in_array($complaint->getDeclarantStatus()?->getDeclarantStatus(), [DeclarantStatus::CorporationLegalRepresentative->value, DeclarantStatus::PersonLegalRepresentative->value], true)
+            || in_array($complaint->getIdentity()?->getDeclarantStatus(), [DeclarantStatus::CorporationLegalRepresentative->value, DeclarantStatus::PersonLegalRepresentative->value], true)
             || $complaint->getFacts()?->isVictimOfViolence()
             || (null !== $complaint->getObjects() && $this->hasObjectsAppointmentRequired($complaint->getObjects()));
     }

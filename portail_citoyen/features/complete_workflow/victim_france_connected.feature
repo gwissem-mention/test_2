@@ -7,10 +7,10 @@ Feature:
     Scenario: Submit the facts form as a victim logged in with France Connect
         Given I am on "/authentification"
         When I press "france_connect_auth_button"
-        Then I should be on "/porter-plainte/statut-declarant"
-        And I click the "label[for=declarant_status_declarantStatus_0]" element
-        And I press "declarant_status_submit"
+        Then I should be on "/porter-plainte/rappel-a-la-loi"
+        And I follow "complaint_identity_link"
         Then I should be on "/porter-plainte/identite"
+        And I click the "label[for=identity_declarantStatus_0]" element
         And I select "1" from "identity_civilState_familySituation"
         When I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
         And I fill in "contact-information-address" with "avenue de la république paris"
@@ -128,7 +128,7 @@ Feature:
         And I should see "description informations lorem ipsum dol or sit amet lorem ipsum dol or sit amet"
         And I should see the key "pel.note" translated
         And I should see the key "pel.summary.is.not.legal.proof" translated
-        When I press "Suivant"
+        When I press "Continuer"
         Then I should see 1 "#fr-modal-complaint-confirm[open=true]" element
         And I should see the key "pel.declaration.confirmation" translated
         And I should see the key "pel.i.confirm.declaration.is.complete" translated
@@ -173,9 +173,9 @@ Feature:
         And I should see "Vous avez ajouté 3 objets pour un montant total de 200,00 €"
         And I should see the key "pel.place.complaint.handling" translated
         And I should see "Commissariat de police de Paris 11ème arrondissement - 12 PASSAGE CHARLES DALLERY 75011 PARIS 11"
-        When I press "Suivant"
+        When I press "Continuer"
         And I follow "Je confirme"
         Then I should be on "/porter-plainte/rendez-vous"
         When I fill in "appointment_appointmentContactText" with "Between 10am and 12am"
-        And I press "Suivant"
+        And I press "Continuer"
         Then I should be on "/porter-plainte/fin"

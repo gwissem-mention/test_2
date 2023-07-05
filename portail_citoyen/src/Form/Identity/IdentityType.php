@@ -8,6 +8,7 @@ use App\AppEnum\DeclarantStatus;
 use App\Form\Model\Identity\IdentityModel;
 use App\Session\SessionHandler;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -29,6 +30,18 @@ class IdentityType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            ->add('declarantStatus', ChoiceType::class, [
+                'label' => 'pel.complaint.identity.declarant.status',
+                'expanded' => true,
+                'multiple' => false,
+                'rich' => true,
+                'choices' => DeclarantStatus::getChoices(),
+                'choices_help' => DeclarantStatus::getChoicesHelp(),
+                'choices_img' => DeclarantStatus::getChoicesImg(),
+                'constraints' => [
+                    new NotBlank(),
+                ],
+            ])
             ->add('civilState', CivilStateType::class, [
                 'compound' => true,
                 'is_france_connected' => $options['is_france_connected'],
@@ -63,12 +76,27 @@ class IdentityType extends AbstractType
                 function (FormEvent $event) {
                     /** @var ?IdentityModel $identityModel */
                     $identityModel = $event->getData();
-                    $declarantStatus = $this->sessionHandler->getComplaint()?->getDeclarantStatus()?->getDeclarantStatus();
+                    $declarantStatus = $this->sessionHandler->getComplaint()?->getIdentity()?->getDeclarantStatus();
 
                     $this->buildFieldsForDeclarantStatus(
                         $event->getForm(),
                         $declarantStatus,
                         $identityModel
+                    );
+                }
+            )
+            ->get('declarantStatus')
+            ->addEventListener(
+                FormEvents::POST_SUBMIT,
+                function (FormEvent $event) {
+                    /** @var ?int $declarantStatus */
+                    $declarantStatus = $event->getForm()->getData();
+                    /** @var FormInterface $parent */
+                    $parent = $event->getForm()->getParent();
+
+                    $this->buildFieldsForDeclarantStatus(
+                        $parent,
+                        $declarantStatus,
                     );
                 }
             );

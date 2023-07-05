@@ -13,6 +13,10 @@ class IdentityParserTest extends KernelTestCase
 {
     private const IDENTITY_JSON = <<<JSON
 {
+    "declarantStatus": {
+      "code": 1,
+      "label": "pel.complaint.identity.victim"
+    },
     "civilState": {
       "civility": {
         "code": 2,
@@ -203,20 +207,9 @@ JSON;
     {
         $parser = $this->getParser();
 
-        $declarantStatusJson = <<<JSON
-  {
-    "declarantStatus": {
-      "code": 1,
-      "label": "pel.complaint.identity.victim"
-    }
-  }
-JSON;
-
         $identityParsed = json_decode(self::IDENTITY_JSON);
 
-        $declarantStatusParsed = json_decode($declarantStatusJson);
-
-        $identity = $parser->parse($identityParsed->civilState, $identityParsed->contactInformation, $declarantStatusParsed);
+        $identity = $parser->parse($identityParsed->civilState, $identityParsed->contactInformation, $identityParsed->declarantStatus);
 
         $this->assertInstanceOf(Identity::class, $identity);
         $this->assertSame(1, $identity->getDeclarantStatus());
@@ -261,22 +254,13 @@ JSON;
     public function testParseBirthdayOtherTown(): void
     {
         $parser = $this->getParser();
-        $declarantStatusJson = <<<JSON
-{
-    "declarantStatus": {
-        "code": 1,
-        "label": "pel.complaint.identity.victim"
-    }
-}
-JSON;
 
         $identityParsed = json_decode(self::IDENTITY_JSON);
-        $declarantStatusParsed = json_decode($declarantStatusJson);
 
         $identityParsed->civilState->birthLocation->frenchTown = null;
         $identityParsed->civilState->birthLocation->otherTown = 'New York';
 
-        $identity = $parser->parse($identityParsed->civilState, $identityParsed->contactInformation, $declarantStatusParsed);
+        $identity = $parser->parse($identityParsed->civilState, $identityParsed->contactInformation, $identityParsed->declarantStatus);
 
         $this->assertInstanceOf(Identity::class, $identity);
         $this->assertSame('New York', $identity->getBirthCity());
@@ -286,21 +270,12 @@ JSON;
     public function testParseForeignAddress(): void
     {
         $parser = $this->getParser();
-        $declarantStatusJson = <<<JSON
-  {
-    "declarantStatus": {
-      "code": 1,
-      "label": "pel.complaint.identity.victim"
-    }
-  }
-JSON;
 
         $identityParsed = json_decode(self::IDENTITY_JSON);
-        $declarantStatusParsed = json_decode($declarantStatusJson);
 
         $identityParsed->contactInformation->frenchAddress = null;
 
-        $identity = $parser->parse($identityParsed->civilState, $identityParsed->contactInformation, $declarantStatusParsed);
+        $identity = $parser->parse($identityParsed->civilState, $identityParsed->contactInformation, $identityParsed->declarantStatus);
 
         $this->assertInstanceOf(Identity::class, $identity);
         $this->assertEquals('134 Av. Roque Nublo 2 Madrid Pozuelo de Alarcón 28223', $identity->getAddress());
@@ -318,24 +293,13 @@ JSON;
     {
         $parser = $this->getParser();
 
-        $declarantStatusJson = <<<JSON
-  {
-    "declarantStatus": {
-      "code": 1,
-      "label": "pel.complaint.identity.victim"
-    }
-  }
-JSON;
-
         $identityParsed = json_decode(self::IDENTITY_JSON);
 
-        $declarantStatusParsed = json_decode($declarantStatusJson);
-
-        $identity = $parser->parse($identityParsed->representedPersonCivilState, $identityParsed->representedPersonContactInformation);
+        $identity = $parser->parse($identityParsed->representedPersonCivilState, $identityParsed->representedPersonContactInformation, $identityParsed->declarantStatus);
 
         $this->assertInstanceOf(Identity::class, $identity);
 
-        $this->assertNull($identity->getDeclarantStatus());
+        $this->assertSame(1, $identity->getDeclarantStatus());
         $this->assertSame(2, $identity->getCivility());
         $this->assertSame('Angela Claire Louise', $identity->getFirstname());
         $this->assertSame('DUBOIS', $identity->getLastname());

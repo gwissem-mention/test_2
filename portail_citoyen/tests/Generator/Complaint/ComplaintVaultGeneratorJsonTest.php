@@ -38,7 +38,6 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
         $createdAt = new \DateTimeImmutable('2023-03-17T13:05:38+00:00', new \DateTimeZone('UTC'));
 
         $complaintJson = $this->generator->generate($this->complaintFactory->create(DeclarantStatus::Victim->value, $id, $createdAt));
-
         $complaintJsonExpected = json_encode([
             'id' => '698d4e06-c4c4-11ed-af78-973b2c1a1c97',
             'createdAt' => [
@@ -46,13 +45,11 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                 'timestamp' => 1679058338,
                 'timezone' => '+00:00',
             ],
-            'declarantStatus' => [
+            'identity' => [
                 'declarantStatus' => [
                     'code' => 1,
                     'label' => 'Vous êtes victime ou vous représentez votre enfant mineur',
                 ],
-            ],
-            'identity' => [
                 'civilState' => [
                     'civility' => [
                         'code' => 1,
@@ -405,13 +402,11 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                 'timestamp' => 1679058338,
                 'timezone' => '+00:00',
             ],
-            'declarantStatus' => [
+            'identity' => [
                 'declarantStatus' => [
                     'code' => 2,
                     'label' => 'Représentant légal d’une personne physique',
                 ],
-            ],
-            'identity' => [
                 'civilState' => [
                     'civility' => [
                         'code' => 1,
@@ -842,13 +837,11 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                 'timestamp' => 1679058338,
                 'timezone' => '+00:00',
             ],
-            'declarantStatus' => [
+            'identity' => [
                 'declarantStatus' => [
                     'code' => 3,
                     'label' => 'Représentant légal d’une personne morale',
                 ],
-            ],
-            'identity' => [
                 'civilState' => [
                     'civility' => [
                         'code' => 1,

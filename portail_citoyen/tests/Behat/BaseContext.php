@@ -6,7 +6,6 @@ namespace App\Tests\Behat;
 
 use App\AppEnum\Gender;
 use App\Form\Model\Facts\FactsModel;
-use App\Form\Model\Identity\DeclarantStatusModel;
 use App\Form\Model\Identity\IdentityModel;
 use App\Security\User;
 use App\Session\ComplaintModel;
@@ -397,7 +396,7 @@ final class BaseContext extends MinkContext
         $complaint = new ComplaintModel(Uuid::v1());
         $complaint->setIdentity(new IdentityModel());
         $complaint->setFacts(new FactsModel());
-        $complaint->setDeclarantStatus((new DeclarantStatusModel())->setDeclarantStatus($declarantStatus));
+        $complaint->getIdentity()?->setDeclarantStatus($declarantStatus);
         $session = $this->sessionFactory->createSession();
         $session->set('complaint', $this->serializer->serialize($complaint, 'json'));
         $session->save();

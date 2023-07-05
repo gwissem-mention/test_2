@@ -30,6 +30,7 @@
         - App\Tests\Behat\BaseContext
         - App\Tests\Behat\FranceConnectContext
         - App\Tests\Behat\GoogleMapsContext
+        - FailAid\Context\FailureContext
 
 default:
     suites:

@@ -61,10 +61,12 @@
 {% block phone_row %}
     <div class="{{ html_classes('fr-input-group', {'fr-input-group--error': form.number.vars.errors is not empty}) }}" {{ stimulus_controller('intl-tel-input') }} data-live-id="{{ random() }}">
         {{ form_label(form.number) }}
-        {{ form_widget(form.number, {'attr':{'class':html_classes(attr.class ?? '', 'fr-input', {'fr-input--error':form.number.vars.errors is not empty}),'aria-describedby':form.number.vars.errors is not empty ? 'form-errors-'~ form.vars.id :''}}) }}
-        {{ form_errors(form.number) }}
-        {{ form_widget(form.code) }}
-        {{ form_widget(form.country) }}
+        <div class="[&_.iti]:w-full [&_.iti]:md:w-1/2">
+            {{ form_widget(form.number, {'attr':{'class':html_classes(attr.class ?? '', 'fr-input', {'fr-input--error':form.number.vars.errors is not empty}),'aria-describedby':form.number.vars.errors is not empty ? 'form-errors-'~ form.vars.id :''}}) }}
+            {{ form_errors(form.number) }}
+            {{ form_widget(form.code) }}
+            {{ form_widget(form.country) }}
+        </div>
     </div>
 {% endblock %}
 
@@ -109,7 +111,7 @@
 
 {% block form_help %}
     {% if form.vars.help is not null %}
-        <span class="fr-hint-text">{{ form.vars.help|trans }}</span>
+        <span class="fr-hint-text fr-mb-2v">{{ form.vars.help|trans }}</span>
     {% endif %}
 {% endblock %}
 

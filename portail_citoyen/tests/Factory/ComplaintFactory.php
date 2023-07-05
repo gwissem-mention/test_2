@@ -16,7 +16,6 @@ use App\Form\Model\Facts\OffenseDateModel;
 use App\Form\Model\Identity\CivilStateModel;
 use App\Form\Model\Identity\ContactInformationModel;
 use App\Form\Model\Identity\CorporationModel;
-use App\Form\Model\Identity\DeclarantStatusModel;
 use App\Form\Model\Identity\IdentityModel;
 use App\Form\Model\Identity\PhoneModel;
 use App\Form\Model\LocationModel;
@@ -40,7 +39,6 @@ class ComplaintFactory
             ->setCreatedAt($createdAt)
             ->setFranceConnected(false)
             ->setAffectedService('66459')
-            ->setDeclarantStatus($this->createDeclarantStatus($status))
             ->setIdentity($identity)
             ->setFacts($this->createFacts())
             ->setObjects($this->createObjects())
@@ -53,14 +51,10 @@ class ComplaintFactory
         return (new AppointmentModel())->setAppointmentContactText('Entre 10h et 14h les lundi');
     }
 
-    public function createDeclarantStatus(int $declarantStatus): DeclarantStatusModel
-    {
-        return (new DeclarantStatusModel())->setDeclarantStatus($declarantStatus);
-    }
-
     private function createIdentityVictim(bool $frenchAddress = true): IdentityModel
     {
         return (new IdentityModel())
+            ->setDeclarantStatus(DeclarantStatus::Victim->value)
             ->setCivilState($this->createCivilState($frenchAddress))
             ->setContactInformation($this->createContactInformation($frenchAddress));
     }
@@ -68,6 +62,7 @@ class ComplaintFactory
     private function createIdentityPersonLegalRepresentative(bool $frenchAddress = true): IdentityModel
     {
         return (new IdentityModel())
+            ->setDeclarantStatus(DeclarantStatus::PersonLegalRepresentative->value)
             ->setCivilState($this->createCivilState($frenchAddress))
             ->setContactInformation($this->createContactInformation($frenchAddress))
             ->setRepresentedPersonCivilState($this->createCivilState($frenchAddress))
@@ -77,6 +72,7 @@ class ComplaintFactory
     private function createIdentityCorporationLegalRepresentative(bool $frenchAddress = true): IdentityModel
     {
         return (new IdentityModel())
+            ->setDeclarantStatus(DeclarantStatus::CorporationLegalRepresentative->value)
             ->setCivilState($this->createCivilState($frenchAddress))
             ->setContactInformation($this->createContactInformation($frenchAddress))
             ->setCorporation($this->createCorporation($frenchAddress));

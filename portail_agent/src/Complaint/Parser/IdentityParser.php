@@ -18,7 +18,7 @@ class IdentityParser
         $identity = new Identity();
 
         $identity
-            ->setDeclarantStatus($declarantStatusInput?->declarantStatus->code)
+            ->setDeclarantStatus($declarantStatusInput?->code)
             ->setCivility($civilStateInput->civility->code)
             ->setFirstname($civilStateInput->firstnames)
             ->setLastname($civilStateInput->birthName)
