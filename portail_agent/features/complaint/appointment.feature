@@ -114,23 +114,11 @@ Feature:
         And I press "complaint-validate-the-report-and-close-button-validate"
         Then I should not see a ".modal[aria-modal=true]" element
         And I should see the key "pel.closed" translated
-        
-    @javascript
-    Scenario: I can submit the close after the appointment form successfully with a png file
-        Given I am on "/plainte/rendez-vous/111"
-        Then I fill in "appointment_appointmentDate" with "01/01/2025"
-        And I fill in "appointment_appointmentTime" with "10:00am"
-        And I press "Valider le RDV avec le déclarant"
-        When I press "Clôturer le PV suite au RDV"
-        Then I should see a ".modal[aria-modal=true]" element
-        When I click the "label[for=send_report_appointment_done_0]" element
-        When I attach the file "iphone.png" to ".dz-hidden-input" field
-        And I press "complaint-validate-the-report-and-close-button-validate"
-        Then I should not see a ".modal[aria-modal=true]" element
-        And I should see the key "pel.closed" translated
+        And I should see a ".toast" element
+        And I should see the key "pel.the.complaint.is.closed" translated
 
     @javascript
-    Scenario: I can submit the send report form successfully with a jpg file and a pdf file
+    Scenario: I can submit the send report form successfully with a png file and a pdf file
         Given I am on "/plainte/rendez-vous/111"
         Then I fill in "appointment_appointmentDate" with "01/01/2025"
         And I fill in "appointment_appointmentTime" with "10:00am"
@@ -143,3 +131,5 @@ Feature:
         And I press "complaint-validate-the-report-and-close-button-validate"
         And I should not see a ".modal[aria-modal=true]" element
         And I should see the key "pel.closed" translated
+        And I should see a ".toast" element
+        And I should see the key "pel.the.report.has.been.sent.to.the.victim.the.complaint.is.closed" translated

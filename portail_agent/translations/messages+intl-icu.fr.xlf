@@ -1322,6 +1322,10 @@
                 <source>pel.assign.to</source>
                 <target>Attribuer à</target>
             </trans-unit>
+            <trans-unit id="pel.the.complaint.is.closed">
+                <source>pel.the.complaint.is.closed</source>
+                <target>La déclaration est clôturée</target>
+            </trans-unit>
             <trans-unit id="pel.the.supervisor.comment.on.your.declaration">
                  <source>pel.the.supervisor.comment.on.your.declaration</source>
                  <target>{agent_grade} - {agent_identity} - vient d'ajouter un commentaire à la déclaration {declaration_number}</target>
