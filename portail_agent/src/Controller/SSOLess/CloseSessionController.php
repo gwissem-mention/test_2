@@ -25,7 +25,7 @@ class CloseSessionController extends AbstractController
         $user = $this->getUser();
 
         $logger->log(ApplicationTracesMessage::message(
-            ApplicationTracesMessage::LOGIN,
+            ApplicationTracesMessage::LOGOUT,
             null,
             $user->getNumber(),
             $request->getClientIp()
