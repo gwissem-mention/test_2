@@ -2,6 +2,57 @@
 
 {% block body %}
     {% include 'pages/home/_partial/toaster/toaster.html.twig' %}
+    {# POC #}
+    <div data-controller="sidebar">
+        <button class="fr-btn fr-btn--icon-left fr-btn--secondary fr-icon-equalizer-line mt-2" data-action="click->sidebar#openSidebar">{{ 'pel.filters'|trans }}</button>
+        <div class="d-none position-fixed width-20 z-3 background-white fixed-left p-3 shadow-sm" data-sidebar-target="sidebarAside">
+            <div class="d-flex align-items-center justify-content-between">
+                <span class="fw-bold">{{ 'pel.filters'|trans }}</span>
+                <button class="fr-btn fr-btn--tertiary-no-outline fr-btn--icon-left fr-icon-close-line" data-action="click->sidebar#closeSidebar">
+                    {{ 'pel.close'|trans }}
+                </button>
+            </div>
+            <ul class="reset-list m-0 p-0 w-100 mt-3">
+                <li class="d-flex align-items-center mb-2 p-2 cursor-pointer border-large-left border-blue color-blue fw-bold">
+                    <div class="w-100 d-flex align-items-center justify-content-between">
+                        {{ 'pel.all.complaints'|trans }}
+                        <span class="fr-icon-arrow-up-s-line" aria-hidden="true"></span>
+                    </div>
+                </li>
+                <li class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue">
+                    {{ 'pel.reaches.deadline'|trans }}
+                </li>
+                <li class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue">
+                    {{ 'pel.exceeds.deadline'|trans }}
+                </li>
+                <li class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue">
+                    {{ 'pel.urgent'|trans }}
+                </li>
+                <li class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue">
+                    {{ 'pel.assignment.pending'|trans }}
+                </li>
+                <li class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue">
+                    {{ 'pel.ongoing.lrp'|trans }}
+                </li>
+                <li class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue">
+                    {{ 'pel.waiting.for.appointment'|trans }}
+                </li>
+                <li class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue">
+                    {{ 'pel.waiting.for.reattribution'|trans }}
+                </li>
+                <li class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue">
+                    {{ 'pel.waiting.for.reallocation'|trans }}
+                </li>
+                <li class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue">
+                    {{ 'pel.closed'|trans }}
+                </li>
+                <li class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue">
+                    {{ 'pel.waiting.closing'|trans }}
+                </li>
+            </ul>
+        </div>
+    </div>
+    {# END OF POC #}
     <div
         data-controller="home datatable checkbox-group dashboard-bulk-action"
         data-action="checkbox-group:updateChecked->dashboard-bulk-action#setBulkTarget dashboard-bulk-action:finished->datatable#refresh dashboard-bulk-action:finished->checkbox-group#resetAll"

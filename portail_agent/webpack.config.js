@@ -28,6 +28,9 @@ Encore
     .copyFiles([
         {from: "./assets/images", to: "images/[path][name].[hash:8].[ext]"},
         {from: "./assets/json/datatables", to: "json/datatables/[path][name].[ext]"},
+        {from: "./node_modules/@gouvfr/dsfr/dist/favicon", to: "favicon/[path][name].[hash:8].[ext]"},
+        {from: "./node_modules/@gouvfr/dsfr/dist/fonts", to: "fonts/[path][name].[hash:8].[ext]"},
+        {from: "./node_modules/@gouvfr/dsfr/dist/icons", to: "icons/[path][name].[hash:8].[ext]"},
     ])
     // https://symfony.com/doc/current/frontend/encore/dev-server.html
     .configureDevServerOptions(options => {

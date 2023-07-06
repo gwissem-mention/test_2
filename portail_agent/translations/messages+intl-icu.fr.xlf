@@ -236,7 +236,7 @@
             </trans-unit>
             <trans-unit id="pel.closed">
                 <source>pel.closed</source>
-                <target>Cloturée</target>
+                <target>Clôturée</target>
             </trans-unit>
             <trans-unit id="pel.close.after.appointment">
                 <source>pel.close.after.appointment</source>
@@ -1337,6 +1337,46 @@
             <trans-unit id="pel.supervisor.grade">
                  <source>pel.supervisor.grade</source>
                  <target>Superviseur</target>
+            </trans-unit>
+            <trans-unit id="pel.filters">
+                 <source>pel.filters</source>
+                 <target>Filtres</target>
+            </trans-unit>
+            <trans-unit id="pel.all.complaints">
+                 <source>pel.all.complaints</source>
+                 <target>Toutes les plaintes</target>
+            </trans-unit>
+            <trans-unit id="pel.limit.date">
+                 <source>pel.limit.date</source>
+                 <target>Toutes les plaintes</target>
+            </trans-unit>
+            <trans-unit id="pel.reaches.deadline">
+                 <source>pel.reaches.deadline</source>
+                 <target>Arrive à la date limite</target>
+            </trans-unit>
+            <trans-unit id="pel.exceeds.deadline">
+                 <source>pel.exceeds.deadline</source>
+                 <target>Dépasse la date limite</target>
+            </trans-unit>
+            <trans-unit id="pel.urgent">
+                 <source>pel.urgent</source>
+                 <target>Urgent</target>
+            </trans-unit>
+            <trans-unit id="pel.waiting.for.appointment">
+                 <source>pel.waiting.for.appointment</source>
+                 <target>En attente de rdv</target>
+            </trans-unit>
+            <trans-unit id="pel.waiting.for.reattribution">
+                 <source>pel.waiting.for.reattribution</source>
+                 <target>En attente de réattribution</target>
+            </trans-unit>
+            <trans-unit id="pel.waiting.for.reallocation">
+                 <source>pel.waiting.for.reallocation</source>
+                 <target>En attente de réaffectation</target>
+            </trans-unit>
+            <trans-unit id="pel.waiting.closing">
+                <source>pel.waiting.closing</source>
+                <target>Clôture en attente</target>
             </trans-unit>
         </body>
     </file>
