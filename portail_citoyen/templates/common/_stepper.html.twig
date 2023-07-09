@@ -1,26 +1,24 @@
 {% set steps = [{'title': 'pel.legal.dispositions'}, {'title': 'pel.complaint.your.identity' }, {'title': 'pel.facts.description' }, {'title': 'pel.goods.concerned' }, {'title': 'pel.further.information' }, {'title': 'pel.summary.of.complaint' }, {'title': 'pel.registered.complaint' }] %}
 
-<div class="fr-grid-row flex md:flex-col items-center py-5 fr-pt-md-12v fr-hidden-md">
-	<div class="fr-col-md-6 w-full fr-px-2v m-0">
+<div class="fr-grid-row flex md:flex-col items-center fr-pt-10v fr-px-6v fr-hidden-md">
+	<div class="fr-col-12">
 		<div class="flex items-center">
-			<div class="relative text-white font-bold text-[28px]/9 fr-pb-0 fr-pl-18v before:content-[''] before:absolute before:left-0.5 before:w-16 before:h-full before:bg-no-repeat before:bg-[length:58px_48px] before:bg-[url('/assets/images/icons/complaint.svg')] before:bg-center">{{ title|raw }}</div>
+			<div class="relative text-white font-bold text-[28px]/9 fr-pb-0 fr-pl-18v before:content-[''] before:absolute before:left-0 before:w-16 before:h-full before:bg-no-repeat before:bg-[length:58px_48px] before:bg-[url('/assets/images/icons/complaint.svg')] before:[background-position-y:center]">{{ title|raw }}</div>
 		</div>
 	</div>
-	<div class="fr-col-md-6 w-full px-5 fr-px-md-10v m-0 mt-3 fr-mt-md-0 fr-col--border-left">
-		<div class="fr-stepper m-0 mb-1">
-			<div class="fr-stepper__title text-white">
-				<span class="fr-stepper__state text-white">{{ 'pel.step'|trans}}
-					{{ current_step_number }}
-					{{ 'pel.on'|trans }}
-					7</span>
-				{{ current_step_title }}
-			</div>
-			<div class="fr-stepper__steps mt-3" data-fr-current-step="{{ current_step_number }}" data-fr-steps="7"></div>
-			<p class="fr-stepper__details text-white">
-				<span class="fr-text--bold">{{ 'pel.next.step'|trans }} :</span>{{ next_step_title }}
-			</p>
-		</div>
-	</div>
+    <div class="fr-stepper fr-col fr-mt-6v">
+        <div class="fr-stepper__title text-white">
+            <span class="fr-stepper__state text-white">{{ 'pel.step'|trans}}
+                {{ current_step_number }}
+                {{ 'pel.on'|trans }}
+                7</span>
+            {{ current_step_title }}
+        </div>
+        <div class="fr-stepper__steps fr-mt-3v" data-fr-current-step="{{ current_step_number }}" data-fr-steps="7"></div>
+        <p class="fr-stepper__details text-white">
+            <span class="fr-text--bold">{{ 'pel.next.step'|trans }} :</span>{{ next_step_title }}
+        </p>
+    </div>
 </div>
 <div class="fr-grid-row fr-col-md-4 flex md:flex-col fr-hidden fr-unhidden-md">
 	<div class="fr-pt-md-12v fr-pb-md-6v">
