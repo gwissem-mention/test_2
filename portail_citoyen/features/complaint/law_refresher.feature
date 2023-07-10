@@ -12,7 +12,6 @@ Feature:
         And I should see the key "pel.next.step" translated
         And I should see the key "pel.before.online.complaint" translated
         And I should see the key "pel.legal.dispositions" translated
-        And I should see the key "pel.before.starting.complaint" translated
         And I should see the key "pel.article.10.2" translated
         And I should see the key "pel.officers.and.agents" translated
         And I should see the key "pel.obtain.compensation.for.their.loss" translated
@@ -38,4 +37,5 @@ Feature:
         And I should see the key "pel.nota" translated
         And I should see the key "pel.in.accordance.to.article.11" translated
         And I should see the key "pel.in.accordance.to.article.2" translated
+        And I should see the key "pel.by.continuing.you.confirm.that.you.are.aware.of.the.legal.provisions" translated
         And I should see the key "pel.complete.my.declaration" translated
