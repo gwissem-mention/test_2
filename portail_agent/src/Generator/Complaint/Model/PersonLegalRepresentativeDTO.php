@@ -21,6 +21,7 @@ class PersonLegalRepresentativeDTO extends AbstractIdentityDTO
             'Representant_Legal_Nom' => $this->lastname,
             'Representant_Legal_Nom_Marital' => $this->marriedName,
             'Representant_Legal_Prenom' => $this->firstname,
+            'Tel_Portable_Declarant' => $this->mobilePhone,
             'Representant_Legal_Naissance_Date' => $this->birthdate,
             'Representant_Legal_Naissance_Pays' => $this->birthCountry,
             'Representant_Legal_Naissance_Departement' => $this->birthDepartmentNumber.' - '.$this->birthDepartment,

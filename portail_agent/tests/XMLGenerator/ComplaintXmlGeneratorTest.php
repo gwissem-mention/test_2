@@ -262,6 +262,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Personne>', $this->xmlContent);
         $this->assertStringNotContainsString('<Personne_Lien>', $this->xmlContent);
         $this->assertStringContainsString('<Personne_Implication>victime</Personne_Implication>', $this->xmlContent);
+        $this->assertStringContainsString('<Personne_Telephone_Portable>06 76 54 32 10</Personne_Telephone_Portable>', $this->xmlContent);
         $this->assertStringContainsString('<Personne_Civilite_Sexe>M</Personne_Civilite_Sexe>', $this->xmlContent);
         $this->assertStringContainsString('<Personne_Nom>DUPONT</Personne_Nom>', $this->xmlContent);
         $this->assertStringContainsString('<Personne_Nom_Marital/>', $this->xmlContent);
@@ -298,6 +299,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Representant_Legal_Nom>DUPONT</Representant_Legal_Nom>', $this->xmlContent);
         $this->assertStringContainsString('<Representant_Legal_Nom_Marital/>', $this->xmlContent);
         $this->assertStringContainsString('<Representant_Legal_Prenom>Jean</Representant_Legal_Prenom>', $this->xmlContent);
+        $this->assertStringContainsString('<Tel_Portable_Declarant>06 12 34 45 57</Tel_Portable_Declarant>', $this->xmlContent);
         $this->assertStringContainsString('<Representant_Legal_Naissance_Date>07/03/1967</Representant_Legal_Naissance_Date>', $this->xmlContent);
         $this->assertStringContainsString('<Representant_Legal_Naissance_Pays>France</Representant_Legal_Naissance_Pays>', $this->xmlContent);
         $this->assertStringContainsString('<Representant_Legal_Naissance_Departement>75 - Paris</Representant_Legal_Naissance_Departement>', $this->xmlContent);
