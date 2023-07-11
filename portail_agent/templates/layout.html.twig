@@ -2,6 +2,7 @@
 
 {% block layout %}
     {% block header %}{{ include('common/_header.html.twig') }}{% endblock %}
-    {% block nav %}{{ include('common/_nav.html.twig') }}{% endblock %}
-    {% block body %}{% endblock %}
+    <div class="container container-fluid w-100 mw-100 m-0 p-0">
+        {% block body %}{% endblock %}
+    </div>
 {% endblock %}

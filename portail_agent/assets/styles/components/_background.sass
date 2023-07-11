@@ -1,3 +1,15 @@
 .background
     &-white
         background-color: var(--background-default-grey)
+
+    &-transparent
+        /* Important is needed here to override default DSFR styles. */
+        background-color: transparent !important
+
+    &-black
+        &-transparent
+            background-color: $black-transparent
+
+    &-blue
+        /* Important is needed here to override default Bootstrap styles. */
+        background-color: var(--text-action-high-blue-france) !important
