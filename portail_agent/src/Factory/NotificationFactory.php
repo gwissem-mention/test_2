@@ -131,4 +131,14 @@ class NotificationFactory
             $this->urlGenerator->generate('complaint_summary', ['id' => $complaint->getId()]),
         );
     }
+
+    public function createForReminderOfClosingOfAPVInCaseOfAppointmentInPhysical(Complaint $complaint): Notification
+    {
+        return new Notification(
+            $this->translator->trans('pel.reminder.of.closing.of.pv', [
+                'declaration_number' => $complaint->getDeclarationNumber(),
+            ]),
+            $this->urlGenerator->generate('complaint_summary', ['id' => $complaint->getId()]),
+        );
+    }
 }

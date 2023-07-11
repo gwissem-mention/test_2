@@ -219,4 +219,30 @@ class ComplaintRepository extends ServiceEntityRepository
 
         return $order;
     }
+
+    /**
+     * @return array<Complaint>
+     */
+    public function getComplaintsWithAppointmentADayAgo(): array
+    {
+        /** @var Complaint[] $result */
+        $result = $this->createComplaintsWithAppointmentADayAgoQueryBuilder()
+            ->getQuery()
+            ->getResult();
+
+        return $result;
+    }
+
+    private function createComplaintsWithAppointmentADayAgoQueryBuilder(): QueryBuilder
+    {
+        $now = new \DateTimeImmutable('-1 day');
+
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.appointmentTime <= :now')
+            ->andWhere('c.appointmentNotificationSentAt is null')
+            ->andWhere('c.assignedTo is not null')
+            ->andWhere('c.status <> :PvStatus')
+            ->setParameter('now', $now)
+            ->setParameter('PvStatus', Complaint::STATUS_CLOSED);
+    }
 }
