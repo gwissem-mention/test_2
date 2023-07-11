@@ -274,6 +274,10 @@
                 <source>pel.breadcrumb.welcome</source>
                 <target>Accueil</target>
             </trans-unit>
+            <trans-unit id="pel.by.continuing.you.confirm.that.you.are.aware.of.the.legal.provisions">
+                <source>pel.by.continuing.you.confirm.that.you.are.aware.of.the.legal.provisions</source>
+                <target>En continuant, vous attestez avoir pris connaissance des dispositions légales.</target>
+            </trans-unit>
             <trans-unit id="pel.can.i.make.a.physical.appointment">
                 <source>pel.can.i.make.a.physical.appointment</source>
                 <target>Est-ce que je peux prendre directement rendez-vous en commissariat ou en gendarmerie ?</target>
@@ -1970,6 +1974,10 @@
                 <source>pel.read.more.about.france.connect</source>
                 <target>En savoir plus sur France Connect</target>
             </trans-unit>
+            <trans-unit id="pel.read.the.full.text.of.the.law">
+                <source>pel.read.the.full.text.of.the.law</source>
+                <target>Consulter l’intégralité du texte de loi</target>
+            </trans-unit>
             <trans-unit id="pel.these.informations.has.been.transmitted.by.france.connect">
                 <source>pel.these.informations.has.been.transmitted.by.france.connect</source>
                 <target>Vous êtes identifié avec <![CDATA[<b>FranceConnect</b>]]>, par conséquent certains champs affichés ci-dessous ne sont pas modifiables.</target>
@@ -2004,7 +2012,7 @@
             </trans-unit>
             <trans-unit id="pel.before.online.complaint">
                 <source>pel.before.online.complaint</source>
-                <target>Avant de déclarer ma plainte en ligne, je prends acte des dispositions légales suivantes</target>
+                <target>Avant de déclarer ma plainte en ligne, je prends acte des dispositions légales suivantes :</target>
             </trans-unit>
             <trans-unit id="pel.legal.dispositions">
                 <source>pel.legal.dispositions</source>
@@ -2124,7 +2132,7 @@
             </trans-unit>
             <trans-unit id="pel.in.accordance.to.article.2">
                 <source>pel.in.accordance.to.article.2</source>
-                <target>Conformément à l'article 2 de l'arrêté du 26 juin 2020 relatif aux plaintes par voie électronique, ces dispositions entrent en vigueur le 1er juillet 2020</target>
+                <target>Conformément à l'article 2 de l'arrêté du 26 juin 2020 relatif aux plaintes par voie électronique, ces dispositions entrent en vigueur le 1er juillet 2020.</target>
             </trans-unit>
             <trans-unit id="pel.complete.my.declaration">
                 <source>pel.complete.my.declaration</source>
