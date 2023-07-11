@@ -110,6 +110,10 @@
                 <source>pel.supervisor.has.refused.your.reassignment.request</source>
                 <target>{user} vient de refuser votre demande de réorientation vers un autre service pour la déclaration {declaration_number}</target>
             </trans-unit>
+            <trans-unit id="pel.reminder.of.closing.of.pv">
+                <source>pel.reminder.of.closing.of.pv</source>
+                <target>Rappel pour clôturer la déclaration {declaration_number} suite à votre rdv avec le déclarant </target>
+            </trans-unit>
             <trans-unit id="pel.agent">
                 <source>pel.agent</source>
                 <target>Agent</target>

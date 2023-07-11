@@ -181,6 +181,9 @@ class Complaint
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $closedAt = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $appointmentNotificationSentAt = null;
+
     public function __construct()
     {
         $this->objects = new ArrayCollection();
@@ -664,6 +667,18 @@ class Complaint
     public function setOodriveReportFolder(?string $oodriveReportFolder): self
     {
         $this->oodriveReportFolder = $oodriveReportFolder;
+
+        return $this;
+    }
+
+    public function getAppointmentNotificationSentAt(): ?\DateTimeImmutable
+    {
+        return $this->appointmentNotificationSentAt;
+    }
+
+    public function setAppointmentNotificationSentAt(?\DateTimeImmutable $appointmentNotificationSentAt): self
+    {
+        $this->appointmentNotificationSentAt = $appointmentNotificationSentAt;
 
         return $this;
     }

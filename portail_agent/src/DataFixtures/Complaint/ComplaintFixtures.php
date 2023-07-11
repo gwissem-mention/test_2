@@ -78,6 +78,8 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                         ->setFamilySituation('Marié(e)')
                         ->setHomePhone('01 23 45 67 89'))
                     ->setStatus(Complaint::STATUS_ASSIGNED)
+                    ->setAppointmentDate(new \DateTimeImmutable('2022-12-01'))
+                    ->setAppointmentTime(new \DateTimeImmutable('2022-12-01'))
                     ->setUnitAssigned($unit)
                     ->setAssignedTo($user);
             }
