@@ -9,6 +9,7 @@ use App\Entity\Complaint;
 use App\Entity\User;
 use App\Logger\ApplicationTracesLogger;
 use App\Logger\ApplicationTracesMessage;
+use App\Messenger\InformationCenter\InfocentreMessage;
 use App\Notification\Messenger\UnitReassignement\AskUnitReassignementMessage;
 use App\Notification\Messenger\UnitReassignement\UnitReassignementMessage;
 use App\Referential\Entity\Unit;
@@ -87,6 +88,7 @@ class ComplaintReassignementer
             $user->getUserIdentifier(),
             $this->requestStack->getCurrentRequest()?->getClientIp()
         ));
+        $this->messageBus->dispatch(new InfocentreMessage(ApplicationTracesMessage::REDIRECT, $complaint, $unit));
 
         $this->messageBus->dispatch(new UnitReassignementMessage($complaint, $targetUnitCode, (bool) $reassignmentAsked, $reassignmentAskBy));
         $this->messageBus->dispatch(new UnitReassignmentMessage((int) $complaint->getId())); // Salesforce email
@@ -113,6 +115,10 @@ class ComplaintReassignementer
             $user->getUserIdentifier(),
             $this->requestStack->getCurrentRequest()?->getClientIp()
         ));
+        /** @var Unit $unit */
+        $unit = $this->unitRepository->findOneBy(['code' => $targetUnitCode]);
+
+        $this->messageBus->dispatch(new InfocentreMessage(ApplicationTracesMessage::REDIRECT, $complaint, $unit));
         $this->messageBus->dispatch(new AskUnitReassignementMessage($complaint, (string) $complaint->getUnitAssigned()));
     }
 }
