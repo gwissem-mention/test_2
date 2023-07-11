@@ -699,10 +699,6 @@ agent-e2e:
         POSTGRES_PASSWORD: "ChangeMe"
         POSTGRES_USER: "symfony"
         POSTGRES_HOST: "127.0.0.1"
-        ACTIVEMQ_WEBADMIN_USERNAME: "admin"
-        ACTIVEMQ_WEBADMIN_PASSWORD: "admin"
-        ACTIVEMQ_USERNAME: "system"
-        ACTIVEMQ_PASSWORD: "manager"
     script:
         - php bin/console cache:clear --env=${APP_ENV}
         - echo "APP_ENV=${APP_ENV}" >> .env.local
@@ -751,6 +747,8 @@ agent-complaint-e2e:
             alias: database-e2e-agent
         -   name: selenium/standalone-chrome:4.5.3
             alias: chrome
+        - name: symptoma/activemq:5.18.0
+          alias: activemq
     artifacts:
         name: "agent-complaint-e2e-$CI_COMMIT_REF_NAME"
         paths:

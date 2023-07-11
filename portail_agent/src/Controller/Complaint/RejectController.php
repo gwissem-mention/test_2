@@ -11,6 +11,8 @@ use App\Entity\User;
 use App\Form\Complaint\RejectType;
 use App\Logger\ApplicationTracesLogger;
 use App\Logger\ApplicationTracesMessage;
+use App\Messenger\InformationCenter\InfocentreMessage;
+use App\Referential\Repository\UnitRepository;
 use App\Repository\ComplaintRepository;
 use App\Salesforce\Messenger\ComplaintRejection\ComplaintRejectionMessage;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -33,7 +35,8 @@ class RejectController extends AbstractController
         Request $request,
         MessageBusInterface $bus,
         ComplaintWorkflowManager $complaintWorkflowManager,
-        ApplicationTracesLogger $logger
+        ApplicationTracesLogger $logger,
+        UnitRepository $unitRepository,
     ): JsonResponse {
         $form = $this->createForm(RejectType::class, $complaint);
         $form->handleRequest($request);
@@ -51,6 +54,11 @@ class RejectController extends AbstractController
                 $user->getNumber(),
                 $request->getClientIp()
             ));
+            /** @var string $unitCode */
+            $unitCode = $complaint->getUnitToReassign();
+            $unit = $unitRepository->findOneBy(['code' => $unitCode]);
+
+            $bus->dispatch(new InfocentreMessage(ApplicationTracesMessage::REJECT, $complaint, $unit));
             $bus->dispatch(new ComplaintRejectionMessage((int) $complaint->getId())); // Salesforce email
 
             return new JsonResponse();

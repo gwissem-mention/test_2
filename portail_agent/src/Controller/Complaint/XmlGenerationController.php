@@ -9,13 +9,17 @@ use App\Complaint\DTO\Objects\PreComplaintHistory;
 use App\Entity\Complaint;
 use App\Entity\User;
 use App\Generator\Complaint\ComplaintGeneratorInterface;
+use App\Logger\ApplicationTracesMessage;
+use App\Messenger\InformationCenter\InfocentreMessage;
 use App\Referential\Entity\Service;
 use App\Referential\Repository\ServiceRepository;
+use App\Referential\Repository\UnitRepository;
 use App\Repository\ComplaintRepository;
 use App\Repository\DQLComplaintRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
@@ -29,7 +33,9 @@ class XmlGenerationController extends AbstractController
         ServiceRepository $serviceRepository,
         ComplaintRepository $complaintRepository,
         ComplaintWorkflowManager $complaintWorkflowManager,
-        DQLComplaintRepository $DQLComplaintRepository
+        DQLComplaintRepository $DQLComplaintRepository,
+        MessageBusInterface $bus,
+        UnitRepository $unitRepository,
     ): Response {
         $complaintWorkflowManager->sendToLRP($complaint);
         $complaintRepository->save($complaint, true);
@@ -59,7 +65,11 @@ class XmlGenerationController extends AbstractController
                 'service' => $service,
             ]
         ));
+        /** @var string $unitCode */
+        $unitCode = $complaint->getUnitToReassign();
+        $unit = $unitRepository->findOneBy(['code' => $unitCode]);
 
+        $bus->dispatch(new InfocentreMessage(ApplicationTracesMessage::SENT_TO_LRP, $complaint, $unit));
         fclose($tmpFile);
 
         return $this->redirectToRoute('complaint_summary', ['id' => $complaint->getId()]);

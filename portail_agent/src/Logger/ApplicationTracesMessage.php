@@ -19,6 +19,7 @@ final class ApplicationTracesMessage
     public const SENDING_DOCUMENTS = 'ENVOI DES DOCUMENTS';
     public const ADD_COMMENTS = 'AJOUT COMMENTAIRE';
     public const SELF_ASSIGNMENT = 'AUTOATTRIBUTION';
+    public const SENT_TO_LRP = 'ENVOI VERS LRP';
 
     public static function message(string $action, ?string $declarationNumber, ?string $userIdentifier, ?string $clientIp): string
     {

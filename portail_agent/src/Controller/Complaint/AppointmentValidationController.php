@@ -9,6 +9,8 @@ use App\Entity\User;
 use App\Form\Complaint\AppointmentType;
 use App\Logger\ApplicationTracesLogger;
 use App\Logger\ApplicationTracesMessage;
+use App\Messenger\InformationCenter\InfocentreMessage;
+use App\Referential\Repository\UnitRepository;
 use App\Repository\ComplaintRepository;
 use App\Salesforce\Messenger\Appointment\AppointmentMessage;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -27,7 +29,8 @@ class AppointmentValidationController extends AbstractController
         ComplaintRepository $complaintRepository,
         Request $request,
         MessageBusInterface $bus,
-        ApplicationTracesLogger $logger
+        ApplicationTracesLogger $logger,
+        UnitRepository $unitRepository,
     ): JsonResponse {
         $form = $this->createForm(AppointmentType::class, $complaint);
         $form->handleRequest($request);
@@ -43,7 +46,12 @@ class AppointmentValidationController extends AbstractController
                 $user->getNumber(),
                 $request->getClientIp()
             ));
+            /** @var string $unitCode */
+            $unitCode = $complaint->getUnitToReassign();
+            $unit = $unitRepository->findOneBy(['code' => $unitCode]);
+
             $bus->dispatch(new AppointmentMessage((int) $complaint->getId())); // Salesforce email
+            $bus->dispatch(new InfocentreMessage(ApplicationTracesMessage::APPOINTMENT_VALIDATION_MANAGEMENT, $complaint, $unit));
 
             return new JsonResponse();
         }

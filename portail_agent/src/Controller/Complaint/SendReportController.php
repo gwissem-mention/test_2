@@ -13,6 +13,8 @@ use App\Factory\NotificationFactory;
 use App\Form\Complaint\SendReportType;
 use App\Logger\ApplicationTracesLogger;
 use App\Logger\ApplicationTracesMessage;
+use App\Messenger\InformationCenter\InfocentreMessage;
+use App\Referential\Repository\UnitRepository;
 use App\Repository\ComplaintRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormError;
@@ -40,7 +42,8 @@ class SendReportController extends AbstractController
         MessageBusInterface $bus,
         ComplaintWorkflowManager $complaintWorkflowManager,
         ApplicationTracesLogger $logger,
-        ValidatorInterface $validator
+        ValidatorInterface $validator,
+        UnitRepository $unitRepository,
     ): JsonResponse {
         $form = $this->createForm(SendReportType::class);
 
@@ -89,6 +92,11 @@ class SendReportController extends AbstractController
                 $user->getNumber(),
                 $request->getClientIp()
             ));
+            /** @var string $unitCode */
+            $unitCode = $complaint->getUnitToReassign();
+            $unit = $unitRepository->findOneBy(['code' => $unitCode]);
+
+            $bus->dispatch(new InfocentreMessage(ApplicationTracesMessage::VALIDATION, $complaint, $unit));
 
             return new JsonResponse();
         }
