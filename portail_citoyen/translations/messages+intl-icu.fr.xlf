@@ -144,7 +144,7 @@
             </trans-unit>
             <trans-unit id="pel.address.or.route.facts">
                 <source>pel.address.or.route.facts</source>
-                <target>Connaissez vous l’adresse exacte ou le trajet sur lequel se sont déroulés les faits ?</target>
+                <target>Connaissez vous l’adresse exacte de l’infraction ?</target>
             </trans-unit>
             <trans-unit id="pel.address.start.or.exact">
                 <source>pel.address.start.or.exact</source>
@@ -345,6 +345,10 @@
             <trans-unit id="pel.complaint.continuation.offense.author.known">
                 <source>pel.complaint.continuation.offense.author.known</source>
                 <target>Connaissez-vous l’identité de l’auteur de l’infraction ?</target>
+            </trans-unit>
+            <trans-unit id="pel.complaint.exact.date">
+                <source>pel.complaint.exact.date</source>
+                <target>Date exacte</target>
             </trans-unit>
             <trans-unit id="pel.complaint.exact.date.known">
                 <source>pel.complaint.exact.date.known</source>
@@ -640,7 +644,7 @@
             </trans-unit>
             <trans-unit id="pel.do.you.know.hour.facts">
                 <source>pel.do.you.know.hour.facts</source>
-                <target>Connaissez-vous l’heure des faits ?</target>
+                <target>Connaissez-vous l’heure exacte des faits ?</target>
             </trans-unit>
             <trans-unit id="pel.download">
                 <source>pel.download</source>
@@ -1468,11 +1472,11 @@
             </trans-unit>
             <trans-unit id="pel.nature.place">
                 <source>pel.nature.place</source>
-                <target>Nature de lieu</target>
+                <target>Nature du lieu</target>
             </trans-unit>
             <trans-unit id="pel.nature.place.choose">
                 <source>pel.nature.place.choose</source>
-                <target>Choisissez le lieu où se sont déroulés les faits</target>
+                <target>Renseignez le type de lieu</target>
             </trans-unit>
             <trans-unit id="pel.nature.place.home">
                 <source>pel.nature.place.home</source>
@@ -1593,7 +1597,7 @@
             <trans-unit id="pel.specify.your.status.in.this.process">
                 <source>pel.specify.your.status.in.this.process</source>
                 <target>Précisez votre statut dans le cadre de cette démarche</target>
-            </trans-unit>            
+            </trans-unit>
             <trans-unit id="pel.start.date.after.end.date">
                 <source>pel.start.date.after.end.date</source>
                 <target>La date de début est après la date de fin</target>
@@ -1710,13 +1714,21 @@
                 <source>pel.victim.of.violence</source>
                 <target>J’ai été victime de violences au moment des faits</target>
             </trans-unit>
+            <trans-unit id="pel.victim.of.violence.help">
+                <source>pel.victim.of.violence.help</source>
+                <target>Exemples : vol à l’arraché, bousculade, coups ou blessures</target>
+            </trans-unit>
             <trans-unit id="pel.victim.of.violence.text">
                 <source>pel.victim.of.violence.text</source>
-                <target>Veuillez préciser les violences dont vous avez été victime</target>
+                <target>Précisions sur la nature des violences dont vous avez été victime</target>
+            </trans-unit>
+            <trans-unit id="pel.victim.of.violence.text.placeholder">
+                <source>pel.victim.of.violence.text.placeholder</source>
+                <target>J’ai reçu un violent coup au bras et j’ai un avis médical pour le certifier.</target>
             </trans-unit>
             <trans-unit id="pel.victim.of.violence.information">
                 <source>pel.victim.of.violence.information</source>
-                <target>Afin de prendre en compte votre situation dans les meilleurs conditions, un rendez-vous vous sera proposé</target>
+                <target>Les infractions avec violence peuvent nécessiter une étape supplémentaire vous invitant à vous rendre dans un commissariat de police ou une gendarmerie.</target>
             </trans-unit>
             <trans-unit id="pel.video.surveillance">
                 <source>pel.video.surveillance</source>
@@ -2001,7 +2013,7 @@
             <trans-unit id="pel.legal.dispositions.title">
                 <source>pel.legal.dispositions.title</source>
                 <target>Dispositions légales (étape 1 sur 7) - Plainte en ligne</target>
-            </trans-unit>            
+            </trans-unit>
             <trans-unit id="pel.before.starting.complaint">
                 <source>pel.before.starting.complaint</source>
                 <target>Avant de déclarer ma plainte, je prends acte des dispositions légales suivantes</target>
@@ -2121,7 +2133,7 @@
             <trans-unit id="pel.your.identity.title">
                 <source>pel.your.identity.title</source>
                 <target>Votre identité (étape 2 sur 7) - Plainte en ligne</target>
-            </trans-unit>            
+            </trans-unit>
             <trans-unit id="pel.my.online.complaint.declaration">
                 <source>pel.my.online.complaint.declaration</source>
                 <target>Ma déclaration<![CDATA[<br>]]>de plainte en ligne</target>
@@ -2152,7 +2164,7 @@
             </trans-unit>
             <trans-unit id="pel.describe.whats.happened">
                 <source>pel.describe.whats.happened</source>
-                <target>Décrivez en détails ce qu'il vous est arrivé</target>
+                <target>Décrivez en détails ce qui vous est arrivé</target>
             </trans-unit>
             <trans-unit id="pel.resume.the.infraction.in.few.words">
                 <source>pel.resume.the.infraction.in.few.words</source>
@@ -2173,7 +2185,7 @@
             <trans-unit id="pel.all.fields.marked.with.an.asterisk.are.mandatory">
                 <source>pel.all.fields.marked.with.an.asterisk.are.mandatory</source>
                 <target>Tous les champs marqués du symbole <![CDATA[<span class="fr-label--error font-bold">*</span>]]> sont obligatoires.</target>
-            </trans-unit>         
+            </trans-unit>
             <trans-unit id="pel.description.of.facts.step.3">
                 <source>pel.description.of.facts.step.3</source>
                 <target>Description des faits (étape 3 sur 7) - Plainte en ligne</target>
@@ -2189,7 +2201,7 @@
             <trans-unit id="pel.registered.complaint">
                 <source>pel.registered.complaint</source>
                 <target>Plainte enregistrée</target>
-            </trans-unit>       
+            </trans-unit>
         </body>
     </file>
 </xliff>

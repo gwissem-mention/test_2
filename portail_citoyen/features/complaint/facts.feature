@@ -49,14 +49,12 @@ Feature:
 
     Scenario: I can see 1 date input if I select "Yes" to offense exact date known radio buttons
         When I click the "label[for=facts_offenseDate_exactDateKnown_0]" element
-        Then I should see the key "pel.the" translated
-        And I should see the key "pel.the" translated
+        Then I should see the key "pel.complaint.exact.date" translated
         And I should see a "input#facts_offenseDate_startDate" element
 
     Scenario: I can see 2 date inputs if I select "No" to offense exact date known radio buttons
         When I click the "label[for=facts_offenseDate_exactDateKnown_1]" element
-        Then I should see the key "pel.the" translated
-        And I should see the key "pel.between" translated
+        Then I should see the key "pel.between" translated
         And I should see a "input#facts_offenseDate_startDate" element
         And I should see the key "pel.and" translated
         And I should see a "input#facts_offenseDate_endDate" element
@@ -86,14 +84,12 @@ Feature:
 
     Scenario: I can see 1 date input if I select "Yes" to offense exact date known radio buttons
         When I click the "label[for=facts_offenseDate_exactDateKnown_0]" element
-        Then I should see the key "pel.the" translated
-        And I should see the key "pel.the" translated
+        Then I should see the key "pel.complaint.exact.date" translated
         And I should see a "input#facts_offenseDate_startDate" element
 
     Scenario: I can see 2 date inputs if I select "No" to offense exact date known radio buttons
         When I click the "label[for=facts_offenseDate_exactDateKnown_1]" element
-        Then I should see the key "pel.the" translated
-        And I should see the key "pel.between" translated
+        Then I should see the key "pel.between" translated
         And I should see a "input#facts_offenseDate_startDate" element
         And I should see the key "pel.and" translated
         And I should see a "input#facts_offenseDate_endDate" element

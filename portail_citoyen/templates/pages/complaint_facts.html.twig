@@ -11,11 +11,11 @@
 
 {% block content %}
     <div data-controller="form">
-        <div class="block lg:hidden p-10">
-            <h1 class="text-3xl font-bold mb-3">{{ 'pel.facts.description'|trans }}</h1>
-            <div>{{ 'pel.all.fields.marked.with'|trans }} <span class="fr-text--red-marianne font-bold">*</span> {{ 'pel.are.mandatory'|trans }}</div>
+        <div class="fr-pt-10v fr-pb-12v fr-px-6v fr-py-md-12v fr-px-md-20v">
+            <h1 class="text-[28px]/9 md:text-[40px]/[48px] fr-mb-2v">{{ 'pel.facts.description'|trans }}</h1>
+            <div>{{ 'pel.all.fields.marked.with.an.asterisk.are.mandatory'|trans|raw }}</div>
         </div>
-        <hr class="block lg:hidden">
-        {{ component('facts', {class: 'fr-py-1w', fromSummary: from_summary}) }}
+        <hr>
+        {{ component('facts', {fromSummary: from_summary}) }}
     </div>
 {% endblock %}

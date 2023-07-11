@@ -46,6 +46,7 @@ class OffenseDateType extends AbstractType
                     'pel.no.but.i.know.the.time.slot' => 'maybe',
                 ],
                 'expanded' => true,
+                'inline' => true,
                 'label' => 'pel.do.you.know.hour.facts',
                 'constraints' => [
                     new NotNull(),
@@ -106,7 +107,7 @@ class OffenseDateType extends AbstractType
                 new NotBlank(),
                 new LessThanOrEqual('today', message: 'pel.date.less.than.equal.today.error'),
             ],
-            'label' => true === $exactDateKnown ? 'pel.the' : 'pel.potential.start.date',
+            'label' => true === $exactDateKnown ? 'pel.complaint.exact.date' : 'pel.potential.start.date',
             'widget' => 'single_text',
         ]);
 
