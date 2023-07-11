@@ -1,60 +1,127 @@
-<nav class="navbar navbar-expand-lg bg-light">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="{{ path('home') }}" title="{{ 'pel.home'|trans }}">
-            <img id="image_logo" src="{{ asset('build/images/logo.png') }}" alt="{{ 'pel.online.complaint'|trans }}"/>
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-            <div class="d-flex flex-column navbar-nav me-auto mb-2 mb-lg-0">
-                <h1>
-                    {{ 'pel.complaint.online'|trans }} : {{ 'pel.portal'|trans }}
-                    {% if is_granted('ROLE_SUPERVISOR') %}
-                        {{ 'pel.supervisor'|trans }}
-                    {% else %}
-                        {{ 'pel.agent'|trans }}
-                    {% endif %}
-                </h1>
-                <p>{{ 'pel.header.baseline'|trans }}</p>
-            </div>
-            {% if app.user %}
-                {% set notifications = app.user|user_unclicked_notifications %}
-                <div class="d-flex align-items-center text-center text-md-end">
-                    <div class="dropdown" id="notifications-dropdown">
-                        <a class="d-block text-secondary text-decoration-none m-3" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-bell-fill fs-2"></i>
-                            {% if notifications is not empty %}
-                                <span class="badge bg-danger rounded-pill--up">{{ notifications|length }}</span>
-                            {% endif %}
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li>
-                                <div class="dropdown-header">
-                                    {% if notifications is not empty %}
-                                        {{ 'pel.notifications'|trans }}
-                                    {% else %}
-                                        {{ 'pel.no.more.notification'|trans }}
-                                    {% endif %}
+<div data-controller="sidebar">
+    <header role="banner" class="fr-header">
+        <div class="fr-header__body">
+            <div class="fr-container">
+                <div class="fr-header__body-row">
+                    <div class="fr-header__brand fr-enlarge-link">
+                        <div class="fr-header__brand-top">
+                            <div class="fr-header__logo">
+                                <p class="fr-logo">
+                                    {{ 'pel.ministry'|trans }}<br>
+                                    {{ 'pel.from.the.inside'|trans }}<br>
+                                    {{ 'pel.and.overseas.department'|trans }}
+                                </p>
+                            </div>
+                            <div class="fr-header__navbar">
+                                <button class="fr-btn--menu fr-btn" data-fr-opened="false" aria-controls="modal-499" aria-haspopup="menu" id="button-500" title="{{ 'pel.menu'|trans }}">{{ 'pel.menu'|trans }}</button>
+                            </div>
+                        </div>
+                        <div class="fr-header__service">
+                            <a href="{{ path('home') }}" class="text-black text-decoration-none" title="{{ 'pel.home'|trans }} - {{ 'pel.complaint.online'|trans }} : {{ 'pel.portal'|trans }} {{ (is_granted('ROLE_SUPERVISOR')) ? 'pel.supervisor'|trans : 'pel.agent'|trans }} - {{ 'pel.ministry'|trans }} {{ 'pel.from.the.inside'|trans }} {{ 'pel.and.overseas.department'|trans }}">
+                                <p class="fr-header__service-title m-0">{{ 'pel.complaint.online'|trans }} : {{ 'pel.portal'|trans }} {{ 'pel.portal'|trans }} {{ (is_granted('ROLE_SUPERVISOR')) ? 'pel.supervisor'|trans : 'pel.agent'|trans }}</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="fr-header__tools d-none d-lg-flex align-items-end">
+                        {% if app.user %}
+                            {% set notifications = app.user|user_unclicked_notifications %}
+                            <div class="d-flex align-items-center text-center text-md-end">
+                                <div class="dropdown" id="notifications-dropdown">
+                                    <a class="d-block text-secondary text-decoration-none m-3" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-bell-fill fs-2"></i>
+                                        {% if notifications is not empty %}
+                                            <span class="badge bg-danger rounded-pill--up">{{ notifications|length }}</span>
+                                        {% endif %}
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-end">
+                                        <li>
+                                            <div class="dropdown-header">
+                                                {% if notifications is not empty %}
+                                                    {{ 'pel.notifications'|trans }}
+                                                {% else %}
+                                                    {{ 'pel.no.more.notification'|trans }}
+                                                {% endif %}
+                                            </div>
+                                        </li>
+                                        {% for notification in notifications %}
+                                            <li>
+                                                <a class="dropdown-item {{ notification.isUrgent ? 'fw-bold' }}" href="{{ path('notification', {id:notification.id}) }}">{{ notification.title }}</a>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
                                 </div>
-                            </li>
-                            {% for notification in notifications %}
-                                <li>
-                                    <a class="dropdown-item {{ notification.isUrgent ? 'fw-bold' }}" href="{{ path('notification', {id:notification.id}) }}">{{ notification.title }}</a>
-                                </li>
-                            {% endfor %}
-                        </ul>
+                                <button class="avatar bg-secondary rounded-circle text-light m-2" data-action="click->sidebar#openSidebar" data-sidebar-target="avatar">{{ app.user.initials }}</button>
+                            </div>
+                        {% endif %}
                     </div>
-                    <div class="avatar bg-secondary rounded-circle text-light m-2">
-                        {{ app.user.initials }}
-                    </div>
-                    {% if not sso_is_enabled %}
-                        <a href="{{ path('app_sso_less_close_session') }}" title="{{ 'pel.logout'|trans }}" class="text-secondary m-3">
-                            <i class="bi bi-box-arrow-right"></i>
-                        </a>
-                    {% endif %}
                 </div>
-            {% endif %}
+            </div>
         </div>
-    </div>
-</nav>
+        <div class="fr-header__menu fr-modal" id="modal-491" aria-labelledby="button-492">
+            <div class="fr-container">
+                <button class="fr-btn--close fr-btn" aria-controls="modal-491" title="Fermer">
+                    {{ 'pel.close'|trans }}
+                </button>
+                <div class="fr-header__menu-links">
+                </div>
+                <nav class="fr-nav d-flex align-items-center justify-content-between" id="navigation-494" role="navigation" aria-label="{{ 'pel.menu'|trans }}">
+                    <ul class="fr-nav__list">
+                        <li class="fr-nav__item">
+                            <a class="fr-nav__link text-blue-active reset-link border-bottom-active border-blue-active background-transparent" href="#" target="_self">{{ 'pel.dashboard'|trans }}</a>
+                        </li>
+                        <li class="fr-nav__item">
+                            <a class="fr-nav__link text-blue-active reset-link border-bottom-active border-blue-active background-transparent {% if app.request.attributes.get('_route') is same as('home') %}active{% endif %}" href="{{ path('home') }}" target="_self">{{ 'pel.the.declarations'|trans }}</a>
+                        </li>
+                        <li class="fr-nav__item">
+                            <a class="fr-nav__link text-blue-active reset-link border-bottom-active border-blue-active background-transparent {% if app.request.attributes.get('_route') is same as('faq') %}active{% endif %}" href="{{ path('faq') }}" target="_self">{{ 'pel.faq.space'|trans }}</a>
+                        </li>
+                    </ul>
+                    {% if app.user %}
+                        <div class="text-uppercase d-none d-md-block">{{ app.user.serviceCode|service_name }}</div>
+                    {% endif %}
+                </nav>
+            </div>
+        </div>
+    </header>
+    {% if app.user %}
+        <div class="d-none position-fixed w-100 h-100 background-black-transparent z-max top-0 right-0 bottom-0 left-0" data-sidebar-target="background"></div>
+        <div class="d-none position-fixed width-20 background-white fixed-right fixed-right-push-y p-4 shadow-sm z-max overflow-auto" data-sidebar-target="sidebar">
+            <div class="d-flex align-items-center justify-content-between">
+                <span class="fw-bold">{{ 'pel.profile'|trans }}</span>
+                <button class="fr-btn fr-btn--tertiary-no-outline fr-btn--icon-left fr-icon-close-line" data-action="click->sidebar#closeSidebar">
+                    {{ 'pel.close'|trans }}
+                </button>
+            </div>
+            <div class="m-3 text-center">
+                <img src="{{ asset('build/images/icons/user.svg') }}" alt="{{ app.user.appellation }}">
+            </div>
+            <div class="fw-bold text-center mb-3">{{ app.user.appellation }}</div>
+            <div class="text-center text-secondary mb-3">
+                {% if is_granted('ROLE_SUPERVISOR') %}
+                    {{ 'pel.supervisor'|trans }}
+                {% else %}
+                    {{ 'pel.agent'|trans }}
+                {% endif %}
+            </div>
+            <div class="fw-semibold text-center mb-5">{{ app.user.serviceCode|unit_name }}</div>
+                {# Temporarily removed #}
+                {#
+                <a href="#" title="{{ 'pel.display.settings'|trans }}" class="d-block reset-link text-blue fw-semibold p-3 text-blue-active">
+                    <img src="{{ asset('build/images/icons/display-settings.svg') }}" alt="{{ 'pel.display.settings'|trans }}" class="me-1">
+                    {{ 'pel.display.settings'|trans }}
+                </a>
+                #}
+                <a href="#" title="{{ 'pel.settings'|trans }}" class="d-block reset-link text-blue fw-semibold p-3 text-blue-active">
+                    <img src="{{ asset('build/images/icons/settings.svg') }}" alt="{{ 'pel.settings'|trans }}" class="me-1">
+                    {{ 'pel.settings'|trans }}
+                </a>
+                {% if not sso_is_enabled %}
+                    <a href="{{ path('app_sso_less_close_session') }}" title="{{ 'pel.logout'|trans }}" class="d-block reset-link text-blue fw-semibold p-3 text-blue-active">
+                        <img src="{{ asset('build/images/icons/signout.svg') }}" alt="{{ 'pel.logout'|trans }}" class="me-1">
+                        {{ 'pel.logout'|trans }}
+                    </a>
+                {% endif %}
+            </ul>
+        </div>
+    {% endif %}
+</div>

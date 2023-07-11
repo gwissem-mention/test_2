@@ -2,3 +2,11 @@
     &-list
         @include reset
         list-style-type: none
+
+    &-link
+        /* Important is needed here to override default DSFR styles. */
+        text-decoration: none !important
+
+        &[href]
+            /* Important is needed here to override default DSFR styles. */
+            background-image: none !important

@@ -1,6 +1,7 @@
 {% extends 'layout.html.twig' %}
 
 {% block body %}
+    {% block nav %}{{ include('common/_nav.html.twig') }}{% endblock %}
     <h1 class="mt-4">{{ 'pel.reporting'|trans }}</h1>
     <h2 class="mb-3">{{ 'pel.reporting.declaration.state'|trans }}</h2>
     <div class="border border-secondary bg-light rounded p-3">

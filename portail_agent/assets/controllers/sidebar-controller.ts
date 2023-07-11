@@ -1,9 +1,11 @@
 import {Controller} from "@hotwired/stimulus";
 
 export default class extends Controller {
-    static override targets: string[] = ["sidebarAside"];
+    static override targets: string[] = ["sidebar", "background", "avatar"];
 
-    declare readonly sidebarAsideTarget: HTMLInputElement;
+    declare readonly sidebarTarget: HTMLInputElement;
+    declare readonly backgroundTarget: HTMLInputElement;
+    declare readonly avatarTarget: HTMLInputElement;
 
     public openSidebar(): void {
         this.setSidebarState("show");
@@ -14,8 +16,14 @@ export default class extends Controller {
     }
 
     private setSidebarState(state: string): void {
-        if (this.sidebarAsideTarget) {
-            this.sidebarAsideTarget.classList.toggle("d-none", state === "hide");
+        if (this.sidebarTarget && this.backgroundTarget) {
+            this.sidebarTarget.classList.toggle("d-none", state === "hide");
+            this.backgroundTarget.classList.toggle("d-none", state === "hide");
+        }
+
+        if (this.avatarTarget) {
+            this.avatarTarget.classList.toggle("z-max", state === "show");
+            this.avatarTarget.classList.toggle("background-blue", state === "show");
         }
     }
 }

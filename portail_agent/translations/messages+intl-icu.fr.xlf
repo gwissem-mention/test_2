@@ -66,13 +66,13 @@
                 <source>pel.appointment.planned.with.the.victim</source>
                 <target>RDV planifié avec le déclarant</target>
             </trans-unit>
+            <trans-unit id="pel.appointment.planned">
+                <source>pel.appointment.planned</source>
+                <target>RDV planifié</target>
+            </trans-unit>
             <trans-unit id="pel.appointment.validate">
                 <source>pel.appointment.validate</source>
                 <target>Valider le RDV avec le déclarant</target>
-            </trans-unit>
-            <trans-unit id="pel.assignment.pending">
-                <source>pel.assignment.pending</source>
-                <target>A attribuer</target>
             </trans-unit>
             <trans-unit id="pel.assigned">
                 <source>pel.assigned</source>
@@ -1342,13 +1342,9 @@
                  <source>pel.filters</source>
                  <target>Filtres</target>
             </trans-unit>
-            <trans-unit id="pel.all.complaints">
-                 <source>pel.all.complaints</source>
-                 <target>Toutes les plaintes</target>
-            </trans-unit>
-            <trans-unit id="pel.limit.date">
-                 <source>pel.limit.date</source>
-                 <target>Toutes les plaintes</target>
+            <trans-unit id="pel.all.declarations">
+                 <source>pel.all.declarations</source>
+                 <target>Toutes les déclarations</target>
             </trans-unit>
             <trans-unit id="pel.reaches.deadline">
                  <source>pel.reaches.deadline</source>
@@ -1357,10 +1353,6 @@
             <trans-unit id="pel.exceeds.deadline">
                  <source>pel.exceeds.deadline</source>
                  <target>Dépasse la date limite</target>
-            </trans-unit>
-            <trans-unit id="pel.urgent">
-                 <source>pel.urgent</source>
-                 <target>Urgent</target>
             </trans-unit>
             <trans-unit id="pel.waiting.for.appointment">
                  <source>pel.waiting.for.appointment</source>
@@ -1377,6 +1369,58 @@
             <trans-unit id="pel.waiting.closing">
                 <source>pel.waiting.closing</source>
                 <target>Clôture en attente</target>
+            </trans-unit>
+            <trans-unit id="pel.validation.declaration">
+                <source>pel.validation.declaration</source>
+                <target>Validation déclaration</target>
+            </trans-unit>
+            <trans-unit id="pel.ministry">
+                <source>pel.ministry</source>
+                <target>MINISTÈRE</target>
+            </trans-unit>
+            <trans-unit id="pel.from.the.inside">
+                <source>pel.from.the.inside</source>
+                <target>DE L'INTÉRIEUR</target>
+            </trans-unit>
+            <trans-unit id="pel.from.inside">
+                <source>pel.and.overseas.department</source>
+                <target>ET DES OUTRE-MER</target>
+            </trans-unit>
+            <trans-unit id="pel.menu">
+                <source>pel.menu</source>
+                <target>Menu</target>
+            </trans-unit>
+            <trans-unit id="pel.dashboard">
+                <source>pel.dashboard</source>
+                <target>Tableau de bord</target>
+            </trans-unit>
+            <trans-unit id="pel.the.declarations">
+                <source>pel.the.declarations</source>
+                <target>Les déclarations</target>
+            </trans-unit>
+            <trans-unit id="pel.faq.space">
+                <source>pel.faq.space</source>
+                <target>Espace FAQ</target>
+            </trans-unit>
+            <trans-unit id="pel.profile">
+                <source>pel.profile</source>
+                <target>Profile</target>
+            </trans-unit>
+            <trans-unit id="pel.display.settings">
+                <source>pel.display.settings</source>
+                <target>Paramètres d'affichage</target>
+            </trans-unit>
+            <trans-unit id="pel.settings">
+                <source>pel.settings</source>
+                <target>Paramètres</target>
+            </trans-unit>
+            <trans-unit id="pel.clear.filter">
+                <source>pel.clear.filter</source>
+                <target>Effacer le filtre</target>
+            </trans-unit>
+            <trans-unit id="pel.assignment.pending">
+                <source>pel.assignment.pending</source>
+                <target>A attribuer</target>
             </trans-unit>
         </body>
     </file>

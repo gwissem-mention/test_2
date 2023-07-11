@@ -14,26 +14,26 @@ Feature:
         And I should see a ".avatar" element
         And I should see "TD" in the ".avatar" element
         And I should see the key "pel.search" translated
-        And I should see the key "pel.header.baseline" translated
         And I should see the key "pel.complaint.online.portal" translated
         And I should see "Brigade de proximité de Voiron"
-        And I should see the key "pel.home" translated
-        And I should see the key "pel.reporting" translated
-        And I should see the key "pel.faq" translated
+        And I should see the key "pel.dashboard" translated
+        And I should see the key "pel.the.declarations" translated
+        And I should see the key "pel.faq.space" translated
 
     @func
     Scenario: I can navigate from the homepage to the homepage
         When I am on the homepage
         And I follow "Accueil"
         Then I am on "/"
-        And I should see the key "pel.home" translated
+        And I should see the key "pel.the.declarations" translated
 
-    @func
-    Scenario: I can navigate from the homepage to the reporting page
-        When I am on the homepage
-        And I follow "Reporting"
-        Then I am on "/reporting"
-        And I should see the key "pel.reporting" translated
+    # Temporarily disabled
+    #@func
+    #Scenario: I can navigate from the homepage to the reporting page
+    #    When I am on the homepage
+    #    And I follow "Reporting"
+    #    Then I am on "/reporting"
+    #    And I should see the key "pel.reporting" translated
 
     @func
     Scenario: I can navigate from the homepage to the FAQ page

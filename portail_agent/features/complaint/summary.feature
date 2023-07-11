@@ -35,7 +35,7 @@ Feature:
         And I should see the key "pel.declaration.alert" translated
         And I should see "Alert de test trop longue"
         And I should see 2 "button[data-bs-toggle='modal']" element
-        And I should see 11 "button" element
+        And I should see 14 "button" element
         And I should see the key "pel.assign.declaration.to" translated
         And I should not see the key "pel.send.to.lrp" translated
         And I should not see the key "pel.reject" translated
@@ -48,13 +48,12 @@ Feature:
         And I should see the key "pel.objects.concerned" translated
         And I should see the key "pel.additional.informations" translated
         And I should see the key "pel.appointment.management" translated
-        And I should see the key "pel.home" translated
-        And I should see the key "pel.header.baseline" translated
-        And I should see the key "pel.complaint.online.portal" translated
+        And I should see the key "pel.complaint.online" translated
+        And I should see the key "pel.portal" translated
         And I should see "Brigade de proximité de Voiron"
-        And I should see the key "pel.reporting" translated
-        And I should see the key "pel.faq" translated
-        And I should see the key "pel.home" translated
+        And I should see the key "pel.dashboard" translated
+        And I should see the key "pel.the.declarations" translated
+        And I should see the key "pel.faq.space" translated
         And I should see the key "pel.identification" translated
         And I should see the key "pel.civility" translated
         And I should see the key "pel.family.situation" translated
