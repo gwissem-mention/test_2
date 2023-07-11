@@ -21,12 +21,14 @@ class CorporationRepresentedDTO
     private string $streetName;
     private string $address;
     private string $place;
+    private string $phone;
 
     public function __construct(Corporation $corporation)
     {
         $this->sirenNumber = $corporation->getSirenNumber() ?? '';
         $this->companyName = $corporation->getCompanyName() ?? '';
         $this->implication = $corporation->getDeclarantPosition() ?? '';
+        $this->phone = $corporation->getPhone() ?? '';
         $this->nationality = $corporation->getNationality() ?? '';
         $this->country = $corporation->getCountry() ?? '';
         $this->department = $corporation->getDepartment() ?? '';
@@ -51,6 +53,7 @@ class CorporationRepresentedDTO
             'Personne_Morale_Num_Registre_Commerce' => '',
             'Personne_Morale_Siret' => $this->sirenNumber,
             'Personne_Morale_Implication' => $this->implication,
+            'Tel_Bureau_Declarant' => $this->phone,
             'Personne_Morale_Nationalite' => $this->nationality,
             'Personne_Morale_Secteur' => '',
             'Personne_Morale_Juridique' => '',

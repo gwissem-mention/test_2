@@ -26,6 +26,7 @@ class PersonDTO extends AbstractIdentityDTO
         return ['Personne' => [
 //            'Personne_Lien' => $this->relationship,
             'Personne_Implication' => $this->implication,
+            'Personne_Telephone_Portable' => $this->mobilePhone,
             'Personne_Civilite_Sexe' => $this->civilStatus,
             'Personne_Nom' => $this->lastname,
             'Personne_Nom_Marital' => $this->marriedName,

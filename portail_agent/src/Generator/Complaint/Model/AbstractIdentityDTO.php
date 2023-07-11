@@ -33,6 +33,8 @@ abstract class AbstractIdentityDTO
     protected string $homePlace;
     protected string $birthplace;
 
+    protected string $mobilePhone;
+
     public function __construct(Identity $identity)
     {
         $this->civilStatus = Identity::CIVILITY_MALE === $identity->getCivility() ? 'M' : (Identity::CIVILITY_FEMALE === $identity->getCivility() ? 'Mme' : '');
@@ -61,5 +63,6 @@ abstract class AbstractIdentityDTO
         $this->address = $identity->getAddress() ?? '';
         $this->homePlace = ($identity->getAddressCity() ? strtoupper($identity->getAddressCity()).' ' : '').($identity->getAddressPostcode() ? $identity->getAddressPostcode().' ' : '').($identity->getAddressCountry() ? '('.$identity->getAddressCountry().')' : '');
         $this->birthplace = ($identity->getBirthCity() ? strtoupper($identity->getBirthCity()).' ' : '').($identity->getBirthPostalCode() ? $identity->getBirthPostalCode().' ' : '').($identity->getBirthCountry() ? '('.$identity->getBirthCountry().')' : '');
+        $this->mobilePhone = $identity->getMobilePhone() ?? '';
     }
 }
