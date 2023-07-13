@@ -155,7 +155,40 @@ class ContactInformationType extends AbstractType
                     ]), ],
             ]);
 
+        if (!$options['is_france_connected'] && !$contactInformationModel?->getEmail()) {
+            $builder->add('confirmationEmail', EmailType::class, [
+                'attr' => [
+                    'maxlength' => 50,
+                    'onpaste' => 'return false;',
+                ],
+                'mapped' => false,
+                'constraints' => [
+                    new NotBlank(),
+                    new Length(['max' => 50]),
+                    new Email(),
+                    new Callback([$this, 'validateConfirmationEmail']),
+                ],
+                'label' => 'pel.email.confirmation',
+            ]);
+        }
+
         $builder->addEventSubscriber($this->addAddressSubscriber);
+    }
+
+    public function validateConfirmationEmail(?string $confirmationEmail, ExecutionContextInterface $context): void
+    {
+        /** @var Form $form */
+        $form = $context->getObject();
+        /** @var Form $formParent */
+        $formParent = $form->getParent();
+        /** @var string $email */
+        $email = $formParent->get('email')->getData();
+
+        if ($email !== $confirmationEmail) {
+            $context->buildViolation('Veuillez saisir deux adresses emails identiques.')
+                ->atPath('confirmationEmail')
+                ->addViolation();
+        }
     }
 
     public function configureOptions(OptionsResolver $resolver): void

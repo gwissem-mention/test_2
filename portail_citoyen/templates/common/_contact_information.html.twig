@@ -35,5 +35,8 @@
 	{% endif %}
 </div>
 {{ form_row(form.email) }}
+{% if form.confirmationEmail is defined %}
+    {{ form_row(form.confirmationEmail) }}
+{% endif %}
 {{ form_row(form.mobile) }}
 {{ form_row(form.phone) }}

@@ -690,6 +690,10 @@
                 <source>pel.email</source>
                 <target>Adresse e-mail</target>
             </trans-unit>
+           <trans-unit id="pel.email.confirmation">
+                 <source>pel.email.confirmation</source>
+                 <target>Confirmer votre Email</target>
+             </trans-unit>
             <trans-unit id="pel.end.hour">
                 <source>pel.end.hour</source>
                 <target>Heure de fin</target>
