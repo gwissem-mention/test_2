@@ -414,6 +414,10 @@
                 <source>pel.drop.the.report.then.validate.the.sending.to.the.victim</source>
                 <target>Déposez le PV puis validez l'envoi à la victime</target>
             </trans-unit>
+          <trans-unit id="pel.physical.harm.message">
+                <source>pel.physical.harm.message</source>
+                <target>Dans ce cas vous devrez être examiné par un médecin et présenter un certificat médical indiquant notamment la durée de votre incapacité temporaire de travail. Les précisions relatives à cet examen vous seront communiquées lors de la fixation du rendez-vous pour la signature de votre plainte</target>
+            </trans-unit>
             <trans-unit id="pel.email">
                 <source>pel.email</source>
                 <target>Email</target>

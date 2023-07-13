@@ -24,9 +24,14 @@ use App\Generator\Complaint\Model\Objects\VehicleDTO;
 use App\Generator\Complaint\Model\PersonDTO;
 use App\Generator\Complaint\Model\PersonLegalRepresentativeDTO;
 use App\Referential\Entity\Service;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class ComplaintXmlGenerator implements ComplaintGeneratorInterface
 {
+    public function __construct(readonly private TranslatorInterface $translator)
+    {
+    }
+
     public function generate(Complaint $complaint, Service $service): \SimpleXMLElement
     {
         $xml = new \SimpleXMLElement('<?xml version="1.0" encoding="ISO-8859-1"?><PlainteWeb></PlainteWeb>');
@@ -43,7 +48,9 @@ class ComplaintXmlGenerator implements ComplaintGeneratorInterface
             $xml = $this->arrayToXml($xml, (new CorporationRepresentedDTO($corporation))->getArray());
         }
         if ($complaint->getFacts()) {
-            $xml = $this->arrayToXml($xml, (new FactsDTO($complaint))->getArray());
+            $data = (new FactsDTO($complaint))->getArray();
+            $data['Faits']['Faits_Prejudice_Physique_Description'] = $data['Faits']['Faits_Prejudice_Physique_Description'] ? $this->translator->trans($data['Faits']['Faits_Prejudice_Physique_Description']) : '';
+            $xml = $this->arrayToXml($xml, $data);
         }
         $xml = $this->setObjects($xml, $complaint);
         $xml = $this->arrayToXml($xml, (new ContactDTO($complaint))->getArray());

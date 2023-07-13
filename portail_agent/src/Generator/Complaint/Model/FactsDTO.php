@@ -40,6 +40,8 @@ class FactsDTO
     //    private string $noOrientation;
     private string $violenceDescription;
     //    private string $orientation;
+    private string $hasHarmPhysique;
+    private string $hasHarmPhysiqueDescription;
 
     public function __construct(Complaint $complaint)
     {
@@ -81,6 +83,8 @@ class FactsDTO
         $this->end = (!is_null($date = $facts->getEndDate()) && !is_null($hour = $facts->getEndHour())) ? ($date->format('d/m/Y').' à '.$hour->format('H:i:s')) : '';
         $this->noViolence = strval(!$complaint->getFacts()?->isVictimOfViolence()) ?: '';
         $this->violenceDescription = $complaint->getFacts()?->getVictimOfViolenceText() ?? '';
+        $this->hasHarmPhysique = $complaint->getFacts()?->isVictimOfViolence() ? 'oui' : 'non';
+        $this->hasHarmPhysiqueDescription = true === $complaint->getFacts()?->isVictimOfViolence() ? 'pel.physical.harm.message' : '';
 
         //        $this->noOrientation = !is_null($noOrientation = $facts->isNoOrientation()) ? strval($noOrientation) : '';
         //        $this->orientation = $facts->getOrientation() ?? '';
@@ -118,9 +122,9 @@ class FactsDTO
 //            'Faits_Orientation_Aucune' => $this->noOrientation,
             'Faits_Violences_Description' => $this->violenceDescription,
 //            'Faits_Orientation' => $this->orientation,
-            'Faits_Prejudice_Physique' => '',
+            'Faits_Prejudice_Physique' => $this->hasHarmPhysique,
             'Faits_Prejudice_Autre' => '',
-            'Faits_Prejudice_Physique_Description' => '',
+            'Faits_Prejudice_Physique_Description' => $this->hasHarmPhysiqueDescription,
             'Faits_Prejudice_Autre_Description' => '',
         ]];
     }
