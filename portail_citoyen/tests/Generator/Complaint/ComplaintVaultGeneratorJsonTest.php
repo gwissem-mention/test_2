@@ -90,6 +90,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'label' => 'Abat-jouriste',
                     ],
                 ],
+                'consentContactElectronics' => null,
                 'contactInformation' => [
                     'phone' => [
                         'country' => 'FR',
@@ -447,6 +448,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'label' => 'Abat-jouriste',
                     ],
                 ],
+                'consentContactElectronics' => null,
                 'contactInformation' => [
                     'phone' => [
                         'country' => 'FR',
@@ -882,6 +884,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'label' => 'Abat-jouriste',
                     ],
                 ],
+                'consentContactElectronics' => null,
                 'contactInformation' => [
                     'phone' => [
                         'country' => 'FR',

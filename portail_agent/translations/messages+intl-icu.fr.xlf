@@ -1166,6 +1166,10 @@
                 <source>pel.victim.of.violence.text</source>
                 <target>Veuillez préciser les violences dont vous avez été victime</target>
             </trans-unit>
+             <trans-unit id="pel.want.to.receive.legal.proceedings.electronically">
+                <source>pel.want.to.receive.legal.proceedings.electronically</source>
+                <target>Souhaite que ses données de contact soient utilisées pour recevoir par voie électronique les suites judiciaires ou autre document concernant son affaire.</target>
+             </trans-unit>
             <trans-unit id="pel.victim.or.minor.child.representative">
                 <source>pel.victim.or.minor.child.representative</source>
                 <target>Victime ou représentant de son enfant mineur</target>

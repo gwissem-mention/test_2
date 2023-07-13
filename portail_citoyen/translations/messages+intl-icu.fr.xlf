@@ -1726,6 +1726,14 @@
                 <source>pel.victim.of.violence.text</source>
                 <target>Précisions sur la nature des violences dont vous avez été victime</target>
             </trans-unit>
+            <trans-unit id="pel.consent.confirmation">
+                <source>pel.consent.confirmation</source>
+                <target>Autorisez-vous que vos données de contact soient utilisées pour recevoir par voie électronique les suites judiciaires ou autre document concernant votre affaire?</target>
+            </trans-unit>
+            <trans-unit id="pel.want.to.receive.legal.proceedings.electronically">
+                <source>pel.want.to.receive.legal.proceedings.electronically</source>
+                <target>Souhaite que ses données de contact soient utilisées pour recevoir par voie électronique les suites judiciaires ou autre document concernant son affaire.</target>
+            </trans-unit>
             <trans-unit id="pel.victim.of.violence.text.placeholder">
                 <source>pel.victim.of.violence.text.placeholder</source>
                 <target>J’ai reçu un violent coup au bras et j’ai un avis médical pour le certifier.</target>

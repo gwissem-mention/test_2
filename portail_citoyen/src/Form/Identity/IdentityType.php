@@ -8,6 +8,7 @@ use App\AppEnum\DeclarantStatus;
 use App\Form\Model\Identity\IdentityModel;
 use App\Session\SessionHandler;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -70,6 +71,10 @@ class IdentityType extends AbstractType
             ->add('contactInformation', ContactInformationType::class, [
                 'compound' => true,
                 'is_france_connected' => $options['is_france_connected'],
+            ])
+            ->add('consentContactElectronics', CheckboxType::class, [
+                'required' => false,
+                'label' => 'pel.consent.confirmation',
             ])
             ->addEventListener(
                 FormEvents::PRE_SET_DATA,

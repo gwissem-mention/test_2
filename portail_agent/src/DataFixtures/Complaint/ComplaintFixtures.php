@@ -77,6 +77,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                         ->setLastname('BERNARD')
                         ->setFamilySituation('Marié(e)')
                         ->setHomePhone('01 23 45 67 89'))
+                        ->setConsentContactElectronics(true)
                     ->setStatus(Complaint::STATUS_ASSIGNED)
                     ->setAppointmentDate(new \DateTimeImmutable('2022-12-01'))
                     ->setAppointmentTime(new \DateTimeImmutable('2022-12-01'))
@@ -127,6 +128,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                     ->setIdentity($identity
                         ->setDeclarantStatus(2)
                         ->setFamilySituation('Concubinage'))
+                        ->setConsentContactElectronics(true)
                     ->setpersonLegalRepresented(
                         (new Identity())
                             ->setFirstname('Jeremy')
@@ -193,6 +195,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                     ->setIdentity($identity
                         ->setDeclarantStatus(3)
                         ->setFamilySituation('Divorcé(e)'))
+                        ->setConsentContactElectronics(true)
                     ->setCorporationRepresented(
                         (new Corporation())
                             ->setSirenNumber('123456789')
@@ -284,6 +287,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                     ->setJob('Boulanger')
                     ->setAlertNumber(3)
             )
+            ->setConsentContactElectronics(true)
             ->setFacts(
                 (new Facts())
                     ->setVictimOfViolence(true)

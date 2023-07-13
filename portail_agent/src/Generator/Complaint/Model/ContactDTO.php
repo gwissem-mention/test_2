@@ -8,7 +8,7 @@ use App\Entity\Complaint;
 
 class ContactDTO
 {
-    //    private string $claimsLegalAction;
+    private string $claimsLegalAction;
     private string $declarantEmail;
     private string $declarantHomePhone;
     //    private string $declarantOfficePhone;
@@ -16,10 +16,11 @@ class ContactDTO
     //    private string $appointementChoice;
     //    private string $contactWindow;
     //    private string $contactPeriod;
+    private string $cons;
 
     public function __construct(Complaint $complaint)
     {
-        //        $this->claimsLegalAction = true === $complaint->getClaimsLegalAction() ? 'Oui' : 'Non';
+        $this->claimsLegalAction = true === $complaint->isConsentContactElectronics() ? 'Oui' : 'Non';
         $this->declarantEmail = $complaint->getIdentity()?->getEmail() ?? '';
         $this->declarantHomePhone = $complaint->getIdentity()?->getHomePhone() ?? '';
         //        $this->declarantOfficePhone = $complaint->getIdentity()?->getOfficePhone() ?? '';
@@ -27,6 +28,7 @@ class ContactDTO
         //        $this->appointementChoice = !is_null($complaint->getAppointmentDate()) ? $complaint->getAppointmentDate()->format('d/m/Y H').'h' : '';
         //        $this->contactWindow = $complaint->getContactWindow() ?? '';
         //        $this->contactPeriod = $complaint->getContactPeriod() ?? '';
+        $this->cons = (true === $complaint->isConsentContactElectronics() && null !== $complaint->getIdentity()?->getMobilePhone() && null !== $complaint->getIdentity()->getEmail()) ? 'Oui' : 'Non';
     }
 
     /**
@@ -35,7 +37,7 @@ class ContactDTO
     public function getArray(): array
     {
         return ['Contact' => [
-//            'Demandes_Suites_Judiciaires' => $this->claimsLegalAction,
+            'Demandes_Suites_Judiciaires' => $this->claimsLegalAction,
             'Mail_Declarant' => $this->declarantEmail,
             'Tel_Domicile_Declarant' => $this->declarantHomePhone,
 //            'Tel_Bureau_Declarant' => $this->declarantOfficePhone,
@@ -43,6 +45,7 @@ class ContactDTO
 //            'Choix_Rendez_Vous' => $this->appointementChoice,
 //            'Creaneau_Contact' => $this->contactWindow,
 //            'Periode_Contact' => $this->contactPeriod,
+            'CONS' => $this->cons,
         ]];
     }
 }

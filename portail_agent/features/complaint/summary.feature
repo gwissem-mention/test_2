@@ -64,6 +64,7 @@ Feature:
         And I should see the key "pel.phone" translated
         And I should see the key "pel.email" translated
         And I should see the key "pel.want.to.receive.sms.notifications" translated
+        And I should see the key "pel.want.to.receive.legal.proceedings.electronically" translated
         And I should see the key "pel.is.designated.as" translated
         And I should see the key "pel.sir" translated
         And I should see the key "pel.job" translated
