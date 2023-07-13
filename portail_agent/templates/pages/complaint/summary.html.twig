@@ -141,6 +141,11 @@
                     </li>
                 </ul>
             {% endif %}
+            {% if complaint.consentContactElectronics is same as true %}
+                <li>
+                    {{ 'pel.want.to.receive.legal.proceedings.electronically'|trans }}
+                </li>
+            {% endif %}
         </ul>
 
         <hr class="border border-2 border-dark">

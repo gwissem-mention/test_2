@@ -7,6 +7,7 @@ namespace App\Form\Model\Identity;
 class IdentityModel
 {
     private ?int $declarantStatus = null;
+    private ?bool $consentContactElectronics = null;
     private CivilStateModel $civilState;
     private ContactInformationModel $contactInformation;
     private ?CivilStateModel $representedPersonCivilState = null;
@@ -87,6 +88,18 @@ class IdentityModel
     public function setCorporation(?CorporationModel $corporation): self
     {
         $this->corporation = $corporation;
+
+        return $this;
+    }
+
+    public function getConsentContactElectronics(): ?bool
+    {
+        return $this->consentContactElectronics;
+    }
+
+    public function setConsentContactElectronics(?bool $consentContactElectronics): self
+    {
+        $this->consentContactElectronics = $consentContactElectronics;
 
         return $this;
     }

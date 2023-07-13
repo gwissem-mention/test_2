@@ -64,9 +64,6 @@ class Complaint
     #[ORM\Column(nullable: true)]
     private ?bool $deadlineNotified = false;
 
-    //    #[ORM\Column]
-    //    private ?bool $claimsLegalAction = null;
-
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $appointmentContactInformation = null;
 
@@ -183,6 +180,9 @@ class Complaint
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $appointmentNotificationSentAt = null;
+
+    #[ORM\Column]
+    private ?bool $consentContactElectronics = null;
 
     public function __construct()
     {
@@ -679,6 +679,18 @@ class Complaint
     public function setAppointmentNotificationSentAt(?\DateTimeImmutable $appointmentNotificationSentAt): self
     {
         $this->appointmentNotificationSentAt = $appointmentNotificationSentAt;
+
+        return $this;
+    }
+
+    public function isConsentContactElectronics(): ?bool
+    {
+        return $this->consentContactElectronics;
+    }
+
+    public function setConsentContactElectronics(bool $consentContactElectronics): static
+    {
+        $this->consentContactElectronics = $consentContactElectronics;
 
         return $this;
     }

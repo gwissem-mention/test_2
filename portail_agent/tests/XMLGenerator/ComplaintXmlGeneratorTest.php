@@ -85,6 +85,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
                     ->setJob('Boulanger')
                     ->setAlertNumber(3)
             )
+            ->setConsentContactElectronics(true)
             ->setpersonLegalRepresented(
                 (new Identity())
                     ->setFirstname('Jeremy')
@@ -208,6 +209,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
             ->setIdentity(
                 $identity->setDeclarantStatus(Identity::DECLARANT_STATUS_CORPORATION_LEGAL_REPRESENTATIVE)
             )
+            ->setConsentContactElectronics(true)
             ->setPersonLegalRepresented(null)
             ->setCorporationRepresented(
                 (new Corporation())
@@ -545,7 +547,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
     public function testContactSection(): void
     {
         $this->assertStringContainsString('<Contact>', $this->xmlContent);
-        //        $this->assertStringContainsString('<Demandes_Suites_Judiciaires>Oui</Demandes_Suites_Judiciaires>', $this->xmlContent);
+        $this->assertStringContainsString('<Demandes_Suites_Judiciaires>Oui</Demandes_Suites_Judiciaires>', $this->xmlContent);
         $this->assertStringContainsString('<Mail_Declarant>jean.dupont@gmail.com</Mail_Declarant>', $this->xmlContent);
         $this->assertStringContainsString('<Tel_Domicile_Declarant>01 23 45 67 89</Tel_Domicile_Declarant>', $this->xmlContent);
         //        $this->assertStringContainsString('<Tel_Bureau_Declarant>09 01 02 03 04</Tel_Bureau_Declarant>', $this->xmlContent);
@@ -553,6 +555,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         //        $this->assertStringContainsString('<Choix_Rendez_Vous>03/12/2022 00h</Choix_Rendez_Vous>', $this->xmlContent);
         //        $this->assertStringContainsString('<Creaneau_Contact>08H-12H</Creaneau_Contact>', $this->xmlContent);
         //        $this->assertStringContainsString('<Periode_Contact>Si possible entre 10h et 11h</Periode_Contact>', $this->xmlContent);
+        $this->assertStringContainsString('<CONS>Oui</CONS>', $this->xmlContent);
         $this->assertStringContainsString('</Contact>', $this->xmlContent);
     }
 }

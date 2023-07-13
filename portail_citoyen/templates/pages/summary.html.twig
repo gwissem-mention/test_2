@@ -50,6 +50,11 @@
                             {% endif %}
                             {{ 'pel.of.infraction'|trans }}
                         </li>
+                        {% if complaint.identity.consentContactElectronics is same as true %}
+                            <li>
+                            {{ 'pel.want.to.receive.legal.proceedings.electronically'|trans }}
+                            </li>
+                        {% endif %}
                     </ul>
                     {% if complaint.identity.declarantStatus is same as(constant('App\\AppEnum\\DeclarantStatus::PersonLegalRepresentative').value) %}
                         <p>{{ 'pel.represented.person.identity'|trans }}</p>
