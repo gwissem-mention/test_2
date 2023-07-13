@@ -43,6 +43,7 @@ Feature:
         And I fill in "contact-information-address" with "avenue de la république paris"
         And I click the "#contact-information-address-75111_8158" element
         And I fill in "identity_contactInformation_email" with "jean@test.com"
+        And I fill in "identity_contactInformation_confirmationEmail" with "jean@test.com"
         And I fill in "identity_contactInformation_phone_number" with "0102020304"
         And I click the "label[for=identity_representedPersonCivilState_civility_0]" element
         And I fill in "identity_representedPersonCivilState_birthName" with "Dupont"
@@ -54,6 +55,7 @@ Feature:
         And I fill in "represented-person-address" with "avenue de la république paris"
         And I click the "#represented-person-address-75111_8158" element
         And I fill in "identity_representedPersonContactInformation_email" with "jean@test.com"
+        And I fill in "identity_representedPersonContactInformation_confirmationEmail" with "jean@test.com"
         And I fill in "identity_representedPersonContactInformation_phone_number" with "0102020304"
         And I press "identity_submit"
         Then I should be on "/porter-plainte/faits"
@@ -69,6 +71,7 @@ Feature:
         And I fill in "contact-information-address" with "avenue de la république paris"
         And I click the "#contact-information-address-75111_8158" element
         And I fill in "identity_contactInformation_email" with "jean@test.com"
+        And I fill in "identity_contactInformation_confirmationEmail" with "jean@test.com"
         And I fill in "identity_contactInformation_phone_number" with "0102020304"
         And I click the "label[for=identity_representedPersonCivilState_civility_0]" element
         And I fill in "identity_representedPersonCivilState_birthName" with "Dupont"
@@ -80,6 +83,7 @@ Feature:
         And I click the "label[for=identity_representedPersonContactInformation_sameAddress]" element
         Then the "represented-person-address" field should contain "Avenue de la République 75011 Paris"
         When I fill in "identity_representedPersonContactInformation_email" with "jean@test.com"
+        And I fill in "identity_representedPersonContactInformation_confirmationEmail" with "jean@test.com"
         And I fill in "identity_representedPersonContactInformation_phone_number" with "0102020304"
         And I press "identity_submit"
         Then I should be on "/porter-plainte/faits"
@@ -96,6 +100,7 @@ Feature:
         And I fill in "contact-information-address" with "avenue de la république paris"
         And I click the "#contact-information-address-75111_8158" element
         And I fill in "identity_contactInformation_email" with "jean@test.com"
+        And I fill in "identity_contactInformation_confirmationEmail" with "jean@test.com"
         And I fill in "identity_contactInformation_phone_number" with "0102020304"
         And I click the "label[for=identity_representedPersonCivilState_civility_0]" element
         And I fill in "identity_representedPersonCivilState_birthName" with "Dupont"
@@ -107,6 +112,7 @@ Feature:
         And I fill in "represented-person-address" with "avenue de la république paris"
         And I click the "#represented-person-address-75111_8158" element
         And I fill in "identity_representedPersonContactInformation_email" with "jean@test.com"
+        And I fill in "identity_representedPersonContactInformation_confirmationEmail" with "jean@test.com"
         And I fill in "identity_representedPersonContactInformation_phone_number" with "0102020304"
         And I press "identity_submit"
         Then I should be on "/porter-plainte/faits"
@@ -124,6 +130,7 @@ Feature:
         And I fill in "identity_contactInformation_foreignAddress_type" with "Corto"
         And I fill in "identity_contactInformation_foreignAddress_street" with "de Alcalá Madrid España"
         And I fill in "identity_contactInformation_email" with "jean@test.com"
+        And I fill in "identity_contactInformation_confirmationEmail" with "jean@test.com"
         And I fill in "identity_contactInformation_phone_number" with "0102020304"
         And I click the "label[for=identity_representedPersonCivilState_civility_0]" element
         And I fill in "identity_representedPersonCivilState_birthName" with "Dupont"
@@ -135,6 +142,7 @@ Feature:
         And I fill in "represented-person-address" with "avenue de la république paris"
         And I click the "#represented-person-address-75111_8158" element
         And I fill in "identity_representedPersonContactInformation_email" with "jean@test.com"
+        And I fill in "identity_representedPersonContactInformation_confirmationEmail" with "jean@test.com"
         And I fill in "identity_representedPersonContactInformation_phone_number" with "0102020304"
         And I press "identity_submit"
         Then I should be on "/porter-plainte/faits"
@@ -152,6 +160,7 @@ Feature:
         And I fill in "identity_contactInformation_foreignAddress_type" with "Corto"
         And I fill in "identity_contactInformation_foreignAddress_street" with "de Alcalá Madrid España"
         And I fill in "identity_contactInformation_email" with "jean@test.com"
+        And I fill in "identity_contactInformation_confirmationEmail" with "jean@test.com"
         And I fill in "identity_contactInformation_phone_number" with "0102020304"
         And I click the "label[for=identity_representedPersonCivilState_civility_0]" element
         And I fill in "identity_representedPersonCivilState_birthName" with "Dupont"
@@ -167,6 +176,7 @@ Feature:
         And the "identity_representedPersonContactInformation_foreignAddress_type" field should contain "Corto"
         And the "identity_representedPersonContactInformation_foreignAddress_street" field should contain "de Alcalá Madrid España"
         When I fill in "identity_representedPersonContactInformation_email" with "jean@test.com"
+        When I fill in "identity_representedPersonContactInformation_confirmationEmail" with "jean@test.com"
         And I fill in "identity_representedPersonContactInformation_phone_number" with "0102020304"
         And I press "identity_submit"
         Then I should be on "/porter-plainte/faits"
@@ -182,6 +192,7 @@ Feature:
         And I fill in "contact-information-address" with "avenue de la république paris"
         And I click the "#contact-information-address-75111_8158" element
         And I fill in "identity_contactInformation_email" with "jean@test.com"
+        And I fill in "identity_contactInformation_confirmationEmail" with "jean@test.com"
         And I fill in "identity_contactInformation_phone_number" with "0102020304"
         And I click the "label[for=identity_representedPersonCivilState_civility_0]" element
         And I fill in "identity_representedPersonCivilState_birthName" with "Dupont"
@@ -193,6 +204,7 @@ Feature:
         And I fill in "represented-person-address" with "avenue de la république paris"
         And I click the "#represented-person-address-75111_8158" element
         And I fill in "identity_representedPersonContactInformation_email" with "jean@test.com"
+        And I fill in "identity_representedPersonContactInformation_confirmationEmail" with "jean@test.com"
         And I press "identity_submit"
         Then I should be on "/porter-plainte/identite"
         And I should see a "#form-errors-identity_representedPersonContactInformation_mobile_number" element

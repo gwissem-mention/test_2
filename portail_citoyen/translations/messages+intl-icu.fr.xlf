@@ -682,6 +682,10 @@
                 <source>pel.email</source>
                 <target>Adresse e-mail</target>
             </trans-unit>
+           <trans-unit id="pel.email.confirmation">
+                 <source>pel.email.confirmation</source>
+                 <target>Confirmer votre Email</target>
+             </trans-unit>
             <trans-unit id="pel.end.hour">
                 <source>pel.end.hour</source>
                 <target>Heure de fin</target>
@@ -1593,7 +1597,7 @@
             <trans-unit id="pel.specify.your.status.in.this.process">
                 <source>pel.specify.your.status.in.this.process</source>
                 <target>Précisez votre statut dans le cadre de cette démarche</target>
-            </trans-unit>            
+            </trans-unit>
             <trans-unit id="pel.start.date.after.end.date">
                 <source>pel.start.date.after.end.date</source>
                 <target>La date de début est après la date de fin</target>
@@ -2001,7 +2005,7 @@
             <trans-unit id="pel.legal.dispositions.title">
                 <source>pel.legal.dispositions.title</source>
                 <target>Dispositions légales (étape 1 sur 7) - Plainte en ligne</target>
-            </trans-unit>            
+            </trans-unit>
             <trans-unit id="pel.before.starting.complaint">
                 <source>pel.before.starting.complaint</source>
                 <target>Avant de déclarer ma plainte, je prends acte des dispositions légales suivantes</target>
@@ -2121,7 +2125,7 @@
             <trans-unit id="pel.your.identity.title">
                 <source>pel.your.identity.title</source>
                 <target>Votre identité (étape 2 sur 7) - Plainte en ligne</target>
-            </trans-unit>            
+            </trans-unit>
             <trans-unit id="pel.my.online.complaint.declaration">
                 <source>pel.my.online.complaint.declaration</source>
                 <target>Ma déclaration<![CDATA[<br>]]>de plainte en ligne</target>
@@ -2173,7 +2177,7 @@
             <trans-unit id="pel.all.fields.marked.with.an.asterisk.are.mandatory">
                 <source>pel.all.fields.marked.with.an.asterisk.are.mandatory</source>
                 <target>Tous les champs marqués du symbole <![CDATA[<span class="fr-label--error font-bold">*</span>]]> sont obligatoires.</target>
-            </trans-unit>         
+            </trans-unit>
             <trans-unit id="pel.description.of.facts.step.3">
                 <source>pel.description.of.facts.step.3</source>
                 <target>Description des faits (étape 3 sur 7) - Plainte en ligne</target>
@@ -2189,7 +2193,7 @@
             <trans-unit id="pel.registered.complaint">
                 <source>pel.registered.complaint</source>
                 <target>Plainte enregistrée</target>
-            </trans-unit>       
+            </trans-unit>
         </body>
     </file>
 </xliff>

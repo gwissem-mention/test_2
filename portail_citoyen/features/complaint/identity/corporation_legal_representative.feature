@@ -48,6 +48,7 @@ Feature:
         And I fill in "contact-information-address" with "avenue de la république paris"
         And I click the "#contact-information-address-75111_8158" element
         And I fill in "identity_contactInformation_email" with "jean@test.com"
+        And I fill in "identity_contactInformation_confirmationEmail" with "jean@test.com"
         And I fill in "identity_contactInformation_phone_number" with "0102020304"
         And I fill in "identity_corporation_siren" with "123456789"
         And I fill in "identity_corporation_name" with "Test Company"
@@ -70,6 +71,7 @@ Feature:
         And I fill in "contact-information-address" with "avenue de la république paris"
         And I click the "#contact-information-address-75111_8158" element
         And I fill in "identity_contactInformation_email" with "jean@test.com"
+        And I fill in "identity_contactInformation_confirmationEmail" with "jean@test.com"
         And I fill in "identity_contactInformation_phone_number" with "0102020304"
         And I fill in "identity_corporation_siren" with "123456789"
         And I fill in "identity_corporation_name" with "Test Company"
@@ -175,6 +177,7 @@ Feature:
         And I fill in "contact-information-address" with "avenue de la république paris"
         And I click the "#contact-information-address-75111_8158" element
         And I fill in "identity_contactInformation_email" with "jean@test.com"
+        And I fill in "identity_contactInformation_confirmationEmail" with "jean@test.com"
         And I press "identity_submit"
         Then I should be on "/porter-plainte/identite"
         And I should see a "#form-errors-identity_contactInformation_phone_number" element
@@ -190,6 +193,7 @@ Feature:
         And I fill in "contact-information-address" with "avenue de la république paris"
         And I click the "#contact-information-address-75111_8158" element
         And I fill in "identity_contactInformation_email" with "jean@test.com"
+        And I fill in "identity_contactInformation_confirmationEmail" with "jean@test.com"
         And I fill in "identity_contactInformation_phone_number" with "0102020304"
         And I press "identity_submit"
         Then I should be on "/porter-plainte/identite"
@@ -206,6 +210,7 @@ Feature:
         And I fill in "contact-information-address" with "avenue de la république paris"
         And I click the "#contact-information-address-75111_8158" element
         And I fill in "identity_contactInformation_email" with "jean@test.com"
+        And I fill in "identity_contactInformation_confirmationEmail" with "jean@test.com"
         And I fill in "identity_contactInformation_phone_number" with "0102020304"
         And I fill in "identity_corporation_siren" with "123456789"
         And I press "identity_submit"
@@ -223,6 +228,7 @@ Feature:
         And I fill in "contact-information-address" with "avenue de la république paris"
         And I click the "#contact-information-address-75111_8158" element
         And I fill in "identity_contactInformation_email" with "jean@test.com"
+        And I fill in "identity_contactInformation_confirmationEmail" with "jean@test.com"
         And I fill in "identity_contactInformation_phone_number" with "0102020304"
         And I fill in "identity_corporation_siren" with "123456789"
         And I fill in "identity_corporation_name" with "Test Company"
@@ -241,6 +247,7 @@ Feature:
         And I fill in "contact-information-address" with "avenue de la république paris"
         And I click the "#contact-information-address-75111_8158" element
         And I fill in "identity_contactInformation_email" with "jean@test.com"
+        And I fill in "identity_contactInformation_confirmationEmail" with "jean@test.com"
         And I fill in "identity_contactInformation_phone_number" with "0102020304"
         And I fill in "identity_corporation_siren" with "123456789"
         And I fill in "identity_corporation_name" with "Test Company"
@@ -260,6 +267,7 @@ Feature:
         And I fill in "contact-information-address" with "avenue de la république paris"
         And I click the "#contact-information-address-75111_8158" element
         And I fill in "identity_contactInformation_email" with "jean@test.com"
+        And I fill in "identity_contactInformation_confirmationEmail" with "jean@test.com"
         And I fill in "identity_contactInformation_phone_number" with "0102020304"
         And I fill in "identity_corporation_siren" with "123456789"
         And I fill in "identity_corporation_name" with "Test Company"
@@ -293,6 +301,7 @@ Feature:
         And I fill in "identity_contactInformation_foreignAddress_type" with "Corto"
         And I fill in "identity_contactInformation_foreignAddress_street" with "de Alcalá Madrid España"
         And I fill in "identity_contactInformation_email" with "jean@test.com"
+        And I fill in "identity_contactInformation_confirmationEmail" with "jean@test.com"
         And I fill in "identity_contactInformation_phone_number" with "0102020304"
         And I fill in "identity_corporation_siren" with "123456789"
         And I fill in "identity_corporation_name" with "Test Company"
@@ -319,6 +328,7 @@ Feature:
         And I fill in "identity_contactInformation_foreignAddress_type" with "Corto"
         And I fill in "identity_contactInformation_foreignAddress_street" with "de Alcalá Madrid España"
         And I fill in "identity_contactInformation_email" with "jean@test.com"
+        And I fill in "identity_contactInformation_confirmationEmail" with "jean@test.com"
         And I fill in "identity_contactInformation_phone_number" with "0102020304"
         And I fill in "identity_corporation_siren" with "123456789"
         And I fill in "identity_corporation_name" with "Test Company"
