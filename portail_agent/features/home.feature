@@ -220,3 +220,52 @@ Feature:
         Then I should see 11 "table#datatable tr" element
         And I press "Réinitialiser"
         Then I should see 26 "table#datatable tr" element
+
+    @javascript
+    Scenario: I can apply a filter on the complaints table
+        Given I am on the homepage
+        And I should see 26 "table#datatable tr" element
+        Then I press "Filtres"
+        When I click the "#reaches-deadline-filter" element
+        Then I should see 2 "table#datatable tr" element
+        And I should see "Aucune donnée disponible dans le tableau"
+        When I click the "#exceeds-deadline-filter" element
+        Then I should see 26 "table#datatable tr" element
+        And I should see 10 ".btn-info" element
+        And I should see 16 ".btn-primary" element
+        When I click the "#reaches-deadline-filter" element
+        Then I should see 2 "table#datatable tr" element
+        And I should see "Aucune donnée disponible dans le tableau"
+        When I click the "#alert-filter" element
+        Then I should see 26 "table#datatable tr" element
+        And I should see 10 ".btn-secondary" element
+        And I should see 10 ".btn-info" element
+        And I should see 6 ".btn-primary" element
+        When I click the "#assignment-pending-filter" element
+        Then I should see 11 "table#datatable tr" element
+        And I should see 10 ".btn-secondary" element
+        When I click the "#assigned-filter" element
+        Then I should see 21 "table#datatable tr" element
+        And I should see 21 ".btn-primary" element
+        When I click the "#validation-declaration-filter" element
+        Then I should see 11 "table#datatable tr" element
+        And I should see 10 ".btn-warning" element
+        When I click the "#appointment-planned-filter" element
+        Then I should see 11 "table#datatable tr" element
+        And I should see 11 ".btn-primary" element
+        And I should see "01/12/2022 01:00"
+        When I click the "#appointment-pending-filter" element
+        Then I should see 11 "table#datatable tr" element
+        And I should see 10 ".btn-info" element
+        When I click the "#unit-redirection-pending-filter" element
+        Then I should see 11 "table#datatable tr" element
+        And I should see 10 ".btn-unit-redirection-pending" element
+        When I click the "#closed-filter" element
+        Then I should see 11 "table#datatable tr" element
+        And I should see 10 ".btn-dark" element
+        When I click the "#waiting-closing-filter" element
+        Then I should see 11 "table#datatable tr" element
+        And I should see 11 ".btn-primary" element
+        When I click the "#rejected-filter" element
+        Then I should see 11 "table#datatable tr" element
+        And I should see 10 ".btn-danger" element
