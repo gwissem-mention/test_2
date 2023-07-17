@@ -25,7 +25,7 @@ class AdditionalInformationParserTest extends KernelTestCase
         $additionalInformationContent = json_decode('
 {
 	"suspectsChoice": true,
-	"witnesses": true,
+	"witnessesPresent": true,
 	"fsiVisit": true,
 	"cctvPresent":
 	{
@@ -33,7 +33,12 @@ class AdditionalInformationParserTest extends KernelTestCase
 		"label": "pel.yes"
 	},
 	"suspectsText": "Suspects text",
-	"witnessesText": "Witnesses text",
+	"witnesses": [
+	{
+	    "description": "Jean DUPONT",
+	    "email": "jean.dupont@example.com",
+	    "phone": {"country":"FR","code":"33","number":"0601020304"}
+	}],
 	"observationMade": true,
 	"cctvAvailable": true
 }', false, 512, JSON_THROW_ON_ERROR);
@@ -42,7 +47,7 @@ class AdditionalInformationParserTest extends KernelTestCase
 
         $this->assertInstanceOf(AdditionalInformation::class, $additionalInformation);
         $this->assertSame('Suspects text', $additionalInformation->getSuspectsKnownText());
-        $this->assertSame('Witnesses text', $additionalInformation->getWitnessesPresentText());
+        $this->assertCount(1, $additionalInformation->getWitnesses()->toArray());
         $this->assertSame(1, $additionalInformation->getCctvPresent());
         $this->assertTrue($additionalInformation->isCctvAvailable());
         $this->assertTrue($additionalInformation->isSuspectsKnown());
@@ -58,7 +63,7 @@ class AdditionalInformationParserTest extends KernelTestCase
         $additionalInformationContent = json_decode('
 {
 	"suspectsChoice": false,
-	"witnesses": false,
+	"witnessesPresent": false,
 	"fsiVisit": false,
 	"cctvPresent":
 	{
@@ -66,7 +71,7 @@ class AdditionalInformationParserTest extends KernelTestCase
 		"label": "pel.no"
 	},
 	"suspectsText": null,
-	"witnessesText": null,
+	"witnesses": {},
 	"observationMade": false,
 	"cctvAvailable": false
 }', false, 512, JSON_THROW_ON_ERROR);
@@ -75,7 +80,7 @@ class AdditionalInformationParserTest extends KernelTestCase
 
         $this->assertInstanceOf(AdditionalInformation::class, $additionalInformation);
         $this->assertNull($additionalInformation->getSuspectsKnownText());
-        $this->assertNull($additionalInformation->getWitnessesPresentText());
+        $this->assertCount(0, $additionalInformation->getWitnesses()->toArray());
         $this->assertSame(2, $additionalInformation->getCctvPresent());
         $this->assertFalse($additionalInformation->isCctvAvailable());
         $this->assertFalse($additionalInformation->isSuspectsKnown());

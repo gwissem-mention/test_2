@@ -1174,6 +1174,18 @@
                 <source>pel.witnesses</source>
                 <target>Témoins</target>
             </trans-unit>
+            <trans-unit id="pel.witness.description">
+                <source>pel.witness.description</source>
+                <target>Description du témoin n°{index}</target>
+            </trans-unit>
+            <trans-unit id="pel.witness.email">
+                <source>pel.witness.email</source>
+                <target>Adresse e-mail du témoin n°{index}</target>
+            </trans-unit>
+            <trans-unit id="pel.witness.mobile">
+                <source>pel.witness.mobile</source>
+                <target>Numéro de téléphone portable n°{index}</target>
+            </trans-unit>
             <trans-unit id="pel.write.your.comment.here">
                 <source>pel.write.your.comment.here</source>
                 <target>Ecrivez votre message ici...</target>

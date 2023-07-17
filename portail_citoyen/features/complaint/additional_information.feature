@@ -52,10 +52,10 @@ Feature:
         And I should see "Non" in the "label[for=additional_information_suspectsChoice_1]" element
 
     Scenario: I can see the witnesses choices
-        And I wait for "input[type=radio][name='additional_information[witnesses]']" to appear
-        And I should see 2 "input[type=radio][name='additional_information[witnesses]']" elements
-        And I should see "Oui" in the "label[for=additional_information_witnesses_0]" element
-        And I should see "Non" in the "label[for=additional_information_witnesses_1]" element
+        And I wait for "input[type=radio][name='additional_information[witnessesPresent]']" to appear
+        And I should see 2 "input[type=radio][name='additional_information[witnessesPresent]']" elements
+        And I should see "Oui" in the "label[for=additional_information_witnessesPresent_0]" element
+        And I should see "Non" in the "label[for=additional_information_witnessesPresent_1]" element
 
     Scenario: I can see the fsi visit choices
         And I wait for "input[type=radio][name='additional_information[fsiVisit]']" to appear
@@ -76,11 +76,12 @@ Feature:
         When I click the "label[for=additional_information_suspectsChoice_1]" element
         And I should not see the key "pel.facts.suspects.informations.text" translated
 
-    Scenario: I can see 1 text input if I select "Yes" to the witnesses radio buttons
-        And I wait for "label[for=additional_information_witnesses_0]" to appear
-        When I click the "label[for=additional_information_witnesses_0]" element
-        Then I should see the key "pel.facts.witnesses.information.text" translated
-        And I should see a "input#additional_information_witnessesText" element
+    Scenario: I can see 3 text input if I select "Yes" to the witnesses radio buttons
+        And I wait for "label[for=additional_information_witnessesPresent_0]" to appear
+        When I click the "label[for=additional_information_witnessesPresent_0]" element
+        Then I should see a "input#additional_information_witnesses_0_description" element
+        And I should see a "input#additional_information_witnesses_0_email" element
+        And I should see a "input#additional_information_witnesses_0_phone_number" element
 
     Scenario: I can see 1 radio button group if I select "Yes" to the fsi visit radio buttons
         And I wait for "label[for=additional_information_fsiVisit_0]" to appear
@@ -101,8 +102,14 @@ Feature:
         When I click the "label[for=additional_information_suspectsChoice_0]" element
         And I fill in "additional_information_suspectsText" with "suspects informations"
         And I should see the key "pel.facts.suspects.informations.text" translated
-        And I click the "label[for=additional_information_witnesses_0]" element
-        And I fill in "additional_information_witnessesText" with "witnesses informations"
+        And I click the "label[for=additional_information_witnessesPresent_0]" element
+        And I fill in "additional_information_witnesses_0_description" with "Jean DUPONT"
+        And I fill in "additional_information_witnesses_0_email" with "jean.dupont@example.com"
+        And I fill in "additional_information_witnesses_0_phone_number" with "0602030405"
+        And I press "additional_information_witnesses_add"
+        And I fill in "additional_information_witnesses_1_description" with "Thomas DURAND"
+        And I fill in "additional_information_witnesses_1_email" with "thomas.durand@example.com"
+        And I fill in "additional_information_witnesses_1_phone_number" with "0602030405"
         And I click the "label[for=additional_information_fsiVisit_0]" element
         And I click the "label[for=additional_information_observationMade_0]" element
         And I click the "label[for=additional_information_cctvPresent_0]" element
@@ -113,8 +120,13 @@ Feature:
         Then I am on "/porter-plainte/informations-complementaires"
         And the "additional_information_suspectsChoice_0" field should contain "1"
         And the "additional_information_suspectsText" field should contain "suspects informations"
-        And the "additional_information_witnesses_0" field should contain "1"
-        And the "additional_information_witnessesText" field should contain "witnesses informations"
+        And the "additional_information_witnessesPresent_0" field should contain "1"
+        And the "additional_information_witnesses_0_description" field should contain "Jean DUPONT"
+        And the "additional_information_witnesses_0_email" field should contain "jean.dupont@example.com"
+        And the "additional_information_witnesses_0_phone_number" field should contain "6 02 03 04 05"
+        And the "additional_information_witnesses_1_description" field should contain "Thomas DURAND"
+        And the "additional_information_witnesses_1_email" field should contain "thomas.durand@example.com"
+        And the "additional_information_witnesses_1_phone_number" field should contain "6 02 03 04 05"
         And the "additional_information_fsiVisit_0" field should contain "1"
         And the "additional_information_observationMade_0" field should contain "1"
         And the "additional_information_cctvPresent_0" field should contain "1"

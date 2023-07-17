@@ -43,8 +43,10 @@ Feature:
         When I click the "label[for=additional_information_suspectsChoice_0]" element
         And I fill in "additional_information_suspectsText" with "suspects informations"
         And I should see the key "pel.facts.suspects.informations.text" translated
-        And I click the "label[for=additional_information_witnesses_0]" element
-        And I fill in "additional_information_witnessesText" with "witnesses informations"
+        And I click the "label[for=additional_information_witnessesPresent_0]" element
+        And I fill in "additional_information_witnesses_0_description" with "Jean DUPONT"
+        And I fill in "additional_information_witnesses_0_email" with "jean.dupont@example.com"
+        And I fill in "additional_information_witnesses_0_phone_number" with "0602030405"
         And I click the "label[for=additional_information_fsiVisit_0]" element
         And I click the "label[for=additional_information_observationMade_0]" element
         And I click the "label[for=additional_information_cctvPresent_0]" element
@@ -139,8 +141,10 @@ Feature:
         When I click the "label[for=additional_information_suspectsChoice_0]" element
         And I fill in "additional_information_suspectsText" with "suspects informations"
         And I should see the key "pel.facts.suspects.informations.text" translated
-        And I click the "label[for=additional_information_witnesses_0]" element
-        And I fill in "additional_information_witnessesText" with "witnesses informations"
+        And I click the "label[for=additional_information_witnessesPresent_0]" element
+        And I fill in "additional_information_witnesses_0_description" with "Jean DUPONT"
+        And I fill in "additional_information_witnesses_0_email" with "jean.dupont@example.com"
+        And I fill in "additional_information_witnesses_0_phone_number" with "0602030405"
         And I click the "label[for=additional_information_fsiVisit_0]" element
         And I click the "label[for=additional_information_observationMade_0]" element
         And I click the "label[for=additional_information_cctvPresent_0]" element

@@ -15,12 +15,14 @@ use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 use Symfony\UX\LiveComponent\Attribute\LiveAction;
 use Symfony\UX\LiveComponent\ComponentWithFormTrait;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
+use Symfony\UX\LiveComponent\LiveCollectionTrait;
 
 #[AsLiveComponent('additional_information')]
 class AdditionalInformationComponent extends AbstractController
 {
     use ComponentWithFormTrait;
     use DefaultActionTrait;
+    use LiveCollectionTrait;
 
     public function __construct(private readonly SessionHandler $sessionHandler)
     {

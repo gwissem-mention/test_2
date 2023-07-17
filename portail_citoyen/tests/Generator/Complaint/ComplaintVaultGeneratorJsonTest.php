@@ -212,14 +212,24 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
             ],
             'additionalInformation' => [
                 'suspectsChoice' => true,
-                'witnesses' => true,
+                'witnessesPresent' => true,
                 'fsiVisit' => true,
                 'cctvPresent' => [
                     'code' => 1,
                     'label' => 'Oui',
                 ],
                 'suspectsText' => 'Suspects text',
-                'witnessesText' => 'Witnesses text',
+                'witnesses' => [
+                    [
+                        'description' => 'Jean DUPONT',
+                        'email' => 'jean.dupont@example.com',
+                        'phone' => [
+                            'country' => 'FR',
+                            'code' => '33',
+                            'number' => '0601020304',
+                        ],
+                    ],
+                ],
                 'observationMade' => true,
                 'cctvAvailable' => true,
             ],
@@ -647,14 +657,24 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
             ],
             'additionalInformation' => [
                 'suspectsChoice' => true,
-                'witnesses' => true,
+                'witnessesPresent' => true,
                 'fsiVisit' => true,
                 'cctvPresent' => [
                     'code' => 1,
                     'label' => 'Oui',
                 ],
                 'suspectsText' => 'Suspects text',
-                'witnessesText' => 'Witnesses text',
+                'witnesses' => [
+                    [
+                        'description' => 'Jean DUPONT',
+                        'email' => 'jean.dupont@example.com',
+                        'phone' => [
+                            'country' => 'FR',
+                            'code' => '33',
+                            'number' => '0601020304',
+                        ],
+                    ],
+                ],
                 'observationMade' => true,
                 'cctvAvailable' => true,
             ],
@@ -1043,14 +1063,24 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
             ],
             'additionalInformation' => [
                 'suspectsChoice' => true,
-                'witnesses' => true,
+                'witnessesPresent' => true,
                 'fsiVisit' => true,
                 'cctvPresent' => [
                     'code' => 1,
                     'label' => 'Oui',
                 ],
                 'suspectsText' => 'Suspects text',
-                'witnessesText' => 'Witnesses text',
+                'witnesses' => [
+                    [
+                        'description' => 'Jean DUPONT',
+                        'email' => 'jean.dupont@example.com',
+                        'phone' => [
+                            'country' => 'FR',
+                            'code' => '33',
+                            'number' => '0601020304',
+                        ],
+                    ],
+                ],
                 'observationMade' => true,
                 'cctvAvailable' => true,
             ],

@@ -70,7 +70,6 @@
     </div>
 {% endblock %}
 
-
 {%- block form_label -%}
     {% set label_attr = label_attr|merge({class: (label_attr.class|default('') ~ ' fr-label')|trim}) -%}
     {% if label is not same as(false) -%}
@@ -176,4 +175,9 @@
         'inputLabel': form.vars.label|default('pel.files')|trans,
         'inputHelp' : form.vars.help|default|trans
     }) }}
+{%- endblock -%}
+
+
+{%- block _additional_information_witnesses_entry_phone_number_label -%}
+    {{ form_label(form, 'pel.witness.mobile'|trans({'%index%':(form.parent.parent.vars.name+1)})) }}
 {%- endblock -%}

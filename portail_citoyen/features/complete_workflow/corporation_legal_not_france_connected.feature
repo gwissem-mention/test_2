@@ -73,8 +73,10 @@ Feature:
         And I click the "label[for=additional_information_suspectsChoice_0]" element
         And I fill in "additional_information_suspectsText" with "suspects informations"
         And I should see the key "pel.facts.suspects.informations.text" translated
-        And I click the "label[for=additional_information_witnesses_0]" element
-        And I fill in "additional_information_witnessesText" with "witnesses informations"
+        And I click the "label[for=additional_information_witnessesPresent_0]" element
+        And I fill in "additional_information_witnesses_0_description" with "Jean DUPONT"
+        And I fill in "additional_information_witnesses_0_email" with "jean.dupont@example.com"
+        And I fill in "additional_information_witnesses_0_phone_number" with "0602030405"
         And I click the "label[for=additional_information_fsiVisit_0]" element
         And I click the "label[for=additional_information_observationMade_0]" element
         And I click the "label[for=additional_information_cctvPresent_0]" element
@@ -124,8 +126,12 @@ Feature:
         And I should see "Avenue de la République 75011 Paris, France"
         And I should see the key "pel.additional.factual.information" translated
         And I should see the key "pel.facts.witnesses" translated
-        And I should see the key "pel.facts.witnesses.information.text" translated
-        And I should see "witnesses informations"
+        And I should see "Description du témoin n°1"
+        And I should see "Adresse e-mail du témoin n°1"
+        And I should see "Numéro de téléphone portable n°1"
+        And I should see "Jean DUPONT"
+        And I should see "jean.dupont@example.com"
+        And I should see "+33 6 02 03 04 05"
         And I should see the key "pel.do.you.have.informations.on.potential.suspects" translated
         And I should see the key "pel.facts.suspects.informations.text" translated
         And I should see "suspects informations"

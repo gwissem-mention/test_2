@@ -224,9 +224,21 @@
                 <div class="fr-col">
                     <h3>{{ 'pel.additional.factual.information'|trans }}</h3>
                     <ul>
-                        <li>{{ 'pel.facts.witnesses'|trans }} : {{ complaint.additionalInformation.witnesses ? 'pel.yes'|trans : 'pel.no'|trans }}</li>
-                        {% if complaint.additionalInformation.witnesses is same as(true) %}
-                            <li>{{ 'pel.facts.witnesses.information.text'|trans }} : {{ complaint.additionalInformation.witnessesText }}</li>
+                        <li>{{ 'pel.facts.witnesses'|trans }} : {{ complaint.additionalInformation.witnessesPresent ? 'pel.yes'|trans : 'pel.no'|trans }}</li>
+                        {% if complaint.additionalInformation.witnesses is not empty %}
+                            {% for witness in complaint.additionalInformation.witnesses %}
+                                <ul>
+                                    {% if witness.description is not null %}
+                                        <li>{{ 'pel.witness.description'|trans({'%index%':loop.index}) }} : {{ witness.description }}</li>
+                                    {% endif %}
+                                    {% if witness.email is not null %}
+                                        <li>{{ 'pel.witness.email'|trans({'%index%':loop.index}) }} : {{ witness.email }}</li>
+                                    {% endif %}
+                                    {% if witness.phone.number is not null %}
+                                        <li>{{ 'pel.witness.mobile'|trans({'%index%':loop.index}) }} : {{ witness.phone|phone_format_intl }}</li>
+                                    {% endif %}
+                                </ul>
+                            {% endfor %}
                         {% endif %}
                         <li>{{ 'pel.do.you.have.informations.on.potential.suspects'|trans }} : {{ complaint.additionalInformation.suspectsChoice ? 'pel.yes'|trans : 'pel.no'|trans }}</li>
                         {% if complaint.additionalInformation.suspectsChoice is same as(true) %}

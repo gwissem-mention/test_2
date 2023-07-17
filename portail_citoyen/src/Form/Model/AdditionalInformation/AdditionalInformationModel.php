@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\Form\Model\AdditionalInformation;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+
 class AdditionalInformationModel
 {
     public const CCTV_PRESENT_YES = 1;
@@ -11,13 +14,19 @@ class AdditionalInformationModel
     public const CCTV_PRESENT_DONT_KNOW = 3;
 
     private ?bool $suspectsChoice = null;
-    private ?bool $witnesses = null;
+    private ?bool $witnessesPresent = null;
     private ?bool $fsiVisit = null;
     private ?int $cctvPresent = null;
     private ?string $suspectsText = null;
-    private ?string $witnessesText = null;
+    /** @var Collection<int, WitnessModel> */
+    private Collection $witnesses;
     private ?bool $observationMade = null;
     private ?bool $cctvAvailable = null;
+
+    public function __construct()
+    {
+        $this->witnesses = new ArrayCollection();
+    }
 
     public function isSuspectsChoice(): ?bool
     {
@@ -31,14 +40,14 @@ class AdditionalInformationModel
         return $this;
     }
 
-    public function isWitnesses(): ?bool
+    public function isWitnessesPresent(): ?bool
     {
-        return $this->witnesses;
+        return $this->witnessesPresent;
     }
 
-    public function setWitnesses(?bool $witnesses): self
+    public function setWitnessesPresent(?bool $witnessesPresent): self
     {
-        $this->witnesses = $witnesses;
+        $this->witnessesPresent = $witnessesPresent;
 
         return $this;
     }
@@ -79,18 +88,6 @@ class AdditionalInformationModel
         return $this;
     }
 
-    public function getWitnessesText(): ?string
-    {
-        return $this->witnessesText;
-    }
-
-    public function setWitnessesText(?string $witnessesText): self
-    {
-        $this->witnessesText = $witnessesText;
-
-        return $this;
-    }
-
     public function isObservationMade(): ?bool
     {
         return $this->observationMade;
@@ -125,5 +122,27 @@ class AdditionalInformationModel
             'pel.no' => self::CCTV_PRESENT_NO,
             'pel.i.dont.know' => self::CCTV_PRESENT_DONT_KNOW,
         ];
+    }
+
+    /**
+     * @return Collection<int, WitnessModel>
+     */
+    public function getWitnesses(): Collection
+    {
+        return $this->witnesses;
+    }
+
+    public function addWitness(WitnessModel $witness): self
+    {
+        $this->witnesses->add($witness);
+
+        return $this;
+    }
+
+    public function removeWitness(WitnessModel $witness): self
+    {
+        $this->witnesses->removeElement($witness);
+
+        return $this;
     }
 }

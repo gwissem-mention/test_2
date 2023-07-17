@@ -18,6 +18,7 @@ use App\Entity\FactsObjects\SimpleObject;
 use App\Entity\FactsObjects\Vehicle;
 use App\Entity\Identity;
 use App\Entity\User;
+use App\Entity\Witness;
 use App\Factory\NotificationFactory;
 use App\Notification\ComplaintNotification;
 use App\Repository\ComplaintRepository;
@@ -219,11 +220,16 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                             'Mon voisin du dessous',
                         ]) : null)
                         ->setWitnessesPresent($witnessesPresent)
-                        ->setWitnessesPresentText(true === $witnessesPresent ? $this->faker->randomElement([
-                            'Aurore Moulin',
-                            'Nicolas Morin',
-                            'Jade Degois',
-                        ]) : null)
+                        ->addWitness(
+                            (new Witness())
+                                ->setDescription($this->faker->randomElement([
+                                    'Aurore Moulin',
+                                    'Nicolas Morin',
+                                    'Jade Degois',
+                                ]))
+                                ->setPhone('06 12 34 45 57')
+                                ->setEmail('jean@example.com')
+                        )
                         ->setFsiVisit($fsiVisit)
                         ->setObservationMade(true === $fsiVisit ? $this->faker->boolean : null)
                 )
