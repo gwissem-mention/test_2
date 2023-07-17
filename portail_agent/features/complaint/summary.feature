@@ -170,8 +170,8 @@ Feature:
     Scenario: If the declarant is a Corporation Representative, I should be able to see the victim informations
         Given I am on "/plainte/recapitulatif/161"
         And I should see the key "pel.victim.identity" translated
-        And I should see the key "pel.siren.number" translated
-        And I should see "123456789"
+        And I should see the key "pel.siret.number" translated
+        And I should see "12345678900000"
         And I should see the key "pel.company.name" translated
         And I should see "Netflix"
         And I should see the key "pel.declarant.position" translated

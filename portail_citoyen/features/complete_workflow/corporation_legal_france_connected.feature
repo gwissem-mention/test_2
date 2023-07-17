@@ -17,7 +17,7 @@ Feature:
         And I click the "#contact-information-address-75111_8158" element
         And I fill in "identity_contactInformation_phone_number" with "0101020304"
         And I fill in "identity_contactInformation_mobile_number" with "0601020304"
-        And I fill in "identity_corporation_siren" with "123456789"
+        And I fill in "identity_corporation_siret" with "12345678900000"
         And I fill in "identity_corporation_name" with "Mon entreprise"
         And I fill in "identity_corporation_function" with "Directeur"
         And I fill in "identity_corporation_email" with "contact@mon-entreprise.fr"
@@ -104,8 +104,8 @@ Feature:
         And I should see the key "pel.complaint.identity.corporation.legal.representative" translated
         And I should see the key "pel.of.infraction" translated
         And I should see the key "pel.corporation.legal.information" translated
-        And I should see the key "pel.corporation.siren" translated
-        And I should see "123456789"
+        And I should see the key "pel.corporation.siret" translated
+        And I should see "12345678900000"
         And I should see the key "pel.corporation.name" translated
         And I should see "Mon entreprise"
         And I should see the key "pel.corporation.function" translated

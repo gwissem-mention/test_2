@@ -9,20 +9,20 @@ class CorporationModel implements EmbedAddressInterface
     use AddressTrait;
     use EmailTrait;
 
-    private ?string $siren = null;
+    private ?string $siret = null;
     private ?string $name = null;
     private ?string $function = null;
     private ?string $nationality = null;
     private ?PhoneModel $phone = null;
 
-    public function getSiren(): ?string
+    public function getSiret(): ?string
     {
-        return $this->siren;
+        return $this->siret;
     }
 
-    public function setSiren(?string $siren): self
+    public function setSiret(?string $siret): self
     {
-        $this->siren = $siren;
+        $this->siret = $siret;
 
         return $this;
     }

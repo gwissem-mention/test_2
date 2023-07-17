@@ -112,8 +112,8 @@
             {% elseif complaint.identity.declarantStatus is same as(constant('App\\Entity\\Identity::DECLARANT_STATUS_CORPORATION_LEGAL_REPRESENTATIVE')) and complaint.corporationRepresented is not null %}
                 <ul>
                     <li>
-                        {{ 'pel.siren.number'|trans }} :
-                        <strong>{{ complaint.corporationRepresented.sirenNumber }}</strong>
+                        {{ 'pel.siret.number'|trans }} :
+                        <strong>{{ complaint.corporationRepresented.siretNumber }}</strong>
                     </li>
                     <li>
                         {{ 'pel.company.name'|trans }} :

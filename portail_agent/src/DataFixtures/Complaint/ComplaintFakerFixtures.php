@@ -272,7 +272,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
             if (Identity::DECLARANT_STATUS_CORPORATION_LEGAL_REPRESENTATIVE === $complaint->getIdentity()?->getDeclarantStatus()) {
                 $complaint->setCorporationRepresented(
                     (new Corporation())
-                        ->setSirenNumber($this->faker->siren)
+                        ->setSiretNumber($this->faker->randomElement(['12345678911111', '98765432100000', '13243546800000']))
                         ->setCompanyName($this->faker->company)
                         ->setDeclarantPosition('PDG')
                         ->setContactEmail($this->faker->companyEmail)

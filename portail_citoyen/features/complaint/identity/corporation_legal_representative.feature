@@ -29,7 +29,7 @@ Feature:
         And I should see the key "pel.same.address.as.declarant" translated
         And I should see the key "pel.email" translated
         And I should see the key "pel.mobile" translated
-        And I should see the key "pel.corporation.siren" translated
+        And I should see the key "pel.corporation.siret" translated
         And I should see the key "pel.corporation.name" translated
         And I should see the key "pel.corporation.function" translated
         And I should see the key "pel.nationality" translated
@@ -50,7 +50,7 @@ Feature:
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I fill in "identity_contactInformation_confirmationEmail" with "jean@test.com"
         And I fill in "identity_contactInformation_phone_number" with "0102020304"
-        And I fill in "identity_corporation_siren" with "123456789"
+        And I fill in "identity_corporation_siret" with "12345678900000"
         And I fill in "identity_corporation_name" with "Test Company"
         And I fill in "identity_corporation_function" with "Developer"
         And I fill in "identity_corporation_email" with "jean@test.com"
@@ -73,7 +73,7 @@ Feature:
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I fill in "identity_contactInformation_confirmationEmail" with "jean@test.com"
         And I fill in "identity_contactInformation_phone_number" with "0102020304"
-        And I fill in "identity_corporation_siren" with "123456789"
+        And I fill in "identity_corporation_siret" with "12345678900000"
         And I fill in "identity_corporation_name" with "Test Company"
         And I fill in "identity_corporation_function" with "Developer"
         And I fill in "identity_corporation_email" with "jean@test.com"
@@ -197,7 +197,7 @@ Feature:
         And I fill in "identity_contactInformation_phone_number" with "0102020304"
         And I press "identity_submit"
         Then I should be on "/porter-plainte/identite"
-        And I should see a "#form-errors-identity_corporation_siren" element
+        And I should see a "#form-errors-identity_corporation_siret" element
 
     Scenario: Submit the form with only 11 required value for Corporation Legal Representative declarant
         When I click the "label[for=identity_civilState_civility_0]" element
@@ -212,7 +212,7 @@ Feature:
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I fill in "identity_contactInformation_confirmationEmail" with "jean@test.com"
         And I fill in "identity_contactInformation_phone_number" with "0102020304"
-        And I fill in "identity_corporation_siren" with "123456789"
+        And I fill in "identity_corporation_siret" with "12345678900000"
         And I press "identity_submit"
         Then I should be on "/porter-plainte/identite"
         And I should see a "#form-errors-identity_corporation_name" element
@@ -230,7 +230,7 @@ Feature:
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I fill in "identity_contactInformation_confirmationEmail" with "jean@test.com"
         And I fill in "identity_contactInformation_phone_number" with "0102020304"
-        And I fill in "identity_corporation_siren" with "123456789"
+        And I fill in "identity_corporation_siret" with "12345678900000"
         And I fill in "identity_corporation_name" with "Test Company"
         And I press "identity_submit"
         Then I should be on "/porter-plainte/identite"
@@ -249,7 +249,7 @@ Feature:
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I fill in "identity_contactInformation_confirmationEmail" with "jean@test.com"
         And I fill in "identity_contactInformation_phone_number" with "0102020304"
-        And I fill in "identity_corporation_siren" with "123456789"
+        And I fill in "identity_corporation_siret" with "12345678900000"
         And I fill in "identity_corporation_name" with "Test Company"
         And I fill in "identity_corporation_function" with "Developer"
         And I press "identity_submit"
@@ -269,7 +269,7 @@ Feature:
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I fill in "identity_contactInformation_confirmationEmail" with "jean@test.com"
         And I fill in "identity_contactInformation_phone_number" with "0102020304"
-        And I fill in "identity_corporation_siren" with "123456789"
+        And I fill in "identity_corporation_siret" with "12345678900000"
         And I fill in "identity_corporation_name" with "Test Company"
         And I fill in "identity_corporation_function" with "Developer"
         And I fill in "identity_corporation_phone_number" with "0102020304"
@@ -278,15 +278,15 @@ Feature:
         And I should see a "#contact-information-address" element
 #        And the field "corporation-address" should have focus
 
-    Scenario: Submit the form with invalid siren (too short) for Corporation Legal Representative declarant
-        When I fill in "identity_corporation_siren" with "1"
-        Then I should see a "#form-errors-identity_corporation_siren" element
-        And I should see "Cette chaîne doit avoir exactement 9 caractères." in the "#form-errors-identity_corporation_siren" element
+    Scenario: Submit the form with invalid siret (too short) for Corporation Legal Representative declarant
+        When I fill in "identity_corporation_siret" with "1"
+        Then I should see a "#form-errors-identity_corporation_siret" element
+        And I should see "Cette chaîne doit avoir exactement 14 caractères." in the "#form-errors-identity_corporation_siret" element
 
-    Scenario: Submit the form with invalid siren (letters) for Corporation Legal Representative declarant
-        When I fill in "identity_corporation_siren" with "ABCDEFGHI"
-        Then I should see a "#form-errors-identity_corporation_siren" element
-        And I should see "Seuls les chiffres sont autorisés." in the "#form-errors-identity_corporation_siren" element
+    Scenario: Submit the form with invalid siret (letters) for Corporation Legal Representative declarant
+        When I fill in "identity_corporation_siret" with "ABCDEFGHI"
+        Then I should see a "#form-errors-identity_corporation_siret" element
+        And I should see "Seuls les chiffres sont autorisés." in the "#form-errors-identity_corporation_siret" element
 
     Scenario: Submit the form with another addressCountry than France
         When I click the "label[for=identity_civilState_civility_0]" element
@@ -303,7 +303,7 @@ Feature:
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I fill in "identity_contactInformation_confirmationEmail" with "jean@test.com"
         And I fill in "identity_contactInformation_phone_number" with "0102020304"
-        And I fill in "identity_corporation_siren" with "123456789"
+        And I fill in "identity_corporation_siret" with "12345678900000"
         And I fill in "identity_corporation_name" with "Test Company"
         And I fill in "identity_corporation_function" with "Developer"
         And I fill in "identity_corporation_email" with "jean@test.com"
@@ -330,7 +330,7 @@ Feature:
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I fill in "identity_contactInformation_confirmationEmail" with "jean@test.com"
         And I fill in "identity_contactInformation_phone_number" with "0102020304"
-        And I fill in "identity_corporation_siren" with "123456789"
+        And I fill in "identity_corporation_siret" with "12345678900000"
         And I fill in "identity_corporation_name" with "Test Company"
         And I fill in "identity_corporation_function" with "Developer"
         And I fill in "identity_corporation_email" with "jean@test.com"

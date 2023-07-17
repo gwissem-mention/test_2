@@ -27,7 +27,7 @@ class CorporationParserTest extends KernelTestCase
 {
 	"corporation":
 	{
-        "siren": "123456789",
+        "siret": "12345678900000",
 		"name": "Entreprise",
 		"function": "CEO",
 		"nationality":
@@ -75,7 +75,7 @@ class CorporationParserTest extends KernelTestCase
         $corporation = $parser->parse($corporationContent->corporation);
 
         $this->assertInstanceOf(Corporation::class, $corporation);
-        $this->assertEquals('123456789', $corporation->getSirenNumber());
+        $this->assertEquals('12345678900000', $corporation->getSiretNumber());
         $this->assertEquals('Entreprise', $corporation->getCompanyName());
         $this->assertEquals('CEO', $corporation->getDeclarantPosition());
         $this->assertEquals('FRANCAISE', $corporation->getNationality());
@@ -99,7 +99,7 @@ class CorporationParserTest extends KernelTestCase
 
         $corporationContent = json_decode('
 	{
-        "siren": "123456789",
+        "siret": "12345678900000",
 		"name": "Entreprise",
 		"function": "CEO",
 		"nationality":
@@ -147,7 +147,7 @@ class CorporationParserTest extends KernelTestCase
         $corporation = $parser->parse($corporationContent);
 
         $this->assertInstanceOf(Corporation::class, $corporation);
-        $this->assertEquals('123456789', $corporation->getSirenNumber());
+        $this->assertEquals('12345678900000', $corporation->getSiretNumber());
         $this->assertEquals('Entreprise', $corporation->getCompanyName());
         $this->assertEquals('CEO', $corporation->getDeclarantPosition());
         $this->assertEquals('FRANCAISE', $corporation->getNationality());
@@ -171,7 +171,7 @@ class CorporationParserTest extends KernelTestCase
 
         $corporationContent = json_decode('
 	{
-        "siren": "123456789",
+        "siret": "12345678900000",
 		"name": "Entreprise",
 		"function": "CEO",
 		"nationality":
@@ -202,7 +202,7 @@ class CorporationParserTest extends KernelTestCase
         $corporation = $parser->parse($corporationContent);
 
         $this->assertInstanceOf(Corporation::class, $corporation);
-        $this->assertEquals('123456789', $corporation->getSirenNumber());
+        $this->assertEquals('12345678900000', $corporation->getSiretNumber());
         $this->assertEquals('Entreprise', $corporation->getCompanyName());
         $this->assertEquals('CEO', $corporation->getDeclarantPosition());
         $this->assertEquals('FRANCAISE', $corporation->getNationality());
