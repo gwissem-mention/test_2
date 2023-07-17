@@ -16,12 +16,11 @@ final class Version20230712144105 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        $this->addSql('ALTER TABLE complaint ALTER consent_contact_electronics SET NOT NULL');
+        $this->addSql('ALTER TABLE complaint ADD consent_contact_electronics BOOLEAN');
     }
 
     public function down(Schema $schema): void
     {
-        $this->addSql('CREATE SCHEMA public');
-        $this->addSql('ALTER TABLE complaint ALTER consent_contact_electronics DROP NOT NULL');
+        $this->addSql('ALTER TABLE complaint DROP consent_contact_electronics');
     }
 }
