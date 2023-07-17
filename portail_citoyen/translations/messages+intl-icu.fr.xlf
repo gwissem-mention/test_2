@@ -502,9 +502,9 @@
                 <source>pel.corporation.phone</source>
                 <target>Numéro de téléphone fixe ou portable</target>
             </trans-unit>
-            <trans-unit id="pel.corporation.siren">
-                <source>pel.corporation.siren</source>
-                <target>SIREN</target>
+            <trans-unit id="pel.corporation.siret">
+                <source>pel.corporation.siret</source>
+                <target>SIRET</target>
             </trans-unit>
             <trans-unit id="pel.confirm.online.complaint.that">
                 <source>pel.confirm.online.complaint.that</source>

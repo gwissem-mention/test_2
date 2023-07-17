@@ -199,7 +199,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                         ->setConsentContactElectronics(true)
                     ->setCorporationRepresented(
                         (new Corporation())
-                            ->setSirenNumber('123456789')
+                            ->setSiretNumber('12345678900000')
                             ->setCompanyName('Netflix')
                             ->setDeclarantPosition('PDG')
                             ->setNationality('FRANCAISE')

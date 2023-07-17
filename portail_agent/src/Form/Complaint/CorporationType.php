@@ -15,8 +15,8 @@ class CorporationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('sirenNumber', TextType::class, [
-                'label' => 'pel.siren.number',
+            ->add('siretNumber', TextType::class, [
+                'label' => 'pel.siret.number',
                 'disabled' => true,
             ])
             ->add('companyName', TextType::class, [

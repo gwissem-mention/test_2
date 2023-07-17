@@ -219,7 +219,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
             ->setPersonLegalRepresented(null)
             ->setCorporationRepresented(
                 (new Corporation())
-                    ->setSirenNumber('123456789')
+                    ->setSiretNumber('12345678900000')
                     ->setCompanyName('Netflix')
                     ->setDeclarantPosition('PDG')
                     ->setNationality('FRANCAISE')
@@ -336,7 +336,8 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Personne_Morale>', $this->xmlContentWithCorporationRepresented);
         $this->assertStringContainsString('<Personne_Morale_Raison>Netflix</Personne_Morale_Raison>', $this->xmlContentWithCorporationRepresented);
         $this->assertStringContainsString('<Personne_Morale_Num_Registre_Commerce/>', $this->xmlContentWithCorporationRepresented);
-        $this->assertStringContainsString('<Personne_Morale_Siret>123456789</Personne_Morale_Siret>', $this->xmlContentWithCorporationRepresented);
+        $this->assertStringContainsString('<Personne_Morale_Siren>123456789</Personne_Morale_Siren>', $this->xmlContentWithCorporationRepresented);
+        $this->assertStringContainsString('<Personne_Morale_NIC>00000</Personne_Morale_NIC>', $this->xmlContentWithCorporationRepresented);
         $this->assertStringContainsString('<Personne_Morale_Implication>PDG</Personne_Morale_Implication>', $this->xmlContentWithCorporationRepresented);
         $this->assertStringContainsString('<Personne_Morale_Nationalite>FRANCAISE</Personne_Morale_Nationalite>', $this->xmlContentWithCorporationRepresented);
         $this->assertStringContainsString('<Personne_Morale_Secteur/>', $this->xmlContentWithCorporationRepresented);
@@ -353,6 +354,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Personne_Morale_Residence_Adresse>1 Rue de la république, Paris, 75000</Personne_Morale_Residence_Adresse>', $this->xmlContentWithCorporationRepresented);
         $this->assertStringContainsString('<Personne_Morale_Residence_Lieu>PARIS 75000 (France)</Personne_Morale_Residence_Lieu>', $this->xmlContentWithCorporationRepresented);
         $this->assertStringContainsString('</Personne_Morale>', $this->xmlContentWithCorporationRepresented);
+        $this->assertStringNotContainsString('<Personne_Moral_Siret>', $this->xmlContentWithCorporationRepresented);
     }
 
     public function testFactsSection(): void

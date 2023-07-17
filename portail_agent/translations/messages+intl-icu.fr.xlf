@@ -882,9 +882,9 @@
                 <source>pel.sir</source>
                 <target>Monsieur</target>
             </trans-unit>
-            <trans-unit id="pel.siren.number">
-                <source>pel.siren.number</source>
-                <target>SIREN</target>
+            <trans-unit id="pel.siret.number">
+                <source>pel.siret.number</source>
+                <target>SIRET</target>
             </trans-unit>
             <trans-unit id="pel.search">
                 <source>pel.search</source>

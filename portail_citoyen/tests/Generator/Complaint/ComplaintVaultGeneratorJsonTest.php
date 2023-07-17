@@ -946,7 +946,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                 'representedPersonCivilState' => null,
                 'representedPersonContactInformation' => null,
                 'corporation' => [
-                    'siren' => '123456789',
+                    'siret' => '12345678900000',
                     'name' => 'Entreprise',
                     'function' => 'CEO',
                     'nationality' => [

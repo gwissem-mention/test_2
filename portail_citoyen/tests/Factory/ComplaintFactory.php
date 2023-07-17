@@ -107,7 +107,7 @@ class ComplaintFactory
     private function createCorporation(bool $frenchAddress = true): CorporationModel
     {
         return (new CorporationModel())
-            ->setSiren('123456789')
+            ->setSiret('12345678900000')
             ->setFrenchAddress(true === $frenchAddress ? $this->createAddressEtalab() : null)
             ->setForeignAddress(false === $frenchAddress ? $this->createAddressForeign() : null)
             ->setPhone($this->createPhone())

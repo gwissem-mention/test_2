@@ -16,8 +16,8 @@ class Corporation
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $sirenNumber = null;
+    #[ORM\Column(length: 14)]
+    private ?string $siretNumber = null;
 
     #[ORM\Column(length: 255)]
     private ?string $companyName = null;
@@ -69,14 +69,14 @@ class Corporation
         return $this->id;
     }
 
-    public function getSirenNumber(): ?string
+    public function getSiretNumber(): ?string
     {
-        return $this->sirenNumber;
+        return $this->siretNumber;
     }
 
-    public function setSirenNumber(string $sirenNumber): self
+    public function setSiretNumber(string $siretNumber): self
     {
-        $this->sirenNumber = $sirenNumber;
+        $this->siretNumber = $siretNumber;
 
         return $this;
     }

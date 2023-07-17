@@ -166,7 +166,7 @@ parameters:
 			path: src/Complaint/Parser/CorporationParser.php
 
 		-
-			message: "#^Access to an undefined property object\\:\\:\\$siren\\.$#"
+			message: "#^Access to an undefined property object\\:\\:\\$siret\\.$#"
 			count: 1
 			path: src/Complaint/Parser/CorporationParser.php
 
@@ -426,11 +426,6 @@ parameters:
 			path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
 
 		-
-			message: "#^Access to an undefined property Faker\\\\Generator\\:\\:\\$siren\\.$#"
-			count: 1
-			path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
-
-		-
 			message: "#^Parameter \\#1 \\$alert of method App\\\\Entity\\\\Complaint\\:\\:setAlert\\(\\) expects string\\|null, mixed given\\.$#"
 			count: 1
 			path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
@@ -529,6 +524,11 @@ parameters:
 			message: "#^Parameter \\#1 \\$suspectsKnownText of method App\\\\Entity\\\\AdditionalInformation\\:\\:setSuspectsKnownText\\(\\) expects string\\|null, mixed given\\.$#"
 			count: 1
 			path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
+
+		-
+		    message: "#^Parameter \\#1 \\$siretNumber of method App\\\\Entity\\\\Corporation\\:\\:setSiretNumber\\(\\) expects string, mixed given\\.$#"
+		    count: 1
+		    path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
 
 		-
 			message: "#^Call to an undefined method Behat\\\\Testwork\\\\Environment\\\\Environment\\:\\:getContext\\(\\)\\.$#"

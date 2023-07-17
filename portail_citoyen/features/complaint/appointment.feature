@@ -183,7 +183,7 @@ Feature:
     Scenario: I should see error if I valid with no filling the appointment textarea when I am corporation legal representative
         Given I am on "/porter-plainte/identite"
         And I click the "label[for=identity_declarantStatus_2]" element
-        When I fill in "identity_corporation_siren" with "123456789"
+        When I fill in "identity_corporation_siret" with "12345678900000"
         And I fill in "identity_corporation_name" with "Test Company"
         And I fill in "identity_corporation_function" with "Developer"
         And I fill in "identity_corporation_email" with "jean@test.com"

@@ -21,7 +21,7 @@ class CorporationParser
         }
 
         $corporationParsed
-            ->setSirenNumber($corporation->siren)
+            ->setSiretNumber($corporation->siret)
             ->setCompanyName($corporation->name)
             ->setDeclarantPosition($corporation->function)
             ->setNationality($corporation->nationality->label)

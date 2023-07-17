@@ -22,6 +22,8 @@ use Symfony\Component\Validator\Constraints\Regex;
 
 class CorporationType extends AbstractType
 {
+    private const SIRET_NUMBER_LENGTH = 14;
+
     public function __construct(
         private readonly EventSubscriberInterface $addAddressSubscriber,
         private readonly string $franceCode,
@@ -32,16 +34,16 @@ class CorporationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('siren', TextType::class, [
+            ->add('siret', TextType::class, [
                 'attr' => [
-                    'maxlength' => 9,
+                    'maxlength' => self::SIRET_NUMBER_LENGTH,
                 ],
                 'constraints' => [
                     new NotBlank(),
-                    new Regex('/\d/', 'pel.only.integers.are.allowed'),
-                    new Length(['min' => 9, 'max' => 9]),
+                    new Regex('/\d{14}/', 'pel.only.integers.are.allowed'),
+                    new Length(['min' => self::SIRET_NUMBER_LENGTH, 'max' => self::SIRET_NUMBER_LENGTH]),
                 ],
-                'label' => 'pel.corporation.siren',
+                'label' => 'pel.corporation.siret',
             ])
             ->add('name', TextType::class, [
                 'attr' => [
