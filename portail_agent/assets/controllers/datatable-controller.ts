@@ -35,6 +35,16 @@ export default class extends Controller {
         }
     }
 
+    // Must be ignored because we can't type filter here
+    // @ts-ignore
+    public filter({params: {filter}}): void {
+        if (this.datatable && filter) {
+            this.datatable.search(filter).draw();
+        } else if (this.datatable){
+            this.datatable.search("").draw();
+        }
+    }
+
     private init(): void {
         const statusFilter: string | null  = new URLSearchParams(window.location.search).get("status");
         const columns: { data: string | null; }[] = [];

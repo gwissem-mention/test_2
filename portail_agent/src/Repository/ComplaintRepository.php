@@ -22,6 +22,19 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class ComplaintRepository extends ServiceEntityRepository
 {
+    public const SEARCH_ALERT = 'alert';
+    public const SEARCH_APPOINTMENT_PENDING = 'appointment-pending';
+    public const SEARCH_APPOINTMENT_PLANNED = 'appointment-planned';
+    public const SEARCH_ASSIGNED = 'assigned';
+    public const SEARCH_ASSIGNMENT_PENDING = 'assignment-pending';
+    public const SEARCH_CLOSED = 'closed';
+    public const SEARCH_CLOSURE_PENDING = 'closure-pending';
+    public const SEARCH_EXCEEDS_DEADLINE = 'exceeds-deadline';
+    public const SEARCH_REJECTED = 'rejected';
+    public const SEARCH_ONGOING_LRP = 'ongoing-lrp';
+    public const SEARCH_REACHES_DEADLINE = 'reaches-deadline';
+    public const SEARCH_UNIT_REDIRECTION_PENDING = 'unit-redirection-pending';
+
     public function __construct(
         ManagerRegistry $registry,
         private readonly string $oodriveDeclarationCleanUpPeriod,
@@ -56,15 +69,6 @@ class ComplaintRepository extends ServiceEntityRepository
      */
     public function findAsPaginator(array $order = [], int $start = 0, ?int $length = null, string $unit = null, ?User $agent = null, ?string $searchQuery = null): Paginator
     {
-        $status = match ($searchQuery) {
-            'a-attribuer' => Complaint::STATUS_ASSIGNMENT_PENDING,
-            'attente-rdv' => Complaint::STATUS_APPOINTMENT_PENDING,
-            'attente-reorientation' => Complaint::STATUS_UNIT_REDIRECTION_PENDING,
-            'cloturee' => Complaint::STATUS_CLOSED,
-            'en-cours-lrp' => Complaint::STATUS_ONGOING_LRP,
-            default => null,
-        };
-
         $qb = $this
             ->createQueryBuilder('c')
             ->select('c, count(comments) as HIDDEN count_comments')
@@ -89,27 +93,7 @@ class ComplaintRepository extends ServiceEntityRepository
                 ->setParameter('agent', $agent);
         }
 
-        if (!is_null($status)) {
-            $qb->andWhere('c.status = :status')
-                ->setParameter('status', $status);
-        } elseif (!empty($searchQuery)) {
-            $keywords = explode(' ', $searchQuery);
-            $andX = $qb->expr()->andX();
-            $i = 0;
-            foreach ($keywords as $keyword) {
-                $parameter = 'keyword_'.$i;
-                $orX = $qb->expr()->orX(
-                    $qb->expr()->like('c.declarationNumber', $qb->expr()->literal("%$keyword%")),
-                    $qb->expr()->like('LOWER(unaccent(identity.firstname))', 'LOWER(unaccent(:'.$parameter.'))'),
-                    $qb->expr()->like('LOWER(unaccent(identity.lastname))', 'LOWER(unaccent(:'.$parameter.'))'),
-                    $qb->expr()->like('LOWER(unaccent(assignedTo.appellation))', 'LOWER(unaccent(:'.$parameter.'))'),
-                );
-                $andX->add($orX);
-                $qb->setParameter($parameter, '%'.$keyword.'%');
-                ++$i;
-            }
-            $qb->andWhere($andX);
-        }
+        $qb = $this->search($qb, $searchQuery);
 
         return new Paginator(DatatableFactory::createQuery($qb, $order, $start, $length));
     }
@@ -244,5 +228,109 @@ class ComplaintRepository extends ServiceEntityRepository
             ->andWhere('c.status <> :PvStatus')
             ->setParameter('now', $now)
             ->setParameter('PvStatus', Complaint::STATUS_CLOSED);
+    }
+
+    private function search(QueryBuilder $qb, ?string $searchQuery): QueryBuilder
+    {
+        $status = match ($searchQuery) {
+            'a-attribuer' => Complaint::STATUS_ASSIGNMENT_PENDING,
+            'attente-rdv' => Complaint::STATUS_APPOINTMENT_PENDING,
+            'attente-reorientation' => Complaint::STATUS_UNIT_REDIRECTION_PENDING,
+            'cloturee' => Complaint::STATUS_CLOSED,
+            'en-cours-lrp' => Complaint::STATUS_ONGOING_LRP,
+            self::SEARCH_APPOINTMENT_PENDING => Complaint::STATUS_APPOINTMENT_PENDING,
+            self::SEARCH_ASSIGNED => Complaint::STATUS_ASSIGNED,
+            self::SEARCH_ASSIGNMENT_PENDING => Complaint::STATUS_ASSIGNMENT_PENDING,
+            self::SEARCH_CLOSED => Complaint::STATUS_CLOSED,
+            self::SEARCH_REJECTED => Complaint::STATUS_REJECTED,
+            self::SEARCH_ONGOING_LRP => Complaint::STATUS_ONGOING_LRP,
+            self::SEARCH_UNIT_REDIRECTION_PENDING => Complaint::STATUS_UNIT_REDIRECTION_PENDING,
+            default => null,
+        };
+
+        if (!is_null($status)) {
+            $this->searchByStatus($qb, $status);
+        } elseif (!empty($searchQuery)) {
+            switch ($searchQuery) {
+                case self::SEARCH_APPOINTMENT_PLANNED:
+                    $this->searchWithAppointmentPlanned($qb);
+                    break;
+                case self::SEARCH_CLOSURE_PENDING:
+                    $this->searchWithClosurePending($qb);
+                    break;
+                case self::SEARCH_ALERT:
+                    $this->searchWithAlert($qb);
+                    break;
+                case self::SEARCH_REACHES_DEADLINE:
+                    $this->searchWithReachesDeadline($qb);
+                    break;
+                case self::SEARCH_EXCEEDS_DEADLINE:
+                    $this->searchWithExdeedsDealine($qb);
+                    break;
+                default:
+                    $keywords = explode(' ', $searchQuery);
+                    $andX = $qb->expr()->andX();
+                    $i = 0;
+                    foreach ($keywords as $keyword) {
+                        $parameter = 'keyword_'.$i;
+                        $orX = $qb->expr()->orX(
+                            $qb->expr()->like('c.declarationNumber', $qb->expr()->literal("%$keyword%")),
+                            $qb->expr()->like('LOWER(unaccent(identity.firstname))', 'LOWER(unaccent(:'.$parameter.'))'),
+                            $qb->expr()->like('LOWER(unaccent(identity.lastname))', 'LOWER(unaccent(:'.$parameter.'))'),
+                            $qb->expr()->like('LOWER(unaccent(assignedTo.appellation))', 'LOWER(unaccent(:'.$parameter.'))'),
+                        );
+                        $andX->add($orX);
+                        $qb->setParameter($parameter, '%'.$keyword.'%');
+                        ++$i;
+                    }
+                    $qb->andWhere($andX);
+            }
+        }
+
+        return $qb;
+    }
+
+    private function searchByStatus(QueryBuilder $qb, ?string $status): QueryBuilder
+    {
+        return $qb->andWhere('c.status = :status')
+            ->setParameter('status', $status);
+    }
+
+    private function searchWithAppointmentPlanned(QueryBuilder $qb): QueryBuilder
+    {
+        return $qb->andWhere('c.appointmentDate IS NOT NULL')
+            ->andWhere('c.status <> :status')
+            ->setParameter('status', Complaint::STATUS_CLOSED);
+    }
+
+    private function searchWithClosurePending(QueryBuilder $qb): QueryBuilder
+    {
+        return $qb->andWhere('c.appointmentDate <= :today')
+            ->andWhere('c.status <> :status')
+            ->setParameter('today', new \DateTimeImmutable())
+            ->setParameter('status', Complaint::STATUS_CLOSED);
+    }
+
+    private function searchWithAlert(QueryBuilder $qb): QueryBuilder
+    {
+        return $qb->andWhere('c.alert IS NOT NULL');
+    }
+
+    private function searchWithReachesDeadline(QueryBuilder $qb): QueryBuilder
+    {
+        return $qb->andWhere('c.processingDeadline >= :today')
+            ->andWhere('c.processingDeadline <= :threeDaysFromNow')
+            ->andWhere('c.status <> :status')
+            ->setParameter('today', new \DateTimeImmutable())
+            ->setParameter('threeDaysFromNow', new \DateTimeImmutable('+3 days'))
+            ->setParameter('status', Complaint::STATUS_CLOSED);
+    }
+
+    private function searchWithExdeedsDealine(QueryBuilder $qb): QueryBuilder
+    {
+        return $qb->andWhere('c.processingDeadline < :today')
+            ->andWhere('c.status <> :status')
+            ->setParameter('today', new \DateTimeImmutable())
+            ->setParameter('status', Complaint::STATUS_CLOSED);
     }
 }

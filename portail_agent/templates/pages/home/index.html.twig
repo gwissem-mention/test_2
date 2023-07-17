@@ -2,7 +2,7 @@
 
 {% block body %}
     {% include 'pages/home/_partial/toaster/toaster.html.twig' %}
-    <div class="row h-100 g-0" data-controller="content-sidebar">
+    <div class="row h-100 g-0" data-controller="content-sidebar datatable">
         <div class="d-none h-100" data-content-sidebar-target="contentSidebar">
             <div class="z-3 background-white p-3 shadow-sm h-100">
                 <div class="d-flex justify-content-end mb-3">
@@ -12,43 +12,105 @@
                 </div>
                 <div class="d-flex align-items-center justify-content-between">
                     <div class="fw-bold">{{ 'pel.filters'|trans }}</div>
-                    <button class="fr-btn fr-btn--tertiary-no-outline btn-transparent color-blue fw-normal">{{ 'pel.clear.filter'|trans }}</button>
+                    <button class="fr-btn fr-btn--tertiary-no-outline btn-transparent color-blue fw-normal" id="all-complaint-filter" data-action="click->datatable#filter">{{ 'pel.clear.filter'|trans }}</button>
                 </div>
                 <ul class="reset-list m-0 p-0 w-100 mt-3">
                     <li class="d-flex align-items-center mb-2 p-2 cursor-pointer fw-bold">
                         {{ 'pel.all.declarations'|trans }}
                     </li>
-                    <li class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue">
+                    <li
+                        class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue"
+                        id="reaches-deadline-filter"
+                        data-action="click->datatable#filter"
+                        data-datatable-filter-param="{{ constant('App\\Repository\\ComplaintRepository::SEARCH_REACHES_DEADLINE') }}"
+                    >
                         {{ 'pel.reaches.deadline'|trans }}
                     </li>
-                    <li class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue">
+                    <li
+                        class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue"
+                        id="exceeds-deadline-filter"
+                        data-action="click->datatable#filter"
+                        data-datatable-filter-param="{{ constant('App\\Repository\\ComplaintRepository::SEARCH_EXCEEDS_DEADLINE') }}"
+                    >
                         {{ 'pel.exceeds.deadline'|trans }}
                     </li>
-                    <li class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue">
+                    <li
+                        class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue"
+                        id="alert-filter"
+                        data-action="click->datatable#filter"
+                        data-datatable-filter-param="{{ constant('App\\Repository\\ComplaintRepository::SEARCH_ALERT') }}"
+                    >
                         {{ 'pel.alert'|trans }}
                     </li>
-                    <li class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue">
+                    <li
+                        class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue"
+                        id="assignment-pending-filter"
+                        data-action="click->datatable#filter"
+                        data-datatable-filter-param="{{ constant('App\\Repository\\ComplaintRepository::SEARCH_ASSIGNMENT_PENDING') }}"
+                    >
+                        {{ 'pel.assignment.pending'|trans }}
+                    </li>
+                    <li
+                        class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue"
+                        id="assigned-filter"
+                        data-action="click->datatable#filter"
+                        data-datatable-filter-param="{{ constant('App\\Repository\\ComplaintRepository::SEARCH_ASSIGNED') }}"
+                    >
                         {{ 'pel.assigned'|trans }}
                     </li>
-                    <li class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue">
+                    <li
+                        class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue"
+                        id="unit-redirection-pending-filter"
+                        data-action="click->datatable#filter"
+                        data-datatable-filter-param="{{ constant('App\\Repository\\ComplaintRepository::SEARCH_UNIT_REDIRECTION_PENDING') }}"
+                    >
                         {{ 'pel.unit.redirection.pending'|trans }}
                     </li>
-                    <li class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue">
+                    <li
+                        class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue"
+                        id="validation-declaration-filter"
+                        data-action="click->datatable#filter"
+                        data-datatable-filter-param="{{ constant('App\\Repository\\ComplaintRepository::SEARCH_ONGOING_LRP') }}"
+                    >
                         {{ 'pel.validation.declaration'|trans }}
                     </li>
-                    <li class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue">
+                    <li
+                        class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue"
+                        id="appointment-planned-filter"
+                        data-action="click->datatable#filter"
+                        data-datatable-filter-param="{{ constant('App\\Repository\\ComplaintRepository::SEARCH_APPOINTMENT_PLANNED') }}">
                         {{ 'pel.appointment.planned'|trans }}
                     </li>
-                    <li class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue">
+                    <li
+                        class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue"
+                        id="appointment-pending-filter"
+                        data-action="click->datatable#filter"
+                        data-datatable-filter-param="{{ constant('App\\Repository\\ComplaintRepository::SEARCH_APPOINTMENT_PENDING') }}"
+                    >
                         {{ 'pel.appointment.pending'|trans }}
                     </li>
-                    <li class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue">
+                    <li
+                        class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue"
+                        id="waiting-closing-filter"
+                        data-action="click->datatable#filter"
+                        data-datatable-filter-param="{{ constant('App\\Repository\\ComplaintRepository::SEARCH_CLOSURE_PENDING') }}"
+                    >
                         {{ 'pel.waiting.closing'|trans }}
                     </li>
-                    <li class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue">
+                    <li
+                        class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue"
+                        id="closed-filter"
+                        data-action="click->datatable#filter"
+                        data-datatable-filter-param="{{ constant('App\\Repository\\ComplaintRepository::SEARCH_CLOSED') }}"
+                    >
                         {{ 'pel.closed'|trans }}
                     </li>
-                    <li class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue">
+                    <li
+                        class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue"
+                        id="rejected-filter"
+                        data-action="click->datatable#filter"
+                        data-datatable-filter-param="{{ constant('App\\Repository\\ComplaintRepository::SEARCH_REJECTED') }}"
+                    >
                         {{ 'pel.rejected'|trans }}
                     </li>
                 </ul>
@@ -56,7 +118,7 @@
         </div>
         <div class="col-md-8 col-lg-9 col-xxl-10 mx-auto p-4">
             <div
-                data-controller="home datatable checkbox-group dashboard-bulk-action"
+                data-controller="home checkbox-group dashboard-bulk-action"
                 data-action="checkbox-group:updateChecked->dashboard-bulk-action#setBulkTarget dashboard-bulk-action:finished->datatable#refresh dashboard-bulk-action:finished->checkbox-group#resetAll"
                 data-dashboard-bulk-action-url-bulk-assign-value="{{ path('complaint_bulk_assign') }}"
                 data-dashboard-bulk-action-url-bulk-reassign-value="{{ path('complaint_bulk_reassign') }}"
