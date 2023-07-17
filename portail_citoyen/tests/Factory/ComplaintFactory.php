@@ -7,6 +7,7 @@ namespace App\Tests\Factory;
 use App\AppEnum\Civility;
 use App\AppEnum\DeclarantStatus;
 use App\Form\Model\AdditionalInformation\AdditionalInformationModel;
+use App\Form\Model\AdditionalInformation\WitnessModel;
 use App\Form\Model\Address\AddressEtalabModel;
 use App\Form\Model\Address\AddressForeignModel;
 use App\Form\Model\AppointmentModel;
@@ -234,13 +235,15 @@ class ComplaintFactory
     private function createAdditionalInformation(): AdditionalInformationModel
     {
         return (new AdditionalInformationModel())
-            ->setWitnesses(true)
-            ->setWitnessesText('Witnesses text')
+            ->setWitnessesPresent(true)
             ->setSuspectsChoice(true)
             ->setSuspectsText('Suspects text')
             ->setCctvAvailable(true)
             ->setCctvPresent(AdditionalInformationModel::CCTV_PRESENT_YES)
             ->setFsiVisit(true)
-            ->setObservationMade(true);
+            ->setObservationMade(true)
+            ->addWitness(
+                (new WitnessModel())->setDescription('Jean DUPONT')->setEmail('jean.dupont@example.com')->setPhone($this->createPhone())
+            );
     }
 }

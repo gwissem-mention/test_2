@@ -14,13 +14,34 @@
     {% endif %}
     <div class="fr-grid-row fr-py-2w">
         <div class="fr-col">
-            {{ form_row(form.witnesses) }}
+            {{ form_row(form.witnessesPresent) }}
         </div>
     </div>
-    {% if form.witnessesText is defined %}
-        <div class="fr-grid-row fr-py-2w">
-            <div class="fr-col">
-                {{ form_row(form.witnessesText) }}
+    {% if form.witnesses is defined %}
+        <div class="fr-grid-row">
+            <div class="fr-col-6">
+                {% for witness in form.witnesses %}
+                    <div class="fr-mt-2w">
+                        <h3>{{ 'pel.witness'|trans }} {{ 'pel.number'|trans }} {{ loop.index }}</h3>
+                    </div>
+                    <div class="fr-mt-2w">
+                        {{ form_row(witness.description, {'label':'pel.witness.description'|trans({'%index%':loop.index})}) }}
+                    </div>
+                    <div class="fr-mt-2w">
+                        {{ form_row(witness.email, {'label':'pel.witness.email'|trans({'%index%':loop.index})}) }}
+                    </div>
+                    <div class="fr-mt-2w">
+                        {{ form_row(witness.phone) }}
+                    </div>
+                    {% if form.witnesses|length > 1 %}
+                        <div>
+                            {{ form_widget(witness.vars.button_delete) }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                <div class="fr-mt-2w">
+                    {{ form_widget(form.witnesses.vars.button_add) }}
+                </div>
             </div>
         </div>
     {% endif %}
@@ -49,8 +70,10 @@
         </div>
     {% endif %}
     <div class="flex--between fr-mt-3w fr-mb-3w">
-        <a href="{{ path('complaint_objects') }}" class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-arrow-left-line">{{ 'pel.previous'|trans }}</a>
-        <button type="submit" class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line" id="additional_information_submit">{{ 'pel.next'|trans }}</button>
+        <a href="{{ path('complaint_objects') }}"
+           class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-arrow-left-line">{{ 'pel.previous'|trans }}</a>
+        <button type="submit" class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line"
+                id="additional_information_submit">{{ 'pel.next'|trans }}</button>
     </div>
     {{ form_end(form) }}
 </div>

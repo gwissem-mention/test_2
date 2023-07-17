@@ -272,7 +272,7 @@ class ComplaintFileParserTest extends KernelTestCase
 	"additionalInformation":
 	{
 		"suspectsChoice": true,
-		"witnesses": true,
+		"witnessesPresent": true,
 		"fsiVisit": true,
 		"cctvPresent":
 		{
@@ -280,7 +280,12 @@ class ComplaintFileParserTest extends KernelTestCase
 			"label": "pel.yes"
 		},
 		"suspectsText": "Suspects text",
-		"witnessesText": "Witnesses text",
+		"witnesses": [
+	    {
+            "description": "Jean DUPONT",
+            "email": "jean.dupont@example.com",
+            "phone": {"country":"FR","code":"33","number":"0601020304"}
+	    }],
 		"observationMade": true,
 		"cctvAvailable": true
 	},

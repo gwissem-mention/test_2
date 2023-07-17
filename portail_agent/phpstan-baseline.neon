@@ -81,7 +81,7 @@ parameters:
 			path: src/Complaint/Parser/AdditionalInformationParser.php
 
 		-
-			message: "#^Access to an undefined property object\\:\\:\\$witnessesText\\.$#"
+			message: "#^Access to an undefined property object\\:\\:\\$witnessesPresent\\.$#"
 			count: 1
 			path: src/Complaint/Parser/AdditionalInformationParser.php
 
@@ -466,6 +466,11 @@ parameters:
 			path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
 
 		-
+			message: "#^Parameter \\#1 \\$description of method App\\\\Entity\\\\Witness\\:\\:setDescription\\(\\) expects string\\|null, mixed given\\.$#"
+			count: 1
+			path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
+
+		-
 			message: "#^Parameter \\#1 \\$endAddress of method App\\\\Entity\\\\Facts\\:\\:setEndAddress\\(\\) expects string\\|null, mixed given\\.$#"
 			count: 1
 			path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
@@ -522,11 +527,6 @@ parameters:
 
 		-
 			message: "#^Parameter \\#1 \\$suspectsKnownText of method App\\\\Entity\\\\AdditionalInformation\\:\\:setSuspectsKnownText\\(\\) expects string\\|null, mixed given\\.$#"
-			count: 1
-			path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
-
-		-
-			message: "#^Parameter \\#1 \\$witnessesPresentText of method App\\\\Entity\\\\AdditionalInformation\\:\\:setWitnessesPresentText\\(\\) expects string\\|null, mixed given\\.$#"
 			count: 1
 			path: src/DataFixtures/Complaint/ComplaintFakerFixtures.php
 

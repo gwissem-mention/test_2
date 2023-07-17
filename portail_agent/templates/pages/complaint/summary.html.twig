@@ -218,10 +218,19 @@
                 <strong>{{ complaint.additionalInformation.witnessesPresent ? 'pel.yes'|trans : 'pel.no'|trans }}</strong>
             </li>
             {% if complaint.additionalInformation.witnessesPresent %}
-                <li>
-                    {{ 'pel.facts.witnesses.information.text'|trans }} :
-                    <strong>{{ complaint.additionalInformation.witnessesPresentText }}</strong>
-                </li>
+                {% for witness in complaint.additionalInformation.witnesses %}
+                    <ul>
+                        {% if witness.description is not null %}
+                            <li>{{ 'pel.witness.description'|trans({'%index%':loop.index}) }}: {{ witness.description }}</li>
+                        {% endif %}
+                        {% if witness.email is not null %}
+                            <li>{{ 'pel.witness.email'|trans({'%index%':loop.index}) }} : {{ witness.email }}</li>
+                        {% endif %}
+                        {% if witness.phone is not null %}
+                            <li>{{ 'pel.witness.mobile'|trans({'%index%':loop.index}) }}: {{ witness.phone }}</li>
+                        {% endif %}
+                    </ul>
+                {% endfor %}
             {% endif %}
             <li>
                 {{ 'pel.do.you.have.informations.on.potential.suspects'|trans }} :
@@ -340,10 +349,14 @@
             - {{ object.amount|format_currency('EUR', {fraction_digit: 0}) }} - {{ object.operator }}
             {% if object.stillOnWhenMobileStolen is not null %}
                 <ul>
-                    <li>{{ 'pel.still.on.when.mobile.stolen'|trans }} : <strong>{{ object.stillOnWhenMobileStolen|bool_to_string }}</strong></li>
-                    <li>{{ 'pel.keyboard.locked.when.mobile.stolen'|trans }} : <strong>{{ object.keyboardLockedWhenMobileStolen|bool_to_string }}</strong></li>
-                    <li>{{ 'pel.pin.enabled.when.mobile.stolen'|trans }} : <strong>{{ object.pinEnabledWhenMobileStolen|bool_to_string }}</strong></li>
-                    <li>{{ 'pel.mobile.insured'|trans }} : <strong>{{ object.mobileInsured|bool_to_string }}</strong></li>
+                    <li>{{ 'pel.still.on.when.mobile.stolen'|trans }} :
+                        <strong>{{ object.stillOnWhenMobileStolen|bool_to_string }}</strong></li>
+                    <li>{{ 'pel.keyboard.locked.when.mobile.stolen'|trans }} :
+                        <strong>{{ object.keyboardLockedWhenMobileStolen|bool_to_string }}</strong></li>
+                    <li>{{ 'pel.pin.enabled.when.mobile.stolen'|trans }} :
+                        <strong>{{ object.pinEnabledWhenMobileStolen|bool_to_string }}</strong></li>
+                    <li>{{ 'pel.mobile.insured'|trans }} : <strong>{{ object.mobileInsured|bool_to_string }}</strong>
+                    </li>
                 </ul>
             {% endif %}
         </li>

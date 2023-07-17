@@ -34,7 +34,7 @@ class AdditionalInformationType extends AbstractType
                     new NotNull(),
                 ],
             ])
-            ->add('witnesses', ChoiceType::class, [
+            ->add('witnessesPresent', ChoiceType::class, [
                 'choices' => [
                     'pel.yes' => true,
                     'pel.no' => false,
@@ -75,7 +75,7 @@ class AdditionalInformationType extends AbstractType
                 $additionalInfo = $event->getData();
                 $form = $event->getForm();
                 $this->addInformationTextField($form, $additionalInfo?->isSuspectsChoice());
-                $this->addWitnessesTextField($form, $additionalInfo?->isWitnesses());
+                $this->addWitnessesFields($form, $additionalInfo?->isWitnessesPresent());
                 $this->addFSIVisitField($form, $additionalInfo?->isFsiVisit());
                 $this->addCCTVAvailableField($form, $additionalInfo?->getCctvPresent());
                 $this->addFSIVisitField($form, $additionalInfo?->isFsiVisit());
@@ -94,7 +94,7 @@ class AdditionalInformationType extends AbstractType
             }
         );
 
-        $builder->get('witnesses')->addEventListener(
+        $builder->get('witnessesPresent')->addEventListener(
             FormEvents::POST_SUBMIT,
             function (FormEvent $event) {
                 $choice = $event->getData();
@@ -102,7 +102,7 @@ class AdditionalInformationType extends AbstractType
                 $parent = $event->getForm()->getParent();
                 /** @var ?AdditionalInformationModel $additionalInformationModel */
                 $additionalInformationModel = $parent->getData();
-                $this->addWitnessesTextField($parent, boolval($choice), $additionalInformationModel);
+                $this->addWitnessesFields($parent, boolval($choice), $additionalInformationModel);
             }
         );
 
@@ -153,27 +153,16 @@ class AdditionalInformationType extends AbstractType
         }
     }
 
-    private function addWitnessesTextField(
+    private function addWitnessesFields(
         FormInterface $form,
         ?bool $choice,
         AdditionalInformationModel $additionalInformationModel = null
     ): void {
         if (true === $choice) {
-            $form->add('witnessesText', TextType::class, [
-                'attr' => [
-                    'maxlength' => 400,
-                ],
-                'constraints' => [
-                    new NotBlank(),
-                    new Length([
-                        'max' => 400,
-                    ]),
-                ],
-                'label' => 'pel.facts.witnesses.information.text',
-            ]);
+            $form->add('witnesses', WitnessesType::class);
         } else {
-            $form->remove('witnessesText');
-            $additionalInformationModel?->setWitnessesText(null);
+            $form->remove('witnesses');
+            $additionalInformationModel?->getWitnesses()->clear();
         }
     }
 

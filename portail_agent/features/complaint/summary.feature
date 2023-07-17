@@ -130,7 +130,12 @@ Feature:
         And I should see "Vous avez ajouté 5 objets pour un montant total de 18 099 €"
         And I should see the key "pel.additional.informations" translated
         And I should see the key "pel.facts.witnesses" translated
-        And I should see the key "pel.facts.witnesses.information.text" translated
+        And I should see "Description du témoin n°1"
+        And I should see "Adresse e-mail du témoin n°1"
+        And I should see "Numéro de téléphone portable n°1"
+        And I should see "Jean DUPONT"
+        And I should see "06 12 34 45 57"
+        And I should see "jean@example.com"
         And I should see the key "pel.do.you.have.informations.on.potential.suspects" translated
         And I should see the key "pel.facts.suspects.informations.text" translated
         And I should see the key "pel.cctv.present" translated

@@ -18,6 +18,7 @@ use App\Entity\FactsObjects\SimpleObject;
 use App\Entity\FactsObjects\Vehicle;
 use App\Entity\Identity;
 use App\Entity\User;
+use App\Entity\Witness;
 use App\Factory\NotificationFactory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
@@ -367,9 +368,14 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                     ->setSuspectsKnown(true)
                     ->setSuspectsKnownText('2 hommes')
                     ->setWitnessesPresent(true)
-                    ->setWitnessesPresentText('Paul DUPONT')
                     ->setFsiVisit(true)
                     ->setObservationMade(true)
+                    ->addWitness(
+                        (new Witness())
+                            ->setDescription('Jean Dupont')
+                            ->setPhone('06 12 34 45 57')
+                            ->setEmail('jean@example.com')
+                    )
             )
             ->addComment(
                 (new Comment())

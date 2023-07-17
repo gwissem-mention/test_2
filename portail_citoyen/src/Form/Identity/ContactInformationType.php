@@ -8,6 +8,7 @@ use App\Form\CountryAutocompleteType;
 use App\Form\Model\Identity\ContactInformationModel;
 use App\Form\Model\Identity\PhoneModel;
 use App\Form\PhoneType;
+use App\Form\Validator\MobileValidator;
 use App\Session\SessionHandler;
 use libphonenumber\NumberParseException;
 use libphonenumber\PhoneNumberType;
@@ -30,7 +31,8 @@ class ContactInformationType extends AbstractType
         private readonly EventSubscriberInterface $addAddressSubscriber,
         private readonly SessionHandler $sessionHandler,
         private readonly int $franceCode,
-        private readonly PhoneNumberUtil $phoneUtil
+        private readonly PhoneNumberUtil $phoneUtil,
+        private readonly MobileValidator $mobileValidator,
     ) {
     }
 
@@ -68,29 +70,7 @@ class ContactInformationType extends AbstractType
                 'number_constraints' => [
                     new Callback([
                         'callback' => function (?string $value, ExecutionContextInterface $context) {
-                            if (null === $value) {
-                                return;
-                            }
-
-                            /** @var Form $form */
-                            $form = $context->getObject();
-                            /** @var Form $formParent */
-                            $formParent = $form->getParent();
-                            /** @var string $country */
-                            $country = $formParent->get('country')->getData();
-                            try {
-                                $phone = $this->phoneUtil->parse($value, $country);
-
-                                if (!$this->phoneUtil->isValidNumber($phone)) {
-                                    $context->addViolation('pel.phone.is.invalid');
-                                }
-
-                                if (!(PhoneNumberType::MOBILE === $this->phoneUtil->getNumberType($phone))) {
-                                    $context->addViolation('pel.phone.mobile.error');
-                                }
-                            } catch (NumberParseException) {
-                                $context->addViolation('pel.phone.is.invalid');
-                            }
+                            $this->mobileValidator->validate($value, $context);
                         },
                     ]),
                     new Callback([

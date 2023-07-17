@@ -15,6 +15,7 @@ use App\Entity\FactsObjects\PaymentMethod;
 use App\Entity\FactsObjects\SimpleObject;
 use App\Entity\FactsObjects\Vehicle;
 use App\Entity\Identity;
+use App\Entity\Witness;
 use App\Generator\Complaint\ComplaintXmlGenerator;
 use App\Referential\Entity\Service;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
@@ -193,9 +194,14 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
                     ->setSuspectsKnown(true)
                     ->setSuspectsKnownText('2 hommes')
                     ->setWitnessesPresent(true)
-                    ->setWitnessesPresentText('Paul DUPONT')
                     ->setFsiVisit(true)
                     ->setObservationMade(true)
+                    ->addWitness(
+                        (new Witness())
+                            ->setDescription('Jean Dupont')
+                            ->setPhone('06 12 34 45 57')
+                            ->setEmail('jean@example.com')
+                    )
             );
 
         /** @var string $xml */
@@ -229,8 +235,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
                     ->setStreetName('Rue de la république')
                     ->setStreetType('Rue')
                     ->setAddress('1 Rue de la république, Paris, 75000')
-            )
-        ;
+            );
 
         /** @var string $xmlWithCorporationRepresented */
         $xmlWithCorporationRepresented = $xmlGenerator->generate($complaint, $service)->asXML();

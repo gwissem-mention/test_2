@@ -3,9 +3,14 @@
 namespace App\Complaint\Parser;
 
 use App\Entity\AdditionalInformation;
+use App\Entity\Witness;
 
 class AdditionalInformationParser
 {
+    public function __construct(private readonly PhoneParser $phoneParser)
+    {
+    }
+
     public function parse(object $additionalInformation): AdditionalInformation
     {
         $additionalInformationParsed = new AdditionalInformation();
@@ -15,10 +20,18 @@ class AdditionalInformationParser
             ->setCctvAvailable($additionalInformation->cctvAvailable)
             ->setSuspectsKnown($additionalInformation->suspectsChoice)
             ->setSuspectsKnownText($additionalInformation->suspectsText)
-            ->setWitnessesPresent($additionalInformation->witnesses)
-            ->setWitnessesPresentText($additionalInformation->witnessesText)
+            ->setWitnessesPresent($additionalInformation->witnessesPresent)
             ->setFsiVisit($additionalInformation->fsiVisit)
             ->setObservationMade($additionalInformation->observationMade);
+
+        foreach ($additionalInformation->witnesses as $witness) {
+            $additionalInformationParsed->addWitness(
+                (new Witness())
+                    ->setDescription($witness->description ?? null)
+                    ->setPhone($witness->phone->number ? $this->phoneParser->parse($witness->phone) : null)
+                    ->setEmail($witness->email ?? null)
+            );
+        }
 
         return $additionalInformationParsed;
     }

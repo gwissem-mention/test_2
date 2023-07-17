@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -36,14 +38,23 @@ class AdditionalInformation
     #[ORM\Column]
     private ?bool $witnessesPresent = null;
 
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $witnessesPresentText = null;
-
     #[ORM\Column]
     private ?bool $fsiVisit = null;
 
     #[ORM\Column(nullable: true)]
     private ?bool $observationMade = null;
+
+    /** @var Collection<int, Witness> */
+    #[ORM\OneToMany(mappedBy: 'additionalInformation', targetEntity: Witness::class, cascade: [
+        'persist',
+        'remove',
+    ], orphanRemoval: true)]
+    private Collection $witnesses;
+
+    public function __construct()
+    {
+        $this->witnesses = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -110,18 +121,6 @@ class AdditionalInformation
         return $this;
     }
 
-    public function getWitnessesPresentText(): ?string
-    {
-        return $this->witnessesPresentText;
-    }
-
-    public function setWitnessesPresentText(?string $witnessesPresentText): self
-    {
-        $this->witnessesPresentText = $witnessesPresentText;
-
-        return $this;
-    }
-
     public function isFsiVisit(): ?bool
     {
         return $this->fsiVisit;
@@ -142,6 +141,35 @@ class AdditionalInformation
     public function setObservationMade(?bool $observationMade): self
     {
         $this->observationMade = $observationMade;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Witness>
+     */
+    public function getWitnesses(): Collection
+    {
+        return $this->witnesses;
+    }
+
+    public function addWitness(Witness $witness): self
+    {
+        if (!$this->witnesses->contains($witness)) {
+            $this->witnesses->add($witness);
+            $witness->setAdditionalInformation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeWitness(Witness $witness): self
+    {
+        if ($this->witnesses->removeElement($witness)) {
+            if ($witness->getAdditionalInformation() === $this) {
+                $witness->setAdditionalInformation(null);
+            }
+        }
 
         return $this;
     }
