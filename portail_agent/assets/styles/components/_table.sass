@@ -1,7 +1,7 @@
 .table
     &-head
-        color: $white
-        background-color: $blue
+        color: var(--background-default-grey)
+        background-color: var(--text-action-high-blue-france)
 
     &.dataTable
         thead
@@ -9,11 +9,15 @@
                 th
                     &.sorting_asc
                         &:before
-                          opacity: 1 !important
+                            // Important is needed to override default DataTables style
+                            opacity: 1 !important
+
                     &.sorting_desc
                         &:after
-                          opacity: 1 !important
-                    &.sorting
-                        &:after, &:before
-                          opacity: 0.5
-                          line-height: 11px
+                            // Important is needed to override default DataTables style
+                            opacity: 1 !important
+
+        tr
+            th,
+            td
+                padding: $padding-15

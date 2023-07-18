@@ -1,9 +1,16 @@
 {% if is_granted('ROLE_SUPERVISOR') %}
-    <input
-        type="checkbox"
-        id="complaint_{{ complaintId }}"
-        class="form-check-input secondarySelectorGroupAction"
-        data-checkbox-group-target="secondary"
-        data-action="click->checkbox-group#secondaryClick"
-    >
+    {# DSFR hack to avoid bad input position #}
+    <div style="margin-top: -22px;">
+        <div class="fr-checkbox-group fr-checkbox-group--sm position-relative">
+            <input
+                name="complaint_{{ complaintId }}"
+                type="checkbox"
+                id="complaint_{{ complaintId }}"
+                class="secondarySelectorGroupAction position-relative mt-n3"
+                data-checkbox-group-target="secondary"
+                data-action="click->checkbox-group#secondaryClick"
+            >
+            <label class="fr-label" for="complaint_{{ complaintId }}"></label>
+        </div>
+    </div>
 {% endif %}

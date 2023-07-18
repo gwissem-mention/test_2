@@ -21,8 +21,24 @@
     -moz-border-radius: 100% !important
 
 @mixin reset-link
-    text-decoration: none
+    // Important is needed here to override DataTables and DSFR.
+    text-decoration: none !important
+    background: transparent !important
 
     &:hover,
     &:focus
-        text-decoration: none
+        text-decoration: none !important
+
+@mixin reset-border-radius
+    // Important is needed here to override Bootstrap.
+    border-radius: 0 !important
+    -webkit-border-radius: 0 !important
+    -moz-border-radius: 0 !important
+
+@mixin reset-border
+    // Important is needed here to override DataTables.
+    border: none !important
+
+@mixin reset-shadow
+    // Important is needed here to override Bootstrap.
+    box-shadow: none !important
