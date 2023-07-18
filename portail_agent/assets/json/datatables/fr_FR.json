@@ -229,10 +229,10 @@
     "infoFiltered": "(filtrées depuis un total de _MAX_ entrées)",
     "lengthMenu": "Afficher _MENU_ entrées",
     "paginate": {
-        "first": "Première",
-        "last": "Dernière",
-        "next": "Suivante",
-        "previous": "Précédente"
+        "first": "<span class='fr-icon-arrow-left-s-first-line' aria-hidden='true'></span>",
+        "last": "<span class='fr-icon-arrow-right-s-last-line' aria-hidden='true'></span>",
+        "next": "Suivant <span class='fr-icon-arrow-right-s-line m-0' aria-hidden='true'></span>",
+        "previous": "<span class='fr-icon-arrow-left-s-line m-0' aria-hidden='true'></span> Précédent"
     },
     "zeroRecords": "Aucune entrée correspondante trouvée",
     "aria": {

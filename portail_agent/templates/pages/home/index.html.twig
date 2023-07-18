@@ -156,7 +156,20 @@
                         <tr>
                             {% if is_granted('ROLE_SUPERVISOR') %}
                                 <th scope="col" data-datatable-target="theadCell" data-column="checkbox">
-                                    <input type="checkbox" class="form-check-input" id="mainSelectorGroupAction" data-checkbox-group-target="main" data-action="click->checkbox-group#mainClick">
+                                    {# DSFR hack to avoid bad input position #}
+                                    <div style="margin-top: -48px;">
+                                        <div class="fr-checkbox-group fr-checkbox-group--sm position-relative">
+                                            <input
+                                                name="mainSelectorGroupAction"
+                                                type="checkbox"
+                                                id="mainSelectorGroupAction"
+                                                class="background-white position-relative mt-n3"
+                                                data-checkbox-group-target="main"
+                                                data-action="click->checkbox-group#mainClick"
+                                            >
+                                            <label class="fr-label" for="mainSelectorGroupAction"></label>
+                                        </div>
+                                    </div>
                                 </th>
                             {% endif %}
                             <th scope="col" data-datatable-target="theadCell" data-column="createdAt">{{ 'pel.deposit.date'|trans }}</th>

@@ -3,10 +3,9 @@ import DataTable from "datatables.net";
 
 import "datatables.net-bs5/js/dataTables.bootstrap5.min";
 import "datatables.net-bs5/css/dataTables.bootstrap5.min.css";
-import {Api} from "datatables.net-bs5";
 
 export default class extends Controller {
-    protected datatable: Api<any> | undefined;
+    protected datatable: any | undefined;
 
     static override targets = [
         "table",
@@ -63,6 +62,7 @@ export default class extends Controller {
                 serverSide: true,
                 columns: columns,
                 searching: true,
+                pagingType: "full_numbers"
             });
 
             if (statusFilter) {

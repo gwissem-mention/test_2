@@ -1,2 +1,26 @@
 .pagination
+    // Important is needed here to override default DataTables styles.
     margin-top: $margin-medium !important
+
+    .page-item
+        .page-link
+            @include reset-link
+            @include reset-border-radius
+            @include reset-border
+            @include reset-shadow
+            font-weight: bold
+
+        &:not(.disabled)
+            .page-link
+                color: var(--text-action-high-grey)
+
+        &.disabled
+            .page-link
+                color: var(--text-disabled-grey)
+
+        &.active,
+        &:not(.disabled):hover
+            .page-link
+                color: var(--background-raised-grey) !important
+                background-color: var(--text-action-high-blue-france) !important
+
