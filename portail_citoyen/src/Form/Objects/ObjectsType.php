@@ -32,13 +32,13 @@ class ObjectsType extends AbstractType
                 'button_add_options' => [
                     'label' => 'pel.objects.add',
                     'attr' => [
-                        'class' => 'fr-btn fr-btn--secondary',
+                        'class' => "fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-add-line fr-text--lg py-3 md:py-2.5 pr-6 pl-[18px] before:content-[''] before:w-6 before:h-6",
                     ],
                 ],
                 'button_delete_options' => [
                     'label' => 'pel.delete',
                     'attr' => [
-                        'class' => 'fr-btn fr-btn--tertiary-no-outline',
+                        'class' => 'fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-delete-line',
                     ],
                 ],
                 'constraints' => [

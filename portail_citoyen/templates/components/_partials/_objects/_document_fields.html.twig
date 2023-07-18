@@ -1,5 +1,7 @@
 {% if object.documentType.documentType is defined %}
-    {{ form_row(object.documentType.documentType) }}
+    <div class="fr-mb-6v">
+        {{ form_row(object.documentType.documentType) }}
+    </div>
 {% endif %}
 {% if object.documentType.otherDocumentType is defined %}
     {{ form_row(object.documentType.otherDocumentType) }}
@@ -46,8 +48,12 @@
     {{ form_row(object.documentType.documentAdditionalInformation.documentIssuedBy) }}
 {% endif %}
 {% if object.documentType.documentAdditionalInformation.documentIssuedOn is defined %}
-    {{ form_row(object.documentType.documentAdditionalInformation.documentIssuedOn) }}
+    <div class="md:w-1/2 fr-mb-6v">
+        {{ form_row(object.documentType.documentAdditionalInformation.documentIssuedOn) }}
+    </div>
 {% endif %}
 {% if object.documentType.documentAdditionalInformation.documentValidityEndDate is defined %}
-    {{ form_row(object.documentType.documentAdditionalInformation.documentValidityEndDate) }}
+    <div class="md:w-1/2 fr-mb-6v">
+        {{ form_row(object.documentType.documentAdditionalInformation.documentValidityEndDate) }}
+    </div>
 {% endif %}

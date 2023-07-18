@@ -1,11 +1,34 @@
 <div {{ attributes.add(stimulus_controller('complaint-submit')) }}>
     {{ form_start(form, {attr: {'data-action': 'live#action complaint-submit#submit','data-action-name': 'prevent|submit'}}) }}
-    <div class="fr-grid-row fr-py-2w">
-        <div class="fr-col-6">
-            {% for object in form.objects %}
-                <div class="fr-mt-2w">
+    <div class="fr-pt-10v fr-pb-12v fr-px-6v fr-py-md-12v fr-px-md-20v">
+        <h1 class="text-[28px]/9 md:text-[40px]/[48px] fr-mb-2v">{{ 'pel.goods.concerned'|trans }}</h1>
+        <div class="leading-8">{{ 'pel.all.fields.marked.with.an.asterisk.are.mandatory'|trans|raw }}</div>
+        <div class="flex gap-x-8 [&:not(:empty)]:mt-5 [&:not(:empty)]:mb-3">{% for object in form.objects %}{% if object.label is defined and object.label.vars.value is not empty %}<a class="fr-text fr-text-title--blue-france" href="#accordion__title-{{ loop.index }}">{{ object.label.vars.value }}</a>{% endif %}{% endfor %}</div>
+    </div>
+    <div class="fr-accordions-group">
+        {% for object in form.objects %}
+            <section class="fr-accordion">
+                <h2 class="fr-accordion__title" id="accordion__title-{{ loop.index }}">
+                    <button disabled class="[&:disabled]:cursor-default fr-accordion__btn flex gap-x-2 items-center fr-h5 font-bold fr-pt-10v fr-px-6v fr-pb-8v fr-py-md-12v fr-px-md-20v after:w-4 aria-expanded:pb-5 after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] after:text-[var(--background-action-high-blue-france)] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="true" aria-control="accordion-{{ loop.index }}">
+                        <p class="fr-badge fr-badge--purple-glycine fr-badge--no-icon fr-text--xs">{{ 'pel.goods.number'|trans }}{{ loop.index }}</p>
+                        <span>
+                            {% if object.label is defined and object.label.vars.value is not empty %}
+                                {{ object.label.vars.value }}
+                            {% else %}
+                                {{ 'pel.goods.to.be.declared'|trans }}
+                            {% endif %}
+                        </span>
+                    </button>
+                </h2>
+                <div class="fr-px-6v fr-pb-12v fr-px-md-20v " id="accordion-{{ loop.index }}">
                     {% if object.category is defined %}
-                        {{ form_row(object.category) }}
+                        <div class="fr-form-group fr-mb-6v md:w-1/2">
+                            <div class="{{ html_classes('fr-select-group', {'fr-select-group--error':  object.category.vars.errors is not empty}) }}">
+                                {{ form_label(object.category) }}
+                                {{ form_widget(object.category, {'attr':{'class':html_classes(object.category.vars.attr.class ?? '', 'autocomplete' not in object.category.vars['block_prefixes'] ? 'fr-select' : '',{'fr-select--error':object.category.vars.errors is not empty})}}) }}
+                                {{ form_errors(object.category) }}
+                            </div>
+                        </div>
                     {% endif %}
                     {% if object.label is defined %}
                         {{ form_row(object.label) }}
@@ -14,7 +37,9 @@
                     {{ include('components/_partials/_objects/_document_fields.html.twig') }}
 
                     {% if object.status is defined %}
-                        {{ form_row(object.status) }}
+                        <div class="fr-mb-6v md:w-1/2">
+                            {{ form_row(object.status) }}
+                        </div>
                     {% endif %}
                     {% if object.files is defined %}
                         {{ form_row(object.files) }}
@@ -26,48 +51,54 @@
                     {{ include('components/_partials/_objects/_other_fields.html.twig') }}
 
                     {% if object.amount is defined %}
-                        {{ form_row(object.amount) }}
+                        <div class="md:w-1/2">
+                            {{ form_row(object.amount) }}
+                        </div>
                     {% endif %}
 
                     {{ include('components/_partials/_objects/_mobile_fields.html.twig') }}
+                    {% if form.objects|length > 1 %}
+                        <div class="fr-mt-12v">
+                            {{ form_widget(object.vars.button_delete, {attr: {'data-action': 'live#action', 'data-action-name': 'removeObject(index=' ~ loop.index0 ~ ') removeCollectionItem(name=objects[objects], index=' ~ loop.index0 ~ ')'}}) }}
+                        </div>
+                    {% endif %}
                 </div>
-                {% if form.objects|length > 1 %}
-                    <div>
-                        {{ form_widget(object.vars.button_delete, {attr: {'data-action': 'live#action', 'data-action-name': 'removeObject(index=' ~ loop.index0 ~ ') removeCollectionItem(name=objects[objects], index=' ~ loop.index0 ~ ')'}}) }}
-                    </div>
-                {% endif %}
-            {% endfor %}
-            <div class="fr-mt-2w">
-                {{ form_widget(form.objects.vars.button_add, {attr: {'data-action': 'live#action', 'data-action-name': 'prevent|addObject addCollectionItem(name=objects[objects])'}}) }}
-            </div>
-        </div>
+            </section>
+        {% endfor %}
     </div>
-    <div class="fr-grid-row fr-py-2w">
-        <div class="fr-col-6">
-            {% set objectsQuantity = form.objects.vars.data|objects_quantity %}
-            {{ 'pel.total.message.one'|trans }}
+    <hr>
+    <div class="fr-pt-4v fr-px-6v fr-pb-12v fr-pt-md-6v fr-px-md-20v flex flex-col items-center gap-y-8">
+        {% set objectsLength = form.objects.vars.data|length %}
+        {% set objectsQuantity = form.objects.vars.data|objects_quantity %}
+        {{ form_widget(form.objects.vars.button_add, {attr: {'data-action': 'live#action', 'data-action-name': 'prevent|addObject addCollectionItem(name=objects[objects])'}}) }}
+        <div>
             <strong>{{ objectsQuantity }} {{ 'pel.total.message.two'|trans({'%quantity%': objectsQuantity}) }}</strong>
             {{ 'pel.total.message.amount'|trans }}
             <strong>{{ form.objects.vars.data|objects_amount|format_currency('EUR', {fraction_digit: 2}) }}</strong>
         </div>
+        {% if objectsLength is same as(1) %}
+            <a class="fr-text fr-text-title--blue-france" href="{{ path('complaint_summary') }}">{{ 'pel.i.have.no.goods.to.declare'|trans }}</a>
+        {% endif %}
     </div>
-    <div class="flex--between fr-mt-3w fr-mb-3w">
-        <a href="{{ path('complaint_facts') }}"
-           class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-arrow-left-line">{{ 'pel.previous'|trans }}</a>
-        <ul class="fr-btns-group fr-btns-group--right fr-btns-group--inline-reverse fr-btns-group--inline-lg fr-btns-group--icon-left">
-            <li>
-                <button type="submit" class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line" id="objects_submit"
-                        {% if this.fromSummary is same as(true) %}data-action="live#action"
-                        data-action-name="prevent|submit"{% endif %}>{{ this.fromSummary is same as(true) ? 'pel.save.and.go.to.next'|trans : 'pel.next'|trans }}</button>
-            </li>
+    <hr>
+    <div class="fr-pt-4v fr-px-6v fr-pb-12v fr-pt-md-6v fr-px-md-20v text-center">
+        <div class="flex items-center justify-start gap-x-4 md:justify-between">
+            <a href="{{ path('complaint_facts') }}"
+               class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-arrow-left-line fr-text--lg py-3 md:py-2.5 pr-6 pl-[18px] before:content-[''] before:w-6 before:h-6">
+                <span class="hidden lg:block">{{ 'pel.previous'|trans }}</span>
+            </a>
+            <button type="submit"
+                    class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line fr-text--lg py-2.5 pr-[18px] pl-6 after:w-6 after:h-6"
+                    id="objects_submit" {% if this.fromSummary is same as(true) %} data-action="live#action" data-action-name="prevent|submit" {% endif %}>{{ this.fromSummary is same as(true) ? 'pel.save.and.go.to.next'|trans : 'pel.next'|trans }}</button>
             {% if this.fromSummary is same as(true) %}
-                <li>
-                    <button type="submit" class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line"
-                            id="objects_submit_recap" data-action="live#action"
-                            data-action-name="prevent|submit(redirectToSummary=true)">{{ 'pel.save.and.go.to.summary'|trans }}</button>
-                </li>
+                <button type="submit"
+                        class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line fr-text--lg py-2.5 pr-[18px] pl-6 after:w-6 after:h-6"
+                        id="objects_submit_recap" data-action="live#action"
+                        data-action-name="prevent|submit(redirectToSummary=true)">
+                    {{ 'pel.save.and.go.to.summary'|trans }}
+                </button>
             {% endif %}
-        </ul>
+        </div>
     </div>
     {{ form_end(form, { render_rest: false }) }}
 </div>

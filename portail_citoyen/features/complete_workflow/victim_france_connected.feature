@@ -176,7 +176,7 @@ Feature:
         And I should see the key "pel.total" translated
         And I should see the key "pel.total.message.one" translated
         And I should see the key "pel.total.message.amount" translated
-        And I should see "Vous avez ajouté 3 objets pour un montant total de 200,00 €"
+        And I should see "3 biens déclarés pour un montant total de 200,00 €"
         And I should see the key "pel.place.complaint.handling" translated
         And I should see "Commissariat de police de Paris 11ème arrondissement - 12 PASSAGE CHARLES DALLERY 75011 PARIS 11"
         When I press "Continuer"
