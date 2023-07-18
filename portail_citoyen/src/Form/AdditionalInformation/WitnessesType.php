@@ -45,13 +45,13 @@ class WitnessesType extends AbstractType
             'button_add_options' => [
                 'label' => 'pel.witness.add',
                 'attr' => [
-                    'class' => 'fr-btn fr-btn--secondary',
+                    'class' => 'fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-user-add-line',
                 ],
             ],
             'button_delete_options' => [
-                'label' => 'pel.delete',
+                'label' => 'pel.delete.witness',
                 'attr' => [
-                    'class' => 'fr-btn fr-btn--tertiary-no-outline',
+                    'class' => 'fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-delete-line',
                 ],
             ],
             'constraints' => [

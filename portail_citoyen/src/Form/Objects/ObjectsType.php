@@ -36,7 +36,7 @@ class ObjectsType extends AbstractType
                     ],
                 ],
                 'button_delete_options' => [
-                    'label' => 'pel.delete',
+                    'label' => 'pel.delete.object',
                     'attr' => [
                         'class' => 'fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-delete-line',
                     ],

@@ -41,7 +41,7 @@ Feature:
     Scenario: I can add an input text when I click on the add an object button
         When I press "objects_objects_add"
         Then I should see the key "pel.object" translated
-        And I should see the key "pel.delete" translated
+        And I should see the key "pel.delete.object" translated
         And I should see the key "pel.object.category" translated
         And I should see the key "pel.object.status" translated
         And I should see the key "pel.amount" translated
