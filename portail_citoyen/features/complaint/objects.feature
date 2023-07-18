@@ -62,7 +62,6 @@ Feature:
         Then I should see the key "pel.organism.bank" translated
         And I should see the key "pel.bank.account.number" translated
         And I should see the key "pel.credit.card.number" translated
-        And I should see the key "pel.amount" translated
         And I should see the key "pel.object.status" translated
 
     Scenario: I can see a list of text fields translated when I select "Document officiel" from category object list
@@ -121,7 +120,7 @@ Feature:
         And I select "6" from "objects_objects_1_category"
         And I fill in "objects_objects_1_quantity" with "10"
         And I fill in "objects_objects_1_amount" with "100"
-        Then I should see "Vous avez ajouté 20 objets pour un montant total de 199,99 €"
+        Then I should see "20 biens déclarés pour un montant total de 199,99 €"
 
     Scenario: Submit the complaint form as a victim logged in with France Connect
         When I select "5" from "objects_objects_0_category"

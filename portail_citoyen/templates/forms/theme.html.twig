@@ -51,7 +51,7 @@
 {% block money_row %}
     <div class="{{ html_classes('fr-input-group', {'fr-input-group--error': errors is not empty}) }}">
         {{ form_label(form) }}
-        <div class="fr-input-wrap fr-icon-money-euro-circle-fill">
+        <div class="fr-input-wrap fr-icon-money-euro-circle-line">
             {{ form_widget(form, {'attr':{'class':html_classes(attr.class ?? '', 'fr-input', {'fr-input--error':errors is not empty}),'aria-describedby':errors is not empty ? 'form-errors-'~ form.vars.id :''}}) }}
         </div>
         {{ form_errors(form) }}
@@ -156,7 +156,7 @@
 {% endblock %}
 
 {%- block _objects_objects_entry_label_label -%}
-    {{ form_label(form, 'pel.object'|trans~' '~(form.parent.vars.name+1)) }}
+    {{ form_label(form, 'pel.object'|trans) }}
 {%- endblock -%}
 
 {%- block _objects_objects_label -%}

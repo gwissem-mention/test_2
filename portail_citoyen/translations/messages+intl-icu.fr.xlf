@@ -68,7 +68,7 @@
             </trans-unit>
             <trans-unit id="pel.amount">
                 <source>pel.amount</source>
-                <target>Montant</target>
+                <target>Montant estimé du bien (en euros)</target>
             </trans-unit>
             <trans-unit id="pel.amount.for.group">
                 <source>pel.amount.for.group</source>
@@ -192,7 +192,7 @@
             </trans-unit>
             <trans-unit id="pel.add.an.attachment">
                 <source>pel.add.an.attachment</source>
-                <target>Ajouter une pièce jointe</target>
+                <target>Téléverser un document pour compléter la description</target>
             </trans-unit>
            <trans-unit id="pel.attachment">
                 <source>pel.attachment</source>
@@ -1070,6 +1070,10 @@
                 <source>pel.i.consent.use.of.data.for.fsi</source>
                 <target>En validant ma déclaration, je consens à l’utilisation et à la transmission des informations précédemment renseignées par les Forces de l’ordre et tout autre organisme impliqué dans le traitement de ma déclaration</target>
             </trans-unit>
+           <trans-unit id="pel.i.have.no.goods.to.declare">
+                <source>pel.i.have.no.goods.to.declare</source>
+                <target>Je n’ai pas de bien à déclarer</target>
+            </trans-unit>
             <trans-unit id="pel.identify.with">
                 <source>pel.identify.with</source>
                 <target>S’identifier avec</target>
@@ -1302,6 +1306,10 @@
                 <source>pel.no.france.connect.modal.title</source>
                 <target>Sans FranceConnect, votre plainte en ligne va nécessiter un rendez-vous physique</target>
             </trans-unit>
+            <trans-unit id="pel.no.goods.declared">
+                <source>pel.no.goods.declared</source>
+                <target>Aucun bien déclaré</target>
+            </trans-unit>
             <trans-unit id="pel.not.found.can">
                 <source>pel.not.found.can</source>
                 <target>Vous pouvez</target>
@@ -1336,7 +1344,7 @@
             </trans-unit>
             <trans-unit id="pel.object">
                 <source>pel.object</source>
-                <target>Objet</target>
+                <target>Dénomination du bien</target>
             </trans-unit>
             <trans-unit id="pel.file.must.be.image.or.pdf">
                 <source>pel.file.must.be.image.or.pdf</source>
@@ -1344,11 +1352,11 @@
             </trans-unit>
             <trans-unit id="pel.object.category">
                 <source>pel.object.category</source>
-                <target>Catégorie d’objet</target>
+                <target>Catégorie du bien</target>
             </trans-unit>
             <trans-unit id="pel.object.category.choose">
                 <source>pel.object.category.choose</source>
-                <target>Sélectionnez une catégorie d’objet</target>
+                <target>Renseignez une catégorie</target>
             </trans-unit>
             <trans-unit id="pel.object.document.type.choose">
                 <source>pel.object.document.type.choose</source>
@@ -1384,7 +1392,7 @@
             </trans-unit>
             <trans-unit id="pel.object.status.choose">
                 <source>pel.object.status.choose</source>
-                <target>Choisissez le statut de l’objet</target>
+                <target>Renseignez le statut</target>
             </trans-unit>
             <trans-unit id="pel.objects">
                 <source>pel.objects</source>
@@ -1392,7 +1400,7 @@
             </trans-unit>
             <trans-unit id="pel.objects.add">
                 <source>pel.objects.add</source>
-                <target>Ajouter un objet supplémentaire</target>
+                <target>Déclarer un autre bien</target>
             </trans-unit>
             <trans-unit id="pel.objects.description">
                 <source>pel.objects.description</source>
@@ -1690,6 +1698,10 @@
                 <source>pel.total</source>
                 <target>Total</target>
             </trans-unit>
+            <trans-unit id="pel.total.message.one">
+                <source>pel.total.message.one</source>
+                <target>Vous avez ajouté</target>
+            </trans-unit>
             <trans-unit id="pel.total.message.amount">
                 <source>pel.total.message.amount</source>
                 <target>pour un montant total de</target>
@@ -1698,13 +1710,9 @@
                 <source>pel.total.message.no.amount</source>
                 <target>sans estimation du montant</target>
             </trans-unit>
-            <trans-unit id="pel.total.message.one">
-                <source>pel.total.message.one</source>
-                <target>Vous avez ajouté</target>
-            </trans-unit>
             <trans-unit id="pel.total.message.two">
                 <source>pel.total.message.two</source>
-                <target>{quantity, plural, one {objet} other {objets}}</target>
+                <target>{quantity, plural, one {bien déclaré} other {biens déclarés}}</target>
             </trans-unit>
             <trans-unit id="pel.usage.name">
                 <source>pel.usage.name</source>
@@ -2181,6 +2189,18 @@
             <trans-unit id="pel.goods.concerned">
                 <source>pel.goods.concerned</source>
                 <target>Biens concernés</target>
+            </trans-unit>
+            <trans-unit id="pel.goods.concerned.title">
+                <source>pel.goods.concerned.title</source>
+                <target>Biens concernés (étape 4 sur 7) - Plainte en ligne</target>
+            </trans-unit>
+            <trans-unit id="pel.goods.number">
+                <source>pel.goods.number</source>
+                <target>bien n°</target>
+            </trans-unit>
+            <trans-unit id="pel.goods.to.be.declared">
+                <source>pel.goods.to.be.declared</source>
+                <target>Bien à déclarer</target>
             </trans-unit>
             <trans-unit id="pel.potential.start.date">
                 <source>pel.potential.start.date</source>

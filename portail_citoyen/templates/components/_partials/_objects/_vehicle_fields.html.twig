@@ -2,7 +2,9 @@
     {{ form_row(object.registrationNumber) }}
 {% endif %}
 {% if object.registrationNumberCountry is defined %}
-    {{ form_row(object.registrationNumberCountry) }}
+    <div class="md:w-1/2 fr-mb-6v">
+        {{ form_row(object.registrationNumberCountry) }}
+    </div>
 {% endif %}
 {% if object.insuranceCompany is defined %}
     {{ form_row(object.insuranceCompany) }}

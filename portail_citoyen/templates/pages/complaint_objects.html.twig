@@ -1,23 +1,17 @@
-{% extends 'layout.html.twig' %}
+{% extends 'common/_complaint.html.twig' %}
 
-{% block title %}{{ 'pel.complaint.create'|trans }}{% endblock %}
+{% set title = 'pel.my.online.complaint.declaration'|trans %}
+{% set current_step_title = 'pel.goods.concerned'|trans %}
+{% set current_step_number = 4 %}
+{% set next_step_title = 'pel.further.information'|trans %}
+{% set display_footer = false %}
 
-{% block body %}
-    <div class="fr-container container" data-controller="form">
-        <h1>{{ 'pel.complaint.my.declaration'|trans }}</h1>
-        {% include 'common/_complaint_nav.html.twig' with {'active':'objects'} %}
-        <p>
-            {{ 'pel.complaint.all.required.fields.are.required'|trans }}
-            <span class="fr-icon-information-line" aria-hidden="true"></span>
-        </p>
-        <div class="wrapper--complaint">
-            <div class="accordion__item__title" id="identity_accordion_title">
-                <span class="fr-icon-arrow-down-s-line"></span>
-                {{ 'pel.complaint.objects.concerned'|trans }}
-            </div>
-            <div class="accordion__item__content" id="identity_accordion_content">
-                {{ component('objects', {class: 'fr-py-1w', fromSummary:from_summary}) }}
-            </div>
-        </div>
+{% block title %}
+	{{ 'pel.goods.concerned.title'|trans }}
+{% endblock %}
+
+{% block content %}
+    <div data-controller="form">
+        {{ component('objects', {fromSummary: from_summary}) }}
     </div>
 {% endblock %}

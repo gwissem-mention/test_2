@@ -70,7 +70,7 @@
             <div class="{{ html_classes('fr-select-group', {'fr-select-group--error': form.placeNature.vars.errors is not empty}) }}">
                 {{ form_label(form.placeNature) }}
                 <div class="fr-input-wrap fr-icon-arrow-down-s-line before:content-[''] before:z-10">
-                    {{ form_widget(form.placeNature, {'attr':{'class':html_classes(attr.class ?? '', 'autocomplete' not in form.placeNature.vars['block_prefixes'] ? 'fr-select' : '',{'fr-select--error':form.placeNature.vars.errors is not empty})}}) }}
+                    {{ form_widget(form.placeNature, {'attr':{'class':html_classes(form.placeNature.vars.attr.class ?? '', 'autocomplete' not in form.placeNature.vars['block_prefixes'] ? 'fr-select' : '',{'fr-select--error':form.placeNature.vars.errors is not empty})}}) }}
                 </div>
                 {{ form_errors(form.placeNature) }}
             </div>
@@ -167,7 +167,7 @@
             <div class="fr-mt-3v">
                 <div class="{{ html_classes('fr-input-group', 'fr-mb-4v', {'fr-input-group--error': form.victimOfViolenceText.vars.errors is not empty}) }}">
                     {{ form_label(form.victimOfViolenceText) }}
-                    {{ form_widget(form.victimOfViolenceText, {'attr':{'class':html_classes(attr.class ?? '', 'fr-input', {'fr-input--error':form.victimOfViolenceText.vars.errors is not empty}),'aria-describedby':form.victimOfViolenceText.vars.errors is not empty ? 'form-errors-'~ form.victimOfViolenceText.vars.id :''}}) }}
+                    {{ form_widget(form.victimOfViolenceText, {'attr':{'class':html_classes(form.victimOfViolenceText.vars.attr.class ?? '', 'fr-input', {'fr-input--error':form.victimOfViolenceText.vars.errors is not empty}),'aria-describedby':form.victimOfViolenceText.vars.errors is not empty ? 'form-errors-'~ form.victimOfViolenceText.vars.id :''}}) }}
                     {{ form_errors(form.victimOfViolenceText) }}
                 </div>
                 <div class="fr-alert fr-alert--info fr-alert--sm fr-mb-2v">

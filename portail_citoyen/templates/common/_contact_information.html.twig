@@ -3,7 +3,7 @@
 	<div class="{{ html_classes('fr-select-group', {'fr-select-group--error': form.country.vars.errors is not empty}) }}">
 		{{ form_label(form.country) }}
 		<div class="fr-input-wrap fr-icon-arrow-down-s-line before:content-[''] before:z-10">
-			{{ form_widget(form.country, {'attr':{'class':html_classes(attr.class ?? '', 'autocomplete' not in form.country.vars['block_prefixes'] ? 'fr-select' : '',{'fr-select--error':form.country.vars.errors is not empty})}}) }}
+			{{ form_widget(form.country, {'attr':{'class':html_classes(form.country.vars.attr.class ?? '', 'autocomplete' not in form.country.vars['block_prefixes'] ? 'fr-select' : '',{'fr-select--error':form.country.vars.errors is not empty})}}) }}
 		</div>
 		{{ form_errors(form.country) }}
 	</div>
