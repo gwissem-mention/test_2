@@ -23,6 +23,7 @@ class ComplaintModel
     private ?AppointmentModel $appointment = null;
     private bool $franceConnected = false;
     private ?string $affectedService = null;
+    private bool $appointmentRequired = false;
 
     public function __construct(Uuid $id)
     {
@@ -152,5 +153,17 @@ class ComplaintModel
         $facts = $this->getFacts();
 
         return $facts instanceof FactsModel && !is_null($facts->getDescription());
+    }
+
+    public function isAppointmentRequired(): bool
+    {
+        return $this->appointmentRequired;
+    }
+
+    public function setAppointmentRequired(bool $appointmentRequired): self
+    {
+        $this->appointmentRequired = $appointmentRequired;
+
+        return $this;
     }
 }

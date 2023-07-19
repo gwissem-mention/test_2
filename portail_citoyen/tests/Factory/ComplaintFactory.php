@@ -44,6 +44,7 @@ class ComplaintFactory
             ->setIdentity($identity)
             ->setFacts($this->createFacts())
             ->setObjects($this->createObjects())
+            ->setAppointmentRequired(true)
             ->setAppointment($this->createAppointment())
             ->setAdditionalInformation($this->createAdditionalInformation());
     }

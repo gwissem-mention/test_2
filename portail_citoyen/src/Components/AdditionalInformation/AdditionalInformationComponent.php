@@ -6,6 +6,7 @@ namespace App\Components\AdditionalInformation;
 
 use App\Form\AdditionalInformation\AdditionalInformationType;
 use App\Form\Model\AdditionalInformation\AdditionalInformationModel;
+use App\Session\ComplaintHandler;
 use App\Session\ComplaintModel;
 use App\Session\SessionHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -24,7 +25,7 @@ class AdditionalInformationComponent extends AbstractController
     use DefaultActionTrait;
     use LiveCollectionTrait;
 
-    public function __construct(private readonly SessionHandler $sessionHandler)
+    public function __construct(private readonly SessionHandler $sessionHandler, private readonly ComplaintHandler $complaintHandler)
     {
     }
 
@@ -45,7 +46,9 @@ class AdditionalInformationComponent extends AbstractController
         $complaint = $this->sessionHandler->getComplaint();
         /** @var AdditionalInformationModel $additionalInformation */
         $additionalInformation = $this->getFormInstance()->getData();
-        $complaint->setAdditionalInformation($additionalInformation);
+        $complaint
+            ->setAppointmentRequired($this->complaintHandler->isAppointmentRequired($complaint))
+            ->setAdditionalInformation($additionalInformation);
         $this->sessionHandler->setComplaint($complaint);
 
         return $this->redirectToRoute('complaint_summary');

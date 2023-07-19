@@ -254,6 +254,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
             ->setTest(true)
             ->setOodriveFolder($this->tmpComplaintFolderId)
             ->setCreatedAt(new \DateTimeImmutable('2022-12-01'))
+            ->setAppointmentRequired(true)
             ->setAppointmentContactInformation('Disponible entre 10h et 12h le lundi')
             ->setStatus(Complaint::STATUS_ASSIGNMENT_PENDING)
             ->setOptinNotification(true)
