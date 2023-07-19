@@ -1,9 +1,14 @@
 .text
     &-blue
-        color: var(--text-action-high-blue-france)
+        // Important is needed to override Bootstrap styles.
+        color: var(--text-action-high-blue-france) !important
 
     &-blue
         &-active
             &:hover,
             &.active
                 color: var(--text-action-high-blue-france)
+
+    &-black
+        // Important is needed to override Bootstrap styles.
+        color: var(--text-default-grey) !important

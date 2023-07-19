@@ -1446,6 +1446,14 @@
                 <source>pel.assignment.pending</source>
                 <target>A attribuer</target>
             </trans-unit>
+            <trans-unit id="pel.data.to.be.processed.first">
+                <source>pel.data.to.be.processed.first</source>
+                <target>Données à traiter en priorité</target>
+            </trans-unit>
+            <trans-unit id="pel.general.activity.data">
+                <source>pel.general.activity.data</source>
+                <target>Données générales d'activité</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

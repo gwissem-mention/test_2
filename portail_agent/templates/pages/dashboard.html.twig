@@ -1,0 +1,19 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+    <div class="row w-100 mw-100">
+        <div class="col-md-8 col-lg-9 col-xxl-10 mx-auto p-4">
+            <div class="d-flex mx-3">
+                <a href="{{ path('dashboard_priority') }}" class="reset-link p-2 px-3 fw-bold {% if app.request.attributes.get('_route') is same as('dashboard_priority') %}text-blue border mx-2 border-blue-top text-blue{% else %}background-cumulus border border-bottom-0 text-black{% endif %}">
+                    {{ 'pel.data.to.be.processed.first'|trans }}
+                </a>
+                <a href="{{ path('dashboard') }}" class="reset-link p-2 px-3 fw-bold {% if app.request.attributes.get('_route') is same as('dashboard') %}text-blue border mx-2 border-blue-top text-blue{% else %}background-cumulus border border-bottom-0 text-black{% endif %}">
+                    {{ 'pel.general.activity.data'|trans }}
+                </a>
+            </div>
+            <div class="p-3 border" style="margin-top: -1px;">
+                %content%
+            </div>
+        </div>
+    </div>
+{% endblock %}
