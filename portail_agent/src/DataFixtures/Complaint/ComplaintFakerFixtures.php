@@ -144,6 +144,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                 ->setTest(true)
                 ->setOodriveFolder($this->tmpComplaintFolderId)
                 ->setCreatedAt($complaintDate)
+                ->setAppointmentRequired(true)
                 ->setAppointmentContactInformation('Disponible entre 10h et 12h le lundi')
                 ->setStatus($status)
                 ->setOptinNotification($this->faker->boolean)

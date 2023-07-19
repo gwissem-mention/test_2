@@ -45,6 +45,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                 'timestamp' => 1679058338,
                 'timezone' => '+00:00',
             ],
+            'appointmentRequired' => true,
             'identity' => [
                 'declarantStatus' => [
                     'code' => 1,
@@ -415,6 +416,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
 //                'timestamp' => 1679058338,
 //                'timezone' => '+00:00',
 //            ],
+//            'appointmentRequired' => true,
 //            'identity' => [
 //                'declarantStatus' => [
 //                    'code' => 2,
@@ -861,6 +863,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                 'timestamp' => 1679058338,
                 'timezone' => '+00:00',
             ],
+            'appointmentRequired' => true,
             'identity' => [
                 'declarantStatus' => [
                     'code' => 3,

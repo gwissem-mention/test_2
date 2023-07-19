@@ -36,6 +36,7 @@ class ComplaintFileParserTest extends KernelTestCase
 		"timestamp": 1679058338,
 		"timezone": "+00:00"
 	},
+	"appointmentRequired": true,
 	"identity":
 	{
 	    "declarantStatus":
@@ -43,6 +44,7 @@ class ComplaintFileParserTest extends KernelTestCase
 			"code": 1,
 			"label": "pel.complaint.identity.victim"
 		},
+	    "consentContactElectronics": false,
 		"civilState":
 		{
 			"civility":
@@ -503,6 +505,8 @@ JSON;
         $this->assertInstanceOf(Corporation::class, $complaint->getCorporationRepresented());
         $this->assertInstanceOf(Facts::class, $complaint->getFacts());
         $this->assertInstanceOf(AdditionalInformation::class, $complaint->getAdditionalInformation());
+        $this->assertTrue($complaint->isAppointmentRequired());
+        $this->assertFalse($complaint->isConsentContactElectronics());
 
         foreach ($complaint->getObjects() as $object) {
             $this->assertInstanceOf(AbstractObject::class, $object);

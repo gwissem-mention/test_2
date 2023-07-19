@@ -184,6 +184,9 @@ class Complaint
     #[ORM\Column]
     private ?bool $consentContactElectronics = null;
 
+    #[ORM\Column]
+    private ?bool $appointmentRequired = false;
+
     public function __construct()
     {
         $this->objects = new ArrayCollection();
@@ -691,6 +694,18 @@ class Complaint
     public function setConsentContactElectronics(bool $consentContactElectronics): static
     {
         $this->consentContactElectronics = $consentContactElectronics;
+
+        return $this;
+    }
+
+    public function isAppointmentRequired(): ?bool
+    {
+        return $this->appointmentRequired;
+    }
+
+    public function setAppointmentRequired(?bool $appointmentRequired): static
+    {
+        $this->appointmentRequired = $appointmentRequired;
 
         return $this;
     }
