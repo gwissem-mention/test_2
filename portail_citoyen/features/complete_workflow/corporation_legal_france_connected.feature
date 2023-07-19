@@ -10,7 +10,8 @@ Feature:
         Then I should be on "/porter-plainte/rappel-a-la-loi"
         And I follow "complaint_identity_link"
         Then I should be on "/porter-plainte/identite"
-        And I click the "label[for=identity_declarantStatus_2]" element
+        # Change the following value when the Person Legal Representative is reenabled
+        And I click the "label[for=identity_declarantStatus_1]" element
         And I select "1" from "identity_civilState_familySituation"
         When I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
         And I fill in "contact-information-address" with "avenue de la république paris"

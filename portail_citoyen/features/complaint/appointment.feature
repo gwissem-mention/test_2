@@ -159,30 +159,32 @@ Feature:
         Then I should be on "/porter-plainte/rendez-vous"
         And I should see a "#form-errors-appointment_appointmentContactText" element
 
-    Scenario: I should see error if I valid with no filling the appointment textarea when I am person legal representative
-        Given I am on "/porter-plainte/identite"
-        And I click the "label[for=identity_declarantStatus_1]" element
-        When I click the "label[for=identity_representedPersonCivilState_civility_0]" element
-        And I fill in "identity_representedPersonCivilState_birthName" with "Dupont"
-        And I fill in "identity_representedPersonCivilState_firstnames" with "Jean Pierre Marie"
-        And I select "1" from "identity_representedPersonCivilState_familySituation"
-        And I fill in "identity_representedPersonCivilState_birthDate" with "01/01/2000"
-        And I fill in the autocomplete "identity_representedPersonCivilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
-        And I fill in the autocomplete "identity_representedPersonCivilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
-        And I fill in "represented-person-address" with "avenue de la république paris"
-        And I click the "#represented-person-address-75111_8158" element
-        And I fill in "identity_representedPersonContactInformation_email" with "jean@test.com"
-        And I fill in "identity_representedPersonContactInformation_phone_number" with "0102020304"
-        And I press "identity_submit"
-        Then I should be on "/porter-plainte/faits"
-        Given I am on "/porter-plainte/rendez-vous"
-        When I press "appointment_submit"
-        Then I should be on "/porter-plainte/rendez-vous"
-        And I should see a "#form-errors-appointment_appointmentContactText" element
+    # Person Legal Representative must be hidden for the experimentation
+#    Scenario: I should see error if I valid with no filling the appointment textarea when I am person legal representative
+#        Given I am on "/porter-plainte/identite"
+#        And I click the "label[for=identity_declarantStatus_1]" element
+#        When I click the "label[for=identity_representedPersonCivilState_civility_0]" element
+#        And I fill in "identity_representedPersonCivilState_birthName" with "Dupont"
+#        And I fill in "identity_representedPersonCivilState_firstnames" with "Jean Pierre Marie"
+#        And I select "1" from "identity_representedPersonCivilState_familySituation"
+#        And I fill in "identity_representedPersonCivilState_birthDate" with "01/01/2000"
+#        And I fill in the autocomplete "identity_representedPersonCivilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
+#        And I fill in the autocomplete "identity_representedPersonCivilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
+#        And I fill in "represented-person-address" with "avenue de la république paris"
+#        And I click the "#represented-person-address-75111_8158" element
+#        And I fill in "identity_representedPersonContactInformation_email" with "jean@test.com"
+#        And I fill in "identity_representedPersonContactInformation_phone_number" with "0102020304"
+#        And I press "identity_submit"
+#        Then I should be on "/porter-plainte/faits"
+#        Given I am on "/porter-plainte/rendez-vous"
+#        When I press "appointment_submit"
+#        Then I should be on "/porter-plainte/rendez-vous"
+#        And I should see a "#form-errors-appointment_appointmentContactText" element
 
     Scenario: I should see error if I valid with no filling the appointment textarea when I am corporation legal representative
         Given I am on "/porter-plainte/identite"
-        And I click the "label[for=identity_declarantStatus_2]" element
+        # Change the following value when the Person Legal Representative is reenabled
+        And I click the "label[for=identity_declarantStatus_1]" element
         When I fill in "identity_corporation_siret" with "12345678900000"
         And I fill in "identity_corporation_name" with "Test Company"
         And I fill in "identity_corporation_function" with "Developer"

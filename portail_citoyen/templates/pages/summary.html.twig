@@ -43,8 +43,9 @@
                             {{ 'pel.is.designated.as'|trans }}
                             {% if complaint.identity.declarantStatus is same as(constant('App\\AppEnum\\DeclarantStatus::Victim').value) %}
                                 {{ 'pel.complaint.summary.identity.victim'|trans }}
-                            {% elseif complaint.identity.declarantStatus is same as(constant('App\\AppEnum\\DeclarantStatus::PersonLegalRepresentative').value) %}
-                                {{ 'pel.complaint.identity.person.legal.representative'|trans }}
+                            {# Person Legal Representative must be hidden for the experimentation #}
+{#                            {% elseif complaint.identity.declarantStatus is same as(constant('App\\AppEnum\\DeclarantStatus::PersonLegalRepresentative').value) %}#}
+{#                                {{ 'pel.complaint.identity.person.legal.representative'|trans }}#}
                             {% else %}
                                 {{ 'pel.complaint.identity.corporation.legal.representative'|trans }}
                             {% endif %}
@@ -56,13 +57,14 @@
                             </li>
                         {% endif %}
                     </ul>
-                    {% if complaint.identity.declarantStatus is same as(constant('App\\AppEnum\\DeclarantStatus::PersonLegalRepresentative').value) %}
-                        <p>{{ 'pel.represented.person.identity'|trans }}</p>
-                        {{ include('common/_recap_identity.html.twig', {
-                            civilState: complaint.identity.representedPersonCivilState,
-                            contactInformation: complaint.identity.representedPersonContactInformation
-                        }) }}
-                    {% endif %}
+                    {# Person Legal Representative must be hidden for the experimentation #}
+{#                    {% if complaint.identity.declarantStatus is same as(constant('App\\AppEnum\\DeclarantStatus::PersonLegalRepresentative').value) %}#}
+{#                        <p>{{ 'pel.represented.person.identity'|trans }}</p>#}
+{#                        {{ include('common/_recap_identity.html.twig', {#}
+{#                            civilState: complaint.identity.representedPersonCivilState,#}
+{#                            contactInformation: complaint.identity.representedPersonContactInformation#}
+{#                        }) }}#}
+{#                    {% endif %}#}
                     {% if complaint.identity.declarantStatus is same as(constant('App\\AppEnum\\DeclarantStatus::CorporationLegalRepresentative').value) %}
                         <p><b>{{ 'pel.corporation.legal.information'|trans }}</b></p>
                         <ul>

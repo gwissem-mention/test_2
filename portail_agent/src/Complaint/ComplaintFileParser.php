@@ -41,9 +41,10 @@ class ComplaintFileParser
             $complaint->setCorporationRepresented($this->corporationParser->parse($complaintJson->identity->corporation));
         }
 
-        if ($complaintJson->identity->representedPersonCivilState) {
-            $complaint->setPersonLegalRepresented($this->identityParser->parse($complaintJson->identity->representedPersonCivilState, $complaintJson->identity->representedPersonContactInformation));
-        }
+        /* Person Legal Representative must be hidden for the experimentation */
+        // if ($complaintJson->identity->representedPersonCivilState) {
+        //     $complaint->setPersonLegalRepresented($this->identityParser->parse($complaintJson->identity->representedPersonCivilState, $complaintJson->identity->representedPersonContactInformation));
+        // }
 
         $this->objectsParser->setComplaintFrontId($complaint->getFrontId());
         foreach ($complaintJson->objects as $objects) {

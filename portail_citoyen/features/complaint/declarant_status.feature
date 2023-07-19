@@ -17,7 +17,8 @@ Feature:
 
     Scenario: I can see the declarant status inputs
         Given I am on "/porter-plainte/identite"
-        Then I should see 3 "input[type=radio][name='identity[declarantStatus]']" elements
+        # Change these values when the Person Legal Representative is reenabled
+        Then I should see 2 "input[type=radio][name='identity[declarantStatus]']" elements
         And I should see "Vous êtes victime ou vous représentez votre enfant mineur" in the "label[for=identity_declarantStatus_0]" element
-        And I should see "Représentant légal d’une personne physique" in the "label[for=identity_declarantStatus_1]" element
-        And I should see "Représentant légal d’une personne morale" in the "label[for=identity_declarantStatus_2]" element
+#        And I should see "Représentant légal d’une personne physique" in the "label[for=identity_declarantStatus_1]" element
+        And I should see "Représentant légal d’une personne morale" in the "label[for=identity_declarantStatus_1]" element
