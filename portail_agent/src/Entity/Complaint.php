@@ -187,6 +187,9 @@ class Complaint
     #[ORM\Column]
     private ?bool $appointmentRequired = false;
 
+    #[ORM\Column(options: ['default' => '0'])]
+    private ?int $reassignmentCounter = 0;
+
     public function __construct()
     {
         $this->objects = new ArrayCollection();
@@ -706,6 +709,25 @@ class Complaint
     public function setAppointmentRequired(?bool $appointmentRequired): static
     {
         $this->appointmentRequired = $appointmentRequired;
+
+        return $this;
+    }
+
+    public function getReassignmentCounter(): ?int
+    {
+        return $this->reassignmentCounter;
+    }
+
+    public function setReassignmentCounter(?int $reassignmentCounter): static
+    {
+        $this->reassignmentCounter = $reassignmentCounter;
+
+        return $this;
+    }
+
+    public function incrementReassignmentCounter(): static
+    {
+        ++$this->reassignmentCounter;
 
         return $this;
     }
