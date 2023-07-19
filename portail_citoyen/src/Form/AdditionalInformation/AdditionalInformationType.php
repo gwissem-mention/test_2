@@ -7,7 +7,7 @@ namespace App\Form\AdditionalInformation;
 use App\Form\Model\AdditionalInformation\AdditionalInformationModel;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -30,6 +30,7 @@ class AdditionalInformationType extends AbstractType
                 'expanded' => true,
                 'label' => 'pel.do.you.have.informations.on.potential.suspects',
                 'multiple' => false,
+                'inline' => true,
                 'constraints' => [
                     new NotNull(),
                 ],
@@ -40,6 +41,7 @@ class AdditionalInformationType extends AbstractType
                     'pel.no' => false,
                 ],
                 'expanded' => true,
+                'inline' => true,
                 'label' => 'pel.facts.witnesses',
                 'multiple' => false,
                 'constraints' => [
@@ -54,6 +56,7 @@ class AdditionalInformationType extends AbstractType
                 'expanded' => true,
                 'label' => 'pel.fsi.visit',
                 'multiple' => false,
+                'inline' => true,
                 'constraints' => [
                     new NotNull(),
                 ],
@@ -63,6 +66,7 @@ class AdditionalInformationType extends AbstractType
                 'expanded' => true,
                 'label' => 'pel.cctv.present',
                 'multiple' => false,
+                'inline' => true,
                 'constraints' => [
                     new NotNull(),
                 ],
@@ -138,7 +142,7 @@ class AdditionalInformationType extends AbstractType
         AdditionalInformationModel $additionalInformationModel = null
     ): void {
         if (true === $choice) {
-            $form->add('suspectsText', TextType::class, [
+            $form->add('suspectsText', TextareaType::class, [
                 'constraints' => [
                     new Length([
                         'max' => 300,
@@ -180,6 +184,7 @@ class AdditionalInformationType extends AbstractType
                 'expanded' => true,
                 'label' => 'pel.observation.made',
                 'multiple' => false,
+                'inline' => true,
                 'constraints' => [
                     new NotNull(),
                 ],
@@ -204,6 +209,7 @@ class AdditionalInformationType extends AbstractType
                 'expanded' => true,
                 'label' => 'pel.cctv.available',
                 'multiple' => false,
+                'inline' => true,
                 'constraints' => [
                     new NotNull(),
                 ],

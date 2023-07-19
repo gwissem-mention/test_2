@@ -300,7 +300,7 @@
             </trans-unit>
             <trans-unit id="pel.cctv.present">
                 <source>pel.cctv.present</source>
-                <target>Y a-t-il un système de vidéoprotection disponible sur le lieu des faits ?</target>
+                <target>Y a-t-il des enregistrements vidéos des faits ?</target>
             </trans-unit>
             <trans-unit id="pel.choose">
                 <source>pel.choose</source>
@@ -570,9 +570,13 @@
                 <source>pel.degraded</source>
                 <target>Dégradé</target>
             </trans-unit>
-            <trans-unit id="pel.delete">
-                <source>pel.delete</source>
-                <target>Supprimer</target>
+            <trans-unit id="pel.delete.object">
+                <source>pel.delete.object</source>
+                <target>Supprimer le bien</target>
+            </trans-unit>
+            <trans-unit id="pel.delete.witness">
+                <source>pel.delete.witness</source>
+                <target>Supprimer le témoin</target>
             </trans-unit>
             <trans-unit id="pel.department">
                 <source>pel.department</source>
@@ -732,7 +736,7 @@
             </trans-unit>
             <trans-unit id="pel.facts.suspects.informations.text">
                 <source>pel.facts.suspects.informations.text</source>
-                <target>Veuillez indiquer le nombre de personnes, la direction de fuite, la description des suspects...</target>
+                <target>Indiquez le nombre de personnes, la direction de fuite ou autre complément d’informations</target>
             </trans-unit>
             <trans-unit id="pel.facts.witnesses.information.text">
                 <source>pel.facts.witnesses.information.text</source>
@@ -748,7 +752,7 @@
             </trans-unit>
             <trans-unit id="pel.witness.description">
                 <source>pel.witness.description</source>
-                <target>Description du témoin n°{index}</target>
+                <target>Description du témoin n°{index} (Nom, prénom ou autre information complémentaire)</target>
             </trans-unit>
             <trans-unit id="pel.witness.email">
                 <source>pel.witness.email</source>
@@ -761,6 +765,10 @@
             <trans-unit id="pel.witness.add">
                 <source>pel.witness.add</source>
                 <target>Ajouter un témoin</target>
+            </trans-unit>
+            <trans-unit id="pel.witnesses">
+                <source>pel.witnesses</source>
+                <target>Témoins</target>
             </trans-unit>
             <trans-unit id="pel.facts.witnesses">
                 <source>pel.facts.witnesses</source>
@@ -1020,7 +1028,7 @@
             </trans-unit>
             <trans-unit id="pel.fsi.visit">
                 <source>pel.fsi.visit</source>
-                <target>Y a-t-il eu intervention d’un équipage de police ou de gendarmerie ?</target>
+                <target>Y a-t-il eu intervention de la police ou de la gendarmerie ?</target>
             </trans-unit>
             <trans-unit id="pel.home.title">
                 <source>pel.home.title</source>
@@ -1674,9 +1682,9 @@
                 <source>pel.summary.is.not.legal.proof</source>
                 <target>Ce récapitulatif n’est pas un document officiel et n’a pas de valeur juridique. Des documents officiels vous seront transmis après le traitement de votre dépôt de plainte par un agent accrédité.</target>
             </trans-unit>
-            <trans-unit id="pel.suspect">
-                <source>pel.suspect</source>
-                <target>Suspect</target>
+            <trans-unit id="pel.suspects">
+                <source>pel.suspects</source>
+                <target>Suspects</target>
             </trans-unit>
             <trans-unit id="pel.the">
                 <source>pel.the</source>
@@ -1774,9 +1782,17 @@
                 <source>pel.victim.of.violence.information</source>
                 <target>Les infractions avec violence peuvent nécessiter une étape supplémentaire vous invitant à vous rendre dans un commissariat de police ou une gendarmerie.</target>
             </trans-unit>
+           <trans-unit id="pel.video.facts">
+                <source>pel.video.facts</source>
+                <target>Vidéos des faits</target>
+            </trans-unit>
             <trans-unit id="pel.video.surveillance">
                 <source>pel.video.surveillance</source>
                 <target>Vidéosurveillance</target>
+            </trans-unit>
+            <trans-unit id="pel.visit">
+                <source>pel.visit</source>
+                <target>Intervention</target>
             </trans-unit>
             <trans-unit id="pel.visitor.agree">
                 <source>pel.visitor.agree</source>
@@ -1916,7 +1932,11 @@
             </trans-unit>
             <trans-unit id="pel.complaint.additional.informations">
                 <source>pel.complaint.additional.informations</source>
-                <target>Informations complémentaires</target>
+                <target>Complément d’informations</target>
+            </trans-unit>
+            <trans-unit id="pel.complaint.additional.informations.title">
+                <source>pel.complaint.additional.informations.title</source>
+                <target>Complément d’informations (étape 5 sur 7) - Plainte en ligne</target>
             </trans-unit>
             <trans-unit id="pel.complaint.my.declaration">
                 <source>pel.complaint.my.declaration</source>

@@ -1,79 +1,123 @@
 <div {{ attributes.add(stimulus_controller('complaint-submit')) }}>
     {{ form_start(form, {attr: {'data-action': 'live#action complaint-submit#submit','data-action-name': 'prevent|submit'}}) }}
-    <div class="fr-grid-row fr-py-2w">
-        <div class="fr-col">
-            {{ form_row(form.suspectsChoice) }}
-        </div>
-    </div>
-    {% if form.suspectsText is defined %}
-        <div class="fr-grid-row fr-py-2w">
-            <div class="fr-col">
-                {{ form_row(form.suspectsText) }}
-            </div>
-        </div>
-    {% endif %}
-    <div class="fr-grid-row fr-py-2w">
-        <div class="fr-col">
-            {{ form_row(form.witnessesPresent) }}
-        </div>
-    </div>
-    {% if form.witnesses is defined %}
-        <div class="fr-grid-row">
-            <div class="fr-col-6">
-                {% for witness in form.witnesses %}
-                    <div class="fr-mt-2w">
-                        <h3>{{ 'pel.witness'|trans }} {{ 'pel.number'|trans }} {{ loop.index }}</h3>
+    <div class="fr-px-6v fr-px-md-20v">
+        <fieldset class="{{ html_classes('fr-fieldset', 'fr-input-group', 'fr-mt-4v', 'fr-mb-5v', 'fr-mt-md-6v', 'fr-mb-md-9v', {'fr-fieldset--inline': form.suspectsChoice.vars.inline is same as(true),'fr-fieldset--error': form.suspectsChoice.vars.errors is not empty}) }}" {% if form.suspectsChoice.vars.errors is not empty %} role="group" aria-labelledby="legend-{{ form.suspectsChoice.vars.id }} form-errors-{{ form.suspectsChoice.vars.id }}" {% endif %}>
+            <legend class="fr-fieldset__legend--regular fr-fieldset__legend fr-text--regular flex flex-col gap-y-2.5 md:flex-row md:gap-x-2.5 fr-mb-6v" id="legend-{{ form.suspectsChoice.vars.id }}">
+                <p class="fr-badge fr-badge--purple-glycine fr-badge--no-icon fr-text--xs">{{ 'pel.suspects'|trans }}</p>
+                <span>{{ form.suspectsChoice.vars.label|trans }}&nbsp;<span class="text-[var(--text-default-error)]">*</span></spam>
+            </legend>
+            <div class="fr-fieldset__content">
+                {% for child in form.suspectsChoice.children %}
+                    <div class="fr-radio-group">
+                        {{ form_widget(child) }}
+                        {{ form_label(child, null, {'required_help':false}) }}
                     </div>
-                    <div class="fr-mt-2w">
-                        {{ form_row(witness.description, {'label':'pel.witness.description'|trans({'%index%':loop.index})}) }}
-                    </div>
-                    <div class="fr-mt-2w">
-                        {{ form_row(witness.email, {'label':'pel.witness.email'|trans({'%index%':loop.index})}) }}
-                    </div>
-                    <div class="fr-mt-2w">
-                        {{ form_row(witness.phone) }}
-                    </div>
-                    {% if form.witnesses|length > 1 %}
-                        <div>
-                            {{ form_widget(witness.vars.button_delete) }}
-                        </div>
-                    {% endif %}
                 {% endfor %}
-                <div class="fr-mt-2w">
-                    {{ form_widget(form.witnesses.vars.button_add) }}
-                </div>
             </div>
-        </div>
-    {% endif %}
-    <div class="fr-grid-row fr-py-2w">
-        <div class="fr-col">
-            {{ form_row(form.fsiVisit) }}
-        </div>
-    </div>
-    {% if form.observationMade is defined %}
-        <div class="fr-grid-row fr-py-2w">
-            <div class="fr-col">
+            {{ form_errors(form.suspectsChoice) }}
+        </fieldset>
+        {% if form.suspectsText is defined %}
+            <div class="{{ html_classes('fr-input-group', 'fr-mb-8v', 'fr-mb-md-12v', {'fr-input-group--error': form.suspectsText.vars.errors is not empty}) }}">
+                {{ form_label(form.suspectsText) }}
+                {{ form_widget(form.suspectsText, {'attr':{'class':html_classes(form.suspectsText.vars.attr.class ?? '', 'fr-input', {'fr-input--error':form.suspectsText.vars.errors is not empty}),'aria-describedby':form.suspectsText.vars.errors is not empty ? 'form-errors-'~ form.suspectsText.vars.id :''}}) }}
+                {{ form_errors(form.suspectsText) }}
+            </div>
+        {% endif %}
+        <hr>
+        <fieldset class="{{ html_classes('fr-fieldset', 'fr-input-group', 'fr-mt-4v', 'fr-mb-5v', 'fr-mt-md-6v', 'fr-mb-md-9v', {'fr-fieldset--inline': form.witnessesPresent.vars.inline is same as(true),'fr-fieldset--error': form.witnessesPresent.vars.errors is not empty}) }}" {% if form.witnessesPresent.vars.errors is not empty %} role="group" aria-labelledby="legend-{{ form.witnessesPresent.vars.id }} form-errors-{{ form.witnessesPresent.vars.id }}" {% endif %}>
+            <legend class="fr-fieldset__legend--regular fr-fieldset__legend fr-text--regular flex flex-col gap-y-2.5 md:flex-row md:gap-x-2.5 fr-mb-6v" id="legend-{{ form.witnessesPresent.vars.id }}">
+                <p class="fr-badge fr-badge--purple-glycine fr-badge--no-icon fr-text--xs">{{ 'pel.witnesses'|trans }}</p>
+                <span>{{ form.witnessesPresent.vars.label|trans }}&nbsp;<span class="text-[var(--text-default-error)]">*</span></spam>
+            </legend>
+            <div class="fr-fieldset__content">
+                {% for child in form.witnessesPresent.children %}
+                    <div class="fr-radio-group">
+                        {{ form_widget(child) }}
+                        {{ form_label(child, null, {'required_help':false}) }}
+                    </div>
+                {% endfor %}
+            </div>
+            {{ form_errors(form.witnessesPresent) }}
+        </fieldset>
+        {% if form.witnesses is defined %}
+            {% for witness in form.witnesses %}
+                <div class="flex items-center gap-x-3">
+                    <span class="fr-icon-group-line" aria-hidden="true"></span>
+                    <h4 class="text-xl/8 fr-mb-0">{{ 'pel.witness'|trans }} {{ 'pel.number'|trans }} {{ loop.index }}</h4>
+                </div>
+                <div class="fr-mt-10v">
+                    {{ form_row(witness.description, {'label':'pel.witness.description'|trans({'%index%':loop.index})}) }}
+                </div>
+                <div class="fr-mt-10v">
+                    {{ form_row(witness.email, {'label':'pel.witness.email'|trans({'%index%':loop.index})}) }}
+                </div>
+                <div class="fr-mt-10v">
+                    {{ form_row(witness.phone) }}
+                </div>
+                {% if form.witnesses|length > 1 %}
+                    <div class="fr-my-10v">
+                        {{ form_widget(witness.vars.button_delete) }}
+                    </div>
+                {% endif %}
+            {% endfor %}
+            <div class="fr-mb-8v fr-mt-10v fr-mb-md-12v">
+                {{ form_widget(form.witnesses.vars.button_add) }}
+            </div>
+        {% endif %}
+        <hr>
+        <fieldset class="{{ html_classes('fr-fieldset', 'fr-input-group', 'fr-mt-4v', 'fr-mb-5v', 'fr-mt-md-6v', 'fr-mb-md-9v', {'fr-fieldset--inline': form.fsiVisit.vars.inline is same as(true),'fr-fieldset--error': form.fsiVisit.vars.errors is not empty}) }}" {% if form.fsiVisit.vars.errors is not empty %} role="group" aria-labelledby="legend-{{ form.fsiVisit.vars.id }} form-errors-{{ form.fsiVisit.vars.id }}" {% endif %}>
+            <legend class="fr-fieldset__legend--regular fr-fieldset__legend fr-text--regular flex flex-col gap-y-2.5 md:flex-row md:gap-x-2.5 fr-mb-6v" id="legend-{{ form.fsiVisit.vars.id }}">
+                <p class="fr-badge fr-badge--purple-glycine fr-badge--no-icon fr-text--xs">{{ 'pel.visit'|trans }}</p>
+                <span>{{ form.fsiVisit.vars.label|trans }}&nbsp;<span class="text-[var(--text-default-error)]">*</span></spam>
+            </legend>
+            <div class="fr-fieldset__content">
+                {% for child in form.fsiVisit.children %}
+                    <div class="fr-radio-group">
+                        {{ form_widget(child) }}
+                        {{ form_label(child, null, {'required_help':false}) }}
+                    </div>
+                {% endfor %}
+            </div>
+            {{ form_errors(form.fsiVisit) }}
+        </fieldset>
+        {% if form.observationMade is defined %}
+            <div class="fr-mb-5v fr-mb-md-9v">
                 {{ form_row(form.observationMade) }}
             </div>
-        </div>
-    {% endif %}
-    <div class="fr-grid-row fr-py-2w">
-        <div class="fr-col">
-            {{ form_row(form.cctvPresent) }}
-        </div>
-    </div>
-    {% if form.cctvAvailable is defined %}
-        <div class="fr-grid-row fr-py-2w">
-            <div class="fr-col">
+        {% endif %}
+        <hr>
+        <fieldset class="{{ html_classes('fr-fieldset', 'fr-input-group', 'fr-mt-4v', 'fr-mb-5v', 'fr-mt-md-6v', 'fr-mb-md-9v', {'fr-fieldset--inline': form.cctvPresent.vars.inline is same as(true),'fr-fieldset--error': form.cctvPresent.vars.errors is not empty}) }}" {% if form.cctvPresent.vars.errors is not empty %} role="group" aria-labelledby="legend-{{ form.cctvPresent.vars.id }} form-errors-{{ form.cctvPresent.vars.id }}" {% endif %}>
+            <legend class="fr-fieldset__legend--regular fr-fieldset__legend fr-text--regular flex flex-col gap-y-2.5 md:flex-row md:gap-x-2.5 fr-mb-6v" id="legend-{{ form.cctvPresent.vars.id }}">
+                <p class="fr-badge fr-badge--purple-glycine fr-badge--no-icon fr-text--xs">{{ 'pel.video.facts'|trans }}</p>
+                <span>{{ form.cctvPresent.vars.label|trans }}&nbsp;<span class="text-[var(--text-default-error)]">*</span></spam>
+            </legend>
+            <div class="fr-fieldset__content">
+                {% for child in form.cctvPresent.children %}
+                    <div class="fr-radio-group">
+                        {{ form_widget(child) }}
+                        {{ form_label(child, null, {'required_help':false}) }}
+                    </div>
+                {% endfor %}
+            </div>
+            {{ form_errors(form.cctvPresent) }}
+        </fieldset>
+        {% if form.cctvAvailable is defined %}
+            <div class="fr-mb-5v fr-mb-md-9v">
                 {{ form_row(form.cctvAvailable) }}
             </div>
+        {% endif %}
+    </div>
+    <hr>
+    <div class="fr-pt-4v fr-px-6v fr-pb-12v fr-pt-md-6v fr-px-md-20v text-center">
+        <div class="flex items-center justify-start gap-x-4 md:justify-between">
+            <a href="{{ path('complaint_objects') }}"
+               class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-arrow-left-line fr-text--lg py-3 md:py-2.5 pr-6 pl-[18px] before:content-[''] before:w-6 before:h-6">
+                <span class="fr-hidden fr-unhidden-md">{{ 'pel.previous'|trans }}</span>
+            </a>
+            <button type="submit"
+                    class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line fr-text--lg py-2.5 pr-[18px] pl-6 after:w-6 after:h-6"
+                    id="additional_information_submit">{{ 'pel.next'|trans }}</button>
         </div>
-    {% endif %}
-    <div class="flex--between fr-mt-3w fr-mb-3w">
-        <a href="{{ path('complaint_objects') }}"
-           class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-arrow-left-line">{{ 'pel.previous'|trans }}</a>
-        <button type="submit" class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line"
-                id="additional_information_submit">{{ 'pel.next'|trans }}</button>
     </div>
     {{ form_end(form) }}
 </div>

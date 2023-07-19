@@ -128,7 +128,7 @@ Feature:
         And I should see "Avenue de la République 75011 Paris, France"
         And I should see the key "pel.additional.factual.information" translated
         And I should see the key "pel.facts.witnesses" translated
-        And I should see "Description du témoin n°1"
+        And I should see "Description du témoin n°1 (Nom, prénom ou autre information complémentaire)"
         And I should see "Adresse e-mail du témoin n°1"
         And I should see "Numéro de téléphone portable n°1"
         And I should see "Jean DUPONT"
