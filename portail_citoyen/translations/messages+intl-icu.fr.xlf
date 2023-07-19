@@ -1296,7 +1296,7 @@
             </trans-unit>
             <trans-unit id="pel.no.but.i.know.the.time.slot">
                 <source>pel.no.but.i.know.the.time.slot</source>
-                <target>Non mais je connais le créneau horaire</target>
+                <target>Non mais j’ai le créneau horaire</target>
             </trans-unit>
             <trans-unit id="pel.no.but.i.don.t.know.at.all.the.time.of.facts">
                 <source>pel.no.but.i.don.t.know.at.all.the.time.of.facts</source>

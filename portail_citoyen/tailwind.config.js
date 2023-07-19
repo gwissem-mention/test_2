@@ -12,8 +12,8 @@ module.exports = {
     },
     // https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/grille-et-points-de-rupture
     screens: {
-      'xs': '320px',
-      // => @media (min-width: 576px) { ... }
+      'xs': '375px',
+      // => @media (min-width: 375px) { ... }
 
       'sm': '576px',
       // => @media (min-width: 576px) { ... }

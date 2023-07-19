@@ -45,7 +45,7 @@ Feature:
         And I should see 3 "input[type=radio][name='facts[offenseDate][choiceHour]']" elements
         And I should see "Oui" in the "label[for=facts_offenseDate_choiceHour_0]" element
         And I should see "Non" in the "label[for=facts_offenseDate_choiceHour_1]" element
-        And I should see "Non mais je connais le créneau horaire" in the "label[for=facts_offenseDate_choiceHour_2]" element
+        And I should see "Non mais j’ai le créneau horaire" in the "label[for=facts_offenseDate_choiceHour_2]" element
 
     Scenario: I can see 1 date input if I select "Yes" to offense exact date known radio buttons
         When I click the "label[for=facts_offenseDate_exactDateKnown_0]" element
