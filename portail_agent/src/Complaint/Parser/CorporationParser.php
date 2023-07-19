@@ -34,7 +34,7 @@ class CorporationParser
             ->setCity($address->getCity())
             ->setInseeCode($address->getInseeCode())
             ->setStreetNumber((int) $address->getStreetNumber())
-            ->setStreetType($address->getStreetType()) // TODO: extract street type from street name for french// address if possible
+            ->setStreetType($address->getStreetType())
             ->setStreetName($address->getStreetName())
             ->setPostCode($address->getPostCode());
 
