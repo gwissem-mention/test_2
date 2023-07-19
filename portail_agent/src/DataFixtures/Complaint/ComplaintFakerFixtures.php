@@ -263,11 +263,12 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                     null
                 );
 
-            if (Identity::DECLARANT_STATUS_PERSON_LEGAL_REPRESENTATIVE === $complaint->getIdentity()?->getDeclarantStatus()) {
-                $complaint->setPersonLegalRepresented(
-                    $this->newIdentity(true)
-                );
-            }
+            /* Person Legal Representative must be hidden for the experimentation */
+            // if (Identity::DECLARANT_STATUS_PERSON_LEGAL_REPRESENTATIVE === $complaint->getIdentity()?->getDeclarantStatus()) {
+            //     $complaint->setPersonLegalRepresented(
+            //         $this->newIdentity(true)
+            //     );
+            // }
 
             if (Identity::DECLARANT_STATUS_CORPORATION_LEGAL_REPRESENTATIVE === $complaint->getIdentity()?->getDeclarantStatus()) {
                 $complaint->setCorporationRepresented(
@@ -374,7 +375,11 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
     public function newIdentity(bool $victim = false): Identity
     {
         /** @var int $declarantStatus */
-        $declarantStatus = $victim ? Identity::DECLARANT_STATUS_VICTIM : $this->faker->randomElement([Identity::DECLARANT_STATUS_VICTIM, Identity::DECLARANT_STATUS_PERSON_LEGAL_REPRESENTATIVE, Identity::DECLARANT_STATUS_CORPORATION_LEGAL_REPRESENTATIVE]);
+        $declarantStatus = $victim ? Identity::DECLARANT_STATUS_VICTIM : $this->faker->randomElement([
+            Identity::DECLARANT_STATUS_VICTIM,
+            /* Person Legal Representative must be hidden for the experimentation */
+            // Identity::DECLARANT_STATUS_PERSON_LEGAL_REPRESENTATIVE,
+            Identity::DECLARANT_STATUS_CORPORATION_LEGAL_REPRESENTATIVE]);
 
         return (new Identity())
             ->setFirstname($this->faker->firstName($this->identityGender))

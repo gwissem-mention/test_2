@@ -10,8 +10,10 @@ class IdentityModel
     private ?bool $consentContactElectronics = null;
     private CivilStateModel $civilState;
     private ContactInformationModel $contactInformation;
-    private ?CivilStateModel $representedPersonCivilState = null;
-    private ?ContactInformationModel $representedPersonContactInformation = null;
+    /* Person Legal Representative must be hidden for the experimentation */
+    // private ?CivilStateModel $representedPersonCivilState = null;
+    /* Person Legal Representative must be hidden for the experimentation */
+    // private ?ContactInformationModel $representedPersonContactInformation = null;
     private ?CorporationModel $corporation = null;
 
     public function __construct()
@@ -56,29 +58,33 @@ class IdentityModel
         return $this;
     }
 
-    public function getRepresentedPersonCivilState(): ?CivilStateModel
-    {
-        return $this->representedPersonCivilState;
-    }
+    /* Person Legal Representative must be hidden for the experimentation */
+    // public function getRepresentedPersonCivilState(): ?CivilStateModel
+    // {
+    //     return $this->representedPersonCivilState;
+    // }
 
-    public function setRepresentedPersonCivilState(?CivilStateModel $representedPersonCivilState): self
-    {
-        $this->representedPersonCivilState = $representedPersonCivilState;
+    /* Person Legal Representative must be hidden for the experimentation */
+    // public function setRepresentedPersonCivilState(?CivilStateModel $representedPersonCivilState): self
+    // {
+    //     $this->representedPersonCivilState = $representedPersonCivilState;
+    //
+    //     return $this;
+    // }
 
-        return $this;
-    }
+    /* Person Legal Representative must be hidden for the experimentation */
+    // public function getRepresentedPersonContactInformation(): ?ContactInformationModel
+    // {
+    //     return $this->representedPersonContactInformation;
+    // }
 
-    public function getRepresentedPersonContactInformation(): ?ContactInformationModel
-    {
-        return $this->representedPersonContactInformation;
-    }
-
-    public function setRepresentedPersonContactInformation(?ContactInformationModel $representedPersonContactInformation
-    ): self {
-        $this->representedPersonContactInformation = $representedPersonContactInformation;
-
-        return $this;
-    }
+    /* Person Legal Representative must be hidden for the experimentation */
+    // public function setRepresentedPersonContactInformation(?ContactInformationModel $representedPersonContactInformation
+    // ): self {
+    //     $this->representedPersonContactInformation = $representedPersonContactInformation;
+    //
+    //     return $this;
+    // }
 
     public function getCorporation(): ?CorporationModel
     {

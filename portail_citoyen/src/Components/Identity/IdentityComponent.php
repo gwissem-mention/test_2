@@ -40,8 +40,9 @@ class IdentityComponent extends AbstractController
     #[LiveProp(writable: true, exposed: ['addressSearch', 'addressId', 'addressSearchSaved'])]
     public EtalabInput $corporationEtalabInput;
 
-    #[LiveProp(writable: true, exposed: ['addressSearch', 'addressId', 'addressSearchSaved'])]
-    public EtalabInput $representedPersonEtalabInput;
+    /* Person Legal Representative must be hidden for the experimentation */
+    // #[LiveProp(writable: true, exposed: ['addressSearch', 'addressId', 'addressSearchSaved'])]
+    // public EtalabInput $representedPersonEtalabInput;
 
     public function __construct(
         private readonly SessionHandler $sessionHandler,
@@ -51,7 +52,8 @@ class IdentityComponent extends AbstractController
 
         $this->contactInformationEtalabInput = $this->createEtalabInput($this->identityModel->getContactInformation()->getFrenchAddress());
         $this->corporationEtalabInput = $this->createEtalabInput($this->identityModel->getCorporation()?->getFrenchAddress());
-        $this->representedPersonEtalabInput = $this->createEtalabInput($this->identityModel->getRepresentedPersonContactInformation()?->getFrenchAddress());
+        /* Person Legal Representative must be hidden for the experimentation */
+        // $this->representedPersonEtalabInput = $this->createEtalabInput($this->identityModel->getRepresentedPersonContactInformation()?->getFrenchAddress());
     }
 
     protected function instantiateForm(): FormInterface
@@ -69,13 +71,14 @@ class IdentityComponent extends AbstractController
     public function sameAddress(): void
     {
         if (isset($this->formValues['contactInformation']['foreignAddress'])) {
-            if (isset($this->formValues['representedPersonContactInformation'])) {
-                if ($this->formValues['representedPersonContactInformation']['sameAddress']) {
-                    $this->formValues['representedPersonContactInformation']['foreignAddress'] = $this->formValues['contactInformation']['foreignAddress'];
-                } else {
-                    $this->formValues['representedPersonContactInformation']['foreignAddress'] = null;
-                }
-            }
+            /* Person Legal Representative must be hidden for the experimentation */
+            // if (isset($this->formValues['representedPersonContactInformation'])) {
+            //     if ($this->formValues['representedPersonContactInformation']['sameAddress']) {
+            //         $this->formValues['representedPersonContactInformation']['foreignAddress'] = $this->formValues['contactInformation']['foreignAddress'];
+            //     } else {
+            //         $this->formValues['representedPersonContactInformation']['foreignAddress'] = null;
+            //     }
+            // }
 
             if (isset($this->formValues['corporation'])) {
                 if ($this->formValues['corporation']['sameAddress']) {
@@ -110,17 +113,18 @@ class IdentityComponent extends AbstractController
             }
         }
 
-        if (isset($this->formValues['representedPersonContactInformation']['frenchAddress'])) {
-            $this->formValues['representedPersonContactInformation']['frenchAddress']['address'] = $this->representedPersonEtalabInput->getAddressSearch();
-            $this->formValues['representedPersonContactInformation']['frenchAddress']['selectionId'] = $this->representedPersonEtalabInput->getAddressId();
-            $this->formValues['representedPersonContactInformation']['frenchAddress']['query'] = $this->representedPersonEtalabInput->getAddressSearchSaved();
-
-            if ($this->formValues['representedPersonContactInformation']['sameAddress']) {
-                $this->formValues['representedPersonContactInformation']['frenchAddress']['address'] = $this->contactInformationEtalabInput->getAddressSearch();
-                $this->formValues['representedPersonContactInformation']['frenchAddress']['selectionId'] = $this->contactInformationEtalabInput->getAddressId();
-                $this->formValues['representedPersonContactInformation']['frenchAddress']['query'] = $this->contactInformationEtalabInput->getAddressSearchSaved();
-            }
-        }
+        /* Person Legal Representative must be hidden for the experimentation */
+        // if (isset($this->formValues['representedPersonContactInformation']['frenchAddress'])) {
+        //    $this->formValues['representedPersonContactInformation']['frenchAddress']['address'] = $this->representedPersonEtalabInput->getAddressSearch();
+        //     $this->formValues['representedPersonContactInformation']['frenchAddress']['selectionId'] = $this->representedPersonEtalabInput->getAddressId();
+        //     $this->formValues['representedPersonContactInformation']['frenchAddress']['query'] = $this->representedPersonEtalabInput->getAddressSearchSaved();
+        //
+        //     if ($this->formValues['representedPersonContactInformation']['sameAddress']) {
+        //         $this->formValues['representedPersonContactInformation']['frenchAddress']['address'] = $this->contactInformationEtalabInput->getAddressSearch();
+        //         $this->formValues['representedPersonContactInformation']['frenchAddress']['selectionId'] = $this->contactInformationEtalabInput->getAddressId();
+        //         $this->formValues['representedPersonContactInformation']['frenchAddress']['query'] = $this->contactInformationEtalabInput->getAddressSearchSaved();
+        //     }
+        // }
 
         $this->submitForm();
 
@@ -150,14 +154,15 @@ class IdentityComponent extends AbstractController
             $identity->getCorporation()?->setFrenchAddress(null);
         }
 
-        if (isset($this->formValues['representedPersonContactInformation']['frenchAddress'])) {
-            if (!$this->formValues['representedPersonContactInformation']['sameAddress'] || !$address instanceof AbstractSerializableAddress) {
-                $address = $this->addressEtalabHandler->getAddressModel($this->representedPersonEtalabInput);
-            }
-            $identity->getRepresentedPersonContactInformation()?->setFrenchAddress($address);
-        } else {
-            $identity->getRepresentedPersonContactInformation()?->setFrenchAddress(null);
-        }
+        /* Person Legal Representative must be hidden for the experimentation */
+        // if (isset($this->formValues['representedPersonContactInformation']['frenchAddress'])) {
+        //    if (!$this->formValues['representedPersonContactInformation']['sameAddress'] || !$address instanceof AbstractSerializableAddress) {
+        //       $address = $this->addressEtalabHandler->getAddressModel($this->representedPersonEtalabInput);
+        // }
+        //    $identity->getRepresentedPersonContactInformation()?->setFrenchAddress($address);
+        // } else {
+        //     $identity->getRepresentedPersonContactInformation()?->setFrenchAddress(null);
+        // }
 
         $this->sessionHandler->setComplaint(
             $complaint

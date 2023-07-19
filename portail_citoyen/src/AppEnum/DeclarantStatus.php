@@ -5,7 +5,8 @@ namespace App\AppEnum;
 enum DeclarantStatus: int
 {
     case Victim = 1;
-    case PersonLegalRepresentative = 2;
+    /* Person Legal Representative must be hidden for the experimentation */
+    // case PersonLegalRepresentative = 2;
     case CorporationLegalRepresentative = 3;
 
     /**
@@ -15,7 +16,8 @@ enum DeclarantStatus: int
     {
         return [
             'pel.complaint.identity.victim' => self::Victim->value,
-            'pel.complaint.identity.person.legal.representative' => self::PersonLegalRepresentative->value,
+            /* Person Legal Representative must be hidden for the experimentation */
+            // 'pel.complaint.identity.person.legal.representative' => self::PersonLegalRepresentative->value,
             'pel.complaint.identity.corporation.legal.representative' => self::CorporationLegalRepresentative->value,
         ];
     }
@@ -27,7 +29,8 @@ enum DeclarantStatus: int
     {
         return [
             self::Victim->value => 'pel.complaint.identity.victim.hint',
-            self::PersonLegalRepresentative->value => 'pel.complaint.identity.person.legal.representative.hint',
+            /* Person Legal Representative must be hidden for the experimentation */
+//            self::PersonLegalRepresentative->value => 'pel.complaint.identity.person.legal.representative.hint',
             self::CorporationLegalRepresentative->value => 'pel.complaint.identity.corporation.legal.representative.hint',
         ];
     }
@@ -41,9 +44,10 @@ enum DeclarantStatus: int
             self::Victim->value => [
                 'src' => 'build/images/avatar.svg',
             ],
-            self::PersonLegalRepresentative->value => [
-                'src' => 'build/images/document-download-2.svg',
-            ],
+            /* Person Legal Representative must be hidden for the experimentation */
+            // self::PersonLegalRepresentative->value => [
+            //     'src' => 'build/images/document-download-2.svg',
+            // ],
             self::CorporationLegalRepresentative->value => [
                 'src' => 'build/images/contract.svg',
             ],

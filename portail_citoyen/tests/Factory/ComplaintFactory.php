@@ -31,7 +31,8 @@ class ComplaintFactory
     {
         $identity = match ($status) {
             DeclarantStatus::Victim->value => $this->createIdentityVictim($frenchAddress),
-            DeclarantStatus::PersonLegalRepresentative->value => $this->createIdentityPersonLegalRepresentative($frenchAddress),
+            /* Person Legal Representative must be hidden for the experimentation */
+            // DeclarantStatus::PersonLegalRepresentative->value => $this->createIdentityPersonLegalRepresentative($frenchAddress),
             DeclarantStatus::CorporationLegalRepresentative->value => $this->createIdentityCorporationLegalRepresentative($frenchAddress),
             default => throw new \InvalidArgumentException('Invalid status'),
         };
@@ -60,15 +61,16 @@ class ComplaintFactory
             ->setContactInformation($this->createContactInformation($frenchAddress));
     }
 
-    private function createIdentityPersonLegalRepresentative(bool $frenchAddress = true): IdentityModel
-    {
-        return (new IdentityModel())
-            ->setDeclarantStatus(DeclarantStatus::PersonLegalRepresentative->value)
-            ->setCivilState($this->createCivilState($frenchAddress))
-            ->setContactInformation($this->createContactInformation($frenchAddress))
-            ->setRepresentedPersonCivilState($this->createCivilState($frenchAddress))
-            ->setRepresentedPersonContactInformation($this->createContactInformation($frenchAddress));
-    }
+    /* Person Legal Representative must be hidden for the experimentation */
+    // private function createIdentityPersonLegalRepresentative(bool $frenchAddress = true): IdentityModel
+    // {
+    //     return (new IdentityModel())
+    //         ->setDeclarantStatus(DeclarantStatus::PersonLegalRepresentative->value)
+    //         ->setCivilState($this->createCivilState($frenchAddress))
+    //         ->setContactInformation($this->createContactInformation($frenchAddress))
+    //         ->setRepresentedPersonCivilState($this->createCivilState($frenchAddress))
+    //         ->setRepresentedPersonContactInformation($this->createContactInformation($frenchAddress));
+    // }
 
     private function createIdentityCorporationLegalRepresentative(bool $frenchAddress = true): IdentityModel
     {

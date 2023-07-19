@@ -70,22 +70,23 @@
                         {% include 'common/_corporation.html.twig' with {'form':form.corporation} %}
                     </div>
                 {% endif %}
-                {% if form.representedPersonCivilState is defined and form.representedPersonContactInformation is defined %}
-                    <hr>
-                    <h2 class="text-[22px]/7 md:text-[28px]/9 fr-pt-4v fr-px-6v fr-pt-md-6v fr-px-md-20v">{{ 'pel.represented.person.identity'|trans }}</h2>
-                    <div class="fr-pt-2v fr-px-6v fr-pb-6v fr-pt-md-0 fr-pb-md-6v fr-px-md-20v">
-                        {% include 'common/_civil_state.html.twig' with {'form':form.representedPersonCivilState, 'representedPerson': true} %}
-                    </div>
-                    <hr>
-                    <div class="fr-pt-4v fr-px-6v fr-pb-12v fr-pt-md-6v fr-px-md-20v">
-                        {% include 'common/_contact_information.html.twig' with {
-                            'form':form.representedPersonContactInformation,
-                            'template_id': 'represented-person',
-                            'etalabPropertyName': 'representedPersonEtalabInput',
-                            'representedPerson': true
-                        } %}
-                    </div>
-                {% endif %}
+                {# Person Legal Representative must be hidden for the experimentation #}
+{#                {% if form.representedPersonCivilState is defined and form.representedPersonContactInformation is defined %}#}
+{#                    <hr>#}
+{#                    <h2 class="text-[22px]/7 md:text-[28px]/9 fr-pt-4v fr-px-6v fr-pt-md-6v fr-px-md-20v">{{ 'pel.represented.person.identity'|trans }}</h2>#}
+{#                    <div class="fr-pt-2v fr-px-6v fr-pb-6v fr-pt-md-0 fr-pb-md-6v fr-px-md-20v">#}
+{#                        {% include 'common/_civil_state.html.twig' with {'form':form.representedPersonCivilState, 'representedPerson': true} %}#}
+{#                    </div>#}
+{#                    <hr>#}
+{#                    <div class="fr-pt-4v fr-px-6v fr-pb-12v fr-pt-md-6v fr-px-md-20v">#}
+{#                        {% include 'common/_contact_information.html.twig' with {#}
+{#                            'form':form.representedPersonContactInformation,#}
+{#                            'template_id': 'represented-person',#}
+{#                            'etalabPropertyName': 'representedPersonEtalabInput',#}
+{#                            'representedPerson': true#}
+{#                        } %}#}
+{#                    </div>#}
+{#                {% endif %}#}
             </div>
         </div>
     </div>

@@ -128,16 +128,19 @@ class IdentityType extends AbstractType
         }
 
         switch ($declarantStatus) {
-            case DeclarantStatus::PersonLegalRepresentative->value:
-                $this->removeCorporationFields($form, $identityModel);
-                $this->addRepresentedPersonFields($form);
-                break;
+            /* Person Legal Representative must be hidden for the experimentation */
+            // case DeclarantStatus::PersonLegalRepresentative->value:
+            //     $this->removeCorporationFields($form, $identityModel);
+            //     $this->addRepresentedPersonFields($form);
+            //    break;
             case DeclarantStatus::Victim->value:
-                $this->removeRepresentedPersonFields($form, $identityModel);
+                /* Person Legal Representative must be hidden for the experimentation */
+                // $this->removeRepresentedPersonFields($form, $identityModel);
                 $this->removeCorporationFields($form, $identityModel);
                 break;
             case DeclarantStatus::CorporationLegalRepresentative->value:
-                $this->removeRepresentedPersonFields($form, $identityModel);
+                /* Person Legal Representative must be hidden for the experimentation */
+                // $this->removeRepresentedPersonFields($form, $identityModel);
                 $this->addCorporationFields($form);
                 break;
             default:
@@ -157,26 +160,28 @@ class IdentityType extends AbstractType
         $identityModel?->setCorporation(null);
     }
 
-    private function addRepresentedPersonFields(FormInterface $form): void
-    {
-        $form
-            ->add('representedPersonCivilState', CivilStateType::class, [
-                'label' => 'pel.civil.state',
-            ])
-            ->add('representedPersonContactInformation', ContactInformationType::class, [
-                'label' => 'pel.contact.information',
-                'need_same_address_field' => true,
-            ]);
-    }
+    /* Person Legal Representative must be hidden for the experimentation */
+    // private function addRepresentedPersonFields(FormInterface $form): void
+    // {
+    //     $form
+    //         ->add('representedPersonCivilState', CivilStateType::class, [
+    //             'label' => 'pel.civil.state',
+    //         ])
+    //         ->add('representedPersonContactInformation', ContactInformationType::class, [
+    //             'label' => 'pel.contact.information',
+    //             'need_same_address_field' => true,
+    //         ]);
+    // }
 
-    private function removeRepresentedPersonFields(FormInterface $form, IdentityModel $identityModel = null): void
-    {
-        $form
-            ->remove('representedPersonCivilState')
-            ->remove('representedPersonContactInformation');
-
-        $identityModel
-            ?->setRepresentedPersonCivilState(null)
-            ->setRepresentedPersonContactInformation(null);
-    }
+    /* Person Legal Representative must be hidden for the experimentation */
+    // private function removeRepresentedPersonFields(FormInterface $form, IdentityModel $identityModel = null): void
+    // {
+    //     $form
+    //         ->remove('representedPersonCivilState')
+    //         ->remove('representedPersonContactInformation');
+    //
+    //     $identityModel
+    //         ?->setRepresentedPersonCivilState(null)
+    //         ->setRepresentedPersonContactInformation(null);
+    // }
 }
