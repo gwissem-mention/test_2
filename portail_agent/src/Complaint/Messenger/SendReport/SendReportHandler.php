@@ -8,6 +8,7 @@ use App\Complaint\Exceptions\NoOodriveComplaintFolderException;
 use App\Entity\Complaint;
 use App\Oodrive\ApiClientInterface;
 use App\Oodrive\Exception\FolderCreationException;
+use App\Oodrive\Exception\OodriveErrorsEnum;
 use App\Repository\ComplaintRepository;
 use App\Salesforce\Messenger\ComplaintReportSend\ComplaintReportSendMessage;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
@@ -39,8 +40,7 @@ class SendReportHandler
         try {
             $reportFolder = $this->oodriveClient->createFolder($this->oodriveReportFolderName, $complaint->getOodriveFolder());
         } catch (FolderCreationException $exception) {
-            // TODO improve this
-            if (str_contains($exception->getMessage(), '006 : Name Already Exists')) {
+            if (OodriveErrorsEnum::NAME_ALREADY_EXIST === $exception->getErrorCode()) {
                 $complaintFolder = $this->oodriveClient->getFolder($complaint->getOodriveFolder());
                 $complaintFolderChildren = $this->oodriveClient->getChildrenFolders($complaintFolder);
                 foreach ($complaintFolderChildren as $child) {

@@ -3,6 +3,9 @@ import {Modal, Toast} from "bootstrap";
 
 import {HttpMethodsEnum} from "../scripts/utils/HttpMethodsEnum";
 
+type BulkAssignFetchResponse = { agent_name: string, form: string };
+type BulkReassignFetchResponse = { unit_name: string, form: string };
+
 export default class extends Controller {
     static override targets = [
         "bulkAssignComplaints",
@@ -42,14 +45,9 @@ export default class extends Controller {
         fetch(this.urlBulkAssignValue, fetchOptions)
             .then((response: Response) => {
                 response.json()
-                    .then((data: any) => {
+                    .then((data: BulkAssignFetchResponse) => {
                         if (response.status === 200) {
                             Modal.getInstance(this.bulkAssignModalTarget)?.hide();
-
-                            // TODO: Find a stimulus way to control TomSelect
-                            // this.bulkAssignFormTarget.querySelectorAll("[data-ts-item]").forEach((element) => {
-                            //     element.remove();
-                            // });
 
                             document.querySelectorAll(".agent-name").forEach((element) => {
                                 element.textContent = data.agent_name;
@@ -80,13 +78,9 @@ export default class extends Controller {
         fetch(this.urlBulkReassignValue, fetchOptions)
             .then((response: Response) => {
                 response.json()
-                    .then((data: any) => {
+                    .then((data: BulkReassignFetchResponse) => {
                         if (response.status === 200) {
                             Modal.getInstance(this.bulkReassignModalTarget)?.hide();
-                            // TODO: Find a stimulus way to control TomSelect
-                            // this.bulkReassignFormTarget.querySelectorAll("[data-ts-item]").forEach((element) => {
-                            //     element.remove();
-                            // });
 
                             document.querySelectorAll(".unit-name").forEach((element) => {
                                 element.textContent = data.unit_name;

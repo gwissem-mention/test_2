@@ -1,0 +1,59 @@
+<?php
+
+namespace App\Oodrive\Exception;
+
+enum OodriveErrorsEnum: string
+{
+    case INTERNAL_SERVER_ERROR = '000';
+    case IS_NOT_A_FOLDER = '001';
+    case INCORRECT_NAME_POLICY = '002';
+    case NOT_IMPLEMENTED_ERROR = '003';
+    case NO_SPACE_LEFT = '004';
+    case TOO_MANY_FOUND = '005';
+    case NAME_ALREADY_EXIST = '006';
+    case NOT_FOUND = '007';
+    case MALFORMED_REQUEST = '008';
+    case FORBIDDEN = '009';
+    case REQUEST_TIMEOUT = '010';
+    case IS_NOT_A_FILE = '011';
+    case ALREADY_SHARED_AS_DROP_BOX = '013';
+    case ALREADY_SHARED_AS_COLLABORATIVE = '014';
+    case METHOD_NOT_ALLOWED = '015';
+    case SHARING_UNMODIFIABLE = '016';
+    case MULTIPLE_ITEM_OWNERS = '017';
+    case MAX_DEPTH_REACHED = '020';
+    case OFFSET_OUT_OF_BOUNDS = '021';
+    case FORBIDDEN_FILE_EXTENSION = '022';
+    case INFECTED_FILE = '023';
+    case INVALID_ITEM_STATE = '024';
+    case CYCLIC_PATH_DETECTED = '025';
+    case ITEM_LOCKED = '026';
+    case ZIP_OVERFLOW = '027';
+    case BAD_ITEM_STREAM = '028';
+    case TOO_MANY_ELEMENTS = '029';
+    case SHARING_INVALID_OPERATION = '030';
+    case SHARING_INVALID_RECIPIENT = '032';
+    case ITEM_ALREADY_EXISTS = '033';
+    case DOWNLOAD_LIMIT_EXCEEDED = '034';
+    case MAX_CONCURRENT_COPY_REACHED = '035';
+    case INVALID_PATH = '036';
+    case UNSUPPORTED_MEDIA_TYPE = '045';
+    case NOT_ACCEPTABLE = '046';
+    case ETAG_MISMATCH = '047';
+    case DOWNLOAD_NOT_READY = '048';
+    case TOKEN_ALREADY_LINKED_TO_OBSOLETE_ITEM_ID = '049';
+    case NOT_A_COLLABORATIVE_SHARING = '050';
+    case PERMISSION_ALREADY_EXISTS = '077';
+    case AUTHENTICATION_FAILED = '150';
+    case ILLEGAL_ACCESS = '151';
+    case CREDENTIALS_EXPIRED = '152';
+    case ACCESS_DENIED = '157';
+    case INVALID_TOKEN = '158';
+    case INVALID_FIELDS = '200';
+    case INVALID_PARAMS = '300';
+    case PROFILE_NAME_ALREADY_EXISTS = '701';
+    case PROFILE_EMPTY = '702';
+    case ANNOTATION_NOT_FOUND = '801';
+    case ANNOTATION_FORBIDDEN = '802';
+    case ANNOTATION_UPDATE_PRECONDITION_MISMATCH = '803';
+}

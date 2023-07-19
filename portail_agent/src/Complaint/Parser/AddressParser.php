@@ -16,8 +16,14 @@ class AddressParser
             $department = (string) $context[1];
 
             return new ParserAddressDTO(
-                $address->label ?? '', $address->city ?? '', $address->postcode ?? '',
-                $address->citycode ?? '', $address->houseNumber ?? '', '', $address->street ?? '', $department,
+                $address->label ?? '',
+                $address->city ?? '',
+                $address->postcode ?? '',
+                $address->citycode ?? '',
+                $address->houseNumber ?? '',
+                '', // TODO: extract street type from street name for french// address if possible
+                $address->street ?? '',
+                $department,
                 $departmentNumber
             );
         }
@@ -31,8 +37,13 @@ class AddressParser
             .' '.$address->city.' '.$address->context.' '.$address->postcode;
 
         return new ParserAddressDTO(
-            $addressConcat, $address->city ?? '', $address->postcode ?? '', '', $address->houseNumber ?? '',
-            $address->type ?? '', $address->street ?? ''
+            $addressConcat,
+            $address->city ?? '',
+            $address->postcode ?? '',
+            '',
+            $address->houseNumber ?? '',
+            $address->type ?? '',
+            $address->street ?? ''
         );
     }
 }

@@ -6,6 +6,13 @@ import {HttpStatusCodeEnum} from "../scripts/utils/HttpStatusCodeEnum";
 
 const {Dropzone} = require("dropzone");
 
+type RejectFetchResponse = { form: string };
+type AssignFetchResponse = { form: string, agent_name: string };
+type UnitReassignFetchResponse = { form: string, unit_name: string };
+type UnitReassignRejectFetchResponse = { form: string };
+type SendReportFetchResponse = { form: string };
+type ValidateAppointmentFetchResponse = { form: string };
+
 export default class extends Controller {
     static override targets: string[] = [
         "appointmentDoneRadioButton",
@@ -47,6 +54,7 @@ export default class extends Controller {
     declare readonly sendToLrpModalTarget: HTMLElement;
     declare readonly dropZoneErrorTarget: HTMLFormElement;
 
+
     public override connect() {
         this.scrollCommentFeed();
         this.openUnitReassignmentValidationModal();
@@ -61,7 +69,7 @@ export default class extends Controller {
         })
             .then((response: Response) => {
                 response.json()
-                    .then((data: any) => { // TODO: Remove any type, create a specific type for this.
+                    .then((data: RejectFetchResponse) => {
                         if (response.status === HttpStatusCodeEnum.OK) {
                             Modal.getInstance(this.rejectModalTarget)?.hide();
                             Modal.getInstance(this.rejectModalTarget)?.dispose();
@@ -93,7 +101,7 @@ export default class extends Controller {
             })
                 .then((response: Response) => {
                     response.json()
-                        .then(data => {
+                        .then((data: AssignFetchResponse) => {
                             if (response.status === HttpStatusCodeEnum.OK) {
                                 Modal.getInstance(this.assignmentModalTarget)?.hide();
 
@@ -128,7 +136,7 @@ export default class extends Controller {
             })
                 .then((response: Response) => {
                     response.json()
-                        .then((data: any) => { // TODO: Remove any type, create a specific type for this.
+                        .then((data: UnitReassignFetchResponse) => {
                             if (response.status === HttpStatusCodeEnum.OK) {
                                 Modal.getInstance(this.unitReassignmentModalTarget)?.hide();
 
@@ -167,7 +175,7 @@ export default class extends Controller {
             })
                 .then((response: Response) => {
                     response.json()
-                        .then((data: any) => { // TODO: Remove any type, create a specific type for this.
+                        .then((data: UnitReassignRejectFetchResponse) => {
                             if (response.status === HttpStatusCodeEnum.OK) {
                                 Modal.getInstance(this.unitReassignmentModalTarget)?.hide();
 
@@ -253,7 +261,7 @@ export default class extends Controller {
             })
                 .then((response: Response) => {
                     response.json()
-                        .then((data: any) => { // TODO: Remove any type, create a specific type for this.
+                        .then((data: SendReportFetchResponse) => {
                             if (response.status === HttpStatusCodeEnum.OK) {
                                 Modal.getInstance(this.sendReportModalTarget)?.hide();
 
@@ -334,7 +342,7 @@ export default class extends Controller {
             })
                 .then((response: Response) => {
                     response.json()
-                        .then((data: any) => { // TODO: Remove any type, create a specific type for this.
+                        .then((data: ValidateAppointmentFetchResponse) => {
                             if (response.status === HttpStatusCodeEnum.OK) {
                                 this.reloadComplaintContainer();
                             } else {
