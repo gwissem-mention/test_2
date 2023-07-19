@@ -69,6 +69,10 @@ class ComplaintAssignementer
             $this->complaintWorkflowManager->assign($complaint);
         }
 
+        if (true === $isReassignment) {
+            $complaint->incrementReassignmentCounter();
+        }
+
         $complaint->setAssignedTo($user);
 
         $this->messageBus->dispatch(new AssignementMessage($complaint, $user, $isReassignment));
