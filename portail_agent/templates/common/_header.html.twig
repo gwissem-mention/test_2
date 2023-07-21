@@ -67,13 +67,13 @@
                 <nav class="fr-nav d-flex align-items-center justify-content-between" id="navigation-494" role="navigation" aria-label="{{ 'pel.menu'|trans }}">
                     <ul class="fr-nav__list">
                         <li class="fr-nav__item">
-                            <a class="fr-nav__link text-blue-active reset-link border-bottom-active border-blue-active background-transparent {% if app.request.attributes.get('_route') in ['dashboard', 'dashboard_priority'] %}active{% endif %}" href="{{ path('dashboard') }}" target="_self">{{ 'pel.dashboard'|trans }}</a>
+                            <a class="fr-nav__link text-blue-hover reset-link border-bottom-active border-blue-active background-transparent {% if app.request.attributes.get('_route') in ['dashboard', 'dashboard_priority'] %}active{% endif %}" href="{{ path('dashboard') }}" target="_self">{{ 'pel.dashboard'|trans }}</a>
                         </li>
                         <li class="fr-nav__item">
-                            <a class="fr-nav__link text-blue-active reset-link border-bottom-active border-blue-active background-transparent {% if app.request.attributes.get('_route') is same as('home') %}active{% endif %}" href="{{ path('home') }}" target="_self">{{ 'pel.the.declarations'|trans }}</a>
+                            <a class="fr-nav__link text-blue-hover reset-link border-bottom-active border-blue-active background-transparent {% if app.request.attributes.get('_route') is same as('home') %}active{% endif %}" href="{{ path('home') }}" target="_self">{{ 'pel.the.declarations'|trans }}</a>
                         </li>
                         <li class="fr-nav__item">
-                            <a class="fr-nav__link text-blue-active reset-link border-bottom-active border-blue-active background-transparent {% if app.request.attributes.get('_route') is same as('faq') %}active{% endif %}" href="{{ path('faq') }}" target="_self">{{ 'pel.faq.space'|trans }}</a>
+                            <a class="fr-nav__link text-blue-hover reset-link border-bottom-active border-blue-active background-transparent {% if app.request.attributes.get('_route') is same as('faq') %}active{% endif %}" href="{{ path('faq') }}" target="_self">{{ 'pel.faq.space'|trans }}</a>
                         </li>
                     </ul>
                     {% if app.user %}

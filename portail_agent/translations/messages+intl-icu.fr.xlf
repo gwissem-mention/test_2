@@ -890,6 +890,10 @@
                 <source>pel.search</source>
                 <target>Rechercher</target>
             </trans-unit>
+            <trans-unit id="pel.search.by.keyword.or.reference">
+                <source>pel.search.by.keyword.or.reference</source>
+                <target>Rechercher par mots-clés, une question, une référence...</target>
+            </trans-unit>
             <trans-unit id="pel.search.your.declarations">
                 <source>pel.search.your.declarations</source>
                 <target>Rechercher vos déclarations...</target>
@@ -1453,6 +1457,18 @@
             <trans-unit id="pel.general.activity.data">
                 <source>pel.general.activity.data</source>
                 <target>Données générales d'activité</target>
+            </trans-unit>
+            <trans-unit id="pel.video.tutorial">
+                <source>pel.video.tutorial</source>
+                <target>Tutoriel vidéo</target>
+            </trans-unit>
+            <trans-unit id="pel.regulatory.information">
+                <source>pel.regulatory.information</source>
+                <target>Infos réglementaires</target>
+            </trans-unit>
+            <trans-unit id="pel.useful.numbers">
+                <source>pel.useful.numbers</source>
+                <target>Numéros utiles</target>
             </trans-unit>
         </body>
     </file>
