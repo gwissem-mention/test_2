@@ -15,7 +15,6 @@ parameters:
     app.referentials_base_path: '%kernel.project_dir%/referentials'
     app.jedonnemonavis_id: '%env(JEDONNEMONAVIS_ID)%'
     app.jedonnemonavis_key: '%env(JEDONNEMONAVIS_KEY)%'
-    app.file_services: '%env(FILE_SERVICES)%'
     app.folder_rotation.count: '%env(FOLDER_ROTATION_COUNT)%'
     app.folder_rotation.treshold: '%env(FOLDER_ROTATION_TRESHOLD)%'
     app.oodrive.root_folder_id: '%env(OODRIVE_ROOT_FOLDER_ID)%'
@@ -92,10 +91,6 @@ services:
     App\Referential\DataFixtures\CityService\CityServiceFileFixtures:
         arguments:
             $citiesServicesFixturesPath: '%app.referentials_base_path%/%app.file_cities_services%'
-    
-    App\Referential\DataFixtures\Service\ServiceFileFixtures:
-        arguments:
-            $servicesFixturesPath: '%app.referentials_base_path%/%app.file_services%'
     
     App\Referential\DataFixtures\Unit\UnitGNFileFixtures:
         arguments:

@@ -275,16 +275,18 @@
                 </div>
             </div>
             {% if complaint.affectedService is not null %}
-                <hr>
-                {% set service = complaint.affectedService|service %}
-                <div class="fr-grid-row">
-                    <div class="fr-col">
-                        <h3>{{ 'pel.place.complaint.handling'|trans }}</h3>
-                        <ul>
-                            <li>{{ service.publicName ?? service.name }} - {{ service.address|replace({'$': " "}) }}</li>
-                        </ul>
+                {% set unit = complaint.affectedService|unit %}
+                {% if unit is not null %}
+                    <hr>
+                    <div class="fr-grid-row">
+                        <div class="fr-col">
+                            <h3>{{ 'pel.place.complaint.handling'|trans }}</h3>
+                            <ul>
+                                <li>{{ unit.name }} - {{ unit.address }}</li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
+                {% endif %}
             {% endif %}
             <hr>
             <p><strong>{{ 'pel.note'|trans }}</strong> : {{ 'pel.summary.is.not.legal.proof'|trans }}</p>

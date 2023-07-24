@@ -207,8 +207,8 @@ Feature:
 
     Scenario: I should see units markers when I search in the search input
         When I fill in the map autocomplete "map-search" with "voiron" and click on the first result
-        Then I should see 2 ".unit-list-item" element
-        And I should see "2 résultats"
+        Then I should see 3 ".unit-list-item" element
+        And I should see "3 résultats"
         When I click the "li[data-unit-id-anonym=1008950] .unit-select" element
         Then I should see a "li[data-unit-id-anonym=1008950] .unit-unselect" element
         Then I should not see a "li[data-unit-id-anonym=1008950] .unit-unselect.fr-hidden" element
@@ -221,7 +221,7 @@ Feature:
         And I press "appointment_submit"
         Then I should be on "/porter-plainte/fin"
         Given I am on "/porter-plainte/recapitulatif"
-        Then I should see "Brigade de proximité de Renage - Renage"
+        Then I should see "Brigade de proximité de Renage - 339 Rue de la République 38140 RENAGE"
 
     Scenario: I can unpick a unit
         When I fill in the map autocomplete "map-search" with "voiron" and click on the first result
@@ -238,7 +238,7 @@ Feature:
         When I press "appointment_submit"
         Then I should be on "/porter-plainte/fin"
         Given I am on "/porter-plainte/recapitulatif"
-        Then I should see "Brigade de proximité de Renage - Renage"
+        Then I should see "Brigade de proximité de Renage - 339 Rue de la République 38140 RENAGE"
 
     Scenario: I can see the gendarmerie accessibility information
         When I fill in the map autocomplete "map-search" with "voiron" and click on the first result
