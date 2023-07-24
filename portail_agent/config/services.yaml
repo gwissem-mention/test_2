@@ -2,7 +2,6 @@ parameters:
     sso.enabled: '%env(bool:ENABLE_SSO)%'
     app.file_units_gn: '%env(FILE_UNITS_GN)%'
     app.file_units_pn: '%env(FILE_UNITS_PN)%'
-    app.file_services: '%env(FILE_SERVICES)%'
     app.referentials_base_path: '%kernel.project_dir%/referentials'
     app.complaints_base_path: '%kernel.project_dir%/var/complaints'
     app.folder_rotation.count: '%env(FOLDER_ROTATION_COUNT)%'
@@ -38,10 +37,6 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
-    App\Referential\DataFixtures\Service\ServiceFileFixtures:
-        arguments:
-            $servicesFixturesPath: '%app.referentials_base_path%/%app.file_services%'
-    
     App\Referential\DataFixtures\Unit\UnitGNFileFixtures:
         arguments:
             $unitsGNFixturesPath: '%app.referentials_base_path%/%app.file_units_gn%'

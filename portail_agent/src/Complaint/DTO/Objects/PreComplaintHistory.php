@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Complaint\DTO\Objects;
 
 use App\Entity\Complaint;
-use App\Referential\Entity\Service;
+use App\Referential\Entity\Unit;
 
 final class PreComplaintHistory
 {
@@ -27,7 +27,7 @@ final class PreComplaintHistory
     }
 
     /**
-     * @param array{complaint:Complaint, file: string|false, service: Service, prejudiceObject: string|null} $data
+     * @param array{complaint:Complaint, file: string|false, unit: Unit, prejudiceObject: string|null} $data
      */
     public static function new(array $data): self
     {
@@ -38,8 +38,8 @@ final class PreComplaintHistory
             $data['complaint']->getCreatedAt(),
             self::FOLDER_CREATED,
             $data['file'],
-            $data['service']->getEmail(),
-            $data['service']->getHomeDepartmentEmail(),
+            $data['unit']->getEmail(),
+            $data['unit']->getHomeDepartmentEmail(),
             $data['complaint']->getIdentity()?->getEmail(),
             $data['prejudiceObject'],
             null

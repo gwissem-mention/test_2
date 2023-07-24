@@ -21,6 +21,9 @@ class UnitGNFileFixtures extends Fixture implements FixtureGroupInterface
     private const UNIT_PHONE = 5;
     private const UNIT_OPENING_HOURS = 11;
     private const UNIT_ID_ANONYM = 10;
+    private const UNIT_EMAIL = 4;
+    private const UNIT_DEPARTMENT_EMAIL = 9;
+    private const UNIT_DEPARTMENT = 6;
 
     private const GN_SERVICE_PREFIX = 3000000;
 
@@ -48,12 +51,15 @@ class UnitGNFileFixtures extends Fixture implements FixtureGroupInterface
                 while (is_array($data = fgetcsv($handle, self::LENGTH))) {
                     if ($row > 1) {
                         $unit = new Unit(
+                            $data[self::UNIT_EMAIL],
+                            $data[self::UNIT_DEPARTMENT_EMAIL],
                             (string) (self::GN_SERVICE_PREFIX + (int) $data[self::UNIT_CODE]),
                             $data[self::UNIT_CODE],
                             $data[self::UNIT_NAME],
                             $data[self::UNIT_LATITUDE],
                             $data[self::UNIT_LONGITUDE],
                             $data[self::UNIT_ADDRESS],
+                            $data[self::UNIT_DEPARTMENT],
                             $data[self::UNIT_PHONE],
                             $data[self::UNIT_OPENING_HOURS],
                             $data[self::UNIT_ID_ANONYM],
