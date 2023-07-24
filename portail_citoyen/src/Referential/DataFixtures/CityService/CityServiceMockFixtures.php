@@ -25,7 +25,7 @@ class CityServiceMockFixtures extends Fixture implements FixtureGroupInterface
             new CityService('38383', '3002739'),
             new CityService('38432', '3002739'),
             new CityService('38563', '66459'),
-            new CityService('75111', '55016'),
+            new CityService('75111', '17501026'),
         ];
 
         foreach ($cityServices as $cityService) {

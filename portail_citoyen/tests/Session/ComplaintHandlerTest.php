@@ -55,6 +55,6 @@ class ComplaintHandlerTest extends KernelTestCase
 
         $serviceCode = $this->complaintHandler->getAffectedService($complaint);
 
-        $this->assertEquals('55016', $serviceCode);
+        $this->assertEquals('17501026', $serviceCode);
     }
 }
