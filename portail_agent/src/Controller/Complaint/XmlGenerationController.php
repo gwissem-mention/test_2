@@ -11,8 +11,7 @@ use App\Entity\User;
 use App\Generator\Complaint\ComplaintGeneratorInterface;
 use App\Logger\ApplicationTracesMessage;
 use App\Messenger\InformationCenter\InfocentreMessage;
-use App\Referential\Entity\Service;
-use App\Referential\Repository\ServiceRepository;
+use App\Referential\Entity\Unit;
 use App\Referential\Repository\UnitRepository;
 use App\Repository\ComplaintRepository;
 use App\Repository\DQLComplaintRepository;
@@ -30,7 +29,6 @@ class XmlGenerationController extends AbstractController
     public function __invoke(
         Complaint $complaint,
         ComplaintGeneratorInterface $generatorXml,
-        ServiceRepository $serviceRepository,
         ComplaintRepository $complaintRepository,
         ComplaintWorkflowManager $complaintWorkflowManager,
         DQLComplaintRepository $DQLComplaintRepository,
@@ -41,8 +39,8 @@ class XmlGenerationController extends AbstractController
         $complaintRepository->save($complaint, true);
         /** @var User $user */
         $user = $this->getUser();
-        /** @var Service $service */
-        $service = $serviceRepository->findOneBy(['code' => $user->getServiceCode()]);
+        /** @var Unit $unit */
+        $unit = $unitRepository->findOneBy(['serviceId' => $user->getServiceCode()]);
 
         $tmpFileName = (new Filesystem())->tempnam(sys_get_temp_dir(), 'sb_');
         $tmpFile = fopen($tmpFileName, 'wb+');
@@ -52,7 +50,7 @@ class XmlGenerationController extends AbstractController
         }
 
         /** @var \SimpleXMLElement $xml */
-        $xml = $generatorXml->generate($complaint, $service);
+        $xml = $generatorXml->generate($complaint, $unit);
         if (is_string($xml->asXML())) {
             fputs($tmpFile, $xml->asXML());
         }
@@ -62,7 +60,7 @@ class XmlGenerationController extends AbstractController
                 'complaint' => $complaint,
                 'prejudiceObject' => false !== $xml->Objet->asXML() ? $xml->Objet->asXML() : null,
                 'file' => file_get_contents($tmpFileName),
-                'service' => $service,
+                'unit' => $unit,
             ]
         ));
         /** @var string $unitCode */

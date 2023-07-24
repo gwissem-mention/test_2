@@ -17,7 +17,7 @@ use App\Entity\FactsObjects\Vehicle;
 use App\Entity\Identity;
 use App\Entity\Witness;
 use App\Generator\Complaint\ComplaintXmlGenerator;
-use App\Referential\Entity\Service;
+use App\Referential\Entity\Unit;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class ComplaintXmlGeneratorTest extends KernelTestCase
@@ -35,18 +35,21 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         /** @var ComplaintXmlGenerator $xmlGenerator */
         $xmlGenerator = $container->get(ComplaintXmlGenerator::class);
 
-        $service = (new Service(
-            null,
-            null,
+        $unit = new Unit(
+            'ddsp38-csp-voiron-ppel@interieur.gouv.fr',
+            'ddsp38-ppel@interieur.gouv.fr',
             '103131',
-            'CSP VOIRON/SVP/UPS/BRIGADE DE JOUR',
-            'CSP VOIRON/SVP/UPS/BRIGADE DE JOUR',
-            'Voiron',
-            '75',
-            '630',
-            Institution::PN,
-            null
-        ));
+            '103131',
+            'Commissariat de police de Voiron',
+            '45.362186',
+            '5.59077',
+            '114 cours Becquart Castelbon 38500 VOIRON',
+            '38',
+            '04 76 65 93 93',
+            '24h/24 - 7j/7',
+            '4083',
+            Institution::PN
+        );
 
         $complaint = (new Complaint())
             ->setCreatedAt(new \DateTimeImmutable('2022-12-01'))
@@ -205,7 +208,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
             );
 
         /** @var string $xml */
-        $xml = $xmlGenerator->generate($complaint, $service)->asXML();
+        $xml = $xmlGenerator->generate($complaint, $unit)->asXML();
 
         $this->xmlContent = mb_convert_encoding($xml, 'UTF-8', 'ISO-8859-1');
 
@@ -238,7 +241,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
             );
 
         /** @var string $xmlWithCorporationRepresented */
-        $xmlWithCorporationRepresented = $xmlGenerator->generate($complaint, $service)->asXML();
+        $xmlWithCorporationRepresented = $xmlGenerator->generate($complaint, $unit)->asXML();
 
         $this->xmlContentWithCorporationRepresented = mb_convert_encoding($xmlWithCorporationRepresented, 'UTF-8', 'ISO-8859-1');
     }
@@ -250,13 +253,13 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         //        $this->assertStringContainsString('<Flag_Debut>03/01/2023 10:02:34</Flag_Debut>', $this->xmlContent);
         //        $this->assertStringContainsString('<Flag_Fin>03/01/2023 10:45:04</Flag_Fin>', $this->xmlContent);
         //        $this->assertStringContainsString('<Flag_Ip>127.0.0.1</Flag_Ip>', $this->xmlContent);
-        $this->assertStringContainsString('<Mail_Unite/>', $this->xmlContent);
-        $this->assertStringContainsString('<Mail_Unite_Departement_Actif/>', $this->xmlContent);
+        $this->assertStringContainsString('<Mail_Unite>ddsp38-csp-voiron-ppel@interieur.gouv.fr</Mail_Unite>', $this->xmlContent);
+        $this->assertStringContainsString('<Mail_Unite_Departement_Actif>ddsp38-ppel@interieur.gouv.fr</Mail_Unite_Departement_Actif>', $this->xmlContent);
         $this->assertStringContainsString('<Code_Unite>103131</Code_Unite>', $this->xmlContent);
-        $this->assertStringContainsString('<unite_dpt>75</unite_dpt>', $this->xmlContent);
-        $this->assertStringContainsString('<unite_nom>CSP VOIRON/SVP/UPS/BRIGADE DE JOUR</unite_nom>', $this->xmlContent);
-        $this->assertStringContainsString('<unite_adr>Voiron</unite_adr>', $this->xmlContent);
-        $this->assertStringContainsString('<unite_tph>630</unite_tph>', $this->xmlContent);
+        $this->assertStringContainsString('<unite_dpt>38</unite_dpt>', $this->xmlContent);
+        $this->assertStringContainsString('<unite_nom>Commissariat de police de Voiron</unite_nom>', $this->xmlContent);
+        $this->assertStringContainsString('<unite_adr>114 cours Becquart Castelbon 38500 VOIRON</unite_adr>', $this->xmlContent);
+        $this->assertStringContainsString('<unite_tph>04 76 65 93 93</unite_tph>', $this->xmlContent);
         $this->assertStringContainsString('<unite_institution>PN</unite_institution>', $this->xmlContent);
         //        $this->assertStringContainsString('<TC_Domicile>9</TC_Domicile>', $this->xmlContent);
         //        $this->assertStringContainsString('<TC_Domicile>9</TC_Domicile>', $this->xmlContent);

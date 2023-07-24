@@ -55,8 +55,32 @@ class Unit
     #[ORM\Column(length: 255, nullable: true, enumType: Institution::class)]
     private ?Institution $institutionCode;
 
-    public function __construct(string $serviceId, string $code, string $name, string $latitude, string $longitude, string $address, string $phone, string $openingHours, string $idAnonym, ?Institution $institutionCode)
-    {
+    #[ORM\Column(length: 254)]
+    private string $email;
+
+    #[ORM\Column(length: 255)]
+    private string $homeDepartmentEmail;
+
+    #[ORM\Column(length: 255)]
+    private string $department;
+
+    public function __construct(
+        string $email,
+        string $homeDepartmentEmail,
+        string $serviceId,
+        string $code,
+        string $name,
+        string $latitude,
+        string $longitude,
+        string $address,
+        string $department,
+        string $phone,
+        string $openingHours,
+        string $idAnonym,
+        ?Institution $institutionCode
+    ) {
+        $this->email = $email;
+        $this->homeDepartmentEmail = $homeDepartmentEmail;
         $this->serviceId = $serviceId;
         $this->code = $code;
         $this->name = $name;
@@ -67,6 +91,7 @@ class Unit
         $this->openingHours = $openingHours;
         $this->idAnonym = $idAnonym;
         $this->institutionCode = $institutionCode;
+        $this->department = $department;
     }
 
     public function getId(): ?int
@@ -122,5 +147,41 @@ class Unit
     public function getInstitutionCode(): ?Institution
     {
         return $this->institutionCode;
+    }
+
+    public function getHomeDepartmentEmail(): string
+    {
+        return $this->homeDepartmentEmail;
+    }
+
+    public function setHomeDepartmentEmail(string $homeDepartmentEmail): self
+    {
+        $this->homeDepartmentEmail = $homeDepartmentEmail;
+
+        return $this;
+    }
+
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    public function getDepartment(): string
+    {
+        return $this->department;
+    }
+
+    public function setDepartment(string $department): self
+    {
+        $this->department = $department;
+
+        return $this;
     }
 }
