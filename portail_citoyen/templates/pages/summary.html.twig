@@ -1,7 +1,7 @@
 {% extends 'layout.html.twig' %}
 
 {% block body %}
-    {% embed 'common/_modal.html.twig' with {'id':'complaint-confirm', 'size':'lg'} %}
+    {% embed 'common/_modal.html.twig' with {'id':'complaint-confirm-and-make-appointment', 'size':'lg'} %}
         {% block title %}
             {{ 'pel.declaration.confirmation'|trans }}
         {% endblock %}
@@ -16,6 +16,30 @@
             <ul class="fr-btns-group fr-btns-group--right fr-btns-group--inline-reverse fr-btns-group--inline-lg fr-btns-group--icon-left">
                 <li>
                     <a href="{{ path('complaint_appointment') }}" class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line" id="appointment_submit">{{ 'pel.i.confirm'|trans }}</a>
+                </li>
+                <li>
+                    <a href="{{ path('complaint_summary') }}" class="fr-btn fr-btn--secondary">
+                        {{ 'pel.cancel'|trans }}
+                    </a>
+                </li>
+            </ul>
+        {% endblock %}
+    {% endembed %}
+    {% embed 'common/_modal.html.twig' with {'id':'complaint-confirm', 'size':'lg'} %}
+        {% block title %}
+            {{ 'pel.declaration.confirmation'|trans }}
+        {% endblock %}
+        {% block body %}
+            <ul>
+                <li>{{ 'pel.i.confirm.declaration.is.complete'|trans }}</li>
+                <li>{{ 'pel.i.am.inform.of.article.434.26'|trans }}</li>
+                <li>{{ 'pel.i.consent.use.of.data.for.fsi'|trans }}</li>
+            </ul>
+        {% endblock %}
+        {% block footer %}
+            <ul class="fr-btns-group fr-btns-group--right fr-btns-group--inline-reverse fr-btns-group--inline-lg fr-btns-group--icon-left">
+                <li>
+                    <a href="{{ path('complaint_without_appointment') }}" class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line" id="complaint_submit">{{ 'pel.i.confirm'|trans }}</a>
                 </li>
                 <li>
                     <a href="{{ path('complaint_summary') }}" class="fr-btn fr-btn--secondary">
@@ -292,7 +316,18 @@
             <p><strong>{{ 'pel.note'|trans }}</strong> : {{ 'pel.summary.is.not.legal.proof'|trans }}</p>
             <div class="flex--between fr-mt-3w fr-mb-3w">
                 <a href="{{ path('complaint_additional_information') }}" class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-arrow-left-line">{{ 'pel.previous'|trans }}</a>
-                <button class="fr-btn fr-float-right fr-btn--icon-right fr-icon-arrow-right-line" data-fr-opened="false" aria-controls="fr-modal-complaint-confirm">{{ 'pel.next'|trans }}</button>
+                {% if complaint.isAppointmentRequired is same as(false) %}
+                    <ul class="fr-btns-group fr-btns-group--right fr-btns-group--inline fr-btns-group--inline-lg fr-btns-group--icon-left">
+                        <li>
+                            <button class="fr-btn fr-right fr-btn--icon-right fr-icon-arrow-right-line" data-fr-opened="false" aria-controls="fr-modal-complaint-confirm-and-make-appointment">{{ 'pel.make.an.appointment.with.an.agent'|trans }}</button>
+                        </li>
+                        <li>
+                            <button class="fr-btn fr-float-right fr-btn--icon-right fr-icon-arrow-right-line" data-fr-opened="false" aria-controls="fr-modal-complaint-confirm">{{ 'pel.next'|trans }}</button>
+                        </li>
+                    </ul>
+                {% else %}
+                    <button class="fr-btn fr-float-right fr-btn--icon-right fr-icon-arrow-right-line" data-fr-opened="false" aria-controls="fr-modal-complaint-confirm-and-make-appointment">{{ 'pel.next'|trans }}</button>
+                {% endif %}
             </div>
         </div>
     </div>

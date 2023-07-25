@@ -146,7 +146,7 @@ Feature:
         And I should see the key "pel.note" translated
         And I should see the key "pel.summary.is.not.legal.proof" translated
         When I press "Continuer"
-        Then I should see 1 "#fr-modal-complaint-confirm[open=true]" element
+        Then I should see 1 "#fr-modal-complaint-confirm-and-make-appointment[open=true]" element
         And I should see the key "pel.declaration.confirmation" translated
         And I should see the key "pel.i.confirm.declaration.is.complete" translated
         And I should see the key "pel.i.am.inform.of.article.434.26" translated

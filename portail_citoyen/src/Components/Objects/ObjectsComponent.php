@@ -10,6 +10,7 @@ use App\Form\Model\EtalabInput;
 use App\Form\Model\FileModel;
 use App\Form\Model\Objects\ObjectsModel;
 use App\Form\Objects\ObjectsType;
+use App\Session\ComplaintHandler;
 use App\Session\ComplaintModel;
 use App\Session\SessionHandler;
 use League\Flysystem\FilesystemException;
@@ -99,8 +100,11 @@ class ObjectsComponent extends AbstractController
      * @throws FilesystemException
      */
     #[LiveAction]
-    public function submit(FilesystemOperator $defaultStorage, #[LiveArg] bool $redirectToSummary = false): RedirectResponse
-    {
+    public function submit(
+        FilesystemOperator $defaultStorage,
+        ComplaintHandler $complaintHandler,
+        #[LiveArg] bool $redirectToSummary = false
+    ): RedirectResponse {
         foreach ($this->documentOwnerAddresses as $addressIndex => $address) {
             if (isset($this->formValues['objects'][$addressIndex]['documentType']['documentAdditionalInformation']['documentOwnerAddress'])) {
                 $this->formValues['objects'][$addressIndex]['documentType']['documentAdditionalInformation']['documentOwnerAddress']['address'] = $address['addressSearch'];
@@ -139,7 +143,11 @@ class ObjectsComponent extends AbstractController
             }
         }
 
-        $this->sessionHandler->setComplaint($complaint->setObjects($objects));
+        $this->sessionHandler->setComplaint(
+            $complaint
+                ->setObjects($objects)
+                ->setAppointmentRequired($complaintHandler->isAppointmentRequired($complaint))
+        );
 
         if (true === $redirectToSummary) {
             return $this->redirectToRoute('complaint_summary');

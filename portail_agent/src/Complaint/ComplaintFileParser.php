@@ -70,7 +70,7 @@ class ComplaintFileParser
             ->setCreatedAt(new \DateTimeImmutable($importedComplaint->createdAt->date, $dateTimeZone))
             ->setFranceConnected($importedComplaint->franceConnected)
             ->setAppointmentRequired($importedComplaint->appointmentRequired)
-            ->setAppointmentContactInformation($importedComplaint->appointment->appointmentContactText)
+            ->setAppointmentContactInformation($importedComplaint->appointment?->appointmentContactText)
             ->setConsentContactElectronics($importedComplaint->identity->consentContactElectronics);
 
         if (!is_null($importedComplaint->affectedService)) {

@@ -53,7 +53,7 @@ Feature:
         And I click the "label[for=additional_information_cctvAvailable_0]" element
         And I press "additional_information_submit"
         Then I should be on "/porter-plainte/recapitulatif"
-        When I press "Continuer"
+        When I press "Prenez un rendez-vous avec un agent"
         And I follow "Je confirme"
         Then I should be on "/porter-plainte/rendez-vous"
 
@@ -296,3 +296,39 @@ Feature:
         And I should see "Aucun sanitaire adapté mis à disposition dans l'établissement"
         And I should see the key "pel.accessibility.information.provided.by" translated
         And I should see the key "pel.acces.libre.api" translated
+
+    Scenario: If the appointment is not required, I should have a button to make an appointment
+        When I follow "Étape précédente"
+        Then I should be on "/porter-plainte/recapitulatif"
+        And I should see "Prenez un rendez-vous avec un agent"
+        And I should see "Continuer"
+
+    Scenario: If the appointment is required, I should only have a "Continue" button
+        When I follow "Étape précédente"
+        Then I should be on "/porter-plainte/recapitulatif"
+        When I follow "update-facts"
+        Then I should be on "/porter-plainte/faits/1"
+        When I click the "label[for=facts_victimOfViolence]" element
+        And I fill in "facts_victimOfViolenceText" with "Violence informations"
+        And I press "facts_submit_recap"
+        Then I should be on "/porter-plainte/recapitulatif"
+        And I should not see "Prenez un rendez-vous avec un agent"
+        And I should see "Continuer"
+
+    Scenario: I can make an appointment when it is not required
+        When I follow "Étape précédente"
+        Then I should be on "/porter-plainte/recapitulatif"
+        When I press "Prenez un rendez-vous avec un agent"
+        Then I should see 1 "#fr-modal-complaint-confirm-and-make-appointment[open=true]" element
+        When I follow "appointment_submit"
+        Then I should be on "/porter-plainte/rendez-vous"
+        When I press "appointment_submit"
+        Then I should be on "/porter-plainte/fin"
+
+    Scenario: I can finish the complaint without making an appointment if it is not required
+        When I follow "Étape précédente"
+        Then I should be on "/porter-plainte/recapitulatif"
+        When I press "Continuer"
+        Then I should see 1 "#fr-modal-complaint-confirm[open=true]" element
+        When I follow "complaint_submit"
+        Then I should be on "/porter-plainte/fin"

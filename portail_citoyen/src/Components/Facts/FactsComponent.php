@@ -122,6 +122,7 @@ class FactsComponent extends AbstractController
             $complaint
                 ->setFacts($facts)
                 ->setAffectedService($complaintHandler->getAffectedService($complaint))
+                ->setAppointmentRequired($complaintHandler->isAppointmentRequired($complaint))
         );
 
         if (true === $redirectToSummary) {
