@@ -168,6 +168,7 @@ class IdentityComponent extends AbstractController
             $complaint
                 ->setIdentity($identity)
                 ->setAffectedService($complaintHandler->getAffectedService($complaint))
+                ->setAppointmentRequired($complaintHandler->isAppointmentRequired($complaint))
         );
 
         if (true === $redirectToSummary) {

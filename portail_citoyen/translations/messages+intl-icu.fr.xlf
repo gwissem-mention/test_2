@@ -1202,6 +1202,10 @@
                 <source>pel.make.appointment</source>
                 <target>Prendre un rendez-vous</target>
             </trans-unit>
+            <trans-unit id="pel.make.an.appointment.with.an.agent">
+                <source>pel.make.an.appointment.with.an.agent</source>
+                <target>Prenez un rendez-vous avec un agent</target>
+            </trans-unit>
             <trans-unit id="pel.ministry">
                 <source>pel.ministry</source>
                 <target>Ministère</target>
