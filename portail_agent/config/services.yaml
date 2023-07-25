@@ -15,7 +15,13 @@ parameters:
     app.oodrive.report.cleanup.period: '%env(OODRIVE_REPORT_CLEANUP_PERIOD)%'
     app.oodrive.report.folder: '%env(OODRIVE_REPORT_FOLDER)%'
     app.oodrive.complaint.filename: '%env(OODRIVE_COMPLAINT_FILENAME)%'
-    
+    app.salesforce.id_domain: '%env(SALESFORCE_ID_DOMAIN)%'
+    app.salesforce.auth_subdomain: '%env(SALESFORCE_AUTH_SUBDOMAIN)%'
+    app.salesforce.rest_subdomain: '%env(SALESFORCE_REST_SUBDOMAIN)%'
+    app.salesforce.domain: '%env(SALESFORCE_DOMAIN)%'
+    app.salesforce.client_id: '%env(SALESFORCE_API_CLIENT_ID)%'
+    app.salesforce.client_secret: '%env(SALESFORCE_API_CLIENT_SECRET)%'
+
 services:
     _defaults:
         autowire: true
@@ -30,6 +36,10 @@ services:
             $tmpComplaintFolderId: '%app.oodrive.tmp_complaint_folder%'
             $oodriveReportFolderName: '%app.oodrive.report.folder%'
             $oodriveComplaintFilename: '%app.oodrive.complaint.filename%'
+            $salesForceClientId: '%app.salesforce.client_id%'
+            $salesForceClientSecret: '%app.salesforce.client_secret%'
+            $salesForceAuthDomain: 'https://%app.salesforce.id_domain%.%app.salesforce.auth_subdomain%.%app.salesforce.domain%'
+            $salesForceRestDomain: 'https://%app.salesforce.id_domain%.%app.salesforce.rest_subdomain%.%app.salesforce.domain%'
     App\:
         resource: '../src/'
         exclude:
