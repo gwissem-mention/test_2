@@ -7,3 +7,8 @@ framework:
                 headers:
                     Accept: 'application.json'
                     Content-Type: 'application.json'
+            salesforce.client:
+                scope: 'https://%env(SALESFORCE_ID_DOMAIN)%\.(rest|auth)\.marketingcloudapis\.com'
+                headers:
+                    Accept: 'application.json'
+                    Content-Type: 'application.json'
