@@ -190,6 +190,9 @@ class Complaint
     #[ORM\Column(options: ['default' => '0'])]
     private ?int $reassignmentCounter = 0;
 
+    #[ORM\Column(options: ['default' => '0'])]
+    private ?int $appointmentCancellationCounter = 0;
+
     public function __construct()
     {
         $this->objects = new ArrayCollection();
@@ -728,6 +731,20 @@ class Complaint
     public function incrementReassignmentCounter(): static
     {
         ++$this->reassignmentCounter;
+
+        return $this;
+    }
+
+    public function setAppointmentCancellationCounter(?int $appointmentCancellationCounter): static
+    {
+        $this->appointmentCancellationCounter = $appointmentCancellationCounter;
+
+        return $this;
+    }
+
+    public function incrementAppointmentCancellationCounter(): static
+    {
+        ++$this->appointmentCancellationCounter;
 
         return $this;
     }
