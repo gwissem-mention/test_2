@@ -36,7 +36,7 @@ Feature:
         When I follow "complaints_closed"
         Then I should be on "/?status=cloturee"
         And I should see 11 "tr" element
-        And I should see 10 ".btn-dark" element
+        And I should see 10 ".background-green" element
 
     @javascript
     Scenario: As a agent, I should see the reporting of my complaints, and I should be able to view the closed complaints
@@ -55,7 +55,7 @@ Feature:
         When I follow "complaints_ongoing_lrp"
         Then I should be on "/?status=en-cours-lrp"
         And I should see 11 "tr" element
-        And I should see 10 ".btn-warning" element
+        And I should see 10 ".background-yellow" element
 
     @javascript
     Scenario: As a agent, I should see the reporting of my complaints, and I should be able to view the ongoing LRP complaints
@@ -65,7 +65,7 @@ Feature:
         When I follow "complaints_ongoing_lrp"
         Then I should be on "/?status=en-cours-lrp"
         And I should see 11 "tr" element
-        And I should see 10 ".btn-warning" element
+        And I should see 10 ".background-yellow" element
 
     @javascript
     Scenario: As a supervisor, I should see the reporting of my unit, and I should be able to view the appointment pending complaints
@@ -74,7 +74,7 @@ Feature:
         When I follow "complaints_appointment_pending"
         Then I should be on "/?status=attente-rdv"
         And I should see 11 "tr" element
-        And I should see 10 ".btn-info" element
+        And I should see 10 ".background-cumulus" element
 
     @javascript
     Scenario: As a agent, I should see the reporting of my complaints, and I should be able to view the appointment pending complaints
@@ -93,7 +93,7 @@ Feature:
         When I follow "complaints_assignment_pending"
         Then I should be on "/?status=a-attribuer"
         And I should see 11 "tr" element
-        And I should see 10 ".btn-secondary" element
+        And I should see 10 ".background-blue" element
 
     @javascript
     Scenario: As a agent, I should see the reporting of my complaints, and I should not be able to view the assignment pending complaints
@@ -108,7 +108,7 @@ Feature:
         When I follow "complaints_unit_redirection_pending"
         Then I should be on "/?status=attente-reorientation"
         And I should see 11 "tr" element
-        And I should see 10 ".btn-unit-redirection-pending" element
+        And I should see 10 ".background-cumulus" element
 
     @javascript
     Scenario: As a agent, I should see the reporting of my complaints, and I should be able to view the unit reassignment pending complaints

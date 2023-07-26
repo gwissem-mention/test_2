@@ -1,44 +1,57 @@
 {% if workflow_has_marked_place(complaint, constant('App\\Entity\\Complaint::STATUS_APPOINTMENT_PENDING')) %}
-    {% set status_btn_color = 'info' %}
+    {# En attente de RDV #}
+    {% set status_btn_color = 'cumulus' %}
+    {% set status_text_color = 'black' %}
     {% set status = complaint.status %}
 {% elseif workflow_has_marked_place(complaint, constant('App\\Entity\\Complaint::STATUS_ASSIGNMENT_PENDING')) %}
-    {% set status_btn_color = 'secondary' %}
+    {# A attribuer #}
+    {% set status_btn_color = 'blue' %}
+    {% set status_text_color = 'white' %}
     {% set status = complaint.status %}
 {% elseif workflow_has_marked_place(complaint, constant('App\\Entity\\Complaint::STATUS_ASSIGNED')) %}
-    {% set status_btn_color = 'primary' %}
+    {# Attribuée #}
+    {% set status_btn_color = 'blue' %}
+    {% set status_text_color = 'white' %}
     {% set status = complaint.status %}
     {% if not is_granted('ROLE_SUPERVISOR') %}
         {% set status = 'pel.to.process' %}
     {% endif %}
 {% elseif workflow_has_marked_place(complaint, constant('App\\Entity\\Complaint::STATUS_CLOSED')) %}
-    {% set status_btn_color = 'dark' %}
+    {# Clôturée #}
+    {% set status_btn_color = 'green' %}
+    {% set status_text_color = 'white' %}
     {% set status = complaint.status %}
 {% elseif workflow_has_marked_place(complaint, constant('App\\Entity\\Complaint::STATUS_ONGOING_LRP')) %}
-    {% set status_btn_color = 'warning' %}
+    {# En cours LRP #}
+    {% set status_btn_color = 'yellow' %}
+    {% set status_text_color = 'black' %}
     {% set status = complaint.status %}
 {% elseif workflow_has_marked_place(complaint, constant('App\\Entity\\Complaint::STATUS_MP_DECLARANT')) %}
-    {% set status_btn_color = 'success' %}
+    {# Envoi PM déclarant #}
+    {% set status_btn_color = 'yellow' %}
+    {% set status_text_color = 'black' %}
     {% set status = complaint.status %}
 {% elseif workflow_has_marked_place(complaint, constant('App\\Entity\\Complaint::STATUS_REJECTED')) %}
-    {% set status_btn_color = 'danger' %}
+    {# Rejetée #}
+    {% set status_btn_color = 'red' %}
+    {% set status_text_color = 'white' %}
     {% set status = complaint.status %}
 {% elseif workflow_has_marked_place(complaint, constant('App\\Entity\\Complaint::STATUS_UNIT_REDIRECTION_PENDING')) %}
-    {% set status_btn_color = 'unit-redirection-pending' %}
+    {# En attente de réoritentation #}
+    {% set status_btn_color = 'cumulus' %}
+    {% set status_text_color = 'black' %}
     {% set status = complaint.status %}
 {% endif %}
-
-
 
 {{ {
     checkbox: include('pages/complaint/_partial/json/checkbox.html.twig', {'complaintId': complaint.id}),
     'createdAt':complaint.createdAt|date('d/m/Y', app.user.timezone),
     '__facts_natures':include('common/_complaint_natures.html.twig', {'natures':complaint.facts.natures}),
-    '__facts_startDate':complaint.facts.startDate|date('d/m/Y'),
-    'alert':complaint.alert|trans|u.truncate(15, '...'),
-    'appointmentDate': complaint.appointmentDate is empty or complaint.appointmentDate is empty ? "" : complaint.appointmentDate|date('d/m/Y') ~ ' ' ~ complaint.appointmentTime|format_time('short', timezone=app.user.timezone),
-    '__identity_firstname':(complaint.identity.firstName ~ ' ' ~ complaint.identity.lastName)|u.truncate(15, '...'),
-    'status': include('common/_link.html.twig', {path: path('complaint_summary', {id: complaint.id}), label: status|trans|u.truncate(15, '...'), class:'btn btn-sm btn-' ~ status_btn_color}),
+    'alert':include('common/_complaint_alert.html.twig', {'alert':complaint.alert}),
+    'appointmentDate': include('common/_complaint_date.html.twig', {'complaint': complaint}),
+    'status': include('common/_complaint_status.html.twig', {label: status|trans, background:'background-' ~ status_btn_color, text:'text-' ~ status_text_color}),
     '__assignedTo_appellation':complaint.assignedTo|u.truncate(15, '...'),
     'declarationNumber':include('common/_link.html.twig', {path: path('complaint_summary', {id: complaint.id}), label: complaint.declarationNumber}),
+    '__identity_firstname':(complaint.identity.firstName ~ ' ' ~ complaint.identity.lastName)|u.truncate(15, '...'),
     '___count_comments': complaint.comments|length,
 }|json_encode|raw }}

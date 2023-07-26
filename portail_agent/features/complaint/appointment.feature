@@ -36,7 +36,7 @@ Feature:
         When I fill in "appointment_appointmentDate" with "01/01/2023"
         And I fill in "appointment_appointmentTime" with "10:00am"
         And I press "Valider le RDV avec le déclarant"
-        Then I should see 1 ".invalid-feedback" element
+        Then I should see a "ul" element
 
     @javascript
     Scenario: I can submit the appointment form successfully
@@ -49,7 +49,7 @@ Feature:
         Then the "#appointment_appointmentTime" element should be disabled
         And I should see the key "pel.appointment.planned.with.the.victim" translated
         When I am on homepage
-        Then I should see "01/01/2025 10:00"
+        Then I should see "01/01/2025"
 
     @javascript
     Scenario: When I plan an appointment with the victim, the button "Send Report and Close" become "Close after the appointment"

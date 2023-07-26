@@ -1,0 +1,8 @@
+{% if alert is not empty %}
+    <div class="d-flex align-items-center justify-content-between">
+        <div class="me-3">{{ alert|trans|u.truncate(15, '...') }}</div>
+        <div class="background-red text-white p-2 circled">
+            <span class="fr-icon-warning-line" aria-hidden="true"></span>
+        </div>
+    </div>
+{% endif %}
