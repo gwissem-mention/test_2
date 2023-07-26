@@ -252,7 +252,7 @@
             </trans-unit>
             <trans-unit id="pel.comments">
                 <source>pel.comments</source>
-                <target>Commentaires</target>
+                <target>Com.</target>
             </trans-unit>
             <trans-unit id="pel.comments.feed">
                 <source>pel.comments.feed</source>
@@ -488,7 +488,7 @@
             </trans-unit>
             <trans-unit id="pel.firstname.lastname">
                 <source>pel.firstname.lastname</source>
-                <target>Nom/Prénom</target>
+                <target>Nom prénom</target>
             </trans-unit>
             <trans-unit id="pel.for.a.total.amount.of">
                 <source>pel.for.a.total.amount.of</source>
@@ -1469,6 +1469,10 @@
             <trans-unit id="pel.useful.numbers">
                 <source>pel.useful.numbers</source>
                 <target>Numéros utiles</target>
+            </trans-unit>
+            <trans-unit id="pel.appointment.to.plan">
+                <source>pel.appointment.to.plan</source>
+                <target>RDV à planifier</target>
             </trans-unit>
         </body>
     </file>

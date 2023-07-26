@@ -1,0 +1,12 @@
+{% if complaint is not empty %}
+    {% if complaint.appointmentDate is not empty %}
+        {{ complaint.appointmentDate|date('d/m/Y', app.user.timezone) }}
+    {% else %}
+        {% if complaint.appointmentRequired is same as(true) %}
+            <span class="text-blue">
+                <span class="fr-icon-calendar-2-line me-1" aria-hidden="true"></span>
+                {{ 'pel.appointment.to.plan'|trans }}
+            </span>
+        {% endif %}
+    {% endif %}
+{% endif %}

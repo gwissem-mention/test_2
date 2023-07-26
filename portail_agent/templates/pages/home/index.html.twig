@@ -124,24 +124,22 @@
                 data-dashboard-bulk-action-url-bulk-reassign-value="{{ path('complaint_bulk_reassign') }}"
                 class="w-100"
             >
-                {{ form_start(search_form, {'attr':{'class':'d-flex mb-4 w-50'}}) }}
-                <button class="fr-btn fr-btn--icon-left fr-btn--secondary fr-icon-equalizer-line mt-2 me-2" data-action="click->content-sidebar#openSidebar" data-content-sidebar-target="contentSidebarOpenButton">{{ 'pel.filters'|trans }}</button>
-                {{ form_widget(search_form.query, {'attr':{'class':'me-2', 'aria-label':'pel.search.your.declarations'|trans}}) }}
-                <button class="btn btn-outline-primary" type="submit">{{ 'pel.search'|trans }}</button>
-                <button class="btn btn-outline-danger mx-2" type="button" id="resetButton">{{ 'pel.reset'|trans }}</button>
-                {{ form_end(search_form) }}
-                {% if is_granted('ROLE_SUPERVISOR') %}
-                    <div id="groupActionsList" data-checkbox-group-target="groupAction" class="mb-3 d-none">
-                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-complaint-assign">
-                            <i class="bi bi-person-add"></i>
-                            {{ 'pel.assign.to'|trans }}
-                        </button>
-                        <button class="btn btn-outline-primary mx-2" data-bs-toggle="modal" data-bs-target="#modal-complaint-unit-reassign">
-                            <i class="bi bi-arrow-return-right"></i>
-                            {{ 'pel.validate.the.unit.reassignment'|trans }}
-                        </button>
+                <div class="d-flex align-items-center justify-content-start">
+                    <button class="fr-btn fr-btn--icon-left fr-btn--secondary fr-icon-equalizer-line me-4 mb-3" data-action="click->content-sidebar#openSidebar" data-content-sidebar-target="contentSidebarOpenButton">{{ 'pel.filters'|trans }}</button>
+                    {{ form_start(search_form) }}
+                    <div class="fr-search-bar mb-3 me-4" id="header-search" role="search">
+                        <label class="fr-label" for="search_query">{{ 'pel.search'|trans }}</label>
+                        {{ form_widget(search_form.query, {'attr':{'class':'fr-input', 'aria-label':'pel.search.your.declarations'|trans}}) }}
+                        <button class="fr-btn" title="{{ 'pel.search'|trans }}">{{ 'pel.search'|trans }}</button>
                     </div>
-                {% endif %}
+                    {{ form_end(search_form) }}
+                    {% if is_granted('ROLE_SUPERVISOR') %}
+                        <div id="groupActionsList" data-checkbox-group-target="groupAction" class="mb-3 d-none">
+                            <button class="fr-btn fr-btn--icon-left fr-icon-user-setting-fill me-4" data-bs-toggle="modal" data-bs-target="#modal-complaint-assign">{{ 'pel.assign.to'|trans }}</button>
+                            <button class="fr-btn fr-btn--icon-left fr-icon-arrow-go-forward-line" data-bs-toggle="modal" data-bs-target="#modal-complaint-unit-reassign">{{ 'pel.validate.the.unit.reassignment'|trans }}</button>
+                        </div>
+                    {% endif %}
+                </div>
                 <div class="table-responsive">
                     <table
                         class="table table-striped datatable w-100"
@@ -157,7 +155,7 @@
                             {% if is_granted('ROLE_SUPERVISOR') %}
                                 <th scope="col" data-datatable-target="theadCell" data-column="checkbox">
                                     {# DSFR hack to avoid bad input position #}
-                                    <div style="margin-top: -48px;">
+                                    <div style="margin-top: -35px;">
                                         <div class="fr-checkbox-group fr-checkbox-group--sm position-relative">
                                             <input
                                                 name="mainSelectorGroupAction"
@@ -174,13 +172,12 @@
                             {% endif %}
                             <th scope="col" data-datatable-target="theadCell" data-column="createdAt">{{ 'pel.deposit.date'|trans }}</th>
                             <th scope="col" data-datatable-target="theadCell" data-column="__facts_natures">{{ 'pel.facts'|trans }}</th>
-                            <th scope="col" data-datatable-target="theadCell" data-column="__facts_startDate">{{ 'pel.facts.date'|trans }}</th>
                             <th scope="col" data-datatable-target="theadCell" data-column="alert">{{ 'pel.alert'|trans }}</th>
                             <th scope="col" data-datatable-target="theadCell" data-column="appointmentDate">{{ 'pel.meeting.date'|trans }}</th>
-                            <th scope="col" data-datatable-target="theadCell" data-column="__identity_firstname">{{ 'pel.firstname.lastname'|trans }}</th>
                             <th scope="col" data-datatable-target="theadCell" data-column="status">{{ 'pel.status'|trans }}</th>
                             <th scope="col" data-datatable-target="theadCell" data-column="__assignedTo_appellation">{{ 'pel.a.opj.name'|trans }}</th>
                             <th scope="col" data-datatable-target="theadCell" data-column="declarationNumber">{{ 'pel.declaration.number'|trans }}</th>
+                            <th scope="col" data-datatable-target="theadCell" data-column="__identity_firstname">{{ 'pel.firstname.lastname'|trans }}</th>
                             <th scope="col" data-datatable-target="theadCell" data-column="___count_comments">{{ 'pel.comments'|trans }}</th>
                         </tr>
                         </thead>

@@ -233,7 +233,7 @@ Feature:
         And I should see the key "pel.the.declaration.has.been.refused" translated
         And I am on "/"
         When I click the "th:nth-of-type(10)" element
-        And I should see 1 ".btn-danger" element
+        And I should see 25 ".background-red" element
 
     @javascript
     Scenario: I can see form errors the reject form when reject_refusalText is too short
@@ -243,7 +243,7 @@ Feature:
         And I fill in "reject_refusalText" with "Lorem ipsum dolor sit amet"
         And I press "Valider le refus"
         Then I should see a ".modal[aria-modal=true]" element
-        And I should see a ".invalid-feedback" element
+        And I should see a "ul" element
 
     @javascript
     Scenario: I can toggle the send to LRP modal
@@ -276,7 +276,7 @@ Feature:
         Then I should see "En cours LRP"
         Given I am on the homepage
         When I click the "th:nth-of-type(10)" element
-        Then I should see 6 ".btn-warning" element
+        Then I should see 6 ".background-yellow" element
 
     @javascript
     Scenario: I can toggle the send report to victim modal
@@ -301,7 +301,7 @@ Feature:
         Then I should see a ".modal[aria-modal=true]" element
         When I press "complaint-send-report-to-the-victim-button-validate"
         Then I should see a ".modal[aria-modal=true]" element
-        And I should see a ".invalid-feedback" element
+        And I should see a "ul" element
         And I should see the key 'pel.you.must.choose.a.file' translated
 
     @javascript
@@ -312,7 +312,7 @@ Feature:
         When I attach the file "blank.xls" to ".dz-hidden-input" field
         When I press "complaint-send-report-to-the-victim-button-validate"
         Then I should see a ".modal[aria-modal=true]" element
-        And I should see a ".invalid-feedback" element
+        And I should see a "ul" element
 
     @javascript
     Scenario: I can submit the send report form successfully

@@ -1,12 +1,12 @@
 .table
-    &-head
-        color: var(--background-default-grey)
-        background-color: var(--text-action-high-blue-france)
-
     &.dataTable
         thead
             tr
                 th
+                    color: var(--text-active-grey)
+                    background: var(--background-default-grey-hover)
+                    border-bottom: 3px solid var(--text-active-grey)
+
                     &.sorting_asc
                         &:before
                             // Important is needed to override default DataTables style
@@ -18,6 +18,12 @@
                             opacity: 1 !important
 
         tr
+            &.odd
+                td
+                    @include reset-shadow
+                    background: var(--background-default-grey-hover)
+
             th,
             td
                 padding: $padding-15
+                vertical-align: middle

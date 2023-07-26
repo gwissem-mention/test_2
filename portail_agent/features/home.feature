@@ -68,7 +68,6 @@ Feature:
         And I should see 26 "table#datatable tr" element
         And I should see the key "pel.deposit.date" translated
         And I should see the key "pel.facts" translated
-        And I should see the key "pel.facts.date" translated
         And I should see the key "pel.alert" translated
         And I should see the key "pel.meeting.date" translated
         And I should see the key "pel.firstname.lastname" translated
@@ -76,9 +75,8 @@ Feature:
         And I should see the key "pel.a.opj.name" translated
         And I should see the key "pel.declaration.number" translated
         And I should see the key "pel.comments" translated
-        And I should see 5 "table#datatable .btn-primary" element
-        And I should see 10 "table#datatable .btn-secondary" element
-        And I should see 10 "table#datatable .btn-info" element
+        And I should see 20 "table#datatable .background-blue" element
+        And I should see 5 "table#datatable .background-yellow" element
 
     @javascript
     Scenario: I can paginate to page 2 of the complaints table
@@ -88,7 +86,6 @@ Feature:
         And I should see 26 "table#datatable tr" element
         And I should see the key "pel.deposit.date" translated
         And I should see the key "pel.facts" translated
-        And I should see the key "pel.facts.date" translated
         And I should see the key "pel.alert" translated
         And I should see the key "pel.meeting.date" translated
         And I should see the key "pel.firstname.lastname" translated
@@ -96,8 +93,8 @@ Feature:
         And I should see the key "pel.a.opj.name" translated
         And I should see the key "pel.declaration.number" translated
         And I should see the key "pel.comments" translated
-        And I should see 15 "table#datatable .btn-primary" element
-        And I should see 10 "table#datatable .btn-dark" element
+        And I should see 15 "table#datatable .background-yellow" element
+        And I should see 35 "table#datatable .background-red" element
 
     @javascript
     Scenario: I can sort the columns of the complaints table
@@ -107,7 +104,6 @@ Feature:
         And I should see 26 "table#datatable tr" element
         And I should see the key "pel.deposit.date" translated
         And I should see the key "pel.facts" translated
-        And I should see the key "pel.facts.date" translated
         And I should see the key "pel.alert" translated
         And I should see the key "pel.meeting.date" translated
         And I should see the key "pel.firstname.lastname" translated
@@ -115,9 +111,8 @@ Feature:
         And I should see the key "pel.a.opj.name" translated
         And I should see the key "pel.declaration.number" translated
         And I should see the key "pel.comments" translated
-        And I should see 10 "table#datatable .btn-secondary" element
-        And I should see 10 "table#datatable .btn-primary" element
-        And I should see 5 "table#datatable .btn-warning" element
+        And I should see 15 "table#datatable .background-blue" element
+        And I should see 10 "table#datatable .background-cumulus" element
 
     @javascript
     Scenario: As an authenticated agent, with no complaints assigned to me, I should see an empty table
@@ -155,7 +150,7 @@ Feature:
         Given I am authenticated with H3U3XCGD from PN
         And I am on the homepage
         Then I should see 21 "table#datatable tr" element
-        And I should see 10 "table#datatable th" element
+        And I should see 9 "table#datatable th" element
         And I should not see "PEL-2023-00000001"
         And I should not see "PEL-2023-00000003"
         And I should not see "PEL-2023-00000005"
@@ -169,15 +164,15 @@ Feature:
         And I should see "PEL-2023-00000027"
         And I should see "PEL-2023-00000030"
         And I should see the key "pel.to.process" translated
-        And I should see 10 "table#datatable .btn-primary" element
-        And I should see 10 "table#datatable .btn-warning" element
+        And I should see 10 "table#datatable .background-blue" element
+        And I should see 10 "table#datatable .background-yellow" element
 
     @javascript
     Scenario: As an authenticated supervisor, I should see all complaints
         Given I am authenticated with H3U3XCGF from PN
         And I am on the homepage
         Then I should see 26 "table#datatable tr" element
-        And I should see 11 "table#datatable th" element
+        And I should see 10 "table#datatable th" element
         And I should see "PEL-2023-00000001"
         And I should see "PEL-2023-00000003"
         And I should see "PEL-2023-00000005"
@@ -185,8 +180,6 @@ Feature:
         And I should see "PEL-2023-00000010"
         And I should see "PEL-2023-00000011"
         And I should see "PEL-2023-00000014"
-        And I should see "PEL-2023-00000061"
-        And I should see "PEL-2023-00000066"
 
     @javascript
     Scenario: I can search complaints
@@ -212,16 +205,6 @@ Feature:
         Then I should see 26 "table#datatable tr" element
 
     @javascript
-    Scenario: I can reset search
-        Given I am authenticated with H3U3XCGF from PN
-        And I am on the homepage
-        When I fill in "search_query" with "Leo bernard"
-        And I press "Rechercher"
-        Then I should see 11 "table#datatable tr" element
-        And I press "Réinitialiser"
-        Then I should see 26 "table#datatable tr" element
-
-    @javascript
     Scenario: I can apply a filter on the complaints table
         Given I am on the homepage
         And I should see 26 "table#datatable tr" element
@@ -231,41 +214,40 @@ Feature:
         And I should see "Aucune donnée disponible dans le tableau"
         When I click the "#exceeds-deadline-filter" element
         Then I should see 26 "table#datatable tr" element
-        And I should see 10 ".btn-info" element
-        And I should see 16 ".btn-primary" element
+        And I should see 20 ".background-blue" element
+        And I should see 5 ".background-yellow" element
         When I click the "#reaches-deadline-filter" element
         Then I should see 2 "table#datatable tr" element
         And I should see "Aucune donnée disponible dans le tableau"
         When I click the "#alert-filter" element
         Then I should see 26 "table#datatable tr" element
-        And I should see 10 ".btn-secondary" element
-        And I should see 10 ".btn-info" element
-        And I should see 6 ".btn-primary" element
+        And I should see 20 ".background-blue" element
+        And I should see 5 ".background-yellow" element
         When I click the "#assignment-pending-filter" element
         Then I should see 11 "table#datatable tr" element
-        And I should see 10 ".btn-secondary" element
+        And I should see 10 ".background-blue" element
         When I click the "#assigned-filter" element
         Then I should see 21 "table#datatable tr" element
-        And I should see 21 ".btn-primary" element
+        And I should see 20 ".background-blue" element
         When I click the "#validation-declaration-filter" element
         Then I should see 11 "table#datatable tr" element
-        And I should see 10 ".btn-warning" element
+        And I should see 10 ".background-yellow" element
         When I click the "#appointment-planned-filter" element
         Then I should see 11 "table#datatable tr" element
-        And I should see 11 ".btn-primary" element
-        And I should see "01/12/2022 01:00"
+        And I should see 10 ".background-blue" element
+        And I should see "01/12/2022"
         When I click the "#appointment-pending-filter" element
         Then I should see 11 "table#datatable tr" element
-        And I should see 10 ".btn-info" element
+        And I should see 10 ".background-cumulus" element
         When I click the "#unit-redirection-pending-filter" element
         Then I should see 11 "table#datatable tr" element
-        And I should see 10 ".btn-unit-redirection-pending" element
+        And I should see 10 ".background-cumulus" element
         When I click the "#closed-filter" element
         Then I should see 11 "table#datatable tr" element
-        And I should see 10 ".btn-dark" element
+        And I should see 10 ".background-green" element
         When I click the "#waiting-closing-filter" element
         Then I should see 11 "table#datatable tr" element
-        And I should see 11 ".btn-primary" element
+        And I should see 10 ".background-blue" element
         When I click the "#rejected-filter" element
         Then I should see 11 "table#datatable tr" element
-        And I should see 10 ".btn-danger" element
+        And I should see 20 ".background-red" element

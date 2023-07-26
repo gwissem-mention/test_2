@@ -1,7 +1,9 @@
 .rounded
+    @include rounded
+
     &-pill
         &--up
-            @include rounded
+            @include circled
             // Important is needed here to override Bootstrap default badge.
             position: absolute !important
             margin-top: -$margin-small
