@@ -5,5 +5,5 @@ framework:
                 scope: 'https://sharing\.oodrive\.com'
                 base_uri: '%env(OODRIVE_BASE_URI)%'
                 headers:
-                    Accept: 'application.json'
-                    Content-Type: 'application.json'
+                    Accept: 'application/json'
+                    Content-Type: 'application/json'
