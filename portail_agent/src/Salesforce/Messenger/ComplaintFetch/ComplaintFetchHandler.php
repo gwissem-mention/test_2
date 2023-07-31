@@ -28,6 +28,5 @@ class ComplaintFetchHandler
         }
 
         $this->notifier->startJourney($complaint);
-        $this->notifier->warmup($complaint);
     }
 }

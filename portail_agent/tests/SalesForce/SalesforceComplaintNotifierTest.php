@@ -31,7 +31,7 @@ class SalesforceComplaintNotifierTest extends KernelTestCase
         $salesForceComplaintNotifier->startJourney($complaint);
     }
 
-    public function testWarmup(): void
+    public function testAssigment(): void
     {
         // If warmup throw an exception, the test will fail
         $this->expectNotToPerformAssertions();
@@ -48,6 +48,6 @@ class SalesforceComplaintNotifierTest extends KernelTestCase
         /** @var Complaint $complaint */
         $complaint = $complaintRepo->find(1);
 
-        $salesForceComplaintNotifier->warmup($complaint);
+        $salesForceComplaintNotifier->assignment($complaint);
     }
 }
