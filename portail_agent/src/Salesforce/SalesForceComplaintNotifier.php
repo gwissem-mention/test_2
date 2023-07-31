@@ -9,6 +9,7 @@ use App\Referential\Entity\Unit;
 use App\Referential\Repository\UnitRepository;
 use App\Salesforce\HttpClient\ApiDataFormat\ComplaintNotificationInitializationData;
 use App\Salesforce\HttpClient\ApiDataFormat\ComplaintNotificationReportSentData;
+use App\Salesforce\HttpClient\ApiDataFormat\ComplaintNotificationUnitReassignmentData;
 use App\Salesforce\HttpClient\ApiDataFormat\ComplaintNotificationWarmupData;
 use App\Salesforce\HttpClient\SalesForceApiEventDefinition;
 use App\Salesforce\HttpClient\SalesForceHttpClientInterface;
@@ -79,6 +80,23 @@ class SalesForceComplaintNotifier
             telechargementNombreDocuments: $filesCount,
             flagReattribution: $complaint->getReassignmentCounter() ?? 0,
             flagChoix: 1,
+        );
+
+        $eventDefinition = new SalesForceApiEventDefinition(
+            'APIEvent-5aa2919f-d971-d517-552d-20dca88f4a6a',
+            $complaint->getDeclarationNumber(),
+            $eventDefinitionData
+        );
+
+        $this->client->sendEvent($eventDefinition);
+    }
+
+    public function unitReassignment(Complaint $complaint): void
+    {
+        $eventDefinitionData = new ComplaintNotificationUnitReassignmentData(
+            complaintDeclarationNumber: $complaint->getDeclarationNumber(),
+            flagChoix: 4,
+            flagReattribution: $complaint->getReassignmentCounter() ?? 0,
         );
 
         $eventDefinition = new SalesForceApiEventDefinition(
