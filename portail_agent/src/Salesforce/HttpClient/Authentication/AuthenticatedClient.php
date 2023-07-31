@@ -14,7 +14,7 @@ final class AuthenticatedClient implements AuthenticatedClientInterface
     private ?string $accessToken = null;
 
     public function __construct(
-        private readonly HttpClientInterface $salesForceClient,
+        private readonly HttpClientInterface $salesforceClient,
         private readonly string $salesForceClientId,
         private readonly string $salesForceClientSecret,
         private readonly string $salesForceAuthDomain,
@@ -31,12 +31,12 @@ final class AuthenticatedClient implements AuthenticatedClientInterface
         }
 
         $this->addBearer($options, $this->accessToken);
-        $response = $this->salesForceClient->request($method, $url, $options);
+        $response = $this->salesforceClient->request($method, $url, $options);
 
         if (Response::HTTP_UNAUTHORIZED === $response->getStatusCode()) {
             $this->accessToken = $this->authenticate();
             $this->addBearer($options, $this->accessToken);
-            $response = $this->salesForceClient->request($method, $url, $options);
+            $response = $this->salesforceClient->request($method, $url, $options);
         }
 
         return $response;
@@ -60,7 +60,7 @@ final class AuthenticatedClient implements AuthenticatedClientInterface
 
     public function stream(iterable|ResponseInterface $responses, float $timeout = null): ResponseStreamInterface
     {
-        return $this->salesForceClient->stream($responses, $timeout);
+        return $this->salesforceClient->stream($responses, $timeout);
     }
 
     /**
@@ -69,7 +69,7 @@ final class AuthenticatedClient implements AuthenticatedClientInterface
     public function withOptions(array $options): static
     {
         return new self(
-            $this->salesForceClient->withOptions($options),
+            $this->salesforceClient->withOptions($options),
             $this->salesForceClientId,
             $this->salesForceClientSecret,
             $this->salesForceAuthDomain,
@@ -78,7 +78,7 @@ final class AuthenticatedClient implements AuthenticatedClientInterface
 
     private function authenticate(): string
     {
-        $response = $this->salesForceClient->request(
+        $response = $this->salesforceClient->request(
             'POST',
             sprintf('%s%s', $this->salesForceAuthDomain, '/v2/token'),
             [

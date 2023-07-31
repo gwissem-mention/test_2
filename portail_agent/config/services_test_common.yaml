@@ -18,3 +18,5 @@ services:
         public: true`
         arguments:
             $complaintsBasePath: '%app.complaints_base_path%'
+
+    Symfony\Contracts\HttpClient\HttpClientInterface $salesforceClient: '@App\Tests\Behat\MockedClasses\FakeSalesforceHttpClient'

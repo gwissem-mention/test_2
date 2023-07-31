@@ -20,7 +20,7 @@ class ComplaintNotificationInitializationData implements SalesForceApiDataInterf
         #[SerializedName('Flag_Reattribution')] public int $flagReattribution,
         #[SerializedName('Flag_RendezVousObligatoire')] public ?bool $flagRendezVousObligatoire,
         #[SerializedName('complaint_personLegalRepresented_email')] public ?string $complaintPersonLegalRepresentedEmail = null,
-        #[SerializedName('complaint_corporation_contactEmail')] public ?string $complainteCorporationContactEmail = null,
+        #[SerializedName('complaint_corporation_contactEmail')] public ?string $complaintCorporationContactEmail = null,
     ) {
     }
 }

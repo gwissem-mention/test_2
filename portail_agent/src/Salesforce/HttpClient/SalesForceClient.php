@@ -28,7 +28,7 @@ class SalesForceClient implements SalesForceHttpClientInterface
 
         $this->salesForceClient->request(
             'POST',
-            sprintf('%s%s', $this->salesForceRestDomain, '/interactions/v1/events'),
+            sprintf('%s%s', $this->salesForceRestDomain, '/interaction/v1/events'),
             [
                 'body' => $eventDefinitionSerialized,
             ]);

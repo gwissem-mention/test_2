@@ -21,6 +21,7 @@ parameters:
     app.salesforce.domain: '%env(SALESFORCE_DOMAIN)%'
     app.salesforce.client_id: '%env(SALESFORCE_API_CLIENT_ID)%'
     app.salesforce.client_secret: '%env(SALESFORCE_API_CLIENT_SECRET)%'
+    app.salesforce.recipient: '%env(SALESFORCE_RECIPIENT)%'
 
 services:
     _defaults:
@@ -40,6 +41,8 @@ services:
             $salesForceClientSecret: '%app.salesforce.client_secret%'
             $salesForceAuthDomain: 'https://%app.salesforce.id_domain%.%app.salesforce.auth_subdomain%.%app.salesforce.domain%'
             $salesForceRestDomain: 'https://%app.salesforce.id_domain%.%app.salesforce.rest_subdomain%.%app.salesforce.domain%'
+            $salesForceRecipient: '%app.salesforce.recipient%'
+
     App\:
         resource: '../src/'
         exclude:
