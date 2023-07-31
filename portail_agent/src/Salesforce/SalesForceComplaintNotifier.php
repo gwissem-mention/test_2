@@ -8,6 +8,8 @@ use App\Entity\Complaint;
 use App\Referential\Entity\Unit;
 use App\Referential\Repository\UnitRepository;
 use App\Salesforce\HttpClient\ApiDataFormat\ComplaintNotificationAppointmentDoneData;
+use App\Salesforce\HttpClient\ApiDataFormat\ComplaintNotificationAppointmentInitializationData;
+use App\Salesforce\HttpClient\ApiDataFormat\ComplaintNotificationAppointmentWarmupData;
 use App\Salesforce\HttpClient\ApiDataFormat\ComplaintNotificationInitializationData;
 use App\Salesforce\HttpClient\ApiDataFormat\ComplaintNotificationReportSentData;
 use App\Salesforce\HttpClient\ApiDataFormat\ComplaintNotificationUnitReassignmentData;
@@ -119,6 +121,53 @@ class SalesForceComplaintNotifier
 
         $eventDefinition = new SalesForceApiEventDefinition(
             'APIEvent-5aa2919f-d971-d517-552d-20dca88f4a6a',
+            $complaint->getDeclarationNumber(),
+            $eventDefinitionData
+        );
+
+        $this->client->sendEvent($eventDefinition);
+    }
+
+    public function appointmentInit(Complaint $complaint): void
+    {
+        $eventDefinitionData = new ComplaintNotificationAppointmentInitializationData(
+            complaintDeclarationNumber: $complaint->getDeclarationNumber(),
+            identityFirstName: $complaint->getIdentity()?->getFirstname() ?? '',
+            identityLastName: $complaint->getIdentity()?->getLastname() ?? '',
+            identityEmail: $this->ssoIsEnabled ? ($complaint->getIdentity()?->getEmail() ?? '') : $this->salesForceRecipient,
+            flagRDVAnnule: $complaint->getAppointmentCancellationCounter() ?? 0,
+            complaintPersonLegalRepresentedEmail: $complaint->getPersonLegalRepresented()?->getEmail(),
+            complaintCorporationContactEmail: $complaint->getCorporationRepresented()?->getContactEmail(),
+        );
+
+        $eventDefinition = new SalesForceApiEventDefinition(
+            'APIEvent-68defbbf-84c7-98e2-3a89-23e0ee9ef666',
+            $complaint->getDeclarationNumber(),
+            $eventDefinitionData
+        );
+
+        $this->client->sendEvent($eventDefinition);
+    }
+
+    public function appointmentWarmup(Complaint $complaint): void
+    {
+        /** @var Unit $unit */
+        $unit = $this->unitRepository->findOneBy(['serviceId' => $complaint->getUnitAssigned()]);
+
+        $eventDefinitionData = new ComplaintNotificationAppointmentWarmupData(
+            complaintDeclarationNumber: $complaint->getDeclarationNumber(),
+            unitName: $unit->getName(),
+            unitAddress: $unit->getAddress(),
+            unitPhone: $unit->getPhone(),
+            unitEmail: $this->ssoIsEnabled ? $unit->getEmail() : $this->salesForceRecipient,
+            identityAppointmentTime: $complaint->getAppointmentTime()?->format('H\hi') ?? '',
+            identityAppointmentDate: $complaint->getAppointmentDate()?->format('d/m/Y') ?? '',
+            flagRDVAnnule: $complaint->getAppointmentCancellationCounter() ?? 0,
+            flagSuiteRendezVous: 0,
+        );
+
+        $eventDefinition = new SalesForceApiEventDefinition(
+            'APIEvent-eedbb93b-7cb4-aca3-4cff-08e4210605b8',
             $complaint->getDeclarationNumber(),
             $eventDefinitionData
         );
