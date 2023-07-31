@@ -27,9 +27,7 @@ class CachedNationalityProvider implements NationalityProviderInterface
     {
         /** @var array<string, string> $cachedChoices */
         $cachedChoices = $this->referentialsCache->get('nationalities',
-            function (): array {
-                return $this->decorated->getChoices();
-            }
+            fn (): array => $this->decorated->getChoices()
         );
 
         return $cachedChoices;
@@ -38,9 +36,7 @@ class CachedNationalityProvider implements NationalityProviderInterface
     public function getByCode(string $code): Nationality
     {
         /** @var Nationality $nationality */
-        $nationality = $this->referentialsCache->get('nationality_'.$code, function () use ($code) {
-            return $this->decorated->getByCode($code);
-        });
+        $nationality = $this->referentialsCache->get('nationality_'.$code, fn () => $this->decorated->getByCode($code));
 
         return $nationality;
     }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Referential\Provider\Country;
 
 use App\Referential\Entity\Country;
@@ -25,9 +27,7 @@ class CachedCountryProvider implements CountryProviderInterface
     {
         /** @var array<string, string> $cachedChoices */
         $cachedChoices = $this->referentialsCache->get('countries',
-            function (): array {
-                return $this->decorated->getChoices();
-            }
+            fn (): array => $this->decorated->getChoices()
         );
 
         return $cachedChoices;
@@ -36,9 +36,7 @@ class CachedCountryProvider implements CountryProviderInterface
     public function getByCode(string $code): Country
     {
         /** @var Country $cachedCountryByCode */
-        $cachedCountryByCode = $this->referentialsCache->get('country_'.$code, function () use ($code) {
-            return $this->decorated->getByCode($code);
-        });
+        $cachedCountryByCode = $this->referentialsCache->get('country_'.$code, fn () => $this->decorated->getByCode($code));
 
         return $cachedCountryByCode;
     }
@@ -46,9 +44,7 @@ class CachedCountryProvider implements CountryProviderInterface
     public function getByInseeCode(string $inseeCode): Country
     {
         /** @var Country $cachedCountryByInseeCode */
-        $cachedCountryByInseeCode = $this->referentialsCache->get('country_'.$inseeCode, function () use ($inseeCode) {
-            return $this->decorated->getByInseeCode($inseeCode);
-        });
+        $cachedCountryByInseeCode = $this->referentialsCache->get('country_'.$inseeCode, fn () => $this->decorated->getByInseeCode($inseeCode));
 
         return $cachedCountryByInseeCode;
     }

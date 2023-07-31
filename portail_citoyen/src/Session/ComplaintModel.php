@@ -144,7 +144,7 @@ class ComplaintModel
     {
         $identity = $this->getIdentity();
 
-        return $identity instanceof IdentityModel && !is_null($identity->getCivilState()->getJob());
+        return $identity instanceof IdentityModel && null !== $identity->getCivilState()->getJob();
     }
 
     #[Ignore]
@@ -152,7 +152,7 @@ class ComplaintModel
     {
         $facts = $this->getFacts();
 
-        return $facts instanceof FactsModel && !is_null($facts->getDescription());
+        return $facts instanceof FactsModel && null !== $facts->getDescription();
     }
 
     public function isAppointmentRequired(): bool

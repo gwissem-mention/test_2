@@ -54,8 +54,6 @@ class ComplaintHandler
 
     private function hasObjectsAppointmentRequired(ObjectsModel $objects): bool
     {
-        return $objects->getObjects()->exists(function (int $key, ObjectModel $object) {
-            return ObjectModel::STATUS_STOLEN === $object->getStatus() && $this->objectCategoryThesaurusProvider->getChoices()['pel.object.category.registered.vehicle'] === $object->getCategory();
-        });
+        return $objects->getObjects()->exists(fn (int $key, ObjectModel $object) => ObjectModel::STATUS_STOLEN === $object->getStatus() && $this->objectCategoryThesaurusProvider->getChoices()['pel.object.category.registered.vehicle'] === $object->getCategory());
     }
 }
