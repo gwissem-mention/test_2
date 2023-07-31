@@ -8,6 +8,7 @@ use App\Entity\Complaint;
 use App\Referential\Entity\Unit;
 use App\Referential\Repository\UnitRepository;
 use App\Salesforce\HttpClient\ApiDataFormat\ComplaintNotificationInitializationData;
+use App\Salesforce\HttpClient\ApiDataFormat\ComplaintNotificationReportSentData;
 use App\Salesforce\HttpClient\ApiDataFormat\ComplaintNotificationWarmupData;
 use App\Salesforce\HttpClient\SalesForceApiEventDefinition;
 use App\Salesforce\HttpClient\SalesForceHttpClientInterface;
@@ -18,7 +19,8 @@ class SalesForceComplaintNotifier
         private readonly SalesForceHttpClientInterface $client,
         private readonly UnitRepository $unitRepository,
         private readonly bool $ssoIsEnabled,
-        private readonly string $salesForceRecipient
+        private readonly string $salesForceRecipient,
+        private readonly string $citoyenDomain
     ) {
     }
 
@@ -62,6 +64,25 @@ class SalesForceComplaintNotifier
 
         $eventDefinition = new SalesForceApiEventDefinition(
             'APIEvent-54f97f47-5cf7-acb4-c4b2-ad37d29a1716',
+            $complaint->getDeclarationNumber(),
+            $eventDefinitionData
+        );
+
+        $this->client->sendEvent($eventDefinition);
+    }
+
+    public function reportSent(Complaint $complaint, int $filesCount): void
+    {
+        $eventDefinitionData = new ComplaintNotificationReportSentData(
+            complaintDeclarationNumber: $complaint->getDeclarationNumber(),
+            lienTelechargementRecapitulatif: $this->citoyenDomain.'/mes-pv-de-plaintes',
+            telechargementNombreDocuments: $filesCount,
+            flagReattribution: $complaint->getReassignmentCounter() ?? 0,
+            flagChoix: 1,
+        );
+
+        $eventDefinition = new SalesForceApiEventDefinition(
+            'APIEvent-5aa2919f-d971-d517-552d-20dca88f4a6a',
             $complaint->getDeclarationNumber(),
             $eventDefinitionData
         );

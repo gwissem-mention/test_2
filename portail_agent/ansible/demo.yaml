@@ -9,3 +9,6 @@ all:
             server_user: "{{ vault_server_user }}"
             force_reload_db: False
             force_referential_update: True
+    
+    environment:
+        CITOYEN_DOMAIN: https://pel-demo-citoyen.forge.smile.fr
