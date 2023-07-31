@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tests\Complaint\Parser;
 
 use App\Complaint\Parser\DateParser;

@@ -23,7 +23,7 @@ class UnitExtension extends AbstractExtension
 
     public function getName(?string $serviceId): ?string
     {
-        if (is_null($serviceId)) {
+        if (null === $serviceId) {
             return null;
         }
 

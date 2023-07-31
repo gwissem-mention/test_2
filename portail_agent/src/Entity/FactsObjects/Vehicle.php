@@ -116,7 +116,7 @@ class Vehicle extends AbstractObject
 
     public function isRegistered(): bool
     {
-        if (!is_null($this->getRegistrationNumber())) {
+        if (null !== $this->getRegistrationNumber()) {
             return true;
         }
 

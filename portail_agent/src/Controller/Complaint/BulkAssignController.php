@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller\Complaint;
 
 use App\Complaint\ComplaintAssignementer;
@@ -41,7 +43,7 @@ class BulkAssignController extends AbstractController
                 explode(',', $bulkAssignAction->getComplaints() ?? '')
             ));
 
-            if (!is_null($bulkAssignAction->getAssignedTo())) {
+            if (null !== $bulkAssignAction->getAssignedTo()) {
                 $this->complaintAssignementer->assignBulkTo($complaints, $bulkAssignAction->getAssignedTo());
             }
 

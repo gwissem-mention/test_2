@@ -73,7 +73,7 @@ class Notification
 
     public function isClicked(): bool
     {
-        return !is_null($this->clickedAt);
+        return null !== $this->clickedAt;
     }
 
     public function getTitle(): string

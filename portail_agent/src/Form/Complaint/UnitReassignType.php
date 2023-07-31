@@ -52,7 +52,7 @@ class UnitReassignType extends AbstractType
     {
         $form
             ->add('unitToReassign', UnitAutocompleteType::class, [
-                'choices' => !is_null($unit) ? [$unit->getName() => $unit->getCode()] : null,
+                'choices' => null !== $unit ? [$unit->getName() => $unit->getCode()] : null,
                 'attr' => [
                     'required' => true,
                 ],

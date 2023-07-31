@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Complaint\Parser;
 
 use App\Complaint\Parser\PhoneParser;

@@ -248,7 +248,7 @@ class ComplaintRepository extends ServiceEntityRepository
             default => null,
         };
 
-        if (!is_null($status)) {
+        if (null !== $status) {
             $this->searchByStatus($qb, $status);
         } elseif (!empty($searchQuery)) {
             switch ($searchQuery) {

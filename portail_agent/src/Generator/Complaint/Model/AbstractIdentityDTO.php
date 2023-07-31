@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Generator\Complaint\Model;
 
 use App\Entity\Identity;
@@ -47,7 +49,7 @@ abstract class AbstractIdentityDTO
         $this->birthPostalCode = $identity->getBirthPostalCode() ?? '';
         $this->birthInseeCode = $identity->getBirthInseeCode() ?? '';
         $this->birthCity = $identity->getBirthCity() ?? '';
-        $this->birthDepartmentNumber = !is_null($identity->getBirthDepartmentNumber()) ? strval($identity->getBirthDepartmentNumber()) : '';
+        $this->birthDepartmentNumber = null !== $identity->getBirthDepartmentNumber() ? strval($identity->getBirthDepartmentNumber()) : '';
         $this->familySituation = $identity->getFamilySituation() ?? '';
         $this->nationality = $identity->getNationality() ?? '';
         $this->job = $identity->getJob() ?? '';
@@ -56,7 +58,7 @@ abstract class AbstractIdentityDTO
         $this->postalCode = $identity->getAddressPostcode() ?? '';
         $this->inseeCode = $identity->getAddressInseeCode() ?? '';
         $this->city = $identity->getAddressCity() ?? '';
-        $this->departmentNumber = !is_null($identity->getAddressDepartmentNumber()) ? strval($identity->getAddressDepartmentNumber()) : '';
+        $this->departmentNumber = null !== $identity->getAddressDepartmentNumber() ? strval($identity->getAddressDepartmentNumber()) : '';
         $this->streetNumber = $identity->getAddressStreetNumber() ?? '';
         $this->streetType = $identity->getAddressStreetType() ?? '';
         $this->streetName = $identity->getAddressStreetName() ?? '';
