@@ -10,6 +10,18 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: RejectReasonRepository::class)]
 class RejectReason
 {
+    public const PEL_OTHER = 'pel-other';
+    public const REORIENTATION_OTHER_SOLUTION = 'reorientation-other-solution';
+    public const DRAFTING_VICTIM_TO_ANOTHER_TELESERVICE = 'drafting-victim-to-another-teleservice';
+    public const DRAFTING_A_HANDRAIL_DECLARATION = 'drafting-a-handrail-declaration';
+    public const PEL_INSUFISANT_QUALITY_TO_ACT = 'pel-insufisant-quality-to-act';
+    public const ABSENCE_OF_PENAL_OFFENSE_OBJECT_LOSS = 'absence-of-penal-offense-object-loss';
+    public const ABSENCE_OF_PENAL_OFFENSE = 'absence-of-penal-offense';
+    public const INCOHERENT_STATEMENTS = 'incoherent-statements';
+    public const PEL_VICTIME_CARENCE_AT_APPOINTMENT = 'pel-victime-carence-at-appointment';
+    public const PEL_VICTIME_CARENCE_AT_APPOINTMENT_BOOKING = 'pel-victime-carence-at-appointment-booking';
+    public const ABANDONMENT_OF_THE_PROCEDURE_BY_VICTIM = 'abandonment-of-the-procedure-by-victim';
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
