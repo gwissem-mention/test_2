@@ -12,7 +12,7 @@ class DatatableFactory
     /**
      * @param array<int, array<string, string>> $order
      */
-    public static function createQuery(QueryBuilder $qb, array $order, int $start, ?int $length = null): Query
+    public static function createQuery(QueryBuilder $qb, array $order, int $start, int $length = null): Query
     {
         foreach ($order as $item) {
             $column = $item['field'];

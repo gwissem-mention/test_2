@@ -67,7 +67,7 @@ class ComplaintRepository extends ServiceEntityRepository
      *
      * @return Paginator<Complaint>
      */
-    public function findAsPaginator(array $order = [], int $start = 0, ?int $length = null, string $unit = null, ?User $agent = null, ?string $searchQuery = null): Paginator
+    public function findAsPaginator(array $order = [], int $start = 0, int $length = null, string $unit = null, User $agent = null, string $searchQuery = null): Paginator
     {
         $qb = $this
             ->createQueryBuilder('c')

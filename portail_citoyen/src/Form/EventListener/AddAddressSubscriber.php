@@ -57,7 +57,7 @@ class AddAddressSubscriber implements EventSubscriberInterface
 
     protected function addFrenchAddressField(
         FormInterface $form,
-        EmbedAddressInterface|null $model = null
+        EmbedAddressInterface $model = null
     ): void {
         $constraints = [
             new NotBlank(),
@@ -92,7 +92,7 @@ class AddAddressSubscriber implements EventSubscriberInterface
 
     protected function addForeignAddressField(
         FormInterface $form,
-        EmbedAddressInterface|null $model = null,
+        EmbedAddressInterface $model = null,
         bool $disabled = false,
     ): void {
         if ($form->getConfig()->getOption('need_same_address_field')) {

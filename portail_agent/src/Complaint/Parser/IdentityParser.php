@@ -13,7 +13,7 @@ class IdentityParser
     ) {
     }
 
-    public function parse(object $civilStateInput, object $contactInformationInput, ?object $declarantStatusInput = null): Identity
+    public function parse(object $civilStateInput, object $contactInformationInput, object $declarantStatusInput = null): Identity
     {
         $identity = new Identity();
 
