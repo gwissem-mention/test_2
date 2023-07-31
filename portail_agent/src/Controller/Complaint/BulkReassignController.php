@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller\Complaint;
 
 use App\Complaint\ComplaintReassignementer;
@@ -47,7 +49,7 @@ class BulkReassignController extends AbstractController
                 explode(',', $bulkReassignAction->getComplaints() ?? '')
             ));
 
-            if (!is_null($bulkReassignAction->getUnitCodeToReassign()) && !is_null($bulkReassignAction->getReassignText())) {
+            if (null !== $bulkReassignAction->getUnitCodeToReassign() && null !== $bulkReassignAction->getReassignText()) {
                 try {
                     $this->complaintReassignementer->reassignBulkTo(
                         $complaints,

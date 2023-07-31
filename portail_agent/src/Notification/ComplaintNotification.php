@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Notification;
 
 use App\Entity\Complaint;
@@ -43,7 +45,7 @@ class ComplaintNotification
                 $this->userRepository->save(
                     $supervisor->addNotification($this->notificationFactory->createForComplaintWithDeadlineExeeded($complaint))
                 );
-                if (!is_null($io)) {
+                if (null !== $io) {
                     $io->comment(sprintf('Complaint "%s", supervisor "%s (%s)" has been notified.',
                         $complaint->getDeclarationNumber(),
                         $supervisor->getAppellation(),
@@ -56,7 +58,7 @@ class ComplaintNotification
                 $this->userRepository->save(
                     $agent->addNotification($this->notificationFactory->createForComplaintWithDeadlineExeeded($complaint))
                 );
-                if (!is_null($io)) {
+                if (null !== $io) {
                     $io->comment(sprintf('Complaint "%s", agent "%s (%s)" has been notified.',
                         $complaint->getDeclarationNumber(),
                         $agent->getAppellation(),

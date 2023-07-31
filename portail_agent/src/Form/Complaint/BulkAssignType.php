@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Form\Complaint;
 
 use App\Entity\User;
@@ -28,7 +30,7 @@ class BulkAssignType extends AbstractType
                 {
                     $form->add('assignedTo', UserAutocompleteType::class,
                         [
-                            'choices' => !is_null($user) ? [$user->getAppellation() => $user->getId()] : null,
+                            'choices' => null !== $user ? [$user->getAppellation() => $user->getId()] : null,
                             'attr' => [
                                 'required' => true,
                             ],

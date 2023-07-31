@@ -326,9 +326,7 @@ class Complaint
      */
     public function getStolenObjects(): ReadableCollection
     {
-        return $this->objects->filter(function (AbstractObject $object) {
-            return AbstractObject::STATUS_STOLEN === $object->getStatus();
-        });
+        return $this->objects->filter(fn (AbstractObject $object) => AbstractObject::STATUS_STOLEN === $object->getStatus());
     }
 
     /**
@@ -336,9 +334,7 @@ class Complaint
      */
     public function getDegradedObjects(): ReadableCollection
     {
-        return $this->objects->filter(function (AbstractObject $object) {
-            return AbstractObject::STATUS_DEGRADED === $object->getStatus();
-        });
+        return $this->objects->filter(fn (AbstractObject $object) => AbstractObject::STATUS_DEGRADED === $object->getStatus());
     }
 
     public function getAdditionalInformation(): ?AdditionalInformation

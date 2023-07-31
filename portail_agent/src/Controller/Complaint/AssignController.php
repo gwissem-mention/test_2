@@ -43,7 +43,7 @@ class AssignController extends AbstractController
 
             $user = $complaint->getAssignedTo();
 
-            if (!is_null($user)) {
+            if (null !== $user) {
                 $complaintAssignementer->assignOneTo($complaint, $user, $reassignment, false);
             }
 

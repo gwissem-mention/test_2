@@ -27,12 +27,8 @@ class UnitAutocompleteType extends AbstractType
     {
         $builder
             ->addModelTransformer(new CallbackTransformer(
-                function (?string $unitName) {
-                    return $this->unitRepository->findOneBy(['name' => $unitName])?->getCode();
-                },
-                function (?string $unitCode) {
-                    return $unitCode;
-                }
+                fn (?string $unitName) => $this->unitRepository->findOneBy(['name' => $unitName])?->getCode(),
+                fn (?string $unitCode) => $unitCode
             ));
     }
 

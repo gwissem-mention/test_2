@@ -28,7 +28,7 @@ class AssignType extends AbstractType
                 public function buildAgentField(FormInterface $form, ?User $user): void
                 {
                     $form->add('assignedTo', UserAutocompleteType::class, [
-                        'choices' => !is_null($user) ? [$user->getAppellation() => $user->getId()] : null,
+                        'choices' => null !== $user ? [$user->getAppellation() => $user->getId()] : null,
                         'attr' => [
                             'required' => true,
                         ],

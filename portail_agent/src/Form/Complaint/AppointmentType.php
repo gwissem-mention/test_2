@@ -35,7 +35,7 @@ class AppointmentType extends AbstractType
                     /** @var Complaint $complaint */
                     $complaint = $event->getData();
 
-                    $this->addAppointmentDateField($form, !is_null($complaint->getAppointmentDate()));
+                    $this->addAppointmentDateField($form, null !== $complaint->getAppointmentDate());
                 }
             )
         ;

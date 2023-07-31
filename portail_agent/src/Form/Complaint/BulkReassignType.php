@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Form\Complaint;
 
 use App\Form\DTO\BulkReassignAction;
@@ -53,7 +55,7 @@ class BulkReassignType extends AbstractType
     private function addUnitFields(FormInterface $form, ?Unit $unit): void
     {
         $form->add('unitCodeToReassign', UnitAutocompleteType::class, [
-            'choices' => !is_null($unit) ? [$unit->getName() => $unit->getCode()] : null,
+            'choices' => null !== $unit ? [$unit->getName() => $unit->getCode()] : null,
             'attr' => [
                 'required' => true,
             ],

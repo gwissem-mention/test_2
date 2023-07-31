@@ -23,12 +23,8 @@ class UserAutocompleteType extends AbstractType
     {
         $builder
             ->addModelTransformer(new CallbackTransformer(
-                function (?User $user) {
-                    return $user?->getId();
-                },
-                function (int $userId) {
-                    return $this->userRepository->find($userId);
-                }
+                fn (?User $user) => $user?->getId(),
+                fn (int $userId) => $this->userRepository->find($userId)
             ));
     }
 

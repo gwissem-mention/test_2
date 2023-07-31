@@ -70,17 +70,17 @@ class FactsDTO
             $this->timeInformation = self::TIME_INFORMATION_TIME_UNKNOWN;
         }
 
-        $this->date = !is_null($date = $facts->getStartDate()) ? $date->format('d/m/Y') : '';
-        $this->hour = !is_null($hour = $facts->getStartHour()) ? $hour->format('H') : '';
-        $this->minutes = !is_null($hour = $facts->getStartHour()) ? $hour->format('i') : '';
-        $this->startDateFormatted = !is_null($date = $facts->getStartDate()) ? $date->format('d/m/Y') : '';
-        $this->startHourFormatted = !is_null($hour = $facts->getStartHour()) ? $hour->format('H') : '';
-        $this->startMinutesFormatted = !is_null($hour = $facts->getStartHour()) ? $hour->format('i') : '';
-        $this->endDateFormatted = !is_null($date = $facts->getEndDate()) ? $date->format('d/m/Y') : '';
-        $this->endHourFormatted = !is_null($hour = $facts->getEndHour()) ? $hour->format('H') : '';
-        $this->endMinutesFormatted = !is_null($hour = $facts->getEndHour()) ? $hour->format('i') : '';
-        $this->start = (!is_null($date = $facts->getStartDate()) && !is_null($hour = $facts->getStartHour())) ? ($date->format('d/m/Y').' à '.$hour->format('H:i:s')) : '';
-        $this->end = (!is_null($date = $facts->getEndDate()) && !is_null($hour = $facts->getEndHour())) ? ($date->format('d/m/Y').' à '.$hour->format('H:i:s')) : '';
+        $this->date = null !== ($date = $facts->getStartDate()) ? $date->format('d/m/Y') : '';
+        $this->hour = null !== ($hour = $facts->getStartHour()) ? $hour->format('H') : '';
+        $this->minutes = null !== ($hour = $facts->getStartHour()) ? $hour->format('i') : '';
+        $this->startDateFormatted = null !== ($date = $facts->getStartDate()) ? $date->format('d/m/Y') : '';
+        $this->startHourFormatted = null !== ($hour = $facts->getStartHour()) ? $hour->format('H') : '';
+        $this->startMinutesFormatted = null !== ($hour = $facts->getStartHour()) ? $hour->format('i') : '';
+        $this->endDateFormatted = null !== ($date = $facts->getEndDate()) ? $date->format('d/m/Y') : '';
+        $this->endHourFormatted = null !== ($hour = $facts->getEndHour()) ? $hour->format('H') : '';
+        $this->endMinutesFormatted = null !== ($hour = $facts->getEndHour()) ? $hour->format('i') : '';
+        $this->start = (null !== ($date = $facts->getStartDate()) && null !== ($hour = $facts->getStartHour())) ? ($date->format('d/m/Y').' à '.$hour->format('H:i:s')) : '';
+        $this->end = (null !== ($date = $facts->getEndDate()) && null !== ($hour = $facts->getEndHour())) ? ($date->format('d/m/Y').' à '.$hour->format('H:i:s')) : '';
         $this->noViolence = strval(!$complaint->getFacts()?->isVictimOfViolence()) ?: '';
         $this->violenceDescription = $complaint->getFacts()?->getVictimOfViolenceText() ?? '';
         $this->hasHarmPhysique = $complaint->getFacts()?->isVictimOfViolence() ? 'oui' : 'non';

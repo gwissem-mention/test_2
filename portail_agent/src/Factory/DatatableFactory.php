@@ -32,7 +32,7 @@ class DatatableFactory
             $qb->addOrderBy($column, $orderDir);
         }
 
-        if (!is_null($length)) {
+        if (null !== $length) {
             $qb->setMaxResults($length);
         }
 

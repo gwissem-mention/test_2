@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Complaint;
 
 use App\Complaint\Exceptions\NoAffectedServiceException;
@@ -73,7 +75,7 @@ class ComplaintFileParser
             ->setAppointmentContactInformation($importedComplaint->appointment?->appointmentContactText)
             ->setConsentContactElectronics($importedComplaint->identity->consentContactElectronics);
 
-        if (!is_null($importedComplaint->affectedService)) {
+        if (null !== $importedComplaint->affectedService) {
             $complaint->setUnitAssigned($importedComplaint->affectedService);
         } else {
             $this->logger->error(sprintf('No affected service for complaint %s', $complaint->getFrontId()));
