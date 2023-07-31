@@ -49,9 +49,7 @@ class ObjectsModel
     #[Ignore]
     public function getStolenObjects(): ReadableCollection
     {
-        return $this->objects->filter(function (ObjectModel $object) {
-            return ObjectModel::STATUS_STOLEN === $object->getStatus();
-        });
+        return $this->objects->filter(fn (ObjectModel $object) => ObjectModel::STATUS_STOLEN === $object->getStatus());
     }
 
     /**
@@ -60,8 +58,6 @@ class ObjectsModel
     #[Ignore]
     public function getDegradedObjects(): ReadableCollection
     {
-        return $this->objects->filter(function (ObjectModel $object) {
-            return ObjectModel::STATUS_DEGRADED === $object->getStatus();
-        });
+        return $this->objects->filter(fn (ObjectModel $object) => ObjectModel::STATUS_DEGRADED === $object->getStatus());
     }
 }

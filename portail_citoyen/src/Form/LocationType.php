@@ -143,9 +143,9 @@ class LocationType extends AbstractType
         $choices = [];
         $city = null;
 
-        if (!is_null($frenchTown)) {
+        if (null !== $frenchTown) {
             $city = $this->cityRepository->findOneBy(['inseeCode' => $frenchTown]);
-            if (!is_null($city)) {
+            if (null !== $city) {
                 $choices[$city->getLabelAndPostCode()] = $city->getInseeCode();
             }
         }

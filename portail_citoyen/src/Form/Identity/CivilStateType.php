@@ -154,10 +154,10 @@ class CivilStateType extends AbstractType
     {
         $choices = [];
         $job = null;
-        if (!is_null($jobCode)) {
+        if (null !== $jobCode) {
             /** @var ?Job $job */
             $job = $this->jobRepository->findOneBy(['code' => $jobCode]);
-            if (!is_null($job)) {
+            if (null !== $job) {
                 $choices[Civility::Mme->value === $civility ? $job->getLabelFemale() : $job->getLabelMale()] = $job->getCode();
             }
         }
