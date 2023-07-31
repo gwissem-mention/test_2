@@ -25,7 +25,8 @@ framework:
             'App\Salesforce\Messenger\ComplaintRejection\ComplaintRejectionMessage': sync
             'App\Salesforce\Messenger\ComplaintReportSend\ComplaintReportSendMessage': sync
             'App\Salesforce\Messenger\UnitReassignment\UnitReassignmentMessage': sync
-            
+            'App\Salesforce\Messenger\ComplaintCancellation\ComplaintCancellationMessage': sync    
+                
             'App\Notification\Messenger\Assignement\AssignementMessage': sync
             'App\Complaint\Messenger\ComplaintFetch\ComplaintFetchMessage': sync
             'App\Notification\Messenger\UnitReassignement\AskUnitReassignementMessage': sync
