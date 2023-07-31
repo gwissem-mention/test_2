@@ -20,6 +20,7 @@
     OODRIVE_COMPLAINT_FILENAME: plainte.json
     ACTIVEMQ_DSN: stomp://localhost:61613
     ACTIVEMQ_QUEUE_NAME: /queue/pel
+    SALESFORCE_RECIPIENT: pel.sensiolabs@gmail.com
     
   vars_files:
     - ../vars/vars.yaml

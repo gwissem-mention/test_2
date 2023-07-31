@@ -56,7 +56,7 @@ class SalesForceClientTest extends KernelTestCase
                     },
                     function ($method, $url, $options): MockResponse {
                         $this->assertSame('POST', $method);
-                        $this->assertSame(sprintf('%s/interactions/v1/events', self::BASE_REST_URI), $url);
+                        $this->assertSame(sprintf('%s/interaction/v1/events', self::BASE_REST_URI), $url);
                         $this->assertArrayHasKey('headers', $options);
                         $this->assertArrayHasKey('normalized_headers', $options);
                         $this->assertArrayHasKey('authorization', $options['normalized_headers']);

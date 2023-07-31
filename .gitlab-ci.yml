@@ -435,10 +435,10 @@ agent-unit:
         POSTGRES_USER: "symfony"
         POSTGRES_HOST: "127.0.0.1"
     script:
-        - make APP_ENV=${APP_ENV} db-ci-setup
-        - make APP_ENV=${APP_ENV} db-ci-load
         - make APP_ENV=${APP_ENV} referential-create
         - make APP_ENV=${APP_ENV} referential-ci-load
+        - make APP_ENV=${APP_ENV} db-ci-setup
+        - make APP_ENV=${APP_ENV} db-ci-load
         - make unit
     services:
         -   name: postgres:13-alpine
@@ -477,10 +477,10 @@ agent-func:
         POSTGRES_USER: "symfony"
         POSTGRES_HOST: "127.0.0.1"
     script:
-        - make APP_ENV=${APP_ENV} db-ci-setup
-        - make APP_ENV=${APP_ENV} db-ci-load
         - make APP_ENV=${APP_ENV} referential-create
         - make APP_ENV=${APP_ENV} referential-ci-load
+        - make APP_ENV=${APP_ENV} db-ci-setup
+        - make APP_ENV=${APP_ENV} db-ci-load
         - make behat
     services:
         - name: postgres:13-alpine
@@ -704,10 +704,10 @@ agent-e2e:
         - echo "APP_ENV=${APP_ENV}" >> .env.local
         - php -S 127.0.0.1:8080 -t  public/ > /dev/null 2>&1 &
         - sed -i "s/nginx-agent/127.0.0.1:8080/g" behat.yml.dist
-        - make APP_ENV=${APP_ENV} db-ci-setup
-        - make APP_ENV=${APP_ENV} db-ci-load
         - make APP_ENV=${APP_ENV} referential-create
         - make APP_ENV=${APP_ENV} referential-ci-load
+        - make APP_ENV=${APP_ENV} db-ci-setup
+        - make APP_ENV=${APP_ENV} db-ci-load
         - make leftover-e2e
     services:
         -   name: postgres:13-alpine
@@ -737,10 +737,10 @@ agent-complaint-e2e:
         - echo "APP_ENV=${APP_ENV}" >> .env.local
         - php -S 127.0.0.1:8080 -t  public/ > /dev/null 2>&1 &
         - sed -i "s/nginx-agent/127.0.0.1:8080/g" behat.yml.dist
-        - make APP_ENV=${APP_ENV} db-ci-setup
-        - make APP_ENV=${APP_ENV} db-ci-load
         - make APP_ENV=${APP_ENV} referential-create
         - make APP_ENV=${APP_ENV} referential-ci-load
+        - make APP_ENV=${APP_ENV} db-ci-setup
+        - make APP_ENV=${APP_ENV} db-ci-load
         - make complaint-e2e
     services:
         -   name: postgres:13-alpine
@@ -774,10 +774,10 @@ agent-flaky-e2e:
         - echo "APP_ENV=${APP_ENV}" >> .env.local
         - php -S 127.0.0.1:8080 -t  public/ > /dev/null 2>&1 &
         - sed -i "s/nginx-agent/127.0.0.1:8080/g" behat.yml.dist
+        - make APP_ENV=${APP_ENV} referential-create
+        - make APP_ENV=${APP_ENV} referential-ci-load
         - make APP_ENV=${APP_ENV} db-ci-setup
         - make APP_ENV=${APP_ENV} db-ci-load
-        - make APP_ENV=${APP_ENV} referential-create
-        - make APP_ENV=${APP_ENV} referential-load
         - make flaky-e2e
     services:
         -   name: postgres:13-alpine

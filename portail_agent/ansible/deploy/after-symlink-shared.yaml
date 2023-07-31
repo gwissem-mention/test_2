@@ -19,6 +19,7 @@
       OODRIVE_COMPLAINT_FILENAME={{ ansible_env.OODRIVE_COMPLAINT_FILENAME }}
       ACTIVEMQ_DSN={{ ansible_env.ACTIVEMQ_DSN }}
       ACTIVEMQ_QUEUE_NAME={{ ansible_env.ACTIVEMQ_QUEUE_NAME }}
+      SALESFORCE_RECIPIENT={{ ansible_env.SALESFORCE_RECIPIENT }}
         
 - name: Install vendors for prod env
   make:
@@ -51,6 +52,18 @@
   become_user: postgres
   command: 'psql -d {{ app_db }} -c "create extension if not exists unaccent"'
 
+- name: Recreate referential database
+  make:
+    chdir: '{{ release_portal_path }}'
+    target: referential-create
+  when: force_referential_update  
+
+- name: Load fresh referentials
+  make:
+    chdir: '{{ release_portal_path }}'
+    target: referential-load
+  when: force_referential_update  
+
 - name: Run migrations
   make:
     chdir: '{{ release_portal_path }}'
@@ -63,18 +76,6 @@
     chdir: '{{ release_portal_path }}'
     target: db-load
   when: force_reload_db
-
-- name: Recreate referential database
-  make:
-    chdir: '{{ release_portal_path }}'
-    target: referential-create
-  when: force_referential_update  
-
-- name: Load fresh referentials
-  make:
-    chdir: '{{ release_portal_path }}'
-    target: referential-load
-  when: force_referential_update  
 
 - name: Install bundle assets
   command: '{{ release_console_path }} assets:install {{ release_public_path }} --symlink --no-debug'
