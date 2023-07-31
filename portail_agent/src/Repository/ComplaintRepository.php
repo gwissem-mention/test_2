@@ -333,4 +333,20 @@ class ComplaintRepository extends ServiceEntityRepository
             ->setParameter('today', new \DateTimeImmutable())
             ->setParameter('status', Complaint::STATUS_CLOSED);
     }
+
+    /**
+     * @return Complaint[]
+     */
+    public function findComplaintsForAppointmentNow(): iterable
+    {
+        /** @var Complaint[] $complaints */
+        $complaints = $this->createQueryBuilder('c')
+            ->andWhere('c.appointmentTime <= :now')
+            ->andWhere('c.appointmentSalesforceNotificationSentAt IS NULL')
+            ->setParameter('now', new \DateTimeImmutable())
+            ->getQuery()
+            ->toIterable();
+
+        return $complaints;
+    }
 }

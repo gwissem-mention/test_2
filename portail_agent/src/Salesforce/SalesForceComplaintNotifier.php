@@ -7,6 +7,7 @@ namespace App\Salesforce;
 use App\Entity\Complaint;
 use App\Referential\Entity\Unit;
 use App\Referential\Repository\UnitRepository;
+use App\Salesforce\HttpClient\ApiDataFormat\ComplaintNotificationAppointmentDoneData;
 use App\Salesforce\HttpClient\ApiDataFormat\ComplaintNotificationInitializationData;
 use App\Salesforce\HttpClient\ApiDataFormat\ComplaintNotificationReportSentData;
 use App\Salesforce\HttpClient\ApiDataFormat\ComplaintNotificationWarmupData;
@@ -64,6 +65,23 @@ class SalesForceComplaintNotifier
 
         $eventDefinition = new SalesForceApiEventDefinition(
             'APIEvent-54f97f47-5cf7-acb4-c4b2-ad37d29a1716',
+            $complaint->getDeclarationNumber(),
+            $eventDefinitionData
+        );
+
+        $this->client->sendEvent($eventDefinition);
+    }
+
+    public function appointmentDone(Complaint $complaint): void
+    {
+        $eventDefinitionData = new ComplaintNotificationAppointmentDoneData(
+            complaintDeclarationNumber: $complaint->getDeclarationNumber(),
+            flagChoix: 2,
+            flagReattribution: $complaint->getReassignmentCounter() ?? 0,
+        );
+
+        $eventDefinition = new SalesForceApiEventDefinition(
+            'APIEvent-5aa2919f-d971-d517-552d-20dca88f4a6a',
             $complaint->getDeclarationNumber(),
             $eventDefinitionData
         );

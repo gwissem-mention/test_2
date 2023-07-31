@@ -51,6 +51,26 @@ class SalesforceComplaintNotifierTest extends KernelTestCase
         $salesForceComplaintNotifier->assignment($complaint);
     }
 
+    public function testAppointmentDone(): void
+    {
+        // If warmup throw an exception, the test will fail
+        $this->expectNotToPerformAssertions();
+
+        self::bootKernel();
+        $container = static::getContainer();
+
+        /** @var SalesForceComplaintNotifier $salesForceComplaintNotifier */
+        $salesForceComplaintNotifier = $container->get(SalesForceComplaintNotifier::class);
+
+        /** @var ComplaintRepository $complaintRepo */
+        $complaintRepo = $container->get(ComplaintRepository::class);
+
+        /** @var Complaint $complaint */
+        $complaint = $complaintRepo->find(1);
+
+        $salesForceComplaintNotifier->appointmentDone($complaint);
+    }
+
     public function testReportSent(): void
     {
         // If warmup throw an exception, the test will fail
