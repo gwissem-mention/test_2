@@ -14,6 +14,7 @@ use App\Notification\Messenger\UnitReassignement\AskUnitReassignementMessage;
 use App\Notification\Messenger\UnitReassignement\UnitReassignementMessage;
 use App\Referential\Entity\Unit;
 use App\Referential\Repository\UnitRepository;
+use App\Salesforce\Messenger\ComplaintWarmup\ComplaintWarmupMessage;
 use App\Salesforce\Messenger\UnitReassignment\UnitReassignmentMessage;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
@@ -74,13 +75,18 @@ class ComplaintReassignementer
         /** @var Unit $unit */
         $unit = $this->unitRepository->findOneBy(['code' => $targetUnitCode]);
 
+        $this->messageBus->dispatch(new UnitReassignmentMessage((int) $complaint->getId())); // Salesforce email
+
         $complaint
             ->setUnitAssigned($unit->getServiceId())
             ->setUnitToReassign(null)
             ->setUnitReassignText(null)
             ->setAssignedTo(null)
             ->setUnitReassignmentAsked(false)
+            ->incrementReassignmentCounter()
             ->addComment($comment);
+
+        $this->entityManager->flush();
 
         $this->logger->log(ApplicationTracesMessage::message(
             ApplicationTracesMessage::REDIRECT,
@@ -88,10 +94,10 @@ class ComplaintReassignementer
             $user->getUserIdentifier(),
             $this->requestStack->getCurrentRequest()?->getClientIp()
         ));
-        $this->messageBus->dispatch(new InfocentreMessage(ApplicationTracesMessage::REDIRECT, $complaint, $unit));
 
+        $this->messageBus->dispatch(new InfocentreMessage(ApplicationTracesMessage::REDIRECT, $complaint, $unit));
         $this->messageBus->dispatch(new UnitReassignementMessage($complaint, $targetUnitCode, (bool) $reassignmentAsked, $reassignmentAskBy));
-        $this->messageBus->dispatch(new UnitReassignmentMessage((int) $complaint->getId())); // Salesforce email
+        $this->messageBus->dispatch(new ComplaintWarmupMessage((int) $complaint->getId())); // Salesforce email
     }
 
     /**

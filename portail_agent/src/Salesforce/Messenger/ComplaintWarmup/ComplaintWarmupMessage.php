@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Salesforce\Messenger\ComplaintFetch;
+namespace App\Salesforce\Messenger\ComplaintWarmup;
 
-class ComplaintFetchMessage
+class ComplaintWarmupMessage
 {
     public function __construct(
         private readonly int $complaintId,

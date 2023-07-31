@@ -21,7 +21,7 @@ framework:
             'App\Salesforce\Messenger\Appointment\AppointmentMessage': sync
             'App\Salesforce\Messenger\AppointmentInformations\AppointmentInformationsMessage': sync
             'App\Salesforce\Messenger\ComplaintAssignment\ComplaintAssignmentMessage': sync
-            'App\Salesforce\Messenger\ComplaintFetch\ComplaintFetchMessage': sync
+            'App\Salesforce\Messenger\ComplaintWarmup\ComplaintWarmupMessage': sync
             'App\Salesforce\Messenger\ComplaintRejection\ComplaintRejectionMessage': sync
             'App\Salesforce\Messenger\ComplaintReportSend\ComplaintReportSendMessage': sync
             'App\Salesforce\Messenger\UnitReassignment\UnitReassignmentMessage': sync

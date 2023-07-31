@@ -7,7 +7,7 @@ use App\Entity\ComplaintCount;
 use App\Generator\ComplaintNumber\ComplaintNumberGeneratorInterface;
 use App\Notification\ComplaintNotification;
 use App\Repository\ComplaintCountRepository;
-use App\Salesforce\Messenger\ComplaintFetch\ComplaintFetchMessage;
+use App\Salesforce\Messenger\ComplaintWarmup\ComplaintWarmupMessage;
 use Doctrine\DBAL\LockMode;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
@@ -54,7 +54,7 @@ class ComplaintEntityListener
         $this->complaintNotification->setSupervisorNotifications($complaint);
         $this->entityManager->flush();
 
-        $this->bus->dispatch(new ComplaintFetchMessage((int) $complaint->getId())); // Salesforce email
+        $this->bus->dispatch(new ComplaintWarmupMessage((int) $complaint->getId())); // Salesforce email
     }
 
     private function createCounterForCurrentYear(): ?ComplaintCount
