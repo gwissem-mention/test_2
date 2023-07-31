@@ -51,7 +51,7 @@ class SalesForceComplaintNotifier
         $this->client->sendEvent($eventDefinition);
     }
 
-    public function warmup(Complaint $complaint): void
+    public function assignment(Complaint $complaint): void
     {
         $eventDefinitionData = new ComplaintNotificationWarmupData(
             complaintDeclarationNumber: $complaint->getDeclarationNumber(),
