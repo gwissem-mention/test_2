@@ -20,6 +20,7 @@
       ACTIVEMQ_DSN={{ ansible_env.ACTIVEMQ_DSN }}
       ACTIVEMQ_QUEUE_NAME={{ ansible_env.ACTIVEMQ_QUEUE_NAME }}
       SALESFORCE_RECIPIENT={{ ansible_env.SALESFORCE_RECIPIENT }}
+      CITOYEN_DOMAIN={{ ansible_env.CITOYEN_DOMAIN }}
         
 - name: Install vendors for prod env
   make:

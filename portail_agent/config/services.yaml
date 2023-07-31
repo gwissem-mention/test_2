@@ -22,7 +22,8 @@ parameters:
     app.salesforce.client_id: '%env(SALESFORCE_API_CLIENT_ID)%'
     app.salesforce.client_secret: '%env(SALESFORCE_API_CLIENT_SECRET)%'
     app.salesforce.recipient: '%env(SALESFORCE_RECIPIENT)%'
-
+    app.citoyen.domain: '%env(CITOYEN_DOMAIN)%'
+    
 services:
     _defaults:
         autowire: true
@@ -42,6 +43,7 @@ services:
             $salesForceAuthDomain: 'https://%app.salesforce.id_domain%.%app.salesforce.auth_subdomain%.%app.salesforce.domain%'
             $salesForceRestDomain: 'https://%app.salesforce.id_domain%.%app.salesforce.rest_subdomain%.%app.salesforce.domain%'
             $salesForceRecipient: '%app.salesforce.recipient%'
+            $citoyenDomain: '%app.citoyen.domain%'
 
     App\:
         resource: '../src/'

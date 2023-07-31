@@ -66,6 +66,6 @@ class SendReportHandler
 
         $this->complaintRepository->save($complaint, true);
 
-        $this->bus->dispatch(new ComplaintReportSendMessage($message->getComplaintId())); // Salesforce email
+        $this->bus->dispatch(new ComplaintReportSendMessage($message->getComplaintId(), count($message->getFiles()))); // Salesforce email
     }
 }
