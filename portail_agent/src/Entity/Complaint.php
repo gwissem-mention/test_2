@@ -752,6 +752,11 @@ class Complaint
         return $this;
     }
 
+    public function getAppointmentCancellationCounter(): ?int
+    {
+        return $this->appointmentCancellationCounter;
+    }
+
     public function getAppointmentSalesforceNotificationSentAt(): ?\DateTimeImmutable
     {
         return $this->appointmentSalesforceNotificationSentAt;
