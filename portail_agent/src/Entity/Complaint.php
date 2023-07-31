@@ -193,6 +193,9 @@ class Complaint
     #[ORM\Column(options: ['default' => '0'])]
     private ?int $appointmentCancellationCounter = 0;
 
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $appointmentSalesforceNotificationSentAt = null;
+
     public function __construct()
     {
         $this->objects = new ArrayCollection();
@@ -745,6 +748,18 @@ class Complaint
     public function incrementAppointmentCancellationCounter(): static
     {
         ++$this->appointmentCancellationCounter;
+
+        return $this;
+    }
+
+    public function getAppointmentSalesforceNotificationSentAt(): ?\DateTimeImmutable
+    {
+        return $this->appointmentSalesforceNotificationSentAt;
+    }
+
+    public function setAppointmentSalesforceNotificationSentAt(?\DateTimeImmutable $appointmentSalesforceNotificationSentAt): self
+    {
+        $this->appointmentSalesforceNotificationSentAt = $appointmentSalesforceNotificationSentAt;
 
         return $this;
     }
