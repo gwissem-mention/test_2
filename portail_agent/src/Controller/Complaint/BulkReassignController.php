@@ -69,7 +69,7 @@ class BulkReassignController extends AbstractController
         return $this->errorResponse();
     }
 
-    private function errorResponse(FormInterface|null $form = null): JsonResponse
+    private function errorResponse(FormInterface $form = null): JsonResponse
     {
         $response = [];
 

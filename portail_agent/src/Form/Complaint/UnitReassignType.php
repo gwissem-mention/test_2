@@ -48,7 +48,7 @@ class UnitReassignType extends AbstractType
             );
     }
 
-    private function addUnitFields(FormInterface $form, ?Unit $unit = null): void
+    private function addUnitFields(FormInterface $form, Unit $unit = null): void
     {
         $form
             ->add('unitToReassign', UnitAutocompleteType::class, [

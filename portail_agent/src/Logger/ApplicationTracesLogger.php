@@ -18,7 +18,7 @@ class ApplicationTracesLogger
     ) {
     }
 
-    public function log(string $message, ?User $user = null): void
+    public function log(string $message, User $user = null): void
     {
         $logger = $this->getLogger($user);
 
