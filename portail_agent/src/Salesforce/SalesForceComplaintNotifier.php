@@ -5,12 +5,14 @@ declare(strict_types=1);
 namespace App\Salesforce;
 
 use App\Entity\Complaint;
+use App\Entity\RejectReason;
 use App\Referential\Entity\Unit;
 use App\Referential\Repository\UnitRepository;
 use App\Salesforce\HttpClient\ApiDataFormat\ComplaintNotificationAppointmentDoneData;
 use App\Salesforce\HttpClient\ApiDataFormat\ComplaintNotificationAppointmentInitializationData;
 use App\Salesforce\HttpClient\ApiDataFormat\ComplaintNotificationAppointmentWarmupData;
 use App\Salesforce\HttpClient\ApiDataFormat\ComplaintNotificationInitializationData;
+use App\Salesforce\HttpClient\ApiDataFormat\ComplaintNotificationRejectionData;
 use App\Salesforce\HttpClient\ApiDataFormat\ComplaintNotificationReportSentData;
 use App\Salesforce\HttpClient\ApiDataFormat\ComplaintNotificationUnitReassignmentData;
 use App\Salesforce\HttpClient\ApiDataFormat\ComplaintNotificationWarmupData;
@@ -168,6 +170,40 @@ class SalesForceComplaintNotifier
 
         $eventDefinition = new SalesForceApiEventDefinition(
             'APIEvent-eedbb93b-7cb4-aca3-4cff-08e4210605b8',
+            $complaint->getDeclarationNumber(),
+            $eventDefinitionData
+        );
+
+        $this->client->sendEvent($eventDefinition);
+    }
+
+    public function rejection(Complaint $complaint): void
+    {
+        if (null === $complaint->getRefusalReason()) {
+            throw new NoRejectReasonException();
+        }
+
+        $refusalReason = match ($complaint->getRefusalReason()) {
+            RejectReason::PEL_OTHER, RejectReason::PEL_INSUFISANT_QUALITY_TO_ACT, RejectReason::INCOHERENT_STATEMENTS => 8,
+            RejectReason::REORIENTATION_OTHER_SOLUTION, RejectReason::DRAFTING_VICTIM_TO_ANOTHER_TELESERVICE => 1,
+            RejectReason::DRAFTING_A_HANDRAIL_DECLARATION => 7,
+            RejectReason::ABSENCE_OF_PENAL_OFFENSE_OBJECT_LOSS, RejectReason::ABSENCE_OF_PENAL_OFFENSE => 5,
+            RejectReason::PEL_VICTIME_CARENCE_AT_APPOINTMENT => 4,
+            RejectReason::PEL_VICTIME_CARENCE_AT_APPOINTMENT_BOOKING => 3,
+            RejectReason::ABANDONMENT_OF_THE_PROCEDURE_BY_VICTIM => 2,
+            default => throw new BadRejectReasonException()
+        };
+
+        $eventDefinitionData = new ComplaintNotificationRejectionData(
+            complaintDeclarationNumber: $complaint->getDeclarationNumber(),
+            flagChoix: 3,
+            flagReattribution: $complaint->getReassignmentCounter() ?? 0,
+            complaintRefusalReason: $refusalReason,
+            complaintRefusalText: $complaint->getRefusalText() ?? '',
+        );
+
+        $eventDefinition = new SalesForceApiEventDefinition(
+            'APIEvent-5aa2919f-d971-d517-552d-20dca88f4a6a',
             $complaint->getDeclarationNumber(),
             $eventDefinitionData
         );

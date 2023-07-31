@@ -19,17 +19,17 @@ class RejectReasonFixtures extends Fixture implements FixtureGroupInterface
     public function load(ObjectManager $manager): void
     {
         $rejectReasons = [
-            'pel.other' => 'pel-other',
-            'pel.reorientation.other.solution' => 'reorientation-other-solution',
-            'pel.drafting.victim.to.another.teleservice' => 'drafting-victim-to-another-teleservice',
-            'pel.drafting.a.handrail.declaration' => 'drafting-a-handrail-declaration',
-            'pel.insufisant.quality.to.act' => 'pel-insufisant-quality-to-act',
-            'pel.absence.of.penal.offense.object.loss' => 'absence-of-penal-offense-object-loss',
-            'pel.absence.of.penal.offense' => 'absence-of-penal-offense',
-            'pel.incoherent.statements' => 'incoherent-statements',
-            'pel.victime.carence.at.appointment' => 'pel-victime-carence-at-appointment',
-            'pel.victime.carence.at.appointment.booking' => 'pel-victime-carence-at-appointment-booking',
-            'pel.abandonment.of.the.procedure.by.victim' => 'abandonment-of-the-procedure-by-victim',
+            'pel.other' => RejectReason::PEL_OTHER,
+            'pel.reorientation.other.solution' => RejectReason::REORIENTATION_OTHER_SOLUTION,
+            'pel.drafting.victim.to.another.teleservice' => RejectReason::DRAFTING_VICTIM_TO_ANOTHER_TELESERVICE,
+            'pel.drafting.a.handrail.declaration' => RejectReason::DRAFTING_A_HANDRAIL_DECLARATION,
+            'pel.insufisant.quality.to.act' => RejectReason::PEL_INSUFISANT_QUALITY_TO_ACT,
+            'pel.absence.of.penal.offense.object.loss' => RejectReason::ABSENCE_OF_PENAL_OFFENSE_OBJECT_LOSS,
+            'pel.absence.of.penal.offense' => RejectReason::ABSENCE_OF_PENAL_OFFENSE,
+            'pel.incoherent.statements' => RejectReason::INCOHERENT_STATEMENTS,
+            'pel.victime.carence.at.appointment' => RejectReason::PEL_VICTIME_CARENCE_AT_APPOINTMENT,
+            'pel.victime.carence.at.appointment.booking' => RejectReason::PEL_VICTIME_CARENCE_AT_APPOINTMENT_BOOKING,
+            'pel.abandonment.of.the.procedure.by.victim' => RejectReason::ABANDONMENT_OF_THE_PROCEDURE_BY_VICTIM,
         ];
 
         foreach ($rejectReasons as $label => $code) {
