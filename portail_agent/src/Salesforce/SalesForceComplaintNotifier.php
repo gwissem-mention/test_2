@@ -11,6 +11,7 @@ use App\Referential\Repository\UnitRepository;
 use App\Salesforce\HttpClient\ApiDataFormat\ComplaintNotificationAppointmentDoneData;
 use App\Salesforce\HttpClient\ApiDataFormat\ComplaintNotificationAppointmentInitializationData;
 use App\Salesforce\HttpClient\ApiDataFormat\ComplaintNotificationAppointmentWarmupData;
+use App\Salesforce\HttpClient\ApiDataFormat\ComplaintNotificationCancellationData;
 use App\Salesforce\HttpClient\ApiDataFormat\ComplaintNotificationInitializationData;
 use App\Salesforce\HttpClient\ApiDataFormat\ComplaintNotificationRejectionData;
 use App\Salesforce\HttpClient\ApiDataFormat\ComplaintNotificationReportSentData;
@@ -204,6 +205,23 @@ class SalesForceComplaintNotifier
 
         $eventDefinition = new SalesForceApiEventDefinition(
             'APIEvent-5aa2919f-d971-d517-552d-20dca88f4a6a',
+            $complaint->getDeclarationNumber(),
+            $eventDefinitionData
+        );
+
+        $this->client->sendEvent($eventDefinition);
+    }
+
+    public function cancellation(Complaint $complaint): void
+    {
+        $eventDefinitionData = new ComplaintNotificationCancellationData(
+            complaintDeclarationNumber: $complaint->getDeclarationNumber(),
+            flagRDVAnnule: $complaint->getAppointmentCancellationCounter() ?? 0,
+            flagSuiteRendezVous: 1,
+        );
+
+        $eventDefinition = new SalesForceApiEventDefinition(
+            'APIEvent-1f821344-70d7-94e6-7952-b3a34bc902c5',
             $complaint->getDeclarationNumber(),
             $eventDefinitionData
         );
