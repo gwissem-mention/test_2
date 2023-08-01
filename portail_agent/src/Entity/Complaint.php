@@ -764,4 +764,9 @@ class Complaint
 
         return $this;
     }
+
+    public function getUniqueDeclarationNumber(): string
+    {
+        return $this->declarationNumber.'-'.$this->createdAt?->getTimestamp();
+    }
 }

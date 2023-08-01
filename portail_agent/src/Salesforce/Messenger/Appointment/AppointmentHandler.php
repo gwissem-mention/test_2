@@ -27,7 +27,6 @@ class AppointmentHandler
             return;
         }
 
-        $this->notifier->appointmentInit($complaint);
         $this->notifier->appointmentWarmup($complaint);
     }
 }
