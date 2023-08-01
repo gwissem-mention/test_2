@@ -20,7 +20,7 @@
       ACTIVEMQ_DSN={{ ansible_env.ACTIVEMQ_DSN }}
       ACTIVEMQ_QUEUE_NAME={{ ansible_env.ACTIVEMQ_QUEUE_NAME }}
       SALESFORCE_RECIPIENT={{ ansible_env.SALESFORCE_RECIPIENT }}
-      CITOYEN_DOMAIN={{ ansible_env.CITOYEN_DOMAIN }}
+      CITOYEN_DOMAIN={{ CITOYEN_DOMAIN }}
       AWS_S3_ENDPOINT={{ ansible_env.AWS_S3_ENDPOINT }}
       AWS_S3_BUCKET={{ ansible_env.AWS_S3_BUCKET }}
       AWS_S3_REGION={{ ansible_env.AWS_S3_REGION }}
