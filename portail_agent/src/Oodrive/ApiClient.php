@@ -81,7 +81,7 @@ class ApiClient implements ApiClientInterface
         try {
             $response = $this->oodriveClient->request('GET', 'share/api/v1/search/items?'.$searchParamObject->asUrlPart(), [
                 'headers' => [
-                    'Accept' => 'application/json',
+                    'Accept' => 'application/vnd.oodrive.api.search+json',
                 ],
             ]);
         } catch (ClientExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface|TransportExceptionInterface $e) {
