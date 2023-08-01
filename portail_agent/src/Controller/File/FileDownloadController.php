@@ -11,9 +11,9 @@ use App\Logger\ApplicationTracesMessage;
 use League\Flysystem\FilesystemException;
 use League\Flysystem\FilesystemOperator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
-use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
 class FileDownloadController extends AbstractController
@@ -22,7 +22,7 @@ class FileDownloadController extends AbstractController
      * @throws FilesystemException
      */
     #[Route('/telecharger-piece-jointe/{id}/{name}', name: 'file_download', requirements: ['id' => '\d+', 'name' => '.+'])]
-    public function __invoke(Complaint $complaint, string $name, FilesystemOperator $defaultStorage, ApplicationTracesLogger $logger, Request $request): BinaryFileResponse
+    public function __invoke(Complaint $complaint, string $name, FilesystemOperator $defaultStorage, ApplicationTracesLogger $logger, Request $request): StreamedResponse
     {
         $this->denyAccessUnlessGranted('COMPLAINT_VIEW', $complaint);
         /** @var User $user */
@@ -35,6 +35,14 @@ class FileDownloadController extends AbstractController
             $request->getClientIp())
         );
 
-        return $this->file(new File(stream_get_meta_data($defaultStorage->readStream($name))['uri']));
+        return new StreamedResponse(function () use ($name, $defaultStorage) {
+            /** @var resource $outputStream */
+            $outputStream = fopen('php://output', 'wb');
+            $fileStream = $defaultStorage->readStream($name);
+            stream_copy_to_stream($fileStream, $outputStream);
+        }, 200, [
+            'Content-Type' => $defaultStorage->mimeType($name),
+            'Content-Disposition' => ResponseHeaderBag::DISPOSITION_ATTACHMENT,
+        ]);
     }
 }

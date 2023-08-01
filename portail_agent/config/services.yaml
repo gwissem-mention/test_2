@@ -99,3 +99,15 @@ services:
 
     app.logger.formatter.json_traces:
         class: App\Logger\Formatter\ApplicationTracesFormatter
+
+    Aws\S3\S3Client:
+        arguments:
+            -   
+                version: '2006-03-01'
+                region: '%env(AWS_S3_REGION)%'
+                endpoint: '%env(AWS_S3_ENDPOINT)%'
+                use_path_style_endpoint: True
+                public: True
+                credentials:
+                    key: '%env(AWS_S3_ACCESS_ID)%'
+                    secret: '%env(AWS_S3_ACCESS_SECRET)%'

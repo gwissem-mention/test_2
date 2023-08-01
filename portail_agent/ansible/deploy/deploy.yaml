@@ -21,6 +21,9 @@
     ACTIVEMQ_DSN: stomp://localhost:61613
     ACTIVEMQ_QUEUE_NAME: /queue/pel
     SALESFORCE_RECIPIENT: pel.sensiolabs@gmail.com
+    AWS_S3_ENDPOINT: http://localhost:9000
+    AWS_S3_BUCKET: pel-bucket
+    AWS_S3_REGION: eu-west-3
     
   vars_files:
     - ../vars/vars.yaml
