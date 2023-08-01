@@ -3,13 +3,28 @@ version: '3.4'
 services:
   activemq:
     image: symptoma/activemq:5.18.0
-    ports:
-      - "8161:8161"
     environment:
         ACTIVEMQ_WEBADMIN_USERNAME: admin
         ACTIVEMQ_WEBADMIN_PASSWORD: admin
         ACTIVEMQ_USERNAME: system
         ACTIVEMQ_PASSWORD: manager
+        
+  minio:
+    image: minio/minio
+    volumes:
+      - minio:/data
+    environment:
+      MINIO_ROOT_USER: superadmin
+      MINIO_ROOT_PASSWORD: superadmin
+      MINIO_REGION_NAME: eu-west-3 
+    entrypoint: sh
+    command: -c 'mkdir -p /data/pel-bucket && minio server --console-address 0.0.0.0:9001 /data'
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:9000/minio/health/live" ]
+      interval: '30s'
+      timeout: '20s'
+      retries: 3
+    restart: 'unless-stopped'
     
   php-citoyen:
     build:
@@ -136,6 +151,7 @@ services:
     image: redislabs/rejson:latest
 
 volumes:
+  minio:
   citoyen-public:
   agent-public:
   ###> doctrine/doctrine-bundle ###

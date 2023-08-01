@@ -483,8 +483,8 @@ agent-func:
         - make APP_ENV=${APP_ENV} db-ci-load
         - make behat
     services:
-        - name: postgres:13-alpine
-          alias: database-func-agent
+        -   name: postgres:13-alpine
+            alias: database-func-agent
     artifacts:
         name: "agent-func-$CI_COMMIT_REF_NAME"
         paths:
@@ -714,8 +714,8 @@ agent-e2e:
             alias: database-e2e-agent
         -   name: selenium/standalone-chrome:4.5.3
             alias: chrome
-        - name: symptoma/activemq:5.18.0
-          alias: activemq
+        -   name: symptoma/activemq:5.18.0
+            alias: activemq
     artifacts:
         name: "agent-e2e-$CI_COMMIT_REF_NAME"
         paths:
@@ -747,8 +747,8 @@ agent-complaint-e2e:
             alias: database-e2e-agent
         -   name: selenium/standalone-chrome:4.5.3
             alias: chrome
-        - name: symptoma/activemq:5.18.0
-          alias: activemq
+        -   name: symptoma/activemq:5.18.0
+            alias: activemq
     artifacts:
         name: "agent-complaint-e2e-$CI_COMMIT_REF_NAME"
         paths:
@@ -784,8 +784,8 @@ agent-flaky-e2e:
             alias: database-e2e-agent
         -   name: selenium/standalone-chrome:4.5.3
             alias: chrome
-        - name: symptoma/activemq:5.18.0
-          alias: activemq
+        -   name: symptoma/activemq:5.18.0
+            alias: activemq
     artifacts:
         name: "agent-flaky-e2e-$CI_COMMIT_REF_NAME"
         paths:

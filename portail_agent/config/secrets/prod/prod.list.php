@@ -2,6 +2,8 @@
 
 return [
     'APP_SECRET' => null,
+    'AWS_S3_ACCESS_ID' => null,
+    'AWS_S3_ACCESS_SECRET' => null,
     'DATABASE_URL' => null,
     'OODRIVE_OAUTH_CLIENT_SECRET' => null,
     'OODRIVE_PASSWORD' => null,

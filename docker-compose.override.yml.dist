@@ -84,3 +84,12 @@ services:
   node-agent:
     ports:
       - "8090:8090" # Port for webpack-dev-server
+
+  activemq:
+    ports:
+      - "8161:8161"
+
+  minio:
+    ports:
+      - "9000:9000"
+      - "9001:9001"
