@@ -56,7 +56,9 @@ class ComplaintEntityListener
         $this->complaintNotification->setSupervisorNotifications($complaint);
         $this->entityManager->flush();
 
-        $this->bus->dispatch(new ComplaintWarmupMessage((int) $complaint->getId())); // Salesforce email
+        if (!$complaint->isTest()) {
+            $this->bus->dispatch(new ComplaintWarmupMessage((int) $complaint->getId())); // Salesforce email
+        }
     }
 
     private function createCounterForCurrentYear(): ?ComplaintCount

@@ -36,8 +36,10 @@ class SalesForceComplaintNotifier
         /** @var Unit $unit */
         $unit = $this->unitRepository->findOneBy(['serviceId' => $complaint->getUnitAssigned()]);
 
+        $declarationNumber = $this->ssoIsEnabled ? $complaint->getDeclarationNumber() : $complaint->getUniqueDeclarationNumber();
+
         $eventDefinitionData = new ComplaintNotificationInitializationData(
-            complaintDeclarationNumber: $complaint->getDeclarationNumber(),
+            $declarationNumber,
             identityFirstName: $complaint->getIdentity()?->getFirstname() ?? '',
             identityLastName: $complaint->getIdentity()?->getLastname() ?? '',
             identityEmail: $this->ssoIsEnabled ? ($complaint->getIdentity()?->getEmail() ?? '') : $this->salesForceRecipient,
@@ -53,7 +55,7 @@ class SalesForceComplaintNotifier
 
         $eventDefinition = new SalesForceApiEventDefinition(
             'APIEvent-adffc2f2-5e1d-a5a1-1027-960ed94f04a3',
-            $complaint->getDeclarationNumber(),
+            $declarationNumber,
             $eventDefinitionData
         );
 
@@ -62,8 +64,10 @@ class SalesForceComplaintNotifier
 
     public function assignment(Complaint $complaint): void
     {
+        $declarationNumber = $this->ssoIsEnabled ? $complaint->getDeclarationNumber() : $complaint->getUniqueDeclarationNumber();
+
         $eventDefinitionData = new ComplaintNotificationWarmupData(
-            complaintDeclarationNumber: $complaint->getDeclarationNumber(),
+            $declarationNumber,
             flagChoix: 0,
             flagReattribution: $complaint->getReassignmentCounter() ?? 0,
             flagPriseEnCompte: true,
@@ -71,7 +75,7 @@ class SalesForceComplaintNotifier
 
         $eventDefinition = new SalesForceApiEventDefinition(
             'APIEvent-54f97f47-5cf7-acb4-c4b2-ad37d29a1716',
-            $complaint->getDeclarationNumber(),
+            $declarationNumber,
             $eventDefinitionData
         );
 
@@ -80,15 +84,17 @@ class SalesForceComplaintNotifier
 
     public function appointmentDone(Complaint $complaint): void
     {
+        $declarationNumber = $this->ssoIsEnabled ? $complaint->getDeclarationNumber() : $complaint->getUniqueDeclarationNumber();
+
         $eventDefinitionData = new ComplaintNotificationAppointmentDoneData(
-            complaintDeclarationNumber: $complaint->getDeclarationNumber(),
+            $declarationNumber,
             flagChoix: 2,
             flagReattribution: $complaint->getReassignmentCounter() ?? 0,
         );
 
         $eventDefinition = new SalesForceApiEventDefinition(
             'APIEvent-5aa2919f-d971-d517-552d-20dca88f4a6a',
-            $complaint->getDeclarationNumber(),
+            $declarationNumber,
             $eventDefinitionData
         );
 
@@ -97,8 +103,10 @@ class SalesForceComplaintNotifier
 
     public function reportSent(Complaint $complaint, int $filesCount): void
     {
+        $declarationNumber = $this->ssoIsEnabled ? $complaint->getDeclarationNumber() : $complaint->getUniqueDeclarationNumber();
+
         $eventDefinitionData = new ComplaintNotificationReportSentData(
-            complaintDeclarationNumber: $complaint->getDeclarationNumber(),
+            $declarationNumber,
             lienTelechargementRecapitulatif: $this->citoyenDomain.'/mes-pv-de-plaintes',
             telechargementNombreDocuments: $filesCount,
             flagReattribution: $complaint->getReassignmentCounter() ?? 0,
@@ -107,7 +115,7 @@ class SalesForceComplaintNotifier
 
         $eventDefinition = new SalesForceApiEventDefinition(
             'APIEvent-5aa2919f-d971-d517-552d-20dca88f4a6a',
-            $complaint->getDeclarationNumber(),
+            $declarationNumber,
             $eventDefinitionData
         );
 
@@ -116,15 +124,17 @@ class SalesForceComplaintNotifier
 
     public function unitReassignment(Complaint $complaint): void
     {
+        $declarationNumber = $this->ssoIsEnabled ? $complaint->getDeclarationNumber() : $complaint->getUniqueDeclarationNumber();
+
         $eventDefinitionData = new ComplaintNotificationUnitReassignmentData(
-            complaintDeclarationNumber: $complaint->getDeclarationNumber(),
+            $declarationNumber,
             flagChoix: 4,
             flagReattribution: $complaint->getReassignmentCounter() ?? 0,
         );
 
         $eventDefinition = new SalesForceApiEventDefinition(
             'APIEvent-5aa2919f-d971-d517-552d-20dca88f4a6a',
-            $complaint->getDeclarationNumber(),
+            $declarationNumber,
             $eventDefinitionData
         );
 
@@ -133,8 +143,10 @@ class SalesForceComplaintNotifier
 
     public function appointmentInit(Complaint $complaint): void
     {
+        $declarationNumber = $this->ssoIsEnabled ? $complaint->getDeclarationNumber() : $complaint->getUniqueDeclarationNumber();
+
         $eventDefinitionData = new ComplaintNotificationAppointmentInitializationData(
-            complaintDeclarationNumber: $complaint->getDeclarationNumber(),
+            $declarationNumber,
             identityFirstName: $complaint->getIdentity()?->getFirstname() ?? '',
             identityLastName: $complaint->getIdentity()?->getLastname() ?? '',
             identityEmail: $this->ssoIsEnabled ? ($complaint->getIdentity()?->getEmail() ?? '') : $this->salesForceRecipient,
@@ -145,7 +157,7 @@ class SalesForceComplaintNotifier
 
         $eventDefinition = new SalesForceApiEventDefinition(
             'APIEvent-68defbbf-84c7-98e2-3a89-23e0ee9ef666',
-            $complaint->getDeclarationNumber(),
+            $declarationNumber,
             $eventDefinitionData
         );
 
@@ -154,11 +166,13 @@ class SalesForceComplaintNotifier
 
     public function appointmentWarmup(Complaint $complaint): void
     {
+        $declarationNumber = $this->ssoIsEnabled ? $complaint->getDeclarationNumber() : $complaint->getUniqueDeclarationNumber();
+
         /** @var Unit $unit */
         $unit = $this->unitRepository->findOneBy(['serviceId' => $complaint->getUnitAssigned()]);
 
         $eventDefinitionData = new ComplaintNotificationAppointmentWarmupData(
-            complaintDeclarationNumber: $complaint->getDeclarationNumber(),
+            $declarationNumber,
             unitName: $unit->getName(),
             unitAddress: $unit->getAddress(),
             unitPhone: $unit->getPhone(),
@@ -171,7 +185,7 @@ class SalesForceComplaintNotifier
 
         $eventDefinition = new SalesForceApiEventDefinition(
             'APIEvent-eedbb93b-7cb4-aca3-4cff-08e4210605b8',
-            $complaint->getDeclarationNumber(),
+            $declarationNumber,
             $eventDefinitionData
         );
 
@@ -183,6 +197,8 @@ class SalesForceComplaintNotifier
         if (null === $complaint->getRefusalReason()) {
             throw new NoRejectReasonException();
         }
+
+        $declarationNumber = $this->ssoIsEnabled ? $complaint->getDeclarationNumber() : $complaint->getUniqueDeclarationNumber();
 
         $refusalReason = match ($complaint->getRefusalReason()) {
             RejectReason::PEL_OTHER, RejectReason::PEL_INSUFISANT_QUALITY_TO_ACT, RejectReason::INCOHERENT_STATEMENTS => 8,
@@ -196,7 +212,7 @@ class SalesForceComplaintNotifier
         };
 
         $eventDefinitionData = new ComplaintNotificationRejectionData(
-            complaintDeclarationNumber: $complaint->getDeclarationNumber(),
+            $declarationNumber,
             flagChoix: 3,
             flagReattribution: $complaint->getReassignmentCounter() ?? 0,
             complaintRefusalReason: $refusalReason,
@@ -205,7 +221,7 @@ class SalesForceComplaintNotifier
 
         $eventDefinition = new SalesForceApiEventDefinition(
             'APIEvent-5aa2919f-d971-d517-552d-20dca88f4a6a',
-            $complaint->getDeclarationNumber(),
+            $declarationNumber,
             $eventDefinitionData
         );
 
@@ -214,15 +230,17 @@ class SalesForceComplaintNotifier
 
     public function cancellation(Complaint $complaint): void
     {
+        $declarationNumber = $this->ssoIsEnabled ? $complaint->getDeclarationNumber() : $complaint->getUniqueDeclarationNumber();
+
         $eventDefinitionData = new ComplaintNotificationCancellationData(
-            complaintDeclarationNumber: $complaint->getDeclarationNumber(),
+            $declarationNumber,
             flagRDVAnnule: $complaint->getAppointmentCancellationCounter() ?? 0,
             flagSuiteRendezVous: 1,
         );
 
         $eventDefinition = new SalesForceApiEventDefinition(
             'APIEvent-1f821344-70d7-94e6-7952-b3a34bc902c5',
-            $complaint->getDeclarationNumber(),
+            $declarationNumber,
             $eventDefinitionData
         );
 
