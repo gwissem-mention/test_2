@@ -35,7 +35,7 @@ class FolderResolver
             if ($result->getName() === $email) {
                 $parentFolder = $this->oodriveClient->getFolder($result->getParentId());
 
-                if ($parentFolder->getId() === $this->oodriveRootFolderId) {
+                if ($parentFolder->getParentId() === $this->oodriveRootFolderId) {
                     return $result;
                 }
             }
