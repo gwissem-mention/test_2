@@ -5,88 +5,62 @@
         {% block toaster %}
             {% include 'pages/complaint/_partial/toaster.html.twig' %}
         {% endblock %}
-        <div data-controller="complaint" data-complaint-target="complaintContainer" id="complaint-container">
-            <div class="row my-3">
-                {% include 'pages/complaint/_partial/menu.html.twig' %}
-                <main class="col-12 col-md-9 mt-3 mt-md-0">
-                    <div class="row mb-3">
-                        <div class="col-6">
-                            <p class="m-0">
-                                {{ 'pel.number.of.the.declaration'|trans }} :
-                                <span class="fw-bold">{{ complaint.declarationNumber }}</span>
-                            </p>
-                            <p class="m-0">
-                                {{ 'pel.declaration.status'|trans }} :
-                                {{ complaint.status|trans }}
-                            </p>
-                            <p class="m-0 {{ not complaint.alert ? 'd-none' : '' }}">
-                                {{ 'pel.declaration.alert'|trans }} :
-                                <span class="fw-bold text-danger">{{ complaint.alert|trans }}</span>
-                            </p>
-                        </div>
-                        <div class="col-6">
-                            <div class="text-end {{ not complaint.appointmentDate ? 'd-none':'' }}">
-                                {{ 'pel.appointment.planned.with.the.victim'|trans }} <i class="bi bi-calendar-check-fill p-3"></i>
-                            </div>
-                            <div class="fs-5 text-end {{ not complaint.assignedTo ? 'd-none':'' }}" id="complaint-agent">
-                                {{ 'pel.declaration.assigned.to'|trans }} :
-                                <span class="agent-name fw-bold">{{ complaint.assignedTo.appellation|default }}</span>
-                                {% if workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_ASSIGN') ) %}
-                                    <button class="btn" data-bs-toggle="modal" data-bs-target="#modal-complaint-assign" id="complaint-reassign-button">
-                                        <i class="bi bi-pencil-fill"></i>
-                                    </button>
-                                {% endif %}
-                            </div>
-                        </div>
+        <main data-controller="complaint" data-complaint-target="complaintContainer" id="complaint-container">
+            <div class="container-fluid min-vh-100 d-flex flex-column w-100 mw-100 m-0 p-0">
+                <div class="row flex-grow-1 g-0">
+                    <div class="col-md-3 col-lg-2 shadow p-4">
+                        {% include 'pages/complaint/_partial/menu.html.twig' %}
                     </div>
-                    {% block main %}{% endblock %}
-                    {% block comment %}
-                        {% include 'pages/complaint/_partial/comments.html.twig' %}
-                    {% endblock %}
-                </main>
+                    <div class="col-md-9 col-lg-10 mx-auto p-4">
+                        {% block main %}{% endblock %}
+                        {% block comment %}
+                            {% include 'pages/complaint/_partial/comments.html.twig' %}
+                        {% endblock %}
+                    </div>
+                </div>
+                {% block modal %}
+                    {% if workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_ASSIGN')) %}
+                        {% include 'pages/complaint/_partial/modals/assign.html.twig' with {
+                            'assignedTo': complaint.assignedTo,
+                            'complaintId': complaint.id,
+                            'assignForm': assign_form
+                        } %}
+                    {% endif %}
+                    {% if workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_REJECT')) %}
+                        {% include 'pages/complaint/_partial/modals/reject.html.twig' with {
+                            'rejectForm': reject_form,
+                            'complaintId': complaint.id
+                        } %}
+                    {% endif %}
+                    {% if workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_SEND_TO_LRP')) %}
+                        {% include 'pages/complaint/_partial/modals/send_to_lrp.html.twig' with {
+                            'complaintId': complaint.id
+                        } %}
+                    {% endif %}
+                    {% if workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_CLOSE_AFTER_APPOINTMENT')) %}
+                        {% include 'pages/complaint/_partial/modals/close_after_appointment.html.twig' with {
+                            'sendReportForm': send_report_form,
+                            'complaintId': complaint.id
+                        } %}
+                    {% elseif workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_CLOSE_AFTER_SENDING_THE_REPORT')) %}
+                        {% include 'pages/complaint/_partial/modals/send_to_victim.html.twig' with {
+                            'sendReportForm': send_report_form,
+                            'complaintId': complaint.id
+                        } %}
+                    {% endif %}
+                    {% if workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_REJECT_UNIT_REDIRECTION')) %}
+                        {% include 'pages/complaint/_partial/modals/reassign_validation.html.twig' with {
+                            'unitReassignForm': unit_reassign_form,
+                            'complaintId': complaint.id
+                        } %}
+                    {% elseif workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_ASK_UNIT_REDIRECTION')) or workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_UNIT_REDIRECT')) %}
+                        {% include 'pages/complaint/_partial/modals/reassign.html.twig' with {
+                            'unitReassignForm': unit_reassign_form,
+                            'complaintId': complaint.id
+                        } %}
+                    {% endif %}
+                {% endblock %}
             </div>
-            {% block modal %}
-                {% if workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_ASSIGN')) %}
-                    {% include 'pages/complaint/_partial/modals/assign.html.twig' with {
-                        'assignedTo': complaint.assignedTo,
-                        'complaintId': complaint.id,
-                        'assignForm': assign_form
-                    } %}
-                {% endif %}
-                {% if workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_REJECT')) %}
-                    {% include 'pages/complaint/_partial/modals/reject.html.twig' with {
-                        'rejectForm': reject_form,
-                        'complaintId': complaint.id
-                    } %}
-                {% endif %}
-                {% if workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_SEND_TO_LRP')) %}
-                    {% include 'pages/complaint/_partial/modals/send_to_lrp.html.twig' with {
-                        'complaintId': complaint.id
-                    } %}
-                {% endif %}
-                {% if workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_CLOSE_AFTER_APPOINTMENT')) %}
-                    {% include 'pages/complaint/_partial/modals/close_after_appointment.html.twig' with {
-                        'sendReportForm': send_report_form,
-                        'complaintId': complaint.id
-                    } %}
-                {% elseif workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_CLOSE_AFTER_SENDING_THE_REPORT')) %}
-                    {% include 'pages/complaint/_partial/modals/send_to_victim.html.twig' with {
-                        'sendReportForm': send_report_form,
-                        'complaintId': complaint.id
-                    } %}
-                {% endif %}
-                {% if workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_REJECT_UNIT_REDIRECTION')) %}
-                    {% include 'pages/complaint/_partial/modals/reassign_validation.html.twig' with {
-                        'unitReassignForm': unit_reassign_form,
-                        'complaintId': complaint.id
-                    } %}
-                {% elseif workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_ASK_UNIT_REDIRECTION')) or workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_UNIT_REDIRECT')) %}
-                    {% include 'pages/complaint/_partial/modals/reassign.html.twig' with {
-                        'unitReassignForm': unit_reassign_form,
-                        'complaintId': complaint.id
-                    } %}
-                {% endif %}
-            {% endblock %}
-        </div>
+        </main>
     {% endblock %}
 {% endblock %}

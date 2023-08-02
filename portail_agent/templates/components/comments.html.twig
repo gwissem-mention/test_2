@@ -1,5 +1,5 @@
 <div id="comment-feed" {{ attributes }}>
-    <div class="container comment-box overflow-scroll mb-4" id="comment-box" data-complaint-target="commentBox" >
+    <div class="container comment-box overflow-scroll mb-4" id="comment-box" data-complaint-target="commentBox">
         {% if this.complaint %}
             {% for comment in this.complaint.comments %}
                 <div class="row {{ comment.author is same as app.user ? 'comment-right' : 'comment-left' }}">

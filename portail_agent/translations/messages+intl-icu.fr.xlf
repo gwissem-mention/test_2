@@ -48,7 +48,7 @@
             </trans-unit>
             <trans-unit id="pel.appointment.management">
                 <source>pel.appointment.management</source>
-                <target>Gestion RDV déclarant</target>
+                <target>Gestion RDV</target>
             </trans-unit>
             <trans-unit id="pel.appointment.modify">
                 <source>pel.appointment.modify</source>
@@ -77,6 +77,10 @@
             <trans-unit id="pel.assigned">
                 <source>pel.assigned</source>
                 <target>Attribuée</target>
+            </trans-unit>
+            <trans-unit id="pel.assigned.to">
+                <source>pel.assigned.to</source>
+                <target>Attribuée à</target>
             </trans-unit>
             <trans-unit id="pel.complaint.assignation">
                 <source>pel.complaint.assignation</source>
@@ -148,7 +152,7 @@
             </trans-unit>
             <trans-unit id="pel.assign.declaration.to">
                 <source>pel.assign.declaration.to</source>
-                <target>Attribuer la déclaration à</target>
+                <target>Attribuer à</target>
             </trans-unit>
             <trans-unit id="pel.at">
                 <source>pel.at</source>
@@ -804,7 +808,7 @@
             </trans-unit>
             <trans-unit id="pel.reassign.declaration.to">
                 <source>pel.reassign.declaration.to</source>
-                <target>Réattribuer la déclaration à</target>
+                <target>Réattribuer</target>
             </trans-unit>
             <trans-unit id="pel.receipt.report">
                 <source>pel.receipt.report</source>
@@ -876,7 +880,7 @@
             </trans-unit>
             <trans-unit id="pel.self.assign.the.declaration">
                 <source>pel.self.assign.the.declaration</source>
-                <target>M'attribuer la déclaration</target>
+                <target>M'attribuer</target>
             </trans-unit>
             <trans-unit id="pel.sir">
                 <source>pel.sir</source>
@@ -912,7 +916,7 @@
             </trans-unit>
             <trans-unit id="pel.send.report.to.the.victim.and.close">
                 <source>pel.send.report.to.the.victim.and.close</source>
-                <target>Envoyer PV au déclarant et clôturer</target>
+                <target>Envoyer PV</target>
             </trans-unit>
             <trans-unit id="pel.send.to.lrp">
                 <source>pel.send.to.lrp</source>
@@ -952,7 +956,7 @@
             </trans-unit>
             <trans-unit id="pel.the.declaration.has.been.self.assigned">
                 <source>pel.the.declaration.has.been.self.assigned</source>
-                <target>La déclaration vous a bien été attribué</target>
+                <target>La déclaration vous a bien été attribuée</target>
             </trans-unit>
             <trans-unit id="pel.the.declaration.has.been.assigned.to">
                 <source>pel.the.declaration.has.been.assigned.to</source>
@@ -1448,7 +1452,7 @@
             </trans-unit>
             <trans-unit id="pel.assignment.pending">
                 <source>pel.assignment.pending</source>
-                <target>A attribuer</target>
+                <target>À attribuer</target>
             </trans-unit>
             <trans-unit id="pel.data.to.be.processed.first">
                 <source>pel.data.to.be.processed.first</source>
@@ -1473,6 +1477,50 @@
             <trans-unit id="pel.appointment.to.plan">
                 <source>pel.appointment.to.plan</source>
                 <target>RDV à planifier</target>
+            </trans-unit>
+            <trans-unit id="pel.to.treat">
+                <source>pel.to.treat</source>
+                <target>À traiter</target>
+            </trans-unit>
+            <trans-unit id="pel.in.progress">
+                <source>pel.in.progress</source>
+                <target>En cours de traitement</target>
+            </trans-unit>
+            <trans-unit id="pel.declaration.closed">
+                <source>pel.declaration.closed</source>
+                <target>Déclaration clôturée</target>
+            </trans-unit>
+            <trans-unit id="pel.step">
+                <source>pel.step</source>
+                <target>Étape</target>
+            </trans-unit>
+            <trans-unit id="pel.on">
+                <source>pel.on</source>
+                <target>sur</target>
+            </trans-unit>
+            <trans-unit id="pel.next.step">
+                <source>pel.next.step</source>
+                <target>Étape suivante</target>
+            </trans-unit>
+            <trans-unit id="pel.declaration">
+                <source>pel.declaration</source>
+                <target>Déclaration</target>
+            </trans-unit>
+            <trans-unit id="pel.see.breadcrumb">
+                <source>pel.see.breadcrumb</source>
+                <target>Voir le fil d'Ariane</target>
+            </trans-unit>
+            <trans-unit id="pel.you.are.here">
+                <source>pel.you.are.here</source>
+                <target>vous êtes ici</target>
+            </trans-unit>
+            <trans-unit id="pel.attachment">
+                <source>pel.attachment</source>
+                <target>Pièce jointe</target>
+            </trans-unit>
+            <trans-unit id="pel.download">
+                <source>pel.download</source>
+                <target>Télécharger</target>
             </trans-unit>
         </body>
     </file>

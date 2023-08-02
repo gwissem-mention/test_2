@@ -53,7 +53,7 @@ export default class extends Controller {
     declare readonly sendReportValidationButtonTarget: HTMLButtonElement;
     declare readonly sendToLrpModalTarget: HTMLElement;
     declare readonly dropZoneErrorTarget: HTMLFormElement;
-
+    declare readonly hasCommentBoxTarget: boolean;
 
     public override connect() {
         this.scrollCommentFeed();
@@ -311,17 +311,15 @@ export default class extends Controller {
 
         if (empty) {
             this.commentButtonTarget.setAttribute("disabled", "disabled");
-            this.commentButtonTarget.classList.remove("btn-primary");
-            this.commentButtonTarget.classList.add("btn-secondary");
         } else {
             this.commentButtonTarget.removeAttribute("disabled");
-            this.commentButtonTarget.classList.remove("btn-secondary");
-            this.commentButtonTarget.classList.add("btn-primary");
         }
     }
 
     public scrollCommentFeed(): void {
-        this.commentBoxTarget.scrollTo(0, this.commentBoxTarget.scrollHeight);
+        if (this.hasCommentBoxTarget) {
+            this.commentBoxTarget.scrollTo(0, this.commentBoxTarget.scrollHeight);
+        }
     }
 
     public browseReport(): void {
