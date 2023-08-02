@@ -26,16 +26,15 @@ Feature:
         Given I am on "/plainte/recapitulatif/91"
         Then the response status code should be 200
         And I should see a "nav" element
-        And I should see a "aside" element
         And I should see a "main" element
-        And I should see the key "pel.number.of.the.declaration" translated
+        And I should see the key "pel.declaration.number" translated
         And I should see "PEL-2023-00000091"
-        And I should see the key "pel.declaration.status" translated
-        And I should see "A attribuer"
-        And I should see the key "pel.declaration.alert" translated
+        And I should see the key "pel.status" translated
+        And I should see "À attribuer"
+        And I should see the key "pel.alert" translated
         And I should see "Alert de test trop longue"
-        And I should see 2 "button[data-bs-toggle='modal']" element
-        And I should see 14 "button" element
+        And I should see a "button[data-bs-toggle='modal']" element
+        And I should see 15 "button" element
         And I should see the key "pel.assign.declaration.to" translated
         And I should not see the key "pel.send.to.lrp" translated
         And I should not see the key "pel.reject" translated
@@ -43,9 +42,9 @@ Feature:
         #And I should not see the key "pel.unit.reassign" translated
         And I should see the key "pel.comment" translated
         And I should see the key "pel.summary" translated
-        And I should see the key "pel.declarant.identity" translated
+        And I should see the key "pel.identification" translated
         And I should see the key "pel.description.of.facts" translated
-        And I should see the key "pel.objects.concerned" translated
+        And I should see the key "pel.objects.description" translated
         And I should see the key "pel.additional.informations" translated
         And I should see the key "pel.appointment.management" translated
         And I should see the key "pel.complaint.online" translated
@@ -154,7 +153,7 @@ Feature:
     @func
     Scenario: If the declarant is a Person Legal Representative, I should be able to see the victim informations
         Given I am on "/plainte/recapitulatif/151"
-        And I should see the key "pel.victim.identity" translated
+        And I should see the key "pel.identification" translated
         And I should see "Monsieur DUPONT Jeremy"
         And I should see "Célibataire"
         And I should see "14/02/2000"
@@ -169,7 +168,7 @@ Feature:
     @func
     Scenario: If the declarant is a Corporation Representative, I should be able to see the victim informations
         Given I am on "/plainte/recapitulatif/161"
-        And I should see the key "pel.victim.identity" translated
+        And I should see the key "pel.identification" translated
         And I should see the key "pel.siret.number" translated
         And I should see "12345678900000"
         And I should see the key "pel.company.name" translated
@@ -272,7 +271,10 @@ Feature:
         When I press "Valider l'envoi vers le LRP"
         Then I should not see a ".modal[aria-modal=true]" element
         Given I am on "/plainte/recapitulatif/103"
-        Then I should see the key "pel.declaration.status" translated
+        Then I should see the key "pel.declaration.number" translated
+        Then I should see the key "pel.status" translated
+        Then I should see the key "pel.assigned.to" translated
+        Then I should see the key "pel.nature.of.the.facts" translated
         Then I should see "En cours LRP"
         Given I am on the homepage
         When I click the "th:nth-of-type(10)" element
@@ -281,7 +283,7 @@ Feature:
     @javascript
     Scenario: I can toggle the send report to victim modal
         Given I am on "/plainte/recapitulatif/111"
-        When I press "Envoyer PV au déclarant et clôturer"
+        When I press "Envoyer PV"
         Then I should see a ".modal[aria-modal=true]" element
         And I should see the key "pel.please.drop.the.report.to.send.to.the.victim" translated
         And I should see the key "pel.complaint.assignation" translated
@@ -297,7 +299,7 @@ Feature:
     @javascript
     Scenario: I can see form errors when the send report file field is empty
         Given I am on "/plainte/recapitulatif/111"
-        When I press "Envoyer PV au déclarant et clôturer"
+        When I press "Envoyer PV"
         Then I should see a ".modal[aria-modal=true]" element
         When I press "complaint-send-report-to-the-victim-button-validate"
         Then I should see a ".modal[aria-modal=true]" element
@@ -307,7 +309,7 @@ Feature:
     @javascript
     Scenario: I can see form errors when I submit another type file than PDF
         Given I am on "/plainte/recapitulatif/111"
-        When I press "Envoyer PV au déclarant et clôturer"
+        When I press "Envoyer PV"
         Then I should see a ".modal[aria-modal=true]" element
         When I attach the file "blank.xls" to ".dz-hidden-input" field
         When I press "complaint-send-report-to-the-victim-button-validate"
@@ -317,7 +319,7 @@ Feature:
     @javascript
     Scenario: I can submit the send report form successfully
         Given I am on "/plainte/recapitulatif/111"
-        When I press "Envoyer PV au déclarant et clôturer"
+        When I press "Envoyer PV"
         Then I should see a ".modal[aria-modal=true]" element
         When I attach the file "blank.pdf" to ".dz-hidden-input" field
         And I press "complaint-send-report-to-the-victim-button-validate"
@@ -328,7 +330,7 @@ Feature:
     @javascript
     Scenario: I can submit the send report form successfully with a png file
         Given I am on "/plainte/recapitulatif/111"
-        When I press "Envoyer PV au déclarant et clôturer"
+        When I press "Envoyer PV"
         Then I should see a ".modal[aria-modal=true]" element
         When I attach the file "iphone.png" to ".dz-hidden-input" field
         And I press "complaint-send-report-to-the-victim-button-validate"
@@ -339,7 +341,7 @@ Feature:
     @javascript
     Scenario: I can submit the send report form successfully with a jpg file and a pdf file
         Given I am on "/plainte/recapitulatif/111"
-        When I press "Envoyer PV au déclarant et clôturer"
+        When I press "Envoyer PV"
         Then I should see a ".modal[aria-modal=true]" element
         When I attach the file "iphone.png" to ".dz-hidden-input" field
         And I attach the file "blank.pdf" to ".dz-hidden-input" field
@@ -352,7 +354,7 @@ Feature:
     @javascript
     Scenario: I can toggle the assign modal
         Given I am on "/plainte/recapitulatif/93"
-        When I press "Attribuer la déclaration à..."
+        When I press "Attribuer à"
         Then I should see a ".modal[aria-modal=true]" element
         And I should see the key "pel.select.the.agent.to.assign" translated
         And I should see the key "pel.back" translated
@@ -363,14 +365,13 @@ Feature:
     @javascript
     Scenario: I can submit the assign form successfully and Jean DUPONT should have a notif
         Given I am on "/plainte/recapitulatif/93"
-        When I press "Attribuer la déclaration à..."
+        When I press "Attribuer à"
         And I fill in the autocomplete "assign_assignedTo-ts-control" with "Julie" and click "4"
         And I press "Valider l'attribution"
         Then I should not see a ".modal[aria-modal=true]" element
         And I should see a ".toast" element
         And I should see the key "pel.the.declaration.has.been.assigned.to" translated
-        And I should see "Déclaration attribuée à : Julie RICHARD"
-        And I should see the key "pel.declaration.assigned.to" translated
+        And I should see "La déclaration a été attribuée à Julie RICHARD"
         Given I am authenticated with PR5KTZ9C from GN
         And I am on the homepage
         When I click the "#notifications-dropdown" element
@@ -379,18 +380,18 @@ Feature:
     @javascript
     Scenario: I can submit the reassign form successfully
         Given I am on "/plainte/recapitulatif/93"
-        When I press "Attribuer la déclaration à..."
+        When I press "Attribuer à"
         And I fill in the autocomplete "assign_assignedTo-ts-control" with "Julie" and click "4"
         And I press "Valider l'attribution"
-        When I press "complaint-reassign-button"
+        And I wait 1000 ms
+        And I press "complaint-reassign-button"
         And I click the "#modal-complaint-assign .clear-button" element
         And I fill in the autocomplete "assign_assignedTo-ts-control" with "Philippe" and click "5"
         And I press "Valider la réattribution"
         Then I should not see a ".modal[aria-modal=true]" element
         And I should see a ".toast" element
         And I should see the key "pel.the.declaration.has.been.assigned.to" translated
-        And I should see "Déclaration attribuée à : Philippe RIVIERE"
-        And I should see the key "pel.declaration.assigned.to" translated
+        And I should see "La déclaration a été attribuée à Philippe RIVIERE"
 
   # PEL-987:Hide redirection for experimentation phase
 
@@ -535,11 +536,10 @@ Feature:
     Scenario: I can self assign a declaration as a supervisor
         Given I am authenticated with PR5KTZ9R from GN
         And I am on "/plainte/recapitulatif/93"
-        When I press "M'attribuer la déclaration"
+        When I press "M'attribuer"
         Then I should see a ".toast" element
         And I should see the key "pel.the.declaration.has.been.self.assigned" translated
-        And I should see "Déclaration attribuée à : Thomas DURAND"
-        And I should see the key "pel.declaration.assigned.to" translated
+        And I should see "La déclaration vous a bien été attribuée"
 
     @javascript
     Scenario: I can't self assign a declaration as a supervisor when the declaration is already assigned

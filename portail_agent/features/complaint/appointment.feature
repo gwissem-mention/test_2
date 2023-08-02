@@ -9,7 +9,7 @@ Feature:
     @func
     Scenario: I can navigate to the appointment management page
         Given I am on "/plainte/recapitulatif/91"
-        When I follow "Gestion RDV déclarant"
+        When I follow "Gestion RDV"
         Then I should be on "/plainte/rendez-vous/91"
         And the response status code should be 200
         And I should see the key "pel.appointment.management" translated
@@ -36,18 +36,15 @@ Feature:
         When I fill in "appointment_appointmentDate" with "01/01/2023"
         And I fill in "appointment_appointmentTime" with "10:00am"
         And I press "Valider le RDV avec le déclarant"
-        Then I should see a "ul" element
 
     @javascript
     Scenario: I can submit the appointment form successfully
         Given I am on "/plainte/rendez-vous/91"
-        And I should not see the key "pel.appointment.planned.with.the.victim" translated
         When I fill in "appointment_appointmentDate" with "01/01/2025"
         And I fill in "appointment_appointmentTime" with "10:00am"
         And I press "Valider le RDV avec le déclarant"
         Then the "#appointment_appointmentDate" element should be disabled
         Then the "#appointment_appointmentTime" element should be disabled
-        And I should see the key "pel.appointment.planned.with.the.victim" translated
         When I am on homepage
         Then I should see "01/01/2025"
 

@@ -8,10 +8,14 @@
 
     &-blue
         &-active
+            // Important is needed here to override default Bootstrap styles.
+            border-top: 3px solid transparent !important
+            border-bottom: 3px solid transparent !important
+
             &:hover,
             &.active
                 // Important is needed here to override default Bootstrap styles.
-                border-color: var(--text-action-high-blue-france) !important
+                border-bottom: 3px solid var(--text-action-high-blue-france) !important
 
         &-top
             // Important is needed here to override default Bootstrap styles.
