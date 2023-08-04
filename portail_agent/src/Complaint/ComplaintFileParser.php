@@ -75,6 +75,11 @@ class ComplaintFileParser
             ->setAppointmentContactInformation($importedComplaint->appointment?->appointmentContactText)
             ->setConsentContactElectronics($importedComplaint->identity->consentContactElectronics);
 
+        // For Salesforce purpose, init the appointment journey without sending the appointment required email
+        if (false === $complaint->isAppointmentRequired()) {
+            $complaint->setAppointmentCancellationCounter(1);
+        }
+
         if (null !== $importedComplaint->affectedService) {
             $complaint->setUnitAssigned($importedComplaint->affectedService);
         } else {
