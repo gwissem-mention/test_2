@@ -148,7 +148,7 @@ class SalesforceComplaintNotifierTest extends KernelTestCase
         /** @var Complaint $complaint */
         $complaint = $complaintRepo->find(1);
 
-        $salesForceComplaintNotifier->appointmentWarmup($complaint);
+        $salesForceComplaintNotifier->appointmentWarmup($complaint, 'Europe/Paris');
     }
 
     public function testRejection(): void
