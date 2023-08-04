@@ -1,11 +1,8 @@
 {% extends 'common/_complaint.html.twig' %}
 
-{% set icon = 'complaint' %}
-{% set title = 'pel.my.online.complaint.declaration'|trans %}
 {% set current_step_title = 'pel.summary.of.complaint'|trans %}
 {% set current_step_number = 6 %}
 {% set next_step_title = 'pel.registered.complaint'|trans %}
-{% set display_footer = false %}
 
 {% block title %}{{ 'pel.summary.of.complaint.title'|trans }}{% endblock %}
 
@@ -297,18 +294,6 @@
             <a class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-edit-line md:hidden  fr-mt-2v fr-py-1v min-h-fit" href="{{ path('complaint_additional_information') }}" id="update-additional-information">{{ 'pel.update'|trans }}</a>
             </div>
         </div>
-        {% if complaint.affectedService is not null %}
-            {% set unit = complaint.affectedService|unit %}
-            {% if unit is not null %}
-                <hr>
-                <div class="fr-pt-4v fr-pb-12v fr-px-6v fr-pt-md-6v fr-px-md-20v">
-                    <h3>{{ 'pel.place.complaint.handling'|trans }}</h3>
-                    <ul>
-                        <li>{{ unit.name }} - {{ unit.address }}</li>
-                    </ul>
-                </div>
-            {% endif %}
-        {% endif %}
         <hr>
         <div class="fr-pt-4v fr-pb-12v fr-px-6v fr-pt-md-6v fr-px-md-20v">
             {% if complaint.isAppointmentRequired is same as(false) %}

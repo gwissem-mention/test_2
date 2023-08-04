@@ -19,6 +19,8 @@ Feature:
         And I press "identity_submit"
         Then I should be on "/porter-plainte/faits"
         When I fill in "facts_description" with "description informations lorem ipsum dol or sit amet lorem ipsum dol or sit amet"
+        And I click the "label[for=facts_victimOfViolence]" element
+        And I fill in "facts_victimOfViolenceText" with "Violence informations"
         And I click the "label[for=facts_address_addressOrRouteFactsKnown_0]" element
         And I fill in "facts-startAddress-address" with "1 test street"
         And I fill in "facts-startAddress-address" with "2 test street"
@@ -53,9 +55,22 @@ Feature:
         And I press "additional_information_submit"
         Then I should be on "/porter-plainte/recapitulatif"
         When I follow "summary_submit"
+        Then I should be on "/porter-plainte/rendez-vous"
+        When I fill in "appointment_appointmentContactText" with "Between 10am and 12am"
+        And I press "Continuer"
         Then I should be on "/porter-plainte/fin"
 
+    Scenario: I can see the required informations in the registered complaint page
+        Then I should see the key "pel.end.thanks" translated
+        And I should see the key "pel.download.my.declaration" translated
+        And I should see the key "pel.place.complaint.handling" translated
+        And I should see "Commissariat de police de Paris 11ème arrondissement"
+        And I should see "12 PASSAGE CHARLES DALLERY 75011 PARIS 11"
+        And I should see the key "pel.please.note.that.the.online.process.may.eventually.require.an.appointment" translated
+        And I should see the key "pel.appointment.needed.if.more" translated
+
     Scenario: I can click on the "Je donne mon avis" button and on the back to homepage button
+        Then I should see the key "pel.your.opinion" translated
         When I follow "Je donne mon avis"
         Then I should be on JeDonneMonAvis
         Given I am on "/porter-plainte/fin"
