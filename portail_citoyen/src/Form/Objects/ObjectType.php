@@ -134,7 +134,6 @@ class ObjectType extends AbstractType
         switch ($category) {
             case $this->objectCategories['pel.object.category.documents']:
                 $this->addCategoryDocumentFields($form);
-                $this->addAmountField($form);
                 break;
             case $this->objectCategories['pel.object.category.other']:
                 $this->addCategoryOtherFields($form);

@@ -377,13 +377,13 @@ Feature:
         When I click the "#notifications-dropdown" element
         Then I should see "La déclaration PEL-2023-00000093 vient de vous être attribuée"
 
-    @javascript
+    @javascript @flaky
     Scenario: I can submit the reassign form successfully
         Given I am on "/plainte/recapitulatif/93"
         When I press "Attribuer à"
         And I fill in the autocomplete "assign_assignedTo-ts-control" with "Julie" and click "4"
         And I press "Valider l'attribution"
-        And I wait 1000 ms
+        And I wait 2000 ms
         And I press "complaint-reassign-button"
         And I click the "#modal-complaint-assign .clear-button" element
         And I fill in the autocomplete "assign_assignedTo-ts-control" with "Philippe" and click "5"

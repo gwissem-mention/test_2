@@ -60,7 +60,7 @@ class ContactInformationType extends AbstractType
                     new Length(['max' => 50]),
                     new Email(),
                 ],
-                'label' => 'pel.email',
+                'label' => 'pel.email.address',
                 'disabled' => $options['is_france_connected'] && $contactInformationModel?->getEmail(),
             ])
             ->add('mobile', PhoneType::class, [

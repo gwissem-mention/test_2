@@ -77,7 +77,6 @@ Feature:
         And I click the "label[for=additional_information_cctvAvailable_0]" element
         And I press "additional_information_submit"
         Then I should be on "/porter-plainte/recapitulatif"
-        And I should see the key "pel.civility" translated
         And I should see the key "pel.sir" translated
         And I should see "DUPONT"
         And I should see "Michel"
@@ -85,13 +84,12 @@ Feature:
         And I should see the key "pel.family.situation" translated
         And I should see "Célibataire"
         And I should see the key "pel.born.on" translated
-        And I should see "02/03/1967"
         And I should see the key "pel.at" translated
-        And I should see "Né(e) le : 02/03/1967 à Paris 7e arrondissement (75)"
+        And I should see "Né(e) le 2 mars 1967 à Paris 7e arrondissement 75007 (France)"
         And I should see the key "pel.nationality" translated
-        And I should see "FRANCAISE"
+        And I should see "francaise"
         And I should see the key "pel.resides.at" translated
-        And I should see "Avenue de la République 75011 Paris, France"
+        And I should see "Avenue de la République 75011 Paris (France)"
         And I should see the key "pel.your.job" translated
         And I should see "Abatteur de bestiaux"
         And I should see the key "pel.phone" translated
@@ -100,7 +98,6 @@ Feature:
         And I should see "+33 6 01 02 03 04"
         And I should see the key "pel.email" translated
         And I should see "michel.dupont@example.com"
-        And I should see the key "pel.want.to.receive.sms.notifications" translated
         And I should see the key "pel.is.designated.as" translated
         And I should see the key "pel.complaint.identity.corporation.legal.representative" translated
         And I should see the key "pel.of.infraction" translated
@@ -112,63 +109,51 @@ Feature:
         And I should see the key "pel.corporation.function" translated
         And I should see "Directeur"
         And I should see the key "pel.nationality" translated
-        And I should see "FRANCAISE"
+        And I should see "francaise"
         And I should see the key "pel.corporation.email" translated
         And I should see "contact@mon-entreprise.fr"
         And I should see the key "pel.address.country" translated
         And I should see "France"
         And I should see the key "pel.address" translated
-        And I should see "Avenue de la République 75011 Paris, France"
+        And I should see "Avenue de la République 75011 Paris (France)"
         And I should see the key "pel.facts.description" translated
         And I should see the key "pel.complaint.identity.corporation.legal.representative" translated
         And I should see the key "pel.victim.at.time.of.facts" translated
-        And I should see the key "pel.victim.at.time.of.facts.precisions" translated
-        And I should see the key "pel.address.or.route.facts" translated
         And I should see the key "pel.address" translated
-        And I should see the key "pel.address.start.or.exact" translated
         And I should see "1 test street"
         And I should see the key "pel.address.end" translated
         And I should see "2 test street"
-        And I should see the key "pel.complaint.exact.date.known" translated
-        And I should see the key "pel.facts.date" translated
+        And I should see the key "pel.complaint.exact.date.is.known" translated
+        And I should see the key "pel.facts.offence.occurred" translated
         And I should see the key "pel.the" translated
-        And I should see "01/01/2022"
-        And I should see the key "pel.do.you.know.hour.facts" translated
-        And I should see the key "pel.exact.hour" translated
-        And I should see "15:00"
+        And I should see "samedi 1 janvier 2022"
+        And I should see the key "pel.complaint.exact.hour.is.known" translated
+        And I should see the key "pel.facts.offence.occurred" translated
+        And I should see "15h00"
         And I should see the key "pel.additional.factual.information" translated
-        And I should see the key "pel.facts.witnesses" translated
-        And I should see "Description du témoin n°1 (Nom, prénom ou autre information complémentaire)"
-        And I should see "Adresse e-mail du témoin n°1"
-        And I should see "Numéro de téléphone portable n°1"
+        And I should see "La victime affirme avoir identifié 1 témoin de l’infraction"
         And I should see "Jean DUPONT"
         And I should see "jean.dupont@example.com"
         And I should see "+33 6 02 03 04 05"
-        And I should see the key "pel.do.you.have.informations.on.potential.suspects" translated
-        And I should see the key "pel.facts.suspects.informations.text" translated
+        And I should see the key "pel.do.you.have.informations.on.potential.suspects.yes" translated
         And I should see "suspects informations"
-        And I should see the key "pel.cctv.present" translated
-        And I should see the key "pel.cctv.available" translated
-        And I should see the key "pel.fsi.visit" translated
-        And I should see the key "pel.observation.made" translated
-        And I should see the key "pel.facts.description.precise" translated
+        And I should see the key "pel.cctv.present.yes" translated
+        And I should see the key "pel.cctv.available.yes" translated
+        And I should see the key "pel.fsi.visit.yes" translated
+        And I should see the key "pel.observation.made.yes" translated
         And I should see "description informations lorem ipsum dol or sit amet lorem ipsum dol or sit amet"
-        And I should see the key "pel.note" translated
         And I should see the key "pel.summary.is.not.legal.proof" translated
-        When I press "Continuer"
-        Then I should see 1 "#fr-modal-complaint-confirm-and-make-appointment[open=true]" element
+        And I should see the key "pel.summary.official.documents.will.be.sent" translated
         And I should see the key "pel.declaration.confirmation" translated
         And I should see the key "pel.i.confirm.declaration.is.complete" translated
         And I should see the key "pel.i.am.inform.of.article.434.26" translated
         And I should see the key "pel.i.consent.use.of.data.for.fsi" translated
-        When I follow "Annuler"
-        Then I should be on "/porter-plainte/recapitulatif"
-        And I should see the key "pel.objects.description" translated
-        And I should see the key "pel.objects" translated
-        And I should see the key "pel.object.category" translated
+        And I should see the key "pel.goods.concerned.by.the.offence" translated
+        And I should see the key "pel.goods.number" translated
+        And I should see the key "pel.object.category.unregistered.vehicle" translated
+        And I should see the key "pel.object.category.documents" translated
         And I should see the key "pel.objects.stolen" translated
         And I should see the key "pel.objects.gradient" translated
-        And I should see the key "pel.document.type" translated
         And I should see the key "pel.i.am.the.owner.of.this.document" translated
         And I should see the key "pel.document.owner.lastname.firstname" translated
         And I should see the key "pel.document.owner.company" translated
@@ -177,7 +162,6 @@ Feature:
         And I should see the key "pel.document.number" translated
         And I should see the key "pel.document.issued.by" translated
         And I should see "Véhicules non immatriculés"
-        And I should see the key "pel.object" translated
         And I should see "Object 1"
         And I should see "Object 2"
         And I should see "Document officiel"
@@ -191,11 +175,9 @@ Feature:
         And I should see "123"
         And I should see "Préfecture de Paris"
         And I should see the key "pel.total" translated
-        And I should see the key "pel.total.message.one" translated
         And I should see the key "pel.total.message.amount" translated
         And I should see "3 biens déclarés pour un montant total de 200,00 €"
-        When I press "Continuer"
-        And I follow "Je confirme"
+        When I follow "summary_submit"
         Then I should be on "/porter-plainte/rendez-vous"
         When I fill in "appointment_appointmentContactText" with "Between 10am and 12am"
         And I press "Continuer"
