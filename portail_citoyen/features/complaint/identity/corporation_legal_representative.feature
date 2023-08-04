@@ -15,8 +15,7 @@ Feature:
         And I click the "label[for=identity_declarantStatus_1]" element
 
     Scenario: I can select the Corporation Legal Representative radio button
-        Then I should see the key "pel.civility" translated
-        And I should see the key "pel.birth.name" translated
+        Then I should see the key "pel.birth.name" translated
         And I should see the key "pel.usage.name" translated
         And I should see the key "pel.first.names" translated
         And I should see the key "pel.family.situation" translated
@@ -28,7 +27,7 @@ Feature:
         And I should see the key "pel.address.country" translated
         And I should see the key "pel.address" translated
         And I should see the key "pel.same.address.as.declarant" translated
-        And I should see the key "pel.email" translated
+        And I should see the key "pel.email.address" translated
         And I should see the key "pel.mobile" translated
         And I should see the key "pel.corporation.siret" translated
         And I should see the key "pel.corporation.name" translated

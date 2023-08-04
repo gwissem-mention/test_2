@@ -68,10 +68,8 @@ Feature:
         When I select "Document officiel" from "objects_objects_0_category"
         Then I should see the key "pel.document.type" translated
         And I should see the key "pel.object.status" translated
-        And I should see the key "pel.amount" translated
         And I should see a "select#objects_objects_0_documentType_documentType" element
         And I should see a "select#objects_objects_0_status" element
-        And I should see a "input#objects_objects_0_amount" element
         And I should not see a "select#objects_objects_0_label" element
         And I should see "Carte d’identité" in the "#objects_objects_0_documentType_documentType" element
         And I should see "Passeport" in the "#objects_objects_0_documentType_documentType" element

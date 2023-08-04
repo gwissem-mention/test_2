@@ -1,70 +1,86 @@
-<li>
-    {{ 'pel.civility'|trans }} :
+<p class="fr-badge fr-badge--purple-glycine fr-badge--no-icon fr-text--xs fr-mb-6v -ml-8">{{ 'pel.your.status'|trans }}</p>
+<li class="text-xl/8 fr-pb-6v fr-pb-md-12v">
+    {{ 'pel.is.designated.as'|trans }} :
+    {% if complaint.identity.declarantStatus is same as(constant('App\\AppEnum\\DeclarantStatus::Victim').value) %}
+        {{ 'pel.complaint.summary.identity.victim'|trans|raw }}
+    {# Person Legal Representative must be hidden for the experimentation #}
+{#  {% elseif complaint.identity.declarantStatus is same as(constant('App\\AppEnum\\DeclarantStatus::PersonLegalRepresentative').value) %}#}
+{#  {{ 'pel.complaint.identity.person.legal.representative'|trans|raw }}#}
+    {% else %}
+        {{ 'pel.complaint.identity.corporation.legal.representative'|trans|raw }}
+    {% endif %}
+    {{ 'pel.of.infraction'|trans }}
+</li>
+<p class="fr-badge fr-badge--purple-glycine fr-badge--no-icon fr-text--xs fr-mb-6v -ml-8">{{ 'pel.complaint.your.identification'|trans }}</p>
+<li class="text-xl/8 fr-pb-6v">
     {% if civilState.civility is same as(constant('App\\AppEnum\\Civility::M').value) %}
         {{ 'pel.sir'|trans }}
     {% else %}
         {{ 'pel.madam'|trans }}
     {% endif %}
-    {{ civilState.birthName }}
     {{ civilState.firstnames }}
+    <b>{{ civilState.birthName }}</b>
 </li>
 {% if civilState.usageName %}
-    <li>
-        {{ 'pel.usage.name'|trans }} :
-        {{ civilState.usageName }}
+    <li class="text-xl/8 fr-pb-6v">
+        {{ 'pel.usage.name'|trans }} : <b>{{ civilState.usageName }}</b>
     </li>
 {% endif %}
-<li>
+<li class="text-xl/8 fr-pb-6v">
     {{ 'pel.family.situation'|trans }} :
     {% if civilState.familySituation is same as(constant('App\\AppEnum\\FamilySituation::Single').value) %}
-        {{ 'pel.family.situation.single'|trans }}
+        <b>{{ 'pel.family.situation.single'|trans }}</b>
     {% elseif civilState.familySituation is same as(constant('App\\AppEnum\\FamilySituation::Cohabitation').value) %}
-        {{ 'pel.family.situation.cohabitation'|trans }}
+        <b>{{ 'pel.family.situation.cohabitation'|trans }}</b>
     {% elseif civilState.familySituation is same as(constant('App\\AppEnum\\FamilySituation::Married').value) %}
-        {{ 'pel.family.situation.married'|trans }}
+        <b>{{ 'pel.family.situation.married'|trans }}</b>
     {% elseif civilState.familySituation is same as(constant('App\\AppEnum\\FamilySituation::Divorced').value) %}
-        {{ 'pel.family.situation.divorced'|trans }}
+        <b>{{ 'pel.family.situation.divorced'|trans }}</b>
     {% elseif civilState.familySituation is same as(constant('App\\AppEnum\\FamilySituation::CivilPartnership').value) %}
-        {{ 'pel.family.situation.civil.partnership'|trans }}
+        <b>{{ 'pel.family.situation.civil.partnership'|trans }}</b>
     {% elseif civilState.familySituation is same as(constant('App\\AppEnum\\FamilySituation::Widowed').value) %}
-        {{ 'pel.family.situation.widowed'|trans }}
+        <b>{{ 'pel.family.situation.widowed'|trans }}</b>
     {% endif %}
 </li>
-<li>
-    {{ 'pel.born.on'|trans }} : {{ civilState.birthDate|date('d/m/Y') }} {{ 'pel.at'|trans }}
+<li class="text-xl/8 fr-pb-6v">
+    {{ 'pel.born.on'|trans }} <b>{{ civilState.birthDate|format_date(locale=app.request.locale, pattern='d MMMM yyyy') }}</b> {{ 'pel.at'|trans }}
     {% if civilState.birthLocation.frenchTown %}
         {% set city = civilState.birthLocation.frenchTown|city %}
-        {{ city.label }} ({{ city.department }})
+        <b>{{ city.label }} {{ city.postCode }}</b> ({{ civilState.birthLocation.country|country_referential_name }})
     {% else %}
-        {{ civilState.birthLocation.otherTown }} ({{ civilState.birthLocation.country|country_referential_name }})
+        <b>{{ civilState.birthLocation.otherTown }} ({{ civilState.birthLocation.country|country_referential_name }})</b>
     {% endif %}
 </li>
-<li>
-    {{ 'pel.nationality'|trans }} :
-    {{ civilState.nationality|nationality_referential_label }}
+<li class="text-xl/8 fr-pb-6v">
+    {{ 'pel.nationality'|trans }} : <b class="lowercase">{{ civilState.nationality|nationality_referential_label }}</b>
 </li>
-<li>
+<li class="text-xl/8 fr-pb-8v fr-pb-md-12v">
+    {{ 'pel.your.job'|trans }} : <b>{{ civilState|job_label }}</b>
+</li>
+<p class="fr-badge fr-badge--purple-glycine fr-badge--no-icon fr-text--xs fr-mb-6v -ml-8">{{ 'pel.contact.information'|trans }}</p>
+<li class="text-xl/8 fr-pb-6v">
     {{ 'pel.resides.at'|trans }} :
     {% if contactInformation.country == fr_code %}
-        {{ contactInformation.frenchAddress.label }}, France
+        <b>{{ contactInformation.frenchAddress.label }}</b> ({{ contactInformation.country|country_referential_name }})
     {% else %}
-        {{ contactInformation.foreignAddress }}, {{ contactInformation.country|country_referential_name }}
+        <b>{{ contactInformation.foreignAddress }}</b> ({{ contactInformation.country|country_referential_name }})
     {% endif %}
 </li>
-<li>
-    {{ 'pel.your.job'|trans }} :
-    {{ civilState|job_label }}
+<li class="text-xl/8 fr-pb-6v">
+    {{ 'pel.email'|trans }} : <b>{{ contactInformation.email }}</b>
 </li>
 {% if contactInformation.mobile is not null and contactInformation.mobile.number is not null %}
-    <li>
-        {{ 'pel.mobile'|trans }} : {{ contactInformation.mobile|phone_format_intl }}
+    <li class="text-xl/8 fr-pb-6v">
+        {{ 'pel.mobile'|trans }} : <b>{{ contactInformation.mobile|phone_format_intl }}</b>
     </li>
 {% endif %}
 {% if contactInformation.phone is not null and contactInformation.phone.number is not null %}
-    <li>
-        {{ 'pel.phone'|trans }} : {{ contactInformation.phone|phone_format_intl }}
+    <li class="text-xl/8 fr-pb-6v">
+        {{ 'pel.phone'|trans }} : <b>{{ contactInformation.phone|phone_format_intl }}</b>
     </li>
 {% endif %}
-<li>
-    {{ 'pel.email'|trans }} : {{ contactInformation.email }}
-</li>
+{% if complaint.identity.consentContactElectronics is same as true %}
+    <li class="text-xl/8 fr-pb-6v">
+        {{ 'pel.want.to.receive.legal.proceedings.electronically'|trans }}
+    </li>
+{% endif %}

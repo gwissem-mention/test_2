@@ -53,8 +53,7 @@ Feature:
         And I click the "label[for=additional_information_cctvAvailable_0]" element
         And I press "additional_information_submit"
         Then I should be on "/porter-plainte/recapitulatif"
-        When I press "Prenez un rendez-vous avec un agent"
-        And I follow "Je confirme"
+        When I follow "appointment_submit"
         Then I should be on "/porter-plainte/rendez-vous"
 
     Scenario: I should see the informative text
@@ -152,8 +151,7 @@ Feature:
         And I click the "label[for=additional_information_cctvAvailable_0]" element
         And I press "additional_information_submit"
         Then I should be on "/porter-plainte/recapitulatif"
-        When I press "Continuer"
-        And I follow "Je confirme"
+        When I follow "summary_submit"
         Then I should be on "/porter-plainte/rendez-vous"
         When I press "appointment_submit"
         Then I should be on "/porter-plainte/rendez-vous"
@@ -318,8 +316,6 @@ Feature:
     Scenario: I can make an appointment when it is not required
         When I follow "Étape précédente"
         Then I should be on "/porter-plainte/recapitulatif"
-        When I press "Prenez un rendez-vous avec un agent"
-        Then I should see 1 "#fr-modal-complaint-confirm-and-make-appointment[open=true]" element
         When I follow "appointment_submit"
         Then I should be on "/porter-plainte/rendez-vous"
         When I press "appointment_submit"
@@ -328,7 +324,5 @@ Feature:
     Scenario: I can finish the complaint without making an appointment if it is not required
         When I follow "Étape précédente"
         Then I should be on "/porter-plainte/recapitulatif"
-        When I press "Continuer"
-        Then I should see 1 "#fr-modal-complaint-confirm[open=true]" element
-        When I follow "complaint_submit"
+        When I follow "summary_submit"
         Then I should be on "/porter-plainte/fin"

@@ -116,7 +116,7 @@
             </trans-unit>
             <trans-unit id="pel.additional.factual.information">
                 <source>pel.additional.factual.information</source>
-                <target>Informations complémentaires sur les faits</target>
+                <target>Informations complémentaires</target>
             </trans-unit>
             <trans-unit id="pel.additional.place.information">
                 <source>pel.additional.place.information</source>
@@ -196,7 +196,7 @@
             </trans-unit>
            <trans-unit id="pel.attachment">
                 <source>pel.attachment</source>
-                <target>Pièce jointe</target>
+                <target>Document ajouté</target>
             </trans-unit>
             <trans-unit id="pel.attachments.upload">
                 <source>pel.attachments.upload</source>
@@ -212,7 +212,7 @@
              </trans-unit>
             <trans-unit id="pel.bank.account.number">
                 <source>pel.bank.account.number</source>
-                <target>N° de compte</target>
+                <target>IBAN</target>
             </trans-unit>
             <trans-unit id="pel.being.major">
                 <source>pel.being.major</source>
@@ -298,9 +298,29 @@
                 <source>pel.cctv.available</source>
                 <target>Êtes-vous en capacité de fournir des vidéos des faits ?</target>
             </trans-unit>
+            <trans-unit id="pel.cctv.available.no">
+                <source>pel.cctv.available.no</source>
+                <target>Les vidéos des faits <![CDATA[<b>n’ont pas pu être récupérées</b>]]>.</target>
+            </trans-unit>
+            <trans-unit id="pel.cctv.available.yes">
+                <source>pel.cctv.available.yes</source>
+                <target>Les vidéos des faits <![CDATA[<b>ont pu être récupérées</b>]]>.</target>
+            </trans-unit>
             <trans-unit id="pel.cctv.present">
                 <source>pel.cctv.present</source>
                 <target>Y a-t-il des enregistrements vidéos des faits ?</target>
+            </trans-unit>
+            <trans-unit id="pel.cctv.present.i.dont.know">
+                <source>pel.cctv.present.i.dont.know</source>
+                <target>La victime informe <![CDATA[<b>ne pas savoir si un système de vidéoprotection</b>]]> était disponible sur le lieu des faits.</target>
+            </trans-unit>
+            <trans-unit id="pel.cctv.present.no">
+                <source>pel.cctv.present.no</source>
+                <target>La victime informe de l’<![CDATA[<b>absence d’un système de vidéoprotection</b>]]> disponible sur le lieu des faits.</target>
+            </trans-unit>
+            <trans-unit id="pel.cctv.present.yes">
+                <source>pel.cctv.present.yes</source>
+                <target>La victime informe de la <![CDATA[<b>présence d’un système de vidéoprotection</b>]]> disponible sur le lieu des faits.</target>
             </trans-unit>
             <trans-unit id="pel.choose">
                 <source>pel.choose</source>
@@ -354,6 +374,22 @@
                 <source>pel.complaint.exact.date</source>
                 <target>Date exacte</target>
             </trans-unit>
+            <trans-unit id="pel.complaint.exact.date.is.known">
+                <source>pel.complaint.exact.date.is.known</source>
+                <target>La <![CDATA[<b>date exacte des faits est connue</b>]]>.</target>
+            </trans-unit>
+            <trans-unit id="pel.complaint.exact.hour.is.known">
+                <source>pel.complaint.exact.hour.is.known</source>
+                <target>L’<![CDATA[<b>heure exacte des faits est connue</b>]]>.</target>
+            </trans-unit>
+            <trans-unit id="pel.complaint.exact.date.is.unknown">
+                <source>pel.complaint.exact.date.is.unknown</source>
+                <target>La <![CDATA[<b>date exacte des faits est inconnue</b>]]>.</target>
+            </trans-unit>
+            <trans-unit id="pel.complaint.exact.hour.is.unknown">
+                <source>pel.complaint.exact.hour.is.unknown</source>
+                <target>L’<![CDATA[<b>heure exacte des faits est inconnue</b>]]>.</target>
+            </trans-unit>
             <trans-unit id="pel.complaint.exact.date.known">
                 <source>pel.complaint.exact.date.known</source>
                 <target>Connaissez-vous la date exacte des faits ?</target>
@@ -390,13 +426,9 @@
                 <source>pel.complaint.identity</source>
                 <target>Identité</target>
             </trans-unit>
-            <trans-unit id="pel.complaint.identification">
-                <source>pel.complaint.identification</source>
-                <target>Identification</target>
-            </trans-unit>
             <trans-unit id="pel.complaint.identity.corporation.legal.representative">
                 <source>pel.complaint.identity.corporation.legal.representative</source>
-                <target>Représentant légal d’une personne morale</target>
+                <target><![CDATA[<b>Représentant légal</b>]]> d’une personne morale</target>
             </trans-unit>
             <trans-unit id="pel.complaint.identity.corporation.legal.representative.hint">
                 <source>pel.complaint.identity.corporation.legal.representative.hint</source>
@@ -420,7 +452,7 @@
             </trans-unit>
             <trans-unit id="pel.complaint.summary.identity.victim">
                 <source>pel.complaint.summary.identity.victim</source>
-                <target>Victime ou représentant de son enfant mineur</target>
+                <target><![CDATA[<b>Victime</b>]]> ou <![CDATA[<b>représentant de son enfant mineur</b>]]></target>
             </trans-unit>
             <trans-unit id="pel.complaint.identity.victim.hint">
                 <source>pel.complaint.identity.victim.hint</source>
@@ -548,7 +580,7 @@
             </trans-unit>
             <trans-unit id="pel.credit.card.number">
                 <source>pel.credit.card.number</source>
-                <target>N° de carte bancaire</target>
+                <target>Numéro de carte</target>
             </trans-unit>
             <trans-unit id="pel.date.help">
                 <source>pel.date.help</source>
@@ -564,7 +596,7 @@
             </trans-unit>
             <trans-unit id="pel.declaration.confirmation">
                 <source>pel.declaration.confirmation</source>
-                <target>Confirmation de ma déclaration</target>
+                <target>Confirmez votre déclaration de plainte en ligne</target>
             </trans-unit>
             <trans-unit id="pel.degraded">
                 <source>pel.degraded</source>
@@ -650,6 +682,14 @@
                 <source>pel.do.you.have.informations.on.potential.suspects</source>
                 <target>Avez-vous des informations sur les éventuels suspects ?</target>
             </trans-unit>
+            <trans-unit id="pel.do.you.have.informations.on.potential.suspects.no">
+                <source>pel.do.you.have.informations.on.potential.suspects.no</source>
+                <target>La victime affirme <![CDATA[<b>ne pas avoir d’information sur d’éventuels suspects</b>]]>.</target>
+            </trans-unit>
+            <trans-unit id="pel.do.you.have.informations.on.potential.suspects.yes">
+                <source>pel.do.you.have.informations.on.potential.suspects.yes</source>
+                <target>La victime affirme <![CDATA[<b>avoir des informations sur d’éventuels suspects</b>]]>.</target>
+            </trans-unit>
             <trans-unit id="pel.do.you.know.hour.facts">
                 <source>pel.do.you.know.hour.facts</source>
                 <target>Connaissez-vous l’heure exacte des faits ?</target>
@@ -692,6 +732,10 @@
             </trans-unit>
             <trans-unit id="pel.email">
                 <source>pel.email</source>
+                <target>E-mail</target>
+            </trans-unit>
+            <trans-unit id="pel.email.address">
+                <source>pel.email.address</source>
                 <target>Adresse e-mail</target>
             </trans-unit>
            <trans-unit id="pel.email.confirmation">
@@ -718,10 +762,6 @@
                 <source>pel.facts</source>
                 <target>Faits</target>
             </trans-unit>
-            <trans-unit id="pel.facts.date">
-                <source>pel.facts.date</source>
-                <target>Date des faits</target>
-            </trans-unit>
             <trans-unit id="pel.facts.description">
                 <source>pel.facts.description</source>
                 <target>Description des faits</target>
@@ -734,6 +774,14 @@
                 <source>pel.facts.hour</source>
                 <target>Heure des faits</target>
             </trans-unit>
+            <trans-unit id="pel.facts.offence.may.have.occurred">
+                <source>pel.facts.offence.may.have.occurred</source>
+                <target>L’infraction pourrait s’être déroulée</target>
+            </trans-unit>
+            <trans-unit id="pel.facts.offence.occurred">
+                <source>pel.facts.offence.occurred</source>
+                <target>L’infraction s’est déroulée</target>
+            </trans-unit>
             <trans-unit id="pel.facts.suspects.informations.text">
                 <source>pel.facts.suspects.informations.text</source>
                 <target>Indiquez le nombre de personnes, la direction de fuite ou autre complément d’informations</target>
@@ -741,10 +789,6 @@
             <trans-unit id="pel.facts.witnesses.information.text">
                 <source>pel.facts.witnesses.information.text</source>
                 <target>Veuillez indiquer, si vous le pouvez, les noms et les coordonnées du/des témoin(s)</target>
-            </trans-unit>
-            <trans-unit id="pel.want.to.receive.sms.notifications">
-                <source>pel.want.to.receive.sms.notifications</source>
-                <target>Souhaite pouvoir recevoir des notifications SMS concernant cette plainte</target>
             </trans-unit>
             <trans-unit id="pel.witness">
                 <source>pel.witness</source>
@@ -773,6 +817,14 @@
             <trans-unit id="pel.facts.witnesses">
                 <source>pel.facts.witnesses</source>
                 <target>Y a-t-il eu des témoins des faits ?</target>
+            </trans-unit>
+            <trans-unit id="pel.facts.witnesses.no">
+                <source>pel.facts.witnesses.no</source>
+                <target>La victime affirme <![CDATA[<b>ne pas avoir identifié de témoin de l’infraction</b>]]>.</target>
+            </trans-unit>
+            <trans-unit id="pel.facts.witnesses.yes">
+                <source>pel.facts.witnesses.yes</source>
+                <target>La victime affirme <![CDATA[<b>avoir identifié {quantity, plural, one {# témoin} other {# témoins}} de l’infraction</b>]]>.</target>
             </trans-unit>
             <trans-unit id="pel.faq">
                 <source>pel.faq</source>
@@ -1030,6 +1082,14 @@
                 <source>pel.fsi.visit</source>
                 <target>Y a-t-il eu intervention de la police ou de la gendarmerie ?</target>
             </trans-unit>
+            <trans-unit id="pel.fsi.visit.no">
+                <source>pel.fsi.visit.no</source>
+                <target>La victime informe de <![CDATA[<b>l’absence d’intervention d’une équipe de police ou de gendarmerie</b>]]>.</target>
+            </trans-unit>
+            <trans-unit id="pel.fsi.visit.yes">
+                <source>pel.fsi.visit.yes</source>
+                <target>La victime informe de <![CDATA[<b>l’intervention d’une équipe de police ou de gendarmerie</b>]]>.</target>
+            </trans-unit>
             <trans-unit id="pel.home.title">
                 <source>pel.home.title</source>
                 <target>Déclarez une plainte en ligne</target>
@@ -1062,21 +1122,33 @@
                 <source>pel.hour</source>
                 <target>Heure</target>
             </trans-unit>
+            <trans-unit id="pel.hour.h">
+                <source>pel.hour.h</source>
+                <target>h</target>
+            </trans-unit>
             <trans-unit id="pel.i.am.inform.of.article.34">
                 <source>pel.i.am.inform.of.article.34</source>
                 <target>Je prends acte de ces dispositions légales et j'autorise les services de police ou de gendarmerie à communiquer cette fiche de renseignement par courriel à mon opérateur téléphonique afin de bloquer le terminal volé</target>
             </trans-unit>
             <trans-unit id="pel.i.am.inform.of.article.434.26">
                 <source>pel.i.am.inform.of.article.434.26</source>
-                <target>Je suis informé(e) que l’article 434-26 du code pénal prévoit que le fait de dénoncer mensongèrement à l’autorité judiciaire ou administrative des faits consécutifs d’un crime ou d’un délit qui ont exposé les autorités de police ou judiciaires à d’inutiles recherches est puni de 6 mois d’emprisonnement et de 7500.00€ d’amende. Informations sur les fausses déclarations (art8-2-6CPP/art434-26CP)</target>
+                <target>Je suis informé(e) que l'<![CDATA[<b>article 434-26 du code pénal</b>]]> prévoit que le fait de dénoncer mensongèrement à l'autorité judiciaire ou administrative des faits consécutifs d'un crime ou d'un délit qui ont exposé les autorités de police ou judiciaires à d'inutiles recherches est puni de <![CDATA[<b>6 mois d'emprisonnement et de 7500.00€ d'amende</b>]]>.</target>
+            </trans-unit>
+            <trans-unit id="pel.i.am.inform.of.article.434.26.information.on.false.declarations">
+                <source>pel.i.am.inform.of.article.434.26.information.on.false.declarations</source>
+                <target>Informations sur les fausses déclarations (art8-2-6CPP/art434-26CP)</target>
             </trans-unit>
             <trans-unit id="pel.i.am.the.owner.of.this.document">
                 <source>pel.i.am.the.owner.of.this.document</source>
-                <target>Je suis le titulaire de ce document</target>
+                <target>Titulaire de ce document</target>
+            </trans-unit>
+            <trans-unit id="pel.i.confirm.i.want.to.file.a.complaint">
+                <source>pel.i.confirm.i.want.to.file.a.complaint</source>
+                <target>Je confirme vouloir <![CDATA[<b>déposer plainte pour les faits figurant dans ma déclaration</b>]]>.</target>
             </trans-unit>
             <trans-unit id="pel.i.consent.use.of.data.for.fsi">
                 <source>pel.i.consent.use.of.data.for.fsi</source>
-                <target>En validant ma déclaration, je consens à l’utilisation et à la transmission des informations précédemment renseignées par les Forces de l’ordre et tout autre organisme impliqué dans le traitement de ma déclaration</target>
+                <target>En validant ma déclaration, <![CDATA[<b>je consens à l'utilisation et à la transmission des informations précédemment renseignées</b>]]> par les Forces de l'ordre et tout autre organisme impliqué dans le traitement de ma déclaration</target>
             </trans-unit>
            <trans-unit id="pel.i.have.no.goods.to.declare">
                 <source>pel.i.have.no.goods.to.declare</source>
@@ -1096,7 +1168,7 @@
             </trans-unit>
             <trans-unit id="pel.i.confirm.declaration.is.complete">
                 <source>pel.i.confirm.declaration.is.complete</source>
-                <target>Je confirme que ma déclaration est bien complète et confirme l’exactitude des informations fournies dans la déclaration</target>
+                <target>Je confirme que ma déclaration est <![CDATA[<b>bien complète</b>]]> et <![CDATA[<b>confirme l'exactitude des informations</b>]]> fournies dans la déclaration.</target>
             </trans-unit>
             <trans-unit id="pel.i.dont.know">
                 <source>pel.i.dont.know</source>
@@ -1350,10 +1422,6 @@
                 <source>pel.not.found.title</source>
                 <target>Page non trouvée</target>
             </trans-unit>
-            <trans-unit id="pel.note">
-                <source>pel.note</source>
-                <target>Note</target>
-            </trans-unit>
             <trans-unit id="pel.object">
                 <source>pel.object</source>
                 <target>Dénomination du bien</target>
@@ -1414,17 +1482,13 @@
                 <source>pel.objects.add</source>
                 <target>Déclarer un autre bien</target>
             </trans-unit>
-            <trans-unit id="pel.objects.description">
-                <source>pel.objects.description</source>
-                <target>Description des objets</target>
-            </trans-unit>
             <trans-unit id="pel.objects.gradient">
                 <source>pel.objects.gradient</source>
-                <target>Objets dégradés</target>
+                <target>Bien dégradé</target>
             </trans-unit>
             <trans-unit id="pel.objects.stolen">
                 <source>pel.objects.stolen</source>
-                <target>Objets volés</target>
+                <target>Bien volé</target>
             </trans-unit>
             <trans-unit id="pel.object.files.help">
                 <source>pel.object.files.help</source>
@@ -1433,6 +1497,14 @@
             <trans-unit id="pel.observation.made">
                 <source>pel.observation.made</source>
                 <target>Est-ce que des constatations ou des relevés ont été effectués ?</target>
+            </trans-unit>
+            <trans-unit id="pel.observation.made.no">
+                <source>pel.observation.made.no</source>
+                <target>Aucune <![CDATA[<b>constatation ou relevé n’a été effectué</b>]]>.</target>
+            </trans-unit>
+            <trans-unit id="pel.observation.made.yes">
+                <source>pel.observation.made.yes</source>
+                <target>Des <![CDATA[<b>constatations ou des relevés ont bien été effectués</b>]]>.</target>
             </trans-unit>
             <trans-unit id="pel.of.infraction">
                 <source>pel.of.infraction</source>
@@ -1445,6 +1517,10 @@
             <trans-unit id="pel.of.the.penal.procedure">
                 <source>pel.of.the.penal.procedure</source>
                 <target>du Code de Procédure Pénale</target>
+            </trans-unit>
+            <trans-unit id="pel.of.type">
+                <source>pel.of.type</source>
+                <target>de type</target>
             </trans-unit>
             <trans-unit id="pel.online.complaint">
                 <source>pel.online.complaint</source>
@@ -1608,7 +1684,7 @@
             </trans-unit>
             <trans-unit id="pel.resides.at">
                 <source>pel.resides.at</source>
-                <target>Réside à/au</target>
+                <target>Adresse</target>
             </trans-unit>
             <trans-unit id="pel.residence.permit">
                 <source>pel.residence.permit</source>
@@ -1682,9 +1758,21 @@
                 <source>pel.submit</source>
                 <target>Enregistrer</target>
             </trans-unit>
+            <trans-unit id="pel.summary.appointment.is.not.required">
+                <source>pel.summary.appointment.is.not.required</source>
+                <target>Aucun rendez-vous physique n’est requis à ce stade dans le cadre de cette démarche en ligne.</target>
+            </trans-unit>
+             <trans-unit id="pel.summary.appointment.is.required">
+                <source>pel.summary.appointment.is.required</source>
+                <target>Un rendez-vous physique est requis à ce stade dans le cadre de cette démarche en ligne..</target>
+            </trans-unit>
             <trans-unit id="pel.summary.is.not.legal.proof">
                 <source>pel.summary.is.not.legal.proof</source>
-                <target>Ce récapitulatif n’est pas un document officiel et n’a pas de valeur juridique. Des documents officiels vous seront transmis après le traitement de votre dépôt de plainte par un agent accrédité.</target>
+                <target>La synthèse ci-dessous ne peut faire l’objet d’un justificatif dans le cadre d’une démarche officielle.</target>
+            </trans-unit>
+            <trans-unit id="pel.summary.official.documents.will.be.sent">
+                <source>pel.summary.official.documents.will.be.sent</source>
+                <target>Des documents officiels vous seront transmis après le traitement de votre dépôt de plainte par un agent accrédité.</target>
             </trans-unit>
             <trans-unit id="pel.suspects">
                 <source>pel.suspects</source>
@@ -1709,10 +1797,6 @@
             <trans-unit id="pel.total">
                 <source>pel.total</source>
                 <target>Total</target>
-            </trans-unit>
-            <trans-unit id="pel.total.message.one">
-                <source>pel.total.message.one</source>
-                <target>Vous avez ajouté</target>
             </trans-unit>
             <trans-unit id="pel.total.message.amount">
                 <source>pel.total.message.amount</source>
@@ -1752,11 +1836,7 @@
             </trans-unit>
             <trans-unit id="pel.victim.at.time.of.facts">
                 <source>pel.victim.at.time.of.facts</source>
-                <target>Victime de violences au moment des faits</target>
-            </trans-unit>
-            <trans-unit id="pel.victim.at.time.of.facts.precisions">
-                <source>pel.victim.at.time.of.facts.precisions</source>
-                <target>Précisions concernant les violences dont vous avez été victime</target>
+                <target>La <![CDATA[<b>victime a subi des violences</b>]]> au moment des faits.</target>
             </trans-unit>
             <trans-unit id="pel.victim.of.violence">
                 <source>pel.victim.of.violence</source>
@@ -1898,6 +1978,10 @@
                 <source>pel.your.job</source>
                 <target>Votre profession</target>
             </trans-unit>
+            <trans-unit id="pel.your.status">
+                <source>pel.your.status</source>
+                <target>votre statut</target>
+            </trans-unit>
             <trans-unit id="pel.your.job.choice.message">
                 <source>pel.your.job.choice.message</source>
                 <target>Choisissez votre profession</target>
@@ -1918,6 +2002,18 @@
                 <source>pel.complaint.create</source>
                 <target>Déposer plainte</target>
             </trans-unit>
+            <trans-unit id="pel.complaint.date.and.time">
+                <source>pel.complaint.date.and.time</source>
+                <target>date et heure</target>
+            </trans-unit>
+            <trans-unit id="pel.complaint.in.a.few.words">
+                <source>pel.complaint.in.a.few.words</source>
+                <target>en quelques mots</target>
+            </trans-unit>
+            <trans-unit id="pel.complaint.place.of.offence">
+                <source>pel.complaint.place.of.offence</source>
+                <target>lieu de l’infraction</target>
+            </trans-unit>
             <trans-unit id="pel.complaint.see.ariannes.here">
                 <source>pel.complaint.see.ariannes.thread</source>
                 <target>vous êtes ici :</target>
@@ -1925,6 +2021,10 @@
             <trans-unit id="pel.complaint.see.ariannes.thread">
                 <source>pel.complaint.see.ariannes.thread</source>
                 <target>Voir le fil d’Ariane</target>
+            </trans-unit>
+            <trans-unit id="pel.complaint.your.identification">
+                <source>pel.complaint.your.identification</source>
+                <target>Votre identification</target>
             </trans-unit>
             <trans-unit id="pel.complaint.your.identity">
                 <source>pel.complaint.your.identity</source>
@@ -2214,6 +2314,10 @@
                 <source>pel.goods.concerned</source>
                 <target>Biens concernés</target>
             </trans-unit>
+            <trans-unit id="pel.goods.concerned.by.the.offence">
+                <source>pel.goods.concerned.by.the.offence</source>
+                <target>Biens concernés par l’infraction</target>
+            </trans-unit>
             <trans-unit id="pel.goods.concerned.title">
                 <source>pel.goods.concerned.title</source>
                 <target>Biens concernés (étape 4 sur 7) - Plainte en ligne</target>
@@ -2281,6 +2385,10 @@
             <trans-unit id="pel.summary.of.complaint">
                 <source>pel.summary.of.complaint</source>
                 <target>Récapitulatif de la plainte</target>
+            </trans-unit>
+            <trans-unit id="pel.summary.of.complaint.title">
+                <source>pel.summary.of.complaint.title</source>
+                <target>Récapitulatif de la plainte (étape 6 sur 7) - Plainte en ligne</target>
             </trans-unit>
             <trans-unit id="pel.registered.complaint">
                 <source>pel.registered.complaint</source>

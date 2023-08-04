@@ -10,7 +10,6 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -99,7 +98,7 @@ class FactsType extends AbstractType
         FactsModel $factsModel = null
     ): void {
         if (true === $victimOfViolence) {
-            $form->add('victimOfViolenceText', TextType::class, [
+            $form->add('victimOfViolenceText', TextareaType::class, [
                 'label' => 'pel.victim.of.violence.text',
                 'attr' => [
                     'placeholder' => 'pel.victim.of.violence.text.placeholder',

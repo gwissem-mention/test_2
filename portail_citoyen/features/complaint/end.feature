@@ -52,10 +52,7 @@ Feature:
         And I click the "label[for=additional_information_cctvAvailable_0]" element
         And I press "additional_information_submit"
         Then I should be on "/porter-plainte/recapitulatif"
-        When I press "Prenez un rendez-vous avec un agent"
-        And I follow "Je confirme"
-        Then I should be on "/porter-plainte/rendez-vous"
-        And I press "appointment_submit"
+        When I follow "summary_submit"
         Then I should be on "/porter-plainte/fin"
 
     Scenario: I can click on the "Je donne mon avis" button and on the back to homepage button
