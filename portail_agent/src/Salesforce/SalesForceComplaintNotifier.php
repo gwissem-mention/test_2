@@ -164,7 +164,7 @@ class SalesForceComplaintNotifier
         $this->client->sendEvent($eventDefinition);
     }
 
-    public function appointmentWarmup(Complaint $complaint): void
+    public function appointmentWarmup(Complaint $complaint, string $timezone): void
     {
         $declarationNumber = $this->ssoIsEnabled ? $complaint->getDeclarationNumber() : $complaint->getUniqueDeclarationNumber();
 
@@ -177,7 +177,7 @@ class SalesForceComplaintNotifier
             unitAddress: $unit->getAddress(),
             unitPhone: $unit->getPhone(),
             unitEmail: $this->ssoIsEnabled ? $unit->getEmail() : $this->salesForceRecipient,
-            identityAppointmentTime: $complaint->getAppointmentTime()?->format('H\hi') ?? '',
+            identityAppointmentTime: $complaint->getAppointmentTime()?->setTimezone(new \DateTimeZone($timezone))->format('H\hi') ?? '',
             identityAppointmentDate: $complaint->getAppointmentDate()?->format('d/m/Y') ?? '',
             flagRDVAnnule: $complaint->getAppointmentCancellationCounter() ?? 0,
             flagSuiteRendezVous: 0,
