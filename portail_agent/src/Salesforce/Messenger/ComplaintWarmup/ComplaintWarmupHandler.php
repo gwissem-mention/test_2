@@ -28,9 +28,6 @@ class ComplaintWarmupHandler
         }
 
         $this->notifier->startJourney($complaint);
-
-        if (true === $complaint->isAppointmentRequired()) {
-            $this->notifier->appointmentInit($complaint);
-        }
+        $this->notifier->appointmentInit($complaint);
     }
 }
