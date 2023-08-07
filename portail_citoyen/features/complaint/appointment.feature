@@ -89,6 +89,7 @@ Feature:
         Given I am on "/porter-plainte/objets"
         When I select "Véhicules immatriculés" from "objects_objects_0_category"
         And I fill in "objects_objects_0_brand" with "Renault"
+        And I fill in "objects_objects_0_registrationNumber" with "AA-229-AA"
         And I press "objects_submit"
         Then I should be on "/porter-plainte/informations-complementaires"
         Given I am on "/porter-plainte/rendez-vous"

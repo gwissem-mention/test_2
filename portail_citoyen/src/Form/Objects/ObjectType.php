@@ -323,9 +323,10 @@ class ObjectType extends AbstractType
                 'attr' => [
                     'maxlength' => 20,
                 ],
-                'required' => false,
+                'required' => true,
                 'label' => 'pel.registration.number',
                 'constraints' => [
+                    new NotBlank(),
                     new Length([
                         'max' => 20,
                     ]),
