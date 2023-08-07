@@ -15,7 +15,7 @@ class ObjectsParser
 {
     private const DOCUMENT = 1;
     private const PAYMENT_METHOD = 2;
-    private const MULTIMEDIA = 3;
+    private const MOBILE_PHONE = 3;
     private const REGISTERED_VEHICLE = 4;
     private const UNREGISTERED_VEHICLE = 5;
 
@@ -54,7 +54,7 @@ class ObjectsParser
         $object = match ($objectInput->category->code) {
             self::DOCUMENT => $this->parseAdministrativeDocument($objectInput),
             self::PAYMENT_METHOD => $this->parsePaymentMethod($objectInput),
-            self::MULTIMEDIA => $this->parseMultimediaObject($objectInput),
+            self::MOBILE_PHONE => $this->parseMultimediaObject($objectInput),
             self::REGISTERED_VEHICLE, self::UNREGISTERED_VEHICLE => $this->parseVehicle($objectInput),
             default => $this->parseSimpleObject($objectInput),
         };
@@ -109,6 +109,7 @@ class ObjectsParser
             ->setModel($objectInput->model)
             ->setOperator($objectInput->operator)
             ->setSerialNumber($objectInput->serialNumber)
+            ->setDescription($objectInput->description)
             ->setStillOnWhenMobileStolen($objectInput->stillOnWhenMobileStolen)
             ->setPinEnabledWhenMobileStolen($objectInput->pinEnabledWhenMobileStolen)
             ->setMobileInsured($objectInput->mobileInsured)

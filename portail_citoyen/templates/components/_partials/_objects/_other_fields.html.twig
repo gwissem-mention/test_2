@@ -1,4 +1,4 @@
-{% if object.description is defined %}
+{% if object.description is defined and not object.description.isRendered%}
     {{ form_row(object.description) }}
 {% endif %}
 {% if object.quantity is defined %}

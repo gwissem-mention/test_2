@@ -14,6 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -247,6 +248,22 @@ class ObjectType extends AbstractType
                 'help' => 'pel.serial.number.help',
                 'label' => 'pel.serial.number',
                 'required' => false,
+            ])
+            ->add('description', TextareaType::class, [
+                'constraints' => [
+                    new Length([
+                        'min' => 0,
+                        'max' => 255,
+                    ]),
+                ],
+                'label' => 'pel.description',
+                'required' => false,
+                'attr' => [
+                    'class' => 'fr-input',
+                    'data-counter-target' => 'parent',
+                    'minlength' => 0,
+                    'maxlength' => 255,
+                ],
             ]);
     }
 

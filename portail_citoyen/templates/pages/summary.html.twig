@@ -454,6 +454,9 @@
             {% if object.serialNumber is not null %}
                 <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.serial.number'|trans }} : <b>{{ object.serialNumber }}</b></li>
             {% endif %}
+            {% if object.description is not null %}
+                <li>{{ 'pel.description'|trans }} : {{ object.description }}</li>
+            {% endif %}
             {% if object.stillOnWhenMobileStolen is not null %}
                 <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.still.on.when.mobile.stolen'|trans }} : <b>{{ object.stillOnWhenMobileStolen|bool_to_string }}</b></li>
             {% endif %}

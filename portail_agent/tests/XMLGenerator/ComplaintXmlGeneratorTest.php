@@ -149,6 +149,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
                     ->setLabel('Téléphone portable')
                     ->setBrand('Apple')
                     ->setModel('iPhone 13')
+                    ->setDescription('Iphone 13 de couleur grise')
                     ->setOperator('Orange')
                     ->setSerialNumber('1234567890')
                     ->setPhoneNumber('06 12 34 56 67')
@@ -444,7 +445,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Objet_Multimedia>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_Multimedia_Nature>Téléphone portable</Objet_Multimedia_Nature>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_Multimedia_Numeros_Serie>1234567890</Objet_Multimedia_Numeros_Serie>', $this->xmlContent);
-        $this->assertStringContainsString('<Objet_Multimedia_Description>iPhone 13</Objet_Multimedia_Description>', $this->xmlContent);
+        $this->assertStringContainsString('<Objet_Multimedia_Description>Iphone 13 de couleur grise</Objet_Multimedia_Description>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_Multimedia_Nmr_Tel>06 12 34 56 67</Objet_Multimedia_Nmr_Tel>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_Multimedia_Operateur>Orange</Objet_Multimedia_Operateur>', $this->xmlContent);
         //        $this->assertStringContainsString('<Objet_Multimedia_Opposition>Oui</Objet_Multimedia_Opposition>', $this->xmlContent);
@@ -453,7 +454,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         // $this->assertStringContainsString('<Objet_Multimedia_Vol_Dans_Vl>Non</Objet_Multimedia_Vol_Dans_Vl>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_Multimedia_Nature>Téléphone portable</Objet_Multimedia_Nature>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_Multimedia_Numeros_Serie>987654321</Objet_Multimedia_Numeros_Serie>', $this->xmlContent);
-        $this->assertStringContainsString('<Objet_Multimedia_Description>iPhone 14 Pro</Objet_Multimedia_Description>', $this->xmlContent);
+        $this->assertStringContainsString('<Objet_Multimedia_Description/>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_Multimedia_Nmr_Tel>06 21 43 65 87</Objet_Multimedia_Nmr_Tel>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_Multimedia_Operateur>SFR</Objet_Multimedia_Operateur>', $this->xmlContent);
         //        $this->assertStringContainsString('<Objet_Multimedia_Opposition>Oui</Objet_Multimedia_Opposition>', $this->xmlContent);

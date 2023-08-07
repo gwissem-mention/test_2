@@ -7,7 +7,9 @@ export default class extends Controller {
         minlength: Number
     };
 
+    declare readonly hasCounterMinLengthTarget: boolean;
     declare readonly counterMinLengthTarget: HTMLInputElement;
+    declare readonly hasCounterMaxLengthTarget: boolean;
     declare readonly counterMaxLengthTarget: HTMLInputElement;
     declare readonly counterTarget: HTMLInputElement;
     declare readonly counterContainerTarget: HTMLInputElement;
@@ -21,22 +23,31 @@ export default class extends Controller {
     }
 
     private initializeCounters(): void {
-        this.counterTarget.textContent = `(0/${this.maxlengthValue})`;
-        this.counterMinLengthTarget.textContent = this.minlengthValue.toString();
-        this.counterMaxLengthTarget.textContent = this.maxlengthValue.toString();
+        this.counterTarget.textContent = `(${this.parentTarget.value.length}/${this.maxlengthValue})`;
+        if (this.hasCounterMinLengthTarget) {
+            this.counterMinLengthTarget.textContent = this.minlengthValue.toString();
+        }
+        if (this.hasCounterMaxLengthTarget) {
+            this.counterMaxLengthTarget.textContent = this.maxlengthValue.toString();
+        }
+        this.setCounterColor();
     }
 
     private bind(): void {
         this.parentTarget.addEventListener("keydown", () => {
             this.counterTarget.textContent = `(${this.parentTarget.value.length}/${this.maxlengthValue})`;
-            this.counterTarget.classList.toggle(
-                "fr-text--red-marianne",
-                this.parentTarget.value.length < this.minlengthValue
-            );
-            this.counterTarget.classList.toggle(
-                "fr-text--high-green-emeraude",
-                this.parentTarget.value.length >= this.minlengthValue
-            );
+            this.setCounterColor();
         });
+    }
+
+    private setCounterColor(): void {
+        this.counterTarget.classList.toggle(
+            "fr-text--red-marianne",
+            this.parentTarget.value.length < this.minlengthValue
+        );
+        this.counterTarget.classList.toggle(
+            "fr-text--high-green-emeraude",
+            this.parentTarget.value.length >= this.minlengthValue
+        );
     }
 }

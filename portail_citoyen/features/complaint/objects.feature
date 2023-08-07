@@ -54,6 +54,7 @@ Feature:
         And I should see the key "pel.operator" translated
         And I should see the key "pel.serial.number" translated
         And I should see the key "pel.serial.number.help" translated
+        And I should see the key "pel.description" translated
         And I should see the key "pel.amount" translated
         And I should see the key "pel.object.status" translated
 

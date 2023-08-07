@@ -1282,6 +1282,10 @@
                 <source>pel.make.an.appointment.with.an.agent</source>
                 <target>Prenez un rendez-vous avec un agent</target>
             </trans-unit>
+            <trans-unit id="pel.maximum">
+                <source>pel.maximum</source>
+                <target>Maximum</target>
+            </trans-unit>
             <trans-unit id="pel.ministry">
                 <source>pel.ministry</source>
                 <target>Ministère</target>

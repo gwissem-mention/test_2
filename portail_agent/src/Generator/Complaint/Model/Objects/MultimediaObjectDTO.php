@@ -21,7 +21,7 @@ class MultimediaObjectDTO extends AbstractObjectDTO
         // parent::__construct($object);
         $this->nature = $object->getNature() ?? '';
         $this->serialNumber = $object->getSerialNumber() ? strval($object->getSerialNumber()) : '';
-        $this->description = $object->getModel() ?? '';
+        $this->description = $object->getDescription() ?? '';
         $this->phoneNumber = $object->getPhoneNumber() ?? '';
         $this->operator = $object->getOperator() ?? '';
         //        $this->opposition = $object->isOpposition() ? 'Oui' : 'Non';

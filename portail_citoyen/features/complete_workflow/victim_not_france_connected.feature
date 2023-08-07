@@ -61,6 +61,16 @@ Feature:
         And I fill in "objects_objects_2_documentType_documentAdditionalInformation_documentNumber" with "123"
         And I fill in "objects_objects_2_documentType_documentAdditionalInformation_documentIssuedBy" with "Préfecture de Paris"
         And I select "2" from "objects_objects_2_status"
+        And I press "objects_objects_add"
+        And I select "3" from "objects_objects_3_category"
+        And I fill in "objects_objects_3_label" with "Smartphone"
+        And I select "2" from "objects_objects_3_status"
+        And I fill in "objects_objects_3_brand" with "OnePlus"
+        And I fill in "objects_objects_3_model" with "Nord 2"
+        And I fill in "objects_objects_3_phoneNumberLine_number" with "6123456783"
+        And I fill in "objects_objects_3_operator" with "SFR"
+        And I fill in "objects_objects_3_serialNumber" with "12345678"
+        And I fill in "objects_objects_3_description" with "Ceci est une description test pour mon smartphone."
         And I press "objects_submit"
         Then I should be on "/porter-plainte/informations-complementaires"
         When I click the "label[for=additional_information_suspectsChoice_0]" element
@@ -194,9 +204,23 @@ Feature:
         And I should see "Avenue de la république 75011 Paris"
         And I should see "123"
         And I should see "Préfecture de Paris"
+        And I should see the key "pel.brand" translated
+        And I should see the key "pel.model" translated
+        And I should see the key "pel.phone.number.line" translated
+        And I should see the key "pel.operator" translated
+        And I should see the key "pel.serial.number" translated
+        And I should see the key "pel.description" translated
+        And I should see "Téléphone portable"
+        And I should see "Smartphone"
+        And I should see "OnePlus"
+        And I should see "Nord 2"
+        And I should see "+33 6 12 34 56 78"
+        And I should see "SFR"
+        And I should see "123456783"
+        And I should see "Ceci est une description test pour mon smartphone."
         And I should see the key "pel.total" translated
         And I should see the key "pel.total.message.amount" translated
-        And I should see "3 biens déclarés pour un montant total de 200,00 €"
+        And I should see "4 biens déclarés pour un montant total de 200,00 €"
         When I follow "summary_submit"
         Then I should be on "/porter-plainte/rendez-vous"
         When I fill in "appointment_appointmentContactText" with "Between 10am and 12am"

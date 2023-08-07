@@ -327,7 +327,7 @@ parameters:
 
 		-
 			message: "#^Access to an undefined property object\\:\\:\\$description\\.$#"
-			count: 1
+			count: 2
 			path: src/Complaint/Parser/ObjectsParser.php
 
 		-
