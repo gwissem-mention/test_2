@@ -34,6 +34,9 @@ class MultimediaObject extends AbstractObject
     private ?string $serialNumber = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    private ?string $description = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $phoneNumber = null;
 
     #[ORM\Column(nullable: true)]
@@ -116,6 +119,18 @@ class MultimediaObject extends AbstractObject
     public function setSerialNumber(?string $serialNumber): self
     {
         $this->serialNumber = $serialNumber;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
 
         return $this;
     }

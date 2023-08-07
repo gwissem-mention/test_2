@@ -465,6 +465,9 @@
             <strong>{{ 'pel.number'|trans }} {{ index }}</strong> : {{ object.nature }} - {{ object.label }}
             - {{ object.model }} - {{ object.brand }}
             - {{ object.amount|format_currency('EUR', {fraction_digit: 0}) }} - {{ object.operator }}
+            {% if object.description is not null %}
+                - {{ object.description }}
+            {% endif %}
             {% if object.stillOnWhenMobileStolen is not null %}
                 <ul class="m-0">
                     <li>{{ 'pel.still.on.when.mobile.stolen'|trans }} :

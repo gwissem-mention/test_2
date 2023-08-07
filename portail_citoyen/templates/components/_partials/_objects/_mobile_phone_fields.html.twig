@@ -13,3 +13,22 @@
 {% if object.serialNumber is defined %}
     {{ form_row(object.serialNumber) }}
 {% endif %}
+{% if object.description is defined and object.category.vars.value is same as("3")%}
+    <div class="fr-mb-4v">
+        {% embed 'embed/counter.html.twig' with {
+            'parent': 'objects_objects_0_description',
+            'minlength': object.description.vars.attr.minlength,
+            'maxlength': object.description.vars.attr.maxlength,
+        } %}{% block label %}
+                {{ form_label(object.description) }}
+            {% endblock %}
+            {% block widget %}
+                {{ form_widget(object.description) }}
+            {% endblock %}
+            {% block errors %}
+                {{ form_errors(object.description) }}
+            {% endblock %}
+        {% endembed %}
+    </div>
+{% endif %}
+

@@ -146,7 +146,8 @@
             {% embed 'embed/counter.html.twig' with {
                 'parent': 'facts_description',
                 'minlength': form.description.vars.attr.minlength,
-                'maxlength': form.description.vars.attr.maxlength
+                'maxlength': form.description.vars.attr.maxlength,
+                'help': 'pel.resume.the.infraction.in.few.words'
             } %}
                 {% block label %}
                     {{ form_label(form.description) }}

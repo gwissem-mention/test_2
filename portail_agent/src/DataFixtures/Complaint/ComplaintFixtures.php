@@ -325,6 +325,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                     ->setModel('iPhone 13')
                     ->setOperator('Orange')
                     ->setSerialNumber('1234567890')
+                    ->setDescription('Description smartphone')
                     ->setPhoneNumber('06 12 34 56 67')
                     ->setStillOnWhenMobileStolen(true)
                     ->setKeyboardLockedWhenMobileStolen(false)
