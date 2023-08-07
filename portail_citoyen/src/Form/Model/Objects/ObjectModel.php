@@ -8,9 +8,7 @@ use App\Form\Model\FileModel;
 use App\Form\Model\Identity\PhoneModel;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Embeddable]
 class ObjectModel
 {
     public const STATUS_STOLEN = 1;
