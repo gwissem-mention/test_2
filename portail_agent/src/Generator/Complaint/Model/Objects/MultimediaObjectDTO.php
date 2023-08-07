@@ -19,7 +19,7 @@ class MultimediaObjectDTO extends AbstractObjectDTO
     public function __construct(MultimediaObject $object)
     {
         // parent::__construct($object);
-        $this->nature = $object->getLabel() ?? '';
+        $this->nature = $object->getNature() ?? '';
         $this->serialNumber = $object->getSerialNumber() ? strval($object->getSerialNumber()) : '';
         $this->description = $object->getModel() ?? '';
         $this->phoneNumber = $object->getPhoneNumber() ?? '';

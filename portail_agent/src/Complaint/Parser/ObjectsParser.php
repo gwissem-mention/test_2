@@ -104,6 +104,7 @@ class ObjectsParser
 
         $multimediaObject
             ->setLabel($objectInput->label)
+            ->setNature($objectInput->category->label)
             ->setBrand($objectInput->brand)
             ->setModel($objectInput->model)
             ->setOperator($objectInput->operator)

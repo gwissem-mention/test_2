@@ -319,7 +319,8 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
             ->addObject(
                 (new MultimediaObject())
                     ->setStatus(AbstractObject::STATUS_STOLEN)
-                    ->setLabel('Téléphone mobile')
+                    ->setNature('Téléphone portable')
+                    ->setLabel('Téléphone')
                     ->setBrand('Apple')
                     ->setModel('iPhone 13')
                     ->setOperator('Orange')

@@ -124,7 +124,7 @@ class ObjectType extends AbstractType
     private function addCategoryFields(FormInterface $form, int $category = null, ObjectModel $objectModel = null): void
     {
         $this->removeCategoryOtherFields($form, $objectModel);
-        $this->removeCategoryMultimediaFields($form, $objectModel);
+        $this->removeCategoryMobilePhoneFields($form, $objectModel);
         $this->removeCategoryPaymentWaysFields($form, $objectModel);
         $this->removeCategoryRegisteredVehicleFields($form, $objectModel);
         $this->removeAmountField($form, $objectModel);
@@ -140,8 +140,8 @@ class ObjectType extends AbstractType
                 $this->addAmountField($form, 'pel.amount.for.group');
                 $this->addLabelField($form);
                 break;
-            case $this->objectCategories['pel.object.category.multimedia']:
-                $this->addCategoryMultimediaFields($form);
+            case $this->objectCategories['pel.object.category.mobile.phone']:
+                $this->addCategoryMobilePhoneFields($form);
                 $this->addAmountField($form);
                 $this->addLabelField($form);
                 break;
@@ -203,7 +203,7 @@ class ObjectType extends AbstractType
             ]);
     }
 
-    private function addCategoryMultimediaFields(FormInterface $form): void
+    private function addCategoryMobilePhoneFields(FormInterface $form): void
     {
         $form
             ->add('brand', TextType::class, [
@@ -407,7 +407,7 @@ class ObjectType extends AbstractType
         $objectModel?->setLabel(null);
     }
 
-    private function removeCategoryMultimediaFields(FormInterface $form, ?ObjectModel $objectModel): void
+    private function removeCategoryMobilePhoneFields(FormInterface $form, ?ObjectModel $objectModel): void
     {
         $form
             ->remove('brand')

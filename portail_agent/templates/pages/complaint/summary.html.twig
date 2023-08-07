@@ -462,7 +462,7 @@
         </li>
     {% elseif object|object_type is same as('App\\Entity\\FactsObjects\\MultimediaObject') %}
         <li>
-            <strong>{{ 'pel.number'|trans }} {{ index }}</strong> : {{ object.label }}
+            <strong>{{ 'pel.number'|trans }} {{ index }}</strong> : {{ object.nature }} - {{ object.label }}
             - {{ object.model }} - {{ object.brand }}
             - {{ object.amount|format_currency('EUR', {fraction_digit: 0}) }} - {{ object.operator }}
             {% if object.stillOnWhenMobileStolen is not null %}

@@ -281,7 +281,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         ],
                         'category' => [
                             'code' => 3,
-                            'label' => 'Multimédia',
+                            'label' => 'Téléphone portable',
                         ],
                         'label' => 'iPhone',
                         'brand' => 'Apple',
@@ -729,7 +729,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
     //                        ],
     //                        'category' => [
     //                            'code' => 3,
-    //                            'label' => 'Multimédia',
+    //                            'label' => 'Téléphone portable',
     //                        ],
     //                        'label' => 'iPhone',
     //                        'brand' => 'Apple',
@@ -1138,7 +1138,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         ],
                         'category' => [
                             'code' => 3,
-                            'label' => 'Multimédia',
+                            'label' => 'Téléphone portable',
                         ],
                         'label' => 'iPhone',
                         'brand' => 'Apple',

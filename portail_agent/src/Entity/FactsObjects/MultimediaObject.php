@@ -12,6 +12,9 @@ class MultimediaObject extends AbstractObject
     #[ORM\Column(length: 255)]
     private ?string $label = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $nature = null;
+
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $brand = null;
 
@@ -53,6 +56,18 @@ class MultimediaObject extends AbstractObject
     public function setLabel(string $label): self
     {
         $this->label = $label;
+
+        return $this;
+    }
+
+    public function getNature(): ?string
+    {
+        return $this->nature;
+    }
+
+    public function setNature(string $nature): self
+    {
+        $this->nature = $nature;
 
         return $this;
     }

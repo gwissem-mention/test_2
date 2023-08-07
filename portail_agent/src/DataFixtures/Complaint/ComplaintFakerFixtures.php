@@ -184,7 +184,8 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                 ->addObject(
                     (new MultimediaObject())
                         ->setStatus(AbstractObject::STATUS_STOLEN)
-                        ->setLabel('Téléphone mobile')
+                        ->setLabel('Téléphone')
+                        ->setNature('Téléphone portable')
                         ->setBrand('Apple')
                         ->setModel($this->faker->randomElement(['Iphone', 'Iphone 13', 'Iphone 14']))
                         ->setOperator($this->faker->randomElement(['Orange', 'SFR', 'Bouygues', 'Free']))
@@ -199,7 +200,8 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                 )->addObject(
                     (new MultimediaObject())
                         ->setStatus(AbstractObject::STATUS_DEGRADED)
-                        ->setLabel('Téléphone mobile')
+                        ->setLabel('Smartphone')
+                        ->setNature('Téléphone portable')
                         ->setBrand('Samsung')
                         ->setModel($this->faker->randomElement(['S20', 'S21', 'S22', 'S23']))
                         ->setOperator($this->faker->randomElement(['Orange', 'SFR', 'Bouygues', 'Free']))

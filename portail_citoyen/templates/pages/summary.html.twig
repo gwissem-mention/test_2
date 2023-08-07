@@ -420,7 +420,7 @@
                     <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.document.validity.end.date'|trans }} : <b>{{ object.documentAdditionalInformation.documentValidityEndDate|date('d/m/Y') }}</b></li>
                 {% endif %}
             {% endif %}
-        {% elseif object.category|object_category_get_name is same as('pel.object.category.multimedia') %}
+        {% elseif object.category|object_category_get_name is same as('pel.object.category.mobile.phone') %}
             <li class="relative text-xl/8 fr-pb-0 fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/price-tag-3.svg')]">
                 <b>{{ object.label }}</b>
                 <p class="text-xl/8">
