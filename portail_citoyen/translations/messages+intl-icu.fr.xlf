@@ -1126,6 +1126,10 @@
                 <source>pel.hour.h</source>
                 <target>h</target>
             </trans-unit>
+            <trans-unit id="pel.hour.after.now">
+                <source>pel.hour.after.now</source>
+                <target>L'heure saisie est supérieure à l'heure actuelle</target>
+            </trans-unit>
             <trans-unit id="pel.i.am.inform.of.article.34">
                 <source>pel.i.am.inform.of.article.34</source>
                 <target>Je prends acte de ces dispositions légales et j'autorise les services de police ou de gendarmerie à communiquer cette fiche de renseignement par courriel à mon opérateur téléphonique afin de bloquer le terminal volé</target>
@@ -1737,6 +1741,10 @@
             <trans-unit id="pel.start.hour.after.end.hour">
                 <source>pel.start.hour.after.end.hour</source>
                 <target>L’heure de début est après l’heure de fin</target>
+            </trans-unit>
+            <trans-unit id="pel.start.hour.is.invalid">
+                <source>pel.start.hour.is.invalid</source>
+                <target>L’heure de début est invalide</target>
             </trans-unit>
             <trans-unit id="pel.start.hour.same.as.end.hour">
                 <source>pel.start.hour.same.as.end.hour</source>

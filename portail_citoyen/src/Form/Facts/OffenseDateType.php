@@ -103,6 +103,9 @@ class OffenseDateType extends AbstractType
         }
 
         $form->add('startDate', DateType::class, [
+            'attr' => [
+                'max' => date('Y-m-d'),
+            ],
             'constraints' => [
                 new NotBlank(),
                 new LessThanOrEqual('today', message: 'pel.date.less.than.equal.today.error'),
@@ -113,6 +116,9 @@ class OffenseDateType extends AbstractType
 
         if (false === $exactDateKnown) {
             $form->add('endDate', DateType::class, [
+                'attr' => [
+                    'max' => date('Y-m-d'),
+                ],
                 'constraints' => [
                     new Callback([
                         'callback' => static function (?\DateTime $value, ExecutionContextInterface $context) {
@@ -166,6 +172,33 @@ class OffenseDateType extends AbstractType
                     'label' => 'pel.exact.hour',
                     'widget' => 'single_text',
                     'constraints' => [
+                        new Callback([
+                            'callback' => static function (?\DateTime $value, ExecutionContextInterface $context) {
+                                if (null === $value) {
+                                    return;
+                                }
+
+                                if (!$value instanceof \DateTime) {
+                                    $context->addViolation('pel.time.is.invalid');
+                                }
+
+                                /** @var Form $form */
+                                $form = $context->getObject();
+                                /** @var Form $formParent */
+                                $formParent = $form->getParent();
+
+                                if (!$formParent->has('endDate')) {
+                                    /** @var \DateTime $startDate */
+                                    $startDate = $formParent->get('startDate')->getData();
+                                    /** @var \DateTime $now */
+                                    $now = new \DateTime('now');
+
+                                    if ($now->format('d-m-Y') === $startDate->format('d-m-Y') && time() < strtotime($value->format('H:i:s'))) {
+                                        $context->addViolation('pel.hour.after.now');
+                                    }
+                                }
+                            },
+                        ]),
                         new NotBlank(),
                     ],
                 ]);
@@ -182,13 +215,6 @@ class OffenseDateType extends AbstractType
                     'widget' => 'single_text',
                     'constraints' => [
                         new NotBlank(),
-                    ],
-                ])
-                ->add('endHour', TimeType::class, [
-                    'attr' => [
-                        'class' => 'fr-input',
-                    ],
-                    'constraints' => [
                         new Callback([
                             'callback' => static function (?\DateTime $value, ExecutionContextInterface $context) {
                                 if (null === $value) {
@@ -196,32 +222,71 @@ class OffenseDateType extends AbstractType
                                 }
 
                                 if (!$value instanceof \DateTime) {
-                                    $context->addViolation('pel.end.hour.is.invalid');
+                                    $context->addViolation('pel.start.hour.is.invalid');
                                 }
+
                                 /** @var Form $form */
                                 $form = $context->getObject();
                                 /** @var Form $formParent */
                                 $formParent = $form->getParent();
 
-                                if (null === $formParent->get('startHour')->getData()) {
-                                    return;
-                                }
-
                                 if (!$formParent->has('endDate')) {
-                                    /** @var \DateTime $startHour */
-                                    $startHour = $formParent->get('startHour')->getData();
-                                    if ($value->getTimestamp() < $startHour->getTimestamp()) {
-                                        $context->addViolation('pel.start.hour.after.end.hour');
-                                    } elseif ($value->getTimestamp() === $startHour->getTimestamp()) {
-                                        $context->addViolation('pel.start.hour.same.as.end.hour');
+                                    /** @var \DateTime $startDate */
+                                    $startDate = $formParent->get('startDate')->getData();
+                                    $now = new \DateTime('now');
+
+                                    if ($now->format('d-m-Y') === $startDate->format('d-m-Y') && time() < strtotime($value->format('H:i:s'))) {
+                                        $context->addViolation('pel.hour.after.now');
                                     }
                                 }
                             },
-                        ]),
-                        new NotBlank(),
-                    ],
-                    'label' => 'pel.end.hour',
-                    'widget' => 'single_text',
+                        ],
+                        ), ],
+                ])
+                ->add('endHour', TimeType::class, [
+                        'attr' => [
+                            'class' => 'fr-input',
+                        ],
+                        'constraints' => [
+                            new Callback([
+                                'callback' => static function (?\DateTime $value, ExecutionContextInterface $context) {
+                                    if (null === $value) {
+                                        return;
+                                    }
+
+                                    if (!$value instanceof \DateTime) {
+                                        $context->addViolation('pel.end.hour.is.invalid');
+                                    }
+                                    /** @var Form $form */
+                                    $form = $context->getObject();
+                                    /** @var Form $formParent */
+                                    $formParent = $form->getParent();
+
+                                    if (null === $formParent->get('startHour')->getData()) {
+                                        return;
+                                    }
+
+                                    if (!$formParent->has('endDate')) {
+                                        /** @var \DateTime $startHour */
+                                        $startHour = $formParent->get('startHour')->getData();
+                                        /** @var \DateTime $startDate */
+                                        $startDate = $formParent->get('startDate')->getData();
+                                        $now = new \DateTime('now');
+
+                                        if ($value->getTimestamp() < $startHour->getTimestamp()) {
+                                            $context->addViolation('pel.start.hour.after.end.hour');
+                                        } elseif ($value->getTimestamp() === $startHour->getTimestamp()) {
+                                            $context->addViolation('pel.start.hour.same.as.end.hour');
+                                        } elseif ($now->format('d-m-Y') === $startDate->format('d-m-Y') && time() < strtotime($value->format('H:i:s'))) {
+                                            $context->addViolation('pel.hour.after.now');
+                                        }
+                                    }
+                                },
+                            ]),
+                            new NotBlank(),
+                        ],
+                        'label' => 'pel.end.hour',
+                        'widget' => 'single_text',
                 ]);
 
             $offenseDateModel?->setHour(null);
