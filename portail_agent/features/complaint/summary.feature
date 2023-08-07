@@ -110,7 +110,8 @@ Feature:
         And I should see the key "pel.total" translated
         And I should see the key "pel.total.message.one" translated
         And I should see the key "pel.total.message.amount" translated
-        And I should see "Téléphone mobile"
+        And I should see "Téléphone"
+        And I should see "Téléphone portable"
         And I should see "Iphone 13"
         And I should see "Apple"
         And I should see "999 €"

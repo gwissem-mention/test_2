@@ -33,7 +33,7 @@ Feature:
     Scenario: I can see the object category choice list
         And I should see "Document officiel" in the "#objects_objects_0_category" element
         And I should see "Moyens de paiement" in the "#objects_objects_0_category" element
-        And I should see "Multimédia" in the "#objects_objects_0_category" element
+        And I should see "Téléphone portable" in the "#objects_objects_0_category" element
         And I should see "Véhicules immatriculés " in the "#objects_objects_0_category" element
         And I should see "Véhicules non immatriculés" in the "#objects_objects_0_category" element
         And I should see "Autres" in the "#objects_objects_0_category" element
@@ -46,8 +46,8 @@ Feature:
         And I should see the key "pel.object.status" translated
         And I should see the key "pel.amount" translated
 
-    Scenario: I can see a list of text fields translated when I select "Multimédia" from category object list
-        When I select "Multimédia" from "objects_objects_0_category"
+    Scenario: I can see a list of text fields translated when I select "Téléphone portable" from category object list
+        When I select "Téléphone portable" from "objects_objects_0_category"
         Then I should see the key "pel.brand" translated
         And I should see the key "pel.model" translated
         And I should see the key "pel.phone.number.line" translated
@@ -169,8 +169,8 @@ Feature:
         And I should see the key "pel.document.number" translated
         And I should see the key "pel.document.validity.end.date" translated
 
-    Scenario: I can see 4 radios buttons, a text and a required checkbox when I have a multimedia stolen mobile object
-        When I select "Multimédia" from "objects_objects_0_category"
+    Scenario: I can see 4 radios buttons, a text and a required checkbox when I have a mobile phone stolen
+        When I select "Téléphone portable" from "objects_objects_0_category"
         And I select "1" from "objects_objects_0_status"
         And I fill in "objects_objects_0_serialNumber" with "1234"
         Then I should see the key "pel.still.on.when.mobile.stolen" translated
@@ -189,8 +189,8 @@ Feature:
         And I should see the key "pel.i.am.inform.of.article.34" translated
         And I should see a "input[type=checkbox]#objects_objects_0_allowOperatorCommunication" element
 
-    Scenario: I should not see 4 radios buttons, a text and a required checkbox when I have not a multimedia stolen mobile object
-        When I select "Multimédia" from "objects_objects_0_category"
+    Scenario: I should not see 4 radios buttons, a text and a required checkbox when I have not a mobile phone stolen
+        When I select "Téléphone portable" from "objects_objects_0_category"
         And I select "2" from "objects_objects_0_status"
         Then I should not see the key "pel.still.on.when.mobile.stolen" translated
         And I should not see a "input[type=radio]#objects_objects_0_stillOnWhenMobileStolen_0" element

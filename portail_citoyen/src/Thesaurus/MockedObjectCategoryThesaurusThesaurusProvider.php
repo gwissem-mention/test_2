@@ -14,7 +14,7 @@ class MockedObjectCategoryThesaurusThesaurusProvider implements ObjectCategoryTh
         return [
             'pel.object.category.documents' => 1,
             'pel.object.category.payment.ways' => 2,
-            'pel.object.category.multimedia' => 3,
+            'pel.object.category.mobile.phone' => 3,
             'pel.object.category.registered.vehicle' => 4,
             'pel.object.category.unregistered.vehicle' => 5,
             'pel.object.category.other' => 6,

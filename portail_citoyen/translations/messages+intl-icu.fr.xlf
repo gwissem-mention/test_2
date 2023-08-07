@@ -1450,9 +1450,9 @@
                 <source>pel.object.category.payment.ways</source>
                 <target>Moyens de paiement</target>
             </trans-unit>
-            <trans-unit id="pel.object.category.multimedia">
-                <source>pel.object.category.multimedia</source>
-                <target>Multimédia</target>
+            <trans-unit id="pel.object.category.mobile.phone">
+                <source>pel.object.category.mobile.phone</source>
+                <target>Téléphone portable</target>
             </trans-unit>
             <trans-unit id="pel.object.category.registered.vehicle">
                 <source>pel.object.category.registered.vehicle</source>
