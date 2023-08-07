@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Generator\Complaint\Model\Objects;
 
+use App\Entity\FactsObjects\AbstractObject;
 use App\Entity\FactsObjects\Vehicle;
 
 class VehicleDTO extends AbstractObjectDTO
@@ -13,6 +14,7 @@ class VehicleDTO extends AbstractObjectDTO
     private string $brand;
     private string $insuranceCompany;
     private string $insuranceNumber;
+    private string $degradation;
 
     public function __construct(Vehicle $vehicle)
     {
@@ -21,6 +23,7 @@ class VehicleDTO extends AbstractObjectDTO
         $this->brand = $vehicle->getBrand() ?? '';
         $this->insuranceCompany = $vehicle->getInsuranceCompany() ?? '';
         $this->insuranceNumber = $vehicle->getInsuranceNumber() ?? '';
+        $this->degradation = AbstractObject::STATUS_DEGRADED === $vehicle->getStatus() ? 'Oui' : 'Non';
     }
 
     /**
@@ -34,6 +37,7 @@ class VehicleDTO extends AbstractObjectDTO
             'VL_Marque' => $this->brand,
             'VL_Assurance_Nom' => $this->insuranceCompany,
             'VL_Assurance_Police' => $this->insuranceNumber,
+            'VL_Degradation' => $this->degradation,
         ]];
     }
 }

@@ -9,6 +9,7 @@ use App\Entity\AdditionalInformation;
 use App\Entity\Complaint;
 use App\Entity\Corporation;
 use App\Entity\Facts;
+use App\Entity\FactsObjects\AbstractObject;
 use App\Entity\FactsObjects\AdministrativeDocument;
 use App\Entity\FactsObjects\MultimediaObject;
 use App\Entity\FactsObjects\PaymentMethod;
@@ -192,6 +193,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
                     ->setInsuranceCompany('AXA')
                     ->setInsuranceNumber('1458R147R')
                     ->setAmount(15000)
+                    ->setStatus(AbstractObject::STATUS_DEGRADED)
             )
             ->setAdditionalInformation(
                 (new AdditionalInformation())
@@ -554,6 +556,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<VL_Marque>Citroën</VL_Marque>', $this->xmlContent);
         $this->assertStringContainsString('<VL_Assurance_Nom>AXA</VL_Assurance_Nom>', $this->xmlContent);
         $this->assertStringContainsString('<VL_Assurance_Police>1458R147R</VL_Assurance_Police>', $this->xmlContent);
+        $this->assertStringContainsString('<VL_Degradation>Oui</VL_Degradation>', $this->xmlContent);
         $this->assertStringContainsString('</VL>', $this->xmlContent);
     }
 
