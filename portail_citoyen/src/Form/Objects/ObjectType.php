@@ -474,6 +474,7 @@ class ObjectType extends AbstractType
     {
         $form
             ->remove('brand')
+            ->remove('registeredVehicleNature')
             ->remove('model')
             ->remove('registrationNumber')
             ->remove('registrationNumberCountry')
@@ -486,7 +487,8 @@ class ObjectType extends AbstractType
             ->setRegistrationNumber(null)
             ->setRegistrationNumberCountry(null)
             ->setInsuranceCompany(null)
-            ->setInsuranceNumber(null);
+            ->setInsuranceNumber(null)
+            ->setRegisteredVehicleNature(null);
     }
 
     private function removeCategoryDocumentFields(FormInterface $form, ?ObjectModel $objectModel): void
