@@ -117,6 +117,7 @@ Feature:
         And I should see "999 €"
         And I should see "Orange"
         And I should see "Description smartphone"
+        And I should see "VOITURE PARTICULIERE"
         And I should see "Voiture"
         And I should see "Citroën"
         And I should see "C3"

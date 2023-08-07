@@ -8,7 +8,9 @@ use App\Form\Model\FileModel;
 use App\Form\Model\Identity\PhoneModel;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
 
+#[ORM\Embeddable]
 class ObjectModel
 {
     public const STATUS_STOLEN = 1;
@@ -41,6 +43,7 @@ class ObjectModel
     private ?bool $pinEnabledWhenMobileStolen = null;
     private ?bool $mobileInsured = null;
     private ?bool $allowOperatorCommunication = null;
+    private ?int $registeredVehicleNature = null;
 
     /**
      * @var Collection<int, FileModel>
@@ -408,6 +411,18 @@ class ObjectModel
     public function setAllowOperatorCommunication(?bool $allowOperatorCommunication): self
     {
         $this->allowOperatorCommunication = $allowOperatorCommunication;
+
+        return $this;
+    }
+
+    public function getRegisteredVehicleNature(): ?int
+    {
+        return $this->registeredVehicleNature;
+    }
+
+    public function setRegisteredVehicleNature(?int $registeredVehicleNature): ObjectModel
+    {
+        $this->registeredVehicleNature = $registeredVehicleNature;
 
         return $this;
     }

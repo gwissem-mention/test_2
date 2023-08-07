@@ -2406,6 +2406,34 @@
                 <source>pel.registered.complaint</source>
                 <target>Plainte enregistrée</target>
             </trans-unit>
+            <trans-unit id="pel.vehicle.category">
+                <source>pel.vehicle.category</source>
+                <target>Catégorie de véhicule</target>
+            </trans-unit>
+            <trans-unit id="pel.choose.a.vehicle.category">
+                <source>pel.choose.a.vehicle.category</source>
+                <target>Sélectionner une catégorie de véhicule</target>
+            </trans-unit>
+            <trans-unit id="pel.truck">
+                <source>pel.truck</source>
+                <target>CAMION</target>
+            </trans-unit>
+            <trans-unit id="pel.personal.vehicle">
+                <source>pel.personal.vehicle</source>
+                <target>VOITURE PARTICULIERE</target>
+            </trans-unit>
+            <trans-unit id="pel.trailer">
+                <source>pel.trailer</source>
+                <target>REMORQUE</target>
+            </trans-unit>
+            <trans-unit id="pel.caravan">
+                <source>pel.caravan</source>
+                <target>CARAVANE</target>
+            </trans-unit>
+            <trans-unit id="pel.motorbike">
+                <source>pel.motorbike</source>
+                <target>MOTO</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

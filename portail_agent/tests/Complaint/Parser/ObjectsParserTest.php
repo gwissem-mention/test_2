@@ -39,6 +39,7 @@ class ObjectsParserTest extends KernelTestCase
             "bank": null,
             "bankAccountNumber": null,
             "creditCardNumber": null,
+            "registeredVehicleNature": null,
             "registrationNumber": null,
             "registrationNumberCountry": null,
             "insuranceCompany": null,
@@ -116,6 +117,7 @@ class ObjectsParserTest extends KernelTestCase
             "bank": "BNP",
             "bankAccountNumber": "4564654654654",
             "creditCardNumber": "879879879879",
+            "registeredVehicleNature": null,
             "registrationNumber": null,
             "registrationNumberCountry": null,
             "insuranceCompany": null,
@@ -152,6 +154,7 @@ class ObjectsParserTest extends KernelTestCase
             "bank": null,
             "bankAccountNumber": null,
             "creditCardNumber": null,
+            "registeredVehicleNature": null,
             "registrationNumber": null,
             "registrationNumberCountry": null,
             "insuranceCompany": null,
@@ -188,6 +191,7 @@ class ObjectsParserTest extends KernelTestCase
             "bank": null,
             "bankAccountNumber": null,
             "creditCardNumber": null,
+            "registeredVehicleNature": "CAMION",
             "registrationNumber": "123BG30",
             "registrationNumberCountry": "FR",
             "insuranceCompany": "AXA",
@@ -224,6 +228,7 @@ class ObjectsParserTest extends KernelTestCase
             "bank": null,
             "bankAccountNumber": null,
             "creditCardNumber": null,
+            "registeredVehicleNature": null,
             "registrationNumber": null,
             "registrationNumberCountry": null,
             "insuranceCompany": null,
@@ -255,6 +260,7 @@ class ObjectsParserTest extends KernelTestCase
             "bank": null,
             "bankAccountNumber": null,
             "creditCardNumber": null,
+            "registeredVehicleNature": null,
             "registrationNumber": null,
             "registrationNumberCountry": null,
             "insuranceCompany": null,
@@ -296,6 +302,7 @@ class ObjectsParserTest extends KernelTestCase
             "bankAccountNumber": null,
             "creditCardNumber": null,
             "registrationNumber": null,
+            "registeredVehicleNature": null,
             "registrationNumberCountry": null,
             "insuranceCompany": null,
             "insuranceNumber": null,
@@ -446,6 +453,7 @@ JSON;
         $this->assertSame('FR', $object->getRegistrationCountry());
         $this->assertSame('AXA', $object->getInsuranceCompany());
         $this->assertSame('123456789', $object->getInsuranceNumber());
+        $this->assertSame('CAMION', $object->getNature());
         $this->assertSame(15000.0, $object->getAmount());
     }
 
@@ -465,6 +473,7 @@ JSON;
         $this->assertNull($object->getRegistrationCountry());
         $this->assertNull($object->getInsuranceCompany());
         $this->assertNull($object->getInsuranceNumber());
+        $this->assertNull($object->getNature());
         $this->assertSame(560.0, $object->getAmount());
     }
 

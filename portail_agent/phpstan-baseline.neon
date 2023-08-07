@@ -391,6 +391,11 @@ parameters:
 			path: src/Complaint/Parser/ObjectsParser.php
 
 		-
+			message: "#^Access to an undefined property object\\:\\:\\$registeredVehicleNature\\.$#"
+			count: 1
+			path: src/Complaint/Parser/ObjectsParser.php
+
+		-
 			message: "#^Access to an undefined property object\\:\\:\\$registrationNumber\\.$#"
 			count: 1
 			path: src/Complaint/Parser/ObjectsParser.php

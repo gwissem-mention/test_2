@@ -144,16 +144,16 @@ class ObjectsParser
     private function parseVehicle(object $objectInput): Vehicle
     {
         $vehicle = new Vehicle();
-        $vehicle->setLabel($objectInput->label);
-        $vehicle->setBrand($objectInput->brand ?? '');
 
-        $vehicle->setModel($objectInput->model);
-        $vehicle->setRegistrationNumber($objectInput->registrationNumber);
-        $vehicle->setRegistrationCountry($objectInput->registrationNumberCountry);
-        $vehicle->setInsuranceCompany($objectInput->insuranceCompany);
-        $vehicle->setInsuranceNumber($objectInput->insuranceNumber);
-
-        return $vehicle;
+        return $vehicle
+            ->setLabel($objectInput->label)
+            ->setBrand($objectInput->brand ?? '')
+            ->setModel($objectInput->model)
+            ->setRegistrationNumber($objectInput->registrationNumber)
+            ->setRegistrationCountry($objectInput->registrationNumberCountry)
+            ->setInsuranceCompany($objectInput->insuranceCompany)
+            ->setInsuranceNumber($objectInput->insuranceNumber)
+            ->setNature($objectInput->registeredVehicleNature);
     }
 
     private function parseSimpleObject(object $objectInput): SimpleObject

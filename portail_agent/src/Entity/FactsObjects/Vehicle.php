@@ -30,6 +30,9 @@ class Vehicle extends AbstractObject
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $insuranceNumber = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $nature = null;
+
     public function getLabel(): ?string
     {
         return $this->label;
@@ -116,10 +119,18 @@ class Vehicle extends AbstractObject
 
     public function isRegistered(): bool
     {
-        if (null !== $this->getRegistrationNumber()) {
-            return true;
-        }
+        return null !== $this->getRegistrationNumber();
+    }
 
-        return false;
+    public function getNature(): ?string
+    {
+        return $this->nature;
+    }
+
+    public function setNature(?string $nature): Vehicle
+    {
+        $this->nature = $nature;
+
+        return $this;
     }
 }
