@@ -328,6 +328,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                 $complaint->addObject(
                     (new Vehicle())
                         ->setStatus(AbstractObject::STATUS_STOLEN)
+                        ->setNature('VOITURE PARTICULIERE')
                         ->setLabel('Voiture')
                         ->setBrand('Citroën')
                         ->setModel($this->faker->randomElement(['C3', 'C4', 'DS4', 'DS3']))

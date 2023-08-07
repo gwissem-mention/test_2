@@ -516,6 +516,7 @@
                 </li>
                 {% endfor %}
             {% endif %}
+            <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.vehicle.category'|trans }} : <b>{{ object.registeredVehicleNature|registered_vehicle_label|trans }}</b></li>
             <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.brand'|trans }} : <b>{{ object.brand }}</b></li>
             {% if object.model is not null %}
                 <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.model'|trans }} : <b>{{ object.model }}</b></li>

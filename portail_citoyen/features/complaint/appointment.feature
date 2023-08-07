@@ -87,6 +87,7 @@ Feature:
     Scenario: I should see error if I valid with no filling the appointment textarea when an object is a stolen registered vehicle
         Given I am on "/porter-plainte/objets"
         When I select "Véhicules immatriculés" from "objects_objects_0_category"
+        And I select "CAMION" from "objects_objects_0_registeredVehicleNature"
         And I fill in "objects_objects_0_brand" with "Renault"
         And I fill in "objects_objects_0_registrationNumber" with "AA-229-AA"
         And I press "objects_submit"

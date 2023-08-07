@@ -6,6 +6,7 @@ namespace App\Tests\Factory;
 
 use App\AppEnum\Civility;
 use App\AppEnum\DeclarantStatus;
+use App\AppEnum\RegisteredVehicleNature;
 use App\Form\Model\AdditionalInformation\AdditionalInformationModel;
 use App\Form\Model\AdditionalInformation\WitnessModel;
 use App\Form\Model\Address\AddressEtalabModel;
@@ -225,6 +226,7 @@ class ComplaintFactory
             ->addObject((new ObjectModel())
                 ->setCategory(4)
                 ->setLabel('Voiture')
+                ->setRegisteredVehicleNature(RegisteredVehicleNature::PersonalVehicle->value)
                 ->setStatus(ObjectModel::STATUS_DEGRADED)
                 ->setAmount(10000)
                 ->setBrand('Peugeot')

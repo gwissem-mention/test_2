@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Generator\Complaint\Serializer;
 
 use App\AppEnum\DocumentType;
+use App\AppEnum\RegisteredVehicleNature;
 use App\Form\Model\Objects\ObjectModel;
 use App\Thesaurus\ObjectCategoryThesaurusProviderInterface;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
@@ -44,6 +45,10 @@ class ObjectModelNormalizer implements NormalizerInterface
 
         if ($documentTypeLabel = DocumentType::getLabel($object->getDocumentType())) {
             $data['documentType'] = $this->translator->trans($documentTypeLabel);
+        }
+
+        if ($registeredVehicleNatureLabel = RegisteredVehicleNature::getLabel($object->getRegisteredVehicleNature())) {
+            $data['registeredVehicleNature'] = $this->translator->trans($registeredVehicleNatureLabel);
         }
 
         return $data;

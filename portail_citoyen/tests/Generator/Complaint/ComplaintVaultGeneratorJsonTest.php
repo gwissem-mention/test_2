@@ -273,6 +273,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'pinEnabledWhenMobileStolen' => null,
                         'mobileInsured' => null,
                         'allowOperatorCommunication' => null,
+                        'registeredVehicleNature' => null,
                     ],
                     [
                         'status' => [
@@ -313,6 +314,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'pinEnabledWhenMobileStolen' => null,
                         'mobileInsured' => null,
                         'allowOperatorCommunication' => null,
+                        'registeredVehicleNature' => null,
                     ],
                     [
                         'status' => [
@@ -349,6 +351,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'pinEnabledWhenMobileStolen' => null,
                         'mobileInsured' => null,
                         'allowOperatorCommunication' => null,
+                        'registeredVehicleNature' => null,
                     ],
                     [
                         'status' => [
@@ -371,6 +374,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'bankAccountNumber' => null,
                         'creditCardNumber' => null,
                         'registrationNumber' => 'AB-123-CD',
+                        'registeredVehicleNature' => 'VOITURE PARTICULIERE',
                         'registrationNumberCountry' => 'FR',
                         'insuranceCompany' => 'AXA',
                         'insuranceNumber' => '1234567890',
@@ -819,6 +823,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
     //                        'bankAccountNumber' => null,
     //                        'creditCardNumber' => null,
     //                        'registrationNumber' => 'AB-123-CD',
+    //                        'registeredVehicleNature' => 'VOITURE PARTICULIERE',
     //                        'registrationNumberCountry' => 'FR',
     //                        'insuranceCompany' => 'AXA',
     //                        'insuranceNumber' => '1234567890',
@@ -1130,6 +1135,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'pinEnabledWhenMobileStolen' => null,
                         'mobileInsured' => null,
                         'allowOperatorCommunication' => null,
+                        'registeredVehicleNature' => null,
                     ],
                     [
                         'status' => [
@@ -1170,6 +1176,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'pinEnabledWhenMobileStolen' => null,
                         'mobileInsured' => null,
                         'allowOperatorCommunication' => null,
+                        'registeredVehicleNature' => null,
                     ],
                     [
                         'status' => [
@@ -1206,6 +1213,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'pinEnabledWhenMobileStolen' => null,
                         'mobileInsured' => null,
                         'allowOperatorCommunication' => null,
+                        'registeredVehicleNature' => null,
                     ],
                     [
                         'status' => [
@@ -1228,6 +1236,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'bankAccountNumber' => null,
                         'creditCardNumber' => null,
                         'registrationNumber' => 'AB-123-CD',
+                        'registeredVehicleNature' => 'VOITURE PARTICULIERE',
                         'registrationNumberCountry' => 'FR',
                         'insuranceCompany' => 'AXA',
                         'insuranceNumber' => '1234567890',

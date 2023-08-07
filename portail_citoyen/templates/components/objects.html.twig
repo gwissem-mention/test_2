@@ -41,6 +41,13 @@
                             {{ form_row(object.status) }}
                         </div>
                     {% endif %}
+
+                    {% if object.registeredVehicleNature is defined %}
+                        <div class="fr-mb-6v md:w-1/2">
+                            {{ form_row(object.registeredVehicleNature) }}
+                        </div>
+                    {% endif %}
+
                     {% if object.files is defined %}
                         {{ form_row(object.files) }}
                     {% endif %}

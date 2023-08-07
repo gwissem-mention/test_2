@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Form\Objects;
 
+use App\AppEnum\RegisteredVehicleNature;
 use App\Form\Model\Objects\ObjectModel;
 use App\Form\PhoneType;
 use App\Thesaurus\ObjectCategoryThesaurusProviderInterface;
@@ -311,6 +312,14 @@ class ObjectType extends AbstractType
     private function addCategoryRegisteredVehicleFields(FormInterface $form): void
     {
         $form
+            ->add('registeredVehicleNature', ChoiceType::class, [
+                'choices' => RegisteredVehicleNature::getChoices(),
+                'placeholder' => 'pel.choose.a.vehicle.category',
+                'label' => 'pel.vehicle.category',
+                'constraints' => [
+                    new NotBlank(),
+                ],
+            ])
             ->add('brand', TextType::class, [
                 'attr' => [
                     'maxlength' => 20,

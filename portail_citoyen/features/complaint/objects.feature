@@ -110,6 +110,7 @@ Feature:
         And I should see the key "pel.insurance.number" translated
         And I should see the key "pel.amount" translated
         And I should see the key "pel.object.status" translated
+        And I should see the key "pel.vehicle.category" translated
 
     Scenario: I should see an objects quantity / amount text when I fill an object form
         When I select "6" from "objects_objects_0_category"
