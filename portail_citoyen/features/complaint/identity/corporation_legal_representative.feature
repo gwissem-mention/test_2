@@ -310,6 +310,7 @@ Feature:
         And I fill in "identity_corporation_email" with "jean@test.com"
         And I fill in "identity_corporation_phone_number" with "0102020304"
         And I select "99134" from "identity_corporation_country"
+        And I wait 200 ms
         And I fill in "identity_corporation_foreignAddress_housenumber" with "14"
         And I fill in "identity_corporation_foreignAddress_type" with "Corto"
         And I fill in "identity_corporation_foreignAddress_street" with "de Alcalá Madrid España"

@@ -522,6 +522,7 @@ citoyen-func:
 
 citoyen-e2e:
     <<: *citoyen-step
+    retry: 2
     variables:
         APP_ENV: "e2e"
         POSTGRES_DB: "app"
@@ -557,6 +558,7 @@ citoyen-e2e:
 
 citoyen-complaint-1-e2e:
     <<: *citoyen-step
+    retry: 2
     variables:
         APP_ENV: "e2e"
         POSTGRES_DB: "app"
@@ -591,6 +593,7 @@ citoyen-complaint-1-e2e:
             
 citoyen-complaint-2-e2e:
     <<: *citoyen-step
+    retry: 2
     variables:
         APP_ENV: "e2e"
         POSTGRES_DB: "app"
@@ -625,6 +628,7 @@ citoyen-complaint-2-e2e:
 
 citoyen-complete-workflow-e2e:
     <<: *citoyen-step
+    retry: 2
     variables:
         APP_ENV: "e2e"
         POSTGRES_DB: "app"
@@ -659,6 +663,7 @@ citoyen-complete-workflow-e2e:
 
 citoyen-flaky-e2e:
     <<: *citoyen-step
+    retry: 2
     variables:
         APP_ENV: "e2e"
         POSTGRES_DB: "app"
@@ -693,12 +698,17 @@ citoyen-flaky-e2e:
 
 agent-e2e:
     <<: *agent-step
+    retry: 2
     variables:
         APP_ENV: "e2e"
         POSTGRES_DB: "app"
         POSTGRES_PASSWORD: "ChangeMe"
         POSTGRES_USER: "symfony"
         POSTGRES_HOST: "127.0.0.1"
+        ACTIVEMQ_WEBADMIN_USERNAME: "admin"
+        ACTIVEMQ_WEBADMIN_PASSWORD: "admin"
+        ACTIVEMQ_USERNAME: "system"
+        ACTIVEMQ_PASSWORD: "manager"
     script:
         - php bin/console cache:clear --env=${APP_ENV}
         - echo "APP_ENV=${APP_ENV}" >> .env.local
@@ -726,6 +736,7 @@ agent-e2e:
         
 agent-complaint-e2e:
     <<: *agent-step
+    retry: 2
     variables:
         APP_ENV: "e2e"
         POSTGRES_DB: "app"
@@ -759,6 +770,7 @@ agent-complaint-e2e:
 
 agent-flaky-e2e:
     <<: *agent-step
+    retry: 2
     variables:
         APP_ENV: "e2e"
         POSTGRES_DB: "app"

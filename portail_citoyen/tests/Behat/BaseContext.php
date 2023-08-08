@@ -26,7 +26,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 final class BaseContext extends MinkContext
 {
-    private const RETRY_SLEEP = 100000;
+    private const RETRY_SLEEP = 10000;
     private const RETRY_MAX_TIME = 10;
 
     public function __construct(
@@ -474,14 +474,13 @@ final class BaseContext extends MinkContext
         do {
             try {
                 $step();
-                // we sleep a little bit more even when the element is found to wait for animation ending
-                \usleep($sleep / 2);
+                \usleep(1000);
 
                 return;
             } catch (\Exception $e) {
+                \usleep($sleep);
                 $ex = $e;
             }
-            \usleep($sleep);
         } while (\time() - $startTime <= $maxTime);
 
         throw $ex;
