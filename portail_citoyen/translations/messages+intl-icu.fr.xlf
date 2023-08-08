@@ -886,6 +886,14 @@
                 <source>pel.footer.link.gouvernement.title</source>
                 <target>gouvernement.fr - nouvelle fenêtre</target>
             </trans-unit>
+            <trans-unit id="pel.footer.link.interieur">
+                <source>pel.footer.link.interieur</source>
+                <target>interieur.gouv.fr</target>
+            </trans-unit>
+            <trans-unit id="pel.footer.link.interieur.title">
+                <source>pel.footer.link.interieur.title</source>
+                <target>interieur.gouv.fr - nouvelle fenêtre</target>
+            </trans-unit>
             <trans-unit id="pel.footer.link.legifrance">
                 <source>pel.footer.link.legifrance</source>
                 <target>legifrance.gouv.fr</target>
