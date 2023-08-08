@@ -124,6 +124,7 @@ Feature:
         And I fill in "facts-startAddress-address" with "1 test street"
         And I fill in "facts-startAddress-address" with "2 test street"
         And I click the "label[for=facts_offenseDate_exactDateKnown_0]" element
+        And I wait for "input[name='facts_offenseDate_startDate']" to appear
         And I fill in "facts_offenseDate_startDate" with "01/01/2022"
         And I click the "label[for=facts_offenseDate_choiceHour_0]" element
         And I fill in "facts_offenseDate_hour" with "15:00"
@@ -191,6 +192,7 @@ Feature:
         And I fill in "identity_corporation_email" with "jean@test.com"
         And I fill in "identity_corporation_phone_number" with "0102020304"
         And I fill in "corporation-address" with "avenue de la république paris"
+        And I wait for "#corporation-address-38485_0570" to appear
         And I click the "#corporation-address-38485_0570" element
         And I press "identity_submit"
         Then I should be on "/porter-plainte/faits"
