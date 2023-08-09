@@ -12,3 +12,24 @@
 {% if object.insuranceNumber is defined %}
     {{ form_row(object.insuranceNumber) }}
 {% endif %}
+
+{% if object.degradationDescription is defined %}
+    {% set has_errors = object.degradationDescription.vars.errors is not empty %}
+    <div class="{{ html_classes('fr-mb-6v', 'fr-input-group', {'fr-input-group--error': has_errors}) }}">
+        {% embed 'embed/counter.html.twig' with {
+            'parent': object.vars.full_name,
+            'minlength': object.degradationDescription.vars.attr.minlength,
+            'maxlength': object.degradationDescription.vars.attr.maxlength,
+        } %}
+            {% block label %}
+                {{ form_label(object.degradationDescription) }}
+            {% endblock %}
+            {% block widget %}
+                {{ form_widget(object.degradationDescription, {'attr':{'class':html_classes(attr.class ?? '', 'fr-input', {'fr-input--error':has_errors}),'aria-describedby':has_errors ? 'form-errors-'~ object.degradationDescription.vars.id :''}}) }}
+            {% endblock %}
+            {% block errors %}
+                {{ form_errors(object.degradationDescription) }}
+            {% endblock %}
+        {% endembed %}
+    </div>
+{% endif %}

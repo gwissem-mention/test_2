@@ -274,6 +274,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'mobileInsured' => null,
                         'allowOperatorCommunication' => null,
                         'registeredVehicleNature' => null,
+                        'degradationDescription' => null,
                     ],
                     [
                         'status' => [
@@ -315,6 +316,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'mobileInsured' => null,
                         'allowOperatorCommunication' => null,
                         'registeredVehicleNature' => null,
+                        'degradationDescription' => null,
                     ],
                     [
                         'status' => [
@@ -352,6 +354,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'mobileInsured' => null,
                         'allowOperatorCommunication' => null,
                         'registeredVehicleNature' => null,
+                        'degradationDescription' => null,
                     ],
                     [
                         'status' => [
@@ -389,6 +392,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'pinEnabledWhenMobileStolen' => null,
                         'mobileInsured' => null,
                         'allowOperatorCommunication' => null,
+                        'degradationDescription' => 'Portière avant gauche enfoncée et Pare-choc arrière rayé',
                     ],
                 ],
             ],
@@ -1136,6 +1140,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'mobileInsured' => null,
                         'allowOperatorCommunication' => null,
                         'registeredVehicleNature' => null,
+                        'degradationDescription' => null,
                     ],
                     [
                         'status' => [
@@ -1177,6 +1182,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'mobileInsured' => null,
                         'allowOperatorCommunication' => null,
                         'registeredVehicleNature' => null,
+                        'degradationDescription' => null,
                     ],
                     [
                         'status' => [
@@ -1214,6 +1220,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'mobileInsured' => null,
                         'allowOperatorCommunication' => null,
                         'registeredVehicleNature' => null,
+                        'degradationDescription' => null,
                     ],
                     [
                         'status' => [
@@ -1251,6 +1258,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'pinEnabledWhenMobileStolen' => null,
                         'mobileInsured' => null,
                         'allowOperatorCommunication' => null,
+                        'degradationDescription' => 'Portière avant gauche enfoncée et Pare-choc arrière rayé',
                     ],
                 ],
             ],

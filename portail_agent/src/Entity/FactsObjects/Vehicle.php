@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity\FactsObjects;
 
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
@@ -32,6 +33,9 @@ class Vehicle extends AbstractObject
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $nature = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $degradationDescription = null;
 
     public function getLabel(): ?string
     {
@@ -127,9 +131,21 @@ class Vehicle extends AbstractObject
         return $this->nature;
     }
 
-    public function setNature(?string $nature): Vehicle
+    public function setNature(?string $nature): self
     {
         $this->nature = $nature;
+
+        return $this;
+    }
+
+    public function getDegradationDescription(): ?string
+    {
+        return $this->degradationDescription;
+    }
+
+    public function setDegradationDescription(?string $degradationDescription): self
+    {
+        $this->degradationDescription = $degradationDescription;
 
         return $this;
     }

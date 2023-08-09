@@ -142,7 +142,8 @@
     <hr>
     <div class="fr-pt-4v fr-px-6v fr-pb-10v fr-pt-md-6v fr-px-md-20v">
         <h2 class="text-[22px]/7 md:text-[28px]/9">{{ 'pel.describe.whats.happened'|trans }}</h2>
-        <div class="fr-mt-8v fr-mb-4v fr-mt-md-12v">
+        {% set has_errors = form.description.vars.errors is not empty %}
+        <div class="{{ html_classes('fr-mt-8v', 'fr-mb-4v', 'fr-mt-md-12v', 'fr-input-group', {'fr-input-group--error': has_errors}) }}">
             {% embed 'embed/counter.html.twig' with {
                 'parent': 'facts_description',
                 'minlength': form.description.vars.attr.minlength,
@@ -153,7 +154,7 @@
                     {{ form_label(form.description) }}
                 {% endblock %}
                 {% block widget %}
-                    {{ form_widget(form.description) }}
+                    {{ form_widget(form.description, {'attr':{'class':html_classes(attr.class ?? '', 'fr-input', {'fr-input--error':has_errors}),'aria-describedby':has_errors ? 'form-errors-'~ form.description.vars.id :''}}) }}
                 {% endblock %}
                 {% block errors %}
                     {{ form_errors(form.description) }}

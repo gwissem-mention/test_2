@@ -111,6 +111,7 @@ Feature:
         And I should see the key "pel.amount" translated
         And I should see the key "pel.object.status" translated
         And I should see the key "pel.vehicle.category" translated
+        And I should see the key "pel.degradation.description" translated
 
     Scenario: I should see an objects quantity / amount text when I fill an object form
         When I select "6" from "objects_objects_0_category"
@@ -205,3 +206,13 @@ Feature:
         And I should not see the key "pel.article.34" translated
         And I should not see the key "pel.i.am.inform.of.article.34" translated
         And I should not see a "input[type=checkbox]#objects_objects_0_allowOperatorCommunication" element
+
+    Scenario: I should see the degradation description field required when the vehicle is degraded
+        When I select "Véhicules immatriculés" from "objects_objects_0_category"
+        And I select "2" from "objects_objects_0_status"
+        Then I should see a "textarea#objects_objects_0_degradationDescription[required=required]" element
+
+    Scenario: I should see the degradation description field not required when the vehicle is stolen
+        When I select "Véhicules immatriculés" from "objects_objects_0_category"
+        And I select "2" from "objects_objects_0_status"
+        Then I should not see a "textarea#objects_objects_0_degradationDescription[required=required]" element

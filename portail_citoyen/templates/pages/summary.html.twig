@@ -531,6 +531,9 @@
             {% if object.insuranceNumber is not null %}
                 <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.insurance.number'|trans }} : <b>{{ object.insuranceNumber }}</b></li>
             {% endif %}
+            {% if object.degradationDescription is not null %}
+                <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.degradation.description'|trans }} : <b>{{ object.degradationDescription }}</b></li>
+            {% endif %}
         {% elseif object.category|object_category_get_name is same as('pel.object.category.unregistered.vehicle') %}
             <li class="relative text-xl/8 fr-pb-0 fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/price-tag-3.svg')]">
                 <b>{{ object.label }}</b>

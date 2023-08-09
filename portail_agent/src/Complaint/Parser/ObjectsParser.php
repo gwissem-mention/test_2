@@ -153,7 +153,8 @@ class ObjectsParser
             ->setRegistrationCountry($objectInput->registrationNumberCountry)
             ->setInsuranceCompany($objectInput->insuranceCompany)
             ->setInsuranceNumber($objectInput->insuranceNumber)
-            ->setNature($objectInput->registeredVehicleNature);
+            ->setNature($objectInput->registeredVehicleNature)
+            ->setDegradationDescription($objectInput->degradationDescription);
     }
 
     private function parseSimpleObject(object $objectInput): SimpleObject

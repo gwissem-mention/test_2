@@ -356,6 +356,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                     ->setModel('C3')
                     ->setRegistrationNumber('AA-123-AA')
                     ->setRegistrationCountry('France')
+                    ->setDegradationDescription('Rétroviseur cassé')
                     ->setAmount(17000)
             )
             ->addObject(
