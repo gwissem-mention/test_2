@@ -2,13 +2,28 @@
 # https://docs.docker.com/develop/develop-images/multistage-build/#stop-at-a-specific-build-stage
 # https://docs.docker.com/compose/compose-file/#target
 
-
 # https://docs.docker.com/engine/reference/builder/#understand-how-arg-and-from-interact
+
 ARG PHP_VERSION=8.1
 ARG BUILD_PATH=.
 
-# "php" stage
+FROM surnet/alpine-wkhtmltopdf:3.16.2-0.12.6-full as wkhtmltopdf
 FROM php:${PHP_VERSION}-fpm-alpine AS symfony_php
+
+# wkhtmltopdf install dependencies
+RUN apk add --no-cache \
+        libx11 \
+        libxrender \
+        libxext \
+        libssl1.1 \
+        ca-certificates \
+        fontconfig \
+        freetype \
+    	xvfb \
+        ttf-dejavu ttf-droid ttf-freefont ttf-liberation \
+        ;
+# wkhtmltopdf copy bins from ext image
+COPY --from=wkhtmltopdf /bin/wkhtmltopdf /usr/local/bin/wkhtmltopdf
 
 # persistent / runtime deps
 RUN apk add --no-cache \
@@ -81,7 +96,6 @@ RUN version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;") \
     && printf "extension=blackfire.so\nblackfire.agent_socket=tcp://blackfire:8307\n" > $PHP_INI_DIR/conf.d/blackfire.ini \
     && rm -rf /tmp/blackfire /tmp/blackfire-probe.tar.gz
 ###< blackfire ###
-
 
 COPY docker/php/local-php-security-checker /usr/bin/local-php-security-checker
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer

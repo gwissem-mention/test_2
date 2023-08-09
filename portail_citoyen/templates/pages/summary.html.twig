@@ -9,9 +9,7 @@
 {% block content %}
     <div data-controller="form">
         <div class="fr-pt-10v fr-pb-6v fr-px-6v fr-pt-md-12v fr-px-md-20v">
-            <h1 class="text-[28px]/9 md:text-[40px]/[48px] fr-mb-2v">{{ 'pel.summary.of.complaint'|trans }}</h1>
-            <b>{{ 'pel.summary.is.not.legal.proof'|trans }}</b>
-            <p>{{ 'pel.summary.official.documents.will.be.sent'|trans }}</p>
+            {{ include('common/_summary/_header.html.twig') }}
         </div>
         <hr>
         <div class="fr-pt-6v fr-pb-12v fr-px-6v fr-pt-md-6v fr-px-md-20v fr-pb-md-6v">
@@ -23,7 +21,7 @@
                 <a class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-edit-line fr-hidden fr-unhidden-md fr-py-1v min-h-fit" href="{{ path('complaint_identity', {'fromSummary':1}) }}" id="update-identity">{{ 'pel.update'|trans }}</a>
             </div>
             <ul class="fr-pl-8v fr-my-0">
-                {{ include('common/_recap_identity.html.twig', {
+                {{ include('common/_summary/_identity.html.twig', {
                     civilState: complaint.identity.civilState,
                     contactInformation: complaint.identity.contactInformation,
                     declarantStatus: complaint.identity.declarantStatus,
@@ -33,53 +31,13 @@
             {# Person Legal Representative must be hidden for the experimentation #}
 {#                    {% if complaint.identity.declarantStatus is same as(constant('App\\AppEnum\\DeclarantStatus::PersonLegalRepresentative').value) %}#}
 {#                        <p>{{ 'pel.represented.person.identity'|trans }}</p>#}
-{#                        {{ include('common/_recap_identity.html.twig', {#}
+{#                        {{ include('common/_summary/_identity.html.twig', {#}
 {#                            civilState: complaint.identity.representedPersonCivilState,#}
 {#                            contactInformation: complaint.identity.representedPersonContactInformation#}
 {#                        }) }}#}
 {#                    {% endif %}#}
             {% if complaint.identity.declarantStatus is same as(constant('App\\AppEnum\\DeclarantStatus::CorporationLegalRepresentative').value) %}
-                <p class="fr-badge fr-badge--purple-glycine fr-badge--no-icon fr-text--xs fr-mt-2v fr-mb-6v fr-my-md-6v">{{ 'pel.corporation.legal.information'|trans }}</p>
-                <ul class="fr-pl-8v fr-my-0">
-                    <li class="text-xl/8 fr-pb-6v">
-                        {{ 'pel.corporation.siret'|trans }} :
-                        <b>{{ complaint.identity.corporation.siret }}</b>
-                    </li>
-                    <li class="text-xl/8 fr-pb-6v">
-                        {{ 'pel.corporation.name'|trans }} :
-                        <b>{{ complaint.identity.corporation.name }}</b>
-                    </li>
-                    <li class="text-xl/8 fr-pb-6v">
-                        {{ 'pel.corporation.function'|trans }} :
-                        <b>{{ complaint.identity.corporation.function }}</b>
-                    </li>
-                    <li class="text-xl/8 fr-pb-6v">
-                        {{ 'pel.nationality'|trans }} :
-                        <b class="lowercase">{{ complaint.identity.corporation.nationality|nationality_referential_label }}</b>
-                    </li>
-                    {% if complaint.identity.corporation.email %}
-                        <li class="text-xl/8 fr-pb-6v">
-                            {{ 'pel.corporation.email'|trans }} :
-                            <b>{{ complaint.identity.corporation.email }}</b>
-                        </li>
-                    {% endif %}
-                    <li class="text-xl/8 fr-pb-6v">
-                        {{ 'pel.corporation.phone'|trans }} :
-                        <b>{{ complaint.identity.corporation.phone|phone_format_intl }}</b>
-                    </li>
-                    <li class="text-xl/8 fr-pb-6v">
-                        {{ 'pel.address.country'|trans }} :
-                        <b>{{ complaint.identity.corporation.country|country_referential_name }}</b>
-                    </li>
-                    <li class="text-xl/8 fr-pb-8v fr-pb-md-6v">
-                        {{ 'pel.address'|trans }} :
-                        {% if complaint.identity.corporation.frenchAddress is not null %}
-                            <b>{{ complaint.identity.corporation.frenchAddress.label }}</b>
-                        {% else %}
-                            <b>{{ complaint.identity.corporation.foreignAddress.label }}</b>
-                        {% endif %}
-                    </li>
-                </ul>
+               {{ include('common/_summary/_corporation.html.twig') }}
             {% endif %}
             <a class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-edit-line md:hidden fr-py-1v min-h-fit" href="{{ path('complaint_identity', {'fromSummary':1}) }}" id="update-identity">{{ 'pel.update'|trans }}</a>
         </div>
@@ -92,106 +50,7 @@
                 </div>
                 <a class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-edit-line fr-hidden fr-unhidden-md fr-py-1v min-h-fit" href="{{ path('complaint_facts', {'fromSummary':1}) }}" id="update-facts">{{ 'pel.update'|trans }}</a>
             </div>
-            <ul class="list-none fr-pl-8v fr-my-0">
-                <p class="fr-badge fr-badge--purple-glycine fr-badge--no-icon fr-text--xs fr-mb-6v -ml-8">{{ 'pel.complaint.date.and.time'|trans }}</p>
-                <li class="relative text-xl/8 fr-pb-0 fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/calendar-event.svg')]">
-                    {% if complaint.facts.offenseDate.exactDateKnown is same as true %}
-                        {{ 'pel.complaint.exact.date.is.known'|trans|raw }}
-                        <p class="text-xl/8">
-                            {{ 'pel.facts.offence.occurred'|trans }}
-                            {{ 'pel.the'|trans|lower }} <b>{{ complaint.facts.offenseDate.startDate|format_date(locale=app.request.locale, pattern='EEEE d MMMM yyyy') }}</b>.
-                        </p>
-                    {% else %}
-                        {{ 'pel.complaint.exact.date.is.unknown'|trans|raw }}
-                        <p class="text-xl/8">
-                            {{ 'pel.facts.offence.may.have.occurred'|trans }}
-                            {{ 'pel.between'|trans|lower }} {{ 'pel.the'|trans|lower }} <b>{{ complaint.facts.offenseDate.startDate|format_date(locale=app.request.locale, pattern='EEEE d MMMM') }}</b> {{ 'pel.and'|trans|lower }} {{ 'pel.the'|trans|lower }} <b>{{ complaint.facts.offenseDate.endDate|format_date(locale=app.request.locale, pattern='EEEE d MMMM yyyy') }}</b>.
-                        </p>
-                    {% endif %}
-                </li>
-                <li class="relative text-xl/8 fr-pb-0 fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/time.svg')]">
-                    {% if complaint.facts.offenseDate.choiceHour is same as('yes') %}
-                        {{ 'pel.complaint.exact.hour.is.known'|trans|raw }}
-                        <p class="text-xl/8">
-                            {% if complaint.facts.offenseDate.hour is not null %}
-                                {{ 'pel.facts.offence.occurred'|trans }}
-                                {{ 'pel.at'|trans|lower }} <b>{{ complaint.facts.offenseDate.hour|date('H' ~ '\\' ~ 'pel.hour.h'|trans|lower ~ 'i') }}</b>.
-                            {% else %}
-                                {{ 'pel.facts.offence.may.have.occurred'|trans }}
-                                {{ 'pel.between'|trans|lower }} <b>{{ complaint.facts.offenseDate.startHour|date('H' ~ '\\' ~ 'pel.hour.h'|trans|lower ~ 'i') }}</b> {{ 'pel.and'|trans|lower }} <b>{{ complaint.facts.offenseDate.endHour|date('H' ~ '\\' ~ 'pel.hour.h'|trans|lower ~ 'i') }}</b>.
-                            {% endif %}
-                        </p>
-                    {% elseif complaint.facts.offenseDate.choiceHour is same as('maybe') %}
-                        {{ 'pel.complaint.exact.hour.is.unknown'|trans|raw }}
-                        <p class="text-xl/8">
-                            {% if complaint.facts.offenseDate.hour is not null %}
-                                {{ 'pel.facts.offence.occurred'|trans }}
-                                <b>{{ complaint.facts.offenseDate.hour|date('H' ~ '\\' ~ 'pel.hour.h'|trans|lower ~ 'i') }}</b>
-                            {% else %}
-                                {{ 'pel.facts.offence.may.have.occurred'|trans }}
-                                {{ 'pel.between'|trans|lower }} <b>{{ complaint.facts.offenseDate.startHour|date('H' ~ '\\' ~ 'pel.hour.h'|trans|lower ~ 'i') }}</b> {{ 'pel.and'|trans|lower }} <b>{{ complaint.facts.offenseDate.endHour|date('H' ~ '\\' ~ 'pel.hour.h'|trans|lower ~ 'i') }}</b>.
-                            {% endif %}
-                        </p>
-                    {% else %}
-                        {{ 'pel.complaint.exact.hour.is.unknown'|trans|raw }}
-                    {% endif %}
-                </li>
-                <p class="fr-badge fr-badge--purple-glycine fr-badge--no-icon fr-text--xs fr-mt-6v fr-mb-6v -ml-8">{{ 'pel.complaint.place.of.offence'|trans }}</p>
-                {% if complaint.facts.placeNature is not null %}
-                    <li class="relative text-xl/8 fr-pb-6v fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/community.svg')]">
-                        {{ 'pel.nature.place'|trans }} :
-                        {% if complaint.facts.placeNature is same as(1) %}
-                            <b>{{ 'pel.nature.place.home'|trans }}</b>
-                        {% elseif complaint.facts.placeNature is same as(2) %}
-                            <b>{{ 'pel.nature.place.park'|trans }}</b>
-                        {% elseif complaint.facts.placeNature is same as(3) %}
-                            <b>{{ 'pel.nature.place.educational.establishment'|trans}}</b>
-                        {% elseif complaint.facts.placeNature is same as(4) %}
-                            <b>{{ 'pel.nature.place.internet'|trans }}</b>
-                        {% elseif complaint.facts.placeNature is same as(5) %}
-                            <b>{{ 'pel.nature.place.street'|trans }}</b>
-                        {% elseif complaint.facts.placeNature is same as(6) %}
-                            <b>{{ 'pel.nature.place.public.transport'|trans }}</b>
-                        {% elseif complaint.facts.placeNature is same as(7) %}
-                            <b>{{ 'pel.nature.place.worship'|trans }}</b>
-                        {% elseif complaint.facts.placeNature is same as(8) %}
-                            <b>{{ 'pel.nature.place.business'|trans }}</b>
-                        {% elseif complaint.facts.placeNature is same as(9) %}
-                            <b>{{ 'pel.nature.place.market'|trans }}</b>
-                        {% elseif complaint.facts.placeNature is same as(10) %}
-                            <b>{{ 'pel.nature.place.leisure.place'|trans }}</b>
-                        {% elseif complaint.facts.placeNature is same as(11) %}
-                            <b>{{ 'pel.nature.place.other'|trans }}</b>
-                        {% else %}
-                            <b>{{ 'pel.nature.place.unknown'|trans }}</b>
-                        {% endif %}
-                    </li>
-                {% endif %}
-                {% if complaint.facts.address.addressOrRouteFactsKnown is same as(true) %}
-                    <li class="relative text-xl/8 fr-pb-6v fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/map-pin-2.svg')]">
-                        {{ 'pel.address'|trans }} : <b>{{ complaint.facts.address.startAddress.label }}</b>
-                        {% if complaint.facts.address.endAddress.label is not empty %}
-                            <p class="text-xl/8 fr-mb-0">{{ 'pel.address.end'|trans }} : <b>{{ complaint.facts.address.endAddress.label }}</b></p>
-                        {% endif %}
-                        {% if complaint.facts.address.addressAdditionalInformation is not null %}
-                            <p class="text-lg mt-2.5 fr-mb-0"><b>{{ 'pel.complaint.additional.informations'|trans }}</b> :</p>
-                            <p class="text-lg fr-mb-0">” {{ complaint.facts.address.addressAdditionalInformation }} ”</p>
-                        {% endif %}
-                    </li>
-                {% endif %}
-                <p class="fr-badge fr-badge--purple-glycine fr-badge--no-icon fr-text--xs fr-mt-6v fr-mb-6v -ml-8">{{ 'pel.complaint.in.a.few.words'|trans }}</p>
-                <li class="relative text-xl/8 fr-pb-6v fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/fr-quote.svg')]">
-                    “ {{ complaint.facts.description }} “
-                </li>
-                {% if complaint.facts.victimOfViolence is same as(true) %}
-                    <li class="relative text-xl/8 fr-pb-0 fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/psychotherapy.svg')]">
-                        {{ 'pel.victim.at.time.of.facts'|trans|raw }}
-                        <p class="text-xl/8">
-                            “ {{ complaint.facts.victimOfViolenceText }} “
-                        </p>
-                    </li>
-                {% endif %}
-            </ul>
+            {{ include('common/_summary/_facts.html.twig') }}
             <a class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-edit-line md:hidden fr-py-1v min-h-fit" href="{{ path('complaint_facts', {'fromSummary':1}) }}" id="update-facts">{{ 'pel.update'|trans }}</a>
         </div>
         <hr>
@@ -203,26 +62,7 @@
                 </div>
                 <a class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-edit-line fr-hidden fr-unhidden-md fr-py-1v min-h-fit" href="{{ path('complaint_objects', {'fromSummary':1}) }}" id="update-objects">{{ 'pel.update'|trans }}</a>
             </div>
-            {% set objectsLoopIndex = 0 %}
-            {% if complaint.objects.stolenObjects is not empty %}
-                {% for object in complaint.objects.stolenObjects %}
-                    {% set objectsLoopIndex = objectsLoopIndex + 1 %}
-                    <p class="fr-badge fr-badge--purple-glycine fr-badge--no-icon fr-text--xs fr-mt-6v">{{ 'pel.goods.number'|trans }}{{ objectsLoopIndex }}</p>
-                    {{ _self.object(object) }}
-                {% endfor %}
-            {% endif %}
-            {% if complaint.objects.degradedObjects is not empty %}
-                {% for object in complaint.objects.degradedObjects %}
-                    {% set objectsLoopIndex = objectsLoopIndex + 1 %}
-                    <p class="fr-badge fr-badge--purple-glycine fr-badge--no-icon fr-text--xs fr-mt-6v">{{ 'pel.goods.number'|trans }}{{ objectsLoopIndex }}</p>
-                    {{ _self.object(object) }}
-                {% endfor %}
-            {% endif %}
-            <p class="text-xl/8 fr-mt-6v"><b class="underline">{{ 'pel.total'|trans }}</b> :
-                {% set objectsQuantity = complaint.objects.objects|objects_quantity %}
-                <b>{{ objectsQuantity }} {{ 'pel.total.message.two'|trans({'%quantity%': objectsQuantity}) }}</b>
-                {{ 'pel.total.message.amount'|trans }} <b>{{ complaint.objects.objects|objects_amount|format_currency('EUR', {fraction_digit: 2}) }}</b>
-            </p>
+            {{ include('common/_summary/_objects.html.twig') }}
             <a class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-edit-line md:hidden fr-mt-2v fr-py-1v min-h-fit" href="{{ path('complaint_objects', {'fromSummary':1}) }}" id="update-objects">{{ 'pel.update'|trans }}</a>
         </div>
         <hr>
@@ -234,63 +74,7 @@
                 </div>
                 <a class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-edit-line fr-hidden fr-unhidden-md fr-py-1v min-h-fit" href="{{ path('complaint_additional_information', {'fromSummary':1}) }}" id="update-additional-information">{{ 'pel.update'|trans }}</a>
             </div>
-            <ul class="list-none fr-pl-8v fr-my-0">
-                <p class="fr-badge fr-badge--purple-glycine fr-badge--no-icon fr-text--xs fr-mb-6v -ml-8">{{ 'pel.suspects'|trans }}</p>
-                <li class="relative text-xl/8 fr-pb-6v fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/user-search.svg')]">
-                    {{ complaint.additionalInformation.suspectsChoice ? 'pel.do.you.have.informations.on.potential.suspects.yes'|trans|raw : 'pel.do.you.have.informations.on.potential.suspects.no'|trans|raw }}
-                </li>
-                {% if complaint.additionalInformation.suspectsChoice is same as(true) %}
-                    <li class="relative text-xl/8 fr-pb-6v fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/fr-quote.svg')]">
-                        “ {{ complaint.additionalInformation.suspectsText }} “
-                    </li>
-                {% endif %}
-                <p class="fr-badge fr-badge--purple-glycine fr-badge--no-icon fr-text--xs fr-mt-6v fr-mb-6v -ml-8">{{ 'pel.witnesses'|trans }}</p>
-                <li class="relative text-xl/8 fr-pb-6v fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/group.svg')]">
-                   {% set witnessesQuantity = complaint.additionalInformation.witnesses|length %}
-                   {{ complaint.additionalInformation.witnessesPresent ? 'pel.facts.witnesses.yes'|trans({'%quantity%': witnessesQuantity})|raw : 'pel.facts.witnesses.no'|trans|raw }}
-                </li>
-                {% if complaint.additionalInformation.witnesses is not empty %}
-                    {% for witness in complaint.additionalInformation.witnesses %}
-                        <ul class="list-none fr-mt-0 fr-mb-6v fr-pl-8v -ml-8 fr-mb-md-4v">
-                            {% if witness.description is not null %}
-                                <li class="relative text-xl/8 fr-pb-0 fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/account-pin-circle.svg')]">
-                                    <b>{{ witness.description }}</b>
-                                </li>
-                            {% endif %}
-                            {% if witness.phone.number is not null %}
-                                <li class="text-xl/8 fr-pb-0">{{ witness.phone|phone_format_intl }}</li>
-                            {% endif %}
-                            {% if witness.email is not null %}
-                                <li class="text-xl/8 fr-pb-0">{{ witness.email }}</li>
-                            {% endif %}
-                        </ul>
-                    {% endfor %}
-                {% endif %}
-                <p class="fr-badge fr-badge--purple-glycine fr-badge--no-icon fr-text--xs fr-mt-6v fr-mb-6v -ml-8">{{ 'pel.visit'|trans }}</p>
-                <li class="relative text-xl/8 fr-pb-6v fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/alarm-warning.svg')]">
-                    {{ complaint.additionalInformation.fsiVisit ? 'pel.fsi.visit.yes'|trans|raw : 'pel.fsi.visit.no'|trans|raw }}
-                </li>
-                {% if complaint.additionalInformation.fsiVisit is not null %}
-                    <li class="relative text-xl/8 fr-pb-6v fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/search.svg')]">
-                        {{ complaint.additionalInformation.observationMade ? 'pel.observation.made.yes'|trans|raw : 'pel.observation.made.no'|trans|raw }}
-                    </li>
-                {% endif %}
-                <p class="fr-badge fr-badge--purple-glycine fr-badge--no-icon fr-text--xs fr-mt-6v fr-mb-6v -ml-8">{{ 'pel.video.facts'|trans }}</p>
-                <li class="relative text-xl/8 fr-pb-6v fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/live.svg')]">
-                    {% if complaint.additionalInformation.cctvPresent is same as(constant('App\\Form\\Model\\AdditionalInformation\\AdditionalInformationModel::CCTV_PRESENT_YES')) %}
-                        {{ 'pel.cctv.present.yes'|trans|raw }}
-                    {% elseif complaint.additionalInformation.cctvPresent is same as(constant('App\\Form\\Model\\AdditionalInformation\\AdditionalInformationModel::CCTV_PRESENT_NO')) %}
-                        {{ 'pel.cctv.present.no'|trans|raw }}
-                    {% else %}
-                        {{ 'pel.cctv.present.i.dont.know'|trans|raw }}
-                    {% endif %}
-                </li>
-                {% if complaint.additionalInformation.cctvPresent is same as(constant('App\\Form\\Model\\AdditionalInformation\\AdditionalInformationModel::CCTV_PRESENT_YES')) %}
-                    <li class="relative text-xl/8 fr-pb-6v fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/film.svg')]">
-                        {{ complaint.additionalInformation.cctvAvailable ? 'pel.cctv.available.yes'|trans|raw : 'pel.cctv.available.no'|trans|raw }}
-                    </li>
-                {% endif %}
-            </ul>
+            {{ include('common/_summary/_additionnal_informations.html.twig') }}
             <a class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-edit-line md:hidden  fr-mt-2v fr-py-1v min-h-fit" href="{{ path('complaint_additional_information') }}" id="update-additional-information">{{ 'pel.update'|trans }}</a>
             </div>
         </div>
@@ -350,222 +134,3 @@
         </div>
     </div>
 {% endblock %}
-
-{% macro object(object) %}
-    <ul class="list-none fr-pl-8v fr-mt-6v fr-mb-0">
-        {% if object.category|object_category_get_name is same as('pel.object.category.documents') %}
-            <li class="relative text-xl/8 fr-pb-0 fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/price-tag-3.svg')]">
-                <b>{{ object.documentType|document_type_label|trans }}</b>
-                <p class="text-xl/8">
-                    {% if object.status is same as(1) %}
-                        <b>{{ 'pel.objects.stolen'|trans }}</b>
-                    {% elseif object.status is same as(2) %}
-                        <b>{{ 'pel.objects.gradient'|trans }}</b>
-                    {% endif %} {{ 'pel.of.type'|trans }} <b>{{ object.category|object_category_get_name|trans }}</b>
-                </p>
-            </li>
-            {% if object.documentType is same as(constant('App\\AppEnum\\DocumentType::Other').value) and object.otherDocumentType is not null %}
-                <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.could.you.precise'|trans }} : <b>{{ object.otherDocumentType }}</b></li>
-            {% endif %}
-            {% if object.files is not empty %}
-                {% for file in object.files %}
-                <li class="relative text-xl/8 fr-pb-6v fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/file-add.svg')]">
-                    <p class="text-xl/8 fr-mb-1v">{{ 'pel.attachment'|trans }}</p>
-                    <a class="fr-link fr-link--download text-lg/6" download href="{{ path('file_download', {'fileName':file.path, 'originalName':file.name}) }}">
-                        {{ file.name }}<span class="fr-icon-file-text-line before:content-[''] before:mb-1 before:ml-2 before:w-4 before:h-4 before:bg-no-repeat before:bg-[length:14px_14px]" aria-hidden="true"></span>
-                    </a>
-                </li>
-                {% endfor %}
-            {% endif %}
-            <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.i.am.the.owner.of.this.document'|trans }} : <b>{{ object.documentOwned ? 'pel.yes'|trans : 'pel.no'|trans }}</b></li>
-            {% if object.documentOwned is same as false and object.documentAdditionalInformation is not empty %}
-                <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.document.owner.lastname.firstname'|trans }} : <b>{{ object.documentAdditionalInformation.documentOwnerLastname }} {{ object.documentAdditionalInformation.documentOwnerFirstname }}</b></li>
-                {% if object.documentAdditionalInformation.documentOwnerCompany is not empty %}
-                    <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.document.owner.company'|trans }} : <b>{{ object.documentAdditionalInformation.documentOwnerCompany }}</b></li>
-                {% endif %}
-                {% if object.documentAdditionalInformation.documentOwnerPhone is not null and object.documentAdditionalInformation.documentOwnerPhone.number is not null%}
-                    <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.document.owner.phone'|trans }} : <b>{{ object.documentAdditionalInformation.documentOwnerPhone|phone_format_intl }}</b></li>
-                {% endif %}
-                {% if object.documentAdditionalInformation.documentOwnerEmail is not empty %}
-                    <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.document.owner.email'|trans }} : <b>{{ object.documentAdditionalInformation.documentOwnerEmail }}</b></li>
-                {% endif %}
-                {% if object.documentAdditionalInformation.documentOwnerAddress is not empty %}
-                    <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.document.owner.address'|trans }} : <b>{{ object.documentAdditionalInformation.documentOwnerAddress.label }}</b></li>
-                {% endif %}
-                {% if object.documentAdditionalInformation.documentNumber is not empty %}
-                    <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.document.number'|trans }} : <b>{{ object.documentAdditionalInformation.documentNumber }}</b></li>
-                {% endif %}
-                {% if object.documentAdditionalInformation.documentIssuedBy is not empty %}
-                    <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.document.issued.by'|trans }} : <b>{{ object.documentAdditionalInformation.documentIssuedBy }}</b></li>
-                {% endif %}
-                {% if object.documentAdditionalInformation.documentIssuedOn is not empty %}
-                    <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.document.issued.on'|trans }} : <b>{{ object.documentAdditionalInformation.documentIssuedOn|date('d/m/Y') }}</b></li>
-                {% endif %}
-                {% if object.documentAdditionalInformation.documentValidityEndDate is not empty %}
-                    <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.document.validity.end.date'|trans }} : <b>{{ object.documentAdditionalInformation.documentValidityEndDate|date('d/m/Y') }}</b></li>
-                {% endif %}
-            {% endif %}
-        {% elseif object.category|object_category_get_name is same as('pel.object.category.mobile.phone') %}
-            <li class="relative text-xl/8 fr-pb-0 fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/price-tag-3.svg')]">
-                <b>{{ object.label }}</b>
-                <p class="text-xl/8">
-                    {% if object.status is same as(1) %}
-                        <b>{{ 'pel.objects.stolen'|trans }}</b>
-                    {% elseif object.status is same as(2) %}
-                        <b>{{ 'pel.objects.gradient'|trans }}</b>
-                    {% endif %} {{ 'pel.of.type'|trans }} <b>{{ object.category|object_category_get_name|trans }}</b>
-                </p>
-            </li>
-            {% if object.files is not empty %}
-                {% for file in object.files %}
-                <li class="relative text-xl/8 fr-pb-6v fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/file-add.svg')]">
-                    <p class="text-xl/8 fr-mb-1v">{{ 'pel.attachment'|trans }}</p>
-                    <a class="fr-link fr-link--download text-lg/6" download href="{{ path('file_download', {'fileName':file.path, 'originalName':file.name}) }}">
-                        {{ file.name }}<span class="fr-icon-file-text-line before:content-[''] before:mb-1 before:ml-2 before:w-4 before:h-4 before:bg-no-repeat before:bg-[length:14px_14px]" aria-hidden="true"></span>
-                    </a>
-                </li>
-                {% endfor %}
-            {% endif %}
-            <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.brand'|trans }} : <b>{{ object.brand }}</b></li>
-            {% if object.model is not null %}
-                <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.model'|trans }} : <b>{{ object.model }}</b></li>
-            {% endif %}
-            {% if object.phoneNumberLine is not null and object.phoneNumberLine.number is not null %}
-                <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.phone.number.line'|trans }} : <b>{{ object.phoneNumberLine|phone_format_intl }}</b></li>
-            {% endif %}
-            {% if object.operator is not null %}
-                <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.operator'|trans }} : <b>{{ object.operator }}</b></li>
-            {% endif %}
-            {% if object.serialNumber is not null %}
-                <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.serial.number'|trans }} : <b>{{ object.serialNumber }}</b></li>
-            {% endif %}
-            {% if object.description is not null %}
-                <li>{{ 'pel.description'|trans }} : {{ object.description }}</li>
-            {% endif %}
-            {% if object.stillOnWhenMobileStolen is not null %}
-                <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.still.on.when.mobile.stolen'|trans }} : <b>{{ object.stillOnWhenMobileStolen|bool_to_string }}</b></li>
-            {% endif %}
-            {% if object.keyboardLockedWhenMobileStolen is not null %}
-                <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.keyboard.locked.when.mobile.stolen'|trans }} : <b>{{ object.keyboardLockedWhenMobileStolen|bool_to_string }}</b></li>
-            {% endif %}
-            {% if object.pinEnabledWhenMobileStolen is not null %}
-                <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.pin.enabled.when.mobile.stolen'|trans }} : <b>{{ object.pinEnabledWhenMobileStolen|bool_to_string }}</b></li>
-            {% endif %}
-            {% if object.mobileInsured is not null %}
-                <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.mobile.insured'|trans }} : <b>{{ object.mobileInsured|bool_to_string }}</b></li>
-            {% endif %}
-        {% elseif object.category|object_category_get_name is same as('pel.object.category.payment.ways') %}
-            <li class="relative text-xl/8 fr-pb-0 fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/price-tag-3.svg')]">
-                <b>{{ object.label }}</b>
-                <p class="text-xl/8">
-                    {% if object.status is same as(1) %}
-                        <b>{{ 'pel.objects.stolen'|trans }}</b>
-                    {% elseif object.status is same as(2) %}
-                        <b>{{ 'pel.objects.gradient'|trans }}</b>
-                    {% endif %} {{ 'pel.of.type'|trans }} <b>{{ object.category|object_category_get_name|trans }}</b>
-                </p>
-            </li>
-            {% if object.files is not empty %}
-                {% for file in object.files %}
-                <li class="relative text-xl/8 fr-pb-6v fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/file-add.svg')]">
-                    <p class="text-xl/8 fr-mb-1v">{{ 'pel.attachment'|trans }}</p>
-                    <a class="fr-link fr-link--download text-lg/6" download href="{{ path('file_download', {'fileName':file.path, 'originalName':file.name}) }}">
-                        {{ file.name }}<span class="fr-icon-file-text-line before:content-[''] before:mb-1 before:ml-2 before:w-4 before:h-4 before:bg-no-repeat before:bg-[length:14px_14px]" aria-hidden="true"></span>
-                    </a>
-                </li>
-                {% endfor %}
-            {% endif %}
-            <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.organism.bank'|trans }} : <b>{{ object.bank }}</b></li>
-            <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.bank.account.number'|trans }} : <b>{{ object.bankAccountNumber }}</b></li>
-            {% if object.creditCardNumber %}
-                <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.credit.card.number'|trans }} : <b>{{ object.creditCardNumber }}</b></li>
-            {% endif %}
-        {% elseif object.category|object_category_get_name is same as('pel.object.category.registered.vehicle') %}
-            <li class="relative text-xl/8 fr-pb-0 fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/price-tag-3.svg')]">
-                <b>{{ object.label }}</b>
-                <p class="text-xl/8">
-                    {% if object.status is same as(1) %}
-                        <b>{{ 'pel.objects.stolen'|trans }}</b>
-                    {% elseif object.status is same as(2) %}
-                        <b>{{ 'pel.objects.gradient'|trans }}</b>
-                    {% endif %} {{ 'pel.of.type'|trans }} <b>{{ object.category|object_category_get_name|trans }}</b>
-                </p>
-            </li>
-            {% if object.files is not empty %}
-                {% for file in object.files %}
-                <li class="relative text-xl/8 fr-pb-6v fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/file-add.svg')]">
-                    <p class="text-xl/8 fr-mb-1v">{{ 'pel.attachment'|trans }}</p>
-                    <a class="fr-link fr-link--download text-lg/6" download href="{{ path('file_download', {'fileName':file.path, 'originalName':file.name}) }}">
-                        {{ file.name }}<span class="fr-icon-file-text-line before:content-[''] before:mb-1 before:ml-2 before:w-4 before:h-4 before:bg-no-repeat before:bg-[length:14px_14px]" aria-hidden="true"></span>
-                    </a>
-                </li>
-                {% endfor %}
-            {% endif %}
-            <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.vehicle.category'|trans }} : <b>{{ object.registeredVehicleNature|registered_vehicle_label|trans }}</b></li>
-            <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.brand'|trans }} : <b>{{ object.brand }}</b></li>
-            {% if object.model is not null %}
-                <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.model'|trans }} : <b>{{ object.model }}</b></li>
-            {% endif %}
-            {% if object.registrationNumber is not null %}
-                <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.registration.number'|trans }} : <b>{{ object.registrationNumber }}</b></li>
-            {% endif %}
-            <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.registration.number.country'|trans }} : <b>{{ object.registrationNumberCountry|country_name }}</b></li>
-            {% if object.insuranceCompany is not null %}
-                <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.insurance.company'|trans }} : <b>{{ object.insuranceCompany }}</b></li>
-            {% endif %}
-            {% if object.insuranceNumber is not null %}
-                <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.insurance.number'|trans }} : <b>{{ object.insuranceNumber }}</b></li>
-            {% endif %}
-            {% if object.degradationDescription is not null %}
-                <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.degradation.description'|trans }} : <b>{{ object.degradationDescription }}</b></li>
-            {% endif %}
-        {% elseif object.category|object_category_get_name is same as('pel.object.category.unregistered.vehicle') %}
-            <li class="relative text-xl/8 fr-pb-0 fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/price-tag-3.svg')]">
-                <b>{{ object.label }}</b>
-                <p class="text-xl/8">
-                    {% if object.status is same as(1) %}
-                        <b>{{ 'pel.objects.stolen'|trans }}</b>
-                    {% elseif object.status is same as(2) %}
-                        <b>{{ 'pel.objects.gradient'|trans }}</b>
-                    {% endif %} {{ 'pel.of.type'|trans }} <b>{{ object.category|object_category_get_name|trans }}</b>
-                </p>
-            </li>
-            {% if object.files is not empty %}
-                {% for file in object.files %}
-                <li class="relative text-xl/8 fr-pb-6v fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/file-add.svg')]">
-                    <p class="text-xl/8 fr-mb-1v">{{ 'pel.attachment'|trans }}</p>
-                    <a class="fr-link fr-link--download text-lg/6" download href="{{ path('file_download', {'fileName':file.path, 'originalName':file.name}) }}">
-                        {{ file.name }}<span class="fr-icon-file-text-line before:content-[''] before:mb-1 before:ml-2 before:w-4 before:h-4 before:bg-no-repeat before:bg-[length:14px_14px]" aria-hidden="true"></span>
-                    </a>
-                </li>
-                {% endfor %}
-            {% endif %}
-        {% elseif object.category|object_category_get_name is same as('pel.object.category.other') %}
-            <li class="relative text-xl/8 fr-pb-0 fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/price-tag-3.svg')]">
-                <b>{{ object.label }}</b>
-                <p class="text-xl/8">
-                    {% if object.status is same as(1) %}
-                        <b>{{ 'pel.objects.stolen'|trans }}</b>
-                    {% elseif object.status is same as(2) %}
-                        <b>{{ 'pel.objects.gradient'|trans }}</b>
-                    {% endif %} {{ 'pel.of.type'|trans }} <b>{{ object.category|object_category_get_name|trans }}</b>
-                </p>
-            </li>
-            {% if object.files is not empty %}
-                {% for file in object.files %}
-                <li class="relative text-xl/8 fr-pb-6v fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/file-add.svg')]">
-                    <p class="text-xl/8 fr-mb-1v">{{ 'pel.attachment'|trans }}</p>
-                    <a class="fr-link fr-link--download text-lg/6" download href="{{ path('file_download', {'fileName':file.path, 'originalName':file.name}) }}">
-                        {{ file.name }}<span class="fr-icon-file-text-line before:content-[''] before:mb-1 before:ml-2 before:w-4 before:h-4 before:bg-no-repeat before:bg-[length:14px_14px]" aria-hidden="true"></span>
-                    </a>
-                </li>
-                {% endfor %}
-            {% endif %}
-            <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.description'|trans }} : <b>{{ object.description }}</b></li>
-            <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.quantity'|trans }} : <b>{{ object.quantity }}</b></li>
-        {% endif %}
-        {% if object.amount is not null %}
-            <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.amount'|trans }} : <b>{{ object.amount|format_currency('EUR', {fraction_digit: 2}) }}</b></li>
-        {% endif %}
-    </ul>
-{% endmacro %}

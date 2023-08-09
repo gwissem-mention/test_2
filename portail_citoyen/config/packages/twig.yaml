@@ -6,7 +6,8 @@ twig:
         jedonnemonavis_id: '%app.jedonnemonavis_id%'
         jedonnemonavis_key: '%app.jedonnemonavis_key%'
         oodrive_fetched_zip_name: '%app.oodrive.fetched_zip_name%'
-
+        pdf_assets_host: '%app.pdf_assets_host%'
+        
 when@test:
     twig:
         strict_variables: true

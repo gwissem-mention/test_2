@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {% for file in encore_entry_css_files('pdf') %}
+        {% set asset_url = app.environment is same as('dev') ? pdf_assets_host ~ asset(file) : absolute_url(asset(file)) %}
+        <link href="{{ asset_url }}" rel="stylesheet"/>
+    {% endfor %}
+{% endblock %}
+
+{% block layout %}
+    <div class="container-logo">
+        <img src="{{ app.environment is same as('dev') ? pdf_assets_host ~ asset('build/images/logo_ministere.png') : absolute_url(asset('build/images/logo_ministere.png')) }}" height="126" width="180">
+        <p class="fr-header__service-title">{{ 'pel.complaint.online'|trans }}</p>
+        <p class="fr-header__service-tagline">{{ 'pel.header.baseline'|trans }}</p>
+    </div>
+    <div>
+        {{ include('common/_summary/_header.html.twig') }}
+    </div>
+    <hr>
+    <div>
+        <div class="flex justify-between items-center fr-mb-8v fr-mb-md-12v">
+            <div class="flex items-center gap-x-4">
+                <h2 class="fr-mb-0 text-2xl">{{ 'pel.complaint.your.identity'|trans }}</h2>
+            </div>
+        </div>
+        <ul class="fr-pl-8v fr-my-0">
+            {{ include('common/_summary/_identity.html.twig', {
+                civilState: complaint.identity.civilState,
+                contactInformation: complaint.identity.contactInformation,
+                declarantStatus: complaint.identity.declarantStatus,
+                consentContactElectronics: complaint.identity.consentContactElectronics
+            }) }}
+        </ul>
+        {# Person Legal Representative must be hidden for the experimentation #}
+        {#                    {% if complaint.identity.declarantStatus is same as(constant('App\\AppEnum\\DeclarantStatus::PersonLegalRepresentative').value) %} #}
+        {#                        <p>{{ 'pel.represented.person.identity'|trans }}</p> #}
+        {#                        {{ include('common/_summary/_identity.html.twig', { #}
+        {#                            civilState: complaint.identity.representedPersonCivilState, #}
+        {#                            contactInformation: complaint.identity.representedPersonContactInformation #}
+        {#                        }) }} #}
+        {#                    {% endif %} #}
+        {% if complaint.identity.declarantStatus is same as(constant('App\\AppEnum\\DeclarantStatus::CorporationLegalRepresentative').value) %}
+            {{ include('common/_summary/_corporation.html.twig') }}
+        {% endif %}
+    </div>
+    <hr>
+    <div>
+        <div class="flex justify-between items-center fr-mb-8v fr-mb-md-12v">
+            <div class="flex items-center gap-x-2">
+                <h2 class="fr-mb-0 text-2xl">{{ 'pel.facts.description'|trans }}</h2>
+            </div>
+        </div>
+        {{ include('common/_summary/_facts.html.twig') }}
+    </div>
+    <hr>
+    <div>
+        <div class="flex justify-between items-center fr-mb-8v fr-mb-md-6v">
+            <div class="flex items-center gap-x-4">
+                <h2 class="fr-mb-0 text-2xl">{{ 'pel.goods.concerned.by.the.offence'|trans }}</h2>
+            </div>
+        </div>
+        {{ include('common/_summary/_objects.html.twig') }}
+    </div>
+    <hr>
+    <div>
+        <div class="flex justify-between items-center fr-mb-8v fr-mb-md-12v">
+            <div class="flex items-center gap-x-4">
+                <h2 class="fr-mb-0 text-2xl">{{ 'pel.additional.factual.information'|trans }}</h2>
+            </div>
+        </div>
+        {{ include('common/_summary/_additionnal_informations.html.twig') }}
+    </div>
+    <hr>
+    {% if complaint.affectedService is not null %}
+        {% set unit = complaint.affectedService|unit %}
+        {% if unit is not null %}
+            <p class="text-xl/6 md:text-2xl text-center fr-text-mention--grey fr-mb-0"> {{ 'pel.place.complaint.handling'|trans }}</p>
+            <div class="flex flex-col items-center gap-x-6 w-full md:flex-row">
+                <div class="flex flex-col text-center grow gap-y-2">
+                    <b class="text-lg/6 md:text-[22px]/7">{{ unit.name }}</b><br>
+                    <span class="text-base/5 md:text-lg/5 fr-text-mention--grey">{{ unit.address }}</span>
+                </div>
+            </div>
+        {% endif %}
+    {% endif %}
+{% endblock %}
+

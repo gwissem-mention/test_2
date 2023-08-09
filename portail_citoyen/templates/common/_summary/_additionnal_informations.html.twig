@@ -1,0 +1,57 @@
+<ul class="list-none fr-pl-8v fr-my-0">
+    <p class="fr-badge fr-badge--purple-glycine fr-badge--no-icon fr-text--xs fr-mb-6v -ml-8">{{ 'pel.suspects'|trans }}</p>
+    <li class="relative text-xl/8 fr-pb-6v fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/user-search.svg')]">
+        {{ complaint.additionalInformation.suspectsChoice ? 'pel.do.you.have.informations.on.potential.suspects.yes'|trans|raw : 'pel.do.you.have.informations.on.potential.suspects.no'|trans|raw }}
+    </li>
+    {% if complaint.additionalInformation.suspectsChoice is same as(true) %}
+        <li class="relative text-xl/8 fr-pb-6v fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/fr-quote.svg')]">
+            “ {{ complaint.additionalInformation.suspectsText }} “
+        </li>
+    {% endif %}
+    <p class="fr-badge fr-badge--purple-glycine fr-badge--no-icon fr-text--xs fr-mt-6v fr-mb-6v -ml-8">{{ 'pel.witnesses'|trans }}</p>
+    <li class="relative text-xl/8 fr-pb-6v fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/group.svg')]">
+        {% set witnessesQuantity = complaint.additionalInformation.witnesses|length %}
+        {{ complaint.additionalInformation.witnessesPresent ? 'pel.facts.witnesses.yes'|trans({'%quantity%': witnessesQuantity})|raw : 'pel.facts.witnesses.no'|trans|raw }}
+    </li>
+    {% if complaint.additionalInformation.witnesses is not empty %}
+        {% for witness in complaint.additionalInformation.witnesses %}
+            <ul class="list-none fr-mt-0 fr-mb-6v fr-pl-8v -ml-8 fr-mb-md-4v">
+                {% if witness.description is not null %}
+                    <li class="relative text-xl/8 fr-pb-0 fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/account-pin-circle.svg')]">
+                        <b>{{ witness.description }}</b>
+                    </li>
+                {% endif %}
+                {% if witness.phone.number is not null %}
+                    <li class="text-xl/8 fr-pb-0">{{ witness.phone|phone_format_intl }}</li>
+                {% endif %}
+                {% if witness.email is not null %}
+                    <li class="text-xl/8 fr-pb-0">{{ witness.email }}</li>
+                {% endif %}
+            </ul>
+        {% endfor %}
+    {% endif %}
+    <p class="fr-badge fr-badge--purple-glycine fr-badge--no-icon fr-text--xs fr-mt-6v fr-mb-6v -ml-8">{{ 'pel.visit'|trans }}</p>
+    <li class="relative text-xl/8 fr-pb-6v fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/alarm-warning.svg')]">
+        {{ complaint.additionalInformation.fsiVisit ? 'pel.fsi.visit.yes'|trans|raw : 'pel.fsi.visit.no'|trans|raw }}
+    </li>
+    {% if complaint.additionalInformation.fsiVisit is not null %}
+        <li class="relative text-xl/8 fr-pb-6v fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/search.svg')]">
+            {{ complaint.additionalInformation.observationMade ? 'pel.observation.made.yes'|trans|raw : 'pel.observation.made.no'|trans|raw }}
+        </li>
+    {% endif %}
+    <p class="fr-badge fr-badge--purple-glycine fr-badge--no-icon fr-text--xs fr-mt-6v fr-mb-6v -ml-8">{{ 'pel.video.facts'|trans }}</p>
+    <li class="relative text-xl/8 fr-pb-6v fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/live.svg')]">
+        {% if complaint.additionalInformation.cctvPresent is same as(constant('App\\Form\\Model\\AdditionalInformation\\AdditionalInformationModel::CCTV_PRESENT_YES')) %}
+            {{ 'pel.cctv.present.yes'|trans|raw }}
+        {% elseif complaint.additionalInformation.cctvPresent is same as(constant('App\\Form\\Model\\AdditionalInformation\\AdditionalInformationModel::CCTV_PRESENT_NO')) %}
+            {{ 'pel.cctv.present.no'|trans|raw }}
+        {% else %}
+            {{ 'pel.cctv.present.i.dont.know'|trans|raw }}
+        {% endif %}
+    </li>
+    {% if complaint.additionalInformation.cctvPresent is same as(constant('App\\Form\\Model\\AdditionalInformation\\AdditionalInformationModel::CCTV_PRESENT_YES')) %}
+        <li class="relative text-xl/8 fr-pb-6v fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/film.svg')]">
+            {{ complaint.additionalInformation.cctvAvailable ? 'pel.cctv.available.yes'|trans|raw : 'pel.cctv.available.no'|trans|raw }}
+        </li>
+    {% endif %}
+</ul>
