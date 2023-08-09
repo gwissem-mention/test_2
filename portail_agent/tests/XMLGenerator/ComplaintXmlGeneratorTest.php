@@ -147,7 +147,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
             ->addObject(
                 (new MultimediaObject())
                     ->setLabel('Téléphone')
-                    ->setLabel('Téléphone portable')
+                    ->setNature('Téléphone portable')
                     ->setBrand('Apple')
                     ->setModel('iPhone 13')
                     ->setDescription('Iphone 13 de couleur grise')
