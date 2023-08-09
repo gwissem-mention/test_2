@@ -26,6 +26,7 @@
       GOOGLE_MAPS_API_KEY={{ ansible_env.GOOGLE_MAPS_API_KEY }}
       ACCES_LIBRE_API_BASE_URI={{ ansible_env.ACCES_LIBRE_API_BASE_URI }}  
       ACCES_LIBRE_API_KEY={{ ansible_env.ACCES_LIBRE_API_KEY }}  
+      WKHTMLTOPDF_PATH={{ ansible_env.WKHTMLTOPDF_PATH }}
 
 - name: Install vendors for prod env
   make:

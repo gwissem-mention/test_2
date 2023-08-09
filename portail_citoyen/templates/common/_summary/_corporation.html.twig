@@ -1,0 +1,41 @@
+<p class="fr-badge fr-badge--purple-glycine fr-badge--no-icon fr-text--xs fr-mt-2v fr-mb-6v fr-my-md-6v">{{ 'pel.corporation.legal.information'|trans }}</p>
+<ul class="fr-pl-8v fr-my-0">
+    <li class="text-xl/8 fr-pb-6v">
+        {{ 'pel.corporation.siret'|trans }} :
+        <b>{{ complaint.identity.corporation.siret }}</b>
+    </li>
+    <li class="text-xl/8 fr-pb-6v">
+        {{ 'pel.corporation.name'|trans }} :
+        <b>{{ complaint.identity.corporation.name }}</b>
+    </li>
+    <li class="text-xl/8 fr-pb-6v">
+        {{ 'pel.corporation.function'|trans }} :
+        <b>{{ complaint.identity.corporation.function }}</b>
+    </li>
+    <li class="text-xl/8 fr-pb-6v">
+        {{ 'pel.nationality'|trans }} :
+        <b class="lowercase">{{ complaint.identity.corporation.nationality|nationality_referential_label }}</b>
+    </li>
+    {% if complaint.identity.corporation.email %}
+        <li class="text-xl/8 fr-pb-6v">
+            {{ 'pel.corporation.email'|trans }} :
+            <b>{{ complaint.identity.corporation.email }}</b>
+        </li>
+    {% endif %}
+    <li class="text-xl/8 fr-pb-6v">
+        {{ 'pel.corporation.phone'|trans }} :
+        <b>{{ complaint.identity.corporation.phone|phone_format_intl }}</b>
+    </li>
+    <li class="text-xl/8 fr-pb-6v">
+        {{ 'pel.address.country'|trans }} :
+        <b>{{ complaint.identity.corporation.country|country_referential_name }}</b>
+    </li>
+    <li class="text-xl/8 fr-pb-8v fr-pb-md-6v">
+        {{ 'pel.address'|trans }} :
+        {% if complaint.identity.corporation.frenchAddress is not null %}
+            <b>{{ complaint.identity.corporation.frenchAddress.label }}</b>
+        {% else %}
+            <b>{{ complaint.identity.corporation.foreignAddress.label }}</b>
+        {% endif %}
+    </li>
+</ul>
