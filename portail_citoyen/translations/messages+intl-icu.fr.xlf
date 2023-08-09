@@ -698,6 +698,10 @@
                 <source>pel.download</source>
                 <target>Télécharger</target>
             </trans-unit>
+            <trans-unit id="pel.download.my.declaration">
+                <source>pel.download.my.declaration</source>
+                <target>Télécharger ma déclaration</target>
+            </trans-unit>
             <trans-unit id="pel.driving.license">
                 <source>pel.driving.license</source>
                 <target>Permis de conduire</target>
@@ -752,7 +756,7 @@
             </trans-unit>
             <trans-unit id="pel.end.thanks">
                 <source>pel.end.thanks</source>
-                <target>Merci pour votre déclaration de plainte. Vous serez recontacté dans les meilleurs délais</target>
+                <target>Votre plainte en ligne a bien été transmise à nos services.</target>
             </trans-unit>
             <trans-unit id="pel.exact.hour">
                 <source>pel.exact.hour</source>
@@ -1320,7 +1324,7 @@
             </trans-unit>
             <trans-unit id="pel.place.complaint.handling">
                 <source>pel.place.complaint.handling</source>
-                <target>Lieu de prise en charge de votre plainte</target>
+                <target>Votre demande sera traitée par un agent de l’établissement suivant :</target>
             </trans-unit>
             <trans-unit id="pel.model">
                 <source>pel.model</source>
@@ -1662,6 +1666,10 @@
                 <source>pel.navigation.mobile</source>
                 <target>Menu principal</target>
             </trans-unit>
+            <trans-unit id="pel.please.note.that.the.online.process.may.eventually.require.an.appointment">
+                <source>pel.please.note.that.the.online.process.may.eventually.require.an.appointment</source>
+                <target><![CDATA[<b>Notez que la démarche en ligne pourrait éventuellement nécessiter un rendez-vous physique</b>]]> au regard des éléments déclarés.</target>
+            </trans-unit>
             <trans-unit id="pel.precise.owner.lastname.and.firstname">
                 <source>pel.precise.owner.lastname.and.firstname</source>
                 <target>Veuillez préciser le nom et prénom du propriétaire</target>
@@ -2000,7 +2008,11 @@
             </trans-unit>
             <trans-unit id="pel.your.opinion">
                 <source>pel.your.opinion</source>
-                <target>Votre avis</target>
+                <target>Donnez votre avis sur la démarche que vous venez d’effectuer</target>
+            </trans-unit>
+            <trans-unit id="pel.your.opinion.alt">
+                <source>pel.your.opinion.alt</source>
+                <target>Je donne mon avis</target>
             </trans-unit>
             <trans-unit id="pel.cancel">
                 <source>pel.cancel</source>
@@ -2405,6 +2417,10 @@
             <trans-unit id="pel.registered.complaint">
                 <source>pel.registered.complaint</source>
                 <target>Plainte enregistrée</target>
+            </trans-unit>
+            <trans-unit id="pel.registered.complaint.title">
+                <source>pel.registered.complaint.title</source>
+                <target>Plainte enregistrée (étape 7 sur 7) - Plainte en ligne</target>
             </trans-unit>
             <trans-unit id="pel.vehicle.category">
                 <source>pel.vehicle.category</source>

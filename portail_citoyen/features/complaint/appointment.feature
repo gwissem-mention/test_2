@@ -222,8 +222,8 @@ Feature:
         And I click the "li[data-unit-id-anonym=1008950] .unit-select" element
         And I press "appointment_submit"
         Then I should be on "/porter-plainte/fin"
-        Given I am on "/porter-plainte/recapitulatif"
-        Then I should see "Brigade de proximité de Renage - 339 Rue de la République 38140 RENAGE"
+        And I should see "Brigade de proximité de Renage"
+        And I should see "339 Rue de la République 38140 RENAGE"
 
     Scenario: I can unpick a unit
         When I fill in the map autocomplete "map-search" with "voiron" and click on the first result
@@ -239,8 +239,8 @@ Feature:
         And I should see a "li[data-unit-id-anonym=1008950] .unit-select.fr-hidden" element
         When I press "appointment_submit"
         Then I should be on "/porter-plainte/fin"
-        Given I am on "/porter-plainte/recapitulatif"
-        Then I should see "Brigade de proximité de Renage - 339 Rue de la République 38140 RENAGE"
+        And I should see "Brigade de proximité de Renage"
+        And I should see "339 Rue de la République 38140 RENAGE"
 
     Scenario: I can see the gendarmerie accessibility information
         When I fill in the map autocomplete "map-search" with "voiron" and click on the first result

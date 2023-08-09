@@ -19,6 +19,8 @@ class EndController extends AbstractController
             return $this->redirectToRoute('home');
         }
 
-        return $this->render('pages/complaint_end.html.twig');
+        return $this->render('pages/complaint_end.html.twig', [
+            'complaint' => $sessionHandler->getComplaint(),
+        ]);
     }
 }
