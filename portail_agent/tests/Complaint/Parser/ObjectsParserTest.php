@@ -95,7 +95,8 @@ class ObjectsParserTest extends KernelTestCase
             "keyboardLockedWhenMobileStolen": null,
             "pinEnabledWhenMobileStolen": null,
             "mobileInsured": null,
-            "allowOperatorCommunication": null
+            "allowOperatorCommunication": null,
+            "degradationDescription": null
         },
         {
             "status": {
@@ -132,7 +133,8 @@ class ObjectsParserTest extends KernelTestCase
             "keyboardLockedWhenMobileStolen": null,
             "pinEnabledWhenMobileStolen": null,
             "mobileInsured": null,
-            "allowOperatorCommunication": null
+            "allowOperatorCommunication": null,
+            "degradationDescription": null
         },
         {
             "status": {
@@ -169,7 +171,8 @@ class ObjectsParserTest extends KernelTestCase
             "keyboardLockedWhenMobileStolen": true,
             "pinEnabledWhenMobileStolen": true,
             "mobileInsured": true,
-            "allowOperatorCommunication": true
+            "allowOperatorCommunication": true,
+            "degradationDescription": null
         },
         {
             "status": {
@@ -206,7 +209,8 @@ class ObjectsParserTest extends KernelTestCase
             "keyboardLockedWhenMobileStolen": null,
             "pinEnabledWhenMobileStolen": null,
             "mobileInsured": null,
-            "allowOperatorCommunication": null
+            "allowOperatorCommunication": null,
+            "degradationDescription": "Rétroviseur cassé"
         },
         {
             "status": {
@@ -238,7 +242,13 @@ class ObjectsParserTest extends KernelTestCase
             "otherDocumentType": null,
             "documentOwned": null,
             "documentAdditionalInformation": null,
-            "files": []
+            "files": [],
+            "stillOnWhenMobileStolen": null,
+            "keyboardLockedWhenMobileStolen": null,
+            "pinEnabledWhenMobileStolen": null,
+            "mobileInsured": null,
+            "allowOperatorCommunication": null,
+            "degradationDescription": "Rétroviseur cassé"
         },
         {
             "status": {
@@ -275,7 +285,8 @@ class ObjectsParserTest extends KernelTestCase
             "keyboardLockedWhenMobileStolen": null,
             "pinEnabledWhenMobileStolen": null,
             "mobileInsured": null,
-            "allowOperatorCommunication": null
+            "allowOperatorCommunication": null,
+            "degradationDescription": null
         },
         {
             "status": {
@@ -316,7 +327,8 @@ class ObjectsParserTest extends KernelTestCase
             "keyboardLockedWhenMobileStolen": true,
             "pinEnabledWhenMobileStolen": true,
             "mobileInsured": true,
-            "allowOperatorCommunication": true
+            "allowOperatorCommunication": true,
+            "degradationDescription": null
         }
     ]
 }
@@ -455,6 +467,7 @@ JSON;
         $this->assertSame('123456789', $object->getInsuranceNumber());
         $this->assertSame('CAMION', $object->getNature());
         $this->assertSame(15000.0, $object->getAmount());
+        $this->assertSame('Rétroviseur cassé', $object->getDegradationDescription());
     }
 
     public function testParseUnregisteredVehicle(): void

@@ -77,10 +77,15 @@ class ObjectType extends AbstractType
             function (FormEvent $event) {
                 /** @var ?ObjectModel $objectModel */
                 $objectModel = $event->getData();
-                $this->addCategoryFields($event->getForm(), $objectModel?->getCategory());
+                $form = $event->getForm();
+                $this->addCategoryFields($form, $objectModel?->getCategory());
 
                 if (ObjectModel::STATUS_STOLEN === $objectModel?->getStatus() && !empty($objectModel->getSerialNumber())) {
-                    $this->addAdditionalMobileFields($event->getForm());
+                    $this->addAdditionalMobileFields($form);
+                }
+
+                if ($this->objectCategories['pel.object.category.registered.vehicle'] === $objectModel?->getCategory()) {
+                    $this->addDegradationDescriptionField($form, ObjectModel::STATUS_DEGRADED === $objectModel->getStatus());
                 }
             }
         );
@@ -90,11 +95,23 @@ class ObjectType extends AbstractType
             function (FormEvent $event) {
                 /** @var array|mixed[] $data */
                 $data = $event->getData();
+                $form = $event->getForm();
 
-                if (!empty($data['status']) && (string) ObjectModel::STATUS_STOLEN === $data['status'] && !empty($data['serialNumber'])) {
-                    $this->addAdditionalMobileFields($event->getForm());
+                /** @var string $status */
+                $status = $data['status'] ?? '';
+                /** @var string $category */
+                $category = $data['category'] ?? '';
+
+                if (!empty($status) && (string) ObjectModel::STATUS_STOLEN === $status && !empty($data['serialNumber'])) {
+                    $this->addAdditionalMobileFields($form);
                 } else {
-                    $this->removeAdditionalMobileFields($event->getForm());
+                    $this->removeAdditionalMobileFields($form);
+                }
+
+                if (!empty($category) && $this->objectCategories['pel.object.category.registered.vehicle'] === (int) $category) {
+                    $this->addDegradationDescriptionField($form, (string) ObjectModel::STATUS_DEGRADED === $status);
+                } else {
+                    $this->removeDegradationDescriptionField($form);
                 }
             }
         );
@@ -108,6 +125,7 @@ class ObjectType extends AbstractType
                 $parent = $event->getForm()->getParent();
                 /** @var ?ObjectModel $objectModel */
                 $objectModel = $parent->getData();
+
                 $this->addCategoryFields($parent, intval($category), $objectModel);
             }
         );
@@ -307,6 +325,36 @@ class ObjectType extends AbstractType
                     ]),
                 ],
             ]);
+    }
+
+    private function addDegradationDescriptionField(FormInterface $form, bool $required = false): void
+    {
+        $constraints = [
+            new Length([
+                'min' => 10,
+                'max' => 1500,
+            ]),
+        ];
+
+        if ($required) {
+            $constraints[] = new NotBlank();
+        }
+
+        $form->add('degradationDescription', TextareaType::class, [
+            'constraints' => $constraints,
+            'required' => $required,
+            'label' => 'pel.degradation.description',
+            'attr' => [
+                'data-counter-target' => 'parent',
+                'minlength' => 10,
+                'maxlength' => 1500,
+            ],
+        ]);
+    }
+
+    private function removeDegradationDescriptionField(FormInterface $form): void
+    {
+        $form->remove('degradationDescription');
     }
 
     private function addCategoryRegisteredVehicleFields(FormInterface $form): void

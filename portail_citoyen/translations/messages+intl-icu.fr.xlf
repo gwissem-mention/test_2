@@ -2458,6 +2458,10 @@
                 <source>pel.motorbike</source>
                 <target>MOTO</target>
             </trans-unit>
+            <trans-unit id="pel.degradation.description">
+                <source>pel.degradation.description</source>
+                <target>Description des dégradations</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

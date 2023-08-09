@@ -120,6 +120,7 @@ Feature:
         And I should see "VOITURE PARTICULIERE"
         And I should see "Voiture"
         And I should see "Citroën"
+        And I should see "Rétroviseur cassé"
         And I should see "C3"
         And I should see "17 000 €"
         And I should see "Carte Bancaire VISA"

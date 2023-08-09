@@ -193,6 +193,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
                     ->setInsuranceCompany('AXA')
                     ->setInsuranceNumber('1458R147R')
                     ->setNature('CAMION')
+                    ->setDegradationDescription('Rétroviseur cassé')
                     ->setAmount(15000)
                     ->setStatus(AbstractObject::STATUS_DEGRADED)
             )
@@ -559,6 +560,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<VL_Assurance_Police>1458R147R</VL_Assurance_Police>', $this->xmlContent);
         $this->assertStringContainsString('<VL_Degradation>Oui</VL_Degradation>', $this->xmlContent);
         $this->assertStringContainsString('<VL_Nature>CAMION</VL_Nature>', $this->xmlContent);
+        $this->assertStringContainsString('<VL_Degradation_Liste>Rétroviseur cassé</VL_Degradation_Liste>', $this->xmlContent);
         $this->assertStringContainsString('</VL>', $this->xmlContent);
     }
 

@@ -234,7 +234,8 @@ class ComplaintFactory
                 ->setRegistrationNumber('AB-123-CD')
                 ->setRegistrationNumberCountry('FR')
                 ->setInsuranceCompany('AXA')
-                ->setInsuranceNumber('1234567890'));
+                ->setInsuranceNumber('1234567890')
+                ->setDegradationDescription('Portière avant gauche enfoncée et Pare-choc arrière rayé'));
     }
 
     private function createAdditionalInformation(): AdditionalInformationModel

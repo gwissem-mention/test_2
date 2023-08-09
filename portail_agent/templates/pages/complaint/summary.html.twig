@@ -499,6 +499,13 @@
             {% if object.amount is not null %}
                 - {{ object.amount|format_currency('EUR', {fraction_digit: 0}) }}
             {% endif %}
+            {% if object.degradationDescription is not null %}
+                <ul class="m-0">
+                    <li>{{ 'pel.degradation.description'|trans }} :
+                        <strong>{{ object.degradationDescription }}</strong>
+                    </li>
+                </ul>
+            {% endif %}
         </li>
     {% elseif object|object_type is same as('App\\Entity\\FactsObjects\\SimpleObject') %}
         <li><strong>{{ 'pel.number'|trans }} {{ index }}</strong> : {{ object.nature }}

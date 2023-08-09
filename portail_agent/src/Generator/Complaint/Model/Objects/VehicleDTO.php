@@ -16,6 +16,7 @@ class VehicleDTO extends AbstractObjectDTO
     private string $insuranceNumber;
     private string $degradation;
     private string $nature;
+    private string $degradationDescription;
 
     public function __construct(Vehicle $vehicle)
     {
@@ -26,6 +27,7 @@ class VehicleDTO extends AbstractObjectDTO
         $this->insuranceNumber = $vehicle->getInsuranceNumber() ?? '';
         $this->degradation = AbstractObject::STATUS_DEGRADED === $vehicle->getStatus() ? 'Oui' : 'Non';
         $this->nature = $vehicle->getNature() ?? '';
+        $this->degradationDescription = $vehicle->getDegradationDescription() ?? '';
     }
 
     /**
@@ -41,6 +43,7 @@ class VehicleDTO extends AbstractObjectDTO
             'VL_Assurance_Police' => $this->insuranceNumber,
             'VL_Degradation' => $this->degradation,
             'VL_Nature' => $this->nature,
+            'VL_Degradation_Liste' => $this->degradationDescription,
         ]];
     }
 }

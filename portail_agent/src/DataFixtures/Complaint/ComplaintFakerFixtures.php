@@ -340,6 +340,20 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                 );
             }
 
+            $complaint->addObject(
+                (new Vehicle())
+                    ->setStatus(AbstractObject::STATUS_DEGRADED)
+                    ->setLabel('Voiture')
+                    ->setBrand('Peugeot')
+                    ->setModel($this->faker->randomElement(['208', '308', '3008', '5008']))
+                    ->setRegistrationNumber($this->faker->randomElement(['AA-123-AA', 'BB-345-BB', 'CC-432-CC', 'DD-890-DD']))
+                    ->setRegistrationCountry('France')
+                    ->setInsuranceCompany($this->faker->randomElement(['AXA', 'Matmut', 'MAAF']))
+                    ->setInsuranceNumber($this->faker->randomElement(['1458R147R', '8912T654T', '3278V265V']))
+                    ->setDegradationDescription($this->faker->randomElement(['Rétroviseur cassé', 'Pare-brise cassé', 'Portière rayée']))
+                    ->setAmount($this->faker->numberBetween(5000, 20000))
+            );
+
             if (true === $this->faker->boolean(30)) {
                 $complaint->getFacts()?->setNatures([Facts::NATURE_ROBBERY, Facts::NATURE_DEGRADATION]);
             }

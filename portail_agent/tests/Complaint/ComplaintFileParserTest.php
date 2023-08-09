@@ -367,7 +367,8 @@ class ComplaintFileParserTest extends KernelTestCase
             "keyboardLockedWhenMobileStolen": null,
             "pinEnabledWhenMobileStolen": null,
             "mobileInsured": null,
-            "allowOperatorCommunication": null
+            "allowOperatorCommunication": null,
+            "degradationDescription": null
 		},
 		{
 			"status":
@@ -411,7 +412,8 @@ class ComplaintFileParserTest extends KernelTestCase
             "keyboardLockedWhenMobileStolen": true,
             "pinEnabledWhenMobileStolen": true,
             "mobileInsured": true,
-            "allowOperatorCommunication": true
+            "allowOperatorCommunication": true,
+            "degradationDescription": null
 		},
 		{
 			"status":
@@ -450,7 +452,8 @@ class ComplaintFileParserTest extends KernelTestCase
             "keyboardLockedWhenMobileStolen": null,
             "pinEnabledWhenMobileStolen": null,
             "mobileInsured": null,
-            "allowOperatorCommunication": null
+            "allowOperatorCommunication": null,
+            "degradationDescription": null
 		},
 		{
 			"status":
@@ -489,7 +492,8 @@ class ComplaintFileParserTest extends KernelTestCase
             "keyboardLockedWhenMobileStolen": null,
             "pinEnabledWhenMobileStolen": null,
             "mobileInsured": null,
-            "allowOperatorCommunication": null
+            "allowOperatorCommunication": null,
+            "degradationDescription": "Rétroviseur cassé"
 		}]
 	},
 	"appointment": {

@@ -42,6 +42,7 @@ class ObjectModel
     private ?bool $mobileInsured = null;
     private ?bool $allowOperatorCommunication = null;
     private ?int $registeredVehicleNature = null;
+    private ?string $degradationDescription = null;
 
     /**
      * @var Collection<int, FileModel>
@@ -421,6 +422,18 @@ class ObjectModel
     public function setRegisteredVehicleNature(?int $registeredVehicleNature): ObjectModel
     {
         $this->registeredVehicleNature = $registeredVehicleNature;
+
+        return $this;
+    }
+
+    public function getDegradationDescription(): ?string
+    {
+        return $this->degradationDescription;
+    }
+
+    public function setDegradationDescription(?string $degradationDescription): self
+    {
+        $this->degradationDescription = $degradationDescription;
 
         return $this;
     }
