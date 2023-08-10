@@ -1,78 +1,102 @@
-<div class="toast-container top-0 end-0 p-3 position-fixed">
-    {% if workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_REJECT') ) %}
-        <div class="toast align-items-center text-bg-secondary" id="toast-complaint-reject" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="2000" data-complaint-target="rejectToast">
-            <div class="d-flex">
-                <div class="toast-body">
+{% if workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_REJECT') ) %}
+    <div class="toast row w-100 mw-100 h-100 g-0 background-informative text-informative fw-bold border-0 rounded-0 shadow-none" id="toast-complaint-reject" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
+        <div class="col-md-8 col-lg-9 col-xxl-10 mx-auto px-4 py-3">
+            <div class="d-flex align-items-start justify-content-between">
+                <span class="fr-icon-success-fill me-2"></span>
+                <div class="me-2 w-100">
                     {{ 'pel.the.declaration.has.been.refused'|trans }}
                 </div>
-                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="{{ 'pel.close'|trans }}"></button>
+                <button type="button" class="btn-close bg-transparent small shadow-none" data-bs-dismiss="toast" aria-label="{{ 'pel.close'|trans }}"></button>
             </div>
         </div>
-    {% endif %}
-    {% if workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_ASSIGN') ) %}
-        <div class="toast align-items-center text-bg-secondary" id="toast-complaint-assign" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
-            <div class="d-flex">
-                <div class="toast-body">
+    </div>
+{% endif %}
+{% if workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_ASSIGN') ) %}
+    <div class="toast row w-100 mw-100 h-100 g-0 background-informative text-informative fw-bold border-0 rounded-0 shadow-none" id="toast-complaint-assign" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
+        <div class="col-md-8 col-lg-9 col-xxl-10 mx-auto px-4 py-3">
+            <div class="d-flex align-items-start justify-content-between">
+                <span class="fr-icon-success-fill me-2"></span>
+                <div class="me-2 w-100">
                     {{ (complaint.assignedTo is not null ? 'pel.the.declaration.has.been.reassigned.to':'pel.the.declaration.has.been.assigned.to')|trans }} <span class="agent-name"></span>
                 </div>
-                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="{{ 'pel.close'|trans }}"></button>
+                <button type="button" class="btn-close bg-transparent small shadow-none" data-bs-dismiss="toast" aria-label="{{ 'pel.close'|trans }}"></button>
             </div>
         </div>
-    {% endif %}
-    {% if workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_ASK_UNIT_REDIRECTION') ) %}
-        <div class="toast align-items-center text-bg-secondary" id="toast-complaint-unit-reassign-ordered" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
-            <div class="d-flex">
-                <div class="toast-body">
+    </div>
+{% endif %}
+{% if workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_ASK_UNIT_REDIRECTION') ) %}
+    <div class="toast row w-100 mw-100 h-100 g-0 background-informative text-informative fw-bold border-0 rounded-0 shadow-none" id="toast-complaint-unit-reassign-ordered" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
+        <div class="col-md-8 col-lg-9 col-xxl-10 mx-auto px-4 py-3">
+            <div class="d-flex align-items-start justify-content-between">
+                <span class="fr-icon-success-fill me-2"></span>
+                <div class="me-2 w-100">
                     {{ 'pel.the.unit.reassignment.of.the.declaration.to'|trans }} <span class="unit-name"></span> {{ 'pel.has.been.ordered'|trans }}
                 </div>
-                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="{{ 'pel.close'|trans }}"></button>
+                <button type="button" class="btn-close bg-transparent small shadow-none" data-bs-dismiss="toast" aria-label="{{ 'pel.close'|trans }}"></button>
             </div>
         </div>
-    {% endif %}
-    {% if workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_REJECT_UNIT_REDIRECTION') ) %}
-        <div class="toast align-items-center text-bg-secondary" id="toast-complaint-unit-reassign-rejected" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
-            <div class="d-flex">
-                <div class="toast-body">
+    </div>
+{% endif %}
+{% if workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_REJECT_UNIT_REDIRECTION') ) %}
+    <div class="toast row w-100 mw-100 h-100 g-0 background-informative text-informative fw-bold border-0 rounded-0 shadow-none" id="toast-complaint-unit-reassign-rejected" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
+        <div class="col-md-8 col-lg-9 col-xxl-10 mx-auto px-4 py-3">
+            <div class="d-flex align-items-start justify-content-between">
+                <span class="fr-icon-success-fill me-2"></span>
+                <div class="me-2 w-100">
                     {{ 'pel.the.unit.reassignment.has.been.rejected.your.agent.stays.assigned'|trans }}
                 </div>
-                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="{{ 'pel.close'|trans }}"></button>
+                <button type="button" class="btn-close bg-transparent small shadow-none" data-bs-dismiss="toast" aria-label="{{ 'pel.close'|trans }}"></button>
             </div>
         </div>
-    {% endif %}
-    {% if workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_SEND_TO_LRP') ) %}
-        <div class="toast align-items-center text-bg-secondary" id="toast-validation-send-to-lrp" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
-            <div class="d-flex">
-                <div class="toast-body">
+    </div>
+{% endif %}
+{% if workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_SEND_TO_LRP') ) %}
+    <div class="toast row w-100 mw-100 h-100 g-0 background-informative text-informative fw-bold border-0 rounded-0 shadow-none" id="toast-validation-send-to-lrp" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
+        <div class="col-md-8 col-lg-9 col-xxl-10 mx-auto px-4 py-3">
+            <div class="d-flex align-items-start justify-content-between">
+                <span class="fr-icon-success-fill me-2"></span>
+                <div class="me-2 w-100">
                     {{ 'pel.file.generated'|trans }}
                 </div>
-                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="{{ 'pel.close'|trans }}"></button>
+                <button type="button" class="btn-close bg-transparent small shadow-none" data-bs-dismiss="toast" aria-label="{{ 'pel.close'|trans }}"></button>
             </div>
         </div>
-    {% endif %}
-    {% if workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_CLOSE_AFTER_APPOINTMENT') ) or workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_CLOSE_AFTER_SENDING_THE_REPORT') )%}
-        <div class="toast align-items-center text-bg-secondary" id="toast-close-complaint-after-the-appointment" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
-            <div class="d-flex">
-                <div class="toast-body">
+    </div>
+{% endif %}
+{% if workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_CLOSE_AFTER_APPOINTMENT') ) or workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_CLOSE_AFTER_SENDING_THE_REPORT') )%}
+    <div class="toast row w-100 mw-100 h-100 g-0 background-informative text-informative fw-bold border-0 rounded-0 shadow-none" id="toast-close-complaint-after-the-appointment" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
+        <div class="col-md-8 col-lg-9 col-xxl-10 mx-auto px-4 py-3">
+            <div class="d-flex align-items-start justify-content-between">
+                <span class="fr-icon-success-fill me-2"></span>
+                <div class="me-2 w-100">
                     {{ 'pel.the.complaint.is.closed'|trans }}
                 </div>
-                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="{{ 'pel.close'|trans }}"></button>
+                <button type="button" class="btn-close bg-transparent small shadow-none" data-bs-dismiss="toast" aria-label="{{ 'pel.close'|trans }}"></button>
             </div>
         </div>
-        <div class="toast align-items-center text-bg-secondary" id="toast-validation-send-report-to-victim" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
-            <div class="d-flex">
-                <div class="toast-body">
+    </div>
+    <div class="toast row w-100 mw-100 h-100 g-0 background-informative text-informative fw-bold border-0 rounded-0 shadow-none" id="toast-validation-send-report-to-victim" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
+        <div class="col-md-8 col-lg-9 col-xxl-10 mx-auto px-4 py-3">
+            <div class="d-flex align-items-start justify-content-between">
+                <span class="fr-icon-success-fill me-2"></span>
+                <div class="me-2 w-100">
                     {{ 'pel.the.report.has.been.sent.to.the.victim.the.complaint.is.closed'|trans }}
                 </div>
-                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="{{ 'pel.close'|trans }}"></button>
+                <button type="button" class="btn-close bg-transparent small shadow-none" data-bs-dismiss="toast" aria-label="{{ 'pel.close'|trans }}"></button>
             </div>
         </div>
-    {% endif %}
-    {% if workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_SELF_ASSIGN') ) %}
-        <div class="toast align-items-center text-bg-secondary" id="toast-complaint-self-assign" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
-            <div class="d-flex">
-                <div class="toast-body">{{ 'pel.the.declaration.has.been.self.assigned'|trans }}</div>
-                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="{{ 'pel.close'|trans }}"></button>
+    </div>
+{% endif %}
+{% if workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_SELF_ASSIGN') ) %}
+    <div class="toast row w-100 mw-100 h-100 g-0 background-informative text-informative fw-bold border-0 rounded-0 shadow-none" id="toast-complaint-self-assign" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
+        <div class="col-md-8 col-lg-9 col-xxl-10 mx-auto px-4 py-3">
+            <div class="d-flex align-items-start justify-content-between">
+                <span class="fr-icon-success-fill me-2"></span>
+                <div class="me-2 w-100">
+                    {{ 'pel.the.declaration.has.been.self.assigned'|trans }}
+                </div>
+                <button type="button" class="btn-close bg-transparent small shadow-none" data-bs-dismiss="toast" aria-label="{{ 'pel.close'|trans }}"></button>
             </div>
         </div>
-    {% endif %}
-</div>
+    </div>
+{% endif %}
