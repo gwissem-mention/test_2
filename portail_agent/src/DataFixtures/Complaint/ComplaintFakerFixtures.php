@@ -203,6 +203,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                         ->setLabel('Smartphone')
                         ->setNature('Téléphone portable')
                         ->setBrand('Samsung')
+                        ->setDescription('Un Samsung tout neuf')
                         ->setModel($this->faker->randomElement(['S20', 'S21', 'S22', 'S23']))
                         ->setOperator($this->faker->randomElement(['Orange', 'SFR', 'Bouygues', 'Free']))
                         ->setSerialNumber('987654321')
@@ -212,6 +213,15 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                         ->setMobileInsured(false)
                         ->setPhoneNumber($this->faker->mobileNumber)
                         ->setAmount($this->faker->numberBetween(500, 2000))
+                )->addObject(
+                    (new MultimediaObject())
+                        ->setStatus(AbstractObject::STATUS_STOLEN)
+                        ->setLabel('Console')
+                        ->setNature('Multimédia')
+                        ->setBrand('Sony')
+                        ->setModel('Playstation 4')
+                        ->setSerialNumber('12345678')
+                        ->setDescription('Ma console')
                 )
                 ->setAdditionalInformation(
                     (new AdditionalInformation())

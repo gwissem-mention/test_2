@@ -123,6 +123,40 @@
             {% if object.mobileInsured is not null %}
                 <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.mobile.insured'|trans }} : <b>{{ object.mobileInsured|bool_to_string }}</b></li>
             {% endif %}
+        {% elseif object.category|object_category_get_name is same as('pel.object.category.multimedia') %}
+            <li class="relative text-xl/8 fr-pb-0 fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/price-tag-3.svg')]">
+                <b>{{ object.label }}</b>
+                <p class="text-xl/8">
+                    {% if object.status is same as(1) %}
+                        <b>{{ 'pel.objects.stolen'|trans }}</b>
+                    {% elseif object.status is same as(2) %}
+                        <b>{{ 'pel.objects.gradient'|trans }}</b>
+                    {% endif %} {{ 'pel.of.type'|trans }} <b>{{ object.category|object_category_get_name|trans }}</b>
+                </p>
+            </li>
+            {% if object.files is not empty %}
+                {% for file in object.files %}
+                    <li class="relative text-xl/8 fr-pb-6v fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/file-add.svg')]">
+                        <p class="text-xl/8 fr-mb-1v">{{ 'pel.attachment'|trans }}</p>
+                        <a class="fr-link fr-link--download text-lg/6" download href="{{ path('file_download', {'fileName':file.path, 'originalName':file.name}) }}">
+                            {{ file.name }}<span class="fr-icon-file-text-line before:content-[''] before:mb-1 before:ml-2 before:w-4 before:h-4 before:bg-no-repeat before:bg-[length:14px_14px]" aria-hidden="true"></span>
+                        </a>
+                    </li>
+                {% endfor %}
+            {% endif %}
+            {% if object.ownerLastname is not null and object.ownerFirstname is not null %}
+                <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.owner.lastname.firstname'|trans }} : <b>{{ object.ownerLastname }} {{ object.ownerFirstname }}</b></li>
+            {% endif %}
+            <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.brand'|trans }} : <b>{{ object.brand }}</b></li>
+            {% if object.model is not null %}
+                <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.model'|trans }} : <b>{{ object.model }}</b></li>
+            {% endif %}
+            {% if object.serialNumber is not null %}
+                <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.serial.number'|trans }} : <b>{{ object.serialNumber }}</b></li>
+            {% endif %}
+            {% if object.description is not null %}
+                <li>{{ 'pel.description'|trans }} : {{ object.description }}</li>
+            {% endif %}
         {% elseif object.category|object_category_get_name is same as('pel.object.category.payment.ways') %}
             <li class="relative text-xl/8 fr-pb-0 fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/price-tag-3.svg')]">
                 <b>{{ object.label }}</b>

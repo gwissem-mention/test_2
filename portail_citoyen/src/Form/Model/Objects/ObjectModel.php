@@ -43,6 +43,8 @@ class ObjectModel
     private ?bool $allowOperatorCommunication = null;
     private ?int $registeredVehicleNature = null;
     private ?string $degradationDescription = null;
+    private ?string $ownerFirstname = null;
+    private ?string $ownerLastname = null;
 
     /**
      * @var Collection<int, FileModel>
@@ -434,6 +436,30 @@ class ObjectModel
     public function setDegradationDescription(?string $degradationDescription): self
     {
         $this->degradationDescription = $degradationDescription;
+
+        return $this;
+    }
+
+    public function getOwnerFirstname(): ?string
+    {
+        return $this->ownerFirstname;
+    }
+
+    public function setOwnerFirstname(?string $ownerFirstname): self
+    {
+        $this->ownerFirstname = $ownerFirstname;
+
+        return $this;
+    }
+
+    public function getOwnerLastname(): ?string
+    {
+        return $this->ownerLastname;
+    }
+
+    public function setOwnerLastname(?string $ownerLastname): self
+    {
+        $this->ownerLastname = $ownerLastname;
 
         return $this;
     }
