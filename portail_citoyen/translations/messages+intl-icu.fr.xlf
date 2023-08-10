@@ -34,6 +34,10 @@
                 <source>pel.3.your.request.is.processed.within.48h</source>
                 <target>Votre demande sera traitée par un agent</target>
             </trans-unit>
+            <trans-unit id="pel.address.choose">
+                <source>pel.address.choose</source>
+                <target>Renseignez une adresse<![CDATA[&nbsp;<span class="fr-label--error font-bold">*</span>]]></target>
+            </trans-unit>
             <trans-unit id="pel.address.city.postcode">
                 <source>pel.address.city.postcode</source>
                 <target>Adresse, ville, code postal</target>
@@ -162,17 +166,25 @@
                 <source>pel.and.overseas</source>
                 <target>et des outre-mer</target>
             </trans-unit>
+            <trans-unit id="pel.appointment.booking">
+                <source>pel.appointment.booking</source>
+                <target>Prise de rendez-vous</target>
+            </trans-unit>
             <trans-unit id="pel.appointment.message.1">
                 <source>pel.appointment.message.1</source>
-                <target>Au regards des éléments, nous vous proposons de vous recevoir à cette unité par défaut</target>
+                <target>Au vu des éléments déclarés, nous vous proposons de vous recevoir à cette unité par défaut</target>
             </trans-unit>
             <trans-unit id="pel.appointment.message.2">
                 <source>pel.appointment.message.2</source>
-                <target>Si cette unité ne vous convient pas, merci de sélectionner une autre commune ci-dessous</target>
+                <target>Si cette unité ne vous convient pas, veuillez prendre rendez-vous dans un commissariat ou une gendarmerie ci-dessous.</target>
+            </trans-unit>
+           <trans-unit id="pel.appointment.message.3">
+                <source>pel.appointment.message.3</source>
+                <target>Au vu des éléments déclarés, veuillez prendre rendez-vous dans un commissariat ou une gendarmerie.</target>
             </trans-unit>
             <trans-unit id="pel.appointment.text.label">
                 <source>pel.appointment.text.label</source>
-                <target>Veuillez nous indiquer vos disponibilités pour être recontacté</target>
+                <target>Indiquez vos disponibilités pour être recontacté</target>
             </trans-unit>
             <trans-unit id="pel.appointment.needed.if">
                 <source>pel.appointment.needed.if</source>
@@ -2092,11 +2104,7 @@
             </trans-unit>
             <trans-unit id="pel.complaint.my.declaration">
                 <source>pel.complaint.my.declaration</source>
-                <target>Ma déclaration</target>
-            </trans-unit>
-            <trans-unit id="pel.complaint.all.required.fields.are.required">
-                <source>pel.complaint.all.required.fields.are.required</source>
-                <target>Tous les champs sont obligatoires à l’exception de ceux mentionnés comme facultatifs.</target>
+                <target>Votre plainte nécessite un rendez-vous physique</target>
             </trans-unit>
             <trans-unit id="pel.authentication_failed">
                 <source>pel.authentication_failed</source>
