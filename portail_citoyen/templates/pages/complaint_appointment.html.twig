@@ -1,25 +1,31 @@
-{% extends 'layout.html.twig' %}
-{% block title %}{{ 'pel.complaint.create'|trans }}{% endblock %}
-{% block body %}
-    <div class="fr-container container" data-controller="form">
-        <h1>{{ 'pel.complaint.my.declaration'|trans }}</h1>
-        {% include 'common/_complaint_nav.html.twig' with {'active':'appointment'} %}
-        <p>
-            {{ 'pel.complaint.all.required.fields.are.required'|trans }}
-            <span class="fr-icon-information-line" aria-hidden="true"></span>
-        </p>
-        <div class="wrapper--complaint">
-            <div class="accordion__item__title" id="identity_accordion_title">
-                <span class="fr-icon-arrow-down-s-line"></span>
-                {{ 'pel.make.appointment'|trans }}
-            </div>
-            <div class="accordion__item__content" id="identity_accordion_content">
-                <p class="fr-text--lg fr-my-2w">
-                    {{ 'pel.appointment.message.1'|trans }} "{{ complaint.affectedService|unit_name }}".
-                    {{ 'pel.appointment.message.2'|trans }}.
-                </p>
-                {{ component('appointment', {class: 'fr-py-1w'}) }}
-            </div>
+{% extends 'common/_complaint.html.twig' %}
+
+{% set current_step_title = 'pel.appointment.booking'|trans %}
+{% set current_step_number = 7 %}
+{% set next_step_title = 'pel.registered.complaint'|trans %}
+
+{% block title %}
+	{{ 'pel.registered.complaint.title'|trans }}
+{% endblock %}
+
+{% block content %}
+    <div data-controller="form">
+        <div class="flex flex-col gap-y-8 md:gap-y-10 items-center fr-pt-10v fr-pb-8v fr-px-6v fr-pt-md-12v fr-px-md-20v fr-pb-md-10v">
+            <img src="{{ asset('build/images/calendar.svg') }}" class="w-[100px] md:w-[120px]">
+            <h1 class="text-center fr-mb-0 text-[28px]/9 md:text-[40px]/[48px]">{{ 'pel.complaint.my.declaration'|trans }}</h1>
         </div>
+        <div class="fr-px-6v fr-pb-8v fr-px-md-20v fr-pb-md-10v">
+            {% if complaint.affectedService|unit_name is not empty %}
+                <p class="text-xl/6 md:text-2xl text-center fr-text-mention--grey fr-mb-0">
+                    {{ 'pel.appointment.message.1'|trans }} "{{ complaint.affectedService|unit_name }}".
+                    {{ 'pel.appointment.message.2'|trans }}
+                </p>
+            {% else %}
+                <p class="text-xl/6 md:text-2xl text-center fr-text-mention--grey fr-mb-0">
+                   {{ 'pel.appointment.message.3'|trans }}
+                </p>
+            {% endif %}
+        </div>
+        {{ component('appointment') }}
     </div>
 {% endblock %}

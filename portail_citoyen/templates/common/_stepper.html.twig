@@ -1,5 +1,11 @@
 {% set title = 'pel.my.online.complaint.declaration'|trans %}
-{% set steps = [{'title': 'pel.legal.dispositions'}, {'title': 'pel.complaint.your.identity' }, {'title': 'pel.facts.description' }, {'title': 'pel.goods.concerned' }, {'title': 'pel.further.information' }, {'title': 'pel.summary.of.complaint' }, {'title': 'pel.registered.complaint' }] %}
+{% if isAppointmentRequiredOrAsked is same as(false) %}
+    {% set steps = [{'title': 'pel.legal.dispositions'}, {'title': 'pel.complaint.your.identity' }, {'title': 'pel.facts.description' }, {'title': 'pel.goods.concerned' }, {'title': 'pel.further.information' }, {'title': 'pel.summary.of.complaint' }, {'title': 'pel.registered.complaint' }] %}
+    {% set steps_count = 7 %}
+{% else %}
+    {% set steps = [{'title': 'pel.legal.dispositions'}, {'title': 'pel.complaint.your.identity' }, {'title': 'pel.facts.description' }, {'title': 'pel.goods.concerned' }, {'title': 'pel.further.information' }, {'title': 'pel.summary.of.complaint' }, {'title': 'pel.appointment.booking' }, {'title': 'pel.registered.complaint' }] %}
+    {% set steps_count = 8 %}
+{% endif %}
 
 <div class="fr-grid-row flex md:flex-col items-center fr-pt-10v fr-px-6v fr-hidden-md">
 	<div class="fr-col-12">
@@ -9,13 +15,15 @@
 	</div>
     <div class="fr-stepper fr-col fr-mt-6v">
         <div class="fr-stepper__title text-white">
-            <span class="fr-stepper__state text-white">{{ 'pel.step'|trans}}
+            <span class="fr-stepper__state text-white">
+                {{ 'pel.step'|trans}}
                 {{ current_step_number }}
                 {{ 'pel.on'|trans }}
-                7</span>
+                {{ steps_count }}
+            </span>
             {{ current_step_title }}
         </div>
-        <div class="fr-stepper__steps fr-mt-3v" data-fr-current-step="{{ current_step_number }}" data-fr-steps="7"></div>
+        <div class="fr-stepper__steps fr-mt-3v" data-fr-current-step="{{ current_step_number }}" data-fr-steps="{{ steps_count }}"></div>
         <p class="fr-stepper__details text-white">
             <span class="fr-text--bold">{{ 'pel.next.step'|trans }} : </span>{{ next_step_title }}
         </p>
@@ -36,7 +44,8 @@
 								{{ 'pel.step'|trans}}
 								{{ current_step_number }}
 								{{ 'pel.on'|trans }}
-								7</span>
+								{{ steps_count }}
+                            </span>
 						{% endif %}
 						{{ step.title|trans }}
 					</div>
