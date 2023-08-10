@@ -1,10 +1,13 @@
 {% if is_granted('ROLE_SUPERVISOR') %}
-    <div class="toast align-items-center text-bg-secondary" id="toast-complaint-assign" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
-        <div class="d-flex">
-            <div class="toast-body">
-                {{ 'pel.the.declaration.has.been.assigned.to'|trans }} <span class="agent-name"></span>
+    <div class="toast row w-100 mw-100 h-100 g-0 background-informative text-informative fw-bold border-0 rounded-0 shadow-none" id="toast-complaint-assign" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
+        <div class="col-md-8 col-lg-9 col-xxl-10 mx-auto px-4 py-3">
+            <div class="d-flex align-items-start justify-content-between">
+                <span class="fr-icon-success-fill me-2"></span>
+                <div class="me-2 w-100">
+                    {{ 'pel.the.declaration.has.been.assigned.to'|trans }} <span class="agent-name"></span>
+                </div>
+                <button type="button" class="btn-close bg-transparent small shadow-none" data-bs-dismiss="toast" aria-label="{{ 'pel.close'|trans }}"></button>
             </div>
-            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="{{ 'pel.close'|trans }}"></button>
         </div>
     </div>
 {% endif %}
