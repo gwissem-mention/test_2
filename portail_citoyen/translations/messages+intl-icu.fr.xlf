@@ -170,6 +170,10 @@
                 <source>pel.appointment.booking</source>
                 <target>Prise de rendez-vous</target>
             </trans-unit>
+            <trans-unit id="pel.appointment.booking.title">
+                <source>pel.appointment.booking.title</source>
+                <target>Prise de rendez-vous (étape 7 sur 8) - Plainte en ligne </target>
+            </trans-unit>
             <trans-unit id="pel.appointment.message.1">
                 <source>pel.appointment.message.1</source>
                 <target>Au vu des éléments déclarés, nous vous proposons de vous recevoir à cette unité par défaut</target>
@@ -2102,6 +2106,10 @@
                 <source>pel.complaint.additional.informations.title</source>
                 <target>Complément d’informations (étape 5 sur 7) - Plainte en ligne</target>
             </trans-unit>
+            <trans-unit id="pel.complaint.additional.informations.title.with.appointment">
+                <source>pel.complaint.additional.informations.title.with.appointment</source>
+                <target>Complément d’informations (étape 5 sur 8) - Plainte en ligne</target>
+            </trans-unit>
             <trans-unit id="pel.complaint.my.declaration">
                 <source>pel.complaint.my.declaration</source>
                 <target>Votre plainte nécessite un rendez-vous physique</target>
@@ -2242,6 +2250,10 @@
                 <source>pel.legal.dispositions.title</source>
                 <target>Dispositions légales (étape 1 sur 7) - Plainte en ligne</target>
             </trans-unit>
+            <trans-unit id="pel.legal.dispositions.title.with.appointment">
+                <source>pel.legal.dispositions.title.with.appointment</source>
+                <target>Dispositions légales (étape 1 sur 8) - Plainte en ligne</target>
+            </trans-unit>
             <trans-unit id="pel.before.starting.complaint">
                 <source>pel.before.starting.complaint</source>
                 <target>Avant de déclarer ma plainte, je prends acte des dispositions légales suivantes</target>
@@ -2362,6 +2374,10 @@
                 <source>pel.your.identity.title</source>
                 <target>Votre identité (étape 2 sur 7) - Plainte en ligne</target>
             </trans-unit>
+            <trans-unit id="pel.your.identity.title.with.appointment">
+                <source>pel.your.identity.title.with.appointment</source>
+                <target>Votre identité (étape 2 sur 8) - Plainte en ligne</target>
+            </trans-unit>
             <trans-unit id="pel.my.online.complaint.declaration">
                 <source>pel.my.online.complaint.declaration</source>
                 <target>Ma déclaration<![CDATA[<br>]]>de plainte en ligne</target>
@@ -2377,6 +2393,10 @@
             <trans-unit id="pel.goods.concerned.title">
                 <source>pel.goods.concerned.title</source>
                 <target>Biens concernés (étape 4 sur 7) - Plainte en ligne</target>
+            </trans-unit>
+            <trans-unit id="pel.goods.concerned.title.with.appointment">
+                <source>pel.goods.concerned.title.with.appointment</source>
+                <target>Biens concernés (étape 4 sur 8) - Plainte en ligne</target>
             </trans-unit>
             <trans-unit id="pel.goods.number">
                 <source>pel.goods.number</source>
@@ -2397,6 +2417,10 @@
             <trans-unit id="pel.legal.dispositions.step.1">
                 <source>pel.legal.dispositions.step.1</source>
                 <target>Dispositions légales (étape 1 sur 7) - Plainte en ligne</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.dispositions.step.1.with.appointment">
+                <source>pel.legal.dispositions.step.1.with.appointment</source>
+                <target>Dispositions légales (étape 1 sur 8) - Plainte en ligne</target>
             </trans-unit>
             <trans-unit id="pel.what.is.the.date.of.the.infraction">
                 <source>pel.what.is.the.date.of.the.infraction</source>
@@ -2434,6 +2458,10 @@
                 <source>pel.description.of.facts.step.3</source>
                 <target>Description des faits (étape 3 sur 7) - Plainte en ligne</target>
             </trans-unit>
+            <trans-unit id="pel.description.of.facts.step.3.with.appointment">
+                <source>pel.description.of.facts.step.3.with.appointment</source>
+                <target>Description des faits (étape 3 sur 8) - Plainte en ligne</target>
+            </trans-unit>
             <trans-unit id="pel.further.information">
                 <source>pel.further.information</source>
                 <target>Complément d'informations</target>
@@ -2446,6 +2474,10 @@
                 <source>pel.summary.of.complaint.title</source>
                 <target>Récapitulatif de la plainte (étape 6 sur 7) - Plainte en ligne</target>
             </trans-unit>
+            <trans-unit id="pel.summary.of.complaint.title.with.appointment">
+                <source>pel.summary.of.complaint.title.with.appointment</source>
+                <target>Récapitulatif de la plainte (étape 6 sur 8) - Plainte en ligne</target>
+            </trans-unit>
             <trans-unit id="pel.registered.complaint">
                 <source>pel.registered.complaint</source>
                 <target>Plainte enregistrée</target>
@@ -2453,6 +2485,10 @@
             <trans-unit id="pel.registered.complaint.title">
                 <source>pel.registered.complaint.title</source>
                 <target>Plainte enregistrée (étape 7 sur 7) - Plainte en ligne</target>
+            </trans-unit>
+            <trans-unit id="pel.registered.complaint.title.with.appointment">
+                <source>pel.registered.complaint.title.with.appointment</source>
+                <target>Plainte enregistrée (étape 8 sur 8) - Plainte en ligne</target>
             </trans-unit>
             <trans-unit id="pel.vehicle.category">
                 <source>pel.vehicle.category</source>
