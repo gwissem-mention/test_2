@@ -2478,6 +2478,10 @@
                 <source>pel.degradation.description</source>
                 <target>Description des dégradations</target>
             </trans-unit>
+            <trans-unit id="pel.do.you.want.to.make.an.appointment.with.an.agent">
+                <source>pel.do.you.want.to.make.an.appointment.with.an.agent</source>
+                <target>Souhaitez-vous cependant prendre un rendez-vous avec un agent ?</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

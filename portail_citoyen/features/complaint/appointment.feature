@@ -53,7 +53,8 @@ Feature:
         And I click the "label[for=additional_information_cctvAvailable_0]" element
         And I press "additional_information_submit"
         Then I should be on "/porter-plainte/recapitulatif"
-        When I follow "appointment_submit"
+        When I click the "label[for=summary_appointmentAsked_0]" element
+        And I press "summary_submit"
         Then I should be on "/porter-plainte/rendez-vous"
 
     Scenario: I should see the informative text
@@ -154,7 +155,7 @@ Feature:
         And I click the "label[for=additional_information_cctvAvailable_0]" element
         And I press "additional_information_submit"
         Then I should be on "/porter-plainte/recapitulatif"
-        When I follow "summary_submit"
+        When I press "summary_submit"
         Then I should be on "/porter-plainte/rendez-vous"
         When I press "appointment_submit"
         Then I should be on "/porter-plainte/rendez-vous"
@@ -299,12 +300,6 @@ Feature:
         And I should see the key "pel.accessibility.information.provided.by" translated
         And I should see the key "pel.acces.libre.api" translated
 
-    Scenario: If the appointment is not required, I should have a button to make an appointment
-        When I follow "Étape précédente"
-        Then I should be on "/porter-plainte/recapitulatif"
-        And I should see "Prenez un rendez-vous avec un agent"
-        And I should see "Continuer"
-
     Scenario: If the appointment is required, I should only have a "Continue" button
         When I follow "Étape précédente"
         Then I should be on "/porter-plainte/recapitulatif"
@@ -314,13 +309,13 @@ Feature:
         And I fill in "facts_victimOfViolenceText" with "Violence informations"
         And I press "facts_submit_recap"
         Then I should be on "/porter-plainte/recapitulatif"
-        And I should not see "Prenez un rendez-vous avec un agent"
         And I should see "Continuer"
 
     Scenario: I can make an appointment when it is not required
         When I follow "Étape précédente"
         Then I should be on "/porter-plainte/recapitulatif"
-        When I follow "appointment_submit"
+        When I click the "label[for=summary_appointmentAsked_0]" element
+        And I press "summary_submit"
         Then I should be on "/porter-plainte/rendez-vous"
         When I press "appointment_submit"
         Then I should be on "/porter-plainte/fin"
@@ -328,5 +323,6 @@ Feature:
     Scenario: I can finish the complaint without making an appointment if it is not required
         When I follow "Étape précédente"
         Then I should be on "/porter-plainte/recapitulatif"
-        When I follow "summary_submit"
+        When I click the "label[for=summary_appointmentAsked_1]" element
+        And I press "summary_submit"
         Then I should be on "/porter-plainte/fin"

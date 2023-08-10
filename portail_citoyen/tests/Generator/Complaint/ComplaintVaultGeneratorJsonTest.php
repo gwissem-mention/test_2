@@ -446,6 +446,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
             ],
             'appointment' => [
                 'appointmentContactText' => 'Entre 10h et 14h les lundi',
+                'appointmentAsked' => null,
             ],
             'franceConnected' => false,
             'affectedService' => '66459',
@@ -895,6 +896,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
     //            ],
     //            'appointment' => [
     //                'appointmentContactText' => 'Entre 10h et 14h les lundi',
+    //                'appointmentAsked' => null,
     //            ],
     //            'franceConnected' => false,
     //            'affectedService' => '66459',
@@ -1360,6 +1362,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
             ],
             'appointment' => [
                 'appointmentContactText' => 'Entre 10h et 14h les lundi',
+                'appointmentAsked' => null,
             ],
             'franceConnected' => false,
             'affectedService' => '66459',
