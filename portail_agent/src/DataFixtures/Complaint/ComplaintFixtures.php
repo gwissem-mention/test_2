@@ -335,6 +335,16 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                     ->setFiles(['blank.pdf', 'iphone.png'])
             )
             ->addObject(
+                (new MultimediaObject())
+                    ->setStatus(AbstractObject::STATUS_DEGRADED)
+                    ->setNature('Multimédia')
+                    ->setLabel('Console')
+                    ->setBrand('Sony')
+                    ->setModel('Playstation 4')
+                    ->setSerialNumber('1234567890')
+                    ->setDescription('Description console')
+            )
+            ->addObject(
                 (new AdministrativeDocument())
                     ->setStatus(AbstractObject::STATUS_STOLEN)
                     ->setType('Permis de conduire')

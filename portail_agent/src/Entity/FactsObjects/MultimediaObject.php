@@ -51,6 +51,15 @@ class MultimediaObject extends AbstractObject
     #[ORM\Column(nullable: true)]
     private ?bool $mobileInsured = null;
 
+    #[ORM\Column(nullable: false)]
+    private ?bool $owned = true;
+
+    #[ORM\Column(nullable: true)]
+    private ?string $ownerLastname = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?string $ownerFirstname = null;
+
     public function getLabel(): ?string
     {
         return $this->label;
@@ -191,6 +200,42 @@ class MultimediaObject extends AbstractObject
     public function setMobileInsured(?bool $mobileInsured): self
     {
         $this->mobileInsured = $mobileInsured;
+
+        return $this;
+    }
+
+    public function isOwned(): ?bool
+    {
+        return $this->owned;
+    }
+
+    public function setOwned(?bool $owned): self
+    {
+        $this->owned = $owned;
+
+        return $this;
+    }
+
+    public function getOwnerLastname(): ?string
+    {
+        return $this->ownerLastname;
+    }
+
+    public function setOwnerLastname(?string $ownerLastname): self
+    {
+        $this->ownerLastname = $ownerLastname;
+
+        return $this;
+    }
+
+    public function getOwnerFirstname(): ?string
+    {
+        return $this->ownerFirstname;
+    }
+
+    public function setOwnerFirstname(?string $ownerFirstname): self
+    {
+        $this->ownerFirstname = $ownerFirstname;
 
         return $this;
     }

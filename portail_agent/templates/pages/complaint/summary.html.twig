@@ -464,9 +464,23 @@
         <li>
             <strong>{{ 'pel.number'|trans }} {{ index }}</strong> : {{ object.nature }} - {{ object.label }}
             - {{ object.model }} - {{ object.brand }}
-            - {{ object.amount|format_currency('EUR', {fraction_digit: 0}) }} - {{ object.operator }}
+            - {{ object.amount|format_currency('EUR', {fraction_digit: 0}) }}
+            {% if object.operator %}
+                - {{ object.operator }}
+            {% endif %}
+            {% if object.serialNumber %}
+                - {{ object.serialNumber }}
+            {% endif %}
             {% if object.description is not null %}
                 - {{ object.description }}
+            {% endif %}
+            {% if object.owned is same as(false) %}
+                <ul class="m-0">
+                    {% if object.ownerLastname is not null and object.ownerFirstname is not null %}
+                        <li>{{ 'pel.owner.lastname.firstname'|trans }} :
+                            <strong>{{ object.ownerLastname }} {{ object.ownerFirstname }}</strong></li>
+                    {% endif %}
+                </ul>
             {% endif %}
             {% if object.stillOnWhenMobileStolen is not null %}
                 <ul class="m-0">

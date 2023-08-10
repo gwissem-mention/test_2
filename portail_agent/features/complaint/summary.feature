@@ -130,7 +130,13 @@ Feature:
         And I should see "Blouson"
         And I should see "Blouson Adidas de couleur bleu"
         And I should see "100 €"
-        And I should see "Vous avez ajouté 5 objets pour un montant total de 18 099 €"
+        And I should see "Multimédia"
+        And I should see "Console"
+        And I should see "Playstation 4"
+        And I should see "Sony"
+        And I should see "1234567890"
+        And I should see "Description console"
+        And I should see "Vous avez ajouté 6 objets pour un montant total de 18 099 €"
         And I should see the key "pel.additional.informations" translated
         And I should see the key "pel.facts.witnesses" translated
         And I should see "Description du témoin n°1"

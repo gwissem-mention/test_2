@@ -51,7 +51,7 @@ class ComplaintFileParser
         $this->objectsParser->setComplaintFrontId($complaint->getFrontId());
         foreach ($complaintJson->objects as $objects) {
             foreach ($objects as $object) {
-                $complaint->addObject($this->objectsParser->parse($object));
+                $complaint->addObject($this->objectsParser->parse($object, $complaintJson));
             }
         }
 

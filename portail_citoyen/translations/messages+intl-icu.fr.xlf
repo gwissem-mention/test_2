@@ -1474,6 +1474,10 @@
                 <source>pel.object.category.mobile.phone</source>
                 <target>Téléphone portable</target>
             </trans-unit>
+            <trans-unit id="pel.object.category.multimedia">
+                <source>pel.object.category.multimedia</source>
+                <target>Multimédia</target>
+            </trans-unit>
             <trans-unit id="pel.object.category.registered.vehicle">
                 <source>pel.object.category.registered.vehicle</source>
                 <target>Véhicules immatriculés</target>
@@ -1573,6 +1577,18 @@
             <trans-unit id="pel.outer.path">
                 <source>pel.outer.path</source>
                 <target>Chemin extérieur depuis la voirie jusqu'à l'entrée</target>
+            </trans-unit>
+            <trans-unit id="pel.owner.firstname">
+                <source>pel.owner.firstname</source>
+                <target>Prénom du propriétaire</target>
+            </trans-unit>
+            <trans-unit id="pel.owner.lastname">
+                <source>pel.owner.lastname</source>
+                <target>Nom du propriétaire</target>
+            </trans-unit>
+            <trans-unit id="pel.owner.lastname.firstname">
+                <source>pel.owner.lastname.firstname</source>
+                <target>Nom et Prénom du propriétaire</target>
             </trans-unit>
             <trans-unit id="pel.parking.on.the.premises">
                 <source>pel.parking.on.the.premises</source>

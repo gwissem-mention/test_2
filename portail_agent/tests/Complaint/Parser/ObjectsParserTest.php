@@ -16,6 +16,30 @@ class ObjectsParserTest extends KernelTestCase
 {
     private const TEST_FILE_DIR = 'var/complaints/123456789/';
 
+    private const COMPLAINT_JSON = <<<JSON
+{
+    "identity":
+	{
+	    "declarantStatus":
+		{
+			"code": 1,
+			"label": "pel.complaint.identity.victim"
+		},
+	    "consentContactElectronics": false,
+		"civilState":
+		{
+			"civility":
+			{
+				"code": 1,
+				"label": "pel.m"
+			},
+			"birthName": "DUPONT",
+			"firstnames": "Charles"
+        }
+    }
+}
+JSON;
+
     private const OBJECTS_JSON = <<<JSON
 {
     "objects": [
@@ -96,7 +120,9 @@ class ObjectsParserTest extends KernelTestCase
             "pinEnabledWhenMobileStolen": null,
             "mobileInsured": null,
             "allowOperatorCommunication": null,
-            "degradationDescription": null
+            "degradationDescription": null,
+            "ownerLastname": null,
+            "ownerFirstname": null
         },
         {
             "status": {
@@ -142,7 +168,7 @@ class ObjectsParserTest extends KernelTestCase
                 "label": "pel.stolen"
             },
             "category": {
-                "code": 3,
+                "code": 7,
                 "label": "pel.object.category.multimedia"
             },
             "label": "PC",
@@ -151,7 +177,7 @@ class ObjectsParserTest extends KernelTestCase
             "phoneNumberLine": null,
             "operator": null,
             "serialNumber": null,
-            "description": null,
+            "description": "Description PC",
             "quantity": null,
             "bank": null,
             "bankAccountNumber": null,
@@ -172,7 +198,9 @@ class ObjectsParserTest extends KernelTestCase
             "pinEnabledWhenMobileStolen": true,
             "mobileInsured": true,
             "allowOperatorCommunication": true,
-            "degradationDescription": null
+            "degradationDescription": null,
+            "ownerLastname": "DURAND",
+            "ownerFirstname": "Charles"
         },
         {
             "status": {
@@ -210,7 +238,9 @@ class ObjectsParserTest extends KernelTestCase
             "pinEnabledWhenMobileStolen": null,
             "mobileInsured": null,
             "allowOperatorCommunication": null,
-            "degradationDescription": "Rétroviseur cassé"
+            "degradationDescription": "Rétroviseur cassé",
+            "ownerLastname": null,
+            "ownerFirstname": null
         },
         {
             "status": {
@@ -248,7 +278,9 @@ class ObjectsParserTest extends KernelTestCase
             "pinEnabledWhenMobileStolen": null,
             "mobileInsured": null,
             "allowOperatorCommunication": null,
-            "degradationDescription": "Rétroviseur cassé"
+            "degradationDescription": "Rétroviseur cassé",
+            "ownerLastname": null,
+            "ownerFirstname": null
         },
         {
             "status": {
@@ -286,7 +318,9 @@ class ObjectsParserTest extends KernelTestCase
             "pinEnabledWhenMobileStolen": null,
             "mobileInsured": null,
             "allowOperatorCommunication": null,
-            "degradationDescription": null
+            "degradationDescription": null,
+            "ownerLastname": null,
+            "ownerFirstname": null
         },
         {
             "status": {
@@ -307,7 +341,7 @@ class ObjectsParserTest extends KernelTestCase
             },
             "operator": "SFR",
             "serialNumber": "111222333343",
-            "description": null,
+            "description": "Description téléphone",
             "quantity": null,
             "bank": null,
             "bankAccountNumber": null,
@@ -328,7 +362,9 @@ class ObjectsParserTest extends KernelTestCase
             "pinEnabledWhenMobileStolen": true,
             "mobileInsured": true,
             "allowOperatorCommunication": true,
-            "degradationDescription": null
+            "degradationDescription": null,
+            "ownerLastname": null,
+            "ownerFirstname": null
         }
     ]
 }
@@ -360,21 +396,25 @@ JSON;
 
     public function testParseAll(): void
     {
+        /** @var object $complaintJson */
+        $complaintJson = json_decode(self::COMPLAINT_JSON);
         $objectsInput = json_decode(self::OBJECTS_JSON);
         $objectsParser = $this->getParser();
 
-        $objects = $objectsParser->parseAll($objectsInput->objects);
+        $objects = $objectsParser->parseAll($objectsInput->objects, $complaintJson);
 
         $this->assertIsArray($objects);
     }
 
     public function testParseAdministrativeDocument(): void
     {
+        /** @var object $complaintJson */
+        $complaintJson = json_decode(self::COMPLAINT_JSON);
         $objectsInput = json_decode(self::OBJECTS_JSON);
         $objectsParser = $this->getParser();
 
         // $objects[0] is an AdministrativeDocument
-        $administrativeDocument = $objectsParser->parse($objectsInput->objects[0]);
+        $administrativeDocument = $objectsParser->parse($objectsInput->objects[0], $complaintJson);
 
         $this->assertInstanceOf(AdministrativeDocument::class, $administrativeDocument);
 
@@ -404,11 +444,13 @@ JSON;
 
     public function testParsePaymentMethod(): void
     {
+        /** @var object $complaintJson */
+        $complaintJson = json_decode(self::COMPLAINT_JSON);
         $objectsInput = json_decode(self::OBJECTS_JSON);
         $objectsParser = $this->getParser();
 
         // $objects[1] is a PaymentMethod
-        $paymentMethod = $objectsParser->parse($objectsInput->objects[1]);
+        $paymentMethod = $objectsParser->parse($objectsInput->objects[1], $complaintJson);
 
         $this->assertInstanceOf(PaymentMethod::class, $paymentMethod);
         $this->assertSame('Carte bleu', $paymentMethod->getType());
@@ -418,11 +460,14 @@ JSON;
 
     public function testParseMultimediaObject(): void
     {
+        /** @var object $complaintJson */
+        $complaintJson = json_decode(self::COMPLAINT_JSON);
         $objectsInput = json_decode(self::OBJECTS_JSON);
         $objectsParser = $this->getParser();
 
         // $objects[2] is a MultimediaObject
-        $object = $objectsParser->parse($objectsInput->objects[2]);
+        $object = $objectsParser->parse($objectsInput->objects[2], $complaintJson);
+
         $this->assertInstanceOf(MultimediaObject::class, $object);
         $this->assertSame('PC', $object->getLabel());
         $this->assertSame('Dell', $object->getBrand());
@@ -430,10 +475,13 @@ JSON;
         $this->assertNull($object->getOperator());
         $this->assertNull($object->getSerialNumber());
         $this->assertNull($object->getPhoneNumber());
+        $this->assertSame('Description PC', $object->getDescription());
+        $this->assertSame('DURAND', $object->getOwnerLastname());
+        $this->assertSame('Charles', $object->getOwnerFirstname());
         $this->assertSame(4000.0, $object->getAmount());
 
         // $objects[6] is a MultimediaObject
-        $object = $objectsParser->parse($objectsInput->objects[6]);
+        $object = $objectsParser->parse($objectsInput->objects[6], $complaintJson);
 
         $this->assertInstanceOf(MultimediaObject::class, $object);
         $this->assertSame('iPhone 11', $object->getLabel());
@@ -442,20 +490,25 @@ JSON;
         $this->assertSame('SFR', $object->getOperator());
         $this->assertSame('111222333343', $object->getSerialNumber());
         $this->assertSame('+33 649956685', $object->getPhoneNumber());
+        $this->assertSame('Description téléphone', $object->getDescription());
         $this->assertSame(1200.0, $object->getAmount());
         $this->assertTrue($object->isKeyboardLockedWhenMobileStolen());
         $this->assertTrue($object->isMobileInsured());
         $this->assertTrue($object->isStillOnWhenMobileStolen());
         $this->assertTrue($object->isPinEnabledWhenMobileStolen());
+        $this->assertNull($object->getOwnerLastname());
+        $this->assertNull($object->getOwnerFirstname());
     }
 
     public function testParseRegisteredVehicle(): void
     {
+        /** @var object $complaintJson */
+        $complaintJson = json_decode(self::COMPLAINT_JSON);
         $objectsInput = json_decode(self::OBJECTS_JSON);
         $objectsParser = $this->getParser();
 
         // $objects[3] is a Registered Vehicle
-        $object = $objectsParser->parse($objectsInput->objects[3]);
+        $object = $objectsParser->parse($objectsInput->objects[3], $complaintJson);
 
         $this->assertInstanceOf(Vehicle::class, $object);
         $this->assertSame('Voiture', $object->getLabel());
@@ -472,11 +525,13 @@ JSON;
 
     public function testParseUnregisteredVehicle(): void
     {
+        /** @var object $complaintJson */
+        $complaintJson = json_decode(self::COMPLAINT_JSON);
         $objectsInput = json_decode(self::OBJECTS_JSON);
         $objectsParser = $this->getParser();
 
         // $objects[4] is a Unregistered Vehicle
-        $object = $objectsParser->parse($objectsInput->objects[4]);
+        $object = $objectsParser->parse($objectsInput->objects[4], $complaintJson);
 
         $this->assertInstanceOf(Vehicle::class, $object);
         $this->assertSame('Vélo', $object->getLabel());
@@ -492,11 +547,13 @@ JSON;
 
     public function testParseSimpleObject(): void
     {
+        /** @var object $complaintJson */
+        $complaintJson = json_decode(self::COMPLAINT_JSON);
         $objectsInput = json_decode(self::OBJECTS_JSON);
         $objectsParser = $this->getParser();
 
         // $objects[5] is a SimpleObject
-        $object = $objectsParser->parse($objectsInput->objects[5]);
+        $object = $objectsParser->parse($objectsInput->objects[5], $complaintJson);
 
         $this->assertInstanceOf(SimpleObject::class, $object);
         $this->assertSame('oeil d\'ophidia', $object->getNature());

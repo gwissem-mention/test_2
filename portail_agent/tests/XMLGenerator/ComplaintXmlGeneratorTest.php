@@ -168,6 +168,16 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
                     ->setAmount(1329)
             )
             ->addObject(
+                (new MultimediaObject())
+                    ->setLabel('Console')
+                    ->setNature('Multimédia')
+                    ->setBrand('Sony')
+                    ->setModel('Playstation 4')
+                    ->setSerialNumber('1324354657')
+                    ->setDescription('Description console')
+                    ->setAmount(499)
+            )
+            ->addObject(
                 (new AdministrativeDocument())
                     ->setType('Permis de conduire')
             )
@@ -407,7 +417,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
     {
         $this->assertStringContainsString('<Objet>', $this->xmlContent);
         //        $this->assertStringContainsString('<Objets_Prejudice_Evaluer>1</Objets_Prejudice_Evaluer>', $this->xmlContent);
-        $this->assertStringContainsString('<Objets_Prejudice_Estimation>17428</Objets_Prejudice_Estimation>', $this->xmlContent);
+        $this->assertStringContainsString('<Objets_Prejudice_Estimation>17927</Objets_Prejudice_Estimation>', $this->xmlContent);
         $this->assertStringNotContainsString('<Objet_Divers>', $this->xmlContent);
         $this->assertStringContainsString('</Objet>', $this->xmlContent);
     }
@@ -461,6 +471,9 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Objet_Multimedia_Description/>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_Multimedia_Nmr_Tel>06 21 43 65 87</Objet_Multimedia_Nmr_Tel>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_Multimedia_Operateur>SFR</Objet_Multimedia_Operateur>', $this->xmlContent);
+        $this->assertStringContainsString('<Objet_Multimedia_Nature>Multimédia</Objet_Multimedia_Nature>', $this->xmlContent);
+        $this->assertStringContainsString('<Objet_Multimedia_Numeros_Serie>1324354657</Objet_Multimedia_Numeros_Serie>', $this->xmlContent);
+        $this->assertStringContainsString('<Objet_Multimedia_Description>Description console</Objet_Multimedia_Description>', $this->xmlContent);
         //        $this->assertStringContainsString('<Objet_Multimedia_Opposition>Oui</Objet_Multimedia_Opposition>', $this->xmlContent);
         //        $this->assertStringContainsString('<Objet_Multimedia_Nmr_Sim>1234567809</Objet_Multimedia_Nmr_Sim>', $this->xmlContent);
         // $this->assertStringContainsString('<Objet_Multimedia_Identite_Victime>Non</Objet_Multimedia_Identite_Victime>', $this->xmlContent);

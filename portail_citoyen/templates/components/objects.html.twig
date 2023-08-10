@@ -53,7 +53,7 @@
                     {% endif %}
 
                     {{ include('components/_partials/_objects/_payment_ways_fields.html.twig') }}
-                    {{ include('components/_partials/_objects/_mobile_phone_fields.html.twig') }}
+                    {{ include('components/_partials/_objects/_multimedia_fields.html.twig') }}
                     {{ include('components/_partials/_objects/_vehicle_fields.html.twig') }}
                     {{ include('components/_partials/_objects/_other_fields.html.twig') }}
 
@@ -64,6 +64,7 @@
                     {% endif %}
 
                     {{ include('components/_partials/_objects/_mobile_fields.html.twig') }}
+
                     {% if form.objects|length > 1 %}
                         <div class="fr-mt-12v">
                             {{ form_widget(object.vars.button_delete, {attr: {'data-action': 'live#action', 'data-action-name': 'removeObject(index=' ~ loop.index0 ~ ') removeCollectionItem(name=objects[objects], index=' ~ loop.index0 ~ ')'}}) }}

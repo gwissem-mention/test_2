@@ -18,6 +18,7 @@ class ObjectsParser
     private const MOBILE_PHONE = 3;
     private const REGISTERED_VEHICLE = 4;
     private const UNREGISTERED_VEHICLE = 5;
+    private const MULTIMEDIA = 7;
 
     private string $complaintFrontId;
 
@@ -39,22 +40,22 @@ class ObjectsParser
      *
      * @return array<AbstractObject>
      */
-    public function parseAll(array $objectsInput): array
+    public function parseAll(array $objectsInput, object $complaintJson): array
     {
         $objects = [];
         foreach ($objectsInput as $objectInput) {
-            $this->parse($objectInput);
+            $this->parse($objectInput, $complaintJson);
         }
 
         return $objects;
     }
 
-    public function parse(object $objectInput): AbstractObject
+    public function parse(object $objectInput, object $complaintJson): AbstractObject
     {
         $object = match ($objectInput->category->code) {
             self::DOCUMENT => $this->parseAdministrativeDocument($objectInput),
             self::PAYMENT_METHOD => $this->parsePaymentMethod($objectInput),
-            self::MOBILE_PHONE => $this->parseMultimediaObject($objectInput),
+            self::MOBILE_PHONE, self::MULTIMEDIA => $this->parseMultimediaObject($objectInput, $complaintJson),
             self::REGISTERED_VEHICLE, self::UNREGISTERED_VEHICLE => $this->parseVehicle($objectInput),
             default => $this->parseSimpleObject($objectInput),
         };
@@ -98,7 +99,7 @@ class ObjectsParser
         return $documentObject;
     }
 
-    public function parseMultimediaObject(object $objectInput): MultimediaObject
+    public function parseMultimediaObject(object $objectInput, object $complaintJson): MultimediaObject
     {
         $multimediaObject = new MultimediaObject();
 
@@ -107,13 +108,26 @@ class ObjectsParser
             ->setNature($objectInput->category->label)
             ->setBrand($objectInput->brand)
             ->setModel($objectInput->model)
-            ->setOperator($objectInput->operator)
             ->setSerialNumber($objectInput->serialNumber)
-            ->setDescription($objectInput->description)
-            ->setStillOnWhenMobileStolen($objectInput->stillOnWhenMobileStolen)
-            ->setPinEnabledWhenMobileStolen($objectInput->pinEnabledWhenMobileStolen)
-            ->setMobileInsured($objectInput->mobileInsured)
-            ->setKeyboardLockedWhenMobileStolen($objectInput->keyboardLockedWhenMobileStolen);
+            ->setDescription($objectInput->description);
+
+        if (self::MOBILE_PHONE === $objectInput->category->code) {
+            $multimediaObject
+                ->setOperator($objectInput->operator)
+                ->setStillOnWhenMobileStolen($objectInput->stillOnWhenMobileStolen)
+                ->setPinEnabledWhenMobileStolen($objectInput->pinEnabledWhenMobileStolen)
+                ->setMobileInsured($objectInput->mobileInsured)
+                ->setKeyboardLockedWhenMobileStolen($objectInput->keyboardLockedWhenMobileStolen);
+        }
+
+        if (self::MULTIMEDIA === $objectInput->category->code) {
+            if ($objectInput->ownerLastname != $complaintJson->identity->civilState->birthName || $objectInput->ownerFirstname != $complaintJson->identity->civilState->firstnames) {
+                $multimediaObject
+                    ->setOwned(false)
+                    ->setOwnerLastname($objectInput->ownerLastname)
+                    ->setOwnerFirstname($objectInput->ownerFirstname);
+            }
+        }
 
         if ($objectInput->phoneNumberLine) {
             $multimediaObject->setPhoneNumber($this->phoneParser->parse($objectInput->phoneNumberLine));

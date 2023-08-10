@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace App\Form\Objects;
 
+use App\AppEnum\DeclarantStatus;
 use App\AppEnum\RegisteredVehicleNature;
 use App\Form\Model\Objects\ObjectModel;
 use App\Form\PhoneType;
+use App\Session\SessionHandler;
 use App\Thesaurus\ObjectCategoryThesaurusProviderInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -37,6 +39,7 @@ class ObjectType extends AbstractType
 
     public function __construct(
         private readonly ObjectCategoryThesaurusProviderInterface $objectCategoryThesaurusProvider,
+        private readonly SessionHandler $sessionHandler,
     ) {
         $this->objectCategories = $this->objectCategoryThesaurusProvider->getChoices();
     }
@@ -80,7 +83,7 @@ class ObjectType extends AbstractType
                 $form = $event->getForm();
                 $this->addCategoryFields($form, $objectModel?->getCategory());
 
-                if (ObjectModel::STATUS_STOLEN === $objectModel?->getStatus() && !empty($objectModel->getSerialNumber())) {
+                if (ObjectModel::STATUS_STOLEN === $objectModel?->getStatus() && !empty($objectModel->getSerialNumber()) && $objectModel->getCategory() === $this->objectCategories['pel.object.category.mobile.phone']) {
                     $this->addAdditionalMobileFields($form);
                 }
 
@@ -102,7 +105,7 @@ class ObjectType extends AbstractType
                 /** @var string $category */
                 $category = $data['category'] ?? '';
 
-                if (!empty($status) && (string) ObjectModel::STATUS_STOLEN === $status && !empty($data['serialNumber'])) {
+                if (!empty($status) && (string) ObjectModel::STATUS_STOLEN === $status && !empty($data['serialNumber']) && !empty($category) && (int) $category === $this->objectCategories['pel.object.category.mobile.phone']) {
                     $this->addAdditionalMobileFields($form);
                 } else {
                     $this->removeAdditionalMobileFields($form);
@@ -150,6 +153,7 @@ class ObjectType extends AbstractType
         $this->removeAmountField($form, $objectModel);
         $this->removeLabelField($form, $objectModel);
         $this->removeCategoryDocumentFields($form, $objectModel);
+        $this->removeCategoryMultimediaFields($form, $objectModel);
 
         switch ($category) {
             case $this->objectCategories['pel.object.category.documents']:
@@ -162,6 +166,11 @@ class ObjectType extends AbstractType
                 break;
             case $this->objectCategories['pel.object.category.mobile.phone']:
                 $this->addCategoryMobilePhoneFields($form);
+                $this->addAmountField($form);
+                $this->addLabelField($form);
+                break;
+            case $this->objectCategories['pel.object.category.multimedia']:
+                $this->addCategoryMultimediaFields($form);
                 $this->addAmountField($form);
                 $this->addLabelField($form);
                 break;
@@ -489,14 +498,16 @@ class ObjectType extends AbstractType
             ->remove('model')
             ->remove('phoneNumberLine')
             ->remove('operator')
-            ->remove('serialNumber');
+            ->remove('serialNumber')
+            ->remove('description');
 
         $objectModel
             ?->setBrand(null)
             ->setModel(null)
             ->setPhoneNumberLine(null)
             ->setOperator(null)
-            ->setSerialNumber(null);
+            ->setSerialNumber(null)
+            ->setDescription(null);
     }
 
     private function removeCategoryOtherFields(FormInterface $form, ?ObjectModel $objectModel): void
@@ -625,5 +636,92 @@ class ObjectType extends AbstractType
             ->setPinEnabledWhenMobileStolen(null)
             ->setMobileInsured(null)
             ->setAllowOperatorCommunication(null);
+    }
+
+    private function addCategoryMultimediaFields(FormInterface $form): void
+    {
+        $form
+            ->add('brand', TextType::class, [
+                'constraints' => [
+                    new NotBlank(),
+                    new Length([
+                        'max' => 20,
+                    ]),
+                ],
+                'label' => 'pel.brand',
+            ])
+            ->add('model', TextType::class, [
+                'constraints' => [
+                    new Length([
+                        'max' => 20,
+                    ]),
+                ],
+                'label' => 'pel.model',
+                'required' => false,
+            ])
+            ->add('serialNumber', TextType::class, [
+                'constraints' => [
+                    new Length([
+                        'max' => 20,
+                    ]),
+                ],
+                'label' => 'pel.serial.number',
+                'required' => false,
+            ])
+            ->add('description', TextType::class, [
+                'label' => 'pel.description',
+                'required' => false,
+            ]);
+
+        if (DeclarantStatus::CorporationLegalRepresentative->value === $this->sessionHandler->getComplaint()?->getIdentity()?->getDeclarantStatus()) {
+            $this->addOwnerInformation($form);
+        }
+    }
+
+    private function removeCategoryMultimediaFields(FormInterface $form, ?ObjectModel $objectModel): void
+    {
+        $form
+            ->remove('brand')
+            ->remove('model')
+            ->remove('serialNumber')
+            ->remove('description');
+
+        $objectModel
+            ?->setBrand(null)
+            ->setModel(null)
+            ->setSerialNumber(null)
+            ->setDescription(null);
+
+        $this->removeOwnerInformation($form, $objectModel);
+    }
+
+    private function addOwnerInformation(FormInterface $form): void
+    {
+        $form
+            ->add('ownerFirstname', TextType::class, [
+                'label' => 'pel.owner.firstname',
+                'empty_data' => $this->sessionHandler->getComplaint()?->getIdentity()?->getCivilState()->getFirstnames(),
+                'constraints' => [
+                    new NotBlank(),
+                ],
+            ])
+            ->add('ownerLastname', TextType::class, [
+                'label' => 'pel.owner.lastname',
+                'empty_data' => $this->sessionHandler->getComplaint()?->getIdentity()?->getCivilState()->getBirthName(),
+                'constraints' => [
+                    new NotBlank(),
+                ],
+            ]);
+    }
+
+    private function removeOwnerInformation(FormInterface $form, ObjectModel $objectModel = null): void
+    {
+        $form
+            ->remove('ownerLastname')
+            ->remove('ownerFirstname');
+
+        $objectModel
+            ?->setOwnerLastname(null)
+            ->setOwnerFirstname(null);
     }
 }
