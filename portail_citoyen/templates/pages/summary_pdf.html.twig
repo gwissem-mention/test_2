@@ -7,6 +7,8 @@
     {% endfor %}
 {% endblock %}
 
+{% block javascripts %}{% endblock %}
+
 {% block layout %}
     <div class="container-logo">
         <img src="{{ app.environment is same as('dev') ? pdf_assets_host ~ asset('build/images/logo_ministere.png') : absolute_url(asset('build/images/logo_ministere.png')) }}" height="126" width="180">
@@ -84,4 +86,3 @@
         {% endif %}
     {% endif %}
 {% endblock %}
-

@@ -4,5 +4,7 @@ knp_snappy:
         binary:     '%env(WKHTMLTOPDF_PATH)%'
         options:
             enable-local-file-access: true
+            username: '%env(HTTP_BASIC_AUTH_USERNAME)%'
+            password: '%env(HTTP_BASIC_AUTH_PASSWORD)%'
     image:
         enabled:    false
