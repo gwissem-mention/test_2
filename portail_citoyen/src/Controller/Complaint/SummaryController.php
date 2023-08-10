@@ -19,8 +19,6 @@ class SummaryController extends AbstractController
             return $this->redirectToRoute('home');
         }
 
-        return $this->render('pages/summary.html.twig', [
-            'complaint' => $sessionHandler->getComplaint(),
-        ]);
+        return $this->render('pages/summary.html.twig');
     }
 }

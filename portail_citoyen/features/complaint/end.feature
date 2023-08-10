@@ -54,7 +54,7 @@ Feature:
         And I click the "label[for=additional_information_cctvAvailable_0]" element
         And I press "additional_information_submit"
         Then I should be on "/porter-plainte/recapitulatif"
-        When I follow "summary_submit"
+        When I press "summary_submit"
         Then I should be on "/porter-plainte/rendez-vous"
         When I fill in "appointment_appointmentContactText" with "Between 10am and 12am"
         And I press "Continuer"

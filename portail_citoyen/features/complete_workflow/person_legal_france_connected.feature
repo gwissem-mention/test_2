@@ -209,7 +209,7 @@
 #        And I should see the key "pel.total" translated
 #        And I should see the key "pel.total.message.amount" translated
 #        And I should see "4 biens déclarés pour un montant total de 200,00 €"
-#        When I follow "summary_submit"
+#        When I press "summary_submit"
 #        Then I should be on "/porter-plainte/rendez-vous"
 #        When I fill in "appointment_appointmentContactText" with "Between 10am and 12am"
 #        And I press "Continuer"

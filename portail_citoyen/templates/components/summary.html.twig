@@ -1,0 +1,125 @@
+<div {{ attributes.add(stimulus_controller('complaint-submit')) }}>
+    {{ form_start(form, {attr: {'data-action': 'live#action complaint-submit#submit','data-action-name': 'prevent|submit'}}) }}
+    <div class="fr-pt-10v fr-pb-6v fr-px-6v fr-pt-md-12v fr-px-md-20v">
+        {{ include('common/_summary/_header.html.twig') }}
+    </div>
+    <hr>
+    <div class="fr-pt-6v fr-pb-12v fr-px-6v fr-pt-md-6v fr-px-md-20v fr-pb-md-6v">
+        <div class="flex justify-between items-center fr-mb-8v fr-mb-md-12v">
+            <div class="flex items-center gap-x-4">
+                <img src="{{ asset('build/images/national-identity-card.svg') }}" width="40" height="36">
+                <h2 class="fr-mb-0 text-2xl">{{ 'pel.complaint.your.identity'|trans }}</h2>
+            </div>
+            <a class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-edit-line fr-hidden fr-unhidden-md fr-py-1v min-h-fit" href="{{ path('complaint_identity', {'fromSummary':1}) }}" id="update-identity">{{ 'pel.update'|trans }}</a>
+        </div>
+        <ul class="fr-pl-8v fr-my-0">
+            {{ include('common/_summary/_identity.html.twig', {
+                civilState: complaint.identity.civilState,
+                contactInformation: complaint.identity.contactInformation,
+                declarantStatus: complaint.identity.declarantStatus,
+                consentContactElectronics: complaint.identity.consentContactElectronics
+            }) }}
+        </ul>
+        {# Person Legal Representative must be hidden for the experimentation #}
+        {#                    {% if complaint.identity.declarantStatus is same as(constant('App\\AppEnum\\DeclarantStatus::PersonLegalRepresentative').value) %} #}
+        {#                        <p>{{ 'pel.represented.person.identity'|trans }}</p> #}
+        {#                        {{ include('common/_summary/_identity.html.twig', { #}
+        {#                            civilState: complaint.identity.representedPersonCivilState, #}
+        {#                            contactInformation: complaint.identity.representedPersonContactInformation #}
+        {#                        }) }} #}
+        {#                    {% endif %} #}
+        {% if complaint.identity.declarantStatus is same as(constant('App\\AppEnum\\DeclarantStatus::CorporationLegalRepresentative').value) %}
+            {{ include('common/_summary/_corporation.html.twig') }}
+        {% endif %}
+        <a class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-edit-line md:hidden fr-py-1v min-h-fit" href="{{ path('complaint_identity', {'fromSummary':1}) }}" id="update-identity">{{ 'pel.update'|trans }}</a>
+    </div>
+    <hr>
+    <div class="fr-pt-4v fr-pb-12v fr-px-6v fr-pt-md-6v fr-px-md-20v fr-pb-md-6v">
+        <div class="flex justify-between items-center fr-mb-8v fr-mb-md-12v">
+            <div class="flex items-center gap-x-2">
+                <img src="{{ asset('build/images/document.svg') }}" class="-ml-2" height="48">
+                <h2 class="fr-mb-0 text-2xl">{{ 'pel.facts.description'|trans }}</h2>
+            </div>
+            <a class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-edit-line fr-hidden fr-unhidden-md fr-py-1v min-h-fit" href="{{ path('complaint_facts', {'fromSummary':1}) }}" id="update-facts">{{ 'pel.update'|trans }}</a>
+        </div>
+        {{ include('common/_summary/_facts.html.twig') }}
+        <a class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-edit-line md:hidden fr-py-1v min-h-fit" href="{{ path('complaint_facts', {'fromSummary':1}) }}" id="update-facts">{{ 'pel.update'|trans }}</a>
+    </div>
+    <hr>
+    <div class="fr-pt-4v fr-pb-12v fr-px-6v fr-pt-md-6v fr-px-md-20v fr-pb-md-6v">
+        <div class="flex justify-between items-center fr-mb-8v fr-mb-md-6v">
+            <div class="flex items-center gap-x-4">
+                <img src="{{ asset('build/images/vehicle-registration-document.svg') }}">
+                <h2 class="fr-mb-0 text-2xl">{{ 'pel.goods.concerned.by.the.offence'|trans }}</h2>
+            </div>
+            <a class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-edit-line fr-hidden fr-unhidden-md fr-py-1v min-h-fit" href="{{ path('complaint_objects', {'fromSummary':1}) }}" id="update-objects">{{ 'pel.update'|trans }}</a>
+        </div>
+        {{ include('common/_summary/_objects.html.twig') }}
+        <a class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-edit-line md:hidden fr-mt-2v fr-py-1v min-h-fit" href="{{ path('complaint_objects', {'fromSummary':1}) }}" id="update-objects">{{ 'pel.update'|trans }}</a>
+    </div>
+    <hr>
+    <div class="fr-pt-4v fr-pb-12v fr-px-6v fr-pt-md-6v fr-px-md-20v fr-pb-md-6v">
+        <div class="flex justify-between items-center fr-mb-8v fr-mb-md-12v">
+            <div class="flex items-center gap-x-4">
+                <img src="{{ asset('build/images/error.svg') }}">
+                <h2 class="fr-mb-0 text-2xl">{{ 'pel.additional.factual.information'|trans }}</h2>
+            </div>
+            <a class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-edit-line fr-hidden fr-unhidden-md fr-py-1v min-h-fit" href="{{ path('complaint_additional_information', {'fromSummary':1}) }}" id="update-additional-information">{{ 'pel.update'|trans }}</a>
+        </div>
+        {{ include('common/_summary/_additionnal_informations.html.twig') }}
+        <a class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-edit-line md:hidden  fr-mt-2v fr-py-1v min-h-fit" href="{{ path('complaint_additional_information') }}" id="update-additional-information">{{ 'pel.update'|trans }}</a>
+    </div>
+    <hr>
+    <div class="fr-pt-4v fr-pb-12v fr-px-6v fr-pt-md-6v fr-px-md-20v">
+        {% if complaint.isAppointmentRequired is same as(false) %}
+            <p class="text-xl/8 fr-mb-0">
+                <b>{{ 'pel.summary.appointment.is.not.required'|trans }}</b>
+            </p>
+            <a class="text-sm/6 fr-text-title--blue-france" href="{{ path('faq') }}" target="_blank" title="{{ 'pel.appointment.needed.if.more.title'|trans }}">{{ 'pel.appointment.needed.if.more'|trans }}</a>
+            <div class="fr-mt-6v">
+                {{ form_row(form.appointmentAsked) }}
+            </div>
+        {% else %}
+            <p class="text-xl/8 fr-mb-0">
+                <b>{{ 'pel.summary.appointment.is.required'|trans }}</b>
+            </p>
+            <a class="text-sm/6 fr-text-title--blue-france" href="{{ path('faq') }}" target="_blank" title="{{ 'pel.appointment.needed.if.more.title'|trans }}">{{ 'pel.appointment.needed.if.more'|trans }}</a>
+        {% endif %}
+    </div>
+    <hr class="fr-pb-0">
+    <div class="fr-background-alt--beige-gris-galet fr-pt-10v fr-pb-2v fr-px-6v fr-pt-md-12v fr-px-md-20v ">
+        <div class="flex justify-between items-center fr-mb-8v fr-mb-md-6v">
+            <div class="flex items-center gap-x-4">
+                <img src="{{ asset('build/images/sign-document.svg') }}">
+                <h2 class="fr-mb-0 text-2xl">{{ 'pel.declaration.confirmation'|trans }}</h2>
+            </div>
+        </div>
+        <ul class="fr-pl-8v">
+            <li class="text-xl/8 fr-pb-8v">
+                {{ 'pel.i.confirm.declaration.is.complete'|trans|raw }}
+            </li>
+            <li class="text-xl/8 fr-pb-8v">
+                {{ 'pel.i.am.inform.of.article.434.26'|trans|raw }}
+                <p class="fr-mb-0 text-xl/8">{{ 'pel.i.am.inform.of.article.434.26.information.on.false.declarations'|trans }}</p>
+            </li>
+            <li class="text-xl/8 fr-pb-8v">
+                {{ 'pel.i.consent.use.of.data.for.fsi'|trans|raw }}
+            </li>
+            <li class="text-xl/8 fr-pb-8v">
+                {{ 'pel.i.confirm.i.want.to.file.a.complaint'|trans|raw }}
+            </li>
+        </ul>
+    </div>
+    <hr>
+    <div class="fr-pt-4v fr-px-6v fr-pb-12v fr-pt-md-6v fr-px-md-20v text-center">
+        <div class="flex flex-wrap items-center justify-start gap-x-4 gap-y-4 md:justify-between md:flex-nowrap">
+            <a href="{{ path('complaint_additional_information') }}" class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-arrow-left-line fr-text--lg py-3 md:py-2.5 pr-6 pl-[18px] before:content-[''] before:w-6 before:h-6">
+                <span class="fr-hidden fr-unhidden-md">{{ 'pel.previous'|trans }}</span>
+            </a>
+            <button type="submit" class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line fr-text--lg py-2.5 pr-[18px] pl-6 after:w-6 after:h-6" id="summary_submit" data-action="live#action complaint-submit#submit" data-action-name="prevent|submit">
+                {{ 'pel.next'|trans }}
+            </button>
+        </div>
+    </div>
+    {{ form_end(form, {render_rest: false}) }}
+</div>
