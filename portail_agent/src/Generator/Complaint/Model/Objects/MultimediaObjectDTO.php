@@ -39,6 +39,7 @@ class MultimediaObjectDTO extends AbstractObjectDTO
             'Objet_Multimedia_Description' => $this->description,
             'Objet_Multimedia_Nmr_Tel' => $this->phoneNumber,
             'Objet_Multimedia_Operateur' => $this->operator,
+            'Objet_Multimedia_Identite_Victime' => 'Oui',
 //            'Objet_Multimedia_Opposition' => $this->opposition,
 //            'Objet_Multimedia_Nmr_Sim' => $this->simNumber,
             // 'Objet_Multimedia_Identite_Victime' => $this->identityVictim,
