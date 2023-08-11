@@ -148,7 +148,7 @@ services:
   ###< doctrine/doctrine-bundle ###
 
   redis-citoyen:
-    image: redislabs/rejson:latest
+    image: redis:5.0.14
 
 volumes:
   minio:
