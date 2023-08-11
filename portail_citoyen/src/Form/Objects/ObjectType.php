@@ -668,9 +668,21 @@ class ObjectType extends AbstractType
                 'label' => 'pel.serial.number',
                 'required' => false,
             ])
-            ->add('description', TextType::class, [
+            ->add('description', TextareaType::class, [
+                'constraints' => [
+                    new Length([
+                        'min' => 0,
+                        'max' => 255,
+                    ]),
+                ],
                 'label' => 'pel.description',
                 'required' => false,
+                'attr' => [
+                    'class' => 'fr-input',
+                    'data-counter-target' => 'parent',
+                    'minlength' => 0,
+                    'maxlength' => 255,
+                ],
             ]);
 
         if (DeclarantStatus::CorporationLegalRepresentative->value === $this->sessionHandler->getComplaint()?->getIdentity()?->getDeclarantStatus()) {
