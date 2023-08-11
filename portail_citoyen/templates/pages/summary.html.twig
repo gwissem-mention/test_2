@@ -9,7 +9,13 @@
     {% set next_step_title = 'pel.appointment.booking'|trans %}
 {% endif %}
 
-{% block title %}{{ 'pel.summary.of.complaint.title'|trans }}{% endblock %}
+{% block title %}
+    {% if isAppointmentRequiredOrAsked is same as(false) %}
+        {{ 'pel.summary.of.complaint.title'|trans }}
+    {% else %}
+        {{ 'pel.summary.of.complaint.title.with.appointment'|trans }}
+    {% endif %}
+{% endblock %}
 
 {% block content %}
     <div data-controller="form">

@@ -24,9 +24,11 @@
             {{ current_step_title }}
         </div>
         <div class="fr-stepper__steps fr-mt-3v" data-fr-current-step="{{ current_step_number }}" data-fr-steps="{{ steps_count }}"></div>
-        <p class="fr-stepper__details text-white">
-            <span class="fr-text--bold">{{ 'pel.next.step'|trans }} : </span>{{ next_step_title }}
-        </p>
+        {% if next_step_title is defined %}
+            <p class="fr-stepper__details text-white">
+                <span class="fr-text--bold">{{ 'pel.next.step'|trans }} : </span>{{ next_step_title }}
+            </p>
+        {% endif %}
     </div>
 </div>
 <div class="fr-grid-row fr-col-md-4 flex md:flex-col fr-hidden fr-unhidden-md">
