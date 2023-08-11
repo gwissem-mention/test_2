@@ -208,7 +208,8 @@ Feature:
         Given I am on "/plainte/recapitulatif/101"
         When I press "Rejeter"
         Then I should see a ".modal[aria-modal=true]" element
-        And I should see the key "pel.you.will.reject.the.declaration" translated
+        And I should see the key "pel.reject.the.declaration" translated
+        And I should see the key "pel.select.the.reason.of.rejection" translated
         And I should see the key "pel.other" translated
         And I should see the key "pel.reorientation.other.solution" translated
         And I should see the key "pel.drafting.victim.to.another.teleservice" translated
@@ -220,8 +221,8 @@ Feature:
         And I should see the key "pel.victime.carence.at.appointment" translated
         And I should see the key "pel.victime.carence.at.appointment.booking" translated
         And I should see the key "pel.abandonment.of.the.procedure.by.victim" translated
-        And I should see the key "pel.free.text" translated
-        And I should see the key "pel.back" translated
+        And I should see the key "pel.comment" translated
+        And I should see the key "pel.cancel" translated
         And I should see the key "pel.validate.the.refusal" translated
         When I press "complaint-reject-button-back"
         Then I should not see a ".modal[aria-modal=true]" element
@@ -257,18 +258,12 @@ Feature:
     @javascript
     Scenario: I can toggle the send to LRP modal
         Given I am on "/plainte/recapitulatif/103"
-        When I press "Envoi à LRP"
+        When I press "Valider"
         Then I should see a ".modal[aria-modal=true]" element
         And I should see the key "pel.validation.sending.complain.to.lrp" translated
-        And I should see the key "pel.complaint.assignation" translated
-        And I should see the key "pel.complaint.validation.sending.to.lrp" translated
-        And I should see the key "pel.receipt.report" translated
-        And I should see the key "pel.complaint.validation.course.to.lrp" translated
-        And I should see the key "pel.send.compatible.data" translated
-        And I should see the key "pel.data.integration" translated
-        And I should see the key "pel.data.modification.by.agent" translated
-        And I should see the key "pel.report.generation.in.lrp" translated
-        And I should see the key "pel.back" translated
+        And I should see the key "pel.to.simplify.the.process" translated
+        And I should see the key "pel.after.treatment.in.lrp" translated
+        And I should see the key "pel.cancel" translated
         And I should see the key "pel.validate.the.sending.to.the.lrp" translated
         When I press "complaint-send-to-lrp-button-back"
         Then I should not see a ".modal[aria-modal=true]" element
@@ -276,7 +271,7 @@ Feature:
     @javascript
     Scenario: I can validate the send to LRP action successfully
         Given I am on "/plainte/recapitulatif/103"
-        When I press "Envoi à LRP"
+        When I press "Valider"
         Then I should see a ".modal[aria-modal=true]" element
         When I press "Valider l'envoi vers le LRP"
         Then I should not see a ".modal[aria-modal=true]" element
@@ -293,23 +288,19 @@ Feature:
     @javascript
     Scenario: I can toggle the send report to victim modal
         Given I am on "/plainte/recapitulatif/111"
-        When I press "Envoyer PV"
+        When I press "Clôturer"
         Then I should see a ".modal[aria-modal=true]" element
-        And I should see the key "pel.please.drop.the.report.to.send.to.the.victim" translated
-        And I should see the key "pel.complaint.assignation" translated
-        And I should see the key "pel.complaint.validation.sending.to.lrp" translated
-        And I should see the key "pel.drop.report.and.send.to.the.victim" translated
+        And I should see the key "pel.dropzone.default.message" translated
         And I should see the key "pel.drop.the.report.then.validate.the.sending.to.the.victim" translated
-        And I should see the key "pel.drag.and.drop.or.click.here.to.browse" translated
-        And I should see the key "pel.back" translated
-        And I should see the key "pel.send.report.to.the.victim" translated
+        And I should see the key "pel.cancel" translated
+        And I should see the key "pel.close.declaration" translated
         When I press "complaint-send-report-to-the-victim-button-back"
         Then I should not see a ".modal[aria-modal=true]" element
 
     @javascript
     Scenario: I can see form errors when the send report file field is empty
         Given I am on "/plainte/recapitulatif/111"
-        When I press "Envoyer PV"
+        When I press "Clôturer"
         Then I should see a ".modal[aria-modal=true]" element
         When I press "complaint-send-report-to-the-victim-button-validate"
         Then I should see a ".modal[aria-modal=true]" element
@@ -319,7 +310,7 @@ Feature:
     @javascript
     Scenario: I can see form errors when I submit another type file than PDF
         Given I am on "/plainte/recapitulatif/111"
-        When I press "Envoyer PV"
+        When I press "Clôturer"
         Then I should see a ".modal[aria-modal=true]" element
         When I attach the file "blank.xls" to ".dz-hidden-input" field
         When I press "complaint-send-report-to-the-victim-button-validate"
@@ -329,7 +320,7 @@ Feature:
     @javascript
     Scenario: I can submit the send report form successfully
         Given I am on "/plainte/recapitulatif/111"
-        When I press "Envoyer PV"
+        When I press "Clôturer"
         Then I should see a ".modal[aria-modal=true]" element
         When I attach the file "blank.pdf" to ".dz-hidden-input" field
         And I press "complaint-send-report-to-the-victim-button-validate"
@@ -340,7 +331,7 @@ Feature:
     @javascript
     Scenario: I can submit the send report form successfully with a png file
         Given I am on "/plainte/recapitulatif/111"
-        When I press "Envoyer PV"
+        When I press "Clôturer"
         Then I should see a ".modal[aria-modal=true]" element
         When I attach the file "iphone.png" to ".dz-hidden-input" field
         And I press "complaint-send-report-to-the-victim-button-validate"
@@ -351,7 +342,7 @@ Feature:
     @javascript
     Scenario: I can submit the send report form successfully with a jpg file and a pdf file
         Given I am on "/plainte/recapitulatif/111"
-        When I press "Envoyer PV"
+        When I press "Clôturer"
         Then I should see a ".modal[aria-modal=true]" element
         When I attach the file "iphone.png" to ".dz-hidden-input" field
         And I attach the file "blank.pdf" to ".dz-hidden-input" field
@@ -365,9 +356,11 @@ Feature:
     Scenario: I can toggle the assign modal
         Given I am on "/plainte/recapitulatif/93"
         When I press "Attribuer à"
+        And I wait 2000 ms
         Then I should see a ".modal[aria-modal=true]" element
-        And I should see the key "pel.select.the.agent.to.assign" translated
-        And I should see the key "pel.back" translated
+        And I should see the key "pel.assign.to.agent" translated
+        And I should see the key "pel.select.the.agent.you.want.to.assign.the.declaration" translated
+        And I should see the key "pel.cancel" translated
         And I should see the key "pel.validate.the.assignment" translated
         When I press "complaint-assign-button-back"
         Then I should not see a ".modal[aria-modal=true]" element
@@ -390,12 +383,11 @@ Feature:
     @javascript @flaky
     Scenario: I can submit the reassign form successfully
         Given I am on "/plainte/recapitulatif/93"
-        When I press "Attribuer à"
+        When I press "complaint-reassign-button"
         And I fill in the autocomplete "assign_assignedTo-ts-control" with "Julie" and click "4"
         And I press "Valider l'attribution"
         And I wait 2000 ms
         And I press "complaint-reassign-button"
-        And I click the "#modal-complaint-assign .clear-button" element
         And I fill in the autocomplete "assign_assignedTo-ts-control" with "Philippe" and click "5"
         And I press "Valider la réattribution"
         Then I should not see a ".modal[aria-modal=true]" element

@@ -1,27 +1,23 @@
 {% embed "common/_modal.html.twig" with {'id':'complaint-assign', 'size':'lg'} %}
     {% block attr_sup %}data-complaint-target="assignmentModal"{% endblock %}
+
     {% block title %}
-        {{ (assignedTo is not null ? 'pel.select.the.agent.to.reassign':'pel.select.the.agent.to.assign')|trans }}
+        <div class="fs-4">{{ (assignedTo is not null ? 'pel.reassign.to.agent': 'pel.assign.to.agent')|trans }}</div>
+        <div class="small text-grey mb-4">{{ (assignedTo is not null ? 'pel.select.the.agent.you.want.to.reassign.the.declaration': 'pel.select.the.agent.you.want.to.assign.the.declaration')|trans }}</div>
     {% endblock %}
+
     {% block body %}
-        {{ form(assignForm, { attr: { 'data-complaint-target': 'assignmentForm' }}) }}
+        <div class="px-4">
+            {{ form(assignForm, { attr: { 'data-complaint-target': 'assignmentForm', 'class': 'toto' }}) }}
+        </div>
     {% endblock %}
+
     {% block footer %}
-        <button
-            type="button"
-            class="btn btn-outline-primary btn--modal"
-            id="complaint-assign-button-back"
-            data-bs-dismiss="modal"
-        >
-            {{ 'pel.back'|trans }}
-        </button>
-        <button
-            type="button"
-            class="btn btn-success btn--modal"
-            data-action="complaint#assign"
-            data-complaint-url-param="{{ path('complaint_assign', {'id':complaintId}) }}"
-        >
-            {{ (assignedTo is not null ? 'pel.validate.the.reassignment':'pel.validate.the.assignment')|trans }}
-        </button>
+        <div class="px-4">
+            <button type="button" class="fr-btn fr-btn--secondary me-3" id="complaint-assign-button-back" data-bs-dismiss="modal">{{ 'pel.cancel'|trans }}</button>
+            <button type="button" class="fr-btn" data-action="complaint#assign" data-complaint-url-param="{{ path('complaint_assign', {'id':complaintId}) }}">
+                {{ (assignedTo is not null ? 'pel.validate.the.reassignment':'pel.validate.the.assignment')|trans }}
+            </button>
+        </div>
     {% endblock %}
 {% endembed %}

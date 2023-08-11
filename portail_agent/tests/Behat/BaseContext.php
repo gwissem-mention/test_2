@@ -308,12 +308,13 @@ final class BaseContext extends MinkContext
         $this->retryStep(function () use ($field, $query, $foundValue) {
             $session = $this->getSession();
             $element = $session->getPage()->findField($field);
+
             if (null === $element) {
                 throw new ElementNotFoundException($session, null, 'named', $field);
             }
 
-            $element->setValue($query);
             $element->focus();
+            $element->setValue($query);
 
             $xpath = $element->getXpath();
             $driver = $session->getDriver();

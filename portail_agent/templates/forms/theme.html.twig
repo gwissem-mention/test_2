@@ -1,4 +1,183 @@
+{% use "form_div_layout.html.twig" %}
+
+{% block choice_row %}
+    {% if expanded is same as(true) %}
+        <div class="fr-form-group m-0">
+            <fieldset class="{{ html_classes('fr-fieldset', 'fr-input-group', {'fr-fieldset--inline': inline is defined and inline is same as(true),'fr-fieldset--error': errors is not empty}) }}" {% if errors is not empty %}role="group" aria-labelledby="legend-{{ form.vars.id }} form-errors-{{ form.vars.id }}"{% endif %}>
+                <legend class="fr-fieldset__legend fr-text--regular" id="legend-{{ form.vars.id }}">
+                    {{ form_label(form) }}
+                </legend>
+                <div class="fr-fieldset__content" {{ block('attributes') }}>
+                    {% for child in form.children %}
+                        <div class="{{ html_classes({'fr-radio-group': multiple is same as(false), 'fr-checkbox-group': multiple is same as(true), 'fr-radio-rich':rich is defined and rich is same as(true)}) }}">
+                            {{ form_widget(child) }}
+                            {{ form_label(child, null, {'required_help':false}) }}
+                        </div>
+                    {% endfor %}
+                </div>
+                {{ form_errors(form) }}
+            </fieldset>
+        </div>
+    {% else %}
+        <div class="fr-form-group">
+            <div class="{{ html_classes('fr-select-group', {'fr-select-group--error':  errors is not empty}) }}">
+                {{ form_label(form) }}
+                {{ form_widget(form, {'attr':{'class':html_classes(attr.class ?? '', 'autocomplete' not in form.vars['block_prefixes'] ? 'fr-select' : '',{'fr-select--error':errors is not empty})}}) }}
+                {{ form_errors(form) }}
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block checkbox_row %}
+    <div class="{{ html_classes('fr-checkbox-group', {'fr-checkbox-group--error': errors is not empty}) }}">
+        {{ form_widget(form, {'attr':{'aria-describedby':errors is not empty ? 'form-errors-'~ form.vars.id :''}}) }}
+        {{ form_label(form) }}
+    </div>
+{% endblock %}
+
+{% block text_row %}
+    {{ block('input_row') }}
+{% endblock %}
+
+{% block date_row %}
+    {{ block('input_row') }}
+{% endblock %}
+
+{% block number_row %}
+    {{ block('input_row') }}
+{% endblock %}
+
+{% block money_row %}
+    <div class="{{ html_classes('fr-input-group', {'fr-input-group--error': errors is not empty}) }}">
+        {{ form_label(form) }}
+        <div class="fr-input-wrap fr-icon-money-euro-circle-line">
+            {{ form_widget(form, {'attr':{'class':html_classes(attr.class ?? '', 'fr-input', {'fr-input--error':errors is not empty}),'aria-describedby':errors is not empty ? 'form-errors-'~ form.vars.id :''}}) }}
+        </div>
+        {{ form_errors(form) }}
+    </div>
+{% endblock %}
+
+{% block phone_row %}
+    <div class="{{ html_classes('fr-input-group', {'fr-input-group--error': form.number.vars.errors is not empty}) }}" {{ stimulus_controller('intl-tel-input') }} data-live-id="{{ random() }}">
+        {{ form_label(form.number) }}
+        <div class="[&_.iti]:w-full [&_.iti]:md:w-1/2">
+            {{ form_widget(form.number, {'attr':{'class':html_classes(attr.class ?? '', 'fr-input', {'fr-input--error':form.number.vars.errors is not empty}),'aria-describedby':form.number.vars.errors is not empty ? 'form-errors-'~ form.vars.id :''}}) }}
+            {{ form_errors(form.number) }}
+            {{ form_widget(form.code) }}
+            {{ form_widget(form.country) }}
+        </div>
+    </div>
+{% endblock %}
+
+{%- block form_label -%}
+    {% set label_attr = label_attr|merge({class: (label_attr.class|default('') ~ ' fr-label')|trim}) -%}
+    {% if label is not same as(false) -%}
+        {% if not compound -%}
+            {% set label_attr = label_attr|merge({'for': id}) %}
+        {%- endif -%}
+        {% if required -%}
+            {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+        {%- endif -%}
+        {% if label is empty -%}
+            {%- if label_format is not empty -%}
+                {% set label = label_format|replace({'%name%': name, '%id%': id}) %}
+            {%- else -%}
+                {% set label = name|humanize %}
+            {%- endif -%}
+        {%- endif -%}
+        <{{ element|default('label') }}{% if label_attr %}{% with { attr: label_attr } %}{{ block('attributes') }}{% endwith %}{% endif %}>
+        {%- if translation_domain is same as(false) -%}
+            {%- if label_html is same as(false) -%}
+                {{- label -}}
+            {%- else -%}
+                {{- label|raw -}}
+            {%- endif -%}
+        {%- else -%}
+            {%- if label_html is same as(false) -%}
+                {{- label|trans(label_translation_parameters, translation_domain) -}}
+            {%- else -%}
+                {{- label|trans(label_translation_parameters, translation_domain)|raw -}}
+            {%- endif -%}
+        {%- endif -%}
+        {% if required is defined and required is not empty and required_help is defined and required_help is not empty -%}
+            &nbsp;<span class="fr-label--error font-bold">*</span>
+        {% endif %}
+        {{ form_help(form) }}
+        </{{ element|default('label') }}>
+    {%- endif -%}
+{%- endblock form_label -%}
+
+{% block form_help %}
+    {% if form.vars.help is not null %}
+        <span class="fr-hint-text fr-mb-2v">{{ form.vars.help|trans }}</span>
+    {% endif %}
+{% endblock %}
+
+{% block form_errors %}
+    {% if errors is not empty %}
+        <p class="fr-error-text" id="form-errors-{{ form.vars.id }}">
+            {% for error in errors %}
+                {{ error.message|trans }}
+                {% if not loop.last %}
+                    {# TO DO : Remove breakline #}
+                    <br>
+                {% endif %}
+            {% endfor %}
+        </p>
+    {% endif %}
+{% endblock %}
+
+{% block input_row %}
+    <div class="{{ html_classes('fr-input-group', {'fr-input-group--error': errors is not empty}) }}">
+        {{ form_label(form) }}
+        {{ form_widget(form, {'attr':{'class':html_classes(attr.class ?? '', 'fr-input', {'fr-input--error':errors is not empty}),'aria-describedby':errors is not empty ? 'form-errors-'~ form.vars.id :''}}) }}
+        {{ form_errors(form) }}
+    </div>
+{% endblock %}
+
 {% block dropzone_row %}
     {{ form_label(form) }}
-    <div class="dropzone" data-controller="dropzone" data-dropzone-name="{{ form.parent.vars.name }}[{{ form.vars.name }}]" data-dropzone-max-files="{{ form.vars.max_files }}" data-dropzone-max-file-size="{{ form.vars.max_file_size }}" data-dropzone-accepted-files="{{ form.vars.accepted_files }}" data-dropzone-add-remove-links="{{ form.vars.add_remove_links }}" data-dropzone-default-message="{{ 'pel.drag.and.drop.or.click.here.to.browse'|trans }}" data-dropzone-remove-file="{{ 'pel.dropzone.remove.file'|trans }}" data-dropzone-file-too-big="{{ 'pel.dropzone.file.too.big'|trans }}" data-dropzone-invalid-file-type="{{ 'pel.dropzone.invalid.file.type'|trans }}" data-dropzone-max-files-exceeded="{{ 'pel.dropzone.max.files.exceeded'|trans }}" data-dropzone-cancel-upload="{{ 'pel.dropzone.cancel.upload'|trans }}" data-dropzone-cancel-upload-confirmation="{{ 'pel.dropzone.cancel.upload.confirmation'|trans }}"></div>
+    <div class="dropzone" data-controller="dropzone" data-dropzone-name="{{ form.parent.vars.name }}[{{ form.vars.name }}]" data-dropzone-max-files="{{ form.vars.max_files }}" data-dropzone-max-file-size="{{ form.vars.max_file_size }}" data-dropzone-accepted-files="{{ form.vars.accepted_files }}" data-dropzone-add-remove-links="{{ form.vars.add_remove_links }}" data-dropzone-default-message="{{ 'pel.dropzone.default.message'|trans }}" data-dropzone-remove-file="{{ 'pel.dropzone.remove.file'|trans }}" data-dropzone-file-too-big="{{ 'pel.dropzone.file.too.big'|trans }}" data-dropzone-invalid-file-type="{{ 'pel.dropzone.invalid.file.type'|trans }}" data-dropzone-max-files-exceeded="{{ 'pel.dropzone.max.files.exceeded'|trans }}" data-dropzone-cancel-upload="{{ 'pel.dropzone.cancel.upload'|trans }}" data-dropzone-cancel-upload-confirmation="{{ 'pel.dropzone.cancel.upload.confirmation'|trans }}"></div>
 {% endblock %}
+
+{% block submit_widget %}
+    {% set attr = attr|merge({class: (attr.class|default('') ~ ' fr-btn')|trim}) -%}
+    {{- parent() -}}
+{% endblock %}
+
+{% block live_collection_entry_row %}
+    <div class="fr-py-2w">
+        {{ block('form_row') }}
+        {%- if form.vars.name is not same as("0") and button_delete is defined and not button_delete.rendered -%}
+            {{ form_row(button_delete) }}
+        {%- endif -%}
+    </div>
+{% endblock %}
+
+{%- block _objects_objects_entry_label_label -%}
+    {{ form_label(form, 'pel.object'|trans) }}
+{%- endblock -%}
+
+{%- block _objects_objects_label -%}
+    {% set element = 'h2' %}
+    {{ block('form_label') }}
+{%- endblock -%}
+
+{%- block _objects_objects_entry_row -%}
+    {{ block('live_collection_entry_row') }}
+{%- endblock -%}
+
+{%- block _objects_objects_entry_files_row -%}
+    {{ component('file_upload', {
+        'parentIndex': form.parent.vars.name,
+        'inputId': 'object-files-'~form.parent.vars.name,
+        'inputLabel': form.vars.label|default('pel.files')|trans,
+        'inputHelp' : form.vars.help|default|trans
+    }) }}
+{%- endblock -%}
+
+
+{%- block _additional_information_witnesses_entry_phone_number_label -%}
+    {{ form_label(form, 'pel.witness.mobile'|trans({'%index%':(form.parent.parent.vars.name+1)})) }}
+{%- endblock -%}

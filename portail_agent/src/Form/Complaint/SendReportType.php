@@ -25,10 +25,10 @@ class SendReportType extends AbstractType
         if ($options['is_after_appointment']) {
             $builder
                 ->add('appointment_done', ChoiceType::class, [
-                    'label' => 'pel.do.you.confirm.that.you.made.the.appointment',
+                    'label' => false,
                     'choices' => [
-                        'pel.yes' => true,
-                        'pel.no' => false,
+                        'pel.the.appointment.took.place.in.visioconference' => true,
+                        'pel.the.appointment.took.place.on.site' => false,
                     ],
                     'expanded' => true,
                     'multiple' => false,
