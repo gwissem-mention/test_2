@@ -19,7 +19,7 @@
 {% if object.serialNumber is defined %}
     {{ form_row(object.serialNumber) }}
 {% endif %}
-{% if object.description is defined and object.category.vars.value is same as("3")%}
+{% if object.description is defined and object.category.vars.value in ["3", "7"] %}
     <div class="fr-mb-4v">
         {% embed 'embed/counter.html.twig' with {
             'parent': 'objects_objects_0_description',
