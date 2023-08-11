@@ -553,7 +553,7 @@ citoyen-e2e:
             alias: database-e2e-citoyen
         -   name: selenium/standalone-chrome:4.5.3
             alias: chrome-citoyen
-        -   name: redislabs/rejson:latest
+        -   name: redis:5.0.14
             alias: redis-citoyen
 
 citoyen-complaint-1-e2e:
@@ -588,7 +588,7 @@ citoyen-complaint-1-e2e:
             alias: database-e2e-citoyen
         -   name: selenium/standalone-chrome:4.5.3
             alias: chrome
-        -   name: redislabs/rejson:latest
+        -   name: redis:5.0.14
             alias: redis-citoyen
             
 citoyen-complaint-2-e2e:
@@ -623,7 +623,7 @@ citoyen-complaint-2-e2e:
             alias: database-e2e-citoyen
         -   name: selenium/standalone-chrome:4.5.3
             alias: chrome
-        -   name: redislabs/rejson:latest
+        -   name: redis:5.0.14
             alias: redis-citoyen            
 
 citoyen-complete-workflow-e2e:
@@ -658,7 +658,7 @@ citoyen-complete-workflow-e2e:
             alias: database-e2e-citoyen
         -   name: selenium/standalone-chrome:4.5.3
             alias: chrome
-        -   name: redislabs/rejson:latest
+        -   name: redis:5.0.14
             alias: redis-citoyen
 
 citoyen-flaky-e2e:
@@ -693,7 +693,7 @@ citoyen-flaky-e2e:
             alias: database-e2e-citoyen
         -   name: selenium/standalone-chrome:4.5.3
             alias: chrome
-        -   name: redislabs/rejson:latest
+        -   name: redis:5.0.14
             alias: redis-citoyen
 
 agent-e2e:
