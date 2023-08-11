@@ -112,7 +112,7 @@
             </trans-unit>
             <trans-unit id="pel.supervisor.has.refused.your.reassignment.request">
                 <source>pel.supervisor.has.refused.your.reassignment.request</source>
-                <target>{user} vient de refuser votre demande de réorientation vers un autre service pour la déclaration {declaration_number}</target>
+                <target>{user} vient de rejeter votre demande de réorientation vers un autre service pour la déclaration {declaration_number}</target>
             </trans-unit>
             <trans-unit id="pel.reminder.of.closing.of.pv">
                 <source>pel.reminder.of.closing.of.pv</source>
@@ -242,13 +242,17 @@
                 <source>pel.close</source>
                 <target>Fermer</target>
             </trans-unit>
+            <trans-unit id="pel.close.declaration">
+                <source>pel.close.declaration</source>
+                <target>Clôturer</target>
+            </trans-unit>
             <trans-unit id="pel.closed">
                 <source>pel.closed</source>
                 <target>Clôturée</target>
             </trans-unit>
             <trans-unit id="pel.close.after.appointment">
                 <source>pel.close.after.appointment</source>
-                <target>Clôturer le PV suite au RDV</target>
+                <target>Clôturer suite au RDV avec le déclarant</target>
             </trans-unit>
             <trans-unit id="pel.comment">
                 <source>pel.comment</source>
@@ -268,7 +272,7 @@
             </trans-unit>
             <trans-unit id="pel.comment.unit.reassignment.reject.reason">
                 <source>pel.comment.unit.reassignment.reject.reason</source>
-                <target>Motif de refus de réorientation de</target>
+                <target>Motif de rejet de réorientation de</target>
             </trans-unit>
             <trans-unit id="pel.complaint.online.portal">
                 <source>pel.complaint.online.portal</source>
@@ -357,10 +361,6 @@
             <trans-unit id="pel.description.of.facts">
                 <source>pel.description.of.facts</source>
                 <target>Description des faits</target>
-            </trans-unit>
-            <trans-unit id="pel.do.you.confirm.that.you.made.the.appointment">
-                <source>pel.do.you.confirm.that.you.made.the.appointment</source>
-                <target>Confirmez-vous que vous avez réalisé le rendez-vous avec le déclarant ?</target>
             </trans-unit>
             <trans-unit id="pel.do.you.have.informations.on.potential.suspects">
                 <source>pel.do.you.have.informations.on.potential.suspects</source>
@@ -828,7 +828,7 @@
             </trans-unit>
             <trans-unit id="pel.refusal.reason">
                 <source>pel.refusal.reason</source>
-                <target>Motif de refus</target>
+                <target>Motif de rejet</target>
             </trans-unit>
             <trans-unit id="pel.reject">
                 <source>pel.reject</source>
@@ -916,7 +916,7 @@
             </trans-unit>
             <trans-unit id="pel.send.report.to.the.victim.and.close">
                 <source>pel.send.report.to.the.victim.and.close</source>
-                <target>Envoyer PV</target>
+                <target>Envoyer et clôturer</target>
             </trans-unit>
             <trans-unit id="pel.send.to.lrp">
                 <source>pel.send.to.lrp</source>
@@ -952,7 +952,7 @@
             </trans-unit>
             <trans-unit id="pel.the.declaration.has.been.refused">
                 <source>pel.the.declaration.has.been.refused</source>
-                <target>La déclaration a bien été refusée </target>
+                <target>La déclaration a bien été rejetée </target>
             </trans-unit>
             <trans-unit id="pel.the.declaration.has.been.self.assigned">
                 <source>pel.the.declaration.has.been.self.assigned</source>
@@ -1096,7 +1096,7 @@
             </trans-unit>
             <trans-unit id="pel.validation.sending.complain.to.lrp">
                 <source>pel.validation.sending.complain.to.lrp</source>
-                <target>Validation de l'envoi de la plainte vers le LRP</target>
+                <target>Continuer le traitement dans LRP</target>
             </trans-unit>
             <trans-unit id="pel.check.unit.reassignment.asked">
                 <source>pel.check.unit.reassignment.asked</source>
@@ -1521,6 +1521,70 @@
             <trans-unit id="pel.download">
                 <source>pel.download</source>
                 <target>Télécharger</target>
+            </trans-unit>
+            <trans-unit id="pel.close.the.modal">
+                <source>pel.close.the.modal</source>
+                <target>Clôturer la fenêtre modale</target>
+            </trans-unit>
+            <trans-unit id="pel.cancel">
+                <source>pel.cancel</source>
+                <target>Annuler</target>
+            </trans-unit>
+            <trans-unit id="pel.reattribute.to.another.agent">
+                <source>pel.assign.to.agent</source>
+                <target>Attribuer à un agent</target>
+            </trans-unit>
+            <trans-unit id="pel.select.the.agent.you.want.to.assign.the.declaration">
+                <source>pel.select.the.agent.you.want.to.assign.the.declaration</source>
+                <target>Sélectionnez l'agent auquel vous souhaitez attribuer la déclaration</target>
+            </trans-unit>
+            <trans-unit id="pel.select.the.agent.you.want.to.assign.the.declarations">
+                <source>pel.select.the.agent.you.want.to.assign.the.declarations</source>
+                <target>Sélectionnez l'agent auquel vous souhaitez attribuer les déclarations</target>
+            </trans-unit>
+            <trans-unit id="pel.select.the.agent.you.want.to.reassign.the.declaration">
+                <source>pel.select.the.agent.you.want.to.reassign.the.declaration</source>
+                <target>Sélectionnez l'agent auquel vous souhaitez réattribuer la déclaration</target>
+            </trans-unit>
+            <trans-unit id="pel.reject.the.declaration">
+                <source>pel.reject.the.declaration</source>
+                <target>Rejeter la déclaration</target>
+            </trans-unit>
+            <trans-unit id="pel.reassign.to.agent">
+                <source>pel.reassign.to.agent</source>
+                <target>Réattribuer à un agent</target>
+            </trans-unit>
+            <trans-unit id="pel.to.simplify.the.process">
+                <source>pel.to.simplify.the.process</source>
+                <target>Pour simplifier votre démarche, copiez la référence de la déclaration ci-dessous :</target>
+            </trans-unit>
+            <trans-unit id="pel.after.treatment.in.lrp">
+                <source>pel.after.treatment.in.lrp</source>
+                <target>Après traitement dans LRP, revenez sur le logiciel back-office pour clôturer la déclaration.</target>
+            </trans-unit>
+            <trans-unit id="pel.select.the.reason.of.rejection">
+                <source>pel.select.the.reason.of.rejection</source>
+                <target>Sélectionnez le motif de rejet afin d'en informer le déclarant</target>
+            </trans-unit>
+            <trans-unit id="pel.close.the.declaration">
+                <source>pel.close.the.declaration</source>
+                <target>Clôturer la déclaration</target>
+            </trans-unit>
+            <trans-unit id="pel.dropzone.default.message">
+                <source>pel.dropzone.default.message</source>
+                <target>Glissez-déposez un document ou cliquez ci-dessous pour parcourir</target>
+            </trans-unit>
+            <trans-unit id="pel.indicate.the.situation">
+                <source>pel.indicate.the.situation</source>
+                <target>Indiquez la situation</target>
+            </trans-unit>
+            <trans-unit id="pel.the.appointment.took.place.in.visioconference">
+                <source>pel.the.appointment.took.place.in.visioconference</source>
+                <target>Le rendez-vous a eu lieu en visioconférence</target>
+            </trans-unit>
+            <trans-unit id="pel.the.appointment.took.place.on.site">
+                <source>pel.the.appointment.took.place.on.site</source>
+                <target>Le rendez-vous a eu lieu en personne</target>
             </trans-unit>
             <trans-unit id="pel.degradation.description">
                 <source>pel.degradation.description</source>

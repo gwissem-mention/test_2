@@ -33,7 +33,10 @@ class RejectType extends AbstractType
                 ]
             )
             ->add('refusalText', TextareaType::class, [
-                'label' => 'pel.free.text',
+                'label' => 'pel.comment',
+                'label_attr' => [
+                    'class' => 'mt-3',
+                ],
                 'required' => false,
                 'attr' => [
                     'minlength' => 100,
