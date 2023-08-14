@@ -23,11 +23,12 @@ class AdministrativeDocumentDTO extends AbstractObjectDTO
     private ?string $ownerStreetType;
     private ?string $ownerStreetName;
 
-    //    private string $issuingCountry;
+    private ?string $identityBirthDate;
 
+    //    private string $issuingCountry;
     //    private string $description;
 
-    public function __construct(AdministrativeDocument $object)
+    public function __construct(AdministrativeDocument $object, ?\DateTimeInterface $identityBirthDate)
     {
         // parent::__construct($object);
         $this->type = $object->getType() ?? '';
@@ -44,6 +45,7 @@ class AdministrativeDocumentDTO extends AbstractObjectDTO
         $this->ownerStreetNumber = $object->getOwnerAddressStreetNumber();
         $this->ownerStreetType = $object->getOwnerAddressStreetType();
         $this->ownerStreetName = $object->getOwnerAddressStreetName();
+        $this->identityBirthDate = $identityBirthDate?->format('d/m/Y');
         //        $this->description = $object->getDescription() ?? '';
         //        $this->issuingCountry = $object->getIssuingCountry() ?? '';
     }
@@ -64,7 +66,7 @@ class AdministrativeDocumentDTO extends AbstractObjectDTO
              'Objet_Doc_Admin_Identite_Nom' => $this->ownerLastname,
 //             'Objet_Doc_Admin_Identite_Nom_Marital' => $this->identityMarriedName,
              'Objet_Doc_Admin_Identite_Prenom' => $this->ownerFirstname,
-            // 'Objet_Doc_Admin_Identite_Naissance_Date' => $this->identityBirthDate,
+            'Objet_Doc_Admin_Identite_Naissance_Date' => $this->identityBirthDate,
             // 'Objet_Doc_Admin_Identite_Naissance' => $this->identityBirthCountry,
             // 'Objet_Doc_Admin_Identite_Naissance_Departement' => ($this->identityBirthDepartmentNumber && $this->identityBirthDepartment) ? $this->identityBirthDepartmentNumber.' - '.$this->identityBirthDepartment : null,
             // 'Objet_Doc_Admin_Identite_Naissance_Codepostal' => $this->identityBirthPostalCode,

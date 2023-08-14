@@ -80,7 +80,7 @@ class ComplaintXmlGenerator implements ComplaintGeneratorInterface
         foreach ($complaint->getObjects() as $object) {
             switch (true) {
                 case $object instanceof AdministrativeDocument:
-                    $objectXml = $this->arrayToXml($objectXml, (new AdministrativeDocumentDTO($object))->getArray());
+                    $objectXml = $this->arrayToXml($objectXml, (new AdministrativeDocumentDTO($object, $complaint->getIdentity()?->getBirthday()))->getArray());
                     break;
                 case $object instanceof MultimediaObject:
                     $objectXml = $this->arrayToXml($objectXml, (new MultimediaObjectDTO($object))->getArray());

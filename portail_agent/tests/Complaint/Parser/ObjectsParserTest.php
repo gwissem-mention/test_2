@@ -34,7 +34,13 @@ class ObjectsParserTest extends KernelTestCase
 				"label": "pel.m"
 			},
 			"birthName": "DUPONT",
-			"firstnames": "Charles"
+			"firstnames": "Charles",
+			"birthDate":
+			{
+				"date": "1980-01-01T00:00:00+00:00",
+				"timestamp": 315532800,
+				"timezone": "UTC"
+			}
         }
     }
 }
