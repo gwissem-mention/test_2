@@ -250,4 +250,4 @@ Feature:
         And I should see 10 ".background-blue" element
         When I click the "#rejected-filter" element
         Then I should see 11 "table#datatable tr" element
-        And I should see 20 ".background-red" element
+        And I should see 23 ".background-red" element

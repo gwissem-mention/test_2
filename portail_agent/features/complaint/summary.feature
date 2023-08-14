@@ -34,7 +34,7 @@ Feature:
         And I should see the key "pel.alert" translated
         And I should see "Alert de test trop longue"
         And I should see a "button[data-bs-toggle='modal']" element
-        And I should see 15 "button" element
+        And I should see 16 "button" element
         And I should see the key "pel.assign.declaration.to" translated
         And I should not see the key "pel.send.to.lrp" translated
         And I should not see the key "pel.reject" translated
@@ -243,7 +243,7 @@ Feature:
         And I should see the key "pel.the.declaration.has.been.refused" translated
         And I am on "/"
         When I click the "th:nth-of-type(10)" element
-        And I should see 25 ".background-red" element
+        And I should see 28 ".background-red" element
 
     @javascript
     Scenario: I can see form errors the reject form when reject_refusalText is too short
