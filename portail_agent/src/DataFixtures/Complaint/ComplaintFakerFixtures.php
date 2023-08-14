@@ -201,7 +201,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                     (new MultimediaObject())
                         ->setStatus(AbstractObject::STATUS_DEGRADED)
                         ->setLabel('Smartphone')
-                        ->setNature('Téléphone portable')
+                        ->setNature('TELEPHONE PORTABLE')
                         ->setBrand('Samsung')
                         ->setDescription('Un Samsung tout neuf')
                         ->setModel($this->faker->randomElement(['S20', 'S21', 'S22', 'S23']))
@@ -216,6 +216,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                 )->addObject(
                     (new MultimediaObject())
                         ->setStatus(AbstractObject::STATUS_STOLEN)
+                        ->setNature('AUTRE NATURE MULTIMEDIA')
                         ->setLabel('Console')
                         ->setNature('Multimédia')
                         ->setBrand('Sony')

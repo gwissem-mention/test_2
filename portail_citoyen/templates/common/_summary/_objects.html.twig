@@ -144,6 +144,7 @@
                     </li>
                 {% endfor %}
             {% endif %}
+            <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.multimedia.nature'|trans }} : <b>{{ object.multimediaNature|nature_label|trans }}</b></li>
             {% if object.ownerLastname is not null and object.ownerFirstname is not null %}
                 <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.owner.lastname.firstname'|trans }} : <b>{{ object.ownerLastname }} {{ object.ownerFirstname }}</b></li>
             {% endif %}

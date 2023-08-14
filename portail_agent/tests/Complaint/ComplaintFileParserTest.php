@@ -44,7 +44,7 @@ class ComplaintFileParserTest extends KernelTestCase
 	    "declarantStatus":
 		{
 			"code": 1,
-			"label": "pel.complaint.identity.victim"
+			"label": "Vous êtes victime ou vous représentez votre enfant mineur"
 		},
 	    "consentContactElectronics": false,
 		"civilState":
@@ -52,7 +52,7 @@ class ComplaintFileParserTest extends KernelTestCase
 			"civility":
 			{
 				"code": 1,
-				"label": "pel.m"
+				"label": "M"
 			},
 			"birthName": "Dupont",
 			"usageName": "Paul",
@@ -281,7 +281,7 @@ class ComplaintFileParserTest extends KernelTestCase
 		"cctvPresent":
 		{
 			"code": 1,
-			"label": "pel.yes"
+			"label": "Oui"
 		},
 		"suspectsText": "Suspects text",
 		"witnesses": [
@@ -300,12 +300,12 @@ class ComplaintFileParserTest extends KernelTestCase
 			"status":
 			{
 				"code": 1,
-				"label": "pel.stolen"
+				"label": "Volé"
 			},
 			"category":
 			{
 				"code": 1,
-				"label": "pel.object.category.documents"
+				"label": "Document officiel"
 			},
 			"label": "CI",
 			"brand": null,
@@ -368,18 +368,21 @@ class ComplaintFileParserTest extends KernelTestCase
             "pinEnabledWhenMobileStolen": null,
             "mobileInsured": null,
             "allowOperatorCommunication": null,
-            "degradationDescription": null
+            "degradationDescription": null,
+            "ownerLastname": null,
+            "ownerFirstname": null,
+            "multimediaNature": null
 		},
 		{
 			"status":
 			{
 				"code": 2,
-				"label": "pel.degraded"
+				"label": "Dégradé"
 			},
 			"category":
 			{
 				"code": 3,
-				"label": "pel.object.category.multimedia"
+				"label": "Téléphone portable"
 			},
 			"label": "iPhone",
 			"brand": "Apple",
@@ -413,18 +416,21 @@ class ComplaintFileParserTest extends KernelTestCase
             "pinEnabledWhenMobileStolen": true,
             "mobileInsured": true,
             "allowOperatorCommunication": true,
-            "degradationDescription": null
+            "degradationDescription": null,
+            "ownerLastname": null,
+            "ownerFirstname": null,
+            "multimediaNature": null
 		},
 		{
 			"status":
 			{
 				"code": 1,
-				"label": "pel.stolen"
+				"label": "Volé"
 			},
 			"category":
 			{
 				"code": 2,
-				"label": "pel.object.category.payment.ways"
+				"label": "Moyens de paiement"
 			},
 			"label": "CB",
 			"brand": null,
@@ -453,18 +459,21 @@ class ComplaintFileParserTest extends KernelTestCase
             "pinEnabledWhenMobileStolen": null,
             "mobileInsured": null,
             "allowOperatorCommunication": null,
-            "degradationDescription": null
+            "degradationDescription": null,
+            "ownerLastname": null,
+            "ownerFirstname": null,
+            "multimediaNature": null
 		},
 		{
 			"status":
 			{
 				"code": 2,
-				"label": "pel.degraded"
+				"label": "Dégradé"
 			},
 			"category":
 			{
 				"code": 4,
-				"label": "pel.object.category.registered.vehicle"
+				"label": "Véhicules immatriculés"
 			},
 			"label": "Voiture",
 			"brand": "Peugeot",
@@ -493,7 +502,10 @@ class ComplaintFileParserTest extends KernelTestCase
             "pinEnabledWhenMobileStolen": null,
             "mobileInsured": null,
             "allowOperatorCommunication": null,
-            "degradationDescription": "Rétroviseur cassé"
+            "degradationDescription": "Rétroviseur cassé",
+            "ownerLastname": null,
+            "ownerFirstname": null,
+            "multimediaNature": null
 		}]
 	},
 	"appointment": {

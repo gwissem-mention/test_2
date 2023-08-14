@@ -1334,6 +1334,46 @@
                 <source>pel.mobile.insured</source>
                 <target>Téléphone assuré contre le vol ?</target>
             </trans-unit>
+            <trans-unit id="pel.multimedia.acoustic.speaker">
+                <source>pel.multimedia.acoustic.speaker</source>
+                <target>ENCEINTE ACOUSTIQUE</target>
+            </trans-unit>
+            <trans-unit id="pel.multimedia.camera">
+                <source>pel.multimedia.camera</source>
+                <target>APPAREIL PHOTO</target>
+            </trans-unit>
+            <trans-unit id="pel.multimedia.computer">
+                <source>pel.multimedia.computer</source>
+                <target>ORDINATEUR</target>
+            </trans-unit>
+            <trans-unit id="pel.multimedia.headphones">
+                <source>pel.multimedia.headphones</source>
+                <target>CASQUE AUDIO</target>
+            </trans-unit>
+            <trans-unit id="pel.multimedia.laptop">
+                <source>pel.multimedia.laptop</source>
+                <target>ORDINATEUR PORTABLE</target>
+            </trans-unit>
+            <trans-unit id="pel.multimedia.nature">
+                <source>pel.multimedia.nature</source>
+                <target>Nature de l'objet</target>
+            </trans-unit>
+            <trans-unit id="pel.multimedia.other">
+                <source>pel.multimedia.other</source>
+                <target>AUTRE NATURE MULTIMEDIA</target>
+            </trans-unit>
+            <trans-unit id="pel.multimedia.smartwatch">
+                <source>pel.multimedia.smartwatch</source>
+                <target>MONTRE CONNECTEE</target>
+            </trans-unit>
+            <trans-unit id="pel.multimedia.tv">
+                <source>pel.multimedia.tv</source>
+                <target>POSTE DE TELEVISION</target>
+            </trans-unit>
+            <trans-unit id="pel.multimedia.usb.stick">
+                <source>pel.multimedia.usb.stick</source>
+                <target>CLE USB</target>
+            </trans-unit>
             <trans-unit id="pel.phone.help">
                 <source>pel.phone.help</source>
                 <target>Format attendu : (+33) 1 22 33 44 55</target>
@@ -2497,6 +2537,10 @@
             <trans-unit id="pel.vehicle.category">
                 <source>pel.vehicle.category</source>
                 <target>Catégorie de véhicule</target>
+            </trans-unit>
+            <trans-unit id="pel.choose.a.multimedia.nature">
+                <source>pel.choose.a.multimedia.nature</source>
+                <target>Sélectionner une nature d'objet</target>
             </trans-unit>
             <trans-unit id="pel.choose.a.vehicle.category">
                 <source>pel.choose.a.vehicle.category</source>

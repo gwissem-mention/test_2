@@ -71,6 +71,7 @@ Feature:
         And I select "7" from "objects_objects_4_category"
         And I fill in "objects_objects_4_label" with "Console"
         And I select "2" from "objects_objects_4_status"
+        And I select "9" from "objects_objects_4_multimediaNature"
         And I fill in "objects_objects_4_brand" with "Sony"
         And I fill in "objects_objects_4_model" with "Playstation 4"
         And I fill in "objects_objects_4_serialNumber" with "12345678"

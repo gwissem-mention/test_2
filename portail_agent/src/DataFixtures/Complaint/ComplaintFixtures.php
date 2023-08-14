@@ -319,7 +319,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
             ->addObject(
                 (new MultimediaObject())
                     ->setStatus(AbstractObject::STATUS_STOLEN)
-                    ->setNature('Téléphone portable')
+                    ->setNature('TELEPHONE PORTABLE')
                     ->setLabel('Téléphone')
                     ->setBrand('Apple')
                     ->setModel('iPhone 13')
@@ -337,7 +337,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
             ->addObject(
                 (new MultimediaObject())
                     ->setStatus(AbstractObject::STATUS_DEGRADED)
-                    ->setNature('Multimédia')
+                    ->setNature('AUTRE NATURE MULTIMEDIA')
                     ->setLabel('Console')
                     ->setBrand('Sony')
                     ->setModel('Playstation 4')

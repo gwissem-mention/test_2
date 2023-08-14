@@ -48,6 +48,12 @@
                         </div>
                     {% endif %}
 
+                    {% if object.multimediaNature is defined %}
+                        <div class="fr-mb-6v md:w-1/2">
+                            {{ form_row(object.multimediaNature) }}
+                        </div>
+                    {% endif %}
+
                     {% if object.files is defined %}
                         {{ form_row(object.files) }}
                     {% endif %}

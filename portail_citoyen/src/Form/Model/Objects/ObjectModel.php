@@ -45,6 +45,7 @@ class ObjectModel
     private ?string $degradationDescription = null;
     private ?string $ownerFirstname = null;
     private ?string $ownerLastname = null;
+    private ?int $multimediaNature = null;
 
     /**
      * @var Collection<int, FileModel>
@@ -460,6 +461,18 @@ class ObjectModel
     public function setOwnerLastname(?string $ownerLastname): self
     {
         $this->ownerLastname = $ownerLastname;
+
+        return $this;
+    }
+
+    public function getMultimediaNature(): ?int
+    {
+        return $this->multimediaNature;
+    }
+
+    public function setMultimediaNature(?int $multimediaNature): self
+    {
+        $this->multimediaNature = $multimediaNature;
 
         return $this;
     }

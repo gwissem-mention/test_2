@@ -147,7 +147,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
             ->addObject(
                 (new MultimediaObject())
                     ->setLabel('Téléphone')
-                    ->setNature('Téléphone portable')
+                    ->setNature('TELEPHONE PORTABLE')
                     ->setBrand('Apple')
                     ->setModel('iPhone 13')
                     ->setDescription('Iphone 13 de couleur grise')
@@ -159,7 +159,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
             ->addObject(
                 (new MultimediaObject())
                     ->setLabel('Smartphone')
-                    ->setNature('Téléphone portable')
+                    ->setNature('TELEPHONE PORTABLE')
                     ->setBrand('Apple')
                     ->setModel('iPhone 14 Pro')
                     ->setOperator('SFR')
@@ -170,7 +170,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
             ->addObject(
                 (new MultimediaObject())
                     ->setLabel('Console')
-                    ->setNature('Multimédia')
+                    ->setNature('AUTRE NATURE MULTIMEDIA')
                     ->setBrand('Sony')
                     ->setModel('Playstation 4')
                     ->setSerialNumber('1324354657')
@@ -457,7 +457,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
     public function testObjectMultimediaSection(): void
     {
         $this->assertStringContainsString('<Objet_Multimedia>', $this->xmlContent);
-        $this->assertStringContainsString('<Objet_Multimedia_Nature>Téléphone portable</Objet_Multimedia_Nature>', $this->xmlContent);
+        $this->assertStringContainsString('<Objet_Multimedia_Nature>TELEPHONE PORTABLE</Objet_Multimedia_Nature>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_Multimedia_Numeros_Serie>1234567890</Objet_Multimedia_Numeros_Serie>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_Multimedia_Description>Iphone 13 de couleur grise</Objet_Multimedia_Description>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_Multimedia_Nmr_Tel>06 12 34 56 67</Objet_Multimedia_Nmr_Tel>', $this->xmlContent);
@@ -466,12 +466,12 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         //        $this->assertStringContainsString('<Objet_Multimedia_Nmr_Sim>1234567809</Objet_Multimedia_Nmr_Sim>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_Multimedia_Identite_Victime>Oui</Objet_Multimedia_Identite_Victime>', $this->xmlContent);
         // $this->assertStringContainsString('<Objet_Multimedia_Vol_Dans_Vl>Non</Objet_Multimedia_Vol_Dans_Vl>', $this->xmlContent);
-        $this->assertStringContainsString('<Objet_Multimedia_Nature>Téléphone portable</Objet_Multimedia_Nature>', $this->xmlContent);
+        $this->assertStringContainsString('<Objet_Multimedia_Nature>TELEPHONE PORTABLE</Objet_Multimedia_Nature>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_Multimedia_Numeros_Serie>987654321</Objet_Multimedia_Numeros_Serie>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_Multimedia_Description/>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_Multimedia_Nmr_Tel>06 21 43 65 87</Objet_Multimedia_Nmr_Tel>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_Multimedia_Operateur>SFR</Objet_Multimedia_Operateur>', $this->xmlContent);
-        $this->assertStringContainsString('<Objet_Multimedia_Nature>Multimédia</Objet_Multimedia_Nature>', $this->xmlContent);
+        $this->assertStringContainsString('<Objet_Multimedia_Nature>AUTRE NATURE MULTIMEDIA</Objet_Multimedia_Nature>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_Multimedia_Numeros_Serie>1324354657</Objet_Multimedia_Numeros_Serie>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_Multimedia_Description>Description console</Objet_Multimedia_Description>', $this->xmlContent);
         //        $this->assertStringContainsString('<Objet_Multimedia_Opposition>Oui</Objet_Multimedia_Opposition>', $this->xmlContent);
