@@ -1,6 +1,8 @@
 {# templates/bundles/TwigBundle/Exception/error404.html.twig #}
 {% extends 'layout.html.twig' %}
 
+{% block title %}{{ 'pel.not.found.title'|trans }}{% endblock %}
+
 {% block body %}
 	<div class="fr-container fr-mb-4w">
 		<div class="fr-grid-row fr-grid-row--center">
@@ -14,12 +16,12 @@
 								<a class="fr-breadcrumb__link" href="/">{{ 'pel.breadcrumb.welcome'|trans }}</a>
 							</li>
 							<li>
-								<a class="fr-breadcrumb__link" aria-current="page">{{ 'pel.not.found.title'|trans }}</a>
+								<a class="fr-breadcrumb__link" aria-current="page">{{ 'pel.not.found'|trans }}</a>
 							</li>
 						</ol>
 					</div>
 				</nav>
-				<h1>{{ 'pel.not.found.title'|trans }}</h1>
+				<h1>{{ 'pel.not.found'|trans }}</h1>
 				<p>{{ 'pel.not.found.text'|trans }}</p>
 				<p>{{ 'pel.not.found.can'|trans }}
 					<a href="{{ path('home') }}">{{ 'pel.not.found.can.welcome'|trans }}</a>{{ 'pel.not.found.can.sitemap.1'|trans }}
