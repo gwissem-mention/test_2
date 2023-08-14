@@ -242,7 +242,7 @@ Feature:
         Then I should be on "/porter-plainte/fin"
         And I should see "Brigade de proximité de Renage"
         And I should see "339 Rue de la République 38140 RENAGE"
-
+    @flaky
     Scenario: I can see the gendarmerie accessibility information
         When I fill in the map autocomplete "map-search" with "voiron" and click on the first result
         And I click on the marker at index 1008950
@@ -266,6 +266,7 @@ Feature:
         And I should see the key "pel.outer.path" translated
         Then I click the "#accordion-2" element
         And I click the "#accordion-3" element
+        And I wait 500 ms
         And I should see "Pas de chemin extérieur entre le trottoir et l'entrée principale du bâtiment"
         And I should see the key "pel.entrance" translated
         Then I click the "#accordion-3" element
@@ -286,6 +287,7 @@ Feature:
         And I should see the key "pel.reception.and.services" translated
         Then I click the "#accordion-4" element
         And I click the "#accordion-5" element
+        And I wait 500 ms
         And I should see "La zone d'accueil (guichet d'accueil, caisse, secrétariat, etc) est visible depuis l'entrée du bâtiment"
         And I should see "L'accès à cet espace se fait de plain-pied, c'est à dire sans rupture brutale de niveau"
         And I should see "Pas de rétrécissement inférieur à 90 centimètres du chemin pour atteindre la zone d'accueil"
