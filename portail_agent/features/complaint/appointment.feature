@@ -125,3 +125,4 @@ Feature:
         And I should see the key "pel.closed" translated
         And I should see a ".toast" element
         And I should see the key "pel.the.report.has.been.sent.to.the.victim.the.complaint.is.closed" translated
+        

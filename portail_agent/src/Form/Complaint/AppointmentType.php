@@ -44,7 +44,9 @@ class AppointmentType extends AbstractType
     private function addAppointmentDateField(FormInterface $form, bool $disabled): void
     {
         $form->add('appointmentDate', DateType::class, [
-            'disabled' => $disabled,
+            'attr' => [
+                'disabled' => $disabled,
+            ],
             'input' => 'datetime_immutable',
             'widget' => 'single_text',
             'view_timezone' => 'UTC',
@@ -55,7 +57,9 @@ class AppointmentType extends AbstractType
             ],
         ])
         ->add('appointmentTime', TimeType::class, [
-            'disabled' => $disabled,
+            'attr' => [
+                'disabled' => $disabled,
+            ],
             'input' => 'datetime_immutable',
             'widget' => 'single_text',
             'label' => false,

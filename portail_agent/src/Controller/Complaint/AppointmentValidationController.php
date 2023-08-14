@@ -32,6 +32,13 @@ class AppointmentValidationController extends AbstractController
         ApplicationTracesLogger $logger,
         UnitRepository $unitRepository,
     ): JsonResponse {
+        $appointmentTypeMessage = ApplicationTracesMessage::APPOINTMENT_VALIDATION_MANAGEMENT;
+
+        if ($complaint->getAppointmentTime() && $complaint->getAppointmentDate()) {
+            $appointmentTypeMessage = ApplicationTracesMessage::APPOINTMENT_CHANGE_MANAGEMENT;
+            $complaint->incrementAppointmentCancellationCounter();
+        }
+
         $form = $this->createForm(AppointmentType::class, $complaint);
         $form->handleRequest($request);
 
@@ -41,7 +48,7 @@ class AppointmentValidationController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $complaintRepository->save($complaint, true);
             $logger->log(ApplicationTracesMessage::message(
-                ApplicationTracesMessage::APPOINTMENT_VALIDATION_MANAGEMENT,
+                $appointmentTypeMessage,
                 $complaint->getDeclarationNumber(),
                 $user->getNumber(),
                 $request->getClientIp()
@@ -51,7 +58,7 @@ class AppointmentValidationController extends AbstractController
             $unit = $unitRepository->findOneBy(['code' => $unitCode]);
 
             $bus->dispatch(new AppointmentMessage((int) $complaint->getId())); // Salesforce email
-            $bus->dispatch(new InfocentreMessage(ApplicationTracesMessage::APPOINTMENT_VALIDATION_MANAGEMENT, $complaint, $unit));
+            $bus->dispatch(new InfocentreMessage($appointmentTypeMessage, $complaint, $unit));
 
             return new JsonResponse();
         }
