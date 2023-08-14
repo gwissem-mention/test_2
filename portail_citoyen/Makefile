@@ -248,22 +248,22 @@ behat:
 
 ## Run e2e behat tests
 e2e:
-	@vendor/bin/behat -c behat.yml.dist --format=pretty --profile e2e
+	@vendor/bin/behat -c behat.yml.dist --colors --format=progress --profile e2e
 
 complaint-1-e2e:
-	@vendor/bin/behat -c behat.yml.dist --format=pretty --profile e2e --suite complaint_1
+	@vendor/bin/behat -c behat.yml.dist --colors --format=progress --profile e2e --suite complaint_1
 
 complaint-2-e2e:
-	@vendor/bin/behat -c behat.yml.dist --format=pretty --profile e2e --suite complaint_2
+	@vendor/bin/behat -c behat.yml.dist --colors --format=progress --profile e2e --suite complaint_2
 
 complete-workflow-e2e:
-	@vendor/bin/behat -c behat.yml.dist --format=pretty --profile e2e --suite complete_workflow
+	@vendor/bin/behat -c behat.yml.dist --colors --format=progress --profile e2e --suite complete_workflow
 
 leftover-e2e:
-	@vendor/bin/behat -c behat.yml.dist --format=pretty --profile e2e --suite default
+	@vendor/bin/behat -c behat.yml.dist --colors --format=progress --profile e2e --suite default
 
 flaky-e2e:
-	@vendor/bin/behat -c behat.yml.dist --format=pretty --profile flaky-e2e
+	@vendor/bin/behat -c behat.yml.dist  --colors --format=progress --profile flaky-e2e
 
 #################################
 Deployment:

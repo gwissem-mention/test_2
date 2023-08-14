@@ -6,7 +6,15 @@ variables:
     PHP_CITOYEN_CHANGE: 0
     KUBERNETES_MEMORY_REQUEST: 1Gi
     KUBERNETES_MEMORY_LIMIT: 1Gi
-
+    KUBERNETES_SERVICE_MEMORY_LIMIT: 2Gi
+    KUBERNETES_SERVICE_MEMORY_REQUEST: 2Gi
+    KUBERNETES_SERVICE_CPU_REQUEST: "4"
+    KUBERNETES_SERVICE_CPU_LIMIT: "4"
+    START_XVFB: "false"
+    START_VNC: "false"
+    SE_NODE_OVERRIDE_MAX_SESSIONS: "true"
+    SE_NODE_MAX_SESSIONS: 4
+    
 workflow:
     rules:
         - if: $CI_PIPELINE_SOURCE == "merge_request_event"
@@ -60,6 +68,32 @@ stages:
     before_script:
         - cd ./portail_citoyen/
     <<: *basic-override
+
+.agent-rules: &agent-rules
+    rules:
+        - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+          changes:
+              - .gitlab-ci.yml
+              - Makefile
+              - docker-compose.yml
+              - docker-compose.e2e.yml
+              - docker-compose.override.yml.dist
+              - docker/**/*
+              - portail_agent/*
+              - portail_agent/**/*
+
+.citoyen-rules: &citoyen-rules
+    rules:
+        - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+          changes:
+              - .gitlab-ci.yml
+              - Makefile
+              - docker-compose.yml
+              - docker-compose.e2e.yml
+              - docker-compose.override.yml.dist
+              - docker/**/*
+              - portail_citoyen/*
+              - portail_citoyen/**/*
 
 #######################################
 ##               Check               ##
@@ -219,6 +253,12 @@ agent-build-vendor:
     <<: *build-vendor
     needs:
         - agent-build-php
+    cache:
+        key:
+            files:
+                - ./portail_agent/composer.lock
+        paths:
+            - ./portail_agent/vendor
     artifacts:
         paths:
             - ./portail_agent/vendor
@@ -226,11 +266,17 @@ agent-build-vendor:
 citoyen-build-vendor:
     <<: *citoyen-step
     <<: *build-vendor
-    needs:
-        - citoyen-build-php
+    cache:
+        key:
+            files:
+                - ./portail_citoyen/composer.lock
+        paths:
+            - ./portail_citoyen/vendor
     artifacts:
         paths:
             - ./portail_citoyen/vendor
+    needs:
+        - citoyen-build-php
 
 .build-front: &build-front
     stage: build
@@ -244,6 +290,12 @@ agent-build-front:
     <<: *basic-override
     needs:
         - agent-build-vendor
+    cache:
+        key:
+            files:
+                - ./portail_agent/package-lock.json
+        paths:
+            - ./portail_agent/node_modules
     artifacts:
         paths:
             - ./portail_agent/public/build
@@ -253,11 +305,14 @@ citoyen-build-front:
     <<: *build-front
     <<: *basic-override
     <<: *citoyen-frontend-step
-    variables:
-        KUBERNETES_MEMORY_REQUEST: 1Gi
-        KUBERNETES_MEMORY_LIMIT: 1Gi
     needs:
         - citoyen-build-vendor
+    cache:
+        key:
+            files:
+                - ./portail_citoyen/package-lock.json
+        paths:
+            - ./portail_citoyen/node_modules
     artifacts:
         paths:
             - ./portail_citoyen/public/build
@@ -268,44 +323,20 @@ citoyen-build-front:
 #######################################
 
 ## Security ##
-.symfony-security: &symfony-security
+.security: &security
     stage: security
     script:
         - make security
-
-agent-symfony-security:
-    <<: *agent-step
-    <<: *symfony-security
-
-citoyen-symfony-security:
-    <<: *citoyen-step
-    <<: *symfony-security
-    
-.tools-security: &tools-security
-    stage: security
-    script:
         - make tools-security
-
-agent-tools-security:
-    <<: *agent-step
-    <<: *tools-security
-
-citoyen-tools-security:
-    <<: *citoyen-step
-    <<: *tools-security
-
-.tools-outdated: &tools-outdated
-    stage: security
-    script:
         - make tools-outdated
 
-agent-tools-outdated:
+agent-security:
     <<: *agent-step
-    <<: *tools-security
+    <<: *security
 
-citoyen-tools-outdated:
+citoyen-security:
     <<: *citoyen-step
-    <<: *tools-security
+    <<: *security
 
 .frontend-audit: &frontend-audit
     stage: security
@@ -325,27 +356,19 @@ citoyen-tools-outdated:
     stage: quality
     script:
         - make cs
-
-agent-php-cs:
-    <<: *agent-step
-    <<: *cs
-
-citoyen-php-cs:
-    <<: *citoyen-step
-    <<: *cs
-
-.frontend-twig-cs: &frontend-twig-cs
-    stage: quality
-    script:
         - make APP_ENV=test frontend-twig-cs-test
+        - make mnd
+        - make cpd
 
-citoyen-frontend-twig-cs:
-    <<: *citoyen-step
-    <<: *frontend-twig-cs
-
-agent-frontend-twig-cs:
+agent-php-quality:
     <<: *agent-step
-    <<: *frontend-twig-cs
+    <<: *cs
+    <<: *agent-rules
+
+citoyen-php-quality:
+    <<: *citoyen-step
+    <<: *cs
+    <<: *citoyen-rules
 
 .frontend-cs: &frontend-cs
     stage: quality
@@ -354,10 +377,12 @@ agent-frontend-twig-cs:
 
 citoyen-frontend-cs:
     <<: *citoyen-frontend-step
+    <<: *citoyen-rules
     <<: *frontend-cs
 
 agent-frontend-cs:
     <<: *agent-frontend-step
+    <<: *agent-rules
     <<: *frontend-cs
 
 .frontend-cpd: &frontend-cpd
@@ -373,20 +398,6 @@ agent-frontend-cs:
 #    <<: *agent-frontend-step
 #    <<: *frontend-cpd
 
-## Php Magic Number Detector ##
-.mnd: &mnd
-    stage: quality
-    script:
-        - make mnd
-
-agent-php-mnd:
-    <<: *agent-step
-    <<: *mnd
-
-citoyen-php-mnd:
-    <<: *citoyen-step
-    <<: *mnd
-
 ## Phpstan ##
 .phpstan: &phpstan
     stage: quality
@@ -395,25 +406,13 @@ citoyen-php-mnd:
 
 agent-php-phpstan:
     <<: *agent-step
+    <<: *agent-rules
     <<: *phpstan
 
 citoyen-php-phpstan:
     <<: *citoyen-step
+    <<: *citoyen-rules
     <<: *phpstan
-
-## Php Copy/Past Detector ##
-.cpd: &cpd
-    stage: quality
-    script:
-        - make cpd
-
-agent-php-cpd:
-    <<: *agent-step
-    <<: *cpd
-
-citoyen-php-cpd:
-    <<: *citoyen-step
-    <<: *cpd
 
 #######################################
 ##          Tests Frameworks          #
@@ -427,6 +426,7 @@ citoyen-php-cpd:
 
 agent-unit:
     <<: *agent-step
+    <<: *agent-rules
     <<: *unit
     variables:
         APP_ENV: "test"
@@ -446,6 +446,7 @@ agent-unit:
 
 citoyen-unit:
     <<: *citoyen-step
+    <<: *citoyen-rules
     <<: *unit
     variables:
         APP_ENV: "test"
@@ -470,6 +471,7 @@ citoyen-unit:
 agent-func:
     <<: *agent-step
     <<: *func
+    <<: *agent-rules
     variables:
         APP_ENV: "test"
         POSTGRES_DB: "app_test"
@@ -496,6 +498,7 @@ agent-func:
 citoyen-func:
     <<: *citoyen-step
     <<: *func
+    <<: *citoyen-rules
     variables:
         APP_ENV: "test"
         POSTGRES_DB: "app_test"
@@ -522,6 +525,7 @@ citoyen-func:
 
 citoyen-e2e:
     <<: *citoyen-step
+    <<: *citoyen-rules
     retry: 2
     variables:
         APP_ENV: "e2e"
@@ -558,6 +562,7 @@ citoyen-e2e:
 
 citoyen-complaint-1-e2e:
     <<: *citoyen-step
+    <<: *citoyen-rules
     retry: 2
     variables:
         APP_ENV: "e2e"
@@ -593,6 +598,7 @@ citoyen-complaint-1-e2e:
             
 citoyen-complaint-2-e2e:
     <<: *citoyen-step
+    <<: *citoyen-rules
     retry: 2
     variables:
         APP_ENV: "e2e"
@@ -628,6 +634,7 @@ citoyen-complaint-2-e2e:
 
 citoyen-complete-workflow-e2e:
     <<: *citoyen-step
+    <<: *citoyen-rules
     retry: 2
     variables:
         APP_ENV: "e2e"
@@ -663,6 +670,7 @@ citoyen-complete-workflow-e2e:
 
 citoyen-flaky-e2e:
     <<: *citoyen-step
+    <<: *citoyen-rules
     retry: 2
     variables:
         APP_ENV: "e2e"
@@ -698,6 +706,7 @@ citoyen-flaky-e2e:
 
 agent-e2e:
     <<: *agent-step
+    <<: *agent-rules
     retry: 2
     variables:
         APP_ENV: "e2e"
@@ -736,6 +745,7 @@ agent-e2e:
         
 agent-complaint-e2e:
     <<: *agent-step
+    <<: *agent-rules
     retry: 2
     variables:
         APP_ENV: "e2e"
@@ -770,6 +780,7 @@ agent-complaint-e2e:
 
 agent-flaky-e2e:
     <<: *agent-step
+    <<: *agent-rules
     retry: 2
     variables:
         APP_ENV: "e2e"
