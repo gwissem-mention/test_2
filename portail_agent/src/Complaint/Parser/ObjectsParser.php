@@ -69,7 +69,6 @@ class ObjectsParser
     public function parseAdministrativeDocument(object $objectInput): AdministrativeDocument
     {
         $documentObject = new AdministrativeDocument();
-
         $documentObject
             ->setType($objectInput->documentType ?? '')
             ->setOwned($objectInput->documentOwned)

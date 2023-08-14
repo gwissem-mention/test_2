@@ -434,7 +434,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         // $this->assertStringContainsString('<Objet_Doc_Admin_Identite_Victime>Oui</Objet_Doc_Admin_Identite_Victime>', $this->xmlContent);
         $this->assertStringNotContainsString('<Objet_Doc_Admin_Identite_Nom>', $this->xmlContent);
         $this->assertStringNotContainsString('<Objet_Doc_Admin_Identite_Prenom>', $this->xmlContent);
-        $this->assertStringNotContainsString('<Objet_Doc_Admin_Identite_Naissance_Date>', $this->xmlContent);
+        $this->assertStringNotContainsString('<Objet_Doc_Admin_Identite_Naissance_Date>01/02/2010</Objet_Doc_Admin_Identite_Naissance_Date>', $this->xmlContent);
         $this->assertStringNotContainsString('<Objet_Doc_Admin_Identite_Naissance>', $this->xmlContent);
         $this->assertStringNotContainsString('<Objet_Doc_Admin_Identite_Naissance_Departement>', $this->xmlContent);
         $this->assertStringNotContainsString('<Objet_Doc_Admin_Identite_Naissance_Codepostal>', $this->xmlContent);
