@@ -30,6 +30,7 @@ class AppointmentController extends AbstractController
                 'is_after_appointment' => null !== $complaint->getAppointmentDate(),
             ]),
             'appointment_form' => $this->createForm(AppointmentType::class, $complaint),
+            'isAppointmentPlanned' => null !== $complaint->getAppointmentDate(),
         ]);
     }
 }

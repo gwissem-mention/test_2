@@ -59,6 +59,9 @@
                             'complaintId': complaint.id
                         } %}
                     {% endif %}
+                    {% include 'pages/complaint/_partial/modals/cancel_appointment.html.twig' with {
+                        'complaintId': complaint.id
+                    } %}
                 {% endblock %}
             </div>
         </main>

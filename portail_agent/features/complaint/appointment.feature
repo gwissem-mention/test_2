@@ -125,4 +125,46 @@ Feature:
         And I should see the key "pel.closed" translated
         And I should see a ".toast" element
         And I should see the key "pel.the.report.has.been.sent.to.the.victim.the.complaint.is.closed" translated
-        
+
+    @javascript
+    Scenario: If there is no appointment planned, the Cancel and Modify appointment button should be disabled
+        Given I am on "/plainte/rendez-vous/91"
+        Then the "#appointment-cancel-button" element should be disabled
+        And the "#appointment-modify-button" element should be disabled
+
+    @javascript
+    Scenario: If there is an appointment planned, I can modify it
+        Given I am on "/plainte/rendez-vous/101"
+        And the "#appointment-modify-button" element should not be disabled
+        When I press "Modifier RDV"
+        Then the "#appointment_appointmentDate" element should not be disabled
+        And the "#appointment_appointmentTime" element should not be disabled
+        When I fill in "appointment_appointmentDate" with "01/06/2025"
+        And I fill in "appointment_appointmentTime" with "11:00am"
+        And I press "Valider le RDV avec le déclarant"
+        Then the "#appointment_appointmentDate" element should be disabled
+        Then the "#appointment_appointmentTime" element should be disabled
+        When I am on homepage
+        Then I should see "06/01/2025"
+
+    @javascript
+    Scenario: If there is an appointment planned, I can open and close the cancellation modal
+        Given I am on "/plainte/rendez-vous/102"
+        And the "#appointment-cancel-button" element should not be disabled
+        When I press "Annuler RDV"
+        Then I should see a ".modal[aria-modal=true]" element
+        When I press "Conserver le rendez-vous"
+        Then I should not see a ".modal[aria-modal=true]" element
+
+    @javascript
+    Scenario: If there is an appointment planned, I can cancel it
+        Given I am on "/plainte/rendez-vous/102"
+        And the "#appointment-cancel-button" element should not be disabled
+        When I press "Annuler RDV"
+        Then I should see a ".modal[aria-modal=true]" element
+        When I press "Confirmer l'annulation"
+        Then I should not see a ".modal[aria-modal=true]" element
+        And the "#appointment_appointmentDate" element should not be disabled
+        And the "#appointment_appointmentTime" element should not be disabled
+        When I am on homepage
+        Then I should not see "06/01/2025"

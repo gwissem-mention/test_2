@@ -5,7 +5,15 @@
         <span id="declarant-identity" class="fs-3 fw-semibold lh-lg">{{ 'pel.appointment.management'|trans }}</span>
         {{ include('pages/complaint/_partial/appointment_content.html.twig') }}
         <div class="d-flex appointment-footer m-3">
-            <button type="button" class="btn btn-danger btn-appointment">{{ 'pel.appointment.cancel'|trans }}</button>
+            <button type="button"
+                    id="appointment-cancel-button"
+                    class="btn btn-danger btn-appointment"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modal-complaint-cancel-appointment"
+                    {{ isAppointmentPlanned ? '' : 'disabled'}}
+            >
+                {{ 'pel.appointment.cancel'|trans }}
+            </button>
             <button type="button"
                     id="appointment-modify-button"
                     class="btn btn-primary btn-appointment btn-appointment-modify"

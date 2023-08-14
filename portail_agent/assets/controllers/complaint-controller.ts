@@ -20,6 +20,7 @@ export default class extends Controller {
         "appointmentForm",
         "assignmentForm",
         "assignmentModal",
+        "cancelAppointmentModal",
         "commentButton",
         "commentContent",
         "commentBox",
@@ -42,6 +43,7 @@ export default class extends Controller {
     declare readonly appointmentFormTarget: HTMLFormElement;
     declare readonly assignmentFormTarget: HTMLFormElement;
     declare readonly assignmentModalTarget: HTMLElement;
+    declare readonly cancelAppointmentModalTarget: HTMLElement;
     declare readonly commentButtonTarget: HTMLElement;
     declare readonly commentContentTarget: HTMLElement;
     declare readonly commentBoxTarget: HTMLElement;
@@ -352,6 +354,26 @@ export default class extends Controller {
                                 this.reloadComplaintContainer();
                             } else {
                                 this.appointmentFormTarget.innerHTML = data.form;
+                            }
+                        });
+                });
+        }
+    }
+
+    // Must be ignored because we can't type url here.
+    // @ts-ignore
+    public cancelAppointment({params: {url}}): void {
+        if (url) {
+            fetch(url, {
+                method: HttpMethodsEnum.POST,
+            })
+                .then((response: Response) => {
+                    response.json()
+                        .then(() => {
+                            if (response.status === HttpStatusCodeEnum.OK) {
+                                Modal.getInstance(this.cancelAppointmentModalTarget)?.hide();
+
+                                this.reloadComplaintContainer();
                             }
                         });
                 });
