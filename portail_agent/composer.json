@@ -14,7 +14,7 @@
         "doctrine/doctrine-bundle": "^2.7",
         "doctrine/doctrine-fixtures-bundle": "^3.4",
         "doctrine/doctrine-migrations-bundle": "^3.2",
-        "doctrine/orm": "^2.12",
+        "doctrine/orm": "2.15.*",
         "fakerphp/faker": "^1.21",
         "league/flysystem-aws-s3-v3": "^3.15",
         "league/flysystem-bundle": "^2.3",
