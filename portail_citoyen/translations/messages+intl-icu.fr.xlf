@@ -1430,6 +1430,10 @@
                 <source>pel.no.goods.declared</source>
                 <target>Aucun bien déclaré</target>
             </trans-unit>
+            <trans-unit id="pel.not.found">
+                <source>pel.not.found</source>
+                <target>Page non trouvée</target>
+            </trans-unit>
             <trans-unit id="pel.not.found.can">
                 <source>pel.not.found.can</source>
                 <target>Vous pouvez</target>
@@ -1456,7 +1460,7 @@
             </trans-unit>
             <trans-unit id="pel.not.found.title">
                 <source>pel.not.found.title</source>
-                <target>Page non trouvée</target>
+                <target>Page non trouvée - Plainte en ligne</target>
             </trans-unit>
             <trans-unit id="pel.object">
                 <source>pel.object</source>
@@ -2079,7 +2083,7 @@
                 <target>lieu de l’infraction</target>
             </trans-unit>
             <trans-unit id="pel.complaint.see.ariannes.here">
-                <source>pel.complaint.see.ariannes.thread</source>
+                <source>pel.complaint.see.ariannes.here</source>
                 <target>vous êtes ici :</target>
             </trans-unit>
             <trans-unit id="pel.complaint.see.ariannes.thread">
