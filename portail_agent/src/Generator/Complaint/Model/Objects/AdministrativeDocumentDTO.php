@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Generator\Complaint\Model\Objects;
 
 use App\Entity\FactsObjects\AdministrativeDocument;
+use App\Entity\Identity;
 
 class AdministrativeDocumentDTO extends AbstractObjectDTO
 {
@@ -14,8 +15,8 @@ class AdministrativeDocumentDTO extends AbstractObjectDTO
     private string $issuedBy;
     private ?string $ownerLastname;
     private ?string $ownerFirstname;
-    private ?string $ownerDepartmentNumber;
-    private ?string $ownerDepartment;
+    private ?string $identityDepartmentNumber;
+    private ?string $identityDepartment;
     private ?string $ownerPostcode;
     private ?string $ownerInseeCode;
     private ?string $ownerCity;
@@ -27,8 +28,9 @@ class AdministrativeDocumentDTO extends AbstractObjectDTO
 
     //    private string $issuingCountry;
     //    private string $description;
+    private ?string $identityCountry;
 
-    public function __construct(AdministrativeDocument $object, ?\DateTimeInterface $identityBirthDate)
+    public function __construct(AdministrativeDocument $object, ?Identity $identity)
     {
         // parent::__construct($object);
         $this->type = $object->getType() ?? '';
@@ -37,15 +39,16 @@ class AdministrativeDocumentDTO extends AbstractObjectDTO
         $this->issuedBy = $object->getIssuedBy() ?? '';
         $this->ownerLastname = $object->getOwnerLastname();
         $this->ownerFirstname = $object->getOwnerFirstname();
-        $this->ownerDepartmentNumber = $object->getOwnerAddressDepartmentNumber();
-        $this->ownerDepartment = $object->getOwnerAddressDepartment();
+        $this->identityDepartmentNumber = (string) $identity?->getAddressDepartmentNumber();
+        $this->identityDepartment = $identity?->getAddressDepartment();
+        $this->identityCountry = $identity?->getAddressCountry();
         $this->ownerPostcode = $object->getOwnerAddressPostcode();
         $this->ownerInseeCode = $object->getOwnerAddressInseeCode();
         $this->ownerCity = $object->getOwnerAddressCity();
         $this->ownerStreetNumber = $object->getOwnerAddressStreetNumber();
         $this->ownerStreetType = $object->getOwnerAddressStreetType();
         $this->ownerStreetName = $object->getOwnerAddressStreetName();
-        $this->identityBirthDate = $identityBirthDate?->format('d/m/Y');
+        $this->identityBirthDate = $identity?->getBirthday()?->format('d/m/Y');
         //        $this->description = $object->getDescription() ?? '';
         //        $this->issuingCountry = $object->getIssuingCountry() ?? '';
     }
@@ -73,7 +76,7 @@ class AdministrativeDocumentDTO extends AbstractObjectDTO
             // 'Objet_Doc_Admin_Identite_Naissance_Commune' => $this->identityBirthCity,
             // 'Objet_Doc_Admin_Identite_Naissance_Insee' => $this->identityBirthInseeCode,
             // 'Objet_Doc_Admin_Identite_Residence' => $this->identityCountry,
-             'Objet_Doc_Admin_Identite_Residence_Departement' => ($this->ownerDepartmentNumber && $this->ownerDepartment) ? $this->ownerDepartmentNumber.' - '.$this->ownerDepartment : null,
+             'Objet_Doc_Admin_Identite_Residence_Departement' => ($this->identityDepartmentNumber && $this->identityDepartment && 'France' === $this->identityCountry) ? $this->identityDepartmentNumber.' - '.$this->identityDepartment : null,
              'Objet_Doc_Admin_Identite_Residence_Codepostal' => $this->ownerPostcode,
              'Objet_Doc_Admin_Identite_Residence_Commune' => $this->ownerCity,
              'Objet_Doc_Admin_Identite_Residence_Insee' => $this->ownerInseeCode,
@@ -81,7 +84,7 @@ class AdministrativeDocumentDTO extends AbstractObjectDTO
              'Objet_Doc_Admin_Identite_Residence_RueType' => $this->ownerStreetType,
              'Objet_Doc_Admin_Identite_Residence_RueNom' => $this->ownerStreetName,
 //             'Objet_Doc_Admin_Identite_Naissance_HidNumDep' => $this->identityBirthDepartmentNumber,
-             'Objet_Doc_Admin_Identite_Residence_HidNumDep' => $this->ownerDepartmentNumber,
+             'Objet_Doc_Admin_Identite_Residence_HidNumDep' => $this->identityDepartmentNumber,
             // 'Objet_Doc_Admin_Vol_Dans_Vl' => $this->theftFromVehicle,
         ]];
     }
