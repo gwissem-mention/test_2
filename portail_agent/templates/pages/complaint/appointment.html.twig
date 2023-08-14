@@ -6,7 +6,14 @@
         {{ include('pages/complaint/_partial/appointment_content.html.twig') }}
         <div class="d-flex appointment-footer m-3">
             <button type="button" class="btn btn-danger btn-appointment">{{ 'pel.appointment.cancel'|trans }}</button>
-            <button type="button" class="btn btn-primary btn-appointment">{{ 'pel.appointment.modify'|trans }}</button>
+            <button type="button"
+                    id="appointment-modify-button"
+                    class="btn btn-primary btn-appointment btn-appointment-modify"
+                    data-action="complaint#modifyAppointment"
+                    data-complaint-target="modifyAppointmentButton"
+            >
+                {{ 'pel.appointment.modify'|trans }}
+            </button>
             <button type="button"
                     class="btn btn-success btn-appointment"
                     data-action="complaint#validateAppointment"

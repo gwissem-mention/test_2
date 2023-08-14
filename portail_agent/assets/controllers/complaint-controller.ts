@@ -16,6 +16,7 @@ type ValidateAppointmentFetchResponse = { form: string };
 export default class extends Controller {
     static override targets: string[] = [
         "appointmentDoneRadioButton",
+        "modifyAppointmentButton",
         "appointmentForm",
         "assignmentForm",
         "assignmentModal",
@@ -31,7 +32,9 @@ export default class extends Controller {
         "sendReportModal",
         "sendReportValidationButton",
         "sendToLrpModal",
-        "dropZoneError"
+        "dropZoneError",
+        "appointmentDateInput",
+        "appointmentTimeInput"
     ];
 
     declare readonly appointmentDoneRadioButtonTarget: HTMLInputElement;
@@ -54,10 +57,14 @@ export default class extends Controller {
     declare readonly sendToLrpModalTarget: HTMLElement;
     declare readonly dropZoneErrorTarget: HTMLFormElement;
     declare readonly hasCommentBoxTarget: boolean;
+    declare readonly modifyAppointmentButtonTarget: HTMLElement;
+    declare readonly appointmentDateInputTarget: HTMLInputElement;
+    declare readonly appointmentTimeInputTarget: HTMLInputElement;
 
     public override connect() {
         this.scrollCommentFeed();
         this.openUnitReassignmentValidationModal();
+        this.toggleModifyAppointmentButton();
     }
 
     // Must be ignored because we can't type url here.
@@ -376,6 +383,7 @@ export default class extends Controller {
 
                 if (this.complaintContainerTarget && complaintContainerSource) {
                     this.complaintContainerTarget.innerHTML = complaintContainerSource.innerHTML;
+                    this.modifyAppointmentButtonTarget.removeAttribute("disabled");
                 }
             });
     }
@@ -405,7 +413,17 @@ export default class extends Controller {
                 });
         }
     }
-
+    public modifyAppointment(): void {
+        this.appointmentDateInputTarget?.removeAttribute("disabled");
+        this.appointmentTimeInputTarget?.removeAttribute("disabled");
+    }
+    public toggleModifyAppointmentButton(): void {
+        if (this.appointmentDateInputTarget.value !== "" || this.appointmentTimeInputTarget.value !== "") {
+            this.modifyAppointmentButtonTarget.removeAttribute("disabled");
+        } else {
+            this.modifyAppointmentButtonTarget.setAttribute("disabled", "disabled");
+        }
+    }
     private setSpinnerState(button: HTMLButtonElement): void {
         button.querySelector(".spinner-border")?.classList.toggle("d-none");
 
