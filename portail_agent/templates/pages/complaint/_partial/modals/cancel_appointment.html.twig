@@ -1,0 +1,16 @@
+{% embed "common/_modal.html.twig" with {'id':'complaint-cancel-appointment', 'size':'lg'} %}
+    {% block attr_sup %}data-complaint-target="cancelAppointmentModal"{% endblock %}
+
+    {% block title %}
+        <div class="fs-4">{{ 'pel.cancel.appointment'|trans }}</div>
+    {% endblock %}
+
+    {% block body %}{% endblock %}
+
+    {% block footer %}
+        <div class="px-4">
+            <button type="button" class="fr-btn fr-btn--secondary me-3" id="complaint-cancel-appointment-button-back" data-bs-dismiss="modal">{{ 'pel.keep.the.appointment'|trans }}</button>
+            <button type="button" class="fr-btn" data-action="complaint#cancelAppointment" data-complaint-url-param="{{ path('complaint_appointment_cancel', { id:complaintId }) }}">{{ 'pel.validate.the.cancellation'|trans }}</button>
+        </div>
+    {% endblock %}
+{% endembed %}

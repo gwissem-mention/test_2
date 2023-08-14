@@ -19,7 +19,9 @@ class AppointmentCancellationController extends AbstractController
     #[Route(path: '/plainte/annulation-rendez-vous/{id}', name: 'complaint_appointment_cancel', methods: ['POST'])]
     public function __invoke(Complaint $complaint, ComplaintRepository $complaintRepository, MessageBusInterface $bus): JsonResponse
     {
-        // TODO : Implement logic to cancel appointment
+        $complaint
+            ->setAppointmentDate(null)
+            ->setAppointmentTime(null);
 
         $bus->dispatch(new ComplaintCancellationMessage((int) $complaint->getId())); // salesforce
 

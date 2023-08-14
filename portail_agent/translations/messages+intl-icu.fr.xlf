@@ -562,6 +562,10 @@
                 <source>pel.job</source>
                 <target>Profession</target>
             </trans-unit>
+            <trans-unit id="pel.keep.the.appointment">
+                <source>pel.keep.the.appointment</source>
+                <target>Conserver le rendez-vous</target>
+            </trans-unit>
             <trans-unit id="pel.keyboard.locked.when.mobile.stolen">
                 <source>pel.keyboard.locked.when.mobile.stolen</source>
                 <target>Verrouillage du clavier activé au moment du vol ?</target>
@@ -1070,6 +1074,10 @@
                 <source>pel.validate</source>
                 <target>Valider</target>
             </trans-unit>
+            <trans-unit id="pel.validate.the.cancellation">
+                <source>pel.validate.the.cancellation</source>
+                <target>Confirmer l'annulation</target>
+            </trans-unit>
             <trans-unit id="pel.validate.the.report.and.close">
                 <source>pel.validate.the.report.and.close</source>
                 <target>Valider le PV et clôturer</target>
@@ -1529,6 +1537,10 @@
             <trans-unit id="pel.cancel">
                 <source>pel.cancel</source>
                 <target>Annuler</target>
+            </trans-unit>
+            <trans-unit id="pel.cancel.appointment">
+                <source>pel.cancel.appointment</source>
+                <target>Annulation de rendez-vous</target>
             </trans-unit>
             <trans-unit id="pel.reattribute.to.another.agent">
                 <source>pel.assign.to.agent</source>
