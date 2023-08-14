@@ -391,6 +391,11 @@ parameters:
 			path: src/Complaint/Parser/ObjectsParser.php
 
 		-
+		    message: "#^Access to an undefined property object\\:\\:\\$multimediaNature\\.$#"
+		    count: 1
+		    path: src/Complaint/Parser/ObjectsParser.php
+
+		-
 			message: "#^Access to an undefined property object\\:\\:\\$model\\.$#"
 			count: 2
 			path: src/Complaint/Parser/ObjectsParser.php

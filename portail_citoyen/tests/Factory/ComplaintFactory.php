@@ -218,6 +218,7 @@ class ComplaintFactory
             ->addObject((new ObjectModel())
                 ->setCategory(7)
                 ->setLabel('Console')
+                ->setMultimediaNature(9)
                 ->setStatus(ObjectModel::STATUS_DEGRADED)
                 ->setAmount(499)
                 ->setBrand('Sony')

@@ -277,6 +277,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'degradationDescription' => null,
                         'ownerLastname' => null,
                         'ownerFirstname' => null,
+                        'multimediaNature' => null,
                     ],
                     [
                         'status' => [
@@ -321,6 +322,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'degradationDescription' => null,
                         'ownerLastname' => null,
                         'ownerFirstname' => null,
+                        'multimediaNature' => null,
                     ],
                     [
                         'status' => [
@@ -361,6 +363,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'degradationDescription' => null,
                         'ownerLastname' => null,
                         'ownerFirstname' => null,
+                        'multimediaNature' => 'AUTRE NATURE MULTIMEDIA',
                     ],
                     [
                         'status' => [
@@ -401,6 +404,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'degradationDescription' => null,
                         'ownerLastname' => null,
                         'ownerFirstname' => null,
+                        'multimediaNature' => null,
                     ],
                     [
                         'status' => [
@@ -441,6 +445,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'degradationDescription' => 'Portière avant gauche enfoncée et Pare-choc arrière rayé',
                         'ownerLastname' => null,
                         'ownerFirstname' => null,
+                        'multimediaNature' => null,
                     ],
                 ],
             ],
@@ -1193,6 +1198,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'degradationDescription' => null,
                         'ownerLastname' => null,
                         'ownerFirstname' => null,
+                        'multimediaNature' => null,
                     ],
                     [
                         'status' => [
@@ -1237,6 +1243,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'degradationDescription' => null,
                         'ownerLastname' => null,
                         'ownerFirstname' => null,
+                        'multimediaNature' => null,
                     ],
                     [
                         'status' => [
@@ -1277,6 +1284,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'degradationDescription' => null,
                         'ownerLastname' => null,
                         'ownerFirstname' => null,
+                        'multimediaNature' => 'AUTRE NATURE MULTIMEDIA',
                     ],
                     [
                         'status' => [
@@ -1317,6 +1325,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'degradationDescription' => null,
                         'ownerLastname' => null,
                         'ownerFirstname' => null,
+                        'multimediaNature' => null,
                     ],
                     [
                         'status' => [
@@ -1357,6 +1366,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'degradationDescription' => 'Portière avant gauche enfoncée et Pare-choc arrière rayé',
                         'ownerLastname' => null,
                         'ownerFirstname' => null,
+                        'multimediaNature' => null,
                     ],
                 ],
             ],

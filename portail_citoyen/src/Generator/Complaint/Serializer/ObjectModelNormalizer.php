@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Generator\Complaint\Serializer;
 
 use App\AppEnum\DocumentType;
+use App\AppEnum\MultimediaNature;
 use App\AppEnum\RegisteredVehicleNature;
 use App\Form\Model\Objects\ObjectModel;
 use App\Thesaurus\ObjectCategoryThesaurusProviderInterface;
@@ -49,6 +50,10 @@ class ObjectModelNormalizer implements NormalizerInterface
 
         if ($registeredVehicleNatureLabel = RegisteredVehicleNature::getLabel($object->getRegisteredVehicleNature())) {
             $data['registeredVehicleNature'] = $this->translator->trans($registeredVehicleNatureLabel);
+        }
+
+        if ($multimediaNatureLabel = MultimediaNature::getLabel($object->getMultimediaNature())) {
+            $data['multimediaNature'] = $this->translator->trans($multimediaNatureLabel);
         }
 
         return $data;

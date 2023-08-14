@@ -23,7 +23,7 @@ class ObjectsParserTest extends KernelTestCase
 	    "declarantStatus":
 		{
 			"code": 1,
-			"label": "pel.complaint.identity.victim"
+			"label": "Vous êtes victime ou vous représentez votre enfant mineur"
 		},
 	    "consentContactElectronics": false,
 		"civilState":
@@ -31,7 +31,7 @@ class ObjectsParserTest extends KernelTestCase
 			"civility":
 			{
 				"code": 1,
-				"label": "pel.m"
+				"label": "M"
 			},
 			"birthName": "DUPONT",
 			"firstnames": "Charles"
@@ -46,11 +46,11 @@ JSON;
         {
             "status": {
                 "code": 1,
-                "label": "pel.stolen"
+                "label": "Volé"
             },
             "category": {
                 "code": 1,
-                "label": "pel.object.category.documents"
+                "label": "Document officiel"
             },
             "label": null,
             "brand": null,
@@ -122,16 +122,17 @@ JSON;
             "allowOperatorCommunication": null,
             "degradationDescription": null,
             "ownerLastname": null,
-            "ownerFirstname": null
+            "ownerFirstname": null,
+            "multimediaNature": null
         },
         {
             "status": {
                 "code": 2,
-                "label": "pel.degraded"
+                "label": "Dégradé"
             },
             "category": {
                 "code": 2,
-                "label": "pel.object.category.payment.ways"
+                "label": "Moyens de paiement"
             },
             "label": "Carte bleu",
             "brand": null,
@@ -160,16 +161,17 @@ JSON;
             "pinEnabledWhenMobileStolen": null,
             "mobileInsured": null,
             "allowOperatorCommunication": null,
-            "degradationDescription": null
+            "degradationDescription": null,
+            "multimediaNature": null
         },
         {
             "status": {
                 "code": 1,
-                "label": "pel.stolen"
+                "label": "Volé"
             },
             "category": {
                 "code": 7,
-                "label": "pel.object.category.multimedia"
+                "label": "Multimédia"
             },
             "label": "PC",
             "brand": "Dell",
@@ -200,16 +202,17 @@ JSON;
             "allowOperatorCommunication": true,
             "degradationDescription": null,
             "ownerLastname": "DURAND",
-            "ownerFirstname": "Charles"
+            "ownerFirstname": "Charles",
+            "multimediaNature": "ORDINATEUR"
         },
         {
             "status": {
                 "code": 2,
-                "label": "pel.degraded"
+                "label": "Dégradé"
             },
             "category": {
                 "code": 4,
-                "label": "pel.object.category.registered.vehicle"
+                "label": "Véhicules immatriculés"
             },
             "label": "Voiture",
             "brand": "BMW",
@@ -240,16 +243,17 @@ JSON;
             "allowOperatorCommunication": null,
             "degradationDescription": "Rétroviseur cassé",
             "ownerLastname": null,
-            "ownerFirstname": null
+            "ownerFirstname": null,
+            "multimediaNature": null
         },
         {
             "status": {
                 "code": 1,
-                "label": "pel.stolen"
+                "label": "Volé"
             },
             "category": {
                 "code": 5,
-                "label": "pel.object.category.unregistered.vehicle"
+                "label": "Véhicules non immatriculés"
             },
             "label": "V\u00e9lo",
             "brand": null,
@@ -280,16 +284,17 @@ JSON;
             "allowOperatorCommunication": null,
             "degradationDescription": "Rétroviseur cassé",
             "ownerLastname": null,
-            "ownerFirstname": null
+            "ownerFirstname": null,
+            "multimediaNature": null
         },
         {
             "status": {
                 "code": 1,
-                "label": "pel.stolen"
+                "label": "Volé"
             },
             "category": {
                 "code": 6,
-                "label": "pel.object.category.other"
+                "label": "Autres"
             },
             "label": "oeil d'ophidia",
             "brand": null,
@@ -320,16 +325,17 @@ JSON;
             "allowOperatorCommunication": null,
             "degradationDescription": null,
             "ownerLastname": null,
-            "ownerFirstname": null
+            "ownerFirstname": null,
+            "multimediaNature": null
         },
         {
             "status": {
                 "code": 1,
-                "label": "pel.stolen"
+                "label": "Volé"
             },
             "category": {
                 "code": 3,
-                "label": "pel.object.category.multimedia"
+                "label": "Téléphone portable"
             },
             "label": "iPhone 11",
             "brand": "Apple",
@@ -364,7 +370,8 @@ JSON;
             "allowOperatorCommunication": true,
             "degradationDescription": null,
             "ownerLastname": null,
-            "ownerFirstname": null
+            "ownerFirstname": null,
+            "multimediaNature": null
         }
     ]
 }
@@ -479,6 +486,7 @@ JSON;
         $this->assertSame('DURAND', $object->getOwnerLastname());
         $this->assertSame('Charles', $object->getOwnerFirstname());
         $this->assertSame(4000.0, $object->getAmount());
+        $this->assertSame('ORDINATEUR', $object->getNature());
 
         // $objects[6] is a MultimediaObject
         $object = $objectsParser->parse($objectsInput->objects[6], $complaintJson);
@@ -498,6 +506,7 @@ JSON;
         $this->assertTrue($object->isPinEnabledWhenMobileStolen());
         $this->assertNull($object->getOwnerLastname());
         $this->assertNull($object->getOwnerFirstname());
+        $this->assertSame('TELEPHONE PORTABLE', $object->getNature());
     }
 
     public function testParseRegisteredVehicle(): void

@@ -105,7 +105,6 @@ class ObjectsParser
 
         $multimediaObject
             ->setLabel($objectInput->label)
-            ->setNature($objectInput->category->label)
             ->setBrand($objectInput->brand)
             ->setModel($objectInput->model)
             ->setSerialNumber($objectInput->serialNumber)
@@ -113,6 +112,7 @@ class ObjectsParser
 
         if (self::MOBILE_PHONE === $objectInput->category->code) {
             $multimediaObject
+                ->setNature(strtoupper(str_replace('é', 'e', $objectInput->category->label)))
                 ->setOperator($objectInput->operator)
                 ->setStillOnWhenMobileStolen($objectInput->stillOnWhenMobileStolen)
                 ->setPinEnabledWhenMobileStolen($objectInput->pinEnabledWhenMobileStolen)
@@ -121,6 +121,7 @@ class ObjectsParser
         }
 
         if (self::MULTIMEDIA === $objectInput->category->code) {
+            $multimediaObject->setNature($objectInput->multimediaNature);
             if ($objectInput->ownerLastname != $complaintJson->identity->civilState->birthName || $objectInput->ownerFirstname != $complaintJson->identity->civilState->firstnames) {
                 $multimediaObject
                     ->setOwned(false)

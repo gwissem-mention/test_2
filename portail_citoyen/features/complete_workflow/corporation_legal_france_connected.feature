@@ -76,6 +76,7 @@ Feature:
         And I select "7" from "objects_objects_4_category"
         And I fill in "objects_objects_4_label" with "Console"
         And I select "2" from "objects_objects_4_status"
+        And I select "9" from "objects_objects_4_multimediaNature"
         And I fill in "objects_objects_4_ownerLastname" with "DURAND"
         And I fill in "objects_objects_4_ownerFirstname" with "Charles"
         And I fill in "objects_objects_4_brand" with "Sony"

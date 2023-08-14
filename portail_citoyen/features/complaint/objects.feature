@@ -66,6 +66,7 @@ Feature:
         And I should see the key "pel.description" translated
         And I should see the key "pel.amount" translated
         And I should see the key "pel.object.status" translated
+        And I should see the key "pel.multimedia.nature" translated
 
     Scenario: I can see a list of text fields translated when I select "Moyens de paiement" from category object list
         When I select "Moyens de paiement" from "objects_objects_0_category"

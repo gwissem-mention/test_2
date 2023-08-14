@@ -111,7 +111,7 @@ Feature:
         And I should see the key "pel.total.message.one" translated
         And I should see the key "pel.total.message.amount" translated
         And I should see "Téléphone"
-        And I should see "Téléphone portable"
+        And I should see "TELEPHONE PORTABLE"
         And I should see "Iphone 13"
         And I should see "Apple"
         And I should see "999 €"
@@ -130,7 +130,7 @@ Feature:
         And I should see "Blouson"
         And I should see "Blouson Adidas de couleur bleu"
         And I should see "100 €"
-        And I should see "Multimédia"
+        And I should see "AUTRE NATURE MULTIMEDIA"
         And I should see "Console"
         And I should see "Playstation 4"
         And I should see "Sony"

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Form\Objects;
 
 use App\AppEnum\DeclarantStatus;
+use App\AppEnum\MultimediaNature;
 use App\AppEnum\RegisteredVehicleNature;
 use App\Form\Model\Objects\ObjectModel;
 use App\Form\PhoneType;
@@ -641,6 +642,14 @@ class ObjectType extends AbstractType
     private function addCategoryMultimediaFields(FormInterface $form): void
     {
         $form
+            ->add('multimediaNature', ChoiceType::class, [
+                'choices' => MultimediaNature::getChoices(),
+                'placeholder' => 'pel.choose.a.multimedia.nature',
+                'label' => 'pel.multimedia.nature',
+                'constraints' => [
+                    new NotBlank(),
+                ],
+            ])
             ->add('brand', TextType::class, [
                 'constraints' => [
                     new NotBlank(),
@@ -693,13 +702,15 @@ class ObjectType extends AbstractType
     private function removeCategoryMultimediaFields(FormInterface $form, ?ObjectModel $objectModel): void
     {
         $form
+            ->remove('multimediaNature')
             ->remove('brand')
             ->remove('model')
             ->remove('serialNumber')
             ->remove('description');
 
         $objectModel
-            ?->setBrand(null)
+            ?->setMultimediaNature(null)
+            ->setBrand(null)
             ->setModel(null)
             ->setSerialNumber(null)
             ->setDescription(null);
