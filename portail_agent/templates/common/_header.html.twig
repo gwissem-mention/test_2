@@ -1,8 +1,11 @@
+{% if app.user %}
+    {% set notifications = app.user|user_unclicked_notifications %}
+{% endif %}
 <div data-controller="sidebar">
     <header role="banner" class="fr-header">
         <div class="fr-header__body">
             <div class="row w-100 mw-100 h-100 g-0">
-                <div class="col-md-8 col-lg-9 col-xxl-10 mx-auto px-4">
+                <div class="col-md-8 col-lg-9 col-xxl-10 mx-auto px-3 px-lg-4">
                     <div class="fr-header__body-row">
                         <div class="fr-header__brand fr-enlarge-link">
                             <div class="fr-header__brand-top">
@@ -14,7 +17,10 @@
                                     </p>
                                 </div>
                                 <div class="fr-header__navbar">
-                                    <button class="fr-btn--menu fr-btn" data-fr-opened="false" aria-controls="modal-499" aria-haspopup="menu" id="button-500" title="{{ 'pel.menu'|trans }}">{{ 'pel.menu'|trans }}</button>
+                                    {% if notifications is defined and notifications is not empty %}
+                                        <div class="circled background-red text-white width-20px height-20px d-flex align-items-center justify-content-center m-2 pull-right z-max small position-absolute push-right push-top">{{ (notifications|length>9) ? '9+' : notifications|length }}</div>
+                                    {% endif %}
+                                    <button class="fr-btn--menu fr-btn" data-fr-opened="false" aria-controls="modal-navbar" aria-haspopup="menu" id="button-navbar" title="{{ 'pel.menu'|trans }}">{{ 'pel.menu'|trans }}</button>
                                 </div>
                             </div>
                             <div class="fr-header__service">
@@ -25,19 +31,18 @@
                         </div>
                         <div class="fr-header__tools d-none d-lg-flex align-items-end">
                             {% if app.user %}
-                                {% set notifications = app.user|user_unclicked_notifications %}
                                 <div class="d-flex align-items-center text-center text-md-end">
                                     <div class="dropdown" id="notifications-dropdown">
-                                        <a class="d-block text-secondary text-decoration-none m-3" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i class="bi bi-bell-fill fs-2"></i>
-                                            {% if notifications is not empty %}
-                                                <span class="badge bg-danger rounded-pill--up">{{ notifications|length }}</span>
+                                        <a class="d-block text-secondary text-decoration-none m-3 background-transparent" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <img src="{{ asset('build/images/icons/bell.svg') }}" alt="{{ 'pel.notifications'|trans }}">
+                                            {% if notifications is defined and notifications is not empty %}
+                                                <div class="circled background-red text-white width-20px height-20px d-flex align-items-center justify-content-center m-2 position-absolute top-0 right-0 small push-left">{{ (notifications|length>9) ? '9+' : notifications|length }}</div>
                                             {% endif %}
                                         </a>
                                         <ul class="dropdown-menu dropdown-menu-end">
                                             <li>
                                                 <div class="dropdown-header">
-                                                    {% if notifications is not empty %}
+                                                    {% if notifications is defined and notifications is not empty %}
                                                         {{ 'pel.notifications'|trans }}
                                                     {% else %}
                                                         {{ 'pel.no.more.notification'|trans }}
@@ -51,7 +56,7 @@
                                             {% endfor %}
                                         </ul>
                                     </div>
-                                    <button class="avatar bg-secondary rounded-circle text-light m-2" data-action="click->sidebar#openSidebar" data-sidebar-target="avatar">{{ app.user.initials }}</button>
+                                    <button class="avatar background-grey background-grey-hover rounded-circle text-light m-2" data-action="click->sidebar#openSidebar" data-sidebar-target="avatar">{{ app.user.initials }}</button>
                                 </div>
                             {% endif %}
                         </div>
@@ -59,14 +64,62 @@
                 </div>
             </div>
         </div>
-        <div class="fr-header__menu fr-modal" id="modal-491" aria-labelledby="button-492">
+        <div class="fr-header__menu fr-modal" id="modal-navbar" aria-labelledby="button-navbar">
             <div class="row w-100 mw-100 h-100 g-0">
                 <div class="col-md-8 col-lg-9 col-xxl-10 mx-auto px-4">
                     <div class="fr-header__menu-links">
+                        <button class="fr-btn--close fr-btn mt-2" aria-controls="modal-navbar" title="{{ 'pel.close'|trans }}">
+                            {{ 'pel.close'|trans }}
+                        </button>
                     </div>
-                    <nav class="fr-nav d-flex align-items-center justify-content-between" id="navigation-494" role="navigation" aria-label="{{ 'pel.menu'|trans }}">
-                        <ul class="fr-nav__list">
-                            <li class="fr-nav__item">
+                    <nav class="fr-nav d-flex flex-column flex-lg-row align-items-center justify-content-between" id="navigation-navbar" role="navigation" aria-label="{{ 'pel.menu'|trans }}">
+                        <ul class="fr-nav__list width-auto width-lg-100">
+                            {% if app.user %}
+                                <div class="d-block d-lg-none">
+                                    <div class="d-flex align-items-center text-center text-lg-end">
+                                        <div class="dropdown" id="notifications-dropdown">
+                                            <a class="d-flex align-items-end text-secondary text-decoration-none m-3 background-transparent" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <div class="me-3">
+                                                    <img src="{{ asset('build/images/icons/bell-small.svg') }}" alt="{{ 'pel.notifications'|trans }}">
+                                                    {% if notifications is defined and notifications is not empty %}
+                                                        <div class="circled background-red text-white width-20px height-20px d-flex align-items-center justify-content-center m-2 position-absolute top-0 right-0 small push-left">{{ (notifications|length>9) ? '9+' : notifications|length }}</div>
+                                                    {% endif %}
+                                                </div>
+                                                <div class="fw-bold text-black">{{ 'pel.notifications'|trans }}</div>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-end">
+                                                <li>
+                                                    <div class="dropdown-header">
+                                                        {% if notifications is defined and notifications is not empty %}
+                                                            {{ 'pel.notifications'|trans }}
+                                                        {% else %}
+                                                            {{ 'pel.no.more.notification'|trans }}
+                                                        {% endif %}
+                                                    </div>
+                                                </li>
+                                                {% for notification in notifications %}
+                                                    <li>
+                                                        <a class="dropdown-item {{ notification.isUrgent ? 'fw-bold' }}" href="{{ path('notification', {id:notification.id}) }}">{{ notification.title }}</a>
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="m-3 text-center">
+                                        <img src="{{ asset('build/images/icons/user.svg') }}" alt="{{ app.user.appellation }}">
+                                    </div>
+                                    <div class="fw-bold text-center mb-3">{{ app.user.appellation }}</div>
+                                    <div class="text-center text-secondary mb-3">
+                                        {% if is_granted('ROLE_SUPERVISOR') %}
+                                            {{ 'pel.supervisor'|trans }}
+                                        {% else %}
+                                            {{ 'pel.agent'|trans }}
+                                        {% endif %}
+                                    </div>
+                                    <div class="fw-semibold text-center mb-5 text-blue">{{ app.user.serviceCode|unit_name }}</div>
+                                </div>
+                            {% endif %}
+                            <li class="fr-nav__item border-0 border-bottom">
                                 <a class="fr-nav__link text-blue-hover reset-link border-bottom-active border-blue-active background-transparent {% if app.request.attributes.get('_route') in ['dashboard', 'dashboard_priority'] %}active{% endif %}" href="{{ path('dashboard') }}" target="_self">{{ 'pel.dashboard'|trans }}</a>
                             </li>
                             <li class="fr-nav__item">
@@ -75,10 +128,20 @@
                             <li class="fr-nav__item">
                                 <a class="fr-nav__link text-blue-hover reset-link border-bottom-active border-blue-active background-transparent {% if app.request.attributes.get('_route') is same as('faq') %}active{% endif %}" href="{{ path('faq') }}" target="_self">{{ 'pel.faq.space'|trans }}</a>
                             </li>
+                            {# Temporarily removed #}
+                            {#
+                            <li class="fr-nav__item">
+                                <a class="fr-nav__link text-blue-hover reset-link border-bottom-active border-blue-active background-transparent" href="#" target="_self">{{ 'pel.settings'|trans }}</a>
+                            </li>
+                            #}
                         </ul>
                         {% if app.user %}
-                            <div class="text-uppercase d-none d-md-block">{{ app.user.serviceCode|unit_name }}</div>
+                            <div class="text-uppercase d-none d-lg-block">{{ app.user.serviceCode|unit_name }}</div>
                         {% endif %}
+                        <a href="{{ path('app_sso_less_close_session') }}" title="{{ 'pel.logout'|trans }}" class="align-self-start d-flex d-lg-none align-items-center reset-link text-black text-blue-hover mt-5 mb-5">
+                            <img src="{{ asset('build/images/icons/signout-fill.svg') }}" alt="{{ 'pel.logout'|trans }}" class="me-2">
+                            {{ 'pel.logout'|trans }}
+                        </a>
                     </nav>
                 </div>
             </div>
@@ -105,24 +168,23 @@
                 {% endif %}
             </div>
             <div class="fw-semibold text-center mb-5">{{ app.user.serviceCode|unit_name }}</div>
-                {# Temporarily removed #}
-                {#
-                <a href="#" title="{{ 'pel.display.settings'|trans }}" class="d-block reset-link text-blue fw-semibold p-3 text-blue-active">
-                    <img src="{{ asset('build/images/icons/display-settings.svg') }}" alt="{{ 'pel.display.settings'|trans }}" class="me-1">
-                    {{ 'pel.display.settings'|trans }}
+            {# Temporarily removed #}
+            {#
+            <a href="#" title="{{ 'pel.display.settings'|trans }}" class="d-block reset-link text-blue fw-semibold p-3 text-blue-active">
+                <img src="{{ asset('build/images/icons/display-settings.svg') }}" alt="{{ 'pel.display.settings'|trans }}" class="me-1">
+                {{ 'pel.display.settings'|trans }}
+            </a>
+            #}
+            <a href="#" title="{{ 'pel.settings'|trans }}" class="d-block reset-link text-blue fw-semibold p-3 text-blue-active">
+                <img src="{{ asset('build/images/icons/settings.svg') }}" alt="{{ 'pel.settings'|trans }}" class="me-1">
+                {{ 'pel.settings'|trans }}
+            </a>
+            {% if not sso_is_enabled %}
+                <a href="{{ path('app_sso_less_close_session') }}" title="{{ 'pel.logout'|trans }}" class="d-block reset-link text-blue fw-semibold p-3 text-blue-active">
+                    <img src="{{ asset('build/images/icons/signout.svg') }}" alt="{{ 'pel.logout'|trans }}" class="me-1">
+                    {{ 'pel.logout'|trans }}
                 </a>
-                #}
-                <a href="#" title="{{ 'pel.settings'|trans }}" class="d-block reset-link text-blue fw-semibold p-3 text-blue-active">
-                    <img src="{{ asset('build/images/icons/settings.svg') }}" alt="{{ 'pel.settings'|trans }}" class="me-1">
-                    {{ 'pel.settings'|trans }}
-                </a>
-                {% if not sso_is_enabled %}
-                    <a href="{{ path('app_sso_less_close_session') }}" title="{{ 'pel.logout'|trans }}" class="d-block reset-link text-blue fw-semibold p-3 text-blue-active">
-                        <img src="{{ asset('build/images/icons/signout.svg') }}" alt="{{ 'pel.logout'|trans }}" class="me-1">
-                        {{ 'pel.logout'|trans }}
-                    </a>
-                {% endif %}
-            </ul>
+            {% endif %}
         </div>
     {% endif %}
 </div>
