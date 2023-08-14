@@ -441,7 +441,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringNotContainsString('<Objet_Doc_Admin_Identite_Naissance_Commune>', $this->xmlContent);
         $this->assertStringNotContainsString('<Objet_Doc_Admin_Identite_Naissance_Insee>', $this->xmlContent);
         $this->assertStringNotContainsString('<Objet_Doc_Admin_Identite_Residence>', $this->xmlContent);
-        $this->assertStringNotContainsString('<Objet_Doc_Admin_Identite_Residence_Departement>', $this->xmlContent);
+        $this->assertStringContainsString('<Objet_Doc_Admin_Identite_Residence_Departement>92 - Hauts-de-Seine</Objet_Doc_Admin_Identite_Residence_Departement>', $this->xmlContent);
         $this->assertStringNotContainsString('<Objet_Doc_Admin_Identite_Residence_Codepostal>', $this->xmlContent);
         $this->assertStringNotContainsString('<Objet_Doc_Admin_Identite_Residence_Commune>', $this->xmlContent);
         $this->assertStringNotContainsString('<Objet_Doc_Admin_Identite_Residence_Insee>', $this->xmlContent);
@@ -449,7 +449,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringNotContainsString('<Objet_Doc_Admin_Identite_Residence_RueType>', $this->xmlContent);
         $this->assertStringNotContainsString('<Objet_Doc_Admin_Identite_Residence_RueNom>', $this->xmlContent);
         $this->assertStringNotContainsString('<Objet_Doc_Admin_Identite_Naissance_HidNumDep>', $this->xmlContent);
-        $this->assertStringNotContainsString('<Objet_Doc_Admin_Identite_Residence_HidNumDep>', $this->xmlContent);
+        $this->assertStringContainsString('<Objet_Doc_Admin_Identite_Residence_HidNumDep>92</Objet_Doc_Admin_Identite_Residence_HidNumDep>', $this->xmlContent);
         // $this->assertStringContainsString('<Objet_Doc_Admin_Vol_Dans_Vl>Non</Objet_Doc_Admin_Vol_Dans_Vl>', $this->xmlContent);
         $this->assertStringContainsString('</Objet_Doc_Admin>', $this->xmlContent);
     }
