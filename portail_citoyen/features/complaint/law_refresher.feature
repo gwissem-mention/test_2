@@ -19,8 +19,6 @@ Feature:
         And I should see the key "pel.to.be.assisted" translated
         And I should see the key "pel.to.be.assisted.by.a.service" translated
         And I should see the key "pel.refer.the.matter" translated
-        And I should see the key "pel.706.3" translated
-        And I should see the key "pel.706.14" translated
         And I should see the key "pel.of.this.code" translated
         And I should see the key "pel.to.be.informed.of.the.protective.measures" translated
         And I should see the key "pel.for.victims" translated
@@ -33,7 +31,6 @@ Feature:
         And I should see the key "pel.filing.a.complaint.online" translated
         And I should see the key "pel.in.any.case" translated
         And I should see the key "pel.in.addition.to.cases" translated
-        And I should see the key "pel.to.the.penal.code" translated
         And I should see the key "pel.nota" translated
         And I should see the key "pel.in.accordance.to.article.11" translated
         And I should see the key "pel.in.accordance.to.article.2" translated

@@ -87,7 +87,7 @@
         {% endif %}
         <fieldset class="{{ html_classes('fr-fieldset', 'fr-input-group', 'fr-mb-6v','fr-mb-md-2v', {'fr-fieldset--inline': form.address.addressOrRouteFactsKnown.vars.inline is same as(true),'fr-fieldset--error': form.address.addressOrRouteFactsKnown.vars.errors is not empty}) }}" {% if form.address.addressOrRouteFactsKnown.vars.errors is not empty %} role="group" aria-labelledby="legend-{{ form.address.addressOrRouteFactsKnown.vars.id }} form-errors-{{ form.address.addressOrRouteFactsKnown.vars.id }}" {% endif %}>
             <div class="md:flex md:gap-x-8">
-                <legend class="fr-fieldset__legend--regular fr-fieldset__legend fr-text--regular xs:whitespace-nowrap" id="legend-{{ form.address.addressOrRouteFactsKnown.vars.id }}">
+                <legend class="fr-fieldset__legend--regular fr-fieldset__legend fr-text--regular" id="legend-{{ form.address.addressOrRouteFactsKnown.vars.id }}">
                     {{ form.address.addressOrRouteFactsKnown.vars.label|trans }}&nbsp;<span class="text-[var(--text-default-error)]">*</span>
                 </legend>
                 <div class="fr-fieldset__content">
@@ -182,7 +182,7 @@
     <div class="fr-pt-4v fr-px-6v fr-pb-12v fr-pt-md-6v fr-px-md-20v text-center">
         <div class="flex items-center justify-start gap-x-4 md:justify-between">
             <a href="{{ path('complaint_identity') }}"
-               class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-arrow-left-line fr-text--lg py-3 md:py-2.5 pr-6 pl-[18px] before:content-[''] before:w-6 before:h-6">
+               class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-arrow-left-line fr-text--lg py-3 md:py-2.5 pr-[5px] pl-[13px] md:pr-6 md:pl-[18px] before:content-[''] before:w-6 before:h-6">
                 <span class="hidden lg:block">{{ 'pel.previous'|trans }}</span>
             </a>
             <button type="submit"
