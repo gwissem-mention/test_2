@@ -5,7 +5,7 @@
 {% block content %}
 <div class="fr-grid-row fr-grid-row--center fr-col-12 fr-col-md-6 fr-pt-10v fr-pr-6v pb-12 fr-pl-6v fr-pt-md-20v fr-pr-md-0 md:pb-[58px] fr-pl-md-22v md:max-w-[644px]">
     <div class="fr-grid-row fr-col-md-12">
-        <h4 id="pel-confirm-online-complaint-that" class="fr-mb-6v fr-mb-md-8v md:text-[28px]/[36px]">{{ 'pel.confirm.online.complaint.that'|trans }}</h4>
+        <h2 id="pel-confirm-online-complaint-that" class="fr-mb-6v fr-mb-md-8v text-[22px]/7 md:text-[28px]/[36px]">{{ 'pel.confirm.online.complaint.that'|trans }}</h2>
         <ul class="fr-callout__text list-none fr-pl-0">
             <li class="relative text-lg fr-pr-12v fr-pb-0 pl-[38px] fr-mb-6v fr-pr-md-32v fr-mb-md-10v md:text-xl/8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/user-unfollow.svg')] md:before:top-1.5 after:content-[''] after:absolute after:top-0 after:right-4 after:w-8 after:h-full after:bg-center after:bg-no-repeat after:bg-[url('/assets/images/icons/check.svg')]">{{ 'pel.you.dont.know.offense.author'|trans|raw }}</li>
             <li class="relative text-lg fr-pr-12v fr-pb-0 pl-[38px] fr-mb-6v fr-pr-md-32v fr-mb-md-10v md:text-xl/8 before:content-[''] before:absolute before:top-[3px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/calendar-check.svg')] md:before:top-1.5 after:content-[''] after:absolute after:top-0 after:right-4 after:w-8 after:h-full after:bg-center after:bg-no-repeat after:bg-[url('/assets/images/icons/check.svg')]">{{ 'pel.you.are.major'|trans|raw }}</li>
@@ -14,7 +14,9 @@
         <div class="@container fr-col-12 fr-mt-2v fr-mt-md-7v">
             <div class="fr-grid-row gap-x-4 items-start md:justify-between @[551.5px]:justify-between @[0px]:md:justify-normal @[551.5px]:md:justify-between">
                 <div class="fr-text-center fr-mt-4v fr-mt-md-3v">
-                    <a href="{{ path('home') }}#pel-use-online-complaint-for" class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-arrow-left-line py-3 pr-[5px] pl-[13px] before:content-[''] before:w-6 before:h-6" title="{{ 'pel.use.online.complaint.for.list'|trans }}"></a>
+                    <a href="{{ path('home') }}#pel-use-online-complaint-for" class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-arrow-left-line py-3 pr-[5px] pl-[13px] before:content-[''] before:w-6 before:h-6">
+                        <span class="hidden">{{ 'pel.use.online.complaint.for.list'|trans }}</span>
+                    </a>
                 </div>
                 <div class="fr-mt-4v fr-mt-md-3v w-full order-last md:order-none md:w-fit @[551.5px]:order-none @[551.5px]:w-fit @[0px]:md:order-last @[551.5px]:md:order-none">
                     <a href="{{ path('cgu') }}#pel-help-procedures-my-status" class="fr-btn fr-btn--secondary fr-text--lg fr-pr-6v fr-pl-6v py-2.5">
