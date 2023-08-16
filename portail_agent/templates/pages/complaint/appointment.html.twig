@@ -19,6 +19,7 @@
                     class="btn btn-primary btn-appointment btn-appointment-modify"
                     data-action="complaint#modifyAppointment"
                     data-complaint-target="modifyAppointmentButton"
+                {{ isAppointmentPlanned ? '' : 'disabled'}}
             >
                 {{ 'pel.appointment.modify'|trans }}
             </button>
