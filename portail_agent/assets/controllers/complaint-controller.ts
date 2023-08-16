@@ -405,7 +405,6 @@ export default class extends Controller {
 
                 if (this.complaintContainerTarget && complaintContainerSource) {
                     this.complaintContainerTarget.innerHTML = complaintContainerSource.innerHTML;
-                    this.modifyAppointmentButtonTarget.removeAttribute("disabled");
                 }
             });
     }
