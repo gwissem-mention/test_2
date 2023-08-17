@@ -109,7 +109,7 @@
                 <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.serial.number'|trans }} : <b>{{ object.serialNumber }}</b></li>
             {% endif %}
             {% if object.description is not null %}
-                <li>{{ 'pel.description'|trans }} : {{ object.description }}</li>
+                <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.description'|trans }} : {{ object.description }}</li>
             {% endif %}
             {% if object.stillOnWhenMobileStolen is not null %}
                 <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.still.on.when.mobile.stolen'|trans }} : <b>{{ object.stillOnWhenMobileStolen|bool_to_string }}</b></li>
@@ -156,7 +156,7 @@
                 <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.serial.number'|trans }} : <b>{{ object.serialNumber }}</b></li>
             {% endif %}
             {% if object.description is not null %}
-                <li>{{ 'pel.description'|trans }} : {{ object.description }}</li>
+                <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.description'|trans }} : {{ object.description }}</li>
             {% endif %}
         {% elseif object.category|object_category_get_name is same as('pel.object.category.payment.ways') %}
             <li class="relative text-xl/8 fr-pb-0 fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/price-tag-3.svg')]">
