@@ -5,7 +5,7 @@
 {% block content %}
 	<div class="fr-grid-row fr-grid-row--center fr-col-12 fr-col-md-6 fr-pt-10v fr-pr-6v pb-12 fr-pl-6v fr-pt-md-20v fr-pr-md-0 fr-pb-md-20v fr-pl-md-22v md:max-w-[644px]">
 		<div class="fr-grid-row fr-col-md-12">
-			<h4 id="pel-online-complaint-process" class="fr-mb-6v fr-mb-md-10v md:text-[28px]/[36px]">{{ 'pel.online.complaint.process'|trans|raw }}</h4>
+			<h2 id="pel-online-complaint-process" class="fr-mb-6v fr-mb-md-10v text-[22px]/7 md:text-[28px]/[36px]">{{ 'pel.online.complaint.process'|trans|raw }}</h2>
 			<ul class="fr-callout__text list-none fr-pl-0">
 				<li class="relative text-lg fr-pb-0 pl-14 md:pl-[86px] fr-mb-8v fr-mb-md-12v md:text-xl before:content-[''] before:absolute before:left-0.5 before:w-14 before:h-full before:bg-no-repeat before:bg-[length:40px_40px] before:bg-[url('/assets/images/document.svg')] md:before:bg-[length:56px_56px]">
 					<div class="flex gap-x-2.5 items-center fr-mb-2v">
@@ -32,7 +32,9 @@
 			</ul>
 			<div class="fr-col-12 fr-grid-row gap-x-4 items-start fr-mt-2v fr-mt-md-7v md:flex-row md:justify-between">
 				<div class="fr-text-center fr-mt-4v fr-mt-md-3v">
-					<a href="{{ path('home_confirmation') }}#pel-confirm-online-complaint-that" class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-arrow-left-line py-3 pr-[5px] pl-[13px] before:content-[''] before:w-6 before:h-6" title="{{ 'pel.use.online.complaint.for.criteria'|trans }}"></a>
+					<a href="{{ path('home_confirmation') }}#pel-confirm-online-complaint-that" class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-arrow-left-line py-3 pr-[5px] pl-[13px] before:content-[''] before:w-6 before:h-6">
+                        <span class="hidden">{{ 'pel.use.online.complaint.for.criteria'|trans }}</span>
+                    </a>
 				</div>
 				<div class="fr-text-center fr-mt-4v fr-mt-md-3v">
 					<a href="{{ path('authentication') }}#pel-to-log-in" class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line fr-text--lg fr-pr-5v fr-pl-6v py-2.5 after:w-6 after:h-6">
