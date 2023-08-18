@@ -16,7 +16,7 @@ Feature:
         And I should see the key "pel.when.using.france.connect.service.you.accept.terms" translated
         And I should see the key "pel.continue.pel.without.log.in" translated
         And I should see the key "pel.continue.pel.without.log.in.explanation" translated
-        And I follow "no_france_connect_auth_button"
+        And I press "no_france_connect_auth_button"
         And I follow "no_france_connect_auth_button_confirm"
         Then I should be on "/porter-plainte/rappel-a-la-loi"
         And I follow "complaint_identity_link"
@@ -40,7 +40,7 @@ Feature:
     @javascript
     Scenario: I should be redirected on "/porter-plainte/identite" with no FranceConnect auth
         Given I am on "/authentification"
-        When I follow "no_france_connect_auth_button"
+        When I press "no_france_connect_auth_button"
         And I follow "no_france_connect_auth_button_confirm"
         Then I should be on "/porter-plainte/rappel-a-la-loi"
         And I follow "complaint_identity_link"
