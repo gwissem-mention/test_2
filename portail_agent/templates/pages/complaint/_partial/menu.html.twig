@@ -30,5 +30,4 @@
         <button type="button" class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-user-line mb-3 w-100" title="{{ 'pel.click.here.to.self.assign.the.declaration'|trans }}" id="complaint-self-assign-button" data-action="complaint#selfAssign" data-complaint-url-param="{{ path('complaint_self_assign', {'id':complaint.id}) }}">{{ 'pel.self.assign.the.declaration'|trans }}</button>
     {% endif %}
     <a href="{{ path('complaint_appointment', {'id': complaint.id}) }}" class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-calendar-2-fill mb-3 w-100 text-blue reset-link">{{ 'pel.appointment.management'|trans }}</a>
-    <button type="button" class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-message-2-line mb-3 w-100" data-action="complaint#commentFocus" id="complaint-comment-button">{{ 'pel.comment'|trans }}</button>
 </div>

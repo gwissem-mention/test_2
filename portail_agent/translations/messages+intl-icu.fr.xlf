@@ -258,9 +258,13 @@
                 <source>pel.comment</source>
                 <target>Commentaire</target>
             </trans-unit>
+            <trans-unit id="pel.com">
+                <source>pel.com</source>
+                <target>Com.</target>
+            </trans-unit>
             <trans-unit id="pel.comments">
                 <source>pel.comments</source>
-                <target>Com.</target>
+                <target>Commentaires</target>
             </trans-unit>
             <trans-unit id="pel.comments.feed">
                 <source>pel.comments.feed</source>

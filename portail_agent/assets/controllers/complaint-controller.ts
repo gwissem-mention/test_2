@@ -35,7 +35,9 @@ export default class extends Controller {
         "sendToLrpModal",
         "dropZoneError",
         "appointmentDateInput",
-        "appointmentTimeInput"
+        "appointmentTimeInput",
+        "commentsButton",
+        "commentsContainer"
     ];
 
     declare readonly appointmentDoneRadioButtonTarget: HTMLInputElement;
@@ -62,9 +64,10 @@ export default class extends Controller {
     declare readonly modifyAppointmentButtonTarget: HTMLElement;
     declare readonly appointmentDateInputTarget: HTMLInputElement;
     declare readonly appointmentTimeInputTarget: HTMLInputElement;
+    declare readonly commentsButtonTarget: HTMLInputElement;
+    declare readonly commentsContainerTarget: HTMLInputElement;
 
     public override connect() {
-        this.scrollCommentFeed();
         this.openUnitReassignmentValidationModal();
         this.toggleModifyAppointmentButton();
     }
@@ -310,6 +313,8 @@ export default class extends Controller {
     }
 
     public commentFocus(): void {
+        this.setCommentsState("show");
+        this.scrollCommentFeed();
         this.commentContentTarget?.focus();
     }
 
@@ -453,5 +458,21 @@ export default class extends Controller {
         } else {
             button.setAttribute("disabled", "disabled");
         }
+    }
+
+    public openComments(): void {
+        this.setCommentsState("show");
+    }
+
+    public closeComments(): void {
+        this.setCommentsState("hide");
+    }
+
+    private setCommentsState(state: string): void {
+        this.commentsButtonTarget.classList.toggle("d-none", state === "show");
+        this.commentsButtonTarget.classList.toggle("d-block", state !== "show");
+
+        this.commentsContainerTarget.classList.toggle("d-none", state !== "show");
+        this.commentsContainerTarget.classList.toggle("d-block", state === "show");
     }
 }

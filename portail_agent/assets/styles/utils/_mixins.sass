@@ -20,11 +20,11 @@
     -webkit-border-radius: 100% !important
     -moz-border-radius: 100% !important
 
-@mixin rounded
+@mixin rounded($value)
     // Important is needed here to override Bootstrap.
-    border-radius: 20px !important
-    -webkit-border-radius: 20px !important
-    -moz-border-radius: 20px !important
+    border-radius: $value !important
+    -webkit-border-radius: $value !important
+    -moz-border-radius: $value !important
 
 @mixin reset-link
     // Important is needed here to override DataTables and DSFR.
