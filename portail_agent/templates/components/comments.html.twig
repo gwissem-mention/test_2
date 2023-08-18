@@ -1,23 +1,19 @@
 <div id="comment-feed" {{ attributes }}>
-    <div class="container comment-box overflow-scroll mb-4" id="comment-box" data-complaint-target="commentBox">
+    <div class="comment-box overflow-auto" id="comment-box" data-complaint-target="commentBox">
         {% if this.complaint %}
             {% for comment in this.complaint.comments %}
-                <div class="row {{ comment.author is same as app.user ? 'comment-right' : 'comment-left' }}">
-                    <div class="col-7 align-self-end rounded-3 m-3 p-3 {{ comment.author is same as app.user ? 'comment-author-color' : 'comment-agent-color' }}">
-                        <div id="comment-author">
-                            <strong>
-                                <small id="comment-title" class="{{ not comment.title ? 'd-none':'' }}">{{ comment.title|trans }} :</small>
-                                <small>{{ comment.author.appellation }}</small>
-                            </strong>
+                <div class="w-100 d-flex {{ (comment.author is same as app.user) ? 'justify-content-end' : 'justify-content-start' }}">
+                    <div class="m-3 p-3 border w-75 {{ (comment.author is same as app.user) ? 'background-blue text-white comment-right' : 'background-white comment-left' }}">
+                        <div class="fw-bold mb-2" id="comment-author">
+                            <span id="comment-title" class="{{ not comment.title ? 'd-none':'' }}">{{ comment.title|trans }} :</span>
+                            {{ comment.author.appellation }}
                         </div>
-                        {{ comment.content }}
-                        <div class="d-flex justify-content-end" id="comment-published-at">
-                            <small>
-                                {{ 'pel.the'|trans }}
-                                 {{ comment.publishedAt|date('d/m/Y', app.user.timezone) }}
-                                {{ 'pel.at'|trans }}
-                                {{ comment.publishedAt|date('H:i', app.user.timezone) }}
-                            </small>
+                        <div class="overflow-hidden text-break">{{ comment.content }}</div>
+                        <div class="d-flex justify-content-end small mt-2" id="comment-published-at">
+                            {{ 'pel.the'|trans }}
+                            {{ comment.publishedAt|date('d/m/Y', app.user.timezone) }}
+                            {{ 'pel.at'|trans }}
+                            {{ comment.publishedAt|date('H:i', app.user.timezone) }}
                         </div>
                     </div>
                 </div>
@@ -27,12 +23,10 @@
     <div>
         {{ form_start(form) }}
             <div class="form-group mb-3">
-                {{ form_row(form.content, {'attr': {'data-complaint-target': 'commentContent', 'data-action': 'input->complaint#commentButton'}}) }}
+                {{ form_row(form.content, {'attr': {'data-complaint-target': 'commentContent', 'data-action': 'input->complaint#commentButton', 'class': 'rounded-0'}}) }}
             </div>
             <div class="form-group d-flex justify-content-end">
-                <button class="btn btn-secondary" id="comment-button" type="submit" data-complaint-target="commentButton" data-action="live#action" data-action-name="prevent|save" disabled data-live-ignore>
-                    <i class="bi bi-arrow-right"></i> {{ 'pel.send'|trans }}
-                </button>
+                <button class="fr-btn fr-btn--icon-right fr-icon-send-plane-fill me-3 mb-3" id="comment-button" type="submit" data-complaint-target="commentButton" data-action="live#action" data-action-name="prevent|save" disabled data-live-ignore>{{ 'pel.send'|trans }}</button>
             </div>
         {{ form_end(form) }}
     </div>

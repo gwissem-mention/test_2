@@ -1,12 +1,22 @@
-<div class="row p-0 m-0">
-    <div class="col-12 p-0">
-        <div class="border border-secondary bg-light rounded-3 p-3 mt-5">
-            <div class="fs-3 fw-semibold lh-lg m-3 mt-0" id="comments-feed-title">
-                {{ 'pel.comments.feed'|trans }} ({{ complaint.comments|length }})
+<div class="position-fixed end-0 bottom-0 m-5 p-2 rounded-40px fw-bold text-blue d-flex align-items-center justify-content-start background-white shadow cursor-pointer" data-complaint-target="commentsButton" data-action="click->complaint#openComments">
+    <div class="rounded-40px background-blue height-45px width-45px d-flex align-items-center justify-content-center text-white">
+        <span class="fr-icon-question-answer-fill" aria-hidden="true"></span>
+    </div>
+    <button type="button" id="complaint-comment-button" class="p-2 me-2 fw-bold background-transparent" data-action="complaint#commentFocus">{{ 'pel.comments'|trans }}</button>
+</div>
+<div class="comment-feed position-fixed end-0 bottom-0 m-0 m-lg-5 shadow background-white rounded width-25 z-max d-none" data-complaint-target="commentsContainer">
+    <div class="d-flex align-items-center justify-content-between p-3 border-bottom border-black">
+        <div class="d-flex align-items-center text-blue fw-bold">
+            <div class="rounded-40px background-blue height-45px width-45px d-flex align-items-center justify-content-center text-white">
+                <span class="fr-icon-question-answer-fill" aria-hidden="true"></span>
             </div>
-            <div class="bg-white rounded-3 p-3 m-3">
-                {{ component('comments', {complaint: complaint, field_disabled: (not workflow_has_marked_place(complaint, constant('App\\Entity\\Complaint::STATUS_REJECTED')) ? false : true), current_route:app.request.attributes.get('_route')}) }}
+            <div class="p-2 me-2" id="comments-feed-title">
+                {{ 'pel.comments.feed'|trans }}
             </div>
         </div>
+        <button class="fr-btn fr-btn--tertiary-no-outline fr-btn--icon-left fr-icon-close-line" data-action="click->complaint#closeComments">
+            {{ 'pel.close'|trans }}
+        </button>
     </div>
+    {{ component('comments', {complaint: complaint, field_disabled: (not workflow_has_marked_place(complaint, constant('App\\Entity\\Complaint::STATUS_REJECTED')) ? false : true), current_route:app.request.attributes.get('_route')}) }}
 </div>

@@ -74,7 +74,7 @@ Feature:
         And I should see the key "pel.status" translated
         And I should see the key "pel.a.opj.name" translated
         And I should see the key "pel.declaration.number" translated
-        And I should see the key "pel.comments" translated
+        And I should see the key "pel.com" translated
         And I should see 20 "table#datatable .background-blue" element
         And I should see 5 "table#datatable .background-yellow" element
 
@@ -92,7 +92,7 @@ Feature:
         And I should see the key "pel.status" translated
         And I should see the key "pel.a.opj.name" translated
         And I should see the key "pel.declaration.number" translated
-        And I should see the key "pel.comments" translated
+        And I should see the key "pel.com" translated
         And I should see 15 "table#datatable .background-yellow" element
         And I should see 35 "table#datatable .background-red" element
 
@@ -110,7 +110,7 @@ Feature:
         And I should see the key "pel.status" translated
         And I should see the key "pel.a.opj.name" translated
         And I should see the key "pel.declaration.number" translated
-        And I should see the key "pel.comments" translated
+        And I should see the key "pel.com" translated
         And I should see 15 "table#datatable .background-blue" element
         And I should see 10 "table#datatable .background-cumulus" element
 

@@ -34,7 +34,7 @@ Feature:
         And I should see the key "pel.alert" translated
         And I should see "Alert de test trop longue"
         And I should see a "button[data-bs-toggle='modal']" element
-        And I should see 19 "button" element
+        And I should see 20 "button" element
         And I should see the key "pel.assign.declaration.to" translated
         And I should not see the key "pel.send.to.lrp" translated
         And I should not see the key "pel.reject" translated
@@ -498,7 +498,7 @@ Feature:
         And I should see a ".comment-box" element
         And I should see a "#comments-feed-title" element
         And I should see the key "pel.comments.feed" translated
-        And the "#comments-feed-title" element should contain "Espace commentaires (5)"
+        And the "#comments-feed-title" element should contain "Espace commentaires"
         And I should see 3 ".comment-left" element
         And I should see 2 ".comment-right" element
         And I should see 5 "#comment-author" element
@@ -518,11 +518,12 @@ Feature:
     Scenario: I can add a comment from the summary page
         Given I am authenticated with H3U3XCGD from PN
         And I am on "/plainte/recapitulatif/11"
-        And the "#comments-feed-title" element should contain "Espace commentaires (5)"
-        Then I fill in "comment_content" with "Ceci est un commentaire test."
-        When I press "comment-button"
-        And I should see 3 ".comment-right" element
-        And the "#comments-feed-title" element should contain "Espace commentaires (6)"
+        Then the "#comments-feed-title" element should contain "Espace commentaires"
+        When I press "complaint-comment-button"
+        And I fill in "comment_content" with "Ceci est un commentaire test."
+        And I press "comment-button"
+        Then I should see 3 ".comment-right" element
+        And the "#comments-feed-title" element should contain "Espace commentaires"
 
     @func
     Scenario: I can open the attachments
