@@ -5,7 +5,7 @@
 {% block content %}
 	{% embed "common/_modal.html.twig" with {'id':'complaint-confirm', 'className': 'fr-pr-7v fr-pl-7v fr-pr-md-0 fr-pl-md-0', 'footerClassName': 'border-solid border-0 border-t border-t-[#dddddd] md:border-t-0'} %}
 		{% block title %}
-		
+
 			<div class="flex gap-x-2 md:items-center fr-mb-4v">
 				<span class="fr-fi-arrow-right-line fr-fi--lg" aria-hidden="true"></span>
 				<h4 class="text-2xl fr-mb-0">{{ 'pel.no.france.connect.modal.title'|trans }}</h4>
@@ -31,7 +31,7 @@
 		<div class="fr-grid-row fr-col-md-12">
 			<div class="france-connect fr-mr-2v fr-pb-2v fr-mr-md-0 fr-pb-md-9v">
 				<div class="flex flex-wrap items-center gap-x-6 gap-y-2 fr-mb-4v lg:flex-nowrap">
-					<h4 id="pel-to-log-in" class="fr-mb-0 md:text-[28px]/[36px]">{{ 'pel.to.log.in'|trans }}</h4>
+					<h2 id="pel-to-log-in" class="fr-mb-0 text-[22px]/7 md:text-[28px]/[36px]">{{ 'pel.to.log.in'|trans }}</h2>
 					<p class="fr-badge fr-badge--new fr-badge--no-icon text-xs/5 min-h-fit md:text-sm/6">{{ 'pel.to.log.in.badge'|trans }}</p>
 				</div>
 				<p class="fr-text md:text-lg fr-mb-md-10v">
@@ -51,19 +51,21 @@
 				{% endif %}
 			</div>
 			<div class="france-connect__without fr-pt-8v fr-mr-2v fr-pt-md-15v fr-mr-md-0 border-solid border-0 border-t border-t-[#dddddd]">
-				<h5 class="fr-mb-2v fr-mb-md-4v text-[22px]/7 md:text-[28px]/[36px]">{{ 'pel.or.continue.pel.without.log.in'|trans }}</h5>
+				<h2 class="fr-mb-2v fr-mb-md-4v text-[22px]/7 md:text-[28px]/[36px]">{{ 'pel.or.continue.pel.without.log.in'|trans }}</h2>
 				<p class="fr-text md:text-lg fr-mb-2v fr-mb-md-5v">{{ 'pel.continue.pel.without.log.in.explanation'|trans|raw }}</p>
 			</div>
 		</div>
 		<div class="fr-col-12 fr-grid-row gap-x-4 items-start">
 			<div class="fr-text-center fr-mt-4v fr-mt-md-3v">
-				<a href="{{ path('home_unfolding') }}#pel-online-complaint-process" class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-arrow-left-line py-3 pr-[5px] pl-[13px] before:content-[''] before:w-6 before:h-6" title="{{ 'pel.online.complaint.process.back'|trans }}"></a>
+				<a href="{{ path('home_unfolding') }}#pel-online-complaint-process" class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-arrow-left-line py-3 pr-[5px] pl-[13px] before:content-[''] before:w-6 before:h-6">
+                    <span class="hidden">{{ 'pel.online.complaint.process.back'|trans }}</span>
+                </a>
 			</div>
 			<div class="fr-text-center fr-mt-4v fr-mt-md-3v">
-				<a href="#" class="fr-btn fr-btn--secondary fr-text--lg fr-pr-6v fr-pl-6v py-2.5 after:w-6 after:h-6" data-fr-opened="false" aria-controls="fr-modal-complaint-confirm" id="no_france_connect_auth_button">
+				<button class="fr-btn fr-btn--secondary fr-text--lg fr-pr-6v fr-pl-6v py-2.5 after:w-6 after:h-6" data-fr-opened="false" aria-controls="fr-modal-complaint-confirm" id="no_france_connect_auth_button">
 					{{ 'pel.continue.pel.without.log.in'|trans }}
-				</a>
+				</button>
 			</div>
 		</div>
 	</div>
-</div>{% endblock %}
+{% endblock %}

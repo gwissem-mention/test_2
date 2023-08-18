@@ -100,7 +100,7 @@ Feature:
 
     Scenario: I should see error if I valid with no filling the appointment textarea when I am not france connected
         Given I am on "/authentification"
-        When I follow "no_france_connect_auth_button"
+        When I press "no_france_connect_auth_button"
         And I follow "no_france_connect_auth_button_confirm"
         Then I should be on "/porter-plainte/rappel-a-la-loi"
         And I follow "complaint_identity_link"

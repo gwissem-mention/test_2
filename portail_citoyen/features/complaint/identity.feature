@@ -6,7 +6,7 @@ Feature:
 
     Background:
         Given I am on "/authentification"
-        And I follow "no_france_connect_auth_button"
+        And I press "no_france_connect_auth_button"
         And I follow "no_france_connect_auth_button_confirm"
         Then I should be on "/porter-plainte/rappel-a-la-loi"
         And I follow "complaint_identity_link"
