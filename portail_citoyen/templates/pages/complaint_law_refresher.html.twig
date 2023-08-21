@@ -14,9 +14,9 @@
 {% endblock %}
 
 {% block content %}
-    <div class="fr-pt-10v fr-pb-12v fr-px-6v fr-py-md-12v fr-px-md-20v">
+    <div class="fr-pt-10v fr-pb-6v fr-px-6v fr-pt-md-12v fr-px-md-20v">
         <h1 class="text-[28px]/9 md:text-[40px]/[48px] fr-mb-2v">{{ 'pel.legal.dispositions'|trans }}</h1>
-        <div>{{ 'pel.before.online.complaint'|trans }}</div>
+        <p>{{ 'pel.before.online.complaint'|trans }}</p>
     </div>
     <hr>
     <div class="fr-pt-4v fr-px-6v fr-pt-md-6v fr-px-md-20v fr-pb-md-12v">
@@ -82,9 +82,9 @@
     </div>
     <hr>
     <div class="fr-pt-4v fr-pb-12v fr-pt-md-6v text-center">
-        <span class="fr-mb-md-4v fr-hidden fr-unhidden-md">
+        <p class="fr-mb-md-4v fr-hidden fr-unhidden-md">
             {{ 'pel.by.continuing.you.confirm.that.you.are.aware.of.the.legal.provisions'|trans }}
-        </span>
+        </p>
         <a class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line fr-text--lg py-2.5 pr-[18px] pl-6 after:w-6 after:h-6" href="{{ path('complaint_identity') }}" id="complaint_identity_link">{{ 'pel.complete.my.declaration'|trans }}</a>
     </div>
 {% endblock %}
