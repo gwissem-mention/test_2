@@ -48,7 +48,7 @@
             </trans-unit>
             <trans-unit id="pel.appointment.management">
                 <source>pel.appointment.management</source>
-                <target>Gestion RDV</target>
+                <target>Gestion de RDV</target>
             </trans-unit>
             <trans-unit id="pel.appointment.modify">
                 <source>pel.appointment.modify</source>
@@ -72,7 +72,7 @@
             </trans-unit>
             <trans-unit id="pel.appointment.validate">
                 <source>pel.appointment.validate</source>
-                <target>Valider le RDV avec le déclarant</target>
+                <target>Valider le RDV</target>
             </trans-unit>
             <trans-unit id="pel.assigned">
                 <source>pel.assigned</source>
@@ -290,6 +290,10 @@
                 <source>pel.country</source>
                 <target>Pays</target>
             </trans-unit>
+            <trans-unit id="pel.declarant">
+                <source>pel.declarant</source>
+                <target>Déclarant</target>
+            </trans-unit>
             <trans-unit id="pel.declarant.address">
                 <source>pel.declarant.address</source>
                 <target>Adresse du déclarant</target>
@@ -430,9 +434,13 @@
                 <source>pel.email</source>
                 <target>Email</target>
             </trans-unit>
-            <trans-unit id="pel.enter.the.date.and.time.of.the.appointment.with.the.victim">
-                <source>pel.enter.the.date.and.time.of.the.appointment.with.the.victim</source>
-                <target>Saisir la date et l'heure du RDV convenu avec la victime</target>
+            <trans-unit id="pel.enter.the.date.of.the.appointment.with.the.victim">
+                <source>pel.enter.the.date.of.the.appointment.with.the.victim</source>
+                <target>Choisir la date du RDV avec le déclarant</target>
+            </trans-unit>
+            <trans-unit id="pel.enter.the.time.of.the.appointment.with.the.victim">
+                <source>pel.enter.the.time.of.the.appointment.with.the.victim</source>
+                <target>Choisir la date du RDV avec le déclarant</target>
             </trans-unit>
             <trans-unit id="pel.exact.date.known">
                 <source>pel.exact.date.known</source>
@@ -556,7 +564,7 @@
             </trans-unit>
             <trans-unit id="pel.information.entered.by.the.victim.to.make.an.appointment">
                 <source>pel.information.entered.by.the.victim.to.make.an.appointment</source>
-                <target>Demande de rendez-vous, renseignée par le déclarant</target>
+                <target>Précisions renseignées par le déclarant :</target>
             </trans-unit>
             <trans-unit id="pel.insufisant.quality.to.act">
                 <source>pel.insufisant.quality.to.act</source>
