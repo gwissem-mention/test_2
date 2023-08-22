@@ -1442,6 +1442,14 @@
                 <source>pel.the.declarations</source>
                 <target>Les déclarations</target>
             </trans-unit>
+             <trans-unit id="pel.my.declarations">
+                <source>pel.my.declarations</source>
+                <target>Mes déclarations</target>
+             </trans-unit>
+             <trans-unit id="pel.my.unit.declarations">
+                <source>pel.my.unit.declarations</source>
+                <target>Les déclarations de mon unité</target>
+             </trans-unit>
             <trans-unit id="pel.faq.space">
                 <source>pel.faq.space</source>
                 <target>Espace FAQ</target>
