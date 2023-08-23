@@ -114,6 +114,9 @@ Feature:
         And I should see a "select#objects_objects_0_status" element
         And I should see the key "pel.amount.for.group" translated
         And I should see the key "pel.object.status" translated
+        And I should see a "input#objects_objects_0_serialNumber" element
+        And I should see the key "pel.other.serial.number" translated
+        And I should see the key "pel.this.number.is.required.to.identity.your.object" translated
 
     Scenario: I can see a list of text fields translated when I select "Véhicules immatriculés" from category object list
         When I select "Véhicules immatriculés" from "objects_objects_0_category"

@@ -230,6 +230,16 @@ class ObjectType extends AbstractType
                     new NotBlank(),
                     new Positive(),
                 ],
+            ])
+            ->add('serialNumber', TextType::class, [
+                'constraints' => [
+                    new Length([
+                        'max' => 20,
+                    ]),
+                ],
+                'label' => 'pel.other.serial.number',
+                'help' => 'pel.this.number.is.required.to.identity.your.object',
+                'required' => false,
             ]);
     }
 
@@ -515,9 +525,10 @@ class ObjectType extends AbstractType
     {
         $form
             ->remove('description')
-            ->remove('quantity');
+            ->remove('quantity')
+            ->remove('serialNumber');
 
-        $objectModel?->setDescription(null)->setQuantity(null);
+        $objectModel?->setDescription(null)->setQuantity(null)->setSerialNumber(null);
     }
 
     private function removeCategoryPaymentWaysFields(FormInterface $form, ?ObjectModel $objectModel): void

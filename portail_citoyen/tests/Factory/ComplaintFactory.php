@@ -250,7 +250,16 @@ class ComplaintFactory
                 ->setRegistrationNumberCountry('FR')
                 ->setInsuranceCompany('AXA')
                 ->setInsuranceNumber('1234567890')
-                ->setDegradationDescription('Portière avant gauche enfoncée et Pare-choc arrière rayé'));
+                ->setDegradationDescription('Portière avant gauche enfoncée et Pare-choc arrière rayé'))
+            ->addObject((new ObjectModel())
+                ->setDescription('Lingot d\'or de 1kg')
+                ->setCategory(6)
+                ->setLabel('Lingot d\'or')
+                ->setStatus(ObjectModel::STATUS_STOLEN)
+                ->setQuantity(1)
+                ->setAmount(10000)
+                ->setSerialNumber('1234567890')
+            );
     }
 
     private function createAdditionalInformation(): AdditionalInformationModel

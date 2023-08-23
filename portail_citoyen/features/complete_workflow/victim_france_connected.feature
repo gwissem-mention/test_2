@@ -72,6 +72,13 @@ Feature:
         And I fill in "objects_objects_4_model" with "Playstation 4"
         And I fill in "objects_objects_4_serialNumber" with "12345678"
         And I fill in "objects_objects_4_description" with "Ceci est une description test pour ma console."
+        And I press "objects_objects_add"
+        And I select "6" from "objects_objects_5_category"
+        And I select "1" from "objects_objects_5_status"
+        And I fill in "objects_objects_5_label" with "Lingot d'or"
+        And I fill in "objects_objects_5_serialNumber" with "1234"
+        And I fill in "objects_objects_5_description" with "Lingot d'or"
+        And I fill in "objects_objects_5_quantity" with "1"
         And I press "objects_submit"
         Then I should be on "/porter-plainte/informations-complementaires"
         When I click the "label[for=additional_information_suspectsChoice_0]" element
@@ -190,13 +197,17 @@ Feature:
         And I should see "Console"
         And I should see "Sony"
         And I should see "Playstation 4"
+        And I should see "N° de série : 1234"
         And I should not see "DUPONT Michel"
         And I should see "12345678"
         And I should see "Ceci est une description test pour ma console."
+        And I should see "Bien volé de type Autres"
+        And I should see "Description : Lingot d'or"
+        And I should see "Quantité : 1"
         And I should see the key "pel.goods.number" translated
         And I should see the key "pel.total" translated
         And I should see the key "pel.total.message.amount" translated
-        And I should see "5 biens déclarés pour un montant total de 200,00 €"
+        And I should see "6 biens déclarés pour un montant total de 200,00 €"
         When I press "summary_submit"
         Then I should be on "/porter-plainte/rendez-vous"
         When I fill in "appointment_appointmentContactText" with "Between 10am and 12am"

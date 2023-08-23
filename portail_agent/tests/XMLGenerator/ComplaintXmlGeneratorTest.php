@@ -191,6 +191,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
                 (new SimpleObject())
                     ->setNature('Blouson')
                     ->setDescription('Blouson bleu')
+                    ->setSerialNumber('1234567890')
                     ->setAmount(100)
             )
             ->addObject(
@@ -537,7 +538,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Objet_simple_Nature>Blouson</Objet_simple_Nature>', $this->xmlContent);
         //        $this->assertStringContainsString('<Objet_simple_Marque>Adidas</Objet_simple_Marque>', $this->xmlContent);
         //        $this->assertStringContainsString('<Objet_simple_Modele>Homme</Objet_simple_Modele>', $this->xmlContent);
-        //        $this->assertStringContainsString('<Objet_simple_Numeros_Serie>123456</Objet_simple_Numeros_Serie>', $this->xmlContent);
+        $this->assertStringContainsString('<Objet_simple_Numeros_Serie>1234567890</Objet_simple_Numeros_Serie>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_simple_Description>Blouson bleu</Objet_simple_Description>', $this->xmlContent);
         //        $this->assertStringContainsString('<Objet_simple_Identite_Victime>Oui</Objet_simple_Identite_Victime>', $this->xmlContent);
         //        $this->assertStringContainsString('<Objet_simple_Vol_Dans_Vl>Non</Objet_simple_Vol_Dans_Vl>', $this->xmlContent);

@@ -331,7 +331,7 @@ JSON;
             "model": null,
             "phoneNumberLine": null,
             "operator": null,
-            "serialNumber": null,
+            "serialNumber": "A9999",
             "description": "Carte de collection",
             "quantity": 1,
             "bank": null,
@@ -606,5 +606,6 @@ JSON;
         $this->assertSame('oeil d\'ophidia', $object->getNature());
         $this->assertSame('Carte de collection', $object->getDescription());
         $this->assertSame(650.0, $object->getAmount());
+        $this->assertSame('A9999', $object->getSerialNumber());
     }
 }
