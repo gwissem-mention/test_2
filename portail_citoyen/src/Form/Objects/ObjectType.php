@@ -6,6 +6,7 @@ namespace App\Form\Objects;
 
 use App\AppEnum\DeclarantStatus;
 use App\AppEnum\MultimediaNature;
+use App\AppEnum\PaymentCategory;
 use App\AppEnum\RegisteredVehicleNature;
 use App\Form\Model\Objects\ObjectModel;
 use App\Form\PhoneType;
@@ -15,6 +16,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
+use Symfony\Component\Form\Extension\Core\Type\EnumType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -302,6 +304,15 @@ class ObjectType extends AbstractType
     private function addCategoryPaymentWaysFields(FormInterface $form): void
     {
         $form
+            ->add('paymentCategory', EnumType::class, [
+                'class' => PaymentCategory::class,
+                'choice_label' => fn (PaymentCategory $paymentCategory) => PaymentCategory::getLabel($paymentCategory->value),
+                'label' => 'pel.payment.category',
+                'placeholder' => 'pel.object.category.choose',
+                'constraints' => [
+                    new NotBlank(),
+                ],
+            ])
             ->add('bank', TextType::class, [
                 'attr' => [
                     'maxlength' => 20,
@@ -506,9 +517,10 @@ class ObjectType extends AbstractType
         $form
             ->remove('bank')
             ->remove('bankAccountNumber')
-            ->remove('creditCardNumber');
+            ->remove('creditCardNumber')
+            ->remove('paymentCategory');
 
-        $objectModel?->setBank(null)->setBankAccountNumber(null)->setCreditCardNumber(null);
+        $objectModel?->setBank(null)->setBankAccountNumber(null)->setCreditCardNumber(null)->setPaymentCategory(null);
     }
 
     private function removeCategoryRegisteredVehicleFields(FormInterface $form, ?ObjectModel $objectModel): void

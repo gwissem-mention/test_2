@@ -6,6 +6,7 @@ namespace App\Generator\Complaint\Serializer;
 
 use App\AppEnum\DocumentType;
 use App\AppEnum\MultimediaNature;
+use App\AppEnum\PaymentCategory;
 use App\AppEnum\RegisteredVehicleNature;
 use App\Form\Model\Objects\ObjectModel;
 use App\Referential\Provider\Country\CountryProviderInterface;
@@ -67,6 +68,10 @@ class ObjectModelNormalizer implements NormalizerInterface
                 'inseeCode' => $countryCode,
                 'label' => $documentIssuingCountry->getLabel(),
             ];
+        }
+
+        if (null !== $object->getPaymentCategory()) {
+            $data['paymentCategory'] = $this->translator->trans((string) PaymentCategory::getLabel($object->getPaymentCategory()->value));
         }
 
         return $data;

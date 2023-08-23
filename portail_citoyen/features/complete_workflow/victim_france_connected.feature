@@ -74,6 +74,15 @@ Feature:
         And I fill in "objects_objects_5_serialNumber" with "1234"
         And I fill in "objects_objects_5_description" with "Lingot d'or"
         And I fill in "objects_objects_5_quantity" with "1"
+        And I press "objects_objects_add"
+        And I click the "#objects_objects_6_label" element
+        And I select "2" from "objects_objects_6_category"
+        And I select "1" from "objects_objects_6_status"
+        And I select "4" from "objects_objects_6_paymentCategory"
+        And I fill in "objects_objects_6_label" with "CB"
+        And I fill in "objects_objects_6_bank" with "BNP"
+        And I fill in "objects_objects_6_bankAccountNumber" with "767888"
+        And I fill in "objects_objects_6_creditCardNumber" with "4624 7482 3324 9080"
         And I press "objects_submit"
         Then I should be on "/porter-plainte/informations-complementaires"
         When I click the "label[for=additional_information_suspectsChoice_0]" element
@@ -197,10 +206,16 @@ Feature:
         And I should see "Bien volé de type Autres"
         And I should see "Description : Lingot d'or"
         And I should see "Quantité : 1"
+        And I should see "CB"
+        And I should see "Bien volé de type Moyens de paiement"
+        And I should see "Catégorie de paiement : CARTE BANCAIRE"
+        And I should see "Organisme / Banque : BNP"
+        And I should see "IBAN : 767888"
+        And I should see "Numéro de carte : 4624 7482 3324 9080"
         And I should see the key "pel.goods.number" translated
         And I should see the key "pel.total" translated
         And I should see the key "pel.total.message.amount" translated
-        And I should see "6 biens déclarés pour un montant total de 200,00 €"
+        And I should see "7 biens déclarés pour un montant total de 200,00 €"
         When I press "summary_submit"
         Then I should be on "/porter-plainte/rendez-vous"
         When I fill in "appointment_appointmentContactText" with "Between 10am and 12am"

@@ -123,7 +123,7 @@ Feature:
         And I should see "Rétroviseur cassé"
         And I should see "C3"
         And I should see "17 000 €"
-        And I should see "Carte Bancaire VISA"
+        And I should see "CARTE BANCAIRE"
         And I should see "Visa principale"
         And I should see "LCL"
         And I should see "Permis de conduire"

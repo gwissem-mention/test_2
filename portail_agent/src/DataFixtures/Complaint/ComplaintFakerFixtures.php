@@ -320,7 +320,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                 $complaint->addObject(
                     (new PaymentMethod())
                         ->setStatus(AbstractObject::STATUS_STOLEN)
-                        ->setType('Carte Bancaire')
+                        ->setType('CARTE BANCAIRE')
                         ->setDescription($this->faker->randomElement(['Visa principale', 'Mastercard']))
                         ->setBank($this->faker->randomElement(['Crédit Agricole', 'Caisse d\'épargne', 'LCL']))
                 );

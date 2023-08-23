@@ -147,12 +147,10 @@ class ObjectsParser
     {
         $paymentMethod = new PaymentMethod();
 
-        $paymentMethod
-            ->setDescription('') // TODO check whey this is required
-            ->setType($objectInput->label)
+        return $paymentMethod
+            ->setDescription($objectInput->label)
+            ->setType($objectInput->paymentCategory)
             ->setBank($objectInput->bank);
-
-        return $paymentMethod;
     }
 
     private function parseVehicle(object $objectInput): Vehicle

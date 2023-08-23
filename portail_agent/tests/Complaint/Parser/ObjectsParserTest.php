@@ -141,7 +141,8 @@ JSON;
             "documentIssuingCountry": {
                 "inseeCode": 99160,
                 "label": "France"
-            }
+            },
+            "paymentCategory": null
         },
         {
             "status": {
@@ -185,7 +186,8 @@ JSON;
             "allowOperatorCommunication": null,
             "degradationDescription": null,
             "multimediaNature": null,
-            "documentIssuingCountry": null
+            "documentIssuingCountry": null,
+            "paymentCategory": "CARTE BANCAIRE"
         },
         {
             "status": {
@@ -231,7 +233,8 @@ JSON;
             "ownerLastname": "DURAND",
             "ownerFirstname": "Charles",
             "multimediaNature": "ORDINATEUR",
-            "documentIssuingCountry": null
+            "documentIssuingCountry": null,
+            "paymentCategory": null
         },
         {
             "status": {
@@ -277,7 +280,8 @@ JSON;
             "ownerLastname": null,
             "ownerFirstname": null,
             "multimediaNature": null,
-            "documentIssuingCountry": null
+            "documentIssuingCountry": null,
+            "paymentCategory": null
         },
         {
             "status": {
@@ -323,7 +327,8 @@ JSON;
             "ownerLastname": null,
             "ownerFirstname": null,
             "multimediaNature": null,
-            "documentIssuingCountry": null
+            "documentIssuingCountry": null,
+            "paymentCategory": null
         },
         {
             "status": {
@@ -369,7 +374,8 @@ JSON;
             "ownerLastname": null,
             "ownerFirstname": null,
             "multimediaNature": null,
-            "documentIssuingCountry": null
+            "documentIssuingCountry": null,
+            "paymentCategory": null
         },
         {
             "status": {
@@ -419,7 +425,8 @@ JSON;
             "ownerLastname": null,
             "ownerFirstname": null,
             "multimediaNature": null,
-            "documentIssuingCountry": null
+            "documentIssuingCountry": null,
+            "paymentCategory": null
         }
     ]
 }
@@ -509,9 +516,9 @@ JSON;
         $paymentMethod = $objectsParser->parse($objectsInput->objects[1], $complaintJson);
 
         $this->assertInstanceOf(PaymentMethod::class, $paymentMethod);
-        $this->assertSame('Carte bleu', $paymentMethod->getType());
-        $this->assertEmpty($paymentMethod->getDescription());
+        $this->assertSame('Carte bleu', $paymentMethod->getDescription());
         $this->assertSame('BNP', $paymentMethod->getBank());
+        $this->assertSame('CARTE BANCAIRE', $paymentMethod->getType());
     }
 
     public function testParseMultimediaObject(): void
