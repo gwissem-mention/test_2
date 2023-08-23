@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Form\Objects;
 
 use App\AppEnum\DocumentType;
+use App\Form\CountryAutocompleteType;
 use App\Form\Model\Objects\ObjectModel;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -19,6 +20,11 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 class DocumentTypeType extends AbstractType
 {
+    public function __construct(
+        private readonly int $franceCode
+    ) {
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -41,6 +47,14 @@ class DocumentTypeType extends AbstractType
                 'multiple' => false,
                 'empty_data' => '1',
                 'priority' => -1,
+            ])
+            ->add('documentIssuingCountry', CountryAutocompleteType::class, [
+                'attr' => [
+                    'autocomplete' => 'document-issuing-country-name',
+                ],
+                'label' => 'pel.document.issuing.country',
+                'preferred_choices' => [$this->franceCode],
+                'empty_data' => $this->franceCode,
             ])
             ->add('documentNumber', TextType::class, [
                 'label' => 'pel.document.number',

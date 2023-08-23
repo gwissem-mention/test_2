@@ -39,6 +39,7 @@ class ObjectModel
     private ?\DateTimeInterface $documentIssuedOn = null;
     private ?\DateTimeInterface $documentValidityEndDate = null;
     private ?bool $documentOwned = null;
+    private ?int $documentIssuingCountry = null;
     private ?DocumentAdditionalInformationModel $documentAdditionalInformation = null;
     private ?bool $stillOnWhenMobileStolen = null;
     private ?bool $keyboardLockedWhenMobileStolen = null;
@@ -525,6 +526,18 @@ class ObjectModel
     public function setMultimediaNature(?int $multimediaNature): self
     {
         $this->multimediaNature = $multimediaNature;
+
+        return $this;
+    }
+
+    public function getDocumentIssuingCountry(): ?int
+    {
+        return $this->documentIssuingCountry;
+    }
+
+    public function setDocumentIssuingCountry(?int $documentIssuingCountry): self
+    {
+        $this->documentIssuingCountry = $documentIssuingCountry;
 
         return $this;
     }

@@ -8,6 +8,7 @@ use App\AppEnum\DocumentType;
 use App\AppEnum\MultimediaNature;
 use App\AppEnum\RegisteredVehicleNature;
 use App\Form\Model\Objects\ObjectModel;
+use App\Referential\Provider\Country\CountryProviderInterface;
 use App\Thesaurus\ObjectCategoryThesaurusProviderInterface;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
@@ -20,6 +21,7 @@ class ObjectModelNormalizer implements NormalizerInterface
         #[Autowire(service: ObjectNormalizer::class)] private readonly NormalizerInterface $normalizer,
         private readonly ObjectCategoryThesaurusProviderInterface $objectCategoryThesaurusProvider,
         private readonly TranslatorInterface $translator,
+        private readonly CountryProviderInterface $countryProvider,
     ) {
     }
 
@@ -54,6 +56,17 @@ class ObjectModelNormalizer implements NormalizerInterface
 
         if ($multimediaNatureLabel = MultimediaNature::getLabel($object->getMultimediaNature())) {
             $data['multimediaNature'] = $this->translator->trans($multimediaNatureLabel);
+        }
+
+        if (null != $data['documentIssuingCountry']) {
+            /** @var int $countryCode */
+            $countryCode = $data['documentIssuingCountry'];
+            $documentIssuingCountry = $this->countryProvider->getByInseeCode(strval($countryCode));
+
+            $data['documentIssuingCountry'] = [
+                'inseeCode' => $countryCode,
+                'label' => $documentIssuingCountry->getLabel(),
+            ];
         }
 
         return $data;

@@ -367,6 +367,11 @@ parameters:
 			path: src/Complaint/Parser/ObjectsParser.php
 
 		-
+		    message: "#^Access to an undefined property object\\:\\:\\$documentIssuingCountry\\.$#"
+		    count: 1
+		    path: src/Complaint/Parser/ObjectsParser.php
+
+		-
 			message: "#^Access to an undefined property object\\:\\:\\$files\\.$#"
 			count: 1
 			path: src/Complaint/Parser/ObjectsParser.php

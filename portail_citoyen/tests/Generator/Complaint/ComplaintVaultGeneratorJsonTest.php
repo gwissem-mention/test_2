@@ -290,6 +290,10 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'ownerLastname' => null,
                         'ownerFirstname' => null,
                         'multimediaNature' => null,
+                        'documentIssuingCountry' => [
+                            'inseeCode' => 99160,
+                            'label' => 'France',
+                        ],
                     ],
                     [
                         'status' => [
@@ -339,6 +343,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'ownerLastname' => null,
                         'ownerFirstname' => null,
                         'multimediaNature' => null,
+                        'documentIssuingCountry' => null,
                     ],
                     [
                         'status' => [
@@ -384,6 +389,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'ownerLastname' => null,
                         'ownerFirstname' => null,
                         'multimediaNature' => 'AUTRE NATURE MULTIMEDIA',
+                        'documentIssuingCountry' => null,
                     ],
                     [
                         'status' => [
@@ -429,6 +435,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'ownerLastname' => null,
                         'ownerFirstname' => null,
                         'multimediaNature' => null,
+                        'documentIssuingCountry' => null,
                     ],
                     [
                         'status' => [
@@ -474,6 +481,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'ownerLastname' => null,
                         'ownerFirstname' => null,
                         'multimediaNature' => null,
+                        'documentIssuingCountry' => null,
                     ],
                     [
                         'status' => [
@@ -864,6 +872,10 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
     //                        'pinEnabledWhenMobileStolen' => null,
     //                        'mobileInsured' => null,
     //                        'allowOperatorCommunication' => null,
+    //                        'documentIssuingCountry' => [
+    //                            'inseeCode' => 99160,
+    //                            'label' => 'France'
+    //                        ]
     //                    ],
     //                    [
     //                        'status' => [
@@ -908,6 +920,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
     //                        'pinEnabledWhenMobileStolen' => null,
     //                        'mobileInsured' => null,
     //                        'allowOperatorCommunication' => null,
+    //                        'documentIssuingCountry' => null,
     //                    ],
     //                    [
     //                        'status' => [
@@ -948,6 +961,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
     //                        'pinEnabledWhenMobileStolen' => null,
     //                        'mobileInsured' => null,
     //                        'allowOperatorCommunication' => null,
+    //                        'documentIssuingCountry' => null,
     //                    ],
     //                    [
     //                        'status' => [
@@ -989,6 +1003,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
     //                        'pinEnabledWhenMobileStolen' => null,
     //                        'mobileInsured' => null,
     //                        'allowOperatorCommunication' => null,
+    //                        'documentIssuingCountry' => null,
     //                    ],
     //                ],
     //            ],
@@ -1304,6 +1319,10 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'ownerLastname' => null,
                         'ownerFirstname' => null,
                         'multimediaNature' => null,
+                        'documentIssuingCountry' => [
+                            'inseeCode' => 99160,
+                            'label' => 'France',
+                        ],
                     ],
                     [
                         'status' => [
@@ -1353,6 +1372,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'ownerLastname' => null,
                         'ownerFirstname' => null,
                         'multimediaNature' => null,
+                        'documentIssuingCountry' => null,
                     ],
                     [
                         'status' => [
@@ -1398,6 +1418,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'ownerLastname' => null,
                         'ownerFirstname' => null,
                         'multimediaNature' => 'AUTRE NATURE MULTIMEDIA',
+                        'documentIssuingCountry' => null,
                     ],
                     [
                         'status' => [
@@ -1443,6 +1464,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'ownerLastname' => null,
                         'ownerFirstname' => null,
                         'multimediaNature' => null,
+                        'documentIssuingCountry' => null,
                     ],
                     [
                         'status' => [
@@ -1488,6 +1510,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'ownerLastname' => null,
                         'ownerFirstname' => null,
                         'multimediaNature' => null,
+                        'documentIssuingCountry' => null,
                     ],
                     [
                         'status' => [

@@ -654,6 +654,10 @@
                 <source>pel.document.issued.on</source>
                 <target>Délivré le</target>
             </trans-unit>
+            <trans-unit id="pel.document.issuing.country">
+                <source>pel.document.issuing.country</source>
+                <target>Pays de délivrance</target>
+            </trans-unit>
             <trans-unit id="pel.document.owner.address">
                 <source>pel.document.owner.address</source>
                 <target>Adresse du titulaire</target>

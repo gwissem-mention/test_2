@@ -44,6 +44,11 @@
 {% if object.documentType.documentNumber is defined %}
     {{ form_row(object.documentType.documentNumber) }}
 {% endif %}
+{% if object.documentType.documentIssuingCountry is defined %}
+    <div class="md:w-1/2 fr-mb-6v">
+        {{ form_row(object.documentType.documentIssuingCountry) }}
+    </div>
+{% endif %}
 {% if object.documentType.documentIssuedBy is defined %}
     {{ form_row(object.documentType.documentIssuedBy) }}
 {% endif %}

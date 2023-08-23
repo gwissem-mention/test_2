@@ -186,6 +186,7 @@
 #        And I should see the key "pel.document.issued.by" translated
 #        And I should see the key "pel.document.issued.on" translated
 #        And I should see the key "pel.document.validity.end.date" translated
+#        And I should see the key "pel.document.issuing.country" translated
 #        And I should see "Véhicules non immatriculés"
 #        And I should see "Object 1"
 #        And I should see "Object 2"
@@ -196,6 +197,7 @@
 #        And I should see "Préfecture de Paris"
 #        And I should see "01/01/2010"
 #        And I should see "01/01/2030"
+#        And I should see "France"
 #        And I should see the key "pel.brand" translated
 #        And I should see the key "pel.model" translated
 #        And I should see the key "pel.phone.number.line" translated

@@ -422,6 +422,9 @@
     {% if object|object_type is same as('App\\Entity\\FactsObjects\\AdministrativeDocument') %}
         <li>
             <strong>{{ 'pel.number'|trans }} {{ index }}</strong> : {{ object.type }}
+            {% if object.issuingCountry is not null %}
+                - {{ object.issuingCountry }}
+            {% endif %}
             {% if object.number is not null %}
                 - {{ object.number }}
             {% endif %}

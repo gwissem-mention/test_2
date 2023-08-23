@@ -137,7 +137,11 @@ JSON;
             "degradationDescription": null,
             "ownerLastname": null,
             "ownerFirstname": null,
-            "multimediaNature": null
+            "multimediaNature": null,
+            "documentIssuingCountry": {
+                "inseeCode": 99160,
+                "label": "France"
+            }
         },
         {
             "status": {
@@ -180,7 +184,8 @@ JSON;
             "mobileInsured": null,
             "allowOperatorCommunication": null,
             "degradationDescription": null,
-            "multimediaNature": null
+            "multimediaNature": null,
+            "documentIssuingCountry": null
         },
         {
             "status": {
@@ -225,7 +230,8 @@ JSON;
             "degradationDescription": null,
             "ownerLastname": "DURAND",
             "ownerFirstname": "Charles",
-            "multimediaNature": "ORDINATEUR"
+            "multimediaNature": "ORDINATEUR",
+            "documentIssuingCountry": null
         },
         {
             "status": {
@@ -270,7 +276,8 @@ JSON;
             "degradationDescription": "Rétroviseur cassé",
             "ownerLastname": null,
             "ownerFirstname": null,
-            "multimediaNature": null
+            "multimediaNature": null,
+            "documentIssuingCountry": null
         },
         {
             "status": {
@@ -315,7 +322,8 @@ JSON;
             "degradationDescription": "Rétroviseur cassé",
             "ownerLastname": null,
             "ownerFirstname": null,
-            "multimediaNature": null
+            "multimediaNature": null,
+            "documentIssuingCountry": null
         },
         {
             "status": {
@@ -360,7 +368,8 @@ JSON;
             "degradationDescription": null,
             "ownerLastname": null,
             "ownerFirstname": null,
-            "multimediaNature": null
+            "multimediaNature": null,
+            "documentIssuingCountry": null
         },
         {
             "status": {
@@ -409,7 +418,8 @@ JSON;
             "degradationDescription": null,
             "ownerLastname": null,
             "ownerFirstname": null,
-            "multimediaNature": null
+            "multimediaNature": null,
+            "documentIssuingCountry": null
         }
     ]
 }
@@ -485,6 +495,7 @@ JSON;
         $this->assertSame('2030-08-01T00:00:00+00:00', $administrativeDocument->getValidityEndDate()?->format('c'));
         $this->assertSame(1500.0, $administrativeDocument->getAmount());
         $this->assertNotEmpty($administrativeDocument->getFiles());
+        $this->assertSame('France', $administrativeDocument->getIssuingCountry());
     }
 
     public function testParsePaymentMethod(): void
