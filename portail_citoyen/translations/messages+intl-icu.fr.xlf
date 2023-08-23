@@ -1810,6 +1810,10 @@
                 <source>pel.serial.number</source>
                 <target>N° de série/IMEI</target>
             </trans-unit>
+            <trans-unit id="pel.other.serial.number">
+                <source>pel.other.serial.number</source>
+                <target>N° de série</target>
+            </trans-unit>
             <trans-unit id="pel.serial.number.help">
                 <source>pel.serial.number.help</source>
                 <target>Ce numéro est nécessaire pour identifier votre téléphone. Si vous n’êtes pas en mesure de le fournir sur ce formulaire, il vous sera demandé plus tard</target>
@@ -2561,6 +2565,10 @@
             <trans-unit id="pel.do.you.want.to.make.an.appointment.with.an.agent">
                 <source>pel.do.you.want.to.make.an.appointment.with.an.agent</source>
                 <target>Souhaitez-vous cependant prendre un rendez-vous avec un agent ?</target>
+            </trans-unit>
+            <trans-unit id="pel.this.number.is.required.to.identity.your.object">
+                <source>pel.this.number.is.required.to.identity.your.object</source>
+                <target>Ce numéro est nécessaire pour identifier votre objet.</target>
             </trans-unit>
         </body>
     </file>

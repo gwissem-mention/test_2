@@ -78,7 +78,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                         ->setLastname('BERNARD')
                         ->setFamilySituation('Marié(e)')
                         ->setHomePhone('01 23 45 67 89'))
-                        ->setConsentContactElectronics(true)
+                    ->setConsentContactElectronics(true)
                     ->setStatus(Complaint::STATUS_ASSIGNED)
                     ->setAppointmentDate(new \DateTimeImmutable('2022-12-01'))
                     ->setAppointmentTime(new \DateTimeImmutable('2022-12-01'))
@@ -129,7 +129,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                     ->setIdentity($identity
                         ->setDeclarantStatus(2)
                         ->setFamilySituation('Concubinage'))
-                        ->setConsentContactElectronics(true)
+                    ->setConsentContactElectronics(true)
                     ->setpersonLegalRepresented(
                         (new Identity())
                             ->setFirstname('Jeremy')
@@ -196,7 +196,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                     ->setIdentity($identity
                         ->setDeclarantStatus(3)
                         ->setFamilySituation('Divorcé(e)'))
-                        ->setConsentContactElectronics(true)
+                    ->setConsentContactElectronics(true)
                     ->setCorporationRepresented(
                         (new Corporation())
                             ->setSiretNumber('12345678900000')
@@ -374,6 +374,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                     ->setStatus(AbstractObject::STATUS_STOLEN)
                     ->setNature('Blouson')
                     ->setDescription('Blouson Adidas de couleur bleu')
+                    ->setSerialNumber('A9999')
                     ->setAmount(100)
             )
             ->setAdditionalInformation(

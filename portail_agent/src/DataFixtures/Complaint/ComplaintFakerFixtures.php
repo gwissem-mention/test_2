@@ -330,6 +330,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                         ->setStatus(AbstractObject::STATUS_DEGRADED)
                         ->setNature($this->faker->randomElement(['Blouson', 'Guitare', 'Sac à dos']))
                         ->setDescription($this->faker->randomElement(['De couleur Rouge', 'De couleur Noire', 'De couleur Bleue']))
+                        ->setSerialNumber($this->faker->randomElement(['123456789', '987654321', '132435468']))
                         ->setAmount($this->faker->numberBetween(100, 500))
                 );
             }

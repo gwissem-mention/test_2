@@ -527,6 +527,9 @@
             {% if object.amount is not null %}
                 - {{ object.amount|format_currency('EUR', {fraction_digit: 0}) }}
             {% endif %}
+            {% if object.serialNumber is not null %}
+                - {{ object.serialNumber }}
+            {% endif %}
         </li>
     {% endif %}
     {% if object.files is not empty %}

@@ -11,7 +11,7 @@ class SimpleObjectDTO extends AbstractObjectDTO
     private string $nature;
     //    private string $brand;
     //    private string $model;
-    //    private string $serialNumber;
+    private string $serialNumber;
     private string $description;
 
     public function __construct(SimpleObject $object)
@@ -20,7 +20,7 @@ class SimpleObjectDTO extends AbstractObjectDTO
         $this->nature = $object->getNature() ?? '';
         //        $this->brand = $object->getBrand() ?? '';
         //        $this->model = $object->getModel() ?? '';
-        //        $this->serialNumber = $object->getSerialNumber() ?? '';
+        $this->serialNumber = $object->getSerialNumber() ?? '';
         $this->description = $object->getDescription() ?? '';
     }
 
@@ -33,7 +33,7 @@ class SimpleObjectDTO extends AbstractObjectDTO
             'Objet_simple_Nature' => $this->nature,
 //            'Objet_simple_Marque' => $this->brand,
 //            'Objet_simple_Modele' => $this->model,
-//            'Objet_simple_Numeros_Serie' => $this->serialNumber,
+            'Objet_simple_Numeros_Serie' => $this->serialNumber,
             'Objet_simple_Description' => $this->description,
 //            'Objet_simple_Identite_Victime' => $this->identityVictim,
 //            'Objet_simple_Identite_Nom' => $this->identityLastname,

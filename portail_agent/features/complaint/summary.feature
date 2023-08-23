@@ -129,6 +129,7 @@ Feature:
         And I should see "Permis de conduire"
         And I should see "Blouson"
         And I should see "Blouson Adidas de couleur bleu"
+        And I should see "A9999"
         And I should see "100 €"
         And I should see "AUTRE NATURE MULTIMEDIA"
         And I should see "Console"

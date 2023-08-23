@@ -18,8 +18,8 @@ class SimpleObject extends AbstractObject
     //    #[ORM\Column(length: 255)]
     //    private ?string $model = null;
     //
-    //    #[ORM\Column(length: 255)]
-    //    private ?string $serialNumber = null;
+    #[ORM\Column(length: 20, nullable: true)]
+    private ?string $serialNumber = null;
 
     #[ORM\Column(length: 255)]
     private ?string $description = null;
@@ -44,6 +44,18 @@ class SimpleObject extends AbstractObject
     public function setDescription(string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getSerialNumber(): ?string
+    {
+        return $this->serialNumber;
+    }
+
+    public function setSerialNumber(?string $serialNumber): self
+    {
+        $this->serialNumber = $serialNumber;
 
         return $this;
     }

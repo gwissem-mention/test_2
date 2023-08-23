@@ -175,10 +175,10 @@ class ObjectsParser
     {
         $simpleObject = new SimpleObject();
 
-        $simpleObject->setNature($objectInput->label);
-        $simpleObject->setDescription($objectInput->description);
-
-        return $simpleObject;
+        return $simpleObject
+            ->setNature($objectInput->label)
+            ->setDescription($objectInput->description)
+            ->setSerialNumber($objectInput->serialNumber);
     }
 
     private function parseFiles(AbstractObject $object, object $objectInput): void
