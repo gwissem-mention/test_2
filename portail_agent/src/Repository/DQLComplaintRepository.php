@@ -20,7 +20,7 @@ class DQLComplaintRepository
         $sql = 'INSERT INTO `preplainte_historique`(numero, nom, prenom, date_plainte, flag, xml, unite_mail_actif, mail_departement_actif, contact_email, prejudice_objet, date_suppression)
                 VALUES (:numero, :nom, :prenom, :date_plainte, :flag, :xml, :unite_mail_actif, :mail_departement_actif, :contact_email, :prejudice_objet, :date_suppression )';
         $this->ppelConnection->prepare($sql)->executeQuery([
-           'numero' => substr($preComplaintHistory->getNumber(), -self::MANDATORY_SIZE_FIELD_NUMBER),
+           'numero' => str_replace('-', '', substr($preComplaintHistory->getNumber(), -self::MANDATORY_SIZE_FIELD_NUMBER)),
            'nom' => $preComplaintHistory->getFirstName(),
            'prenom' => $preComplaintHistory->getLastName(),
            'date_plainte' => $preComplaintHistory->getComplaintDate()?->format('Y-m-d H:i:s'),
