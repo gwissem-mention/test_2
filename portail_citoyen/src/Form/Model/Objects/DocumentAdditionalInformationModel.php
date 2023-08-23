@@ -15,10 +15,6 @@ class DocumentAdditionalInformationModel
     private ?PhoneModel $documentOwnerPhone = null;
     private ?string $documentOwnerEmail = null;
     private ?AbstractSerializableAddress $documentOwnerAddress = null;
-    private ?string $documentNumber = null;
-    private ?string $documentIssuedBy = null;
-    private ?\DateTimeInterface $documentIssuedOn = null;
-    private ?\DateTimeInterface $documentValidityEndDate = null;
 
     public function getDocumentOwnerLastName(): ?string
     {
@@ -88,54 +84,6 @@ class DocumentAdditionalInformationModel
     public function setDocumentOwnerAddress(?AbstractSerializableAddress $documentOwnerAddress): self
     {
         $this->documentOwnerAddress = $documentOwnerAddress;
-
-        return $this;
-    }
-
-    public function getDocumentNumber(): ?string
-    {
-        return $this->documentNumber;
-    }
-
-    public function setDocumentNumber(?string $documentNumber): self
-    {
-        $this->documentNumber = $documentNumber;
-
-        return $this;
-    }
-
-    public function getDocumentIssuedBy(): ?string
-    {
-        return $this->documentIssuedBy;
-    }
-
-    public function setDocumentIssuedBy(?string $documentIssuedBy): self
-    {
-        $this->documentIssuedBy = $documentIssuedBy;
-
-        return $this;
-    }
-
-    public function getDocumentIssuedOn(): ?\DateTimeInterface
-    {
-        return $this->documentIssuedOn;
-    }
-
-    public function setDocumentIssuedOn(?\DateTimeInterface $documentIssuedOn): self
-    {
-        $this->documentIssuedOn = $documentIssuedOn;
-
-        return $this;
-    }
-
-    public function getDocumentValidityEndDate(): ?\DateTimeInterface
-    {
-        return $this->documentValidityEndDate;
-    }
-
-    public function setDocumentValidityEndDate(?\DateTimeInterface $documentValidityEndDate): self
-    {
-        $this->documentValidityEndDate = $documentValidityEndDate;
 
         return $this;
     }

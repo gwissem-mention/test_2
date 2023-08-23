@@ -107,11 +107,19 @@ JSON;
                         "label": "104 Rue Mélanie 67000 Strasbourg",
                         "latitude": null,
                         "longitude": null
-                  },
-                  "documentNumber": null,
-                  "documentIssuedBy": null,
-                  "documentIssuedOn": null,
-                  "documentValidityEndDate": null
+                  }
+            },
+            "documentNumber": "123",
+            "documentIssuedBy": "Préfecture de Paris",
+            "documentIssuedOn": {
+                "date": "2012-08-01T00:00:00+00:00",
+                "timestamp": 1243779200,
+                "timezone": "+00:00"
+            },
+            "documentValidityEndDate": {
+                "date": "2030-08-01T00:00:00+00:00",
+                "timestamp": 1911772800,
+                "timezone": "+00:00"
             },
             "files": [
                 {
@@ -161,6 +169,10 @@ JSON;
             "otherDocumentType": null,
             "documentOwned": null,
             "documentAdditionalInformation": null,
+            "documentNumber": null,
+            "documentIssuedBy": null,
+            "documentIssuedOn": null,
+            "documentValidityEndDate": null,
             "files": [],
             "stillOnWhenMobileStolen": null,
             "keyboardLockedWhenMobileStolen": null,
@@ -198,6 +210,10 @@ JSON;
             "amount": 4000.0,
             "documentType": null,
             "otherDocumentType": null,
+            "documentNumber": null,
+            "documentIssuedBy": null,
+            "documentIssuedOn": null,
+            "documentValidityEndDate": null,
             "documentOwned": null,
             "documentAdditionalInformation": null,
             "files": [],
@@ -239,6 +255,10 @@ JSON;
             "amount": 15000.0,
             "documentType": null,
             "otherDocumentType": null,
+            "documentNumber": null,
+            "documentIssuedBy": null,
+            "documentIssuedOn": null,
+            "documentValidityEndDate": null,
             "documentOwned": null,
             "documentAdditionalInformation": null,
             "files": [],
@@ -280,6 +300,10 @@ JSON;
             "amount": 560.0,
             "documentType": null,
             "otherDocumentType": null,
+            "documentNumber": null,
+            "documentIssuedBy": null,
+            "documentIssuedOn": null,
+            "documentValidityEndDate": null,
             "documentOwned": null,
             "documentAdditionalInformation": null,
             "files": [],
@@ -321,6 +345,10 @@ JSON;
             "amount": 650.0,
             "documentType": null,
             "otherDocumentType": null,
+            "documentNumber": null,
+            "documentIssuedBy": null,
+            "documentIssuedOn": null,
+            "documentValidityEndDate": null,
             "documentOwned": null,
             "documentAdditionalInformation": null,
             "files": [],
@@ -366,6 +394,10 @@ JSON;
             "amount": 1200.0,
             "documentType": null,
             "otherDocumentType": null,
+            "documentNumber": null,
+            "documentIssuedBy": null,
+            "documentIssuedOn": null,
+            "documentValidityEndDate": null,
             "documentOwned": null,
             "documentAdditionalInformation": null,
             "files": [],
@@ -447,10 +479,10 @@ JSON;
         $this->assertSame('Strasbourg', $administrativeDocument->getOwnerAddressCity());
         $this->assertSame('67', $administrativeDocument->getOwnerAddressDepartmentNumber());
         $this->assertSame('Bas-Rhin', $administrativeDocument->getOwnerAddressDepartment());
-        $this->assertNull($administrativeDocument->getNumber());
-        $this->assertNull($administrativeDocument->getIssuedBy());
-        $this->assertNull($administrativeDocument->getIssuedOn());
-        $this->assertNull($administrativeDocument->getValidityEndDate());
+        $this->assertSame('123', $administrativeDocument->getNumber());
+        $this->assertSame('Préfecture de Paris', $administrativeDocument->getIssuedBy());
+        $this->assertSame('2012-08-01T00:00:00+00:00', $administrativeDocument->getIssuedOn()?->format('c'));
+        $this->assertSame('2030-08-01T00:00:00+00:00', $administrativeDocument->getValidityEndDate()?->format('c'));
         $this->assertSame(1500.0, $administrativeDocument->getAmount());
         $this->assertNotEmpty($administrativeDocument->getFiles());
     }

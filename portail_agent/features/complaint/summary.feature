@@ -127,6 +127,10 @@ Feature:
         And I should see "Visa principale"
         And I should see "LCL"
         And I should see "Permis de conduire"
+        And I should see "1234"
+        And I should see "Préfecture de Paris"
+        And I should see "01/01/2010"
+        And I should see "01/01/2030"
         And I should see "Blouson"
         And I should see "Blouson Adidas de couleur bleu"
         And I should see "100 €"
@@ -563,14 +567,6 @@ Feature:
         And I should see "100 Rue de l'église 69000 Lyon"
         And I should see the key "pel.owner.phone" translated
         And I should see "0612345678"
-        And I should see the key "pel.document.issued.by" translated
-        And I should see "Préfecture de Lyon"
-        And I should see the key "pel.document.issued.on" translated
-        And I should see "10/03/2022"
-        And I should see the key "pel.document.number" translated
-        And I should see "123"
-        And I should see the key "pel.document.validity.end.date" translated
-        And I should see "05/12/2025"
 
      #PEL-987:Hide redirection for experimentation phase
 #    @javascript

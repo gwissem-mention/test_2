@@ -41,19 +41,19 @@
         }) }}
     </div>
 {% endif %}
-{% if object.documentType.documentAdditionalInformation.documentNumber is defined %}
-    {{ form_row(object.documentType.documentAdditionalInformation.documentNumber) }}
+{% if object.documentType.documentNumber is defined %}
+    {{ form_row(object.documentType.documentNumber) }}
 {% endif %}
-{% if object.documentType.documentAdditionalInformation.documentIssuedBy is defined %}
-    {{ form_row(object.documentType.documentAdditionalInformation.documentIssuedBy) }}
+{% if object.documentType.documentIssuedBy is defined %}
+    {{ form_row(object.documentType.documentIssuedBy) }}
 {% endif %}
-{% if object.documentType.documentAdditionalInformation.documentIssuedOn is defined %}
+{% if object.documentType.documentIssuedOn is defined %}
     <div class="md:w-1/2 fr-mb-6v">
-        {{ form_row(object.documentType.documentAdditionalInformation.documentIssuedOn) }}
+        {{ form_row(object.documentType.documentIssuedOn) }}
     </div>
 {% endif %}
-{% if object.documentType.documentAdditionalInformation.documentValidityEndDate is defined %}
+{% if object.documentType.documentValidityEndDate is defined %}
     <div class="md:w-1/2 fr-mb-6v">
-        {{ form_row(object.documentType.documentAdditionalInformation.documentValidityEndDate) }}
+        {{ form_row(object.documentType.documentValidityEndDate) }}
     </div>
 {% endif %}

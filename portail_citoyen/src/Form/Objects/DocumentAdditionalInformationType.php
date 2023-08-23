@@ -13,7 +13,6 @@ use App\Session\SessionHandler;
 use libphonenumber\NumberParseException;
 use libphonenumber\PhoneNumberUtil;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Form;
@@ -96,28 +95,6 @@ class DocumentAdditionalInformationType extends AbstractType
             ])
             ->add('documentOwnerAddress', AddressEtalabType::class, [
                 'label' => 'pel.document.owner.address',
-                'required' => false,
-                'priority' => -2,
-            ])
-            ->add('documentNumber', TextType::class, [
-                'label' => 'pel.document.number',
-                'required' => false,
-                'priority' => -2,
-            ])
-            ->add('documentIssuedBy', TextType::class, [
-                'label' => 'pel.document.issued.by',
-                'required' => false,
-                'priority' => -2,
-            ])
-            ->add('documentIssuedOn', DateType::class, [
-                'widget' => 'single_text',
-                'label' => 'pel.document.issued.on',
-                'required' => false,
-                'priority' => -2,
-            ])
-            ->add('documentValidityEndDate', DateType::class, [
-                'widget' => 'single_text',
-                'label' => 'pel.document.validity.end.date',
                 'required' => false,
                 'priority' => -2,
             ])

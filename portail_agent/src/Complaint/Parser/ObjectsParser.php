@@ -76,19 +76,19 @@ class ObjectsParser
             ->setOwnerFirstname($objectInput->documentAdditionalInformation?->documentOwnerFirstName)
             ->setOwnerCompany($objectInput->documentAdditionalInformation?->documentOwnerCompany)
             ->setOwnerEmail($objectInput->documentAdditionalInformation?->documentOwnerEmail)
-            ->setNumber($objectInput->documentAdditionalInformation?->documentNumber)
-            ->setIssuedBy($objectInput->documentAdditionalInformation?->documentIssuedBy);
+            ->setNumber($objectInput->documentNumber)
+            ->setIssuedBy($objectInput->documentIssuedBy);
 
         if ($objectInput->documentAdditionalInformation?->documentOwnerPhone) {
             $documentObject->setOwnerPhone($this->phoneParser->parse($objectInput->documentAdditionalInformation?->documentOwnerPhone));
         }
 
-        if ($objectInput->documentAdditionalInformation?->documentIssuedOn) {
-            $documentObject->setIssuedOn($this->dateParser->parse($objectInput->documentAdditionalInformation?->documentIssuedOn));
+        if ($objectInput->documentIssuedOn) {
+            $documentObject->setIssuedOn($this->dateParser->parse($objectInput->documentIssuedOn));
         }
 
-        if ($objectInput->documentAdditionalInformation?->documentValidityEndDate) {
-            $documentObject->setValidityEndDate($this->dateParser->parse($objectInput->documentAdditionalInformation?->documentValidityEndDate));
+        if ($objectInput->documentValidityEndDate) {
+            $documentObject->setValidityEndDate($this->dateParser->parse($objectInput->documentValidityEndDate));
         }
 
         if ($objectInput->documentAdditionalInformation?->documentOwnerAddress) {

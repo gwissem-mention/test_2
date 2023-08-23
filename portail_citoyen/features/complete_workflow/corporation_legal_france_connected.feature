@@ -52,15 +52,10 @@ Feature:
         And I press "objects_objects_add"
         And I select "1" from "objects_objects_2_category"
         And I select "1" from "objects_objects_2_documentType_documentType"
-        And I click the "label[for=objects_objects_2_documentType_documentOwned_1]" element
-        And I fill in "objects_objects_2_documentType_documentAdditionalInformation_documentOwnerLastName" with "DUPONT"
-        And I fill in "objects_objects_2_documentType_documentAdditionalInformation_documentOwnerFirstName" with "Jean"
-        And I fill in "objects_objects_2_documentType_documentAdditionalInformation_documentOwnerCompany" with "Amazon"
-        And I fill in "objects_objects_2_documentType_documentAdditionalInformation_documentOwnerPhone_number" with "0612345678"
-        And I fill in "objects_objects_2_documentType_documentAdditionalInformation_documentOwnerEmail" with "jean.dupont@example.com"
-        And I fill in "document_owner_address_2" with "Avenue de la République 75011 Paris"
-        And I fill in "objects_objects_2_documentType_documentAdditionalInformation_documentNumber" with "123"
-        And I fill in "objects_objects_2_documentType_documentAdditionalInformation_documentIssuedBy" with "Préfecture de Paris"
+        And I fill in "objects_objects_2_documentType_documentNumber" with "123"
+        And I fill in "objects_objects_2_documentType_documentIssuedBy" with "Préfecture de Paris"
+        And I fill in "objects_objects_2_documentType_documentIssuedOn" with "01/01/2010"
+        And I fill in "objects_objects_2_documentType_documentValidityEndDate" with "01/01/2030"
         And I select "2" from "objects_objects_2_status"
         And I press "objects_objects_add"
         And I select "3" from "objects_objects_3_category"
@@ -68,9 +63,9 @@ Feature:
         And I select "2" from "objects_objects_3_status"
         And I fill in "objects_objects_3_brand" with "OnePlus"
         And I fill in "objects_objects_3_model" with "Nord 2"
-        And I fill in "objects_objects_3_phoneNumberLine_number" with "6123456783"
+        And I fill in "objects_objects_3_phoneNumberLine_number" with "612345678"
         And I fill in "objects_objects_3_operator" with "SFR"
-        And I fill in "objects_objects_3_serialNumber" with "12345678"
+        And I fill in "objects_objects_3_serialNumber" with "123456783"
         And I fill in "objects_objects_3_description" with "Ceci est une description test pour mon smartphone."
         And I press "objects_objects_add"
         And I select "7" from "objects_objects_4_category"
@@ -81,7 +76,7 @@ Feature:
         And I fill in "objects_objects_4_ownerFirstname" with "Charles"
         And I fill in "objects_objects_4_brand" with "Sony"
         And I fill in "objects_objects_4_model" with "Playstation 4"
-        And I fill in "objects_objects_4_serialNumber" with "12345678"
+        And I fill in "objects_objects_4_serialNumber" with "123456784"
         And I fill in "objects_objects_4_description" with "Ceci est une description test pour ma console."
         And I press "objects_submit"
         Then I should be on "/porter-plainte/informations-complementaires"
@@ -176,25 +171,24 @@ Feature:
         And I should see the key "pel.objects.stolen" translated
         And I should see the key "pel.objects.gradient" translated
         And I should see the key "pel.i.am.the.owner.of.this.document" translated
-        And I should see the key "pel.document.owner.lastname.firstname" translated
-        And I should see the key "pel.document.owner.company" translated
-        And I should see the key "pel.document.owner.email" translated
-        And I should see the key "pel.document.owner.address" translated
+        And I should not see the key "pel.document.owner.lastname.firstname" translated
+        And I should not see the key "pel.document.owner.company" translated
+        And I should not see the key "pel.document.owner.email" translated
+        And I should not see the key "pel.document.owner.address" translated
         And I should see the key "pel.document.number" translated
         And I should see the key "pel.document.issued.by" translated
+        And I should see the key "pel.document.issued.on" translated
+        And I should see the key "pel.document.validity.end.date" translated
         And I should see "Véhicules non immatriculés"
         And I should see "Object 1"
         And I should see "Object 2"
         And I should see "Document officiel"
         And I should see "Carte d’identité"
-        And I should see "Non"
-        And I should see "DUPONT Jean"
-        And I should see "Amazon"
-        And I should see "+33 6 12 34 56 78"
-        And I should see "jean.dupont@example.com"
-        And I should see "Avenue de la république 75011 Paris"
+        And I should see "Oui"
         And I should see "123"
         And I should see "Préfecture de Paris"
+        And I should see "01/01/2010"
+        And I should see "01/01/2030"
         And I should see the key "pel.brand" translated
         And I should see the key "pel.model" translated
         And I should see the key "pel.phone.number.line" translated
@@ -214,7 +208,7 @@ Feature:
         And I should see "Sony"
         And I should see "Playstation 4"
         And I should see "DURAND Charles"
-        And I should see "12345678"
+        And I should see "123456784"
         And I should see "Ceci est une description test pour ma console."
         And I should see the key "pel.total" translated
         And I should see the key "pel.total.message.amount" translated
