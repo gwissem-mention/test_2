@@ -10,9 +10,6 @@ use Doctrine\ORM\Mapping as ORM;
 class MultimediaObject extends AbstractObject
 {
     #[ORM\Column(length: 255)]
-    private ?string $label = null;
-
-    #[ORM\Column(length: 255)]
     private ?string $nature = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -59,18 +56,6 @@ class MultimediaObject extends AbstractObject
 
     #[ORM\Column(nullable: true)]
     private ?string $ownerFirstname = null;
-
-    public function getLabel(): ?string
-    {
-        return $this->label;
-    }
-
-    public function setLabel(string $label): self
-    {
-        $this->label = $label;
-
-        return $this;
-    }
 
     public function getNature(): ?string
     {

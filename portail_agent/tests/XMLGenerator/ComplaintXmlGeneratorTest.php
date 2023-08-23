@@ -146,7 +146,6 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
             )
             ->addObject(
                 (new MultimediaObject())
-                    ->setLabel('Téléphone')
                     ->setNature('TELEPHONE PORTABLE')
                     ->setBrand('Apple')
                     ->setModel('iPhone 13')
@@ -158,7 +157,6 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
             )
             ->addObject(
                 (new MultimediaObject())
-                    ->setLabel('Smartphone')
                     ->setNature('TELEPHONE PORTABLE')
                     ->setBrand('Apple')
                     ->setModel('iPhone 14 Pro')
@@ -169,7 +167,6 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
             )
             ->addObject(
                 (new MultimediaObject())
-                    ->setLabel('Console')
                     ->setNature('AUTRE NATURE MULTIMEDIA')
                     ->setBrand('Sony')
                     ->setModel('Playstation 4')
@@ -196,7 +193,6 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
             )
             ->addObject(
                 (new Vehicle())
-                    ->setLabel('Voiture')
                     ->setBrand('Citroën')
                     ->setModel('C3')
                     ->setRegistrationNumber('AA-123-AA')

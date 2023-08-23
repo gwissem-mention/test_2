@@ -152,7 +152,6 @@ class ObjectType extends AbstractType
         $this->removeCategoryPaymentWaysFields($form, $objectModel);
         $this->removeCategoryRegisteredVehicleFields($form, $objectModel);
         $this->removeAmountField($form, $objectModel);
-        $this->removeLabelField($form, $objectModel);
         $this->removeCategoryDocumentFields($form, $objectModel);
         $this->removeCategoryMultimediaFields($form, $objectModel);
 
@@ -163,30 +162,24 @@ class ObjectType extends AbstractType
             case $this->objectCategories['pel.object.category.other']:
                 $this->addCategoryOtherFields($form);
                 $this->addAmountField($form, 'pel.amount.for.group');
-                $this->addLabelField($form);
                 break;
             case $this->objectCategories['pel.object.category.mobile.phone']:
                 $this->addCategoryMobilePhoneFields($form);
                 $this->addAmountField($form);
-                $this->addLabelField($form);
                 break;
             case $this->objectCategories['pel.object.category.multimedia']:
                 $this->addCategoryMultimediaFields($form);
                 $this->addAmountField($form);
-                $this->addLabelField($form);
                 break;
             case $this->objectCategories['pel.object.category.payment.ways']:
                 $this->addCategoryPaymentWaysFields($form);
-                $this->addLabelField($form);
                 break;
             case $this->objectCategories['pel.object.category.registered.vehicle']:
                 $this->addCategoryRegisteredVehicleFields($form);
                 $this->addAmountField($form);
-                $this->addLabelField($form);
                 break;
             default:
                 $this->addAmountField($form);
-                $this->addLabelField($form);
                 break;
         }
     }
@@ -477,29 +470,6 @@ class ObjectType extends AbstractType
     {
         $form->remove('amount');
         $objectModel?->setAmount(null);
-    }
-
-    private function addLabelField(FormInterface $form): void
-    {
-        $form->add('label', TextType::class, [
-            'attr' => [
-                'maxlength' => 30,
-            ],
-            'label' => false,
-            'constraints' => [
-                new NotBlank(),
-                new Length([
-                    'max' => 30,
-                ]),
-            ],
-            'priority' => 999,
-        ]);
-    }
-
-    private function removeLabelField(FormInterface $form, ?ObjectModel $objectModel): void
-    {
-        $form->remove('label');
-        $objectModel?->setLabel(null);
     }
 
     private function removeCategoryMobilePhoneFields(FormInterface $form, ?ObjectModel $objectModel): void

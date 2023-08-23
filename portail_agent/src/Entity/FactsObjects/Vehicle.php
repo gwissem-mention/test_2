@@ -11,9 +11,6 @@ use Doctrine\ORM\Mapping as ORM;
 class Vehicle extends AbstractObject
 {
     #[ORM\Column(length: 255)]
-    private ?string $label = null;
-
-    #[ORM\Column(length: 255)]
     private ?string $brand = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -36,18 +33,6 @@ class Vehicle extends AbstractObject
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $degradationDescription = null;
-
-    public function getLabel(): ?string
-    {
-        return $this->label;
-    }
-
-    public function setLabel(string $label): self
-    {
-        $this->label = $label;
-
-        return $this;
-    }
 
     public function getBrand(): ?string
     {
