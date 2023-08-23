@@ -94,6 +94,7 @@ Feature:
         When I select "Autre" from "objects_objects_0_documentType_documentType"
         Then I should see a "input#objects_objects_0_documentType_otherDocumentType" element
         And I should see the key "pel.could.you.precise" translated
+        And I should see a "#objects_objects_0_documentType_documentIssuingCountry" element
         And I should see the key "pel.document.number" translated
         And I should see the key "pel.document.issued.by" translated
         And I should see the key "pel.document.issued.on" translated

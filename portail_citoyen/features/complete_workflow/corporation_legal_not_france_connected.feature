@@ -60,6 +60,7 @@ Feature:
         And I press "objects_objects_add"
         And I select "1" from "objects_objects_2_category"
         And I select "1" from "objects_objects_2_documentType_documentType"
+        And I fill in "objects_objects_2_documentType_documentIssuingCountry" with "99134"
         And I click the "label[for=objects_objects_2_documentType_documentOwned_1]" element
         And I fill in "objects_objects_2_documentType_documentAdditionalInformation_documentOwnerLastName" with "DUPONT"
         And I fill in "objects_objects_2_documentType_documentAdditionalInformation_documentOwnerFirstName" with "Jean"
@@ -71,6 +72,7 @@ Feature:
         And I fill in "objects_objects_2_documentType_documentIssuedBy" with "Préfecture de Paris"
         And I fill in "objects_objects_2_documentType_documentIssuedOn" with "01/01/2010"
         And I fill in "objects_objects_2_documentType_documentValidityEndDate" with "01/01/2030"
+        And I fill in "objects_objects_2_documentType_documentIssuingCountry" with "99134"
         And I select "2" from "objects_objects_2_status"
         And I press "objects_objects_add"
         And I select "3" from "objects_objects_3_category"
@@ -191,6 +193,7 @@ Feature:
         And I should see the key "pel.document.owner.address" translated
         And I should see the key "pel.document.number" translated
         And I should see the key "pel.document.issued.by" translated
+        And I should see the key "pel.document.issuing.country" translated
         And I should see the key "pel.document.issued.on" translated
         And I should see the key "pel.document.validity.end.date" translated
         And I should see "Véhicules non immatriculés"
@@ -206,6 +209,7 @@ Feature:
         And I should see "Avenue de la république 75011 Paris"
         And I should see "123"
         And I should see "Préfecture de Paris"
+        And I should see "Espagne"
         And I should see "01/01/2010"
         And I should see "01/01/2030"
         And I should see the key "pel.brand" translated

@@ -77,7 +77,8 @@ class ObjectsParser
             ->setOwnerCompany($objectInput->documentAdditionalInformation?->documentOwnerCompany)
             ->setOwnerEmail($objectInput->documentAdditionalInformation?->documentOwnerEmail)
             ->setNumber($objectInput->documentNumber)
-            ->setIssuedBy($objectInput->documentIssuedBy);
+            ->setIssuedBy($objectInput->documentIssuedBy)
+            ->setIssuingCountry($objectInput->documentIssuingCountry?->label);
 
         if ($objectInput->documentAdditionalInformation?->documentOwnerPhone) {
             $documentObject->setOwnerPhone($this->phoneParser->parse($objectInput->documentAdditionalInformation?->documentOwnerPhone));

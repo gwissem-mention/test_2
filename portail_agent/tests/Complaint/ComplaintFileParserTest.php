@@ -379,7 +379,11 @@ class ComplaintFileParserTest extends KernelTestCase
             "degradationDescription": null,
             "ownerLastname": null,
             "ownerFirstname": null,
-            "multimediaNature": null
+            "multimediaNature": null,
+            "documentIssuingCountry": {
+                "inseeCode": 99160,
+                "label": "France"
+            }
 		},
 		{
 			"status":
@@ -431,7 +435,8 @@ class ComplaintFileParserTest extends KernelTestCase
             "degradationDescription": null,
             "ownerLastname": null,
             "ownerFirstname": null,
-            "multimediaNature": null
+            "multimediaNature": null,
+            "documentIssuingCountry": null
 		},
 		{
 			"status":
@@ -478,7 +483,8 @@ class ComplaintFileParserTest extends KernelTestCase
             "degradationDescription": null,
             "ownerLastname": null,
             "ownerFirstname": null,
-            "multimediaNature": null
+            "multimediaNature": null,
+            "documentIssuingCountry": null
 		},
 		{
 			"status":
@@ -525,7 +531,8 @@ class ComplaintFileParserTest extends KernelTestCase
             "degradationDescription": "Rétroviseur cassé",
             "ownerLastname": null,
             "ownerFirstname": null,
-            "multimediaNature": null
+            "multimediaNature": null,
+            "documentIssuingCountry": null
 		}]
 	},
 	"appointment": {

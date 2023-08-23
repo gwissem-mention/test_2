@@ -23,10 +23,8 @@ class AdministrativeDocumentDTO extends AbstractObjectDTO
     private ?string $ownerStreetNumber;
     private ?string $ownerStreetType;
     private ?string $ownerStreetName;
-
     private ?string $identityBirthDate;
-
-    //    private string $issuingCountry;
+    private string $issuingCountry;
     //    private string $description;
     private ?string $identityCountry;
 
@@ -50,7 +48,7 @@ class AdministrativeDocumentDTO extends AbstractObjectDTO
         $this->ownerStreetName = $object->getOwnerAddressStreetName();
         $this->identityBirthDate = $identity?->getBirthday()?->format('d/m/Y');
         //        $this->description = $object->getDescription() ?? '';
-        //        $this->issuingCountry = $object->getIssuingCountry() ?? '';
+        $this->issuingCountry = $object->getIssuingCountry() ?? '';
     }
 
     /**
@@ -59,7 +57,7 @@ class AdministrativeDocumentDTO extends AbstractObjectDTO
     public function getArray(): array
     {
         return ['Objet_Doc_Admin' => [
-//            'Objet_Doc_Admin_Pays_Delivrance' => $this->issuingCountry,
+            'Objet_Doc_Admin_Pays_Delivrance' => $this->issuingCountry,
             'Objet_Doc_Admin_Type' => $this->type,
             'Objet_Doc_Admin_Numero' => $this->number,
             'Objet_Doc_Admin_Date_Delivrance' => $this->issuedOn,

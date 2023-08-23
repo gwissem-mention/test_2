@@ -202,6 +202,7 @@ class ComplaintFactory
             ->addObject((new ObjectModel())
                 ->setCategory(1)
                 ->setLabel('CI')
+                ->setDocumentIssuingCountry(99160)
                 ->setDocumentNumber('123')
                 ->setDocumentIssuedBy('Préfecture de Paris')
                 ->setDocumentIssuedOn(new \DateTimeImmutable('2010-01-01'))

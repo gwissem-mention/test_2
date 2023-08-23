@@ -10,9 +10,6 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity]
 class AdministrativeDocument extends AbstractObject
 {
-    //    #[ORM\Column(length: 255)]
-    //    private ?string $issuingCountry = null;
-
     #[ORM\Column(length: 255)]
     private ?string $type = null;
 
@@ -63,6 +60,9 @@ class AdministrativeDocument extends AbstractObject
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $number = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $issuingCountry = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $issuedBy = null;
@@ -312,6 +312,18 @@ class AdministrativeDocument extends AbstractObject
     public function setOwnerAddressDepartment(?string $ownerAddressDepartment): self
     {
         $this->ownerAddressDepartment = $ownerAddressDepartment;
+
+        return $this;
+    }
+
+    public function getIssuingCountry(): ?string
+    {
+        return $this->issuingCountry;
+    }
+
+    public function setIssuingCountry(?string $issuingCountry): self
+    {
+        $this->issuingCountry = $issuingCountry;
 
         return $this;
     }

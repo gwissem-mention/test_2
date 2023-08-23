@@ -59,6 +59,7 @@ Feature:
         And I fill in "objects_objects_2_documentType_documentIssuedBy" with "Préfecture de Paris"
         And I fill in "objects_objects_2_documentType_documentIssuedOn" with "01/01/2010"
         And I fill in "objects_objects_2_documentType_documentValidityEndDate" with "01/01/2030"
+        And I fill in "objects_objects_2_documentType_documentIssuingCountry" with "99134"
         And I select "2" from "objects_objects_2_status"
         And I press "objects_objects_add"
         And I select "3" from "objects_objects_3_category"
@@ -163,6 +164,7 @@ Feature:
         And I should see the key "pel.document.issued.by" translated
         And I should see the key "pel.document.issued.on" translated
         And I should see the key "pel.document.validity.end.date" translated
+        And I should see the key "pel.document.issuing.country" translated
         And I should see the key "pel.objects.gradient" translated
         And I should see "Véhicules non immatriculés"
         And I should see "Object 1"
@@ -177,6 +179,7 @@ Feature:
         And I should see "Avenue de la république 75011 Paris"
         And I should see "123"
         And I should see "Préfecture de Paris"
+        And I should see "Espagne"
         And I should see "01/01/2010"
         And I should see "01/01/2030"
         And I should see the key "pel.brand" translated

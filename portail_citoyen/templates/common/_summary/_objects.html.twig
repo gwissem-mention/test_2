@@ -49,6 +49,7 @@
             {% if object.documentNumber is not empty %}
                 <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.document.number'|trans }} : <b>{{ object.documentNumber }}</b></li>
             {% endif %}
+            <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.document.issuing.country'|trans }} : <b>{{ object.documentIssuingCountry|country_referential_name }}</b></li>
             {% if object.documentIssuedBy is not empty %}
                 <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.document.issued.by'|trans }} : <b>{{ object.documentIssuedBy }}</b></li>
             {% endif %}

@@ -76,6 +76,7 @@
 #        And I fill in "objects_objects_2_documentType_documentAdditionalInformation_documentOwnerPhone_number" with "0612345678"
 #        And I fill in "objects_objects_2_documentType_documentAdditionalInformation_documentOwnerEmail" with "jean.dupont@example.com"
 #        And I fill in "document_owner_address_2" with "Avenue de la République 75011 Paris"
+#        And I fill in the autocomplete "objects_objects_2_documentType_documentIssuingCountry-ts-control" with "Espagne" and click "99134"
 #        And I fill in "objects_objects_2_documentType_documentNumber" with "123"
 #        And I fill in "objects_objects_2_documentType_documentIssuedBy" with "Préfecture de Paris"
 #        And I fill in "objects_objects_2_documentType_documentIssuedOn" with "01/01/2010"
@@ -201,6 +202,7 @@
 #        And I should see the key "pel.document.owner.address" translated
 #        And I should see the key "pel.document.number" translated
 #        And I should see the key "pel.document.issued.by" translated
+#        And I should see the key "pel.document.issuing.country" translated
 #        And I should see the key "pel.document.issued.on" translated
 #        And I should see the key "pel.document.validity.end.date" translated
 #        And I should see "Véhicules non immatriculés"
@@ -215,6 +217,7 @@
 #        And I should see "Avenue de la république 75011 Paris"
 #        And I should see "123"
 #        And I should see "Préfecture de Paris"
+#        And I should see "Espagne"
 #        And I should see "01/01/2010"
 #        And I should see "01/01/2030"
 #        And I should see the key "pel.brand" translated
