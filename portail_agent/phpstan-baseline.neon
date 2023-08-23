@@ -352,8 +352,29 @@ parameters:
 
 		-
 			message: "#^Access to an undefined property object\\:\\:\\$documentAdditionalInformation\\.$#"
-			count: 10
+			count: 6
 			path: src/Complaint/Parser/ObjectsParser.php
+
+		-
+		    message: "#^Access to an undefined property object\\:\\:\\$documentNumber\\.$#"
+		    count: 1
+		    path: src/Complaint/Parser/ObjectsParser.php
+
+		-
+		    message: "#^Access to an undefined property object\\:\\:\\$documentIssuedBy\\.$#"
+		    count: 1
+		    path: src/Complaint/Parser/ObjectsParser.php
+
+
+		-
+		    message: "#^Access to an undefined property object\\:\\:\\$documentIssuedOn\\.$#"
+		    count: 1
+		    path: src/Complaint/Parser/ObjectsParser.php
+
+		-
+		    message: "#^Access to an undefined property object\\:\\:\\$documentValidityEndDate\\.$#"
+		    count: 1
+		    path: src/Complaint/Parser/ObjectsParser.php
 
 		-
 			message: "#^Access to an undefined property object\\:\\:\\$documentOwned\\.$#"

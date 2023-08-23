@@ -34,6 +34,10 @@ class ObjectModel
     private ?float $amount = null;
     private ?int $documentType = null;
     private ?string $otherDocumentType = null;
+    private ?string $documentNumber = null;
+    private ?string $documentIssuedBy = null;
+    private ?\DateTimeInterface $documentIssuedOn = null;
+    private ?\DateTimeInterface $documentValidityEndDate = null;
     private ?bool $documentOwned = null;
     private ?DocumentAdditionalInformationModel $documentAdditionalInformation = null;
     private ?bool $stillOnWhenMobileStolen = null;
@@ -293,6 +297,54 @@ class ObjectModel
     public function setOtherDocumentType(?string $otherDocumentType): self
     {
         $this->otherDocumentType = $otherDocumentType;
+
+        return $this;
+    }
+
+    public function getDocumentNumber(): ?string
+    {
+        return $this->documentNumber;
+    }
+
+    public function setDocumentNumber(?string $documentNumber): self
+    {
+        $this->documentNumber = $documentNumber;
+
+        return $this;
+    }
+
+    public function getDocumentIssuedBy(): ?string
+    {
+        return $this->documentIssuedBy;
+    }
+
+    public function setDocumentIssuedBy(?string $documentIssuedBy): self
+    {
+        $this->documentIssuedBy = $documentIssuedBy;
+
+        return $this;
+    }
+
+    public function getDocumentIssuedOn(): ?\DateTimeInterface
+    {
+        return $this->documentIssuedOn;
+    }
+
+    public function setDocumentIssuedOn(?\DateTimeInterface $documentIssuedOn): self
+    {
+        $this->documentIssuedOn = $documentIssuedOn;
+
+        return $this;
+    }
+
+    public function getDocumentValidityEndDate(): ?\DateTimeInterface
+    {
+        return $this->documentValidityEndDate;
+    }
+
+    public function setDocumentValidityEndDate(?\DateTimeInterface $documentValidityEndDate): self
+    {
+        $this->documentValidityEndDate = $documentValidityEndDate;
 
         return $this;
     }

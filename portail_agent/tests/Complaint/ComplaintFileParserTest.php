@@ -356,11 +356,19 @@ class ComplaintFileParserTest extends KernelTestCase
                         "label": "104 Rue Mélanie 67000 Strasbourg",
                         "latitude": null,
                         "longitude": null
-                  },
-                  "documentNumber": null,
-                  "documentIssuedBy": null,
-                  "documentIssuedOn": null,
-                  "documentValidityEndDate": null
+                  }
+            },
+            "documentNumber": "123",
+            "documentIssuedBy": "Préfecture de Paris",
+            "documentIssuedOn": {
+                "date": "2012-08-01T00:00:00+00:00",
+                "timestamp": 1243779200,
+                "timezone": "+00:00"
+            },
+            "documentValidityEndDate": {
+                "date": "2030-08-01T00:00:00+00:00",
+                "timestamp": 1911772800,
+                "timezone": "+00:00"
             },
 			"files": [],
             "stillOnWhenMobileStolen": null,
@@ -408,6 +416,10 @@ class ComplaintFileParserTest extends KernelTestCase
 			"amount": 2000,
 			"documentType": null,
 			"otherDocumentType": null,
+			"documentNumber": null,
+            "documentIssuedBy": null,
+            "documentIssuedOn": null,
+            "documentValidityEndDate": null,
 			"documentOwned": null,
 			"documentAdditionalInformation": null,
 			"files": [],
@@ -451,6 +463,10 @@ class ComplaintFileParserTest extends KernelTestCase
 			"amount": 10,
 			"documentType": null,
 			"otherDocumentType": null,
+			"documentNumber": null,
+            "documentIssuedBy": null,
+            "documentIssuedOn": null,
+            "documentValidityEndDate": null,
 			"documentOwned": null,
 			"documentAdditionalInformation": null,
 			"files": [],
@@ -494,6 +510,10 @@ class ComplaintFileParserTest extends KernelTestCase
 			"amount": 10000,
 			"documentType": null,
 			"otherDocumentType": null,
+			"documentNumber": null,
+            "documentIssuedBy": null,
+            "documentIssuedOn": null,
+            "documentValidityEndDate": null,
 			"documentOwned": null,
 			"documentAdditionalInformation": null,
 			"files": [],

@@ -46,6 +46,18 @@
                 </li>
                 {% endfor %}
             {% endif %}
+            {% if object.documentNumber is not empty %}
+                <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.document.number'|trans }} : <b>{{ object.documentNumber }}</b></li>
+            {% endif %}
+            {% if object.documentIssuedBy is not empty %}
+                <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.document.issued.by'|trans }} : <b>{{ object.documentIssuedBy }}</b></li>
+            {% endif %}
+            {% if object.documentIssuedOn is not empty %}
+                <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.document.issued.on'|trans }} : <b>{{ object.documentIssuedOn|date('d/m/Y') }}</b></li>
+            {% endif %}
+            {% if object.documentValidityEndDate is not empty %}
+                <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.document.validity.end.date'|trans }} : <b>{{ object.documentValidityEndDate|date('d/m/Y') }}</b></li>
+            {% endif %}
             <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.i.am.the.owner.of.this.document'|trans }} : <b>{{ object.documentOwned ? 'pel.yes'|trans : 'pel.no'|trans }}</b></li>
             {% if object.documentOwned is same as false and object.documentAdditionalInformation is not empty %}
                 <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.document.owner.lastname.firstname'|trans }} : <b>{{ object.documentAdditionalInformation.documentOwnerLastname }} {{ object.documentAdditionalInformation.documentOwnerFirstname }}</b></li>
@@ -60,18 +72,6 @@
                 {% endif %}
                 {% if object.documentAdditionalInformation.documentOwnerAddress is not empty %}
                     <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.document.owner.address'|trans }} : <b>{{ object.documentAdditionalInformation.documentOwnerAddress.label }}</b></li>
-                {% endif %}
-                {% if object.documentAdditionalInformation.documentNumber is not empty %}
-                    <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.document.number'|trans }} : <b>{{ object.documentAdditionalInformation.documentNumber }}</b></li>
-                {% endif %}
-                {% if object.documentAdditionalInformation.documentIssuedBy is not empty %}
-                    <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.document.issued.by'|trans }} : <b>{{ object.documentAdditionalInformation.documentIssuedBy }}</b></li>
-                {% endif %}
-                {% if object.documentAdditionalInformation.documentIssuedOn is not empty %}
-                    <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.document.issued.on'|trans }} : <b>{{ object.documentAdditionalInformation.documentIssuedOn|date('d/m/Y') }}</b></li>
-                {% endif %}
-                {% if object.documentAdditionalInformation.documentValidityEndDate is not empty %}
-                    <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.document.validity.end.date'|trans }} : <b>{{ object.documentAdditionalInformation.documentValidityEndDate|date('d/m/Y') }}</b></li>
                 {% endif %}
             {% endif %}
         {% elseif object.category|object_category_get_name is same as('pel.object.category.mobile.phone') %}

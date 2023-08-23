@@ -422,11 +422,25 @@
     {% if object|object_type is same as('App\\Entity\\FactsObjects\\AdministrativeDocument') %}
         <li>
             <strong>{{ 'pel.number'|trans }} {{ index }}</strong> : {{ object.type }}
+            {% if object.number is not null %}
+                - {{ object.number }}
+            {% endif %}
+            {% if object.issuedBy is not null %}
+                - {{ object.issuedBy }}
+            {% endif %}
+            {% if object.issuedOn is not null %}
+                - {{ object.issuedOn|date('d/m/Y') }}
+            {% endif %}
+            {% if object.validityEndDate is not null %}
+                - {{ object.validityEndDate|date('d/m/Y') }}
+            {% endif %}
             {% if object.owned is same as(false) %}
                 <ul class="m-0">
                     {% if object.ownerLastname is not null and object.ownerFirstname is not null %}
-                        <li>{{ 'pel.owner.lastname.firstname'|trans }} :
-                            <strong>{{ object.ownerLastname }} {{ object.ownerFirstname }}</strong></li>
+                        <li>
+                            {{ 'pel.owner.lastname.firstname'|trans }} :
+                            <strong>{{ object.ownerLastname }} {{ object.ownerFirstname }}</strong>
+                        </li>
                     {% endif %}
                     {% if object.ownerCompany is not null %}
                         <li>{{ 'pel.owner.company'|trans }} : <strong>{{ object.ownerCompany }}</strong></li>
@@ -439,20 +453,6 @@
                     {% endif %}
                     {% if object.ownerAddress is not null %}
                         <li>{{ 'pel.owner.address'|trans }}: <strong>{{ object.ownerAddress }}</strong></li>
-                    {% endif %}
-                    {% if object.number is not null %}
-                        <li>{{ 'pel.document.number'|trans }}: <strong>{{ object.number }}</strong></li>
-                    {% endif %}
-                    {% if object.issuedBy is not null %}
-                        <li>{{ 'pel.document.issued.by'|trans }}: <strong>{{ object.issuedBy }}</strong></li>
-                    {% endif %}
-                    {% if object.issuedOn is not null %}
-                        <li>{{ 'pel.document.issued.on'|trans }}: <strong>{{ object.issuedOn|date('d/m/Y') }}</strong>
-                        </li>
-                    {% endif %}
-                    {% if object.validityEndDate is not null %}
-                        <li>{{ 'pel.document.validity.end.date'|trans }}:
-                            <strong>{{ object.validityEndDate|date('d/m/Y') }}</strong></li>
                     {% endif %}
                 </ul>
             {% endif %}

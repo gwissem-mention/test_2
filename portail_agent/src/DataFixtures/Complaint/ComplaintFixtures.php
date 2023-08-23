@@ -348,6 +348,10 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                 (new AdministrativeDocument())
                     ->setStatus(AbstractObject::STATUS_STOLEN)
                     ->setType('Permis de conduire')
+                    ->setNumber('1234')
+                    ->setIssuedBy('Préfecture de Paris')
+                    ->setIssuedOn(new \DateTimeImmutable('2010-01-01'))
+                    ->setValidityEndDate(new \DateTimeImmutable('2030-01-01'))
                     ->setOwned(true)
             )
             ->addObject(

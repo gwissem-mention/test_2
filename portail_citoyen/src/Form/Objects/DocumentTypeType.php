@@ -8,6 +8,7 @@ use App\AppEnum\DocumentType;
 use App\Form\Model\Objects\ObjectModel;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -40,6 +41,28 @@ class DocumentTypeType extends AbstractType
                 'multiple' => false,
                 'empty_data' => '1',
                 'priority' => -1,
+            ])
+            ->add('documentNumber', TextType::class, [
+                'label' => 'pel.document.number',
+                'required' => false,
+                'priority' => -2,
+            ])
+            ->add('documentIssuedBy', TextType::class, [
+                'label' => 'pel.document.issued.by',
+                'required' => false,
+                'priority' => -2,
+            ])
+            ->add('documentIssuedOn', DateType::class, [
+                'widget' => 'single_text',
+                'label' => 'pel.document.issued.on',
+                'required' => false,
+                'priority' => -2,
+            ])
+            ->add('documentValidityEndDate', DateType::class, [
+                'widget' => 'single_text',
+                'label' => 'pel.document.validity.end.date',
+                'required' => false,
+                'priority' => -2,
             ]);
 
         $builder->get('documentType')->addEventListener(

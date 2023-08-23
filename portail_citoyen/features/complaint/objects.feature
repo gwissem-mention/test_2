@@ -34,6 +34,7 @@ Feature:
         And I should see "Document officiel" in the "#objects_objects_0_category" element
         And I should see "Moyens de paiement" in the "#objects_objects_0_category" element
         And I should see "Téléphone portable" in the "#objects_objects_0_category" element
+        And I should see "Multimédia" in the "#objects_objects_0_category" element
         And I should see "Véhicules immatriculés " in the "#objects_objects_0_category" element
         And I should see "Véhicules non immatriculés" in the "#objects_objects_0_category" element
         And I should see "Autres" in the "#objects_objects_0_category" element
@@ -93,6 +94,10 @@ Feature:
         When I select "Autre" from "objects_objects_0_documentType_documentType"
         Then I should see a "input#objects_objects_0_documentType_otherDocumentType" element
         And I should see the key "pel.could.you.precise" translated
+        And I should see the key "pel.document.number" translated
+        And I should see the key "pel.document.issued.by" translated
+        And I should see the key "pel.document.issued.on" translated
+        And I should see the key "pel.document.validity.end.date" translated
 
     Scenario: I can delete an input text when I click on the delete an object button
         When I press "objects_objects_add"
@@ -172,15 +177,11 @@ Feature:
         And I should see a "input#objects_objects_0_documentType_documentOwned_1" element
         And the "objects_objects_0_documentType_documentOwned_0" checkbox should be checked
         When I click the "label[for=objects_objects_0_documentType_documentOwned_1]" element
-        Then I should see the key "pel.document.issued.by" translated
-        Then I should see the key "pel.document.issued.on" translated
         And I should see the key "pel.document.owner.address" translated
         And I should see the key "pel.document.owner.email" translated
         And I should see the key "pel.document.owner.firstname" translated
         And I should see the key "pel.document.owner.lastname" translated
         And I should see the key "pel.document.owner.phone" translated
-        And I should see the key "pel.document.number" translated
-        And I should see the key "pel.document.validity.end.date" translated
 
     Scenario: I can see 4 radios buttons, a text and a required checkbox when I have a mobile phone stolen
         When I select "Téléphone portable" from "objects_objects_0_category"
