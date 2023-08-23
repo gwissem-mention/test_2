@@ -341,28 +341,27 @@ parameters:
 			path: src/Complaint/Parser/ObjectsParser.php
 
 		-
-		    message: "#^Access to an undefined property object\\:\\:\\$documentNumber\\.$#"
-		    count: 1
-		    path: src/Complaint/Parser/ObjectsParser.php
+			message: "#^Access to an undefined property object\\:\\:\\$documentIssuedBy\\.$#"
+			count: 1
+			path: src/Complaint/Parser/ObjectsParser.php
 
 		-
-		    message: "#^Access to an undefined property object\\:\\:\\$documentIssuedBy\\.$#"
-		    count: 1
-		    path: src/Complaint/Parser/ObjectsParser.php
-
-
-		-
-		    message: "#^Access to an undefined property object\\:\\:\\$documentIssuedOn\\.$#"
-		    count: 1
-		    path: src/Complaint/Parser/ObjectsParser.php
+			message: "#^Access to an undefined property object\\:\\:\\$documentIssuedOn\\.$#"
+			count: 1
+			path: src/Complaint/Parser/ObjectsParser.php
 
 		-
-		    message: "#^Access to an undefined property object\\:\\:\\$documentValidityEndDate\\.$#"
-		    count: 1
-		    path: src/Complaint/Parser/ObjectsParser.php
+			message: "#^Access to an undefined property object\\:\\:\\$documentNumber\\.$#"
+			count: 1
+			path: src/Complaint/Parser/ObjectsParser.php
 
 		-
 			message: "#^Access to an undefined property object\\:\\:\\$documentOwned\\.$#"
+			count: 1
+			path: src/Complaint/Parser/ObjectsParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$documentValidityEndDate\\.$#"
 			count: 1
 			path: src/Complaint/Parser/ObjectsParser.php
 
@@ -429,6 +428,11 @@ parameters:
 		-
 			message: "#^Access to an undefined property object\\:\\:\\$ownerLastname\\.$#"
 			count: 2
+			path: src/Complaint/Parser/ObjectsParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$paymentCategory\\.$#"
+			count: 1
 			path: src/Complaint/Parser/ObjectsParser.php
 
 		-

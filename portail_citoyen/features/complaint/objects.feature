@@ -70,10 +70,17 @@ Feature:
 
     Scenario: I can see a list of text fields translated when I select "Moyens de paiement" from category object list
         When I select "Moyens de paiement" from "objects_objects_0_category"
-        Then I should see the key "pel.organism.bank" translated
+        Then I should see a "input#objects_objects_0_bank" element
+        And I should see the key "pel.organism.bank" translated
+        And I should see a "input#objects_objects_0_bankAccountNumber" element
         And I should see the key "pel.bank.account.number" translated
+        And I should see a "input#objects_objects_0_creditCardNumber" element
         And I should see the key "pel.credit.card.number" translated
+        And I should see a "select#objects_objects_0_status" element
         And I should see the key "pel.object.status" translated
+        And I should see a "select#objects_objects_0_paymentCategory" element
+        And I should see the key "pel.payment.category" translated
+        And I should see the key "pel.object.category.choose" translated
 
     Scenario: I can see a list of text fields translated when I select "Document officiel" from category object list
         When I select "Document officiel" from "objects_objects_0_category"

@@ -30,6 +30,13 @@
                             </div>
                         </div>
                     {% endif %}
+
+                    {% if object.paymentCategory is defined %}
+                        <div class="fr-mb-6v md:w-1/2">
+                            {{ form_row(object.paymentCategory) }}
+                        </div>
+                    {% endif %}
+
                     {% if object.label is defined %}
                         {{ form_row(object.label) }}
                     {% endif %}

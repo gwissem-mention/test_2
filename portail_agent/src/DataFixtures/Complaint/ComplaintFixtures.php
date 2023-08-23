@@ -358,7 +358,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                 (new PaymentMethod())
                     ->setStatus(AbstractObject::STATUS_DEGRADED)
                     ->setDescription('Visa principale')
-                    ->setType('Carte Bancaire VISA')
+                    ->setType('CARTE BANCAIRE')
                     ->setBank('LCL')
             )
             ->addObject(

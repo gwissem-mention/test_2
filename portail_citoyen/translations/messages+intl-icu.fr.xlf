@@ -2574,6 +2574,26 @@
                 <source>pel.this.number.is.required.to.identity.your.object</source>
                 <target>Ce numéro est nécessaire pour identifier votre objet.</target>
             </trans-unit>
+            <trans-unit id="pel.payment.category">
+                <source>pel.payment.category</source>
+                <target>Catégorie de paiement</target>
+            </trans-unit>
+            <trans-unit id="pel.checkbook">
+                <source>pel.checkbook</source>
+                <target>CHEQUIER</target>
+            </trans-unit>
+            <trans-unit id="pel.restaurant.check">
+                <source>pel.restaurant.check</source>
+                <target>CHEQUE RESTAURANT</target>
+            </trans-unit>
+            <trans-unit id="pel.holidays.check">
+                <source>pel.holidays.check</source>
+                <target>CHEQUE VACANCES</target>
+            </trans-unit>
+            <trans-unit id="pel.credit.card">
+                <source>pel.credit.card</source>
+                <target>CARTE BANCAIRE</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

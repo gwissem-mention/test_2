@@ -294,6 +294,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                             'inseeCode' => 99160,
                             'label' => 'France',
                         ],
+                        'paymentCategory' => null,
                     ],
                     [
                         'status' => [
@@ -344,6 +345,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'ownerFirstname' => null,
                         'multimediaNature' => null,
                         'documentIssuingCountry' => null,
+                        'paymentCategory' => null,
                     ],
                     [
                         'status' => [
@@ -390,6 +392,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'ownerFirstname' => null,
                         'multimediaNature' => 'AUTRE NATURE MULTIMEDIA',
                         'documentIssuingCountry' => null,
+                        'paymentCategory' => null,
                     ],
                     [
                         'status' => [
@@ -436,6 +439,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'ownerFirstname' => null,
                         'multimediaNature' => null,
                         'documentIssuingCountry' => null,
+                        'paymentCategory' => 'CARTE BANCAIRE',
                     ],
                     [
                         'status' => [
@@ -482,6 +486,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'ownerFirstname' => null,
                         'multimediaNature' => null,
                         'documentIssuingCountry' => null,
+                        'paymentCategory' => null,
                     ],
                     [
                         'status' => [
@@ -510,6 +515,10 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'amount' => 10000,
                         'documentType' => null,
                         'otherDocumentType' => null,
+                        'documentNumber' => null,
+                        'documentIssuedBy' => null,
+                        'documentIssuedOn' => null,
+                        'documentValidityEndDate' => null,
                         'documentOwned' => null,
                         'documentAdditionalInformation' => null,
                         'files' => [],
@@ -523,6 +532,8 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'ownerLastname' => null,
                         'ownerFirstname' => null,
                         'multimediaNature' => null,
+                        'documentIssuingCountry' => null,
+                        'paymentCategory' => null,
                     ],
                 ],
             ],
@@ -1323,6 +1334,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                             'inseeCode' => 99160,
                             'label' => 'France',
                         ],
+                        'paymentCategory' => null,
                     ],
                     [
                         'status' => [
@@ -1373,6 +1385,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'ownerFirstname' => null,
                         'multimediaNature' => null,
                         'documentIssuingCountry' => null,
+                        'paymentCategory' => null,
                     ],
                     [
                         'status' => [
@@ -1419,6 +1432,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'ownerFirstname' => null,
                         'multimediaNature' => 'AUTRE NATURE MULTIMEDIA',
                         'documentIssuingCountry' => null,
+                        'paymentCategory' => null,
                     ],
                     [
                         'status' => [
@@ -1465,6 +1479,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'ownerFirstname' => null,
                         'multimediaNature' => null,
                         'documentIssuingCountry' => null,
+                        'paymentCategory' => 'CARTE BANCAIRE',
                     ],
                     [
                         'status' => [
@@ -1511,6 +1526,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'ownerFirstname' => null,
                         'multimediaNature' => null,
                         'documentIssuingCountry' => null,
+                        'paymentCategory' => null,
                     ],
                     [
                         'status' => [
@@ -1539,6 +1555,10 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'amount' => 10000,
                         'documentType' => null,
                         'otherDocumentType' => null,
+                        'documentNumber' => null,
+                        'documentIssuedBy' => null,
+                        'documentIssuedOn' => null,
+                        'documentValidityEndDate' => null,
                         'documentOwned' => null,
                         'documentAdditionalInformation' => null,
                         'files' => [],
@@ -1552,6 +1572,8 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'ownerLastname' => null,
                         'ownerFirstname' => null,
                         'multimediaNature' => null,
+                        'documentIssuingCountry' => null,
+                        'paymentCategory' => null,
                     ],
                 ],
             ],
