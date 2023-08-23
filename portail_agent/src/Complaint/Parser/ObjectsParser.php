@@ -104,7 +104,6 @@ class ObjectsParser
         $multimediaObject = new MultimediaObject();
 
         $multimediaObject
-            ->setLabel($objectInput->label)
             ->setBrand($objectInput->brand)
             ->setModel($objectInput->model)
             ->setSerialNumber($objectInput->serialNumber)
@@ -161,7 +160,6 @@ class ObjectsParser
         $vehicle = new Vehicle();
 
         return $vehicle
-            ->setLabel($objectInput->label)
             ->setBrand($objectInput->brand ?? '')
             ->setModel($objectInput->model)
             ->setRegistrationNumber($objectInput->registrationNumber)

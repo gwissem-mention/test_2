@@ -465,7 +465,7 @@
         </li>
     {% elseif object|object_type is same as('App\\Entity\\FactsObjects\\MultimediaObject') %}
         <li>
-            <strong>{{ 'pel.number'|trans }} {{ index }}</strong> : {{ object.nature }} - {{ object.label }}
+            <strong>{{ 'pel.number'|trans }} {{ index }}</strong> : {{ object.nature }}
             - {{ object.model }} - {{ object.brand }}
             - {{ object.amount|format_currency('EUR', {fraction_digit: 0}) }}
             {% if object.operator %}
@@ -512,7 +512,7 @@
             {% if object.nature is not null %}
                 {{ object.nature }} -
             {% endif %}
-            {{ object.label }} - {{ object.brand }} - {{ object.model }}
+            {{ object.brand }} - {{ object.model }}
             {% if object.amount is not null %}
                 - {{ object.amount|format_currency('EUR', {fraction_digit: 0}) }}
             {% endif %}

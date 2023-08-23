@@ -41,13 +41,10 @@ Feature:
         Then I should be on "/porter-plainte/objets"
         When I select "5" from "objects_objects_0_category"
         And I select "1" from "objects_objects_0_status"
-        And I fill in "objects_objects_0_label" with "Object 1"
         And I fill in "objects_objects_0_amount" with "100"
         And I press "objects_objects_add"
-        And I click the "#objects_objects_1_label" element
         And I select "5" from "objects_objects_1_category"
         And I select "2" from "objects_objects_1_status"
-        And I fill in "objects_objects_1_label" with "Object 2"
         And I fill in "objects_objects_1_amount" with "100"
         And I press "objects_objects_add"
         And I select "1" from "objects_objects_2_category"
@@ -66,7 +63,6 @@ Feature:
         And I select "2" from "objects_objects_2_status"
         And I press "objects_objects_add"
         And I select "3" from "objects_objects_3_category"
-        And I fill in "objects_objects_3_label" with "Smartphone"
         And I select "2" from "objects_objects_3_status"
         And I fill in "objects_objects_3_brand" with "OnePlus"
         And I fill in "objects_objects_3_model" with "Nord 2"
@@ -76,7 +72,6 @@ Feature:
         And I fill in "objects_objects_3_description" with "Ceci est une description test pour mon smartphone."
         And I press "objects_objects_add"
         And I select "7" from "objects_objects_4_category"
-        And I fill in "objects_objects_4_label" with "Console"
         And I select "2" from "objects_objects_4_status"
         And I select "9" from "objects_objects_4_multimediaNature"
         And I fill in "objects_objects_4_brand" with "Sony"
@@ -208,8 +203,6 @@ Feature:
         And I should see the key "pel.document.validity.end.date" translated
         And I should see the key "pel.document.issuing.country" translated
         And I should see "Véhicules non immatriculés"
-        And I should see "Object 1"
-        And I should see "Object 2"
         And I should see "Document officiel"
         And I should see "Carte d’identité"
         And I should see "Non"
@@ -229,7 +222,6 @@ Feature:
         And I should see the key "pel.serial.number" translated
         And I should see the key "pel.description" translated
         And I should see "Téléphone portable"
-        And I should see "Smartphone"
         And I should see "OnePlus"
         And I should see "Nord 2"
         And I should see "+33 6 12 34 56 78"
@@ -237,7 +229,6 @@ Feature:
         And I should see "123456783"
         And I should see "Ceci est une description test pour mon smartphone."
         And I should not see the key "pel.owner.lastname.firstname" translated
-        And I should see "Console"
         And I should see "Sony"
         And I should see "Playstation 4"
         And I should not see "DUPONT Jean Pierre Marie"

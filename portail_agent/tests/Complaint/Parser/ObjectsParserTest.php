@@ -525,7 +525,6 @@ JSON;
         $object = $objectsParser->parse($objectsInput->objects[2], $complaintJson);
 
         $this->assertInstanceOf(MultimediaObject::class, $object);
-        $this->assertSame('PC', $object->getLabel());
         $this->assertSame('Dell', $object->getBrand());
         $this->assertSame('Inspiron 7', $object->getModel());
         $this->assertNull($object->getOperator());
@@ -541,7 +540,6 @@ JSON;
         $object = $objectsParser->parse($objectsInput->objects[6], $complaintJson);
 
         $this->assertInstanceOf(MultimediaObject::class, $object);
-        $this->assertSame('iPhone 11', $object->getLabel());
         $this->assertSame('Apple', $object->getBrand());
         $this->assertSame('Iphone 11', $object->getModel());
         $this->assertSame('SFR', $object->getOperator());
@@ -569,7 +567,6 @@ JSON;
         $object = $objectsParser->parse($objectsInput->objects[3], $complaintJson);
 
         $this->assertInstanceOf(Vehicle::class, $object);
-        $this->assertSame('Voiture', $object->getLabel());
         $this->assertSame('BMW', $object->getBrand());
         $this->assertSame('X3', $object->getModel());
         $this->assertSame('123BG30', $object->getRegistrationNumber());
@@ -592,7 +589,6 @@ JSON;
         $object = $objectsParser->parse($objectsInput->objects[4], $complaintJson);
 
         $this->assertInstanceOf(Vehicle::class, $object);
-        $this->assertSame('Vélo', $object->getLabel());
         $this->assertEmpty($object->getBrand());
         $this->assertNull($object->getModel());
         $this->assertNull($object->getRegistrationNumber());
