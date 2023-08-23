@@ -50,7 +50,7 @@ class PaymentMethodDTO extends AbstractObjectDTO
             // 'Objet_Moyen_Paiement_Nmr' => $this->chequeNumber,
             // 'Objet_Moyen_Paiement_Premier_Nmr' => $this->firstChequeNumber,
             // 'Objet_Moyen_Paiement_Dernier_Nmr' => $this->lastChequeNumber,
-            // 'Objet_Moyen_Paiement_Identite_Victime' => $this->identityVictim,
+             'Objet_Moyen_Paiement_Identite_Victime' => 'Oui',
             // 'Objet_Moyen_Paiement_Identite_Nom' => $this->identityLastname,
             // 'Objet_Moyen_Paiement_Identite_Nom_Marital' => $this->identityMarriedName,
             // 'Objet_Moyen_Paiement_Identite_Prenom' => $this->identityFirstName,
