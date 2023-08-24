@@ -196,6 +196,9 @@ class Complaint
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $appointmentSalesforceNotificationSentAt = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $appointmentAsked = null;
+
     public function __construct()
     {
         $this->objects = new ArrayCollection();
@@ -768,5 +771,17 @@ class Complaint
     public function getUniqueDeclarationNumber(): string
     {
         return $this->declarationNumber.'-'.$this->createdAt?->getTimestamp();
+    }
+
+    public function isAppointmentAsked(): ?bool
+    {
+        return $this->appointmentAsked;
+    }
+
+    public function setAppointmentAsked(?bool $appointmentAsked): self
+    {
+        $this->appointmentAsked = $appointmentAsked;
+
+        return $this;
     }
 }
