@@ -73,6 +73,7 @@ class ComplaintFileParser
             ->setFranceConnected($importedComplaint->franceConnected)
             ->setAppointmentRequired($importedComplaint->appointmentRequired)
             ->setAppointmentContactInformation($importedComplaint->appointment?->appointmentContactText)
+            ->setAppointmentAsked($importedComplaint->appointment?->appointmentAsked)
             ->setConsentContactElectronics($importedComplaint->identity->consentContactElectronics);
 
         // For Salesforce purpose, init the appointment journey without sending the appointment required email
