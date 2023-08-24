@@ -9,10 +9,11 @@ when@dev:
     monolog:
         handlers:
             main:
-                type: stream
+                type: rotating_file
                 path: "%kernel.logs_dir%/%kernel.environment%.log"
                 level: debug
                 channels: [ "!event", "!oodrive", "!application_traces_gn", "!application_traces_pn" ]
+                max_files: 20
             # uncomment to get logging in your browser
             # you may have to allow bigger header sizes in your Web server configuration
             #firephp:
@@ -26,22 +27,25 @@ when@dev:
                 process_psr_3_messages: false
                 channels: [ "!event", "!doctrine", "!console", "!oodrive", "!application_traces_gn", "!application_traces_pn" ]
             oodrive:
-                type: stream
+                type: rotating_file
                 path: "%kernel.logs_dir%/oodrive_%kernel.environment%.log"
                 level: debug
                 channels: [ "oodrive" ]
+                max_files: 20
             application_traces_gn:
-                type: stream
+                type: rotating_file
                 path: "%kernel.logs_dir%/application_traces_gn_%kernel.environment%.log"
                 level: debug
                 channels: [ "application_traces_gn" ]
                 formatter: 'app.logger.formatter.json_traces'
+                max_files: 20
             application_traces_pn:
-                type: stream
+                type: rotating_file
                 path: "%kernel.logs_dir%/application_traces_pn_%kernel.environment%.log"
                 level: debug
                 channels: [ "application_traces_pn" ]
                 formatter: 'app.logger.formatter.json_traces'
+                max_files: 20
 
 
 when@test:
@@ -73,27 +77,31 @@ when@prod: &prod
                 level: debug
                 formatter: monolog.formatter.json
             file_log:
-                type: stream
+                type: rotating_file
                 path: "%kernel.logs_dir%/%kernel.environment%.log"
                 level: error
                 channels: [ "!oodrive" ]
+                max_files: 20
             oodrive_log:
-                type: stream
+                type: rotating_file
                 path: "%kernel.logs_dir%/oodrive_%kernel.environment%.log"
                 level: error
                 channels: [ "oodrive" ]
+                max_files: 20
             application_traces_gn_log:
-                type: stream
+                type: rotating_file
                 path: "%kernel.logs_dir%/application_traces_gn_%kernel.environment%.log"
                 level: info
                 channels: [ "application_traces_gn" ]
                 formatter: 'app.logger.formatter.json_traces'
+                max_files: 20
             application_traces_pn_log:
-                type: stream
+                type: rotating_file
                 path: "%kernel.logs_dir%/application_traces_pn_%kernel.environment%.log"
                 level: info
                 channels: [ "application_traces_pn" ]
                 formatter: 'app.logger.formatter.json_traces'
+                max_files: 20
             console:
                 type: console
                 process_psr_3_messages: false
