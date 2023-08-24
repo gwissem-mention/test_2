@@ -142,7 +142,12 @@ Feature:
         And I should see "Sony"
         And I should see "1234567890"
         And I should see "Description console"
-        And I should see "Vous avez ajouté 6 objets pour un montant total de 18 099 €"
+        And I should see "CHEQUIER"
+        And I should see "Mon chéquier"
+        And I should see "N° de chèque / chéquier : 1234567890"
+        And I should see "Premier N° de chèque / chéquier : AAA"
+        And I should see "Dernier N° de chèque / chéquier : XXX"
+        And I should see "Vous avez ajouté 7 objets pour un montant total de 18 099 €"
         And I should see the key "pel.additional.informations" translated
         And I should see the key "pel.facts.witnesses" translated
         And I should see "Description du témoin n°1"

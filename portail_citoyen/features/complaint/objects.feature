@@ -233,3 +233,32 @@ Feature:
         When I select "Véhicules immatriculés" from "objects_objects_0_category"
         And I select "2" from "objects_objects_0_status"
         Then I should not see a "textarea#objects_objects_0_degradationDescription[required=required]" element
+
+    Scenario: I should see check fields when I select "Moyens de paiement" and "CHEQUIER"
+        When I select "2" from "objects_objects_0_category"
+        And I select "1" from "objects_objects_0_paymentCategory"
+        Then I should see a "input#objects_objects_0_checkNumber" element
+        And I should see the key "pel.check.number" translated
+        And I should see a "input#objects_objects_0_checkFirstNumber" element
+        And I should see the key "pel.first.check.number" translated
+        And I should see a "input#objects_objects_0_checkLastNumber" element
+        And I should see the key "pel.last.check.number" translated
+
+    Scenario: I should not see check fields when I select "Moyens de paiement" and "CARTE BANCAIRE"
+        When I select "2" from "objects_objects_0_category"
+        And I select "4" from "objects_objects_0_paymentCategory"
+        Then I should not see a "input#objects_objects_0_checkNumber" element
+        And I should not see the key "pel.check.number" translated
+        And I should not see a "input#objects_objects_0_checkFirstNumber" element
+        And I should not see the key "pel.first.check.number" translated
+        And I should not see a "input#objects_objects_0_checkLastNumber" element
+        And I should not see the key "pel.last.check.number" translated
+
+    Scenario: I should not see check fields when I select "Véhicules immatriculés"
+        When I select "4" from "objects_objects_0_category"
+        Then I should not see a "input#objects_objects_0_checkNumber" element
+        And I should not see the key "pel.check.number" translated
+        And I should not see a "input#objects_objects_0_checkFirstNumber" element
+        And I should not see the key "pel.first.check.number" translated
+        And I should not see a "input#objects_objects_0_checkLastNumber" element
+        And I should not see the key "pel.last.check.number" translated

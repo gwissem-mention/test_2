@@ -505,6 +505,17 @@
             {% if object.amount is not null %}
                 - {{ object.amount|format_currency('EUR', {fraction_digit: 0}) }}
             {% endif %}
+            <ul class="m-0">
+                {% if object.chequeNumber is not null %}
+                    <li>{{ 'pel.check.number'|trans }} : <strong>{{ object.chequeNumber }}</strong></li>
+                {% endif %}
+                {% if object.firstChequeNumber is not null %}
+                    <li>{{ 'pel.first.check.number'|trans }} : <strong>{{ object.firstChequeNumber }}</strong></li>
+                {% endif %}
+                {% if object.lastChequeNumber is not null %}
+                    <li>{{ 'pel.last.check.number'|trans }} : <strong>{{ object.lastChequeNumber }}</strong></li>
+                {% endif %}
+            </ul>
         </li>
     {% elseif object|object_type is same as('App\\Entity\\FactsObjects\\Vehicle') %}
         <li>

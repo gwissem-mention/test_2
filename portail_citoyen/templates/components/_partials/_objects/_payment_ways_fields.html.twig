@@ -1,6 +1,15 @@
 {% if object.bank is defined %}
     {{ form_row(object.bank) }}
 {% endif %}
+{% if object.checkNumber is defined %}
+    {{ form_row(object.checkNumber) }}
+{% endif %}
+{% if object.checkFirstNumber is defined %}
+    {{ form_row(object.checkFirstNumber) }}
+{% endif %}
+{% if object.checkLastNumber is defined %}
+    {{ form_row(object.checkLastNumber) }}
+{% endif %}
 {% if object.bankAccountNumber is defined %}
     {{ form_row(object.bankAccountNumber) }}
 {% endif %}

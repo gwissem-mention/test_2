@@ -184,6 +184,15 @@
                 <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.payment.category'|trans }} : <b>{{ object.paymentCategory.value|payment_category_label|trans }}</b></li>
             {% endif %}
             <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.organism.bank'|trans }} : <b>{{ object.bank }}</b></li>
+            {% if object.checkNumber %}
+                <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.check.number'|trans }} : <b>{{ object.checkNumber }}</b></li>
+            {% endif %}
+            {% if object.checkFirstNumber %}
+                <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.first.check.number'|trans }} : <b>{{ object.checkFirstNumber }}</b></li>
+            {% endif %}
+            {% if object.checkLastNumber %}
+                <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.last.check.number'|trans }} : <b>{{ object.checkLastNumber }}</b></li>
+            {% endif %}
             <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.bank.account.number'|trans }} : <b>{{ object.bankAccountNumber }}</b></li>
             {% if object.creditCardNumber %}
                 <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.credit.card.number'|trans }} : <b>{{ object.creditCardNumber }}</b></li>

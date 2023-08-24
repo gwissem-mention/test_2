@@ -183,6 +183,9 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
                     ->setType('Carte bancaire')
                     ->setDescription('Carte gold')
                     ->setBank('LCL')
+                    ->setChequeNumber('1234567890')
+                    ->setFirstChequeNumber('AAA')
+                    ->setLastChequeNumber('XXX')
             )
             ->addObject(
                 (new SimpleObject())
@@ -525,6 +528,9 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         // $this->assertStringNotContainsString('<Objet_Moyen_Paiement_Identite_Naissance_HidNumDep>', $this->xmlContent);
         // $this->assertStringNotContainsString('<Objet_Moyen_Paiement_Identite_Residence_HidNumDep>', $this->xmlContent);
         // $this->assertStringContainsString('<Objet_Moyen_Paiement_Vol_Dans_Vl>Non</Objet_Moyen_Paiement_Vol_Dans_Vl>', $this->xmlContent);
+        $this->assertStringContainsString('<Objet_Moyen_Paiement_Nmr>1234567890</Objet_Moyen_Paiement_Nmr>', $this->xmlContent);
+        $this->assertStringContainsString('<Objet_Moyen_Paiement_Premier_Nmr>AAA</Objet_Moyen_Paiement_Premier_Nmr>', $this->xmlContent);
+        $this->assertStringContainsString('<Objet_Moyen_Paiement_Dernier_Nmr>XXX</Objet_Moyen_Paiement_Dernier_Nmr>', $this->xmlContent);
         $this->assertStringContainsString('</Objet_Moyen_Paiement>', $this->xmlContent);
     }
 
