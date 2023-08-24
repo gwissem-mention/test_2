@@ -93,6 +93,10 @@ class ObjectType extends AbstractType
                 if ($this->objectCategories['pel.object.category.registered.vehicle'] === $objectModel?->getCategory()) {
                     $this->addDegradationDescriptionField($form, ObjectModel::STATUS_DEGRADED === $objectModel->getStatus());
                 }
+
+                if ($this->objectCategories['pel.object.category.payment.ways'] === $objectModel?->getCategory() && PaymentCategory::Checkbook === $objectModel->getPaymentCategory()) {
+                    $this->addCheckFields($form);
+                }
             }
         );
 
@@ -107,6 +111,8 @@ class ObjectType extends AbstractType
                 $status = $data['status'] ?? '';
                 /** @var string $category */
                 $category = $data['category'] ?? '';
+                /** @var string $paymentCategory */
+                $paymentCategory = $data['paymentCategory'] ?? '';
 
                 if (!empty($status) && (string) ObjectModel::STATUS_STOLEN === $status && !empty($data['serialNumber']) && !empty($category) && (int) $category === $this->objectCategories['pel.object.category.mobile.phone']) {
                     $this->addAdditionalMobileFields($form);
@@ -118,6 +124,12 @@ class ObjectType extends AbstractType
                     $this->addDegradationDescriptionField($form, (string) ObjectModel::STATUS_DEGRADED === $status);
                 } else {
                     $this->removeDegradationDescriptionField($form);
+                }
+
+                if (!empty($category) && $this->objectCategories['pel.object.category.payment.ways'] === (int) $category && PaymentCategory::Checkbook->value === (int) $paymentCategory) {
+                    $this->addCheckFields($form);
+                } else {
+                    $this->removeCheckFields($form);
                 }
             }
         );
@@ -739,5 +751,45 @@ class ObjectType extends AbstractType
         $objectModel
             ?->setOwnerLastname(null)
             ->setOwnerFirstname(null);
+    }
+
+    private function addCheckFields(FormInterface $form): void
+    {
+        $form
+            ->add('checkNumber', TextType::class, [
+                'constraints' => [
+                    new Length([
+                        'max' => 20,
+                    ]),
+                ],
+                'required' => false,
+                'label' => 'pel.check.number',
+            ])
+            ->add('checkFirstNumber', TextType::class, [
+                'constraints' => [
+                    new Length([
+                        'max' => 20,
+                    ]),
+                ],
+                'required' => false,
+                'label' => 'pel.first.check.number',
+            ])
+            ->add('checkLastNumber', TextType::class, [
+                'constraints' => [
+                    new Length([
+                        'max' => 20,
+                    ]),
+                ],
+                'required' => false,
+                'label' => 'pel.last.check.number',
+            ]);
+    }
+
+    private function removeCheckFields(FormInterface $form): void
+    {
+        $form
+            ->remove('checkNumber')
+            ->remove('checkFirstNumber')
+            ->remove('checkLastNumber');
     }
 }

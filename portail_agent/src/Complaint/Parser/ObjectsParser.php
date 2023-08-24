@@ -150,7 +150,10 @@ class ObjectsParser
         return $paymentMethod
             ->setDescription($objectInput->label)
             ->setType($objectInput->paymentCategory)
-            ->setBank($objectInput->bank);
+            ->setBank($objectInput->bank)
+            ->setChequeNumber($objectInput->checkNumber)
+            ->setFirstChequeNumber($objectInput->checkFirstNumber)
+            ->setLastChequeNumber($objectInput->checkLastNumber);
     }
 
     private function parseVehicle(object $objectInput): Vehicle

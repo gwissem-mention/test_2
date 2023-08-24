@@ -1614,6 +1614,18 @@
                 <source>pel.degradation.description</source>
                 <target>Description des dégradations</target>
             </trans-unit>
+            <trans-unit id="pel.check.number">
+                <source>pel.check.number</source>
+                <target>N° de chèque / chéquier</target>
+            </trans-unit>
+            <trans-unit id="pel.first.check.number">
+                <source>pel.first.check.number</source>
+                <target>Premier N° de chèque / chéquier</target>
+            </trans-unit>
+            <trans-unit id="pel.last.check.number">
+                <source>pel.last.check.number</source>
+                <target>Dernier N° de chèque / chéquier</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

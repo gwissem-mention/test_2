@@ -15,9 +15,9 @@ class PaymentMethodDTO extends AbstractObjectDTO
     // private ?string $opposition;
     private ?string $bank;
     // private ?string $cardType;
-    // private ?string $chequeNumber;
-    // private ?string $firstChequeNumber;
-    // private ?string $lastChequeNumber;
+    private ?string $chequeNumber;
+    private ?string $firstChequeNumber;
+    private ?string $lastChequeNumber;
 
     public function __construct(PaymentMethod $object)
     {
@@ -29,9 +29,9 @@ class PaymentMethodDTO extends AbstractObjectDTO
         // $this->opposition = $object->isOpposition() ? 'Oui' : 'Non';
         $this->bank = $object->getBank() ?? '';
         // $this->cardType = $object->getCardType();
-        // $this->chequeNumber = $object->getChequeNumber();
-        // $this->firstChequeNumber = $object->getFirstChequeNumber();
-        // $this->lastChequeNumber = $object->getLastChequeNumber();
+        $this->chequeNumber = $object->getChequeNumber();
+        $this->firstChequeNumber = $object->getFirstChequeNumber();
+        $this->lastChequeNumber = $object->getLastChequeNumber();
     }
 
     /**
@@ -47,10 +47,10 @@ class PaymentMethodDTO extends AbstractObjectDTO
             // 'Objet_Moyen_Paiement_Opposition' => $this->opposition,
              'Objet_Moyen_Paiement_Banque' => $this->bank,
             // 'Objet_Moyen_Paiement_Type_Carte' => $this->cardType,
-            // 'Objet_Moyen_Paiement_Nmr' => $this->chequeNumber,
-            // 'Objet_Moyen_Paiement_Premier_Nmr' => $this->firstChequeNumber,
-            // 'Objet_Moyen_Paiement_Dernier_Nmr' => $this->lastChequeNumber,
-             'Objet_Moyen_Paiement_Identite_Victime' => 'Oui',
+            'Objet_Moyen_Paiement_Nmr' => $this->chequeNumber,
+            'Objet_Moyen_Paiement_Premier_Nmr' => $this->firstChequeNumber,
+            'Objet_Moyen_Paiement_Dernier_Nmr' => $this->lastChequeNumber,
+            'Objet_Moyen_Paiement_Identite_Victime' => 'Oui',
             // 'Objet_Moyen_Paiement_Identite_Nom' => $this->identityLastname,
             // 'Objet_Moyen_Paiement_Identite_Nom_Marital' => $this->identityMarriedName,
             // 'Objet_Moyen_Paiement_Identite_Prenom' => $this->identityFirstName,

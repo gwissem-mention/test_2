@@ -53,6 +53,9 @@ class ObjectModel
     private ?string $ownerLastname = null;
     private ?int $multimediaNature = null;
     private ?PaymentCategory $paymentCategory = null;
+    private ?string $checkNumber = null;
+    private ?string $checkFirstNumber = null;
+    private ?string $checkLastNumber = null;
 
     /**
      * @var Collection<int, FileModel>
@@ -552,6 +555,42 @@ class ObjectModel
     public function setPaymentCategory(?PaymentCategory $paymentCategory): self
     {
         $this->paymentCategory = $paymentCategory;
+
+        return $this;
+    }
+
+    public function getCheckNumber(): ?string
+    {
+        return $this->checkNumber;
+    }
+
+    public function setCheckNumber(?string $checkNumber): self
+    {
+        $this->checkNumber = $checkNumber;
+
+        return $this;
+    }
+
+    public function getCheckFirstNumber(): ?string
+    {
+        return $this->checkFirstNumber;
+    }
+
+    public function setCheckFirstNumber(?string $checkFirstNumber): self
+    {
+        $this->checkFirstNumber = $checkFirstNumber;
+
+        return $this;
+    }
+
+    public function getCheckLastNumber(): ?string
+    {
+        return $this->checkLastNumber;
+    }
+
+    public function setCheckLastNumber(?string $checkLastNumber): self
+    {
+        $this->checkLastNumber = $checkLastNumber;
 
         return $this;
     }

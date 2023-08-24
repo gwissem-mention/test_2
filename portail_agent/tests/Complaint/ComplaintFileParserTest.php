@@ -384,7 +384,10 @@ class ComplaintFileParserTest extends KernelTestCase
                 "inseeCode": 99160,
                 "label": "France"
             },
-            "paymentCategory": null
+            "paymentCategory": null,
+            "checkNumber": null,
+            "checkFirstNumber": null,
+            "checkLastNumber": null
 		},
 		{
 			"status":
@@ -438,7 +441,10 @@ class ComplaintFileParserTest extends KernelTestCase
             "ownerFirstname": null,
             "multimediaNature": null,
             "documentIssuingCountry": null,
-            "paymentCategory": null
+            "paymentCategory": null,
+            "checkNumber": null,
+            "checkFirstNumber": null,
+            "checkLastNumber": null
 		},
 		{
 			"status":
@@ -487,7 +493,10 @@ class ComplaintFileParserTest extends KernelTestCase
             "ownerFirstname": null,
             "multimediaNature": null,
             "documentIssuingCountry": null,
-            "paymentCategory": "CARTE BANCAIRE"
+            "paymentCategory": "CARTE BANCAIRE",
+            "checkNumber": null,
+            "checkFirstNumber": null,
+            "checkLastNumber": null
 		},
 		{
 			"status":
@@ -536,7 +545,10 @@ class ComplaintFileParserTest extends KernelTestCase
             "ownerFirstname": null,
             "multimediaNature": null,
             "documentIssuingCountry": null,
-            "paymentCategory": null
+            "paymentCategory": null,
+            "checkNumber": null,
+            "checkFirstNumber": null,
+            "checkLastNumber": null
 		}]
 	},
 	"appointment": {

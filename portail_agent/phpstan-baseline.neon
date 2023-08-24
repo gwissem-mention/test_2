@@ -326,6 +326,21 @@ parameters:
 			path: src/Complaint/Parser/ObjectsParser.php
 
 		-
+			message: "#^Access to an undefined property object\\:\\:\\$checkFirstNumber\\.$#"
+			count: 1
+			path: src/Complaint/Parser/ObjectsParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$checkLastNumber\\.$#"
+			count: 1
+			path: src/Complaint/Parser/ObjectsParser.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$checkNumber\\.$#"
+			count: 1
+			path: src/Complaint/Parser/ObjectsParser.php
+
+		-
 			message: "#^Access to an undefined property object\\:\\:\\$degradationDescription\\.$#"
 			count: 1
 			path: src/Complaint/Parser/ObjectsParser.php

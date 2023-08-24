@@ -362,6 +362,16 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                     ->setBank('LCL')
             )
             ->addObject(
+                (new PaymentMethod())
+                    ->setStatus(AbstractObject::STATUS_STOLEN)
+                    ->setDescription('Mon chéquier')
+                    ->setType('CHEQUIER')
+                    ->setBank('LCL')
+                    ->setChequeNumber('1234567890')
+                    ->setFirstChequeNumber('AAA')
+                    ->setLastChequeNumber('XXX')
+            )
+            ->addObject(
                 (new Vehicle())
                     ->setStatus(AbstractObject::STATUS_DEGRADED)
                     ->setNature('VOITURE PARTICULIERE')

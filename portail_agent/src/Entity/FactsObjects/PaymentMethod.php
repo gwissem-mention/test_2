@@ -30,14 +30,14 @@ class PaymentMethod extends AbstractObject
     // #[ORM\Column(length: 255, nullable: true)]
     // private ?string $cardType = null;
     //
-    // #[ORM\Column(length: 255, nullable: true)]
-    // private ?string $chequeNumber = null;
-    //
-    // #[ORM\Column(length: 255, nullable: true)]
-    // private ?string $firstChequeNumber = null;
-    //
-    // #[ORM\Column(length: 255, nullable: true)]
-    // private ?string $lastChequeNumber = null;
+    #[ORM\Column(length: 20, nullable: true)]
+    private ?string $chequeNumber = null;
+
+    #[ORM\Column(length: 20, nullable: true)]
+    private ?string $firstChequeNumber = null;
+
+    #[ORM\Column(length: 20, nullable: true)]
+    private ?string $lastChequeNumber = null;
 
     public function getType(): ?string
     {
@@ -71,6 +71,42 @@ class PaymentMethod extends AbstractObject
     public function setBank(?string $bank): self
     {
         $this->bank = $bank;
+
+        return $this;
+    }
+
+    public function getChequeNumber(): ?string
+    {
+        return $this->chequeNumber;
+    }
+
+    public function setChequeNumber(?string $chequeNumber): self
+    {
+        $this->chequeNumber = $chequeNumber;
+
+        return $this;
+    }
+
+    public function getFirstChequeNumber(): ?string
+    {
+        return $this->firstChequeNumber;
+    }
+
+    public function setFirstChequeNumber(?string $firstChequeNumber): self
+    {
+        $this->firstChequeNumber = $firstChequeNumber;
+
+        return $this;
+    }
+
+    public function getLastChequeNumber(): ?string
+    {
+        return $this->lastChequeNumber;
+    }
+
+    public function setLastChequeNumber(?string $lastChequeNumber): self
+    {
+        $this->lastChequeNumber = $lastChequeNumber;
 
         return $this;
     }

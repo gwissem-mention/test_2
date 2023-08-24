@@ -142,7 +142,10 @@ JSON;
                 "inseeCode": 99160,
                 "label": "France"
             },
-            "paymentCategory": null
+            "paymentCategory": null,
+            "checkNumber": null,
+            "checkFirstNumber": null,
+            "checkLastNumber": null
         },
         {
             "status": {
@@ -187,7 +190,10 @@ JSON;
             "degradationDescription": null,
             "multimediaNature": null,
             "documentIssuingCountry": null,
-            "paymentCategory": "CARTE BANCAIRE"
+            "paymentCategory": "CARTE BANCAIRE",
+            "checkNumber": null,
+            "checkFirstNumber": null,
+            "checkLastNumber": null
         },
         {
             "status": {
@@ -234,7 +240,10 @@ JSON;
             "ownerFirstname": "Charles",
             "multimediaNature": "ORDINATEUR",
             "documentIssuingCountry": null,
-            "paymentCategory": null
+            "paymentCategory": null,
+            "checkNumber": null,
+            "checkFirstNumber": null,
+            "checkLastNumber": null
         },
         {
             "status": {
@@ -281,7 +290,10 @@ JSON;
             "ownerFirstname": null,
             "multimediaNature": null,
             "documentIssuingCountry": null,
-            "paymentCategory": null
+            "paymentCategory": null,
+            "checkNumber": null,
+            "checkFirstNumber": null,
+            "checkLastNumber": null
         },
         {
             "status": {
@@ -328,7 +340,10 @@ JSON;
             "ownerFirstname": null,
             "multimediaNature": null,
             "documentIssuingCountry": null,
-            "paymentCategory": null
+            "paymentCategory": null,
+            "checkNumber": null,
+            "checkFirstNumber": null,
+            "checkLastNumber": null
         },
         {
             "status": {
@@ -375,7 +390,10 @@ JSON;
             "ownerFirstname": null,
             "multimediaNature": null,
             "documentIssuingCountry": null,
-            "paymentCategory": null
+            "paymentCategory": null,
+            "checkNumber": null,
+            "checkFirstNumber": null,
+            "checkLastNumber": null
         },
         {
             "status": {
@@ -426,7 +444,53 @@ JSON;
             "ownerFirstname": null,
             "multimediaNature": null,
             "documentIssuingCountry": null,
-            "paymentCategory": null
+            "paymentCategory": null,
+            "checkNumber": null,
+            "checkFirstNumber": null,
+            "checkLastNumber": null
+        },
+        {
+            "status": {
+                "code": 2,
+                "label": "Dégradé"
+            },
+            "category": {
+                "code": 2,
+                "label": "Moyens de paiement"
+            },
+            "label": "Mon chéquier",
+            "brand": null,
+            "model": null,
+            "phoneNumberLine": null,
+            "operator": null,
+            "serialNumber": null,
+            "description": null,
+            "quantity": null,
+            "bank": "BNP",
+            "bankAccountNumber": "4564654654654",
+            "creditCardNumber": "879879879879",
+            "registeredVehicleNature": null,
+            "registrationNumber": null,
+            "registrationNumberCountry": null,
+            "insuranceCompany": null,
+            "insuranceNumber": null,
+            "amount": null,
+            "documentType": null,
+            "otherDocumentType": null,
+            "documentOwned": null,
+            "documentAdditionalInformation": null,
+            "files": [],
+            "stillOnWhenMobileStolen": null,
+            "keyboardLockedWhenMobileStolen": null,
+            "pinEnabledWhenMobileStolen": null,
+            "mobileInsured": null,
+            "allowOperatorCommunication": null,
+            "degradationDescription": null,
+            "multimediaNature": null,
+            "paymentCategory": "CHEQUIER",
+            "checkNumber": "ABCD1234",
+            "checkFirstNumber": "AAA",
+            "checkLastNumber": "XXX"
         }
     ]
 }
@@ -519,6 +583,28 @@ JSON;
         $this->assertSame('Carte bleu', $paymentMethod->getDescription());
         $this->assertSame('BNP', $paymentMethod->getBank());
         $this->assertSame('CARTE BANCAIRE', $paymentMethod->getType());
+        $this->assertNull($paymentMethod->getChequeNumber());
+        $this->assertNull($paymentMethod->getFirstChequeNumber());
+        $this->assertNull($paymentMethod->getLastChequeNumber());
+    }
+
+    public function testParseCheckPaymentMethod(): void
+    {
+        /** @var object $complaintJson */
+        $complaintJson = json_decode(self::COMPLAINT_JSON);
+        $objectsInput = json_decode(self::OBJECTS_JSON);
+        $objectsParser = $this->getParser();
+
+        // $objects[7] is a PaymentMethod
+        $paymentMethod = $objectsParser->parse($objectsInput->objects[7], $complaintJson);
+
+        $this->assertInstanceOf(PaymentMethod::class, $paymentMethod);
+        $this->assertSame('Mon chéquier', $paymentMethod->getDescription());
+        $this->assertSame('BNP', $paymentMethod->getBank());
+        $this->assertSame('CHEQUIER', $paymentMethod->getType());
+        $this->assertSame('ABCD1234', $paymentMethod->getChequeNumber());
+        $this->assertSame('AAA', $paymentMethod->getFirstChequeNumber());
+        $this->assertSame('XXX', $paymentMethod->getLastChequeNumber());
     }
 
     public function testParseMultimediaObject(): void

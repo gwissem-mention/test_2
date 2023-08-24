@@ -262,6 +262,18 @@ class ComplaintFactory
                 ->setQuantity(1)
                 ->setAmount(10000)
                 ->setSerialNumber('1234567890')
+            )
+            ->addObject((new ObjectModel())
+                ->setCategory(2)
+                ->setLabel('Chèquier')
+                ->setStatus(ObjectModel::STATUS_STOLEN)
+                ->setAmount(10)
+                ->setBank('BNP Paribas')
+                ->setBankAccountNumber('1234567890')
+                ->setPaymentCategory(PaymentCategory::Checkbook)
+                ->setCheckNumber('ABC123456')
+                ->setCheckFirstNumber('78599')
+                ->setCheckLastNumber('XX145')
             );
     }
 
