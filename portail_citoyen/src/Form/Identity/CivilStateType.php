@@ -133,7 +133,7 @@ class CivilStateType extends AbstractType
                 function (FormEvent $event) {
                     /** @var ?CivilStateModel $civilState */
                     $civilState = $event->getData();
-                    $this->addJobField($event->getForm(), $civilState?->getCivility(), $civilState?->getJob());
+                    $this->addJobField($event->getForm(), $civilState?->getJob());
                 }
             )
             ->addEventListener(
@@ -143,14 +143,13 @@ class CivilStateType extends AbstractType
                     $civilState = $event->getData();
                     $this->addJobField(
                         $event->getForm(),
-                        !empty($civilState['civility']) ? intval($civilState['civility']) : null,
                         !empty($civilState['job']) ? strval($civilState['job']) : null,
                     );
                 }
             );
     }
 
-    private function addJobField(FormInterface $form, int $civility = null, string $jobCode = null): void
+    private function addJobField(FormInterface $form, string $jobCode = null): void
     {
         $choices = [];
         $job = null;
@@ -158,7 +157,7 @@ class CivilStateType extends AbstractType
             /** @var ?Job $job */
             $job = $this->jobRepository->findOneBy(['code' => $jobCode]);
             if (null !== $job) {
-                $choices[Civility::Mme->value === $civility ? $job->getLabelFemale() : $job->getLabelMale()] = $job->getCode();
+                $choices[$job->getLabel()] = $job->getCode();
             }
         }
 
@@ -172,7 +171,7 @@ class CivilStateType extends AbstractType
                 'label' => 'pel.your.job',
                 'autocomplete_url' => $this->urlGenerator->generate(
                     'ux_entity_autocomplete',
-                    ['alias' => Civility::M->value === $civility ? 'job_male' : 'job_female']
+                    ['alias' => 'job']
                 ),
                 'attr' => [
                     'required' => true,
@@ -181,11 +180,7 @@ class CivilStateType extends AbstractType
                     'class' => 'job',
                     'data-url-civility-'.Civility::M->value => $this->urlGenerator->generate(
                         'ux_entity_autocomplete',
-                        ['alias' => 'job_male']
-                    ),
-                    'data-url-civility-'.Civility::Mme->value => $this->urlGenerator->generate(
-                        'ux_entity_autocomplete',
-                        ['alias' => 'job_female']
+                        ['alias' => 'job']
                     ),
                 ],
             ]);

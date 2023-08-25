@@ -19,9 +19,9 @@ class JobMockFixtures extends Fixture implements FixtureGroupInterface
     public function load(ObjectManager $manager): void
     {
         $jobs = [
-            new Job('1', 'Abat-jouriste', 'Abat-jouriste'),
-            new Job('2', 'Abatteur de bestiaux', 'Abatteuse de bestiaux'),
-            new Job('3', 'Accompagnateur musical', 'Accompagnatrice musicale'),
+            new Job('1', 'Abat-jouriste'),
+            new Job('2', 'Abatteur de bestiaux'),
+            new Job('3', 'Accompagnateur musical'),
         ];
 
         foreach ($jobs as $job) {

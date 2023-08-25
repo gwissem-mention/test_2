@@ -58,7 +58,7 @@ class CivilStateModelNormalizer implements NormalizerInterface
 
         $data['job'] = [
             'code' => $data['job'],
-            'label' => $object->getCivility() === Civility::M->value ? $job?->getLabelMale() : $job?->getLabelFemale(),
+            'label' => $job?->getLabel(),
         ];
 
         return $data;

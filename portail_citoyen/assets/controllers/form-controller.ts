@@ -1,31 +1,5 @@
 import {Controller} from "@hotwired/stimulus";
-import TomSelect from "tom-select";
-
 export default class extends Controller {
-    public changeJobUrl(): void {
-        const element: Element = this.element;
-        const parent: HTMLElement | null = element.closest(".fr-pt-4v, .fr-pt-2v");
-
-        if (parent) {
-            [...parent.querySelectorAll(".job:not(.ts-wrapper)")].forEach((element) => {
-
-                // Must be ignored because "tomselect" attribute does not exist on type Element.
-                // @ts-ignore
-                const tomselect: TomSelect | null = element.tomselect;
-                // Must be ignored because "value" attribute does not exist on type Element.
-                // @ts-ignore
-                const urlInput: string | null = element.getAttribute(`data-url-civility-${this.element.value}`);
-
-                if (tomselect && urlInput) {
-                    tomselect.settings.firstUrl = query => urlInput + "?query=" + encodeURIComponent(query);
-                    tomselect.clear();
-                    tomselect.clearOptions();
-                    tomselect.load("#");
-                }
-            });
-        }
-    }
-
     public removeFrenchTown(): void {
         const country: Element = this.element;
 

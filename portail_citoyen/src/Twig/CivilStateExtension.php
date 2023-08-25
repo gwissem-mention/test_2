@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Twig;
 
-use App\AppEnum\Civility;
 use App\Form\Model\Identity\CivilStateModel;
 use App\Referential\Repository\JobRepository;
 use Twig\Extension\AbstractExtension;
@@ -27,6 +26,6 @@ class CivilStateExtension extends AbstractExtension
     {
         $job = $this->jobRepository->findOneBy(['code' => $civilStateModel->getJob()]);
 
-        return $civilStateModel->getCivility() === Civility::M->value ? $job?->getLabelMale() : $job?->getLabelFemale();
+        return $job?->getLabel();
     }
 }

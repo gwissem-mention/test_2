@@ -28,7 +28,7 @@
 ##        And I select "1" from "identity_representedPersonCivilState_familySituation"
 ##        And I fill in "identity_representedPersonCivilState_birthDate" with "01/01/2010"
 ##        And I fill in the autocomplete "identity_representedPersonCivilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
-##        And I fill in the autocomplete "identity_representedPersonCivilState_job-ts-control" with "Abatteuse de bestiaux" and click "2"
+##        And I fill in the autocomplete "identity_representedPersonCivilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
 ##        And I fill in "represented-person-address" with "avenue de la république paris"
 ##        And I click the "#represented-person-address-75111_8158" element
 ##        And I fill in "identity_representedPersonContactInformation_email" with "jean@test.com"
