@@ -9,6 +9,7 @@ use App\Complaint\Parser\DateParser;
 use App\Complaint\Parser\IdentityParser;
 use App\Complaint\Parser\PhoneParser;
 use App\Entity\Identity;
+use App\Referential\Repository\JobRepository;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class IdentityParserTest extends KernelTestCase
@@ -55,8 +56,8 @@ class IdentityParserTest extends KernelTestCase
         "label": "FRANCAISE"
       },
       "job": {
-        "code": "4699",
-        "label": "Professeure vacataire en lyc\u00e9e"
+        "code": "professeur_vacataire_en_lycee",
+        "label": "Professeur vacataire en lyc\u00e9e"
       }
     },
     "contactInformation": {
@@ -154,8 +155,8 @@ class IdentityParserTest extends KernelTestCase
         "label": "FRANCAISE"
       },
       "job": {
-        "code": "4699",
-        "label": "Professeure vacataire en lyc\u00e9e"
+        "code": "professeur_vacataire_en_lycee",
+        "label": "Professeur vacataire en lyc\u00e9e"
       }
     },
     "representedPersonContactInformation": {
@@ -202,7 +203,13 @@ JSON;
 
     public function getParser(): IdentityParser
     {
-        return new IdentityParser(new DateParser(), new PhoneParser(), new AddressParser());
+        self::bootKernel();
+        $container = static::getContainer();
+
+        /** @var JobRepository $jobRepository */
+        $jobRepository = $container->get(JobRepository::class);
+
+        return new IdentityParser(new DateParser(), new PhoneParser(), new AddressParser(), $jobRepository);
     }
 
     public function testParse(): void
@@ -250,7 +257,8 @@ JSON;
         $this->assertSame('wossewodda-3728@yopmail.com', $identity->getEmail());
 
         $this->assertSame('FRANCAISE', $identity->getNationality());
-        $this->assertSame('Professeure vacataire en lycée', $identity->getJob());
+        $this->assertSame('Professeur vacataire en lycée', $identity->getJob());
+        $this->assertSame('ENSEIGNANT', $identity->getJobThesaurus());
     }
 
     public function testParseBirthdayOtherTown(): void
@@ -337,6 +345,7 @@ JSON;
         $this->assertSame('wossewodda-3728@yopmail.com', $identity->getEmail());
 
         $this->assertSame('FRANCAISE', $identity->getNationality());
-        $this->assertSame('Professeure vacataire en lycée', $identity->getJob());
+        $this->assertSame('Professeur vacataire en lycée', $identity->getJob());
+        $this->assertSame('ENSEIGNANT', $identity->getJobThesaurus());
     }
 }

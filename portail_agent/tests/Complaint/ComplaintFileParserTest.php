@@ -91,7 +91,7 @@ class ComplaintFileParserTest extends KernelTestCase
 			},
 			"job":
 			{
-				"code": "1",
+				"code": "abat-jouriste",
 				"label": "Abat-jouriste"
 			}
 		},

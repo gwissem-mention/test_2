@@ -158,6 +158,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                             ->setMobilePhone('06 76 54 32 10')
                             ->setEmail('jeremy.dupont@gmail.com')
                             ->setJob('Etudiant')
+                            ->setJobThesaurus('ETUDIANT')
                     )
                     ->addObject(
                         (new AdministrativeDocument())
@@ -288,6 +289,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                     ->setMobilePhone('06 12 34 45 57')
                     ->setEmail('jean.dupont@gmail.com')
                     ->setJob('Boulanger')
+                    ->setJobThesaurus('BOULANGER')
                     ->setAlertNumber(3)
             )
             ->setConsentContactElectronics(true)

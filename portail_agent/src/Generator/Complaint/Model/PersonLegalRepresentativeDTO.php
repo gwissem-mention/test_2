@@ -33,7 +33,7 @@ class PersonLegalRepresentativeDTO extends AbstractIdentityDTO
             'Representant_Legal_Naissance_HidNumDep' => $this->birthDepartmentNumber,
             'Representant_Legal_Situation_Familiale' => $this->familySituation,
             'Representant_Legal_Nationalite' => $this->nationality,
-            'Representant_Legal_Profession' => $this->job,
+            'Representant_Legal_Profession' => $this->jobThesaurus,
             'Representant_Legal_Residence_Pays' => $this->country,
             'Representant_Legal_Residence_Departement' => $this->departmentNumber.' - '.$this->departement,
             'Representant_Legal_Residence_Codepostal' => $this->postalCode,

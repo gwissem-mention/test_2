@@ -5,13 +5,15 @@ declare(strict_types=1);
 namespace App\Complaint\Parser;
 
 use App\Entity\Identity;
+use App\Referential\Repository\JobRepository;
 
 class IdentityParser
 {
     public function __construct(
         private readonly DateParser $dateParser,
         private readonly PhoneParser $phoneParser,
-        private readonly AddressParser $addressParser
+        private readonly AddressParser $addressParser,
+        private readonly JobRepository $jobRepository
     ) {
     }
 
@@ -30,6 +32,7 @@ class IdentityParser
 
         $this->parseBirthdayPlace($identity, $civilStateInput->birthLocation);
         $this->parseAddress($identity, $contactInformationInput);
+        $this->parseJob($identity, $civilStateInput->job);
 
         if ($contactInformationInput->phone) {
             $identity->setHomePhone($this->phoneParser->parse($contactInformationInput->phone));
@@ -41,8 +44,7 @@ class IdentityParser
 
         $identity
             ->setEmail($contactInformationInput->email)
-            ->setNationality($civilStateInput->nationality->label)
-            ->setJob($civilStateInput->job->label);
+            ->setNationality($civilStateInput->nationality->label);
 
         return $identity;
     }
@@ -77,5 +79,14 @@ class IdentityParser
             ->setAddressCity($address->getCity())
             ->setAddressDepartment($address->getDepartment())
             ->setAddressDepartmentNumber($address->getDepartmentNumber());
+    }
+
+    private function parseJob(Identity $identity, object $jobInput): void
+    {
+        $job = $this->jobRepository->findFromInsee($jobInput->code, $jobInput->label);
+
+        $identity
+            ->setJob($jobInput->label)
+            ->setJobThesaurus($job->getLabelThesaurus());
     }
 }

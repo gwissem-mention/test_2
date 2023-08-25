@@ -87,7 +87,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'label' => 'FRANCAISE',
                     ],
                     'job' => [
-                        'code' => '1',
+                        'code' => 'abat-jouriste',
                         'label' => 'Abat-jouriste',
                     ],
                 ],
@@ -676,7 +676,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
     //                        'label' => 'FRANCAISE',
     //                    ],
     //                    'job' => [
-    //                        'code' => '1',
+    //                        'code' => 'abat-jouriste',
     //                        'label' => 'Abat-jouriste',
     //                    ],
     //                ],
@@ -756,7 +756,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
     //                        'label' => 'FRANCAISE',
     //                    ],
     //                    'job' => [
-    //                        'code' => '1',
+    //                        'code' => 'abat-jouriste',
     //                        'label' => 'Abat-jouriste',
     //                    ],
     //                ],
@@ -1156,7 +1156,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'label' => 'FRANCAISE',
                     ],
                     'job' => [
-                        'code' => '1',
+                        'code' => 'abat-jouriste',
                         'label' => 'Abat-jouriste',
                     ],
                 ],

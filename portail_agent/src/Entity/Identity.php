@@ -113,6 +113,9 @@ class Identity
     #[ORM\Column(length: 255)]
     private ?string $job = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $jobThesaurus = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -450,6 +453,18 @@ class Identity
     public function setAddressDepartmentNumber(?int $addressDepartmentNumber): self
     {
         $this->addressDepartmentNumber = $addressDepartmentNumber;
+
+        return $this;
+    }
+
+    public function getJobThesaurus(): ?string
+    {
+        return $this->jobThesaurus;
+    }
+
+    public function setJobThesaurus(?string $jobThesaurus): self
+    {
+        $this->jobThesaurus = $jobThesaurus;
 
         return $this;
     }

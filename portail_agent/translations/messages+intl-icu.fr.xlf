@@ -566,6 +566,10 @@
                 <source>pel.job</source>
                 <target>Profession</target>
             </trans-unit>
+            <trans-unit id="pel.job.thesaurus">
+                <source>pel.job.thesaurus</source>
+                <target>Equivalent Profession LRP</target>
+            </trans-unit>
             <trans-unit id="pel.keep.the.appointment">
                 <source>pel.keep.the.appointment</source>
                 <target>Conserver le rendez-vous</target>

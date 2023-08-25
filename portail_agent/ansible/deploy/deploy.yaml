@@ -8,6 +8,7 @@
     ENABLE_SSO: "false"
     FILE_UNITS_GN: pwb_ref_unite_gn.csv
     FILE_UNITS_PN: pwb_ref_unite_pn_exp.csv
+    FILE_JOBS: table_de_conversion_professions[11028].csv
     OODRIVE_BASE_URI: https://snc28pp.snc.oodrive.com
     OODRIVE_WORKSPACE: pel-developpement
     OODRIVE_OAUTH_CLIENT_ID: pel-developpement
