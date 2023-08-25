@@ -14,7 +14,7 @@ final class InfocentreMessage
     private ?string $serviceCode;
     private string $declarationNumber;
     private ?string $declarationStatus;
-    private ?string $DeclarationTown;
+    private ?string $declarationTown;
     private ?string $agentCode;
     private \DateTimeImmutable $actionDate;
     private bool $isFranceConnected;
@@ -29,6 +29,8 @@ final class InfocentreMessage
     private ?string $unitName;
     private ?string $unitPhone;
     private bool $isVictimOfViolence;
+    private bool $isStolenVehicle;
+    private ?string $placeNature;
 
     public function __construct(string $action, Complaint $complaint, ?Unit $unit)
     {
@@ -42,7 +44,7 @@ final class InfocentreMessage
         $this->serviceCode = $complaint->getAssignedTo()?->getServiceCode();
         $this->agentCode = $complaint->getAssignedTo()?->getNumber();
         $this->actionDate = new \DateTimeImmutable();
-        $this->DeclarationTown = $complaint->getIdentity()?->getAddressCity();
+        $this->declarationTown = $complaint->getIdentity()?->getAddressInseeCode();
         $this->isFranceConnected = $complaint->isFranceConnected();
         $this->isPersonLegalRepresented = null !== $complaint->getPersonLegalRepresented();
         $this->isVictime = null !== $complaint->getPersonLegalRepresented() && null !== $complaint->getCorporationRepresented();
@@ -52,6 +54,8 @@ final class InfocentreMessage
         $this->isVictimOfViolence = null !== $complaint->getFacts()?->isVictimOfViolence();
         $this->institution = $complaint->getAssignedTo()?->getInstitution()->name;
         $this->actionType = $action;
+        $this->isStolenVehicle = $complaint->isStolenVehicle();
+        $this->placeNature = $complaint->getFacts()?->getPlace();
     }
 
     /**
@@ -60,26 +64,39 @@ final class InfocentreMessage
     public function getData(): array
     {
         return [
-            'declarationNumber' => $this->declarationNumber,
-            'declarationStatus' => $this->declarationStatus,
-            'declarationDate' => $this->declarationDate,
-            'unitName' => $this->unitName,
-            'unitCode' => $this->unitCode,
-            'unitAddress' => $this->unitAddress,
-            'unitPhone' => $this->unitPhone,
-            'serviceCode' => $this->serviceCode,
-            'agentCode' => $this->agentCode,
-            'actionDate' => $this->actionDate,
-            'declarationTown' => $this->DeclarationTown,
-            'isFranceConnected' => $this->isFranceConnected,
-            'isPersonLegalRepresented' => $this->isPersonLegalRepresented,
-            'isVictime' => $this->isVictime,
-            'isCorporationRepresented' => $this->isCorporationRepresented,
-            'withAlert' => $this->withAlert,
-            'withAppointment' => $this->withAppointment,
-            'isVictimOfViolence' => $this->isVictimOfViolence,
-            'institution' => $this->institution,
-            'action' => $this->actionType,
+            'declaration' => [
+                'declarationNumber' => $this->declarationNumber,
+                'declarationStatus' => $this->declarationStatus,
+                'declarationDate' => $this->declarationDate,
+                'refusalReason' => '',
+                'withAlert' => $this->withAlert,
+                'withAppointment' => $this->withAppointment,
+            ],
+            'identity' => [
+                'declarationTown' => $this->declarationTown,
+                'isFranceConnected' => $this->isFranceConnected,
+                'isPersonLegalRepresented' => $this->isPersonLegalRepresented,
+                'isVictime' => $this->isVictime,
+                'isCorporationRepresented' => $this->isCorporationRepresented,
+            ],
+            'facts' => [
+                'placeNature' => $this->placeNature,
+                'isVictimOfViolence' => $this->isVictimOfViolence,
+                'isStolenVehicle' => $this->isStolenVehicle,
+            ],
+            'affectation' => [
+                'unitName' => $this->unitName,
+                'unitCode' => $this->unitCode,
+                'unitAddress' => $this->unitAddress,
+                'unitPhone' => $this->unitPhone,
+                'serviceCode' => $this->serviceCode,
+                'agentCode' => $this->agentCode,
+                'institution' => $this->institution,
+            ],
+            'action' => [
+                'actionDate' => $this->actionDate,
+                'action' => $this->actionType,
+            ],
         ];
     }
 }
