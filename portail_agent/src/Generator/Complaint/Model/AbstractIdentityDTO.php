@@ -20,7 +20,7 @@ abstract class AbstractIdentityDTO
     protected string $birthCity;
     protected string $birthDepartmentNumber;
     protected string $nationality;
-    protected string $job;
+    protected string $jobThesaurus;
     protected string $country;
     protected string $departement;
     protected string $postalCode;
@@ -52,7 +52,7 @@ abstract class AbstractIdentityDTO
         $this->birthDepartmentNumber = null !== $identity->getBirthDepartmentNumber() ? strval($identity->getBirthDepartmentNumber()) : '';
         $this->familySituation = $identity->getFamilySituation() ?? '';
         $this->nationality = $identity->getNationality() ?? '';
-        $this->job = $identity->getJob() ?? '';
+        $this->jobThesaurus = $identity->getJobThesaurus() ?? '';
         $this->country = $identity->getAddressCountry() ?? '';
         $this->departement = $identity->getAddressDepartment() ?? '';
         $this->postalCode = $identity->getAddressPostcode() ?? '';

@@ -43,6 +43,8 @@ class FactsDTO
     private string $hasHarmPhysique;
     private string $hasHarmPhysiqueDescription;
 
+    private string $job;
+
     public function __construct(Complaint $complaint)
     {
         /** @var Facts $facts */
@@ -52,6 +54,7 @@ class FactsDTO
             ['Vol', 'Dégradation', 'Autre atteinte aux biens'],
             $facts->getNatures() ?? []
         );
+        $this->job = 'Profession saisie par le citoyen : '.($complaint->getIdentity()?->getJob() ?? '');
         $this->manop = $facts->getDescription() ?? '';
         $this->country = $facts->getCountry() ?? '';
         $this->department = $facts->getDepartment() ?? '';
@@ -96,7 +99,7 @@ class FactsDTO
     public function getArray(): array
     {
         return ['Faits' => [
-            'Faits_Expose' => implode(' / ', $this->presentation),
+            'Faits_Expose' => implode(' / ', $this->presentation).'. '.$this->job,
             'Faits_Manop' => $this->manop,
             'Faits_Localisation_Pays' => $this->country,
             'Faits_Localisation_Departement' => $this->departmentNumber.' - '.$this->department,

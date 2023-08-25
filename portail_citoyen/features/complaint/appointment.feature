@@ -12,7 +12,7 @@ Feature:
         Then I should be on "/porter-plainte/identite"
         And I click the "label[for=identity_declarantStatus_0]" element
         And I select "1" from "identity_civilState_familySituation"
-        Given I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
+        Given I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "abatteur_de_bestiaux"
         And I fill in "contact-information-address" with "avenue de la république paris"
         And I click the "#contact-information-address-75111_8158" element
         And I fill in "identity_contactInformation_phone_number" with "0102020304"
@@ -110,7 +110,7 @@ Feature:
         And I select "1" from "identity_civilState_familySituation"
         And I fill in "identity_civilState_birthDate" with "01/01/2000"
         And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
-        And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
+        And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "abatteur_de_bestiaux"
         And I fill in "contact-information-address" with "avenue de la république paris"
         And I click the "#contact-information-address-75111_8158" element
         And I fill in "identity_contactInformation_email" with "jean@test.com"
@@ -167,7 +167,7 @@ Feature:
 #        And I select "1" from "identity_representedPersonCivilState_familySituation"
 #        And I fill in "identity_representedPersonCivilState_birthDate" with "01/01/2000"
 #        And I fill in the autocomplete "identity_representedPersonCivilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
-#        And I fill in the autocomplete "identity_representedPersonCivilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
+#        And I fill in the autocomplete "identity_representedPersonCivilState_job-ts-control" with "Abatteur de bestiaux" and click "abatteur_de_bestiaux"
 #        And I fill in "represented-person-address" with "avenue de la république paris"
 #        And I click the "#represented-person-address-75111_8158" element
 #        And I fill in "identity_representedPersonContactInformation_email" with "jean@test.com"

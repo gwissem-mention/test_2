@@ -128,6 +128,9 @@
                             {{ 'pel.job'|trans }} : <strong>{{ complaint.identity.job }}</strong>
                         </li>
                         <li>
+                            {{ 'pel.job.thesaurus'|trans }} : <strong>{{ complaint.identity.jobThesaurus }}</strong>
+                        </li>
+                        <li>
                             {% if complaint.identity.homePhone %}
                                 {{ 'pel.home.phone'|trans }} : <strong>{{ complaint.identity.homePhone }}</strong>
                             {% endif %}

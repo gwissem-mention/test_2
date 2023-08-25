@@ -67,6 +67,7 @@ Feature:
         And I should see the key "pel.is.designated.as" translated
         And I should see the key "pel.sir" translated
         And I should see the key "pel.job" translated
+        And I should see the key "pel.job.thesaurus" translated
         And I should see the key "pel.nationality" translated
         And I should see "Jean"
         And I should see "DUPONT"
@@ -75,6 +76,7 @@ Feature:
         And I should see "France"
         And I should see "FRANCAISE"
         And I should see "Boulanger"
+        And I should see "BOULANGER"
         And I should see "75"
         And I should see "15 rue PAIRA, Meudon, 92190"
         And I should see "92190"

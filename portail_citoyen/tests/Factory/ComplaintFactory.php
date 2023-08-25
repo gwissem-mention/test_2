@@ -95,7 +95,7 @@ class ComplaintFactory
             ->setBirthDate(new \DateTimeImmutable('1980-01-01'))
             ->setBirthLocation($frenchAddress ? $this->createLocationFrance() : $this->createLocationForeign())
             ->setNationality('23')
-            ->setJob('1');
+            ->setJob('abat-jouriste');
     }
 
     private function createContactInformation(bool $frenchAddress = true): ContactInformationModel

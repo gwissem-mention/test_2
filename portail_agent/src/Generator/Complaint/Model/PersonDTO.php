@@ -40,7 +40,7 @@ class PersonDTO extends AbstractIdentityDTO
             'Personne_Naissance_HidNumDep' => $this->birthDepartmentNumber,
             'Personne_Situation_Familiale' => $this->familySituation,
             'Personne_Nationalite' => $this->nationality,
-            'Personne_Profession' => $this->job,
+            'Personne_Profession' => $this->jobThesaurus,
             'Personne_Residence_Pays' => $this->country,
             'Personne_Residence_Departement' => $this->departmentNumber.' - '.$this->departement,
             'Personne_Residence_Codepostal' => $this->postalCode,

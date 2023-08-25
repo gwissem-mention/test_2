@@ -46,7 +46,7 @@ Feature:
         And I select "1" from "identity_civilState_familySituation"
         And I fill in "identity_civilState_birthDate" with "01/01/2000"
         And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
-        And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
+        And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "abatteur_de_bestiaux"
         And I fill in "contact-information-address" with "avenue de la république paris"
         And I click the "#contact-information-address-75111_8158" element
         And I fill in "identity_contactInformation_email" with "jean@test.com"
@@ -63,7 +63,7 @@ Feature:
         And I fill in "identity_civilState_birthDate" with "01/01/2000"
         And I select "99134" from "identity_civilState_birthLocation_country"
         And I fill in "identity_civilState_birthLocation_otherTown" with "Madrid"
-        And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
+        And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "abatteur_de_bestiaux"
         And I fill in "contact-information-address" with "avenue de la république paris"
         And I click the "#contact-information-address-75111_8158" element
         And I fill in "identity_contactInformation_email" with "jean@test.com"
@@ -79,7 +79,7 @@ Feature:
         And I select "1" from "identity_civilState_familySituation"
         And I fill in "identity_civilState_birthDate" with "01/01/2000"
         And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
-        And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
+        And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "abatteur_de_bestiaux"
         And I fill in "contact-information-address" with "avenue de la république paris"
         And I click the "#contact-information-address-75111_8158" element
         And I fill in "identity_contactInformation_email" with "jean@test.com"
@@ -96,7 +96,7 @@ Feature:
         And I select "1" from "identity_civilState_familySituation"
         And I fill in "identity_civilState_birthDate" with "01/01/2000"
         And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
-        And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
+        And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "abatteur_de_bestiaux"
         And I select "99134" from "identity_contactInformation_country"
         And I fill in "identity_contactInformation_foreignAddress_housenumber" with "14"
         And I fill in "identity_contactInformation_foreignAddress_type" with "Corto"
@@ -172,7 +172,7 @@ Feature:
         And I select "1" from "identity_civilState_familySituation"
         And I fill in "identity_civilState_birthDate" with "01/01/2000"
         And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
-        And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
+        And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "abatteur_de_bestiaux"
         And I press "identity_submit"
         Then I should be on "/porter-plainte/identite"
         And I should see a "#form-errors-contact-information-address" element
@@ -185,7 +185,7 @@ Feature:
         And I select "1" from "identity_civilState_familySituation"
         And I fill in "identity_civilState_birthDate" with "01/01/2000"
         And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
-        And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
+        And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "abatteur_de_bestiaux"
         And I fill in "contact-information-address" with "avenue de la république paris"
         And I click the "#contact-information-address-75111_8158" element
         And I press "identity_submit"
@@ -199,7 +199,7 @@ Feature:
         And I select "1" from "identity_civilState_familySituation"
         And I fill in "identity_civilState_birthDate" with "01/01/2000"
         And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
-        And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
+        And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "abatteur_de_bestiaux"
         And I fill in "contact-information-address" with "avenue de la république paris"
         And I click the "#contact-information-address-75111_8158" element
         And I fill in "identity_contactInformation_email" with "jean@test.com"
@@ -214,7 +214,7 @@ Feature:
         And I follow "complaint_identity_link"
         And I click the "label[for=identity_declarantStatus_0]" element
         And I select "1" from "identity_civilState_familySituation"
-        And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
+        And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "abatteur_de_bestiaux"
         And I fill in "contact-information-address" with "avenue de la république paris"
         And I click the "#contact-information-address-75111_8158" element
         And I fill in "identity_contactInformation_phone_number" with "0102030405"
@@ -226,7 +226,7 @@ Feature:
         And the "identity_civilState_familySituation" field should contain "1"
         And the "identity_civilState_birthDate" field should contain "1967-03-02"
         And the "identity_civilState_birthLocation_frenchTown" field should contain "75107"
-        And the "identity_civilState_job" field should contain "2"
+        And the "identity_civilState_job" field should contain "abatteur_de_bestiaux"
         And the "contact-information-address" field should contain "Avenue de la République 75011 Paris"
         And the "identity_contactInformation_email" field should contain "michel.dupont@example.com"
         And the "identity_contactInformation_phone_number" field should contain "1 02 03 04 05"
@@ -238,7 +238,7 @@ Feature:
         And I select "1" from "identity_civilState_familySituation"
         And I fill in "identity_civilState_birthDate" with "01/01/2000"
         And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
-        And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
+        And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "abatteur_de_bestiaux"
         And I fill in "contact-information-address" with "avenue de la république paris"
         And I click the "#contact-information-address-75111_8158" element
         And I fill in "identity_contactInformation_email" with "jean@test.com"
@@ -252,7 +252,7 @@ Feature:
         And the "identity_civilState_familySituation" field should contain "1"
         And the "identity_civilState_birthDate" field should contain "2000-01-01"
         And the "identity_civilState_birthLocation_frenchTown" field should contain "75056"
-        And the "identity_civilState_job" field should contain "2"
+        And the "identity_civilState_job" field should contain "abatteur_de_bestiaux"
         And the "contact-information-address" field should contain "Avenue de la République 75011 Paris"
         And the "identity_contactInformation_email" field should contain "jean@test.com"
         And the "identity_contactInformation_phone_number" field should contain "1 02 03 04 05"
@@ -264,7 +264,7 @@ Feature:
         And I select "1" from "identity_civilState_familySituation"
         And I fill in "identity_civilState_birthDate" with "01/01/2000"
         And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
-        And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
+        And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "abatteur_de_bestiaux"
         And I fill in "contact-information-address" with "avenue de la république paris"
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I fill in "identity_contactInformation_confirmationEmail" with "jean@test.com"
@@ -285,7 +285,7 @@ Feature:
         And I select "99134" from "identity_civilState_birthLocation_country"
         And I select "99160" from "identity_civilState_birthLocation_country"
         And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
-        And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "2"
+        And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "abatteur_de_bestiaux"
         And I fill in "contact-information-address" with "avenue de la république paris"
         And I click the "#contact-information-address-75111_8158" element
         And I fill in "identity_contactInformation_email" with "jean@test.com"

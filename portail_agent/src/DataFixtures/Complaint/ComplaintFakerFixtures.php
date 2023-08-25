@@ -451,6 +451,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
             ->setMobilePhone($this->faker->mobileNumber)
             ->setEmail($this->faker->email)
             ->setJob($this->faker->jobTitle)
+            ->setJobThesaurus('FONCTIONNAIRE')
             ->setAlertNumber($this->faker->randomDigit());
     }
 }

@@ -88,6 +88,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
                     ->setHomePhone('01 23 45 67 89')
                     ->setEmail('jean.dupont@gmail.com')
                     ->setJob('Boulanger')
+                    ->setJobThesaurus('BOULANGER')
                     ->setAlertNumber(3)
             )
             ->setConsentContactElectronics(true)
@@ -118,6 +119,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
                     ->setMobilePhone('06 76 54 32 10')
                     ->setEmail('jeremy.dupont@gmail.com')
                     ->setJob('Etudiant')
+                    ->setJobThesaurus('ETUDIANT')
             )
             ->setFacts(
                 (new Facts())
@@ -303,7 +305,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Personne_Naissance_HidNumDep>92</Personne_Naissance_HidNumDep>', $this->xmlContent);
         //        $this->assertStringContainsString('<Personne_Situation_Familiale>Marié(e)</Personne_Situation_Familiale>', $this->xmlContent);
         $this->assertStringContainsString('<Personne_Nationalite>FRANCAISE</Personne_Nationalite>', $this->xmlContent);
-        $this->assertStringContainsString('<Personne_Profession>Etudiant</Personne_Profession>', $this->xmlContent);
+        $this->assertStringContainsString('<Personne_Profession>ETUDIANT</Personne_Profession>', $this->xmlContent);
         $this->assertStringContainsString('<Personne_Residence_Pays>France</Personne_Residence_Pays>', $this->xmlContent);
         $this->assertStringContainsString('<Personne_Residence_Departement>92 - Hauts-de-Seine</Personne_Residence_Departement>', $this->xmlContent);
         $this->assertStringContainsString('<Personne_Residence_Codepostal>92190</Personne_Residence_Codepostal>', $this->xmlContent);
@@ -335,7 +337,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Representant_Legal_Naissance_Commune>Paris</Representant_Legal_Naissance_Commune>', $this->xmlContent);
         $this->assertStringContainsString('<Representant_Legal_Naissance_HidNumDep>75</Representant_Legal_Naissance_HidNumDep>', $this->xmlContent);
         $this->assertStringContainsString('<Representant_Legal_Nationalite>FRANCAISE</Representant_Legal_Nationalite>', $this->xmlContent);
-        $this->assertStringContainsString('<Representant_Legal_Profession>Boulanger</Representant_Legal_Profession>', $this->xmlContent);
+        $this->assertStringContainsString('<Representant_Legal_Profession>BOULANGER</Representant_Legal_Profession>', $this->xmlContent);
         $this->assertStringContainsString('<Representant_Legal_Residence_Pays>France</Representant_Legal_Residence_Pays>', $this->xmlContent);
         $this->assertStringContainsString('<Representant_Legal_Residence_Departement>92 - Hauts-de-Seine</Representant_Legal_Residence_Departement>', $this->xmlContent);
         $this->assertStringContainsString('<Representant_Legal_Residence_Codepostal>92190</Representant_Legal_Residence_Codepostal>', $this->xmlContent);
@@ -380,7 +382,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
     public function testFactsSection(): void
     {
         $this->assertStringContainsString('<Faits>', $this->xmlContent);
-        $this->assertStringContainsString('<Faits_Expose>Vol / Dégradation</Faits_Expose>', $this->xmlContent);
+        $this->assertStringContainsString('<Faits_Expose>Vol / Dégradation. Profession saisie par le citoyen : Boulanger</Faits_Expose>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Manop>Je me suis fait voler mon portable.</Faits_Manop>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Localisation_Pays>France</Faits_Localisation_Pays>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Localisation_Departement>69 - Rhône</Faits_Localisation_Departement>', $this->xmlContent);
