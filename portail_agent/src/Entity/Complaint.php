@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use App\Entity\FactsObjects\AbstractObject;
+use App\Entity\FactsObjects\Vehicle;
 use App\Repository\ComplaintRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -330,6 +331,11 @@ class Complaint
     public function getStolenObjects(): ReadableCollection
     {
         return $this->objects->filter(fn (AbstractObject $object) => AbstractObject::STATUS_STOLEN === $object->getStatus());
+    }
+
+    public function isStolenVehicle(): bool
+    {
+        return !$this->getStolenObjects()->filter(fn (AbstractObject $object) => $object instanceof Vehicle)->isEmpty();
     }
 
     /**
