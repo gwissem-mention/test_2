@@ -26,7 +26,7 @@
 			{% for child in form.civility.children %}
 				<div class="fr-fieldset__element fr-fieldset__element--inline">
 					<div class="fr-radio-group">
-                        {{ form_widget(child, {'attr':child.vars.attr|merge({'data-controller':'form', 'data-action':'change->form#changeJobUrl'})}) }}
+                        {{ form_widget(child) }}
 						<label class="fr-label" for="{{ child.vars.id }}">
 							{{ child.vars.label|trans }}
 						</label>

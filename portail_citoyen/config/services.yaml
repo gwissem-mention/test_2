@@ -3,8 +3,7 @@ parameters:
     app.france_connect_code: 99100
     app.french_nationality_code: '23'
     app.file_cities: '%env(FILE_CITIES)%'
-    app.file_jobs_male: '%env(FILE_JOBS_MALE)%'
-    app.file_jobs_female: '%env(FILE_JOBS_FEMALE)%'
+    app.file_jobs: '%env(FILE_JOBS)%'
     app.file_cities_services: '%env(FILE_CITIES_SERVICES)%'
     app.file_cities_units: '%env(FILE_CITIES_UNITS)%'
     app.file_units_gn: '%env(FILE_UNITS_GN)%'
@@ -81,13 +80,9 @@ services:
         arguments:
             $departmentsFixturesPath: '%app.referentials_base_path%/%app.file_departments%'
     
-    App\Referential\DataFixtures\Job\JobMaleFileFixtures:
+    App\Referential\DataFixtures\Job\JobFileFixtures:
         arguments:
-            $jobsFixturesPath: '%app.referentials_base_path%/%app.file_jobs_male%'
-    
-    App\Referential\DataFixtures\Job\JobFemaleFileFixtures:
-        arguments:
-            $jobsFixturesPath: '%app.referentials_base_path%/%app.file_jobs_female%'
+            $jobsFixturesPath: '%app.referentials_base_path%/%app.file_jobs%'
     
     App\Referential\DataFixtures\CityService\CityServiceFileFixtures:
         arguments:

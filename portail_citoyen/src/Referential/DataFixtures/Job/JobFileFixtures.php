@@ -5,21 +5,18 @@ declare(strict_types=1);
 namespace App\Referential\DataFixtures\Job;
 
 use App\Referential\Entity\Job;
-use App\Referential\Repository\JobRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
-use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class JobFemaleFileFixtures extends Fixture implements FixtureGroupInterface, DependentFixtureInterface
+class JobFileFixtures extends Fixture implements FixtureGroupInterface
 {
-    private const JOB_CODE = 0;
-    private const JOB_LABEL = 1;
+    private const JOB_LABEL = 0;
     private const BATCH_SIZE = 20;
     private const LENGTH = 1000;
     private const START = 2;
 
-    public function __construct(private readonly string $jobsFixturesPath, private readonly JobRepository $jobRepository)
+    public function __construct(private readonly string $jobsFixturesPath)
     {
     }
 
@@ -32,18 +29,17 @@ class JobFemaleFileFixtures extends Fixture implements FixtureGroupInterface, De
     {
         if (file_exists($this->jobsFixturesPath)) {
             $row = 1;
+            $code = 1;
             $handle = fopen($this->jobsFixturesPath, 'rb');
             if (is_resource($handle)) {
                 while (is_array($data = fgetcsv($handle, self::LENGTH, ';'))) {
                     if ($row > self::START) {
-                        /** @var Job $job */
-                        $job = $this->jobRepository->findOneBy(['code' => $data[self::JOB_CODE]]);
-                        $job->setLabelFemale($data[self::JOB_LABEL]);
-                        $manager->persist($job);
+                        $manager->persist(new Job((string) $code, ucfirst($data[self::JOB_LABEL])));
                         if (($row % self::BATCH_SIZE) === 0) {
                             $manager->flush();
                             $manager->clear();
                         }
+                        ++$code;
                     }
                     ++$row;
                 }
@@ -53,10 +49,5 @@ class JobFemaleFileFixtures extends Fixture implements FixtureGroupInterface, De
                 fclose($handle);
             }
         }
-    }
-
-    public function getDependencies(): array
-    {
-        return [JobMaleFileFixtures::class];
     }
 }

@@ -30,7 +30,7 @@ class JobAutocompleteType extends AbstractType
             ],
             'autocomplete_url' => $this->urlGenerator->generate(
                 'ux_entity_autocomplete',
-                ['alias' => 'job_male']
+                ['alias' => 'job']
             ),
             'attr' => [
                 'required' => true,

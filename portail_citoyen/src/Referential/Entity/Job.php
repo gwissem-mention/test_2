@@ -9,8 +9,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: JobRepository::class)]
-#[ORM\Index(fields: ['labelMale'], name: 'job_label_male_idx')]
-#[ORM\Index(fields: ['labelFemale'], name: 'job_label_female_idx')]
+#[ORM\Index(fields: ['label'], name: 'job_label_idx')]
 class Job
 {
     #[ORM\Id]
@@ -22,16 +21,12 @@ class Job
     private string $code;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $labelMale;
+    private ?string $label;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $labelFemale;
-
-    public function __construct(string $code, string $labelMale = null, string $labelFemale = null)
+    public function __construct(string $code, string $label = null)
     {
         $this->code = $code;
-        $this->labelMale = $labelMale;
-        $this->labelFemale = $labelFemale;
+        $this->label = $label;
     }
 
     public function getId(): ?int
@@ -44,26 +39,14 @@ class Job
         return $this->code;
     }
 
-    public function getLabelMale(): ?string
+    public function getLabel(): ?string
     {
-        return $this->labelMale;
+        return $this->label;
     }
 
-    public function getLabelFemale(): ?string
+    public function setLabel(?string $label): self
     {
-        return $this->labelFemale;
-    }
-
-    public function setLabelMale(?string $labelMale): self
-    {
-        $this->labelMale = $labelMale;
-
-        return $this;
-    }
-
-    public function setLabelFemale(?string $labelFemale): self
-    {
-        $this->labelFemale = $labelFemale;
+        $this->label = $label;
 
         return $this;
     }
