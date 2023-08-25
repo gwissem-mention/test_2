@@ -61,22 +61,22 @@
                         </div>
                     {% endif %}
 
-                    {% if object.files is defined %}
-                        {{ form_row(object.files) }}
-                    {% endif %}
-
                     {{ include('components/_partials/_objects/_payment_ways_fields.html.twig') }}
                     {{ include('components/_partials/_objects/_multimedia_fields.html.twig') }}
                     {{ include('components/_partials/_objects/_vehicle_fields.html.twig') }}
                     {{ include('components/_partials/_objects/_other_fields.html.twig') }}
 
                     {% if object.amount is defined %}
-                        <div class="md:w-1/2">
+                        <div class="fr-mb-6v md:w-1/2">
                             {{ form_row(object.amount) }}
                         </div>
                     {% endif %}
 
                     {{ include('components/_partials/_objects/_mobile_fields.html.twig') }}
+
+                    {% if object.files is defined %}
+                        {{ form_row(object.files) }}
+                    {% endif %}
 
                     {% if form.objects|length > 1 %}
                         <div class="fr-mt-12v">
