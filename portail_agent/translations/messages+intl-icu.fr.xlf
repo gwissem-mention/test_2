@@ -70,6 +70,10 @@
                 <source>pel.appointment.planned</source>
                 <target>RDV planifié</target>
             </trans-unit>
+            <trans-unit id="appointment.scheduled.with.the.declarant.on">
+                <source>appointment.scheduled.with.the.declarant.on</source>
+                <target>Rendez-vous planifié avec le déclarant le :</target>
+            </trans-unit>
             <trans-unit id="pel.appointment.validate">
                 <source>pel.appointment.validate</source>
                 <target>Valider le RDV</target>
@@ -541,6 +545,10 @@
             <trans-unit id="pel.home.title">
                 <source>pel.home.title</source>
                 <target>Accéder à la gestion des déclarations</target>
+            </trans-unit>
+            <trans-unit id="pel.hour.h">
+                <source>pel.hour.h</source>
+                <target>h</target>
             </trans-unit>
             <trans-unit id="pel.header.baseline">
                 <source>pel.header.baseline</source>
