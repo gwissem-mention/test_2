@@ -14,7 +14,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 class ReportingController extends AbstractController
 {
     #[IsGranted('IS_AUTHENTICATED')]
-    #[Route('/reporting', name: 'reporting')]
+    #[Route('/reporting', name: 'reporting', methods: ['GET'])]
     public function __invoke(ComplaintRepository $complaintRepository): Response
     {
         /** @var User $user */
