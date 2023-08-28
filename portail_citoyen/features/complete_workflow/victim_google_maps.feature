@@ -36,6 +36,7 @@ Feature:
         Then I should be on "/porter-plainte/objets"
         When I select "5" from "objects_objects_0_category"
         And I select "1" from "objects_objects_0_status"
+        And I fill in "objects_objects_0_label" with "Object 1"
         And I fill in "objects_objects_0_amount" with "100"
         And I press "objects_objects_add"
         And I select "3" from "objects_objects_1_category"
@@ -162,6 +163,7 @@ Feature:
         And I should see the key "pel.document.issuing.country" translated
         And I should see the key "pel.objects.gradient" translated
         And I should see "Véhicules non immatriculés"
+        And I should see "Object 1"
         And I should see "N° de la ligne de téléphone : +33 6 01 02 03 04"
         And I should see "Document officiel"
         And I should see "Carte d’identité"

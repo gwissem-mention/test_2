@@ -41,10 +41,12 @@ Feature:
         Then I should be on "/porter-plainte/objets"
         When I select "5" from "objects_objects_0_category"
         And I select "1" from "objects_objects_0_status"
+        And I fill in "objects_objects_0_label" with "Object 1"
         And I fill in "objects_objects_0_amount" with "100"
         And I press "objects_objects_add"
         And I select "5" from "objects_objects_1_category"
         And I select "2" from "objects_objects_1_status"
+        And I fill in "objects_objects_1_label" with "Object 2"
         And I fill in "objects_objects_1_amount" with "100"
         And I press "objects_objects_add"
         And I select "1" from "objects_objects_2_category"
@@ -203,6 +205,8 @@ Feature:
         And I should see the key "pel.document.validity.end.date" translated
         And I should see the key "pel.document.issuing.country" translated
         And I should see "Véhicules non immatriculés"
+        And I should see "Object 1"
+        And I should see "Object 2"
         And I should see "Document officiel"
         And I should see "Carte d’identité"
         And I should see "Non"
