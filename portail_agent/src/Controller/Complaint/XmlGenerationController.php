@@ -6,6 +6,7 @@ namespace App\Controller\Complaint;
 
 use App\Complaint\ComplaintWorkflowManager;
 use App\Complaint\DTO\Objects\PreComplaintHistory;
+use App\Complaint\Messenger\ComplaintObjectsFileZip\ComplaintObjectsFileZipMessage;
 use App\Entity\Complaint;
 use App\Entity\User;
 use App\Generator\Complaint\ComplaintGeneratorInterface;
@@ -68,6 +69,7 @@ class XmlGenerationController extends AbstractController
         $unit = $unitRepository->findOneBy(['code' => $unitCode]);
 
         $bus->dispatch(new InfocentreMessage(ApplicationTracesMessage::SENT_TO_LRP, $complaint, $unit));
+        $bus->dispatch(new ComplaintObjectsFileZipMessage((int) $complaint->getId()));
         fclose($tmpFile);
 
         return $this->redirectToRoute('complaint_summary', ['id' => $complaint->getId()]);
