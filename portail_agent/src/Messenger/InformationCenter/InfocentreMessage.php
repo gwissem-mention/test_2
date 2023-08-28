@@ -31,6 +31,7 @@ final class InfocentreMessage
     private bool $isVictimOfViolence;
     private bool $isStolenVehicle;
     private ?string $placeNature;
+    private ?string $refusalReason;
 
     public function __construct(string $action, Complaint $complaint, ?Unit $unit)
     {
@@ -56,6 +57,7 @@ final class InfocentreMessage
         $this->actionType = $action;
         $this->isStolenVehicle = $complaint->isStolenVehicle();
         $this->placeNature = $complaint->getFacts()?->getPlace();
+        $this->refusalReason = $complaint->getRefusalReason();
     }
 
     /**
@@ -68,7 +70,7 @@ final class InfocentreMessage
                 'declarationNumber' => $this->declarationNumber,
                 'declarationStatus' => $this->declarationStatus,
                 'declarationDate' => $this->declarationDate,
-                'refusalReason' => '',
+                'refusalReason' => $this->refusalReason,
                 'withAlert' => $this->withAlert,
                 'withAppointment' => $this->withAppointment,
             ],
