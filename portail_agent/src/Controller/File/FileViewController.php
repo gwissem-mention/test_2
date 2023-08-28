@@ -17,7 +17,7 @@ class FileViewController extends AbstractController
     /**
      * @throws FilesystemException
      */
-    #[Route('/voir-piece-jointe/{id}/{name}', name: 'file_view', requirements: ['id' => '\d+', 'name' => '.+'])]
+    #[Route('/voir-piece-jointe/{id}/{name}', name: 'file_view', requirements: ['id' => '\d+', 'name' => '.+'], methods: ['GET'])]
     public function __invoke(Complaint $complaint, string $name, FilesystemOperator $defaultStorage): StreamedResponse
     {
         $this->denyAccessUnlessGranted('COMPLAINT_VIEW', $complaint);

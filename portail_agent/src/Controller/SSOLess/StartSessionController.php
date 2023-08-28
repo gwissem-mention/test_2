@@ -22,7 +22,7 @@ use Symfony\Component\Validator\Constraints\NotNull;
 
 class StartSessionController extends AbstractController
 {
-    #[Route(path: '/sso-less/start-session', name: 'app_sso_less_start_session', condition: "env('ENABLE_SSO') === 'false'")]
+    #[Route(path: '/sso-less/start-session', name: 'app_sso_less_start_session', methods: ['GET', 'POST'], condition: "env('ENABLE_SSO') === 'false'")]
     public function __invoke(
         Request $request,
         UnitRepository $unitRepository,

@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CloseSessionController extends AbstractController
 {
-    #[Route(path: '/sso-less/close-session', name: 'app_sso_less_close_session', condition: "env('ENABLE_SSO') === 'false'")]
+    #[Route(path: '/sso-less/close-session', name: 'app_sso_less_close_session', methods: ['GET'], condition: "env('ENABLE_SSO') === 'false'")]
     public function __invoke(Request $request, ApplicationTracesLogger $logger): Response
     {
         $response = $this->redirectToRoute(SSOLessInterface::START_SESSION_ROUTE);

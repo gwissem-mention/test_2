@@ -21,7 +21,7 @@ class FileDownloadController extends AbstractController
     /**
      * @throws FilesystemException
      */
-    #[Route('/telecharger-piece-jointe/{id}/{name}', name: 'file_download', requirements: ['id' => '\d+', 'name' => '.+'])]
+    #[Route('/telecharger-piece-jointe/{id}/{name}', name: 'file_download', requirements: ['id' => '\d+', 'name' => '.+'], methods: ['GET'])]
     public function __invoke(Complaint $complaint, string $name, FilesystemOperator $defaultStorage, ApplicationTracesLogger $logger, Request $request): StreamedResponse
     {
         $this->denyAccessUnlessGranted('COMPLAINT_VIEW', $complaint);

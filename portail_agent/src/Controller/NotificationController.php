@@ -14,7 +14,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 class NotificationController extends AbstractController
 {
     #[IsGranted('IS_AUTHENTICATED')]
-    #[Route('/notification/{id}', name: 'notification')]
+    #[Route('/notification/{id}', name: 'notification', methods: ['GET'])]
     public function __invoke(Notification $notification, NotificationRepository $notificationRepository): RedirectResponse
     {
         $notificationRepository->save($notification->setClickedAt(new \DateTimeImmutable()), true);

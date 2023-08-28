@@ -13,7 +13,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 class FaqController extends AbstractController
 {
     #[IsGranted('IS_AUTHENTICATED')]
-    #[Route('/faq', name: 'faq')]
+    #[Route('/faq', name: 'faq', methods: ['GET'])]
     public function __invoke(QuestionRepository $questionRepository): Response
     {
         return $this->render('pages/faq.html.twig', [

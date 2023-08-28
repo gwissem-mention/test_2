@@ -88,17 +88,9 @@
         {%- endif -%}
         <{{ element|default('label') }}{% if label_attr %}{% with { attr: label_attr } %}{{ block('attributes') }}{% endwith %}{% endif %}>
         {%- if translation_domain is same as(false) -%}
-            {%- if label_html is same as(false) -%}
-                {{- label -}}
-            {%- else -%}
-                {{- label|raw -}}
-            {%- endif -%}
+            {{- label -}}
         {%- else -%}
-            {%- if label_html is same as(false) -%}
-                {{- label|trans(label_translation_parameters, translation_domain) -}}
-            {%- else -%}
-                {{- label|trans(label_translation_parameters, translation_domain)|raw -}}
-            {%- endif -%}
+            {{- label|trans(label_translation_parameters, translation_domain) -}}
         {%- endif -%}
         {% if required is defined and required is not empty and required_help is defined and required_help is not empty -%}
             &nbsp;<span class="fr-label--error font-bold">*</span>

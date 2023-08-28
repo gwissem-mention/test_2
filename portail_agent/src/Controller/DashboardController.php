@@ -12,7 +12,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 class DashboardController extends AbstractController
 {
     #[IsGranted('IS_AUTHENTICATED')]
-    #[Route('/tableau-de-bord', name: 'dashboard')]
+    #[Route('/tableau-de-bord', name: 'dashboard', methods: ['GET'])]
     public function __invoke(): Response
     {
         return $this->render('pages/dashboard.html.twig');
