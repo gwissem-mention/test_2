@@ -78,6 +78,7 @@ class ObjectsParser
             ->setOwnerEmail($objectInput->documentAdditionalInformation?->documentOwnerEmail)
             ->setNumber($objectInput->documentNumber)
             ->setIssuedBy($objectInput->documentIssuedBy)
+            ->setDescription($objectInput->description)
             ->setIssuingCountry($objectInput->documentIssuingCountry?->label);
 
         if ($objectInput->documentAdditionalInformation?->documentOwnerPhone) {

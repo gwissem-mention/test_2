@@ -64,7 +64,7 @@ JSON;
             "phoneNumberLine": null,
             "operator": null,
             "serialNumber": null,
-            "description": null,
+            "description": "Description",
             "quantity": null,
             "bank": null,
             "bankAccountNumber": null,
