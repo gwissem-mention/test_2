@@ -33,9 +33,11 @@
                     {% endif %} {{ 'pel.of.type'|trans }} <b>{{ object.category|object_category_get_name|trans }}</b>
                 </p>
             </li>
+
             {% if object.documentType is same as(constant('App\\AppEnum\\DocumentType::Other').value) and object.otherDocumentType is not null %}
                 <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.could.you.precise'|trans }} : <b>{{ object.otherDocumentType }}</b></li>
             {% endif %}
+
             {% if object.files is not empty %}
                 {% for file in object.files %}
                 <li class="relative text-xl/8 fr-pb-6v fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/file-add.svg')]">
@@ -60,6 +62,9 @@
                 <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.document.validity.end.date'|trans }} : <b>{{ object.documentValidityEndDate|date('d/m/Y') }}</b></li>
             {% endif %}
             <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.i.am.the.owner.of.this.document'|trans }} : <b>{{ object.documentOwned ? 'pel.yes'|trans : 'pel.no'|trans }}</b></li>
+            {% if object.description is not null %}
+                <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.description'|trans }} : {{ object.description }}</li>
+            {% endif %}
             {% if object.documentOwned is same as false and object.documentAdditionalInformation is not empty %}
                 <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.document.owner.lastname.firstname'|trans }} : <b>{{ object.documentAdditionalInformation.documentOwnerLastname }} {{ object.documentAdditionalInformation.documentOwnerFirstname }}</b></li>
                 {% if object.documentAdditionalInformation.documentOwnerCompany is not empty %}

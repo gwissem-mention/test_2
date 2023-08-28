@@ -24,6 +24,24 @@
 {% if object.documentType.documentAdditionalInformation.documentOwnerEmail is defined %}
     {{ form_row(object.documentType.documentAdditionalInformation.documentOwnerEmail) }}
 {% endif %}
+{% if object.description is defined and object.category.vars.value  is same as("1") %}
+    <div class="fr-mb-4v">
+        {% embed 'embed/counter.html.twig' with {
+            'parent': 'objects_objects_0_description',
+            'minlength': object.description.vars.attr.minlength,
+            'maxlength': object.description.vars.attr.maxlength,
+        } %}{% block label %}
+            {{ form_label(object.description) }}
+        {% endblock %}
+            {% block widget %}
+                {{ form_widget(object.description) }}
+            {% endblock %}
+            {% block errors %}
+                {{ form_errors(object.description) }}
+            {% endblock %}
+        {% endembed %}
+    </div>
+{% endif %}
 {% if object.documentType.documentAdditionalInformation.documentOwnerAddress is defined %}
     {% set etalab_errors = [] %}
     {% if object.documentType.documentAdditionalInformation.documentOwnerAddress is defined %}

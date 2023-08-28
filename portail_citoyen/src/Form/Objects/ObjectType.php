@@ -211,7 +211,23 @@ class ObjectType extends AbstractType
             'row_attr' => [
                 'class' => 'fr-select-group',
             ],
-        ]);
+        ])
+            ->add('description', TextareaType::class, [
+                'constraints' => [
+                    new Length([
+                        'min' => 0,
+                        'max' => 255,
+                    ]),
+                ],
+                'label' => 'pel.description',
+                'required' => false,
+                'attr' => [
+                    'class' => 'fr-input',
+                    'data-counter-target' => 'parent',
+                    'minlength' => 0,
+                    'maxlength' => 255,
+                ],
+            ]);
     }
 
     private function addCategoryOtherFields(FormInterface $form): void
@@ -562,9 +578,11 @@ class ObjectType extends AbstractType
 
     private function removeCategoryDocumentFields(FormInterface $form, ?ObjectModel $objectModel): void
     {
-        $form->remove('documentType');
+        $form->remove('documentType')
+             ->remove('description');
 
-        $objectModel?->setDocumentType(null);
+        $objectModel?->setDescription(null)
+                    ?->setDocumentType(null);
     }
 
     private function addAdditionalMobileFields(FormInterface $form): void

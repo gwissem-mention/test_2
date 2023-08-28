@@ -646,6 +646,10 @@
                 <source>pel.description</source>
                 <target>Description</target>
             </trans-unit>
+            <trans-unit id="pel.object.document.description">
+                <source>pel.object.document.description</source>
+                <target>Description de l'objet</target>
+            </trans-unit>
             <trans-unit id="pel.document.issued.by">
                 <source>pel.document.issued.by</source>
                 <target>Délivré par</target>

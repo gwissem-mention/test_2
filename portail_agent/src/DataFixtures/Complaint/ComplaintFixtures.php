@@ -184,6 +184,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                             ->setOwnerAddressCity('Lyon')
                             ->setOwnerAddressDepartmentNumber('69')
                             ->setOwnerAddressDepartment('Rhône')
+                            ->setDescription('Description passeport')
                     );
             }
 
@@ -355,6 +356,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                     ->setIssuedOn(new \DateTimeImmutable('2010-01-01'))
                     ->setValidityEndDate(new \DateTimeImmutable('2030-01-01'))
                     ->setOwned(true)
+                    ->setDescription('Description Permis de conduire')
             )
             ->addObject(
                 (new PaymentMethod())
