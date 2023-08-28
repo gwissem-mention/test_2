@@ -7,8 +7,7 @@
       FILE_CITIES={{ ansible_env.FILE_CITIES }}
       FILE_DEPARTMENTS={{ ansible_env.FILE_DEPARTMENTS }} 
       FILE_COUNTRIES={{ ansible_env.FILE_COUNTRIES }} 
-      FILE_JOBS_MALE={{ ansible_env.FILE_JOBS_MALE }}
-      FILE_JOBS_FEMALE={{ ansible_env.FILE_JOBS_FEMALE }}
+      FILE_JOBS={{ ansible_env.FILE_JOBS }}
       FILE_CITIES_SERVICES={{ ansible_env.FILE_CITIES_SERVICES }}
       FILE_CITIES_UNITS={{ ansible_env.FILE_CITIES_UNITS }}
       FILE_UNITS_GN={{ ansible_env.FILE_UNITS_GN }}
