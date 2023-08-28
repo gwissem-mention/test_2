@@ -79,7 +79,7 @@ class FranceConnectGuzzleClientFake implements ClientInterface
         if (self::$accessTokenServerError) {
             self::$accessTokenServerError = false;
 
-            return new Response(400, ['Content-Type' => 'application/json'], json_encode([
+            return new Response(400, ['Content-Type' => 'application/json'], (string) json_encode([
                 'error' => 'invalid_request',
             ]));
         }
@@ -87,7 +87,7 @@ class FranceConnectGuzzleClientFake implements ClientInterface
         return new Response(
             self::RESPONSE_OK,
             ['Content-Type' => 'application/json'],
-            json_encode(['access_token' => 'my-access-token', 'id_token' => 'my-id-token']),
+            (string) json_encode(['access_token' => 'my-access-token', 'id_token' => 'my-id-token']),
         );
     }
 
@@ -110,7 +110,7 @@ class FranceConnectGuzzleClientFake implements ClientInterface
             ]);
         }
 
-        return new Response(self::RESPONSE_OK, [], json_encode([
+        return new Response(self::RESPONSE_OK, [], (string) json_encode([
             'sub' => 'michel-dupont-id',
             'family_name' => 'DUPONT',
             'given_name' => 'Michel',

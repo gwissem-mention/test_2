@@ -16,7 +16,9 @@ use Behat\Mink\Exception\ExpectationException;
 use Behat\MinkExtension\Context\MinkContext;
 use FriendsOfBehat\SymfonyExtension\Driver\SymfonyDriver;
 use Psr\Container\ContainerInterface;
+use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\TestBrowserToken;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\Session\SessionFactoryInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -344,7 +346,9 @@ final class BaseContext extends MinkContext
             $session->save();
             $this->getSession()->setCookie($session->getName(), $session->getId());
         } else {
-            $driver->getClient()->loginUser($user);
+            /** @var KernelBrowser $client */
+            $client = $driver->getClient();
+            $client->loginUser($user);
         }
     }
 
@@ -353,7 +357,9 @@ final class BaseContext extends MinkContext
      */
     public function iShouldNotBeConnected(): void
     {
-        $connectedUser = $this->behatDriverContainer->get('security.helper')->getUser();
+        /** @var Security $security */
+        $security = $this->behatDriverContainer->get('security.helper');
+        $connectedUser = $security->getUser();
         if ($connectedUser instanceof UserInterface) {
             throw new ExpectationException(sprintf('User connected as %s', $connectedUser->getUserIdentifier()), $this->getSession()->getDriver());
         }
@@ -364,7 +370,9 @@ final class BaseContext extends MinkContext
      */
     public function iShouldBeConnectedAs(string $username): void
     {
-        $connectedUser = $this->behatDriverContainer->get('security.helper')->getUser();
+        /** @var Security $security */
+        $security = $this->behatDriverContainer->get('security.helper');
+        $connectedUser = $security->getUser();
 
         if (!$connectedUser instanceof User) {
             throw new ExpectationException('User is not connected', $this->getSession()->getDriver());
