@@ -23,8 +23,8 @@ class FranceConnectClientFake extends OAuth2Client
     }
 
     /**
-     * @param string[]              $scopes
-     * @param array<string, string> $options
+     * @param string[]                   $scopes
+     * @param array<string, string|null> $options
      */
     public function redirect(array $scopes = [], array $options = []): RedirectResponse
     {
@@ -41,6 +41,7 @@ class FranceConnectClientFake extends OAuth2Client
             throw new \LogicException(sprintf('Wrong status code, expected %d, actual %d', 302, $response->getStatusCode()));
         }
 
+        /** @var string $location */
         $location = $response->headers->get('Location', '');
         if (!str_contains($location, '?')) {
             throw new \LogicException(sprintf('Missing parameters in uri: %s', $location));

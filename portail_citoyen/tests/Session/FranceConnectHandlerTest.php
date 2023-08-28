@@ -18,14 +18,14 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Uid\Uuid;
 
 class FranceConnectHandlerTest extends KernelTestCase
 {
-    private ?FranceConnectHandler $franceConnectHandler;
-    private ?SerializerInterface $serializer;
-
+    private readonly FranceConnectHandler $franceConnectHandler;
+    private readonly SerializerInterface $serializer;
     private readonly RequestStack $requestStack;
 
     public function setUp(): void
@@ -64,16 +64,9 @@ class FranceConnectHandlerTest extends KernelTestCase
             'jean.dupond@example.org',
         );
         $token = new TestBrowserToken($user->getRoles(), $user);
-        $container->get('security.untracked_token_storage')->setToken($token);
-    }
-
-    public function tearDown(): void
-    {
-        // Needed to avoid "Serialization of 'Closure' is not allowed" message
-        $this->franceConnectHandler = null;
-        $this->serializer = null;
-
-        parent::tearDown();
+        /** @var TokenStorageInterface $tokenStorage */
+        $tokenStorage = $container->get('security.untracked_token_storage');
+        $tokenStorage->setToken($token);
     }
 
     public function testSetIdentityToComplaint(): void
