@@ -41,6 +41,7 @@ Feature:
 
     Scenario: I can add an input text when I click on the add an object button
         When I press "objects_objects_add"
+        Then I should see the key "pel.object" translated
         And I should see the key "pel.delete.object" translated
         And I should see the key "pel.object.category" translated
         And I should see the key "pel.object.status" translated
@@ -136,7 +137,6 @@ Feature:
         And I should see the key "pel.amount" translated
         And I should see the key "pel.object.status" translated
         And I should see the key "pel.vehicle.category" translated
-        And I should see the key "pel.degradation.description" translated
 
     Scenario: I should see an objects quantity / amount text when I fill an object form
         When I select "6" from "objects_objects_0_category"
@@ -151,10 +151,12 @@ Feature:
     Scenario: Submit the complaint form as a victim logged in with France Connect
         When I select "5" from "objects_objects_0_category"
         And I select "1" from "objects_objects_0_status"
+        And I fill in "objects_objects_0_label" with "Object 1"
         And I fill in "objects_objects_0_amount" with "100"
         And I press "objects_objects_add"
         And I select "5" from "objects_objects_1_category"
         And I select "1" from "objects_objects_1_status"
+        And I fill in "objects_objects_1_label" with "Object 2"
         And I fill in "objects_objects_1_amount" with "100"
         And I press "objects_submit"
         Then I should be on "/porter-plainte/informations-complementaires"
@@ -162,11 +164,13 @@ Feature:
     Scenario: Submit the objects form with 2 objects and 2 pdf attachments
         When I select "5" from "objects_objects_0_category"
         And I select "1" from "objects_objects_0_status"
+        And I fill in "objects_objects_0_label" with "Object 1"
         And I attach the file "blank.pdf" to "object-files-0" field
         And I fill in "objects_objects_0_amount" with "100"
         And I press "objects_objects_add"
         And I select "5" from "objects_objects_1_category"
         And I select "1" from "objects_objects_1_status"
+        And I fill in "objects_objects_1_label" with "Object 2"
         And I fill in "objects_objects_1_amount" with "100"
         And I attach the file "blank.pdf" to "object-files-1" field
         And I press "objects_submit"

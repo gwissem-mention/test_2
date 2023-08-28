@@ -34,9 +34,11 @@ Feature:
         Then I should be on "/porter-plainte/objets"
         When I select "5" from "objects_objects_0_category"
         And I select "1" from "objects_objects_0_status"
+        And I fill in "objects_objects_0_label" with "Object 1"
         And I fill in "objects_objects_0_amount" with "100"
         And I attach the file "blank.pdf" to "object-files-0" field
         And I press "objects_objects_add"
+        And I click the "#objects_objects_1_label" element
         And I select "3" from "objects_objects_1_category"
         And I select "2" from "objects_objects_1_status"
         And I fill in "objects_objects_1_amount" with "100"
@@ -70,13 +72,16 @@ Feature:
         And I press "objects_objects_add"
         And I select "6" from "objects_objects_5_category"
         And I select "1" from "objects_objects_5_status"
+        And I fill in "objects_objects_5_label" with "Lingot d'or"
         And I fill in "objects_objects_5_serialNumber" with "1234"
         And I fill in "objects_objects_5_description" with "Lingot d'or"
         And I fill in "objects_objects_5_quantity" with "1"
         And I press "objects_objects_add"
+        And I click the "#objects_objects_6_label" element
         And I select "2" from "objects_objects_6_category"
         And I select "1" from "objects_objects_6_status"
         And I select "4" from "objects_objects_6_paymentCategory"
+        And I fill in "objects_objects_6_label" with "CB"
         And I fill in "objects_objects_6_bank" with "BNP"
         And I fill in "objects_objects_6_bankAccountNumber" with "767888"
         And I fill in "objects_objects_6_creditCardNumber" with "4624 7482 3324 9080"
@@ -84,6 +89,7 @@ Feature:
         And I select "2" from "objects_objects_7_category"
         And I select "1" from "objects_objects_7_status"
         And I select "1" from "objects_objects_7_paymentCategory"
+        And I fill in "objects_objects_7_label" with "Chéquier"
         And I fill in "objects_objects_7_bank" with "BNP"
         And I fill in "objects_objects_7_bankAccountNumber" with "767888"
         And I fill in "objects_objects_7_checkNumber" with "ABCD1234"
@@ -177,6 +183,7 @@ Feature:
         And I should see the key "pel.document.issued.on" translated
         And I should see the key "pel.document.validity.end.date" translated
         And I should see "Véhicules non immatriculés"
+        And I should see "Object 1"
         And I should see the key "pel.attachment" translated
         And I should see "blank.pdf"
         When I follow "blank.pdf"
@@ -212,6 +219,7 @@ Feature:
         And I should see "Bien volé de type Autres"
         And I should see "Description : Lingot d'or"
         And I should see "Quantité : 1"
+        And I should see "CB"
         And I should see "Bien volé de type Moyens de paiement"
         And I should see "Catégorie de paiement : CARTE BANCAIRE"
         And I should see "Organisme / Banque : BNP"
