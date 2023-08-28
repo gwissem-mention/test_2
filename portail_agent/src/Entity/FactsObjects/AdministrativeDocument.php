@@ -73,7 +73,7 @@ class AdministrativeDocument extends AbstractObject
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $validityEndDate = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $description = null;
 
     public function getType(): ?string
