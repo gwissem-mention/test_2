@@ -14,12 +14,12 @@ Feature:
         And the response status code should be 403
 
     @func
-    Scenario: I can access the complaint's summary page if the complaint is assigned to me, but I can't access other complaints
+    Scenario: I can access the complaint's summary page for all my unit complaints
         Given I am authenticated with PR5KTQSD from GN
         And I am on "/plainte/recapitulatif/101"
         And the response status code should be 200
         Then I am on "/plainte/recapitulatif/91"
-        And the response status code should be 403
+        And the response status code should be 200
 
     @func
     Scenario: I can navigate to the complaint page

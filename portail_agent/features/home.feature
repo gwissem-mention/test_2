@@ -118,8 +118,21 @@ Feature:
     Scenario: As an authenticated agent, with no complaints assigned to me, I should see an empty table
         Given I am authenticated with PR5KTZ9C from GN
         And I am on the homepage
+        When I click the "#my-declaration" element
         Then I should see 2 "table#datatable tr" element
         And I should see "Aucune donnée disponible dans le tableau"
+        When I click the "#unit-declaration" element
+        Then I should see 26 "table#datatable tr" element
+        And I should see the key "pel.deposit.date" translated
+        And I should see the key "pel.facts" translated
+        And I should see the key "pel.alert" translated
+        And I should see the key "pel.meeting.date" translated
+        And I should see the key "pel.firstname.lastname" translated
+        And I should see the key "pel.status" translated
+        And I should see the key "pel.a.opj.name" translated
+        And I should see the key "pel.declaration.number" translated
+        And I should see the key "pel.com" translated
+        And I should see 20 "table#datatable .background-blue" element
 
     @javascript
     Scenario: As a guest, I should see a specific title in the header
@@ -149,6 +162,7 @@ Feature:
     Scenario: As an authenticated agent, with complaints assigned to me, I should see my complaints
         Given I am authenticated with H3U3XCGD from PN
         And I am on the homepage
+        When I click the "#my-declaration" element
         Then I should see 21 "table#datatable tr" element
         And I should see 9 "table#datatable th" element
         And I should not see "PEL-2023-00000001"
@@ -207,6 +221,7 @@ Feature:
     @javascript
     Scenario: I can apply a filter on the complaints table
         Given I am on the homepage
+        When I click the "#unit-declaration" element
         And I should see 26 "table#datatable tr" element
         Then I press "Filtres"
         When I click the "#reaches-deadline-filter" element
@@ -238,10 +253,10 @@ Feature:
         And I should see "01/12/2022"
         When I click the "#appointment-pending-filter" element
         Then I should see 11 "table#datatable tr" element
-        And I should see 10 ".background-cumulus" element
+        And I should see 11 ".background-cumulus" element
         When I click the "#unit-redirection-pending-filter" element
         Then I should see 11 "table#datatable tr" element
-        And I should see 10 ".background-cumulus" element
+        And I should see 11 ".background-cumulus" element
         When I click the "#closed-filter" element
         Then I should see 11 "table#datatable tr" element
         And I should see 10 ".background-green" element

@@ -14,19 +14,19 @@
                 </div>
             {% endif %}
             <div class="col-2 text-center">
-                <a class="btn border border-secondary m-3 p-4 fs-1 fw-bold" id="complaints_ongoing_lrp" href="{{ path('home', {status: 'en-cours-lrp'}) }}" title="{{ 'pel.click.here.to.display.these.complaints'|trans }}">{{ complaints|count_complaints_ongoing_lrp }}</a>
+                <a class="btn border border-secondary m-3 p-4 fs-1 fw-bold" id="complaints_ongoing_lrp" href="{% if is_granted("ROLE_SUPERVISOR") %}{{ path('home', {status: 'en-cours-lrp'}) }}{% else %}{{ path('home_complaints', {status: 'en-cours-lrp'}) }}{% endif %}" title="{{ 'pel.click.here.to.display.these.complaints'|trans }}">{{ complaints|count_complaints_ongoing_lrp }}</a>
                 <p class="fs-3">{{ 'pel.ongoing.lrp'|trans }}</p>
             </div>
             <div class="col-2 text-center">
-                <a class="btn border border-secondary m-3 p-4 fs-1 fw-bold" id="complaints_appointment_pending" href="{{ path('home', {status: 'attente-rdv'}) }}" title="{{ 'pel.click.here.to.display.these.complaints'|trans }}">{{ complaints|count_complaints_appointment_pending }}</a>
+                <a class="btn border border-secondary m-3 p-4 fs-1 fw-bold" id="complaints_appointment_pending" href="{% if is_granted("ROLE_SUPERVISOR") %}{{ path('home', {status: 'attente-rdv'}) }}{% else %}{{ path('home_complaints', {status: 'attente-rdv'}) }}{% endif %}" title="{{ 'pel.click.here.to.display.these.complaints'|trans }}">{{ complaints|count_complaints_appointment_pending }}</a>
                 <p class="fs-3">{{ 'pel.appointment.pending'|trans }}</p>
             </div>
             <div class="col-2 text-center">
-                <a class="btn border border-secondary m-3 p-4 fs-1 fw-bold" id="complaints_unit_redirection_pending" href="{{ path('home', {status: 'attente-reorientation'}) }}" title="{{ 'pel.click.here.to.display.these.complaints'|trans }}">{{ complaints|count_complaints_unit_redirection_pending }}</a>
+                <a class="btn border border-secondary m-3 p-4 fs-1 fw-bold" id="complaints_unit_redirection_pending" href="{% if is_granted("ROLE_SUPERVISOR") %}{{ path('home', {status: 'attente-reorientation'}) }}{% else %}{{ path('home_complaints', {status: 'attente-reorientation'}) }}{% endif %}" title="{{ 'pel.click.here.to.display.these.complaints'|trans }}">{{ complaints|count_complaints_unit_redirection_pending }}</a>
                 <p class="fs-3">{{ 'pel.unit.redirection.pending'|trans }}</p>
             </div>
             <div class="col-2 text-center">
-                <a class="btn border border-secondary m-3 p-4 fs-1 fw-bold" id="complaints_closed" href="{{ path('home', {status: 'cloturee'}) }}" title="{{ 'pel.click.here.to.display.these.complaints'|trans }}">{{ complaints|count_complaints_closed }}</a>
+                <a class="btn border border-secondary m-3 p-4 fs-1 fw-bold" id="complaints_closed" href="{% if is_granted("ROLE_SUPERVISOR") %}{{ path('home', {status: 'cloturee'}) }}{% else %}{{ path('home_complaints', {status: 'cloturee'}) }}{% endif %}" title="{{ 'pel.click.here.to.display.these.complaints'|trans }}">{{ complaints|count_complaints_closed }}</a>
                 <p class="fs-3">{{ 'pel.closed'|trans }}</p>
             </div>
         </div>
