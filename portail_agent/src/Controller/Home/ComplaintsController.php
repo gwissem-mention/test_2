@@ -18,14 +18,13 @@ class ComplaintsController extends AbstractController
      * @throws \JsonException
      */
     #[IsGranted('IS_AUTHENTICATED')]
-    #[Route('/plaintes', name: 'home_complaints', methods: ['GET'])]
+    #[Route('/mes-plaintes-x', name: 'my_complaints', methods: ['GET'])]
+    #[Route('/plaintes-unite-x', name: 'my_complaints_unit', methods: ['GET'])]
     public function __invoke(Request $request, ComplaintRepository $complaintRepository): JsonResponse
     {
+        $currentRoute = $request->attributes->get('_route');
         /** @var User $user */
         $user = $this->getUser();
-        /** @var ?User $agent */
-        $agent = !$this->isGranted('ROLE_SUPERVISOR') ? $user : null;
-
         $columns = $request->query->all()['columns'] ?? [];
         $order = $request->query->all()['order'][0] ?? [];
         $search = $request->query->all()['search'] ?? [];
@@ -35,8 +34,9 @@ class ComplaintsController extends AbstractController
                 'dir' => $order['dir'],
             ]],
             $request->query->getInt('start'),
+            'my_complaints_unit' === $currentRoute,
             $request->query->getInt('length'),
-            $user->getServiceCode(), $agent, $search['value']
+            $user->getServiceCode(), $user, $search['value']
         );
         $json = ['data' => []];
         foreach ($complaints as $complaint) {

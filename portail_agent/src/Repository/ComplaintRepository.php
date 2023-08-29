@@ -67,8 +67,15 @@ class ComplaintRepository extends ServiceEntityRepository
      *
      * @return Paginator<Complaint>
      */
-    public function findAsPaginator(array $order = [], int $start = 0, int $length = null, string $unit = null, User $agent = null, string $searchQuery = null): Paginator
-    {
+    public function findAsPaginator(
+        array $order = [],
+        int $start = 0,
+        bool $unitComplaint = false,
+        int $length = null,
+        string $unit = null,
+        User $agent = null,
+        string $searchQuery = null
+    ): Paginator {
         $qb = $this
             ->createQueryBuilder('c')
             ->select('c, count(comments) as HIDDEN count_comments')
@@ -88,10 +95,11 @@ class ComplaintRepository extends ServiceEntityRepository
 
         $order = $this->addOrderByPriority($order);
 
-        if ($agent instanceof User) {
+        !$unitComplaint ?
             $qb->andWhere('assignedTo = :agent')
-                ->setParameter('agent', $agent);
-        }
+                ->setParameter('agent', $agent) :
+            $qb->andWhere('c.assignedTo != :currentUser OR c.assignedTo IS NULL')
+                ->setParameter('currentUser', $agent);
 
         $qb = $this->search($qb, $searchQuery);
 

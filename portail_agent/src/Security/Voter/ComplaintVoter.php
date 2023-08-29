@@ -45,7 +45,7 @@ class ComplaintVoter extends Voter
     {
         $userRoles = $this->roleHierarchy->getReachableRoleNames($user->getRoles());
 
-        return (in_array('ROLE_SUPERVISOR', $userRoles) && $complaint->getUnitAssigned() === $user->getServiceCode())
+        return ((in_array('ROLE_SUPERVISOR', $userRoles, true) || in_array('ROLE_USER', $userRoles, true)) && $complaint->getUnitAssigned() === $user->getServiceCode())
             || ($complaint->getAssignedTo() === $user);
     }
 }

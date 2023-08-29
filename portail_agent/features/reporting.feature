@@ -44,7 +44,7 @@ Feature:
         When I am on "/reporting"
         And I should see 1 "#complaints_closed" element
         When I follow "complaints_closed"
-        Then I should be on "/?status=cloturee"
+        Then I should be on "/mes-plaintes?status=cloturee"
         And I should see 2 "tr" element
         And I should see "Aucune donnée disponible dans le tableau"
 
@@ -63,7 +63,7 @@ Feature:
         When I am on "/reporting"
         And I should see 1 "#complaints_ongoing_lrp" element
         When I follow "complaints_ongoing_lrp"
-        Then I should be on "/?status=en-cours-lrp"
+        Then I should be on "/mes-plaintes?status=en-cours-lrp"
         And I should see 11 "tr" element
         And I should see 10 ".background-yellow" element
 
@@ -74,7 +74,7 @@ Feature:
         When I follow "complaints_appointment_pending"
         Then I should be on "/?status=attente-rdv"
         And I should see 11 "tr" element
-        And I should see 10 ".background-cumulus" element
+        And I should see 11 ".background-cumulus" element
 
     @javascript
     Scenario: As a agent, I should see the reporting of my complaints, and I should be able to view the appointment pending complaints
@@ -82,7 +82,7 @@ Feature:
         When I am on "/reporting"
         And I should see 1 "#complaints_appointment_pending" element
         When I follow "complaints_appointment_pending"
-        Then I should be on "/?status=attente-rdv"
+        Then I should be on "/mes-plaintes?status=attente-rdv"
         And I should see 2 "tr" element
         And I should see "Aucune donnée disponible dans le tableau"
 
@@ -108,7 +108,7 @@ Feature:
         When I follow "complaints_unit_redirection_pending"
         Then I should be on "/?status=attente-reorientation"
         And I should see 11 "tr" element
-        And I should see 10 ".background-cumulus" element
+        And I should see 11 ".background-cumulus" element
 
     @javascript
     Scenario: As a agent, I should see the reporting of my complaints, and I should be able to view the unit reassignment pending complaints
@@ -116,6 +116,6 @@ Feature:
         When I am on "/reporting"
         And I should see 1 "#complaints_unit_redirection_pending" element
         When I follow "complaints_unit_redirection_pending"
-        Then I should be on "/?status=attente-reorientation"
+        Then I should be on "/mes-plaintes?status=attente-reorientation"
         And I should see 2 "tr" element
         And I should see "Aucune donnée disponible dans le tableau"
