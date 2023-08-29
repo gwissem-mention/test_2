@@ -41,14 +41,18 @@ class AppointmentType extends AbstractType
         ;
     }
 
+    // https://symfony.com/doc/current/reference/forms/types/date.html#rendering-a-single-html5-text-box
     private function addAppointmentDateField(FormInterface $form, bool $disabled): void
     {
         $form->add('appointmentDate', DateType::class, [
             'attr' => [
                 'disabled' => $disabled,
+                'class' => 'js-datepicker d-none',
             ],
             'input' => 'datetime_immutable',
             'widget' => 'single_text',
+            // prevents rendering it as type="date", to avoid HTML5 date pickers
+            'html5' => false,
             'view_timezone' => 'UTC',
             'label' => false,
             'constraints' => [

@@ -146,6 +146,26 @@ final class BaseContext extends MinkContext
         });
     }
 
+    // https://stackoverflow.com/a/14130933
+    /**
+     * @When /^I fill hidden field "([^"]*)" with "([^"]*)"$/
+     */
+    public function iFillHiddenField(string $field, string $value): void
+    {
+        $this->retryStep(function () use ($field, $value) {
+            $page = $this->getSession()->getPage();
+            $element = $page->find('css', '#'.$field);
+
+            if (null === $element) {
+                throw new ExpectationException('element empty', $this->getSession()->getDriver());
+            }
+
+            // https://stackoverflow.com/a/12672279
+            $javascript = "document.getElementById('$field').value='$value'";
+            $this->getSession()->executeScript($javascript);
+        });
+    }
+
     public function selectOption(mixed $select, mixed $option): void
     {
         $this->retryStep(function () use ($select, $option) {

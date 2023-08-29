@@ -1,8 +1,11 @@
-import {Controller} from "@hotwired/stimulus";
-import {Toast, Modal} from "bootstrap";
+import { Controller } from "@hotwired/stimulus";
+import { Modal, Toast } from "bootstrap";
+import flatpickr from "flatpickr";
+import { Instance } from "flatpickr/dist/types/instance";
+import { French } from "flatpickr/dist/l10n/fr";
 
-import {HttpMethodsEnum} from "../scripts/utils/HttpMethodsEnum";
-import {HttpStatusCodeEnum} from "../scripts/utils/HttpStatusCodeEnum";
+import { HttpMethodsEnum } from "../scripts/utils/HttpMethodsEnum";
+import { HttpStatusCodeEnum } from "../scripts/utils/HttpStatusCodeEnum";
 
 const {Dropzone} = require("dropzone");
 
@@ -69,7 +72,25 @@ export default class extends Controller {
 
     public override connect() {
         this.openUnitReassignmentValidationModal();
+    }
+
+    public appointmentDateInputTargetConnected(
+        element: HTMLInputElement
+    ): void {
+        const { id, disabled, value } = element;
+
         this.toggleModifyAppointmentButton();
+        // init flatpickr
+        flatpickr(`#${id}`, {
+            inline: true,
+            locale: French,
+            weekNumbers: true,
+            monthSelectorType: "static",
+            ...(disabled && {
+                enable: [value],
+                defaultDate: value,
+            }),
+        }) as Instance;
     }
 
     // Must be ignored because we can't type url here.

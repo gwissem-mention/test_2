@@ -1,35 +1,12 @@
 {% extends 'pages/complaint/layout.html.twig' %}
 
+{% block stylesheets %}
+    {{ encore_entry_link_tags('app') }}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+{% endblock %}
+
 {% block main %}
-    <div class="border border-secondary bg-light rounded p-3">
-        <span id="declarant-identity" class="fs-3 fw-semibold lh-lg">{{ 'pel.appointment.management'|trans }}</span>
+    <div class="fr-background-default--grey appointment-content fr-mt-md-3v fr-px-md-14v fr-pb-md-20v">
         {{ include('pages/complaint/_partial/appointment_content.html.twig') }}
-        <div class="d-flex appointment-footer m-3">
-            <button type="button"
-                    id="appointment-cancel-button"
-                    class="btn btn-danger btn-appointment"
-                    data-bs-toggle="modal"
-                    data-bs-target="#modal-complaint-cancel-appointment"
-                    {{ isAppointmentPlanned ? '' : 'disabled'}}
-            >
-                {{ 'pel.appointment.cancel'|trans }}
-            </button>
-            <button type="button"
-                    id="appointment-modify-button"
-                    class="btn btn-primary btn-appointment btn-appointment-modify"
-                    data-action="complaint#modifyAppointment"
-                    data-complaint-target="modifyAppointmentButton"
-                {{ isAppointmentPlanned ? '' : 'disabled'}}
-            >
-                {{ 'pel.appointment.modify'|trans }}
-            </button>
-            <button type="button"
-                    class="btn btn-success btn-appointment"
-                    data-action="complaint#validateAppointment"
-                    data-complaint-url-param="{{ path('complaint_appointment_validate', { id: complaint.id }) }}"
-            >
-                {{ 'pel.appointment.validate'|trans }}
-            </button>
-        </div>
     </div>
 {% endblock %}

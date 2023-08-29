@@ -9,18 +9,17 @@ Feature:
     @func
     Scenario: I can navigate to the appointment management page
         Given I am on "/plainte/recapitulatif/91"
-        When I follow "Gestion RDV"
+        When I follow "Gestion de RDV"
         Then I should be on "/plainte/rendez-vous/91"
         And the response status code should be 200
         And I should see the key "pel.appointment.management" translated
-        And I should see the key "pel.civility" translated
+        And I should see the key "pel.declarant" translated
         And I should see the key "pel.sir" translated
-        And I should see the key "pel.lastname" translated
-        And I should see the key "pel.firstname" translated
-        And I should see the key "pel.phone" translated
+        And I should see the key "pel.mobile.phone" translated
         And I should see the key "pel.email" translated
         And I should see the key "pel.information.entered.by.the.victim.to.make.an.appointment" translated
-        And I should see the key "pel.enter.the.date.and.time.of.the.appointment.with.the.victim" translated
+        And I should see the key "pel.enter.the.date.of.the.appointment.with.the.victim" translated
+        And I should see the key "pel.enter.the.time.of.the.appointment.with.the.victim" translated
         And I should see the key "pel.appointment.cancel" translated
         And I should see the key "pel.appointment.modify" translated
         And I should see the key "pel.appointment.validate" translated
@@ -33,16 +32,16 @@ Feature:
     @javascript
     Scenario: I can see form errors if the date is before today
         Given I am on "/plainte/rendez-vous/91"
-        When I fill in "appointment_appointmentDate" with "01/01/2023"
+        When I fill hidden field "appointment_appointmentDate" with "2023-01-01"
         And I fill in "appointment_appointmentTime" with "10:00am"
-        And I press "Valider le RDV avec le déclarant"
+        And I press "appointment-confirm-button"
 
     @javascript
     Scenario: I can submit the appointment form successfully
         Given I am on "/plainte/rendez-vous/91"
-        When I fill in "appointment_appointmentDate" with "01/01/2025"
+        When I fill hidden field "appointment_appointmentDate" with "2025-01-01"
         And I fill in "appointment_appointmentTime" with "10:00am"
-        And I press "Valider le RDV avec le déclarant"
+        And I press "appointment-confirm-button"
         Then the "#appointment_appointmentDate" element should be disabled
         Then the "#appointment_appointmentTime" element should be disabled
         When I am on homepage
@@ -54,9 +53,9 @@ Feature:
         And I should see the key "pel.close.declaration" translated
         And I should see a "#complaint-send-report-to-victim-button" element
         And I should not see a "#complaint-close-after-appointment-button" element
-        When I fill in "appointment_appointmentDate" with "01/01/2025"
+        When I fill hidden field "appointment_appointmentDate" with "2025-01-01"
         And I fill in "appointment_appointmentTime" with "10:00am"
-        And I press "Valider le RDV avec le déclarant"
+        And I press "appointment-confirm-button"
         Then I should not see the key "pel.send.report.to.the.victim.and.close" translated
         And I should not see a "#complaint-send-report-to-victim-button" element
         And I should see the key "pel.close.declaration" translated
@@ -65,9 +64,9 @@ Feature:
     @javascript
     Scenario: I can toggle the close after the appointment modal
         Given I am on "/plainte/rendez-vous/111"
-        Then I fill in "appointment_appointmentDate" with "01/01/2025"
+        Then I fill hidden field "appointment_appointmentDate" with "2025-01-01"
         And I fill in "appointment_appointmentTime" with "10:00am"
-        And I press "Valider le RDV avec le déclarant"
+        And I press "appointment-confirm-button"
         When I press "complaint-close-after-appointment-button"
         Then I should see a ".modal[aria-modal=true]" element
         And I should see the key "pel.close.declaration" translated
@@ -83,9 +82,9 @@ Feature:
     @javascript
     Scenario: I can validate the close after appointment modal only if I have made the appointment
         Given I am on "/plainte/rendez-vous/111"
-        Then I fill in "appointment_appointmentDate" with "01/01/2025"
+        Then I fill hidden field "appointment_appointmentDate" with "2025-01-01"
         And I fill in "appointment_appointmentTime" with "10:00am"
-        And I press "Valider le RDV avec le déclarant"
+        And I press "appointment-confirm-button"
         When I press "complaint-close-after-appointment-button"
         Then I should see a ".modal[aria-modal=true]" element
         And the "#complaint-validate-the-report-and-close-button-validate" element should be disabled
@@ -97,9 +96,9 @@ Feature:
     @javascript
     Scenario: I can submit the send report form successfully with no file
         Given I am on "/plainte/rendez-vous/111"
-        Then I fill in "appointment_appointmentDate" with "01/01/2025"
+        Then I fill hidden field "appointment_appointmentDate" with "2025-01-01"
         And I fill in "appointment_appointmentTime" with "10:00am"
-        And I press "Valider le RDV avec le déclarant"
+        And I press "appointment-confirm-button"
         When I press "complaint-close-after-appointment-button"
         Then I should see a ".modal[aria-modal=true]" element
         When I click the "label[for=send_report_appointment_done_0]" element
@@ -112,9 +111,9 @@ Feature:
     @javascript
     Scenario: I can submit the send report form successfully with a png file and a pdf file
         Given I am on "/plainte/rendez-vous/111"
-        Then I fill in "appointment_appointmentDate" with "01/01/2025"
+        Then I fill hidden field "appointment_appointmentDate" with "2025-01-01"
         And I fill in "appointment_appointmentTime" with "10:00am"
-        And I press "Valider le RDV avec le déclarant"
+        And I press "appointment-confirm-button"
         When I press "complaint-close-after-appointment-button"
         Then I should see a ".modal[aria-modal=true]" element
         When I click the "label[for=send_report_appointment_done_0]" element
@@ -139,9 +138,9 @@ Feature:
         When I press "Modifier RDV"
         Then the "#appointment_appointmentDate" element should not be disabled
         And the "#appointment_appointmentTime" element should not be disabled
-        When I fill in "appointment_appointmentDate" with "01/06/2025"
+        When I fill hidden field "appointment_appointmentDate" with "2025-01-06"
         And I fill in "appointment_appointmentTime" with "11:00am"
-        And I press "Valider le RDV avec le déclarant"
+        And I press "appointment-confirm-button"
         Then the "#appointment_appointmentDate" element should be disabled
         Then the "#appointment_appointmentTime" element should be disabled
         When I am on homepage
@@ -151,7 +150,7 @@ Feature:
     Scenario: If there is an appointment planned, I can open and close the cancellation modal
         Given I am on "/plainte/rendez-vous/102"
         And the "#appointment-cancel-button" element should not be disabled
-        When I press "Annuler RDV"
+        When I press "appointment-cancel-button"
         Then I should see a ".modal[aria-modal=true]" element
         When I press "Conserver le rendez-vous"
         Then I should not see a ".modal[aria-modal=true]" element
@@ -160,7 +159,7 @@ Feature:
     Scenario: If there is an appointment planned, I can cancel it
         Given I am on "/plainte/rendez-vous/102"
         And the "#appointment-cancel-button" element should not be disabled
-        When I press "Annuler RDV"
+        When I press "appointment-cancel-button"
         Then I should see a ".modal[aria-modal=true]" element
         When I press "Confirmer l'annulation"
         Then I should not see a ".modal[aria-modal=true]" element
