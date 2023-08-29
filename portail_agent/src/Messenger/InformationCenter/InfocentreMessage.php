@@ -6,9 +6,11 @@ namespace App\Messenger\InformationCenter;
 
 use App\Entity\Complaint;
 use App\Referential\Entity\Unit;
+use Symfony\Component\Clock\ClockAwareTrait;
 
 final class InfocentreMessage
 {
+    use ClockAwareTrait;
     private ?\DateTimeImmutable $declarationDate;
     private ?string $unitCode;
     private ?string $serviceCode;
@@ -44,7 +46,7 @@ final class InfocentreMessage
         $this->unitPhone = $unit?->getPhone();
         $this->serviceCode = $complaint->getAssignedTo()?->getServiceCode();
         $this->agentCode = $complaint->getAssignedTo()?->getNumber();
-        $this->actionDate = new \DateTimeImmutable();
+        $this->actionDate = $this->now();
         $this->declarationTown = $complaint->getIdentity()?->getAddressInseeCode();
         $this->isFranceConnected = $complaint->isFranceConnected();
         $this->isPersonLegalRepresented = null !== $complaint->getPersonLegalRepresented();
