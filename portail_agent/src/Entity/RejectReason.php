@@ -17,10 +17,10 @@ class RejectReason
     public const PEL_INSUFISANT_QUALITY_TO_ACT = 'pel-insufisant-quality-to-act';
     public const ABSENCE_OF_PENAL_OFFENSE_OBJECT_LOSS = 'absence-of-penal-offense-object-loss';
     public const ABSENCE_OF_PENAL_OFFENSE = 'absence-of-penal-offense';
-    public const INCOHERENT_STATEMENTS = 'incoherent-statements';
     public const PEL_VICTIME_CARENCE_AT_APPOINTMENT = 'pel-victime-carence-at-appointment';
     public const PEL_VICTIME_CARENCE_AT_APPOINTMENT_BOOKING = 'pel-victime-carence-at-appointment-booking';
     public const ABANDONMENT_OF_THE_PROCEDURE_BY_VICTIM = 'abandonment-of-the-procedure-by-victim';
+    public const PRESCRIPTION_OF_FACTS = 'prescription-of-facts';
 
     #[ORM\Id]
     #[ORM\GeneratedValue]

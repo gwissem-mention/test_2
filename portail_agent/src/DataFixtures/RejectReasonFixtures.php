@@ -26,10 +26,10 @@ class RejectReasonFixtures extends Fixture implements FixtureGroupInterface
             'pel.insufisant.quality.to.act' => RejectReason::PEL_INSUFISANT_QUALITY_TO_ACT,
             'pel.absence.of.penal.offense.object.loss' => RejectReason::ABSENCE_OF_PENAL_OFFENSE_OBJECT_LOSS,
             'pel.absence.of.penal.offense' => RejectReason::ABSENCE_OF_PENAL_OFFENSE,
-            'pel.incoherent.statements' => RejectReason::INCOHERENT_STATEMENTS,
             'pel.victime.carence.at.appointment' => RejectReason::PEL_VICTIME_CARENCE_AT_APPOINTMENT,
             'pel.victime.carence.at.appointment.booking' => RejectReason::PEL_VICTIME_CARENCE_AT_APPOINTMENT_BOOKING,
             'pel.abandonment.of.the.procedure.by.victim' => RejectReason::ABANDONMENT_OF_THE_PROCEDURE_BY_VICTIM,
+            'pel.prescription.of.facts' => RejectReason::PRESCRIPTION_OF_FACTS,
         ];
 
         foreach ($rejectReasons as $label => $code) {

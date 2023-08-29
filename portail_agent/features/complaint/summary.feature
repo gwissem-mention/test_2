@@ -230,7 +230,7 @@ Feature:
         And I should see the key "pel.insufisant.quality.to.act" translated
         And I should see the key "pel.absence.of.penal.offense.object.loss" translated
         And I should see the key "pel.absence.of.penal.offense" translated
-        And I should see the key "pel.incoherent.statements" translated
+        And I should see the key "pel.prescription.of.facts" translated
         And I should see the key "pel.victime.carence.at.appointment" translated
         And I should see the key "pel.victime.carence.at.appointment.booking" translated
         And I should see the key "pel.abandonment.of.the.procedure.by.victim" translated
