@@ -550,10 +550,6 @@
                 <source>pel.is.designated.as</source>
                 <target>Se désigne comme</target>
             </trans-unit>
-            <trans-unit id="pel.incoherent.statements">
-                <source>pel.incoherent.statements</source>
-                <target>Propos incohérents</target>
-            </trans-unit>
             <trans-unit id="pel.information.entered.by.the.victim.to.make.an.appointment">
                 <source>pel.information.entered.by.the.victim.to.make.an.appointment</source>
                 <target>Demande de rendez-vous, renseignée par le déclarant</target>
@@ -1633,6 +1629,10 @@
             <trans-unit id="pel.do.you.confirm.appointment.cancellation">
                 <source>pel.do.you.confirm.appointment.cancellation</source>
                 <target>Confirmez-vous l'annulation de rendez-vous avec le déclarant</target>
+            </trans-unit>
+            <trans-unit id="pel.prescription.of.facts">
+                <source>pel.prescription.of.facts</source>
+                <target>Prescriptions des faits</target>
             </trans-unit>
         </body>
     </file>

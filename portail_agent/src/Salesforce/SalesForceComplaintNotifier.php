@@ -201,13 +201,14 @@ class SalesForceComplaintNotifier
         $declarationNumber = $this->ssoIsEnabled ? $complaint->getDeclarationNumber() : $complaint->getUniqueDeclarationNumber();
 
         $refusalReason = match ($complaint->getRefusalReason()) {
-            RejectReason::PEL_OTHER, RejectReason::PEL_INSUFISANT_QUALITY_TO_ACT, RejectReason::INCOHERENT_STATEMENTS => 8,
+            RejectReason::PEL_OTHER, RejectReason::PEL_INSUFISANT_QUALITY_TO_ACT => 8,
             RejectReason::REORIENTATION_OTHER_SOLUTION, RejectReason::DRAFTING_VICTIM_TO_ANOTHER_TELESERVICE => 1,
             RejectReason::DRAFTING_A_HANDRAIL_DECLARATION => 7,
             RejectReason::ABSENCE_OF_PENAL_OFFENSE_OBJECT_LOSS, RejectReason::ABSENCE_OF_PENAL_OFFENSE => 5,
             RejectReason::PEL_VICTIME_CARENCE_AT_APPOINTMENT => 4,
             RejectReason::PEL_VICTIME_CARENCE_AT_APPOINTMENT_BOOKING => 3,
             RejectReason::ABANDONMENT_OF_THE_PROCEDURE_BY_VICTIM => 2,
+            RejectReason::PRESCRIPTION_OF_FACTS => 6,
             default => throw new BadRejectReasonException()
         };
 
