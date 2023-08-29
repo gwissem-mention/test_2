@@ -8,6 +8,9 @@ use App\Complaint\Parser\CorporationParser;
 use App\Entity\Corporation;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
+/**
+ * @phpstan-import-type JsonCorporation from CorporationParser
+ */
 class CorporationParserTest extends KernelTestCase
 {
     public function getParser(): CorporationParser
@@ -99,6 +102,7 @@ class CorporationParserTest extends KernelTestCase
     {
         $parser = $this->getParser();
 
+        /** @var JsonCorporation $corporationContent */
         $corporationContent = json_decode('
 	{
         "siret": "12345678900000",
@@ -171,6 +175,7 @@ class CorporationParserTest extends KernelTestCase
     {
         $parser = $this->getParser();
 
+        /** @var JsonCorporation $corporationContent */
         $corporationContent = json_decode('
 	{
         "siret": "12345678900000",

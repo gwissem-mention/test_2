@@ -125,14 +125,15 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
             /** @var string $unit */
             $unit = $this->faker->randomElement(['103131', '3002739']);
             $exactDateKnown = $this->faker->boolean;
+            /** @var int $exactHourKnown */
             $exactHourKnown = $this->faker->randomElement([Facts::EXACT_HOUR_KNOWN_NO, Facts::EXACT_HOUR_KNOWN_YES]);
 
+            /** @var int $cctvPresent */
             $cctvPresent = $this->faker->randomElement([AdditionalInformation::CCTV_PRESENT_YES, AdditionalInformation::CCTV_PRESENT_NO, AdditionalInformation::CCTV_PRESENT_DONT_KNOW]);
             $suspectsKnown = $this->faker->boolean;
             $witnessesPresent = $this->faker->boolean;
             $fsiVisit = $this->faker->boolean;
             $victimOfViolence = $this->faker->boolean;
-            $stolenVehicle = $this->faker->boolean(30);
 
             if ('103131' === $unit) {
                 $agentNumber = $this->faker->randomElement(['H3U3XCGD', 'H3U3XCGF']);
@@ -148,7 +149,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                 ->setAppointmentContactInformation('Disponible entre 10h et 12h le lundi')
                 ->setStatus($status)
                 ->setOptinNotification($this->faker->boolean)
-                ->setAlert($this->faker->randomElement([Complaint::ALERT_TSP, Complaint::ALERT_REGISTERED_VEHICLE, true === $victimOfViolence ? Complaint::ALERT_VIOLENCE : null, null]))
+                ->setAlert($this->randomString([Complaint::ALERT_TSP, Complaint::ALERT_REGISTERED_VEHICLE, true === $victimOfViolence ? Complaint::ALERT_VIOLENCE : null, null]))
                 ->setUnitAssigned($unit)
                 ->setIdentity(
                     $this->newIdentity()
@@ -164,9 +165,9 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                         ->setStartDate($factsStartDate)
                         ->setEndDate(true === $exactDateKnown ? null : $factsStartDate->add(new \DateInterval('P1D')))
                         ->setExactPlaceUnknown(false)
-                        ->setPlace($this->faker->randomElement(['Domicile', 'Parking', 'Voie publique', 'Commerce', 'Transports en commun', 'Autre nature de lieu', 'Lieu indéterminé']))
+                        ->setPlace((string) $this->randomString(['Domicile', 'Parking', 'Voie publique', 'Commerce', 'Transports en commun', 'Autre nature de lieu', 'Lieu indéterminé']))
                         ->setStartAddress($this->faker->streetAddress.', '.$factsAddressCity.', '.$factsAddressPostcode)
-                        ->setEndAddress($this->faker->randomElement([
+                        ->setEndAddress($this->randomString([
                             null,
                             $this->faker->streetAddress.', '.$factsAddressCity.', '.$factsAddressPostcode,
                         ]))
@@ -186,14 +187,14 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                         ->setStatus(AbstractObject::STATUS_STOLEN)
                         ->setNature('TELEPHONE PORTABLE')
                         ->setBrand('Apple')
-                        ->setModel($this->faker->randomElement(['Iphone', 'Iphone 13', 'Iphone 14']))
-                        ->setOperator($this->faker->randomElement(['Orange', 'SFR', 'Bouygues', 'Free']))
+                        ->setModel($this->randomString(['Iphone', 'Iphone 13', 'Iphone 14']))
+                        ->setOperator($this->randomString(['Orange', 'SFR', 'Bouygues', 'Free']))
                         ->setSerialNumber('1234567890')
                         ->setStillOnWhenMobileStolen(true)
                         ->setKeyboardLockedWhenMobileStolen(false)
                         ->setPinEnabledWhenMobileStolen(true)
                         ->setMobileInsured(false)
-                        ->setPhoneNumber($this->faker->mobileNumber)
+                        ->setPhoneNumber($this->randomString(['06 53 98 74 77', '07 00 98 55 89', '06 77 99 55 11']))
                         ->setAmount($this->faker->numberBetween(500, 2000))
                         ->setFiles(['blank.pdf', 'iphone.png'])
                 )->addObject(
@@ -202,14 +203,14 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                         ->setNature('TELEPHONE PORTABLE')
                         ->setBrand('Samsung')
                         ->setDescription('Un Samsung tout neuf')
-                        ->setModel($this->faker->randomElement(['S20', 'S21', 'S22', 'S23']))
-                        ->setOperator($this->faker->randomElement(['Orange', 'SFR', 'Bouygues', 'Free']))
+                        ->setModel($this->randomString(['S20', 'S21', 'S22', 'S23']))
+                        ->setOperator($this->randomString(['Orange', 'SFR', 'Bouygues', 'Free']))
                         ->setSerialNumber('987654321')
                         ->setStillOnWhenMobileStolen(true)
                         ->setKeyboardLockedWhenMobileStolen(true)
                         ->setPinEnabledWhenMobileStolen(true)
                         ->setMobileInsured(false)
-                        ->setPhoneNumber($this->faker->mobileNumber)
+                        ->setPhoneNumber($this->randomString(['06 53 98 74 77', '07 00 98 55 89', '06 77 99 55 11']))
                         ->setAmount($this->faker->numberBetween(500, 2000))
                 )->addObject(
                     (new MultimediaObject())
@@ -225,7 +226,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                         ->setCctvPresent($cctvPresent)
                         ->setCctvAvailable(AdditionalInformation::CCTV_PRESENT_YES === $cctvPresent ? $this->faker->boolean : null)
                         ->setSuspectsKnown($suspectsKnown)
-                        ->setSuspectsKnownText(true === $suspectsKnown ? $this->faker->randomElement([
+                        ->setSuspectsKnownText(true === $suspectsKnown ? $this->randomString([
                             '2 hommes : Jean Dupont et Thomas DURAND',
                             'Mon frère',
                             'Mon voisin du dessous',
@@ -233,7 +234,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                         ->setWitnessesPresent($witnessesPresent)
                         ->addWitness(
                             (new Witness())
-                                ->setDescription($this->faker->randomElement([
+                                ->setDescription($this->randomString([
                                     'Aurore Moulin',
                                     'Nicolas Morin',
                                     'Jade Degois',
@@ -247,26 +248,26 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                 ->addComment(
                     (new Comment())
                         ->setContent('Ceci est un commentaire.')
-                        ->setAuthor($this->faker->randomElement($this->users))
+                        ->setAuthor($this->randomUser($this->users))
                 )
                 ->addComment(
                     (new Comment())
                         ->setContent('Ceci est un autre commentaire.')
-                        ->setAuthor($this->faker->randomElement($this->users))
+                        ->setAuthor($this->randomUser($this->users))
                 )
                 ->addComment(
                     (new Comment())
                         ->setContent('Ceci est (encore) un autre commentaire.')
-                        ->setAuthor($this->faker->randomElement($this->users))
+                        ->setAuthor($this->randomUser($this->users))
                 )->addComment(
                     (new Comment())
                         ->setContent('Commentaire.')
-                        ->setAuthor($this->faker->randomElement($this->users))
+                        ->setAuthor($this->randomUser($this->users))
                 )
                 ->addComment(
                     (new Comment())
                         ->setContent('Ceci est un commentaire différent.')
-                        ->setAuthor($this->faker->randomElement($this->users))
+                        ->setAuthor($this->randomUser($this->users))
                 )
                 ->setAssignedTo(Complaint::STATUS_ASSIGNED === $status ?
                     $manager->getRepository(User::class)->findOneBy(['number' => $agentNumber]) :
@@ -283,7 +284,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
             if (Identity::DECLARANT_STATUS_CORPORATION_LEGAL_REPRESENTATIVE === $complaint->getIdentity()?->getDeclarantStatus()) {
                 $complaint->setCorporationRepresented(
                     (new Corporation())
-                        ->setSiretNumber($this->faker->randomElement(['12345678911111', '98765432100000', '13243546800000']))
+                        ->setSiretNumber((string) $this->randomString(['12345678911111', '98765432100000', '13243546800000']))
                         ->setCompanyName($this->faker->company)
                         ->setDeclarantPosition('PDG')
                         ->setContactEmail($this->faker->companyEmail)
@@ -322,8 +323,8 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                     (new PaymentMethod())
                         ->setStatus(AbstractObject::STATUS_STOLEN)
                         ->setType('CARTE BANCAIRE')
-                        ->setDescription($this->faker->randomElement(['Visa principale', 'Mastercard']))
-                        ->setBank($this->faker->randomElement(['Crédit Agricole', 'Caisse d\'épargne', 'LCL']))
+                        ->setDescription((string) $this->randomString(['Visa principale', 'Mastercard']))
+                        ->setBank($this->randomString(['Crédit Agricole', 'Caisse d\'épargne', 'LCL']))
                 );
             }
 
@@ -331,9 +332,9 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                 $complaint->addObject(
                     (new SimpleObject())
                         ->setStatus(AbstractObject::STATUS_DEGRADED)
-                        ->setNature($this->faker->randomElement(['Blouson', 'Guitare', 'Sac à dos']))
-                        ->setDescription($this->faker->randomElement(['De couleur Rouge', 'De couleur Noire', 'De couleur Bleue']))
-                        ->setSerialNumber($this->faker->randomElement(['123456789', '987654321', '132435468']))
+                        ->setNature((string) $this->randomString(['Blouson', 'Guitare', 'Sac à dos']))
+                        ->setDescription((string) $this->randomString(['De couleur Rouge', 'De couleur Noire', 'De couleur Bleue']))
+                        ->setSerialNumber($this->randomString(['123456789', '987654321', '132435468']))
                         ->setAmount($this->faker->numberBetween(100, 500))
                 );
             }
@@ -344,11 +345,11 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                         ->setStatus(AbstractObject::STATUS_STOLEN)
                         ->setNature('VOITURE PARTICULIERE')
                         ->setBrand('Citroën')
-                        ->setModel($this->faker->randomElement(['C3', 'C4', 'DS4', 'DS3']))
-                        ->setRegistrationNumber($this->faker->randomElement(['AA-123-AA', 'BB-345-BB', 'CC-432-CC', 'DD-890-DD']))
+                        ->setModel($this->randomString(['C3', 'C4', 'DS4', 'DS3']))
+                        ->setRegistrationNumber($this->randomString(['AA-123-AA', 'BB-345-BB', 'CC-432-CC', 'DD-890-DD']))
                         ->setRegistrationCountry('France')
-                        ->setInsuranceCompany($this->faker->randomElement(['AXA', 'Matmut', 'MAAF']))
-                        ->setInsuranceNumber($this->faker->randomElement(['1458R147R', '8912T654T', '3278V265V']))
+                        ->setInsuranceCompany($this->randomString(['AXA', 'Matmut', 'MAAF']))
+                        ->setInsuranceNumber($this->randomString(['1458R147R', '8912T654T', '3278V265V']))
                         ->setAmount($this->faker->numberBetween(5000, 20000))
                 );
             }
@@ -358,12 +359,12 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                     ->setStatus(AbstractObject::STATUS_DEGRADED)
                     ->setNature('VOITURE PARTICULIERE')
                     ->setBrand('Peugeot')
-                    ->setModel($this->faker->randomElement(['208', '308', '3008', '5008']))
-                    ->setRegistrationNumber($this->faker->randomElement(['AA-123-AA', 'BB-345-BB', 'CC-432-CC', 'DD-890-DD']))
+                    ->setModel($this->randomString(['208', '308', '3008', '5008']))
+                    ->setRegistrationNumber($this->randomString(['AA-123-AA', 'BB-345-BB', 'CC-432-CC', 'DD-890-DD']))
                     ->setRegistrationCountry('France')
-                    ->setInsuranceCompany($this->faker->randomElement(['AXA', 'Matmut', 'MAAF']))
-                    ->setInsuranceNumber($this->faker->randomElement(['1458R147R', '8912T654T', '3278V265V']))
-                    ->setDegradationDescription($this->faker->randomElement(['Rétroviseur cassé', 'Pare-brise cassé', 'Portière rayée']))
+                    ->setInsuranceCompany($this->randomString(['AXA', 'Matmut', 'MAAF']))
+                    ->setInsuranceNumber($this->randomString(['1458R147R', '8912T654T', '3278V265V']))
+                    ->setDegradationDescription($this->randomString(['Rétroviseur cassé', 'Pare-brise cassé', 'Portière rayée']))
                     ->setAmount($this->faker->numberBetween(5000, 20000))
             );
 
@@ -416,7 +417,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
             ->setFirstname($this->faker->firstName($this->identityGender))
             ->setLastname(mb_strtoupper($this->faker->lastName))
             ->setCivility('male' === $this->identityGender ? Identity::CIVILITY_MALE : Identity::CIVILITY_FEMALE)
-            ->setFamilySituation($this->faker->randomElement([
+            ->setFamilySituation($this->randomString([
                 'Célibataire',
                 'Concubinage',
                 'Marié(e)',
@@ -425,7 +426,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                 'Veuf(ve)',
             ]))
             ->setDeclarantStatus($declarantStatus)
-            ->setBirthday(new \DateTimeImmutable($this->faker->randomElement([
+            ->setBirthday(new \DateTimeImmutable((string) $this->randomString([
                     '1978-03-16',
                     '1997-12-07',
                     '2000-06-08',
@@ -449,10 +450,32 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
             ->setAddressDepartment($this->departments[substr($this->identityAddressPostcode, 0, 2)])
             ->setAddressDepartmentNumber((int) substr($this->identityBirthPostcode, 0, 2))
             ->setAddressCountry('France')
-            ->setMobilePhone($this->faker->mobileNumber)
+            ->setMobilePhone((string) $this->randomString(['06 53 98 74 77', '07 00 98 55 89', '06 77 99 55 11']))
             ->setEmail($this->faker->email)
             ->setJob($this->faker->jobTitle)
             ->setJobThesaurus('FONCTIONNAIRE')
             ->setAlertNumber($this->faker->randomDigit());
+    }
+
+    /**
+     * @param array<int, string|null> $values
+     */
+    private function randomString(array $values): ?string
+    {
+        /** @var string|null $randomString */
+        $randomString = $this->faker->randomElement($values);
+
+        return $randomString;
+    }
+
+    /**
+     * @param array<User> $values
+     */
+    private function randomUser(array $values): User
+    {
+        /** @var User $randomUser */
+        $randomUser = $this->faker->randomElement($values);
+
+        return $randomUser;
     }
 }

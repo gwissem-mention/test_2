@@ -8,6 +8,9 @@ use App\Complaint\Parser\FactsParser;
 use App\Entity\Facts;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
+/**
+ * @phpstan-import-type JsonFacts from FactsParser
+ */
 class FactsParserTest extends KernelTestCase
 {
     private const OBJECTS_JSON = <<<JSON
@@ -294,6 +297,7 @@ JSON;
     {
         $parser = $this->getParser();
 
+        /** @var JsonFacts $factsContent */
         $factsContent = json_decode('
 {
 	"address":
@@ -415,6 +419,7 @@ JSON;
     {
         $parser = $this->getParser();
 
+        /** @var JsonFacts $factsContent */
         $factsContent = json_decode('
 {
 	"address":

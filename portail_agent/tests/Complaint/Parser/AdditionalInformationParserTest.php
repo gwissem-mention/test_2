@@ -8,6 +8,9 @@ use App\Complaint\Parser\AdditionalInformationParser;
 use App\Entity\AdditionalInformation;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
+/**
+ * @phpstan-import-type JsonAdditionalInformation from AdditionalInformationParser
+ */
 class AdditionalInformationParserTest extends KernelTestCase
 {
     public function getParser(): AdditionalInformationParser
@@ -24,6 +27,7 @@ class AdditionalInformationParserTest extends KernelTestCase
     {
         $parser = $this->getParser();
 
+        /** @var JsonAdditionalInformation $additionalInformationContent */
         $additionalInformationContent = json_decode('
 {
 	"suspectsChoice": true,
@@ -62,6 +66,7 @@ class AdditionalInformationParserTest extends KernelTestCase
     {
         $parser = $this->getParser();
 
+        /** @var JsonAdditionalInformation $additionalInformationContent */
         $additionalInformationContent = json_decode('
 {
 	"suspectsChoice": false,
