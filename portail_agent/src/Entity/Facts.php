@@ -26,7 +26,7 @@ class Facts
     private ?int $id = null;
 
     /** @var int[]|null */
-    #[ORM\Column(type: Types::SIMPLE_ARRAY)]
+    #[ORM\Column(type: Types::SIMPLE_ARRAY, nullable: true)]
     private ?array $natures = null;
 
     #[ORM\Column(type: Types::TEXT)]
