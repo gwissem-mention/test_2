@@ -1630,6 +1630,10 @@
                 <source>pel.last.check.number</source>
                 <target>Dernier N° de chèque / chéquier</target>
             </trans-unit>
+            <trans-unit id="pel.do.you.confirm.appointment.cancellation">
+                <source>pel.do.you.confirm.appointment.cancellation</source>
+                <target>Confirmez-vous l'annulation de rendez-vous avec le déclarant</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
