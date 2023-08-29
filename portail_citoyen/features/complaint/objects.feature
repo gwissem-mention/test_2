@@ -266,3 +266,7 @@ Feature:
         And I should not see the key "pel.first.check.number" translated
         And I should not see a "input#objects_objects_0_checkLastNumber" element
         And I should not see the key "pel.last.check.number" translated
+
+    Scenario: I can click on the link "Je n’ai pas de bien à déclarer" and go to the next step
+        When I follow "Je n’ai pas de bien à déclarer"
+        Then I should be on "/porter-plainte/informations-complementaires/1"

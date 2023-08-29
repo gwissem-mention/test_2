@@ -98,7 +98,7 @@
             <strong>{{ form.objects.vars.data|objects_amount|format_currency('EUR', {fraction_digit: 2}) }}</strong>
         </div>
         {% if objectsLength is same as(1) %}
-            <a class="fr-text fr-text-title--blue-france" href="{{ path('complaint_additional_information') }}">{{ 'pel.i.have.no.goods.to.declare'|trans }}</a>
+            <a class="fr-text fr-text-title--blue-france" href="{{ path('complaint_additional_information', {'noObject':1}) }}">{{ 'pel.i.have.no.goods.to.declare'|trans }}</a>
         {% endif %}
     </div>
     <hr>
