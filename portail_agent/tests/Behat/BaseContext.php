@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\Behat;
 
 use App\Generator\ComplaintNumber\ComplaintNumberGeneratorInterface;
+use Behat\Behat\Context\Environment\InitializedContextEnvironment;
 use Behat\Behat\Hook\Scope\AfterScenarioScope;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\Mink\Driver\Selenium2Driver;
@@ -19,7 +20,7 @@ final class BaseContext extends MinkContext
 {
     private const RETRY_SLEEP = 10000;
     private const RETRY_MAX_TIME = 10;
-    private readonly UserContext $userContext;
+    private UserContext $userContext;
 
     public function __construct(
         private readonly TranslatorInterface $translator,
@@ -32,7 +33,9 @@ final class BaseContext extends MinkContext
      */
     public function gatherContexts(BeforeScenarioScope $scope): void
     {
-        $this->userContext = $scope->getEnvironment()->getContext(UserContext::class);
+        /** @var InitializedContextEnvironment $environment */
+        $environment = $scope->getEnvironment();
+        $this->userContext = $environment->getContext(UserContext::class);
     }
 
     /**
@@ -61,6 +64,9 @@ final class BaseContext extends MinkContext
         $this->getSession()->reset();
     }
 
+    /**
+     * @param string $page
+     */
     public function visit($page): void
     {
         $this->setHeaders(function () use ($page) {

@@ -4,9 +4,46 @@ declare(strict_types=1);
 
 namespace App\Complaint\Parser;
 
+use App\Complaint\Exceptions\NoAddressException;
 use App\Entity\Identity;
 use App\Referential\Repository\JobRepository;
 
+/**
+ * @phpstan-import-type JsonDate from DateParser
+ * @phpstan-import-type JsonFrenchAddress from AddressParser
+ * @phpstan-import-type JsonForeignAddress from AddressParser
+ *
+ * @phpstan-type JsonCivilState object{
+ *      civility: object{code: int},
+ *      firstnames: string,
+ *      birthName: string,
+ *      usageName: string,
+ *      familySituation: object{label: string},
+ *      birthDate: JsonDate,
+ *      birthLocation: object{
+ *           frenchTown: object{
+ *               label: string,
+ *               departmentLabel: string,
+ *               departmentCode: string,
+ *               inseeCode: string,
+ *               postalCode: string,
+ *           }|null,
+ *           otherTown: string|null,
+ *           country: object{label: string},
+ *      },
+ *      job: object{code: string, label: string},
+ *      nationality: object{label: string},
+ *  }
+ * @phpstan-type JsonContactInformation object{
+ *       phone: object{code: string, number: string}|null,
+ *       mobile: object{code: string, number: string}|null,
+ *       email: string,
+ *       frenchAddress: JsonFrenchAddress|null,
+ *       foreignAddress: JsonForeignAddress|null,
+ *       country: object{label: string},
+ *   }
+ * @phpstan-type JsonDeclarantStatus object{code: int}|null
+ */
 class IdentityParser
 {
     public function __construct(
@@ -17,6 +54,13 @@ class IdentityParser
     ) {
     }
 
+    /**
+     * @param JsonCivilState           $civilStateInput
+     * @param JsonContactInformation   $contactInformationInput
+     * @param JsonDeclarantStatus|null $declarantStatusInput
+     *
+     * @throws NoAddressException
+     */
     public function parse(object $civilStateInput, object $contactInformationInput, object $declarantStatusInput = null): Identity
     {
         $identity = new Identity();
@@ -49,6 +93,19 @@ class IdentityParser
         return $identity;
     }
 
+    /**
+     * @param object{
+     *           frenchTown: object{
+     *               label: string,
+     *               departmentLabel: string,
+     *               departmentCode: string,
+     *               inseeCode: string,
+     *               postalCode: string,
+     *           }|null,
+     *           otherTown: string|null,
+     *           country: object{label: string},
+     *      } $birthDayPlaceInput
+     */
     private function parseBirthdayPlace(Identity $identity, object $birthDayPlaceInput): void
     {
         $identity
@@ -60,12 +117,26 @@ class IdentityParser
             ->setBirthCountry($birthDayPlaceInput->country->label);
     }
 
+    /**
+     * @param object{
+     *      frenchAddress: JsonFrenchAddress|null,
+     *      foreignAddress: JsonForeignAddress|null,
+     *      country: object{label: string},
+     * } $addressInput
+     *
+     * @throws NoAddressException
+     */
     private function parseAddress(Identity $identity, object $addressInput): void
     {
+        $address = null;
         if ($addressInput->frenchAddress) {
             $address = $this->addressParser->parseFrenchAddress($addressInput->frenchAddress);
-        } else {
+        } elseif ($addressInput->foreignAddress) {
             $address = $this->addressParser->parseForeignAddress($addressInput->foreignAddress);
+        }
+
+        if (null === $address) {
+            throw new NoAddressException('No address found for corporation');
         }
 
         $identity
@@ -81,6 +152,9 @@ class IdentityParser
             ->setAddressDepartmentNumber($address->getDepartmentNumber());
     }
 
+    /**
+     * @param object{code: string, label: string} $jobInput
+     */
     private function parseJob(Identity $identity, object $jobInput): void
     {
         $job = $this->jobRepository->findFromInsee($jobInput->code, $jobInput->label);

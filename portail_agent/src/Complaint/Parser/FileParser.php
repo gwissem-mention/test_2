@@ -6,6 +6,9 @@ namespace App\Complaint\Parser;
 
 use League\Flysystem\FilesystemOperator;
 
+/**
+ * @phpstan-type JsonFile object{name: string }
+ */
 class FileParser
 {
     public function __construct(
@@ -14,6 +17,11 @@ class FileParser
     ) {
     }
 
+    /**
+     * @param JsonFile $fileInput
+     *
+     * @throws \League\Flysystem\FilesystemException
+     */
     public function parse(object $fileInput, string $complaintFrontId): string
     {
         $newPath = $complaintFrontId.'/'.$fileInput->name;

@@ -7,6 +7,41 @@ namespace App\Complaint\Parser;
 use App\Entity\Facts;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
+/**
+ * @phpstan-import-type JsonDate from DateParser
+ *
+ * @phpstan-type JsonFacts object{
+ *      description: string,
+ *      offenseDate: object,
+ *      placeNature: object{label: string},
+ *      address: object{
+ *           addressOrRouteFactsKnown: bool,
+ *           startAddress: object{
+ *               label: string,
+ *               city: string,
+ *               postcode: string,
+ *               citycode: string,
+ *           },
+ *           endAddress: object{
+ *                label: string,
+ *                city: string,
+ *                postcode: string,
+ *                citycode: string,
+ *           },
+ *       addressAdditionalInformation: string|null,
+ *       },
+ *      victimOfViolence: bool,
+ *      victimOfViolenceText: string|null,
+ *      offenseDate: object{
+ *           choiceHour: string,
+ *           exactDateKnown: bool,
+ *           startDate: JsonDate,
+ *           endDate: JsonDate|null,
+ *           startHour: JsonDate|null,
+ *           endHour: JsonDate|null,
+ *      },
+ *  }
+ */
 class FactsParser
 {
     public function __construct(private readonly TranslatorInterface $translator, private readonly DateParser $dateParser)
@@ -14,7 +49,10 @@ class FactsParser
     }
 
     /**
-     * @param array<int, object> $objects
+     * @param JsonFacts                                $facts
+     * @param array<object{status: object{code: int}}> $objects
+     *
+     * @throws \Exception
      */
     public function parse(object $facts, array $objects): Facts
     {
@@ -45,7 +83,7 @@ class FactsParser
             ->setExactDateKnown($facts->offenseDate->exactDateKnown)
             ->setStartDate($this->dateParser->parse($facts->offenseDate->startDate))
             ->setEndDate($facts->offenseDate->endDate ? $this->dateParser->parse($facts->offenseDate->endDate) : null)
-            ->setStartAddress($facts->address->startAddress ? $facts->address->startAddress->label : '')
+            ->setStartAddress($facts->address->startAddress->label ?? '')
             ->setEndAddress($facts->address->endAddress->label ?? null)
             ->setCountry('France')
             ->setDepartment($department)

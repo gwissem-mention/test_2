@@ -19,7 +19,9 @@ class PhoneParserTest extends TestCase
 }
 JSON;
         $parser = new PhoneParser();
-        $phoneInputObject = json_decode($phoneJson);
+
+        /** @var object{code: string, number: string} $phoneInputObject */
+        $phoneInputObject = json_decode($phoneJson, false, 512, JSON_THROW_ON_ERROR);
 
         $phone = $parser->parse($phoneInputObject);
 

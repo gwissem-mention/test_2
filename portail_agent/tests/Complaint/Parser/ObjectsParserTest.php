@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Complaint\Parser;
 
+use App\Complaint\ComplaintFileParser;
 use App\Complaint\Parser\ObjectsParser;
 use App\Entity\FactsObjects\AdministrativeDocument;
 use App\Entity\FactsObjects\MultimediaObject;
@@ -12,6 +13,9 @@ use App\Entity\FactsObjects\SimpleObject;
 use App\Entity\FactsObjects\Vehicle;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
+/**
+ * @phpstan-import-type JsonComplaint from ComplaintFileParser
+ */
 class ObjectsParserTest extends KernelTestCase
 {
     private const TEST_FILE_DIR = 'var/complaints/123456789/';
@@ -522,7 +526,7 @@ JSON;
 
     public function testParseAll(): void
     {
-        /** @var object $complaintJson */
+        /** @var JsonComplaint $complaintJson */
         $complaintJson = json_decode(self::COMPLAINT_JSON);
         $objectsInput = json_decode(self::OBJECTS_JSON);
         $objectsParser = $this->getParser();
@@ -534,7 +538,7 @@ JSON;
 
     public function testParseAdministrativeDocument(): void
     {
-        /** @var object $complaintJson */
+        /** @var JsonComplaint $complaintJson */
         $complaintJson = json_decode(self::COMPLAINT_JSON);
         $objectsInput = json_decode(self::OBJECTS_JSON);
         $objectsParser = $this->getParser();
@@ -571,7 +575,7 @@ JSON;
 
     public function testParsePaymentMethod(): void
     {
-        /** @var object $complaintJson */
+        /** @var JsonComplaint $complaintJson */
         $complaintJson = json_decode(self::COMPLAINT_JSON);
         $objectsInput = json_decode(self::OBJECTS_JSON);
         $objectsParser = $this->getParser();
@@ -590,7 +594,7 @@ JSON;
 
     public function testParseCheckPaymentMethod(): void
     {
-        /** @var object $complaintJson */
+        /** @var JsonComplaint $complaintJson */
         $complaintJson = json_decode(self::COMPLAINT_JSON);
         $objectsInput = json_decode(self::OBJECTS_JSON);
         $objectsParser = $this->getParser();
@@ -609,7 +613,7 @@ JSON;
 
     public function testParseMultimediaObject(): void
     {
-        /** @var object $complaintJson */
+        /** @var JsonComplaint $complaintJson */
         $complaintJson = json_decode(self::COMPLAINT_JSON);
         $objectsInput = json_decode(self::OBJECTS_JSON);
         $objectsParser = $this->getParser();
@@ -651,7 +655,7 @@ JSON;
 
     public function testParseRegisteredVehicle(): void
     {
-        /** @var object $complaintJson */
+        /** @var JsonComplaint $complaintJson */
         $complaintJson = json_decode(self::COMPLAINT_JSON);
         $objectsInput = json_decode(self::OBJECTS_JSON);
         $objectsParser = $this->getParser();
@@ -673,7 +677,7 @@ JSON;
 
     public function testParseUnregisteredVehicle(): void
     {
-        /** @var object $complaintJson */
+        /** @var JsonComplaint $complaintJson */
         $complaintJson = json_decode(self::COMPLAINT_JSON);
         $objectsInput = json_decode(self::OBJECTS_JSON);
         $objectsParser = $this->getParser();
@@ -694,7 +698,7 @@ JSON;
 
     public function testParseSimpleObject(): void
     {
-        /** @var object $complaintJson */
+        /** @var JsonComplaint $complaintJson */
         $complaintJson = json_decode(self::COMPLAINT_JSON);
         $objectsInput = json_decode(self::OBJECTS_JSON);
         $objectsParser = $this->getParser();

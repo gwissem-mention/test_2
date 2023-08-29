@@ -19,7 +19,9 @@ class DateParserTest extends TestCase
 }
 JSON;
         $parser = new DateParser();
-        $dateInputObject = json_decode($dateJson);
+
+        /** @var object{date: string, timezone: string} $dateInputObject */
+        $dateInputObject = json_decode($dateJson, false, 512, JSON_THROW_ON_ERROR);
 
         $date = $parser->parseImmutable($dateInputObject);
 
@@ -39,7 +41,9 @@ JSON;
 }
 JSON;
         $parser = new DateParser();
-        $dateInputObject = json_decode($dateJson);
+
+        /** @var object{date: string, timezone: string} $dateInputObject */
+        $dateInputObject = json_decode($dateJson, false, 512, JSON_THROW_ON_ERROR);
 
         $date = $parser->parseImmutable($dateInputObject);
 
