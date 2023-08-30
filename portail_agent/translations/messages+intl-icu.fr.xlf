@@ -440,7 +440,7 @@
             </trans-unit>
             <trans-unit id="pel.enter.the.time.of.the.appointment.with.the.victim">
                 <source>pel.enter.the.time.of.the.appointment.with.the.victim</source>
-                <target>Choisir la date du RDV avec le déclarant</target>
+                <target>Choisir l'heure du RDV avec le déclarant</target>
             </trans-unit>
             <trans-unit id="pel.exact.date.known">
                 <source>pel.exact.date.known</source>

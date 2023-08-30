@@ -16,10 +16,12 @@ type UnitReassignRejectFetchResponse = { form: string };
 type SendReportFetchResponse = { form: string };
 type ValidateAppointmentFetchResponse = { form: string };
 
-export default class extends Controller {
+export default class ComplaintController extends Controller {
     static override targets: string[] = [
         "appointmentDoneRadioButton",
         "modifyAppointmentButton",
+        "cancelAppointmentButton",
+        "validateAppointmentButton",
         "appointmentForm",
         "assignmentForm",
         "assignmentModal",
@@ -65,10 +67,14 @@ export default class extends Controller {
     declare readonly dropZoneErrorTarget: HTMLFormElement;
     declare readonly hasCommentBoxTarget: boolean;
     declare readonly modifyAppointmentButtonTarget: HTMLElement;
+    declare readonly cancelAppointmentButtonTarget: HTMLElement;
+    declare readonly validateAppointmentButtonTarget: HTMLElement;
     declare readonly appointmentDateInputTarget: HTMLInputElement;
     declare readonly appointmentTimeInputTarget: HTMLInputElement;
     declare readonly commentsButtonTarget: HTMLInputElement;
     declare readonly commentsContainerTarget: HTMLInputElement;
+
+    static fp: Instance | undefined;
 
     public override connect() {
         this.openUnitReassignmentValidationModal();
@@ -79,14 +85,39 @@ export default class extends Controller {
     ): void {
         const { id, disabled, value } = element;
 
-        this.toggleModifyAppointmentButton();
         // init flatpickr
-        flatpickr(`#${id}`, {
+        if (!disabled) {
+            this.initFlatpickr(id);
+        } else {
+            this.initFlatpickr(id, value);
+        }
+    }
+
+    private initFlatpickr(id: string, value?: string): void {
+        ComplaintController.fp = flatpickr(`#${id}`, {
             inline: true,
             locale: French,
             weekNumbers: true,
             monthSelectorType: "static",
-            ...(disabled && {
+            // https://flatpickr.js.org/examples/#disabling-all-dates-except-select-few
+            enable: [
+                function (date: Date) {
+                    // https://stackoverflow.com/a/10944417
+                    const today = new Date();
+                    const then = new Date(
+                        today.getFullYear(),
+                        today.getMonth(),
+                        today.getDate(),
+                        0,
+                        0,
+                        0
+                    );
+                    const diff = today.getTime() - then.getTime();
+
+                    return date.valueOf() >= today.valueOf() - diff;
+                },
+            ],
+            ...(value && {
                 enable: [value],
                 defaultDate: value,
             }),
@@ -369,6 +400,7 @@ export default class extends Controller {
     // @ts-ignore
     public validateAppointment({params: {url}}): void {
         if (url) {
+            // https://til.hashrocket.com/posts/sjkmsvegjn-formdata-doesnt-iterate-over-disabled-inputs
             fetch(url, {
                 method: HttpMethodsEnum.POST,
                 body: new FormData(this.appointmentFormTarget)
@@ -378,6 +410,7 @@ export default class extends Controller {
                         .then((data: ValidateAppointmentFetchResponse) => {
                             if (response.status === HttpStatusCodeEnum.OK) {
                                 this.reloadComplaintContainer();
+
                             } else {
                                 this.appointmentFormTarget.innerHTML = data.form;
                             }
@@ -418,21 +451,19 @@ export default class extends Controller {
         }
     }
 
-    private reloadComplaintContainer(): void {
+    private async reloadComplaintContainer(): Promise<void> {
         // Reload the page in ajax, then replace the #complaint-container div by the new one
-        fetch(window.location.href, {
+        const response = await fetch(window.location.href, {
             method: HttpMethodsEnum.GET
-        })
-            .then(response => response.text())
-            .then((data: string) => {
-                const element: HTMLDivElement = document.createElement("div");
-                element.innerHTML = data;
-                const complaintContainerSource: HTMLElement | null = element.querySelector("#complaint-container");
+        });
+        const data: string = await response.text();
+        const element: HTMLDivElement = document.createElement("div");
+        element.innerHTML = data;
+        const complaintContainerSource: HTMLElement | null = element.querySelector("#complaint-container");
 
-                if (this.complaintContainerTarget && complaintContainerSource) {
-                    this.complaintContainerTarget.innerHTML = complaintContainerSource.innerHTML;
-                }
-            });
+        if (this.complaintContainerTarget && complaintContainerSource) {
+            this.complaintContainerTarget.innerHTML = complaintContainerSource.innerHTML;
+        }
     }
 
     // Must be ignored because we can't type url here.
@@ -444,9 +475,9 @@ export default class extends Controller {
             })
                 .then((response: Response) => {
                     response.json()
-                        .then(() => {
+                        .then(async () => {
                             if (response.status === HttpStatusCodeEnum.OK) {
-                                this.reloadComplaintContainer();
+                                await this.reloadComplaintContainer();
                                 // Must be ignored because in Bootstrap types, Toast element has string | Element type
                                 // however we need here to type it as Toast.
                                 // @ts-ignore
@@ -461,15 +492,17 @@ export default class extends Controller {
         }
     }
     public modifyAppointment(): void {
-        this.appointmentDateInputTarget?.removeAttribute("disabled");
-        this.appointmentTimeInputTarget?.removeAttribute("disabled");
-    }
-    public toggleModifyAppointmentButton(): void {
-        if (this.appointmentDateInputTarget.value !== "" || this.appointmentTimeInputTarget.value !== "") {
-            this.modifyAppointmentButtonTarget.removeAttribute("disabled");
-        } else {
-            this.modifyAppointmentButtonTarget.setAttribute("disabled", "disabled");
-        }
+        this.initFlatpickr(this.appointmentDateInputTarget.id);
+
+        // https://til.hashrocket.com/posts/sjkmsvegjn-formdata-doesnt-iterate-over-disabled-inputs
+        this.appointmentDateInputTarget.removeAttribute("disabled");
+        this.appointmentTimeInputTarget.removeAttribute("disabled");
+
+        this.modifyAppointmentButtonTarget?.classList.add("d-none");
+        this.cancelAppointmentButtonTarget?.classList.add("d-none");
+
+        this.appointmentTimeInputTarget.classList.remove("d-none");
+        this.validateAppointmentButtonTarget?.classList.remove("d-none");
     }
     private setSpinnerState(button: HTMLButtonElement): void {
         button.querySelector(".spinner-border")?.classList.toggle("d-none");
