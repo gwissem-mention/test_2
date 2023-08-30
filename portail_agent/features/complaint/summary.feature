@@ -393,7 +393,7 @@ Feature:
         When I click the "#notifications-dropdown" element
         Then I should see "La déclaration PEL-2023-00000093 vient de vous être attribuée"
 
-    @javascript @flaky
+    @javascript
     Scenario: I can submit the reassign form successfully
         Given I am on "/plainte/recapitulatif/93"
         When I press "complaint-reassign-button"

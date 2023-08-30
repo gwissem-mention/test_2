@@ -3,7 +3,7 @@ Feature:
     As a user
     I want to authenticate with France Connect, fill in identity step, facts step and see the recap
 
-    @javascript @flaky
+    @javascript
     Scenario: Submit the facts form as a corporation legal logged in with France Connect
         Given I am on "/authentification"
         When I press "france_connect_auth_button"
