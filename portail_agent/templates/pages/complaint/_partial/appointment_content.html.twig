@@ -35,7 +35,7 @@
                 {{ form_row(appointment_form.appointmentContactInformation) }}
             </div>
         </div>
-        <div class="col fr-pb-md-9v">
+        <div class="col fr-pt-md-20v fr-pb-md-9v">
             <div class="row fr-pl-md-16v">
                 <div class="col-12">
                     <p>{{ 'pel.enter.the.date.of.the.appointment.with.the.victim'|trans }}</p>
@@ -47,33 +47,47 @@
                         {{ form_row(appointment_form.appointmentTime, {'attr': {'data-complaint-target': 'appointmentTimeInput'}}) }}
                     </div>
                 </div>
-                <div class="col-12 d-flex flex-wrap justify-content-between appointment-footer fr-mt-md-6v">
-                    <button type="button"
-                            id="appointment-cancel-button"
-                            class="fr-btn fr-btn--secondary fr-mt-md-4v"
-                            data-bs-toggle="modal"
-                            data-bs-target="#modal-complaint-cancel-appointment"
-                            {{ isAppointmentPlanned ? '' : 'disabled'}}
-                    >
-                        {{ 'pel.appointment.cancel'|trans }}
-                    </button>
-                    <button type="button"
-                            id="appointment-modify-button"
-                            class="fr-btn fr-btn--secondary fr-mt-md-4v"
-                            data-action="complaint#modifyAppointment"
-                            data-complaint-target="modifyAppointmentButton"
-                        {{ isAppointmentPlanned ? '' : 'disabled'}}
-                    >
-                        {{ 'pel.appointment.modify'|trans }}
-                    </button>
-                    <button type="button"
+                <div class="col-12 d-flex flex-wrap justify-content-end appointment-footer fr-mt-md-6v">
+                    {% if complaint.appointmentDate is empty %}
+                        <button type="button"
                             id="appointment-confirm-button"
                             class="fr-btn fr-mt-md-4v"
                             data-action="complaint#validateAppointment"
                             data-complaint-url-param="{{ path('complaint_appointment_validate', { id: complaint.id }) }}"
-                    >
-                        {{ 'pel.appointment.validate'|trans }}
-                    </button>
+                        >
+                            {{ 'pel.appointment.validate'|trans }}
+                        </button>
+                    {% else %}
+                        <button type="button"
+                            id="appointment-confirm-button"
+                            class="fr-btn fr-mt-md-4v d-none"
+                            data-action="complaint#validateAppointment"
+                            data-complaint-target="validateAppointmentButton"
+                            data-complaint-url-param="{{ path('complaint_appointment_validate', { id: complaint.id }) }}"
+                        >
+                            {{ 'pel.appointment.validate'|trans }}
+                        </button>
+                        <button type="button"
+                                id="appointment-cancel-button"
+                                class="fr-btn fr-btn--secondary fr-mt-md-4v"
+                                data-bs-toggle="modal"
+                                data-bs-target="#modal-complaint-cancel-appointment"
+                                data-complaint-target="cancelAppointmentButton"
+                                {{ isAppointmentPlanned ? '' : 'disabled'}}
+                        >
+                            {{ 'pel.appointment.cancel'|trans }}
+                        </button>
+                        <button type="button"
+                                id="appointment-modify-button"
+                                class="fr-btn fr-mt-md-4v"
+                                data-action="complaint#modifyAppointment"
+                                data-complaint-target="modifyAppointmentButton"
+                                data-complaint-modify-appointment-action-value="modify"
+                            {{ isAppointmentPlanned ? '' : 'disabled'}}
+                        >
+                            {{ 'pel.appointment.modify'|trans }}
+                        </button>
+                    {% endif %}
                 </div>
             </div>
         </div>

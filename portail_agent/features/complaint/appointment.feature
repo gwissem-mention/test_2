@@ -20,8 +20,6 @@ Feature:
         And I should see the key "pel.information.entered.by.the.victim.to.make.an.appointment" translated
         And I should see the key "pel.enter.the.date.of.the.appointment.with.the.victim" translated
         And I should see the key "pel.enter.the.time.of.the.appointment.with.the.victim" translated
-        And I should see the key "pel.appointment.cancel" translated
-        And I should see the key "pel.appointment.modify" translated
         And I should see the key "pel.appointment.validate" translated
         And I should see "DUPONT"
         And I should see "Jean"
@@ -126,10 +124,10 @@ Feature:
         And I should see the key "pel.the.report.has.been.sent.to.the.victim.the.complaint.is.closed" translated
 
     @javascript
-    Scenario: If there is no appointment planned, the Cancel and Modify appointment button should be disabled
+    Scenario: If there is no appointment planned, the Cancel and Modify appointment button should not be displayed
         Given I am on "/plainte/rendez-vous/91"
-        Then the "#appointment-cancel-button" element should be disabled
-        And the "#appointment-modify-button" element should be disabled
+        Then I should not see a "appointment-cancel-button" element
+        And I should not see a "appointment-modify-button" element
 
     @javascript
     Scenario: If there is an appointment planned, I can modify it
