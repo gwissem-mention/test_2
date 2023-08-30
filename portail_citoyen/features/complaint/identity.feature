@@ -30,7 +30,6 @@ Feature:
         And I fill in "identity_contactInformation_mobile_number" with "70 123 4567"
         Then I should not see a "#form-errors-identity_contactInformation_mobile_number" element
 
-    @flaky
     Scenario: I cannot enter invalid chars for phone input
         When I fill in "identity_contactInformation_phone_number" with "abcd6 01 02 03 04$."
         Then the "identity_contactInformation_phone_number" field should contain "6 01 02 03 04"

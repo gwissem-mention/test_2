@@ -242,13 +242,14 @@ Feature:
         Then I should be on "/porter-plainte/fin"
         And I should see "Brigade de proximité de Renage"
         And I should see "339 Rue de la République 38140 RENAGE"
-    @flaky
+
     Scenario: I can see the gendarmerie accessibility information
         When I fill in the map autocomplete "map-search" with "voiron" and click on the first result
         And I click on the marker at index 1008950
         And I should see a "li[data-unit-id-anonym=1008952]" element
         When I press "unit-id-1008952"
         Then I should see a "#fr-modal-unit-accessibility-information" element
+        And I wait 2000 ms
         And I should see "Gendarmerie - Brigade de Voiron"
         And I should see "2 Rue Danton 38500 Voiron"
         And I should see "tél. 04 76 05 01 83"
@@ -297,6 +298,7 @@ Feature:
         And I should see the key "pel.toilets" translated
         Then I click the "#accordion-5" element
         And I click the "#accordion-6" element
+        And I wait 500 ms
         And I should see "Des sanitaires sont mis à disposition dans l'établissement"
         And I should see "Aucun sanitaire adapté mis à disposition dans l'établissement"
         And I should see the key "pel.accessibility.information.provided.by" translated
