@@ -22,6 +22,11 @@ export default class ComplaintController extends Controller {
         "modifyAppointmentButton",
         "cancelAppointmentButton",
         "validateAppointmentButton",
+        "pelEnterTheDateOfTheAppointmentWithTheVictim",
+        "pelEnterTheTimeOfTheAppointmentWithTheVictim",
+        "complaintAppointmentDate",
+        "complaintAppointmentTime",
+        "appointmentScheduledWithTheDeclarantOn",
         "appointmentForm",
         "assignmentForm",
         "assignmentModal",
@@ -66,9 +71,14 @@ export default class ComplaintController extends Controller {
     declare readonly sendToLrpModalTarget: HTMLElement;
     declare readonly dropZoneErrorTarget: HTMLFormElement;
     declare readonly hasCommentBoxTarget: boolean;
-    declare readonly modifyAppointmentButtonTarget: HTMLElement;
-    declare readonly cancelAppointmentButtonTarget: HTMLElement;
-    declare readonly validateAppointmentButtonTarget: HTMLElement;
+    declare readonly modifyAppointmentButtonTarget: HTMLButtonElement;
+    declare readonly cancelAppointmentButtonTarget: HTMLButtonElement;
+    declare readonly validateAppointmentButtonTarget: HTMLButtonElement;
+    declare readonly pelEnterTheDateOfTheAppointmentWithTheVictimTarget: HTMLElement;
+    declare readonly pelEnterTheTimeOfTheAppointmentWithTheVictimTarget: HTMLElement;
+    declare readonly complaintAppointmentDateTarget: HTMLElement;
+    declare readonly complaintAppointmentTimeTarget: HTMLElement;
+    declare readonly appointmentScheduledWithTheDeclarantOnTarget: HTMLElement;
     declare readonly appointmentDateInputTarget: HTMLInputElement;
     declare readonly appointmentTimeInputTarget: HTMLInputElement;
     declare readonly commentsButtonTarget: HTMLInputElement;
@@ -83,17 +93,17 @@ export default class ComplaintController extends Controller {
     public appointmentDateInputTargetConnected(
         element: HTMLInputElement
     ): void {
-        const { id, disabled, value } = element;
+        const { id, disabled } = element;
+
+        this.toggleModifyAppointmentButton();
 
         // init flatpickr
         if (!disabled) {
             this.initFlatpickr(id);
-        } else {
-            this.initFlatpickr(id, value);
         }
     }
 
-    private initFlatpickr(id: string, value?: string): void {
+    private initFlatpickr(id: string): void {
         ComplaintController.fp = flatpickr(`#${id}`, {
             inline: true,
             locale: French,
@@ -117,10 +127,6 @@ export default class ComplaintController extends Controller {
                     return date.valueOf() >= today.valueOf() - diff;
                 },
             ],
-            ...(value && {
-                enable: [value],
-                defaultDate: value,
-            }),
         }) as Instance;
     }
 
@@ -498,11 +504,24 @@ export default class ComplaintController extends Controller {
         this.appointmentDateInputTarget.removeAttribute("disabled");
         this.appointmentTimeInputTarget.removeAttribute("disabled");
 
-        this.modifyAppointmentButtonTarget?.classList.add("d-none");
-        this.cancelAppointmentButtonTarget?.classList.add("d-none");
+        this.modifyAppointmentButtonTarget.classList.add("d-none");
+        this.cancelAppointmentButtonTarget.classList.add("d-none");
 
         this.appointmentTimeInputTarget.classList.remove("d-none");
-        this.validateAppointmentButtonTarget?.classList.remove("d-none");
+        this.validateAppointmentButtonTarget.classList.remove("d-none");
+        this.pelEnterTheDateOfTheAppointmentWithTheVictimTarget.classList.remove("d-none");
+        this.pelEnterTheTimeOfTheAppointmentWithTheVictimTarget.classList.remove("d-none");
+
+        this.appointmentScheduledWithTheDeclarantOnTarget.classList.add("d-none");
+        this.complaintAppointmentDateTarget.classList.add("d-none");
+        this.complaintAppointmentTimeTarget.classList.add("d-none");
+        this.complaintAppointmentDateTarget.parentElement?.parentElement?.parentElement?.classList.add("fr-mt-md-9v");
+    }
+    public toggleModifyAppointmentButton(): void {
+        if (this.appointmentDateInputTarget.value !== "" && this.appointmentTimeInputTarget.value !== "") {
+            this.appointmentDateInputTarget.setAttribute("disabled", "disabled");
+            this.appointmentTimeInputTarget.setAttribute("disabled", "disabled");
+        }
     }
     private setSpinnerState(button: HTMLButtonElement): void {
         button.querySelector(".spinner-border")?.classList.toggle("d-none");

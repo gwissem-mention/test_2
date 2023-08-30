@@ -38,14 +38,38 @@
         <div class="col fr-pt-md-20v fr-pb-md-9v">
             <div class="row fr-pl-md-16v">
                 <div class="col-12">
-                    <p>{{ 'pel.enter.the.date.of.the.appointment.with.the.victim'|trans }}</p>
+                    {% if complaint.appointmentDate is empty %}
+                        <p>{{ 'pel.enter.the.date.of.the.appointment.with.the.victim'|trans }}</p>
+                    {% else %}
+                        <p class="d-none" data-complaint-target="pelEnterTheDateOfTheAppointmentWithTheVictim">
+                            {{ 'pel.enter.the.date.of.the.appointment.with.the.victim'|trans }}
+                        </p>
+                        <p class="fr-mb-md-12v" data-complaint-target="appointmentScheduledWithTheDeclarantOn">
+                            {{ 'appointment.scheduled.with.the.declarant.on'|trans }}
+                        </p>
+                        <p class="fr-text--lead fr-btn fr-background-default--grey fr-p-0 fr-text-title--blue-france" data-complaint-target="complaintAppointmentDate">
+                            {{ complaint.appointmentDate|format_date(locale=app.request.locale, pattern='EEEE d MMMM yyyy') }}
+                        </p>
+                    {% endif %}
                     {{ form_row(appointment_form.appointmentDate, {'attr': {'data-complaint-target': 'appointmentDateInput'}}) }}
                 </div>
-                <div class="col-12 fr-mt-md-9v d-flex flex-column">
-                    <p class="fr-mb-md-6v">{{ 'pel.enter.the.time.of.the.appointment.with.the.victim'|trans }}</p>
-                    <div class="col-4">
-                        {{ form_row(appointment_form.appointmentTime, {'attr': {'data-complaint-target': 'appointmentTimeInput'}}) }}
-                    </div>
+                <div class="col-12 d-flex flex-column">
+                    {% if complaint.appointmentTime is empty %}
+                        <p class="fr-mt-md-9v fr-mb-md-6v">{{ 'pel.enter.the.time.of.the.appointment.with.the.victim'|trans }}</p>
+                        <div class="col-4">
+                            {{ form_row(appointment_form.appointmentTime, {'attr': {'data-complaint-target': 'appointmentTimeInput'}}) }}
+                        </div>
+                    {% else %}
+                        <p class="fr-mt-md-9v fr-mb-md-6v d-none" data-complaint-target="pelEnterTheTimeOfTheAppointmentWithTheVictim">
+                            {{ 'pel.enter.the.time.of.the.appointment.with.the.victim'|trans }}
+                        </p>
+                        <p class="fr-text--lead fr-btn fr-background-default--grey fr-p-0 fr-text-title--blue-france fr-mb-md-32v" data-complaint-target="complaintAppointmentTime">
+                            <span class="text-uppercase">{{ 'pel.at'|trans }}</span>&nbsp;{{ complaint.appointmentTime|date('H' ~ '\\' ~ 'pel.hour.h'|trans|lower ~ 'i', app.user.timezone) }}</span>
+                        </p>
+                        <div class="col-4">
+                            {{ form_row(appointment_form.appointmentTime, {'attr': {'data-complaint-target': 'appointmentTimeInput', 'class': 'd-none'}}) }}
+                        </div>
+                    {% endif %}
                 </div>
                 <div class="col-12 d-flex flex-wrap justify-content-end appointment-footer fr-mt-md-6v">
                     {% if complaint.appointmentDate is empty %}
