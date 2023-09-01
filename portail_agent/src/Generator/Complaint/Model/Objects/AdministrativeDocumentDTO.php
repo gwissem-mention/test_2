@@ -47,8 +47,7 @@ class AdministrativeDocumentDTO extends AbstractObjectDTO
         $this->ownerStreetType = $object->getOwnerAddressStreetType();
         $this->ownerStreetName = $object->getOwnerAddressStreetName();
         $this->identityBirthDate = $identity?->getBirthday()?->format('d/m/Y');
-        $this->description = $object->getDescription() ?? '';
-        $this->issuingCountry = $object->getIssuingCountry() ?? '';
+        $this->description = $this->getStatusAsString((int) $object->getStatus()).' - '.$object->getDescription();
         $this->issuingCountry = $object->getIssuingCountry() ?? '';
     }
 
@@ -65,9 +64,9 @@ class AdministrativeDocumentDTO extends AbstractObjectDTO
             'Objet_Doc_Admin_Autorite' => $this->issuedBy,
             'Objet_Doc_Admin_Description' => $this->description,
             // 'Objet_Doc_Admin_Identite_Victime' => $this->identityVictim,
-             'Objet_Doc_Admin_Identite_Nom' => $this->ownerLastname,
+            'Objet_Doc_Admin_Identite_Nom' => $this->ownerLastname,
 //             'Objet_Doc_Admin_Identite_Nom_Marital' => $this->identityMarriedName,
-             'Objet_Doc_Admin_Identite_Prenom' => $this->ownerFirstname,
+            'Objet_Doc_Admin_Identite_Prenom' => $this->ownerFirstname,
             'Objet_Doc_Admin_Identite_Naissance_Date' => $this->identityBirthDate,
             // 'Objet_Doc_Admin_Identite_Naissance' => $this->identityBirthCountry,
             // 'Objet_Doc_Admin_Identite_Naissance_Departement' => ($this->identityBirthDepartmentNumber && $this->identityBirthDepartment) ? $this->identityBirthDepartmentNumber.' - '.$this->identityBirthDepartment : null,
@@ -75,15 +74,15 @@ class AdministrativeDocumentDTO extends AbstractObjectDTO
             // 'Objet_Doc_Admin_Identite_Naissance_Commune' => $this->identityBirthCity,
             // 'Objet_Doc_Admin_Identite_Naissance_Insee' => $this->identityBirthInseeCode,
             // 'Objet_Doc_Admin_Identite_Residence' => $this->identityCountry,
-             'Objet_Doc_Admin_Identite_Residence_Departement' => ($this->identityDepartmentNumber && $this->identityDepartment && 'France' === $this->identityCountry) ? $this->identityDepartmentNumber.' - '.$this->identityDepartment : null,
-             'Objet_Doc_Admin_Identite_Residence_Codepostal' => $this->ownerPostcode,
-             'Objet_Doc_Admin_Identite_Residence_Commune' => $this->ownerCity,
-             'Objet_Doc_Admin_Identite_Residence_Insee' => $this->ownerInseeCode,
-             'Objet_Doc_Admin_Identite_Residence_RueNo' => $this->ownerStreetNumber,
-             'Objet_Doc_Admin_Identite_Residence_RueType' => $this->ownerStreetType,
-             'Objet_Doc_Admin_Identite_Residence_RueNom' => $this->ownerStreetName,
+            'Objet_Doc_Admin_Identite_Residence_Departement' => ($this->identityDepartmentNumber && $this->identityDepartment && 'France' === $this->identityCountry) ? $this->identityDepartmentNumber.' - '.$this->identityDepartment : null,
+            'Objet_Doc_Admin_Identite_Residence_Codepostal' => $this->ownerPostcode,
+            'Objet_Doc_Admin_Identite_Residence_Commune' => $this->ownerCity,
+            'Objet_Doc_Admin_Identite_Residence_Insee' => $this->ownerInseeCode,
+            'Objet_Doc_Admin_Identite_Residence_RueNo' => $this->ownerStreetNumber,
+            'Objet_Doc_Admin_Identite_Residence_RueType' => $this->ownerStreetType,
+            'Objet_Doc_Admin_Identite_Residence_RueNom' => $this->ownerStreetName,
 //             'Objet_Doc_Admin_Identite_Naissance_HidNumDep' => $this->identityBirthDepartmentNumber,
-             'Objet_Doc_Admin_Identite_Residence_HidNumDep' => $this->identityDepartmentNumber,
+            'Objet_Doc_Admin_Identite_Residence_HidNumDep' => $this->identityDepartmentNumber,
             // 'Objet_Doc_Admin_Vol_Dans_Vl' => $this->theftFromVehicle,
         ]];
     }

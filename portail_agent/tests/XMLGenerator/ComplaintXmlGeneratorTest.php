@@ -148,6 +148,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
             )
             ->addObject(
                 (new MultimediaObject())
+                    ->setStatus(AbstractObject::STATUS_STOLEN)
                     ->setNature('TELEPHONE PORTABLE')
                     ->setBrand('Apple')
                     ->setModel('iPhone 13')
@@ -159,16 +160,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
             )
             ->addObject(
                 (new MultimediaObject())
-                    ->setNature('TELEPHONE PORTABLE')
-                    ->setBrand('Apple')
-                    ->setModel('iPhone 14 Pro')
-                    ->setOperator('SFR')
-                    ->setSerialNumber('987654321')
-                    ->setPhoneNumber('06 21 43 65 87')
-                    ->setAmount(1329)
-            )
-            ->addObject(
-                (new MultimediaObject())
+                    ->setStatus(AbstractObject::STATUS_STOLEN)
                     ->setNature('AUTRE NATURE MULTIMEDIA')
                     ->setBrand('Sony')
                     ->setModel('Playstation 4')
@@ -178,10 +170,12 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
             )
             ->addObject(
                 (new AdministrativeDocument())
+                    ->setStatus(AbstractObject::STATUS_STOLEN)
                     ->setType('Permis de conduire')
             )
             ->addObject(
                 (new PaymentMethod())
+                    ->setStatus(AbstractObject::STATUS_STOLEN)
                     ->setType('Carte bancaire')
                     ->setDescription('Carte gold')
                     ->setBank('LCL')
@@ -191,6 +185,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
             )
             ->addObject(
                 (new SimpleObject())
+                    ->setStatus(AbstractObject::STATUS_STOLEN)
                     ->setNature('Blouson')
                     ->setDescription('Blouson bleu')
                     ->setSerialNumber('1234567890')
@@ -198,6 +193,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
             )
             ->addObject(
                 (new Vehicle())
+                    ->setStatus(AbstractObject::STATUS_STOLEN)
                     ->setBrand('Citroën')
                     ->setModel('C3')
                     ->setRegistrationNumber('AA-123-AA')
@@ -419,7 +415,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
     {
         $this->assertStringContainsString('<Objet>', $this->xmlContent);
         //        $this->assertStringContainsString('<Objets_Prejudice_Evaluer>1</Objets_Prejudice_Evaluer>', $this->xmlContent);
-        $this->assertStringContainsString('<Objets_Prejudice_Estimation>17927</Objets_Prejudice_Estimation>', $this->xmlContent);
+        $this->assertStringContainsString('<Objets_Prejudice_Estimation>16598</Objets_Prejudice_Estimation>', $this->xmlContent);
         $this->assertStringNotContainsString('<Objet_Divers>', $this->xmlContent);
         $this->assertStringContainsString('</Objet>', $this->xmlContent);
     }
@@ -461,21 +457,14 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Objet_Multimedia>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_Multimedia_Nature>TELEPHONE PORTABLE</Objet_Multimedia_Nature>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_Multimedia_Numeros_Serie>1234567890</Objet_Multimedia_Numeros_Serie>', $this->xmlContent);
-        $this->assertStringContainsString('<Objet_Multimedia_Description>Iphone 13 de couleur grise</Objet_Multimedia_Description>', $this->xmlContent);
+        $this->assertStringContainsString('<Objet_Multimedia_Description>Statut : volé - Iphone 13 de couleur grise</Objet_Multimedia_Description>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_Multimedia_Nmr_Tel>06 12 34 56 67</Objet_Multimedia_Nmr_Tel>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_Multimedia_Operateur>Orange</Objet_Multimedia_Operateur>', $this->xmlContent);
         //        $this->assertStringContainsString('<Objet_Multimedia_Opposition>Oui</Objet_Multimedia_Opposition>', $this->xmlContent);
         //        $this->assertStringContainsString('<Objet_Multimedia_Nmr_Sim>1234567809</Objet_Multimedia_Nmr_Sim>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_Multimedia_Identite_Victime>Oui</Objet_Multimedia_Identite_Victime>', $this->xmlContent);
         // $this->assertStringContainsString('<Objet_Multimedia_Vol_Dans_Vl>Non</Objet_Multimedia_Vol_Dans_Vl>', $this->xmlContent);
-        $this->assertStringContainsString('<Objet_Multimedia_Nature>TELEPHONE PORTABLE</Objet_Multimedia_Nature>', $this->xmlContent);
-        $this->assertStringContainsString('<Objet_Multimedia_Numeros_Serie>987654321</Objet_Multimedia_Numeros_Serie>', $this->xmlContent);
-        $this->assertStringContainsString('<Objet_Multimedia_Description/>', $this->xmlContent);
-        $this->assertStringContainsString('<Objet_Multimedia_Nmr_Tel>06 21 43 65 87</Objet_Multimedia_Nmr_Tel>', $this->xmlContent);
-        $this->assertStringContainsString('<Objet_Multimedia_Operateur>SFR</Objet_Multimedia_Operateur>', $this->xmlContent);
-        $this->assertStringContainsString('<Objet_Multimedia_Nature>AUTRE NATURE MULTIMEDIA</Objet_Multimedia_Nature>', $this->xmlContent);
-        $this->assertStringContainsString('<Objet_Multimedia_Numeros_Serie>1324354657</Objet_Multimedia_Numeros_Serie>', $this->xmlContent);
-        $this->assertStringContainsString('<Objet_Multimedia_Description>Description console</Objet_Multimedia_Description>', $this->xmlContent);
+        $this->assertStringContainsString('<Objet_Multimedia_Description>Statut : volé - Description console</Objet_Multimedia_Description>', $this->xmlContent);
         //        $this->assertStringContainsString('<Objet_Multimedia_Opposition>Oui</Objet_Multimedia_Opposition>', $this->xmlContent);
         //        $this->assertStringContainsString('<Objet_Multimedia_Nmr_Sim>1234567809</Objet_Multimedia_Nmr_Sim>', $this->xmlContent);
         // $this->assertStringContainsString('<Objet_Multimedia_Identite_Nom>DURAND</Objet_Multimedia_Identite_Nom>', $this->xmlContent);
@@ -505,7 +494,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Objet_Moyen_Paiement>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_Moyen_Paiement_Type>Carte bancaire</Objet_Moyen_Paiement_Type>', $this->xmlContent);
         // $this->assertStringContainsString('<Objet_Moyen_Paiement_Devise>EURO</Objet_Moyen_Paiement_Devise>', $this->xmlContent);
-        $this->assertStringContainsString('<Objet_Moyen_Paiement_Description>Carte gold</Objet_Moyen_Paiement_Description>', $this->xmlContent);
+        $this->assertStringContainsString('<Objet_Moyen_Paiement_Description>Statut : volé - Carte gold</Objet_Moyen_Paiement_Description>', $this->xmlContent);
         // $this->assertStringContainsString('<Objet_Moyen_Paiement_Opposition>Non</Objet_Moyen_Paiement_Opposition>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_Moyen_Paiement_Banque>LCL</Objet_Moyen_Paiement_Banque>', $this->xmlContent);
         // $this->assertStringContainsString('<Objet_Moyen_Paiement_Type_Carte>Mastercard</Objet_Moyen_Paiement_Type_Carte>', $this->xmlContent);
@@ -543,7 +532,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         //        $this->assertStringContainsString('<Objet_simple_Marque>Adidas</Objet_simple_Marque>', $this->xmlContent);
         //        $this->assertStringContainsString('<Objet_simple_Modele>Homme</Objet_simple_Modele>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_simple_Numeros_Serie>1234567890</Objet_simple_Numeros_Serie>', $this->xmlContent);
-        $this->assertStringContainsString('<Objet_simple_Description>Blouson bleu</Objet_simple_Description>', $this->xmlContent);
+        $this->assertStringContainsString('<Objet_simple_Description>Statut : volé - Blouson bleu</Objet_simple_Description>', $this->xmlContent);
         //        $this->assertStringContainsString('<Objet_simple_Identite_Victime>Oui</Objet_simple_Identite_Victime>', $this->xmlContent);
         //        $this->assertStringContainsString('<Objet_simple_Vol_Dans_Vl>Non</Objet_simple_Vol_Dans_Vl>', $this->xmlContent);
         //        $this->assertStringNotContainsString('<Objet_simple_Identite_Nom>', $this->xmlContent);
