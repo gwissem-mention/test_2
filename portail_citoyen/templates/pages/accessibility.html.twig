@@ -1,0 +1,25 @@
+{% extends 'common/_help.html.twig' %}
+
+{% block title %}
+	{{ 'pel.footer.link-bottom.accessibility'|trans }}
+{% endblock %}
+
+{% block breadcrumb %}
+	<ol class="fr-breadcrumb__list">
+		<li>
+			<a class="fr-breadcrumb__link" href="/">{{ 'pel.breadcrumb.welcome'|trans }}</a>
+		</li>
+		<li>
+			<a class="fr-breadcrumb__link" aria-current="page">{{ 'pel.footer.link-bottom.accessibility'|trans }}</a>
+		</li>
+	</ol>
+{% endblock %}
+
+{% block heading %}
+	<h1 class="mb-8 lg:mb-10 pr-3 pl-3 lg:pr-0 lg:pl-0 text-[28px]/[36px] md:text-[40px]/[48px]">
+		{{ 'pel.footer.link-bottom.accessibility'|trans }}
+	</h1>
+{% endblock %}
+
+{% block content %}
+{% endblock %}

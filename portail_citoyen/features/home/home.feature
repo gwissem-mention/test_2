@@ -42,3 +42,27 @@ Feature:
     Scenario: Press button to be fsi general orienteer
         Given I am on "/"
         When I follow "Je suis dans une autre situation"
+
+    @func
+    Scenario: I can click on the footer links and see the correct pages
+        Given I am on "/"
+        When I follow "Plan du site"
+        Then I should be on "/infos/plan-du-site"
+        And the response status code should be 200
+        And I should see the key "pel.footer.link-bottom.sitemap" translated
+        When I follow "Accessibilité"
+        Then I should be on "/infos/accessibilite"
+        And the response status code should be 200
+        And I should see the key "pel.footer.link-bottom.accessibility" translated
+        When I follow "Mentions légales"
+        Then I should be on "/infos/mentions-legales"
+        And the response status code should be 200
+        And I should see the key "pel.footer.link-bottom.legal" translated
+        When I follow "Données personnelles"
+        Then I should be on "/infos/donnees-personnelles"
+        And the response status code should be 200
+        And I should see the key "pel.footer.link-bottom.privacy" translated
+        When I follow "Gestion des cookies"
+        Then I should be on "/infos/gestion-des-cookies"
+        And the response status code should be 200
+        And I should see the key "pel.footer.link-bottom.cookies" translated
