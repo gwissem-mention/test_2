@@ -7,6 +7,8 @@
         background: transparent !important
 
     &-black
+        background: var(--background-lifted-grey)
+
         &-transparent
             background: $black-transparent
 
@@ -49,7 +51,10 @@
             @include background-stepper(var(--background-flat-success))
 
     &-grey
-        background: var(--grey-950-100-active)
+        background: var(--background-default-grey-hover)
+
+        &-active
+            background: var(--grey-950-100-active)
 
         &-hover
             &:hover

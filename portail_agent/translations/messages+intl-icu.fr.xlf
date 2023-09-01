@@ -1650,6 +1650,26 @@
                 <source>pel.prescription.of.facts</source>
                 <target>Prescriptions des faits</target>
             </trans-unit>
+            <trans-unit id="pel.choose.a.theme">
+                <source>pel.choose.a.theme</source>
+                <target>Choisissez un thème pour personnaliser l'apparence du site.</target>
+            </trans-unit>
+            <trans-unit id="pel.light.theme">
+                <source>pel.light.theme</source>
+                <target>Thème clair</target>
+            </trans-unit>
+            <trans-unit id="pel.dark.theme">
+                <source>pel.dark.theme</source>
+                <target>Thème sombre</target>
+            </trans-unit>
+            <trans-unit id="pel.system">
+                <source>pel.system</source>
+                <target>Système</target>
+            </trans-unit>
+            <trans-unit id="pel.uses.system.settings">
+                <source>pel.uses.system.settings</source>
+                <target>Utilise les paramètres système</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

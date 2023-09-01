@@ -12,15 +12,15 @@
                         </button>
                     </div>
                     <div class="d-flex align-items-center justify-content-between">
-                        <div class="fw-bold">{{ 'pel.filters'|trans }}</div>
+                        <div class="fw-bold text-black">{{ 'pel.filters'|trans }}</div>
                         <button class="fr-btn fr-btn--tertiary-no-outline btn-transparent color-blue fw-normal" id="all-complaint-filter" data-action="click->datatable#filter">{{ 'pel.clear.filter'|trans }}</button>
                     </div>
                     <ul class="reset-list m-0 p-0 w-100 mt-3">
-                        <li class="d-flex align-items-center mb-2 p-2 fw-bold">
+                        <li class="d-flex align-items-center mb-2 p-2 fw-bold text-black">
                             {{ 'pel.all.declarations'|trans }}
                         </li>
                         <li
-                            class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue cursor-pointer"
+                            class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue cursor-pointer text-black"
                             id="reaches-deadline-filter"
                             data-action="click->datatable#filter"
                             data-datatable-filter-param="{{ constant('App\\Repository\\ComplaintRepository::SEARCH_REACHES_DEADLINE') }}"
@@ -28,7 +28,7 @@
                             {{ 'pel.reaches.deadline'|trans }}
                         </li>
                         <li
-                            class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue cursor-pointer"
+                            class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue cursor-pointer text-black"
                             id="exceeds-deadline-filter"
                             data-action="click->datatable#filter"
                             data-datatable-filter-param="{{ constant('App\\Repository\\ComplaintRepository::SEARCH_EXCEEDS_DEADLINE') }}"
@@ -36,7 +36,7 @@
                             {{ 'pel.exceeds.deadline'|trans }}
                         </li>
                         <li
-                            class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue cursor-pointer"
+                            class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue cursor-pointer text-black"
                             id="alert-filter"
                             data-action="click->datatable#filter"
                             data-datatable-filter-param="{{ constant('App\\Repository\\ComplaintRepository::SEARCH_ALERT') }}"
@@ -44,7 +44,7 @@
                             {{ 'pel.alert'|trans }}
                         </li>
                         <li
-                            class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue cursor-pointer"
+                            class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue cursor-pointer text-black"
                             id="assignment-pending-filter"
                             data-action="click->datatable#filter"
                             data-datatable-filter-param="{{ constant('App\\Repository\\ComplaintRepository::SEARCH_ASSIGNMENT_PENDING') }}"
@@ -52,7 +52,7 @@
                             {{ 'pel.assignment.pending'|trans }}
                         </li>
                         <li
-                            class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue cursor-pointer"
+                            class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue cursor-pointer text-black"
                             id="assigned-filter"
                             data-action="click->datatable#filter"
                             data-datatable-filter-param="{{ constant('App\\Repository\\ComplaintRepository::SEARCH_ASSIGNED') }}"
@@ -60,7 +60,7 @@
                             {{ 'pel.assigned'|trans }}
                         </li>
                         <li
-                            class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue cursor-pointer"
+                            class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue cursor-pointer text-black"
                             id="unit-redirection-pending-filter"
                             data-action="click->datatable#filter"
                             data-datatable-filter-param="{{ constant('App\\Repository\\ComplaintRepository::SEARCH_UNIT_REDIRECTION_PENDING') }}"
@@ -68,7 +68,7 @@
                             {{ 'pel.unit.redirection.pending'|trans }}
                         </li>
                         <li
-                            class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue cursor-pointer"
+                            class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue cursor-pointer text-black"
                             id="validation-declaration-filter"
                             data-action="click->datatable#filter"
                             data-datatable-filter-param="{{ constant('App\\Repository\\ComplaintRepository::SEARCH_ONGOING_LRP') }}"
@@ -76,14 +76,14 @@
                             {{ 'pel.validation.declaration'|trans }}
                         </li>
                         <li
-                            class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue cursor-pointer"
+                            class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue cursor-pointer text-black"
                             id="appointment-planned-filter"
                             data-action="click->datatable#filter"
                             data-datatable-filter-param="{{ constant('App\\Repository\\ComplaintRepository::SEARCH_APPOINTMENT_PLANNED') }}">
                             {{ 'pel.appointment.planned'|trans }}
                         </li>
                         <li
-                            class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue cursor-pointer"
+                            class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue cursor-pointer text-black"
                             id="appointment-pending-filter"
                             data-action="click->datatable#filter"
                             data-datatable-filter-param="{{ constant('App\\Repository\\ComplaintRepository::SEARCH_APPOINTMENT_PENDING') }}"
@@ -91,7 +91,7 @@
                             {{ 'pel.appointment.pending'|trans }}
                         </li>
                         <li
-                            class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue cursor-pointer"
+                            class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue cursor-pointer text-black"
                             id="waiting-closing-filter"
                             data-action="click->datatable#filter"
                             data-datatable-filter-param="{{ constant('App\\Repository\\ComplaintRepository::SEARCH_CLOSURE_PENDING') }}"
@@ -99,7 +99,7 @@
                             {{ 'pel.waiting.closing'|trans }}
                         </li>
                         <li
-                            class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue cursor-pointer"
+                            class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue cursor-pointer text-black"
                             id="closed-filter"
                             data-action="click->datatable#filter"
                             data-datatable-filter-param="{{ constant('App\\Repository\\ComplaintRepository::SEARCH_CLOSED') }}"
@@ -107,7 +107,7 @@
                             {{ 'pel.closed'|trans }}
                         </li>
                         <li
-                            class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue cursor-pointer"
+                            class="push-left d-flex align-items-center mb-2 p-2 hover-bold hover-blue cursor-pointer text-black"
                             id="rejected-filter"
                             data-action="click->datatable#filter"
                             data-datatable-filter-param="{{ constant('App\\Repository\\ComplaintRepository::SEARCH_REJECTED') }}"
@@ -119,21 +119,19 @@
             </div>
             <div class="col-md-8 col-lg-9 col-xxl-10 mx-auto p-4">
                 <div class="d-flex mx-3">
-                    <a href="{{ path('home') }}" id="unit-declaration" class="reset-link p-2 px-3 fw-bold {% if app.current_route is same as('home') %}text-blue border mx-2 border-blue-top text-blue{% else %}background-cumulus border border-bottom-0 text-black{% endif %}">
+                    <a href="{{ path('home') }}" id="unit-declaration" class="reset-link p-2 px-3 fw-bold background-white {% if app.current_route is same as('home') %}text-blue border mx-2 border-blue-top text-blue{% else %}background-cumulus border border-bottom-0 text-black{% endif %}">
                         {{ 'pel.my.unit.declarations'|trans }}
-
                     </a>
-                    <a href="{{ path('home_complaints') }}" id="my-declaration" class="reset-link p-2 px-3 fw-bold {% if app.current_route is same as('home_complaints') %}text-blue border mx-2 border-blue-top text-blue{% else %}background-cumulus border border-bottom-0 text-black{% endif %}">
+                    <a href="{{ path('home_complaints') }}" id="my-declaration" class="reset-link p-2 px-3 fw-bold background-white {% if app.current_route is same as('home_complaints') %}text-blue border mx-2 border-blue-top text-blue{% else %}background-cumulus border border-bottom-0 text-black{% endif %}">
                         {{ 'pel.my.declarations'|trans }}
                     </a>
                 </div>
-
-                <div class="p-3 border"  style="margin-top: -1px;">
+                <div class="p-3 border background-black" style="margin-top: -1px;">
                     <div id="my-declarations-content">
                        {{ include('pages/home/_partial/table_content.html.twig', { 'pathComplaints': pathComplaints }) }}
                     </div>
                 </div>
             </div>
-    </div>
+        </div>
     </div>
 {% endblock %}

@@ -7,6 +7,15 @@ Feature:
         Given I am authenticated with PR5KTZ9R from GN
 
     @func
+    Scenario: I can see a sidebar with current user information
+        Given I am on "/plainte/recapitulatif/91"
+        Then I should see the key "pel.profile" translated
+        And I should see the key "pel.close" translated
+        And I should see the key "pel.display.settings" translated
+        And I should see the key "pel.settings" translated
+        And I should see the key "pel.logout" translated
+
+    @func
     Scenario: I can access the complaint's summary page if the complaint is assigned to my unit, but I can't access a complaint assigned to another unit
         Given I am on "/plainte/recapitulatif/91"
         And the response status code should be 200
@@ -34,7 +43,7 @@ Feature:
         And I should see the key "pel.alert" translated
         And I should see "Alert de test trop longue"
         And I should see a "button[data-bs-toggle='modal']" element
-        And I should see 20 "button" element
+        And I should see 21 "button" element
         And I should see the key "pel.assign.declaration.to" translated
         And I should not see the key "pel.send.to.lrp" translated
         And I should not see the key "pel.reject" translated

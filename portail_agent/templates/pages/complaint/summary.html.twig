@@ -60,19 +60,19 @@
     <div class="row">
         <div class="col-6 col-md-2 mb-4">
             <p class="m-0 text-grey">{{ 'pel.declaration.number'|trans }}</p>
-            <p class="m-0 fw-bold">{{ complaint.declarationNumber }}</p>
+            <p class="m-0 fw-bold text-black">{{ complaint.declarationNumber }}</p>
         </div>
         <div class="col-6 col-md-2 mb-4">
             <p class="m-0 text-grey">{{ 'pel.status'|trans }}</p>
-            <p class="m-0 fw-bold">{{ complaint.status|trans }}</p>
+            <p class="m-0 fw-bold text-black">{{ complaint.status|trans }}</p>
         </div>
         <div class="col-6 col-md-2 mb-4">
             <p class="m-0 text-grey">{{ 'pel.assigned.to'|trans }}</p>
-            <p class="m-0 fw-bold">{{ (complaint.assignedTo is not empty) ? complaint.assignedTo : "-" }}</p>
+            <p class="m-0 fw-bold text-black">{{ (complaint.assignedTo is not empty) ? complaint.assignedTo : "-" }}</p>
         </div>
         <div class="col-6 col-md-2 mb-4">
             <p class="m-0 text-grey">{{ 'pel.nature.of.the.facts'|trans }}</p>
-            <p class="m-0 fw-bold">
+            <p class="m-0 fw-bold text-black">
                 <strong>{% include 'common/_complaint_natures.html.twig' with {'natures':complaint.facts.natures} only %}</strong>
             </p>
         </div>
@@ -89,11 +89,11 @@
         </div>
     </div>
     <div class="border mb-4">
-        <div class="d-flex align-items-center justify-content-between border-bottom py-2 px-3">
+        <div class="d-flex align-items-center justify-content-between border-bottom py-2 px-3 background-white">
             <div class="text-blue fs-5">{{ 'pel.identification'|trans }}</div>
-            <span class="fr-icon-arrow-down-s-line" aria-hidden="true"></span>
+            <span class="fr-icon-arrow-down-s-line text-black" aria-hidden="true"></span>
         </div>
-        <div class="p-3">
+        <div class="p-3 background-black text-black">
             <div class="row">
                 <div class="col-md-8">
                     <ul class="m-0">
@@ -257,11 +257,11 @@
         </div>
     </div>
     <div class="border mb-4">
-        <div class="d-flex align-items-center justify-content-between border-bottom py-2 px-3">
+        <div class="d-flex align-items-center justify-content-between border-bottom py-2 px-3 background-white">
             <div class="text-blue fs-5">{{ 'pel.description.of.facts'|trans }}</div>
-            <span class="fr-icon-arrow-down-s-line" aria-hidden="true"></span>
+            <span class="fr-icon-arrow-down-s-line text-black" aria-hidden="true"></span>
         </div>
-        <div class="p-3">
+        <div class="p-3 background-black text-black">
             <ul class="m-0">
                 <li>
                     {{ 'pel.description.of.facts'|trans }} :
@@ -322,11 +322,11 @@
         </div>
     </div>
     <div class="border mb-4">
-        <div class="d-flex align-items-center justify-content-between border-bottom py-2 px-3">
+        <div class="d-flex align-items-center justify-content-between border-bottom py-2 px-3 background-white">
             <div class="text-blue fs-5">{{ 'pel.additional.informations'|trans }}</div>
-            <span class="fr-icon-arrow-down-s-line" aria-hidden="true"></span>
+            <span class="fr-icon-arrow-down-s-line text-black" aria-hidden="true"></span>
         </div>
-        <div class="p-3">
+        <div class="p-3 background-black text-black">
             <ul class="m-0">
                 <li>
                     {{ 'pel.facts.witnesses'|trans }} :
@@ -388,12 +388,12 @@
             </ul>
         </div>
     </div>
-    <div class="border mb-4">
-        <div class="d-flex align-items-center justify-content-between border-bottom py-2 px-3">
+    <div class="border">
+        <div class="d-flex align-items-center justify-content-between border-bottom py-2 px-3 background-white">
             <div class="text-blue fs-5">{{ 'pel.objects.description'|trans }}</div>
-            <span class="fr-icon-arrow-down-s-line" aria-hidden="true"></span>
+            <span class="fr-icon-arrow-down-s-line text-black" aria-hidden="true"></span>
         </div>
-        <div class="p-3">
+        <div class="p-3 background-black text-black">
             {% if complaint.stolenObjects is not empty %}
                 <p>{{ 'pel.objects.stolen'|trans }}</p>
                 <ul class="m-0">
