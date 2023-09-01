@@ -91,10 +91,10 @@ class ObjectType extends AbstractType
                 }
 
                 if ($this->objectCategories['pel.object.category.registered.vehicle'] === $objectModel?->getCategory()) {
-                    $this->addDegradationDescriptionField($form, ObjectModel::STATUS_DEGRADED === $objectModel->getStatus());
+                    $this->addDegradationDescriptionField($form, ObjectModel::STATUS_DEGRADED === $objectModel?->getStatus());
                 }
 
-                if ($this->objectCategories['pel.object.category.payment.ways'] === $objectModel?->getCategory() && PaymentCategory::Checkbook === $objectModel->getPaymentCategory()) {
+                if ($this->objectCategories['pel.object.category.payment.ways'] === $objectModel?->getCategory() && PaymentCategory::Checkbook === $objectModel?->getPaymentCategory()) {
                     $this->addCheckFields($form);
                 }
             }

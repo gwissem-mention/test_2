@@ -20,7 +20,6 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\Authenticator\Passport\SelfValidatingPassport;
 use Symfony\Component\Security\Http\EntryPoint\AuthenticationEntryPointInterface;
-use ValueError;
 
 final class AgentAuthenticator extends AbstractAuthenticator implements AuthenticationEntryPointInterface
 {
@@ -66,7 +65,7 @@ final class AgentAuthenticator extends AbstractAuthenticator implements Authenti
 
         try {
             $institution = Institution::from((string) $request->headers->get(self::HEADER_INSTITUTION));
-        } catch (ValueError) {
+        } catch (\ValueError) {
             throw new CustomUserMessageAuthenticationException(sprintf('Institution "%s" is unknown', $request->headers->get(self::HEADER_INSTITUTION)));
         }
 
