@@ -7,6 +7,15 @@ Feature:
         Given I am authenticated with PR5KTZ9R from GN
 
     @func
+    Scenario: I can see a sidebar with current user information
+        Given I am on "/"
+        Then I should see the key "pel.profile" translated
+        And I should see the key "pel.close" translated
+        And I should see the key "pel.display.settings" translated
+        And I should see the key "pel.settings" translated
+        And I should see the key "pel.logout" translated
+
+    @func
     Scenario: I can navigate on the homepage and I should see a header and an image
         When I am on the homepage
         Then the response status code should be 200

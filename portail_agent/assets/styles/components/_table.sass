@@ -3,9 +3,9 @@
         thead
             tr
                 th
-                    color: var(--text-active-grey)
+                    color: var(--text-label-grey)
                     background: var(--background-default-grey-hover)
-                    border-bottom: 3px solid var(--text-active-grey)
+                    border-bottom: 3px solid var(--text-label-grey)
 
                     &.sorting_asc
                         &:before
@@ -21,9 +21,14 @@
             &.odd
                 td
                     @include reset-shadow
+                    background: var(--background-lifted-grey)
+
+            &.even
+                td
                     background: var(--background-default-grey-hover)
 
             th,
             td
                 padding: $padding-15
                 vertical-align: middle
+                color: var(--text-label-grey)
