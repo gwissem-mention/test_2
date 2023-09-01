@@ -25,7 +25,7 @@ class PaymentMethodDTO extends AbstractObjectDTO
         $this->type = $object->getType() ?? '';
         // $this->currency = $object->getCurrency() ?? '';
         // $this->number = $object->getNumber();
-        $this->description = $object->getDescription() ?? '';
+        $this->description = $this->getStatusAsString((int) $object->getStatus()).' - '.$object->getDescription();
         // $this->opposition = $object->isOpposition() ? 'Oui' : 'Non';
         $this->bank = $object->getBank() ?? '';
         // $this->cardType = $object->getCardType();
