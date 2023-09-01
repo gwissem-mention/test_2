@@ -2610,6 +2610,18 @@
                 <source>pel.last.check.number</source>
                 <target>Dernier N° de chèque / chéquier</target>
             </trans-unit>
+            <trans-unit id="pel.i.find.the.approach.suitable.for.my.situation">
+                <source>pel.i.find.the.approach.suitable.for.my.situation</source>
+                <target>Je trouve la démarche adaptée à ma situation</target>
+            </trans-unit>
+            <trans-unit id="pel.general.terms.of.use">
+                <source>pel.general.terms.of.use</source>
+                <target>Conditions générales d'utilisation</target>
+            </trans-unit>
+            <trans-unit id="pel.please.find.the.sitemap">
+                <source>pel.please.find.the.sitemap</source>
+                <target>Veuillez trouver ci-joint le plan du site Plainte En Ligne</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
