@@ -1,25 +1,45 @@
 {% extends 'common/_help.html.twig' %}
 
 {% block title %}
-	{{ 'pel.footer.link-bottom.sitemap'|trans }}
+    {{ 'pel.footer.link-bottom.sitemap'|trans }}
 {% endblock %}
 
 {% block breadcrumb %}
-	<ol class="fr-breadcrumb__list">
-		<li>
-			<a class="fr-breadcrumb__link" href="/">{{ 'pel.breadcrumb.welcome'|trans }}</a>
-		</li>
-		<li>
-			<a class="fr-breadcrumb__link" aria-current="page">{{ 'pel.footer.link-bottom.sitemap'|trans }}</a>
-		</li>
-	</ol>
+    <ol class="fr-breadcrumb__list">
+        <li>
+            <a class="fr-breadcrumb__link" href="/">{{ 'pel.breadcrumb.welcome'|trans }}</a>
+        </li>
+        <li>
+            <a class="fr-breadcrumb__link" aria-current="page">{{ 'pel.footer.link-bottom.sitemap'|trans }}</a>
+        </li>
+    </ol>
 {% endblock %}
 
 {% block heading %}
-	<h1 class="mb-8 lg:mb-10 pr-3 pl-3 lg:pr-0 lg:pl-0 text-[28px]/[36px] md:text-[40px]/[48px]">
-		{{ 'pel.footer.link-bottom.sitemap'|trans }}
-	</h1>
+    <h1 class="mb-8 lg:mb-10 pr-3 pl-3 lg:pr-0 lg:pl-0 text-[28px]/[36px] md:text-[40px]/[48px]">
+        {{ 'pel.footer.link-bottom.sitemap'|trans }}
+    </h1>
 {% endblock %}
 
 {% block content %}
+    <div class="fr-grid-row flex-col gap-y-10">
+        <div class="fr-grid-row fr-background-default--grey pr-6 pl-6 lg:pr-0 lg:pl-0 border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] border-r border-r-[transparent] lg:border-r-[var(--grey-950-100-hover)] border-b border-b-[var(--grey-950-100-hover)] border-l border-l-[transparent] lg:border-l-[var(--grey-950-100-hover)]">
+            <div class="flex-col fr-pr-md-5v fr-pl-md-5v fr-py-6v">
+                {{ 'pel.please.find.the.sitemap'|trans }} :
+                <ul>
+                    <li><a href="{{ path('home') }}">{{ 'pel.breadcrumb.welcome'|trans }}</a></li>
+                    <li><a href="{{ path('faq') }}">{{ 'pel.header.help'|trans }}</a></li>
+                    <li><a href="{{ path('cgu') }}">{{ 'pel.i.find.the.approach.suitable.for.my.situation'|trans }}</a></li>
+                    <li><a href="{{ path('home_confirmation') }}">{{ 'pel.home.title'|trans }}</a></li>
+                    <li><a href="{{ path('cgu') }}">{{ 'pel.fsi.general.orienteer'|trans }}</a></li>
+                    {# TODO replace the following link by the twig path when we have the controller #}
+                    <li><a href="/conditions-generales-dutilisation">{{ 'pel.general.terms.of.use'|trans }}</a></li>
+                    <li><a href="{{ path('accessibility') }}">{{ 'pel.footer.link-bottom.accessibility'|trans }}</a></li>
+                    <li><a href="{{ path('legal') }}">{{ 'pel.footer.link-bottom.legal'|trans }}</a></li>
+                    <li><a href="{{ path('privacy') }}">{{ 'pel.footer.link-bottom.privacy'|trans }}</a></li>
+                    <li><a href="{{ path('cookies') }}">{{ 'pel.footer.link-bottom.cookies'|trans }}</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
 {% endblock %}
