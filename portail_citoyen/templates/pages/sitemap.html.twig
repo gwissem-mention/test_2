@@ -32,8 +32,7 @@
                     <li><a href="{{ path('cgu') }}">{{ 'pel.i.find.the.approach.suitable.for.my.situation'|trans }}</a></li>
                     <li><a href="{{ path('home_confirmation') }}">{{ 'pel.home.title'|trans }}</a></li>
                     <li><a href="{{ path('cgu') }}">{{ 'pel.fsi.general.orienteer'|trans }}</a></li>
-                    {# TODO replace the following link by the twig path when we have the controller #}
-                    <li><a href="/conditions-generales-dutilisation">{{ 'pel.general.terms.of.use'|trans }}</a></li>
+                    <li><a href="{{ path('terms_use') }}">{{ 'pel.general.terms.of.use'|trans }}</a></li>
                     <li><a href="{{ path('accessibility') }}">{{ 'pel.footer.link-bottom.accessibility'|trans }}</a></li>
                     <li><a href="{{ path('legal') }}">{{ 'pel.footer.link-bottom.legal'|trans }}</a></li>
                     <li><a href="{{ path('privacy') }}">{{ 'pel.footer.link-bottom.privacy'|trans }}</a></li>

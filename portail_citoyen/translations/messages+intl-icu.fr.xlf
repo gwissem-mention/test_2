@@ -1894,6 +1894,282 @@
                 <source>pel.suspects</source>
                 <target>Suspects</target>
             </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.1.title">
+                <source>pel.terms.of.use.article.1.title</source>
+                <target>ARTICLE 1: Définitions</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.1.text.1">
+                <source>pel.terms.of.use.article.1.text.1</source>
+                <target>Le présent article a pour objet de définir les différents termes essentiels des présentes conditions générales d’utilisation :</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.1.text.2">
+                <source>pel.terms.of.use.article.1.text.2</source>
+                <target>Utilisateur : ce terme désigne toute personne qui utilise le service proposé par le Site.</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.1.text.3">
+                <source>pel.terms.of.use.article.1.text.3</source>
+                <target>Service : le Service permet de recueillir sur le Site les déclarations de plainte des usagers.</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.2.title">
+                <source>pel.terms.of.use.article.2.title</source>
+                <target>ARTICLE 2 : Objet</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.2.text.1">
+                <source>pel.terms.of.use.article.2.text.1</source>
+                <target>Les présentes « conditions générales d'utilisation » ont pour objet de définir les conditions et modalités d’utilisation du site Plainte En Ligne, disponible à l’adresse suivante: <![CDATA[<a target="_blank" href="https://plainte-en-ligne.masecurite.interieur.gouv.fr/">plainte-en-ligne.masecurite.interieur.gouv.fr</a>]]></target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.2.text.2">
+                <source>pel.terms.of.use.article.2.text.2</source>
+                <target>Le service « Plainte En Ligne » est un site internet mis en place par le Ministère de l'Intérieur pour recueillir les déclarations de plainte de ses utilisateurs. Selon la situation, il permet la réalisation d'un dépôt de plainte de façon partiellement ou totalement dématérialisée.</target>
+            </trans-unit>
+           <trans-unit id="pel.terms.of.use.article.2.text.3">
+                <source>pel.terms.of.use.article.2.text.3</source>
+                <target>Le site Plainte En Ligne n'est pas adapté au traitement des situations d’urgence pour lesquelles il est nécessaire de téléphoner immédiatement au 17 ou au 112.</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.3.title">
+                <source>pel.terms.of.use.article.3.title</source>
+                <target>ARTICLE 3 : Fonctionnement/Fonctionnalité du service</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.3.text.1">
+                <source>pel.terms.of.use.article.3.text.1</source>
+                <target>L’utilisation du Service requiert une connexion et un navigateur internet.</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.3.text.2">
+                <source>pel.terms.of.use.article.3.text.2</source>
+                <target>L’accès à partir de terminaux mobiles est possible sous réserve de la compatibilité du module avec le navigateur et l’équipement de l’utilisateur.</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.3.text.3">
+                <source>pel.terms.of.use.article.3.text.3</source>
+                <target>L’utilisation de la plateforme est libre et gratuite.</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.3.text.4">
+                <source>pel.terms.of.use.article.3.text.4</source>
+                <target>Seuls les utilisateurs majeurs peuvent effectuer une déclaration sur le site Plainte En Ligne.</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.3.text.5">
+                <source>pel.terms.of.use.article.3.text.5</source>
+                <target>L'utilisateur peut agir pour son propre compte, celui de l'un de ses enfants mineurs ou encore une personne morale dont il peut attester qu'il est l'un des représentants légaux.</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.3.text.6">
+                <source>pel.terms.of.use.article.3.text.6</source>
+                <target>La déclaration effectuée ne doit concerner que des infractions d’atteinte aux biens commises par un ou des auteurs à l'identité inconnue de l'utilisateur.</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.3.text.7">
+                <source>pel.terms.of.use.article.3.text.7</source>
+                <target>Les faits dénoncés doivent être réels sous peine d'entraîner des sanctions pénales.</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.3.text.8">
+                <source>pel.terms.of.use.article.3.text.8</source>
+                <target>La déclaration réalisée sur le site Plainte En Ligne ne constituera une plainte qu'après validation par un agent et intégration des éléments qu'elle contient dans un procès-verbal de plainte.</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.3.text.9">
+                <source>pel.terms.of.use.article.3.text.9</source>
+                <target>Le récapitulatif de déclaration délivré à l'issue de la validation de sa déclaration par l'utilisateur ne dispose d'aucune valeur légale.</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.3.text.10">
+                <source>pel.terms.of.use.article.3.text.10</source>
+                <target>Après analyse de la déclaration, un agent a la possibilité de ne pas la valider sur procès-verbal de plainte. L'Utilisateur sera alors avisé par courriel de cette décision ainsi que des éléments qui l'ont motivée.</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.3.text.11">
+                <source>pel.terms.of.use.article.3.text.11</source>
+                <target>Une fois la déclaration validée par l'agent,  la démarche pourra être finalisée en plainte totalement en ligne ou nécessitera un rendez-vous avec une unité de police ou de gendarmerie.</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.3.text.12">
+                <source>pel.terms.of.use.article.3.text.12</source>
+                <target>L'authentification du déclarant au moyen de France Connect est une condition nécessaire à une démarche totalement dématérialisée. D'autres critères peuvent cependant conduire l'utilisateur à finaliser sa démarche en lien avec une unité de police ou de gendarmerie tels que la nature de l'infraction ou la nécessité de compléter sa déclaration.</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.3.text.13">
+                <source>pel.terms.of.use.article.3.text.13</source>
+                <target>Si des éléments permettent de déterminer dès la rédaction de la déclaration qu'un rendez-vous sera nécessaire pour finaliser la démarche, l'Utilisateur pourra choisir l'unité de police ou de gendarmerie dans lequel il souhaite que sa déclaration soit instruite.<![CDATA[<br>]]>Dans le cas contraire, l'unité saisie sera celle compétente au regard du lieu de commission des faits ou, si ce lieu ne peut être défini, celle compétente au regard du lieu de domiciliation de l'Utilisateur.</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.3.text.14">
+                <source>pel.terms.of.use.article.3.text.14</source>
+                <target>L'Utilisateur est avisé, après avoir validé sa déclaration sur le site, de l'unité qui en assurera le traitement.</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.3.text.15">
+                <source>pel.terms.of.use.article.3.text.15</source>
+                <target>Toute annulation ou modification d'une déclaration validée par l'utilisateur est impossible dans le cadre du site Plainte En Ligne et nécessitera que l'Utilisateur prenne contact directement avec l'unité en charge du traitement de sa déclaration pour connaître la marche à suivre.</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.3.text.16">
+                <source>pel.terms.of.use.article.3.text.16</source>
+                <target>En cas de rendez-vous proposé à l'Utilisateur,  le procès-verbal de plainte et ses annexes lui seront remis par un agent.</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.3.text.17">
+                <source>pel.terms.of.use.article.3.text.17</source>
+                <target>En cas de démarche réalisée totalement en ligne, le procès-verbal de plainte numérique et ses annexes restent disponibles pour l'usager pendant un délai de 6 mois à compter de leur mise à disposition sur un espace dédié.</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.3.text.18">
+                <source>pel.terms.of.use.article.3.text.18</source>
+                <target>Un courriel avise l'usager de cette mise à disposition.</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.3.text.19">
+                <source>pel.terms.of.use.article.3.text.19</source>
+                <target>L'accès aux documents, se fait sur le Site et après authentification au moyen de France Connect.</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.3.text.20">
+                <source>pel.terms.of.use.article.3.text.20</source>
+                <target>Au-delà du délai de 6 mois, toute réédition des documents ne pourra se faire que par une demande adressée auprès de l'unité qui aura rédigé les documents.</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.4.title">
+                <source>pel.terms.of.use.article.4.title</source>
+                <target>ARTICLE 4 : Traitement des données à caractère personnel</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.4.text.1">
+                <source>pel.terms.of.use.article.4.text.1</source>
+                <target>Dans le cadre de l’utilisation du Service, le ministère de l’Intérieur est amené à collecter et traiter des données à caractère personnel concernant l’Utilisateur.</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.4.text.2">
+                <source>pel.terms.of.use.article.4.text.2</source>
+                <target>Les modalités de collecte et de traitement des données à caractère personnel ainsi que les droits dont disposent les Utilisateurs peuvent être consultés dans la </target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.4.text.2.link">
+                <source>pel.terms.of.use.article.4.text.2.link</source>
+                <target>Politique de confidentialité du Site.</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.5.title">
+                <source>pel.terms.of.use.article.5.title</source>
+                <target>ARTICLE 5 : Traitement des demandes abusives ou frauduleuses</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.5.text.1">
+                <source>pel.terms.of.use.article.5.text.1</source>
+                <target>Le droit d’utiliser ce service ne s’applique pas aux envois abusifs, notamment par leur nombre, leur caractère répétitif ou systématique, ou les envois susceptibles de porter atteinte à la sécurité des systèmes d’information.</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.5.text.2">
+                <source>pel.terms.of.use.article.5.text.2</source>
+                <target>Les envois abusifs, dans l'intention de nuire (au sens de l'article 226-10 code pénal) sont punis d'une peine de 5 ans d’emprisonnement et 45 000€ d'amende.</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.6.title">
+                <source>pel.terms.of.use.article.6.title</source>
+                <target>ARTICLE 6 : Les règles relatives aux liens hypertextes</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.6.text.1">
+                <source>pel.terms.of.use.article.6.text.1</source>
+                <target>Des liens vers d’autres sites internet publics peuvent également être proposés sur le Site afin de faciliter l’information de l’Utilisateur.</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.6.text.2">
+                <source>pel.terms.of.use.article.6.text.2</source>
+                <target>Toute information accessible via un lien vers ces autres sites n'est sous le contrôle ni de la Direction Générale de la Police Nationale (DGPN) ni de la Direction Générale de la Gendarmerie Nationale (DGGN) qui déclinent toute responsabilité quant à leur contenu.</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.6.text.3">
+                <source>pel.terms.of.use.article.6.text.3</source>
+                <target>Ces sites tiers n’engagent pas la responsabilité de ces directions.</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.7.title">
+                <source>pel.terms.of.use.article.7.title</source>
+                <target>ARTICLE 7 : Propriété intellectuelle</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.7.text.1">
+                <source>pel.terms.of.use.article.7.text.1</source>
+                <target>Sauf mention contraire, tous les contenus de ce site sont sous </target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.7.text.2">
+                <source>pel.terms.of.use.article.7.text.2</source>
+                <target>Les informations mises en ligne sur le site <![CDATA[<a target="_blank" href="https://plainte-en-ligne.masecurite.interieur.gouv.fr/">www.plainte-en-ligne.masecurite.interieur.gouv.fr</a>]]> sont confidentielles et ne peuvent donc être reproduites.</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.7.text.3">
+                <source>pel.terms.of.use.article.7.text.3</source>
+                <target>La mise en place de lien vers le site <![CDATA[<a target="_blank" href="https://plainte-en-ligne.masecurite.interieur.gouv.fr/">www.plainte-en-ligne.masecurite.interieur.gouv.fr</a>]]> n’est conditionnée à aucun accord préalable. La mention explicite de l’intitulé du site du ministère de l’Intérieur dans l’intitulé du lien est vivement souhaitée. Il est fortement recommandé que l’ouverture de cette page se fasse dans une fenêtre indépendante du navigateur. Toutefois, le ministère de l’Intérieur se réserve le droit de demander la suppression de lien vers des sites dont l’objet s’avérerait non conforme à l’objet de son site, diffuseraient des informations à caractère raciste, pornographique ou xénophobe ou étant de nature à heurter la sensibilité du public.</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.7.text.4">
+                <source>pel.terms.of.use.article.7.text.4</source>
+                <target>Les créations graphiques, logos, illustrations, photographies et vidéos édités sur le site ne peuvent être reproduites sans accord préalable de la Délégation à l'Information et à la COMmunication (DICOM).</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.7.text.5">
+                <source>pel.terms.of.use.article.7.text.5</source>
+                <target>Les demandes sont à adresser :</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.7.text.6">
+                <source>pel.terms.of.use.article.7.text.6</source>
+                <target><![CDATA[<u>Par courriel à :  </u>]]></target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.7.text.7">
+                <source>pel.terms.of.use.article.7.text.7</source>
+                <target><![CDATA[<u>Par courrier à l'adresse suivante :</u><br>Ministère de l’Intérieur<br>DICOM<br>Photo / Vidéo<br>40, avenue des Terroirs de France - 75012 Paris]]></target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.8.title">
+                <source>pel.terms.of.use.article.8.title</source>
+                <target>ARTICLE 8 : Mise à jour à des conditions générales d’utilisation</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.8.text.1">
+                <source>pel.terms.of.use.article.8.text.1</source>
+                <target>Les termes des présentes conditions d’utilisation peuvent être mis à jour à tout moment, sans préavis, en fonction des modifications apportées au Service, de l’évolution de la législation ou pour tout autre motif jugé nécessaire.</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.9.title">
+                <source>pel.terms.of.use.article.9.title</source>
+                <target>ARTICLE 9: Nullité partielle</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.9.text.1">
+                <source>pel.terms.of.use.article.9.text.1</source>
+                <target>Si une ou plusieurs stipulations des présentes conditions générales d’utilisation sont tenues pour non valides ou déclarées comme telles en application d'une loi, d'un règlement ou d'une décision définitive d'une juridiction compétente, les autres stipulations garderont toute leur force et toute leur portée.</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.10.title">
+                <source>pel.terms.of.use.article.10.title</source>
+                <target>ARTICLE 10 : Engagements et responsabilité</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.10.text.1">
+                <source>pel.terms.of.use.article.10.text.1</source>
+                <target>Le Service s'engage à prendre toutes précautions utiles pour préserver la sécurité des données collectées auprès de l'usager, et notamment empêcher qu'elles soient déformées, endommagées ou que des tiers non autorisés y aient accès.</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.10.text.2">
+                <source>pel.terms.of.use.article.10.text.2</source>
+                <target>Le Service s'engage à mettre en œuvre tous les moyens nécessaires afin de garantir la sécurité et la confidentialité des données de l’Utilisateur.</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.10.text.3">
+                <source>pel.terms.of.use.article.10.text.3</source>
+                <target>L’Utilisateur du Service s’engage à ne fournir, dans le cadre de l’utilisation du Service, que des informations sincères, à jour et complètes. Dans l’hypothèse où l’Utilisateur ne s’acquitterait pas de cet engagement, la DGPN et la DGGN se réservent le droit de suspendre ou résilier la démarche, sans préjudice des éventuelles actions en responsabilité pénale et civile qui pourraient être engagées à son encontre.</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.10.text.4">
+                <source>pel.terms.of.use.article.10.text.4</source>
+                <target>Il est rappelé que toute personne procédant à une fausse déclaration pour elle-même ou pour autrui s’expose, notamment, aux sanctions prévues à l’article 441-1 du Code Pénal, prévoyant des peines de trois ans d’emprisonnement et 45 000 euros d’amende.</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.10.text.5">
+                <source>pel.terms.of.use.article.10.text.5</source>
+                <target>De même, l'utilisateur est informé que le fait de dénoncer mensongèrement à l’autorité judiciaire ou administrative des faits constitutifs d’un crime ou d’un délit, qui ont exposé les autorités judiciaires à d’inutiles recherches, est puni de 6 mois d’emprisonnement et de 7 500 euros d’amende (article 434-26 du code pénal) ; </target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.10.text.6">
+                <source>pel.terms.of.use.article.10.text.6</source>
+                <target>Les sources des informations diffusées sur le Service sont réputées fiables. Toutefois, le Service se réserve la faculté d'une non-garantie de la fiabilité des sources. Les informations données sur le Service le sont à titre purement informatif. Ainsi, l'Utilisateur assume seul l'entière responsabilité de l'utilisation des informations et contenus du présent Service.</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.10.text.7">
+                <source>pel.terms.of.use.article.10.text.7</source>
+                <target>La responsabilité du Service ne peut être engagée en cas de force majeure ou du fait imprévisible et irrésistible d'un tiers.</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.11.title">
+                <source>pel.terms.of.use.article.11.title</source>
+                <target>ARTICLE 11 : Textes officiels</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.11.text.1">
+                <source>pel.terms.of.use.article.11.text.1</source>
+                <target>Code des relations entre le public et l'administration.</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.11.text.2">
+                <source>pel.terms.of.use.article.11.text.2</source>
+                <target>Loi n°78-17 du 6 janvier 1978 modifiée relative à l’informatique, aux fichiers et aux libertés.</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.11.text.3">
+                <source>pel.terms.of.use.article.11.text.3</source>
+                <target>Ordonnance n° 2014-1330 du 6 novembre 2014 relative au droit des usagers de saisir l'administration par voie électronique.</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.12.title">
+                <source>pel.terms.of.use.article.12.title</source>
+                <target>ARTICLE 12 : Attribution de juridiction et droit applicable</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.12.text.1">
+                <source>pel.terms.of.use.article.12.text.1</source>
+                <target>En cas de litige sur l'interprétation ou l'exécution des présentes conditions générales et à défaut d'un accord amiable des parties, le Tribunal administratif de Paris est seul compétent.<![CDATA[<br>]]>Le droit de la République Française est seul applicable.</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.12.text.2">
+                <source>pel.terms.of.use.article.12.text.2</source>
+                <target>Pour toute question relative à l’application des présentes CGU, vous pouvez joindre les éditeurs du Site aux coordonnées suivantes:</target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.12.text.3">
+                <source>pel.terms.of.use.article.12.text.3</source>
+                <target><![CDATA[<u>Adresse DGGN :</u><br>Direction générale de la gendarmerie nationale<br>4, rue Claude Bernard<br>92 130 Issy-les-Moulineaux]]></target>
+            </trans-unit>
+            <trans-unit id="pel.terms.of.use.article.12.text.4">
+                <source>pel.terms.of.use.article.12.text.4</source>
+                <target><![CDATA[<u>Adresse DGPN :</u><br>Ministère de l’Intérieur<br>Direction générale de la police nationale<br>Place Beauvau<br>75008 Paris Cedex 08]]></target>
+            </trans-unit>
             <trans-unit id="pel.the">
                 <source>pel.the</source>
                 <target>Le</target>
