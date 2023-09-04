@@ -18,6 +18,7 @@ security:
                 - App\Security\AgentAuthenticator
     role_hierarchy:
         ROLE_SUPERVISOR: ROLE_USER
+        ROLE_DELEGATED: ROLE_SUPERVISOR
         
 when@test:
     security:

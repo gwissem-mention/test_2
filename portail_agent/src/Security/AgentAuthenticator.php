@@ -6,6 +6,7 @@ namespace App\Security;
 
 use App\AppEnum\Institution;
 use App\Entity\User;
+use App\Repository\RightDelegationRepository;
 use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -40,7 +41,8 @@ final class AgentAuthenticator extends AbstractAuthenticator implements Authenti
     public function __construct(
         private readonly bool $ssoIsEnabled,
         private readonly UrlGeneratorInterface $urlGenerator,
-        private readonly UserRepository $userRepository
+        private readonly UserRepository $userRepository,
+        private readonly RightDelegationRepository $delegationRepository
     ) {
     }
 
@@ -111,6 +113,9 @@ final class AgentAuthenticator extends AbstractAuthenticator implements Authenti
         return new Response(null, 401);
     }
 
+    /**
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
     private function createOrUpdateUser(
         string $identifier,
         string $number,
@@ -129,6 +134,19 @@ final class AgentAuthenticator extends AbstractAuthenticator implements Authenti
 
         if (true === $supervisor) {
             $user->addRole('ROLE_SUPERVISOR');
+        }
+
+        $rightDelegations = $this->delegationRepository->findAll();
+
+        foreach ($rightDelegations as $rightDelegation) {
+            if (true === $rightDelegation->hasDelegatedRight($user)) {
+                if ($rightDelegation->getEndDate() >= new \DateTimeImmutable()) {
+                    $user->removeRole('ROLE_DELEGATED');
+                } elseif ($rightDelegation->getStartDate() <= new \DateTimeImmutable()) {
+                    $user->addRole('ROLE_DELEGATED');
+                }
+                break;
+            }
         }
 
         $this->userRepository->save($user, true);

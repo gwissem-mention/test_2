@@ -63,6 +63,9 @@ class User implements UserInterface
     ], orphanRemoval: true)]
     private Collection $complaints;
 
+    #[ORM\OneToOne(mappedBy: 'delegatingAgent')]
+    private ?RightDelegation $rightDelegation = null;
+
     public function __construct(string $number, Institution $institution, bool $supervisor = false)
     {
         $this->number = $number;
@@ -103,6 +106,17 @@ class User implements UserInterface
     {
         if (!in_array($role, $this->roles, true)) {
             $this->roles[] = $role;
+        }
+
+        return $this;
+    }
+
+    public function removeRole(string $role): self
+    {
+        $index = array_search($role, $this->roles);
+
+        if (false !== $index) {
+            unset($this->roles[$index]);
         }
 
         return $this;
@@ -250,5 +264,22 @@ class User implements UserInterface
     public function __toString(): string
     {
         return (string) $this->getAppellation();
+    }
+
+    public function getRightDelegation(): ?RightDelegation
+    {
+        return $this->rightDelegation;
+    }
+
+    public function setRightDelegation(RightDelegation $rightDelegation): static
+    {
+        // set the owning side of the relation if necessary
+        if ($rightDelegation->getDelegatingAgent() !== $this) {
+            $rightDelegation->setDelegatingAgent($this);
+        }
+
+        $this->rightDelegation = $rightDelegation;
+
+        return $this;
     }
 }
