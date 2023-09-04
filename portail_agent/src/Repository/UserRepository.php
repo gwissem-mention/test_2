@@ -64,4 +64,20 @@ class UserRepository extends ServiceEntityRepository
 
         return $result;
     }
+
+    /**
+     * @return array<int, User>
+     */
+    public function getAgentsByService(?string $service): array
+    {
+        /** @var User[] $users */
+        $users = $this->createQueryBuilder('u')
+            ->andWhere('u.serviceCode = :service')
+            ->setParameter('service', $service)
+            ->getQuery()
+            ->getResult()
+        ;
+
+        return array_filter($users, fn ($user) => !in_array('ROLE_SUPERVISOR', $user->getRoles(), true));
+    }
 }

@@ -1650,6 +1650,10 @@
                 <source>pel.prescription.of.facts</source>
                 <target>Prescriptions des faits</target>
             </trans-unit>
+            <trans-unit id="pel.right.delegation">
+                <source>pel.right.delegation</source>
+                <target>sélectionnez un ou plusieurs agents pour lesquels vous souhaitez accorder les droits</target>
+            </trans-unit>
             <trans-unit id="pel.choose.a.theme">
                 <source>pel.choose.a.theme</source>
                 <target>Choisissez un thème pour personnaliser l'apparence du site.</target>
