@@ -1,0 +1,101 @@
+{% extends 'common/_help.html.twig' %}
+
+{% block title %}
+    {{ 'pel.general.terms.of.use'|trans }}
+{% endblock %}
+
+{% block breadcrumb %}
+    <ol class="fr-breadcrumb__list">
+        <li>
+            <a class="fr-breadcrumb__link" href="/">{{ 'pel.breadcrumb.welcome'|trans }}</a>
+        </li>
+        <li>
+            <a class="fr-breadcrumb__link" aria-current="page">{{ 'pel.general.terms.of.use'|trans }}</a>
+        </li>
+    </ol>
+{% endblock %}
+
+{% block heading %}
+    <h1 class="mb-8 lg:mb-10 pr-3 pl-3 lg:pr-0 lg:pl-0 text-[28px]/[36px] md:text-[40px]/[48px]">
+        {{ 'pel.general.terms.of.use'|trans }}
+    </h1>
+{% endblock %}
+
+{% block content %}
+    <div class="fr-grid-row flex-col gap-y-10">
+        <div class="fr-grid-row fr-background-default--grey pr-6 pl-6 lg:pr-0 lg:pl-0 border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] border-r border-r-[transparent] lg:border-r-[var(--grey-950-100-hover)] border-b border-b-[var(--grey-950-100-hover)] border-l border-l-[transparent] lg:border-l-[var(--grey-950-100-hover)]">
+            <div class="flex-col fr-pr-md-5v fr-pl-md-5v fr-py-6v">
+                <h2 class="fr-h5 font-bold">{{ 'pel.terms.of.use.article.1.title'|trans }}</h2>
+                <p class="fr-mb-0">{{ 'pel.terms.of.use.article.1.text.1'|trans }}</p>
+                <ul>
+                    <li>{{ 'pel.terms.of.use.article.1.text.2'|trans }}</li>
+                    <li>{{ 'pel.terms.of.use.article.1.text.3'|trans }}</li>
+                </ul>
+                <h2 class="fr-h5 font-bold fr-mt-6v">{{ 'pel.terms.of.use.article.2.title'|trans }}</h2>
+                <p>{{ 'pel.terms.of.use.article.2.text.1'|trans|raw }}</p>
+                <p>{{ 'pel.terms.of.use.article.2.text.2'|trans }}</p>
+                <p>{{ 'pel.terms.of.use.article.2.text.3'|trans }}</p>
+                <h2 class="fr-h5 font-bold">{{ 'pel.terms.of.use.article.3.title'|trans }}</h2>
+                <p>{{ 'pel.terms.of.use.article.3.text.1'|trans }}</p>
+                <p>{{ 'pel.terms.of.use.article.3.text.2'|trans }}</p>
+                <p>{{ 'pel.terms.of.use.article.3.text.3'|trans }}</p>
+                <p>{{ 'pel.terms.of.use.article.3.text.4'|trans }}</p>
+                <p>{{ 'pel.terms.of.use.article.3.text.5'|trans }}</p>
+                <p>{{ 'pel.terms.of.use.article.3.text.6'|trans }}</p>
+                <p>{{ 'pel.terms.of.use.article.3.text.7'|trans }}</p>
+                <p>{{ 'pel.terms.of.use.article.3.text.8'|trans }}</p>
+                <p>{{ 'pel.terms.of.use.article.3.text.9'|trans }}</p>
+                <p>{{ 'pel.terms.of.use.article.3.text.10'|trans }}</p>
+                <p>{{ 'pel.terms.of.use.article.3.text.11'|trans }}</p>
+                <p>{{ 'pel.terms.of.use.article.3.text.12'|trans }}</p>
+                <p>{{ 'pel.terms.of.use.article.3.text.13'|trans|raw }}</p>
+                <p>{{ 'pel.terms.of.use.article.3.text.14'|trans }}</p>
+                <p>{{ 'pel.terms.of.use.article.3.text.15'|trans }}</p>
+                <p>{{ 'pel.terms.of.use.article.3.text.16'|trans }}</p>
+                <p>{{ 'pel.terms.of.use.article.3.text.17'|trans }}</p>
+                <p>{{ 'pel.terms.of.use.article.3.text.18'|trans }}</p>
+                <p>{{ 'pel.terms.of.use.article.3.text.19'|trans }}</p>
+                <p>{{ 'pel.terms.of.use.article.3.text.20'|trans }}</p>
+                <h2 class="fr-h5 font-bold">{{ 'pel.terms.of.use.article.4.title'|trans }}</h2>
+                <p>{{ 'pel.terms.of.use.article.4.text.1'|trans }}</p>
+                <p>{{ 'pel.terms.of.use.article.4.text.2'|trans }}<a href="{{ path("privacy") }}">{{ 'pel.terms.of.use.article.4.text.2.link'|trans }}</a></p>
+                <h2 class="fr-h5 font-bold">{{ 'pel.terms.of.use.article.5.title'|trans }}</h2>
+                <p>{{ 'pel.terms.of.use.article.5.text.1'|trans }}</p>
+                <p>{{ 'pel.terms.of.use.article.5.text.2'|trans }}</p>
+                <h2 class="fr-h5 font-bold">{{ 'pel.terms.of.use.article.6.title'|trans }}</h2>
+                <p>{{ 'pel.terms.of.use.article.6.text.1'|trans }}</p>
+                <p>{{ 'pel.terms.of.use.article.6.text.2'|trans }}</p>
+                <p>{{ 'pel.terms.of.use.article.6.text.3'|trans }}</p>
+                <h2 class="fr-h5 font-bold">{{ 'pel.terms.of.use.article.7.title'|trans }}</h2>
+                <p>{{ 'pel.terms.of.use.article.7.text.1'|trans }}<a href="https://github.com/etalab/licence-ouverte/blob/master/LO.md" rel="noreferrer noopener" target="_blank" title="{{ 'pel.footer.copyright.license.title'|trans }}">{{ 'pel.footer.copyright.license'|trans }}</a></p>
+                <p>{{ 'pel.terms.of.use.article.7.text.2'|trans|raw }}</p>
+                <p>{{ 'pel.terms.of.use.article.7.text.3'|trans|raw }}</p>
+                <p>{{ 'pel.terms.of.use.article.7.text.4'|trans }}</p>
+                <p>{{ 'pel.terms.of.use.article.7.text.5'|trans }}</p>
+                <p>{{ 'pel.terms.of.use.article.7.text.6'|trans|raw }}</p>
+                <p>{{ 'pel.terms.of.use.article.7.text.7'|trans|raw }}</p>
+                <h2 class="fr-h5 font-bold">{{ 'pel.terms.of.use.article.8.title'|trans }}</h2>
+                <p>{{ 'pel.terms.of.use.article.8.text.1'|trans }}</p>
+                <h2 class="fr-h5 font-bold">{{ 'pel.terms.of.use.article.9.title'|trans }}</h2>
+                <p>{{ 'pel.terms.of.use.article.9.text.1'|trans }}</p>
+                <h2 class="fr-h5 font-bold">{{ 'pel.terms.of.use.article.10.title'|trans }}</h2>
+                <p>{{ 'pel.terms.of.use.article.10.text.1'|trans }}</p>
+                <p>{{ 'pel.terms.of.use.article.10.text.2'|trans }}</p>
+                <p>{{ 'pel.terms.of.use.article.10.text.3'|trans }}</p>
+                <p>{{ 'pel.terms.of.use.article.10.text.4'|trans }}</p>
+                <p>{{ 'pel.terms.of.use.article.10.text.5'|trans }}</p>
+                <p>{{ 'pel.terms.of.use.article.10.text.6'|trans }}</p>
+                <p>{{ 'pel.terms.of.use.article.10.text.7'|trans }}</p>
+                <h2 class="fr-h5 font-bold">{{ 'pel.terms.of.use.article.11.title'|trans }}</h2>
+                <p>{{ 'pel.terms.of.use.article.11.text.1'|trans }}</p>
+                <p>{{ 'pel.terms.of.use.article.11.text.2'|trans }}</p>
+                <p>{{ 'pel.terms.of.use.article.11.text.3'|trans }}</p>
+                <h2 class="fr-h5 font-bold">{{ 'pel.terms.of.use.article.12.title'|trans }}</h2>
+                <p>{{ 'pel.terms.of.use.article.12.text.1'|trans|raw }}</p>
+                <p>{{ 'pel.terms.of.use.article.12.text.2'|trans }}</p>
+                <p>{{ 'pel.terms.of.use.article.12.text.3'|trans|raw }}</p>
+                <p>{{ 'pel.terms.of.use.article.12.text.4'|trans|raw }}</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
