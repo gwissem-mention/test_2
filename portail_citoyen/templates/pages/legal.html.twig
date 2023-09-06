@@ -22,4 +22,74 @@
 {% endblock %}
 
 {% block content %}
+<div class="fr-grid-row flex-col gap-y-10">
+    <div class="fr-grid-row fr-background-default--grey pr-6 pl-6 lg:pr-0 lg:pl-0 border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] border-r border-r-[transparent] lg:border-r-[var(--grey-950-100-hover)] border-b border-b-[var(--grey-950-100-hover)] border-l border-l-[transparent] lg:border-l-[var(--grey-950-100-hover)]">
+        <div class="flex-col fr-pr-md-5v fr-pl-md-5v fr-py-6v">
+            <p>
+                {{ 'pel.legal.website.address.text'|trans }}
+                <a title="{{ 'pel.website.url.title'|trans }}" target="_blank" href="https://www.plainte-en-ligne.masecurite.interieur.gouv.fr">{{ 'pel.legal.website.address'|trans }}</a>
+            </p>
+            <h2 class="fr-h5 fr-mb-8v fr-mt-2v">{{ 'pel.legal.editors.information'|trans }}</h2>
+            <p>{{ 'pel.legal.editors.information.foreword'|trans }}</p>
+            <p class="underline font-bold">{{ 'pel.legal.contact'|trans }} :</p>
+            <p class="underline m-0">{{ 'pel.legal.dggn.address.label'|trans }} :</p>
+            <p class="m-0">{{ 'pel.legal.dggn'|trans }}</p>
+            <p class="m-0">{{ 'pel.legal.dggn.address.street'|trans }}</p>
+            <p>{{ 'pel.legal.dggn.address.city'|trans }}</p>
+            <p class="underline m-0">{{ 'pel.legal.dgpn.address.label'|trans }} :</p>
+            <p class="m-0">{{ 'pel.legal.ministry.of.the.interior'|trans }}</p>
+            <p class="m-0">{{ 'pel.legal.dgpn'|trans }}</p>
+            <p class="m-0">{{ 'pel.legal.dgpn.address.street'|trans }}</p>
+            <p>{{ 'pel.legal.dgpn.address.city'|trans }}</p>
+            <p class="font-bold m-0">{{ 'pel.legal.publication.directors'|trans }}</p>
+            <p class="m-0">{{ 'pel.legal.dgpn.director'|trans }}</p>
+            <p>{{ 'pel.legal.dggn.director'|trans }}</p>
+            <p class="font-bold m-0">{{ 'pel.legal.editorial.and.technical.team'|trans }}</p>
+            <p class="m-0">{{ 'pel.legal.anfsi'|trans }}</p>
+            <p class="m-0">{{ 'pel.legal.dpai.dpru'|trans }}</p>
+            <p class="m-0">{{ 'pel.legal.editorial.and.technical.team.address.street'|trans }}</p>
+            <p>{{ 'pel.legal.editorial.and.technical.team.address.city'|trans }}</p>
+            <h2 class="fr-h5 fr-mb-8v fr-mt-2v">{{ 'pel.legal.hosting.information'|trans }}</h2>
+            <p class="m-0">{{ 'pel.legal.hosting.text'|trans }} :</p>
+            <p class="m-0">{{ 'pel.legal.host.name'|trans }}</p>
+            <p class="m-0">{{ 'pel.legal.host.address.street'|trans }}</p>
+            <p class="m-0">{{ 'pel.legal.host.address.city'|trans }}</p>
+            <p class="m-0">{{ 'pel.legal.host.siret'|trans }}</p>
+            <p>{{ 'pel.legal.host.phone'|trans }}</p>
+            <h2 class="fr-h5 fr-mb-2v fr-mt-2v">{{ 'pel.legal.copyright'|trans }}</h2>
+            <h3 class="fr-h6 fr-mb-8v fr-mt-2v">{{ 'pel.legal.online.content.reuse'|trans }}</h3>
+            <p>
+                {{ 'pel.legal.online.content.reuse.text.1'|trans }}
+                <a title="{{ 'pel.footer.copyright.license.title'|trans }}" target="_blank" href="https://github.com/etalab/licence-ouverte/blob/master/LO.md">{{ 'pel.legal.online.content.reuse.under.etalab'|trans }}</a>
+            </p>
+            <p>{{ 'pel.legal.online.content.reuse.text.2'|trans }}</p>
+            <h3 class="fr-h6 fr-mb-8v fr-mt-2v">{{ 'pel.legal.link.creation'|trans }}</h3>
+            <p>{{ 'pel.legal.link.creation.text.1'|trans }}</p>
+            <p>{{ 'pel.legal.link.creation.text.2'|trans }}</p>
+            <h3 class="fr-h6 fr-mb-8v fr-mt-2v">{{ 'pel.legal.graphic.creations.photo.credits.videos'|trans }}</h3>
+            <p>{{ 'pel.legal.graphic.creations.photo.credits.videos.text'|trans }}</p>
+            <p>{{ 'pel.legal.graphic.creations.photo.credits.videos.ask.to'|trans }} :</p>
+            <p class="underline">{{ 'pel.legal.graphic.creations.photo.credits.videos.ask.by.email'|trans }} :</p>
+            <p class="underline">{{ 'pel.legal.graphic.creations.photo.credits.videos.ask.by.mail'|trans }}</p>
+            <p class="m-0">{{ 'pel.legal.ministry.of.the.interior'|trans }}</p>
+            <p class="m-0">{{ 'pel.legal.graphic.creations.photo.credits.videos.name'|trans }}</p>
+            <p class="m-0">{{ 'pel.legal.picture.video'|trans }}</p>
+            <p class="m-0">{{ 'pel.legal.graphic.creations.photo.credits.videos.address.street'|trans }}</p>
+            <p>{{ 'pel.legal.graphic.creations.photo.credits.videos.address.city'|trans }}</p>
+            <h2 class="fr-h5 fr-mb-8v fr-mt-2v">{{ 'pel.legal.intellectual.property'|trans }}</h2>
+            <p class="underline">{{ 'pel.legal.homepage.pictures'|trans }}</p>
+            <p class="underline">{{ 'pel.legal.trademark'|trans }}</p>
+            <h3 class="fr-h6 fr-mb-2v fr-mt-2v">{{ 'pel.legal.website.content'|trans }}</h3>
+            <h4 class="fr-h6 fr-mb-8v fr-mt-2v">{{ 'pel.legal.warning'|trans }}</h4>
+            <p>{{ 'pel.legal.warning.text.1'|trans }}</p>
+            <p>{{ 'pel.legal.warning.text.2'|trans }}</p>
+            <h4 class="fr-h6 fr-mb-8v fr-mt-2v">{{ 'pel.legal.links'|trans }}</h4>
+            <p>{{ 'pel.legal.links.text.1'|trans }}</p>
+            <p>{{ 'pel.legal.links.text.2'|trans }}</p>
+            <h4 class="fr-h6 fr-mb-8v fr-mt-2v">{{ 'pel.legal.website.access'|trans }}</h4>
+            <p>{{ 'pel.legal.website.access.text.1'|trans }}</p>
+            <p>{{ 'pel.legal.website.access.text.2'|trans }}</p>
+        </div>
+    </div>
+</div>
 {% endblock %}
