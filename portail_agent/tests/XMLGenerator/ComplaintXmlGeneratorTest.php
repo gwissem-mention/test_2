@@ -224,7 +224,6 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
 
         /** @var string $xml */
         $xml = $xmlGenerator->generate($complaint, $unit)->asXML();
-
         $this->xmlContent = mb_convert_encoding($xml, 'UTF-8', 'ISO-8859-1');
 
         /** @var Identity $identity */
@@ -257,7 +256,6 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
 
         /** @var string $xmlWithCorporationRepresented */
         $xmlWithCorporationRepresented = $xmlGenerator->generate($complaint, $unit)->asXML();
-
         $this->xmlContentWithCorporationRepresented = mb_convert_encoding($xmlWithCorporationRepresented, 'UTF-8', 'ISO-8859-1');
     }
 
@@ -379,6 +377,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
     {
         $this->assertStringContainsString('<Faits>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Expose>Vol / Dégradation. Profession saisie par le citoyen : Boulanger</Faits_Expose>', $this->xmlContent);
+        $this->assertStringContainsString('<Faits_Expose_GN>Vol / Dégradation</Faits_Expose_GN>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Manop>Je me suis fait voler mon portable.</Faits_Manop>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Localisation_Pays>France</Faits_Localisation_Pays>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Localisation_Departement>69 - Rhône</Faits_Localisation_Departement>', $this->xmlContent);
@@ -583,5 +582,10 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         //        $this->assertStringContainsString('<Periode_Contact>Si possible entre 10h et 11h</Periode_Contact>', $this->xmlContent);
         $this->assertStringContainsString('<CONS>Oui</CONS>', $this->xmlContent);
         $this->assertStringContainsString('</Contact>', $this->xmlContent);
+    }
+
+    public function testVariousSection(): void
+    {
+        $this->assertStringContainsString('<Divers/>', $this->xmlContent);
     }
 }
