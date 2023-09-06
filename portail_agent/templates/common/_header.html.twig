@@ -161,13 +161,16 @@
             </div>
             <div class="fw-bold text-center mb-3 text-black">{{ app.user.appellation }}</div>
             <div class="text-center text-secondary mb-3">
-                {% if is_granted('ROLE_SUPERVISOR') %}
+                {% if is_granted('ROLE_SUPERVISOR') and not is_granted('ROLE_DELEGATED') %}
                     {{ 'pel.supervisor'|trans }}
                 {% else %}
                     {{ 'pel.agent'|trans }}
                 {% endif %}
             </div>
             <div class="fw-semibold text-center mb-5 text-black">{{ app.user.serviceCode|unit_name }}</div>
+            {% if is_right_delegation_active(app.user) %}
+                <div class="fw-semibold text-center mb-5 text-blue">La délégation des droits est activé</div>
+            {% endif %}
             <a href="#" title="{{ 'pel.display.settings'|trans }}" class="d-block reset-link text-blue fw-semibold p-3 text-blue-active" aria-controls="fr-theme-modal" data-fr-opened="false">
                 <img src="{{ asset('build/images/icons/display-settings.svg') }}" alt="{{ 'pel.display.settings'|trans }}" class="me-1">
                 {{ 'pel.display.settings'|trans }}

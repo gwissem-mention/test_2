@@ -15,6 +15,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method RightDelegation|null findOneBy(array $criteria, array $orderBy = null)
  * @method RightDelegation[]    findAll()
  * @method RightDelegation[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method RightDelegation|null findOneByDelegatingAgent($delegatingAgent)
  */
 class RightDelegationRepository extends ServiceEntityRepository
 {
