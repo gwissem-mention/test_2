@@ -23,13 +23,16 @@ use App\Generator\Complaint\Model\Objects\SimpleObjectDTO;
 use App\Generator\Complaint\Model\Objects\VehicleDTO;
 use App\Generator\Complaint\Model\PersonDTO;
 use App\Generator\Complaint\Model\PersonLegalRepresentativeDTO;
+use App\Generator\Complaint\Model\VariousDTO;
 use App\Referential\Entity\Unit;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class ComplaintXmlGenerator implements ComplaintGeneratorInterface
 {
-    public function __construct(readonly private TranslatorInterface $translator)
-    {
+    public function __construct(
+        readonly private TranslatorInterface $translator,
+        readonly private ComplaintXmlAdditionalInformationPN $additionalInformationPN,
+    ) {
     }
 
     public function generate(Complaint $complaint, Unit $unit): \SimpleXMLElement
@@ -49,11 +52,13 @@ class ComplaintXmlGenerator implements ComplaintGeneratorInterface
         }
         if ($complaint->getFacts()) {
             $data = (new FactsDTO($complaint))->getArray();
+            $data['Faits']['Faits_Expose'] .= $this->additionalInformationPN->set($complaint);
             $data['Faits']['Faits_Prejudice_Physique_Description'] = $data['Faits']['Faits_Prejudice_Physique_Description'] ? $this->translator->trans($data['Faits']['Faits_Prejudice_Physique_Description']) : '';
             $xml = $this->arrayToXml($xml, $data);
         }
         $xml = $this->setObjects($xml, $complaint);
         $xml = $this->arrayToXml($xml, (new ContactDTO($complaint))->getArray());
+        $xml = $this->arrayToXml($xml, (new VariousDTO())->getArray());
 
         return $xml;
     }
