@@ -2240,7 +2240,7 @@
             </trans-unit>
             <trans-unit id="pel.victim.of.violence.text">
                 <source>pel.victim.of.violence.text</source>
-                <target>Précisions sur la nature des violences dont vous avez été victime</target>
+                <target>Précisions sur les violences et les blessures dont vous avez été victime</target>
             </trans-unit>
             <trans-unit id="pel.consent.confirmation">
                 <source>pel.consent.confirmation</source>
