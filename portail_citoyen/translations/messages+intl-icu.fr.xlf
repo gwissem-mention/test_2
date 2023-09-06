@@ -2250,6 +2250,10 @@
                 <source>pel.want.to.receive.legal.proceedings.electronically</source>
                 <target>Souhaite que ses données de contact soient utilisées pour recevoir par voie électronique les suites judiciaires ou autre document concernant son affaire.</target>
             </trans-unit>
+            <trans-unit id="pel.website.url.title">
+                <source>pel.website.url.title</source>
+                <target>plainte en ligne - nouvelle fenêtre</target>
+            </trans-unit>
             <trans-unit id="pel.victim.of.violence.text.placeholder">
                 <source>pel.victim.of.violence.text.placeholder</source>
                 <target>J’ai reçu un violent coup au bras et j’ai un avis médical pour le certifier.</target>
@@ -2574,6 +2578,62 @@
                 <source>pel.before.online.complaint</source>
                 <target>Avant de déclarer ma plainte en ligne, je prends acte des dispositions légales suivantes :</target>
             </trans-unit>
+            <trans-unit id="pel.legal.anfsi">
+                <source>pel.legal.anfsi</source>
+                <target>Agence du Numérique des Forces de la Sécurité Intérieure (ANFSI)</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.contact">
+                <source>pel.legal.contact</source>
+                <target>Contact</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.copyright">
+                <source>pel.legal.copyright</source>
+                <target>Copyright et droit d’auteur</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.dpai.dpru">
+                <source>pel.legal.dpai.dpru</source>
+                <target>Direction de la Proximité et de l’Aide à l’Innovation (DPAI) / Département de la Proximité et des Relations Usagers (DPRU)</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.dggn">
+                <source>pel.legal.dggn</source>
+                <target>Direction générale de la gendarmerie nationale</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.dggn.address.city">
+                <source>pel.legal.dggn.address.city</source>
+                <target>92130 Issy-les-Moulineaux</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.dggn.address.label">
+                <source>pel.legal.dggn.address.label</source>
+                <target>Adresse DGGN</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.dggn.address.street">
+                <source>pel.legal.dggn.address.street</source>
+                <target>4, rue Claude Bernard</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.dggn.director">
+                <source>pel.legal.dggn.director</source>
+                <target>Directeur général de la gendarmerie nationale</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.dgpn">
+                <source>pel.legal.dgpn</source>
+                <target>Direction générale de la police nationale</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.dgpn.address.city">
+                <source>pel.legal.dgpn.address.city</source>
+                <target>75008 Paris Cedex 08</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.dgpn.address.label">
+                <source>pel.legal.dgpn.address.label</source>
+                <target>Adresse DGPN</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.dgpn.address.street">
+                <source>pel.legal.dgpn.address.street</source>
+                <target>Place Beauvau</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.dgpn.director">
+                <source>pel.legal.dgpn.director</source>
+                <target>Directeur général de la police nationale</target>
+            </trans-unit>
             <trans-unit id="pel.legal.dispositions">
                 <source>pel.legal.dispositions</source>
                 <target>Dispositions légales</target>
@@ -2585,6 +2645,186 @@
             <trans-unit id="pel.legal.dispositions.title.with.appointment">
                 <source>pel.legal.dispositions.title.with.appointment</source>
                 <target>Dispositions légales (étape 1 sur 8) - Plainte en ligne</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.editorial.and.technical.team">
+                <source>pel.legal.editorial.and.technical.team</source>
+                <target>Equipe rédactionnelle et technique</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.editorial.and.technical.team.address.city">
+                <source>pel.legal.editorial.and.technical.team.address.city</source>
+                <target>92130 ISSY LES MOULINEAUX</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.editorial.and.technical.team.address.street">
+                <source>pel.legal.editorial.and.technical.team.address.street</source>
+                <target>4 rue Claude Bernard</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.editors.information">
+                <source>pel.legal.editors.information</source>
+                <target>Informations éditeurs</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.editors.information.foreword">
+                <source>pel.legal.editors.information.foreword</source>
+                <target>Le site Plainte En Ligne/pel.masecurite.interieur.gouv.fr est édité et géré par la Direction Générale de la Police Nationale et la Direction de la Gendarmerie Nationale qui relèvent du Ministère de l’Intérieur et des Outre-Mer.</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.graphic.creations.photo.credits.videos">
+                <source>pel.legal.graphic.creations.photo.credits.videos</source>
+                <target>Créations graphiques - Crédits photographiques - Vidéos</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.graphic.creations.photo.credits.videos.address.city">
+                <source>pel.legal.graphic.creations.photo.credits.videos.address.city</source>
+                <target>75012 Paris</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.graphic.creations.photo.credits.videos.address.street">
+                <source>pel.legal.graphic.creations.photo.credits.videos.address.street</source>
+                <target>40 avenue des Terroirs de France</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.graphic.creations.photo.credits.videos.ask.by.email">
+                <source>pel.legal.graphic.creations.photo.credits.videos.ask.by.email</source>
+                <target>Par courriel à</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.graphic.creations.photo.credits.videos.ask.by.mail">
+                <source>pel.legal.graphic.creations.photo.credits.videos.ask.by.mail</source>
+                <target>Ou par courrier à l'adresse suivante</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.graphic.creations.photo.credits.videos.ask.to">
+                <source>pel.legal.graphic.creations.photo.credits.videos.ask.to</source>
+                <target>Les demandes sont à adresser</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.graphic.creations.photo.credits.videos.name">
+                <source>pel.legal.graphic.creations.photo.credits.videos.name</source>
+                <target>Délégation à l'information et à la communication</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.graphic.creations.photo.credits.videos.text">
+                <source>pel.legal.graphic.creations.photo.credits.videos.text</source>
+                <target>Les créations graphiques, logos, illustrations, photographies et vidéos édités sur le site ne peuvent être reproduites sans accord préalable de la Délégation à l'Information et à la COM (DICOM) du Ministère de l'Intérieur et des Outre-Mer.</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.hosting.information">
+                <source>pel.legal.hosting.information</source>
+                <target>Informations hébergeurs</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.hosting.text">
+                <source>pel.legal.hosting.text</source>
+                <target>Le site Plainte En Ligne est hébergée sur une infrastructure SecNumCloud par</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.host.address.city">
+                <source>pel.legal.host.address.city</source>
+                <target>92210 Saint-Cloud</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.host.address.street">
+                <source>pel.legal.host.address.street</source>
+                <target>1 rue Royale - 319 bureaux de la Colline</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.host.name">
+                <source>pel.legal.host.name</source>
+                <target>Outscale</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.host.phone">
+                <source>pel.legal.host.phone</source>
+                <target>Téléphone : 0826 206 307</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.host.siret">
+                <source>pel.legal.host.siret</source>
+                <target>SIRET 52759449300027</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.homepage.pictures">
+                <source>pel.legal.homepage.pictures</source>
+                <target>Photos de la page d'accueil</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.intellectual.property">
+                <source>pel.legal.intellectual.property</source>
+                <target>Propriété intellectuelle</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.link.creation">
+                <source>pel.legal.link.creation</source>
+                <target>Création de liens vers le site Plainte En Ligne</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.link.creation.text.1">
+                <source>pel.legal.link.creation.text.1</source>
+                <target>La mise en place de liens vers le site Plainte En Ligne n’est conditionnée à aucun accord préalable. La mention explicite du nom du site dans l’intitulé du lien est vivement recommandée. Il est également préconisé que l’ouverture de cette page se fasse dans une fenêtre indépendante du navigateur.</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.link.creation.text.2">
+                <source>pel.legal.link.creation.text.2</source>
+                <target>Toutefois, le ministère de l’Intérieur se réserve le droit de demander la suppression de liens vers des sites dont l’objet s’avérerait non conforme à l’objet de son site, notamment par la diffusion d’informations à caractère raciste, pornographique, xénophobe, etc ou étant de nature à heurter la sensibilité du public.</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.links">
+                <source>pel.legal.links</source>
+                <target>Liens</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.links.text.1">
+                <source>pel.legal.links.text.1</source>
+                <target>Des liens vers d’autres sites, publics ou privés peuvent être proposés sur le Site afin de faciliter l’accès à l’information de l’utilisateur.</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.links.text.2">
+                <source>pel.legal.links.text.2</source>
+                <target>Ces sites tiers n’engagent pas la responsabilité du ministère de l’Intérieur.</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.ministry.of.the.interior">
+                <source>pel.legal.ministry.of.the.interior</source>
+                <target>Ministère de l’Intérieur</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.online.content.reuse">
+                <source>pel.legal.online.content.reuse</source>
+                <target>Reprise du contenu mis en ligne</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.online.content.reuse.under.etalab">
+                <source>pel.legal.online.content.reuse.under.etalab</source>
+                <target>sous licence etalab-2.0.</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.online.content.reuse.text.1">
+                <source>pel.legal.online.content.reuse.text.1</source>
+                <target>Sauf mention contraire, tous les contenus de ce site sont</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.online.content.reuse.text.2">
+                <source>pel.legal.online.content.reuse.text.2</source>
+                <target>Les informations mises en ligne sur le site www.plainte-en-ligne.masecurite.interieur.gouv.fr sont confidentielles et ne peuvent donc être reproduites.</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.picture.video">
+                <source>pel.legal.picture.video</source>
+                <target>Photo / Vidéo</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.publication.directors">
+                <source>pel.legal.publication.directors</source>
+                <target>Directeurs de la publication</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.trademark">
+                <source>pel.legal.trademark</source>
+                <target>Droit des marques</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.warning">
+                <source>pel.legal.warning</source>
+                <target>Avertissement</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.warning.text.1">
+                <source>pel.legal.warning.text.1</source>
+                <target>Malgré tout le soin apporté par nos équipes éditoriales et techniques à la rédaction et la mise en ligne des documents, des erreurs typographiques ou des inexactitudes techniques ne peuvent être exclues. Le Ministère de l’intérieur se réserve le droit de les corriger à tout moment dès qu’elles sont portées à sa connaissance.</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.warning.text.2">
+                <source>pel.legal.warning.text.2</source>
+                <target>Les informations et les documents contenus sur le Site sont susceptibles de faire l’objet de mise à jour à tout moment. Notamment, elles peuvent faire l’objet de mises à jour entre le moment de leur téléchargement par l’utilisateur et celui où il en prend connaissance.</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.website.access">
+                <source>pel.legal.website.access</source>
+                <target>Accès au site</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.website.access.text.1">
+                <source>pel.legal.website.access.text.1</source>
+                <target>Le ministère de l’Intérieur ainsi que l’hébergeur s’efforcent de fournir aux Utilisateurs une possibilité d’accès en continu au Site et aux Contenus.</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.website.access.text.2">
+                <source>pel.legal.website.access.text.2</source>
+                <target>Néanmoins, la responsabilité du ministère de l’Intérieur ne pourrait être engagée en cas d’opération de maintenance, défaillance technique, panne, difficulté ou interruption de fonctionnement empêchant temporairement l’accès au Site ou aux Contenus.</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.website.address">
+                <source>pel.legal.website.address</source>
+                <target>www.plainte-en-ligne.masecurite.interieur.gouv.fr</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.website.address.text">
+                <source>pel.legal.website.address.text</source>
+                <target>Le site Plainte En Ligne est à l’adresse :</target>
+            </trans-unit>
+            <trans-unit id="pel.legal.website.content">
+                <source>pel.legal.website.content</source>
+                <target>Contenu du site</target>
             </trans-unit>
             <trans-unit id="pel.before.starting.complaint">
                 <source>pel.before.starting.complaint</source>
