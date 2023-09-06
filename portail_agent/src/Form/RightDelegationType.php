@@ -28,7 +28,8 @@ class RightDelegationType extends AbstractType
         $user = $this->security->getUser();
         $choices = $this->userRepository->getAgentsByService($user->getServiceCode());
 
-        $builder->add('startDate', DateType::class, [
+        $builder
+            ->add('startDate', DateType::class, [
             'attr' => [
                 'class' => 'js-datepicker',
             ],
@@ -40,7 +41,8 @@ class RightDelegationType extends AbstractType
                 new NotBlank(),
                 new GreaterThanOrEqual('today', message: 'pel.date.greater.than.equal.today.error'),
             ],
-        ])->add('endDate', DateType::class, [
+        ])
+            ->add('endDate', DateType::class, [
             'attr' => [
                 'class' => 'js-datepicker',
             ],
@@ -52,7 +54,8 @@ class RightDelegationType extends AbstractType
                 new NotBlank(),
                 new GreaterThanOrEqual('today', message: 'pel.date.greater.than.equal.today.error'),
             ],
-        ])->add('delegatedAgents', EntityType::class, [
+        ])
+            ->add('delegatedAgents', EntityType::class, [
             'class' => User::class,
             'choices' => $choices,
             'label' => 'pel.right.delegation',

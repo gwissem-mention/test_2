@@ -22,6 +22,9 @@ final class Version20230901085335 extends AbstractMigration
         $this->addSql('COMMENT ON COLUMN right_delegation.start_date IS \'(DC2Type:date_immutable)\'');
         $this->addSql('COMMENT ON COLUMN right_delegation.end_date IS \'(DC2Type:date_immutable)\'');
         $this->addSql('ALTER TABLE right_delegation ADD CONSTRAINT FK_3B7E1B0B34277E17 FOREIGN KEY (delegating_agent_id) REFERENCES "user" (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
+        $this->addSql('ALTER TABLE "user" ADD delegation_gained_id INT DEFAULT NULL');
+        $this->addSql('ALTER TABLE "user" ADD CONSTRAINT FK_8D93D64966E5A61B FOREIGN KEY (delegation_gained_id) REFERENCES right_delegation (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
+        $this->addSql('CREATE INDEX IDX_8D93D64966E5A61B ON "user" (delegation_gained_id)');
     }
 
     public function down(Schema $schema): void
@@ -30,5 +33,8 @@ final class Version20230901085335 extends AbstractMigration
         $this->addSql('DROP SEQUENCE right_delegation_id_seq CASCADE');
         $this->addSql('ALTER TABLE right_delegation DROP CONSTRAINT FK_3B7E1B0B34277E17');
         $this->addSql('DROP TABLE right_delegation');
+        $this->addSql('ALTER TABLE "user" DROP CONSTRAINT FK_8D93D64966E5A61B');
+        $this->addSql('DROP INDEX IDX_8D93D64966E5A61B');
+        $this->addSql('ALTER TABLE "user" DROP delegation_gained_id');
     }
 }
