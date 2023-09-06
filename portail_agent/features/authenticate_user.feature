@@ -4,14 +4,14 @@ Feature: Create/update user according to SSO attributes
     Scenario: Create user on first connection
         Given the following HTTP headers
             | name        | value     |
-            | matricule   | 987654321 |
+            | matricule   | QSWWHQQT |
             | appelation  | Foo Bar   |
             | institution | PN        |
             | codeservice | service_3 |
             | superviseur | 1         |
 
         When I am on "/"
-        Then the "user" 987654321 from PN exists with:
+        Then the "user" QSWWHQQT from PN exists with:
             | attribute    | value                     |
             | appellation  | Foo Bar                   |
             | service_code | service_3                 |

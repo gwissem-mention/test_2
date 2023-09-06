@@ -66,6 +66,9 @@ class User implements UserInterface
     #[ORM\OneToOne(mappedBy: 'delegatingAgent')]
     private ?RightDelegation $rightDelegation = null;
 
+    #[ORM\ManyToOne(targetEntity: RightDelegation::class, inversedBy: 'delegatedAgents')]
+    private ?RightDelegation $delegationGained;
+
     public function __construct(string $number, Institution $institution, bool $supervisor = false)
     {
         $this->number = $number;
@@ -273,13 +276,18 @@ class User implements UserInterface
 
     public function setRightDelegation(RightDelegation $rightDelegation): static
     {
-        // set the owning side of the relation if necessary
-        if ($rightDelegation->getDelegatingAgent() !== $this) {
-            $rightDelegation->setDelegatingAgent($this);
-        }
-
         $this->rightDelegation = $rightDelegation;
 
         return $this;
+    }
+
+    public function getDelegationGained(): ?RightDelegation
+    {
+        return $this->delegationGained;
+    }
+
+    public function setDelegationGained(?RightDelegation $delegationGained): void
+    {
+        $this->delegationGained = $delegationGained;
     }
 }

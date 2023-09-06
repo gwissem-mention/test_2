@@ -20,10 +20,10 @@ class RightDelegation
 
     #[ORM\OneToOne(inversedBy: 'rightDelegation')]
     #[ORM\JoinColumn(nullable: false)]
-    private User $delegatingAgent;
+    private ?User $delegatingAgent = null;
 
     /** @var Collection<int, User> */
-    #[ORM\OneToMany(mappedBy: 'AgentsRightDelegation', targetEntity: User::class)]
+    #[ORM\OneToMany(mappedBy: 'delegationGained', targetEntity: User::class)]
     private Collection $delegatedAgents;
 
     #[ORM\Column(type: Types::DATE_IMMUTABLE)]
@@ -47,7 +47,7 @@ class RightDelegation
         return $this->delegatingAgent;
     }
 
-    public function setDelegatingAgent(User $delegatingAgent): static
+    public function setDelegatingAgent(?User $delegatingAgent): static
     {
         $this->delegatingAgent = $delegatingAgent;
 
@@ -100,10 +100,5 @@ class RightDelegation
         $this->endDate = $endDate;
 
         return $this;
-    }
-
-    public function hasDelegatedRight(User $user): bool
-    {
-        return $this->delegatedAgents->contains($user);
     }
 }

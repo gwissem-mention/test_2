@@ -6,7 +6,6 @@ namespace App\Security;
 
 use App\AppEnum\Institution;
 use App\Entity\User;
-use App\Repository\RightDelegationRepository;
 use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -41,8 +40,7 @@ final class AgentAuthenticator extends AbstractAuthenticator implements Authenti
     public function __construct(
         private readonly bool $ssoIsEnabled,
         private readonly UrlGeneratorInterface $urlGenerator,
-        private readonly UserRepository $userRepository,
-        private readonly RightDelegationRepository $delegationRepository
+        private readonly UserRepository $userRepository
     ) {
     }
 
@@ -136,19 +134,13 @@ final class AgentAuthenticator extends AbstractAuthenticator implements Authenti
             $user->addRole('ROLE_SUPERVISOR');
         }
 
-        $rightDelegations = $this->delegationRepository->findAll();
-
-        foreach ($rightDelegations as $rightDelegation) {
-            if (true === $rightDelegation->hasDelegatedRight($user)) {
-                if ($rightDelegation->getEndDate() >= new \DateTimeImmutable()) {
-                    $user->removeRole('ROLE_DELEGATED');
-                } elseif ($rightDelegation->getStartDate() <= new \DateTimeImmutable()) {
-                    $user->addRole('ROLE_DELEGATED');
-                }
-                break;
+        if (null !== $rightDelegation = $user->getDelegationGained()) {
+            if ($rightDelegation->getEndDate() <= new \DateTimeImmutable()) {
+                $user->removeRole('ROLE_DELEGATED');
+            } elseif ($rightDelegation->getStartDate() <= new \DateTimeImmutable()) {
+                $user->addRole('ROLE_DELEGATED');
             }
         }
-
         $this->userRepository->save($user, true);
 
         return $user;

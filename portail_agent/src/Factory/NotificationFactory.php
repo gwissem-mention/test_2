@@ -7,6 +7,7 @@ namespace App\Factory;
 use App\Entity\Comment;
 use App\Entity\Complaint;
 use App\Entity\Notification;
+use App\Entity\RightDelegation;
 use App\Entity\User;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -139,6 +140,18 @@ class NotificationFactory
                 'declaration_number' => $complaint->getDeclarationNumber(),
             ]),
             $this->urlGenerator->generate('complaint_summary', ['id' => $complaint->getId()]),
+        );
+    }
+
+    public function createForDelegationRightsGained(User $supervisor, RightDelegation $rightDelegation): Notification
+    {
+        return new Notification(
+            $this->translator->trans('pel.agent.has.delegated.rights.for.a.period', [
+                'user' => $supervisor->getAppellation(),
+                'startDate' => $rightDelegation->getStartDate()->format('d/m/y'),
+                'endDate' => $rightDelegation->getEndDate()->format('d/m/y'),
+            ]),
+            $this->urlGenerator->generate('home')
         );
     }
 }
