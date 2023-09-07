@@ -1888,7 +1888,7 @@
             </trans-unit>
             <trans-unit id="pel.summary.official.documents.will.be.sent">
                 <source>pel.summary.official.documents.will.be.sent</source>
-                <target>Des documents officiels vous seront transmis après le traitement de votre dépôt de plainte par un agent enquêteur.</target>
+                <target>Des documents officiels vous seront transmis après le traitement de votre dépôt de plainte par un enquêteur.</target>
             </trans-unit>
             <trans-unit id="pel.suspects">
                 <source>pel.suspects</source>
