@@ -1,11 +1,11 @@
-<div class="modal" id="modal-{{ id }}" tabindex="-1" aria-labelledby="modal-{{ id }}-label" aria-hidden="true" {% block attr_sup %}{% endblock %}>
+<div class="modal z-ultra" id="modal-{{ id }}" tabindex="-1" aria-labelledby="modal-{{ id }}-label" aria-hidden="true" {% block attr_sup %}{% endblock %}>
     <div class="modal-dialog modal-dialog-centered modal-{{ size|default('md') }}">
-        <div class="modal-content border-0 rounded-0 p-3">
+        <div class="modal-content border-0 rounded-0 p-3 background-white">
             <div class="modal-header border-0 align-items-start pb-0">
                 <button type="button" class="fr-btn--close fr-btn me-1" data-bs-dismiss="modal" aria-label="{{ 'pel.close'|trans }}">{{ 'pel.close'|trans }}</button>
             </div>
-            <div class="modal-body">
-                <div class="modal-title" id="modal-{{ id }}-label">{% block title %}{% endblock %}</div>
+            <div class="modal-body text-black">
+                <div class="modal-title text-black" id="modal-{{ id }}-label">{% block title %}{% endblock %}</div>
                 {% block body %}{% endblock %}
             </div>
             <div class="modal-footer border-0 d-flex justify-content-end">

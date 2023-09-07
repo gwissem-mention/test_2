@@ -11,6 +11,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\GreaterThanOrEqual;
@@ -29,9 +30,16 @@ class RightDelegationType extends AbstractType
         $choices = $this->userRepository->getAgentsByService($user->getServiceCode());
 
         $builder
+            ->add('dateRangePicker', TextType::class, [
+            'attr' => [
+                'class' => 'js-datepicker d-none',
+            ],
+            'label' => false,
+            'mapped' => false,
+        ])
             ->add('startDate', DateType::class, [
             'attr' => [
-                'class' => 'js-datepicker',
+                'class' => 'd-none',
             ],
             'input' => 'datetime_immutable',
             'widget' => 'single_text',
@@ -44,7 +52,7 @@ class RightDelegationType extends AbstractType
         ])
             ->add('endDate', DateType::class, [
             'attr' => [
-                'class' => 'js-datepicker',
+                'class' => 'd-none',
             ],
             'input' => 'datetime_immutable',
             'widget' => 'single_text',
@@ -58,7 +66,7 @@ class RightDelegationType extends AbstractType
             ->add('delegatedAgents', EntityType::class, [
             'class' => User::class,
             'choices' => $choices,
-            'label' => 'pel.right.delegation',
+            'label' => false,
             'choice_label' => 'appellation',
             'multiple' => true,
             'expanded' => true,

@@ -13,6 +13,12 @@ Feature:
         And I should see the key "pel.close" translated
         And I should see the key "pel.display.settings" translated
         And I should see the key "pel.settings" translated
+        And I should see the key "pel.rights.delegation" translated
+        And I should see the key "pel.select.the.delegation.period" translated
+        And I should see the key "pel.selected.delegation.period" translated
+        And I should see the key "pel.from" translated
+        And I should see the key "pel.to" translated
+        And I should see the key "pel.select.one.or.more.delegated.agents" translated
         And I should see the key "pel.logout" translated
 
     @func

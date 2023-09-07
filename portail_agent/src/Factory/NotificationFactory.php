@@ -148,8 +148,8 @@ class NotificationFactory
         return new Notification(
             $this->translator->trans('pel.agent.has.delegated.rights.for.a.period', [
                 'user' => $supervisor->getAppellation(),
-                'startDate' => $rightDelegation->getStartDate()->format('d/m/y'),
-                'endDate' => $rightDelegation->getEndDate()->format('d/m/y'),
+                'startDate' => $rightDelegation->getStartDate()?->format('d/m/y'),
+                'endDate' => $rightDelegation->getEndDate()?->format('d/m/y'),
             ]),
             $this->urlGenerator->generate('home')
         );

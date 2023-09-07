@@ -13,6 +13,12 @@ Feature:
         And I should see the key "pel.close" translated
         And I should see the key "pel.display.settings" translated
         And I should see the key "pel.settings" translated
+        And I should see the key "pel.rights.delegation" translated
+        And I should see the key "pel.select.the.delegation.period" translated
+        And I should see the key "pel.selected.delegation.period" translated
+        And I should see the key "pel.from" translated
+        And I should see the key "pel.to" translated
+        And I should see the key "pel.select.one.or.more.delegated.agents" translated
         And I should see the key "pel.logout" translated
 
     @func
@@ -43,7 +49,7 @@ Feature:
         And I should see the key "pel.alert" translated
         And I should see "Alert de test trop longue"
         And I should see a "button[data-bs-toggle='modal']" element
-        And I should see 21 "button" element
+        And I should see 25 "button" element
         And I should see the key "pel.assign.declaration.to" translated
         And I should not see the key "pel.send.to.lrp" translated
         And I should not see the key "pel.reject" translated
@@ -280,7 +286,7 @@ Feature:
     @javascript
     Scenario: I can toggle the send to LRP modal
         Given I am on "/plainte/recapitulatif/103"
-        When I press "Valider"
+        When I press "complaint-send-to-lrp-button"
         Then I should see a ".modal[aria-modal=true]" element
         And I should see the key "pel.validation.sending.complain.to.lrp" translated
         And I should see the key "pel.to.simplify.the.process" translated
@@ -293,7 +299,7 @@ Feature:
     @javascript
     Scenario: I can validate the send to LRP action successfully
         Given I am on "/plainte/recapitulatif/103"
-        When I press "Valider"
+        When I press "complaint-send-to-lrp-button"
         Then I should see a ".modal[aria-modal=true]" element
         When I press "Valider l'envoi vers le LRP"
         Then I should not see a ".modal[aria-modal=true]" element

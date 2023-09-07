@@ -10,6 +10,7 @@ use App\Form\Complaint\AssignType;
 use App\Form\Complaint\RejectType;
 use App\Form\Complaint\SendReportType;
 use App\Form\Complaint\UnitReassignType;
+use App\Form\RightDelegationType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -31,6 +32,7 @@ class AppointmentController extends AbstractController
             ]),
             'appointment_form' => $this->createForm(AppointmentType::class, $complaint),
             'isAppointmentPlanned' => null !== $complaint->getAppointmentDate(),
+            'delegation_right_form' => $this->createForm(RightDelegationType::class),
         ]);
     }
 }

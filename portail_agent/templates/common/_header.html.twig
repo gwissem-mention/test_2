@@ -167,13 +167,20 @@
                     {{ 'pel.agent'|trans }}
                 {% endif %}
             </div>
-            <div class="fw-semibold text-center mb-5 text-black">{{ app.user.serviceCode|unit_name }}</div>
+            <div class="fw-semibold text-center mb-3 text-black {{ (is_right_delegation_active(app.user)) ? 'mb-3' : 'mb-5' }}">{{ app.user.serviceCode|unit_name }}</div>
             {% if is_right_delegation_active(app.user) %}
-                <div class="fw-semibold text-center mb-5 text-blue">La délégation des droits est activé</div>
+                <div class="mb-5 text-red text-center">
+                    <img src="{{ asset('build/images/icons/rights-delegation-activated.svg') }}" alt="{{ 'pel.rights.delegation'|trans }}" class="me-1">
+                    {{ 'pel.the.rights.delegation.is'|trans }} <span class="fw-bold">{{ 'pel.activated'|trans }}</span>
+                </div>
             {% endif %}
             <a href="#" title="{{ 'pel.display.settings'|trans }}" class="d-block reset-link text-blue fw-semibold p-3 text-blue-active" aria-controls="fr-theme-modal" data-fr-opened="false">
                 <img src="{{ asset('build/images/icons/display-settings.svg') }}" alt="{{ 'pel.display.settings'|trans }}" class="me-1">
                 {{ 'pel.display.settings'|trans }}
+            </a>
+            <a href="#" title="{{ 'pel.rights.delegation'|trans }}" class="d-block reset-link text-blue fw-semibold p-3 text-blue-active" data-action="click->sidebar#openRightsDelegationModal">
+                <img src="{{ asset('build/images/icons/rights-delegation.svg') }}" alt="{{ 'pel.rights.delegation'|trans }}" class="me-1">
+                {{ 'pel.rights.delegation'|trans }}
             </a>
             <dialog id="fr-theme-modal" class="fr-modal" role="dialog" aria-labelledby="fr-theme-modal-title">
                 <div class="fr-container fr-container--fluid fr-container-md">
@@ -249,5 +256,8 @@
                 </a>
             {% endif %}
         </div>
+    {% endif %}
+    {% if app.user and is_granted('ROLE_SUPERVISOR') %}
+        {% include 'common/_partial/modals/delegate.html.twig' %}
     {% endif %}
 </div>
