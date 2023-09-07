@@ -7,12 +7,18 @@ Feature:
         Given I am authenticated with PR5KTZ9R from GN
 
     @func
-    Scenario: I can see a sidebar with current user information
+    Scenario: I can see a sidebar with current user information and delegation modal
         Given I am on "/plainte/rendez-vous/91"
         Then I should see the key "pel.profile" translated
         And I should see the key "pel.close" translated
         And I should see the key "pel.display.settings" translated
         And I should see the key "pel.settings" translated
+        And I should see the key "pel.rights.delegation" translated
+        And I should see the key "pel.select.the.delegation.period" translated
+        And I should see the key "pel.selected.delegation.period" translated
+        And I should see the key "pel.from" translated
+        And I should see the key "pel.to" translated
+        And I should see the key "pel.select.one.or.more.delegated.agents" translated
         And I should see the key "pel.logout" translated
 
     @func

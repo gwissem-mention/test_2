@@ -1476,7 +1476,7 @@
             </trans-unit>
             <trans-unit id="pel.profile">
                 <source>pel.profile</source>
-                <target>Profile</target>
+                <target>Profil</target>
             </trans-unit>
             <trans-unit id="pel.display.settings">
                 <source>pel.display.settings</source>
@@ -1654,10 +1654,6 @@
                 <source>pel.prescription.of.facts</source>
                 <target>Prescriptions des faits</target>
             </trans-unit>
-            <trans-unit id="pel.right.delegation">
-                <source>pel.right.delegation</source>
-                <target>sélectionnez un ou plusieurs agents pour lesquels vous souhaitez accorder les droits</target>
-            </trans-unit>
             <trans-unit id="pel.choose.a.theme">
                 <source>pel.choose.a.theme</source>
                 <target>Choisissez un thème pour personnaliser l'apparence du site.</target>
@@ -1677,6 +1673,46 @@
             <trans-unit id="pel.uses.system.settings">
                 <source>pel.uses.system.settings</source>
                 <target>Utilise les paramètres système</target>
+            </trans-unit>
+            <trans-unit id="pel.rights.delegation">
+                <source>pel.rights.delegation</source>
+                <target>Délégation des droits</target>
+            </trans-unit>
+            <trans-unit id="pel.the.rights.delegation.is">
+                <source>pel.the.rights.delegation.is</source>
+                <target>La délégation des droits est</target>
+            </trans-unit>
+            <trans-unit id="pel.activated">
+                <source>pel.activated</source>
+                <target>activée</target>
+            </trans-unit>
+            <trans-unit id="pel.select.the.delegation.period">
+                <source>pel.select.the.delegation.period</source>
+                <target>Sélectionnez la période pour laquelle vous souhaitez déléguer vos droits</target>
+            </trans-unit>
+            <trans-unit id="pel.selectected.delegation.period">
+                <source>pel.selectected.delegation.period</source>
+                <target>La période sélectionnée :</target>
+            </trans-unit>
+            <trans-unit id="pel.update.delegation.dates">
+                <source>pel.update.delegation.dates</source>
+                <target>Modifier les dates</target>
+            </trans-unit>
+            <trans-unit id="pel.select.one.or.more.delegated.agents">
+                <source>pel.select.one.or.more.delegated.agents</source>
+                <target>Sélectionnez un ou plusieurs agents pour lesquels vous souhaitez accorder les droits</target>
+            </trans-unit>
+            <trans-unit id="pel.selected.delegation.period">
+                <source>pel.selected.delegation.period</source>
+                <target>La période sélectionnée :</target>
+            </trans-unit>
+            <trans-unit id="pel.to">
+                <source>pel.to</source>
+                <target>du</target>
+            </trans-unit>
+            <trans-unit id="pel.from">
+                <source>pel.from</source>
+                <target>au</target>
             </trans-unit>
         </body>
     </file>
