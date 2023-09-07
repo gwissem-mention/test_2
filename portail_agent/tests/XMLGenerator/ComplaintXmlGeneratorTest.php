@@ -60,6 +60,9 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
             ->setDeclarationNumber('PEL-2022-'.str_pad('1', 8, '0', STR_PAD_LEFT))
             ->setOptinNotification(true)
             ->setAlert('Alert de test trop longue')
+            ->setFranceConnected(true)
+            ->setUnitAssigned($unit->getCode())
+            ->setAppointmentAsked(false)
             ->setIdentity(
                 (new Identity())
                     ->setFirstname('Jean')
@@ -586,6 +589,22 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
 
     public function testVariousSection(): void
     {
-        $this->assertStringContainsString('<Divers/>', $this->xmlContent);
+        $this->assertStringContainsString('<Divers>', $this->xmlContent);
+        $this->assertStringContainsString('<DIVERS_FRANCE_CONNECTE>Oui</DIVERS_FRANCE_CONNECTE>', $this->xmlContent);
+        $this->assertStringContainsString('<DIVERS_SOUMISSION_HORAIRE>01/12/2022 00:00:00</DIVERS_SOUMISSION_HORAIRE>', $this->xmlContent);
+        $this->assertStringContainsString('<DIVERS_NUMERO_PEL>PEL-2022-00000001</DIVERS_NUMERO_PEL>', $this->xmlContent);
+        $this->assertStringContainsString('<DIVERS_DATE_EXACTE_FAITS_CONNUE>Oui</DIVERS_DATE_EXACTE_FAITS_CONNUE>', $this->xmlContent);
+        $this->assertStringContainsString('<DIVERS_NATURE_LIEU>Restaurant</DIVERS_NATURE_LIEU>', $this->xmlContent);
+        $this->assertStringContainsString('<DIVERS_LIEU_INFORMATION_COMPLEMENTAIRES>Les faits se sont produits entre le restaurant et l\'appartement d\'un ami</DIVERS_LIEU_INFORMATION_COMPLEMENTAIRES>', $this->xmlContent);
+        $this->assertStringContainsString('<DIVERS_SUSPECTS_INFORMATIONS>Oui</DIVERS_SUSPECTS_INFORMATIONS>', $this->xmlContent);
+        $this->assertStringContainsString('<DIVERS_SUSPECTS_DESCRIPTION>2 hommes</DIVERS_SUSPECTS_DESCRIPTION>', $this->xmlContent);
+        $this->assertStringContainsString('<DIVERS_TEMOINS_PRESENTS>Oui</DIVERS_TEMOINS_PRESENTS>', $this->xmlContent);
+        $this->assertStringContainsString('<DIVERS_INTERVENTION_FSI>Oui</DIVERS_INTERVENTION_FSI>', $this->xmlContent);
+        $this->assertStringContainsString('<DIVERS_CONSTAT_RELEV_EFFECTUES>Oui</DIVERS_CONSTAT_RELEV_EFFECTUES>', $this->xmlContent);
+        $this->assertStringContainsString('<DIVERS_VIDEO_DISPONIBLE>Non</DIVERS_VIDEO_DISPONIBLE>', $this->xmlContent);
+        $this->assertStringContainsString('<DIVERS_UNITE_RDV>Commissariat de police de Voiron</DIVERS_UNITE_RDV>', $this->xmlContent);
+        $this->assertStringContainsString('<DIVERS_RDV_SOUHAITE>Non</DIVERS_RDV_SOUHAITE>', $this->xmlContent);
+        $this->assertStringContainsString('<DIVERS_PROFESSION_PEL>Boulanger</DIVERS_PROFESSION_PEL>', $this->xmlContent);
+        $this->assertStringContainsString('</Divers>', $this->xmlContent);
     }
 }
