@@ -790,4 +790,17 @@ class Complaint
 
         return $this;
     }
+
+    /**
+     * @return ReadableCollection<int, AbstractObject|null>
+     */
+    public function getObjectsWithFiles(): ReadableCollection
+    {
+        return $this->objects->filter(fn (AbstractObject $object) => (null != $object->getFiles()));
+    }
+
+    public function hasObjectsWithFiles(): bool
+    {
+        return !$this->getObjectsWithFiles()->isEmpty();
+    }
 }
