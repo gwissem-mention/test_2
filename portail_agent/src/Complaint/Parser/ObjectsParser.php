@@ -61,6 +61,7 @@ use League\Flysystem\FilesystemException;
  *      label: string,
  *      paymentCategory: string,
  *      bank: string|null,
+ *      bankAccountNumber: string|null,
  *      checkNumber: string|null,
  *      checkFirstNumber: string|null,
  *      checkLastNumber: string|null,
@@ -232,6 +233,7 @@ class ObjectsParser
             ->setDescription($objectInput->label)
             ->setType($objectInput->paymentCategory)
             ->setBank($objectInput->bank)
+            ->setBankAccountNumber($objectInput->bankAccountNumber)
             ->setChequeNumber($objectInput->checkNumber)
             ->setFirstChequeNumber($objectInput->checkFirstNumber)
             ->setLastChequeNumber($objectInput->checkLastNumber);

@@ -587,6 +587,7 @@ JSON;
         $this->assertSame('Carte bleu', $paymentMethod->getDescription());
         $this->assertSame('BNP', $paymentMethod->getBank());
         $this->assertSame('CARTE BANCAIRE', $paymentMethod->getType());
+        $this->assertSame('4564654654654', $paymentMethod->getBankAccountNumber());
         $this->assertNull($paymentMethod->getChequeNumber());
         $this->assertNull($paymentMethod->getFirstChequeNumber());
         $this->assertNull($paymentMethod->getLastChequeNumber());

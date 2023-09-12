@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Generator\Complaint\Model\Objects;
 
+use App\Entity\FactsObjects\AbstractObject;
 use App\Entity\FactsObjects\PaymentMethod;
 
 class PaymentMethodDTO extends AbstractObjectDTO
@@ -14,10 +15,12 @@ class PaymentMethodDTO extends AbstractObjectDTO
     private string $description;
     // private ?string $opposition;
     private ?string $bank;
+    private string $bankAccountNumber;
     // private ?string $cardType;
     private ?string $chequeNumber;
     private ?string $firstChequeNumber;
     private ?string $lastChequeNumber;
+    private string $status;
 
     public function __construct(PaymentMethod $object)
     {
@@ -25,13 +28,15 @@ class PaymentMethodDTO extends AbstractObjectDTO
         $this->type = $object->getType() ?? '';
         // $this->currency = $object->getCurrency() ?? '';
         // $this->number = $object->getNumber();
-        $this->description = $this->getStatusAsString((int) $object->getStatus()).' - '.$object->getDescription();
+        $this->description = $object->getDescription() ?? '';
         // $this->opposition = $object->isOpposition() ? 'Oui' : 'Non';
         $this->bank = $object->getBank() ?? '';
+        $this->bankAccountNumber = $object->getBankAccountNumber() ?? '';
         // $this->cardType = $object->getCardType();
         $this->chequeNumber = $object->getChequeNumber();
         $this->firstChequeNumber = $object->getFirstChequeNumber();
         $this->lastChequeNumber = $object->getLastChequeNumber();
+        $this->status = AbstractObject::STATUS_STOLEN === $object->getStatus() ? 'Volé' : 'Dégradé';
     }
 
     /**
@@ -46,11 +51,13 @@ class PaymentMethodDTO extends AbstractObjectDTO
             'Objet_Moyen_Paiement_Description' => $this->description,
             // 'Objet_Moyen_Paiement_Opposition' => $this->opposition,
              'Objet_Moyen_Paiement_Banque' => $this->bank,
+            'Objet_Moyen_Paiement_IBAN' => $this->bankAccountNumber,
             // 'Objet_Moyen_Paiement_Type_Carte' => $this->cardType,
             'Objet_Moyen_Paiement_Nmr' => $this->chequeNumber,
             'Objet_Moyen_Paiement_Premier_Nmr' => $this->firstChequeNumber,
             'Objet_Moyen_Paiement_Dernier_Nmr' => $this->lastChequeNumber,
             'Objet_Moyen_Paiement_Identite_Victime' => 'Oui',
+            'Objet_Moyen_Paiement_Statut' => $this->status,
             // 'Objet_Moyen_Paiement_Identite_Nom' => $this->identityLastname,
             // 'Objet_Moyen_Paiement_Identite_Nom_Marital' => $this->identityMarriedName,
             // 'Objet_Moyen_Paiement_Identite_Prenom' => $this->identityFirstName,

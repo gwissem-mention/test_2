@@ -183,6 +183,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
                     ->setType('Carte bancaire')
                     ->setDescription('Carte gold')
                     ->setBank('LCL')
+                    ->setBankAccountNumber('987654321')
                     ->setChequeNumber('1234567890')
                     ->setFirstChequeNumber('AAA')
                     ->setLastChequeNumber('XXX')
@@ -502,11 +503,13 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Objet_Moyen_Paiement>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_Moyen_Paiement_Type>Carte bancaire</Objet_Moyen_Paiement_Type>', $this->xmlContent);
         // $this->assertStringContainsString('<Objet_Moyen_Paiement_Devise>EURO</Objet_Moyen_Paiement_Devise>', $this->xmlContent);
-        $this->assertStringContainsString('<Objet_Moyen_Paiement_Description>Statut : volé - Carte gold</Objet_Moyen_Paiement_Description>', $this->xmlContent);
+        $this->assertStringContainsString('<Objet_Moyen_Paiement_Description>Carte gold</Objet_Moyen_Paiement_Description>', $this->xmlContent);
         // $this->assertStringContainsString('<Objet_Moyen_Paiement_Opposition>Non</Objet_Moyen_Paiement_Opposition>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_Moyen_Paiement_Banque>LCL</Objet_Moyen_Paiement_Banque>', $this->xmlContent);
+        $this->assertStringContainsString('<Objet_Moyen_Paiement_IBAN>987654321</Objet_Moyen_Paiement_IBAN>', $this->xmlContent);
         // $this->assertStringContainsString('<Objet_Moyen_Paiement_Type_Carte>Mastercard</Objet_Moyen_Paiement_Type_Carte>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_Moyen_Paiement_Identite_Victime>Oui</Objet_Moyen_Paiement_Identite_Victime>', $this->xmlContent);
+        $this->assertStringContainsString('<Objet_Moyen_Paiement_Statut>Volé</Objet_Moyen_Paiement_Statut>', $this->xmlContent);
         // $this->assertStringContainsString('<Objet_Moyen_Paiement_Vol_Dans_Vl>Non</Objet_Moyen_Paiement_Vol_Dans_Vl>', $this->xmlContent);
         // $this->assertStringNotContainsString('<Objet_Moyen_Paiement_Identite_Nom>', $this->xmlContent);
         // $this->assertStringNotContainsString('<Objet_Moyen_Paiement_Identite_Prenom>', $this->xmlContent);
