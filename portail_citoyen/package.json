@@ -3,7 +3,7 @@
         "@googlemaps/js-api-loader": "^1.15.1",
         "@gouvfr/dsfr": "~1.9.3",
         "@hotwired/stimulus": "^3.0.0",
-        "@symfony/stimulus-bridge": "^3.2.0",
+        "@symfony/stimulus-bridge": "^3.2.2",
         "@symfony/ux-autocomplete": "file:vendor/symfony/ux-autocomplete/assets",
         "@symfony/ux-live-component": "file:vendor/symfony/ux-live-component/assets",
         "@symfony/webpack-encore": "^3.0.0",

@@ -38,6 +38,7 @@ class LocationType extends AbstractType
                     // project
                     'data-controller' => 'form',
                     'data-action' => 'form#removeFrenchTown',
+                    'data-live-id' => 'country-'.microtime(), // @todo: remove this hack when it'll be fixed on Symfony UX autocomplete
                 ],
                 'label' => $options['country_label'],
                 'preferred_choices' => [$this->franceCode],
@@ -159,6 +160,7 @@ class LocationType extends AbstractType
                     'class' => 'french-town',
                     'required' => true,
                     'autocomplete' => 'address-level2',
+                    'data-live-id' => 'city-'.microtime(), // @todo: remove this hack when it'll be fixed on Symfony UX autocomplete
                 ],
                 'constraints' => [
                     new NotBlank(),
