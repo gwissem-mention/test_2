@@ -188,6 +188,12 @@ cache-warmup:
 	@$(CONSOLE) cache:warmup --env=$(APP_ENV)
 
 #################################
+Doctrine:
+
+## Drop, create db and create tables
+db-setup: referential-ci-create referential-ci-load
+
+#################################
 QA:
 
 ## Run php-cs-fixer

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8cb28ff81b6ac5992cb704e070ba790d",
+    "content-hash": "a33c3d741c2f3e7266ec412984f6edc4",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -8499,43 +8499,48 @@
         },
         {
             "name": "symfony/ux-autocomplete",
-            "version": "v2.7.1",
+            "version": "v2.11.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/ux-autocomplete.git",
-                "reference": "41b9d8d2462536c84a50d8f1155ea9ed45ad39fd"
+                "reference": "fabcb2eee14b9e84a45b276711853a560b5d770c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/ux-autocomplete/zipball/41b9d8d2462536c84a50d8f1155ea9ed45ad39fd",
-                "reference": "41b9d8d2462536c84a50d8f1155ea9ed45ad39fd",
+                "url": "https://api.github.com/repos/symfony/ux-autocomplete/zipball/fabcb2eee14b9e84a45b276711853a560b5d770c",
+                "reference": "fabcb2eee14b9e84a45b276711853a560b5d770c",
                 "shasum": ""
             },
             "require": {
-                "php": ">=8.0",
+                "php": ">=8.1",
                 "symfony/dependency-injection": "^5.4|^6.0",
                 "symfony/http-foundation": "^5.4|^6.0",
                 "symfony/http-kernel": "^5.4|^6.0",
+                "symfony/property-access": "^5.4|^6.0",
                 "symfony/string": "^5.4|^6.0"
             },
             "conflict": {
                 "doctrine/orm": "2.9.0 || 2.9.1"
             },
             "require-dev": {
-                "doctrine/doctrine-bundle": "^2.4",
-                "doctrine/orm": "^2.9",
-                "mtdowling/jmespath.php": "2.6.x-dev",
+                "doctrine/collections": "^1.6.8|^2.0",
+                "doctrine/doctrine-bundle": "^2.4.3",
+                "doctrine/orm": "^2.9.4",
+                "fakerphp/faker": "^1.22",
+                "mtdowling/jmespath.php": "^2.6",
                 "symfony/form": "^5.4|^6.0",
                 "symfony/framework-bundle": "^5.4|^6.0",
                 "symfony/maker-bundle": "^1.40",
+                "symfony/options-resolver": "^5.4|^6.0",
                 "symfony/phpunit-bridge": "^5.4|^6.0",
                 "symfony/process": "^5.4|^6.0",
                 "symfony/security-bundle": "^5.4|^6.0",
                 "symfony/security-csrf": "^5.4|^6.0",
                 "symfony/twig-bundle": "^5.4|^6.0",
                 "symfony/uid": "^5.4|^6.0",
+                "twig/twig": "^2.14.7|^3.0.4",
                 "zenstruck/browser": "^1.1",
-                "zenstruck/foundry": "^1.19"
+                "zenstruck/foundry": "^1.33"
             },
             "type": "symfony-bundle",
             "extra": {
@@ -8565,7 +8570,7 @@
                 "symfony-ux"
             ],
             "support": {
-                "source": "https://github.com/symfony/ux-autocomplete/tree/v2.7.1"
+                "source": "https://github.com/symfony/ux-autocomplete/tree/v2.11.2"
             },
             "funding": [
                 {
@@ -8581,7 +8586,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-01-24T15:40:19+00:00"
+            "time": "2023-09-11T12:51:28+00:00"
         },
         {
             "name": "symfony/ux-live-component",

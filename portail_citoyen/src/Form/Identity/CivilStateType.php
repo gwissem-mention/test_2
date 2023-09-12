@@ -127,6 +127,9 @@ class CivilStateType extends AbstractType
                 'label' => 'pel.nationality',
                 'preferred_choices' => [$this->frenchNationalityCode],
                 'empty_data' => $this->frenchNationalityCode,
+                'attr' => [
+                    'data-live-id' => 'nationality-'.microtime(), // @todo: remove this hack when it'll be fixed on Symfony UX autocomplete
+                ],
             ])
             ->addEventListener(
                 FormEvents::PRE_SET_DATA,
@@ -160,7 +163,6 @@ class CivilStateType extends AbstractType
                 $choices[$job->getLabel()] = $job->getCode();
             }
         }
-
         $form
             ->add('job', JobAutocompleteType::class, [
                 'data' => $job?->getCode(),
@@ -177,6 +179,7 @@ class CivilStateType extends AbstractType
                     'required' => true,
                     'data-controller' => 'autocomplete',
                     'data-load-text' => $this->translator->trans('pel.results.loading'),
+                    'data-live-id' => 'job-'.microtime(), // @todo: remove this hack when it'll be fixed on Symfony UX autocomplete
                     'class' => 'job',
                     'data-url-civility-'.Civility::M->value => $this->urlGenerator->generate(
                         'ux_entity_autocomplete',
