@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Generator\Complaint\Model\Objects;
 
+use App\Entity\FactsObjects\AbstractObject;
 use App\Entity\FactsObjects\MultimediaObject;
 
 class MultimediaObjectDTO extends AbstractObjectDTO
@@ -15,6 +16,12 @@ class MultimediaObjectDTO extends AbstractObjectDTO
     private ?string $operator;
     //    private ?string $opposition;
     //    private ?string $simNumber;
+    private ?string $phoneStatus = null;
+    private ?string $status = null;
+    private ?string $phoneBrand = null;
+    private ?string $brand = null;
+    private ?string $phoneModel = null;
+    private ?string $model = null;
 
     public function __construct(MultimediaObject $object)
     {
@@ -24,6 +31,19 @@ class MultimediaObjectDTO extends AbstractObjectDTO
         $this->description = $this->getStatusAsString((int) $object->getStatus()).' - '.$object->getDescription();
         $this->phoneNumber = $object->getPhoneNumber();
         $this->operator = $object->getOperator();
+        switch ($object->getNature()) {
+            case 'TELEPHONE PORTABLE':
+                $this->phoneStatus = AbstractObject::STATUS_STOLEN === $object->getStatus() ? 'volé' : 'dégradé';
+                $this->phoneBrand = $object->getBrand();
+                $this->phoneModel = $object->getModel();
+                break;
+
+            case 'MULTIMEDIA':
+                $this->status = AbstractObject::STATUS_STOLEN === $object->getStatus() ? 'volé' : 'dégradé';
+                $this->brand = $object->getBrand();
+                $this->model = $object->getModel();
+                break;
+        }
         //        $this->opposition = $object->isOpposition() ? 'Oui' : 'Non';
         //        $this->simNumber = $object->getSimNumber();
     }
@@ -40,6 +60,12 @@ class MultimediaObjectDTO extends AbstractObjectDTO
             'Objet_Multimedia_Nmr_Tel' => $this->phoneNumber,
             'Objet_Multimedia_Operateur' => $this->operator,
             'Objet_Multimedia_Identite_Victime' => 'Oui',
+            'Objet_Multimedia_Statut_Tel' => $this->phoneStatus,
+            'Objet_Multimedia_Marque_Tel' => $this->phoneBrand,
+            'Objet_Multimedia_Modele_Tel' => $this->phoneModel,
+            'Objet_Multimedia_Statut' => $this->status,
+            'Objet_Multimedia_Marque' => $this->brand,
+            'Objet_Multimedia_Modele' => $this->model,
 //            'Objet_Multimedia_Opposition' => $this->opposition,
 //            'Objet_Multimedia_Nmr_Sim' => $this->simNumber,
             // 'Objet_Multimedia_Identite_Victime' => $this->identityVictim,
