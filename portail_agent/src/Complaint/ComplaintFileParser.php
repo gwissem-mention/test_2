@@ -73,6 +73,7 @@ use Psr\Log\LoggerInterface;
  *       label: string,
  *       paymentCategory: string,
  *       bank: string|null,
+ *       bankAccountNumber: string|null,
  *       checkNumber: string|null,
  *       checkFirstNumber: string|null,
  *       checkLastNumber: string|null,

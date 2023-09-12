@@ -26,6 +26,9 @@ class PaymentMethod extends AbstractObject
     //
     #[ORM\Column(length: 255)]
     private ?string $bank = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $bankAccountNumber = null;
     //
     // #[ORM\Column(length: 255, nullable: true)]
     // private ?string $cardType = null;
@@ -107,6 +110,18 @@ class PaymentMethod extends AbstractObject
     public function setLastChequeNumber(?string $lastChequeNumber): self
     {
         $this->lastChequeNumber = $lastChequeNumber;
+
+        return $this;
+    }
+
+    public function getBankAccountNumber(): ?string
+    {
+        return $this->bankAccountNumber;
+    }
+
+    public function setBankAccountNumber(?string $bankAccountNumber): self
+    {
+        $this->bankAccountNumber = $bankAccountNumber;
 
         return $this;
     }

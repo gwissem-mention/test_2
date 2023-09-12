@@ -364,6 +364,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                     ->setDescription('Visa principale')
                     ->setType('CARTE BANCAIRE')
                     ->setBank('LCL')
+                    ->setBankAccountNumber('987654321')
             )
             ->addObject(
                 (new PaymentMethod())
@@ -374,6 +375,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                     ->setChequeNumber('1234567890')
                     ->setFirstChequeNumber('AAA')
                     ->setLastChequeNumber('XXX')
+                    ->setBankAccountNumber('987654321')
             )
             ->addObject(
                 (new Vehicle())
