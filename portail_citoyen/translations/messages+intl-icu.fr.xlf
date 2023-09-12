@@ -1186,10 +1186,6 @@
                 <source>pel.i.confirm.i.want.to.file.a.complaint</source>
                 <target>Je confirme vouloir <![CDATA[<b>déposer plainte pour les faits figurant dans ma déclaration</b>]]>.</target>
             </trans-unit>
-            <trans-unit id="pel.i.consent.use.of.data.for.fsi">
-                <source>pel.i.consent.use.of.data.for.fsi</source>
-                <target>En validant ma déclaration, <![CDATA[<b>je consens à l'utilisation et à la transmission des informations précédemment renseignées</b>]]> par les Forces de l'ordre et tout autre organisme impliqué dans le traitement de ma déclaration</target>
-            </trans-unit>
            <trans-unit id="pel.i.have.no.goods.to.declare">
                 <source>pel.i.have.no.goods.to.declare</source>
                 <target>Je n’ai pas de bien à déclarer</target>
