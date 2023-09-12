@@ -145,7 +145,6 @@ Feature:
         And I should see the key "pel.declaration.confirmation" translated
         And I should see the key "pel.i.confirm.declaration.is.complete" translated
         And I should see the key "pel.i.am.inform.of.article.434.26" translated
-        And I should see the key "pel.i.consent.use.of.data.for.fsi" translated
         And I should see the key "pel.goods.concerned.by.the.offence" translated
         And I should see the key "pel.goods.number" translated
         And I should see the key "pel.object.category.unregistered.vehicle" translated
