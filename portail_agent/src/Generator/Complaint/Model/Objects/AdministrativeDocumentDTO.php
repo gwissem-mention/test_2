@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Generator\Complaint\Model\Objects;
 
+use App\Entity\FactsObjects\AbstractObject;
 use App\Entity\FactsObjects\AdministrativeDocument;
 use App\Entity\Identity;
 
@@ -27,6 +28,11 @@ class AdministrativeDocumentDTO extends AbstractObjectDTO
     private string $issuingCountry;
     private string $description;
     private ?string $identityCountry;
+    private ?string $identityVictim;
+    private ?string $endDateValidity;
+    private ?string $status;
+    private ?string $identityPhone;
+    private ?string $identityMail;
 
     public function __construct(AdministrativeDocument $object, ?Identity $identity)
     {
@@ -49,6 +55,11 @@ class AdministrativeDocumentDTO extends AbstractObjectDTO
         $this->identityBirthDate = $identity?->getBirthday()?->format('d/m/Y');
         $this->description = $this->getStatusAsString((int) $object->getStatus()).' - '.$object->getDescription();
         $this->issuingCountry = $object->getIssuingCountry() ?? '';
+        $this->identityVictim = $object->isOwned() ? 'Oui' : 'Non';
+        $this->endDateValidity = $object->getValidityEndDate()?->format('d/m/Y');
+        $this->status = AbstractObject::STATUS_STOLEN === $object->getStatus() ? 'volé' : 'dégradé';
+        $this->identityPhone = $identity?->getMobilePhone() ?? '';
+        $this->identityMail = $identity?->getEmail() ?? '';
     }
 
     /**
@@ -63,7 +74,7 @@ class AdministrativeDocumentDTO extends AbstractObjectDTO
             'Objet_Doc_Admin_Date_Delivrance' => $this->issuedOn,
             'Objet_Doc_Admin_Autorite' => $this->issuedBy,
             'Objet_Doc_Admin_Description' => $this->description,
-            // 'Objet_Doc_Admin_Identite_Victime' => $this->identityVictim,
+            'Objet_Doc_Admin_Identite_Victime' => $this->identityVictim,
             'Objet_Doc_Admin_Identite_Nom' => $this->ownerLastname,
 //             'Objet_Doc_Admin_Identite_Nom_Marital' => $this->identityMarriedName,
             'Objet_Doc_Admin_Identite_Prenom' => $this->ownerFirstname,
@@ -84,6 +95,10 @@ class AdministrativeDocumentDTO extends AbstractObjectDTO
 //             'Objet_Doc_Admin_Identite_Naissance_HidNumDep' => $this->identityBirthDepartmentNumber,
             'Objet_Doc_Admin_Identite_Residence_HidNumDep' => $this->identityDepartmentNumber,
             // 'Objet_Doc_Admin_Vol_Dans_Vl' => $this->theftFromVehicle,
+            'Objet_Doc_Admin_Date_Fin_Validite' => $this->endDateValidity,
+            'Objet_Doc_Admin_Statut' => $this->status,
+            'Objet_Doc_Admin_Identite_Tel' => $this->identityPhone,
+            'Objet_Doc_Admin_Identite_Mail' => $this->identityMail,
         ]];
     }
 }
