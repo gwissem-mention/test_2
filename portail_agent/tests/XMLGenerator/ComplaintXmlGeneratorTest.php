@@ -175,6 +175,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
                 (new AdministrativeDocument())
                     ->setStatus(AbstractObject::STATUS_STOLEN)
                     ->setType('Permis de conduire')
+                    ->setValidityEndDate(new \DateTimeImmutable('2024-12-01'))
             )
             ->addObject(
                 (new PaymentMethod())
@@ -431,7 +432,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         //        $this->assertStringContainsString('<Objet_Doc_Admin_Date_Delivrance>20/06/2022</Objet_Doc_Admin_Date_Delivrance>', $this->xmlContent);
         //        $this->assertStringContainsString('<Objet_Doc_Admin_Autorite>Préfecture de Paris</Objet_Doc_Admin_Autorite>', $this->xmlContent);
         //        $this->assertStringContainsString('<Objet_Doc_Admin_Description>Permis de conduire récent</Objet_Doc_Admin_Description>', $this->xmlContent);
-        // $this->assertStringContainsString('<Objet_Doc_Admin_Identite_Victime>Oui</Objet_Doc_Admin_Identite_Victime>', $this->xmlContent);
+        $this->assertStringContainsString('<Objet_Doc_Admin_Identite_Victime>Non</Objet_Doc_Admin_Identite_Victime>', $this->xmlContent);
         $this->assertStringNotContainsString('<Objet_Doc_Admin_Identite_Nom>', $this->xmlContent);
         $this->assertStringNotContainsString('<Objet_Doc_Admin_Identite_Prenom>', $this->xmlContent);
         $this->assertStringNotContainsString('<Objet_Doc_Admin_Identite_Naissance_Date>01/02/2010</Objet_Doc_Admin_Identite_Naissance_Date>', $this->xmlContent);
@@ -450,6 +451,10 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringNotContainsString('<Objet_Doc_Admin_Identite_Residence_RueNom>', $this->xmlContent);
         $this->assertStringNotContainsString('<Objet_Doc_Admin_Identite_Naissance_HidNumDep>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_Doc_Admin_Identite_Residence_HidNumDep>92</Objet_Doc_Admin_Identite_Residence_HidNumDep>', $this->xmlContent);
+        $this->assertStringContainsString('<Objet_Doc_Admin_Date_Fin_Validite>01/12/2024</Objet_Doc_Admin_Date_Fin_Validite>', $this->xmlContent);
+        $this->assertStringContainsString('<Objet_Doc_Admin_Statut>volé</Objet_Doc_Admin_Statut>', $this->xmlContent);
+        $this->assertStringContainsString('<Objet_Doc_Admin_Identite_Tel>06 12 34 45 57</Objet_Doc_Admin_Identite_Tel>', $this->xmlContent);
+        $this->assertStringContainsString('<Objet_Doc_Admin_Identite_Mail>jean.dupont@gmail.com</Objet_Doc_Admin_Identite_Mail>', $this->xmlContent);
         // $this->assertStringContainsString('<Objet_Doc_Admin_Vol_Dans_Vl>Non</Objet_Doc_Admin_Vol_Dans_Vl>', $this->xmlContent);
         $this->assertStringContainsString('</Objet_Doc_Admin>', $this->xmlContent);
     }
