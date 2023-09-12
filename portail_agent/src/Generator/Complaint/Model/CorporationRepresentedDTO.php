@@ -8,6 +8,7 @@ use App\Entity\Corporation;
 
 class CorporationRepresentedDTO
 {
+    private string $siretNumber;
     private string $sirenNumber;
     private string $nicNumber;
     private string $companyName;
@@ -28,6 +29,7 @@ class CorporationRepresentedDTO
 
     public function __construct(Corporation $corporation)
     {
+        $this->siretNumber = $corporation->getSiretNumber() ?? '';
         $this->sirenNumber = $corporation->getSiretNumber() ? substr($corporation->getSiretNumber(), 0, 9) : '';
         $this->nicNumber = $corporation->getSiretNumber() ? substr($corporation->getSiretNumber(), 9) : '';
         $this->companyName = $corporation->getCompanyName() ?? '';
@@ -55,6 +57,7 @@ class CorporationRepresentedDTO
         return ['Personne_Morale' => [
             'Personne_Morale_Raison' => $this->companyName,
             'Personne_Morale_Num_Registre_Commerce' => '',
+            'Personne_Morale_Siret' => $this->siretNumber,
             'Personne_Morale_Siren' => $this->sirenNumber,
             'Personne_Morale_NIC' => $this->nicNumber,
             'Personne_Morale_Implication' => $this->implication,
