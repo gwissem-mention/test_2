@@ -575,6 +575,8 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<VL_Degradation>Oui</VL_Degradation>', $this->xmlContent);
         $this->assertStringContainsString('<VL_Nature>CAMION</VL_Nature>', $this->xmlContent);
         $this->assertStringContainsString('<VL_Degradation_Liste>Rétroviseur cassé</VL_Degradation_Liste>', $this->xmlContent);
+        $this->assertStringContainsString('<VL_prejudice_estimation>15000</VL_prejudice_estimation>', $this->xmlContent);
+        $this->assertStringContainsString('<VL_Pays_Immatriculation>France</VL_Pays_Immatriculation>', $this->xmlContent);
         $this->assertStringContainsString('</VL>', $this->xmlContent);
     }
 

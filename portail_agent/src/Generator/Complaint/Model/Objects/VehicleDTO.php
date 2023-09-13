@@ -17,6 +17,8 @@ class VehicleDTO extends AbstractObjectDTO
     private string $degradation;
     private string $nature;
     private string $degradationDescription;
+    private ?string $registrationCountry = null;
+    private ?string $damageEstimate;
 
     public function __construct(Vehicle $vehicle)
     {
@@ -28,6 +30,8 @@ class VehicleDTO extends AbstractObjectDTO
         $this->degradation = AbstractObject::STATUS_DEGRADED === $vehicle->getStatus() ? 'Oui' : 'Non';
         $this->nature = $vehicle->getNature() ?? '';
         $this->degradationDescription = $vehicle->getDegradationDescription() ?? '';
+        $this->damageEstimate = (string) $vehicle->getAmount();
+        $this->registrationCountry = $vehicle->getRegistrationCountry();
     }
 
     /**
@@ -44,6 +48,8 @@ class VehicleDTO extends AbstractObjectDTO
             'VL_Degradation' => $this->degradation,
             'VL_Nature' => $this->nature,
             'VL_Degradation_Liste' => $this->degradationDescription,
+            'VL_Pays_Immatriculation' => $this->registrationCountry,
+            'VL_prejudice_estimation' => $this->damageEstimate,
         ]];
     }
 }
