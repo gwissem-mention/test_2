@@ -15,6 +15,7 @@ class ComplaintXmlAdditionalInformationPN
         $exposedFacts .= $this->setIntroduction($complaint);
         $exposedFacts .= $this->setIsFranceConnected($complaint);
         $exposedFacts .= $this->setJob($complaint);
+        $exposedFacts .= $this->setViolences($complaint);
 
         return $exposedFacts;
     }
@@ -22,7 +23,7 @@ class ComplaintXmlAdditionalInformationPN
     private function setJob(Complaint $complaint): string
     {
         return sprintf(
-            '%s %s déclare être %s.',
+            '%s %s déclare être %s. ',
             $complaint->getIdentity()?->getFirstname(),
             $complaint->getIdentity()?->getLastname(),
             $complaint->getIdentity()?->getJob()
@@ -59,5 +60,17 @@ class ComplaintXmlAdditionalInformationPN
     private function getCivility(?int $civility): string
     {
         return Identity::CIVILITY_MALE === $civility ? 'M' : (Identity::CIVILITY_FEMALE === $civility ? 'Mme' : '');
+    }
+
+    private function setViolences(Complaint $complaint): string
+    {
+        if ($complaint->getFacts()?->isVictimOfViolence()) {
+            return sprintf(
+                'La personne déclare avoir subi des violences : La victime précise sur les violences : %s.',
+                $complaint->getFacts()->getVictimOfViolenceText()
+            );
+        }
+
+        return 'La personne déclare n\'avoir pas subi des violences : ';
     }
 }
