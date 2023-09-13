@@ -1,0 +1,83 @@
+<div {{ attributes.add(stimulus_controller('complaint-submit')) }}>
+    <div class="fr-pt-10v fr-pb-6v fr-px-6v fr-pt-md-12v fr-px-md-20v">
+        <h1 class="text-[28px]/9 md:text-[40px]/[48px] fr-mb-2v">{{ 'pel.legal.dispositions'|trans }}</h1>
+        <p>{{ 'pel.before.online.complaint'|trans }}</p>
+    </div>
+    <hr>
+    <div class="fr-pt-4v fr-px-6v fr-pt-md-6v fr-px-md-20v fr-pb-md-12v">
+        <h2 class="fr-h5 font-bold">{{ 'pel.article.10.2'|trans }}</h2>
+        <p class="font-bold">{{ 'pel.officers.and.agents'|trans }}</p>
+        <ol class="fr-mb-8v fr-mb-md-12v list-none [counter-reset:step-counter]">
+            <li class="[counter-increment:step-counter] marker:[content:counters(step-counter,'.')'\00b0'] pl-1.5 mb-3">{{ 'pel.obtain.compensation.for.their.loss'|trans }}</li>
+            <li class="[counter-increment:step-counter] marker:[content:counters(step-counter,'.')'\00b0'] pl-1.5 mb-3">{{ 'pel.filing.a.civil.suit'|trans }}</li>
+            <li class="[counter-increment:step-counter] marker:[content:counters(step-counter,'.')'\00b0'] pl-1.5 mb-3">{{ 'pel.to.be.assisted'|trans }}</li>
+            <li class="fr-hidden-md [counter-increment:step-counter] marker:[content:counters(step-counter,'.')'\00b0'] pl-1.5 mb-3">{{ 'pel.to.be.assisted.by.a.service'|trans }}</li>
+            <li class="fr-hidden-md [counter-increment:step-counter] marker:[content:counters(step-counter,'.')'\00b0'] pl-1.5 mb-3">{{ 'pel.refer.the.matter'|trans|raw}}</li>
+            <li class="fr-hidden-md [counter-increment:step-counter] marker:[content:counters(step-counter,'.')'\00b0'] pl-1.5 mb-3">{{ 'pel.to.be.informed.of.the.protective.measures'|trans }}</li>
+            <li class="fr-hidden-md [counter-increment:step-counter] marker:[content:counters(step-counter,'.')'\00b0'] pl-1.5 mb-3">{{ 'pel.for.victims'|trans }}</li>
+            <li class="fr-hidden-md [counter-increment:step-counter] marker:[content:counters(step-counter,'.')'\00b0'] pl-1.5 mb-3">{{ 'pel.to.be.accompanied'|trans }}</li>
+            <li class="fr-hidden-md [counter-increment:step-counter] marker:[content:counters(step-counter,'.')'\00b0'] pl-1.5 mb-3">{{ 'pel.to.declare.a.third.party.address'|trans }}</li>
+            <li class="fr-hidden-md [counter-increment:step-counter] marker:[content:counters(step-counter,'.')'\00b0'] pl-1.5 mb-3">{{ 'pel.in.the.case.of.violence'|trans }}</li>
+            <div class="fr-accordions-group -ml-6 fr-hidden fr-unhidden-md">
+                <section class="fr-accordion">
+                    <h3 class="fr-accordion__title">
+                        <button class="fr-accordion__btn fr-text fr-text-title--blue-france after:w-4 aria-expanded:pb-5 after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-1">
+                            {{ 'pel.read.the.full.text.of.the.law'|trans }}
+                        </button>
+                    </h3>
+                    <div class="fr-collapse [&.fr-collapse--expanded]:pl-7" id="faq-accordion-1">
+                        <li class="[counter-increment:step-counter] marker:[content:counters(step-counter,'.')'\00b0'] marker:font-bold pl-1.5 mb-3">{{ 'pel.to.be.assisted.by.a.service'|trans }}</li>
+                        <li class="[counter-increment:step-counter] marker:[content:counters(step-counter,'.')'\00b0'] marker:font-bold pl-1.5 mb-3">{{ 'pel.refer.the.matter'|trans|raw}}</li>
+                        <li class="[counter-increment:step-counter] marker:[content:counters(step-counter,'.')'\00b0'] marker:font-bold pl-1.5 mb-3">{{ 'pel.to.be.informed.of.the.protective.measures'|trans }}</li>
+                        <li class="[counter-increment:step-counter] marker:[content:counters(step-counter,'.')'\00b0'] marker:font-bold pl-1.5 mb-3">{{ 'pel.for.victims'|trans }}</li>
+                        <li class="[counter-increment:step-counter] marker:[content:counters(step-counter,'.')'\00b0'] marker:font-bold pl-1.5 mb-3">{{ 'pel.to.be.accompanied'|trans }}</li>
+                        <li class="[counter-increment:step-counter] marker:[content:counters(step-counter,'.')'\00b0'] marker:font-bold pl-1.5 mb-3">{{ 'pel.to.declare.a.third.party.address'|trans }}</li>
+                        <li class="[counter-increment:step-counter] marker:[content:counters(step-counter,'.')'\00b0'] marker:font-bold pl-1.5 mb-3">{{ 'pel.in.the.case.of.violence'|trans }}</li>
+                    </div>
+                </section>
+            </div>
+        </ol>
+        <hr class="fr-hidden-md">
+        <h2 class="fr-h5 fr-mb-8v fr-mt-2v">{{ 'pel.article.8.2.2'|trans }}</h2>
+        <p class="font-bold lg:font-normal">{{ 'pel.when.a.victim.is.about.to.lodge'|trans }}</p>
+        <ol class="mb-7 list-none [counter-reset:step-counter]">
+            <li class="[counter-increment:step-counter] marker:[content:counters(step-counter,'.')'\00b0'] pl-1.5 mb-3">{{ 'pel.that.the.online.complaint'|trans|raw}}</li>
+            <li class="[counter-increment:step-counter] marker:[content:counters(step-counter,'.')'\00b0'] pl-1.5 mb-3">{{ 'pel.filing.a.complaint.online'|trans }}</li>
+            <li class="[counter-increment:step-counter] marker:[content:counters(step-counter,'.')'\00b0'] pl-1.5 mb-3">{{ 'pel.in.any.case'|trans }}</li>
+        </ol>
+        <p class="fr-hidden-md fr-mb-8v">{{ 'pel.in.addition.to.cases'|trans|raw }}</p>
+        <div class="fr-hidden-md text-lg font-bold fr-mb-2v">{{ 'pel.nota'|trans }}</div>
+        <p class="fr-hidden-md">{{ 'pel.in.accordance.to.article.11'|trans }}.</p>
+        <p class="fr-hidden-md fr-mb-12v">{{ 'pel.in.accordance.to.article.2'|trans }}</p>
+        <div class="fr-accordions-group fr-hidden fr-unhidden-md">
+            <section class="fr-accordion">
+                <h3 class="fr-accordion__title">
+                    <button class="fr-accordion__btn fr-text fr-text-title--blue-france after:w-4 aria-expanded:pb-5 after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-2">
+                        {{ 'pel.read.the.full.text.of.the.law'|trans }}
+                    </button>
+                </h3>
+                <div class="fr-collapse [&.fr-collapse--expanded]:pl-1" id="faq-accordion-2">
+                    <p class="fr-mb-8v">{{ 'pel.in.addition.to.cases'|trans|raw }}</p>
+                    <div class="text-lg font-bold fr-mb-2v">{{ 'pel.nota'|trans }}</div>
+                    <p>{{ 'pel.in.accordance.to.article.11'|trans }}</p>
+                    <p class="m-0">{{ 'pel.in.accordance.to.article.2'|trans }}</p>
+                </div>
+            </section>
+        </div>
+    </div>
+    <hr>
+    {{ form_start(form, {attr: {'data-action': 'live#action complaint-submit#submit','data-action-name': 'prevent|submit'}}) }}
+        <div class="fr-pt-2v fr-px-4v fr-px-md-20v">
+            {{ form_row(form.lawRefresherAccepted) }}
+            {{ form_errors(form.lawRefresherAccepted) }}
+        </div>
+        <div class="fr-pt-2v fr-pb-12v fr-pt-md-4v text-center">
+            <p class="fr-mb-md-4v fr-hidden fr-unhidden-md">
+                {{ 'pel.by.continuing.you.confirm.that.you.are.aware.of.the.legal.provisions'|trans }}
+            </p>
+            <button type="submit" class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line fr-text--lg py-2.5 pr-[18px] pl-6 after:w-6 after:h-6" id="law_refresher_submit" data-action="live#action complaint-submit#submit" data-action-name="prevent|submit">
+                {{ 'pel.complete.my.declaration'|trans }}
+            </button>
+        </div>
+    {{ form_end(form, {render_rest: false}) }}
+</div>

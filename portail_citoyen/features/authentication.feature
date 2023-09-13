@@ -19,7 +19,8 @@ Feature:
         And I press "no_france_connect_auth_button"
         And I follow "no_france_connect_auth_button_confirm"
         Then I should be on "/porter-plainte/rappel-a-la-loi"
-        And I follow "complaint_identity_link"
+        And I click the "label[for=law_refresher_lawRefresherAccepted]" element
+        And I press "law_refresher_submit"
         Then I should be on "/porter-plainte/identite"
 
     @javascript
@@ -27,7 +28,8 @@ Feature:
         Given I am on "/authentification"
         When I press "france_connect_auth_button"
         Then I should be on "/porter-plainte/rappel-a-la-loi"
-        And I follow "complaint_identity_link"
+        And I click the "label[for=law_refresher_lawRefresherAccepted]" element
+        And I press "law_refresher_submit"
         Then I should be on "/porter-plainte/identite"
         And the "identity_civilState_birthName" field should contain "DUPONT"
         And the "identity_civilState_firstnames" field should contain "Michel"
@@ -43,7 +45,8 @@ Feature:
         When I press "no_france_connect_auth_button"
         And I follow "no_france_connect_auth_button_confirm"
         Then I should be on "/porter-plainte/rappel-a-la-loi"
-        And I follow "complaint_identity_link"
+        And I click the "label[for=law_refresher_lawRefresherAccepted]" element
+        And I press "law_refresher_submit"
         Then I should be on "/porter-plainte/identite"
         And the "identity_civilState_birthName" field should not contain "DUPONT"
         And the "identity_civilState_firstnames" field should not contain "Michel"

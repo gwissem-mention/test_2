@@ -18,7 +18,9 @@ class IdentityController extends AbstractController
         SessionHandler $sessionHandler,
         bool $fromSummary = false
     ): Response {
-        $sessionHandler->init();
+        if (!$sessionHandler->getComplaint()?->isLawRefresherAccepted()) {
+            return $this->redirectToRoute('home');
+        }
 
         return $this->render('pages/complaint_identity.html.twig', ['complaint' => $sessionHandler->getComplaint(), 'from_summary' => $fromSummary]);
     }

@@ -74,6 +74,7 @@ e2e:
             paths:
                 - '%paths.base%/features/complaint/identity'
                 - '%paths.base%/features/complaint/additional_information.feature'
+                - '%paths.base%/features/complaint/law_refresher.feature'
             <<: *contexts
             filters:
                 tags: '~@func&&~@flaky'

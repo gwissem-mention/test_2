@@ -24,6 +24,7 @@ class ComplaintModel
     private bool $franceConnected = false;
     private ?string $affectedService = null;
     private bool $appointmentRequired = false;
+    private bool $lawRefresherAccepted = false;
 
     public function __construct(Uuid $id)
     {
@@ -163,6 +164,18 @@ class ComplaintModel
     public function setAppointmentRequired(bool $appointmentRequired): self
     {
         $this->appointmentRequired = $appointmentRequired;
+
+        return $this;
+    }
+
+    public function isLawRefresherAccepted(): bool
+    {
+        return $this->lawRefresherAccepted;
+    }
+
+    public function setLawRefresherAccepted(bool $lawRefresherAccepted): self
+    {
+        $this->lawRefresherAccepted = $lawRefresherAccepted;
 
         return $this;
     }
