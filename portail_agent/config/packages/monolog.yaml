@@ -4,6 +4,7 @@ monolog:
         - oodrive # Logs dedicated to communication with the Oodrive API
         - application_traces_gn # Logs dedicated to the application traces for the GN institution
         - application_traces_pn # Logs dedicated to the application traces for the GN institution
+        - api # Logs dedicated to our API endpoints
 
 when@dev:
     monolog:
@@ -46,6 +47,12 @@ when@dev:
                 channels: [ "application_traces_pn" ]
                 formatter: 'app.logger.formatter.json_traces'
                 max_files: 20
+            api:
+                type: rotating_file
+                path: "%kernel.logs_dir%/api_%kernel.environment%.log"
+                level: debug
+                channels: [ "api" ]
+                max_files: 20    
 
 
 when@test:
@@ -101,6 +108,12 @@ when@prod: &prod
                 level: info
                 channels: [ "application_traces_pn" ]
                 formatter: 'app.logger.formatter.json_traces'
+                max_files: 20
+            api_log:
+                type: rotating_file
+                path: "%kernel.logs_dir%/api_%kernel.environment%.log"
+                level: info
+                channels: [ "api" ]
                 max_files: 20
             console:
                 type: console
