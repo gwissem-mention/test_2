@@ -32,31 +32,13 @@
                         <div class="fr-header__tools d-none d-lg-flex align-items-end">
                             {% if app.user %}
                                 <div class="d-flex align-items-center text-center text-md-end">
-                                    <div class="dropdown" id="notifications-dropdown">
-                                        <a class="d-block text-secondary text-decoration-none m-3 background-transparent" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <img src="{{ asset('build/images/icons/bell.svg') }}" alt="{{ 'pel.notifications'|trans }}">
-                                            {% if notifications is defined and notifications is not empty %}
-                                                <div class="circled background-red text-white width-20px height-20px d-flex align-items-center justify-content-center m-2 position-absolute top-0 right-0 small push-left">{{ (notifications|length>9) ? '9+' : notifications|length }}</div>
-                                            {% endif %}
-                                        </a>
-                                        <ul class="dropdown-menu dropdown-menu-end">
-                                            <li>
-                                                <div class="dropdown-header">
-                                                    {% if notifications is defined and notifications is not empty %}
-                                                        {{ 'pel.notifications'|trans }}
-                                                    {% else %}
-                                                        {{ 'pel.no.more.notification'|trans }}
-                                                    {% endif %}
-                                                </div>
-                                            </li>
-                                            {% for notification in notifications %}
-                                                <li>
-                                                    <a class="dropdown-item {{ notification.isUrgent ? 'fw-bold' }}" href="{{ path('notification', {id:notification.id}) }}">{{ notification.title }}</a>
-                                                </li>
-                                            {% endfor %}
-                                        </ul>
-                                    </div>
-                                    <button class="avatar background-grey-active background-grey-hover rounded-circle text-light m-2" data-action="click->sidebar#openSidebar" data-sidebar-target="avatar">{{ app.user.initials }}</button>
+                                    <a class="d-block text-secondary text-decoration-none m-3 background-transparent" href="#" data-sidebar-target="bell" data-action="click->sidebar#openNotificationsSidebar" id="notifications-dropdown">
+                                        <img src="{{ asset('build/images/icons/bell.svg') }}" alt="{{ 'pel.notifications'|trans }}">
+                                        {% if notifications is defined and notifications is not empty %}
+                                            <div class="circled background-red text-white width-20px height-20px d-flex align-items-center justify-content-center m-2 position-absolute top-30px right-0 small push-left">{{ (notifications|length>9) ? '9+' : notifications|length }}</div>
+                                        {% endif %}
+                                    </a>
+                                    <button class="avatar background-grey-active background-grey-hover rounded-circle text-light m-2" data-action="click->sidebar#openProfileSidebar" data-sidebar-target="avatar">{{ app.user.initials }}</button>
                                 </div>
                             {% endif %}
                         </div>
@@ -78,7 +60,7 @@
                                 <div class="d-block d-lg-none">
                                     <div class="d-flex align-items-center text-center text-lg-end">
                                         <div class="dropdown" id="notifications-dropdown">
-                                            <a class="d-flex align-items-end text-secondary text-decoration-none m-3 background-transparent" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <a class="d-flex align-items-end text-secondary text-decoration-none m-3 background-transparent" href="#" role="button" data-action="click->sidebar#openNotificationsSidebar">
                                                 <div class="me-3">
                                                     <img src="{{ asset('build/images/icons/bell-small.svg') }}" alt="{{ 'pel.notifications'|trans }}">
                                                     {% if notifications is defined and notifications is not empty %}
@@ -87,22 +69,6 @@
                                                 </div>
                                                 <div class="fw-bold text-black">{{ 'pel.notifications'|trans }}</div>
                                             </a>
-                                            <ul class="dropdown-menu dropdown-menu-end">
-                                                <li>
-                                                    <div class="dropdown-header">
-                                                        {% if notifications is defined and notifications is not empty %}
-                                                            {{ 'pel.notifications'|trans }}
-                                                        {% else %}
-                                                            {{ 'pel.no.more.notification'|trans }}
-                                                        {% endif %}
-                                                    </div>
-                                                </li>
-                                                {% for notification in notifications %}
-                                                    <li>
-                                                        <a class="dropdown-item {{ notification.isUrgent ? 'fw-bold' }}" href="{{ path('notification', {id:notification.id}) }}">{{ notification.title }}</a>
-                                                    </li>
-                                                {% endfor %}
-                                            </ul>
                                         </div>
                                     </div>
                                     <div class="m-3 text-center">
@@ -148,11 +114,11 @@
         </div>
     </header>
     {% if app.user %}
-        <div class="d-none position-fixed w-100 h-100 background-black-transparent z-max top-0 right-0 bottom-0 left-0" data-sidebar-target="background"></div>
-        <div class="d-none position-fixed width-20 background-white fixed-right fixed-right-push-y p-4 shadow-sm z-max overflow-auto" data-sidebar-target="sidebar">
+        <div class="d-none position-fixed w-100 h-100 background-black-transparent z-max top-0 right-0 bottom-0 left-0" data-sidebar-target="profileBackground"></div>
+        <div class="d-none position-fixed width-20 background-white fixed-right fixed-right-push-y p-4 shadow-sm z-max overflow-auto" data-sidebar-target="profileSidebar">
             <div class="d-flex align-items-center justify-content-between">
                 <span class="fw-bold text-black">{{ 'pel.profile'|trans }}</span>
-                <button class="fr-btn fr-btn--tertiary-no-outline fr-btn--icon-left fr-icon-close-line" data-action="click->sidebar#closeSidebar">
+                <button class="fr-btn fr-btn--tertiary-no-outline fr-btn--icon-left fr-icon-close-line" data-action="click->sidebar#closeProfileSidebar">
                     {{ 'pel.close'|trans }}
                 </button>
             </div>
@@ -255,6 +221,22 @@
                     {{ 'pel.logout'|trans }}
                 </a>
             {% endif %}
+        </div>
+        <div class="d-none position-fixed w-100 h-100 background-black-transparent z-max top-0 right-0 bottom-0 left-0" data-sidebar-target="notificationsBackground"></div>
+        <div class="d-none position-fixed width-20 background-white fixed-right fixed-right-push-y shadow-sm z-ultra overflow-auto" data-sidebar-target="notificationsSidebar">
+            <div class="d-flex align-items-center justify-content-between p-4">
+                <span class="fw-bold text-black">{{ 'pel.notifications'|trans }}</span>
+                <button class="fr-btn fr-btn--tertiary-no-outline fr-btn--icon-left fr-icon-close-line" data-action="click->sidebar#closeNotificationsSidebar">
+                    {{ 'pel.close'|trans }}
+                </button>
+            </div>
+            <ul class="reset-list m-0 p-0">
+                {% for notification in notifications %}
+                    <li class="m-0 p-0">
+                        <a class="d-block reset-link text-black border-top p-3 {{ notification.isUrgent ? 'background-grey' : 'background-white' }}" href="{{ path('notification', {id:notification.id}) }}">{{ notification.title }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
         </div>
     {% endif %}
     {% if app.user and is_granted('ROLE_SUPERVISOR') %}

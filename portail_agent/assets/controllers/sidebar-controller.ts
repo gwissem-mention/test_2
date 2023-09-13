@@ -10,9 +10,12 @@ type DelegateFetchResponse = { form: string };
 
 export default class SidebarController extends Controller {
     static override targets: string[] = [
-        "sidebar",
-        "background",
         "avatar",
+        "profileSidebar",
+        "profileBackground",
+        "bell",
+        "notificationsSidebar",
+        "notificationsBackground",
         "rightsDelegationModal",
         "delegationForm",
         "delegationDatesCalendarBlock",
@@ -25,9 +28,12 @@ export default class SidebarController extends Controller {
         "delegationModalValidateButton"
     ];
 
-    declare readonly sidebarTarget: HTMLInputElement;
-    declare readonly backgroundTarget: HTMLInputElement;
+    declare readonly profileSidebarTarget: HTMLInputElement;
+    declare readonly profileBackgroundTarget: HTMLInputElement;
     declare readonly avatarTarget: HTMLInputElement;
+    declare readonly notificationsSidebarTarget: HTMLInputElement;
+    declare readonly notificationsBackgroundTarget: HTMLInputElement;
+    declare readonly bellTarget: HTMLInputElement;
     declare readonly rightsDelegationModalTarget: HTMLInputElement;
     declare readonly hasRightsDelegationModalTarget: boolean;
     declare readonly delegationFormTarget: HTMLFormElement;
@@ -80,15 +86,13 @@ export default class SidebarController extends Controller {
     }
 
     public setDelegationDatesState(state: string): void {
+        this.delegationDatesCalendarBlockTarget.classList.toggle("d-none", state !== "edit");
+        this.delegationDatesSelectedBlockTarget.classList.toggle("d-none", state === "edit");
+        this.delegationAgentsBlockTarget.classList.toggle("d-none", state === "edit");
+
         if (state === "edit") {
-            this.delegationDatesCalendarBlockTarget.classList.remove("d-none");
-            this.delegationDatesSelectedBlockTarget.classList.add("d-none");
-            this.delegationAgentsBlockTarget.classList.add("d-none");
             this.delegationModalValidateButtonTarget.setAttribute("disabled", "disabled");
         } else {
-            this.delegationDatesCalendarBlockTarget.classList.add("d-none");
-            this.delegationDatesSelectedBlockTarget.classList.remove("d-none");
-            this.delegationAgentsBlockTarget.classList.remove("d-none");
             this.delegationModalValidateButtonTarget.removeAttribute("disabled");
         }
     }
@@ -111,23 +115,43 @@ export default class SidebarController extends Controller {
         return date.split("-").reverse().join("/");
     }
 
-    public openSidebar(): void {
-        this.setSidebarState("show");
+    public openProfileSidebar(): void {
+        this.setProfileSidebarState("show");
     }
 
-    public closeSidebar(): void {
-        this.setSidebarState("hide");
+    public closeProfileSidebar(): void {
+        this.setProfileSidebarState("hide");
     }
 
-    private setSidebarState(state: string): void {
-        if (this.sidebarTarget && this.backgroundTarget) {
-            this.sidebarTarget.classList.toggle("d-none", state === "hide");
-            this.backgroundTarget.classList.toggle("d-none", state === "hide");
+    private setProfileSidebarState(state: string): void {
+        if (this.profileSidebarTarget && this.profileBackgroundTarget) {
+            this.profileSidebarTarget.classList.toggle("d-none", state === "hide");
+            this.profileBackgroundTarget.classList.toggle("d-none", state === "hide");
         }
 
         if (this.avatarTarget) {
             this.avatarTarget.classList.toggle("z-max", state === "show");
             this.avatarTarget.classList.toggle("background-blue", state === "show");
+        }
+    }
+
+    public openNotificationsSidebar(): void {
+        this.setNotificationsSidebarState("show");
+    }
+
+    public closeNotificationsSidebar(): void {
+        this.setNotificationsSidebarState("hide");
+    }
+
+    private setNotificationsSidebarState(state: string): void {
+        if (this.notificationsSidebarTarget && this.notificationsBackgroundTarget) {
+            this.notificationsSidebarTarget.classList.toggle("d-none", state === "hide");
+            this.notificationsBackgroundTarget.classList.toggle("d-none", state === "hide");
+        }
+
+        if (this.bellTarget) {
+            this.bellTarget.classList.toggle("z-max", state === "show");
+            this.bellTarget.classList.toggle("color-blue", state === "show");
         }
     }
 
