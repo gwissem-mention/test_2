@@ -48,7 +48,8 @@ class ComplaintFactory
             ->setObjects($this->createObjects())
             ->setAppointmentRequired(true)
             ->setAppointment($this->createAppointment())
-            ->setAdditionalInformation($this->createAdditionalInformation());
+            ->setAdditionalInformation($this->createAdditionalInformation())
+            ->setLawRefresherAccepted(true);
     }
 
     public function createAppointment(): AppointmentModel

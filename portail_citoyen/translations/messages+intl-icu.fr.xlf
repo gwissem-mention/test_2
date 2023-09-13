@@ -1294,6 +1294,18 @@
                 <source>pel.law.informations</source>
                 <target>Conformément à la loi 78-17 du 6 janvier 1978 modifiée relative à l’informatique, aux fichiers et aux libertés, vous disposez d’un droit d’accès et de rectification aux informations. Vous pouvez exercer ce droit auprès de l’unité de gendarmerie ou du service de police où vous irez signer votre plainte.</target>
             </trans-unit>
+            <trans-unit id="pel.law.refresher.acceptance.error">
+                <source>pel.law.refresher.acceptance.error</source>
+                <target>Veuillez cocher la case pour accepter les dispositions légales de l'application</target>
+            </trans-unit>
+            <trans-unit id="pel.law.refresher.acceptance.label">
+                <source>pel.law.refresher.acceptance.label</source>
+                <target>Poursuivre ma déclaration</target>
+            </trans-unit>
+            <trans-unit id="pel.law.refresher.acceptance.text">
+                <source>pel.law.refresher.acceptance.text</source>
+                <target>Je consens à ce que les informations collectées au cours de ma démarche soient utilisées par les forces de l'ordre pour finaliser mon dépôt plainte.</target>
+            </trans-unit>
             <trans-unit id="pel.m">
                 <source>pel.m</source>
                 <target>M</target>

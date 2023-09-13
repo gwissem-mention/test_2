@@ -8,7 +8,8 @@ Feature:
         Given I am on "/authentification"
         And I press "france_connect_auth_button"
         Then I should be on "/porter-plainte/rappel-a-la-loi"
-        And I follow "complaint_identity_link"
+        And I click the "label[for=law_refresher_lawRefresherAccepted]" element
+        And I press "law_refresher_submit"
         Then I should be on "/porter-plainte/identite"
         And I click the "label[for=identity_declarantStatus_0]" element
         And I select "1" from "identity_civilState_familySituation"

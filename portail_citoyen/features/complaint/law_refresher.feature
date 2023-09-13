@@ -34,5 +34,14 @@ Feature:
         And I should see the key "pel.nota" translated
         And I should see the key "pel.in.accordance.to.article.11" translated
         And I should see the key "pel.in.accordance.to.article.2" translated
+        And I should see the key "pel.law.refresher.acceptance.label" translated
+        And I should see the key "pel.law.refresher.acceptance.text" translated
         And I should see the key "pel.by.continuing.you.confirm.that.you.are.aware.of.the.legal.provisions" translated
         And I should see the key "pel.complete.my.declaration" translated
+
+    @javascript
+    Scenario: I can see an error if I submit the page without the agreement checkbox
+        Given I am on "/porter-plainte/rappel-a-la-loi"
+        And I press "law_refresher_submit"
+        Then I should see a "#form-errors-law_refresher_lawRefresherAccepted" element
+        And I should see the key "pel.law.refresher.acceptance.error" translated

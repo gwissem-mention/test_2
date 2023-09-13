@@ -9,7 +9,8 @@ Feature:
         And I press "no_france_connect_auth_button"
         And I follow "no_france_connect_auth_button_confirm"
         Then I should be on "/porter-plainte/rappel-a-la-loi"
-        And I follow "complaint_identity_link"
+        And I click the "label[for=law_refresher_lawRefresherAccepted]" element
+        And I press "law_refresher_submit"
         Then I should be on "/porter-plainte/identite"
 
     Scenario: I can click on the back button
