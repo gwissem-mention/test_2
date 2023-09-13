@@ -21,7 +21,12 @@ class ComplaintXmlAdditionalInformationPN
 
     private function setJob(Complaint $complaint): string
     {
-        return 'Profession saisie par le citoyen : '.$complaint->getIdentity()?->getJob();
+        return sprintf(
+            '%s %s déclare être %s.',
+            $complaint->getIdentity()?->getFirstname(),
+            $complaint->getIdentity()?->getLastname(),
+            $complaint->getIdentity()?->getJob()
+        );
     }
 
     private function setIntroduction(Complaint $complaint): string
