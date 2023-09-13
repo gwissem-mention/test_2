@@ -148,6 +148,8 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
                     ->setAddressAdditionalInformation(
                         "Les faits se sont produits entre le restaurant et l'appartement d'un ami"
                     )
+                ->setVictimOfViolence(true)
+                ->setVictimOfViolenceText('Je me suis fait taper')
             )
             ->addObject(
                 (new MultimediaObject())
@@ -382,7 +384,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
     public function testFactsSection(): void
     {
         $this->assertStringContainsString('<Faits>', $this->xmlContent);
-        $this->assertStringContainsString('<Faits_Expose>Vol / Dégradation. sommes rendu destinataire de la demande de plainte en ligne, déposée sur le site internet « Plaine_En_Ligne.fr » sous le numéro d\'enregistrement : PEL-2022-00000001 transmise le 01/12/2022 00:00:00, d\'un internaute s\'étant authentifié par FranceConnect sous l\'identité suivante M Jean DUPONT, né(e) le 07/03/1967 à Paris, 75000 en  France, Jean DUPONT déclare être Boulanger.</Faits_Expose>', $this->xmlContent);
+        $this->assertStringContainsString('<Faits_Expose>Vol / Dégradation. sommes rendu destinataire de la demande de plainte en ligne, déposée sur le site internet « Plaine_En_Ligne.fr » sous le numéro d\'enregistrement : PEL-2022-00000001 transmise le 01/12/2022 00:00:00, d\'un internaute s\'étant authentifié par FranceConnect sous l\'identité suivante M Jean DUPONT, né(e) le 07/03/1967 à Paris, 75000 en  France, Jean DUPONT déclare être Boulanger. La personne déclare avoir subi des violences : La victime précise sur les violences : Je me suis fait taper.</Faits_Expose>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Expose_GN>Vol / Dégradation</Faits_Expose_GN>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Manop>Je me suis fait voler mon portable.</Faits_Manop>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Localisation_Pays>France</Faits_Localisation_Pays>', $this->xmlContent);
@@ -405,13 +407,13 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Faits_Periode_Affaire_Fin_Minute_Formate>00</Faits_Periode_Affaire_Fin_Minute_Formate>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Periode_Affaire_Debut>01/12/2022 à 09:00:00</Faits_Periode_Affaire_Debut>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Periode_Affaire_Fin>01/12/2022 à 10:00:00</Faits_Periode_Affaire_Fin>', $this->xmlContent);
-        $this->assertStringContainsString('<Faits_Violences_Aucune>1</Faits_Violences_Aucune>', $this->xmlContent);
-        $this->assertStringContainsString('<Faits_Prejudice_Physique>non</Faits_Prejudice_Physique>', $this->xmlContent);
+        $this->assertStringContainsString('<Faits_Violences_Aucune/>', $this->xmlContent);
+        $this->assertStringContainsString('<Faits_Prejudice_Physique>oui</Faits_Prejudice_Physique>', $this->xmlContent);
         //        $this->assertStringContainsString('<Faits_Orientation_Aucune>1</Faits_Orientation_Aucune>', $this->xmlContent);
-        //        $this->assertStringContainsString('<Faits_Violences_Description>Je n\'ai pas subit de violences</Faits_Violences_Description>', $this->xmlContent);
+        $this->assertStringContainsString('<Faits_Violences_Description>Je me suis fait taper</Faits_Violences_Description>', $this->xmlContent);
         //        $this->assertStringContainsString('<Faits_Orientation>Je n\'ai pas d\'éléments succeptibles de faire avancer l\'enquête.</Faits_Orientation>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Prejudice_Autre/>', $this->xmlContent);
-        $this->assertStringContainsString('<Faits_Prejudice_Physique_Description/>', $this->xmlContent);
+        $this->assertStringContainsString('<Faits_Prejudice_Physique_Description>Dans ce cas vous devrez être examiné par un médecin et présenter un certificat médical indiquant notamment la durée de votre incapacité temporaire de travail. Les précisions relatives à cet examen vous seront communiquées lors de la fixation du rendez-vous pour la signature de votre plainte</Faits_Prejudice_Physique_Description>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Prejudice_Autre_Description/>', $this->xmlContent);
         $this->assertStringContainsString('</Faits>', $this->xmlContent);
     }
@@ -477,7 +479,6 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Objet_Multimedia_Identite_Victime>Oui</Objet_Multimedia_Identite_Victime>', $this->xmlContent);
         // $this->assertStringContainsString('<Objet_Multimedia_Vol_Dans_Vl>Non</Objet_Multimedia_Vol_Dans_Vl>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_Multimedia_Description>Statut : volé - Description console</Objet_Multimedia_Description>', $this->xmlContent);
-
         //        $this->assertStringContainsString('<Objet_Multimedia_Opposition>Oui</Objet_Multimedia_Opposition>', $this->xmlContent);
         //        $this->assertStringContainsString('<Objet_Multimedia_Nmr_Sim>1234567809</Objet_Multimedia_Nmr_Sim>', $this->xmlContent);
         // $this->assertStringContainsString('<Objet_Multimedia_Identite_Nom>DURAND</Objet_Multimedia_Identite_Nom>', $this->xmlContent);
