@@ -39,6 +39,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  *           endDate: JsonDate|null,
  *           startHour: JsonDate|null,
  *           endHour: JsonDate|null,
+ *           hour: JsonDate|null,
  *      },
  *  }
  */
@@ -92,7 +93,7 @@ class FactsParser
             ->setPostalCode($facts->address->startAddress->postcode ?? '')
             ->setInseeCode($facts->address->startAddress->citycode ?? '')
             ->setExactHourKnown($exactHourKnown)
-            ->setStartHour($facts->offenseDate->startHour ? $this->dateParser->parse($facts->offenseDate->startHour) : null)
+            ->setStartHour(null !== ($startHour = $facts->offenseDate->hour ?? $facts->offenseDate->startHour) ? $this->dateParser->parse($startHour) : null)
             ->setEndHour($facts->offenseDate->endHour ? $this->dateParser->parse($facts->offenseDate->endHour) : null)
             ->setAddressAdditionalInformation($facts->address->addressAdditionalInformation ?? null)
             ->setVictimOfViolence($facts->victimOfViolence ?? null)
