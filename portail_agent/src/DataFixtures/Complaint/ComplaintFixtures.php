@@ -69,7 +69,8 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
             for ($i = 1; $i <= self::COMPLAINTS_NB; ++$i) {
                 $complaint = $this
                     ->getGenericComplaint($users)
-                    ->setUnitAssigned($unit);
+                    ->setUnitAssigned($unit)
+                    ->setFrontId('abcd-'.$unit.'-'.strval($i));
                 /** @var Identity $identity */
                 $identity = $complaint->getIdentity();
                 $complaints[] = $complaint
