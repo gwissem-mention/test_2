@@ -49,7 +49,7 @@ Feature:
         And I should see the key "pel.alert" translated
         And I should see "Alert de test trop longue"
         And I should see a "button[data-bs-toggle='modal']" element
-        And I should see 25 "button" element
+        And I should see 26 "button" element
         And I should see the key "pel.assign.declaration.to" translated
         And I should not see the key "pel.send.to.lrp" translated
         And I should not see the key "pel.reject" translated
