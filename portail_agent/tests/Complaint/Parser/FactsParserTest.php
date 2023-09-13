@@ -453,19 +453,14 @@ JSON;
 			"timestamp": 1609545600,
 			"timezone": "UTC"
 		},
-		"hour": null,
-		"startHour":
+		"hour":
 		{
 			"date": "2021-01-01T12:00:00+00:00",
 			"timestamp": 1609502400,
 			"timezone": "UTC"
 		},
-		"endHour":
-		{
-			"date": "2021-01-01T13:00:00+00:00",
-			"timestamp": 1609506000,
-			"timezone": "UTC"
-		}
+		"startHour": null,
+		"endHour": null
 	},
 	"placeNature":
 	{
@@ -489,7 +484,7 @@ JSON;
         $this->assertEquals('2021-01-01T00:00:00+00:00', $facts->getStartDate()?->format('c'));
         $this->assertEquals('2021-01-02T00:00:00+00:00', $facts->getEndDate()?->format('c'));
         $this->assertEquals('2021-01-01T12:00:00+00:00', $facts->getStartHour()?->format('c'));
-        $this->assertEquals('2021-01-01T13:00:00+00:00', $facts->getEndHour()?->format('c'));
+        $this->assertNull($facts->getEndHour());
         $this->assertEquals([Facts::NATURE_ROBBERY, Facts::NATURE_DEGRADATION], $facts->getNatures());
         $this->assertTrue($facts->isVictimOfViolence());
         $this->assertEquals('Violence text', $facts->getVictimOfViolenceText());

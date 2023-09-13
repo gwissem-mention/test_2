@@ -313,7 +313,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                     ->setDepartment('Rhône')
                     ->setDepartmentNumber(69)
                     ->setCountry('France')
-                    ->setExactHourKnown(Facts::EXACT_HOUR_KNOWN_NO)
+                    ->setExactHourKnown(Facts::EXACT_HOUR_KNOWN_DONT_KNOW)
                     ->setStartHour(new \DateTimeImmutable('09:00'))
                     ->setEndHour(new \DateTimeImmutable('10:00'))
                     ->setAlertNumber(7)
