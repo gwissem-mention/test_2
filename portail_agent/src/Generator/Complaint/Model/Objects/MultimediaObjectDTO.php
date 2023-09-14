@@ -22,6 +22,7 @@ class MultimediaObjectDTO extends AbstractObjectDTO
     private ?string $brand = null;
     private ?string $phoneModel = null;
     private ?string $model = null;
+    private ?string $amount;
 
     public function __construct(MultimediaObject $object)
     {
@@ -46,6 +47,7 @@ class MultimediaObjectDTO extends AbstractObjectDTO
         }
         //        $this->opposition = $object->isOpposition() ? 'Oui' : 'Non';
         //        $this->simNumber = $object->getSimNumber();
+        $this->amount = (string) $object->getAmount();
     }
 
     /**
@@ -66,6 +68,7 @@ class MultimediaObjectDTO extends AbstractObjectDTO
             'Objet_Multimedia_Statut' => $this->status,
             'Objet_Multimedia_Marque' => $this->brand,
             'Objet_Multimedia_Modele' => $this->model,
+            'Objet_Multimedia_Prejudice_Estimation' => $this->amount,
 //            'Objet_Multimedia_Opposition' => $this->opposition,
 //            'Objet_Multimedia_Nmr_Sim' => $this->simNumber,
             // 'Objet_Multimedia_Identite_Victime' => $this->identityVictim,
