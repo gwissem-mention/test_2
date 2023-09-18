@@ -1,4 +1,4 @@
-<div class="fr-text-center">{{ units|length }} {{ 'pel.results'|trans|lower }}</div>
+<p class="fr-text-center">{{ units|length }} {{ 'pel.results'|trans|lower }}</p>
 <ul class="unit-list">
     {% for unit in units %}
         <li class="unit-list-item col-lg-4 col-md-6 fr-p-5v" data-unit-id-anonym="{{ unit.idAnonym }}">
@@ -12,8 +12,8 @@
                 </button>
             </div>
             <div class="fr-text--sm fr-mb-3v">
-                <div>{{ unit.address }}</div>
-                <div>{{ unit.openingHours|replace({'$': "<br>"})|raw }}</div>
+                <p class="m-0">{{ unit.address }}</p>
+                <p class="m-0">{{ unit.openingHours|replace({'$': "<br>"})|raw }}</p>
                 <div class="fr-mt-1w">
                     <a target="_blank" class="fr-link fr-c" href="tel:{{ unit.phone }}">
                         {{ unit.phone }}
