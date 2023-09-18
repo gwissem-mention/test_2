@@ -3146,6 +3146,14 @@
                 <source>pel.please.find.the.sitemap</source>
                 <target>Veuillez trouver ci-joint le plan du site Plainte En Ligne</target>
             </trans-unit>
+            <trans-unit id="pel.contact.us.at.this.number">
+                <source>pel.contact.us.at.this.number</source>
+                <target>Nous contacter sur ce numéro</target>
+            </trans-unit>
+            <trans-unit id="pel.open.in.a.new.window">
+                <source>pel.open.in.a.new.window</source>
+                <target>ouvrir dans une nouvelle fenêtre</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
