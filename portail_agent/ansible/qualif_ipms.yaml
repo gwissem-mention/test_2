@@ -1,0 +1,22 @@
+---
+all:
+    hosts:
+        web:
+            ansible_connection: ssh
+            ansible_host: "{{ vault_server_qualif_ipms_web_host }}"
+            ansible_user: "{{ vault_server_ipms_user }}"
+            server_name: "{{ vault_server_qualif_ipms_web_name }}"
+            server_user: "{{ vault_server_ipms_user }}"
+            force_reload_db: True
+            force_referential_update: True
+            CITOYEN_DOMAIN: https://pel-citoyen.forge.smile.fr
+            
+        php:
+            ansible_connection: ssh
+            ansible_host: "{{ vault_server_qualif_ipms_php_host }}"
+            ansible_user: "{{ vault_server_ipms_user }}"
+            server_name: "{{ vault_server_qualif_ipms_php_name }}"
+            server_user: "{{ vault_server_ipms_user }}"
+            force_reload_db: True
+            force_referential_update: True
+            CITOYEN_DOMAIN: https://pel-citoyen.forge.smile.fr

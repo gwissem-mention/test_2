@@ -293,6 +293,9 @@ deploy:
 deploy-demo:
 	@$(ANSIBLE) --become-method=su  --become-user=$(BECOME_USER)  ansible/deploy/deploy.yaml -i ansible/demo.yaml  --ask-vault-pass --private-key=$(PRIVATE_KEY_PATH)
 
+deploy-qualif-ips:
+	@$(ANSIBLE) --become-method=su  --become-user=$(BECOME_USER)  ansible/deploy/deploy.yaml -i ansible/qualif_ipms.yaml  --ask-vault-pass --private-key=$(PRIVATE_KEY_PATH)
+
 ## Run ansible deploy for CI
 deploy-ci:
 	@$(ANSIBLE) --become-method=su  --become-user=$(BECOME_USER)  ansible/deploy/deploy.yaml -i ansible/qualif.yaml  --vault-password-file $ANSIBLE_VAULT_PASSWORD  --private-key=$(PRIVATE_KEY_PATH)

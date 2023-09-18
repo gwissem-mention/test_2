@@ -1,0 +1,20 @@
+---
+all:
+    hosts:
+        webserver1:
+            ansible_connection: ssh
+            ansible_host: "{{ vault_pp_web_server_host1 }}"
+            ansible_user: "{{ vault_server_user }}"
+            server_name: "{{ vault_pp_server_name }}"
+            server_user: "{{ vault_server_user }}"
+            force_reload_db: False
+            force_referential_update: True
+
+        webserver2:
+            ansible_connection: ssh
+            ansible_host: "{{ vault_pp_web_server_host2 }}"
+            ansible_user: "{{ vault_server_user }}"
+            server_name: "{{ vault_pp_server_name }}"
+            server_user: "{{ vault_server_user }}"
+            force_reload_db: False
+            force_referential_update: True
