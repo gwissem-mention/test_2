@@ -30,8 +30,12 @@
 {% endblock %}
 
 {% block checkbox_row %}
+    {% set attr_row = {'class':html_classes(attr.class ?? '', 'fr-input', {'fr-input--error':errors is not empty})} %}
+    {% if errors is not empty %}
+        {% set attr_row = attr_row|merge({'aria-describedby': 'form-errors-'~ form.vars.id}) %}
+    {% endif %}
     <div class="{{ html_classes('fr-checkbox-group', {'fr-checkbox-group--error': errors is not empty}) }}">
-        {{ form_widget(form, {'attr':{'aria-describedby':errors is not empty ? 'form-errors-'~ form.vars.id :''}}) }}
+        {{ form_widget(form, {'attr': attr_row}) }}
         {{ form_label(form) }}
     </div>
 {% endblock %}
@@ -49,10 +53,14 @@
 {% endblock %}
 
 {% block money_row %}
+    {% set attr_row = {'class':html_classes(attr.class ?? '', 'fr-input', {'fr-input--error':errors is not empty})} %}
+    {% if errors is not empty %}
+        {% set attr_row = attr_row|merge({'aria-describedby': 'form-errors-'~ form.vars.id}) %}
+    {% endif %}
     <div class="{{ html_classes('fr-input-group', {'fr-input-group--error': errors is not empty}) }}">
         {{ form_label(form) }}
         <div class="fr-input-wrap fr-icon-money-euro-circle-line">
-            {{ form_widget(form, {'attr':{'class':html_classes(attr.class ?? '', 'fr-input', {'fr-input--error':errors is not empty}),'aria-describedby':errors is not empty ? 'form-errors-'~ form.vars.id :''}}) }}
+            {{ form_widget(form, {'attr': attr_row}) }}
         </div>
         {{ form_errors(form) }}
     </div>
@@ -62,7 +70,7 @@
     <div class="{{ html_classes('fr-input-group', {'fr-input-group--error': form.number.vars.errors is not empty}) }}" {{ stimulus_controller('intl-tel-input') }} data-live-id="{{ random() }}">
         {{ form_label(form.number) }}
         <div class="[&_.iti]:w-full [&_.iti]:md:w-1/2">
-            {{ form_widget(form.number, {'attr':{'class':html_classes(attr.class ?? '', 'fr-input', {'fr-input--error':form.number.vars.errors is not empty}),'aria-describedby':form.number.vars.errors is not empty ? 'form-errors-'~ form.vars.id :''}}) }}
+            {{ form_widget(form.number, {'attr':{'class':html_classes(attr.class ?? '', 'fr-input', {'fr-input--error':form.number.vars.errors is not empty}),'aria-describedby':form.number.vars.errors is not empty ? 'form-errors-'~ form.vars.id : ''}}) }}
             {{ form_errors(form.number) }}
             {{ form_widget(form.code) }}
             {{ form_widget(form.country) }}
@@ -129,9 +137,13 @@
 {% endblock %}
 
 {% block input_row %}
+    {% set attr_row = {'class':html_classes(attr.class ?? '', 'fr-input', {'fr-input--error':errors is not empty})} %}
+    {% if errors is not empty %}
+        {% set attr_row = attr_row|merge({'aria-describedby': 'form-errors-'~ form.vars.id}) %}
+    {% endif %}
     <div class="{{ html_classes('fr-input-group', {'fr-input-group--error': errors is not empty}) }}">
         {{ form_label(form) }}
-        {{ form_widget(form, {'attr':{'class':html_classes(attr.class ?? '', 'fr-input', {'fr-input--error':errors is not empty}),'aria-describedby':errors is not empty ? 'form-errors-'~ form.vars.id :''}}) }}
+        {{ form_widget(form, {'attr': attr_row}) }}
         {{ form_errors(form) }}
     </div>
 {% endblock %}
