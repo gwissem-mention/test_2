@@ -1,0 +1,63 @@
+image: registry-nexus-pic.gendarmerie.fr/bitnami/git
+
+variables:
+    SENSIO_ACCESS_TOKEN: "$SENSIO_ACCESS_TOKEN"
+    PEL_ACCESS_TOKEN: "$PEL_ACCESS_TOKEN"
+    REGISTRY_PASSWORD: "$REGISTRY_PASSWORD"
+    REGISTRY_USER: "$REGISTRY_USER"
+    PROXY: "$PROXY"
+    PHP_SSH_KEY: "$PHP_SSH_KEY"
+    ANSIBLE_VAULT_PASSWORD: "$ANSIBLE_VAULT_PASSWORD"
+
+.test:
+    image: registry-nexus-pic.gendarmerie.fr/docker:20.10
+
+    stage: code-clone
+    tags:
+        - proxy-internet
+    script:
+        - echo ${REGISTRY_PASSWORD} | docker login registry-nexus-pic.gendarmerie.fr --username ${REGISTRY_USER} --password-stdin
+        - echo "FROM registry-nexus-pic.gendarmerie.fr/php:8.1-fpm-alpine" > Dockerfile
+        - echo "RUN printenv" >> Dockerfile
+        - echo "RUN curl --noproxy \"*\" -k https://nexus-pic.gendarmerie.fr/repository/binaries-pic/composer/2.2.21/composer.phar > /usr/local/bin/composer && chmod +x /usr/local/bin/composer" >> Dockerfile
+        - echo "RUN composer create-project symfony/skeleton test_project" >> Dockerfile
+        - echo "RUN curl -k -v 'https://nexus-pic.gendarmerie.fr'" >> Dockerfile
+        - docker build --network=host --build-arg HTTP_PROXY="$HTTP_PROXY" --build-arg
+
+.clone-code:
+    stage: code-clone
+    tags:
+        - proxy-internet
+    only:
+        - main
+    when: manual
+    allow_failure: true
+    script:
+        - git clone https://pel:${SENSIO_ACCESS_TOKEN}@git.smile.fr/ministere-de-l-interieur/plaintes-en-ligne-pel.git
+        - cd plaintes-en-ligne-pel && git pull --all && git fetch
+        - git remote rm origin && git remote add origin https://pel:${PEL_ACCESS_TOKEN}@omnibus-pic.gendarmerie.fr/mohamed-1.el-bouraissi/plainte-en-ligne.git
+        - git push -u origin --all
+
+install-ansible:
+    stage: build-qualif
+    tags:
+        - proxy-internet
+    only:
+        - main
+    script:
+        - mkdir ~/.ssh && chmod 600 ~/.ssh
+        - cp ansible/known_hosts ~/.ssh/known_hosts && chmod 600 ~/.ssh/known_hosts
+        - echo "$PHP_SSH_KEY" > ~/.ssh/id_rsa_ansible && chmod 600 ~/.ssh/id_rsa_ansible
+        - echo "$ANSIBLE_VAULT_PASSWORD" > ~/.vault_token && chmod 600 ~/.vault_token
+        - apt-get update && apt-get install -y net-tools software-properties-common gnupg2 python3.9-distutils && apt-get update
+        - echo "deb http://ppa.launchpad.net/ansible/ansible/ubuntu trusty main" >> /etc/apt/sources.list
+        - curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+        - python3.9 get-pip.py --user
+        - /root/.local/bin/pip install --user ansible
+        - /root/.local/bin/ansible --version
+        - /root/.local/bin/ansible-galaxy install ansistrano.deploy ansistrano.rollback
+        - ifconfig
+        - ls -lah $(pwd)
+        - ls -lha $(pwd)/portail_agent
+        - ls -lha $(pwd)/portail_agent/ansible/deploy/
+        - ~/.local/bin/ansible-playbook -vvv --become-method=su --become-user=ansible $(pwd)/portail_agent/ansible/deploy/deploy.yaml -i $(pwd)/portail_agent/ansible_qualif_ipms.yaml --vault-password-file=~/.vault_token --private-key=~/.ssh/id_rsa_ansible
