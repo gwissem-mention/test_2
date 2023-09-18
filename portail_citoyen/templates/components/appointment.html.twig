@@ -9,7 +9,7 @@
         <div class="fr-pt-4v fr-px-6v fr-pb-12v fr-pt-md-6v fr-px-md-20v text-center">
             <div class="flex items-center justify-start gap-x-4 md:justify-between">
                 <a href="{{ path('complaint_summary') }}" class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-arrow-left-line fr-text--lg py-3 md:py-2.5 pr-[5px] pl-[13px] md:pr-6 md:pl-[18px] before:content-[''] before:w-6 before:h-6">
-                    <span class="fr-hidden fr-unhidden-md">{{ 'pel.previous'|trans }}</span>
+                    <span class="fr-hidden sm:visually-hidden fr-unhidden-md">{{ 'pel.previous'|trans }}</span>
                 </a>
 				<button type="submit" class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line fr-text--lg py-2.5 pr-[18px] pl-6 after:w-6 after:h-6" id="appointment_submit" data-action="live#action" data-action-name="prevent|submit">{{ 'pel.next'|trans }}</button>
             </div>
