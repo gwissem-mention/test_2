@@ -15,13 +15,11 @@
                 <p class="m-0">{{ unit.address }}</p>
                 <p class="m-0">{{ unit.openingHours|replace({'$': "<br>"})|raw }}</p>
                 <div class="fr-mt-1w">
-                    <a target="_blank" class="fr-link fr-c" href="tel:{{ unit.phone }}">
-                        {{ unit.phone }}
-                    </a>
+                    <a target="_blank" class="fr-link fr-c" href="tel:{{ unit.phone }}" title="{{ 'pel.contact.us.at.this.number'|trans }} ({{ 'pel.open.in.a.new.window'|trans }})">{{ unit.phone }}</a>
                 </div>
                 {% if (unit.institutionCode is same as(constant('App\\AppEnum\\Institution::GN'))) %}
                     <div>
-                        <button class="fr-link" id="unit-id-{{ unit.idAnonym }}" data-action="google-maps--appointment#accessibilityInformation" data-google-maps--appointment-url-param="{{ path('complaint_unit_accessibility_information', { 'unitIdAnonym': unit.idAnonym }) }}" data-fr-opened="false" aria-controls="fr-modal-unit-accessibility-information">{{ 'pel.accessibility.information'|trans }}</button>
+                        <button class="fr-link" id="unit-id-{{ unit.idAnonym }}" data-action="google-maps--appointment#accessibilityInformation" data-google-maps--appointment-url-param="{{ path('complaint_unit_accessibility_information', { 'unitIdAnonym': unit.idAnonym }) }}" data-fr-opened="false" aria-controls="fr-modal-unit-accessibility-information" title="{{ 'pel.accessibility.information'|trans }} ({{ 'pel.open.in.a.new.window'|trans }})">{{ 'pel.accessibility.information'|trans }}</button>
                     </div>
                 {% endif %}
             </div>
