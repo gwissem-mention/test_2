@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace App\Form\Facts;
 
 use App\Form\Model\Facts\FactsModel;
-use App\Thesaurus\NaturePlaceThesaurusProviderInterface;
+use App\Referential\Entity\NaturePlace;
+use App\Referential\Repository\NaturePlaceRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -21,7 +22,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 class FactsType extends AbstractType
 {
     public function __construct(
-        private readonly NaturePlaceThesaurusProviderInterface $naturePlaceThesaurusProvider,
+        private readonly NaturePlaceRepository $naturePlaceRepository
     ) {
     }
 
@@ -50,10 +51,12 @@ class FactsType extends AbstractType
                 'required' => false,
             ])
             ->add('placeNature', ChoiceType::class, [
-                'choices' => $this->naturePlaceThesaurusProvider->getChoices(),
+                'choices' => $this->naturePlaceRepository->getNaturePlacesChoices(),
                 'label' => 'pel.nature.place',
                 'placeholder' => 'pel.nature.place.choose',
-                'required' => false,
+                'constraints' => [
+                    new NotBlank(),
+                ],
             ])
             ->add('offenseDate', OffenseDateType::class, [
                 'label' => false,
@@ -67,6 +70,7 @@ class FactsType extends AbstractType
                     $form = $event->getForm();
                     $this->addAddressField($form);
                     $this->addVictimOfViolenceField($form, $factsModel->isVictimOfViolence());
+                    $this->addSubNaturePlaceField($form, $factsModel->getPlaceNature(), $factsModel);
                 }
             );
 
@@ -80,6 +84,19 @@ class FactsType extends AbstractType
                 /** @var FactsModel $factsModel */
                 $factsModel = $parent->getData();
                 $this->addVictimOfViolenceField($parent, boolval($victimOfViolence), $factsModel);
+            }
+        );
+
+        $builder->get('placeNature')->addEventListener(
+            FormEvents::POST_SUBMIT,
+            function (FormEvent $event) {
+                /** @var int $naturePlace */
+                $naturePlace = $event->getForm()->getData();
+                /** @var FormInterface $parent */
+                $parent = $event->getForm()->getParent();
+                /** @var FactsModel $factsModel */
+                $factsModel = $parent->getData();
+                $this->addSubNaturePlaceField($parent, $naturePlace, $factsModel);
             }
         );
     }
@@ -114,6 +131,36 @@ class FactsType extends AbstractType
         } else {
             $form->remove('victimOfViolenceText');
             $factsModel?->setVictimOfViolenceText(null);
+        }
+    }
+
+    private function addSubNaturePlaceField(
+        FormInterface $form,
+        ?int $naturePlaceId,
+        FactsModel $factsModel = null
+    ): void {
+        if (null === $naturePlaceId) {
+            $form->remove('subPlaceNature');
+            $factsModel?->setSubPlaceNature(null);
+
+            return;
+        }
+
+        /** @var NaturePlace $naturePlace */
+        $naturePlace = $this->naturePlaceRepository->find($naturePlaceId);
+
+        if (!$naturePlace->getChildren()->isEmpty()) {
+            $form->add('subPlaceNature', ChoiceType::class, [
+                'choices' => $this->naturePlaceRepository->getNaturePlacesChoices($naturePlaceId),
+                'label' => 'pel.precision.nature.place',
+                'placeholder' => 'pel.please.specify.nature.place',
+                'constraints' => [
+                    new NotBlank(),
+                ],
+            ]);
+        } else {
+            $form->remove('subPlaceNature');
+            $factsModel?->setSubPlaceNature(null);
         }
     }
 

@@ -132,7 +132,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
                     ->setExactPlaceUnknown(true)
                     ->setStartDate(new \DateTimeImmutable('2022-12-01'))
                     ->setEndDate(new \DateTimeImmutable('2022-12-01'))
-                    ->setPlace('Restaurant')
+                    ->setPlace('RESTAURANT')
                     ->setStartAddress('25 Avenue Georges Pompidou, Lyon, 69003')
                     ->setEndAddress('Place Charles Hernu, Villeurbanne, 69100')
                     ->setCountry('France')
@@ -393,7 +393,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Faits_Localisation_Insee>69123</Faits_Localisation_Insee>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Localisation_Commune>Lyon</Faits_Localisation_Commune>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Localisation_HidNumDep>69</Faits_Localisation_HidNumDep>', $this->xmlContent);
-        $this->assertStringContainsString('<Faits_Localisation>Restaurant</Faits_Localisation>', $this->xmlContent);
+        $this->assertStringContainsString('<Faits_Localisation>RESTAURANT</Faits_Localisation>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Localisation_Inconnue>1</Faits_Localisation_Inconnue>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Horaire>horaire_inconnu</Faits_Horaire>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Date_Affaire>01/12/2022</Faits_Date_Affaire>', $this->xmlContent);
@@ -611,7 +611,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<DIVERS_SOUMISSION_HORAIRE>01/12/2022 00:00:00</DIVERS_SOUMISSION_HORAIRE>', $this->xmlContent);
         $this->assertStringContainsString('<DIVERS_NUMERO_PEL>PEL-2022-00000001</DIVERS_NUMERO_PEL>', $this->xmlContent);
         $this->assertStringContainsString('<DIVERS_DATE_EXACTE_FAITS_CONNUE>Oui</DIVERS_DATE_EXACTE_FAITS_CONNUE>', $this->xmlContent);
-        $this->assertStringContainsString('<DIVERS_NATURE_LIEU>Restaurant</DIVERS_NATURE_LIEU>', $this->xmlContent);
+        $this->assertStringContainsString('<DIVERS_NATURE_LIEU>RESTAURANT</DIVERS_NATURE_LIEU>', $this->xmlContent);
         $this->assertStringContainsString('<DIVERS_LIEU_INFORMATION_COMPLEMENTAIRES>Les faits se sont produits entre le restaurant et l\'appartement d\'un ami</DIVERS_LIEU_INFORMATION_COMPLEMENTAIRES>', $this->xmlContent);
         $this->assertStringContainsString('<DIVERS_SUSPECTS_INFORMATIONS>Oui</DIVERS_SUSPECTS_INFORMATIONS>', $this->xmlContent);
         $this->assertStringContainsString('<DIVERS_SUSPECTS_DESCRIPTION>2 hommes</DIVERS_SUSPECTS_DESCRIPTION>', $this->xmlContent);

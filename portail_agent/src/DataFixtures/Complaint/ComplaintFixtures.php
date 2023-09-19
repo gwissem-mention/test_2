@@ -304,7 +304,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                     ->setExactDateKnown(true)
                     ->setStartDate(new \DateTimeImmutable('2022-12-01'))
                     ->setExactPlaceUnknown(false)
-                    ->setPlace('Restaurant')
+                    ->setPlace('RESTAURANT')
                     ->setStartAddress('25 Avenue Georges Pompidou, Lyon, 69003')
                     ->setEndAddress('Place Charles Hernu, Villeurbanne, 69100')
                     ->setCity('Lyon')

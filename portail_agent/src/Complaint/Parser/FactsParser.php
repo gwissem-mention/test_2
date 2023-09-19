@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Complaint\Parser;
 
 use App\Entity\Facts;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * @phpstan-import-type JsonDate from DateParser
@@ -13,7 +12,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  * @phpstan-type JsonFacts object{
  *      description: string,
  *      offenseDate: object,
- *      placeNature: object{label: string},
+ *      placeNature: string,
  *      address: object{
  *           addressOrRouteFactsKnown: bool,
  *           startAddress: object{
@@ -45,7 +44,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class FactsParser
 {
-    public function __construct(private readonly TranslatorInterface $translator, private readonly DateParser $dateParser)
+    public function __construct(private readonly DateParser $dateParser)
     {
     }
 
@@ -80,7 +79,7 @@ class FactsParser
             ->setNatures(array_unique($natures))
             ->setDescription($facts->description)
             ->setExactPlaceUnknown(!$facts->address->addressOrRouteFactsKnown)
-            ->setPlace($this->translator->trans($facts->placeNature->label))
+            ->setPlace($facts->placeNature)
             ->setExactDateKnown($facts->offenseDate->exactDateKnown)
             ->setStartDate($this->dateParser->parse($facts->offenseDate->startDate))
             ->setEndDate($facts->offenseDate->endDate ? $this->dateParser->parse($facts->offenseDate->endDate) : null)

@@ -264,11 +264,7 @@ class ComplaintFileParserTest extends KernelTestCase
 				"timezone": "UTC"
 			}
 		},
-		"placeNature":
-		{
-			"code": 1,
-			"label": "pel.nature.place.home"
-		},
+		"placeNature": "RESTAURANT",
 		"victimOfViolence": true,
 		"victimOfViolenceText": "Violence text",
 		"description": "Description"

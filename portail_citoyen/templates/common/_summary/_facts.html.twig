@@ -53,32 +53,12 @@
     <p class="fr-badge fr-badge--purple-glycine fr-badge--no-icon fr-text--xs fr-mt-6v fr-mb-6v -ml-8">{{ 'pel.complaint.place.of.offence'|trans }}</p>
     {% if complaint.facts.placeNature is not null %}
         <li class="relative text-xl/8 fr-pb-6v fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/community.svg')]">
-            {{ 'pel.nature.place'|trans }} :
-            {% if complaint.facts.placeNature is same as(1) %}
-                <b>{{ 'pel.nature.place.home'|trans }}</b>
-            {% elseif complaint.facts.placeNature is same as(2) %}
-                <b>{{ 'pel.nature.place.park'|trans }}</b>
-            {% elseif complaint.facts.placeNature is same as(3) %}
-                <b>{{ 'pel.nature.place.educational.establishment'|trans }}</b>
-            {% elseif complaint.facts.placeNature is same as(4) %}
-                <b>{{ 'pel.nature.place.internet'|trans }}</b>
-            {% elseif complaint.facts.placeNature is same as(5) %}
-                <b>{{ 'pel.nature.place.street'|trans }}</b>
-            {% elseif complaint.facts.placeNature is same as(6) %}
-                <b>{{ 'pel.nature.place.public.transport'|trans }}</b>
-            {% elseif complaint.facts.placeNature is same as(7) %}
-                <b>{{ 'pel.nature.place.worship'|trans }}</b>
-            {% elseif complaint.facts.placeNature is same as(8) %}
-                <b>{{ 'pel.nature.place.business'|trans }}</b>
-            {% elseif complaint.facts.placeNature is same as(9) %}
-                <b>{{ 'pel.nature.place.market'|trans }}</b>
-            {% elseif complaint.facts.placeNature is same as(10) %}
-                <b>{{ 'pel.nature.place.leisure.place'|trans }}</b>
-            {% elseif complaint.facts.placeNature is same as(11) %}
-                <b>{{ 'pel.nature.place.other'|trans }}</b>
-            {% else %}
-                <b>{{ 'pel.nature.place.unknown'|trans }}</b>
-            {% endif %}
+            {{ 'pel.nature.place'|trans }} : <b>{{ complaint.facts.placeNature|nature_place_label }}</b>
+        </li>
+    {% endif %}
+    {% if complaint.facts.subPlaceNature is not null %}
+        <li class="relative text-xl/8 fr-pb-6v fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/community.svg')]">
+            {{ 'pel.precision.nature.place'|trans }} : <b>{{ complaint.facts.subPlaceNature|nature_place_label }}</b>
         </li>
     {% endif %}
     {% if complaint.facts.address.addressOrRouteFactsKnown is same as(true) %}

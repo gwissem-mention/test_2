@@ -29,6 +29,7 @@ Feature:
         And I fill in "facts_offenseDate_startDate" with "01/01/2022"
         And I click the "label[for=facts_offenseDate_choiceHour_0]" element
         And I fill in "facts_offenseDate_hour" with "15:00"
+        And I select "2" from "facts_placeNature"
         And I press "facts_submit"
         Then I should be on "/porter-plainte/objets"
         Given I select "5" from "objects_objects_0_category"

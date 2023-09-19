@@ -38,6 +38,7 @@ Feature:
         And I fill in "facts_offenseDate_startDate" with "01/01/2022"
         And I click the "label[for=facts_offenseDate_choiceHour_0]" element
         And I fill in "facts_offenseDate_hour" with "15:00"
+        And I select "2" from "facts_placeNature"
         And I press "facts_submit"
         Then I should be on "/porter-plainte/objets"
         When I select "5" from "objects_objects_0_category"
@@ -147,6 +148,7 @@ Feature:
         And I should see "15h00"
         And I should see the key "pel.additional.factual.information" translated
         And I should see "La victime affirme avoir identifié 1 témoin de l’infraction"
+        And I should see "Nature du lieu : Voie publique"
         And I should see "Jean DUPONT"
         And I should see "jean.dupont@example.com"
         And I should see "+33 6 02 03 04 05"

@@ -114,7 +114,7 @@ Feature:
         And I should see the key "pel.the" translated
         And I should see the key "pel.between" translated
         And I should see the key "pel.and" translated
-        And I should see "Restaurant"
+        And I should see "RESTAURANT"
         And I should see "25 Avenue Georges Pompidou, Lyon, 69003"
         And I should see "Place Charles Hernu, Villeurbanne, 69100"
         And I should see "01/12/2022"
