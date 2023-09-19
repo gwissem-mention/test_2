@@ -9,6 +9,10 @@ variables:
     PHP_SSH_KEY: "$PHP_SSH_KEY"
     ANSIBLE_VAULT_PASSWORD: "$ANSIBLE_VAULT_PASSWORD"
 
+stages:
+    - code-clone
+    - build-qualif
+
 .test:
     image: registry-nexus-pic.gendarmerie.fr/docker:20.10
 
