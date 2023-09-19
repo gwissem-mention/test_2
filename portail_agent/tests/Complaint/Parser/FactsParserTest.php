@@ -377,11 +377,7 @@ JSON;
 			"timezone": "UTC"
 		}
 	},
-	"placeNature":
-	{
-		"code": 1,
-		"label": "pel.nature.place.home"
-	},
+	"placeNature": "RESTAURANT",
 	"victimOfViolence": true,
 	"victimOfViolenceText": "Violence text",
 	"description": "Description"
@@ -408,7 +404,7 @@ JSON;
         $this->assertEquals('France', $facts->getCountry());
         $this->assertEquals('80', $facts->getDepartment());
         $this->assertEquals(80, $facts->getDepartmentNumber());
-        $this->assertEquals('Domicile/Logement et dépendances', $facts->getPlace());
+        $this->assertEquals('RESTAURANT', $facts->getPlace());
         $this->assertEquals('Amiens', $facts->getCity());
         $this->assertEquals('80000', $facts->getPostalCode());
         $this->assertEquals('80021', $facts->getInseeCode());
@@ -462,11 +458,7 @@ JSON;
 		"startHour": null,
 		"endHour": null
 	},
-	"placeNature":
-	{
-		"code": 1,
-		"label": "pel.nature.place.home"
-	},
+	"placeNature": "RESTAURANT",
 	"victimOfViolence": true,
 	"victimOfViolenceText": "Violence text",
 	"description": "Description"
@@ -492,7 +484,7 @@ JSON;
         $this->assertEquals('France', $facts->getCountry());
         $this->assertEmpty($facts->getDepartment());
         $this->assertEquals(0, $facts->getDepartmentNumber());
-        $this->assertEquals('Domicile/Logement et dépendances', $facts->getPlace());
+        $this->assertEquals('RESTAURANT', $facts->getPlace());
         $this->assertEmpty($facts->getCity());
         $this->assertEmpty($facts->getPostalCode());
         $this->assertEmpty($facts->getInseeCode());

@@ -8,14 +8,17 @@ use App\AppEnum\DeclarantStatus;
 use App\Form\Model\Address\AddressEtalabModel;
 use App\Form\Model\Objects\ObjectModel;
 use App\Form\Model\Objects\ObjectsModel;
+use App\Referential\Entity\NaturePlace;
 use App\Referential\Repository\CityServiceRepository;
-use App\Thesaurus\NaturePlaceThesaurusProviderInterface;
+use App\Referential\Repository\NaturePlaceRepository;
 use App\Thesaurus\ObjectCategoryThesaurusProviderInterface;
 
 class ComplaintHandler
 {
+    private const HOME_NATURE_PLACE = 'Domicile, logement et dépendances';
+
     public function __construct(
-        private readonly NaturePlaceThesaurusProviderInterface $naturePlaceThesaurusProvider,
+        private readonly NaturePlaceRepository $naturePlaceRepository,
         private readonly CityServiceRepository $cityServiceRepository,
         private readonly ObjectCategoryThesaurusProviderInterface $objectCategoryThesaurusProvider
     ) {
@@ -23,13 +26,18 @@ class ComplaintHandler
 
     public function getAffectedService(ComplaintModel $complaint): ?string
     {
-        $serviceCode = null;
+        $serviceCode = $naturePlace = null;
 
-        $placeNatureChoices = $this->naturePlaceThesaurusProvider->getChoices();
         $factsStartAddress = $complaint->getFacts()?->getAddress()?->getStartAddress();
         $identityFrenchAddress = $complaint->getIdentity()?->getContactInformation()?->getFrenchAddress();
-        $factsAddress = match ($complaint->getFacts()?->getPlaceNature()) {
-            $placeNatureChoices['pel.nature.place.home'] => $identityFrenchAddress,
+
+        if (null !== $complaint->getFacts()?->getPlaceNature()) {
+            /** @var NaturePlace $naturePlace */
+            $naturePlace = $this->naturePlaceRepository->find($complaint->getFacts()->getPlaceNature());
+        }
+
+        $factsAddress = match ($naturePlace?->getLabel()) {
+            self::HOME_NATURE_PLACE => $identityFrenchAddress,
             default => $factsStartAddress instanceof AddressEtalabModel ? $factsStartAddress : $identityFrenchAddress,
         };
 

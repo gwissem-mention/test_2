@@ -24,19 +24,6 @@ Feature:
         When I follow "Étape précédente"
         Then I should be on "/porter-plainte/identite"
 
-    Scenario: I can see the place natures list
-        And I should see "Domicile/Logement et dépendances" in the "#facts_placeNature" element
-        And I should see "Parking" in the "#facts_placeNature" element
-        And I should see "Établissement scolaire" in the "#facts_placeNature" element
-        And I should see "INTERNET" in the "#facts_placeNature" element
-        And I should see "Rue" in the "#facts_placeNature" element
-        And I should see "Transports en commun" in the "#facts_placeNature" element
-        And I should see "Lieu de culte, de prière ou de recueillement" in the "#facts_placeNature" element
-        And I should see "Local professionnel/industriel" in the "#facts_placeNature" element
-        And I should see "Lieu de loisirs" in the "#facts_placeNature" element
-        And I should see "Commerce" in the "#facts_placeNature" element
-        And I should see "Autres natures de lieu" in the "#facts_placeNature" element
-
     Scenario: I can see the offense exact date known radio buttons
         And I should see 2 "input[type=radio][name='facts[offenseDate][exactDateKnown]']" elements
         And I should see "Oui" in the "label[for=facts_offenseDate_exactDateKnown_0]" element
@@ -134,6 +121,8 @@ Feature:
         And I fill in "facts_offenseDate_startDate" with "01/01/2022"
         And I click the "label[for=facts_offenseDate_choiceHour_0]" element
         And I fill in "facts_offenseDate_hour" with "15:00"
+        And I select "1" from "facts_placeNature"
+        And I select "3" from "facts_subPlaceNature"
         And I press "facts_submit"
         Then I should be on "/porter-plainte/objets"
 
@@ -173,15 +162,12 @@ Feature:
     Scenario: The Google Maps should not be displays at init
         Then I should not see a "div#facts-map" element
 
-    Scenario: A Google Maps should be displayed on the facts page when I select "Street" or "Other" nature place
-        And I select "5" from "facts_placeNature"
-        Then I should see a "div#facts-map" element
-        And I should see a ".gm-style" element
-        When I select "11" from "facts_placeNature"
+    Scenario: A Google Maps should be displayed on the facts page when I select "Voie publique" nature place
+        And I select "2" from "facts_placeNature"
         Then I should see a "div#facts-map" element
         And I should see a ".gm-style" element
 
     Scenario: I can fill the map autocomplete and the marker should be at the right place
-        And I select "5" from "facts_placeNature"
+        And I select "2" from "facts_placeNature"
         And I fill in the map autocomplete "map-search" with "81 Avenue de la République 75011 Paris" and click on the first result
         Then the marker should be at latitude "48.8641471" and longitude "2.3815167"

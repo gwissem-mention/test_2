@@ -9,6 +9,7 @@ class FactsModel
     private ?FactAddressModel $address = null;
     private ?OffenseDateModel $offenseDate = null;
     private ?int $placeNature = null;
+    private ?int $subPlaceNature = null;
     private ?bool $victimOfViolence = null;
     private ?string $victimOfViolenceText = null;
     private ?string $description = null;
@@ -50,6 +51,18 @@ class FactsModel
     public function setPlaceNature(?int $placeNature): self
     {
         $this->placeNature = $placeNature;
+
+        return $this;
+    }
+
+    public function getSubPlaceNature(): ?int
+    {
+        return $this->subPlaceNature;
+    }
+
+    public function setSubPlaceNature(?int $subPlaceNature): self
+    {
+        $this->subPlaceNature = $subPlaceNature;
 
         return $this;
     }

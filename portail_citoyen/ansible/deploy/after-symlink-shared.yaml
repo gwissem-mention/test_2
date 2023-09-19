@@ -13,6 +13,7 @@
       FILE_UNITS_GN={{ ansible_env.FILE_UNITS_GN }}
       FILE_UNITS_PN={{ ansible_env.FILE_UNITS_PN }}
       FILE_NATIONALITIES={{ ansible_env.FILE_NATIONALITIES }}
+      FILE_NATURE_PLACES={{ ansible_env.FILE_NATURE_PLACES }}
       OODRIVE_BASE_URI={{ ansible_env.OODRIVE_BASE_URI }}
       OODRIVE_WORKSPACE={{ ansible_env.OODRIVE_WORKSPACE }}
       OODRIVE_OAUTH_CLIENT_ID={{ ansible_env.OODRIVE_OAUTH_CLIENT_ID }}

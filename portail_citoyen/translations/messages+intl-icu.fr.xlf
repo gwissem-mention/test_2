@@ -3154,6 +3154,14 @@
                 <source>pel.open.in.a.new.window</source>
                 <target>ouvrir dans une nouvelle fenêtre</target>
             </trans-unit>
+            <trans-unit id="pel.precision.nature.place">
+                <source>pel.precision.nature.place</source>
+                <target>Précision sur la nature du lieu</target>
+            </trans-unit>
+            <trans-unit id="pel.please.specify.nature.place">
+                <source>pel.please.specify.nature.place</source>
+                <target>Veuillez préciser la nature du lieu</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

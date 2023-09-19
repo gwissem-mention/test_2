@@ -31,6 +31,7 @@ Feature:
         And I fill in "facts_offenseDate_startDate" with "01/01/2022"
         And I click the "label[for=facts_offenseDate_choiceHour_0]" element
         And I fill in "facts_offenseDate_hour" with "15:00"
+        And I select "2" from "facts_placeNature"
         And I press "facts_submit"
         Then I should be on "/porter-plainte/objets"
         When I select "5" from "objects_objects_0_category"
@@ -136,7 +137,7 @@ Feature:
         And I should see the key "pel.of.infraction" translated
         And I should see the key "pel.facts.description" translated
         And I should see the key "pel.nature.place" translated
-        And I should see the key "pel.nature.place.home" translated
+        And I should see "Voie publique"
         And I should see the key "pel.victim.at.time.of.facts" translated
         And I should see the key "pel.address" translated
         And I should see "Avenue de la République 75011 Paris (France)"

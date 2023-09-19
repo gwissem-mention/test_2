@@ -165,7 +165,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                         ->setStartDate($factsStartDate)
                         ->setEndDate(true === $exactDateKnown ? null : $factsStartDate->add(new \DateInterval('P1D')))
                         ->setExactPlaceUnknown(false)
-                        ->setPlace((string) $this->randomString(['Domicile', 'Parking', 'Voie publique', 'Commerce', 'Transports en commun', 'Autre nature de lieu', 'Lieu indéterminé']))
+                        ->setPlace((string) $this->randomString(['MAISON INDIVIDUELLE', 'APPARTEMENT', 'VOIE PUBLIQUE', 'COMMERCE', 'METRO', 'ECOLE']))
                         ->setStartAddress($this->faker->streetAddress.', '.$factsAddressCity.', '.$factsAddressPostcode)
                         ->setEndAddress($this->randomString([
                             null,

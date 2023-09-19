@@ -75,8 +75,19 @@
                 {{ form_errors(form.placeNature) }}
             </div>
         </div>
-        {% if form.vars.data.placeNature in [5,11] or (identityAddress is not null and identityAddress.addressType is not same as('etalab_address')) %}
-            <div class="fr-grid-row">
+        {% if form.subPlaceNature is defined %}
+            <div class="fr-form-group fr-mb-6v md:w-1/2">
+                <div class="{{ html_classes('fr-select-group', {'fr-select-group--error': form.subPlaceNature.vars.errors is not empty}) }}">
+                    {{ form_label(form.subPlaceNature) }}
+                    <div class="fr-input-wrap fr-icon-arrow-down-s-line before:content-[''] before:z-10">
+                        {{ form_widget(form.subPlaceNature, {'attr':{'class':html_classes(form.subPlaceNature.vars.attr.class ?? '', 'autocomplete' not in form.subPlaceNature.vars['block_prefixes'] ? 'fr-select' : '',{'fr-select--error':form.subPlaceNature.vars.errors is not empty})}}) }}
+                    </div>
+                    {{ form_errors(form.subPlaceNature) }}
+                </div>
+            </div>
+        {% endif %}
+        {% if form.vars.data.placeNature|nature_place_map_displayed or (identityAddress is not null and identityAddress.addressType is not same as('etalab_address')) %}
+            <div class="fr-grid-row fr-mb-6v">
                 <div class="fr-col">
                     {{ component('google_maps', {
                         'data-live-id':'google-maps',

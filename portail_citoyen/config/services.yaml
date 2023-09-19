@@ -24,6 +24,7 @@ parameters:
     app.acces_libre_api_base_uri: '%env(ACCES_LIBRE_API_BASE_URI)%'
     app.acces_libre_api_key: '%env(ACCES_LIBRE_API_KEY)%'
     app.pdf_assets_host: '%env(PDF_ASSETS_HOST)%'
+    app.file_nature_places: '%env(FILE_NATURE_PLACES)%'
     
 services:
     _defaults:
@@ -103,6 +104,10 @@ services:
     App\Referential\DataFixtures\Nationality\NationalityFileFixtures:
         arguments:
             $nationalitiesFixturesPath: '%app.referentials_base_path%/%app.file_nationalities%'
+
+    App\Referential\DataFixtures\NaturePlace\NaturePlaceFileFixtures:
+        arguments:
+            $naturePlacesFixturesPath: '%app.referentials_base_path%/%app.file_nature_places%'
 
     App\Referential\Provider\Country\CountryProviderInterface: '@App\Referential\Provider\Country\DatabaseCountryProvider'
     

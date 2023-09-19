@@ -69,6 +69,9 @@ class CorporationType extends AbstractType
                 'constraints' => [
                     new NotBlank(),
                 ],
+                'attr' => [
+                    'data-live-id' => 'nationality-corporation-'.microtime(), // @todo: remove this hack when it'll be fixed on Symfony UX autocomplete
+                ],
                 'label' => 'pel.nationality',
                 'preferred_choices' => [$this->frenchNationalityCode],
                 'empty_data' => $this->frenchNationalityCode,

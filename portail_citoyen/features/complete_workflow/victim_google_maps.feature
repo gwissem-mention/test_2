@@ -21,9 +21,9 @@ Feature:
         When I press "identity_submit"
         Then I should be on "/porter-plainte/faits"
         When I fill in "facts_description" with "description informations lorem ipsum dol or sit amet lorem ipsum dol or sit amet"
-        And I select "5" from "facts_placeNature"
         And I click the "label[for=facts_victimOfViolence]" element
         And I fill in "facts_victimOfViolenceText" with "Violence informations"
+        And I select "2" from "facts_placeNature"
         Then the marker should be at latitude "48.8650197" and longitude "2.3758909"
         When I click on the map at latitude "48.8650197" and longitude "2.3758909"
         Then the marker should be at latitude "48.8650197" and longitude "2.3758909"
@@ -118,7 +118,7 @@ Feature:
         And I should see the key "pel.of.infraction" translated
         And I should see the key "pel.facts.description" translated
         And I should see the key "pel.nature.place" translated
-        And I should see the key "pel.nature.place.street" translated
+        And I should see "Voie publique"
         And I should see the key "pel.victim.at.time.of.facts" translated
         And I should see the key "pel.address" translated
         And I should see "45 Avenue de la République 75011 Paris"
