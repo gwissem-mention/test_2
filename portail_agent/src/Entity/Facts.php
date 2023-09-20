@@ -383,4 +383,9 @@ class Facts
 
         return $this;
     }
+
+    public function hasExactAddress(): bool
+    {
+        return null != $this->getStartAddress() && null === $this->getEndAddress();
+    }
 }

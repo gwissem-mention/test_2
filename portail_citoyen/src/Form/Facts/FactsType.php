@@ -23,6 +23,11 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 class FactsType extends AbstractType
 {
     private const NATURE_PLACE_TELEPHONE = 'Téléphone';
+    private const NATURE_PLACE_PARKING = 'Parking';
+
+    private const NATURES_PLACES_ADDRESS_OR_ROUTE_FACTS_KNOWN_NOT_DISPLAYED = [
+        self::NATURE_PLACE_PARKING,
+    ];
 
     private const NATURES_PLACES_ADDRESSES_NOT_DISPLAYED = [
         self::NATURE_PLACE_TELEPHONE,
@@ -31,8 +36,9 @@ class FactsType extends AbstractType
     // For other uses
     private const NATURES_PLACES_START_ADDRESS_NOT_DISPLAYED = [];
 
-    // For other uses
-    private const NATURES_PLACES_END_ADDRESS_NOT_DISPLAYED = [];
+    private const NATURES_PLACES_END_ADDRESS_NOT_DISPLAYED = [
+        self::NATURE_PLACE_PARKING,
+    ];
 
     public function __construct(
         private readonly NaturePlaceRepository $naturePlaceRepository
@@ -129,7 +135,8 @@ class FactsType extends AbstractType
         $form->add('address', FactAddressType::class, [
             'label' => false,
             'compound' => true,
-            'address_or_route_facts_known_show' => null === $naturePlace || !in_array($naturePlace->getLabel(), self::NATURES_PLACES_ADDRESSES_NOT_DISPLAYED),
+            'address_or_route_facts_known_show' => null === $naturePlace || !in_array($naturePlace->getLabel(), self::NATURES_PLACES_ADDRESS_OR_ROUTE_FACTS_KNOWN_NOT_DISPLAYED),
+            'addresses_show' => null === $naturePlace || !in_array($naturePlace->getLabel(), self::NATURES_PLACES_ADDRESSES_NOT_DISPLAYED),
             'start_address_show' => null === $naturePlace || !in_array($naturePlace->getLabel(), self::NATURES_PLACES_START_ADDRESS_NOT_DISPLAYED),
             'end_address_show' => null === $naturePlace || !in_array($naturePlace->getLabel(), self::NATURES_PLACES_END_ADDRESS_NOT_DISPLAYED),
         ]);

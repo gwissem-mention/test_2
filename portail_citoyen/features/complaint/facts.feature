@@ -122,7 +122,7 @@ Feature:
         And I click the "label[for=facts_offenseDate_choiceHour_0]" element
         And I fill in "facts_offenseDate_hour" with "15:00"
         And I select "1" from "facts_placeNature"
-        And I select "4" from "facts_subPlaceNature"
+        And I select "5" from "facts_subPlaceNature"
         And I press "facts_submit"
         Then I should be on "/porter-plainte/objets"
 
@@ -162,8 +162,11 @@ Feature:
     Scenario: The Google Maps should not be displays at init
         Then I should not see a "div#facts-map" element
 
-    Scenario: A Google Maps should be displayed on the facts page when I select "Voie publique" nature place
+    Scenario: A Google Maps should be displayed on the facts page when I select "Voie publique" or "Parking" nature place
         And I select "2" from "facts_placeNature"
+        Then I should see a "div#facts-map" element
+        And I should see a ".gm-style" element
+        When I select "4" from "facts_placeNature"
         Then I should see a "div#facts-map" element
         And I should see a ".gm-style" element
 
@@ -179,3 +182,19 @@ Feature:
         And I should not see a "input#facts-endAddress-address" element
         And I should see a "input#facts_callingPhone_number" element
         And I should not see a "div#facts-map" element
+
+    Scenario: I can fill the map autocomplete and the address should be in the form field
+        When I select "4" from "facts_placeNature"
+        And I fill in the map autocomplete "map-search" with "5 Rue Emile Zola 37000 Tours" and click on the first result
+        Then the "facts-startAddress-address" field should contain "5 Rue Émile Zola 37000 Tours"
+
+    Scenario: I select "Parking" nature place, I can see a Google Maps and an exact address field
+        When I select "4" from "facts_placeNature"
+        Then I should see a "div#facts-map" element
+        And I should see a ".gm-style" element
+        And I should see the key "pel.address.exact" translated
+        And I should see a "#facts-startAddress-address" element
+        And I should not see a "label[for=facts_address_addressOrRouteFactsKnown_0]" element
+        And I should not see a "label[for=facts_address_addressOrRouteFactsKnown_1]" element
+        And I should not see the key "pel.address.start.or.exact" translated
+        And I should not see a "#facts-endAddress-address" element

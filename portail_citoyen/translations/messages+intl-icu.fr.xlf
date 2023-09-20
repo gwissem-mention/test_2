@@ -58,6 +58,10 @@
                 <source>pel.address.context</source>
                 <target>Etat/Province/Région</target>
             </trans-unit>
+            <trans-unit id="pel.address.exact">
+                <source>pel.address.exact</source>
+                <target>Adresse exacte des faits</target>
+            </trans-unit>
             <trans-unit id="pel.address.number">
                 <source>pel.address.number</source>
                 <target>Numéro de la voie</target>
