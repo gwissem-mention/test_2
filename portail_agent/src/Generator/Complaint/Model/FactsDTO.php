@@ -60,7 +60,7 @@ class FactsDTO
         $this->city = $facts->getCity() ?? '';
         $this->departmentNumber = strval($facts->getDepartmentNumber());
         $this->localisation = $facts->getPlace() ?? '';
-        $this->unknownLocalisation = true === $facts->isExactPlaceUnknown() ? '1' : '';
+        $this->unknownLocalisation = true === $facts->isExactPlaceUnknown() && false === $facts->hasExactAddress() ? '1' : '';
 
         if (Facts::EXACT_HOUR_KNOWN_YES === $facts->getExactHourKnown() && $facts->isExactDateKnown()) {
             $this->timeInformation = self::TIME_INFORMATION_KNOWN;

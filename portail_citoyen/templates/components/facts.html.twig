@@ -118,36 +118,36 @@
                 </div>
                 {{ form_errors(form.address.addressOrRouteFactsKnown) }}
             </fieldset>
-            {% if form.address.startAddress is defined %}
-                {% set etalab_errors = [] %}
-                {% for error in form.address.startAddress.address.vars.errors %}
-                    {% set etalab_errors = etalab_errors|merge([error.message]) %}
-                {% endfor %}
-                <div class="fr-input-group{% if etalab_errors|length > 0 %} fr-input-group--error{% endif %}">
-                    {{ form_label(form.address.startAddress) }}
-                    {{ component('etalab_component', {
-                        'data-live-id': 'facts-startAddress-address',
-                        dataModel: 'addressSearch:startAddressEtalabInput.addressSearch addressId:startAddressEtalabInput.addressId addressSearchSaved:startAddressEtalabInput.addressSearchSaved latitude:startAddressEtalabInput.latitude longitude:startAddressEtalabInput.longitude',
-                        inputName: 'facts-startAddress-address',
-                        errors: etalab_errors,
-                    }) }}
-                </div>
-            {% endif %}
-            {% if form.address.endAddress is defined %}
-                {% set etalab_errors = [] %}
-                {% for error in form.address.endAddress.address.vars.errors %}
-                    {% set etalab_errors = etalab_errors|merge([error.message]) %}
-                {% endfor %}
-                <div class="fr-input-group{% if etalab_errors|length > 0 %} fr-input-group--error{% endif %}">
-                    {{ form_label(form.address.endAddress) }}
-                    {{ component('etalab_component', {
-                        'data-live-id': 'facts-endAddress-address',
-                        dataModel: 'addressSearch:endAddressEtalabInput.addressSearch addressId:endAddressEtalabInput.addressId addressSearchSaved:endAddressEtalabInput.addressSearchSaved',
-                        inputName: 'facts-endAddress-address',
-                        errors: etalab_errors,
-                    }) }}
-                </div>
-            {% endif %}
+        {% endif %}
+        {% if form.address.startAddress is defined %}
+            {% set etalab_errors = [] %}
+            {% for error in form.address.startAddress.address.vars.errors %}
+                {% set etalab_errors = etalab_errors|merge([error.message]) %}
+            {% endfor %}
+            <div class="fr-input-group{% if etalab_errors|length > 0 %} fr-input-group--error{% endif %}">
+                {{ form_label(form.address.startAddress) }}
+                {{ component('etalab_component', {
+                    'data-live-id': 'facts-startAddress-address',
+                    dataModel: 'addressSearch:startAddressEtalabInput.addressSearch addressId:startAddressEtalabInput.addressId addressSearchSaved:startAddressEtalabInput.addressSearchSaved latitude:startAddressEtalabInput.latitude longitude:startAddressEtalabInput.longitude',
+                    inputName: 'facts-startAddress-address',
+                    errors: etalab_errors,
+                }) }}
+            </div>
+        {% endif %}
+        {% if form.address.endAddress is defined %}
+            {% set etalab_errors = [] %}
+            {% for error in form.address.endAddress.address.vars.errors %}
+                {% set etalab_errors = etalab_errors|merge([error.message]) %}
+            {% endfor %}
+            <div class="fr-input-group{% if etalab_errors|length > 0 %} fr-input-group--error{% endif %}">
+                {{ form_label(form.address.endAddress) }}
+                {{ component('etalab_component', {
+                    'data-live-id': 'facts-endAddress-address',
+                    dataModel: 'addressSearch:endAddressEtalabInput.addressSearch addressId:endAddressEtalabInput.addressId addressSearchSaved:endAddressEtalabInput.addressSearchSaved',
+                    inputName: 'facts-endAddress-address',
+                    errors: etalab_errors,
+                }) }}
+            </div>
         {% endif %}
         {{ form_row(form.address.addressAdditionalInformation) }}
     </div>

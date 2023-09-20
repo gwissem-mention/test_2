@@ -87,7 +87,7 @@ export default class extends Controller {
                 searchBox.setBounds(this._map.getBounds() as google.maps.LatLngBounds);
             });
 
-            searchBox.addListener("places_changed", () => {
+            searchBox.addListener("places_changed", async () => {
                 const places: google.maps.places.PlaceResult[] | undefined = searchBox.getPlaces();
 
                 if (!places || places.length == 0) {
@@ -109,6 +109,14 @@ export default class extends Controller {
                     this.addMarker(place.geometry.location);
                 });
 
+                if (places.length === 1) {
+                    const latLng: google.maps.LatLng | undefined = places[0]?.geometry?.location;
+
+                    if (latLng) {
+                        await this.setAddress(latLng);
+                    }
+                }
+
                 this._map.fitBounds(bounds);
             });
         }
@@ -122,49 +130,7 @@ export default class extends Controller {
                 const latLng: google.maps.LatLng | null = await e.latLng;
                 if (latLng) {
                     this.addMarker(latLng);
-
-                    const etalabAddress: object | null = await this.getEtalabAddress(latLng);
-                    const googleAddress = await this.getGoogleAddress(latLng);
-
-                    // label prop is not present in Event type
-                    // @ts-ignore
-                    const label = etalabAddress ? etalabAddress.label : googleAddress;
-
-                    // id prop is not present in Event type
-                    // @ts-ignore
-                    const id: string | null = etalabAddress ? etalabAddress.id : null;
-
-                    if (label) {
-                        const addressKnownRadio: HTMLElement | null = document.getElementById("facts_address_addressOrRouteFactsKnown_0");
-
-                        if (addressKnownRadio) {
-                            // checked prop is not present in HTMLElement type
-                            // @ts-ignore
-                            addressKnownRadio.checked = true;
-                            addressKnownRadio.dispatchEvent(new Event("change", {bubbles: true}));
-
-                            const componentParent: Component | null | undefined = this.component?.getParent();
-
-                            if (componentParent) {
-                                componentParent.set("startAddressEtalabInput.addressSearch", label);
-                                componentParent.set("startAddressEtalabInput.addressSearchSaved", label);
-                                componentParent.set("startAddressEtalabInput.latitude", latLng.lat());
-                                componentParent.set("startAddressEtalabInput.longitude", latLng.lng());
-
-                                const addressInput: HTMLElement | null = document.getElementById("facts-startAddress-address");
-
-                                if (addressInput) {
-                                    // value prop is not present in HTMLElement type
-                                    // @ts-ignore
-                                    addressInput.value = label;
-                                }
-
-                                if (id) {
-                                    componentParent.set("startAddressEtalabInput.addressId", id);
-                                }
-                            }
-                        }
-                    }
+                    await this.setAddress(latLng);
                 }
             });
         }
@@ -248,5 +214,49 @@ export default class extends Controller {
         }
 
         return latLng;
+    }
+
+    private async setAddress(latLng: google.maps.LatLng): Promise<void> {
+        const etalabAddress: object | null = await this.getEtalabAddress(latLng);
+        const googleAddress = await this.getGoogleAddress(latLng);
+
+        // label prop is not present in Event type
+        // @ts-ignore
+        const label = etalabAddress ? etalabAddress.label : googleAddress;
+
+        // id prop is not present in Event type
+        // @ts-ignore
+        const id: string | null = etalabAddress ? etalabAddress.id : null;
+
+        if (label) {
+            const addressKnownRadio: HTMLElement | null = document.getElementById("facts_address_addressOrRouteFactsKnown_0");
+            const addressInput: HTMLElement | null = document.getElementById("facts-startAddress-address");
+
+            if (addressKnownRadio) {
+                // checked prop is not present in HTMLElement type
+                // @ts-ignore
+                addressKnownRadio.checked = true;
+                addressKnownRadio.dispatchEvent(new Event("change", {bubbles: true}));
+            }
+
+            const componentParent: Component | null | undefined = this.component?.getParent();
+
+            if (componentParent) {
+                componentParent.set("startAddressEtalabInput.addressSearch", label);
+                componentParent.set("startAddressEtalabInput.addressSearchSaved", label);
+                componentParent.set("startAddressEtalabInput.latitude", latLng.lat());
+                componentParent.set("startAddressEtalabInput.longitude", latLng.lng());
+
+                if (addressInput) {
+                    // value prop is not present in HTMLElement type
+                    // @ts-ignore
+                    addressInput.value = label;
+                }
+
+                if (id) {
+                    componentParent.set("startAddressEtalabInput.addressId", id);
+                }
+            }
+        }
     }
 }

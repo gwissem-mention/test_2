@@ -34,11 +34,11 @@ class FactAddressType extends AbstractType
                 function (FormEvent $event) {
                     /** @var ?FactAddressModel $addressModel */
                     $addressModel = $event->getData();
+                    $this->addAddressOrRouteFactsKnown($event->getForm(), $addressModel);
                     $this->addOffenseNatureOrNotKnownField(
                         $event->getForm(),
                         $addressModel?->isAddressOrRouteFactsKnown()
                     );
-                    $this->addAddressOrRouteFactsKnown($event->getForm(), $addressModel);
                 }
             )
             ->addEventListener(
@@ -54,7 +54,10 @@ class FactAddressType extends AbstractType
 
     private function addAddressOrRouteFactsKnown(FormInterface $form, FactAddressModel $factAddressModel = null): void
     {
-        if (false === $form->getConfig()->getOption('address_or_route_facts_known_show')) {
+        if (
+            false === $form->getConfig()->getOption('address_or_route_facts_known_show')
+            || false === $form->getConfig()->getOption('addresses_show')
+        ) {
             $form->remove('addressOrRouteFactsKnown')->remove('startAddress')->remove('endAddress');
             $factAddressModel?->setAddressOrRouteFactsKnown(null)->setStartAddress(null)->setEndAddress(null);
 
@@ -81,19 +84,21 @@ class FactAddressType extends AbstractType
         ?bool $choice,
         FactAddressModel $addressModel = null,
     ): void {
-        if (true === $choice) {
-            if (true === $form->getConfig()->getOption('start_address_show')) {
+        $startAddressShow = $form->getConfig()->getOption('start_address_show');
+        $endAddressShow = $form->getConfig()->getOption('end_address_show');
+        if (true === $choice || false === $form->getConfig()->getOption('address_or_route_facts_known_show')) {
+            if (true === $startAddressShow) {
                 $form
                     ->add('startAddress', AddressEtalabType::class, [
-                        'label' => 'pel.address.start.or.exact',
-                        'help' => 'pel.address.start.or.exact.help',
+                        'label' => $endAddressShow ? 'pel.address.start.or.exact' : 'pel.address.exact',
+                        'help' => $endAddressShow ? 'pel.address.start.or.exact.help' : null,
                         'constraints' => [
                             new NotBlank(),
                         ],
                     ]);
             }
 
-            if (true === $form->getConfig()->getOption('end_address_show')) {
+            if (true === $endAddressShow) {
                 $form->add('endAddress', AddressEtalabType::class, [
                     'required' => false,
                     'label' => 'pel.address.end',
@@ -114,6 +119,7 @@ class FactAddressType extends AbstractType
         $resolver->setDefaults([
             'data_class' => FactAddressModel::class,
             'address_or_route_facts_known_show' => true,
+            'addresses_show' => true,
             'start_address_show' => true,
             'end_address_show' => true,
         ]);
