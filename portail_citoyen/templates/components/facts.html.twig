@@ -89,6 +89,9 @@
         {% if form.callingPhone is defined %}
             {{ form_row(form.callingPhone) }}
         {% endif %}
+        {% if form.website is defined %}
+            {{ form_row(form.website) }}
+        {% endif %}
         {% if form.vars.data.placeNature|nature_place_map_displayed or (identityAddress is not null and identityAddress.addressType is not same as('etalab_address')) %}
             <div class="fr-grid-row fr-mb-6v">
                 <div class="fr-col">

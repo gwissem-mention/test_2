@@ -26,6 +26,7 @@ class VariousDTO
     private string $job;
     private string $corporationContactEmail;
     private string $callingPhone;
+    private string $factsWebsite;
 
     public function __construct(Complaint $complaint, UnitRepository $unitRepository)
     {
@@ -46,6 +47,7 @@ class VariousDTO
         $this->corporationContactEmail = $complaint->getCorporationRepresented()?->getContactEmail() ?? '';
         $this->appointmentUnit = $unitRepository->findOneBy(['code' => $complaint->getUnitAssigned()])?->getName() ?? '';
         $this->callingPhone = $complaint->getFacts()?->getCallingPhone() ?? '';
+        $this->factsWebsite = $complaint->getFacts()?->getWebsite() ?? '';
     }
 
     /**
@@ -71,6 +73,7 @@ class VariousDTO
             'DIVERS_PROFESSION_PEL' => $this->job,
             'Mail_Personne_Morale' => $this->corporationContactEmail,
             'TEL_APPELANT' => $this->callingPhone,
+            'NATURE_LIEU_URL' => $this->factsWebsite,
         ]];
     }
 }

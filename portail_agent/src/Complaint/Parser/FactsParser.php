@@ -41,6 +41,7 @@ use App\Entity\Facts;
  *           hour: JsonDate|null,
  *      },
  *      callingPhone: object{code: string, number: string}|null,
+ *      website: string|null,
  *  }
  */
 class FactsParser
@@ -98,7 +99,8 @@ class FactsParser
             ->setAddressAdditionalInformation($facts->address->addressAdditionalInformation ?? null)
             ->setVictimOfViolence($facts->victimOfViolence ?? null)
             ->setVictimOfViolenceText($facts->victimOfViolenceText ?? null)
-            ->setCallingPhone($facts->callingPhone ? $this->phoneParser->parse($facts->callingPhone) : null);
+            ->setCallingPhone($facts->callingPhone ? $this->phoneParser->parse($facts->callingPhone) : null)
+            ->setWebsite($facts->website ?? null);
 
         return $factsParsed;
     }

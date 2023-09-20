@@ -16,6 +16,7 @@ class FactsModel
     private ?string $victimOfViolenceText = null;
     private ?string $description = null;
     private ?PhoneModel $callingPhone = null;
+    private ?string $website = null;
 
     public function __construct()
     {
@@ -114,6 +115,18 @@ class FactsModel
     public function setCallingPhone(?PhoneModel $callingPhone): self
     {
         $this->callingPhone = $callingPhone;
+
+        return $this;
+    }
+
+    public function getWebsite(): ?string
+    {
+        return $this->website;
+    }
+
+    public function setWebsite(?string $website): self
+    {
+        $this->website = $website;
 
         return $this;
     }
