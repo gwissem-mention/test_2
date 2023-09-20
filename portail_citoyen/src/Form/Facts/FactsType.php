@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Form\Facts;
 
 use App\Form\Model\Facts\FactsModel;
+use App\Form\PhoneType;
 use App\Referential\Entity\NaturePlace;
 use App\Referential\Repository\NaturePlaceRepository;
 use Symfony\Component\Form\AbstractType;
@@ -21,6 +22,18 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 class FactsType extends AbstractType
 {
+    private const NATURE_PLACE_TELEPHONE = 'Téléphone';
+
+    private const NATURES_PLACES_ADDRESSES_NOT_DISPLAYED = [
+        self::NATURE_PLACE_TELEPHONE,
+    ];
+
+    // For other uses
+    private const NATURES_PLACES_START_ADDRESS_NOT_DISPLAYED = [];
+
+    // For other uses
+    private const NATURES_PLACES_END_ADDRESS_NOT_DISPLAYED = [];
+
     public function __construct(
         private readonly NaturePlaceRepository $naturePlaceRepository
     ) {
@@ -68,9 +81,10 @@ class FactsType extends AbstractType
                     /** @var FactsModel $factsModel */
                     $factsModel = $event->getData();
                     $form = $event->getForm();
-                    $this->addAddressField($form);
+                    $this->addAddressField($form, $factsModel->getPlaceNature());
                     $this->addVictimOfViolenceField($form, $factsModel->isVictimOfViolence());
                     $this->addSubNaturePlaceField($form, $factsModel->getPlaceNature(), $factsModel);
+                    $this->addCallingPhoneField($form, $factsModel->getPlaceNature(), $factsModel);
                 }
             );
 
@@ -96,16 +110,28 @@ class FactsType extends AbstractType
                 $parent = $event->getForm()->getParent();
                 /** @var FactsModel $factsModel */
                 $factsModel = $parent->getData();
+                $this->addAddressField($parent, $naturePlace);
                 $this->addSubNaturePlaceField($parent, $naturePlace, $factsModel);
+                $this->addCallingPhoneField($parent, $naturePlace, $factsModel);
             }
         );
     }
 
-    private function addAddressField(FormInterface $form): void
-    {
+    private function addAddressField(
+        FormInterface $form,
+        ?int $naturePlaceId,
+    ): void {
+        $naturePlace = null;
+        if (null !== $naturePlaceId) {
+            $naturePlace = $this->naturePlaceRepository->find($naturePlaceId);
+        }
+
         $form->add('address', FactAddressType::class, [
             'label' => false,
             'compound' => true,
+            'address_or_route_facts_known_show' => null === $naturePlace || !in_array($naturePlace->getLabel(), self::NATURES_PLACES_ADDRESSES_NOT_DISPLAYED),
+            'start_address_show' => null === $naturePlace || !in_array($naturePlace->getLabel(), self::NATURES_PLACES_START_ADDRESS_NOT_DISPLAYED),
+            'end_address_show' => null === $naturePlace || !in_array($naturePlace->getLabel(), self::NATURES_PLACES_END_ADDRESS_NOT_DISPLAYED),
         ]);
     }
 
@@ -140,8 +166,7 @@ class FactsType extends AbstractType
         FactsModel $factsModel = null
     ): void {
         if (null === $naturePlaceId) {
-            $form->remove('subPlaceNature');
-            $factsModel?->setSubPlaceNature(null);
+            $this->removeSubPlaceNature($form, $factsModel);
 
             return;
         }
@@ -159,9 +184,47 @@ class FactsType extends AbstractType
                 ],
             ]);
         } else {
-            $form->remove('subPlaceNature');
-            $factsModel?->setSubPlaceNature(null);
+            $this->removeSubPlaceNature($form, $factsModel);
         }
+    }
+
+    private function removeSubPlaceNature(FormInterface $form, FactsModel $factsModel = null): void
+    {
+        $form->remove('subPlaceNature');
+        $factsModel?->setSubPlaceNature(null);
+    }
+
+    private function addCallingPhoneField(
+        FormInterface $form,
+        ?int $naturePlaceId,
+        FactsModel $factsModel = null
+    ): void {
+        if (null === $naturePlaceId) {
+            $this->removeCallingPhoneField($form, $factsModel);
+
+            return;
+        }
+
+        /** @var NaturePlace $naturePlace */
+        $naturePlace = $this->naturePlaceRepository->find($naturePlaceId);
+
+        if (self::NATURE_PLACE_TELEPHONE !== $naturePlace->getLabel()) {
+            $this->removeCallingPhoneField($form, $factsModel);
+
+            return;
+        }
+
+        $form->add('callingPhone', PhoneType::class, [
+            'label' => false,
+            'number_label' => 'pel.fill.the.calling.phone.number',
+            'number_required' => false,
+        ]);
+    }
+
+    private function removeCallingPhoneField(FormInterface $form, FactsModel $factsModel = null): void
+    {
+        $form->remove('callingPhone');
+        $factsModel?->setCallingPhone(null);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

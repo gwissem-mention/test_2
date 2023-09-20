@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Form\Model\Facts;
 
+use App\Form\Model\Identity\PhoneModel;
+
 class FactsModel
 {
     private ?FactAddressModel $address = null;
@@ -13,6 +15,7 @@ class FactsModel
     private ?bool $victimOfViolence = null;
     private ?string $victimOfViolenceText = null;
     private ?string $description = null;
+    private ?PhoneModel $callingPhone = null;
 
     public function __construct()
     {
@@ -99,6 +102,18 @@ class FactsModel
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getCallingPhone(): ?PhoneModel
+    {
+        return $this->callingPhone;
+    }
+
+    public function setCallingPhone(?PhoneModel $callingPhone): self
+    {
+        $this->callingPhone = $callingPhone;
 
         return $this;
     }

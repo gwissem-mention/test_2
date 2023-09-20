@@ -288,6 +288,11 @@
                 <li>
                     {{ 'pel.nature.place'|trans }} : <strong>{{ complaint.facts.place }}</strong>
                 </li>
+                {% if complaint.facts.callingPhone is not null %}
+                    <li>
+                        {{ 'pel.calling.phone.number'|trans }} : <strong>{{ complaint.facts.callingPhone }}</strong>
+                    </li>
+                {% endif %}
                 {% if complaint.facts.startAddress is not null %}
                     <li>
                         {{ 'pel.address.start.or.exact'|trans }} : <strong>{{ complaint.facts.startAddress }}</strong>

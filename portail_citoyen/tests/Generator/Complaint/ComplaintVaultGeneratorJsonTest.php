@@ -209,6 +209,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                 'victimOfViolence' => true,
                 'victimOfViolenceText' => 'Violence text',
                 'description' => 'Description',
+                'callingPhone' => null,
             ],
             'additionalInformation' => [
                 'suspectsChoice' => true,
@@ -873,6 +874,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
     //                'victimOfViolence' => true,
     //                'victimOfViolenceText' => 'Violence text',
     //                'description' => 'Description',
+    //                'callingPhone' => null,
     //            ],
     //            'additionalInformation' => [
     //                'suspectsChoice' => true,
@@ -1313,6 +1315,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                 'victimOfViolence' => true,
                 'victimOfViolenceText' => 'Violence text',
                 'description' => 'Description',
+                'callingPhone' => null,
             ],
             'additionalInformation' => [
                 'suspectsChoice' => true,

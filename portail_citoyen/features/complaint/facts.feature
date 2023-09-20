@@ -122,7 +122,7 @@ Feature:
         And I click the "label[for=facts_offenseDate_choiceHour_0]" element
         And I fill in "facts_offenseDate_hour" with "15:00"
         And I select "1" from "facts_placeNature"
-        And I select "3" from "facts_subPlaceNature"
+        And I select "4" from "facts_subPlaceNature"
         And I press "facts_submit"
         Then I should be on "/porter-plainte/objets"
 
@@ -171,3 +171,11 @@ Feature:
         And I select "2" from "facts_placeNature"
         And I fill in the map autocomplete "map-search" with "81 Avenue de la République 75011 Paris" and click on the first result
         Then the marker should be at latitude "48.8641471" and longitude "2.3815167"
+
+    Scenario: The callingPhone field should appear, the addressOrRouteFactsKnown / start address and end address should not be displayed when I select "Téléphone" as place nature
+        And I select "3" from "facts_placeNature"
+        Then I should not see a "label[for=facts_address_addressOrRouteFactsKnown_0]" element
+        And I should not see a "input#facts-startAddress-address" element
+        And I should not see a "input#facts-endAddress-address" element
+        And I should see a "input#facts_callingPhone_number" element
+        And I should not see a "div#facts-map" element

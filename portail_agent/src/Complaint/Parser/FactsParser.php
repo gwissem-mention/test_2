@@ -40,11 +40,12 @@ use App\Entity\Facts;
  *           endHour: JsonDate|null,
  *           hour: JsonDate|null,
  *      },
+ *      callingPhone: object{code: string, number: string}|null,
  *  }
  */
 class FactsParser
 {
-    public function __construct(private readonly DateParser $dateParser)
+    public function __construct(private readonly DateParser $dateParser, private readonly PhoneParser $phoneParser)
     {
     }
 
@@ -96,7 +97,8 @@ class FactsParser
             ->setEndHour($facts->offenseDate->endHour ? $this->dateParser->parse($facts->offenseDate->endHour) : null)
             ->setAddressAdditionalInformation($facts->address->addressAdditionalInformation ?? null)
             ->setVictimOfViolence($facts->victimOfViolence ?? null)
-            ->setVictimOfViolenceText($facts->victimOfViolenceText ?? null);
+            ->setVictimOfViolenceText($facts->victimOfViolenceText ?? null)
+            ->setCallingPhone($facts->callingPhone ? $this->phoneParser->parse($facts->callingPhone) : null);
 
         return $factsParsed;
     }
