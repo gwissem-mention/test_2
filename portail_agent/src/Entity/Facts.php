@@ -88,6 +88,9 @@ class Facts
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $victimOfViolenceText = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $callingPhone = null;
+
     //    #[ORM\Column]
     //    private ?bool $noOrientation = null;
     //
@@ -365,6 +368,18 @@ class Facts
     public function setVictimOfViolenceText(?string $victimOfViolenceText): self
     {
         $this->victimOfViolenceText = $victimOfViolenceText;
+
+        return $this;
+    }
+
+    public function getCallingPhone(): ?string
+    {
+        return $this->callingPhone;
+    }
+
+    public function setCallingPhone(?string $callingPhone): self
+    {
+        $this->callingPhone = $callingPhone;
 
         return $this;
     }

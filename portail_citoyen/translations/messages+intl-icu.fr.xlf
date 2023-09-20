@@ -3162,6 +3162,10 @@
                 <source>pel.please.specify.nature.place</source>
                 <target>Veuillez préciser la nature du lieu</target>
             </trans-unit>
+            <trans-unit id="pel.fill.the.calling.phone.number">
+                <source>pel.fill.the.calling.phone.number</source>
+                <target>Renseigner le numéro appelant</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

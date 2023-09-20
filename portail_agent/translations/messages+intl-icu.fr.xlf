@@ -1714,6 +1714,10 @@
                 <source>pel.from</source>
                 <target>au</target>
             </trans-unit>
+            <trans-unit id="pel.calling.phone.number">
+                <source>pel.calling.phone.number</source>
+                <target>N° téléphone appelant</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

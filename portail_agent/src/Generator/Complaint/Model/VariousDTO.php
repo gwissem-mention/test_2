@@ -25,6 +25,7 @@ class VariousDTO
     private string $appointmentAsked;
     private string $job;
     private string $corporationContactEmail;
+    private string $callingPhone;
 
     public function __construct(Complaint $complaint, UnitRepository $unitRepository)
     {
@@ -43,8 +44,8 @@ class VariousDTO
         $this->appointmentAsked = $complaint->isAppointmentAsked() ? 'Oui' : 'Non';
         $this->job = $complaint->getIdentity()?->getJob() ?? '';
         $this->corporationContactEmail = $complaint->getCorporationRepresented()?->getContactEmail() ?? '';
-
         $this->appointmentUnit = $unitRepository->findOneBy(['code' => $complaint->getUnitAssigned()])?->getName() ?? '';
+        $this->callingPhone = $complaint->getFacts()?->getCallingPhone() ?? '';
     }
 
     /**
@@ -69,6 +70,7 @@ class VariousDTO
             'DIVERS_RDV_SOUHAITE' => $this->appointmentAsked,
             'DIVERS_PROFESSION_PEL' => $this->job,
             'Mail_Personne_Morale' => $this->corporationContactEmail,
+            'TEL_APPELANT' => $this->callingPhone,
         ]];
     }
 }
