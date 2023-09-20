@@ -293,6 +293,11 @@
                         {{ 'pel.calling.phone.number'|trans }} : <strong>{{ complaint.facts.callingPhone }}</strong>
                     </li>
                 {% endif %}
+                {% if complaint.facts.website is not null %}
+                    <li>
+                        {{ 'pel.website.or.app'|trans }} : <strong>{{ complaint.facts.website }}</strong>
+                    </li>
+                {% endif %}
                 {% if complaint.facts.startAddress is not null %}
                     <li>
                         {{ 'pel.address.start.or.exact'|trans }} : <strong>{{ complaint.facts.startAddress }}</strong>

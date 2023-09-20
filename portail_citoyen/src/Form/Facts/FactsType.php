@@ -12,6 +12,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -24,6 +25,7 @@ class FactsType extends AbstractType
 {
     private const NATURE_PLACE_TELEPHONE = 'Téléphone';
     private const NATURE_PLACE_PARKING = 'Parking';
+    private const NATURE_PLACE_INTERNET = 'Internet';
 
     private const NATURES_PLACES_ADDRESS_OR_ROUTE_FACTS_KNOWN_NOT_DISPLAYED = [
         self::NATURE_PLACE_PARKING,
@@ -31,6 +33,7 @@ class FactsType extends AbstractType
 
     private const NATURES_PLACES_ADDRESSES_NOT_DISPLAYED = [
         self::NATURE_PLACE_TELEPHONE,
+        self::NATURE_PLACE_INTERNET,
     ];
 
     // For other uses
@@ -91,6 +94,7 @@ class FactsType extends AbstractType
                     $this->addVictimOfViolenceField($form, $factsModel->isVictimOfViolence());
                     $this->addSubNaturePlaceField($form, $factsModel->getPlaceNature(), $factsModel);
                     $this->addCallingPhoneField($form, $factsModel->getPlaceNature(), $factsModel);
+                    $this->addWebsiteField($form, $factsModel->getPlaceNature(), $factsModel);
                 }
             );
 
@@ -119,6 +123,7 @@ class FactsType extends AbstractType
                 $this->addAddressField($parent, $naturePlace);
                 $this->addSubNaturePlaceField($parent, $naturePlace, $factsModel);
                 $this->addCallingPhoneField($parent, $naturePlace, $factsModel);
+                $this->addWebsiteField($parent, $naturePlace, $factsModel);
             }
         );
     }
@@ -232,6 +237,38 @@ class FactsType extends AbstractType
     {
         $form->remove('callingPhone');
         $factsModel?->setCallingPhone(null);
+    }
+
+    private function addWebsiteField(
+        FormInterface $form,
+        ?int $naturePlaceId,
+        FactsModel $factsModel = null
+    ): void {
+        if (null === $naturePlaceId) {
+            $this->removeWebsiteField($form, $factsModel);
+
+            return;
+        }
+
+        /** @var NaturePlace $naturePlace */
+        $naturePlace = $this->naturePlaceRepository->find($naturePlaceId);
+
+        if (self::NATURE_PLACE_INTERNET !== $naturePlace->getLabel()) {
+            $this->removeWebsiteField($form, $factsModel);
+
+            return;
+        }
+
+        $form->add('website', TextType::class, [
+            'label' => 'pel.fill.website.or.app',
+            'required' => false,
+        ]);
+    }
+
+    private function removeWebsiteField(FormInterface $form, FactsModel $factsModel = null): void
+    {
+        $form->remove('website');
+        $factsModel?->setWebsite(null);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

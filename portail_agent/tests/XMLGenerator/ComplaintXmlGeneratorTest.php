@@ -148,8 +148,8 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
                     ->setAddressAdditionalInformation(
                         "Les faits se sont produits entre le restaurant et l'appartement d'un ami"
                     )
-                ->setVictimOfViolence(true)
-                ->setVictimOfViolenceText('Je me suis fait taper')
+                    ->setVictimOfViolence(true)
+                    ->setVictimOfViolenceText('Je me suis fait taper')
             )
             ->addObject(
                 (new MultimediaObject())
@@ -625,6 +625,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Mail_Personne_Morale>pdg@netflix.com</Mail_Personne_Morale>', $this->xmlContentWithCorporationRepresented);
         $this->assertStringContainsString('<Mail_Personne_Morale/>', $this->xmlContent);
         $this->assertStringContainsString('<TEL_APPELANT/>', $this->xmlContent);
+        $this->assertStringContainsString('<NATURE_LIEU_URL/>', $this->xmlContent);
         $this->assertStringContainsString('</Divers>', $this->xmlContent);
     }
 }

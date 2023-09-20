@@ -91,6 +91,9 @@ class Facts
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $callingPhone = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $website = null;
+
     //    #[ORM\Column]
     //    private ?bool $noOrientation = null;
     //
@@ -387,5 +390,17 @@ class Facts
     public function hasExactAddress(): bool
     {
         return null != $this->getStartAddress() && null === $this->getEndAddress();
+    }
+
+    public function getWebsite(): ?string
+    {
+        return $this->website;
+    }
+
+    public function setWebsite(?string $website): self
+    {
+        $this->website = $website;
+
+        return $this;
     }
 }

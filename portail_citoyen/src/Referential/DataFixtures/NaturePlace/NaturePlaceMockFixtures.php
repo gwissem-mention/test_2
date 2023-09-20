@@ -23,6 +23,7 @@ class NaturePlaceMockFixtures extends Fixture implements FixtureGroupInterface
             new NaturePlace('Voie publique', 'VOIE PUBLIQUE'),
             new NaturePlace('Téléphone', 'RESEAU TELEPHONIQUE'),
             new NaturePlace('Parking', 'PARKING'),
+            new NaturePlace('Internet', 'INTERNET'),
         ];
 
         foreach ($naturesPlacesLv1 as $naturesPlace) {

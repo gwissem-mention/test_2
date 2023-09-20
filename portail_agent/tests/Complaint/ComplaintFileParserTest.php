@@ -268,7 +268,8 @@ class ComplaintFileParserTest extends KernelTestCase
 		"victimOfViolence": true,
 		"victimOfViolenceText": "Violence text",
 		"description": "Description",
-		"callingPhone": null
+		"callingPhone": null,
+		"website": null
 	},
 	"additionalInformation":
 	{

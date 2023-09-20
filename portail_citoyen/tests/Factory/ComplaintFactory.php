@@ -186,7 +186,7 @@ class ComplaintFactory
                 ->setEndAddress($this->createAddressEtalab())
                 ->setAddressAdditionalInformation('Additional information'))
             ->setPlaceNature(1)
-            ->setSubPlaceNature(5)
+            ->setSubPlaceNature(6)
             ->setOffenseDate((new OffenseDateModel())
                 ->setExactDateKnown(false)
                 ->setStartDate(new \DateTimeImmutable('2021-01-01'))

@@ -3170,6 +3170,10 @@
                 <source>pel.fill.the.calling.phone.number</source>
                 <target>Renseigner le numéro appelant</target>
             </trans-unit>
+            <trans-unit id="pel.fill.website.or.app">
+                <source>pel.fill.website.or.app</source>
+                <target>Renseigner le site internet (URL) ou application</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -66,6 +66,11 @@
             {{ 'pel.fill.the.calling.phone.number'|trans }} : <b>{{ complaint.facts.callingPhone|phone_format_intl }}</b>
         </li>
     {% endif %}
+    {% if complaint.facts.website is not null %}
+        <li class="relative text-xl/8 fr-pb-6v fr-pl-8v -ml-8">
+            {{ 'pel.fill.website.or.app'|trans }} : <b>{{ complaint.facts.website }}</b>
+        </li>
+    {% endif %}
     {% if complaint.facts.address.addressOrRouteFactsKnown is same as(true) or complaint.facts.address.startAddress is not null %}
         <li class="relative text-xl/8 fr-pb-6v fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/map-pin-2.svg')]">
             {{ 'pel.address'|trans }} : <b>{{ complaint.facts.address.startAddress.label }}</b>
