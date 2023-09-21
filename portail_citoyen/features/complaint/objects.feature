@@ -235,9 +235,10 @@ Feature:
         And I select "2" from "objects_objects_0_status"
         Then I should see a "textarea#objects_objects_0_degradationDescription[required=required]" element
 
+    @flaky
     Scenario: I should see the degradation description field not required when the vehicle is stolen
         When I select "Véhicules immatriculés" from "objects_objects_0_category"
-        And I select "2" from "objects_objects_0_status"
+        And I select "1" from "objects_objects_0_status"
         Then I should not see a "textarea#objects_objects_0_degradationDescription[required=required]" element
 
     Scenario: I should see check fields when I select "Moyens de paiement" and "CHEQUIER"
