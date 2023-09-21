@@ -166,6 +166,7 @@ Feature:
         And I should see "N° de chèque / chéquier : 1234567890"
         And I should see "Premier N° de chèque / chéquier : AAA"
         And I should see "Dernier N° de chèque / chéquier : XXX"
+        And I should see "Numéro de carte : 4624 7482 3324 9080"
         And I should see "Vous avez ajouté 7 objets pour un montant total de 18 099 €"
         And I should see the key "pel.additional.informations" translated
         And I should see the key "pel.facts.witnesses" translated

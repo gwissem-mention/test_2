@@ -21,6 +21,7 @@ class PaymentMethodDTO extends AbstractObjectDTO
     private ?string $firstChequeNumber;
     private ?string $lastChequeNumber;
     private string $status;
+    private string $creditCardNumber;
 
     public function __construct(PaymentMethod $object)
     {
@@ -37,6 +38,7 @@ class PaymentMethodDTO extends AbstractObjectDTO
         $this->firstChequeNumber = $object->getFirstChequeNumber();
         $this->lastChequeNumber = $object->getLastChequeNumber();
         $this->status = AbstractObject::STATUS_STOLEN === $object->getStatus() ? 'Volé' : 'Dégradé';
+        $this->creditCardNumber = (string) $object->getCreditCardNumber();
     }
 
     /**
@@ -58,6 +60,7 @@ class PaymentMethodDTO extends AbstractObjectDTO
             'Objet_Moyen_Paiement_Dernier_Nmr' => $this->lastChequeNumber,
             'Objet_Moyen_Paiement_Identite_Victime' => 'Oui',
             'Objet_Moyen_Paiement_Statut' => $this->status,
+            'Objet_Moyen_Paiement_Numero' => $this->creditCardNumber,
             // 'Objet_Moyen_Paiement_Identite_Nom' => $this->identityLastname,
             // 'Objet_Moyen_Paiement_Identite_Nom_Marital' => $this->identityMarriedName,
             // 'Objet_Moyen_Paiement_Identite_Prenom' => $this->identityFirstName,

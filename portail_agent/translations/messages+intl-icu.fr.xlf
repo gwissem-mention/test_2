@@ -1722,6 +1722,10 @@
                 <source>pel.website.or.app</source>
                 <target>Site internet ou application</target>
             </trans-unit>
+            <trans-unit id="pel.credit.card.number">
+                <source>pel.credit.card.number</source>
+                <target>Numéro de carte</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

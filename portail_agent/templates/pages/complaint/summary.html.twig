@@ -528,6 +528,9 @@
                 {% if object.lastChequeNumber is not null %}
                     <li>{{ 'pel.last.check.number'|trans }} : <strong>{{ object.lastChequeNumber }}</strong></li>
                 {% endif %}
+                {% if object.creditCardNumber is not null %}
+                    <li>{{ 'pel.credit.card.number'|trans }} : <strong>{{ object.creditCardNumber }}</strong></li>
+                {% endif %}
             </ul>
         </li>
     {% elseif object|object_type is same as('App\\Entity\\FactsObjects\\Vehicle') %}

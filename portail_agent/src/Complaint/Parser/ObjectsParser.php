@@ -66,6 +66,7 @@ use League\Flysystem\FilesystemException;
  *      checkFirstNumber: string|null,
  *      checkLastNumber: string|null,
  *      files: array<JsonFile>,
+ *      creditCardNumber: string|null,
  *  }
  *
  * @phpstan-import-type JsonComplaint from ComplaintFileParser
@@ -236,7 +237,8 @@ class ObjectsParser
             ->setBankAccountNumber($objectInput->bankAccountNumber)
             ->setChequeNumber($objectInput->checkNumber)
             ->setFirstChequeNumber($objectInput->checkFirstNumber)
-            ->setLastChequeNumber($objectInput->checkLastNumber);
+            ->setLastChequeNumber($objectInput->checkLastNumber)
+            ->setCreditCardNumber($objectInput->creditCardNumber);
     }
 
     /**

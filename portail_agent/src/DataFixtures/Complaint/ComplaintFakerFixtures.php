@@ -326,6 +326,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                         ->setDescription((string) $this->randomString(['Visa principale', 'Mastercard']))
                         ->setBank($this->randomString(['Crédit Agricole', 'Caisse d\'épargne', 'LCL']))
                         ->setBankAccountNumber('987654321')
+                        ->setCreditCardNumber('4624 7482 3324 9080')
                 );
             }
 
