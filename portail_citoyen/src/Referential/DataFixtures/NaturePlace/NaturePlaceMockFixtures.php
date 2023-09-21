@@ -26,6 +26,7 @@ class NaturePlaceMockFixtures extends Fixture implements FixtureGroupInterface
             new NaturePlace('Internet', 'INTERNET'),
             new NaturePlace('Lieu de culte ou de recueillement'),
             new NaturePlace('Lieu de loisirs'),
+            new NaturePlace('Établissement scolaire'),
         ];
 
         foreach ($naturesPlacesLv1 as $naturesPlace) {
@@ -37,6 +38,7 @@ class NaturePlaceMockFixtures extends Fixture implements FixtureGroupInterface
         $home = $manager->getRepository(NaturePlace::class)->findOneBy(['label' => 'Domicile, logement et dépendances']);
         $worship = $manager->getRepository(NaturePlace::class)->findOneBy(['label' => 'Lieu de culte ou de recueillement']);
         $leisure = $manager->getRepository(NaturePlace::class)->findOneBy(['label' => 'Lieu de loisirs']);
+        $school = $manager->getRepository(NaturePlace::class)->findOneBy(['label' => 'Établissement scolaire']);
 
         $naturesPlacesLv2 = [
             new NaturePlace('Maison', 'MAISON INDIVIDUELLE', $home),
@@ -45,6 +47,7 @@ class NaturePlaceMockFixtures extends Fixture implements FixtureGroupInterface
             new NaturePlace('Monument aux morts', 'MONUMENT AUX MORTS', $worship),
             new NaturePlace('Camping', 'CAMPING', $leisure),
             new NaturePlace('Centre sportif', 'CENTRE SPORTIF', $leisure),
+            new NaturePlace('Établissement enseignement supérieur', 'ETABLISSEMENT ENSEIGNEMENT SUPERIEUR', $school),
         ];
 
         foreach ($naturesPlacesLv2 as $naturesPlace) {
