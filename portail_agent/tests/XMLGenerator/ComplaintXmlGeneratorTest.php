@@ -189,6 +189,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
                     ->setChequeNumber('1234567890')
                     ->setFirstChequeNumber('AAA')
                     ->setLastChequeNumber('XXX')
+                    ->setCreditCardNumber('4624 7482 3324 9080')
             )
             ->addObject(
                 (new SimpleObject())
@@ -539,6 +540,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Objet_Moyen_Paiement_Nmr>1234567890</Objet_Moyen_Paiement_Nmr>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_Moyen_Paiement_Premier_Nmr>AAA</Objet_Moyen_Paiement_Premier_Nmr>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_Moyen_Paiement_Dernier_Nmr>XXX</Objet_Moyen_Paiement_Dernier_Nmr>', $this->xmlContent);
+        $this->assertStringContainsString('<Objet_Moyen_Paiement_Numero>4624 7482 3324 9080</Objet_Moyen_Paiement_Numero>', $this->xmlContent);
         $this->assertStringContainsString('</Objet_Moyen_Paiement>', $this->xmlContent);
     }
 

@@ -591,6 +591,7 @@ JSON;
         $this->assertNull($paymentMethod->getChequeNumber());
         $this->assertNull($paymentMethod->getFirstChequeNumber());
         $this->assertNull($paymentMethod->getLastChequeNumber());
+        $this->assertSame('879879879879', $paymentMethod->getCreditCardNumber());
     }
 
     public function testParseCheckPaymentMethod(): void

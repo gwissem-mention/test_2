@@ -366,6 +366,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                     ->setType('CARTE BANCAIRE')
                     ->setBank('LCL')
                     ->setBankAccountNumber('987654321')
+                    ->setCreditCardNumber('4624 7482 3324 9080')
             )
             ->addObject(
                 (new PaymentMethod())
