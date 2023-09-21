@@ -28,11 +28,13 @@ class FactsType extends AbstractType
     private const NATURE_PLACE_INTERNET = 'Internet';
     private const NATURE_PLACE_WORSHIP = 'Lieu de culte ou de recueillement';
     private const NATURE_PLACE_LEISURE = 'Lieu de loisirs';
+    private const NATURE_PLACE_SCHOOL = 'Établissement scolaire';
 
     private const NATURES_PLACES_ADDRESS_OR_ROUTE_FACTS_KNOWN_NOT_DISPLAYED = [
         self::NATURE_PLACE_PARKING,
         self::NATURE_PLACE_WORSHIP,
         self::NATURE_PLACE_LEISURE,
+        self::NATURE_PLACE_SCHOOL,
     ];
 
     private const NATURES_PLACES_ADDRESSES_NOT_DISPLAYED = [
@@ -47,6 +49,7 @@ class FactsType extends AbstractType
         self::NATURE_PLACE_PARKING,
         self::NATURE_PLACE_WORSHIP,
         self::NATURE_PLACE_LEISURE,
+        self::NATURE_PLACE_SCHOOL,
     ];
 
     public function __construct(

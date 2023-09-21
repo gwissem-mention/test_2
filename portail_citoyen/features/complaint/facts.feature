@@ -122,7 +122,7 @@ Feature:
         And I click the "label[for=facts_offenseDate_choiceHour_0]" element
         And I fill in "facts_offenseDate_hour" with "15:00"
         And I select "1" from "facts_placeNature"
-        And I select "8" from "facts_subPlaceNature"
+        And I select "9" from "facts_subPlaceNature"
         And I press "facts_submit"
         Then I should be on "/porter-plainte/objets"
 
@@ -167,6 +167,9 @@ Feature:
         Then I should see a "div#facts-map" element
         And I should see a ".gm-style" element
         When I select "4" from "facts_placeNature"
+        Then I should see a "div#facts-map" element
+        And I should see a ".gm-style" element
+        When I select "8" from "facts_placeNature"
         Then I should see a "div#facts-map" element
         And I should see a ".gm-style" element
 
@@ -220,6 +223,17 @@ Feature:
 
     Scenario: I select "Leisure" nature place, I can see a Google Maps and an exact address field
         When I select "7" from "facts_placeNature"
+        Then I should see a "div#facts-map" element
+        And I should see a ".gm-style" element
+        And I should see the key "pel.address.exact" translated
+        And I should see a "#facts-startAddress-address" element
+        And I should not see a "label[for=facts_address_addressOrRouteFactsKnown_0]" element
+        And I should not see a "label[for=facts_address_addressOrRouteFactsKnown_1]" element
+        And I should not see the key "pel.address.start.or.exact" translated
+        And I should not see a "#facts-endAddress-address" element
+
+    Scenario: I select "School" nature place, I can see a Google Maps and an exact address field
+        When I select "8" from "facts_placeNature"
         Then I should see a "div#facts-map" element
         And I should see a ".gm-style" element
         And I should see the key "pel.address.exact" translated
