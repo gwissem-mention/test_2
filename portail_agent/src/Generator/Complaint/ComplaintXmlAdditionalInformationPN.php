@@ -17,6 +17,7 @@ class ComplaintXmlAdditionalInformationPN
         $exposedFacts .= $this->setJob($complaint);
         $exposedFacts .= $this->setViolences($complaint);
         $exposedFacts .= $this->setAdditionalInformation(); // Set at 11th position
+        $exposedFacts .= $this->setSuspectsInformation($complaint); // Set at 12th position
 
         return $exposedFacts;
     }
@@ -78,5 +79,17 @@ class ComplaintXmlAdditionalInformationPN
     private function setAdditionalInformation(): string
     {
         return 'Sur d\'éventuels éléments susceptibles d\'orienter l\'enquête, la victime nous précise successivement ';
+    }
+
+    private function setSuspectsInformation(Complaint $complaint): string
+    {
+        if (true === $complaint->getAdditionalInformation()?->isSuspectsKnown()) {
+            return sprintf(
+                'La personne déclarante indique avoir de potentielles informations sur les auteurs, à savoir : %s',
+                $complaint->getAdditionalInformation()->getSuspectsKnownText()
+            );
+        }
+
+        return 'La personne déclarante n\'apporte pas d\'éléments sur le ou les auteurs de l\'infraction';
     }
 }
