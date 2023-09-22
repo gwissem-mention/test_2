@@ -2238,6 +2238,10 @@
                 <source>pel.vehicle.registration.certificate</source>
                 <target>Carte grise</target>
             </trans-unit>
+            <trans-unit id="pel.victim.address">
+                <source>pel.victim.address</source>
+                <target>Adresse de la victime</target>
+            </trans-unit>
             <trans-unit id="pel.victim.at.time.of.facts">
                 <source>pel.victim.at.time.of.facts</source>
                 <target>La <![CDATA[<b>victime a subi des violences</b>]]> au moment des faits.</target>
