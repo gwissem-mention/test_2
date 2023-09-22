@@ -16,6 +16,7 @@ class ComplaintXmlAdditionalInformationPN
         $exposedFacts .= $this->setIsFranceConnected($complaint);
         $exposedFacts .= $this->setJob($complaint);
         $exposedFacts .= $this->setViolences($complaint);
+        $exposedFacts .= $this->setAdditionalInformation(); // Set at 11th position
 
         return $exposedFacts;
     }
@@ -66,11 +67,16 @@ class ComplaintXmlAdditionalInformationPN
     {
         if ($complaint->getFacts()?->isVictimOfViolence()) {
             return sprintf(
-                'La personne déclare avoir subi des violences : La victime précise sur les violences : %s.',
+                'La personne déclare avoir subi des violences : La victime précise sur les violences : %s. ',
                 $complaint->getFacts()->getVictimOfViolenceText()
             );
         }
 
         return 'La personne déclare n\'avoir pas subi des violences : ';
+    }
+
+    private function setAdditionalInformation(): string
+    {
+        return 'Sur d\'éventuels éléments susceptibles d\'orienter l\'enquête, la victime nous précise successivement ';
     }
 }
