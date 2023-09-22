@@ -19,13 +19,15 @@ use Symfony\Component\Validator\Constraints\NotNull;
 
 class FactAddressType extends AbstractType
 {
+    private const NATURE_PLACE_TRANSPORTS = 'Transports';
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('addressAdditionalInformation', TextareaType::class, [
                 'label' => 'pel.additional.place.information',
                 'required' => false,
-                'help' => 'pel.additional.place.information.help',
+                'help' => self::NATURE_PLACE_TRANSPORTS === $options['nature_place'] ? 'pel.transport.additional.place.information' : 'pel.additional.place.information.help',
             ]);
 
         $builder
@@ -84,7 +86,9 @@ class FactAddressType extends AbstractType
         ?bool $choice,
         FactAddressModel $addressModel = null,
     ): void {
+        $naturePlace = $form->getConfig()->getOption('nature_place');
         $startAddressLabel = $form->getConfig()->getOption('start_address_label');
+        $endAddressLabel = $form->getConfig()->getOption('end_address_label');
         $startAddressShow = $form->getConfig()->getOption('start_address_show');
         $endAddressShow = $form->getConfig()->getOption('end_address_show');
         if (true === $choice || false === $form->getConfig()->getOption('address_or_route_facts_known_show')) {
@@ -92,7 +96,7 @@ class FactAddressType extends AbstractType
                 $form
                     ->add('startAddress', AddressEtalabType::class, [
                         'label' => $startAddressLabel ?? ($endAddressShow ? 'pel.address.start.or.exact' : 'pel.address.exact'),
-                        'help' => $endAddressShow ? 'pel.address.start.or.exact.help' : null,
+                        'help' => $endAddressShow && self::NATURE_PLACE_TRANSPORTS != $naturePlace ? 'pel.address.start.or.exact.help' : null,
                         'constraints' => [
                             new NotBlank(),
                         ],
@@ -101,9 +105,9 @@ class FactAddressType extends AbstractType
 
             if (true === $endAddressShow) {
                 $form->add('endAddress', AddressEtalabType::class, [
-                    'required' => false,
-                    'label' => 'pel.address.end',
-                    'help' => 'pel.address.end.help',
+                    'required' => self::NATURE_PLACE_TRANSPORTS === $naturePlace,
+                    'label' => $endAddressLabel ?? 'pel.address.end',
+                    'help' => self::NATURE_PLACE_TRANSPORTS != $naturePlace ? 'pel.address.end.help' : null,
                 ]);
             }
         } else {
@@ -119,7 +123,9 @@ class FactAddressType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => FactAddressModel::class,
+            'nature_place' => null,
             'start_address_label' => null,
+            'end_address_label' => null,
             'address_or_route_facts_known_show' => true,
             'addresses_show' => true,
             'start_address_show' => true,
