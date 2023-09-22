@@ -249,6 +249,7 @@ class ObjectsParser
         $vehicle = new Vehicle();
 
         return $vehicle
+            ->setLabel($objectInput->label)
             ->setBrand($objectInput->brand ?? '')
             ->setModel($objectInput->model)
             ->setRegistrationNumber($objectInput->registrationNumber)
