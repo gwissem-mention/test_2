@@ -132,15 +132,21 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
                     ->setExactPlaceUnknown(true)
                     ->setStartDate(new \DateTimeImmutable('2022-12-01'))
                     ->setEndDate(new \DateTimeImmutable('2022-12-01'))
-                    ->setPlace('RESTAURANT')
+                    ->setPlace('TRAIN')
                     ->setStartAddress('25 Avenue Georges Pompidou, Lyon, 69003')
                     ->setEndAddress('Place Charles Hernu, Villeurbanne, 69100')
-                    ->setCountry('France')
-                    ->setCity('Lyon')
-                    ->setPostalCode('69003')
-                    ->setInseeCode('69123')
-                    ->setDepartment('Rhône')
-                    ->setDepartmentNumber(69)
+                    ->setStartAddressCountry('France')
+                    ->setStartAddressCity('Lyon')
+                    ->setStartAddressPostalCode('69003')
+                    ->setStartAddressInseeCode('69123')
+                    ->setStartAddressDepartment('Rhône')
+                    ->setStartAddressDepartmentNumber(69)
+                    ->setEndAddressCountry('France')
+                    ->setEndAddressCity('Villeurbanne')
+                    ->setEndAddressPostalCode('69100')
+                    ->setEndAddressInseeCode('69266')
+                    ->setEndAddressDepartment('Rhône')
+                    ->setEndAddressDepartmentNumber(69)
                     ->setExactHourKnown(Facts::EXACT_HOUR_KNOWN_NO)
                     ->setStartHour(new \DateTimeImmutable('09:00'))
                     ->setEndHour(new \DateTimeImmutable('10:00'))
@@ -390,11 +396,23 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Faits_Manop>Je me suis fait voler mon portable.</Faits_Manop>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Localisation_Pays>France</Faits_Localisation_Pays>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Localisation_Departement>69 - Rhône</Faits_Localisation_Departement>', $this->xmlContent);
-        $this->assertStringContainsString('<Faits_Localisation_Codepostal>69003</Faits_Localisation_Codepostal>', $this->xmlContent);
-        $this->assertStringContainsString('<Faits_Localisation_Insee>69123</Faits_Localisation_Insee>', $this->xmlContent);
-        $this->assertStringContainsString('<Faits_Localisation_Commune>Lyon</Faits_Localisation_Commune>', $this->xmlContent);
+        $this->assertStringContainsString('<Faits_Localisation_Codepostal>69100</Faits_Localisation_Codepostal>', $this->xmlContent);
+        $this->assertStringContainsString('<Faits_Localisation_Insee>69266</Faits_Localisation_Insee>', $this->xmlContent);
+        $this->assertStringContainsString('<Faits_Localisation_Commune>Villeurbanne</Faits_Localisation_Commune>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Localisation_HidNumDep>69</Faits_Localisation_HidNumDep>', $this->xmlContent);
-        $this->assertStringContainsString('<Faits_Localisation>RESTAURANT</Faits_Localisation>', $this->xmlContent);
+        $this->assertStringContainsString('<Faits_Adresse_Depart_Pays>France</Faits_Adresse_Depart_Pays>', $this->xmlContent);
+        $this->assertStringContainsString('<Faits_Adresse_Depart_Departement>69 - Rhône</Faits_Adresse_Depart_Departement>', $this->xmlContent);
+        $this->assertStringContainsString('<Faits_Adresse_Depart_Codepostal>69003</Faits_Adresse_Depart_Codepostal>', $this->xmlContent);
+        $this->assertStringContainsString('<Faits_Adresse_Depart_Insee>69123</Faits_Adresse_Depart_Insee>', $this->xmlContent);
+        $this->assertStringContainsString('<Faits_Adresse_Depart_Commune>Lyon</Faits_Adresse_Depart_Commune>', $this->xmlContent);
+        $this->assertStringContainsString('<Faits_Adresse_Depart_HidNumDep>69</Faits_Adresse_Depart_HidNumDep>', $this->xmlContent);
+        $this->assertStringContainsString('<Faits_Adresse_Arrivee_Pays>France</Faits_Adresse_Arrivee_Pays>', $this->xmlContent);
+        $this->assertStringContainsString('<Faits_Adresse_Arrivee_Departement>69 - Rhône</Faits_Adresse_Arrivee_Departement>', $this->xmlContent);
+        $this->assertStringContainsString('<Faits_Adresse_Arrivee_Codepostal>69100</Faits_Adresse_Arrivee_Codepostal>', $this->xmlContent);
+        $this->assertStringContainsString('<Faits_Adresse_Arrivee_Insee>69266</Faits_Adresse_Arrivee_Insee>', $this->xmlContent);
+        $this->assertStringContainsString('<Faits_Adresse_Arrivee_Commune>Villeurbanne</Faits_Adresse_Arrivee_Commune>', $this->xmlContent);
+        $this->assertStringContainsString('<Faits_Adresse_Arrivee_HidNumDep>69</Faits_Adresse_Arrivee_HidNumDep>', $this->xmlContent);
+        $this->assertStringContainsString('<Faits_Localisation>TRAIN</Faits_Localisation>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Localisation_Inconnue>1</Faits_Localisation_Inconnue>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Horaire>horaire_inconnu</Faits_Horaire>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Date_Affaire>01/12/2022</Faits_Date_Affaire>', $this->xmlContent);
@@ -613,7 +631,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<DIVERS_SOUMISSION_HORAIRE>01/12/2022 00:00:00</DIVERS_SOUMISSION_HORAIRE>', $this->xmlContent);
         $this->assertStringContainsString('<DIVERS_NUMERO_PEL>PEL-2022-00000001</DIVERS_NUMERO_PEL>', $this->xmlContent);
         $this->assertStringContainsString('<DIVERS_DATE_EXACTE_FAITS_CONNUE>Oui</DIVERS_DATE_EXACTE_FAITS_CONNUE>', $this->xmlContent);
-        $this->assertStringContainsString('<DIVERS_NATURE_LIEU>RESTAURANT</DIVERS_NATURE_LIEU>', $this->xmlContent);
+        $this->assertStringContainsString('<DIVERS_NATURE_LIEU>TRAIN</DIVERS_NATURE_LIEU>', $this->xmlContent);
         $this->assertStringContainsString('<DIVERS_LIEU_INFORMATION_COMPLEMENTAIRES>Les faits se sont produits entre le restaurant et l\'appartement d\'un ami</DIVERS_LIEU_INFORMATION_COMPLEMENTAIRES>', $this->xmlContent);
         $this->assertStringContainsString('<DIVERS_SUSPECTS_INFORMATIONS>Oui</DIVERS_SUSPECTS_INFORMATIONS>', $this->xmlContent);
         $this->assertStringContainsString('<DIVERS_SUSPECTS_DESCRIPTION>2 hommes</DIVERS_SUSPECTS_DESCRIPTION>', $this->xmlContent);

@@ -66,7 +66,8 @@ class FactsParser
             default => Facts::EXACT_HOUR_KNOWN_DONT_KNOW,
         };
 
-        $department = isset($facts->address->startAddress->citycode) ? substr($facts->address->startAddress->citycode, 0, 2) : '';
+        $startAddressDepartment = isset($facts->address->startAddress->citycode) ? substr($facts->address->startAddress->citycode, 0, 2) : '';
+        $endAddressDepartment = isset($facts->address->endAddress->citycode) ? substr($facts->address->endAddress->citycode, 0, 2) : null;
 
         $natures = [];
         foreach ($objects as $object) {
@@ -87,12 +88,18 @@ class FactsParser
             ->setEndDate($facts->offenseDate->endDate ? $this->dateParser->parse($facts->offenseDate->endDate) : null)
             ->setStartAddress($facts->address->startAddress->label ?? '')
             ->setEndAddress($facts->address->endAddress->label ?? null)
-            ->setCountry('France')
-            ->setDepartment($department)
-            ->setDepartmentNumber((int) $department)
-            ->setCity($facts->address->startAddress->city ?? '')
-            ->setPostalCode($facts->address->startAddress->postcode ?? '')
-            ->setInseeCode($facts->address->startAddress->citycode ?? '')
+            ->setStartAddressCountry('France')
+            ->setStartAddressDepartment($startAddressDepartment)
+            ->setStartAddressDepartmentNumber((int) $startAddressDepartment)
+            ->setStartAddressCity($facts->address->startAddress->city ?? '')
+            ->setStartAddressPostalCode($facts->address->startAddress->postcode ?? '')
+            ->setStartAddressInseeCode($facts->address->startAddress->citycode ?? '')
+            ->setEndAddressCountry(null != $facts->address->endAddress ? 'France' : null)
+            ->setEndAddressDepartment($endAddressDepartment)
+            ->setEndAddressDepartmentNumber($endAddressDepartment ? (int) $endAddressDepartment : null)
+            ->setEndAddressCity($facts->address->endAddress->city ?? null)
+            ->setEndAddressPostalCode($facts->address->endAddress->postcode ?? null)
+            ->setEndAddressInseeCode($facts->address->endAddress->citycode ?? null)
             ->setExactHourKnown($exactHourKnown)
             ->setStartHour(null !== ($startHour = $facts->offenseDate->hour ?? $facts->offenseDate->startHour) ? $this->dateParser->parse($startHour) : null)
             ->setEndHour($facts->offenseDate->endHour ? $this->dateParser->parse($facts->offenseDate->endHour) : null)

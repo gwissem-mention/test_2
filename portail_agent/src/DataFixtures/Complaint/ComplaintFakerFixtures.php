@@ -171,12 +171,12 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                             null,
                             $this->faker->streetAddress.', '.$factsAddressCity.', '.$factsAddressPostcode,
                         ]))
-                        ->setCity($factsAddressCity)
-                        ->setPostalCode((string) $factsAddressPostcode)
-                        ->setInseeCode($this->insees[$factsAddressPostcode])
-                        ->setDepartment($this->departments[substr((string) $factsAddressPostcode, 0, 2)])
-                        ->setDepartmentNumber((int) substr((string) $factsAddressPostcode, 0, 2))
-                        ->setCountry('France')
+                        ->setStartAddressCity($factsAddressCity)
+                        ->setStartAddressPostalCode((string) $factsAddressPostcode)
+                        ->setStartAddressInseeCode($this->insees[$factsAddressPostcode])
+                        ->setStartAddressDepartment($this->departments[substr((string) $factsAddressPostcode, 0, 2)])
+                        ->setStartAddressDepartmentNumber((int) substr((string) $factsAddressPostcode, 0, 2))
+                        ->setStartAddressCountry('France')
                         ->setExactHourKnown($exactHourKnown)
                         ->setStartHour($factsStartHour)
                         ->setEndHour(Facts::EXACT_HOUR_KNOWN_NO === $exactHourKnown ? $factsStartHour->add(new \DateInterval('PT1H')) : null)
