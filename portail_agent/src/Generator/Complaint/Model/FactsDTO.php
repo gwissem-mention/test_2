@@ -13,15 +13,41 @@ class FactsDTO
     private const TIME_INFORMATION_TIME_UNKNOWN = 'horaire_inconnu';
     private const TIME_INFORMATION_DATE_UNKNOWN = 'date_inconnu';
 
+    private const NATURES_PLACE_TRANSPORTS = [
+        'AIRE D\'AUTOROUTE',
+        'GARE ROUTIERE',
+        'AUTOBUS',
+        'ARRET DE BUS',
+        'TRAMWAY',
+        'ARRET DE TRAMWAY',
+        'METRO',
+        'STATION DE METRO',
+        'RER',
+        'GARE RER',
+        'TRAIN',
+        'GARE TER',
+        'GARE TGV',
+        'AVION',
+        'AEROPORT',
+        'BATEAU',
+        'PORT',
+    ];
+
     /** @var array<int|string> */
     private array $presentation;
     private string $manop;
-    private string $country;
-    private string $department;
-    private string $postalCode;
-    private string $inseeCode;
-    private string $city;
-    private string $departmentNumber;
+    private string $startAddressCountry;
+    private string $startAddressDepartment;
+    private string $startAddressPostalCode;
+    private string $startAddressInseeCode;
+    private string $startAddressCity;
+    private string $startAddressDepartmentNumber;
+    private ?string $endAddressCountry = null;
+    private ?string $endAddressDepartment = null;
+    private ?string $endAddressPostalCode = null;
+    private ?string $endAddressInseeCode = null;
+    private ?string $endAddressCity = null;
+    private ?string $endAddressDepartmentNumber = null;
     private string $localisation;
     private string $unknownLocalisation;
     private ?string $timeInformation;
@@ -42,6 +68,7 @@ class FactsDTO
     //    private string $orientation;
     private string $hasHarmPhysique;
     private string $hasHarmPhysiqueDescription;
+    private bool $isNaturePlaceTransports = false;
 
     public function __construct(Complaint $complaint)
     {
@@ -53,12 +80,12 @@ class FactsDTO
             $facts->getNatures() ?? []
         );
         $this->manop = $facts->getDescription() ?? '';
-        $this->country = $facts->getCountry() ?? '';
-        $this->department = $facts->getDepartment() ?? '';
-        $this->postalCode = $facts->getPostalCode() ?? '';
-        $this->inseeCode = $facts->getInseeCode() ?? '';
-        $this->city = $facts->getCity() ?? '';
-        $this->departmentNumber = strval($facts->getDepartmentNumber());
+        $this->startAddressCountry = $facts->getStartAddressCountry() ?? '';
+        $this->startAddressDepartment = $facts->getStartAddressDepartment() ?? '';
+        $this->startAddressPostalCode = $facts->getStartAddressPostalCode() ?? '';
+        $this->startAddressInseeCode = $facts->getStartAddressInseeCode() ?? '';
+        $this->startAddressCity = $facts->getStartAddressCity() ?? '';
+        $this->startAddressDepartmentNumber = strval($facts->getStartAddressDepartmentNumber());
         $this->localisation = $facts->getPlace() ?? '';
         $this->unknownLocalisation = true === $facts->isExactPlaceUnknown() && false === $facts->hasExactAddress() ? '1' : '';
 
@@ -86,6 +113,15 @@ class FactsDTO
         $this->hasHarmPhysique = $complaint->getFacts()?->isVictimOfViolence() ? 'oui' : 'non';
         $this->hasHarmPhysiqueDescription = true === $complaint->getFacts()?->isVictimOfViolence() ? 'pel.physical.harm.message' : '';
 
+        $this->isNaturePlaceTransports = in_array($facts->getPlace(), self::NATURES_PLACE_TRANSPORTS);
+        if ($this->isNaturePlaceTransports) {
+            $this->endAddressCountry = $facts->getEndAddressCountry();
+            $this->endAddressDepartment = $facts->getEndAddressDepartment();
+            $this->endAddressPostalCode = $facts->getEndAddressPostalCode();
+            $this->endAddressInseeCode = $facts->getEndAddressInseeCode();
+            $this->endAddressCity = $facts->getEndAddressCity();
+            $this->endAddressDepartmentNumber = strval($facts->getEndAddressDepartmentNumber());
+        }
         //        $this->noOrientation = !is_null($noOrientation = $facts->isNoOrientation()) ? strval($noOrientation) : '';
         //        $this->orientation = $facts->getOrientation() ?? '';
     }
@@ -99,12 +135,24 @@ class FactsDTO
             'Faits_Expose' => implode(' / ', $this->presentation),
             'Faits_Expose_GN' => implode(' / ', $this->presentation),
             'Faits_Manop' => $this->manop,
-            'Faits_Localisation_Pays' => $this->country,
-            'Faits_Localisation_Departement' => $this->departmentNumber.' - '.$this->department,
-            'Faits_Localisation_Codepostal' => $this->postalCode,
-            'Faits_Localisation_Insee' => $this->inseeCode,
-            'Faits_Localisation_Commune' => $this->city,
-            'Faits_Localisation_HidNumDep' => $this->departmentNumber,
+            'Faits_Localisation_Pays' => $this->isNaturePlaceTransports ? $this->endAddressCountry : $this->startAddressCountry,
+            'Faits_Localisation_Departement' => $this->isNaturePlaceTransports ? $this->endAddressDepartmentNumber.' - '.$this->endAddressDepartment : $this->startAddressDepartmentNumber.' - '.$this->startAddressDepartment,
+            'Faits_Localisation_Codepostal' => $this->isNaturePlaceTransports ? $this->endAddressPostalCode : $this->startAddressPostalCode,
+            'Faits_Localisation_Insee' => $this->isNaturePlaceTransports ? $this->endAddressInseeCode : $this->startAddressInseeCode,
+            'Faits_Localisation_Commune' => $this->isNaturePlaceTransports ? $this->endAddressCity : $this->startAddressCity,
+            'Faits_Localisation_HidNumDep' => $this->isNaturePlaceTransports ? $this->endAddressDepartmentNumber : $this->startAddressDepartmentNumber,
+            'Faits_Adresse_Depart_Pays' => $this->isNaturePlaceTransports ? $this->startAddressCountry : null,
+            'Faits_Adresse_Depart_Departement' => $this->isNaturePlaceTransports ? $this->startAddressDepartmentNumber.' - '.$this->startAddressDepartment : null,
+            'Faits_Adresse_Depart_Codepostal' => $this->isNaturePlaceTransports ? $this->startAddressPostalCode : null,
+            'Faits_Adresse_Depart_Insee' => $this->isNaturePlaceTransports ? $this->startAddressInseeCode : null,
+            'Faits_Adresse_Depart_Commune' => $this->isNaturePlaceTransports ? $this->startAddressCity : null,
+            'Faits_Adresse_Depart_HidNumDep' => $this->isNaturePlaceTransports ? $this->startAddressDepartmentNumber : null,
+            'Faits_Adresse_Arrivee_Pays' => $this->isNaturePlaceTransports ? $this->endAddressCountry : null,
+            'Faits_Adresse_Arrivee_Departement' => $this->isNaturePlaceTransports ? $this->endAddressDepartmentNumber.' - '.$this->endAddressDepartment : null,
+            'Faits_Adresse_Arrivee_Codepostal' => $this->isNaturePlaceTransports ? $this->endAddressPostalCode : null,
+            'Faits_Adresse_Arrivee_Insee' => $this->isNaturePlaceTransports ? $this->endAddressInseeCode : null,
+            'Faits_Adresse_Arrivee_Commune' => $this->isNaturePlaceTransports ? $this->endAddressCity : null,
+            'Faits_Adresse_Arrivee_HidNumDep' => $this->isNaturePlaceTransports ? $this->endAddressDepartmentNumber : null,
             'Faits_Localisation' => $this->localisation,
             'Faits_Localisation_Inconnue' => $this->unknownLocalisation,
             'Faits_Horaire' => $this->timeInformation,

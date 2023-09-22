@@ -54,21 +54,38 @@ class Facts
     private ?string $endAddress = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $country = null;
+    private ?string $startAddressCountry = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $department = null;
+    private ?string $startAddressDepartment = null;
 
     #[ORM\Column]
-    private ?int $departmentNumber = null;
+    private ?int $startAddressDepartmentNumber = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $city = null;
+    private ?string $startAddressCity = null;
     #[ORM\Column(length: 255)]
-    private ?string $postalCode = null;
+    private ?string $startAddressPostalCode = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $inseeCode = null;
+    private ?string $startAddressInseeCode = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $endAddressCountry = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $endAddressDepartment = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $endAddressDepartmentNumber = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $endAddressCity = null;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $endAddressPostalCode = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $endAddressInseeCode = null;
 
     #[ORM\Column]
     private ?int $exactHourKnown = null;
@@ -267,74 +284,74 @@ class Facts
         return $this;
     }
 
-    public function getCountry(): ?string
+    public function getStartAddressCountry(): ?string
     {
-        return $this->country;
+        return $this->startAddressCountry;
     }
 
-    public function setCountry(?string $country): self
+    public function setStartAddressCountry(?string $startAddressCountry): self
     {
-        $this->country = $country;
+        $this->startAddressCountry = $startAddressCountry;
 
         return $this;
     }
 
-    public function getDepartment(): ?string
+    public function getStartAddressDepartment(): ?string
     {
-        return $this->department;
+        return $this->startAddressDepartment;
     }
 
-    public function setDepartment(?string $department): self
+    public function setStartAddressDepartment(?string $startAddressDepartment): self
     {
-        $this->department = $department;
+        $this->startAddressDepartment = $startAddressDepartment;
 
         return $this;
     }
 
-    public function getDepartmentNumber(): ?int
+    public function getStartAddressDepartmentNumber(): ?int
     {
-        return $this->departmentNumber;
+        return $this->startAddressDepartmentNumber;
     }
 
-    public function setDepartmentNumber(?int $departmentNumber): self
+    public function setStartAddressDepartmentNumber(?int $startAddressDepartmentNumber): self
     {
-        $this->departmentNumber = $departmentNumber;
+        $this->startAddressDepartmentNumber = $startAddressDepartmentNumber;
 
         return $this;
     }
 
-    public function getCity(): ?string
+    public function getStartAddressCity(): ?string
     {
-        return $this->city;
+        return $this->startAddressCity;
     }
 
-    public function setCity(?string $city): self
+    public function setStartAddressCity(?string $startAddressCity): self
     {
-        $this->city = $city;
+        $this->startAddressCity = $startAddressCity;
 
         return $this;
     }
 
-    public function getPostalCode(): ?string
+    public function getStartAddressPostalCode(): ?string
     {
-        return $this->postalCode;
+        return $this->startAddressPostalCode;
     }
 
-    public function setPostalCode(?string $postalCode): self
+    public function setStartAddressPostalCode(?string $startAddressPostalCode): self
     {
-        $this->postalCode = $postalCode;
+        $this->startAddressPostalCode = $startAddressPostalCode;
 
         return $this;
     }
 
-    public function getInseeCode(): ?string
+    public function getStartAddressInseeCode(): ?string
     {
-        return $this->inseeCode;
+        return $this->startAddressInseeCode;
     }
 
-    public function setInseeCode(?string $inseeCode): self
+    public function setStartAddressInseeCode(?string $startAddressInseeCode): self
     {
-        $this->inseeCode = $inseeCode;
+        $this->startAddressInseeCode = $startAddressInseeCode;
 
         return $this;
     }
@@ -400,6 +417,78 @@ class Facts
     public function setWebsite(?string $website): self
     {
         $this->website = $website;
+
+        return $this;
+    }
+
+    public function getEndAddressCountry(): ?string
+    {
+        return $this->endAddressCountry;
+    }
+
+    public function setEndAddressCountry(?string $endAddressCountry): self
+    {
+        $this->endAddressCountry = $endAddressCountry;
+
+        return $this;
+    }
+
+    public function getEndAddressDepartment(): ?string
+    {
+        return $this->endAddressDepartment;
+    }
+
+    public function setEndAddressDepartment(?string $endAddressDepartment): self
+    {
+        $this->endAddressDepartment = $endAddressDepartment;
+
+        return $this;
+    }
+
+    public function getEndAddressDepartmentNumber(): ?int
+    {
+        return $this->endAddressDepartmentNumber;
+    }
+
+    public function setEndAddressDepartmentNumber(?int $endAddressDepartmentNumber): self
+    {
+        $this->endAddressDepartmentNumber = $endAddressDepartmentNumber;
+
+        return $this;
+    }
+
+    public function getEndAddressCity(): ?string
+    {
+        return $this->endAddressCity;
+    }
+
+    public function setEndAddressCity(?string $endAddressCity): self
+    {
+        $this->endAddressCity = $endAddressCity;
+
+        return $this;
+    }
+
+    public function getEndAddressPostalCode(): ?string
+    {
+        return $this->endAddressPostalCode;
+    }
+
+    public function setEndAddressPostalCode(?string $endAddressPostalCode): self
+    {
+        $this->endAddressPostalCode = $endAddressPostalCode;
+
+        return $this;
+    }
+
+    public function getEndAddressInseeCode(): ?string
+    {
+        return $this->endAddressInseeCode;
+    }
+
+    public function setEndAddressInseeCode(?string $endAddressInseeCode): self
+    {
+        $this->endAddressInseeCode = $endAddressInseeCode;
 
         return $this;
     }
