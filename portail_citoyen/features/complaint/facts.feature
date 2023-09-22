@@ -156,7 +156,6 @@ Feature:
 
     Scenario: The field start address should be filled with identity address when place nature is home and addressOrRouteFactsKnown is checked
         And I select "1" from "facts_placeNature"
-        And I click the "label[for=facts_address_addressOrRouteFactsKnown_0]" element
         Then the "facts-startAddress-address" field should contain "Avenue de la République 75011 Paris"
 
     Scenario: The Google Maps should not be displays at init
@@ -238,6 +237,17 @@ Feature:
         And I should see a ".gm-style" element
         And I should see the key "pel.address.exact" translated
         And I should see a "#facts-startAddress-address" element
+        And I should not see a "label[for=facts_address_addressOrRouteFactsKnown_0]" element
+        And I should not see a "label[for=facts_address_addressOrRouteFactsKnown_1]" element
+        And I should not see the key "pel.address.start.or.exact" translated
+        And I should not see a "#facts-endAddress-address" element
+
+    Scenario: I select "Domicile, logement et dépendances" nature place, I can see the victim address field
+        When I select "1" from "facts_placeNature"
+        Then I should see the key "pel.victim.address" translated
+        And I should see a "#facts-startAddress-address" element
+        And I should not see a "div#facts-map" element
+        And I should not see a ".gm-style" element
         And I should not see a "label[for=facts_address_addressOrRouteFactsKnown_0]" element
         And I should not see a "label[for=facts_address_addressOrRouteFactsKnown_1]" element
         And I should not see the key "pel.address.start.or.exact" translated

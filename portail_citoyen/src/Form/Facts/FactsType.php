@@ -29,12 +29,14 @@ class FactsType extends AbstractType
     private const NATURE_PLACE_WORSHIP = 'Lieu de culte ou de recueillement';
     private const NATURE_PLACE_LEISURE = 'Lieu de loisirs';
     private const NATURE_PLACE_SCHOOL = 'Établissement scolaire';
+    private const NATURE_PLACE_HOME = 'Domicile, logement et dépendances';
 
     private const NATURES_PLACES_ADDRESS_OR_ROUTE_FACTS_KNOWN_NOT_DISPLAYED = [
         self::NATURE_PLACE_PARKING,
         self::NATURE_PLACE_WORSHIP,
         self::NATURE_PLACE_LEISURE,
         self::NATURE_PLACE_SCHOOL,
+        self::NATURE_PLACE_HOME,
     ];
 
     private const NATURES_PLACES_ADDRESSES_NOT_DISPLAYED = [
@@ -50,6 +52,7 @@ class FactsType extends AbstractType
         self::NATURE_PLACE_WORSHIP,
         self::NATURE_PLACE_LEISURE,
         self::NATURE_PLACE_SCHOOL,
+        self::NATURE_PLACE_HOME,
     ];
 
     public function __construct(
@@ -142,13 +145,19 @@ class FactsType extends AbstractType
         ?int $naturePlaceId,
     ): void {
         $naturePlace = null;
+        $startAddressLabel = null;
         if (null !== $naturePlaceId) {
             $naturePlace = $this->naturePlaceRepository->find($naturePlaceId);
+
+            if (self::NATURE_PLACE_HOME === $naturePlace?->getLabel()) {
+                $startAddressLabel = 'pel.victim.address';
+            }
         }
 
         $form->add('address', FactAddressType::class, [
             'label' => false,
             'compound' => true,
+            'start_address_label' => $startAddressLabel,
             'address_or_route_facts_known_show' => null === $naturePlace || !in_array($naturePlace->getLabel(), self::NATURES_PLACES_ADDRESS_OR_ROUTE_FACTS_KNOWN_NOT_DISPLAYED),
             'addresses_show' => null === $naturePlace || !in_array($naturePlace->getLabel(), self::NATURES_PLACES_ADDRESSES_NOT_DISPLAYED),
             'start_address_show' => null === $naturePlace || !in_array($naturePlace->getLabel(), self::NATURES_PLACES_START_ADDRESS_NOT_DISPLAYED),
