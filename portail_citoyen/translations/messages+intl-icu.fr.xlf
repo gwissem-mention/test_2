@@ -3090,6 +3090,18 @@
                 <source>pel.trailer</source>
                 <target>REMORQUE</target>
             </trans-unit>
+            <trans-unit id="pel.transport.additional.place.information">
+                <source>pel.transport.additional.place.information</source>
+                <target>Veuillez décrire l'itinéraire utilisé et le chemin parcouru jusqu'à votre point d'arrivée</target>
+            </trans-unit>
+            <trans-unit id="pel.transport.end.address">
+                <source>pel.transport.end.address</source>
+                <target>Point d'arrivée (gare, station, port, aéroport)</target>
+            </trans-unit>
+            <trans-unit id="pel.transport.start.address">
+                <source>pel.transport.start.address</source>
+                <target>Point départ (gare, station, port, aéroport)</target>
+            </trans-unit>
             <trans-unit id="pel.caravan">
                 <source>pel.caravan</source>
                 <target>CARAVANE</target>

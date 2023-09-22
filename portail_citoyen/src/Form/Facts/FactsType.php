@@ -30,6 +30,7 @@ class FactsType extends AbstractType
     private const NATURE_PLACE_LEISURE = 'Lieu de loisirs';
     private const NATURE_PLACE_SCHOOL = 'Établissement scolaire';
     private const NATURE_PLACE_HOME = 'Domicile, logement et dépendances';
+    private const NATURE_PLACE_TRANSPORTS = 'Transports';
 
     private const NATURES_PLACES_ADDRESS_OR_ROUTE_FACTS_KNOWN_NOT_DISPLAYED = [
         self::NATURE_PLACE_PARKING,
@@ -37,6 +38,7 @@ class FactsType extends AbstractType
         self::NATURE_PLACE_LEISURE,
         self::NATURE_PLACE_SCHOOL,
         self::NATURE_PLACE_HOME,
+        self::NATURE_PLACE_TRANSPORTS,
     ];
 
     private const NATURES_PLACES_ADDRESSES_NOT_DISPLAYED = [
@@ -145,19 +147,26 @@ class FactsType extends AbstractType
         ?int $naturePlaceId,
     ): void {
         $naturePlace = null;
-        $startAddressLabel = null;
+        $startAddressLabel = $endAddressLabel = null;
         if (null !== $naturePlaceId) {
             $naturePlace = $this->naturePlaceRepository->find($naturePlaceId);
 
             if (self::NATURE_PLACE_HOME === $naturePlace?->getLabel()) {
                 $startAddressLabel = 'pel.victim.address';
             }
+
+            if (self::NATURE_PLACE_TRANSPORTS === $naturePlace?->getLabel()) {
+                $startAddressLabel = 'pel.transport.start.address';
+                $endAddressLabel = 'pel.transport.end.address';
+            }
         }
 
         $form->add('address', FactAddressType::class, [
             'label' => false,
             'compound' => true,
+            'nature_place' => $naturePlace?->getLabel(),
             'start_address_label' => $startAddressLabel,
+            'end_address_label' => $endAddressLabel,
             'address_or_route_facts_known_show' => null === $naturePlace || !in_array($naturePlace->getLabel(), self::NATURES_PLACES_ADDRESS_OR_ROUTE_FACTS_KNOWN_NOT_DISPLAYED),
             'addresses_show' => null === $naturePlace || !in_array($naturePlace->getLabel(), self::NATURES_PLACES_ADDRESSES_NOT_DISPLAYED),
             'start_address_show' => null === $naturePlace || !in_array($naturePlace->getLabel(), self::NATURES_PLACES_START_ADDRESS_NOT_DISPLAYED),

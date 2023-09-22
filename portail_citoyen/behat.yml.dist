@@ -75,6 +75,7 @@ e2e:
                 - '%paths.base%/features/complaint/identity'
                 - '%paths.base%/features/complaint/additional_information.feature'
                 - '%paths.base%/features/complaint/law_refresher.feature'
+                - '%paths.base%/features/complaint/facts.feature'
             <<: *contexts
             filters:
                 tags: '~@func&&~@flaky'
@@ -82,7 +83,6 @@ e2e:
             paths:
                 - '%paths.base%/features/complaint/declarant_status.feature'
                 - '%paths.base%/features/complaint/end.feature'
-                - '%paths.base%/features/complaint/facts.feature'
                 - '%paths.base%/features/complaint/identity.feature'
                 - '%paths.base%/features/complaint/objects.feature'
                 - '%paths.base%/features/complaint/appointment.feature'
