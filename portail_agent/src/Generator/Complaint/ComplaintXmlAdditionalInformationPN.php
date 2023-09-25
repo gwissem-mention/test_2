@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Generator\Complaint;
 
 use App\Entity\Complaint;
+use App\Entity\FactsObjects\SimpleObject;
 use App\Entity\Identity;
 
 class ComplaintXmlAdditionalInformationPN
@@ -20,6 +21,7 @@ class ComplaintXmlAdditionalInformationPN
         $exposedFacts .= $this->setNatureOfPlace($complaint);
         $exposedFacts .= $this->setAdditionalInformation(); // Set at 11th position
         $exposedFacts .= $this->setSuspectsInformation($complaint); // Set at 12th position
+        $exposedFacts .= $this->setSimpleObjectsStolen($complaint);
 
         return $exposedFacts;
     }
@@ -121,5 +123,22 @@ class ComplaintXmlAdditionalInformationPN
         }
 
         return sprintf('La personne déclarante déclare pouvoir nous indiquer de potentiels témoins, à savoir %s', implode(', ', $descriptions));
+    }
+
+    private function setSimpleObjectsStolen(Complaint $complaint): string
+    {
+        $objects = $complaint->getStolenSimpleObjects();
+        if (!$objects->isEmpty()) {
+            $text = ' Sont déclarés volés :';
+
+            /** @var SimpleObject $object */
+            foreach ($objects as $object) {
+                $text .= sprintf(" %d %s, %s, d'une valeur estimée : %d", $object->getQuantity(), $object->getNature(), $object->getDescription(), $object->getAmount());
+            }
+
+            return $text;
+        }
+
+        return '';
     }
 }
