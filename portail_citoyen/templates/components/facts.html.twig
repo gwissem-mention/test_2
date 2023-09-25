@@ -4,7 +4,7 @@
         <h2 class="text-[22px]/7 md:text-[28px]/9 fr-mb-8v">{{ 'pel.what.is.the.date.of.the.infraction'|trans }}</h2>
         <fieldset class="{{ html_classes('fr-fieldset', 'fr-input-group', 'fr-mt-2v', 'fr-mb-6v','fr-mb-md-2v', 'fr-mt-md-10v', {'fr-fieldset--inline': form.offenseDate.exactDateKnown.vars.inline is same as(true),'fr-fieldset--error': form.offenseDate.exactDateKnown.vars.errors is not empty}) }}" {% if form.offenseDate.exactDateKnown.vars.errors is not empty %} role="group" aria-labelledby="legend-{{ form.offenseDate.exactDateKnown.vars.id }} form-errors-{{ form.offenseDate.exactDateKnown.vars.id }}" {% endif %}>
             <div class="md:flex md:gap-x-8">
-                <legend class="fr-fieldset__legend--regular fr-fieldset__legend fr-text--regular xs:whitespace-nowrap" id="legend-{{ form.offenseDate.exactDateKnown.vars.id }}">
+                <legend class="fr-fieldset__legend--regular fr-fieldset__legend fr-text--regular xs:max-md:whitespace-nowrap" id="legend-{{ form.offenseDate.exactDateKnown.vars.id }}">
                     {{ form.offenseDate.exactDateKnown.vars.label|trans }}&nbsp;<span class="text-[var(--text-default-error)]">*</span>
                 </legend>
                     <div class="fr-fieldset__content">
@@ -31,7 +31,7 @@
             {% endif %}
         {% endif %}
         <fieldset class="{{ html_classes('fr-fieldset', 'fr-input-group', {'fr-fieldset--inline': form.offenseDate.choiceHour.vars.inline is same as(true),'fr-fieldset--error': form.offenseDate.choiceHour.vars.errors is not empty}) }}" {% if form.offenseDate.choiceHour.vars.errors is not empty %} role="group" aria-labelledby="legend-{{ form.offenseDate.choiceHour.vars.id }} form-errors-{{ form.offenseDate.choiceHour.vars.id }}" {% endif %}>
-            <legend class="fr-fieldset__legend--regular fr-fieldset__legend fr-text--regular xs:whitespace-nowrap fr-mb-6v" id="legend-{{ form.offenseDate.choiceHour.vars.id }}">
+            <legend class="fr-fieldset__legend--regular fr-fieldset__legend fr-text--regular xs:max-md:whitespace-nowrap fr-mb-6v" id="legend-{{ form.offenseDate.choiceHour.vars.id }}">
                 {{ form.offenseDate.choiceHour.vars.label|trans }}&nbsp;<span class="text-[var(--text-default-error)]">*</span>
             </legend>
             <div class="fr-fieldset__content">

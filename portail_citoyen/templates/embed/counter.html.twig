@@ -1,6 +1,6 @@
 <div class="fr-col" data-controller="counter" data-counter-minlength-value="{{ minlength }}" data-counter-maxlength-value="{{ maxlength }}">
     {% block label %}{% endblock %}
-    <div class="fr-hint-text" data-counter-target="counterContainer" data-live-ignore>
+    <p class="fr-hint-text fr-mb-0" data-counter-target="counterContainer" data-live-ignore>
         {% if help is defined %}
             {{ help|trans }}
         {% endif %}
@@ -16,7 +16,7 @@
             {{ 'pel.characters'|trans }}
         {% endif %}
         <span data-counter-target="counter" class="fr-text--red-marianne font-bold"></span>
-    </div>
+    </p>
     {% block widget %}{% endblock %}
     {% block errors %}{% endblock %}
 </div>
