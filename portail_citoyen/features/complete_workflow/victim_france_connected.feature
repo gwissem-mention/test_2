@@ -19,6 +19,9 @@ Feature:
         And I click the "#contact-information-address-75111_8158" element
         And I fill in "identity_contactInformation_phone_number" with "0101020304"
         And I fill in "identity_contactInformation_mobile_number" with "0601020304"
+        And I click the "label[for=identity_consentContactEmail]" element
+        And I click the "label[for=identity_consentContactSMS]" element
+        And I click the "label[for=identity_consentContactPortal]" element
         When I press "identity_submit"
         Then I should be on "/porter-plainte/faits"
         When I fill in "facts_description" with "description informations lorem ipsum dol or sit amet lorem ipsum dol or sit amet"
@@ -143,6 +146,10 @@ Feature:
         And I should see "Avenue de la République 75011 Paris (France)"
         And I should see the key "pel.address.end" translated
         And I should see "2 test street"
+        And I should see the key "pel.consent.confirmation" translated
+        And I should see the key "pel.by.email" translated
+        And I should see the key "pel.by.sms" translated
+        And I should see the key "pel.on.the.judicial.portal" translated
         And I should see the key "pel.complaint.exact.date.is.known" translated
         And I should see the key "pel.facts.offence.occurred" translated
         And I should see the key "pel.the" translated

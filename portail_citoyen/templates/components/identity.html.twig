@@ -62,7 +62,20 @@
                         'etalabPropertyName': 'contactInformationEtalabInput',
                         'representedPerson': false
                     } %}
-                    {{ form_row(form.consentContactElectronics) }}
+                    <div class="fr-pt-4v">
+                        {{ 'pel.consent.confirmation'|trans }}
+                    </div>
+                    <div class="fr-pt-4v">
+                        {{ form_row(form.consentContactEmail) }}
+                    </div>
+                    <div class="fr-pt-4v">
+                        {{ form_row(form.consentContactSMS) }}
+                    </div>
+                    {% if form.consentContactPortal is defined %}
+                        <div class="fr-pt-4v">
+                            {{ form_row(form.consentContactPortal) }}
+                        </div>
+                    {% endif %}
                 </div>
                 {% if form.corporation is defined %}
                     <hr>

@@ -72,14 +72,18 @@ class IdentityType extends AbstractType
                 'compound' => true,
                 'is_france_connected' => $options['is_france_connected'],
             ])
-            ->add('consentContactElectronics', CheckboxType::class, [
+            ->add('consentContactEmail', CheckboxType::class, [
                 'required' => false,
-                'label' => 'pel.consent.confirmation',
+                'label' => 'pel.by.email',
+            ])
+            ->add('consentContactSMS', CheckboxType::class, [
+                'required' => false,
+                'label' => 'pel.by.sms',
             ])
             ->addEventListener(
                 FormEvents::PRE_SET_DATA,
                 function (FormEvent $event) {
-                    /** @var ?IdentityModel $identityModel */
+                    /** @var IdentityModel $identityModel */
                     $identityModel = $event->getData();
                     $declarantStatus = $this->sessionHandler->getComplaint()?->getIdentity()?->getDeclarantStatus();
 
@@ -88,6 +92,25 @@ class IdentityType extends AbstractType
                         $declarantStatus,
                         $identityModel
                     );
+
+                    if (true === $identityModel->isConsentContactEmail() && true === $identityModel->isConsentContactSMS()) {
+                        $this->addConsentContactPortal($event->getForm());
+                    } else {
+                        $this->removeConsentContactPortal($event->getForm());
+                    }
+                }
+            )
+            ->addEventListener(
+                FormEvents::PRE_SUBMIT,
+                function (FormEvent $event) {
+                    /** @var array<string, mixed> $data */
+                    $data = $event->getData();
+
+                    if (true === (bool) $data['consentContactEmail'] && true === (bool) $data['consentContactSMS']) {
+                        $this->addConsentContactPortal($event->getForm());
+                    } else {
+                        $this->removeConsentContactPortal($event->getForm());
+                    }
                 }
             )
             ->get('declarantStatus')
@@ -158,6 +181,20 @@ class IdentityType extends AbstractType
     {
         $form->remove('corporation');
         $identityModel?->setCorporation(null);
+    }
+
+    private function addConsentContactPortal(FormInterface $form): void
+    {
+        $form->add('consentContactPortal', CheckboxType::class, [
+            'required' => false,
+            'label' => 'pel.on.the.judicial.portal',
+        ]);
+    }
+
+    private function removeConsentContactPortal(FormInterface $form, IdentityModel $identityModel = null): void
+    {
+        $form->remove('consentContactPortal');
+        $identityModel?->setConsentContactPortal(null);
     }
 
     /* Person Legal Representative must be hidden for the experimentation */

@@ -62,7 +62,10 @@ class ComplaintFactory
         return (new IdentityModel())
             ->setDeclarantStatus(DeclarantStatus::Victim->value)
             ->setCivilState($this->createCivilState($frenchAddress))
-            ->setContactInformation($this->createContactInformation($frenchAddress));
+            ->setContactInformation($this->createContactInformation($frenchAddress))
+            ->setConsentContactEmail(false)
+            ->setConsentContactSMS(false)
+            ->setConsentContactPortal(false);
     }
 
     /* Person Legal Representative must be hidden for the experimentation */
@@ -82,7 +85,10 @@ class ComplaintFactory
             ->setDeclarantStatus(DeclarantStatus::CorporationLegalRepresentative->value)
             ->setCivilState($this->createCivilState($frenchAddress))
             ->setContactInformation($this->createContactInformation($frenchAddress))
-            ->setCorporation($this->createCorporation($frenchAddress));
+            ->setCorporation($this->createCorporation($frenchAddress))
+            ->setConsentContactEmail(false)
+            ->setConsentContactSMS(false)
+            ->setConsentContactPortal(false);
     }
 
     private function createCivilState(bool $frenchAddress = true): CivilStateModel

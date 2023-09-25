@@ -94,7 +94,9 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
                     ->setJobThesaurus('BOULANGER')
                     ->setAlertNumber(3)
             )
-            ->setConsentContactElectronics(true)
+            ->setConsentContactEmail(true)
+            ->setConsentContactSMS(true)
+            ->setConsentContactPortal(true)
             ->setpersonLegalRepresented(
                 (new Identity())
                     ->setFirstname('Jeremy')
@@ -247,7 +249,9 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
             ->setIdentity(
                 $identity->setDeclarantStatus(Identity::DECLARANT_STATUS_CORPORATION_LEGAL_REPRESENTATIVE)
             )
-            ->setConsentContactElectronics(true)
+            ->setConsentContactEmail(true)
+            ->setConsentContactSMS(true)
+            ->setConsentContactPortal(true)
             ->setPersonLegalRepresented(null)
             ->setCorporationRepresented(
                 (new Corporation())
@@ -628,6 +632,9 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         //        $this->assertStringContainsString('<Creaneau_Contact>08H-12H</Creaneau_Contact>', $this->xmlContent);
         //        $this->assertStringContainsString('<Periode_Contact>Si possible entre 10h et 11h</Periode_Contact>', $this->xmlContent);
         $this->assertStringContainsString('<CONS>Oui</CONS>', $this->xmlContent);
+        $this->assertStringContainsString('<CONS_Tel>Oui</CONS_Tel>', $this->xmlContent);
+        $this->assertStringContainsString('<CONS_Mail>Oui</CONS_Mail>', $this->xmlContent);
+        $this->assertStringContainsString('<CONS_Portalis>Oui</CONS_Portalis>', $this->xmlContent);
         $this->assertStringContainsString('</Contact>', $this->xmlContent);
     }
 

@@ -29,6 +29,9 @@ Feature:
         And I should see the key "pel.email.address" translated
         And I should see the key "pel.mobile" translated
         And I should see the key "pel.phone" translated
+        And I should see the key "pel.judicial.portal.text" translated
+        And I should see the key "pel.by.email" translated
+        And I should see the key "pel.by.sms" translated
         And I should see the key "pel.next" translated
 
     Scenario: Change country from France to Spain and check the town field is cleared
@@ -53,6 +56,9 @@ Feature:
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I fill in "identity_contactInformation_confirmationEmail" with "jean@test.com"
         And I fill in "identity_contactInformation_phone_number" with "0102020304"
+        And I click the "label[for=identity_consentContactEmail]" element
+        And I click the "label[for=identity_consentContactSMS]" element
+        And I click the "label[for=identity_consentContactPortal]" element
         And I press "identity_submit"
         Then I should be on "/porter-plainte/faits"
 

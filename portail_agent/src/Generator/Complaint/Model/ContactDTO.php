@@ -17,10 +17,14 @@ class ContactDTO
     //    private string $contactWindow;
     //    private string $contactPeriod;
     private string $cons;
+    private string $consTel;
+    private string $consEmail;
+    private string $consPortalis;
 
     public function __construct(Complaint $complaint)
     {
-        $this->claimsLegalAction = true === $complaint->isConsentContactElectronics() ? 'Oui' : 'Non';
+        $consentEmailOrSMS = true === $complaint->isConsentContactEmail() || true === $complaint->isConsentContactSMS();
+        $this->claimsLegalAction = true === $consentEmailOrSMS ? 'Oui' : 'Non';
         $this->declarantEmail = $complaint->getIdentity()?->getEmail() ?? '';
         $this->declarantHomePhone = $complaint->getIdentity()?->getHomePhone() ?? '';
         //        $this->declarantOfficePhone = $complaint->getIdentity()?->getOfficePhone() ?? '';
@@ -28,7 +32,10 @@ class ContactDTO
         //        $this->appointementChoice = !is_null($complaint->getAppointmentDate()) ? $complaint->getAppointmentDate()->format('d/m/Y H').'h' : '';
         //        $this->contactWindow = $complaint->getContactWindow() ?? '';
         //        $this->contactPeriod = $complaint->getContactPeriod() ?? '';
-        $this->cons = (true === $complaint->isConsentContactElectronics() && null !== $complaint->getIdentity()?->getMobilePhone() && null !== $complaint->getIdentity()->getEmail()) ? 'Oui' : 'Non';
+        $this->cons = true === $consentEmailOrSMS ? 'Oui' : 'Non';
+        $this->consTel = true === $complaint->isConsentContactSMS() ? 'Oui' : 'Non';
+        $this->consEmail = true === $complaint->isConsentContactEmail() ? 'Oui' : 'Non';
+        $this->consPortalis = true === $complaint->isConsentContactPortal() ? 'Oui' : 'Non';
     }
 
     /**
@@ -46,6 +53,9 @@ class ContactDTO
 //            'Creaneau_Contact' => $this->contactWindow,
 //            'Periode_Contact' => $this->contactPeriod,
             'CONS' => $this->cons,
+            'CONS_Tel' => $this->consTel,
+            'CONS_Mail' => $this->consEmail,
+            'CONS_Portalis' => $this->consPortalis,
         ]];
     }
 }

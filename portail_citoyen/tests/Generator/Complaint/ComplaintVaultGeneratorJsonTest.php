@@ -91,7 +91,9 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'label' => 'Abat-jouriste',
                     ],
                 ],
-                'consentContactElectronics' => null,
+                'consentContactEmail' => false,
+                'consentContactSMS' => false,
+                'consentContactPortal' => false,
                 'contactInformation' => [
                     'phone' => [
                         'country' => 'FR',
@@ -680,7 +682,9 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
     //                        'label' => 'Abat-jouriste',
     //                    ],
     //                ],
-    //                'consentContactElectronics' => null,
+    //                'consentContactEmail' => false,
+    //                'consentContactSMS' => false,
+    //                'consentContactPortal' => false,
     //                'contactInformation' => [
     //                    'phone' => [
     //                        'country' => 'FR',
@@ -1160,7 +1164,9 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
                         'label' => 'Abat-jouriste',
                     ],
                 ],
-                'consentContactElectronics' => null,
+                'consentContactEmail' => false,
+                'consentContactSMS' => false,
+                'consentContactPortal' => false,
                 'contactInformation' => [
                     'phone' => [
                         'country' => 'FR',

@@ -7,7 +7,9 @@ namespace App\Form\Model\Identity;
 class IdentityModel
 {
     private ?int $declarantStatus = null;
-    private ?bool $consentContactElectronics = null;
+    private ?bool $consentContactEmail = null;
+    private ?bool $consentContactSMS = null;
+    private ?bool $consentContactPortal = null;
     private CivilStateModel $civilState;
     private ContactInformationModel $contactInformation;
     /* Person Legal Representative must be hidden for the experimentation */
@@ -98,14 +100,38 @@ class IdentityModel
         return $this;
     }
 
-    public function getConsentContactElectronics(): ?bool
+    public function isConsentContactEmail(): ?bool
     {
-        return $this->consentContactElectronics;
+        return $this->consentContactEmail;
     }
 
-    public function setConsentContactElectronics(?bool $consentContactElectronics): self
+    public function setConsentContactEmail(?bool $consentContactEmail): self
     {
-        $this->consentContactElectronics = $consentContactElectronics;
+        $this->consentContactEmail = $consentContactEmail;
+
+        return $this;
+    }
+
+    public function isConsentContactSMS(): ?bool
+    {
+        return $this->consentContactSMS;
+    }
+
+    public function setConsentContactSMS(?bool $consentContactSMS): self
+    {
+        $this->consentContactSMS = $consentContactSMS;
+
+        return $this;
+    }
+
+    public function isConsentContactPortal(): ?bool
+    {
+        return $this->consentContactPortal;
+    }
+
+    public function setConsentContactPortal(?bool $consentContactPortal): self
+    {
+        $this->consentContactPortal = $consentContactPortal;
 
         return $this;
     }
