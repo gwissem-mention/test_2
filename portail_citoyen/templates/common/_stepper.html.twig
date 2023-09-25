@@ -15,6 +15,7 @@
 	</div>
     <div class="fr-stepper fr-col fr-mt-6v">
         <h3 class="fr-stepper__title text-white">
+            <span class="visually-hidden">{{ 'pel.step.active'|trans}}</span>
             <span class="fr-stepper__state text-white">
                 {{ 'pel.step'|trans}}
                 {{ current_step_number }}
@@ -42,6 +43,7 @@
 					<div class="w-1.5 h-full absolute top-0 {% if loop.index <= current_step_number  %}fr-background-default--grey{% else %}bg-[var(--light-primary-blue-france-850-active,#8B8BF6)]{% endif %}" aria-hidden="true"></div>
 					<h3 class="fr-stepper__title fr-mb-0 ml-[30px] {% if loop.index <= current_step_number %}text-white font-normal{% else %}font-normal text-[var(--light-primary-blue-france-850-active,#8B8BF6)]{% endif %}{% if loop.index is same as(current_step_number)  %}font-bold{% endif %}">
 						{% if loop.index is same as(current_step_number)  %}
+                            <span class="visually-hidden">{{ 'pel.step.active'|trans}}</span>
 							<span class="fr-stepper__state text-white">
 								{{ 'pel.step'|trans}}
 								{{ current_step_number }}

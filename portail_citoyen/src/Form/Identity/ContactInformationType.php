@@ -46,6 +46,7 @@ class ContactInformationType extends AbstractType
                 'attr' => [
                     'autocomplete' => 'country-name',
                     'data-live-id' => 'country-'.microtime(), // @todo: remove this hack when it'll be fixed on Symfony UX autocomplete
+                    'aria-hidden' => 'true',
                 ],
                 'label' => 'pel.address.country',
                 'preferred_choices' => [$this->franceCode],
@@ -62,6 +63,7 @@ class ContactInformationType extends AbstractType
                     new Email(),
                 ],
                 'label' => 'pel.email.address',
+                'help' => 'pel.email.help',
                 'disabled' => $options['is_france_connected'] && $contactInformationModel?->getEmail(),
             ])
             ->add('mobile', PhoneType::class, [

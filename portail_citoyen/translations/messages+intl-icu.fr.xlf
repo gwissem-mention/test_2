@@ -536,7 +536,7 @@
             </trans-unit>
             <trans-unit id="pel.corporation.email">
                 <source>pel.corporation.email</source>
-                <target>Adresse électronique professionnelle d’un point de contact de l’organisation</target>
+                <target>Adresse e-mail professionnelle d’un point de contact de l’organisation</target>
             </trans-unit>
             <trans-unit id="pel.corporation.function">
                 <source>pel.corporation.function</source>
@@ -604,7 +604,7 @@
             </trans-unit>
             <trans-unit id="pel.date.help">
                 <source>pel.date.help</source>
-                <target>Date au format jj/mm/aaaa</target>
+                <target>Exemple : 23/04/2023</target>
             </trans-unit>
             <trans-unit id="pel.end.date.is.invalid">
                 <source>pel.end.date.is.invalid</source>
@@ -768,12 +768,16 @@
             </trans-unit>
             <trans-unit id="pel.email.address">
                 <source>pel.email.address</source>
-                <target>Adresse e-mail</target>
+                <target>Adresse électronique</target>
             </trans-unit>
            <trans-unit id="pel.email.confirmation">
                  <source>pel.email.confirmation</source>
                  <target>Confirmer votre Email</target>
              </trans-unit>
+            <trans-unit id="pel.email.help">
+                 <source>pel.email.help</source>
+                 <target>Format attendu : nom@domaine.fr</target>
+            </trans-unit>
             <trans-unit id="pel.end.hour">
                 <source>pel.end.hour</source>
                 <target>Heure de fin</target>
@@ -832,7 +836,7 @@
             </trans-unit>
             <trans-unit id="pel.witness.email">
                 <source>pel.witness.email</source>
-                <target>Adresse e-mail du témoin n°{index}</target>
+                <target>Adresse électronique du témoin n°{index}</target>
             </trans-unit>
             <trans-unit id="pel.witness.mobile">
                 <source>pel.witness.mobile</source>
@@ -1433,6 +1437,10 @@
             <trans-unit id="pel.next">
                 <source>pel.next</source>
                 <target>Continuer</target>
+            </trans-unit>
+            <trans-unit id="pel.next.aria-label">
+                <source>pel.next.aria-label</source>
+                <target>Continuer et passer à l’étape suivante</target>
             </trans-unit>
             <trans-unit id="pel.number">
                 <source>pel.number</source>
@@ -2581,6 +2589,10 @@
             <trans-unit id="pel.step">
                 <source>pel.step</source>
                 <target>Étape</target>
+            </trans-unit>
+            <trans-unit id="pel.step.active">
+                <source>pel.step.active</source>
+                <target>Étape active</target>
             </trans-unit>
             <trans-unit id="pel.on">
                 <source>pel.on</source>
