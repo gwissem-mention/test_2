@@ -16,6 +16,7 @@ class ComplaintXmlAdditionalInformationPN
         $exposedFacts .= $this->setIsFranceConnected($complaint);
         $exposedFacts .= $this->setJob($complaint);
         $exposedFacts .= $this->setViolences($complaint);
+        $exposedFacts .= $this->setNatureOfPlace($complaint);
         $exposedFacts .= $this->setAdditionalInformation(); // Set at 11th position
         $exposedFacts .= $this->setSuspectsInformation($complaint); // Set at 12th position
 
@@ -79,6 +80,16 @@ class ComplaintXmlAdditionalInformationPN
     private function setAdditionalInformation(): string
     {
         return 'Sur d\'éventuels éléments susceptibles d\'orienter l\'enquête, la victime nous précise successivement ';
+    }
+
+    private function setNatureOfPlace(Complaint $complaint): string
+    {
+        $message = sprintf('comme nature de lieu des faits est indiqué : %s ', $complaint->getFacts()?->getPlace());
+        if (null !== $complaint->getFacts()?->getAddressAdditionalInformation()) {
+            $message .= sprintf('Est apporté en précision sur le lieu des faits : %s ', $complaint->getFacts()->getAddressAdditionalInformation());
+        }
+
+        return $message;
     }
 
     private function setSuspectsInformation(Complaint $complaint): string
