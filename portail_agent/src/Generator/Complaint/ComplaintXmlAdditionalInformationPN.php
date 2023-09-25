@@ -16,6 +16,7 @@ class ComplaintXmlAdditionalInformationPN
         $exposedFacts .= $this->setIsFranceConnected($complaint);
         $exposedFacts .= $this->setJob($complaint);
         $exposedFacts .= $this->setViolences($complaint);
+        $exposedFacts .= $this->setWitnesses($complaint);
         $exposedFacts .= $this->setNatureOfPlace($complaint);
         $exposedFacts .= $this->setAdditionalInformation(); // Set at 11th position
         $exposedFacts .= $this->setSuspectsInformation($complaint); // Set at 12th position
@@ -102,5 +103,23 @@ class ComplaintXmlAdditionalInformationPN
         }
 
         return 'La personne déclarante n\'apporte pas d\'éléments sur le ou les auteurs de l\'infraction';
+    }
+
+    private function setWitnesses(Complaint $complaint): string
+    {
+        $descriptions = [];
+        $witnesses = $complaint->getAdditionalInformation()?->getWitnesses();
+
+        if (null === $witnesses) {
+            return "La personne déclare ne pas avoir connaissance de témoin de l'infraction";
+        }
+
+        foreach ($witnesses as $witness) {
+            if ($witness->getDescription()) {
+                $descriptions[] = $witness->getDescription();
+            }
+        }
+
+        return sprintf('La personne déclarante déclare pouvoir nous indiquer de potentiels témoins, à savoir %s', implode(', ', $descriptions));
     }
 }
