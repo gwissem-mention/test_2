@@ -396,6 +396,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                     ->setNature('Blouson')
                     ->setDescription('Blouson Adidas de couleur bleu')
                     ->setSerialNumber('A9999')
+                    ->setQuantity(1)
                     ->setAmount(100)
             )
             ->setAdditionalInformation(

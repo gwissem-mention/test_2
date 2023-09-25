@@ -67,6 +67,7 @@ use League\Flysystem\FilesystemException;
  *      checkLastNumber: string|null,
  *      files: array<JsonFile>,
  *      creditCardNumber: string|null,
+ *      quantity: int|null,
  *  }
  *
  * @phpstan-import-type JsonComplaint from ComplaintFileParser
@@ -269,7 +270,8 @@ class ObjectsParser
         return $simpleObject
             ->setNature($objectInput->label)
             ->setDescription($objectInput->description ?? '')
-            ->setSerialNumber($objectInput->serialNumber);
+            ->setSerialNumber($objectInput->serialNumber)
+            ->setQuantity($objectInput->quantity);
     }
 
     /**

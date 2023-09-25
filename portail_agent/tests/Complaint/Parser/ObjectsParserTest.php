@@ -713,5 +713,6 @@ JSON;
         $this->assertSame('Carte de collection', $object->getDescription());
         $this->assertSame(650.0, $object->getAmount());
         $this->assertSame('A9999', $object->getSerialNumber());
+        $this->assertSame(1, $object->getQuantity());
     }
 }

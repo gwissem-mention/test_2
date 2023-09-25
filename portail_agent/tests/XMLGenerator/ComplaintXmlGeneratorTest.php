@@ -197,6 +197,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
                     ->setNature('Blouson')
                     ->setDescription('Blouson bleu')
                     ->setSerialNumber('1234567890')
+                    ->setQuantity(1)
                     ->setAmount(100)
             )
             ->addObject(
@@ -551,7 +552,11 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         //        $this->assertStringContainsString('<Objet_simple_Marque>Adidas</Objet_simple_Marque>', $this->xmlContent);
         //        $this->assertStringContainsString('<Objet_simple_Modele>Homme</Objet_simple_Modele>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_simple_Numeros_Serie>1234567890</Objet_simple_Numeros_Serie>', $this->xmlContent);
-        $this->assertStringContainsString('<Objet_simple_Description>Statut : volé - Blouson bleu</Objet_simple_Description>', $this->xmlContent);
+        $this->assertStringContainsString('<Objet_simple_Description>Blouson bleu</Objet_simple_Description>', $this->xmlContent);
+        $this->assertStringContainsString('<Objet_Simple_Statut>Volé</Objet_Simple_Statut>', $this->xmlContent);
+        $this->assertStringContainsString('<Objet_Simple_Denomination>Blouson</Objet_Simple_Denomination>', $this->xmlContent);
+        $this->assertStringContainsString('<Objet_Simple_Quantite>1</Objet_Simple_Quantite>', $this->xmlContent);
+        $this->assertStringContainsString('<Objet_Simple_prejudice_estimation>100</Objet_Simple_prejudice_estimation>', $this->xmlContent);
         //        $this->assertStringContainsString('<Objet_simple_Identite_Victime>Oui</Objet_simple_Identite_Victime>', $this->xmlContent);
         //        $this->assertStringContainsString('<Objet_simple_Vol_Dans_Vl>Non</Objet_simple_Vol_Dans_Vl>', $this->xmlContent);
         //        $this->assertStringNotContainsString('<Objet_simple_Identite_Nom>', $this->xmlContent);

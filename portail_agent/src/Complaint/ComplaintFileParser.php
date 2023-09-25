@@ -79,6 +79,7 @@ use Psr\Log\LoggerInterface;
  *       checkLastNumber: string|null,
  *       files: array<JsonFile>,
  *       creditCardNumber: string|null,
+ *       quantity: int|null,
  *   }
  * @phpstan-type JsonComplaint object{
  *      identity: object{

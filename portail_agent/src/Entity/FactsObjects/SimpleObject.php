@@ -24,6 +24,9 @@ class SimpleObject extends AbstractObject
     #[ORM\Column(length: 255)]
     private ?string $description = null;
 
+    #[ORM\Column]
+    private ?int $quantity = null;
+
     public function getNature(): ?string
     {
         return $this->nature;
@@ -56,6 +59,18 @@ class SimpleObject extends AbstractObject
     public function setSerialNumber(?string $serialNumber): self
     {
         $this->serialNumber = $serialNumber;
+
+        return $this;
+    }
+
+    public function getQuantity(): ?int
+    {
+        return $this->quantity;
+    }
+
+    public function setQuantity(?int $quantity): self
+    {
+        $this->quantity = $quantity;
 
         return $this;
     }
