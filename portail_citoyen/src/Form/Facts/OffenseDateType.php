@@ -111,6 +111,7 @@ class OffenseDateType extends AbstractType
                 new LessThanOrEqual('today', message: 'pel.date.less.than.equal.today.error'),
             ],
             'label' => true === $exactDateKnown ? 'pel.complaint.exact.date' : 'pel.potential.start.date',
+            'help' => 'pel.date.help',
             'widget' => 'single_text',
         ]);
 
@@ -148,6 +149,7 @@ class OffenseDateType extends AbstractType
                     new LessThanOrEqual('today', message: 'pel.date.less.than.equal.today.error'),
                 ],
                 'label' => 'pel.potential.end.date',
+                'help' => 'pel.date.help',
                 'widget' => 'single_text',
             ]);
         } else {

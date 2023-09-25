@@ -70,6 +70,7 @@ class CorporationType extends AbstractType
                     new NotBlank(),
                 ],
                 'attr' => [
+                    'aria-hidden' => 'true',
                     'data-live-id' => 'nationality-corporation-'.microtime(), // @todo: remove this hack when it'll be fixed on Symfony UX autocomplete
                 ],
                 'label' => 'pel.nationality',
@@ -93,6 +94,9 @@ class CorporationType extends AbstractType
                 'number_constraints' => [new NotBlank()],
             ])
             ->add('country', CountryAutocompleteType::class, [
+                'attr' => [
+                    'aria-hidden' => 'true',
+                ],
                 'label' => 'pel.address.country',
                 'preferred_choices' => [$this->franceCode],
                 'empty_data' => $this->franceCode,

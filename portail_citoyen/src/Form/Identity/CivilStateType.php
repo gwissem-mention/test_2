@@ -129,6 +129,7 @@ class CivilStateType extends AbstractType
                 'empty_data' => $this->frenchNationalityCode,
                 'attr' => [
                     'data-live-id' => 'nationality-'.microtime(), // @todo: remove this hack when it'll be fixed on Symfony UX autocomplete
+                    'aria-hidden' => 'true',
                 ],
             ])
             ->addEventListener(
@@ -185,6 +186,7 @@ class CivilStateType extends AbstractType
                         'ux_entity_autocomplete',
                         ['alias' => 'job']
                     ),
+                    'aria-hidden' => 'true',
                 ],
             ]);
     }

@@ -1,6 +1,11 @@
 @tailwind components
 @tailwind utilities
 
+// https://webaim.org/techniques/css/invisiblecontent/
+@layer components
+  .visually-hidden
+    @apply [clip:rect(1px,1px,1px,1px)] [clip-path:inset(50%)] h-px w-px -m-px overflow-hidden p-0 absolute
+
 @import "@gouvfr/dsfr/dist/dsfr.css"
 // Workaround for this issue https://github.com/GouvernementFR/dsfr/issues/309
 @import "@gouvfr/dsfr/dist/utility/colors/colors.css"
