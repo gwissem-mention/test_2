@@ -337,6 +337,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                         ->setNature((string) $this->randomString(['Blouson', 'Guitare', 'Sac à dos']))
                         ->setDescription((string) $this->randomString(['De couleur Rouge', 'De couleur Noire', 'De couleur Bleue']))
                         ->setSerialNumber($this->randomString(['123456789', '987654321', '132435468']))
+                        ->setQuantity(1)
                         ->setAmount($this->faker->numberBetween(100, 500))
                 );
             }

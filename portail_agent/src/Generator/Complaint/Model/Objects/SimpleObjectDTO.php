@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Generator\Complaint\Model\Objects;
 
+use App\Entity\FactsObjects\AbstractObject;
 use App\Entity\FactsObjects\SimpleObject;
 
 class SimpleObjectDTO extends AbstractObjectDTO
@@ -13,6 +14,9 @@ class SimpleObjectDTO extends AbstractObjectDTO
     //    private string $model;
     private string $serialNumber;
     private string $description;
+    private string $status;
+    private string $quantity;
+    private string $amount;
 
     public function __construct(SimpleObject $object)
     {
@@ -21,7 +25,10 @@ class SimpleObjectDTO extends AbstractObjectDTO
         //        $this->brand = $object->getBrand() ?? '';
         //        $this->model = $object->getModel() ?? '';
         $this->serialNumber = $object->getSerialNumber() ?? '';
-        $this->description = $this->getStatusAsString((int) $object->getStatus()).' - '.$object->getDescription();
+        $this->description = (string) $object->getDescription();
+        $this->status = AbstractObject::STATUS_STOLEN === $object->getStatus() ? 'Volé' : 'Dégradé';
+        $this->quantity = (string) $object->getQuantity();
+        $this->amount = (string) $object->getAmount();
     }
 
     /**
@@ -35,6 +42,10 @@ class SimpleObjectDTO extends AbstractObjectDTO
 //            'Objet_simple_Modele' => $this->model,
             'Objet_simple_Numeros_Serie' => $this->serialNumber,
             'Objet_simple_Description' => $this->description,
+            'Objet_Simple_Statut' => $this->status,
+            'Objet_Simple_Denomination' => $this->nature,
+            'Objet_Simple_Quantite' => $this->quantity,
+            'Objet_Simple_prejudice_estimation' => $this->amount,
 //            'Objet_simple_Identite_Victime' => $this->identityVictim,
 //            'Objet_simple_Identite_Nom' => $this->identityLastname,
 //            'Objet_simple_Identite_Nom_Marital' => $this->identityMarriedName,
