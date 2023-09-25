@@ -88,7 +88,9 @@ use Psr\Log\LoggerInterface;
  *           corporation: JsonCorporation|null,
  *           representedPersonCivilState: object|null,
  *           representedPersonContactInformation: object|null,
- *           consentContactElectronics: bool
+ *           consentContactEmail: bool,
+ *           consentContactSMS: bool,
+ *           consentContactPortal: bool
  *      },
  *      facts: JsonFacts,
  *      objects: object{objects: array<JsonObject>},
@@ -168,7 +170,9 @@ class ComplaintFileParser
             ->setAppointmentRequired($importedComplaint->appointmentRequired)
             ->setAppointmentContactInformation($importedComplaint->appointment?->appointmentContactText)
             ->setAppointmentAsked($importedComplaint->appointment?->appointmentAsked)
-            ->setConsentContactElectronics($importedComplaint->identity->consentContactElectronics);
+            ->setConsentContactEmail($importedComplaint->identity->consentContactEmail ?? false)
+            ->setConsentContactSMS($importedComplaint->identity->consentContactSMS ?? false)
+            ->setConsentContactPortal($importedComplaint->identity->consentContactPortal ?? false);
 
         // For Salesforce purpose, init the appointment journey without sending the appointment required email
         if (false === $complaint->isAppointmentRequired()) {

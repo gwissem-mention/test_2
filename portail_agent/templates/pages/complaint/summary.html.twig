@@ -235,9 +235,20 @@
                                 </li>
                             </ul>
                         {% endif %}
-                        {% if complaint.consentContactElectronics is same as true %}
-                            <li>
-                                {{ 'pel.want.to.receive.legal.proceedings.electronically'|trans }}
+                        {% if complaint.consentContactEmail is same as(true) or complaint.consentContactSMS is same as(true) %}
+                            <li class="text-xl/8 fr-pb-6v">
+                                {{ 'pel.consent.confirmation'|trans }}
+                                <ul>
+                                    {% if complaint.consentContactEmail is same as(true) %}
+                                        <li>{{ 'pel.by.email'|trans }}</li>
+                                    {% endif %}
+                                    {% if complaint.consentContactSMS is same as(true) %}
+                                        <li>{{ 'pel.by.sms'|trans }}</li>
+                                    {% endif %}
+                                    {% if complaint.consentContactPortal is same as(true) %}
+                                        <li>{{ 'pel.on.the.judicial.portal'|trans }}</li>
+                                    {% endif %}
+                                </ul>
                             </li>
                         {% endif %}
                     </ul>

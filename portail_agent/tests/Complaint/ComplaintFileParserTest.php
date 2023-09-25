@@ -46,7 +46,9 @@ class ComplaintFileParserTest extends KernelTestCase
 			"code": 1,
 			"label": "Vous êtes victime ou vous représentez votre enfant mineur"
 		},
-	    "consentContactElectronics": false,
+	    "consentContactEmail": false,
+	    "consentContactSMS": true,
+	    "consentContactPortal": false,
 		"civilState":
 		{
 			"civility":
@@ -571,8 +573,9 @@ JSON;
         $this->assertInstanceOf(AdditionalInformation::class, $complaint->getAdditionalInformation());
         $this->assertTrue($complaint->isAppointmentRequired());
         $this->assertNull($complaint->isAppointmentAsked());
-        $this->assertFalse($complaint->isConsentContactElectronics());
-
+        $this->assertFalse($complaint->isConsentContactEmail());
+        $this->assertTrue($complaint->isConsentContactSMS());
+        $this->assertFalse($complaint->isConsentContactPortal());
         foreach ($complaint->getObjects() as $object) {
             $this->assertInstanceOf(AbstractObject::class, $object);
         }

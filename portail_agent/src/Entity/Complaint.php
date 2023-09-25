@@ -183,9 +183,6 @@ class Complaint
     private ?\DateTimeImmutable $appointmentNotificationSentAt = null;
 
     #[ORM\Column]
-    private ?bool $consentContactElectronics = null;
-
-    #[ORM\Column]
     private ?bool $appointmentRequired = false;
 
     #[ORM\Column(options: ['default' => '0'])]
@@ -199,6 +196,15 @@ class Complaint
 
     #[ORM\Column(nullable: true)]
     private ?bool $appointmentAsked = null;
+
+    #[ORM\Column(options: ['default' => false])]
+    private ?bool $consentContactEmail = null;
+
+    #[ORM\Column(options: ['default' => false])]
+    private ?bool $consentContactSMS = null;
+
+    #[ORM\Column(options: ['default' => false])]
+    private ?bool $consentContactPortal = null;
 
     public function __construct()
     {
@@ -700,18 +706,6 @@ class Complaint
         return $this;
     }
 
-    public function isConsentContactElectronics(): ?bool
-    {
-        return $this->consentContactElectronics;
-    }
-
-    public function setConsentContactElectronics(bool $consentContactElectronics): static
-    {
-        $this->consentContactElectronics = $consentContactElectronics;
-
-        return $this;
-    }
-
     public function isAppointmentRequired(): ?bool
     {
         return $this->appointmentRequired;
@@ -802,5 +796,41 @@ class Complaint
     public function hasObjectsWithFiles(): bool
     {
         return !$this->getObjectsWithFiles()->isEmpty();
+    }
+
+    public function isConsentContactEmail(): ?bool
+    {
+        return $this->consentContactEmail;
+    }
+
+    public function setConsentContactEmail(?bool $consentContactEmail): self
+    {
+        $this->consentContactEmail = $consentContactEmail;
+
+        return $this;
+    }
+
+    public function isConsentContactSMS(): ?bool
+    {
+        return $this->consentContactSMS;
+    }
+
+    public function setConsentContactSMS(?bool $consentContactSMS): self
+    {
+        $this->consentContactSMS = $consentContactSMS;
+
+        return $this;
+    }
+
+    public function isConsentContactPortal(): ?bool
+    {
+        return $this->consentContactPortal;
+    }
+
+    public function setConsentContactPortal(?bool $consentContactPortal): self
+    {
+        $this->consentContactPortal = $consentContactPortal;
+
+        return $this;
     }
 }

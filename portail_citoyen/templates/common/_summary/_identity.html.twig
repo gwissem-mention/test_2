@@ -79,8 +79,19 @@
         {{ 'pel.phone'|trans }} : <b>{{ contactInformation.phone|phone_format_intl }}</b>
     </li>
 {% endif %}
-{% if complaint.identity.consentContactElectronics is same as true %}
+{% if consentContactEmail is same as(true) or consentContactSMS is same as(true) %}
     <li class="text-xl/8 fr-pb-6v">
-        {{ 'pel.want.to.receive.legal.proceedings.electronically'|trans }}
+        {{ 'pel.consent.confirmation'|trans }}
+        <ul>
+            {% if consentContactEmail is same as(true) %}
+                <li>{{ 'pel.by.email'|trans }}</li>
+            {% endif %}
+            {% if consentContactSMS is same as(true) %}
+                <li>{{ 'pel.by.sms'|trans }}</li>
+            {% endif %}
+            {% if consentContactPortal is same as(true) %}
+                <li>{{ 'pel.on.the.judicial.portal'|trans }}</li>
+            {% endif %}
+        </ul>
     </li>
 {% endif %}

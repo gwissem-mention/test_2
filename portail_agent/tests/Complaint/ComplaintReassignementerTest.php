@@ -168,7 +168,9 @@ class ComplaintReassignementerTest extends TestCase
             ->setOptinNotification(true)
             ->setAlert('Alert de test trop longue')
             ->setIdentity(new Identity())
-            ->setConsentContactElectronics(true)
+            ->setConsentContactEmail(true)
+            ->setConsentContactSMS(true)
+            ->setConsentContactPortal(true)
             ->setpersonLegalRepresented(new Identity())
             ->setFacts(new Facts())
             ->addObject(

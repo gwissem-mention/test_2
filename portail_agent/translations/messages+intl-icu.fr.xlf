@@ -1726,6 +1726,22 @@
                 <source>pel.credit.card.number</source>
                 <target>Numéro de carte</target>
             </trans-unit>
+            <trans-unit id="pel.by.email">
+                <source>pel.by.email</source>
+                <target>Par courriel</target>
+            </trans-unit>
+            <trans-unit id="pel.by.sms">
+                <source>pel.by.sms</source>
+                <target>Par SMS</target>
+            </trans-unit>
+            <trans-unit id="pel.on.the.judicial.portal">
+                <source>pel.on.the.judicial.portal</source>
+                <target>Sur le portail du justiciable</target>
+            </trans-unit>
+            <trans-unit id="pel.consent.confirmation">
+                <source>pel.consent.confirmation</source>
+                <target>Je consens à recevoir de l’autorité judiciaire des avis, convocations et documents intéressants la procédure judiciaire qui pourraient découler de ma démarche</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

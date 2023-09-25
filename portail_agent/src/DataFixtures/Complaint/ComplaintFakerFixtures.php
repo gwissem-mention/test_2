@@ -154,7 +154,9 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                 ->setIdentity(
                     $this->newIdentity()
                 )
-                ->setConsentContactElectronics(true)
+                ->setConsentContactSMS(true)
+                ->setConsentContactEmail(true)
+                ->setConsentContactPortal(true)
                 ->setFacts(
                     (new Facts())
                         ->setVictimOfViolence($victimOfViolence)

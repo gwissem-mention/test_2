@@ -29,7 +29,9 @@ class ObjectsParserTest extends KernelTestCase
 			"code": 1,
 			"label": "Vous êtes victime ou vous représentez votre enfant mineur"
 		},
-	    "consentContactElectronics": false,
+	    "consentContactEmail": false,
+	    "consentContactSMS": false,
+	    "consentContactPortal": false,
 		"civilState":
 		{
 			"civility":

@@ -79,7 +79,9 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                         ->setLastname('BERNARD')
                         ->setFamilySituation('Marié(e)')
                         ->setHomePhone('01 23 45 67 89'))
-                    ->setConsentContactElectronics(true)
+                    ->setConsentContactSMS(true)
+                    ->setConsentContactEmail(true)
+                    ->setConsentContactPortal(true)
                     ->setStatus(Complaint::STATUS_ASSIGNED)
                     ->setAppointmentDate(new \DateTimeImmutable('2022-12-01'))
                     ->setAppointmentTime(new \DateTimeImmutable('2022-12-01'))
@@ -130,7 +132,9 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                     ->setIdentity($identity
                         ->setDeclarantStatus(2)
                         ->setFamilySituation('Concubinage'))
-                    ->setConsentContactElectronics(true)
+                    ->setConsentContactSMS(true)
+                    ->setConsentContactEmail(true)
+                    ->setConsentContactPortal(true)
                     ->setpersonLegalRepresented(
                         (new Identity())
                             ->setFirstname('Jeremy')
@@ -200,7 +204,9 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                     ->setIdentity($identity
                         ->setDeclarantStatus(3)
                         ->setFamilySituation('Divorcé(e)'))
-                    ->setConsentContactElectronics(true)
+                    ->setConsentContactSMS(true)
+                    ->setConsentContactEmail(true)
+                    ->setConsentContactPortal(true)
                     ->setCorporationRepresented(
                         (new Corporation())
                             ->setSiretNumber('12345678900000')
@@ -294,7 +300,9 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                     ->setJobThesaurus('BOULANGER')
                     ->setAlertNumber(3)
             )
-            ->setConsentContactElectronics(true)
+            ->setConsentContactSMS(true)
+            ->setConsentContactEmail(true)
+            ->setConsentContactPortal(true)
             ->setFacts(
                 (new Facts())
                     ->setVictimOfViolence(true)

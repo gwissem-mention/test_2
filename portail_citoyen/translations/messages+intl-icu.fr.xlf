@@ -2260,7 +2260,7 @@
             </trans-unit>
             <trans-unit id="pel.consent.confirmation">
                 <source>pel.consent.confirmation</source>
-                <target>Autorisez-vous que vos données de contact soient utilisées pour recevoir par voie électronique les suites judiciaires ou autre document concernant votre affaire?</target>
+                <target>Je consens à recevoir de l’autorité judiciaire des avis, convocations et documents intéressants la procédure judiciaire qui pourraient découler de ma démarche</target>
             </trans-unit>
             <trans-unit id="pel.want.to.receive.legal.proceedings.electronically">
                 <source>pel.want.to.receive.legal.proceedings.electronically</source>
@@ -3189,6 +3189,22 @@
             <trans-unit id="pel.fill.website.or.app">
                 <source>pel.fill.website.or.app</source>
                 <target>Renseigner le site internet (URL) ou application</target>
+            </trans-unit>
+            <trans-unit id="pel.by.email">
+                <source>pel.by.email</source>
+                <target>Par courriel</target>
+            </trans-unit>
+            <trans-unit id="pel.by.sms">
+                <source>pel.by.sms</source>
+                <target>Par SMS</target>
+            </trans-unit>
+            <trans-unit id="pel.on.the.judicial.portal">
+                <source>pel.on.the.judicial.portal</source>
+                <target>Sur le portail du justiciable</target>
+            </trans-unit>
+            <trans-unit id="pel.judicial.portal.text">
+                <source>pel.judicial.portal.text</source>
+                <target>L’accès ultérieur au portail du justiciable du ministère de la Justice, www.monespace.justice.fr, nécessite obligatoirement de renseigner un numéro de téléphone portable.</target>
             </trans-unit>
         </body>
     </file>
