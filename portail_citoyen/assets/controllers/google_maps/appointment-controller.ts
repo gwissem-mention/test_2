@@ -32,27 +32,23 @@ export default class extends Controller {
 
     public selectUnit(event: Event): void {
         const element: HTMLElement = event.currentTarget as HTMLElement;
-        const li: HTMLElement | null = element.closest("li");
+        const div: HTMLElement | null | undefined = element.parentElement?.parentElement;
 
-        if (li) {
-            const ul: HTMLElement | null = li.closest("ul");
-            if (ul) {
-                this.activeUnitItem(ul, li, li.dataset["unitIdAnonym"] as unknown as number);
-            }
+        if (div) {
+            this.activeUnitItem(div, div.dataset["unitIdAnonym"] as unknown as number);
         }
     }
 
     public unselectUnit(event: Event): void {
         const element: HTMLElement = event.currentTarget as HTMLElement;
-        const li: HTMLElement | null = element.closest("li");
+        const div: HTMLElement | null | undefined = element.parentElement?.parentElement;
 
-        if (li) {
+        if (div) {
             this.component?.getParent()?.set("unitSelected", null);
             element.classList.add("fr-hidden");
             element.previousElementSibling?.classList.remove("fr-hidden");
-            li.classList.remove("active");
-            this._markers[li.dataset["unitIdAnonym"] as unknown as number]?.setIcon(this.getMarkerIcon());
-
+            div.classList.remove("active");
+            this._markers[div.dataset["unitIdAnonym"] as unknown as number]?.setIcon(this.getMarkerIcon());
         }
     }
 
@@ -193,7 +189,6 @@ export default class extends Controller {
     }
 
     private addMarker(latLng: google.maps.LatLng, index: number | null = null, unitId = 0): void {
-
         if (index !== null) {
             this._markers[unitId] = new google.maps.Marker({
                 map: this._map,
@@ -236,17 +231,16 @@ export default class extends Controller {
     }
 
     private selectUnitById(unitId: number): void {
-        const ul: HTMLElement | null = this.leftMenuTarget.querySelector("ul");
-        const li: HTMLElement | null = ul?.querySelector(`[data-unit-id-anonym="${unitId}"]`) as HTMLElement;
+        const div: HTMLElement | null = this.leftMenuTarget.querySelector(`div[data-unit-id-anonym="${unitId}"]`);
 
-        if (ul && li) {
-            this.activeUnitItem(ul, li, unitId);
-            li.scrollIntoView({behavior: "smooth"});
+        if (div) {
+            this.activeUnitItem(div, unitId);
+            div.scrollIntoView({behavior: "smooth"});
         }
     }
 
-    private activeUnitItem(parent: HTMLElement, element: HTMLElement, unitId: number): void {
-        const currentUnitSelected: HTMLElement | null = parent?.querySelector(".active") as HTMLElement;
+    private activeUnitItem(element: HTMLElement, unitId: number): void {
+        const currentUnitSelected: HTMLElement | null = this.leftMenuTarget?.querySelector(".active") as HTMLElement;
 
         currentUnitSelected?.classList.remove("active");
         currentUnitSelected?.querySelector(".unit-select")?.classList.remove("fr-hidden");
@@ -254,6 +248,7 @@ export default class extends Controller {
 
         const unitSelect: HTMLElement | null = element.querySelector(".unit-select") as HTMLElement;
         const unitUnselect: HTMLElement | null = element.querySelector(".unit-unselect") as HTMLElement;
+
         this.component?.getParent()?.set("unitSelected", unitId.toString());
         unitSelect.classList.add("fr-hidden");
         unitUnselect.classList.remove("fr-hidden");
