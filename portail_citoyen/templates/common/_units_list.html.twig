@@ -1,30 +1,27 @@
 <p class="fr-text-center">{{ units|length }} {{ 'pel.results'|trans|lower }}</p>
-<ul class="unit-list">
-    {% for unit in units %}
-        <li class="unit-list-item col-lg-4 col-md-6 fr-p-5v" data-unit-id-anonym="{{ unit.idAnonym }}">
-            <div class="unit-list-header">
-                <h2 class="fr-text--sm fr-mb-0 fr-pt-3v title-definition point-label">{{ loop.index }} - {{ unit.name|upper }}</h2>
-                <button class="unit-select fr-btn fr-fi-map-pin-2-line fr-btn--icon-left fr-btn--tertiary-no-outline fr-text--sm" data-action="click->google-maps--appointment#selectUnit">
-                    {{ 'pel.choose'|trans }}
-                </button>
-                <button class="unit-unselect fr-btn fr-fi-map-pin-2-fill fr-btn--icon-left fr-btn--tertiary-no-outline fr-text--sm fr-hidden" data-action="click->google-maps--appointment#unselectUnit">
-                    {{ 'pel.chosen'|trans }}
-                </button>
+{% for unit in units %}
+    <div class="unit-list-item col-lg-4 col-md-6 fr-p-5v" data-unit-id-anonym="{{ unit.idAnonym }}">
+        <div class="unit-list-header">
+            <h2 class="fr-text--sm fr-mb-0 fr-pt-3v title-definition point-label">{{ loop.index }} - {{ unit.name|upper }}</h2>
+            <button class="unit-select fr-btn fr-fi-map-pin-2-line fr-btn--icon-left fr-btn--tertiary-no-outline fr-text--sm" data-action="click->google-maps--appointment#selectUnit">
+                {{ 'pel.choose'|trans }}
+            </button>
+            <button class="unit-unselect fr-btn fr-fi-map-pin-2-fill fr-btn--icon-left fr-btn--tertiary-no-outline fr-text--sm fr-hidden" data-action="click->google-maps--appointment#unselectUnit">
+                {{ 'pel.chosen'|trans }}
+            </button>
+        </div>
+        <div class="fr-text--sm fr-mb-3v">
+            <p class="m-0">{{ unit.address }}</p>
+            <p class="m-0">{{ unit.openingHours|replace({'$': "<br>"})|raw }}</p>
+            <div class="fr-mt-1w">
+                <a target="_blank" class="fr-link fr-c" href="tel:{{ unit.phone }}" title="{{ 'pel.contact.us.at.this.number'|trans }} ({{ 'pel.open.in.a.new.window'|trans }})">{{ unit.phone }}</a>
             </div>
-            <div class="fr-text--sm fr-mb-3v">
-                <p class="m-0">{{ unit.address }}</p>
-                <p class="m-0">{{ unit.openingHours|replace({'$': "<br>"})|raw }}</p>
-                <div class="fr-mt-1w">
-                    <a target="_blank" class="fr-link fr-c" href="tel:{{ unit.phone }}" title="{{ 'pel.contact.us.at.this.number'|trans }} ({{ 'pel.open.in.a.new.window'|trans }})">{{ unit.phone }}</a>
+            {% if (unit.institutionCode is same as(constant('App\\AppEnum\\Institution::GN'))) %}
+                <div>
+                    <button class="fr-link" id="unit-id-{{ unit.idAnonym }}" data-action="google-maps--appointment#accessibilityInformation" data-google-maps--appointment-url-param="{{ path('complaint_unit_accessibility_information', { 'unitIdAnonym': unit.idAnonym }) }}" data-fr-opened="false" aria-controls="fr-modal-unit-accessibility-information" title="{{ 'pel.accessibility.information'|trans }} ({{ 'pel.open.in.a.new.window'|trans }})">{{ 'pel.accessibility.information'|trans }}</button>
                 </div>
-                {% if (unit.institutionCode is same as(constant('App\\AppEnum\\Institution::GN'))) %}
-                    <div>
-                        <button class="fr-btn fr-btn--secondary mt-3" id="unit-id-{{ unit.idAnonym }}" data-action="google-maps--appointment#accessibilityInformation" data-google-maps--appointment-url-param="{{ path('complaint_unit_accessibility_information', { 'unitIdAnonym': unit.idAnonym }) }}" data-fr-opened="false" aria-controls="fr-modal-unit-accessibility-information" title="{{ 'pel.accessibility.information'|trans }} ({{ 'pel.open.in.a.new.window'|trans }})">{{ 'pel.accessibility.information'|trans }}</button>
-                    </div>
-                {% endif %}
-            </div>
-        </li>
-    {% endfor %}
-</ul>
-
+            {% endif %}
+        </div>
+    </div>
+{% endfor %}
 {% include "common/_modal.html.twig" with {'id':'unit-accessibility-information', 'attribute':'data-google-maps--appointment-target=modal'} %}
