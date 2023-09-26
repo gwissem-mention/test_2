@@ -294,6 +294,8 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<unite_adr>114 cours Becquart Castelbon 38500 VOIRON</unite_adr>', $this->xmlContent);
         $this->assertStringContainsString('<unite_tph>04 76 65 93 93</unite_tph>', $this->xmlContent);
         $this->assertStringContainsString('<unite_institution>PN</unite_institution>', $this->xmlContent);
+        $this->assertStringContainsString('<Numero_PEL>PEL-2022-00000001</Numero_PEL>', $this->xmlContent);
+        $this->assertStringContainsString('<GDH_Validation_PEL>01/12/2022 00:00:00</GDH_Validation_PEL>', $this->xmlContent);
         //        $this->assertStringContainsString('<TC_Domicile>9</TC_Domicile>', $this->xmlContent);
         //        $this->assertStringContainsString('<TC_Domicile>9</TC_Domicile>', $this->xmlContent);
         //        $this->assertStringContainsString('<Code_Unite_TC_Faits>2556</Code_Unite_TC_Faits>', $this->xmlContent);
@@ -332,6 +334,8 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Personne_Residence_Adresse>15 rue PAIRA, Meudon, 92190</Personne_Residence_Adresse>', $this->xmlContent);
         $this->assertStringContainsString('<Personne_Residence_Lieu>FRANCE, MEUDON, 15 rue PAIRA, Meudon, 92190</Personne_Residence_Lieu>', $this->xmlContent);
         $this->assertStringContainsString('<Personne_Naissance_Lieu>MEUDON 92190 (France)</Personne_Naissance_Lieu>', $this->xmlContent);
+        $this->assertStringContainsString('<FRANCE_CONNECT>Oui</FRANCE_CONNECT>', $this->xmlContent);
+        $this->assertStringContainsString('<Profession_INSEE_PEL>Etudiant</Profession_INSEE_PEL>', $this->xmlContent);
         $this->assertStringContainsString('</Personne>', $this->xmlContent);
     }
 
@@ -440,6 +444,10 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Faits_Prejudice_Autre/>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Prejudice_Physique_Description>Dans ce cas vous devrez être examiné par un médecin et présenter un certificat médical indiquant notamment la durée de votre incapacité temporaire de travail. Les précisions relatives à cet examen vous seront communiquées lors de la fixation du rendez-vous pour la signature de votre plainte</Faits_Prejudice_Physique_Description>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Prejudice_Autre_Description/>', $this->xmlContent);
+        $this->assertStringContainsString('<LIEU_INFORMATION_COMPLEMENTAIRES>Les faits se sont produits entre le restaurant et l\'appartement d\'un ami</LIEU_INFORMATION_COMPLEMENTAIRES>', $this->xmlContent);
+        $this->assertStringContainsString('<NATURE_LIEU>TRAIN</NATURE_LIEU>', $this->xmlContent);
+        $this->assertStringContainsString('<Nature_Lieu_Tel/>', $this->xmlContent);
+        $this->assertStringContainsString('<Nature_Lieu_URL/>', $this->xmlContent);
         $this->assertStringContainsString('</Faits>', $this->xmlContent);
     }
 
@@ -640,25 +648,17 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
     public function testVariousSection(): void
     {
         $this->assertStringContainsString('<Divers>', $this->xmlContent);
-        $this->assertStringContainsString('<DIVERS_FRANCE_CONNECTE>Oui</DIVERS_FRANCE_CONNECTE>', $this->xmlContent);
-        $this->assertStringContainsString('<DIVERS_SOUMISSION_HORAIRE>01/12/2022 00:00:00</DIVERS_SOUMISSION_HORAIRE>', $this->xmlContent);
-        $this->assertStringContainsString('<DIVERS_NUMERO_PEL>PEL-2022-00000001</DIVERS_NUMERO_PEL>', $this->xmlContent);
         $this->assertStringContainsString('<DIVERS_DATE_EXACTE_FAITS_CONNUE>Oui</DIVERS_DATE_EXACTE_FAITS_CONNUE>', $this->xmlContent);
-        $this->assertStringContainsString('<DIVERS_NATURE_LIEU>TRAIN</DIVERS_NATURE_LIEU>', $this->xmlContent);
-        $this->assertStringContainsString('<DIVERS_LIEU_INFORMATION_COMPLEMENTAIRES>Les faits se sont produits entre le restaurant et l\'appartement d\'un ami</DIVERS_LIEU_INFORMATION_COMPLEMENTAIRES>', $this->xmlContent);
-        $this->assertStringContainsString('<DIVERS_SUSPECTS_INFORMATIONS>Oui</DIVERS_SUSPECTS_INFORMATIONS>', $this->xmlContent);
-        $this->assertStringContainsString('<DIVERS_SUSPECTS_DESCRIPTION>2 hommes</DIVERS_SUSPECTS_DESCRIPTION>', $this->xmlContent);
-        $this->assertStringContainsString('<DIVERS_TEMOINS_PRESENTS>Oui</DIVERS_TEMOINS_PRESENTS>', $this->xmlContent);
-        $this->assertStringContainsString('<DIVERS_INTERVENTION_FSI>Oui</DIVERS_INTERVENTION_FSI>', $this->xmlContent);
-        $this->assertStringContainsString('<DIVERS_CONSTAT_RELEV_EFFECTUES>Oui</DIVERS_CONSTAT_RELEV_EFFECTUES>', $this->xmlContent);
-        $this->assertStringContainsString('<DIVERS_VIDEO_DISPONIBLE>Non</DIVERS_VIDEO_DISPONIBLE>', $this->xmlContent);
-        $this->assertStringContainsString('<DIVERS_UNITE_RDV>Commissariat de police de Voiron</DIVERS_UNITE_RDV>', $this->xmlContent);
-        $this->assertStringContainsString('<DIVERS_RDV_SOUHAITE>Non</DIVERS_RDV_SOUHAITE>', $this->xmlContent);
-        $this->assertStringContainsString('<DIVERS_PROFESSION_PEL>Boulanger</DIVERS_PROFESSION_PEL>', $this->xmlContent);
+        $this->assertStringContainsString('<SUSPECTS_INFORMATIONS>Oui</SUSPECTS_INFORMATIONS>', $this->xmlContent);
+        $this->assertStringContainsString('<SUSPECTS_DESCRIPTION>2 hommes</SUSPECTS_DESCRIPTION>', $this->xmlContent);
+        $this->assertStringContainsString('<TEMOINS_PRESENTS>Oui</TEMOINS_PRESENTS>', $this->xmlContent);
+        $this->assertStringContainsString('<INTERVENTION_FSI>Oui</INTERVENTION_FSI>', $this->xmlContent);
+        $this->assertStringContainsString('<CONSTAT_RELEV_EFFECTUES>Oui</CONSTAT_RELEV_EFFECTUES>', $this->xmlContent);
+        $this->assertStringContainsString('<VIDEO_DISPONIBLE>Non</VIDEO_DISPONIBLE>', $this->xmlContent);
+        $this->assertStringContainsString('<UNITE_RDV>Commissariat de police de Voiron</UNITE_RDV>', $this->xmlContent);
+        $this->assertStringContainsString('<RDV_SOUHAITE>Non</RDV_SOUHAITE>', $this->xmlContent);
         $this->assertStringContainsString('<Mail_Personne_Morale>pdg@netflix.com</Mail_Personne_Morale>', $this->xmlContentWithCorporationRepresented);
         $this->assertStringContainsString('<Mail_Personne_Morale/>', $this->xmlContent);
-        $this->assertStringContainsString('<TEL_APPELANT/>', $this->xmlContent);
-        $this->assertStringContainsString('<NATURE_LIEU_URL/>', $this->xmlContent);
         $this->assertStringContainsString('</Divers>', $this->xmlContent);
     }
 }

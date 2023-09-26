@@ -68,7 +68,11 @@ class FactsDTO
     //    private string $orientation;
     private string $hasHarmPhysique;
     private string $hasHarmPhysiqueDescription;
-    private bool $isNaturePlaceTransports = false;
+    private bool $isNaturePlaceTransports;
+    private string $addressAdditionalInformation;
+    private string $place;
+    private string $callingPhone;
+    private string $factsWebsite;
 
     public function __construct(Complaint $complaint)
     {
@@ -124,6 +128,10 @@ class FactsDTO
         }
         //        $this->noOrientation = !is_null($noOrientation = $facts->isNoOrientation()) ? strval($noOrientation) : '';
         //        $this->orientation = $facts->getOrientation() ?? '';
+        $this->addressAdditionalInformation = $complaint->getFacts()?->getAddressAdditionalInformation() ?? '';
+        $this->place = $complaint->getFacts()?->getPlace() ?? '';
+        $this->callingPhone = $complaint->getFacts()?->getCallingPhone() ?? '';
+        $this->factsWebsite = $complaint->getFacts()?->getWebsite() ?? '';
     }
 
     /**
@@ -175,6 +183,10 @@ class FactsDTO
             'Faits_Prejudice_Autre' => '',
             'Faits_Prejudice_Physique_Description' => $this->hasHarmPhysiqueDescription,
             'Faits_Prejudice_Autre_Description' => '',
+            'LIEU_INFORMATION_COMPLEMENTAIRES' => $this->addressAdditionalInformation,
+            'NATURE_LIEU' => $this->place,
+            'Nature_Lieu_Tel' => $this->callingPhone,
+            'Nature_Lieu_URL' => $this->factsWebsite,
         ]];
     }
 }
