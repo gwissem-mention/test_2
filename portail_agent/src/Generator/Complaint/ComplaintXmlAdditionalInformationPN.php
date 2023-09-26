@@ -22,6 +22,7 @@ class ComplaintXmlAdditionalInformationPN
         $exposedFacts .= $this->setAdditionalInformation(); // Set at 11th position
         $exposedFacts .= $this->setSuspectsInformation($complaint); // Set at 12th position
         $exposedFacts .= $this->setSimpleObjectsStolen($complaint);
+        $exposedFacts .= $this->setObservationMade($complaint);
 
         return $exposedFacts;
     }
@@ -133,10 +134,19 @@ class ComplaintXmlAdditionalInformationPN
 
             /** @var SimpleObject $object */
             foreach ($objects as $object) {
-                $text .= sprintf(" %d %s, %s, d'une valeur estimée : %d", $object->getQuantity(), $object->getNature(), $object->getDescription(), $object->getAmount());
+                $text .= sprintf(" %d %s, %s, d'une valeur estimée : %d. ", $object->getQuantity(), $object->getNature(), $object->getDescription(), $object->getAmount());
             }
 
             return $text;
+        }
+
+        return '';
+    }
+
+    private function setObservationMade(Complaint $complaint): string
+    {
+        if ($complaint->getAdditionalInformation()?->isObservationMade()) {
+            return 'Des relevés de traces ou indices ont été effectués.';
         }
 
         return '';
