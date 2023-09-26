@@ -33,6 +33,7 @@ class AdministrativeDocumentDTO extends AbstractObjectDTO
     private ?string $status;
     private ?string $identityPhone;
     private ?string $identityMail;
+    private ?string $identityResidenceDepartment;
 
     public function __construct(AdministrativeDocument $object, ?Identity $identity)
     {
@@ -43,15 +44,8 @@ class AdministrativeDocumentDTO extends AbstractObjectDTO
         $this->issuedBy = $object->getIssuedBy() ?? '';
         $this->ownerLastname = $object->getOwnerLastname();
         $this->ownerFirstname = $object->getOwnerFirstname();
-        $this->identityDepartmentNumber = (string) $identity?->getAddressDepartmentNumber();
         $this->identityDepartment = $identity?->getAddressDepartment();
         $this->identityCountry = $identity?->getAddressCountry();
-        $this->ownerPostcode = $object->getOwnerAddressPostcode();
-        $this->ownerInseeCode = $object->getOwnerAddressInseeCode();
-        $this->ownerCity = $object->getOwnerAddressCity();
-        $this->ownerStreetNumber = $object->getOwnerAddressStreetNumber();
-        $this->ownerStreetType = $object->getOwnerAddressStreetType();
-        $this->ownerStreetName = $object->getOwnerAddressStreetName();
         $this->identityBirthDate = $identity?->getBirthday()?->format('d/m/Y');
         $this->description = $this->getStatusAsString((int) $object->getStatus()).' - '.$object->getDescription();
         $this->issuingCountry = $object->getIssuingCountry() ?? '';
@@ -60,6 +54,29 @@ class AdministrativeDocumentDTO extends AbstractObjectDTO
         $this->status = AbstractObject::STATUS_STOLEN === $object->getStatus() ? 'volé' : 'dégradé';
         $this->identityPhone = $identity?->getMobilePhone() ?? '';
         $this->identityMail = $identity?->getEmail() ?? '';
+        switch (true) {
+            case $object->isOwned():
+                $this->identityDepartmentNumber = (string) $identity?->getAddressDepartmentNumber();
+                $this->ownerStreetName = $identity?->getAddressStreetName();
+                $this->ownerStreetType = $identity?->getAddressStreetType();
+                $this->ownerStreetNumber = $identity?->getAddressStreetNumber();
+                $this->ownerInseeCode = $identity?->getAddressInseeCode();
+                $this->ownerCity = $identity?->getAddressCity();
+                $this->ownerPostcode = $identity?->getAddressPostcode();
+                $this->identityResidenceDepartment = ($this->identityDepartmentNumber && $this->identityDepartment && 'France' === $this->identityCountry) ? $this->identityDepartmentNumber.' - '.$this->identityDepartment : null;
+                break;
+
+            default:
+                $this->identityDepartmentNumber = (string) $object->getOwnerAddressDepartmentNumber();
+                $this->ownerStreetName = $object->getOwnerAddressStreetName();
+                $this->ownerStreetType = $object->getOwnerAddressStreetType();
+                $this->ownerStreetNumber = $object->getOwnerAddressStreetNumber();
+                $this->ownerInseeCode = $object->getOwnerAddressInseeCode();
+                $this->ownerCity = $object->getOwnerAddressCity();
+                $this->ownerPostcode = $object->getOwnerAddressPostcode();
+                $this->identityResidenceDepartment = ($this->identityDepartmentNumber && $object->getOwnerAddressDepartment() && 'France' === $object->getIssuingCountry()) ? $this->identityDepartmentNumber.' - '.$object->getOwnerAddressDepartment() : null;
+                break;
+        }
     }
 
     /**
@@ -85,7 +102,7 @@ class AdministrativeDocumentDTO extends AbstractObjectDTO
             // 'Objet_Doc_Admin_Identite_Naissance_Commune' => $this->identityBirthCity,
             // 'Objet_Doc_Admin_Identite_Naissance_Insee' => $this->identityBirthInseeCode,
             // 'Objet_Doc_Admin_Identite_Residence' => $this->identityCountry,
-            'Objet_Doc_Admin_Identite_Residence_Departement' => ($this->identityDepartmentNumber && $this->identityDepartment && 'France' === $this->identityCountry) ? $this->identityDepartmentNumber.' - '.$this->identityDepartment : null,
+            'Objet_Doc_Admin_Identite_Residence_Departement' => $this->identityResidenceDepartment,
             'Objet_Doc_Admin_Identite_Residence_Codepostal' => $this->ownerPostcode,
             'Objet_Doc_Admin_Identite_Residence_Commune' => $this->ownerCity,
             'Objet_Doc_Admin_Identite_Residence_Insee' => $this->ownerInseeCode,
