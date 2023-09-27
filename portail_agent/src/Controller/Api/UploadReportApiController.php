@@ -4,87 +4,89 @@ declare(strict_types=1);
 
 namespace App\Controller\Api;
 
-use App\Complaint\ComplaintWorkflowManager;
-use App\Complaint\Messenger\SendReport\SendReportMessage;
 use App\Entity\Complaint;
-use App\Entity\User;
-use App\Logger\ApplicationTracesLogger;
-use App\Logger\ApplicationTracesMessage;
-use App\Messenger\InformationCenter\InfocentreMessage;
-use App\Referential\Repository\UnitRepository;
+use App\Oodrive\ApiFileUploader;
 use App\Repository\ComplaintRepository;
-use App\Repository\UserRepository;
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Constraints\File as FileConstraints;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class UploadReportApiController extends AbstractController
 {
-    #[Route(path: '/api/envoi-pv', name: 'api_send_report', methods: ['POST'])]
+    #[Route('/api/complaint/{declarationNumber}/lrp-upload', name: 'api_send_report', methods: ['PUT'])]
     public function __invoke(
         Request $request,
-        SerializerInterface $serializer,
-        Filesystem $filesystem,
         ValidatorInterface $validator,
-        MessageBusInterface $bus,
-        ComplaintWorkflowManager $complaintWorkflowManager,
         ComplaintRepository $complaintRepository,
-        UserRepository $userRepository,
-        UnitRepository $unitRepository,
-        ApplicationTracesLogger $logger,
-        TranslatorInterface $translator
+        TranslatorInterface $translator,
+        LoggerInterface $logger,
+        ApiFileUploader $apiFileUploader,
+        string $declarationNumber
     ): JsonResponse {
-        if (!empty($request->request->get('url')) && $request->files->count() > 0) {
-            /** @var UploadedFile[] $requestFiles */
-            $requestFiles = $request->files;
-            $files = [];
-            $fileConstraints = [
-                new FileConstraints([
-                    'mimeTypes' => [
-                        'image/jpeg',
-                        'image/png',
-                        'application/pdf',
-                    ],
-                    'mimeTypesMessage' => $translator->trans('pel.file.must.be.image.or.pdf'),
-                ]),
-            ];
+        if (!$this->isGranted('IS_AUTHENTICATED')) {
+            $logger->error('User not authenticated.');
 
-            foreach ($requestFiles as $file) {
-                $violations = $validator->validate($file, $fileConstraints);
-                if ($violations->count() > 0) {
-                    return $this->json($violations, 400);
-                }
-                $files[] = $file;
-            }
-
-            /** @var Complaint $complaint */
-            $complaint = $complaintRepository->findOneBy(['declarationNumber' => $request->request->get('url')]);
-            /** @var User $user */
-            $user = $complaint->getAssignedTo();
-            $unit = $unitRepository->findOneBy(['code' => (string) $complaint->getUnitAssigned()]);
-
-            $bus->dispatch(new SendReportMessage($files, (int) $complaint->getId()));
-            $complaintWorkflowManager->closeAfterSendingTheReport($complaint);
-            $complaintRepository->save($complaint->setClosedAt(new \DateTimeImmutable()), true);
-            $logger->log(ApplicationTracesMessage::message(
-                ApplicationTracesMessage::SENDING_DOCUMENTS,
-                $complaint->getDeclarationNumber(),
-                $user->getNumber(),
-                $request->getClientIp()
-            ), $user);
-            $bus->dispatch(new InfocentreMessage(ApplicationTracesMessage::VALIDATION, $complaint, $unit));
-
-            return $this->json($files, 201);
+            return new JsonResponse([], 401);
         }
 
-        return $this->json([], 400);
+        $complaint = $complaintRepository->findOneByDeclarationNumber($declarationNumber);
+
+        if (!$complaint) {
+            $logger->error(sprintf(
+                'Complaint with declaration number %s is not found',
+                $declarationNumber
+            ));
+
+            return new JsonResponse(['message' => 'Complaint not found.'], 404);
+        }
+
+        if (Complaint::STATUS_ONGOING_LRP !== $complaint->getStatus()) {
+            $logger->error(sprintf(
+                'Access forbidden for this complaint %d with status %s',
+                $declarationNumber,
+                $complaint->getStatus()
+            ));
+
+            return $this->json(['message' => 'Access forbidden for this complaint.'], 403);
+        }
+
+        $uploadType = $request->headers->get('X-UPLOAD-TYPE');
+        if (!in_array($uploadType, ['PV', 'RECEPISSE'])) {
+            $logger->error(sprintf(
+                'Invalid upload type: %s',
+                $uploadType
+            ));
+
+            return $this->json(['message' => 'Invalid upload type.'], 400);
+        }
+
+        /** @var UploadedFile $requestFile */
+        $requestFile = $request->files->all()['file'] ?? [];
+        $fileConstraints = [
+            new FileConstraints([
+                'mimeTypes' => [
+                    'image/jpeg',
+                    'image/png',
+                    'application/pdf',
+                ],
+                'mimeTypesMessage' => $translator->trans('pel.file.must.be.image.or.pdf'),
+            ]),
+        ];
+        $violations = $validator->validate($requestFile, $fileConstraints);
+        if ($violations->count() > 0) {
+            return $this->json($violations, 400);
+        }
+
+        $isReplaced = $apiFileUploader->upload($complaint, $requestFile, $uploadType);
+
+        $message = $isReplaced ? 'The file was successfully replaced.' : 'The file has been uploaded successfully.';
+
+        return new JsonResponse(['message' => $message], $isReplaced ? 200 : 201);
     }
 }
