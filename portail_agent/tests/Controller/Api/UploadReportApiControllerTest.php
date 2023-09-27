@@ -4,117 +4,126 @@ declare(strict_types=1);
 
 namespace App\Tests\Controller\Api;
 
+use App\Entity\User;
+use App\Repository\UserRepository;
+use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class UploadReportApiControllerTest extends WebTestCase
 {
-    public function testInvokePng(): void
+    private KernelBrowser $client;
+    private User $userGn;
+
+    /**
+     * @throws \Exception
+     */
+    protected function setUp(): void
     {
-        $client = static::createClient();
-        $file = new UploadedFile(self::$kernel->getProjectDir().'/tests/Behat/Files/iphone.png', 'iphone.png');
+        $this->client = static::createClient();
+        $container = static::getContainer();
 
-        $client->request(
-            'POST',
-            '/api/envoi-pv',
-            ['url' => 'PEL-2023-00000115'],
-            [$file]
-        );
+        /** @var UserRepository $userRepository */
+        $userRepository = $container->get(UserRepository::class);
 
-        $response = $client->getResponse();
-
-        $this->assertTrue($response->headers->contains('Content-Type', 'application/json'));
-        $this->assertEquals(201, $response->getStatusCode());
+        /** @var User $userGn */
+        $userGn = $userRepository->find(2);
+        $this->userGn = $userGn;
     }
 
-    public function testInvokePdf(): void
+    public function testSuccessfulFileReplaced(): void
     {
-        $client = static::createClient();
-        $file = new UploadedFile(self::$kernel->getProjectDir().'/tests/Behat/Files/blank.pdf', 'blank.pdf');
+        parent::setUp();
 
-        $client->request(
-            'POST',
-            '/api/envoi-pv',
-            ['url' => 'PEL-2023-00000116'],
-            [$file]
-        );
+        $file = new UploadedFile(self::$kernel->getProjectDir().'/tests/Behat/Files/blank.pdf', 'file1');
 
-        $response = $client->getResponse();
+        $this->client->loginUser($this->userGn);
 
-        $this->assertTrue($response->headers->contains('Content-Type', 'application/json'));
-        $this->assertEquals(201, $response->getStatusCode());
-    }
-
-    public function testInvokeXls(): void
-    {
-        $client = static::createClient();
-        $file = new UploadedFile(self::$kernel->getProjectDir().'/tests/Behat/Files/blank.xls', 'blank.xls');
-
-        $client->request(
-            'POST',
-            '/api/envoi-pv',
-            ['url' => 'PEL-2023-00000117'],
-            [$file]
-        );
-
-        $response = $client->getResponse();
-
-        $this->assertTrue($response->headers->contains('Content-Type', 'application/json'));
-        $this->assertEquals(400, $response->getStatusCode());
-    }
-
-    public function testInvokeMultipleFiles(): void
-    {
-        $client = static::createClient();
-        $files = [
-            new UploadedFile(self::$kernel->getProjectDir().'/tests/Behat/Files/iphone.png', 'iphone.png'),
-            new UploadedFile(self::$kernel->getProjectDir().'/tests/Behat/Files/blank.pdf', 'blank.pdf'),
-        ];
-
-        $client->request(
-            'POST',
-            '/api/envoi-pv',
-            ['url' => 'PEL-2023-00000118'],
-            $files
-        );
-
-        $response = $client->getResponse();
-
-        $this->assertTrue($response->headers->contains('Content-Type', 'application/json'));
-        $this->assertEquals(201, $response->getStatusCode());
-    }
-
-    public function testInvokeNoUrlParam(): void
-    {
-        $client = static::createClient();
-        $file = new UploadedFile(self::$kernel->getProjectDir().'/tests/Behat/Files/blank.pdf', 'blank.pdf');
-
-        $client->request(
-            'POST',
-            '/api/envoi-pv',
+        $this->client->request(
+            'PUT',
+            '/api/complaint/PEL-2023-00000112/lrp-upload',
             [],
-            [$file]
+            ['file' => $file],
+            [
+                'HTTP_X-UPLOAD-TYPE' => 'RECEPISSE',
+            ]
         );
 
-        $response = $client->getResponse();
-
-        $this->assertTrue($response->headers->contains('Content-Type', 'application/json'));
-        $this->assertEquals(400, $response->getStatusCode());
+        $this->assertResponseStatusCodeSame(200);
     }
 
-    public function testInvokeNoFile(): void
+    public function testSuccessfulFileUpload(): void
     {
-        $client = static::createClient();
+        parent::setUp();
+        $file = new UploadedFile(self::$kernel->getProjectDir().'/tests/Behat/Files/blank.pdf', 'blank');
 
-        $client->request(
-            'POST',
-            '/api/envoi-pv',
-            ['url' => 'PEL-2023-00000119']
+        $this->client->loginUser($this->userGn);
+
+        $this->client->request(
+            'PUT',
+            '/api/complaint/PEL-2023-00000120/lrp-upload',
+            [],
+            ['file' => $file],
+            [
+                'HTTP_X-UPLOAD-TYPE' => 'PV',
+            ]
         );
 
-        $response = $client->getResponse();
+        $this->assertResponseStatusCodeSame(201);
+    }
 
-        $this->assertTrue($response->headers->contains('Content-Type', 'application/json'));
-        $this->assertEquals(400, $response->getStatusCode());
+    public function testUnauthorizedUser(): void
+    {
+        $file = new UploadedFile(self::$kernel->getProjectDir().'/tests/Behat/Files/blank.pdf', 'blank');
+
+        $this->client->request(
+            'PUT',
+            '/api/complaint/he file has been uploaded successfully./lrp-upload',
+            [],
+            ['file' => $file],
+            [
+                'HTTP_X-UPLOAD-TYPE' => 'PV',
+            ]
+        );
+        $this->assertResponseStatusCodeSame(401);
+    }
+
+    public function testForbiddenAccessForComplaint(): void
+    {
+        parent::setUp();
+        $file = new UploadedFile(self::$kernel->getProjectDir().'/tests/Behat/Files/blank.pdf', 'blank');
+
+        $this->client->loginUser($this->userGn);
+
+        $this->client->request(
+            'PUT',
+            '/api/complaint/PEL-2023-00000125/lrp-upload',
+            [],
+            ['file' => $file],
+            [
+                'HTTP_X-UPLOAD-TYPE' => 'PV',
+            ]
+        );
+
+        $this->assertResponseStatusCodeSame(403);
+    }
+
+    public function testInvalidUploadType(): void
+    {
+        $file = new UploadedFile(self::$kernel->getProjectDir().'/tests/Behat/Files/blank.pdf', 'blank');
+
+        $this->client->loginUser($this->userGn);
+
+        $this->client->request(
+            'PUT',
+            '/api/complaint/PEL-2023-00000030/lrp-upload',
+            [],
+            ['file' => $file],
+            [
+                'HTTP_X-UPLOAD-TYPE' => 'TEST',
+            ]
+        );
+
+        $this->assertResponseStatusCodeSame(400);
     }
 }

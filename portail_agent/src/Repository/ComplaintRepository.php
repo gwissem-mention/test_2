@@ -19,6 +19,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Complaint|null findOneBy(array $criteria, array $orderBy = null)
  * @method Complaint[]    findAll()
  * @method Complaint[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Complaint|null findOneByDeclarationNumber($declarationNumber)
  */
 class ComplaintRepository extends ServiceEntityRepository
 {
