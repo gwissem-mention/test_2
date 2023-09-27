@@ -108,7 +108,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
             $factsAddressCity = $this->places[$factsAddressPostcode];
 
             /** @var string $unit */
-            $unit = $this->faker->randomElement(['103131', '3002739']);
+            $unit = $this->faker->randomElement(['74181', '3009446']);
             $exactDateKnown = $this->faker->boolean;
             /** @var int $exactHourKnown */
             $exactHourKnown = $this->faker->randomElement([Facts::EXACT_HOUR_KNOWN_NO, Facts::EXACT_HOUR_KNOWN_YES]);
