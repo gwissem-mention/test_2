@@ -4,7 +4,7 @@ Feature:
     I want to see the reporting page
 
     Background:
-        Given I am authenticated with H3U3XCGF from PN
+        Given I am authenticated with ZSBVHOAY from PN
 
     @func
     Scenario: I want to show the reporting page
@@ -40,7 +40,7 @@ Feature:
 
     @javascript
     Scenario: As a agent, I should see the reporting of my complaints, and I should be able to view the closed complaints
-        Given I am authenticated with H3U3XCGD from PN
+        Given I am authenticated with PMAXHQMC from PN
         When I am on "/reporting"
         And I should see 1 "#complaints_closed" element
         When I follow "complaints_closed"
@@ -59,7 +59,7 @@ Feature:
 
     @javascript
     Scenario: As a agent, I should see the reporting of my complaints, and I should be able to view the ongoing LRP complaints
-        Given I am authenticated with H3U3XCGD from PN
+        Given I am authenticated with WTDAXALL from PN
         When I am on "/reporting"
         And I should see 1 "#complaints_ongoing_lrp" element
         When I follow "complaints_ongoing_lrp"
@@ -78,7 +78,7 @@ Feature:
 
     @javascript
     Scenario: As a agent, I should see the reporting of my complaints, and I should be able to view the appointment pending complaints
-        Given I am authenticated with H3U3XCGD from PN
+        Given I am authenticated with WTDAXALL from PN
         When I am on "/reporting"
         And I should see 1 "#complaints_appointment_pending" element
         When I follow "complaints_appointment_pending"
@@ -97,7 +97,7 @@ Feature:
 
     @javascript
     Scenario: As a agent, I should see the reporting of my complaints, and I should not be able to view the assignment pending complaints
-        Given I am authenticated with H3U3XCGD from PN
+        Given I am authenticated with WTDAXALL from PN
         When I am on "/reporting"
         And I should see 0 "#complaints_assignment_pending" element
 
@@ -112,7 +112,7 @@ Feature:
 
     @javascript
     Scenario: As a agent, I should see the reporting of my complaints, and I should be able to view the unit reassignment pending complaints
-        Given I am authenticated with H3U3XCGD from PN
+        Given I am authenticated with WTDAXALL from PN
         When I am on "/reporting"
         And I should see 1 "#complaints_unit_redirection_pending" element
         When I follow "complaints_unit_redirection_pending"

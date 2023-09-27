@@ -1,6 +1,7 @@
 import {Controller} from "@hotwired/stimulus";
 import {getComponent, Component} from "@symfony/ux-live-component";
 import {Loader} from "@googlemaps/js-api-loader";
+import {GirondeBoundaryChecker} from "../../scripts/GirondeBoundaryChecker";
 
 export default class extends Controller {
     static override targets: string[] = ["map"];
@@ -105,7 +106,6 @@ export default class extends Controller {
                     } else {
                         bounds.extend(place.geometry.location);
                     }
-
                     this.addMarker(place.geometry.location);
                 });
 
@@ -218,11 +218,23 @@ export default class extends Controller {
 
     private async setAddress(latLng: google.maps.LatLng): Promise<void> {
         const etalabAddress: object | null = await this.getEtalabAddress(latLng);
-        const googleAddress = await this.getGoogleAddress(latLng);
+        const googleAddress:string = await this.getGoogleAddress(latLng);
+        const errorMessageElement :HTMLElement | null = document.getElementById("error-message");
+
 
         // label prop is not present in Event type
         // @ts-ignore
         const label = etalabAddress ? etalabAddress.label : googleAddress;
+
+        if (!GirondeBoundaryChecker.isInsideGironde(latLng.lat(), latLng.lng())) {
+            if (errorMessageElement) {
+                errorMessageElement.textContent = "Uniquement les adresses des faits commis en Gironde sont acceptées";
+            }
+            return;
+        }
+        if (errorMessageElement) {
+            errorMessageElement.textContent = "";
+        }
 
         // id prop is not present in Event type
         // @ts-ignore

@@ -157,6 +157,7 @@ Feature:
         Then the "#appointment_appointmentDate" element should be disabled
         Then the "#appointment_appointmentTime" element should be disabled
         When I am on homepage
+        And  I click the "#my-declaration" element
         Then I should see "06/01/2025"
 
     @javascript

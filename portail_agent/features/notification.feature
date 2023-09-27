@@ -2,7 +2,7 @@ Feature:
     As a user, I should be able to see notifications
 
     Background:
-        Given I am authenticated with H3U3XCGF from PN
+        Given I am authenticated with ZSBVHOAY from PN
 
     @javascript
     Scenario: As a supervisor if a complaint has violence, I can see the relative notification

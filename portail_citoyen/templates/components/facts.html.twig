@@ -7,16 +7,16 @@
                 <legend class="fr-fieldset__legend--regular fr-fieldset__legend fr-text--regular xs:max-md:whitespace-nowrap" id="legend-{{ form.offenseDate.exactDateKnown.vars.id }}">
                     {{ form.offenseDate.exactDateKnown.vars.label|trans }}&nbsp;<span class="text-[var(--text-default-error)]">*</span>
                 </legend>
-                    <div class="fr-fieldset__content">
-                        {% for child in form.offenseDate.exactDateKnown.children %}
-                            <div class="fr-radio-group">
-                                {{ form_widget(child) }}
-                                <label class="fr-label" for="{{ child.vars.id }}">
-                                    {{ child.vars.label|trans }}
-                                </label>
-                            </div>
-                        {% endfor %}
-                    </div>
+                <div class="fr-fieldset__content">
+                    {% for child in form.offenseDate.exactDateKnown.children %}
+                        <div class="fr-radio-group">
+                            {{ form_widget(child) }}
+                            <label class="fr-label" for="{{ child.vars.id }}">
+                                {{ child.vars.label|trans }}
+                            </label>
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
             {{ form_errors(form.offenseDate.exactDateKnown) }}
         </fieldset>
@@ -122,6 +122,7 @@
                 {{ form_errors(form.address.addressOrRouteFactsKnown) }}
             </fieldset>
         {% endif %}
+        <div id="error-message" class="fr-text--red-marianne font-bold"></div>
         {% if form.address.startAddress is defined %}
             {% set etalab_errors = [] %}
             {% for error in form.address.startAddress.address.vars.errors %}
@@ -133,6 +134,7 @@
                     'data-live-id': 'facts-startAddress-address',
                     dataModel: 'addressSearch:startAddressEtalabInput.addressSearch addressId:startAddressEtalabInput.addressId addressSearchSaved:startAddressEtalabInput.addressSearchSaved latitude:startAddressEtalabInput.latitude longitude:startAddressEtalabInput.longitude',
                     inputName: 'facts-startAddress-address',
+                    dataGirondeEnabled : true,
                     errors: etalab_errors,
                 }) }}
             </div>
@@ -148,6 +150,7 @@
                     'data-live-id': 'facts-endAddress-address',
                     dataModel: 'addressSearch:endAddressEtalabInput.addressSearch addressId:endAddressEtalabInput.addressId addressSearchSaved:endAddressEtalabInput.addressSearchSaved',
                     inputName: 'facts-endAddress-address',
+                    dataGirondeEnabled : true,
                     errors: etalab_errors,
                 }) }}
             </div>

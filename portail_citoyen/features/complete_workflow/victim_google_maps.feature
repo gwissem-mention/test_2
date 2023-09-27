@@ -27,8 +27,10 @@ Feature:
         Then the marker should be at latitude "48.8650197" and longitude "2.3758909"
         When I click on the map at latitude "48.8650197" and longitude "2.3758909"
         Then the marker should be at latitude "48.8650197" and longitude "2.3758909"
-        And the "facts_address_addressOrRouteFactsKnown_0" field should contain "1"
-        And the "facts-startAddress-address" field should contain "45 Avenue de la République 75011 Paris"
+        Then I should see "Uniquement les adresses des faits commis en Gironde sont acceptées"
+        When I click on the map at latitude "44.837523" and longitude "-0.579088"
+        Then the marker should be at latitude "44.837523" and longitude "-0.579088"
+        And the "facts-startAddress-address" field should contain "6 Place Rohan 33000 Bordeaux"
         When I click the "label[for=facts_offenseDate_exactDateKnown_0]" element
         And I fill in "facts_offenseDate_startDate" with "01/01/2022"
         And I click the "label[for=facts_offenseDate_choiceHour_0]" element
@@ -121,7 +123,7 @@ Feature:
         And I should see "Voie publique"
         And I should see the key "pel.victim.at.time.of.facts" translated
         And I should see the key "pel.address" translated
-        And I should see "45 Avenue de la République 75011 Paris"
+        And I should see "6 Place Rohan 33000 Bordeaux"
         And I should see the key "pel.complaint.exact.date.is.known" translated
         And I should see the key "pel.facts.offence.occurred" translated
         And I should see the key "pel.the" translated
@@ -205,6 +207,4 @@ Feature:
         When I fill in "appointment_appointmentContactText" with "Between 10am and 12am"
         And I press "Continuer"
         Then I should be on "/porter-plainte/fin"
-        And I should see the key "pel.place.complaint.handling" translated
-        And I should see "Commissariat de police de Paris 11ème arrondissement"
-        And I should see "12 PASSAGE CHARLES DALLERY 75011 PARIS 11"
+        And I should see "Votre plainte en ligne a bien été transmise à nos services."

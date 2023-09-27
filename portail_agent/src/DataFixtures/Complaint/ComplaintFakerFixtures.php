@@ -67,30 +67,15 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
     public function load(ObjectManager $manager): void
     {
         $this->places = [
-            '06000' => 'Nice',
-            '13000' => 'Marseille',
-            '75000' => 'Paris',
-            '69000' => 'Lyon',
             '33000' => 'Bordeaux',
-            '38000' => 'Grenoble',
         ];
 
         $this->insees = [
-            '06000' => '06088',
-            '13000' => '13055',
-            '75000' => '75056',
-            '69000' => '69123',
             '33000' => '33063',
-            '38000' => '38185',
         ];
 
         $this->departments = [
-            '06' => 'Alpes-Maritimes',
-            '13' => 'Bouches-du-Rhône',
-            '75' => 'Paris',
-            '69' => 'Rhône',
             '33' => 'Gironde',
-            '38' => 'Isère',
         ];
 
         $this->users = $manager->getRepository(User::class)->findAll();
@@ -135,8 +120,8 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
             $fsiVisit = $this->faker->boolean;
             $victimOfViolence = $this->faker->boolean;
 
-            if ('103131' === $unit) {
-                $agentNumber = $this->faker->randomElement(['H3U3XCGD', 'H3U3XCGF']);
+            if ('74181' === $unit) {
+                $agentNumber = $this->faker->randomElement(['WTDAXALL', 'NDXVMISY']);
             } else {
                 $agentNumber = $this->faker->randomElement(['PR5KTZ9R', 'PR5KTQSD']);
             }
@@ -157,6 +142,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                 ->setConsentContactSMS(true)
                 ->setConsentContactEmail(true)
                 ->setConsentContactPortal(true)
+                ->setFrontId('abcd-'.$unit.'-'.strval($i))
                 ->setFacts(
                     (new Facts())
                         ->setVictimOfViolence($victimOfViolence)

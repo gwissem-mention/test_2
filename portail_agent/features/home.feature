@@ -30,7 +30,7 @@ Feature:
         And I should see "TD" in the ".avatar" element
         And I should see the key "pel.search" translated
         And I should see the key "pel.complaint.online.portal" translated
-        And I should see "Brigade de proximité de Voiron"
+        And I should see "Brigade territoriale autonome de Cestas"
         And I should see the key "pel.dashboard" translated
         And I should see the key "pel.the.declarations" translated
         And I should see the key "pel.faq.space" translated
@@ -66,7 +66,7 @@ Feature:
 
     @javascript
     Scenario: I can click on a assignment notif and I should be redirected on the complaint and the notif should be removed
-        Given I am authenticated with H3U3XCGD from PN
+        Given I am authenticated with WTDAXALL from PN
         And I am on the homepage
         When I click the "#notifications-dropdown" element
         Then I should see "La déclaration PEL-2023-00000011 vient de vous être attribuée"
@@ -77,7 +77,7 @@ Feature:
 
     @javascript
     Scenario: I should see a table datatables of 26 entries
-        Given I am authenticated with H3U3XCGF from PN
+        Given I am authenticated with ZSBVHOAY from PN
         And I am on the homepage
         Then I should see a "table#datatable" element
         And I should see 26 "table#datatable tr" element
@@ -95,7 +95,7 @@ Feature:
 
     @javascript
     Scenario: I can paginate to page 2 of the complaints table
-        Given I am authenticated with H3U3XCGF from PN
+        Given I am authenticated with ZSBVHOAY from PN
         And I am on the homepage
         When I click the "a[data-dt-idx='1']" element
         And I should see 26 "table#datatable tr" element
@@ -113,7 +113,7 @@ Feature:
 
     @javascript
     Scenario: I can sort the columns of the complaints table
-        Given I am authenticated with H3U3XCGF from PN
+        Given I am authenticated with ZSBVHOAY from PN
         And I am on the homepage
         When I click the "th:nth-of-type(10)" element
         And I should see 26 "table#datatable tr" element
@@ -157,7 +157,7 @@ Feature:
 
     @javascript
     Scenario: As an authenticated agent, I should see a specific title in the header
-        Given I am authenticated with H3U3XCGD from PN
+        Given I am authenticated with PMAXHQMC from PN
         When I am on the homepage
         Then I should see the key "pel.complaint.online" translated
         And I should see the key "pel.portal" translated
@@ -166,7 +166,7 @@ Feature:
 
     @javascript
     Scenario: As an authenticated supervisor, I should see a specific title in the header
-        Given I am authenticated with H3U3XCGF from PN
+        Given I am authenticated with ZSBVHOAY from PN
         When I am on the homepage
         Then I should see the key "pel.complaint.online" translated
         And I should see the key "pel.portal" translated
@@ -175,7 +175,7 @@ Feature:
 
     @javascript
     Scenario: As an authenticated agent, with complaints assigned to me, I should see my complaints
-        Given I am authenticated with H3U3XCGD from PN
+        Given I am authenticated with WTDAXALL from PN
         And I am on the homepage
         When I click the "#my-declaration" element
         Then I should see 21 "table#datatable tr" element
@@ -198,7 +198,7 @@ Feature:
 
     @javascript
     Scenario: As an authenticated supervisor, I should see all complaints
-        Given I am authenticated with H3U3XCGF from PN
+        Given I am authenticated with ZSBVHOAY from PN
         And I am on the homepage
         Then I should see 26 "table#datatable tr" element
         And I should see 10 "table#datatable th" element
@@ -212,7 +212,7 @@ Feature:
 
     @javascript
     Scenario: I can search complaints
-        Given I am authenticated with H3U3XCGF from PN
+        Given I am authenticated with ZSBVHOAY from PN
         And I am on the homepage
         When I fill in "search_query" with "Leo bernard"
         And I press "Rechercher"
@@ -244,28 +244,21 @@ Feature:
         And I should see "Aucune donnée disponible dans le tableau"
         When I click the "#exceeds-deadline-filter" element
         Then I should see 26 "table#datatable tr" element
-        And I should see 20 ".background-blue" element
+        And I should see 10 ".background-blue" element
         And I should see 5 ".background-yellow" element
-        When I click the "#reaches-deadline-filter" element
-        Then I should see 2 "table#datatable tr" element
-        And I should see "Aucune donnée disponible dans le tableau"
         When I click the "#alert-filter" element
         Then I should see 26 "table#datatable tr" element
-        And I should see 20 ".background-blue" element
+        And I should see 10 ".background-blue" element
         And I should see 5 ".background-yellow" element
         When I click the "#assignment-pending-filter" element
         Then I should see 11 "table#datatable tr" element
         And I should see 10 ".background-blue" element
         When I click the "#assigned-filter" element
-        Then I should see 21 "table#datatable tr" element
-        And I should see 20 ".background-blue" element
-        When I click the "#validation-declaration-filter" element
-        Then I should see 11 "table#datatable tr" element
-        And I should see 10 ".background-yellow" element
-        When I click the "#appointment-planned-filter" element
         Then I should see 11 "table#datatable tr" element
         And I should see 10 ".background-blue" element
-        And I should see "01/12/2022"
+        When I click the "#appointment-planned-filter" element
+        Then I should see 2 "table#datatable tr" element
+        And I should see "Aucune donnée disponible dans le tableau"
         When I click the "#appointment-pending-filter" element
         Then I should see 11 "table#datatable tr" element
         And I should see 11 ".background-cumulus" element
@@ -277,7 +270,7 @@ Feature:
         And I should see 10 ".background-green" element
         When I click the "#waiting-closing-filter" element
         Then I should see 11 "table#datatable tr" element
-        And I should see 10 ".background-blue" element
+        And I should see 1 ".background-cumulus" element
         When I click the "#rejected-filter" element
         Then I should see 11 "table#datatable tr" element
         And I should see 23 ".background-red" element

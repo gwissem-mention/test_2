@@ -249,6 +249,5 @@ Feature:
         When I fill in "appointment_appointmentContactText" with "Between 10am and 12am"
         And I press "Continuer"
         Then I should be on "/porter-plainte/fin"
-        And I should see the key "pel.place.complaint.handling" translated
-        And I should see "Commissariat de police de Paris 11ème arrondissement"
-        And I should see "12 PASSAGE CHARLES DALLERY 75011 PARIS 11"
+        Then I should see the key "pel.end.thanks" translated
+        And I should see the key "pel.download.my.declaration" translated

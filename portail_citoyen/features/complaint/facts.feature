@@ -174,8 +174,8 @@ Feature:
 
     Scenario: I can fill the map autocomplete and the marker should be at the right place
         And I select "2" from "facts_placeNature"
-        And I fill in the map autocomplete "map-search" with "81 Avenue de la République 75011 Paris" and click on the first result
-        Then the marker should be at latitude "48.8641471" and longitude "2.3815167"
+        And I fill in the map autocomplete "map-search" with "6 Place Rohan 33000 Bordeaux" and click on the first result
+        Then the marker should be at latitude "44.8375989" and longitude "-0.5792686"
 
     Scenario: The callingPhone field should appear, the addressOrRouteFactsKnown / start address and end address should not be displayed when I select "Téléphone" as place nature
         And I select "3" from "facts_placeNature"
@@ -187,8 +187,8 @@ Feature:
 
     Scenario: I can fill the map autocomplete and the address should be in the form field
         When I select "4" from "facts_placeNature"
-        And I fill in the map autocomplete "map-search" with "5 Rue Emile Zola 37000 Tours" and click on the first result
-        Then the "facts-startAddress-address" field should contain "5 Rue Émile Zola 37000 Tours"
+        And I fill in the map autocomplete "map-search" with "6 Place Rohan 33000 Bordeaux" and click on the first result
+        Then the "facts-startAddress-address" field should contain "6 Place Rohan 33000 Bordeaux"
 
     Scenario: I select "Parking" nature place, I can see a Google Maps and an exact address field
         When I select "4" from "facts_placeNature"

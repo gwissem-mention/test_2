@@ -2,8 +2,10 @@
     {{ component('google_maps', {class: 'fr-px-6v fr-px-md-20v', 'id':'appointment', 'searchBoxActionUrl':path('complaint_find_units')}) }}
     <div class="fr-mt-8v fr-mt-md-10v">
         {{ form_start(form, {attr: {'data-action': 'live#action complaint-submit#submit','data-action-name': 'prevent|submit'}}) }}
+        <div id="error-message" class="fr-text--red-marianne font-bold fr-px-6v fr-pb-12v fr-px-md-20v fr-pb-md-20"></div>
         <div class="fr-px-6v fr-pb-12v fr-px-md-20v fr-pb-md-20v">
             {{ form_row(form.appointmentContactText) }}
+
         </div>
         <hr>
         <div class="fr-pt-4v fr-px-6v fr-pb-12v fr-pt-md-6v fr-px-md-20v text-center">

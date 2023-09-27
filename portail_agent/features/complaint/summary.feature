@@ -64,7 +64,7 @@ Feature:
         And I should see the key "pel.appointment.management" translated
         And I should see the key "pel.complaint.online" translated
         And I should see the key "pel.portal" translated
-        And I should see "Brigade de proximité de Voiron"
+        And I should see "Brigade territoriale autonome de Cestas"
         And I should see the key "pel.dashboard" translated
         And I should see the key "pel.the.declarations" translated
         And I should see the key "pel.faq.space" translated
@@ -317,7 +317,7 @@ Feature:
         Then I should see "En cours LRP"
         Given I am on the homepage
         When I click the "th:nth-of-type(10)" element
-        Then I should see 6 ".background-yellow" element
+        Then I should see 0 ".background-yellow" element
 
     @javascript
     Scenario: I can toggle the send report to victim modal
@@ -403,7 +403,7 @@ Feature:
     Scenario: I can submit the assign form successfully and Jean DUPONT should have a notif
         Given I am on "/plainte/recapitulatif/93"
         When I press "Attribuer à"
-        And I fill in the autocomplete "assign_assignedTo-ts-control" with "Julie" and click "4"
+        And I fill in the autocomplete "assign_assignedTo-ts-control" with "Julie" and click "3"
         And I press "Valider l'attribution"
         Then I should not see a ".modal[aria-modal=true]" element
         And I should see a ".toast" element
@@ -418,11 +418,11 @@ Feature:
     Scenario: I can submit the reassign form successfully
         Given I am on "/plainte/recapitulatif/93"
         When I press "complaint-reassign-button"
-        And I fill in the autocomplete "assign_assignedTo-ts-control" with "Julie" and click "4"
+        And I fill in the autocomplete "assign_assignedTo-ts-control" with "Julie" and click "3"
         And I press "Valider l'attribution"
         And I wait 2000 ms
         And I press "complaint-reassign-button"
-        And I fill in the autocomplete "assign_assignedTo-ts-control" with "Philippe" and click "5"
+        And I fill in the autocomplete "assign_assignedTo-ts-control" with "Philippe" and click "4"
         And I press "Valider la réattribution"
         Then I should not see a ".modal[aria-modal=true]" element
         And I should see a ".toast" element
@@ -451,7 +451,7 @@ Feature:
 #        And I press "Réorienter"
 #        And I wait 500 ms
 #        And I should be on the homepage
-#        When I am authenticated with H3U3XCGF from PN
+#        When I am authenticated with ZSBVHOAY from PN
 #        And I am on the homepage
 #        When I click the "#notifications-dropdown" element
 #        Then I should see "La déclaration PEL-2023-00000101 a été réorientée vers votre unité"
@@ -526,23 +526,22 @@ Feature:
 
     @func
     Scenario: I can see the comments space on the summary page
-        Given I am authenticated with H3U3XCGD from PN
+        Given I am authenticated with ZSBVHOAY from PN
         And I am on "/plainte/recapitulatif/11"
         Then I should see a "#comment_content" element
         And I should see a ".comment-box" element
         And I should see a "#comments-feed-title" element
         And I should see the key "pel.comments.feed" translated
         And the "#comments-feed-title" element should contain "Espace commentaires"
-        And I should see 3 ".comment-left" element
-        And I should see 2 ".comment-right" element
+        And I should see 5 ".comment-left" element
+        And I should see 0 ".comment-right" element
         And I should see 5 "#comment-author" element
         And I should see 5 "#comment-published-at" element
-        And I should see "Jean DUPONT" in the ".comment-right" element
-        And I should see "Philippe RIVIERE" in the ".comment-left" element
+        And I should see "Frédérique BONNIN" in the ".comment-left" element
 
     @javascript
     Scenario: I can click the "Comment" button, and it focus the comment field
-        Given I am authenticated with H3U3XCGD from PN
+        Given I am authenticated with ZSBVHOAY from PN
         And I am on "/plainte/recapitulatif/11"
         And I should not focus the "comment_content" element
         Then I press "complaint-comment-button"
@@ -550,18 +549,18 @@ Feature:
 
     @javascript
     Scenario: I can add a comment from the summary page
-        Given I am authenticated with H3U3XCGD from PN
+        Given I am authenticated with ZSBVHOAY from PN
         And I am on "/plainte/recapitulatif/11"
         Then the "#comments-feed-title" element should contain "Espace commentaires"
         When I press "complaint-comment-button"
         And I fill in "comment_content" with "Ceci est un commentaire test."
         And I press "comment-button"
-        Then I should see 3 ".comment-right" element
+        Then I should see 1 ".comment-right" element
         And the "#comments-feed-title" element should contain "Espace commentaires"
 
     @func
     Scenario: I can open the attachments
-        Given I am authenticated with H3U3XCGD from PN
+        Given I am authenticated with ZSBVHOAY from PN
         And I am on "/plainte/recapitulatif/11"
         When I follow "Pièce jointe 1"
         Then I should be on "/voir-piece-jointe/11/blank.pdf"
