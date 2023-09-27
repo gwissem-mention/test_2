@@ -210,6 +210,15 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
                     ->setAmount(100)
             )
             ->addObject(
+                (new SimpleObject())
+                    ->setStatus(AbstractObject::STATUS_DEGRADED)
+                    ->setNature('Sac')
+                    ->setDescription('Sac bleu')
+                    ->setSerialNumber('1234567890')
+                    ->setQuantity(1)
+                    ->setAmount(100)
+            )
+            ->addObject(
                 (new Vehicle())
                     ->setStatus(AbstractObject::STATUS_STOLEN)
                     ->setBrand('Citroën')
@@ -399,7 +408,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
     public function testFactsSection(): void
     {
         $this->assertStringContainsString('<Faits>', $this->xmlContent);
-        $this->assertStringContainsString('<Faits_Expose>Vol / Dégradation. sommes rendu destinataire de la demande de plainte en ligne, déposée sur le site internet « Plaine_En_Ligne.fr » sous le numéro d\'enregistrement : PEL-2022-00000001 transmise le 01/12/2022 00:00:00, d\'un internaute s\'étant authentifié par FranceConnect sous l\'identité suivante M Jean DUPONT, né(e) le 07/03/1967 à Paris, 75000 en  France, Jean DUPONT déclare être Boulanger. La personne déclare avoir subi des violences : La victime précise sur les violences : Je me suis fait taper. La personne déclarante déclare pouvoir nous indiquer de potentiels témoins, à savoir Jean Dupontcomme nature de lieu des faits est indiqué : TRAIN Est apporté en précision sur le lieu des faits : Les faits se sont produits entre le restaurant et l\'appartement d\'un ami Sur d\'éventuels éléments susceptibles d\'orienter l\'enquête, la victime nous précise successivement La personne déclarante indique avoir de potentielles informations sur les auteurs, à savoir : 2 hommes Sont déclarés volés : 1 Blouson, Blouson bleu, d\'une valeur estimée : 100. Une intervention de la police ou de la gendarmerie aurait eu lieu. Des relevés de traces ou indices ont été effectués.</Faits_Expose>', $this->xmlContent);
+        $this->assertStringContainsString('<Faits_Expose>Vol / Dégradation. sommes rendu destinataire de la demande de plainte en ligne, déposée sur le site internet « Plaine_En_Ligne.fr » sous le numéro d\'enregistrement : PEL-2022-00000001 transmise le 01/12/2022 00:00:00, d\'un internaute s\'étant authentifié par FranceConnect sous l\'identité suivante M Jean DUPONT, né(e) le 07/03/1967 à Paris, 75000 en  France, Jean DUPONT déclare être Boulanger. La personne déclare avoir subi des violences : La victime précise sur les violences : Je me suis fait taper. La personne déclarante déclare pouvoir nous indiquer de potentiels témoins, à savoir Jean Dupontcomme nature de lieu des faits est indiqué : TRAIN Est apporté en précision sur le lieu des faits : Les faits se sont produits entre le restaurant et l\'appartement d\'un ami  Sont déclarés dégradés : 1 Sac, 1234567890, Sac bleu, d\'une valeur estimée : 100 Sur d\'éventuels éléments susceptibles d\'orienter l\'enquête, la victime nous précise successivement La personne déclarante indique avoir de potentielles informations sur les auteurs, à savoir : 2 hommes Sont déclarés volés : 1 Blouson, Blouson bleu, d\'une valeur estimée : 100. Une intervention de la police ou de la gendarmerie aurait eu lieu. Des relevés de traces ou indices ont été effectués.</Faits_Expose>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Expose_GN>Vol / Dégradation</Faits_Expose_GN>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Manop>Je me suis fait voler mon portable.</Faits_Manop>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Localisation_Pays>France</Faits_Localisation_Pays>', $this->xmlContent);
@@ -449,7 +458,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
     {
         $this->assertStringContainsString('<Objet>', $this->xmlContent);
         //        $this->assertStringContainsString('<Objets_Prejudice_Evaluer>1</Objets_Prejudice_Evaluer>', $this->xmlContent);
-        $this->assertStringContainsString('<Objets_Prejudice_Estimation>16598</Objets_Prejudice_Estimation>', $this->xmlContent);
+        $this->assertStringContainsString('<Objets_Prejudice_Estimation>16698</Objets_Prejudice_Estimation>', $this->xmlContent);
         $this->assertStringNotContainsString('<Objet_Divers>', $this->xmlContent);
         $this->assertStringContainsString('</Objet>', $this->xmlContent);
     }
