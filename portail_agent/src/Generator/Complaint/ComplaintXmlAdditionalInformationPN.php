@@ -19,6 +19,7 @@ class ComplaintXmlAdditionalInformationPN
         $exposedFacts .= $this->setViolences($complaint);
         $exposedFacts .= $this->setWitnesses($complaint);
         $exposedFacts .= $this->setNatureOfPlace($complaint);
+        $exposedFacts .= $this->setSimpleObjectsDegradationDescription($complaint); // set at 10th position
         $exposedFacts .= $this->setAdditionalInformation(); // Set at 11th position
         $exposedFacts .= $this->setSuspectsInformation($complaint); // Set at 12th position
         $exposedFacts .= $this->setSimpleObjectsStolen($complaint);
@@ -139,6 +140,24 @@ class ComplaintXmlAdditionalInformationPN
             }
 
             return $text;
+        }
+
+        return '';
+    }
+
+    private function setSimpleObjectsDegradationDescription(Complaint $complaint): string
+    {
+        $objects = $complaint->getDegradedObjects();
+        if (!$objects->isEmpty()) {
+            $message = ' Sont déclarés dégradés :';
+
+            foreach ($objects as $object) {
+                if ($object instanceof SimpleObject && $object->getNature()) {
+                    $message .= sprintf(" %d %s, %s, %s, d'une valeur estimée : %d ", $object->getQuantity(), $object->getNature(), $object->getSerialNumber(), $object->getDescription(), $object->getAmount());
+                }
+            }
+
+            return $message;
         }
 
         return '';
