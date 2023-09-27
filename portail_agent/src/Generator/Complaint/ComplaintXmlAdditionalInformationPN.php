@@ -22,6 +22,7 @@ class ComplaintXmlAdditionalInformationPN
         $exposedFacts .= $this->setAdditionalInformation(); // Set at 11th position
         $exposedFacts .= $this->setSuspectsInformation($complaint); // Set at 12th position
         $exposedFacts .= $this->setSimpleObjectsStolen($complaint);
+        $exposedFacts .= $this->setIntervention($complaint);  // Set at 15th position
         $exposedFacts .= $this->setObservationMade($complaint);
 
         return $exposedFacts;
@@ -150,5 +151,14 @@ class ComplaintXmlAdditionalInformationPN
         }
 
         return '';
+    }
+
+    private function setIntervention(Complaint $complaint): string
+    {
+        if ($complaint->getAdditionalInformation()?->isFsiVisit()) {
+            return 'Une intervention de la police ou de la gendarmerie aurait eu lieu. ';
+        }
+
+        return "Il n'y aurait pas eu d'intervention des forces de l'ordre liée aux faits ";
     }
 }
