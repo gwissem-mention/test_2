@@ -46,7 +46,7 @@ class AdministrativeDocumentDTO extends AbstractObjectDTO
         $this->ownerFirstname = $object->getOwnerFirstname();
         $this->identityDepartment = $identity?->getAddressDepartment();
         $this->identityCountry = $identity?->getAddressCountry();
-        $this->identityBirthDate = $identity?->getBirthday()?->format('d/m/Y');
+        $this->identityBirthDate = true === $object->isOwned() ? $identity?->getBirthday()?->format('d/m/Y') : '';
         $this->description = $this->getStatusAsString((int) $object->getStatus()).' - '.$object->getDescription();
         $this->issuingCountry = $object->getIssuingCountry() ?? '';
         $this->identityVictim = $object->isOwned() ? 'Oui' : 'Non';
