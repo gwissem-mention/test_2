@@ -36,7 +36,7 @@ Feature:
         When I check "complaint_91"
         And I check "complaint_92"
         And I press "Attribuer à"
-        And I fill in the autocomplete "bulk_assign_assignedTo-ts-control" with "Julie" and click "4"
+        And I fill in the autocomplete "bulk_assign_assignedTo-ts-control" with "Julie" and click "3"
         And I press "Valider l'attribution"
         Then I should not see a ".modal[aria-modal=true]" element
         And I should see a ".toast" element
@@ -50,7 +50,7 @@ Feature:
         When I check "complaint_91"
         And I check "complaint_92"
         And I press "Réorienter"
-        And I fill in the autocomplete "bulk_reassign_unitCodeToReassign-ts-control" with "Commissariat de police de Voiron" and click "103131"
+        And I fill in the autocomplete "bulk_reassign_unitCodeToReassign-ts-control" with "BRIGADE TERRITORIALE AUTONOME DE CESTAS" and click "3009446"
         And I fill in "bulk_reassign_reassignText" with "Ces plaintes ne sont pas censée être attribuées à mon unité."
         And I press "bulk-unit-reassign-button"
         Then I should see a ".modal[aria-modal=true]" element

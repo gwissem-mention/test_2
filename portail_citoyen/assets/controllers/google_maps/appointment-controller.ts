@@ -1,6 +1,7 @@
 import {Controller} from "@hotwired/stimulus";
 import {getComponent, Component} from "@symfony/ux-live-component";
 import {Loader} from "@googlemaps/js-api-loader";
+import {GirondeBoundaryChecker} from "../../scripts/GirondeBoundaryChecker";
 
 export default class extends Controller {
     static override targets: string[] = ["map", "leftMenu", "modal"];
@@ -140,7 +141,19 @@ export default class extends Controller {
         if (!place.geometry || !place.geometry.location) {
             return;
         }
+        const latitude: number = place.geometry.location.lat();
+        const longitude: number = place.geometry.location.lng();
+        const errorMessageElement: HTMLElement | null = document.getElementById("error-message");
 
+        if (!GirondeBoundaryChecker.isInsideGironde(latitude, longitude)) {
+            if (errorMessageElement) {
+                errorMessageElement.textContent = "Uniquement les adresses des faits commis en Gironde sont acceptées";
+            }
+            return;
+        }
+        if (errorMessageElement) {
+            errorMessageElement.textContent = "";
+        }
         const inseeCode: string = await this.getEtalabInseeCode(new google.maps.LatLng(place.geometry.location.lat(), place.geometry.location.lng()));
 
         // @ts-ignore
@@ -187,9 +200,9 @@ export default class extends Controller {
                 }
             });
     }
-
     private addMarker(latLng: google.maps.LatLng, index: number | null = null, unitId = 0): void {
-        if (index !== null) {
+
+        if (index) {
             this._markers[unitId] = new google.maps.Marker({
                 map: this._map,
                 position: latLng,

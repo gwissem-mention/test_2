@@ -15,37 +15,22 @@ class UserFixtures extends Fixture implements FixtureGroupInterface
 {
     private const NB_USERS_BY_UNIT = 2;
     private const SERVICES = [
-            '68809',
-            '85193',
-            '85194',
-            '68830',
-            '68849',
-            '72903',
-            '102601',
-            '110279',
-            '110280',
-            '110281',
-            '110282',
-            '102645',
-            '102647',
-            '72727',
-            '68905',
-            '74097',
-            '102765',
-            '102812',
-            '102821',
-            '102840',
+            '105893',
+            '65855',
+            '65857',
+            '65861',
+            '65863',
+            '65971',
+            '65973',
+            '65977',
+            '65550',
             '74181',
-            '65575',
-            '105296',
-            '105297',
-            '66043',
-            '66063',
-            '66082',
-            '105405',
-            '63139',
-            '63169',
-            '63179',
+            '102765',
+            '74097',
+            '5905',
+            '7035',
+            '6624',
+            '5905',
         ];
 
     public static function getGroups(): array
@@ -60,38 +45,30 @@ class UserFixtures extends Fixture implements FixtureGroupInterface
 
         $users = [
             [
-                'appellation' => 'Jean DUPONT',
-                'number' => 'H3U3XCGD',
+                'appellation' => 'Frédérique BONNIN',
+                'number' => 'WTDAXALL',
                 'institution' => Institution::PN,
-                'serviceCode' => '103131', // CSP VOIRON/SVP/UPS/BRIGADE DE JOUR
+                'serviceCode' => '74181', // COMMISSARIAT DE POLICE D'ARCACHON
                 'supervisor' => false,
             ],
-            [
-                'appellation' => 'Thomas DURAND',
+            ['appellation' => 'Thomas DURAND',
                 'number' => 'PR5KTZ9R',
                 'institution' => Institution::GN,
-                'serviceCode' => '3002739', // Brigade de proximité de Voiron
-                'supervisor' => true,
-            ],
-            [
-                'appellation' => 'Louise THOMAS',
-                'number' => 'H3U3XCGF',
-                'institution' => Institution::PN,
-                'serviceCode' => '103131', // CSP VOIRON/SVP/UPS/BRIGADE DE JOUR
+                'serviceCode' => '3009446', // BRIGADE TERRITORIALE AUTONOME DE CESTAS
                 'supervisor' => true,
             ],
             [
                 'appellation' => 'Julie RICHARD',
                 'number' => 'PR5KTZ9C',
                 'institution' => Institution::GN,
-                'serviceCode' => '3002739', // Brigade de proximité de Voiron
+                'serviceCode' => '3009446', // BRIGADE TERRITORIALE AUTONOME DE CESTAS
                 'supervisor' => false,
             ],
             [
                 'appellation' => 'Philippe RIVIERE',
                 'number' => 'PR5KTQSD',
                 'institution' => Institution::GN,
-                'serviceCode' => '3002739', // Brigade de proximité de Voiron
+                'serviceCode' => '3009446', // BRIGADE TERRITORIALE AUTONOME DE CESTAS
                 'supervisor' => false,
             ],
         ];

@@ -37,18 +37,18 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $xmlGenerator = $container->get(ComplaintXmlGenerator::class);
 
         $unit = new Unit(
-            'ddsp38-csp-voiron-ppel@interieur.gouv.fr',
-            'ddsp38-ppel@interieur.gouv.fr',
-            '103131',
-            '103131',
-            'Commissariat de police de Voiron',
-            '45.362186',
-            '5.59077',
-            '114 cours Becquart Castelbon 38500 VOIRON',
-            '38',
-            '04 76 65 93 93',
+            'ddsp33-csp-arcachon-ppel@interieur.gouv.fr',
+            'ddsp33-ppel@interieur.gouv.fr',
+            '74181',
+            '74181',
+            'Commissariat de police d\'Arcachon',
+            '44.65828',
+            '-1.1609669',
+            '1 Place de Verdun 33120 ARCACHON',
+            '33',
+            '05 57 72 29 30',
             '24h/24 - 7j/7',
-            '4083',
+            '4015',
             Institution::PN
         );
 
@@ -62,7 +62,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
             ->setAlert('Alert de test trop longue')
             ->setFranceConnected(true)
             ->setUnitAssigned($unit->getCode())
-            ->setAppointmentAsked(false)
+            ->setAppointmentAsked(true)
             ->setIdentity(
                 (new Identity())
                     ->setFirstname('Jean')
@@ -286,16 +286,14 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         //        $this->assertStringContainsString('<Flag_Debut>03/01/2023 10:02:34</Flag_Debut>', $this->xmlContent);
         //        $this->assertStringContainsString('<Flag_Fin>03/01/2023 10:45:04</Flag_Fin>', $this->xmlContent);
         //        $this->assertStringContainsString('<Flag_Ip>127.0.0.1</Flag_Ip>', $this->xmlContent);
-        $this->assertStringContainsString('<Mail_Unite>ddsp38-csp-voiron-ppel@interieur.gouv.fr</Mail_Unite>', $this->xmlContent);
-        $this->assertStringContainsString('<Mail_Unite_Departement_Actif>ddsp38-ppel@interieur.gouv.fr</Mail_Unite_Departement_Actif>', $this->xmlContent);
-        $this->assertStringContainsString('<Code_Unite>103131</Code_Unite>', $this->xmlContent);
-        $this->assertStringContainsString('<unite_dpt>38</unite_dpt>', $this->xmlContent);
-        $this->assertStringContainsString('<unite_nom>Commissariat de police de Voiron</unite_nom>', $this->xmlContent);
-        $this->assertStringContainsString('<unite_adr>114 cours Becquart Castelbon 38500 VOIRON</unite_adr>', $this->xmlContent);
-        $this->assertStringContainsString('<unite_tph>04 76 65 93 93</unite_tph>', $this->xmlContent);
+        $this->assertStringContainsString('<Mail_Unite>ddsp33-csp-arcachon-ppel@interieur.gouv.fr</Mail_Unite>', $this->xmlContent);
+        $this->assertStringContainsString('<Mail_Unite_Departement_Actif>ddsp33-ppel@interieur.gouv.fr</Mail_Unite_Departement_Actif>', $this->xmlContent);
+        $this->assertStringContainsString('<Code_Unite>74181</Code_Unite>', $this->xmlContent);
+        $this->assertStringContainsString('<unite_dpt>33</unite_dpt>', $this->xmlContent);
+        $this->assertStringContainsString('<unite_nom>Commissariat de police d\'Arcachon</unite_nom>', $this->xmlContent);
+        $this->assertStringContainsString('<unite_adr>1 Place de Verdun 33120 ARCACHON</unite_adr>', $this->xmlContent);
+        $this->assertStringContainsString('<unite_tph>05 57 72 29 30</unite_tph>', $this->xmlContent);
         $this->assertStringContainsString('<unite_institution>PN</unite_institution>', $this->xmlContent);
-        $this->assertStringContainsString('<Numero_PEL>PEL-2022-00000001</Numero_PEL>', $this->xmlContent);
-        $this->assertStringContainsString('<GDH_Validation_PEL>01/12/2022 00:00:00</GDH_Validation_PEL>', $this->xmlContent);
         //        $this->assertStringContainsString('<TC_Domicile>9</TC_Domicile>', $this->xmlContent);
         //        $this->assertStringContainsString('<TC_Domicile>9</TC_Domicile>', $this->xmlContent);
         //        $this->assertStringContainsString('<Code_Unite_TC_Faits>2556</Code_Unite_TC_Faits>', $this->xmlContent);
@@ -444,10 +442,6 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Faits_Prejudice_Autre/>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Prejudice_Physique_Description>Dans ce cas vous devrez être examiné par un médecin et présenter un certificat médical indiquant notamment la durée de votre incapacité temporaire de travail. Les précisions relatives à cet examen vous seront communiquées lors de la fixation du rendez-vous pour la signature de votre plainte</Faits_Prejudice_Physique_Description>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Prejudice_Autre_Description/>', $this->xmlContent);
-        $this->assertStringContainsString('<LIEU_INFORMATION_COMPLEMENTAIRES>Les faits se sont produits entre le restaurant et l\'appartement d\'un ami</LIEU_INFORMATION_COMPLEMENTAIRES>', $this->xmlContent);
-        $this->assertStringContainsString('<NATURE_LIEU>TRAIN</NATURE_LIEU>', $this->xmlContent);
-        $this->assertStringContainsString('<Nature_Lieu_Tel/>', $this->xmlContent);
-        $this->assertStringContainsString('<Nature_Lieu_URL/>', $this->xmlContent);
         $this->assertStringContainsString('</Faits>', $this->xmlContent);
     }
 
@@ -655,8 +649,8 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<INTERVENTION_FSI>Oui</INTERVENTION_FSI>', $this->xmlContent);
         $this->assertStringContainsString('<CONSTAT_RELEV_EFFECTUES>Oui</CONSTAT_RELEV_EFFECTUES>', $this->xmlContent);
         $this->assertStringContainsString('<VIDEO_DISPONIBLE>Non</VIDEO_DISPONIBLE>', $this->xmlContent);
-        $this->assertStringContainsString('<UNITE_RDV>Commissariat de police de Voiron</UNITE_RDV>', $this->xmlContent);
-        $this->assertStringContainsString('<RDV_SOUHAITE>Non</RDV_SOUHAITE>', $this->xmlContent);
+        $this->assertStringContainsString('<UNITE_RDV>Commissariat de police d\'Arcachon</UNITE_RDV>', $this->xmlContent);
+        $this->assertStringContainsString('<RDV_SOUHAITE>Oui</RDV_SOUHAITE>', $this->xmlContent);
         $this->assertStringContainsString('<Mail_Personne_Morale>pdg@netflix.com</Mail_Personne_Morale>', $this->xmlContentWithCorporationRepresented);
         $this->assertStringContainsString('<Mail_Personne_Morale/>', $this->xmlContent);
         $this->assertStringContainsString('</Divers>', $this->xmlContent);

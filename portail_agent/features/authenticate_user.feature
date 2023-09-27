@@ -19,17 +19,17 @@ Feature: Create/update user according to SSO attributes
 
     Scenario: Update user if exists
         Given the following HTTP headers
-            | name        | value       |
-            | matricule   | H3U3XCGD    |
-            | appelation  | Jean DUPOND |
-            | institution | PN          |
-            | codeservice | service_2   |
-            | superviseur | 1           |
+            | name        | value           |
+            | matricule   | ZSBVHOAY        |
+            | appelation  | Margaud MARCHAL |
+            | institution | PN              |
+            | codeservice | service_2       |
+            | superviseur | 1               |
 
         When I am on "/"
-        Then the "user" H3U3XCGD from PN exists with:
+        Then the "user" ZSBVHOAY from PN exists with:
             | attribute    | value                     |
-            | appellation  | Jean DUPOND               |
+            | appellation  | Margaud MARCHAL           |
             | service_code | service_2                 |
             | roles        | ROLE_SUPERVISOR,ROLE_USER |
 

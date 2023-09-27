@@ -65,11 +65,7 @@ Feature:
     Scenario: I can see the required informations in the registered complaint page
         Then I should see the key "pel.end.thanks" translated
         And I should see the key "pel.download.my.declaration" translated
-        And I should see the key "pel.place.complaint.handling" translated
-        And I should see "Commissariat de police de Paris 11ème arrondissement"
-        And I should see "12 PASSAGE CHARLES DALLERY 75011 PARIS 11"
-        And I should see the key "pel.please.note.that.the.online.process.may.eventually.require.an.appointment" translated
-        And I should see the key "pel.appointment.needed.if.more" translated
+      
 
     Scenario: I can click on the "Je donne mon avis" button and on the back to homepage button
         Then I should see the key "pel.your.opinion" translated

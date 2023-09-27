@@ -36,6 +36,9 @@ class EtalabComponent
     #[LiveProp]
     public string $inputName;
 
+    #[LiveProp]
+    public bool $dataGirondeEnabled;
+
     #[LiveProp(writable: true)]
     public ?string $latitude = null;
 
@@ -74,12 +77,44 @@ class EtalabComponent
         /** @var array<string, array<string, string>> $address */
         foreach ($this->autocompleteResults as $address) {
             if ($address['properties']['id'] === $addressId) {
+                if (true === $this->dataGirondeEnabled) {
+                    $latitude = (float) $address['geometry']['coordinates'][1];
+                    $longitude = (float) $address['geometry']['coordinates'][0];
+
+                    if (!$this->isInsideGironde($latitude, $longitude)) {
+                        $this->errors[] = 'Uniquement les adresses des faits commis en Gironde sont acceptées';
+
+                        return;
+                    }
+                }
+
                 $this->addressSearchSaved = $this->addressSearch;
                 $this->addressSearch = $address['properties']['label'];
                 $this->autocompleteResults = [];
                 $this->addressId = $addressId;
             }
         }
+    }
+
+    private function isInsideGironde(float $latitude, float $longitude): bool
+    {
+        if (true === $this->dataGirondeEnabled) {
+            $girondeBounds = [
+                'north' => 45.035,
+                'south' => 44.587,
+                'east' => -0.442,
+                'west' => -0.809,
+            ];
+
+            return
+                $latitude >= $girondeBounds['south']
+                && $latitude <= $girondeBounds['north']
+                && $longitude >= $girondeBounds['west']
+                && $longitude <= $girondeBounds['east']
+            ;
+        }
+
+        return true;
     }
 
     public function getAddressSearch(): string

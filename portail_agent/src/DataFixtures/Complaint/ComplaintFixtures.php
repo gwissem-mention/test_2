@@ -48,13 +48,13 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
     {
         $complaints = [];
         /** @var User $userUnit1 */
-        $userUnit1 = $manager->getRepository(User::class)->findOneBy(['number' => 'H3U3XCGD']);
+        $userUnit1 = $manager->getRepository(User::class)->findOneBy(['number' => 'WTDAXALL']);
         /** @var User $userUnit2 */
-        $userUnit2 = $manager->getRepository(User::class)->findOneBy(['number' => 'PR5KTQSD']);
+        $userUnit2 = $manager->getRepository(User::class)->findOneBy(['number' => 'PR5KTZ9R']);
         $users = [$userUnit1, $userUnit2];
         $unitsUsers = [
-            '103131' => $userUnit1,
-            '3002739' => $userUnit2,
+            '74181' => $userUnit1,
+            '3009446' => $userUnit2,
         ];
         $this->defaultStorage->writeStream('/blank.pdf', fopen($this->kernel->getProjectDir().'/tests/Behat/Files/blank.pdf', 'rb'));
         $this->defaultStorage->writeStream('/iphone.png', fopen($this->kernel->getProjectDir().'/tests/Behat/Files/iphone.png', 'rb'));
