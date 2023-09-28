@@ -336,7 +336,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Personne_Residence_Commune>Meudon</Personne_Residence_Commune>', $this->xmlContent);
         $this->assertStringContainsString('<Personne_Residence_HidNumDep>92</Personne_Residence_HidNumDep>', $this->xmlContent);
         $this->assertStringContainsString('<Personne_Residence_RueNo>15</Personne_Residence_RueNo>', $this->xmlContent);
-        $this->assertStringContainsString('<Personne_Residence_RueType>Rue</Personne_Residence_RueType>', $this->xmlContent);
+        $this->assertStringContainsString('<Personne_Residence_RueType>15 PAIRA</Personne_Residence_RueType>', $this->xmlContent);
         $this->assertStringContainsString('<Personne_Residence_RueNom>PAIRA</Personne_Residence_RueNom>', $this->xmlContent);
         $this->assertStringContainsString('<Personne_Residence_Adresse>15 rue PAIRA, Meudon, 92190</Personne_Residence_Adresse>', $this->xmlContent);
         $this->assertStringContainsString('<Personne_Residence_Lieu>FRANCE, MEUDON, 15 rue PAIRA, Meudon, 92190</Personne_Residence_Lieu>', $this->xmlContent);
@@ -370,7 +370,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Representant_Legal_Residence_Commune>Meudon</Representant_Legal_Residence_Commune>', $this->xmlContent);
         $this->assertStringContainsString('<Representant_Legal_Residence_HidNumDep>92</Representant_Legal_Residence_HidNumDep>', $this->xmlContent);
         $this->assertStringContainsString('<Representant_Legal_Residence_RueNo>15</Representant_Legal_Residence_RueNo>', $this->xmlContent);
-        $this->assertStringContainsString('<Representant_Legal_Residence_RueType>Rue</Representant_Legal_Residence_RueType>', $this->xmlContent);
+        $this->assertStringContainsString('<Representant_Legal_Residence_RueType>15 PAIRA</Representant_Legal_Residence_RueType>', $this->xmlContent);
         $this->assertStringContainsString('<Representant_Legal_Residence_RueNom>PAIRA</Representant_Legal_Residence_RueNom>', $this->xmlContent);
         $this->assertStringContainsString('<Representant_Legal_Residence_Adresse>15 rue PAIRA, Meudon, 92190</Representant_Legal_Residence_Adresse>', $this->xmlContent);
         $this->assertStringContainsString('<Representant_Legal_Residence_Lieu>FRANCE, MEUDON, 15 rue PAIRA, Meudon, 92190</Representant_Legal_Residence_Lieu>', $this->xmlContent);
