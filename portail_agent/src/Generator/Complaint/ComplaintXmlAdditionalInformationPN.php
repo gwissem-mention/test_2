@@ -17,14 +17,15 @@ class ComplaintXmlAdditionalInformationPN
         $exposedFacts .= $this->setIsFranceConnected($complaint);
         $exposedFacts .= $this->setJob($complaint);
         $exposedFacts .= $this->setViolences($complaint);
-        $exposedFacts .= $this->setWitnesses($complaint);
+        $exposedFacts .= $this->setFactsDescription($complaint); // set at 6th position
         $exposedFacts .= $this->setNatureOfPlace($complaint);
         $exposedFacts .= $this->setSimpleObjectsDegradationDescription($complaint); // set at 10th position
         $exposedFacts .= $this->setAdditionalInformation(); // Set at 11th position
         $exposedFacts .= $this->setSuspectsInformation($complaint); // Set at 12th position
         $exposedFacts .= $this->setSimpleObjectsStolen($complaint);
+        $exposedFacts .= $this->setWitnesses($complaint); // set at  14th position
         $exposedFacts .= $this->setIntervention($complaint);  // Set at 15th position
-        $exposedFacts .= $this->setObservationMade($complaint);
+        $exposedFacts .= $this->setObservationMade($complaint); // set at 16th position
 
         return $exposedFacts;
     }
@@ -179,5 +180,10 @@ class ComplaintXmlAdditionalInformationPN
         }
 
         return "Il n'y aurait pas eu d'intervention des forces de l'ordre liée aux faits ";
+    }
+
+    private function setFactsDescription(Complaint $complaint): string
+    {
+        return sprintf("Sur l'exposé des faits, la personne déclarante indique : %s", $complaint->getFacts()?->getDescription());
     }
 }
