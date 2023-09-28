@@ -5,10 +5,12 @@ all:
             ansible_connection: ssh
             ansible_host: "{{ vault_server_qualif_ipms_web_host }}"
             ansible_user: "{{ vault_server_ipms_user }}"
-            server_name: "dapqp307web1.qualpgs"
+            server_name: "{{ vault_server_qualif_ipms_web_name }}"
             server_user: "{{ vault_server_ipms_user }}"
-            force_reload_db: True
+            force_reload_db: False
             force_referential_update: True
+            in_php_main_machine: False
+            in_ipms: True
             ansistrano_git_repo: "{{ vault_git_repo_anfsi }}"
             CITOYEN_DOMAIN: https://pel-citoyen.forge.smile.fr
             
@@ -16,9 +18,11 @@ all:
             ansible_connection: ssh
             ansible_host: "{{ vault_server_qualif_ipms_php_host }}"
             ansible_user: "{{ vault_server_ipms_user }}"
-            server_name: "dapqp307web1.qualpgs"
+            server_name: "{{ vault_server_qualif_ipms_php_name }}"
             server_user: "{{ vault_server_ipms_user }}"
-            force_reload_db: True
+            force_reload_db: False
             force_referential_update: True
+            in_php_main_machine: True
+            in_ipms: True
             ansistrano_git_repo: "{{ vault_git_repo_anfsi }}"
             CITOYEN_DOMAIN: https://pel-citoyen.forge.smile.fr

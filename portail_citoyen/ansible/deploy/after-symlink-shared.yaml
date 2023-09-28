@@ -49,19 +49,19 @@
 
 - name: Recreate referential database
   make:
-      chdir: '{{ release_portal_path }}'
-      target: referential-create
+    chdir: '{{ release_portal_path }}'
+    target: referential-create
   when: force_referential_update
-  
+
 - name: Create referential extensions
   become: true
   become_user: postgres
   command: 'psql -d {{ referential_db }} -c "create extension if not exists unaccent"'
-  
+
 - name: Load fresh referentials
   make:
-      chdir: '{{ release_portal_path }}'
-      target: referential-load
+    chdir: '{{ release_portal_path }}'
+    target: referential-load
   when: force_referential_update
 
 - name: Install bundle assets

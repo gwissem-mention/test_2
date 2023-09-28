@@ -171,6 +171,10 @@ yarn:
 install: c=install
 install: yarn
 
+## Install nodes packages for IPMS
+install-ipms: c=install --no-lock-file
+install-ipms: yarn
+
 ## Check packages vulnerabilities
 frontend-audit: c=audit
 frontend-audit: yarn

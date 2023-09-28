@@ -1,85 +1,142 @@
 - name: Create .env.local file
   copy:
-    dest: "{{ release_portal_path }}/.env.local"
-    content: |
-      APP_ENV={{ ansible_env.APP_ENV }}
-      ENABLE_SSO={{ ansible_env.ENABLE_SSO }}
-      FILE_UNITS_GN={{ ansible_env.FILE_UNITS_GN }}
-      FILE_UNITS_PN={{ ansible_env.FILE_UNITS_PN }}
-      OODRIVE_BASE_URI={{ ansible_env.OODRIVE_BASE_URI }}
-      OODRIVE_WORKSPACE={{ ansible_env.OODRIVE_WORKSPACE }}
-      OODRIVE_OAUTH_CLIENT_ID={{ ansible_env.OODRIVE_OAUTH_CLIENT_ID }}
-      FOLDER_ROTATION_COUNT={{ ansible_env.FOLDER_ROTATION_COUNT }}
-      FOLDER_ROTATION_TRESHOLD={{ ansible_env.FOLDER_ROTATION_TRESHOLD }}
-      OODRIVE_ROOT_FOLDER_ID={{ ansible_env.OODRIVE_ROOT_FOLDER_ID }}  
-      OODRIVE_FETCHED_FOLDER_ID={{ ansible_env.OODRIVE_FETCHED_FOLDER_ID }}   
-      OODRIVE_REPORT_FOLDER={{ ansible_env.OODRIVE_REPORT_FOLDER }}   
-      OODRIVE_TMP_COMPLAINT_FOLDER={{ ansible_env.OODRIVE_TMP_COMPLAINT_FOLDER }}
-      OODRIVE_REPORT_FOLDER={{ ansible_env.OODRIVE_REPORT_FOLDER }}
-      OODRIVE_COMPLAINT_FILENAME={{ ansible_env.OODRIVE_COMPLAINT_FILENAME }}
-      ACTIVEMQ_DSN={{ ansible_env.ACTIVEMQ_DSN }}
-      ACTIVEMQ_QUEUE_NAME={{ ansible_env.ACTIVEMQ_QUEUE_NAME }}
-      SALESFORCE_RECIPIENT={{ ansible_env.SALESFORCE_RECIPIENT }}
-      CITOYEN_DOMAIN={{ CITOYEN_DOMAIN }}
-      AWS_S3_ENDPOINT={{ ansible_env.AWS_S3_ENDPOINT }}
-      AWS_S3_BUCKET={{ ansible_env.AWS_S3_BUCKET }}
-      AWS_S3_REGION={{ ansible_env.AWS_S3_REGION }}
-      FILE_JOBS={{ ansible_env.FILE_JOBS }}
-        
+      dest: "{{ release_portal_path }}/.env.local"
+      content: |
+          APP_ENV={{ ansible_env.APP_ENV }}
+          ENABLE_SSO={{ ansible_env.ENABLE_SSO }}
+          FILE_UNITS_GN={{ ansible_env.FILE_UNITS_GN }}
+          FILE_UNITS_PN={{ ansible_env.FILE_UNITS_PN }}
+          OODRIVE_BASE_URI={{ ansible_env.OODRIVE_BASE_URI }}
+          OODRIVE_WORKSPACE={{ ansible_env.OODRIVE_WORKSPACE }}
+          OODRIVE_OAUTH_CLIENT_ID={{ ansible_env.OODRIVE_OAUTH_CLIENT_ID }}
+          FOLDER_ROTATION_COUNT={{ ansible_env.FOLDER_ROTATION_COUNT }}
+          FOLDER_ROTATION_TRESHOLD={{ ansible_env.FOLDER_ROTATION_TRESHOLD }}
+          OODRIVE_ROOT_FOLDER_ID={{ ansible_env.OODRIVE_ROOT_FOLDER_ID }}
+          OODRIVE_FETCHED_FOLDER_ID={{ ansible_env.OODRIVE_FETCHED_FOLDER_ID }}
+          OODRIVE_REPORT_FOLDER={{ ansible_env.OODRIVE_REPORT_FOLDER }}
+          OODRIVE_TMP_COMPLAINT_FOLDER={{ ansible_env.OODRIVE_TMP_COMPLAINT_FOLDER }}
+          OODRIVE_REPORT_FOLDER={{ ansible_env.OODRIVE_REPORT_FOLDER }}
+          OODRIVE_COMPLAINT_FILENAME={{ ansible_env.OODRIVE_COMPLAINT_FILENAME }}
+          ACTIVEMQ_DSN={{ ansible_env.ACTIVEMQ_DSN }}
+          ACTIVEMQ_QUEUE_NAME={{ ansible_env.ACTIVEMQ_QUEUE_NAME }}
+          SALESFORCE_RECIPIENT={{ ansible_env.SALESFORCE_RECIPIENT }}
+          CITOYEN_DOMAIN={{ CITOYEN_DOMAIN }}
+          AWS_S3_ENDPOINT={{ ansible_env.AWS_S3_ENDPOINT }}
+          AWS_S3_BUCKET={{ ansible_env.AWS_S3_BUCKET }}
+          AWS_S3_REGION={{ ansible_env.AWS_S3_REGION }}
+          FILE_JOBS={{ ansible_env.FILE_JOBS }}
+
+
+- name: creation du repertoire .config
+  file:
+      path: "/root/.config/composer"
+      state: directory
+      mode: 0755
+  when: in_ipms
+
+- name: Copy Composer repository global config
+  when: in_ipms
+  copy:
+      dest: "/root/.config/composer/config.json"
+      content: |
+          {
+              "config": {},
+              "repositories": {
+                  "packagist": false,
+                  "nexus": {
+                      "type": "composer",
+                      "url": "https://nexus-pic.gendarmerie.fr/repository/composer-packagist/packages.json"
+                  }
+              }
+          }
+
+- name: Copy NPM repository global config
+  when: in_ipms
+  copy:
+      dest: "/root/.npmrc"
+      content: |
+          registry=https://nexus-pic.gendarmerie.fr/repository/npm/
+          strict-ssl=false
+
+- name: Copy Yarn repository global config
+  when: in_ipms
+  copy:
+      dest: /root/.yarnrc
+      content: |
+          registry "https://nexus-pic.gendarmerie.fr/repository/npm/"
+          strict-ssl false
+
+
+- name: Update Registry URLs in Lock file
+  composer:
+      command: update
+      arguments: --lock --no-install
+      no_plugins: true
+      no_scripts: true
+      working_dir: "{{ release_portal_path }}"
+  environment:
+      COMPOSER_ALLOW_SUPERUSER: 1
+  when: in_ipms
+
 - name: Install vendors for prod env
   make:
-    chdir: '{{ release_portal_path }}'
-    target: vendor-prod
+      chdir: '{{ release_portal_path }}'
+      target: vendor-prod
+  environment:
+      COMPOSER_ALLOW_SUPERUSER: 1
 
 - name: Clear the cache
   make:
-    chdir: '{{ release_portal_path }}'
-    target: cache-clear
-    params:
-      APP_ENV: "{{ ansible_env.APP_ENV }}"
+      chdir: '{{ release_portal_path }}'
+      target: cache-clear
+      params:
+          APP_ENV: "{{ ansible_env.APP_ENV }}"
 
 - name: Warm up the cache
   make:
-    chdir: '{{ release_portal_path }}'
-    target: cache-warmup
-    params:
-      APP_ENV: "{{ ansible_env.APP_ENV }}"
+      chdir: '{{ release_portal_path }}'
+      target: cache-warmup
+      params:
+          APP_ENV: "{{ ansible_env.APP_ENV }}"
 
 - name: Create DB if not exists
   make:
-    chdir: '{{ release_portal_path }}'
-    target: db-create
+      chdir: '{{ release_portal_path }}'
+      target: db-create
   register: create_db_output
   changed_when: create_db_output.stdout is not search('already exists. Skipped')
-  
+  when: not in_ipms
+
 - name: Create extensions
   become: true
   become_user: postgres
   command: 'psql -d {{ app_db }} -c "create extension if not exists unaccent"'
+  when: not in_ipms
 
 - name: Recreate referential database
   make:
-    chdir: '{{ release_portal_path }}'
-    target: referential-create
-  when: force_referential_update  
+      chdir: '{{ release_portal_path }}'
+      target: referential-create
+  when: force_referential_update and not in_ipms
 
 - name: Load fresh referentials
   make:
-    chdir: '{{ release_portal_path }}'
-    target: referential-load
-  when: force_referential_update  
+      chdir: '{{ release_portal_path }}'
+      target: referential-load
+  when: force_referential_update and (in_php_main_machine or not in_ipms)
 
 - name: Run migrations
   make:
-    chdir: '{{ release_portal_path }}'
-    target: db-migrate
+      chdir: '{{ release_portal_path }}'
+      target: db-migrate
   register: run_migrations_output
   changed_when: run_migrations_output.stdout is not search('No migrations to execute')
+  when: in_php_main_machine or not in_ipms
 
 - name: Load fixtures
   make:
-    chdir: '{{ release_portal_path }}'
-    target: db-load
+      chdir: '{{ release_portal_path }}'
+      target: db-load
   when: force_reload_db
 
 - name: Install bundle assets
@@ -87,18 +144,25 @@
 
 - name: Install Node dependencies
   make:
-    chdir: '{{ release_portal_path }}'
-    target: install
+      chdir: '{{ release_portal_path }}'
+      target: install
+  when: not in_ipms
+
+- name: Install Node dependencies for IPMS
+  make:
+      chdir: '{{ release_portal_path }}'
+      target: install-ipms
+  when: in_ipms
 
 - name: Install Webpack Encore assets
   make:
-    chdir: '{{ release_portal_path }}'
-    target: build
+      chdir: '{{ release_portal_path }}'
+      target: build
 
 - name: Setup directory permissions for var/
   become: true
   file:
-    path: "{{ release_portal_path }}/var"
-    state: directory
-    mode: 0775
-    recurse: true
+      path: "{{ release_portal_path }}/var"
+      state: directory
+      mode: 0775
+      recurse: true
