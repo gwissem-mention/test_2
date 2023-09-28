@@ -9,5 +9,7 @@ all:
             server_user: "{{ vault_server_user }}"
             force_reload_db: True
             force_referential_update: True
+            in_php_main_machine: True
+            in_ipms: False
             CITOYEN_DOMAIN: https://pel-citoyen.forge.smile.fr
 
