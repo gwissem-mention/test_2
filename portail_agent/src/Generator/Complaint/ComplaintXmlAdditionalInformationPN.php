@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Generator\Complaint;
 
+use App\Entity\AdditionalInformation;
 use App\Entity\Complaint;
 use App\Entity\Facts;
 use App\Entity\FactsObjects\SimpleObject;
@@ -30,6 +31,7 @@ class ComplaintXmlAdditionalInformationPN
         $exposedFacts .= $this->setIntervention($complaint);  // Set at 15th position
         $exposedFacts .= $this->setObservationMade($complaint); // set at 16th position
         $exposedFacts .= $this->setConclusion($complaint); // set at 19th position
+        $exposedFacts .= $this->setCCTVPresent($complaint); // set at 17th position
 
         return $exposedFacts;
     }
@@ -215,5 +217,16 @@ class ComplaintXmlAdditionalInformationPN
     private function setConclusion(Complaint $complaint): string
     {
         return 'Cette personne souhaite déposer plainte contre X pour les faits apportés dans sa télédéclaration ci-après annexée.';
+    }
+
+    private function setCCTVPresent(Complaint $complaint): string
+    {
+        return sprintf(
+            'La personne déclarante indique : %s',
+            match ($complaint->getAdditionalInformation()?->getCctvPresent()) {
+                AdditionalInformation::CCTV_PRESENT_YES => 'qu\'une vidéo des faits existerait',
+                AdditionalInformation::CCTV_PRESENT_NO => 'qu\'il n\'y a pas de vidéo des faits',
+                default => 'ne pas savoir s\'il existe une vidéo des faits',
+            });
     }
 }
