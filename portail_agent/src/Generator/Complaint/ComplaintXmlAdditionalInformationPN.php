@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Generator\Complaint;
 
 use App\Entity\Complaint;
+use App\Entity\Facts;
 use App\Entity\FactsObjects\SimpleObject;
 use App\Entity\Identity;
 
@@ -17,6 +18,8 @@ class ComplaintXmlAdditionalInformationPN
         $exposedFacts .= $this->setIsFranceConnected($complaint);
         $exposedFacts .= $this->setJob($complaint);
         $exposedFacts .= $this->setViolences($complaint);
+        $exposedFacts .= $this->setDateAndTimeOfFacts($complaint); // set at 4th position
+        $exposedFacts .= $this->setWitnesses($complaint);
         $exposedFacts .= $this->setFactsDescription($complaint); // set at 6th position
         $exposedFacts .= $this->setNatureOfPlace($complaint);
         $exposedFacts .= $this->setSimpleObjectsDegradationDescription($complaint); // set at 10th position
@@ -181,6 +184,27 @@ class ComplaintXmlAdditionalInformationPN
         }
 
         return "Il n'y aurait pas eu d'intervention des forces de l'ordre liée aux faits ";
+    }
+
+    private function setDateAndTimeOfFacts(Complaint $complaint): string
+    {
+        if ($complaint->getFacts()?->isExactDateKnown() && Facts::EXACT_HOUR_KNOWN_YES === $complaint->getFacts()->getExactHourKnown()) {
+            return sprintf('Interrogé sur la date et l’heure des faits, %s %s, indique que les faits se sont déroulés le %s à %s ',
+                $complaint->getIdentity()?->getLastname(),
+                $complaint->getIdentity()?->getFirstname(),
+                $complaint->getFacts()->getStartDate()?->format('d/m/Y'),
+                $complaint->getFacts()->getStartHour()?->format('h:i')
+            );
+        } else {
+            return sprintf('Interrogé sur la date et l\'heure des faits, %s %s, indique que les faits se sont déroulés entre le %s à %s et le %s à %s ',
+                $complaint->getIdentity()?->getLastname(),
+                $complaint->getIdentity()?->getFirstname(),
+                $complaint->getFacts()?->getStartDate()?->format('d/m/y'),
+                $complaint->getFacts()?->getStartHour()?->format('h:i'),
+                $complaint->getFacts()?->getEndDate()?->format('d/m/y'),
+                $complaint->getFacts()?->getEndHour()?->format('h:i'),
+            );
+        }
     }
 
     private function setFactsDescription(Complaint $complaint): string
