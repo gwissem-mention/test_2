@@ -9,7 +9,6 @@ use App\Referential\Repository\UnitRepository;
 
 class VariousDTO
 {
-    private string $exactDateKnown;
     private string $suspectsKnown;
     private string $suspectsKnownText;
     private string $witnessesPresent;
@@ -22,7 +21,6 @@ class VariousDTO
 
     public function __construct(Complaint $complaint, UnitRepository $unitRepository)
     {
-        $this->exactDateKnown = $complaint->getFacts()?->isExactDateKnown() ? 'Oui' : 'Non';
         $this->suspectsKnown = $complaint->getAdditionalInformation()?->isSuspectsKnown() ? 'Oui' : 'Non';
         $this->suspectsKnownText = $complaint->getAdditionalInformation()?->getSuspectsKnownText() ?? '';
         $this->witnessesPresent = $complaint->getAdditionalInformation()?->isWitnessesPresent() ? 'Oui' : 'Non';
@@ -40,7 +38,6 @@ class VariousDTO
     public function getArray(): array
     {
         return ['Divers' => [
-            'DIVERS_DATE_EXACTE_FAITS_CONNUE' => $this->exactDateKnown,
             'SUSPECTS_INFORMATIONS' => $this->suspectsKnown,
             'SUSPECTS_DESCRIPTION' => $this->suspectsKnownText,
             'TEMOINS_PRESENTS' => $this->witnessesPresent,
