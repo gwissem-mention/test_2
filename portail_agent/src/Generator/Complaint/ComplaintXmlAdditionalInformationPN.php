@@ -32,6 +32,7 @@ class ComplaintXmlAdditionalInformationPN
         $exposedFacts .= $this->setObservationMade($complaint); // set at 16th position
         $exposedFacts .= $this->setConclusion($complaint); // set at 19th position
         $exposedFacts .= $this->setCCTVPresent($complaint); // set at 17th position
+        $exposedFacts .= $this->setCCTVAvailable($complaint); // set at 18th position
 
         return $exposedFacts;
     }
@@ -228,5 +229,14 @@ class ComplaintXmlAdditionalInformationPN
                 AdditionalInformation::CCTV_PRESENT_NO => 'qu\'il n\'y a pas de vidéo des faits',
                 default => 'ne pas savoir s\'il existe une vidéo des faits',
             });
+    }
+
+    private function setCCTVAvailable(Complaint $complaint): string
+    {
+        if ($complaint->getAdditionalInformation()?->isCctvAvailable()) {
+            return ' et être en mesure de fournir le support vidéo';
+        }
+
+        return '';
     }
 }
