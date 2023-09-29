@@ -662,6 +662,9 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<RDV_SOUHAITE>Oui</RDV_SOUHAITE>', $this->xmlContent);
         $this->assertStringContainsString('<Mail_Personne_Morale>pdg@netflix.com</Mail_Personne_Morale>', $this->xmlContentWithCorporationRepresented);
         $this->assertStringContainsString('<Mail_Personne_Morale/>', $this->xmlContent);
+        $this->assertStringContainsString('<Mail_Personne_Morale>pdg@netflix.com</Mail_Personne_Morale>', $this->xmlContentWithCorporationRepresented);
+        $this->assertStringContainsString('<Enregistrement_Video>Oui</Enregistrement_Video>', $this->xmlContentWithCorporationRepresented);
+        $this->assertStringContainsString('<TEMOINS_DESCRIPTION>Jean Dupont</TEMOINS_DESCRIPTION>', $this->xmlContentWithCorporationRepresented);
         $this->assertStringContainsString('</Divers>', $this->xmlContent);
     }
 }
