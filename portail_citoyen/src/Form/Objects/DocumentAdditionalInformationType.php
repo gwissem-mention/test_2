@@ -83,6 +83,7 @@ class DocumentAdditionalInformationType extends AbstractType
             ])
             ->add('documentOwnerEmail', EmailType::class, [
                 'label' => 'pel.document.owner.email',
+                'help' => 'pel.email.help',
                 'required' => false,
                 'priority' => -2,
                 'attr' => [

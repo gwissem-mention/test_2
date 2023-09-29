@@ -195,7 +195,7 @@ Feature:
         And I should see the key "pel.attachment" translated
         And I should see "blank.pdf"
         When I follow "blank.pdf"
-        Then I should see "N° de la ligne de téléphone : +33 6 01 02 03 04"
+        Then I should see "Numéro de téléphone portable : +33 6 01 02 03 04"
         And I should see "Document officiel"
         And I should see "Carte d’identité"
         And I should see "Oui"
@@ -206,7 +206,7 @@ Feature:
         And I should see "France"
         And I should see the key "pel.brand" translated
         And I should see the key "pel.model" translated
-        And I should see the key "pel.phone.number.line" translated
+        And I should see the key "pel.mobile" translated
         And I should see the key "pel.operator" translated
         And I should see the key "pel.serial.number" translated
         And I should see the key "pel.description" translated

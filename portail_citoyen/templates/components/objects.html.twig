@@ -92,11 +92,11 @@
         {% set objectsLength = form.objects.vars.data|length %}
         {% set objectsQuantity = form.objects.vars.data|objects_quantity %}
         {{ form_widget(form.objects.vars.button_add, {attr: {'data-action': 'live#action', 'data-action-name': 'prevent|addObject addCollectionItem(name=objects[objects])'}}) }}
-        <div>
+        <p class="fr-mb-0">
             <strong>{{ objectsQuantity }} {{ 'pel.total.message.two'|trans({'%quantity%': objectsQuantity}) }}</strong>
             {{ 'pel.total.message.amount'|trans }}
             <strong>{{ form.objects.vars.data|objects_amount|format_currency('EUR', {fraction_digit: 2}) }}</strong>
-        </div>
+        </p>
         {% if objectsLength is same as(1) %}
             <a class="fr-text fr-text-title--blue-france" href="{{ path('complaint_additional_information', {'noObject':1}) }}">{{ 'pel.i.have.no.goods.to.declare'|trans }}</a>
         {% endif %}

@@ -222,7 +222,7 @@ Feature:
         And I should see "Espagne"
         And I should see the key "pel.brand" translated
         And I should see the key "pel.model" translated
-        And I should see the key "pel.phone.number.line" translated
+        And I should see the key "pel.mobile" translated
         And I should see the key "pel.operator" translated
         And I should see the key "pel.serial.number" translated
         And I should see the key "pel.description" translated

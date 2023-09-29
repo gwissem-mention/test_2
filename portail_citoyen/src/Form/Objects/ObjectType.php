@@ -293,7 +293,7 @@ class ObjectType extends AbstractType
             ])
             ->add('phoneNumberLine', PhoneType::class, [
                 'label' => false,
-                'number_label' => 'pel.phone.number.line',
+                'number_label' => 'pel.mobile',
                 'number_required' => false,
             ])
             ->add('operator', TextType::class, [
