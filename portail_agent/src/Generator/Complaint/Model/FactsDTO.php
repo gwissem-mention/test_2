@@ -42,6 +42,7 @@ class FactsDTO
     private string $startAddressInseeCode;
     private string $startAddressCity;
     private string $startAddressDepartmentNumber;
+    private ?string $endAddress = null;
     private ?string $endAddressCountry = null;
     private ?string $endAddressDepartment = null;
     private ?string $endAddressPostalCode = null;
@@ -74,6 +75,7 @@ class FactsDTO
     private string $callingPhone;
     private string $factsWebsite;
     private string $exactDateKnown;
+    private string $startAddress;
 
     public function __construct(Complaint $complaint)
     {
@@ -85,6 +87,7 @@ class FactsDTO
             $facts->getNatures() ?? []
         );
         $this->manop = $facts->getDescription() ?? '';
+        $this->startAddress = $facts->getStartAddress() ?? '';
         $this->startAddressCountry = $facts->getStartAddressCountry() ?? '';
         $this->startAddressDepartment = $facts->getStartAddressDepartment() ?? '';
         $this->startAddressPostalCode = $facts->getStartAddressPostalCode() ?? '';
@@ -120,6 +123,7 @@ class FactsDTO
 
         $this->isNaturePlaceTransports = in_array($facts->getPlace(), self::NATURES_PLACE_TRANSPORTS);
         if ($this->isNaturePlaceTransports) {
+            $this->endAddress = $facts->getEndAddress();
             $this->endAddressCountry = $facts->getEndAddressCountry();
             $this->endAddressDepartment = $facts->getEndAddressDepartment();
             $this->endAddressPostalCode = $facts->getEndAddressPostalCode();
@@ -145,6 +149,7 @@ class FactsDTO
             'Faits_Expose' => implode(' / ', $this->presentation),
             'Faits_Expose_GN' => implode(' / ', $this->presentation),
             'Faits_Manop' => $this->manop,
+            'Faits_Localisation_Adresse' => $this->isNaturePlaceTransports ? $this->endAddress : $this->startAddress,
             'Faits_Localisation_Pays' => $this->isNaturePlaceTransports ? $this->endAddressCountry : $this->startAddressCountry,
             'Faits_Localisation_Departement' => $this->isNaturePlaceTransports ? $this->endAddressDepartmentNumber.' - '.$this->endAddressDepartment : $this->startAddressDepartmentNumber.' - '.$this->startAddressDepartment,
             'Faits_Localisation_Codepostal' => $this->isNaturePlaceTransports ? $this->endAddressPostalCode : $this->startAddressPostalCode,
