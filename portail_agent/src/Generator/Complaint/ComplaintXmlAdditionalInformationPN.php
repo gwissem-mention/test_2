@@ -26,6 +26,7 @@ class ComplaintXmlAdditionalInformationPN
         $exposedFacts .= $this->setWitnesses($complaint); // set at  14th position
         $exposedFacts .= $this->setIntervention($complaint);  // Set at 15th position
         $exposedFacts .= $this->setObservationMade($complaint); // set at 16th position
+        $exposedFacts .= $this->setConclusion($complaint); // set at 19th position
 
         return $exposedFacts;
     }
@@ -185,5 +186,10 @@ class ComplaintXmlAdditionalInformationPN
     private function setFactsDescription(Complaint $complaint): string
     {
         return sprintf("Sur l'exposé des faits, la personne déclarante indique : %s", $complaint->getFacts()?->getDescription());
+    }
+
+    private function setConclusion(Complaint $complaint): string
+    {
+        return 'Cette personne souhaite déposer plainte contre X pour les faits apportés dans sa télédéclaration ci-après annexée.';
     }
 }
