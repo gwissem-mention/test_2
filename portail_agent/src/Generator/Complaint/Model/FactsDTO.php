@@ -73,6 +73,7 @@ class FactsDTO
     private string $place;
     private string $callingPhone;
     private string $factsWebsite;
+    private string $exactDateKnown;
 
     public function __construct(Complaint $complaint)
     {
@@ -132,6 +133,7 @@ class FactsDTO
         $this->place = $complaint->getFacts()?->getPlace() ?? '';
         $this->callingPhone = $complaint->getFacts()?->getCallingPhone() ?? '';
         $this->factsWebsite = $complaint->getFacts()?->getWebsite() ?? '';
+        $this->exactDateKnown = $complaint->getFacts()?->isExactDateKnown() ? 'Oui' : 'Non';
     }
 
     /**
@@ -187,6 +189,7 @@ class FactsDTO
             'NATURE_LIEU' => $this->place,
             'Nature_Lieu_Tel' => $this->callingPhone,
             'Nature_Lieu_URL' => $this->factsWebsite,
+            'Date_Exacte_Faits_Connue' => $this->exactDateKnown,
         ]];
     }
 }

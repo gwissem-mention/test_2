@@ -451,6 +451,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Faits_Prejudice_Autre/>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Prejudice_Physique_Description>Dans ce cas vous devrez être examiné par un médecin et présenter un certificat médical indiquant notamment la durée de votre incapacité temporaire de travail. Les précisions relatives à cet examen vous seront communiquées lors de la fixation du rendez-vous pour la signature de votre plainte</Faits_Prejudice_Physique_Description>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Prejudice_Autre_Description/>', $this->xmlContent);
+        $this->assertStringContainsString('<Date_Exacte_Faits_Connue>Oui</Date_Exacte_Faits_Connue>', $this->xmlContent);
         $this->assertStringContainsString('</Faits>', $this->xmlContent);
     }
 
@@ -651,7 +652,6 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
     public function testVariousSection(): void
     {
         $this->assertStringContainsString('<Divers>', $this->xmlContent);
-        $this->assertStringContainsString('<DIVERS_DATE_EXACTE_FAITS_CONNUE>Oui</DIVERS_DATE_EXACTE_FAITS_CONNUE>', $this->xmlContent);
         $this->assertStringContainsString('<SUSPECTS_INFORMATIONS>Oui</SUSPECTS_INFORMATIONS>', $this->xmlContent);
         $this->assertStringContainsString('<SUSPECTS_DESCRIPTION>2 hommes</SUSPECTS_DESCRIPTION>', $this->xmlContent);
         $this->assertStringContainsString('<TEMOINS_PRESENTS>Oui</TEMOINS_PRESENTS>', $this->xmlContent);
