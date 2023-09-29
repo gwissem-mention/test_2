@@ -53,7 +53,7 @@ Feature:
         When I select "Téléphone portable" from "objects_objects_0_category"
         Then I should see the key "pel.brand" translated
         And I should see the key "pel.model" translated
-        And I should see the key "pel.phone.number.line" translated
+        And I should see the key "pel.mobile" translated
         And I should see the key "pel.operator" translated
         And I should see the key "pel.serial.number" translated
         And I should see the key "pel.serial.number.help" translated

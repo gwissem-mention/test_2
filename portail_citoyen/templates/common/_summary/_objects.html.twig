@@ -106,7 +106,7 @@
                 <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.model'|trans }} : <b>{{ object.model }}</b></li>
             {% endif %}
             {% if object.phoneNumberLine is not null and object.phoneNumberLine.number is not null %}
-                <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.phone.number.line'|trans }} : <b>{{ object.phoneNumberLine|phone_format_intl }}</b></li>
+                <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.mobile'|trans }} : <b>{{ object.phoneNumberLine|phone_format_intl }}</b></li>
             {% endif %}
             {% if object.operator is not null %}
                 <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.operator'|trans }} : <b>{{ object.operator }}</b></li>

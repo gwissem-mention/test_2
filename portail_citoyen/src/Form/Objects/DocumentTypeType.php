@@ -70,12 +70,14 @@ class DocumentTypeType extends AbstractType
             ->add('documentIssuedOn', DateType::class, [
                 'widget' => 'single_text',
                 'label' => 'pel.document.issued.on',
+                'help' => 'pel.date.help',
                 'required' => false,
                 'priority' => -2,
             ])
             ->add('documentValidityEndDate', DateType::class, [
                 'widget' => 'single_text',
                 'label' => 'pel.document.validity.end.date',
+                'help' => 'pel.date.help',
                 'required' => false,
                 'priority' => -2,
             ]);

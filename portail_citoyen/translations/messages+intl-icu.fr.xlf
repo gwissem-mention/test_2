@@ -1698,10 +1698,6 @@
                 <source>pel.phone.is.invalid</source>
                 <target>Le numéro de téléphone n’est pas valide</target>
             </trans-unit>
-            <trans-unit id="pel.phone.number.line">
-                <source>pel.phone.number.line</source>
-                <target>N° de la ligne de téléphone</target>
-            </trans-unit>
             <trans-unit id="pel.portal">
                 <source>pel.portal</source>
                 <target>Portail</target>
