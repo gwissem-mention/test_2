@@ -225,6 +225,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                             ->setStreetName('Rue de la république')
                             ->setStreetType('Rue')
                             ->setAddress('1 Rue de la république, Paris, 75000')
+                            ->setSameAddressAsDeclarant(false)
                     );
             }
 

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Generator\Complaint\Model;
 
 use App\Entity\Corporation;
+use App\Entity\Identity;
 
 class CorporationRepresentedDTO
 {
@@ -27,8 +28,9 @@ class CorporationRepresentedDTO
     private string $place;
     private string $phone;
     private string $email;
+    private string $sameAddressAsDeclarant;
 
-    public function __construct(Corporation $corporation)
+    public function __construct(Corporation $corporation, Identity $identity)
     {
         $this->siretNumber = $corporation->getSiretNumber() ?? '';
         $this->sirenNumber = $corporation->getSiretNumber() ? substr($corporation->getSiretNumber(), 0, 9) : '';
@@ -37,18 +39,20 @@ class CorporationRepresentedDTO
         $this->implication = $corporation->getDeclarantPosition() ?? '';
         $this->phone = $corporation->getPhone() ?? '';
         $this->nationality = $corporation->getNationality() ?? '';
-        $this->country = $corporation->getCountry() ?? '';
-        $this->department = $corporation->getDepartment() ?? '';
-        $this->departmentNumber = (string) $corporation->getDepartmentNumber();
-        $this->city = $corporation->getCity() ?? '';
-        $this->postCode = $corporation->getPostCode() ?? '';
-        $this->inseeCode = $corporation->getInseeCode() ?? '';
-        $this->streetType = $corporation->getStreetType() ?? '';
-        $this->streetNumber = (string) $corporation->getStreetNumber();
-        $this->streetName = $corporation->getStreetName() ?? '';
-        $this->address = $corporation->getAddress() ?? '';
-        $this->place = ($corporation->getCity() ? strtoupper($corporation->getCity()).' ' : '').($corporation->getPostCode() ? $corporation->getPostCode().' ' : '').($corporation->getCountry() ? '('.$corporation->getCountry().')' : '');
+        $hasSameAddressAsDeclarant = $corporation->hasSameAddressAsDeclarant();
+        $this->country = (string) (true === $hasSameAddressAsDeclarant ? $identity->getAddressCountry() : $corporation->getCountry());
+        $this->department = (string) (true === $hasSameAddressAsDeclarant ? $identity->getAddressDepartment() : $corporation->getDepartment());
+        $this->departmentNumber = (string) (true === $hasSameAddressAsDeclarant ? $identity->getAddressDepartmentNumber() : $corporation->getDepartmentNumber());
+        $this->city = (string) (true === $hasSameAddressAsDeclarant ? $identity->getAddressCity() : $corporation->getCity());
+        $this->postCode = (string) (true === $hasSameAddressAsDeclarant ? $identity->getAddressPostcode() : $corporation->getPostCode());
+        $this->inseeCode = (string) (true === $hasSameAddressAsDeclarant ? $identity->getAddressInseeCode() : $corporation->getInseeCode());
+        $this->streetType = true === $hasSameAddressAsDeclarant ? $identity->getAddressStreetCompleteName() : $corporation->getStreetCompleteName();
+        $this->streetNumber = (string) (true === $hasSameAddressAsDeclarant ? $identity->getAddressStreetNumber() : $corporation->getStreetNumber());
+        $this->streetName = (string) (true === $hasSameAddressAsDeclarant ? $identity->getAddressStreetName() : $corporation->getStreetName());
+        $this->address = (string) (true === $hasSameAddressAsDeclarant ? $identity->getAddress() : $corporation->getAddress());
+        $this->place = ($this->country ? strtoupper($this->country).', ' : '').($this->city ? strtoupper($this->city).', ' : '').($this->address ?: '');
         $this->email = $corporation->getContactEmail() ?? '';
+        $this->sameAddressAsDeclarant = $hasSameAddressAsDeclarant ? 'Oui' : 'Non';
     }
 
     /**
@@ -78,6 +82,7 @@ class CorporationRepresentedDTO
             'Personne_Morale_Residence_RueNom' => $this->streetName,
             'Personne_Morale_Residence_Adresse' => $this->address,
             'Personne_Morale_Residence_Lieu' => $this->place,
+            'Personne_Morale_Residence_Identique' => $this->sameAddressAsDeclarant,
             'Mail_Personne_Morale' => $this->email,
         ]];
     }

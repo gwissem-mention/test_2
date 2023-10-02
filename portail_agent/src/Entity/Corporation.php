@@ -64,6 +64,9 @@ class Corporation
     #[ORM\Column(length: 255)]
     private ?string $postCode = null;
 
+    #[ORM\Column(options: ['default' => false])]
+    private ?bool $sameAddressAsDeclarant = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -259,5 +262,22 @@ class Corporation
         $this->postCode = $postCode;
 
         return $this;
+    }
+
+    public function hasSameAddressAsDeclarant(): ?bool
+    {
+        return $this->sameAddressAsDeclarant;
+    }
+
+    public function setSameAddressAsDeclarant(bool $sameAddressAsDeclarant): self
+    {
+        $this->sameAddressAsDeclarant = $sameAddressAsDeclarant;
+
+        return $this;
+    }
+
+    public function getStreetCompleteName(): string
+    {
+        return $this->streetNumber.' '.$this->streetType.' '.$this->streetName;
     }
 }

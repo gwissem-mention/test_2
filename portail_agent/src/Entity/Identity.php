@@ -11,6 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Identity
 {
     use AlertTrait;
+
     public const CIVILITY_MALE = 1;
     public const CIVILITY_FEMALE = 2;
 
@@ -467,5 +468,10 @@ class Identity
         $this->jobThesaurus = $jobThesaurus;
 
         return $this;
+    }
+
+    public function getAddressStreetCompleteName(): string
+    {
+        return $this->addressStreetNumber.' '.$this->addressStreetType.' '.$this->addressStreetName;
     }
 }

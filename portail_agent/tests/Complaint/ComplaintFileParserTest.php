@@ -184,7 +184,8 @@ class ComplaintFileParserTest extends KernelTestCase
                 "longitude": null
             },
             "foreignAddress": null,
-            "email": "entreprise@gmail.com"
+            "email": "entreprise@gmail.com",
+            "sameAddress": false
         }
 	},
 	"facts":
