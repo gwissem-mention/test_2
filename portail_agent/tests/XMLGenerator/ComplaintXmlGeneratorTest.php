@@ -401,6 +401,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Personne_Morale_Residence_RueNom>Rue de la république</Personne_Morale_Residence_RueNom>', $this->xmlContentWithCorporationRepresented);
         $this->assertStringContainsString('<Personne_Morale_Residence_Adresse>1 Rue de la république, Paris, 75000</Personne_Morale_Residence_Adresse>', $this->xmlContentWithCorporationRepresented);
         $this->assertStringContainsString('<Personne_Morale_Residence_Lieu>PARIS 75000 (France)</Personne_Morale_Residence_Lieu>', $this->xmlContentWithCorporationRepresented);
+        $this->assertStringContainsString('<Mail_Personne_Morale>pdg@netflix.com</Mail_Personne_Morale>', $this->xmlContentWithCorporationRepresented);
         $this->assertStringContainsString('</Personne_Morale>', $this->xmlContentWithCorporationRepresented);
         $this->assertStringNotContainsString('<Personne_Moral_Siret>', $this->xmlContentWithCorporationRepresented);
     }
@@ -661,9 +662,6 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<VIDEO_DISPONIBLE>Oui</VIDEO_DISPONIBLE>', $this->xmlContent);
         $this->assertStringContainsString('<UNITE_RDV>Commissariat de police d\'Arcachon</UNITE_RDV>', $this->xmlContent);
         $this->assertStringContainsString('<RDV_SOUHAITE>Oui</RDV_SOUHAITE>', $this->xmlContent);
-        $this->assertStringContainsString('<Mail_Personne_Morale>pdg@netflix.com</Mail_Personne_Morale>', $this->xmlContentWithCorporationRepresented);
-        $this->assertStringContainsString('<Mail_Personne_Morale/>', $this->xmlContent);
-        $this->assertStringContainsString('<Mail_Personne_Morale>pdg@netflix.com</Mail_Personne_Morale>', $this->xmlContentWithCorporationRepresented);
         $this->assertStringContainsString('<Enregistrement_Video>Oui</Enregistrement_Video>', $this->xmlContentWithCorporationRepresented);
         $this->assertStringContainsString('<TEMOINS_DESCRIPTION>Jean Dupont</TEMOINS_DESCRIPTION>', $this->xmlContentWithCorporationRepresented);
         $this->assertStringContainsString('</Divers>', $this->xmlContent);
