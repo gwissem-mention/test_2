@@ -32,7 +32,7 @@
             </trans-unit>
             <trans-unit id="pel.3.your.request.is.processed.within.48h">
                 <source>pel.3.your.request.is.processed.within.48h</source>
-                <target>Votre demande sera traitée par un agent</target>
+                <target>Votre demande sera prise en compte par le service traitant.</target>
             </trans-unit>
             <trans-unit id="pel.address.choose">
                 <source>pel.address.choose</source>
