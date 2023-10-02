@@ -39,6 +39,7 @@ class WitnessType extends AbstractType
                 ],
                 'required' => false,
                 'label' => 'pel.witness.email',
+                'help' => 'pel.email.help',
             ])
             ->add('phone', PhoneType::class, [
                 'required' => false,

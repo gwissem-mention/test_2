@@ -2,7 +2,7 @@
     {{ form_start(form, {attr: {'data-action': 'live#action complaint-submit#submit','data-action-name': 'prevent|submit'}}) }}
     <div class="fr-pt-10v fr-pb-12v fr-px-6v fr-py-md-12v fr-px-md-20v">
         <h1 class="text-[28px]/9 md:text-[40px]/[48px] fr-mb-2v">{{ 'pel.goods.concerned'|trans }}</h1>
-        <div class="leading-8">{{ 'pel.all.fields.marked.with.an.asterisk.are.mandatory'|trans|raw }}</div>
+        <p class="fr-mb-0 leading-8">{{ 'pel.all.fields.marked.with.an.asterisk.are.mandatory'|trans|raw }}</p>
         <div class="flex gap-x-8 [&:not(:empty)]:mt-5 [&:not(:empty)]:mb-3">{% for object in form.objects %}{% if object.label is defined and object.label.vars.value is not empty %}<a class="fr-text fr-text-title--blue-france" href="#accordion__title-{{ loop.index }}">{{ object.label.vars.value }}</a>{% endif %}{% endfor %}</div>
     </div>
     <div class="fr-accordions-group">
@@ -110,6 +110,7 @@
             </a>
             <button type="submit"
                     class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line fr-text--lg py-2.5 pr-[18px] pl-6 after:w-6 after:h-6"
+                    {% if this.fromSummary is not same as(true) %} aria-label="{{ 'pel.next.aria-label'|trans }}" {% endif %}
                     id="objects_submit" {% if this.fromSummary is same as(true) %} data-action="live#action" data-action-name="prevent|submit" {% endif %}>{{ this.fromSummary is same as(true) ? 'pel.save.and.go.to.next'|trans : 'pel.next'|trans }}</button>
             {% if this.fromSummary is same as(true) %}
                 <button type="submit"
