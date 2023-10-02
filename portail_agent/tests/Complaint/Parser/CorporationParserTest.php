@@ -73,7 +73,8 @@ class CorporationParserTest extends KernelTestCase
 			"longitude": null
 		},
 		"foreignAddress": null,
-		"email": "entreprise@gmail.com"
+		"email": "entreprise@gmail.com",
+		"sameAddress": false
 	}
 }', false, 512, JSON_THROW_ON_ERROR);
 
@@ -96,6 +97,7 @@ class CorporationParserTest extends KernelTestCase
         $this->assertEquals('', $corporation->getStreetType());
         $this->assertEquals('Boulevard du Port', $corporation->getStreetName());
         $this->assertEquals('80000', $corporation->getPostCode());
+        $this->assertFalse($corporation->hasSameAddressAsDeclarant());
     }
 
     public function testParseForeignAddress(): void
@@ -147,7 +149,8 @@ class CorporationParserTest extends KernelTestCase
             "longitude": null
         },
 		"frenchAddress": null,
-		"email": null
+		"email": null,
+		"sameAddress": false
 	}', false, 512, JSON_THROW_ON_ERROR);
 
         $corporation = $parser->parse($corporationContent);
@@ -168,6 +171,7 @@ class CorporationParserTest extends KernelTestCase
         $this->assertEquals('Av.', $corporation->getStreetType());
         $this->assertEquals('Roque Nublo', $corporation->getStreetName());
         $this->assertEquals('28223', $corporation->getPostCode());
+        $this->assertFalse($corporation->hasSameAddressAsDeclarant());
         $this->assertNull($corporation->getContactEmail());
     }
 
@@ -203,7 +207,8 @@ class CorporationParserTest extends KernelTestCase
            "label": "Avenue de la république Paris"
         },
 		"foreignAddress": null,
-		"email": null
+		"email": null,
+		"sameAddress": false
 	}', false, 512, JSON_THROW_ON_ERROR);
 
         $corporation = $parser->parse($corporationContent);
@@ -225,5 +230,6 @@ class CorporationParserTest extends KernelTestCase
         $this->assertEmpty($corporation->getStreetName());
         $this->assertEmpty($corporation->getPostCode());
         $this->assertNull($corporation->getContactEmail());
+        $this->assertFalse($corporation->hasSameAddressAsDeclarant());
     }
 }

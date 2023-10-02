@@ -288,6 +288,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                         ->setStreetType('Rue')
                         ->setStreetName('Test')
                         ->setAddress($this->faker->address)
+                        ->setSameAddressAsDeclarant(false)
                 );
             }
 

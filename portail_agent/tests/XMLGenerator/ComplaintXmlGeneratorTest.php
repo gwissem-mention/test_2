@@ -281,6 +281,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
                     ->setStreetName('Rue de la république')
                     ->setStreetType('Rue')
                     ->setAddress('1 Rue de la république, Paris, 75000')
+                    ->setSameAddressAsDeclarant(true)
             );
 
         /** @var string $xmlWithCorporationRepresented */
@@ -336,7 +337,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Personne_Residence_Commune>Meudon</Personne_Residence_Commune>', $this->xmlContent);
         $this->assertStringContainsString('<Personne_Residence_HidNumDep>92</Personne_Residence_HidNumDep>', $this->xmlContent);
         $this->assertStringContainsString('<Personne_Residence_RueNo>15</Personne_Residence_RueNo>', $this->xmlContent);
-        $this->assertStringContainsString('<Personne_Residence_RueType>15 PAIRA</Personne_Residence_RueType>', $this->xmlContent);
+        $this->assertStringContainsString('<Personne_Residence_RueType>15 Rue PAIRA</Personne_Residence_RueType>', $this->xmlContent);
         $this->assertStringContainsString('<Personne_Residence_RueNom>PAIRA</Personne_Residence_RueNom>', $this->xmlContent);
         $this->assertStringContainsString('<Personne_Residence_Adresse>15 rue PAIRA, Meudon, 92190</Personne_Residence_Adresse>', $this->xmlContent);
         $this->assertStringContainsString('<Personne_Residence_Lieu>FRANCE, MEUDON, 15 rue PAIRA, Meudon, 92190</Personne_Residence_Lieu>', $this->xmlContent);
@@ -370,7 +371,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Representant_Legal_Residence_Commune>Meudon</Representant_Legal_Residence_Commune>', $this->xmlContent);
         $this->assertStringContainsString('<Representant_Legal_Residence_HidNumDep>92</Representant_Legal_Residence_HidNumDep>', $this->xmlContent);
         $this->assertStringContainsString('<Representant_Legal_Residence_RueNo>15</Representant_Legal_Residence_RueNo>', $this->xmlContent);
-        $this->assertStringContainsString('<Representant_Legal_Residence_RueType>15 PAIRA</Representant_Legal_Residence_RueType>', $this->xmlContent);
+        $this->assertStringContainsString('<Representant_Legal_Residence_RueType>15 Rue PAIRA</Representant_Legal_Residence_RueType>', $this->xmlContent);
         $this->assertStringContainsString('<Representant_Legal_Residence_RueNom>PAIRA</Representant_Legal_Residence_RueNom>', $this->xmlContent);
         $this->assertStringContainsString('<Representant_Legal_Residence_Adresse>15 rue PAIRA, Meudon, 92190</Representant_Legal_Residence_Adresse>', $this->xmlContent);
         $this->assertStringContainsString('<Representant_Legal_Residence_Lieu>FRANCE, MEUDON, 15 rue PAIRA, Meudon, 92190</Representant_Legal_Residence_Lieu>', $this->xmlContent);
@@ -391,19 +392,18 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Personne_Morale_Secteur/>', $this->xmlContentWithCorporationRepresented);
         $this->assertStringContainsString('<Personne_Morale_Juridique/>', $this->xmlContentWithCorporationRepresented);
         $this->assertStringContainsString('<Personne_Morale_Residence_Pays>France</Personne_Morale_Residence_Pays>', $this->xmlContentWithCorporationRepresented);
-        $this->assertStringContainsString('<Personne_Morale_Residence_Departement>75 - Paris</Personne_Morale_Residence_Departement>', $this->xmlContentWithCorporationRepresented);
-        $this->assertStringContainsString('<Personne_Morale_Residence_Codepostal>75000</Personne_Morale_Residence_Codepostal>', $this->xmlContentWithCorporationRepresented);
-        $this->assertStringContainsString('<Personne_Morale_Residence_Insee>75056</Personne_Morale_Residence_Insee>', $this->xmlContentWithCorporationRepresented);
-        $this->assertStringContainsString('<Personne_Morale_Residence_Commune>Paris</Personne_Morale_Residence_Commune>', $this->xmlContentWithCorporationRepresented);
-        $this->assertStringContainsString('<Personne_Morale_Residence_HidNumDep>75</Personne_Morale_Residence_HidNumDep>', $this->xmlContentWithCorporationRepresented);
-        $this->assertStringContainsString('<Personne_Morale_Residence_RueNo>1</Personne_Morale_Residence_RueNo>', $this->xmlContentWithCorporationRepresented);
-        $this->assertStringContainsString('<Personne_Morale_Residence_RueType>Rue</Personne_Morale_Residence_RueType>', $this->xmlContentWithCorporationRepresented);
-        $this->assertStringContainsString('<Personne_Morale_Residence_RueNom>Rue de la république</Personne_Morale_Residence_RueNom>', $this->xmlContentWithCorporationRepresented);
-        $this->assertStringContainsString('<Personne_Morale_Residence_Adresse>1 Rue de la république, Paris, 75000</Personne_Morale_Residence_Adresse>', $this->xmlContentWithCorporationRepresented);
-        $this->assertStringContainsString('<Personne_Morale_Residence_Lieu>PARIS 75000 (France)</Personne_Morale_Residence_Lieu>', $this->xmlContentWithCorporationRepresented);
+        $this->assertStringContainsString('<Personne_Morale_Residence_Departement>92 - Hauts-de-Seine</Personne_Morale_Residence_Departement>', $this->xmlContentWithCorporationRepresented);
+        $this->assertStringContainsString('<Personne_Morale_Residence_Codepostal>92190</Personne_Morale_Residence_Codepostal>', $this->xmlContentWithCorporationRepresented);
+        $this->assertStringContainsString('<Personne_Morale_Residence_Insee>92048</Personne_Morale_Residence_Insee>', $this->xmlContentWithCorporationRepresented);
+        $this->assertStringContainsString('<Personne_Morale_Residence_Commune>Meudon</Personne_Morale_Residence_Commune>', $this->xmlContentWithCorporationRepresented);
+        $this->assertStringContainsString('<Personne_Morale_Residence_HidNumDep>92</Personne_Morale_Residence_HidNumDep>', $this->xmlContentWithCorporationRepresented);
+        $this->assertStringContainsString('<Personne_Morale_Residence_RueNo>15</Personne_Morale_Residence_RueNo>', $this->xmlContentWithCorporationRepresented);
+        $this->assertStringContainsString('<Personne_Morale_Residence_RueType>15 Rue PAIRA</Personne_Morale_Residence_RueType>', $this->xmlContentWithCorporationRepresented);
+        $this->assertStringContainsString('<Personne_Morale_Residence_RueNom>PAIRA</Personne_Morale_Residence_RueNom>', $this->xmlContentWithCorporationRepresented);
+        $this->assertStringContainsString('<Personne_Morale_Residence_Adresse>15 rue PAIRA, Meudon, 92190</Personne_Morale_Residence_Adresse>', $this->xmlContentWithCorporationRepresented);
+        $this->assertStringContainsString('<Personne_Morale_Residence_Lieu>FRANCE, MEUDON, 15 rue PAIRA, Meudon, 92190</Personne_Morale_Residence_Lieu>', $this->xmlContentWithCorporationRepresented);
         $this->assertStringContainsString('<Mail_Personne_Morale>pdg@netflix.com</Mail_Personne_Morale>', $this->xmlContentWithCorporationRepresented);
         $this->assertStringContainsString('</Personne_Morale>', $this->xmlContentWithCorporationRepresented);
-        $this->assertStringNotContainsString('<Personne_Moral_Siret>', $this->xmlContentWithCorporationRepresented);
     }
 
     public function testFactsSection(): void

@@ -50,7 +50,7 @@ class ComplaintXmlGenerator implements ComplaintGeneratorInterface
             $xml = $this->arrayToXml($xml, (new PersonLegalRepresentativeDTO($identity))->getArray());
         } elseif ($identity && Identity::DECLARANT_STATUS_CORPORATION_LEGAL_REPRESENTATIVE === $identity->getDeclarantStatus() && ($corporation = $complaint->getCorporationRepresented())) {
             $xml = $this->arrayToXml($xml, (new PersonDTO($identity, $complaint))->getArray());
-            $xml = $this->arrayToXml($xml, (new CorporationRepresentedDTO($corporation))->getArray());
+            $xml = $this->arrayToXml($xml, (new CorporationRepresentedDTO($corporation, $identity))->getArray());
         }
         if ($complaint->getFacts()) {
             $data = (new FactsDTO($complaint))->getArray();
