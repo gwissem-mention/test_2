@@ -26,6 +26,7 @@ class CorporationRepresentedDTO
     private string $address;
     private string $place;
     private string $phone;
+    private string $email;
 
     public function __construct(Corporation $corporation)
     {
@@ -47,6 +48,7 @@ class CorporationRepresentedDTO
         $this->streetName = $corporation->getStreetName() ?? '';
         $this->address = $corporation->getAddress() ?? '';
         $this->place = ($corporation->getCity() ? strtoupper($corporation->getCity()).' ' : '').($corporation->getPostCode() ? $corporation->getPostCode().' ' : '').($corporation->getCountry() ? '('.$corporation->getCountry().')' : '');
+        $this->email = $corporation->getContactEmail() ?? '';
     }
 
     /**
@@ -76,6 +78,7 @@ class CorporationRepresentedDTO
             'Personne_Morale_Residence_RueNom' => $this->streetName,
             'Personne_Morale_Residence_Adresse' => $this->address,
             'Personne_Morale_Residence_Lieu' => $this->place,
+            'Mail_Personne_Morale' => $this->email,
         ]];
     }
 }

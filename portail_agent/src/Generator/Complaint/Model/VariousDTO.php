@@ -19,7 +19,6 @@ class VariousDTO
     private string $cctvAvailable;
     private string $appointmentUnit;
     private string $appointmentAsked;
-    private string $corporationContactEmail;
     private string $cctvPresent;
     private string $witnessesText = '';
 
@@ -32,7 +31,6 @@ class VariousDTO
         $this->observationMade = $complaint->getAdditionalInformation()?->isObservationMade() ? 'Oui' : 'Non';
         $this->cctvAvailable = $complaint->getAdditionalInformation()?->isCctvAvailable() ? 'Oui' : 'Non';
         $this->appointmentAsked = $complaint->isAppointmentAsked() ? 'Oui' : 'Non';
-        $this->corporationContactEmail = $complaint->getCorporationRepresented()?->getContactEmail() ?? '';
         $this->appointmentUnit = $unitRepository->findOneBy(['code' => $complaint->getUnitAssigned()])?->getName() ?? '';
         $this->cctvPresent = match ($complaint->getAdditionalInformation()?->getCctvPresent()) {
             AdditionalInformation::CCTV_PRESENT_YES => 'Oui',
@@ -62,7 +60,6 @@ class VariousDTO
             'VIDEO_DISPONIBLE' => $this->cctvAvailable,
             'UNITE_RDV' => $this->appointmentUnit,
             'RDV_SOUHAITE' => $this->appointmentAsked,
-            'Mail_Personne_Morale' => $this->corporationContactEmail,
             'Enregistrement_Video' => $this->cctvPresent,
             'TEMOINS_DESCRIPTION' => $this->witnessesText,
         ]];
