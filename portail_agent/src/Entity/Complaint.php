@@ -353,6 +353,11 @@ class Complaint
         return $this->getStolenObjects()->filter(fn (AbstractObject $object) => $object instanceof SimpleObject);
     }
 
+    public function hasObjectsWithAmount(): bool
+    {
+        return !$this->getObjects()->filter(fn (AbstractObject $object) => null !== $object->getAmount())->isEmpty();
+    }
+
     /**
      * @return ReadableCollection<int, AbstractObject>
      */
