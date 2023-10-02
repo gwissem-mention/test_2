@@ -10,7 +10,7 @@
                 <img src="{{ asset('build/images/national-identity-card.svg') }}" width="40" height="36">
                 <h2 class="fr-mb-0 text-2xl">{{ 'pel.complaint.your.identity'|trans }}</h2>
             </div>
-            <a class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-edit-line fr-hidden fr-unhidden-md fr-py-1v min-h-fit" href="{{ path('complaint_identity', {'fromSummary':1}) }}" id="update-identity">{{ 'pel.update'|trans }}</a>
+            <a class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-edit-line fr-hidden fr-unhidden-md fr-py-1v min-h-fit" title="{{ 'pel.update.title.identity'|trans }}" href="{{ path('complaint_identity', {'fromSummary':1}) }}" id="update-identity">{{ 'pel.update'|trans }}</a>
         </div>
         <ul class="fr-pl-8v fr-my-0">
             {{ include('common/_summary/_identity.html.twig', {
@@ -33,7 +33,7 @@
         {% if complaint.identity.declarantStatus is same as(constant('App\\AppEnum\\DeclarantStatus::CorporationLegalRepresentative').value) %}
             {{ include('common/_summary/_corporation.html.twig') }}
         {% endif %}
-        <a class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-edit-line md:hidden fr-py-1v min-h-fit" href="{{ path('complaint_identity', {'fromSummary':1}) }}" id="update-identity">{{ 'pel.update'|trans }}</a>
+        <a class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-edit-line md:hidden fr-py-1v min-h-fit" title="{{ 'pel.update.title.identity'|trans }}" href="{{ path('complaint_identity', {'fromSummary':1}) }}" id="update-identity">{{ 'pel.update'|trans }}</a>
     </div>
     <hr>
     <div class="fr-pt-4v fr-pb-12v fr-px-6v fr-pt-md-6v fr-px-md-20v fr-pb-md-6v">
@@ -42,10 +42,10 @@
                 <img src="{{ asset('build/images/document.svg') }}" class="-ml-2" height="48">
                 <h2 class="fr-mb-0 text-2xl">{{ 'pel.facts.description'|trans }}</h2>
             </div>
-            <a class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-edit-line fr-hidden fr-unhidden-md fr-py-1v min-h-fit" href="{{ path('complaint_facts', {'fromSummary':1}) }}" id="update-facts">{{ 'pel.update'|trans }}</a>
+            <a class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-edit-line fr-hidden fr-unhidden-md fr-py-1v min-h-fit" title="{{ 'pel.update.title.facts'|trans }}" href="{{ path('complaint_facts', {'fromSummary':1}) }}" id="update-facts">{{ 'pel.update'|trans }}</a>
         </div>
         {{ include('common/_summary/_facts.html.twig') }}
-        <a class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-edit-line md:hidden fr-py-1v min-h-fit" href="{{ path('complaint_facts', {'fromSummary':1}) }}" id="update-facts">{{ 'pel.update'|trans }}</a>
+        <a class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-edit-line md:hidden fr-py-1v min-h-fit" title="{{ 'pel.update.title.facts'|trans }}" href="{{ path('complaint_facts', {'fromSummary':1}) }}" id="update-facts">{{ 'pel.update'|trans }}</a>
     </div>
     <hr>
     <div class="fr-pt-4v fr-pb-12v fr-px-6v fr-pt-md-6v fr-px-md-20v fr-pb-md-6v">
@@ -54,10 +54,10 @@
                 <img src="{{ asset('build/images/vehicle-registration-document.svg') }}">
                 <h2 class="fr-mb-0 text-2xl">{{ 'pel.goods.concerned.by.the.offence'|trans }}</h2>
             </div>
-            <a class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-edit-line fr-hidden fr-unhidden-md fr-py-1v min-h-fit" href="{{ path('complaint_objects', {'fromSummary':1}) }}" id="update-objects">{{ 'pel.update'|trans }}</a>
+            <a class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-edit-line fr-hidden fr-unhidden-md fr-py-1v min-h-fit" title="{{ 'pel.update.title.objects'|trans }}" href="{{ path('complaint_objects', {'fromSummary':1}) }}" id="update-objects">{{ 'pel.update'|trans }}</a>
         </div>
         {{ include('common/_summary/_objects.html.twig') }}
-        <a class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-edit-line md:hidden fr-mt-2v fr-py-1v min-h-fit" href="{{ path('complaint_objects', {'fromSummary':1}) }}" id="update-objects">{{ 'pel.update'|trans }}</a>
+        <a class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-edit-line md:hidden fr-mt-2v fr-py-1v min-h-fit" title="{{ 'pel.update.title.objects'|trans }}" href="{{ path('complaint_objects', {'fromSummary':1}) }}" id="update-objects">{{ 'pel.update'|trans }}</a>
     </div>
     <hr>
     <div class="fr-pt-4v fr-pb-12v fr-px-6v fr-pt-md-6v fr-px-md-20v fr-pb-md-6v">
@@ -66,10 +66,10 @@
                 <img src="{{ asset('build/images/error.svg') }}">
                 <h2 class="fr-mb-0 text-2xl">{{ 'pel.additional.factual.information'|trans }}</h2>
             </div>
-            <a class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-edit-line fr-hidden fr-unhidden-md fr-py-1v min-h-fit" href="{{ path('complaint_additional_information', {'fromSummary':1}) }}" id="update-additional-information">{{ 'pel.update'|trans }}</a>
+            <a class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-edit-line fr-hidden fr-unhidden-md fr-py-1v min-h-fit" title="{{ 'pel.update.title.additional.information'|trans }}" href="{{ path('complaint_additional_information', {'fromSummary':1}) }}" id="update-additional-information">{{ 'pel.update'|trans }}</a>
         </div>
         {{ include('common/_summary/_additionnal_informations.html.twig') }}
-        <a class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-edit-line md:hidden  fr-mt-2v fr-py-1v min-h-fit" href="{{ path('complaint_additional_information') }}" id="update-additional-information">{{ 'pel.update'|trans }}</a>
+        <a class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-edit-line md:hidden  fr-mt-2v fr-py-1v min-h-fit" title="{{ 'pel.update.title.additional.information'|trans }}" href="{{ path('complaint_additional_information') }}" id="update-additional-information">{{ 'pel.update'|trans }}</a>
     </div>
     <hr>
     <div class="fr-pt-4v fr-pb-12v fr-px-6v fr-pt-md-6v fr-px-md-20v">
@@ -115,7 +115,7 @@
             <a href="{{ path('complaint_additional_information') }}" class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-arrow-left-line fr-text--lg py-3 md:py-2.5 pr-[5px] pl-[13px] md:pr-6 md:pl-[18px] before:content-[''] before:w-6 before:h-6">
                 <span class="max-lg:visually-hidden">{{ 'pel.previous'|trans }}</span>
             </a>
-            <button type="submit" class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line fr-text--lg py-2.5 pr-[18px] pl-6 after:w-6 after:h-6" aria-label="{{ 'pel.next.aria-label'|trans }}" id="summary_submit" data-action="live#action complaint-submit#submit" data-action-name="prevent|submit">
+            <button type="submit" class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line fr-text--lg py-2.5 pr-[18px] pl-6 after:w-6 after:h-6" aria-label="{{ 'pel.next.summary.aria-label'|trans }}" id="summary_submit" data-action="live#action complaint-submit#submit" data-action-name="prevent|submit">
                 {{ 'pel.next'|trans }}
             </button>
         </div>

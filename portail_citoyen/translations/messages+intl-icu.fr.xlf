@@ -1442,6 +1442,10 @@
                 <source>pel.next.aria-label</source>
                 <target>Continuer et passer à l’étape suivante</target>
             </trans-unit>
+            <trans-unit id="pel.next.summary.aria-label">
+                <source>pel.next.summary.aria-label</source>
+                <target>Continuer et enregistrer la demande</target>
+            </trans-unit>
             <trans-unit id="pel.number">
                 <source>pel.number</source>
                 <target>n°</target>
@@ -2485,6 +2489,22 @@
             <trans-unit id="pel.update">
                 <source>pel.update</source>
                 <target>Modifier</target>
+            </trans-unit>
+            <trans-unit id="pel.update.title.identity">
+                <source>pel.update.title.identity</source>
+                <target>Modifier les informations de l’identification</target>
+            </trans-unit>
+            <trans-unit id="pel.update.title.facts">
+                <source>pel.update.title.facts</source>
+                <target>Modifier la description des faits</target>
+            </trans-unit>
+            <trans-unit id="pel.update.title.objects">
+                <source>pel.update.title.objects</source>
+                <target>Modifier la liste des biens concernés</target>
+            </trans-unit>
+            <trans-unit id="pel.update.title.additional.information">
+                <source>pel.update.title.additional.information</source>
+                <target>Modifier les informations complémentaires</target>
             </trans-unit>
             <trans-unit id="pel.upload.error.messagee">
                 <source>pel.upload.error.message</source>
