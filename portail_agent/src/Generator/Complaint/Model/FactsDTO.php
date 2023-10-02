@@ -76,6 +76,7 @@ class FactsDTO
     private string $factsWebsite;
     private string $exactDateKnown;
     private string $startAddress;
+    private string $hasObjectsWithAmount;
 
     public function __construct(Complaint $complaint)
     {
@@ -138,6 +139,7 @@ class FactsDTO
         $this->callingPhone = $complaint->getFacts()?->getCallingPhone() ?? '';
         $this->factsWebsite = $complaint->getFacts()?->getWebsite() ?? '';
         $this->exactDateKnown = $complaint->getFacts()?->isExactDateKnown() ? 'Oui' : 'Non';
+        $this->hasObjectsWithAmount = $complaint->hasObjectsWithAmount() ? '1' : '0';
     }
 
     /**
@@ -187,7 +189,7 @@ class FactsDTO
             'Faits_Violences_Description' => $this->violenceDescription,
 //            'Faits_Orientation' => $this->orientation,
             'Faits_Prejudice_Physique' => $this->hasHarmPhysique,
-            'Faits_Prejudice_Autre' => '',
+            'Faits_Prejudice_Autre' => $this->hasObjectsWithAmount,
             'Faits_Prejudice_Physique_Description' => $this->hasHarmPhysiqueDescription,
             'Faits_Prejudice_Autre_Description' => '',
             'LIEU_INFORMATION_COMPLEMENTAIRES' => $this->addressAdditionalInformation,
