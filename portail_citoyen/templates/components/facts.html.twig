@@ -205,6 +205,7 @@
             </a>
             <button type="submit"
                     class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line fr-text--lg py-2.5 pr-[18px] pl-6 after:w-6 after:h-6"
+                    {% if this.fromSummary is not same as(true) %} aria-label="{{ 'pel.next.aria-label'|trans }}" {% endif %}
                     id="facts_submit" {% if this.fromSummary is same as(true) %} data-action="live#action" data-action-name="prevent|submit" {% endif %}>{{ this.fromSummary is same as(true) ? 'pel.save.and.go.to.next'|trans : 'pel.next'|trans }}</button>
             {% if this.fromSummary is same as(true) %}
                 <button type="submit"

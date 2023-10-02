@@ -43,7 +43,7 @@
             {% for witness in form.witnesses %}
                 <div class="flex items-center gap-x-3">
                     <span class="fr-icon-group-line" aria-hidden="true"></span>
-                    <h4 class="text-xl/8 fr-mb-0">{{ 'pel.witness'|trans }} {{ 'pel.number'|trans }} {{ loop.index }}</h4>
+                    <h2 class="text-xl/8 fr-mb-0">{{ 'pel.witness'|trans }} {{ 'pel.number'|trans }} {{ loop.index }}</h2>
                 </div>
                 <div class="fr-mt-10v">
                     {{ form_row(witness.description, {'label':'pel.witness.description'|trans({'%index%':loop.index})}) }}
@@ -116,6 +116,7 @@
             </a>
             <button type="submit"
                     class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line fr-text--lg py-2.5 pr-[18px] pl-6 after:w-6 after:h-6"
+                    aria-label="{{ 'pel.next.aria-label'|trans }}"
                     id="additional_information_submit">{{ 'pel.next'|trans }}</button>
         </div>
     </div>
