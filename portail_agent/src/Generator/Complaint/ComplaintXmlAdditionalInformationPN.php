@@ -7,6 +7,7 @@ namespace App\Generator\Complaint;
 use App\Entity\AdditionalInformation;
 use App\Entity\Complaint;
 use App\Entity\Facts;
+use App\Entity\FactsObjects\AbstractObject;
 use App\Entity\FactsObjects\SimpleObject;
 use App\Entity\Identity;
 
@@ -19,20 +20,19 @@ class ComplaintXmlAdditionalInformationPN
         $exposedFacts .= $this->setIsFranceConnected($complaint);
         $exposedFacts .= $this->setJob($complaint);
         $exposedFacts .= $this->setViolences($complaint);
-        $exposedFacts .= $this->setDateAndTimeOfFacts($complaint); // set at 4th position
-        $exposedFacts .= $this->setWitnesses($complaint);
-        $exposedFacts .= $this->setFactsDescription($complaint); // set at 6th position
+        $exposedFacts .= $this->setDateAndTimeOfFacts($complaint);
         $exposedFacts .= $this->setNatureOfPlace($complaint);
-        $exposedFacts .= $this->setSimpleObjectsDegradationDescription($complaint); // set at 10th position
-        $exposedFacts .= $this->setAdditionalInformation(); // Set at 11th position
-        $exposedFacts .= $this->setSuspectsInformation($complaint); // Set at 12th position
+        $exposedFacts .= $this->setFactsDescription($complaint);
         $exposedFacts .= $this->setSimpleObjectsStolen($complaint);
-        $exposedFacts .= $this->setWitnesses($complaint); // set at  14th position
-        $exposedFacts .= $this->setIntervention($complaint);  // Set at 15th position
-        $exposedFacts .= $this->setObservationMade($complaint); // set at 16th position
-        $exposedFacts .= $this->setConclusion($complaint); // set at 19th position
-        $exposedFacts .= $this->setCCTVPresent($complaint); // set at 17th position
-        $exposedFacts .= $this->setCCTVAvailable($complaint); // set at 18th position
+        $exposedFacts .= $this->setSimpleObjectsDegradationDescription($complaint);
+        $exposedFacts .= $this->setAdditionalInformation();
+        $exposedFacts .= $this->setSuspectsInformation($complaint);
+        $exposedFacts .= $this->setWitnesses($complaint);
+        $exposedFacts .= $this->setIntervention($complaint);
+        $exposedFacts .= $this->setObservationMade($complaint);
+        $exposedFacts .= $this->setCCTVPresent($complaint);
+        $exposedFacts .= $this->setCCTVAvailable($complaint);
+        $exposedFacts .= $this->setConclusion();
 
         return $exposedFacts;
     }
@@ -56,10 +56,10 @@ class ComplaintXmlAdditionalInformationPN
     {
         if ($complaint->isFranceConnected()) {
             return $this->generateMessage($complaint, 'd\'un internaute s\'étant authentifié par FranceConnect sous l\'identité suivante %s %s %s, né(e) le %s à %s, %s en  %s, ');
-        } else {
-            return $this->generateMessage($complaint, 'd\'un internaute ne s\'étant pas authentifié par France Connect ayant déclaré l\'identité suivante %s %s %s, né(e) le %s à %s, %s en %s
-                    Il a été indiqué au déclarant lors de sa déclaration qu\'en l\'absence d\'authentification par France Connect un rendez-vous en unité sera nécessaire, ');
         }
+
+        return $this->generateMessage($complaint, 'd\'un internaute ne s\'étant pas authentifié par France Connect ayant déclaré l\'identité suivante %s %s %s, né(e) le %s à %s, %s en %s
+                Il a été indiqué au déclarant lors de sa déclaration qu\'en l\'absence d\'authentification par France Connect un rendez-vous en unité sera nécessaire, ');
     }
 
     private function generateMessage(Complaint $complaint, string $message): string
@@ -110,12 +110,12 @@ class ComplaintXmlAdditionalInformationPN
     {
         if (true === $complaint->getAdditionalInformation()?->isSuspectsKnown()) {
             return sprintf(
-                'La personne déclarante indique avoir de potentielles informations sur les auteurs, à savoir : %s',
+                'La personne déclarante indique avoir de potentielles informations sur les auteurs, à savoir : %s ',
                 $complaint->getAdditionalInformation()->getSuspectsKnownText()
             );
         }
 
-        return 'La personne déclarante n\'apporte pas d\'éléments sur le ou les auteurs de l\'infraction';
+        return 'La personne déclarante n\'apporte pas d\'éléments sur le ou les auteurs de l\'infraction ';
     }
 
     private function setWitnesses(Complaint $complaint): string
@@ -124,7 +124,7 @@ class ComplaintXmlAdditionalInformationPN
         $witnesses = $complaint->getAdditionalInformation()?->getWitnesses();
 
         if (null === $witnesses) {
-            return "La personne déclare ne pas avoir connaissance de témoin de l'infraction";
+            return "La personne déclare ne pas avoir connaissance de témoin de l'infraction ";
         }
 
         foreach ($witnesses as $witness) {
@@ -133,7 +133,7 @@ class ComplaintXmlAdditionalInformationPN
             }
         }
 
-        return sprintf('La personne déclarante déclare pouvoir nous indiquer de potentiels témoins, à savoir %s', implode(', ', $descriptions));
+        return sprintf('La personne déclarante déclare pouvoir nous indiquer de potentiels témoins, à savoir %s ', implode(', ', $descriptions));
     }
 
     private function setSimpleObjectsStolen(Complaint $complaint): string
@@ -155,12 +155,13 @@ class ComplaintXmlAdditionalInformationPN
 
     private function setSimpleObjectsDegradationDescription(Complaint $complaint): string
     {
-        $objects = $complaint->getDegradedObjects();
+        $objects = $complaint->getDegradedObjects()->filter(fn (AbstractObject $object) => $object instanceof SimpleObject);
         if (!$objects->isEmpty()) {
-            $message = ' Sont déclarés dégradés :';
+            $message = ' Sont déclarés dégradés : ';
 
+            /** @var SimpleObject $object */
             foreach ($objects as $object) {
-                if ($object instanceof SimpleObject && $object->getNature()) {
+                if ($object->getNature()) {
                     $message .= sprintf(" %d %s, %s, %s, d'une valeur estimée : %d ", $object->getQuantity(), $object->getNature(), $object->getSerialNumber(), $object->getDescription(), $object->getAmount());
                 }
             }
@@ -174,7 +175,7 @@ class ComplaintXmlAdditionalInformationPN
     private function setObservationMade(Complaint $complaint): string
     {
         if ($complaint->getAdditionalInformation()?->isObservationMade()) {
-            return 'Des relevés de traces ou indices ont été effectués.';
+            return 'Des relevés de traces ou indices ont été effectués. ';
         }
 
         return '';
@@ -212,10 +213,10 @@ class ComplaintXmlAdditionalInformationPN
 
     private function setFactsDescription(Complaint $complaint): string
     {
-        return sprintf("Sur l'exposé des faits, la personne déclarante indique : %s", $complaint->getFacts()?->getDescription());
+        return sprintf("Sur l'exposé des faits, la personne déclarante indique : %s ", $complaint->getFacts()?->getDescription());
     }
 
-    private function setConclusion(Complaint $complaint): string
+    private function setConclusion(): string
     {
         return 'Cette personne souhaite déposer plainte contre X pour les faits apportés dans sa télédéclaration ci-après annexée.';
     }
@@ -223,7 +224,7 @@ class ComplaintXmlAdditionalInformationPN
     private function setCCTVPresent(Complaint $complaint): string
     {
         return sprintf(
-            'La personne déclarante indique : %s',
+            'La personne déclarante indique : %s ',
             match ($complaint->getAdditionalInformation()?->getCctvPresent()) {
                 AdditionalInformation::CCTV_PRESENT_YES => 'qu\'une vidéo des faits existerait',
                 AdditionalInformation::CCTV_PRESENT_NO => 'qu\'il n\'y a pas de vidéo des faits',
@@ -234,7 +235,7 @@ class ComplaintXmlAdditionalInformationPN
     private function setCCTVAvailable(Complaint $complaint): string
     {
         if ($complaint->getAdditionalInformation()?->isCctvAvailable()) {
-            return ' et être en mesure de fournir le support vidéo';
+            return ' et être en mesure de fournir le support vidéo ';
         }
 
         return '';
