@@ -196,7 +196,7 @@ JSON;
             "degradationDescription": null,
             "multimediaNature": null,
             "documentIssuingCountry": null,
-            "paymentCategory": "CARTE BANCAIRE",
+            "paymentCategory": "carte bancaire",
             "checkNumber": null,
             "checkFirstNumber": null,
             "checkLastNumber": null
@@ -493,7 +493,7 @@ JSON;
             "allowOperatorCommunication": null,
             "degradationDescription": null,
             "multimediaNature": null,
-            "paymentCategory": "CHEQUIER",
+            "paymentCategory": "chequier",
             "checkNumber": "ABCD1234",
             "checkFirstNumber": "AAA",
             "checkLastNumber": "XXX"
@@ -588,7 +588,7 @@ JSON;
         $this->assertInstanceOf(PaymentMethod::class, $paymentMethod);
         $this->assertSame('Carte bleu', $paymentMethod->getDescription());
         $this->assertSame('BNP', $paymentMethod->getBank());
-        $this->assertSame('CARTE BANCAIRE', $paymentMethod->getType());
+        $this->assertSame('carte bancaire', $paymentMethod->getType());
         $this->assertSame('4564654654654', $paymentMethod->getBankAccountNumber());
         $this->assertNull($paymentMethod->getChequeNumber());
         $this->assertNull($paymentMethod->getFirstChequeNumber());
@@ -609,7 +609,7 @@ JSON;
         $this->assertInstanceOf(PaymentMethod::class, $paymentMethod);
         $this->assertSame('Mon chéquier', $paymentMethod->getDescription());
         $this->assertSame('BNP', $paymentMethod->getBank());
-        $this->assertSame('CHEQUIER', $paymentMethod->getType());
+        $this->assertSame('chequier', $paymentMethod->getType());
         $this->assertSame('ABCD1234', $paymentMethod->getChequeNumber());
         $this->assertSame('AAA', $paymentMethod->getFirstChequeNumber());
         $this->assertSame('XXX', $paymentMethod->getLastChequeNumber());

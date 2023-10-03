@@ -6,7 +6,6 @@ namespace App\Tests\Factory;
 
 use App\AppEnum\Civility;
 use App\AppEnum\DeclarantStatus;
-use App\AppEnum\PaymentCategory;
 use App\AppEnum\RegisteredVehicleNature;
 use App\Form\Model\AdditionalInformation\AdditionalInformationModel;
 use App\Form\Model\AdditionalInformation\WitnessModel;
@@ -247,7 +246,7 @@ class ComplaintFactory
                 ->setBank('BNP Paribas')
                 ->setBankAccountNumber('1234567890')
                 ->setCreditCardNumber('4624 7482 3324 9080')
-                ->setPaymentCategory(PaymentCategory::CreditCard)
+                ->setPaymentCategory('00004')
             )
             ->addObject((new ObjectModel())
                 ->setCategory(4)
@@ -278,7 +277,7 @@ class ComplaintFactory
                 ->setAmount(10)
                 ->setBank('BNP Paribas')
                 ->setBankAccountNumber('1234567890')
-                ->setPaymentCategory(PaymentCategory::Checkbook)
+                ->setPaymentCategory('00001')
                 ->setCheckNumber('ABC123456')
                 ->setCheckFirstNumber('78599')
                 ->setCheckLastNumber('XX145')

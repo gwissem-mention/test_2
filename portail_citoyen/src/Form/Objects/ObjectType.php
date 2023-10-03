@@ -6,17 +6,16 @@ namespace App\Form\Objects;
 
 use App\AppEnum\DeclarantStatus;
 use App\AppEnum\MultimediaNature;
-use App\AppEnum\PaymentCategory;
 use App\AppEnum\RegisteredVehicleNature;
 use App\Form\Model\Objects\ObjectModel;
 use App\Form\PhoneType;
+use App\Referential\Repository\PaymentCategoryRepository;
 use App\Session\SessionHandler;
 use App\Thesaurus\ObjectCategoryThesaurusProviderInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
-use Symfony\Component\Form\Extension\Core\Type\EnumType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -43,6 +42,7 @@ class ObjectType extends AbstractType
     public function __construct(
         private readonly ObjectCategoryThesaurusProviderInterface $objectCategoryThesaurusProvider,
         private readonly SessionHandler $sessionHandler,
+        private readonly PaymentCategoryRepository $paymentCategoryRepository,
     ) {
         $this->objectCategories = $this->objectCategoryThesaurusProvider->getChoices();
     }
@@ -94,7 +94,7 @@ class ObjectType extends AbstractType
                     $this->addDegradationDescriptionField($form, ObjectModel::STATUS_DEGRADED === $objectModel?->getStatus());
                 }
 
-                if ($this->objectCategories['pel.object.category.payment.ways'] === $objectModel?->getCategory() && PaymentCategory::Checkbook === $objectModel?->getPaymentCategory()) {
+                if ($this->objectCategories['pel.object.category.payment.ways'] === $objectModel?->getCategory() && $this->paymentCategoryRepository->findOneBy(['label' => 'chequier'])?->getCode() === $objectModel?->getPaymentCategory()) {
                     $this->addCheckFields($form);
                 }
             }
@@ -126,7 +126,7 @@ class ObjectType extends AbstractType
                     $this->removeDegradationDescriptionField($form);
                 }
 
-                if (!empty($category) && $this->objectCategories['pel.object.category.payment.ways'] === (int) $category && PaymentCategory::Checkbook->value === (int) $paymentCategory) {
+                if (!empty($category) && $this->objectCategories['pel.object.category.payment.ways'] === (int) $category && $this->paymentCategoryRepository->findOneBy(['label' => 'chequier'])?->getCode() === $paymentCategory) {
                     $this->addCheckFields($form);
                 } else {
                     $this->removeCheckFields($form);
@@ -336,9 +336,8 @@ class ObjectType extends AbstractType
     private function addCategoryPaymentWaysFields(FormInterface $form): void
     {
         $form
-            ->add('paymentCategory', EnumType::class, [
-                'class' => PaymentCategory::class,
-                'choice_label' => fn (PaymentCategory $paymentCategory) => PaymentCategory::getLabel($paymentCategory->value),
+            ->add('paymentCategory', ChoiceType::class, [
+                'choices' => $this->paymentCategoryRepository->getPaymentCategoriesChoices(),
                 'label' => 'pel.payment.category',
                 'placeholder' => 'pel.object.category.choose',
                 'constraints' => [

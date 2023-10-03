@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace App\Generator\Complaint\Serializer;
 
 use App\AppEnum\MultimediaNature;
-use App\AppEnum\PaymentCategory;
 use App\AppEnum\RegisteredVehicleNature;
 use App\Form\Model\Objects\ObjectModel;
 use App\Referential\Entity\DocumentType;
 use App\Referential\Provider\Country\CountryProviderInterface;
 use App\Referential\Repository\DocumentTypeRepository;
+use App\Referential\Repository\PaymentCategoryRepository;
 use App\Thesaurus\ObjectCategoryThesaurusProviderInterface;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
@@ -24,7 +24,8 @@ class ObjectModelNormalizer implements NormalizerInterface
         private readonly ObjectCategoryThesaurusProviderInterface $objectCategoryThesaurusProvider,
         private readonly TranslatorInterface $translator,
         private readonly CountryProviderInterface $countryProvider,
-        private readonly DocumentTypeRepository $documentTypeRepository
+        private readonly DocumentTypeRepository $documentTypeRepository,
+        private readonly PaymentCategoryRepository $paymentCategoryRepository,
     ) {
     }
 
@@ -75,7 +76,7 @@ class ObjectModelNormalizer implements NormalizerInterface
         }
 
         if (null !== $object->getPaymentCategory()) {
-            $data['paymentCategory'] = $this->translator->trans((string) PaymentCategory::getLabel($object->getPaymentCategory()->value));
+            $data['paymentCategory'] = $this->paymentCategoryRepository->findOneBy(['code' => $object->getPaymentCategory()])?->getLabel();
         }
 
         return $data;

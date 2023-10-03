@@ -186,7 +186,7 @@
                 {% endfor %}
             {% endif %}
             {% if object.paymentCategory %}
-                <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.payment.category'|trans }} : <b>{{ object.paymentCategory.value|payment_category_label|trans }}</b></li>
+                <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.payment.category'|trans }} : <b>{{ object.paymentCategory|payment_category_label }}</b></li>
             {% endif %}
             <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.organism.bank'|trans }} : <b>{{ object.bank }}</b></li>
             {% if object.checkNumber %}
