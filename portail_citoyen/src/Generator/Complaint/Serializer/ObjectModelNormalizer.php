@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace App\Generator\Complaint\Serializer;
 
 use App\AppEnum\MultimediaNature;
-use App\AppEnum\RegisteredVehicleNature;
 use App\Form\Model\Objects\ObjectModel;
 use App\Referential\Entity\DocumentType;
+use App\Referential\Entity\RegisteredVehicleNature;
 use App\Referential\Provider\Country\CountryProviderInterface;
 use App\Referential\Repository\DocumentTypeRepository;
 use App\Referential\Repository\PaymentCategoryRepository;
+use App\Referential\Repository\RegisteredVehicleNatureRepository;
 use App\Thesaurus\ObjectCategoryThesaurusProviderInterface;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
@@ -26,6 +27,7 @@ class ObjectModelNormalizer implements NormalizerInterface
         private readonly CountryProviderInterface $countryProvider,
         private readonly DocumentTypeRepository $documentTypeRepository,
         private readonly PaymentCategoryRepository $paymentCategoryRepository,
+        private readonly RegisteredVehicleNatureRepository $registeredVehicleNatureRepository
     ) {
     }
 
@@ -56,8 +58,10 @@ class ObjectModelNormalizer implements NormalizerInterface
             $data['documentType'] = $documentType->getLabel();
         }
 
-        if ($registeredVehicleNatureLabel = RegisteredVehicleNature::getLabel($object->getRegisteredVehicleNature())) {
-            $data['registeredVehicleNature'] = $this->translator->trans($registeredVehicleNatureLabel);
+        if (null !== $object->getRegisteredVehicleNature()) {
+            /** @var RegisteredVehicleNature $registeredVehicleNature */
+            $registeredVehicleNature = $this->registeredVehicleNatureRepository->find((int) $object->getRegisteredVehicleNature());
+            $data['registeredVehicleNature'] = $registeredVehicleNature->getLabel();
         }
 
         if ($multimediaNatureLabel = MultimediaNature::getLabel($object->getMultimediaNature())) {

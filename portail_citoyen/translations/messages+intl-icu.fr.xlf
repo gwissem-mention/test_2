@@ -3106,18 +3106,6 @@
                 <source>pel.choose.a.vehicle.category</source>
                 <target>Sélectionner une catégorie de véhicule</target>
             </trans-unit>
-            <trans-unit id="pel.truck">
-                <source>pel.truck</source>
-                <target>CAMION</target>
-            </trans-unit>
-            <trans-unit id="pel.personal.vehicle">
-                <source>pel.personal.vehicle</source>
-                <target>VOITURE PARTICULIERE</target>
-            </trans-unit>
-            <trans-unit id="pel.trailer">
-                <source>pel.trailer</source>
-                <target>REMORQUE</target>
-            </trans-unit>
             <trans-unit id="pel.transport.additional.place.information">
                 <source>pel.transport.additional.place.information</source>
                 <target>Veuillez décrire l'itinéraire utilisé et le chemin parcouru jusqu'à votre point d'arrivée</target>
@@ -3129,14 +3117,6 @@
             <trans-unit id="pel.transport.start.address">
                 <source>pel.transport.start.address</source>
                 <target>Point départ (gare, station, port, aéroport)</target>
-            </trans-unit>
-            <trans-unit id="pel.caravan">
-                <source>pel.caravan</source>
-                <target>CARAVANE</target>
-            </trans-unit>
-            <trans-unit id="pel.motorbike">
-                <source>pel.motorbike</source>
-                <target>MOTO</target>
             </trans-unit>
             <trans-unit id="pel.degradation.description">
                 <source>pel.degradation.description</source>

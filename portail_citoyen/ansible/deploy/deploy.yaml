@@ -18,6 +18,7 @@
     FILE_NATURE_PLACES: natures_de_lieux.csv
     FILE_DOCUMENT_TYPES: Ref_derive_docs_officiels.csv
     FILE_PAYMENT_CATEGORIES: nature_moyen_paiement.csv
+    FILE_REGISTERED_VEHICLE_NATURES: nature_vehicule_terrestre.csv
     OODRIVE_BASE_URI: https://snc28pp.snc.oodrive.com
     OODRIVE_WORKSPACE: pel-developpement
     OODRIVE_OAUTH_CLIENT_ID: pel-developpement

@@ -6,10 +6,10 @@ namespace App\Form\Objects;
 
 use App\AppEnum\DeclarantStatus;
 use App\AppEnum\MultimediaNature;
-use App\AppEnum\RegisteredVehicleNature;
 use App\Form\Model\Objects\ObjectModel;
 use App\Form\PhoneType;
 use App\Referential\Repository\PaymentCategoryRepository;
+use App\Referential\Repository\RegisteredVehicleNatureRepository;
 use App\Session\SessionHandler;
 use App\Thesaurus\ObjectCategoryThesaurusProviderInterface;
 use Symfony\Component\Form\AbstractType;
@@ -43,6 +43,7 @@ class ObjectType extends AbstractType
         private readonly ObjectCategoryThesaurusProviderInterface $objectCategoryThesaurusProvider,
         private readonly SessionHandler $sessionHandler,
         private readonly PaymentCategoryRepository $paymentCategoryRepository,
+        private readonly RegisteredVehicleNatureRepository $registeredVehicleNatureRepository
     ) {
         $this->objectCategories = $this->objectCategoryThesaurusProvider->getChoices();
     }
@@ -416,7 +417,7 @@ class ObjectType extends AbstractType
     {
         $form
             ->add('registeredVehicleNature', ChoiceType::class, [
-                'choices' => RegisteredVehicleNature::getChoices(),
+                'choices' => $this->registeredVehicleNatureRepository->getRegisteredVehicleNaturesChoices(),
                 'placeholder' => 'pel.choose.a.vehicle.category',
                 'label' => 'pel.vehicle.category',
                 'constraints' => [
