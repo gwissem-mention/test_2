@@ -77,6 +77,7 @@ class FactsDTO
     private string $exactDateKnown;
     private string $startAddress;
     private string $hasObjectsWithAmount;
+    private string $estimation;
 
     public function __construct(Complaint $complaint)
     {
@@ -159,6 +160,7 @@ class FactsDTO
         $this->factsWebsite = $complaint->getFacts()?->getWebsite() ?? '';
         $this->exactDateKnown = $complaint->getFacts()?->isExactDateKnown() ? 'Oui' : 'Non';
         $this->hasObjectsWithAmount = $complaint->hasObjectsWithAmount() ? '1' : '0';
+        $this->estimation = '1' === $this->hasObjectsWithAmount ? (string) array_sum(array_map(fn ($object) => $object->getAmount(), $complaint->getObjects()->toArray())) : '';
     }
 
     /**
@@ -210,7 +212,7 @@ class FactsDTO
             'Faits_Prejudice_Physique' => $this->hasHarmPhysique,
             'Faits_Prejudice_Autre' => $this->hasObjectsWithAmount,
             'Faits_Prejudice_Physique_Description' => $this->hasHarmPhysiqueDescription,
-            'Faits_Prejudice_Autre_Description' => '',
+            'Faits_Prejudice_Autre_Description' => $this->estimation,
             'LIEU_INFORMATION_COMPLEMENTAIRES' => $this->addressAdditionalInformation,
             'NATURE_LIEU' => $this->place,
             'Nature_Lieu_Tel' => $this->callingPhone,
