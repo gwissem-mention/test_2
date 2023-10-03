@@ -442,8 +442,8 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Faits_Periode_Affaire_Fin_Date_Formate>01/12/2022</Faits_Periode_Affaire_Fin_Date_Formate>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Periode_Affaire_Fin_Heure_Formate>10</Faits_Periode_Affaire_Fin_Heure_Formate>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Periode_Affaire_Fin_Minute_Formate>00</Faits_Periode_Affaire_Fin_Minute_Formate>', $this->xmlContent);
-        $this->assertStringContainsString('<Faits_Periode_Affaire_Debut>01/12/2022 à 09:00:00</Faits_Periode_Affaire_Debut>', $this->xmlContent);
-        $this->assertStringContainsString('<Faits_Periode_Affaire_Fin>01/12/2022 à 10:00:00</Faits_Periode_Affaire_Fin>', $this->xmlContent);
+        $this->assertStringContainsString('<Faits_Periode_Affaire_Debut>01/12/2022 à 09:00</Faits_Periode_Affaire_Debut>', $this->xmlContent);
+        $this->assertStringContainsString('<Faits_Periode_Affaire_Fin>01/12/2022 à 10:00</Faits_Periode_Affaire_Fin>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Violences_Aucune/>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Prejudice_Physique>oui</Faits_Prejudice_Physique>', $this->xmlContent);
         //        $this->assertStringContainsString('<Faits_Orientation_Aucune>1</Faits_Orientation_Aucune>', $this->xmlContent);

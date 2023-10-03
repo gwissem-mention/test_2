@@ -114,8 +114,27 @@ class FactsDTO
         $this->endDateFormatted = null !== ($date = $facts->getEndDate()) ? $date->format('d/m/Y') : '';
         $this->endHourFormatted = null !== ($hour = $facts->getEndHour()) ? $hour->format('H') : '';
         $this->endMinutesFormatted = null !== ($hour = $facts->getEndHour()) ? $hour->format('i') : '';
-        $this->start = (null !== ($date = $facts->getStartDate()) && null !== ($hour = $facts->getStartHour())) ? ($date->format('d/m/Y').' à '.$hour->format('H:i:s')) : '';
-        $this->end = (null !== ($date = $facts->getEndDate()) && null !== ($hour = $facts->getEndHour())) ? ($date->format('d/m/Y').' à '.$hour->format('H:i:s')) : '';
+
+        $debut = $facts->getStartDate();
+        $fin = $facts->getEndDate();
+        $startHour = $facts->getStartHour();
+        $endHour = $facts->getEndHour();
+
+        if (null !== $debut && null !== $fin && null !== $startHour && null !== $endHour) {
+            $debutFormatted = $debut->format('d/m/Y');
+            $finFormatted = $fin->format('d/m/Y');
+            $this->start = $debutFormatted.' à '.$startHour->format('H:i');
+            $this->end = $finFormatted.' à '.$endHour->format('H:i');
+        } elseif (null !== $debut && null === $startHour && null === $fin && null === $endHour) {
+            $this->start = $debut->format('d/m/Y à 00h00');
+            $this->end = $debut->format('d/m/Y à 23h59');
+        } elseif (null !== $debut && null !== $startHour && null === $fin && null === $endHour) {
+            $debutFormatted = $debut->format('d/m/Y');
+            $startHour = \DateTime::createFromInterface($startHour);
+            $endHour = $startHour->modify('+5 minutes');
+            $this->start = $debutFormatted.' à '.$startHour->format('H:i');
+            $this->end = $debutFormatted.' à '.$endHour->format('H:i');
+        }
         $this->noViolence = strval(!$complaint->getFacts()?->isVictimOfViolence()) ?: '';
         $this->violenceDescription = $complaint->getFacts()?->getVictimOfViolenceText() ?? '';
         $this->hasHarmPhysique = $complaint->getFacts()?->isVictimOfViolence() ? 'oui' : 'non';
