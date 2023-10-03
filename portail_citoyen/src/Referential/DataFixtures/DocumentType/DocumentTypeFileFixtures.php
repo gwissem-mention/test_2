@@ -30,14 +30,10 @@ class DocumentTypeFileFixtures extends Fixture implements FixtureGroupInterface
             if ($manager instanceof EntityManagerInterface) {
                 $manager->getConnection()->getConfiguration()->setSQLLogger(null);
             }
-            $row = 1;
             $handle = fopen($this->documentTypesFixturesPath, 'rb');
             if (is_resource($handle)) {
                 while (is_array($data = fgetcsv($handle, self::LENGTH, ';'))) {
-                    if ($row > 1) {
-                        $manager->persist(new DocumentType($data[self::LABEL]));
-                    }
-                    ++$row;
+                    $manager->persist(new DocumentType($data[self::LABEL]));
                 }
                 $manager->flush();
                 fclose($handle);
