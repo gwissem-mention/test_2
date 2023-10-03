@@ -11,6 +11,7 @@ parameters:
     app.file_departments: '%env(FILE_DEPARTMENTS)%'
     app.file_countries: '%env(FILE_COUNTRIES)%'
     app.file_nationalities: '%env(FILE_NATIONALITIES)%'
+    app.file_payment_categories: '%env(FILE_PAYMENT_CATEGORIES)%'
     app.referentials_base_path: '%kernel.project_dir%/referentials'
     app.jedonnemonavis_id: '%env(JEDONNEMONAVIS_ID)%'
     app.jedonnemonavis_key: '%env(JEDONNEMONAVIS_KEY)%'
@@ -113,6 +114,10 @@ services:
     App\Referential\DataFixtures\DocumentType\DocumentTypeFileFixtures:
         arguments:
             $documentTypesFixturesPath: '%app.referentials_base_path%/%app.file_document_types%'          
+        
+    App\Referential\DataFixtures\PaymentCategory\PaymentCategoriesFileFixtures:
+        arguments:
+            $paymentCategoriesFixturesPath: '%app.referentials_base_path%/%app.file_payment_categories%'
 
     App\Referential\Provider\Country\CountryProviderInterface: '@App\Referential\Provider\Country\DatabaseCountryProvider'
     

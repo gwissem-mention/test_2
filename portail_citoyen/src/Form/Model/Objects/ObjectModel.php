@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Form\Model\Objects;
 
-use App\AppEnum\PaymentCategory;
 use App\Form\Model\FileModel;
 use App\Form\Model\Identity\PhoneModel;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -52,7 +51,7 @@ class ObjectModel
     private ?string $ownerFirstname = null;
     private ?string $ownerLastname = null;
     private ?int $multimediaNature = null;
-    private ?PaymentCategory $paymentCategory = null;
+    private ?string $paymentCategory = null;
     private ?string $checkNumber = null;
     private ?string $checkFirstNumber = null;
     private ?string $checkLastNumber = null;
@@ -547,12 +546,12 @@ class ObjectModel
         return $this;
     }
 
-    public function getPaymentCategory(): ?PaymentCategory
+    public function getPaymentCategory(): ?string
     {
         return $this->paymentCategory;
     }
 
-    public function setPaymentCategory(?PaymentCategory $paymentCategory): self
+    public function setPaymentCategory(?string $paymentCategory): self
     {
         $this->paymentCategory = $paymentCategory;
 

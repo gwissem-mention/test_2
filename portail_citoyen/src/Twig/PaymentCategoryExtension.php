@@ -4,12 +4,16 @@ declare(strict_types=1);
 
 namespace App\Twig;
 
-use App\AppEnum\PaymentCategory;
+use App\Referential\Repository\PaymentCategoryRepository;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
 class PaymentCategoryExtension extends AbstractExtension
 {
+    public function __construct(private readonly PaymentCategoryRepository $paymentCategoryRepository)
+    {
+    }
+
     public function getFilters(): array
     {
         return [
@@ -17,8 +21,8 @@ class PaymentCategoryExtension extends AbstractExtension
         ];
     }
 
-    public function getLabel(int $value = null): ?string
+    public function getLabel(string $value = null): ?string
     {
-        return PaymentCategory::getLabel($value);
+        return $this->paymentCategoryRepository->findOneBy(['code' => $value])?->getLabel();
     }
 }

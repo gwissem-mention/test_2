@@ -494,7 +494,7 @@ class ComplaintFileParserTest extends KernelTestCase
             "ownerFirstname": null,
             "multimediaNature": null,
             "documentIssuingCountry": null,
-            "paymentCategory": "CARTE BANCAIRE",
+            "paymentCategory": "carte bancaire",
             "checkNumber": null,
             "checkFirstNumber": null,
             "checkLastNumber": null
