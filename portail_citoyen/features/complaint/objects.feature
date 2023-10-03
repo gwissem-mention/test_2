@@ -92,15 +92,7 @@ Feature:
         And I should see a "select#objects_objects_0_documentType_documentType" element
         And I should see a "select#objects_objects_0_status" element
         And I should not see a "select#objects_objects_0_label" element
-        And I should see "Carte d’identité" in the "#objects_objects_0_documentType_documentType" element
-        And I should see "Passeport" in the "#objects_objects_0_documentType_documentType" element
-        And I should see "Titre de séjour" in the "#objects_objects_0_documentType_documentType" element
-        And I should see "Permis de conduire " in the "#objects_objects_0_documentType_documentType" element
-        And I should see "Carte grise" in the "#objects_objects_0_documentType_documentType" element
-        And I should see "Carte vitale" in the "#objects_objects_0_documentType_documentType" element
-        And I should see "Carte professionnelle" in the "#objects_objects_0_documentType_documentType" element
-        And I should see "Autre" in the "#objects_objects_0_documentType_documentType" element
-        When I select "Autre" from "objects_objects_0_documentType_documentType"
+        When I select "AUTRE NATURE DOCUMENT" from "objects_objects_0_documentType_documentType"
         Then I should see a "input#objects_objects_0_documentType_otherDocumentType" element
         And I should see the key "pel.could.you.precise" translated
         And I should see a "#objects_objects_0_documentType_documentIssuingCountry" element

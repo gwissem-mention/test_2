@@ -147,7 +147,7 @@ Feature:
         And I should see "Visa principale"
         And I should see "LCL"
         And I should see "987654321"
-        And I should see "Permis de conduire"
+        And I should see "PERMIS DE CONDUIRE"
         And I should see "France"
         And I should see "1234"
         And I should see "Préfecture de Paris"

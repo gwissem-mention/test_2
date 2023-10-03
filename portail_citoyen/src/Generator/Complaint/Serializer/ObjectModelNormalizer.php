@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace App\Generator\Complaint\Serializer;
 
-use App\AppEnum\DocumentType;
 use App\AppEnum\MultimediaNature;
 use App\AppEnum\PaymentCategory;
 use App\AppEnum\RegisteredVehicleNature;
 use App\Form\Model\Objects\ObjectModel;
+use App\Referential\Entity\DocumentType;
 use App\Referential\Provider\Country\CountryProviderInterface;
+use App\Referential\Repository\DocumentTypeRepository;
 use App\Thesaurus\ObjectCategoryThesaurusProviderInterface;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
@@ -23,6 +24,7 @@ class ObjectModelNormalizer implements NormalizerInterface
         private readonly ObjectCategoryThesaurusProviderInterface $objectCategoryThesaurusProvider,
         private readonly TranslatorInterface $translator,
         private readonly CountryProviderInterface $countryProvider,
+        private readonly DocumentTypeRepository $documentTypeRepository
     ) {
     }
 
@@ -47,8 +49,10 @@ class ObjectModelNormalizer implements NormalizerInterface
             'label' => $this->translator->trans((string) array_search($object->getCategory(), $this->objectCategoryThesaurusProvider->getChoices(), true)),
         ];
 
-        if ($documentTypeLabel = DocumentType::getLabel($object->getDocumentType())) {
-            $data['documentType'] = $this->translator->trans($documentTypeLabel);
+        if (null !== $object->getDocumentType()) {
+            /** @var DocumentType $documentType */
+            $documentType = $this->documentTypeRepository->find((int) $object->getDocumentType());
+            $data['documentType'] = $documentType->getLabel();
         }
 
         if ($registeredVehicleNatureLabel = RegisteredVehicleNature::getLabel($object->getRegisteredVehicleNature())) {
