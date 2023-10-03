@@ -211,7 +211,7 @@
 #        And I should see "Object 1"
 #        And I should see "Object 2"
 #        And I should see "Document officiel"
-#        And I should see "Carte d’identité"
+#        And I should see "CARTE NATIONALE D'IDENTITE"
 #        And I should see "Non"
 #        And I should see "DUPONT Jean"
 #        And I should see "+33 6 12 34 56 78"

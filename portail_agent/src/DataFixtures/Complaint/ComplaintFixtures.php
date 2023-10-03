@@ -168,7 +168,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                     ->addObject(
                         (new AdministrativeDocument())
                             ->setStatus(AbstractObject::STATUS_STOLEN)
-                            ->setType('Passeport')
+                            ->setType('PASSEPORT')
                             ->setOwned(false)
                             ->setOwnerLastname('Dulac')
                             ->setOwnerFirstname('Raymond')
@@ -359,7 +359,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
             ->addObject(
                 (new AdministrativeDocument())
                     ->setStatus(AbstractObject::STATUS_STOLEN)
-                    ->setType('Permis de conduire')
+                    ->setType('PERMIS DE CONDUIRE')
                     ->setIssuingCountry('France')
                     ->setNumber('1234')
                     ->setIssuedBy('Préfecture de Paris')

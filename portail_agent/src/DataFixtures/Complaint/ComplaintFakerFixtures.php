@@ -297,7 +297,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                     (new AdministrativeDocument())
                         ->setStatus(AbstractObject::STATUS_STOLEN)
                         ->setIssuingCountry('France')
-                        ->setType('Permis de conduire')
+                        ->setType('PERMIS DE CONDUIRE')
                         ->setDescription('Description Permis de conduire')
                         ->setNumber('1234')
                         ->setIssuedBy('Préfecture de Paris')

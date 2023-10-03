@@ -34,7 +34,7 @@
                 </p>
             </li>
 
-            {% if object.documentType is same as(constant('App\\AppEnum\\DocumentType::Other').value) and object.otherDocumentType is not null %}
+            {% if object.otherDocumentType is not null %}
                 <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.could.you.precise'|trans }} : <b>{{ object.otherDocumentType }}</b></li>
             {% endif %}
 

@@ -197,7 +197,7 @@ Feature:
         When I follow "blank.pdf"
         Then I should see "Numéro de téléphone portable : +33 6 01 02 03 04"
         And I should see "Document officiel"
-        And I should see "Carte d’identité"
+        And I should see "CARTE NATIONALE D'IDENTITE"
         And I should see "Oui"
         And I should see "123"
         And I should see "Préfecture de Paris"

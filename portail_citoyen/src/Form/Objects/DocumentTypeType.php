@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace App\Form\Objects;
 
-use App\AppEnum\DocumentType;
 use App\Form\CountryAutocompleteType;
 use App\Form\Model\Objects\ObjectModel;
+use App\Referential\Entity\DocumentType;
+use App\Referential\Repository\DocumentTypeRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -20,8 +21,11 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 class DocumentTypeType extends AbstractType
 {
+    private const DOCUMENT_TYPE_OTHER = 'AUTRE NATURE DOCUMENT';
+
     public function __construct(
-        private readonly int $franceCode
+        private readonly int $franceCode,
+        private readonly DocumentTypeRepository $documentTypeRepository
     ) {
     }
 
@@ -29,9 +33,9 @@ class DocumentTypeType extends AbstractType
     {
         $builder
             ->add('documentType', ChoiceType::class, [
-                'choices' => DocumentType::getChoices(),
-                'placeholder' => 'pel.object.document.type.choose',
+                'choices' => $this->documentTypeRepository->getDocumentTypesChoices(),
                 'label' => 'pel.document.type',
+                'placeholder' => 'pel.object.document.type.choose',
                 'constraints' => [
                     new NotBlank(),
                 ],
@@ -89,11 +93,7 @@ class DocumentTypeType extends AbstractType
                 $documentType = $event->getData();
                 /** @var FormInterface $parent */
                 $parent = $event->getForm()->getParent();
-                if (DocumentType::Other->value === $documentType) {
-                    $this->addDocumentTypeOtherFields($parent);
-                } else {
-                    $this->removeDocumentTypeOtherFields($parent);
-                }
+                $this->addDocumentTypeOtherFields($parent, $documentType);
             }
         );
 
@@ -106,11 +106,7 @@ class DocumentTypeType extends AbstractType
                 $parent = $event->getForm()->getParent();
                 /** @var ?ObjectModel $objectModel */
                 $objectModel = $parent->getData();
-                if (DocumentType::Other->value === $documentType) {
-                    $this->addDocumentTypeOtherFields($parent);
-                } else {
-                    $this->removeDocumentTypeOtherFields($parent, $objectModel);
-                }
+                $this->addDocumentTypeOtherFields($parent, $documentType, $objectModel);
             }
         );
 
@@ -155,8 +151,26 @@ class DocumentTypeType extends AbstractType
         ]);
     }
 
-    private function addDocumentTypeOtherFields(FormInterface $form): void
-    {
+    private function addDocumentTypeOtherFields(
+        FormInterface $form,
+        ?int $documentTypeId,
+        ObjectModel $objectModel = null
+    ): void {
+        if (null === $documentTypeId) {
+            $this->removeDocumentTypeOtherFields($form, $objectModel);
+
+            return;
+        }
+
+        /** @var DocumentType $documentType */
+        $documentType = $this->documentTypeRepository->find($documentTypeId);
+
+        if (self::DOCUMENT_TYPE_OTHER !== $documentType->getLabel()) {
+            $this->removeDocumentTypeOtherFields($form, $objectModel);
+
+            return;
+        }
+
         $form->add('otherDocumentType', TextType::class, [
             'label' => 'pel.could.you.precise',
             'constraints' => [
@@ -178,8 +192,7 @@ class DocumentTypeType extends AbstractType
             ->add('documentAdditionalInformation', DocumentAdditionalInformationType::class, [
                 'label' => false,
                 'priority' => -2,
-            ])
-        ;
+            ]);
     }
 
     private function removeDocumentOwnerFields(FormInterface $form, ObjectModel $objectModel = null): void
