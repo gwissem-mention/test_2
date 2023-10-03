@@ -335,7 +335,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                 $complaint->addObject(
                     (new Vehicle())
                         ->setStatus(AbstractObject::STATUS_STOLEN)
-                        ->setNature('VOITURE PARTICULIERE')
+                        ->setNature('voiture particuliere')
                         ->setBrand('Citroën')
                         ->setModel($this->randomString(['C3', 'C4', 'DS4', 'DS3']))
                         ->setRegistrationNumber($this->randomString(['AA-123-AA', 'BB-345-BB', 'CC-432-CC', 'DD-890-DD']))
@@ -349,7 +349,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
             $complaint->addObject(
                 (new Vehicle())
                     ->setStatus(AbstractObject::STATUS_DEGRADED)
-                    ->setNature('VOITURE PARTICULIERE')
+                    ->setNature('voiture particuliere')
                     ->setBrand('Peugeot')
                     ->setModel($this->randomString(['208', '308', '3008', '5008']))
                     ->setRegistrationNumber($this->randomString(['AA-123-AA', 'BB-345-BB', 'CC-432-CC', 'DD-890-DD']))

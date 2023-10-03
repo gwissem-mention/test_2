@@ -391,7 +391,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
             ->addObject(
                 (new Vehicle())
                     ->setStatus(AbstractObject::STATUS_DEGRADED)
-                    ->setNature('VOITURE PARTICULIERE')
+                    ->setNature('voiture particuliere')
                     ->setBrand('Citroën')
                     ->setModel('C3')
                     ->setRegistrationNumber('AA-123-AA')

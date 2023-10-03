@@ -27,6 +27,7 @@ parameters:
     app.pdf_assets_host: '%env(PDF_ASSETS_HOST)%'
     app.file_nature_places: '%env(FILE_NATURE_PLACES)%'
     app.file_document_types: '%env(FILE_DOCUMENT_TYPES)%'
+    app.file_registered_vehicle_natures: '%env(FILE_REGISTERED_VEHICLE_NATURES)%'
 
 services:
     _defaults:
@@ -119,6 +120,10 @@ services:
         arguments:
             $paymentCategoriesFixturesPath: '%app.referentials_base_path%/%app.file_payment_categories%'
 
+    App\Referential\DataFixtures\RegisteredVehicleNature\RegisteredVehicleNatureFileFixtures:
+        arguments:
+            $registeredVehicleNaturesFixturesPath: '%app.referentials_base_path%/%app.file_registered_vehicle_natures%' 
+           
     App\Referential\Provider\Country\CountryProviderInterface: '@App\Referential\Provider\Country\DatabaseCountryProvider'
     
     App\Referential\Provider\Nationality\NationalityProviderInterface: '@App\Referential\Provider\Nationality\DatabaseNationalityProvider'
