@@ -70,7 +70,23 @@
             <div class="{{ html_classes('fr-select-group', {'fr-select-group--error': form.placeNature.vars.errors is not empty}) }}">
                 {{ form_label(form.placeNature) }}
                 <div class="fr-input-wrap fr-icon-arrow-down-s-line before:content-[''] before:z-10">
-                    {{ form_widget(form.placeNature, {'attr':{'class':html_classes(form.placeNature.vars.attr.class ?? '', 'autocomplete' not in form.placeNature.vars['block_prefixes'] ? 'fr-select' : '',{'fr-select--error':form.placeNature.vars.errors is not empty})}}) }}
+                    {# TODO: Use form theme instead this #}
+                    {% set attr_row = {
+                        'class': html_classes(
+                            form.placeNature.vars.attr.class ?? '',
+                            'autocomplete' not in form.placeNature.vars['block_prefixes'] ? 'fr-select' : '',
+                            {'fr-select--error': form.placeNature.vars.errors is not empty}
+                        ),
+                    } %}
+                    {% if form.placeNature.vars.errors is not empty %}
+                        {% set attr_row = attr_row|merge({
+                            'aria-describedby': form.placeNature.vars.errors is not empty ? 'form-errors-'~ form.placeNature.vars.id : ''
+                        }) %}
+                    {% endif %}
+
+                    {{ form_widget(form.placeNature, {
+                        'attr': attr_row
+                    }) }}
                 </div>
                 {{ form_errors(form.placeNature) }}
             </div>
