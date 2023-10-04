@@ -17,6 +17,7 @@ use App\Generator\Complaint\Model\FactsDTO;
 use App\Generator\Complaint\Model\FlagDTO;
 use App\Generator\Complaint\Model\Objects\AdministrativeDocumentDTO;
 use App\Generator\Complaint\Model\Objects\MultimediaObjectDTO;
+use App\Generator\Complaint\Model\Objects\NonRegisteredVehicleDTO;
 use App\Generator\Complaint\Model\Objects\ObjectsDTO;
 use App\Generator\Complaint\Model\Objects\PaymentMethodDTO;
 use App\Generator\Complaint\Model\Objects\SimpleObjectDTO;
@@ -97,6 +98,9 @@ class ComplaintXmlGenerator implements ComplaintGeneratorInterface
                     break;
                 case $object instanceof SimpleObject:
                     $objectXml = $this->arrayToXml($objectXml, (new SimpleObjectDTO($object))->getArray());
+                    break;
+                case $object instanceof Vehicle && false === $object->isRegistered():
+                    $objectXml = $this->arrayToXml($objectXml, (new NonRegisteredVehicleDTO($object))->getArray());
                     break;
                 case $object instanceof Vehicle:
                     $objectXml = $this->arrayToXml($objectXml, (new VehicleDTO($object))->getArray());

@@ -220,7 +220,6 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
             )
             ->addObject(
                 (new Vehicle())
-                    ->setStatus(AbstractObject::STATUS_STOLEN)
                     ->setBrand('Citroën')
                     ->setModel('C3')
                     ->setRegistrationNumber('AA-123-AA')
@@ -230,6 +229,11 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
                     ->setNature('CAMION')
                     ->setDegradationDescription('Rétroviseur cassé')
                     ->setAmount(15000)
+                    ->setStatus(AbstractObject::STATUS_DEGRADED)
+            )
+            ->addObject(
+                (new Vehicle())
+                    ->setLabel('Trotinette')
                     ->setStatus(AbstractObject::STATUS_DEGRADED)
             )
             ->setAdditionalInformation(
@@ -665,5 +669,14 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Enregistrement_Video>Oui</Enregistrement_Video>', $this->xmlContentWithCorporationRepresented);
         $this->assertStringContainsString('<TEMOINS_DESCRIPTION>Jean Dupont</TEMOINS_DESCRIPTION>', $this->xmlContentWithCorporationRepresented);
         $this->assertStringContainsString('</Divers>', $this->xmlContent);
+    }
+
+    public function testNonRegisteredVehicleSection(): void
+    {
+        $this->assertStringContainsString('<Objet_simple>', $this->xmlContent);
+        $this->assertStringContainsString('<Objet_simple_Nature>Véhicules non immatriculés</Objet_simple_Nature>', $this->xmlContent);
+        $this->assertStringContainsString('<VL_Non_Immat_Statut>Dégradé</VL_Non_Immat_Statut>', $this->xmlContent);
+        $this->assertStringContainsString('<VL_Non_Immat_Denomination>Trotinette</VL_Non_Immat_Denomination>', $this->xmlContent);
+        $this->assertStringContainsString('</Objet_simple>', $this->xmlContent);
     }
 }

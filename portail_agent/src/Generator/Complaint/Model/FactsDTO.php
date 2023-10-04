@@ -61,8 +61,8 @@ class FactsDTO
     private ?string $endDateFormatted;
     private ?string $endHourFormatted;
     private ?string $endMinutesFormatted;
-    private string $start;
-    private string $end;
+    private string $start = '';
+    private string $end = '';
     private string $noViolence;
     //    private string $noOrientation;
     private string $violenceDescription;
