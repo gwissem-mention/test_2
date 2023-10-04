@@ -257,18 +257,18 @@ Feature:
         And I should see "5 Route des Acacias 33141 Villegouge"
         And I should see "tél. 05 57 84 86 50"
         And I should see the key "pel.nearby.transport" translated
-        Then I click the "#accordion-1" element
+        Then I click the "#accordion-header-1" element
         And I should see "Arrêt de transport en commun à moins de 200 mètres de l'établissement"
         And I should see "Informations sur l'accessibilité par les transports en commun : Arrêt de bus devant le Vival"
         And I should see the key "pel.parking.on.the.premises" translated
-        Then I click the "#accordion-1" element
-        And I click the "#accordion-2" element
+        Then I click the "#accordion-header-1" element
+        And I click the "#accordion-header-2" element
         And I should see "Pas de place de stationnement disponible au sein de la parcelle de l'établissement"
         And I should see "Des places de stationnement sont disponibles à moins de 200 mètres de l'établissement"
         And I should see "Des places de stationnement adaptées sont disponibles à moins de 200 mètres de l'établissement"
         And I should see the key "pel.outer.path" translated
-        Then I click the "#accordion-2" element
-        And I click the "#accordion-3" element
+        Then I click the "#accordion-header-2" element
+        And I click the "#accordion-header-3" element
         And I wait 1000 ms
         And I should see "L'accès à l'entrée depuis la voirie se fait par un chemin extérieur"
         And I should see "Le revêtement est stable (absence de pavés, gravillons, terre, herbe, sable, ou toute surface non stabilisée)"
@@ -280,8 +280,8 @@ Feature:
         And I should see "Pas de bande de guidage au sol facilitant le déplacement d'une personne aveugle ou malvoyante"
         And I should see "Pas de rétrécissement inférieur à 90 centimètres du chemin pour atteindre la zone d'accueil"
         And I should see the key "pel.entrance" translated
-        Then I click the "#accordion-3" element
-        And I click the "#accordion-4" element
+        Then I click the "#accordion-header-3" element
+        And I click the "#accordion-header-4" element
         And I should see "L'entrée de l'établissement est facilement repérable"
         And I should see "Présence d'une porte à l'entrée de l'établissement"
         And I should see "Mode d'ouverture de la porte : Porte battante"
@@ -296,8 +296,8 @@ Feature:
         And I should see "Largeur minimale de la porte d'entrée : 200"
         And I should see "Pas d'entrée secondaire spécifique dédiée aux personnes à mobilité réduite"
         And I should see the key "pel.reception.and.services" translated
-        Then I click the "#accordion-4" element
-        And I click the "#accordion-5" element
+        Then I click the "#accordion-header-4" element
+        And I click the "#accordion-header-5" element
         And I wait 1000 ms
         And I should see "La zone d'accueil (guichet d'accueil, caisse, secrétariat, etc) est visible depuis l'entrée du bâtiment"
         And I should see "L'accès à cet espace se fait de plain-pied, c'est à dire sans rupture brutale de niveau"
@@ -305,8 +305,8 @@ Feature:
         And I should see "Personnel à l'accueil des personnes handicapées : Personnels non-formés"
         And I should see "Pas de produits ou prestations dédiés aux personnes sourdes ou malentendantes"
         And I should see the key "pel.toilets" translated
-        Then I click the "#accordion-5" element
-        And I click the "#accordion-6" element
+        Then I click the "#accordion-header-5" element
+        And I click the "#accordion-header-6" element
         And I wait 1000 ms
         And I should see "Des sanitaires sont mis à disposition dans l'établissement"
         And I should see "Aucun sanitaire adapté mis à disposition dans l'établissement"

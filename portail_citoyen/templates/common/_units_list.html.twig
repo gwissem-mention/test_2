@@ -14,7 +14,7 @@
             <p class="m-0">{{ unit.address }}</p>
             <p class="m-0">{{ unit.openingHours|replace({'$': "<br>"})|raw }}</p>
             <div class="fr-mt-1w">
-                <a target="_blank" class="fr-link fr-c" href="tel:{{ unit.phone }}" title="{{ 'pel.contact.us.at.this.number'|trans }} ({{ 'pel.open.in.a.new.window'|trans }})">{{ unit.phone }}</a>
+                <a target="_blank" class="fr-link fr-c" href="tel:{{ unit.phone|replace({' ': ''}) }}" title="{{ 'pel.contact.us.at.this.number'|trans }} ({{ 'pel.open.in.a.new.window'|trans }})">{{ unit.phone }}</a>
             </div>
             {% if (unit.institutionCode is same as(constant('App\\AppEnum\\Institution::GN'))) %}
                 <div>
