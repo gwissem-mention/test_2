@@ -3,48 +3,54 @@ all:
     hosts:
         phpserver1:
             ansible_connection: ssh
-            ansible_host: "{{ vault_pp_php_server_host1 }}"
-            ansible_user: "{{ vault_server_user }}"
-            server_name: "{{ vault_pp_server_name }}"
-            server_user: "{{ vault_server_user }}"
+            ansible_host: "10.227.37.54"
+            ansible_user: "root"
+            server_name: "https://preprod.pel-agent.com"
+            server_user: "root"
             force_reload_db: True
             force_referential_update: True
             in_php_main_machine: True
             in_ipms: True
+            ansistrano_git_repo: "{{ vault_git_repo_anfsi }}"
             CITOYEN_DOMAIN: "https://pel.pp.fsi.interieur.gouv.fr/"
+            app_db: "agent"
         
         phpserver2:
             ansible_connection: ssh
-            ansible_host: "{{ vault_pp_php_server_host2 }}"
-            ansible_user: "{{ vault_server_user }}"
-            server_name: "{{ vault_pp_server_name }}"
-            server_user: "{{ vault_server_user }}"
+            ansible_host: "10.227.37.55"
+            ansible_user: "root"
+            server_name: "https://preprod.pel-agent.com"
+            server_user: "root"
             force_reload_db: False
             force_referential_update: False
             in_php_main_machine: False
             in_ipms: True
+            ansistrano_git_repo: "{{ vault_git_repo_anfsi }}"
             CITOYEN_DOMAIN: "https://pel.pp.fsi.interieur.gouv.fr/"
+            app_db: "agent"
 
         webserver1:
             ansible_connection: ssh
-            ansible_host: "{{ vault_pp_web_server_host1 }}"
-            ansible_user: "{{ vault_server_user }}"
+            ansible_host: "10.227.37.52"
+            ansible_user: "root"
             server_name: "dapip307web1"
-            server_user: "{{ vault_server_ipms_user }}"
+            server_user: "root"
             force_reload_db: False
             force_referential_update: False
             in_php_main_machine: False
             in_ipms: True
+            ansistrano_git_repo: "{{ vault_git_repo_anfsi }}"
             CITOYEN_DOMAIN: "https://pel.pp.fsi.interieur.gouv.fr/"
 
         webserver2:
             ansible_connection: ssh
-            ansible_host: "{{ vault_pp_web_server_host2 }}"
-            ansible_user: "{{ vault_server_user }}"
+            ansible_host: "10.227.37.53"
+            ansible_user: "root"
             server_name: "dapip307web2"
-            server_user: "{{ vault_server_ipms_user }}"
+            server_user: "root"
             force_reload_db: False
             force_referential_update: False
             in_php_main_machine: False
             in_ipms: True
+            ansistrano_git_repo: "{{ vault_git_repo_anfsi }}"
             CITOYEN_DOMAIN: "https://pel.pp.fsi.interieur.gouv.fr/"

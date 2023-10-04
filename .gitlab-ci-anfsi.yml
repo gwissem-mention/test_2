@@ -9,6 +9,7 @@ variables:
     PEL_ACCESS_TOKEN: "$PEL_ACCESS_TOKEN"
     REGISTRY_PASSWORD: "$REGISTRY_PASSWORD"
     REGISTRY_USER: "$REGISTRY_USER"
+    ATOS_REGISTRY_PASSWORD: "$ATOS_REGISTRY_PASSWORD"
     PROXY: "$PROXY"
     PHP_SSH_KEY: "$PHP_SSH_KEY"
     ANSIBLE_VAULT_PASSWORD: "$ANSIBLE_VAULT_PASSWORD"
@@ -38,10 +39,44 @@ build-citoyen:
     tags:
         - proxy-internet
     script:
-        - echo ${REGISTRY_PASSWORD} | docker login registry-nexus-pic.gendarmerie.fr --username ${REGISTRY_USER} --password-stdin
-        - docker build --network=host --build-arg HTTP_PROXY="$HTTP_PROXY" --build-arg php/Dockerfile
-        -
+        - mkdir -p ~/.kube/ && echo $KUBECONFIGBASE64 | base64 -d > ~/.kube/config.yaml
+        - export KUBECONFIG=~/.kube/config.yaml
+        - apk add curl wget git bash yq openssl tar
+        - curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+        - chmod +x ./kubectl
+        - mv ./kubectl /usr/local/bin
+        - curl -k https://nexus-pic.gendarmerie.fr/repository/binaries-pic/helm/helm-v3.7.2-linux-amd64.tar.gz > helm-v3.7.2-linux-amd64.tar.gz
+        - tar xzvf helm-v3.7.2-linux-amd64.tar.gz
+        - ls -l ./linux-amd64/
+        - mv ./linux-amd64/helm /usr/local/bin
+        - chmod +x /usr/local/bin/helm
 
+        - echo $KUBECONFIG
+        - kubectl config use-context pel-ppr-qual
+
+        - cd portail_citoyen
+        - export DOCKER_BUILDKIT=0
+        - export COMPOSE_DOCKER_CLI_BUILD=0
+        
+        ## Push image to Nexux registry
+        - echo "${REGISTRY_PASSWORD}" | docker login registry-omnibus-pic.gendarmerie.fr --username ${REGISTRY_USER} --password-stdin
+        - docker build . --network=host --build-arg HTTP_PROXY="$HTTP_PROXY" --build-arg HTTPS_PROXY="$HTTPS_PROXY" --tag "registry-omnibus-pic.gendarmerie.fr/bap/pel/plainte-en-ligne-php:latest" --build-arg PHP_IMAGE=registry-nexus-pic.gendarmerie.fr/bap/pel/base-php:1.0.0 --build-arg NGINX_IMAGE=registry-nexus-pic.gendarmerie.fr/nginx:latest --target=php_prod -f k8s/Dockerfile
+        - docker build . --network=host --build-arg HTTP_PROXY="$HTTP_PROXY" --build-arg HTTPS_PROXY="$HTTPS_PROXY" --tag "registry-omnibus-pic.gendarmerie.fr/bap/pel/plainte-en-ligne-nginx:latest" --build-arg PHP_IMAGE=registry-nexus-pic.gendarmerie.fr/bap/pel/base-php:1.0.0 --build-arg NGINX_IMAGE=registry-nexus-pic.gendarmerie.fr/nginx:latest --target=nginx_prod -f k8s/Dockerfile
+        - docker push registry-omnibus-pic.gendarmerie.fr/bap/pel/plainte-en-ligne-php:latest
+        - docker push registry-omnibus-pic.gendarmerie.fr/bap/pel/plainte-en-ligne-nginx:latest
+
+        ## Push image to ATOS registry
+        - echo "${ATOS_REGISTRY_PASSWORD}" | docker login https://registry.pel.pp.fsi.interieur.gouv.fr --username deployer --password-stdin
+        - docker tag registry-omnibus-pic.gendarmerie.fr/bap/pel/plainte-en-ligne-php:latest registry.pel.pp.fsi.interieur.gouv.fr/library/plainte-en-ligne-php:0.1.0
+        - docker tag registry-omnibus-pic.gendarmerie.fr/bap/pel/plainte-en-ligne-nginx:latest registry.pel.pp.fsi.interieur.gouv.fr/library/plainte-en-ligne-nginx:0.1.0
+        - docker push registry.pel.pp.fsi.interieur.gouv.fr/library/plainte-en-ligne-php:0.1.0
+        - docker push registry.pel.pp.fsi.interieur.gouv.fr/library/plainte-en-ligne-nginx:0.1.0
+
+        - docker pull registry.pel.pp.fsi.interieur.gouv.fr/library/plainte-en-ligne-php:0.1.0
+
+        ## Deploy newly pushed image
+        - helm upgrade --install -n pel-qual pel-qual pel-sample-chart/. --set nginx.image.tag=0.1.0 --set php.image.tag=0.1.0
+        - kubectl get all -A -n pel-qual
 
 .clone-code:
     stage: code-clone
@@ -53,9 +88,12 @@ build-citoyen:
     allow_failure: true
     script:
         - git clone https://pel:${SENSIO_ACCESS_TOKEN}@git.smile.fr/ministere-de-l-interieur/plaintes-en-ligne-pel.git
-        - cd plaintes-en-ligne-pel && git pull --all && git fetch
-        - git remote rm origin && git remote add origin https://pel:${PEL_ACCESS_TOKEN}@omnibus-pic.gendarmerie.fr/mohamed-1.el-bouraissi/plainte-en-ligne.git
-        - git push -u origin --all
+        - cd plaintes-en-ligne-pel && git pull --all && git fetch -u origin develop
+        - git remote rm origin && git remote add origin https://pel:${PEL_ACCESS_TOKEN}@omnibus-pic.gendarmerie.fr/BAP/pel/plainte-en-ligne.git
+        - git pull && git fetch && git checkout
+        - git branch --set-upstream-to=origin/develop develop
+        - git pull && git fetch && git checkout
+        - git push -u origin develop
 
 .install-ansible:
     stage: build-qualif
@@ -69,6 +107,4 @@ build-citoyen:
         - echo "deb http://ppa.launchpad.net/ansible/ansible/ubuntu trusty main" >> /etc/apt/sources.list && curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python3.9 get-pip.py --user
         - /root/.local/bin/pip install --user ansible
         - /root/.local/bin/ansible-galaxy install --ignore-errors -p /root/.ansible/roles -r $(pwd)/ansible/requirements.yaml -vvv
-        - ifconfig
-        # - ssh -i ~/.ssh/id_rsa_ansible -v ansible@10.227.166.194
-        - ~/.local/bin/ansible-playbook -v --become-method=su --become-user=ansible $(pwd)/portail_agent/ansible/deploy/deploy.yaml -i $(pwd)/portail_agent/ansible/qualif_ipms.yaml --vault-password-file=~/.vault_token --private-key=~/.ssh/id_rsa_ansible --extra-vars "symfony_root_dir=/var/www/pel"
+        - ~/.local/bin/ansible-playbook -v --become-method=su --become-user=ansible $(pwd)/portail_agent/ansible/deploy/deploy.yaml -i $(pwd)/portail_agent/ansible/qualif_ipms.yaml --vault-password-file=~/.vault_token --private-key=~/.ssh/id_rsa_ansible --extra-vars "symfony_root_dir=/srv/data/pel"
