@@ -1,24 +1,16 @@
 ---
 all:
-    hosts:
-        web:
-            ansible_connection: ssh
-            ansible_host: "10.227.166.194"
-            ansible_user: "ansible"
-            server_name: "dapqp307web1.qualpgs"
-            server_user: "ansible"
-            force_reload_db: False
-            force_referential_update: True
-            in_php_main_machine: False
-            in_ipms: True
-            ansistrano_git_repo: "{{ vault_git_repo_anfsi }}"
-            CITOYEN_DOMAIN: https://pel-citoyen.forge.smile.fr
-            
+    hosts:  
         php:
             ansible_connection: ssh
+            ansible_host: "10.227.166.196"
+            ansible_user: "ansible"
+            server_name: "dapqp307php1.qualpgs"
+            server_user: "ansible"
             force_reload_db: False
             force_referential_update: True
             in_php_main_machine: True
             in_ipms: True
+            ansistrano_git_branch: "main"
             ansistrano_git_repo: "{{ vault_git_repo_anfsi }}"
             CITOYEN_DOMAIN: https://pel-citoyen.forge.smile.fr
