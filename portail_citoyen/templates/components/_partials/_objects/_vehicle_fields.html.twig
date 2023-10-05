@@ -25,7 +25,7 @@
                 {{ form_label(object.degradationDescription) }}
             {% endblock %}
             {% block widget %}
-                {{ form_widget(object.degradationDescription, {'attr':{'class':html_classes(attr.class ?? '', 'fr-input', {'fr-input--error':has_errors}),'aria-describedby':has_errors ? 'form-errors-'~ object.degradationDescription.vars.id :''}}) }}
+                {{ form_widget(object.degradationDescription, {'attr':{'class':html_classes(attr.class ?? '', 'fr-input', {'fr-input--error':has_errors}),'aria-describedby':has_errors ? 'form-errors-'~ object.degradationDescription.vars.id :false}}) }}
             {% endblock %}
             {% block errors %}
                 {{ form_errors(object.degradationDescription) }}
