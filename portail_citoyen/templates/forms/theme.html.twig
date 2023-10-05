@@ -93,7 +93,7 @@
                         'fr-input',
                         {'fr-input--error':form.number.vars.errors is not empty}
                     ),
-                    'aria-describedby': form.number.vars.errors is not empty ? 'form-errors-'~ form.vars.id : ''
+                    'aria-describedby': form.number.vars.errors is not empty ? 'form-errors-'~ form.vars.id : false
                 }
             }) }}
             {{ form_errors(form.number) }}

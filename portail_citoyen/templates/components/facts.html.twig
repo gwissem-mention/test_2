@@ -188,7 +188,7 @@
                     {{ form_label(form.description) }}
                 {% endblock %}
                 {% block widget %}
-                    {{ form_widget(form.description, {'attr':{'class':html_classes(attr.class ?? '', 'fr-input', {'fr-input--error':has_errors}),'aria-describedby':has_errors ? 'form-errors-'~ form.description.vars.id :''}}) }}
+                    {{ form_widget(form.description, {'attr':{'class':html_classes(attr.class ?? '', 'fr-input', {'fr-input--error':has_errors}),'aria-describedby':has_errors ? 'form-errors-'~ form.description.vars.id :false}}) }}
                 {% endblock %}
                 {% block errors %}
                     {{ form_errors(form.description) }}
@@ -203,7 +203,7 @@
             <div class="fr-mt-3v">
                 <div class="{{ html_classes('fr-input-group', 'fr-mb-4v', {'fr-input-group--error': form.victimOfViolenceText.vars.errors is not empty}) }}">
                     {{ form_label(form.victimOfViolenceText) }}
-                    {{ form_widget(form.victimOfViolenceText, {'attr':{'class':html_classes(form.victimOfViolenceText.vars.attr.class ?? '', 'fr-input', {'fr-input--error':form.victimOfViolenceText.vars.errors is not empty}),'aria-describedby':form.victimOfViolenceText.vars.errors is not empty ? 'form-errors-'~ form.victimOfViolenceText.vars.id :''}}) }}
+                    {{ form_widget(form.victimOfViolenceText, {'attr':{'class':html_classes(form.victimOfViolenceText.vars.attr.class ?? '', 'fr-input', {'fr-input--error':form.victimOfViolenceText.vars.errors is not empty}),'aria-describedby':form.victimOfViolenceText.vars.errors is not empty ? 'form-errors-'~ form.victimOfViolenceText.vars.id :false}}) }}
                     {{ form_errors(form.victimOfViolenceText) }}
                 </div>
                 <div class="fr-alert fr-alert--info fr-alert--sm fr-mb-2v">

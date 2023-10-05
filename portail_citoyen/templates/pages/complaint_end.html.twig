@@ -18,7 +18,7 @@
 
 {% block content %}
     <div class="flex flex-col gap-y-8 md:gap-y-10 items-center fr-pt-10v fr-pb-12v fr-px-6v fr-pt-md-12v fr-px-md-20v fr-pb-md-20v">
-		<img src="{{ asset('build/images/success.svg') }}">
+		<img src="{{ asset('build/images/success.svg') }}" alt="">
         <h1 class="text-center fr-mb-0 text-[28px]/9 md:text-[40px]/[48px]">{{ 'pel.end.thanks'|trans }}</h1>
         <a href="{{ path('complaint_summary_pdf') }}"
             class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-download-fill fr-text--lg py-3 md:py-2.5 pr-6 pl-[18px] before:content-[''] before:w-6 before:h-6">
@@ -30,9 +30,9 @@
                 <p class="text-xl/6 md:text-2xl text-center fr-text-mention--grey fr-mb-0"> {{ 'pel.place.complaint.handling'|trans }}</p>
                 <div class="flex flex-col items-center gap-x-6 w-full md:flex-row">
                     {% if (unit.institutionCode is same as(constant('App\\AppEnum\\Institution::GN'))) %}
-                        <img src="{{ asset('build/images/gendarmerie.svg') }}">
+                        <img src="{{ asset('build/images/gendarmerie.svg') }}" alt="">
                     {% elseif (unit.institutionCode is same as(constant('App\\AppEnum\\Institution::PN'))) %}
-                        <img src="{{ asset('build/images/police.svg') }}">
+                        <img src="{{ asset('build/images/police.svg') }}" alt="">
                     {% endif %}
                         <div class="flex flex-col text-center grow gap-y-2">
                             <b class="text-lg/6 md:text-[22px]/7">{{ unit.name }}</b>
