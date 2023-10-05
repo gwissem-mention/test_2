@@ -50,7 +50,6 @@ class FactsDTO
     private ?string $endAddressCity = null;
     private ?string $endAddressDepartmentNumber = null;
     private string $localisation;
-    private string $unknownLocalisation;
     private ?string $timeInformation;
     private ?string $date;
     private ?string $hour;
@@ -97,7 +96,6 @@ class FactsDTO
         $this->startAddressCity = $facts->getStartAddressCity() ?? '';
         $this->startAddressDepartmentNumber = strval($facts->getStartAddressDepartmentNumber());
         $this->localisation = $facts->getPlace() ?? '';
-        $this->unknownLocalisation = true === $facts->isExactPlaceUnknown() && false === $facts->hasExactAddress() ? '1' : '';
 
         if (Facts::EXACT_HOUR_KNOWN_YES === $facts->getExactHourKnown() && $facts->isExactDateKnown()) {
             $this->timeInformation = self::TIME_INFORMATION_KNOWN;
@@ -192,7 +190,7 @@ class FactsDTO
             'Faits_Adresse_Arrivee_Commune' => $this->isNaturePlaceTransports ? $this->endAddressCity : null,
             'Faits_Adresse_Arrivee_HidNumDep' => $this->isNaturePlaceTransports ? $this->endAddressDepartmentNumber : null,
             'Faits_Localisation' => $this->localisation,
-            'Faits_Localisation_Inconnue' => $this->unknownLocalisation,
+            'Faits_Localisation_Inconnue' => '',
             'Faits_Horaire' => $this->timeInformation,
             'Faits_Date_Affaire' => $this->date,
             'Faits_Heure' => $this->hour,
