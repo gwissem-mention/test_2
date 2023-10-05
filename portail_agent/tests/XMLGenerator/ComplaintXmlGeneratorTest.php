@@ -436,7 +436,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Faits_Adresse_Arrivee_Commune>Villeurbanne</Faits_Adresse_Arrivee_Commune>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Adresse_Arrivee_HidNumDep>69</Faits_Adresse_Arrivee_HidNumDep>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Localisation>TRAIN</Faits_Localisation>', $this->xmlContent);
-        $this->assertStringContainsString('<Faits_Localisation_Inconnue>1</Faits_Localisation_Inconnue>', $this->xmlContent);
+        $this->assertStringContainsString('<Faits_Localisation_Inconnue/>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Horaire>horaire_inconnu</Faits_Horaire>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Date_Affaire>01/12/2022</Faits_Date_Affaire>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Heure>09</Faits_Heure>', $this->xmlContent);
