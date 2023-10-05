@@ -1,9 +1,5 @@
 image: registry-nexus-pic.gendarmerie.fr/bitnami/git
 
-stages:
-    - code-clone
-    - build-qualif
-
 variables:
     SENSIO_ACCESS_TOKEN: "$SENSIO_ACCESS_TOKEN"
     PEL_ACCESS_TOKEN: "$PEL_ACCESS_TOKEN"
@@ -102,9 +98,9 @@ build-citoyen:
     only:
         - main
     script:
-        - mkdir ~/.ssh && chmod 600 ~/.ssh && cp ansible/known_hosts ~/.ssh/known_hosts && chmod 600 ~/.ssh/known_hosts && echo "$PHP_SSH_KEY" > ~/.ssh/id_rsa_ansible && chmod 600 ~/.ssh/id_rsa_ansible && echo "$ANSIBLE_VAULT_PASSWORD" > ~/.vault_token && chmod 600 ~/.vault_token
+        - mkdir ~/.ssh && chmod 600 ~/.ssh && cp portail_agent/ansible/artefacts/known_hosts_qualif ~/.ssh/known_hosts && chmod 600 ~/.ssh/known_hosts && echo "$PHP_SSH_KEY" > ~/.ssh/id_rsa_ansible && chmod 600 ~/.ssh/id_rsa_ansible && echo "$ANSIBLE_VAULT_PASSWORD" > ~/.vault_token && chmod 600 ~/.vault_token
         - apt-get update && apt-get install -y net-tools software-properties-common gnupg2 python3.9-distutils && apt-get update
         - echo "deb http://ppa.launchpad.net/ansible/ansible/ubuntu trusty main" >> /etc/apt/sources.list && curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python3.9 get-pip.py --user
-        - /root/.local/bin/pip install --user ansible
-        - /root/.local/bin/ansible-galaxy install --ignore-errors -p /root/.ansible/roles -r $(pwd)/ansible/requirements.yaml -vvv
-        - ~/.local/bin/ansible-playbook -v --become-method=su --become-user=ansible $(pwd)/portail_agent/ansible/deploy/deploy.yaml -i $(pwd)/portail_agent/ansible/qualif_ipms.yaml --vault-password-file=~/.vault_token --private-key=~/.ssh/id_rsa_ansible --extra-vars "symfony_root_dir=/srv/data/pel"
+        - ~/.local/bin/pip install --user ansible
+        - ~/.local/bin/ansible-galaxy install --ignore-errors -p ~/.ansible/roles -r $(pwd)/portail_agent/ansible/requirements-ipms.yaml -vvv
+        - ~/.local/bin/ansible-playbook -v --become-method=su --become-user=ansible $(pwd)/portail_agent/ansible/deploy/deploy.yaml -i $(pwd)/portail_agent/ansible/qualif_ipms.yaml --vault-password-file=~/.vault_token --private-key=~/.ssh/id_rsa_ansible --extra-vars "symfony_root_dir=/srv/data/pel" --extra-vars "ansistrano_git_repo=https://oauth2:${TOKEN_OMNIBUS}@omnibus-pic.gendarmerie.fr/BAP/pel/plainte-en-ligne.git"

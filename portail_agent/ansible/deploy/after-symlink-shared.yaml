@@ -158,19 +158,23 @@
       chdir: '{{ release_portal_path }}'
       target: build
 
-- name: Set www-data as the owner of project directory
-  become: true
-  file:
-      path: "{{ release_portal_path }}"
-      owner: www-data
-      group: www-data
-      mode: 0775
-      recurse: true
+# Needs to be done in preprod and prod only
+# - name: Set www-data as the owner of project directory
+#   become: true
+#   file:
+#       path: "{{ release_portal_path }}"
+#       owner: www-data
+#       group: www-data
+#       mode: 0775
+#       recurse: true
+#   when: in_ipms
+#
+# Needs sudoer privileges to run in qualif
+# - name: Setup directory permissions for var/
+#   become: true
+#   file:
+#       path: "{{ release_portal_path }}/var"
+#       state: directory
+#       mode: 0775
+#       recurse: true
 
-- name: Setup directory permissions for var/
-  become: true
-  file:
-      path: "{{ release_portal_path }}/var"
-      state: directory
-      mode: 0775
-      recurse: true
