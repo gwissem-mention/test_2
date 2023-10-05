@@ -7,6 +7,7 @@ namespace App\Controller\Api;
 use App\Entity\Complaint;
 use App\Oodrive\ApiFileUploader;
 use App\Repository\ComplaintRepository;
+use App\Repository\UploadReportRepository;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -27,7 +28,8 @@ class UploadReportApiController extends AbstractController
         TranslatorInterface $translator,
         LoggerInterface $logger,
         ApiFileUploader $apiFileUploader,
-        string $declarationNumber
+        string $declarationNumber,
+        UploadReportRepository $uploadReportRepository
     ): JsonResponse {
         if (!$this->isGranted('IS_AUTHENTICATED')) {
             $logger->error('User not authenticated.');
@@ -56,7 +58,7 @@ class UploadReportApiController extends AbstractController
             return $this->json(['message' => 'Access forbidden for this complaint.'], 403);
         }
 
-        $uploadType = $request->headers->get('X-UPLOAD-TYPE');
+        $uploadType = (string) $request->headers->get('X-UPLOAD-TYPE');
         if (!in_array($uploadType, ['PV', 'RECEPISSE'])) {
             $logger->error(sprintf(
                 'Invalid upload type: %s',
@@ -64,6 +66,24 @@ class UploadReportApiController extends AbstractController
             ));
 
             return $this->json(['message' => 'Invalid upload type.'], 400);
+        }
+
+        if (false === $request->headers->has('timestamp')) {
+            $logger->error('No timestamp header');
+
+            return $this->json(['message' => 'No timestamp header'], 400);
+        }
+
+        if (false === $request->headers->has('size')) {
+            $logger->error('No size header');
+
+            return $this->json(['message' => 'No size header'], 400);
+        }
+
+        if (false === $request->headers->has('originName')) {
+            $logger->error('No originName header');
+
+            return $this->json(['message' => 'No originName header'], 400);
         }
 
         /** @var UploadedFile $requestFile */
@@ -83,7 +103,14 @@ class UploadReportApiController extends AbstractController
             return $this->json($violations, 400);
         }
 
-        $isReplaced = $apiFileUploader->upload($complaint, $requestFile, $uploadType);
+        $isReplaced = $apiFileUploader->upload(
+            $complaint,
+            $requestFile,
+            $uploadType,
+            (int) $request->headers->get('timestamp'),
+            (int) $request->headers->get('size'),
+            (string) $request->headers->get('originName')
+        );
 
         $message = $isReplaced ? 'The file was successfully replaced.' : 'The file has been uploaded successfully.';
 

@@ -207,10 +207,18 @@ class Complaint
     #[ORM\Column(options: ['default' => false])]
     private ?bool $consentContactPortal = null;
 
+    /** @var Collection<int, UploadReport> */
+    #[ORM\OneToMany(mappedBy: 'complaint', targetEntity: UploadReport::class, cascade: [
+        'persist',
+        'remove',
+    ], orphanRemoval: true)]
+    private Collection $uploadReports;
+
     public function __construct()
     {
         $this->objects = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->uploadReports = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -844,6 +852,24 @@ class Complaint
     public function setConsentContactPortal(?bool $consentContactPortal): self
     {
         $this->consentContactPortal = $consentContactPortal;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, UploadReport>
+     */
+    public function getUploadReports(): Collection
+    {
+        return $this->uploadReports;
+    }
+
+    public function addUploadReport(UploadReport $uploadReport): self
+    {
+        if (!$this->uploadReports->contains($uploadReport)) {
+            $this->uploadReports->add($uploadReport);
+            $uploadReport->setComplaint($this);
+        }
 
         return $this;
     }
