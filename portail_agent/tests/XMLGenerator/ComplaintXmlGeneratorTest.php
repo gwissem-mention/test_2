@@ -346,7 +346,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Personne_Residence_Adresse>15 rue PAIRA, Meudon, 92190</Personne_Residence_Adresse>', $this->xmlContent);
         $this->assertStringContainsString('<Personne_Residence_Lieu>FRANCE, MEUDON, 15 rue PAIRA, Meudon, 92190</Personne_Residence_Lieu>', $this->xmlContent);
         $this->assertStringContainsString('<Personne_Naissance_Lieu>MEUDON 92190 (France)</Personne_Naissance_Lieu>', $this->xmlContent);
-        $this->assertStringContainsString('<FRANCE_CONNECT>Oui</FRANCE_CONNECT>', $this->xmlContent);
+        $this->assertStringContainsString('<France_Connect>Oui</France_Connect>', $this->xmlContent);
         $this->assertStringContainsString('<Profession_INSEE_PEL>Etudiant</Profession_INSEE_PEL>', $this->xmlContent);
         $this->assertStringContainsString('</Personne>', $this->xmlContent);
     }
@@ -659,16 +659,16 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
     public function testVariousSection(): void
     {
         $this->assertStringContainsString('<Divers>', $this->xmlContent);
-        $this->assertStringContainsString('<SUSPECTS_INFORMATIONS>Oui</SUSPECTS_INFORMATIONS>', $this->xmlContent);
-        $this->assertStringContainsString('<SUSPECTS_DESCRIPTION>2 hommes</SUSPECTS_DESCRIPTION>', $this->xmlContent);
-        $this->assertStringContainsString('<TEMOINS_PRESENTS>Oui</TEMOINS_PRESENTS>', $this->xmlContent);
-        $this->assertStringContainsString('<INTERVENTION_FSI>Oui</INTERVENTION_FSI>', $this->xmlContent);
-        $this->assertStringContainsString('<CONSTAT_RELEV_EFFECTUES>Oui</CONSTAT_RELEV_EFFECTUES>', $this->xmlContent);
-        $this->assertStringContainsString('<VIDEO_DISPONIBLE>Oui</VIDEO_DISPONIBLE>', $this->xmlContent);
-        $this->assertStringContainsString('<UNITE_RDV>Commissariat de police d\'Arcachon</UNITE_RDV>', $this->xmlContent);
-        $this->assertStringContainsString('<RDV_SOUHAITE>Oui</RDV_SOUHAITE>', $this->xmlContent);
+        $this->assertStringContainsString('<Suspects_Informations>Oui</Suspects_Informations>', $this->xmlContent);
+        $this->assertStringContainsString('<Suspects_Description>2 hommes</Suspects_Description>', $this->xmlContent);
+        $this->assertStringContainsString('<Temoins_Presents>Oui</Temoins_Presents>', $this->xmlContent);
+        $this->assertStringContainsString('<Intervention_Fsi>Oui</Intervention_Fsi>', $this->xmlContent);
+        $this->assertStringContainsString('<Constat_Relev_Effectues>Oui</Constat_Relev_Effectues>', $this->xmlContent);
+        $this->assertStringContainsString('<Video_Disponible>Oui</Video_Disponible>', $this->xmlContent);
+        $this->assertStringContainsString('<Unite_Rdv>Commissariat de police d\'Arcachon</Unite_Rdv>', $this->xmlContent);
+        $this->assertStringContainsString('<Rdv_Souhaite>Oui</Rdv_Souhaite>', $this->xmlContent);
         $this->assertStringContainsString('<Enregistrement_Video>Oui</Enregistrement_Video>', $this->xmlContentWithCorporationRepresented);
-        $this->assertStringContainsString('<TEMOINS_DESCRIPTION>Jean Dupont</TEMOINS_DESCRIPTION>', $this->xmlContentWithCorporationRepresented);
+        $this->assertStringContainsString('<Temoins_Description>Jean Dupont</Temoins_Description>', $this->xmlContentWithCorporationRepresented);
         $this->assertStringContainsString('</Divers>', $this->xmlContent);
     }
 

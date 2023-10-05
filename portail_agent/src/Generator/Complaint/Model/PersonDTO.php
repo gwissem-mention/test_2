@@ -59,7 +59,7 @@ class PersonDTO extends AbstractIdentityDTO
             'Personne_Residence_Adresse' => $this->address,
             'Personne_Residence_Lieu' => $this->homePlace,
             'Personne_Naissance_Lieu' => $this->birthplace,
-            'FRANCE_CONNECT' => $this->franceConnected,
+            'France_Connect' => $this->franceConnected,
             'Profession_INSEE_PEL' => $this->job,
         ]];
     }

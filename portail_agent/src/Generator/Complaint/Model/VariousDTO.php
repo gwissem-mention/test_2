@@ -52,16 +52,16 @@ class VariousDTO
     public function getArray(): array
     {
         return ['Divers' => [
-            'SUSPECTS_INFORMATIONS' => $this->suspectsKnown,
-            'SUSPECTS_DESCRIPTION' => $this->suspectsKnownText,
-            'TEMOINS_PRESENTS' => $this->witnessesPresent,
-            'INTERVENTION_FSI' => $this->fsiVisit,
-            'CONSTAT_RELEV_EFFECTUES' => $this->observationMade,
-            'VIDEO_DISPONIBLE' => $this->cctvAvailable,
-            'UNITE_RDV' => $this->appointmentUnit,
-            'RDV_SOUHAITE' => $this->appointmentAsked,
+            'Suspects_Informations' => $this->suspectsKnown,
+            'Suspects_Description' => $this->suspectsKnownText,
+            'Temoins_Presents' => $this->witnessesPresent,
+            'Intervention_Fsi' => $this->fsiVisit,
+            'Constat_Relev_Effectues' => $this->observationMade,
+            'Video_Disponible' => $this->cctvAvailable,
+            'Unite_Rdv' => $this->appointmentUnit,
+            'Rdv_Souhaite' => $this->appointmentAsked,
             'Enregistrement_Video' => $this->cctvPresent,
-            'TEMOINS_DESCRIPTION' => $this->witnessesText,
+            'Temoins_Description' => $this->witnessesText,
         ]];
     }
 }
