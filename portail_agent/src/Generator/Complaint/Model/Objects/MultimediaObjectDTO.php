@@ -23,6 +23,8 @@ class MultimediaObjectDTO extends AbstractObjectDTO
     private ?string $phoneModel = null;
     private ?string $model = null;
     private ?string $amount;
+    private ?string $phoneDescription = null;
+    private ?string $phoneSerialNumber = null;
 
     public function __construct(MultimediaObject $object)
     {
@@ -37,6 +39,8 @@ class MultimediaObjectDTO extends AbstractObjectDTO
                 $this->phoneStatus = AbstractObject::STATUS_STOLEN === $object->getStatus() ? 'volé' : 'dégradé';
                 $this->phoneBrand = $object->getBrand();
                 $this->phoneModel = $object->getModel();
+                $this->phoneDescription = $object->getDescription().'. '.$object->getBrand().' '.$object->getModel();
+                $this->phoneSerialNumber = $object->getSerialNumber();
                 break;
 
             case 'MULTIMEDIA':
@@ -69,6 +73,8 @@ class MultimediaObjectDTO extends AbstractObjectDTO
             'Objet_Multimedia_Marque' => $this->brand,
             'Objet_Multimedia_Modele' => $this->model,
             'Objet_Multimedia_Prejudice_Estimation' => $this->amount,
+            'Objet_Multimedia_Description_Tel' => $this->phoneDescription,
+            'Objet_Multimedia_Numeros_Serie_Tel' => $this->phoneSerialNumber,
 //            'Objet_Multimedia_Opposition' => $this->opposition,
 //            'Objet_Multimedia_Nmr_Sim' => $this->simNumber,
             // 'Objet_Multimedia_Identite_Victime' => $this->identityVictim,
