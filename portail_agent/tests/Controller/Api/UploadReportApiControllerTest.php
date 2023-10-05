@@ -46,6 +46,9 @@ class UploadReportApiControllerTest extends WebTestCase
             ['file' => $file],
             [
                 'HTTP_X-UPLOAD-TYPE' => 'RECEPISSE',
+                'HTTP_timestamp' => 1696421622,
+                'HTTP_size' => 1000,
+                'HTTP_originName' => 'test.png',
             ]
         );
 
@@ -66,6 +69,9 @@ class UploadReportApiControllerTest extends WebTestCase
             ['file' => $file],
             [
                 'HTTP_X-UPLOAD-TYPE' => 'PV',
+                'HTTP_timestamp' => 1696421622,
+                'HTTP_size' => 1000,
+                'HTTP_originName' => 'test.png',
             ]
         );
 
@@ -83,6 +89,9 @@ class UploadReportApiControllerTest extends WebTestCase
             ['file' => $file],
             [
                 'HTTP_X-UPLOAD-TYPE' => 'PV',
+                'HTTP_timestamp' => 1696421622,
+                'HTTP_size' => 1000,
+                'HTTP_originName' => 'test.png',
             ]
         );
         $this->assertResponseStatusCodeSame(401);
@@ -102,6 +111,9 @@ class UploadReportApiControllerTest extends WebTestCase
             ['file' => $file],
             [
                 'HTTP_X-UPLOAD-TYPE' => 'PV',
+                'HTTP_timestamp' => 1696421622,
+                'HTTP_size' => 1000,
+                'HTTP_originName' => 'test.png',
             ]
         );
 
@@ -121,6 +133,72 @@ class UploadReportApiControllerTest extends WebTestCase
             ['file' => $file],
             [
                 'HTTP_X-UPLOAD-TYPE' => 'TEST',
+                'HTTP_timestamp' => 1696421622,
+                'HTTP_size' => 1000,
+                'HTTP_originName' => 'test.png',
+            ]
+        );
+
+        $this->assertResponseStatusCodeSame(400);
+    }
+
+    public function testNoTimestamp(): void
+    {
+        $file = new UploadedFile(self::$kernel->getProjectDir().'/tests/Behat/Files/blank.pdf', 'blank');
+
+        $this->client->loginUser($this->userGn);
+
+        $this->client->request(
+            'PUT',
+            '/api/complaint/PEL-2023-00000030/lrp-upload',
+            [],
+            ['file' => $file],
+            [
+                'HTTP_X-UPLOAD-TYPE' => 'TEST',
+                'HTTP_size' => 1000,
+                'HTTP_originName' => 'test.png',
+            ]
+        );
+
+        $this->assertResponseStatusCodeSame(400);
+    }
+
+    public function testNoSize(): void
+    {
+        $file = new UploadedFile(self::$kernel->getProjectDir().'/tests/Behat/Files/blank.pdf', 'blank');
+
+        $this->client->loginUser($this->userGn);
+
+        $this->client->request(
+            'PUT',
+            '/api/complaint/PEL-2023-00000030/lrp-upload',
+            [],
+            ['file' => $file],
+            [
+                'HTTP_X-UPLOAD-TYPE' => 'TEST',
+                'HTTP_timestamp' => 1696421622,
+                'HTTP_originName' => 'test.png',
+            ]
+        );
+
+        $this->assertResponseStatusCodeSame(400);
+    }
+
+    public function testNoOriginName(): void
+    {
+        $file = new UploadedFile(self::$kernel->getProjectDir().'/tests/Behat/Files/blank.pdf', 'blank');
+
+        $this->client->loginUser($this->userGn);
+
+        $this->client->request(
+            'PUT',
+            '/api/complaint/PEL-2023-00000030/lrp-upload',
+            [],
+            ['file' => $file],
+            [
+                'HTTP_X-UPLOAD-TYPE' => 'TEST',
+                'HTTP_timestamp' => 1696421622,
+                'HTTP_size' => 1000,
             ]
         );
 
