@@ -22,7 +22,7 @@ use App\Entity\Corporation;
  *      country: object{label: string},
  *      frenchAddress: JsonFrenchAddress|null,
  *      foreignAddress: JsonForeignAddress|null,
- *      sameAddress: bool
+ *      sameAddress: bool|null
  *   }
  */
 class CorporationParser
@@ -67,7 +67,7 @@ class CorporationParser
             ->setStreetType($address->getStreetType())
             ->setStreetName($address->getStreetName())
             ->setPostCode($address->getPostCode())
-            ->setSameAddressAsDeclarant($corporation->sameAddress);
+            ->setSameAddressAsDeclarant($corporation->sameAddress ?? false);
 
         return $corporationParsed;
     }
