@@ -22,7 +22,7 @@
         {% set attr_row = {
             'class': html_classes(
                 attr.class ?? '',
-                {'fr-selectx': 'autocomplete' not in form.vars['block_prefixes']},
+                {'fr-select': 'autocomplete' not in form.vars['block_prefixes']},
                 {'fr-select--error': errors is not empty}
             ),
         } %}

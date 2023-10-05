@@ -50,7 +50,7 @@
 	<div class="{{ html_classes('fr-select-group', {'fr-select-group--error': form.birthLocation.country.vars.errors is not empty}) }}">
 		{{ form_label(form.birthLocation.country) }}
 		<div class="fr-input-wrap fr-icon-arrow-down-s-line before:content-[''] before:z-10">
-			{{ form_widget(form.birthLocation.country, {'attr':{'class':html_classes(form.birthLocation.country.vars.attr.class ?? '', 'autocomplete' not in form.birthLocation.country.vars['block_prefixes'] ? 'fr-select' : '',{'fr-select--error':form.birthLocation.country.vars.errors is not empty})}}) }}
+			{{ form_widget(form.birthLocation.country, {'attr':{'aria-describedby': form.birthLocation.country.vars.errors is not empty ? 'form-errors-'~ form.birthLocation.country.vars.id : false,'class':html_classes(form.birthLocation.country.vars.attr.class ?? '', 'autocomplete' not in form.birthLocation.country.vars['block_prefixes'] ? 'fr-select' : '',{'fr-select--error':form.birthLocation.country.vars.errors is not empty})}}) }}
 		</div>
 		{{ form_errors(form.birthLocation.country) }}
 	</div>
@@ -60,7 +60,7 @@
 		<div class="{{ html_classes('fr-select-group', {'fr-select-group--error': form.birthLocation.frenchTown.vars.errors is not empty}) }}">
 			{{ form_label(form.birthLocation.frenchTown) }}
 			<div class="fr-input-wrap fr-icon-map-pin-2-line before:content-[''] before:z-10">
-				{{ form_widget(form.birthLocation.frenchTown, {'attr':{'class':html_classes(form.birthLocation.frenchTown.vars.attr.class ?? 'french-town', 'autocomplete' not in form.birthLocation.frenchTown.vars['block_prefixes'] ? 'fr-select' : '',{'fr-select--error':form.birthLocation.frenchTown.vars.errors is not empty})}}) }}
+				{{ form_widget(form.birthLocation.frenchTown, {'attr':{'aria-describedby': form.birthLocation.frenchTown.vars.errors is not empty ? 'form-errors-'~ form.birthLocation.frenchTown.vars.id : false,'class':html_classes(form.birthLocation.frenchTown.vars.attr.class ?? 'french-town', 'autocomplete' not in form.birthLocation.frenchTown.vars['block_prefixes'] ? 'fr-select' : '',{'fr-select--error':form.birthLocation.frenchTown.vars.errors is not empty})}}) }}
 			</div>
 			{{ form_errors(form.birthLocation.frenchTown) }}
 		</div>
@@ -90,7 +90,7 @@
 	<div class="{{ html_classes('fr-select-group', {'fr-select-group--error': form.job.vars.errors is not empty}) }}">
 		{{ form_label(form.job) }}
 		<div class="fr-input-wrap fr-icon-briefcase-line before:content-[''] before:z-10">
-			{{ form_widget(form.job, {'attr':{'class':html_classes(form.job.vars.attr.class ?? 'job', 'autocomplete' not in form.job.vars['block_prefixes'] ? 'fr-select' : '',{'fr-select--error':form.job.vars.errors is not empty})}}) }}
+			{{ form_widget(form.job, {'attr':{'aria-describedby': form.job.vars.errors is not empty ? 'form-errors-'~ form.job.vars.id : false, 'class':html_classes(form.job.vars.attr.class ?? 'job', 'autocomplete' not in form.job.vars['block_prefixes'] ? 'fr-select' : '',{'fr-select--error':form.job.vars.errors is not empty})}}) }}
 		</div>
 		{{ form_errors(form.job) }}
 	</div>
