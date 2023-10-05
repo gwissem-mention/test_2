@@ -168,7 +168,6 @@ class FactsDTO
     {
         return ['Faits' => [
             'Faits_Expose' => implode(' / ', $this->presentation),
-            'Faits_Expose_GN' => implode(' / ', $this->presentation),
             'Faits_Manop' => $this->manop,
             'Faits_Localisation_Adresse' => $this->isNaturePlaceTransports ? $this->endAddress : $this->startAddress,
             'Faits_Localisation_Pays' => $this->isNaturePlaceTransports ? $this->endAddressCountry : $this->startAddressCountry,
