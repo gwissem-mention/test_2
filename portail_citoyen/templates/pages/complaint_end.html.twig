@@ -1,6 +1,6 @@
 {% extends 'common/_complaint.html.twig' %}
 
-{% set current_step_title = 'pel.registered.complaint'|trans %}
+{% set current_step_title = 'pel.registered.declaration'|trans %}
 {% set isAppointmentRequiredOrAsked = complaint.isAppointmentRequired or complaint.appointment.appointmentAsked|default(false) %}
 {% if isAppointmentRequiredOrAsked is same as(false) %}
     {% set current_step_number = 7 %}
@@ -10,9 +10,9 @@
 
 {% block title %}
     {% if isAppointmentRequiredOrAsked is same as(false) %}
-    	{{ 'pel.registered.complaint.title'|trans }}
+    	{{ 'pel.registered.declaration.title'|trans }}
     {% else %}
-    	{{ 'pel.registered.complaint.title.with.appointment'|trans }}
+    	{{ 'pel.registered.declaration.title.with.appointment'|trans }}
     {% endif %}
 {% endblock %}
 

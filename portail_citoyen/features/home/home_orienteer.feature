@@ -19,11 +19,11 @@ Feature:
             | pel.and.overseas                                  |
             | pel.header.baseline                               |
             | pel.online.complaint                              |
-            | pel.online.complaint.process                      |
+            | pel.online.declaration.process                    |
             | pel.1.fill.your.form                              |
             | pel.2.your.request.is.sent.to.an.agent            |
             | pel.3.your.request.is.processed.within.48h        |
-            | pel.complaint.create                              |
+            | pel.declaration.create                            |
 
     @func
     Scenario: Click on "Back" link
@@ -34,5 +34,5 @@ Feature:
     @func
     Scenario: Click on "Start" link
         Given I am on "/accueil-deroule"
-        Then I follow "Déposer plainte"
+        Then I follow "Poursuivre"
         And I should be on "/authentification#pel-to-log-in"

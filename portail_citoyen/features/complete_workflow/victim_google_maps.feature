@@ -207,4 +207,4 @@ Feature:
         When I fill in "appointment_appointmentContactText" with "Between 10am and 12am"
         And I press "Continuer"
         Then I should be on "/porter-plainte/fin"
-        And I should see "Votre plainte en ligne a bien été transmise à nos services."
+        And I should see "Votre déclaration a bien été transmise à nos services."

@@ -1,9 +1,9 @@
-{% set title = 'pel.my.online.complaint.declaration'|trans %}
+{% set title = 'pel.my.online.declaration'|trans %}
 {% if isAppointmentRequiredOrAsked is same as(false) %}
-    {% set steps = [{'title': 'pel.legal.dispositions'}, {'title': 'pel.complaint.your.identity' }, {'title': 'pel.facts.description' }, {'title': 'pel.goods.concerned' }, {'title': 'pel.further.information' }, {'title': 'pel.summary.of.complaint' }, {'title': 'pel.registered.complaint' }] %}
+    {% set steps = [{'title': 'pel.legal.dispositions'}, {'title': 'pel.complaint.your.identity' }, {'title': 'pel.facts.description' }, {'title': 'pel.goods.concerned' }, {'title': 'pel.further.information' }, {'title': 'pel.summary.of.declaration' }, {'title': 'pel.registered.declaration' }] %}
     {% set steps_count = 7 %}
 {% else %}
-    {% set steps = [{'title': 'pel.legal.dispositions'}, {'title': 'pel.complaint.your.identity' }, {'title': 'pel.facts.description' }, {'title': 'pel.goods.concerned' }, {'title': 'pel.further.information' }, {'title': 'pel.summary.of.complaint' }, {'title': 'pel.appointment.booking' }, {'title': 'pel.registered.complaint' }] %}
+    {% set steps = [{'title': 'pel.legal.dispositions'}, {'title': 'pel.complaint.your.identity' }, {'title': 'pel.facts.description' }, {'title': 'pel.goods.concerned' }, {'title': 'pel.further.information' }, {'title': 'pel.summary.of.declaration' }, {'title': 'pel.appointment.booking' }, {'title': 'pel.registered.declaration' }] %}
     {% set steps_count = 8 %}
 {% endif %}
 
@@ -34,7 +34,7 @@
 </div>
 <div class="fr-grid-row fr-col-md-4 flex min-w-min flex-col fr-hidden fr-unhidden-md">
 	<div class="fr-pt-md-12v">
-		<h2 class="relative text-white font-bold text-[28px]/9 fr-pb-0 pl-14 fr-pl-md-21v before:content-[''] before:absolute before:left-0.5 before:w-16 before:h-full before:bg-no-repeat before:bg-[url('/assets/images/icons/complaint.svg')] before:bg-center md:before:bg-[length:64px_64px]">{{ 'pel.my.online.complaint.declaration'|trans|raw }}</h2>
+		<h2 class="relative text-white font-bold text-[28px]/9 fr-pb-0 pl-14 fr-pl-md-21v before:content-[''] before:absolute before:left-0.5 before:w-16 before:h-full before:bg-no-repeat before:bg-[url('/assets/images/icons/complaint.svg')] before:bg-center md:before:bg-[length:64px_64px]">{{ 'pel.my.online.declaration'|trans|raw }}</h2>
 	</div>
 	<div class="fr-stepper grid m-0 mb-1">
 		<ol class="list-none fr-pl-md-0">

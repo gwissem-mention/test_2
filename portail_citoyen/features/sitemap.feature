@@ -17,7 +17,7 @@ Feature:
         When I follow "Je trouve la démarche adaptée à ma situation"
         Then I should be on "/cgu"
         Given I am on "/infos/plan-du-site"
-        When I follow "Déclarez une plainte en ligne"
+        When I follow "Complétez votre déclaration en ligne"
         Then I should be on "/accueil-confirmation"
         Given I am on "/infos/plan-du-site"
         When I follow "Je suis dans une autre situation"
