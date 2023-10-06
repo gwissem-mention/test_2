@@ -33,6 +33,8 @@ class FactsDTO
         'PORT',
     ];
 
+    private const GIRONDE_DEPARTMENT_NUMBER = '33';
+
     /** @var array<int|string> */
     private array $presentation;
     private string $manop;
@@ -77,6 +79,8 @@ class FactsDTO
     private string $startAddress;
     private string $hasObjectsWithAmount;
     private string $estimation;
+    private bool $isStartAddressGironde = false;
+    private bool $isEndAddressGironde = false;
 
     public function __construct(Complaint $complaint)
     {
@@ -149,6 +153,13 @@ class FactsDTO
             $this->endAddressInseeCode = $facts->getEndAddressInseeCode();
             $this->endAddressCity = $facts->getEndAddressCity();
             $this->endAddressDepartmentNumber = strval($facts->getEndAddressDepartmentNumber());
+
+            if (self::GIRONDE_DEPARTMENT_NUMBER === substr($facts->getStartAddressInseeCode() ?? '', 0, 2)) {
+                $this->isStartAddressGironde = true;
+            }
+            if (self::GIRONDE_DEPARTMENT_NUMBER === substr($facts->getEndAddressInseeCode() ?? '', 0, 2)) {
+                $this->isEndAddressGironde = true;
+            }
         }
         //        $this->noOrientation = !is_null($noOrientation = $facts->isNoOrientation()) ? strval($noOrientation) : '';
         //        $this->orientation = $facts->getOrientation() ?? '';
@@ -169,13 +180,13 @@ class FactsDTO
         return ['Faits' => [
             'Faits_Expose' => implode(' / ', $this->presentation),
             'Faits_Manop' => $this->manop,
-            'Faits_Localisation_Adresse' => $this->isNaturePlaceTransports ? $this->endAddress : $this->startAddress,
-            'Faits_Localisation_Pays' => $this->isNaturePlaceTransports ? $this->endAddressCountry : $this->startAddressCountry,
-            'Faits_Localisation_Departement' => $this->isNaturePlaceTransports ? $this->endAddressDepartmentNumber.' - '.$this->endAddressDepartment : $this->startAddressDepartmentNumber.' - '.$this->startAddressDepartment,
-            'Faits_Localisation_Codepostal' => $this->isNaturePlaceTransports ? $this->endAddressPostalCode : $this->startAddressPostalCode,
-            'Faits_Localisation_Insee' => $this->isNaturePlaceTransports ? $this->endAddressInseeCode : $this->startAddressInseeCode,
-            'Faits_Localisation_Commune' => $this->isNaturePlaceTransports ? $this->endAddressCity : $this->startAddressCity,
-            'Faits_Localisation_HidNumDep' => $this->isNaturePlaceTransports ? $this->endAddressDepartmentNumber : $this->startAddressDepartmentNumber,
+            'Faits_Localisation_Adresse' => $this->isNaturePlaceTransports ? ($this->isStartAddressGironde && !$this->isEndAddressGironde ? $this->startAddress : $this->endAddress) : $this->startAddress,
+            'Faits_Localisation_Pays' => $this->isNaturePlaceTransports ? ($this->isStartAddressGironde && !$this->isEndAddressGironde ? $this->startAddressCountry : $this->endAddressCountry) : $this->startAddressCountry,
+            'Faits_Localisation_Departement' => $this->isNaturePlaceTransports ? ($this->isStartAddressGironde && !$this->isEndAddressGironde ? $this->startAddressDepartmentNumber.' - '.$this->startAddressDepartment : $this->endAddressDepartmentNumber.' - '.$this->endAddressDepartment) : $this->startAddressDepartmentNumber.' - '.$this->startAddressDepartment,
+            'Faits_Localisation_Codepostal' => $this->isNaturePlaceTransports ? ($this->isStartAddressGironde && !$this->isEndAddressGironde ? $this->startAddressPostalCode : $this->endAddressPostalCode) : $this->startAddressPostalCode,
+            'Faits_Localisation_Insee' => $this->isNaturePlaceTransports ? ($this->isStartAddressGironde && !$this->isEndAddressGironde ? $this->startAddressInseeCode : $this->endAddressInseeCode) : $this->startAddressInseeCode,
+            'Faits_Localisation_Commune' => $this->isNaturePlaceTransports ? ($this->isStartAddressGironde && !$this->isEndAddressGironde ? $this->startAddressCity : $this->endAddressCity) : $this->startAddressCity,
+            'Faits_Localisation_HidNumDep' => $this->isNaturePlaceTransports ? ($this->isStartAddressGironde && !$this->isEndAddressGironde ? $this->startAddressDepartmentNumber : $this->endAddressDepartmentNumber) : $this->startAddressDepartmentNumber,
             'Faits_Adresse_Depart_Pays' => $this->isNaturePlaceTransports ? $this->startAddressCountry : null,
             'Faits_Adresse_Depart_Departement' => $this->isNaturePlaceTransports ? $this->startAddressDepartmentNumber.' - '.$this->startAddressDepartment : null,
             'Faits_Adresse_Depart_Codepostal' => $this->isNaturePlaceTransports ? $this->startAddressPostalCode : null,

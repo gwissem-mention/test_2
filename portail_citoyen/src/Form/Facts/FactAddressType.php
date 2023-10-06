@@ -4,22 +4,34 @@ declare(strict_types=1);
 
 namespace App\Form\Facts;
 
+use App\Etalab\AddressEtalabHandler;
+use App\Etalab\AddressZoneChecker;
 use App\Form\AddressEtalabType;
+use App\Form\Model\EtalabInput;
 use App\Form\Model\Facts\FactAddressModel;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Callback;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\NotNull;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 class FactAddressType extends AbstractType
 {
     private const NATURE_PLACE_TRANSPORTS = 'Transports';
+
+    public function __construct(
+        private readonly AddressEtalabHandler $addressEtalabHandler,
+        private readonly AddressZoneChecker $addressZoneChecker
+    ) {
+    }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -92,6 +104,13 @@ class FactAddressType extends AbstractType
         $startAddressShow = $form->getConfig()->getOption('start_address_show');
         $endAddressShow = $form->getConfig()->getOption('end_address_show');
         if (true === $choice || false === $form->getConfig()->getOption('address_or_route_facts_known_show')) {
+            $endAddressConstraints = [
+                new Callback([$this, 'validateAddresses']),
+            ];
+            if (self::NATURE_PLACE_TRANSPORTS === $naturePlace) {
+                $endAddressConstraints[] = new NotBlank();
+            }
+
             if (true === $startAddressShow) {
                 $form
                     ->add('startAddress', AddressEtalabType::class, [
@@ -99,6 +118,7 @@ class FactAddressType extends AbstractType
                         'help' => $endAddressShow && self::NATURE_PLACE_TRANSPORTS != $naturePlace ? 'pel.address.start.or.exact.help' : null,
                         'address_constraints' => [
                             new NotBlank(),
+                            new Callback([$this, 'validateAddresses']),
                         ],
                     ]);
             }
@@ -108,6 +128,7 @@ class FactAddressType extends AbstractType
                     'required' => self::NATURE_PLACE_TRANSPORTS === $naturePlace,
                     'label' => $endAddressLabel ?? 'pel.address.end',
                     'help' => self::NATURE_PLACE_TRANSPORTS != $naturePlace ? 'pel.address.end.help' : null,
+                    'address_constraints' => $endAddressConstraints,
                 ]);
             }
         } else {
@@ -116,6 +137,39 @@ class FactAddressType extends AbstractType
                 ->remove('endAddress');
 
             $addressModel?->setStartAddress(null)->setEndAddress(null);
+        }
+    }
+
+    public function validateAddresses(?string $address, ExecutionContextInterface $context): void
+    {
+        /** @var Form $form */
+        $form = $context->getObject();
+        /** @var Form $formParent */
+        $formParent = $form->getParent()?->getParent();
+
+        if (!$formParent->has('startAddress') || !$formParent->has('endAddress')) {
+            return;
+        }
+
+        /** @var array<string, string|null> $startAddress */
+        $startAddress = $formParent->get('startAddress')->getData();
+        /** @var array<string, string|null> $endAddress */
+        $endAddress = $formParent->get('endAddress')->getData();
+
+        if (null != $startAddress['address'] && $endAddress['address']) {
+            $startAddressEtalab = $this->addressEtalabHandler->getAddressModel(new EtalabInput($startAddress['address'], $startAddress['selectionId'] ?? '', $startAddress['query'] ?? ''));
+            $endAddressEtalab = $this->addressEtalabHandler->getAddressModel(new EtalabInput($endAddress['address'], $endAddress['selectionId'] ?? '', $endAddress['query'] ?? ''));
+
+            if (
+                'etalab_address' === $startAddressEtalab->getAddressType()
+                && 'etalab_address' === $endAddressEtalab->getAddressType()
+                && !$this->addressZoneChecker->isInsideGironde((float) $startAddressEtalab->getLatitude(), (float) $startAddressEtalab->getLongitude())
+                && !$this->addressZoneChecker->isInsideGironde((float) $endAddressEtalab->getLatitude(), (float) $endAddressEtalab->getLongitude())
+            ) {
+                $context
+                    ->buildViolation('Uniquement les trajets vers la gironde ou depuis la gironde sont acceptés')
+                    ->addViolation();
+            }
         }
     }
 

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Components;
 
+use App\Etalab\AddressZoneChecker;
 use App\Etalab\EtalabApiClientInterface;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 use Symfony\UX\LiveComponent\Attribute\LiveAction;
@@ -39,6 +40,9 @@ class EtalabComponent
     #[LiveProp]
     public bool $dataGirondeEnabled;
 
+    #[LiveProp]
+    public bool $isBetweenTwoPlaces = false;
+
     #[LiveProp(writable: true)]
     public ?string $latitude = null;
 
@@ -54,8 +58,10 @@ class EtalabComponent
     #[LiveProp(writable: true)]
     public bool $disabled = false;
 
-    public function __construct(private readonly EtalabApiClientInterface $etalabAddressApiClient)
-    {
+    public function __construct(
+        private readonly EtalabApiClientInterface $etalabAddressApiClient,
+        private readonly AddressZoneChecker $addressZoneChecker
+    ) {
     }
 
     public function __invoke(): void
@@ -77,11 +83,11 @@ class EtalabComponent
         /** @var array<string, array<string, string>> $address */
         foreach ($this->autocompleteResults as $address) {
             if ($address['properties']['id'] === $addressId) {
-                if (true === $this->dataGirondeEnabled) {
+                if (true === $this->dataGirondeEnabled && false === $this->isBetweenTwoPlaces) {
                     $latitude = (float) $address['geometry']['coordinates'][1];
                     $longitude = (float) $address['geometry']['coordinates'][0];
 
-                    if (!$this->isInsideGironde($latitude, $longitude)) {
+                    if (!$this->addressZoneChecker->isInsideGironde($latitude, $longitude)) {
                         $this->errors[] = 'Uniquement les adresses des faits commis en Gironde sont acceptées';
 
                         return;
@@ -92,29 +98,10 @@ class EtalabComponent
                 $this->addressSearch = $address['properties']['label'];
                 $this->autocompleteResults = [];
                 $this->addressId = $addressId;
+                $this->latitude = (string) $address['geometry']['coordinates'][1];
+                $this->longitude = (string) $address['geometry']['coordinates'][0];
             }
         }
-    }
-
-    private function isInsideGironde(float $latitude, float $longitude): bool
-    {
-        if (true === $this->dataGirondeEnabled) {
-            $girondeBounds = [
-                'north' => 45.035,
-                'south' => 44.587,
-                'east' => -0.442,
-                'west' => -0.809,
-            ];
-
-            return
-                $latitude >= $girondeBounds['south']
-                && $latitude <= $girondeBounds['north']
-                && $longitude >= $girondeBounds['west']
-                && $longitude <= $girondeBounds['east']
-            ;
-        }
-
-        return true;
     }
 
     public function getAddressSearch(): string

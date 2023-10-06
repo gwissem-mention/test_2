@@ -135,14 +135,14 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
                     ->setStartDate(new \DateTimeImmutable('2022-12-01'))
                     ->setEndDate(new \DateTimeImmutable('2022-12-01'))
                     ->setPlace('TRAIN')
-                    ->setStartAddress('25 Avenue Georges Pompidou, Lyon, 69003')
+                    ->setStartAddress('25 Avenue de la République, Bordeaux, 33000')
                     ->setEndAddress('Place Charles Hernu, Villeurbanne, 69100')
                     ->setStartAddressCountry('France')
-                    ->setStartAddressCity('Lyon')
-                    ->setStartAddressPostalCode('69003')
-                    ->setStartAddressInseeCode('69123')
-                    ->setStartAddressDepartment('Rhône')
-                    ->setStartAddressDepartmentNumber(69)
+                    ->setStartAddressCity('Bordeaux')
+                    ->setStartAddressPostalCode('33000')
+                    ->setStartAddressInseeCode('33063')
+                    ->setStartAddressDepartment('Gironde')
+                    ->setStartAddressDepartmentNumber(33)
                     ->setEndAddressCountry('France')
                     ->setEndAddressCity('Villeurbanne')
                     ->setEndAddressPostalCode('69100')
@@ -415,19 +415,19 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Faits>', $this->xmlContent);
         $this->assertStringContainsString("<Faits_Expose>Vol / Dégradation. sommes rendu destinataire de la demande de plainte en ligne, déposée sur le site internet « Plaine_En_Ligne.fr » sous le numéro d'enregistrement : PEL-2022-00000001 transmise le 01/12/2022 00:00:00, d'un internaute s'étant authentifié par FranceConnect sous l'identité suivante M Jean DUPONT, né(e) le 07/03/1967 à Paris, 75000 en  France, Jean DUPONT déclare être Boulanger. La personne déclare avoir subi des violences : La victime précise sur les violences : Je me suis fait taper. Interrogé sur la date et l'heure des faits, DUPONT Jean, indique que les faits se sont déroulés entre le 01/12/22 à 09:00 et le 01/12/22 à 10:00 comme nature de lieu des faits est indiqué : TRAIN Est apporté en précision sur le lieu des faits : Les faits se sont produits entre le restaurant et l'appartement d'un ami Sur l'exposé des faits, la personne déclarante indique : Je me suis fait voler mon portable.  Sont déclarés volés : 1 Blouson, Blouson bleu, d'une valeur estimée : 100.  Sont déclarés dégradés :  1 Sac, 1234567890, Sac bleu, d'une valeur estimée : 100 Sur d'éventuels éléments susceptibles d'orienter l'enquête, la victime nous précise successivement La personne déclarante indique avoir de potentielles informations sur les auteurs, à savoir : 2 hommes La personne déclarante déclare pouvoir nous indiquer de potentiels témoins, à savoir Jean Dupont Une intervention de la police ou de la gendarmerie aurait eu lieu. Des relevés de traces ou indices ont été effectués. La personne déclarante indique : qu'une vidéo des faits existerait  et être en mesure de fournir le support vidéo Cette personne souhaite déposer plainte contre X pour les faits apportés dans sa télédéclaration ci-après annexée.</Faits_Expose>", $this->xmlContent);
         $this->assertStringContainsString('<Faits_Manop>Je me suis fait voler mon portable.</Faits_Manop>', $this->xmlContent);
-        $this->assertStringContainsString('<Faits_Localisation_Adresse>Place Charles Hernu, Villeurbanne, 69100</Faits_Localisation_Adresse>', $this->xmlContent);
+        $this->assertStringContainsString('<Faits_Localisation_Adresse>25 Avenue de la République, Bordeaux, 33000</Faits_Localisation_Adresse>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Localisation_Pays>France</Faits_Localisation_Pays>', $this->xmlContent);
-        $this->assertStringContainsString('<Faits_Localisation_Departement>69 - Rhône</Faits_Localisation_Departement>', $this->xmlContent);
-        $this->assertStringContainsString('<Faits_Localisation_Codepostal>69100</Faits_Localisation_Codepostal>', $this->xmlContent);
-        $this->assertStringContainsString('<Faits_Localisation_Insee>69266</Faits_Localisation_Insee>', $this->xmlContent);
-        $this->assertStringContainsString('<Faits_Localisation_Commune>Villeurbanne</Faits_Localisation_Commune>', $this->xmlContent);
-        $this->assertStringContainsString('<Faits_Localisation_HidNumDep>69</Faits_Localisation_HidNumDep>', $this->xmlContent);
+        $this->assertStringContainsString('<Faits_Localisation_Departement>33 - Gironde</Faits_Localisation_Departement>', $this->xmlContent);
+        $this->assertStringContainsString('<Faits_Localisation_Codepostal>33000</Faits_Localisation_Codepostal>', $this->xmlContent);
+        $this->assertStringContainsString('<Faits_Localisation_Insee>33063</Faits_Localisation_Insee>', $this->xmlContent);
+        $this->assertStringContainsString('<Faits_Localisation_Commune>Bordeaux</Faits_Localisation_Commune>', $this->xmlContent);
+        $this->assertStringContainsString('<Faits_Localisation_HidNumDep>33</Faits_Localisation_HidNumDep>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Adresse_Depart_Pays>France</Faits_Adresse_Depart_Pays>', $this->xmlContent);
-        $this->assertStringContainsString('<Faits_Adresse_Depart_Departement>69 - Rhône</Faits_Adresse_Depart_Departement>', $this->xmlContent);
-        $this->assertStringContainsString('<Faits_Adresse_Depart_Codepostal>69003</Faits_Adresse_Depart_Codepostal>', $this->xmlContent);
-        $this->assertStringContainsString('<Faits_Adresse_Depart_Insee>69123</Faits_Adresse_Depart_Insee>', $this->xmlContent);
-        $this->assertStringContainsString('<Faits_Adresse_Depart_Commune>Lyon</Faits_Adresse_Depart_Commune>', $this->xmlContent);
-        $this->assertStringContainsString('<Faits_Adresse_Depart_HidNumDep>69</Faits_Adresse_Depart_HidNumDep>', $this->xmlContent);
+        $this->assertStringContainsString('<Faits_Adresse_Depart_Departement>33 - Gironde</Faits_Adresse_Depart_Departement>', $this->xmlContent);
+        $this->assertStringContainsString('<Faits_Adresse_Depart_Codepostal>33000</Faits_Adresse_Depart_Codepostal>', $this->xmlContent);
+        $this->assertStringContainsString('<Faits_Adresse_Depart_Insee>33063</Faits_Adresse_Depart_Insee>', $this->xmlContent);
+        $this->assertStringContainsString('<Faits_Adresse_Depart_Commune>Bordeaux</Faits_Adresse_Depart_Commune>', $this->xmlContent);
+        $this->assertStringContainsString('<Faits_Adresse_Depart_HidNumDep>33</Faits_Adresse_Depart_HidNumDep>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Adresse_Arrivee_Pays>France</Faits_Adresse_Arrivee_Pays>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Adresse_Arrivee_Departement>69 - Rhône</Faits_Adresse_Arrivee_Departement>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Adresse_Arrivee_Codepostal>69100</Faits_Adresse_Arrivee_Codepostal>', $this->xmlContent);
