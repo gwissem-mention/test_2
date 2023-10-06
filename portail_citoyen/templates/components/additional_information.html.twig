@@ -3,7 +3,7 @@
     <div class="fr-px-6v fr-px-md-20v">
         <fieldset class="{{ html_classes('fr-fieldset', 'fr-input-group', 'fr-mt-4v', 'fr-mb-5v', 'fr-mt-md-6v', 'fr-mb-md-9v', {'fr-fieldset--inline': form.suspectsChoice.vars.inline is same as(true),'fr-fieldset--error': form.suspectsChoice.vars.errors is not empty}) }}" {% if form.suspectsChoice.vars.errors is not empty %} role="group" aria-labelledby="legend-{{ form.suspectsChoice.vars.id }} form-errors-{{ form.suspectsChoice.vars.id }}" {% endif %}>
             <legend class="fr-fieldset__legend--regular fr-fieldset__legend fr-text--regular flex flex-col gap-y-2.5 md:flex-row md:gap-x-2.5 fr-mb-6v" id="legend-{{ form.suspectsChoice.vars.id }}">
-                <p class="fr-badge fr-badge--purple-glycine fr-badge--no-icon fr-text--xs">{{ 'pel.suspects'|trans }}</p>
+                <span class="fr-badge fr-badge--purple-glycine fr-badge--no-icon fr-text--xs">{{ 'pel.suspects'|trans }}</span>
                 <span>{{ form.suspectsChoice.vars.label|trans }}&nbsp;<span class="text-[var(--text-default-error)]">*</span></span>
             </legend>
             <div class="fr-fieldset__content">
@@ -26,7 +26,7 @@
         <hr>
         <fieldset class="{{ html_classes('fr-fieldset', 'fr-input-group', 'fr-mt-4v', 'fr-mb-5v', 'fr-mt-md-6v', 'fr-mb-md-9v', {'fr-fieldset--inline': form.witnessesPresent.vars.inline is same as(true),'fr-fieldset--error': form.witnessesPresent.vars.errors is not empty}) }}" {% if form.witnessesPresent.vars.errors is not empty %} role="group" aria-labelledby="legend-{{ form.witnessesPresent.vars.id }} form-errors-{{ form.witnessesPresent.vars.id }}" {% endif %}>
             <legend class="fr-fieldset__legend--regular fr-fieldset__legend fr-text--regular flex flex-col gap-y-2.5 md:flex-row md:gap-x-2.5 fr-mb-6v" id="legend-{{ form.witnessesPresent.vars.id }}">
-                <p class="fr-badge fr-badge--purple-glycine fr-badge--no-icon fr-text--xs">{{ 'pel.witnesses'|trans }}</p>
+                <span class="fr-badge fr-badge--purple-glycine fr-badge--no-icon fr-text--xs">{{ 'pel.witnesses'|trans }}</span>
                 <span>{{ form.witnessesPresent.vars.label|trans }}&nbsp;<span class="text-[var(--text-default-error)]">*</span></span>
             </legend>
             <div class="fr-fieldset__content">
@@ -67,7 +67,7 @@
         <hr>
         <fieldset class="{{ html_classes('fr-fieldset', 'fr-input-group', 'fr-mt-4v', 'fr-mb-5v', 'fr-mt-md-6v', 'fr-mb-md-9v', {'fr-fieldset--inline': form.fsiVisit.vars.inline is same as(true),'fr-fieldset--error': form.fsiVisit.vars.errors is not empty}) }}" {% if form.fsiVisit.vars.errors is not empty %} role="group" aria-labelledby="legend-{{ form.fsiVisit.vars.id }} form-errors-{{ form.fsiVisit.vars.id }}" {% endif %}>
             <legend class="fr-fieldset__legend--regular fr-fieldset__legend fr-text--regular flex flex-col gap-y-2.5 md:flex-row md:gap-x-2.5 fr-mb-6v" id="legend-{{ form.fsiVisit.vars.id }}">
-                <p class="fr-badge fr-badge--purple-glycine fr-badge--no-icon fr-text--xs">{{ 'pel.visit'|trans }}</p>
+                <span class="fr-badge fr-badge--purple-glycine fr-badge--no-icon fr-text--xs">{{ 'pel.visit'|trans }}</span>
                 <span>{{ form.fsiVisit.vars.label|trans }}&nbsp;<span class="text-[var(--text-default-error)]">*</span></span>
             </legend>
             <div class="fr-fieldset__content">
@@ -88,7 +88,7 @@
         <hr>
         <fieldset class="{{ html_classes('fr-fieldset', 'fr-input-group', 'fr-mt-4v', 'fr-mb-5v', 'fr-mt-md-6v', 'fr-mb-md-9v', {'fr-fieldset--inline': form.cctvPresent.vars.inline is same as(true),'fr-fieldset--error': form.cctvPresent.vars.errors is not empty}) }}" {% if form.cctvPresent.vars.errors is not empty %} role="group" aria-labelledby="legend-{{ form.cctvPresent.vars.id }} form-errors-{{ form.cctvPresent.vars.id }}" {% endif %}>
             <legend class="fr-fieldset__legend--regular fr-fieldset__legend fr-text--regular flex flex-col gap-y-2.5 md:flex-row md:gap-x-2.5 fr-mb-6v" id="legend-{{ form.cctvPresent.vars.id }}">
-                <p class="fr-badge fr-badge--purple-glycine fr-badge--no-icon fr-text--xs">{{ 'pel.video.facts'|trans }}</p>
+                <span class="fr-badge fr-badge--purple-glycine fr-badge--no-icon fr-text--xs">{{ 'pel.video.facts'|trans }}</span>
                 <span>{{ form.cctvPresent.vars.label|trans }}&nbsp;<span class="text-[var(--text-default-error)]">*</span></span>
             </legend>
             <div class="fr-fieldset__content">
