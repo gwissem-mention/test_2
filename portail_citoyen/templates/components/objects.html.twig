@@ -23,9 +23,13 @@
                 <div class="fr-px-6v fr-pb-12v fr-px-md-20v " id="accordion-{{ loop.index }}">
                     {% if object.category is defined %}
                         <div class="fr-form-group fr-mb-6v md:w-1/2">
+                            {% set attr_row = {'class':html_classes(object.category.vars.attr.class ?? '', 'autocomplete' not in object.category.vars['block_prefixes'] ? 'fr-select' : '',{'fr-select--error':object.category.vars.errors is not empty})} %}
+                            {% if object.category.vars.errors is not empty %}
+                                {% set attr_row = attr_row|merge({'aria-describedby': 'form-errors-'~ form.vars.id}) %}
+                            {% endif %}
                             <div class="{{ html_classes('fr-select-group', {'fr-select-group--error':  object.category.vars.errors is not empty}) }}">
                                 {{ form_label(object.category) }}
-                                {{ form_widget(object.category, {'attr':{'class':html_classes(object.category.vars.attr.class ?? '', 'autocomplete' not in object.category.vars['block_prefixes'] ? 'fr-select' : '',{'fr-select--error':object.category.vars.errors is not empty})}}) }}
+                                {{ form_widget(object.category, {'attr': attr_row}) }}
                                 {{ form_errors(object.category) }}
                             </div>
                         </div>
