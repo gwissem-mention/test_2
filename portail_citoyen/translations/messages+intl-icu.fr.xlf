@@ -12,7 +12,7 @@
             </trans-unit>
             <trans-unit id="pel.1.fill.your.form">
                 <source>pel.1.fill.your.form</source>
-                <target>Complétez votre plainte en ligne</target>
+                <target>Complétez votre déclaration en ligne</target>
             </trans-unit>
             <trans-unit id="pel.2">
                 <source>pel.2</source>
@@ -788,7 +788,7 @@
             </trans-unit>
             <trans-unit id="pel.end.thanks">
                 <source>pel.end.thanks</source>
-                <target>Votre plainte en ligne a bien été transmise à nos services.</target>
+                <target>Votre déclaration a bien été transmise à nos services.</target>
             </trans-unit>
             <trans-unit id="pel.exact.hour">
                 <source>pel.exact.hour</source>
@@ -1136,7 +1136,7 @@
             </trans-unit>
             <trans-unit id="pel.home.title">
                 <source>pel.home.title</source>
-                <target>Déclarez une plainte en ligne</target>
+                <target>Complétez votre déclaration en ligne</target>
             </trans-unit>
             <trans-unit id="pel.home.intro">
                 <source>pel.home.intro</source>
@@ -1642,9 +1642,9 @@
                 <source>pel.online.complaint</source>
                 <target>Plainte en ligne</target>
             </trans-unit>
-            <trans-unit id="pel.online.complaint.process">
-                <source>pel.online.complaint.process</source>
-                <target>Vous pouvez déclarer votre plainte.<![CDATA[<br class="fr-hidden fr-unhidden-md">]]> La démarche s’effectue en trois étapes :</target>
+            <trans-unit id="pel.online.declaration.process">
+                <source>pel.online.declaration.process</source>
+                <target>La démarche s’effectue en trois étapes :</target>
             </trans-unit>
             <trans-unit id="pel.online.complaint.process.back">
                 <source>pel.online.complaint.process.back</source>
@@ -2422,9 +2422,9 @@
                 <source>pel.complaint</source>
                 <target>Plainte</target>
             </trans-unit>
-            <trans-unit id="pel.complaint.create">
-                <source>pel.complaint.create</source>
-                <target>Déposer plainte</target>
+            <trans-unit id="pel.declaration.create">
+                <source>pel.declaration.create</source>
+                <target>Poursuivre</target>
             </trans-unit>
             <trans-unit id="pel.complaint.date.and.time">
                 <source>pel.complaint.date.and.time</source>
@@ -2472,7 +2472,7 @@
             </trans-unit>
             <trans-unit id="pel.complaint.my.declaration">
                 <source>pel.complaint.my.declaration</source>
-                <target>Votre plainte nécessite un rendez-vous physique</target>
+                <target>Votre déclaration nécessite un rendez-vous</target>
             </trans-unit>
             <trans-unit id="pel.authentication_failed">
                 <source>pel.authentication_failed</source>
@@ -2982,9 +2982,9 @@
                 <source>pel.your.identity.title.with.appointment</source>
                 <target>Votre identité (étape 2 sur 8) - Plainte en ligne</target>
             </trans-unit>
-            <trans-unit id="pel.my.online.complaint.declaration">
-                <source>pel.my.online.complaint.declaration</source>
-                <target>Ma déclaration<![CDATA[<br>]]>de plainte en ligne</target>
+            <trans-unit id="pel.my.online.declaration">
+                <source>pel.my.online.declaration</source>
+                <target>Ma déclaration<![CDATA[<br>]]>en ligne</target>
             </trans-unit>
             <trans-unit id="pel.goods.concerned">
                 <source>pel.goods.concerned</source>
@@ -3070,29 +3070,29 @@
                 <source>pel.further.information</source>
                 <target>Complément d'informations</target>
             </trans-unit>
-            <trans-unit id="pel.summary.of.complaint">
-                <source>pel.summary.of.complaint</source>
-                <target>Récapitulatif de la plainte</target>
+            <trans-unit id="pel.summary.of.declaration">
+                <source>pel.summary.of.declaration</source>
+                <target>Récapitulatif de la déclaration</target>
             </trans-unit>
-            <trans-unit id="pel.summary.of.complaint.title">
-                <source>pel.summary.of.complaint.title</source>
-                <target>Récapitulatif de la plainte (étape 6 sur 7) - Plainte en ligne</target>
+            <trans-unit id="pel.summary.of.declaration.title">
+                <source>pel.summary.of.declaration.title</source>
+                <target>Récapitulatif de la déclaration (étape 6 sur 7) - Plainte en ligne</target>
             </trans-unit>
-            <trans-unit id="pel.summary.of.complaint.title.with.appointment">
-                <source>pel.summary.of.complaint.title.with.appointment</source>
-                <target>Récapitulatif de la plainte (étape 6 sur 8) - Plainte en ligne</target>
+            <trans-unit id="pel.summary.of.declaration.title.with.appointment">
+                <source>pel.summary.of.declaration.title.with.appointment</source>
+                <target>Récapitulatif de la déclaration (étape 6 sur 8) - Plainte en ligne</target>
             </trans-unit>
-            <trans-unit id="pel.registered.complaint">
-                <source>pel.registered.complaint</source>
-                <target>Plainte enregistrée</target>
+            <trans-unit id="pel.registered.declaration">
+                <source>pel.registered.declaration</source>
+                <target>Déclaration enregistrée</target>
             </trans-unit>
-            <trans-unit id="pel.registered.complaint.title">
-                <source>pel.registered.complaint.title</source>
-                <target>Plainte enregistrée (étape 7 sur 7) - Plainte en ligne</target>
+            <trans-unit id="pel.registered.declaration.title">
+                <source>pel.registered.declaration.title</source>
+                <target>Déclaration enregistrée (étape 7 sur 7) - Plainte en ligne</target>
             </trans-unit>
-            <trans-unit id="pel.registered.complaint.title.with.appointment">
-                <source>pel.registered.complaint.title.with.appointment</source>
-                <target>Plainte enregistrée (étape 8 sur 8) - Plainte en ligne</target>
+            <trans-unit id="pel.registered.declaration.title.with.appointment">
+                <source>pel.registered.declaration.title.with.appointment</source>
+                <target>Déclaration enregistrée (étape 8 sur 8) - Plainte en ligne</target>
             </trans-unit>
             <trans-unit id="pel.vehicle.category">
                 <source>pel.vehicle.category</source>
