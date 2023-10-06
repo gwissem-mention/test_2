@@ -7,6 +7,7 @@ Feature:
     Scenario: Show homepage_confirmation on /accueil-confirmation route with 200 status code and a body
         Given I am on "/accueil-confirmation"
         Then the response status code should be 200
+        And I should see "Confirmation des critères - Plainte en ligne" in the "title" element
         And I should see 1 "body" element
 
     @func

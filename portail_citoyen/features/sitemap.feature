@@ -7,6 +7,7 @@ Feature:
     Scenario: I am on the sitemap page, I can see the sitemap list
         Given I am on "/infos/plan-du-site"
         Then the response status code should be 200
+        And I should see "Plan du site - Plainte en ligne" in the "title" element
         When I follow "Accueil"
         Then I should be on "/"
         Given I am on "/infos/plan-du-site"

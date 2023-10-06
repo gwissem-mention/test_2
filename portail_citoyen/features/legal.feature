@@ -7,6 +7,7 @@ Feature:
     Scenario: I am on the legal page, I can see the legal content
         Given I am on "/infos/mentions-legales"
         Then the response status code should be 200
+        And I should see "Mentions légales - Plainte en ligne" in the "title" element
         And I should see the key "pel.legal.website.address.text" translated
         And I should see the key "pel.legal.website.address" translated
         And I should see the key "pel.legal.editors.information" translated

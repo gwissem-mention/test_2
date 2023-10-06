@@ -7,6 +7,7 @@ Feature:
     Scenario: Show faq on /faq route with 200 status code and a body
         Given I am on "/faq"
         Then the response status code should be 200
+        And I should see "Centre d’aide - Plainte en ligne" in the "title" element
         And I should see 1 "body" element
 
     @func

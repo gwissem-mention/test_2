@@ -7,6 +7,7 @@ Feature:
     Scenario: Show faq on /cgu route with 200 status code and a body
         Given I am on "/cgu"
         Then the response status code should be 200
+        And I should see "Conditions d’utilisation du service - Plainte en ligne" in the "title" element
         And I should see 1 "body" element
 
     @func
