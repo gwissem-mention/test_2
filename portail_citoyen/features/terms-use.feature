@@ -7,6 +7,7 @@ Feature:
     Scenario: Show terms of use page on /conditions-generales-dutilisation route with 200 status code and a body
         Given I am on "/conditions-generales-dutilisation"
         Then the response status code should be 200
+        And I should see "Conditions générales d'utilisation - Plainte en ligne" in the "title" element
         And I should see 1 "body" element
 
     @func

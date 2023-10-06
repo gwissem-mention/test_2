@@ -7,6 +7,7 @@ Feature:
     Scenario Outline: Show homepage with all translated elements
         Given I am on "/accueil-deroule"
         Then the response status code should be 200
+        And I should see "Déroulé des étapes - Plainte en ligne" in the "title" element
         And I should see 1 "body" element
         And I should see the key "<trans>" translated
 
