@@ -1,4 +1,4 @@
-<div {{ attributes.add(stimulus_controller('complaint-submit')) }}>
+<div {{ attributes.add(stimulus_controller('complaint-submit')|stimulus_controller('facts')) }}>
     {{ form_start(form, {attr: {'data-action': 'live#action complaint-submit#submit','data-action-name': 'prevent|submit'}}) }}
     <div class="fr-pt-4v fr-px-6v fr-pb-12v fr-pt-md-6v fr-px-md-20v">
         <h2 class="text-[22px]/7 md:text-[28px]/9 fr-mb-8v">{{ 'pel.what.is.the.date.of.the.infraction'|trans }}</h2>
@@ -150,8 +150,9 @@
                     'data-live-id': 'facts-startAddress-address',
                     dataModel: 'addressSearch:startAddressEtalabInput.addressSearch addressId:startAddressEtalabInput.addressId addressSearchSaved:startAddressEtalabInput.addressSearchSaved latitude:startAddressEtalabInput.latitude longitude:startAddressEtalabInput.longitude',
                     inputName: 'facts-startAddress-address',
-                    dataGirondeEnabled : true,
-                    errors: etalab_errors,
+                    dataGirondeEnabled: true,
+                    isBetweenTwoPlaces: form.address.startAddress is defined and form.address.endAddress is defined ? true : false,
+                    errors: etalab_errors
                 }) }}
             </div>
         {% endif %}
@@ -164,10 +165,11 @@
                 {{ form_label(form.address.endAddress) }}
                 {{ component('etalab_component', {
                     'data-live-id': 'facts-endAddress-address',
-                    dataModel: 'addressSearch:endAddressEtalabInput.addressSearch addressId:endAddressEtalabInput.addressId addressSearchSaved:endAddressEtalabInput.addressSearchSaved',
+                    dataModel: 'addressSearch:endAddressEtalabInput.addressSearch addressId:endAddressEtalabInput.addressId addressSearchSaved:endAddressEtalabInput.addressSearchSaved latitude:endAddressEtalabInput.latitude longitude:endAddressEtalabInput.longitude',
                     inputName: 'facts-endAddress-address',
-                    dataGirondeEnabled : true,
-                    errors: etalab_errors,
+                    dataGirondeEnabled: true,
+                    isBetweenTwoPlaces: form.address.startAddress is defined and form.address.endAddress is defined ? true : false,
+                    errors: etalab_errors
                 }) }}
             </div>
         {% endif %}

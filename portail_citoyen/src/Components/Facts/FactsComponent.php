@@ -45,7 +45,7 @@ class FactsComponent extends AbstractController
     #[LiveProp(writable: true, exposed: ['addressSearch', 'addressId', 'addressSearchSaved', 'latitude', 'longitude'])]
     public EtalabInput $startAddressEtalabInput;
 
-    #[LiveProp(writable: true, exposed: ['addressSearch', 'addressId', 'addressSearchSaved'])]
+    #[LiveProp(writable: true, exposed: ['addressSearch', 'addressId', 'addressSearchSaved', 'latitude', 'longitude'])]
     public EtalabInput $endAddressEtalabInput;
 
     public function __construct(

@@ -264,3 +264,41 @@ Feature:
         And I should not see a ".gm-style" element
         And I should not see a "label[for=facts_address_addressOrRouteFactsKnown_0]" element
         And I should not see a "label[for=facts_address_addressOrRouteFactsKnown_1]" element
+
+    Scenario: I should see an error if I fill "Transports" addresses with 2 Etalab addresses outside Gironde department
+        When I select "9" from "facts_placeNature"
+        And I fill in "facts-startAddress-address" with "avenue de la république paris"
+        And I click the "#facts-startAddress-address-75111_8158" element
+        And I fill in "facts-endAddress-address" with "avenue de la république paris"
+        And I click the "#facts-endAddress-address-75111_8158" element
+        And I should see "Uniquement les trajets vers la gironde ou depuis la gironde sont acceptés"
+
+    Scenario: I should not see an error if I fill "Transports" addresses with 2 Etalab addresses inside Gironde department
+        When I select "9" from "facts_placeNature"
+        And I fill in "facts-startAddress-address" with "avenue de la république bordeaux"
+        And I click the "#facts-startAddress-address-33063_8132" element
+        And I fill in "facts-endAddress-address" with "avenue de la république bordeaux"
+        And I click the "#facts-endAddress-address-33063_8132" element
+        And I should not see "Uniquement les trajets vers la gironde ou depuis la gironde sont acceptés"
+
+    Scenario: I should not see an error if I fill "Transports" addresses with 2 non-Etalab addresses
+        When I select "9" from "facts_placeNature"
+        And I fill in "facts-startAddress-address" with "1 street test"
+        And I fill in "facts-endAddress-address" with "2 street test"
+        And I should not see "Uniquement les trajets vers la gironde ou depuis la gironde sont acceptés"
+
+    Scenario: I should not see an error if I fill "Transports" addresses with 2 Etalab addresses, start inside Gironde department and end outside
+        When I select "9" from "facts_placeNature"
+        And I fill in "facts-startAddress-address" with "avenue de la république bordeaux"
+        And I click the "#facts-startAddress-address-33063_8132" element
+        And I fill in "facts-endAddress-address" with "avenue de la république paris"
+        And I click the "#facts-endAddress-address-75111_8158" element
+        And I should not see "Uniquement les trajets vers la gironde ou depuis la gironde sont acceptés"
+
+    Scenario: I should not see an error if I fill "Transports" addresses with 2 Etalab addresses, start outside Gironde department and end inside
+        When I select "9" from "facts_placeNature"
+        And I fill in "facts-startAddress-address" with "avenue de la république paris"
+        And I click the "#facts-startAddress-address-75111_8158" element
+        And I fill in "facts-endAddress-address" with "avenue de la république bordeaux"
+        And I click the "#facts-endAddress-address-33063_8132" element
+        And I should not see "Uniquement les trajets vers la gironde ou depuis la gironde sont acceptés"

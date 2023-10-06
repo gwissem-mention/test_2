@@ -42,6 +42,7 @@ export default class extends Controller {
                     component.getParent()?.set(parentModelName, component.valueStore.get(modelName));
                 }
             });
+            component.getParent()?.render();
         }
     }
 

@@ -30,7 +30,13 @@ class AddressEtalabHandler
             return AddressModelFactory::create($etalabInput->getAddressSearch(), $etalabInput->getLatitude(), $etalabInput->getLongitude());
         }
 
-        return $this->findOneById($etalabInput->getAddressId(), $datalabResponse['features'])?->setLatitude($etalabInput->getLatitude())->setLongitude($etalabInput->getLongitude()) ?? AddressModelFactory::create($etalabInput->getAddressSearch(), $etalabInput->getLatitude(), $etalabInput->getLongitude());
+        $addressEtalabModel = $this->findOneById($etalabInput->getAddressId(), $datalabResponse['features']);
+
+        if ($etalabInput->getLatitude() && $etalabInput->getLongitude()) {
+            $addressEtalabModel?->setLatitude($etalabInput->getLatitude())->setLongitude($etalabInput->getLongitude());
+        }
+
+        return $addressEtalabModel ?? AddressModelFactory::create($etalabInput->getAddressSearch(), $etalabInput->getLatitude(), $etalabInput->getLongitude());
     }
 
     /**
@@ -41,6 +47,8 @@ class AddressEtalabHandler
         foreach ($addresses as $address) {
             /** @var array<string, string|float|int|null> $properties */
             $properties = $address['properties'];
+            /** @var array<string, string|array<int, float|null>> $geometries */
+            $geometries = $address['geometry'];
             if (!empty($properties) && $id === $properties['id']) {
                 return AddressModelFactory::createFromEtalab(
                     strval($properties['label']) ?: null,
@@ -58,6 +66,8 @@ class AddressEtalabHandler
                     floatval($properties['x']) ?: null,
                     floatval($properties['y']) ?: null,
                     floatval($properties['importance']) ?: null,
+                    strval($geometries['coordinates'][1]) ?: null,
+                    strval($geometries['coordinates'][0]) ?: null,
                 );
             }
         }
