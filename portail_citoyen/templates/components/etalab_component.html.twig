@@ -1,23 +1,34 @@
 <div {{ attributes.add(stimulus_controller('etalab')) }} class="mt-2">
 	<div class="fr-input-wrap fr-icon-map-pin-2-line before:content-[''] before:z-10">
         <input type="text"
-            required="required"
-            data-model="addressSearch"
-            autocomplete="off"
-            class="fr-input{% if this.errors|length > 0 %} fr-input--error{% endif %}"
-            id="{{ inputName }}"
-            name="{{ inputName }}"
-            {% if disabled %}disabled="disabled"{% endif %}
-            {% if this.errors|length > 0 %} aria-describedby="form-errors-{{ inputName }}"{% endif %}
+               tabindex="0"
+               id="{{ inputName }}"
+               aria-labelledby="{{ inputName }}"
+               role="combobox"
+               aria-autocomplete="list"
+               aria-owns="list-{{ inputName }}"
+               aria-expanded="false"
+               autocomplete="off"
+               autocorrect="off"
+               autocapitalize="off"
+               required="required"
+               data-model="addressSearch"
+               class="fr-input{% if this.errors|length > 0 %} fr-input--error{% endif %}"
+               name="{{ inputName }}"
+               {% if disabled %}disabled="disabled"{% endif %}
+               data-etalab-target="input"
+               {% if this.errors|length > 0 %} aria-describedby="form-errors-{{ inputName }}"{% endif %}
         >
     </div>
     {% if this.autoCompleteResults|length > 0 %}
-        <ul class="list--addresses">
+        <ul class="list--addresses" id="list-{{ inputName }}" role="listbox" data-etalab-target="list">
             {% for addr in this.autoCompleteResults %}
                 <li class="list--addresses__item"
                     data-action="mousedown->live#action"
                     data-action-name="selectAddress(addressId={{ addr.properties.id }})"
                     id="{{ inputName }}-{{ addr.properties.id }}"
+                    role="option"
+                    tabindex="0"
                 >
                     {{ addr.properties.label }}
                 </li>
