@@ -1,14 +1,15 @@
 .list
     &--addresses
         @include reset-list
-        border: 1px solid $grey
+        border: 1px solid var(--background-default-grey-hover)
 
         &__item
             @include transition
             padding: $padding-medium
-            background-color: $white
-            border-top: 1px solid $grey
+            background-color: var(--background-default-grey)
+            border-top: 1px solid var(--background-default-grey-hover)
+            color: var(--text-label-grey)
 
             &:hover
                 cursor: pointer
-                background-color: $grey
+                background-color: var(--background-default-grey-hover)
