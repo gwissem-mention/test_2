@@ -49,8 +49,8 @@
     <hr class="fr-pb-0">
     <div class="fr-px-6v fr-py-10v fr-px-md-20v fr-background-alt--blue-france text-center">
         <p class="text-lg/5 fr-text-mention--grey">{{ 'pel.your.opinion'|trans }}</p>
-        <a class="bg-none" href="https://jedonnemonavis.numerique.gouv.fr/Demarches/{{ jedonnemonavis_id }}?&view-mode=formulaire-avis&nd_source=button&key={{ jedonnemonavis_key }}">
-            <img src="https://jedonnemonavis.numerique.gouv.fr/static/bouton-bleu.svg" alt="{{ 'pel.your.opinion.alt'|trans }}"/>
+        <a class="bg-none" href="https://jedonnemonavis.numerique.gouv.fr/Demarches/{{ jedonnemonavis_id }}?&view-mode=formulaire-avis&nd_source=button&key={{ jedonnemonavis_key }}"  data-controller="focus" data-action="click->focus#focus">
+            <img src="https://jedonnemonavis.numerique.gouv.fr/static/bouton-bleu.svg" alt="{{ 'pel.your.opinion.alt'|trans }}" />
         </a>
     </div>
 {% endblock %}
