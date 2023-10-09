@@ -15,7 +15,7 @@ class ComplaintXmlAdditionalInformationPN
 {
     public function set(Complaint $complaint): string
     {
-        $exposedFacts = '. ';
+        $exposedFacts = ' ';
         $exposedFacts .= $this->setIntroduction($complaint);
         $exposedFacts .= $this->setIsFranceConnected($complaint);
         $exposedFacts .= $this->setJob($complaint);
@@ -40,7 +40,7 @@ class ComplaintXmlAdditionalInformationPN
     private function setJob(Complaint $complaint): string
     {
         return sprintf(
-            '%s %s déclare être %s. ',
+            "%s %s déclare être %s.\n",
             $complaint->getIdentity()?->getFirstname(),
             $complaint->getIdentity()?->getLastname(),
             $complaint->getIdentity()?->getJob()
@@ -49,22 +49,19 @@ class ComplaintXmlAdditionalInformationPN
 
     private function setIntroduction(Complaint $complaint): string
     {
-        return sprintf('sommes rendu destinataire de la demande de plainte en ligne, déposée sur le site internet « Plaine_En_Ligne.fr » sous le numéro d\'enregistrement : %s transmise le %s, ', $complaint->getDeclarationNumber(), $complaint->getCreatedAt()?->format('d/m/Y H:i:s'));
+        return sprintf("sommes rendu destinataire de la demande de plainte en ligne, déposée sur le site internet « Plaine_En_Ligne.fr » sous le numéro d'enregistrement : %s transmise le %s,\n", $complaint->getDeclarationNumber(), $complaint->getCreatedAt()?->format('d/m/Y H:i:s'));
     }
 
     private function setIsFranceConnected(Complaint $complaint): string
     {
+        $isFcMessage = "d'un internaute ne s'étant pas authentifié par France Connect ayant déclaré l'identité suivante %s %s %s, né(e) le %s à %s, %s en %s.
+        Il a été indiqué au déclarant lors de sa déclaration qu'en l'absence d'authentification par France Connect un rendez-vous en unité sera nécessaire.\n";
+
         if ($complaint->isFranceConnected()) {
-            return $this->generateMessage($complaint, 'd\'un internaute s\'étant authentifié par FranceConnect sous l\'identité suivante %s %s %s, né(e) le %s à %s, %s en  %s, ');
+            $isFcMessage = "d'un internaute s'étant authentifié par FranceConnect sous l'identité suivante %s %s %s, né(e) le %s à %s, %s en  %s.\n";
         }
 
-        return $this->generateMessage($complaint, 'd\'un internaute ne s\'étant pas authentifié par France Connect ayant déclaré l\'identité suivante %s %s %s, né(e) le %s à %s, %s en %s
-                Il a été indiqué au déclarant lors de sa déclaration qu\'en l\'absence d\'authentification par France Connect un rendez-vous en unité sera nécessaire, ');
-    }
-
-    private function generateMessage(Complaint $complaint, string $message): string
-    {
-        return sprintf($message,
+        return sprintf($isFcMessage,
             $this->getCivility($complaint->getIdentity()?->getCivility()),
             $complaint->getIdentity()?->getFirstname(),
             $complaint->getIdentity()?->getLastname(),
@@ -83,24 +80,24 @@ class ComplaintXmlAdditionalInformationPN
     {
         if ($complaint->getFacts()?->isVictimOfViolence()) {
             return sprintf(
-                'La personne déclare avoir subi des violences : La victime précise sur les violences : %s. ',
+                "La personne déclare avoir subi des violences : La victime précise sur les violences : %s.\n",
                 $complaint->getFacts()->getVictimOfViolenceText()
             );
         }
 
-        return 'La personne déclare n\'avoir pas subi des violences : ';
+        return "La personne déclare n\'avoir pas subi des violences.\n ";
     }
 
     private function setAdditionalInformation(): string
     {
-        return 'Sur d\'éventuels éléments susceptibles d\'orienter l\'enquête, la victime nous précise successivement ';
+        return "Sur d'éventuels éléments susceptibles d'orienter l'enquête, la victime nous précise successivement\n";
     }
 
     private function setNatureOfPlace(Complaint $complaint): string
     {
-        $message = sprintf('comme nature de lieu des faits est indiqué : %s ', $complaint->getFacts()?->getPlace());
+        $message = sprintf("comme nature de lieu des faits est indiqué : %s.\n", $complaint->getFacts()?->getPlace());
         if (null !== $complaint->getFacts()?->getAddressAdditionalInformation()) {
-            $message .= sprintf('Est apporté en précision sur le lieu des faits : %s ', $complaint->getFacts()->getAddressAdditionalInformation());
+            $message .= sprintf("Est apporté en précision sur le lieu des faits : %s.\n", $complaint->getFacts()->getAddressAdditionalInformation());
         }
 
         return $message;
@@ -110,12 +107,12 @@ class ComplaintXmlAdditionalInformationPN
     {
         if (true === $complaint->getAdditionalInformation()?->isSuspectsKnown()) {
             return sprintf(
-                'La personne déclarante indique avoir de potentielles informations sur les auteurs, à savoir : %s ',
+                "La personne déclarante indique avoir de potentielles informations sur les auteurs, à savoir : %s\n",
                 $complaint->getAdditionalInformation()->getSuspectsKnownText()
             );
         }
 
-        return 'La personne déclarante n\'apporte pas d\'éléments sur le ou les auteurs de l\'infraction ';
+        return "La personne déclarante n'apporte pas d'éléments sur le ou les auteurs de l'infraction\n";
     }
 
     private function setWitnesses(Complaint $complaint): string
@@ -124,7 +121,7 @@ class ComplaintXmlAdditionalInformationPN
         $witnesses = $complaint->getAdditionalInformation()?->getWitnesses();
 
         if (null === $witnesses) {
-            return "La personne déclare ne pas avoir connaissance de témoin de l'infraction ";
+            return "La personne déclare ne pas avoir connaissance de témoin de l'infraction\n";
         }
 
         foreach ($witnesses as $witness) {
@@ -133,7 +130,7 @@ class ComplaintXmlAdditionalInformationPN
             }
         }
 
-        return sprintf('La personne déclarante déclare pouvoir nous indiquer de potentiels témoins, à savoir %s ', implode(', ', $descriptions));
+        return sprintf("La personne déclarante déclare pouvoir nous indiquer de potentiels témoins, à savoir %s.\n", implode(', ', $descriptions));
     }
 
     private function setSimpleObjectsStolen(Complaint $complaint): string
@@ -144,7 +141,7 @@ class ComplaintXmlAdditionalInformationPN
 
             /** @var SimpleObject $object */
             foreach ($objects as $object) {
-                $text .= sprintf(" %d %s, %s, d'une valeur estimée : %d. ", $object->getQuantity(), $object->getNature(), $object->getDescription(), $object->getAmount());
+                $text .= sprintf(" %d %s, %s, d'une valeur estimée : %d.\n", $object->getQuantity(), $object->getNature(), $object->getDescription(), $object->getAmount());
             }
 
             return $text;
@@ -162,7 +159,7 @@ class ComplaintXmlAdditionalInformationPN
             /** @var SimpleObject $object */
             foreach ($objects as $object) {
                 if ($object->getNature()) {
-                    $message .= sprintf(" %d %s, %s, %s, d'une valeur estimée : %d ", $object->getQuantity(), $object->getNature(), $object->getSerialNumber(), $object->getDescription(), $object->getAmount());
+                    $message .= sprintf("%d %s, %s, %s, d'une valeur estimée : %d.\n", $object->getQuantity(), $object->getNature(), $object->getSerialNumber(), $object->getDescription(), $object->getAmount());
                 }
             }
 
@@ -175,7 +172,7 @@ class ComplaintXmlAdditionalInformationPN
     private function setObservationMade(Complaint $complaint): string
     {
         if ($complaint->getAdditionalInformation()?->isObservationMade()) {
-            return 'Des relevés de traces ou indices ont été effectués. ';
+            return "Des relevés de traces ou indices ont été effectués.\n";
         }
 
         return '';
@@ -184,23 +181,23 @@ class ComplaintXmlAdditionalInformationPN
     private function setIntervention(Complaint $complaint): string
     {
         if ($complaint->getAdditionalInformation()?->isFsiVisit()) {
-            return 'Une intervention de la police ou de la gendarmerie aurait eu lieu. ';
+            return "Une intervention de la police ou de la gendarmerie aurait eu lieu.\n";
         }
 
-        return "Il n'y aurait pas eu d'intervention des forces de l'ordre liée aux faits ";
+        return "Il n'y aurait pas eu d\'intervention des forces de l'ordre liée aux faits.\n";
     }
 
     private function setDateAndTimeOfFacts(Complaint $complaint): string
     {
         if ($complaint->getFacts()?->isExactDateKnown() && Facts::EXACT_HOUR_KNOWN_YES === $complaint->getFacts()->getExactHourKnown()) {
-            return sprintf('Interrogé sur la date et l’heure des faits, %s %s, indique que les faits se sont déroulés le %s à %s ',
+            return sprintf("Interrogé sur la date et l’heure des faits, %s %s, indique que les faits se sont déroulés le %s à %s.\n",
                 $complaint->getIdentity()?->getLastname(),
                 $complaint->getIdentity()?->getFirstname(),
                 $complaint->getFacts()->getStartDate()?->format('d/m/Y'),
                 $complaint->getFacts()->getStartHour()?->format('h:i')
             );
         } else {
-            return sprintf('Interrogé sur la date et l\'heure des faits, %s %s, indique que les faits se sont déroulés entre le %s à %s et le %s à %s ',
+            return sprintf("Interrogé sur la date et l'heure des faits, %s %s, indique que les faits se sont déroulés entre le %s à %s et le %s à %s.\n",
                 $complaint->getIdentity()?->getLastname(),
                 $complaint->getIdentity()?->getFirstname(),
                 $complaint->getFacts()?->getStartDate()?->format('d/m/y'),
@@ -224,18 +221,18 @@ class ComplaintXmlAdditionalInformationPN
     private function setCCTVPresent(Complaint $complaint): string
     {
         return sprintf(
-            'La personne déclarante indique : %s ',
+            'La personne déclarante indique : %s',
             match ($complaint->getAdditionalInformation()?->getCctvPresent()) {
                 AdditionalInformation::CCTV_PRESENT_YES => 'qu\'une vidéo des faits existerait',
                 AdditionalInformation::CCTV_PRESENT_NO => 'qu\'il n\'y a pas de vidéo des faits',
-                default => 'ne pas savoir s\'il existe une vidéo des faits',
+                default => "ne pas savoir s\'il existe une vidéo des faits\n",
             });
     }
 
     private function setCCTVAvailable(Complaint $complaint): string
     {
         if ($complaint->getAdditionalInformation()?->isCctvAvailable()) {
-            return ' et être en mesure de fournir le support vidéo ';
+            return " et être en mesure de fournir le support vidéo\n ";
         }
 
         return '';
