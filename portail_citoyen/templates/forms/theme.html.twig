@@ -5,7 +5,7 @@
         <div class="fr-form-group m-0">
             <fieldset class="{{ html_classes('fr-fieldset', 'fr-input-group', {'fr-fieldset--inline': inline is same as(true),'fr-fieldset--error': errors is not empty}) }}" {% if errors is not empty %}role="group" aria-labelledby="legend-{{ form.vars.id }} form-errors-{{ form.vars.id }}"{% endif %}>
                 <legend class="fr-fieldset__legend fr-text--regular" id="legend-{{ form.vars.id }}">
-                    {{ form_label(form) }}
+                    {{ form.vars.label|trans }} {% if form.vars.required is same as(true) %}<span class="text-[var(--text-default-error)]">*</span>{% endif %}
                 </legend>
                 <div class="fr-fieldset__content">
                     {% for child in form.children %}
