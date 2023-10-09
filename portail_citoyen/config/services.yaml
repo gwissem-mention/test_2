@@ -56,6 +56,8 @@ services:
             -   connect:
                     - '%env(REDIS_HOST)%'
                     - '%env(int:REDIS_PORT)%'
+            - auth:
+                    - '%env(REDIS_PASSWORD)%'
     
     Symfony\Component\HttpFoundation\Session\Storage\Handler\RedisSessionHandler:
         arguments:
