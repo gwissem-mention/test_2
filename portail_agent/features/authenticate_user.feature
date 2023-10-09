@@ -3,12 +3,12 @@ Feature: Create/update user according to SSO attributes
 
     Scenario: Create user on first connection
         Given the following HTTP headers
-            | name        | value     |
-            | matricule   | QSWWHQQT |
-            | appelation  | Foo Bar   |
-            | institution | PN        |
-            | codeservice | service_3 |
-            | superviseur | 1         |
+            | name        | value       |
+            | Matricule   | QSWWHQQT    |
+            | Appelation  | Foo Bar     |
+            | Institution | PN          |
+            | Codeservice | service_3   |
+            | Profil      | superviseur |
 
         When I am on "/"
         Then the "user" QSWWHQQT from PN exists with:
@@ -20,11 +20,11 @@ Feature: Create/update user according to SSO attributes
     Scenario: Update user if exists
         Given the following HTTP headers
             | name        | value           |
-            | matricule   | ZSBVHOAY        |
-            | appelation  | Margaud MARCHAL |
-            | institution | PN              |
-            | codeservice | service_2       |
-            | superviseur | 1               |
+            | Matricule   | ZSBVHOAY        |
+            | Appelation  | Margaud MARCHAL |
+            | Institution | PN              |
+            | Codeservice | service_2       |
+            | Profil      | superviseur     |
 
         When I am on "/"
         Then the "user" ZSBVHOAY from PN exists with:
@@ -36,11 +36,11 @@ Feature: Create/update user according to SSO attributes
     Scenario: Empty headers
         Given the following HTTP headers
             | name        | value |
-            | matricule   |       |
-            | appelation  |       |
-            | institution |       |
-            | codeservice |       |
-            | superviseur |       |
+            | Matricule   |       |
+            | Appelation  |       |
+            | Institution |       |
+            | Codeservice |       |
+            | Profil      |       |
 
         When I am on "/"
         Then the response status code should be 401
@@ -48,11 +48,11 @@ Feature: Create/update user according to SSO attributes
     Scenario: Institution does not exists
         Given the following HTTP headers
             | name        | value |
-            | matricule   | 12345 |
-            | appelation  | foo   |
-            | institution | bar   |
-            | codeservice | baz   |
-            | superviseur | 0     |
+            | Matricule   | 12345 |
+            | Appelation  | foo   |
+            | Institution | bar   |
+            | Codeservice | baz   |
+            | Profil      | fsi   |
 
         When I am on "/"
         Then the response status code should be 401
