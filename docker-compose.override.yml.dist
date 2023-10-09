@@ -76,6 +76,8 @@ services:
   redis-citoyen:
     ports:
       - "6379:6379"
+    # Uncomment to use the password authenticated mode of Redis
+    #    command: /bin/sh -c "redis-server --requirepass redis"
 
   node-citoyen:
     ports:
