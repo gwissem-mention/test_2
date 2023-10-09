@@ -2,11 +2,11 @@
 all:
     hosts:  
         php:
-            ansible_connection: ssh
-            ansible_host: "10.227.166.196"
-            ansible_user: "ansible"
+            ansible_connection: local
+            ansible_host: "localhost"
+            ansible_user: "root"
             server_name: "dapqp307php1.qualpgs"
-            server_user: "ansible"
+            server_user: "root"
             force_reload_db: False
             force_referential_update: True
             in_php_main_machine: True

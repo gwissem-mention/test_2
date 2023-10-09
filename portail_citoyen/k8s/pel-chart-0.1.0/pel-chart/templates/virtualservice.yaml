@@ -1,0 +1,21 @@
+{{- $fullname := include "pel-chart.fullname" . }}
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: {{ $fullname }}
+  labels:
+    {{- include "pel-chart.labels" . | nindent 4 }}
+spec:
+  hosts:
+  - {{ .Values.global.domain }}
+  gateways:
+  - {{ $fullname }}
+  http:
+  - match:
+    - uri:
+        prefix: "/"
+    route:
+    - destination:
+        host: {{ $fullname }}-nginx
+        port:
+          number: {{ .Values.nginx.service.port }}
