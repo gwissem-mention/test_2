@@ -68,7 +68,7 @@ class User implements UserInterface
 
     #[ORM\ManyToOne(targetEntity: RightDelegation::class, inversedBy: 'delegatedAgents')]
     #[ORM\JoinColumn(onDelete: 'CASCADE')]
-    private ?RightDelegation $delegationGained;
+    private ?RightDelegation $delegationGained = null;
 
     /**
      * @param array<string> $roles

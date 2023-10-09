@@ -51,7 +51,7 @@ class FactsParser
     }
 
     /**
-     * @param JsonFacts $facts
+     * @param JsonFacts                                $facts
      * @param array<object{status: object{code: int}}> $objects
      *
      * @throws \Exception
