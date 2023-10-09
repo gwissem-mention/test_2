@@ -49,27 +49,27 @@ class UserFixtures extends Fixture implements FixtureGroupInterface
                 'number' => 'WTDAXALL',
                 'institution' => Institution::PN,
                 'serviceCode' => '74181', // COMMISSARIAT DE POLICE D'ARCACHON
-                'supervisor' => false,
+                'roles' => [],
             ],
             ['appellation' => 'Thomas DURAND',
                 'number' => 'PR5KTZ9R',
                 'institution' => Institution::GN,
                 'serviceCode' => '3009446', // BRIGADE TERRITORIALE AUTONOME DE CESTAS
-                'supervisor' => true,
+                'roles' => ['ROLE_SUPERVISOR'],
             ],
             [
                 'appellation' => 'Julie RICHARD',
                 'number' => 'PR5KTZ9C',
                 'institution' => Institution::GN,
                 'serviceCode' => '3009446', // BRIGADE TERRITORIALE AUTONOME DE CESTAS
-                'supervisor' => false,
+                'roles' => [],
             ],
             [
                 'appellation' => 'Philippe RIVIERE',
                 'number' => 'PR5KTQSD',
                 'institution' => Institution::GN,
                 'serviceCode' => '3009446', // BRIGADE TERRITORIALE AUTONOME DE CESTAS
-                'supervisor' => false,
+                'roles' => [],
             ],
         ];
 
@@ -80,13 +80,13 @@ class UserFixtures extends Fixture implements FixtureGroupInterface
                     'number' => strtoupper($faker->unique()->bothify('????????')),
                     'institution' => Institution::PN,
                     'serviceCode' => $service,
-                    'supervisor' => 1 === $i,
+                    'roles' => 1 === $i ? ['ROLE_SUPERVISOR'] : [],
                 ];
             }
         }
 
         foreach ($users as $user) {
-            $manager->persist((new User($user['number'], $user['institution'], $user['supervisor']))
+            $manager->persist((new User($user['number'], $user['institution'], $user['roles']))
                 ->setAppellation($user['appellation'])
                 ->setServiceCode($user['serviceCode']));
         }

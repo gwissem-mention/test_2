@@ -70,7 +70,10 @@ class User implements UserInterface
     #[ORM\JoinColumn(onDelete: 'CASCADE')]
     private ?RightDelegation $delegationGained;
 
-    public function __construct(string $number, Institution $institution, bool $supervisor = false)
+    /**
+     * @param array<string> $roles
+     */
+    public function __construct(string $number, Institution $institution, array $roles = [])
     {
         $this->number = $number;
         $this->institution = $institution;
@@ -78,8 +81,8 @@ class User implements UserInterface
         $this->notifications = new ArrayCollection();
         $this->complaints = new ArrayCollection();
 
-        if (true === $supervisor) {
-            $this->addRole('ROLE_SUPERVISOR');
+        foreach ($roles as $role) {
+            $this->addRole($role);
         }
     }
 

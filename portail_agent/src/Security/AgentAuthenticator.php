@@ -23,18 +23,18 @@ use Symfony\Component\Security\Http\EntryPoint\AuthenticationEntryPointInterface
 
 final class AgentAuthenticator extends AbstractAuthenticator implements AuthenticationEntryPointInterface
 {
-    public const HEADER_APPELLATION = 'appelation';
-    public const HEADER_NUMBER = 'matricule';
-    public const HEADER_INSTITUTION = 'institution';
-    public const HEADER_SERVICE_CODE = 'codeservice';
-    public const HEADER_SUPERVISOR = 'superviseur';
+    public const HEADER_APPELLATION = 'Appelation';
+    public const HEADER_NUMBER = 'Matricule';
+    public const HEADER_INSTITUTION = 'Institution';
+    public const HEADER_SERVICE_CODE = 'Codeservice';
+    public const HEADER_PROFILE = 'Profil';
 
     public const HEADERS = [
         self::HEADER_APPELLATION,
         self::HEADER_NUMBER,
         self::HEADER_INSTITUTION,
         self::HEADER_SERVICE_CODE,
-        self::HEADER_SUPERVISOR,
+        self::HEADER_PROFILE,
     ];
 
     public function __construct(
@@ -73,19 +73,25 @@ final class AgentAuthenticator extends AbstractAuthenticator implements Authenti
         $identifier = User::generateIdentifier($number, $institution);
         $appellation = (string) $request->headers->get(self::HEADER_APPELLATION);
         $serviceCode = (string) $request->headers->get(self::HEADER_SERVICE_CODE);
-        $supervisor = (bool) $request->headers->get(self::HEADER_SUPERVISOR);
+
+        $roles = [];
+        $profile = $request->headers->get(self::HEADER_PROFILE, '');
+
+        if (is_string($profile)) {
+            $roles = $this->extractRolesFromProfileHeader($profile);
+        }
 
         return new SelfValidatingPassport(
             new UserBadge(
                 $identifier,
-                function (string $identifier) use ($number, $institution, $appellation, $serviceCode, $supervisor) {
+                function (string $identifier) use ($number, $institution, $appellation, $serviceCode, $roles) {
                     return $this->createOrUpdateUser(
                         $identifier,
                         $number,
                         $institution,
                         $appellation,
                         $serviceCode,
-                        $supervisor
+                        $roles,
                     );
                 }
             )
@@ -112,6 +118,8 @@ final class AgentAuthenticator extends AbstractAuthenticator implements Authenti
     }
 
     /**
+     * @param array<string> $roles
+     *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
     private function createOrUpdateUser(
@@ -120,18 +128,18 @@ final class AgentAuthenticator extends AbstractAuthenticator implements Authenti
         Institution $institution,
         string $appellation,
         string $serviceCode,
-        bool $supervisor
+        array $roles,
     ): User {
         if (null === $user = $this->userRepository->findOneByIdentifier($identifier)) {
-            $user = new User($number, $institution, $supervisor);
+            $user = new User($number, $institution, $roles);
         }
 
         $user
             ->setAppellation($appellation)
             ->setServiceCode($serviceCode);
 
-        if (true === $supervisor) {
-            $user->addRole('ROLE_SUPERVISOR');
+        foreach ($roles as $role) {
+            $user->addRole($role);
         }
 
         if (null !== $rightDelegation = $user->getDelegationGained()) {
@@ -144,5 +152,19 @@ final class AgentAuthenticator extends AbstractAuthenticator implements Authenti
         $this->userRepository->save($user, true);
 
         return $user;
+    }
+
+    /**
+     * @return array<string>
+     */
+    private function extractRolesFromProfileHeader(string $profile): array
+    {
+        $roles = [];
+
+        if (str_contains($profile, 'superviseur')) {
+            $roles[] = 'ROLE_SUPERVISOR';
+        }
+
+        return $roles;
     }
 }

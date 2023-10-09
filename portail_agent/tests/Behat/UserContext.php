@@ -85,7 +85,7 @@ class UserContext extends RawMinkContext
             AgentAuthenticator::HEADER_INSTITUTION => $user->getInstitution()->name,
             AgentAuthenticator::HEADER_APPELLATION => $user->getAppellation(),
             AgentAuthenticator::HEADER_SERVICE_CODE => $user->getServiceCode(),
-            AgentAuthenticator::HEADER_SUPERVISOR => $user->isSupervisor() ? '1' : '0',
+            AgentAuthenticator::HEADER_PROFILE => $user->isSupervisor() ? 'superviseur' : 'fsi',
         ];
 
         if ($this->ssoIsEnabled) {
