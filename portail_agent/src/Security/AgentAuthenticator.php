@@ -161,7 +161,7 @@ final class AgentAuthenticator extends AbstractAuthenticator implements Authenti
     {
         $roles = [];
 
-        if (str_contains($profile, 'superviseur')) {
+        if (false !== stristr($profile, 'superviseur')) {
             $roles[] = 'ROLE_SUPERVISOR';
         }
 
