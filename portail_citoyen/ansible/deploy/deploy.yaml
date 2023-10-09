@@ -6,6 +6,7 @@
   environment:
     APP_ENV: prod
     REDIS_HOST: 127.0.0.1
+    REDIS_PASSWORD: pel
     FILE_CITIES: insee_commune.csv
     FILE_COUNTRIES: insee_pays.csv
     FILE_DEPARTMENTS: departement_2022.csv
