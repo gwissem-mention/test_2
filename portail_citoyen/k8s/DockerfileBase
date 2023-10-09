@@ -1,0 +1,69 @@
+ARG HTOPDF_IMAGE
+ARG PHP_IMAGE
+
+FROM ${HTOPDF_IMAGE} as wkhtmltopdf
+FROM ${PHP_IMAGE} as php
+
+ENV NODE_VERSION=16.20.2
+ENV YARN_VERSION=1.22.19
+
+RUN apk add --no-cache --virtual .binary \
+        acl \
+        fcgi \
+        file \
+        gettext \
+        git \
+        nodejs \
+        yarn \
+    ;
+
+RUN apk add --no-cache --virtual .wkhtml-deps \
+        libx11 \
+        libxrender \
+        libxext \
+        libssl1.1 \
+        ca-certificates \
+        fontconfig \
+        freetype \
+    	xvfb \
+        ttf-dejavu ttf-droid ttf-freefont ttf-liberation \
+    ;
+
+COPY --from=wkhtmltopdf /bin/wkhtmltopdf /usr/local/bin/wkhtmltopdf
+# end of wkhtmltopdf installation
+
+COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
+
+RUN set -eux; \
+    install-php-extensions \
+        apcu \
+        intl \
+        opcache \
+        zip \
+        redis \
+        pdo_pgsql \
+    ;
+
+RUN mkdir -p /var/run/php
+
+COPY --link ./k8s/php/docker-healthcheck.sh /usr/local/bin/docker-healthcheck
+RUN chmod +x /usr/local/bin/docker-healthcheck
+HEALTHCHECK --interval=10s --timeout=3s --retries=3 CMD ["docker-healthcheck"]
+
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2 /usr/bin/composer /usr/local/bin/composer
+
+ENV COMPOSER_ALLOW_SUPERUSER=1
+ENV PATH="${PATH}:/root/.composer/vendor/bin"
+
+
+#COPY --link ./k8s/php/docker-entrypoint.sh /usr/local/bin/docker-entrypoint
+#RUN chmod +x /usr/local/bin/docker-entrypoint
+#ENTRYPOINT ["docker-entrypoint"]
+CMD ["php-fpm"]
+
+
+
+
+
+

@@ -1,5 +1,15 @@
 ---
 all:
+    environment:
+        OODRIVE_BASE_URI: https://snc28pp.snc.oodrive.com
+        OODRIVE_WORKSPACE: pel-preprod
+        OODRIVE_OAUTH_CLIENT_ID: pel-preprod
+        OODRIVE_OAUTH_CLIENT_SECRET: "{{ vault_oodrive_preprod_client_secret }}"
+        OODRIVE_USERNAME: pel_ppr.tech_user
+        OODRIVE_PASSWORD: "{{ vault_oodrive_preprod_user_password }}"
+        OODRIVE_ROOT_FOLDER_ID: __to_change__
+        OODRIVE_FETCHED_FOLDER_ID: __to_change__
+        OODRIVE_REPORT_FOLDER: retour_fsi
     hosts:
         integration:
             ansible_connection: ssh

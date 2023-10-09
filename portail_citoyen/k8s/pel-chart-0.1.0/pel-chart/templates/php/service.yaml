@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "pel-chart.fullname" . }}-phpfpm
+  labels:
+    {{- include "pel-chart.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.php.service.type }}
+  ports:
+    - port: {{ .Values.php.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "php.selectorLabels" . | nindent 4 }}

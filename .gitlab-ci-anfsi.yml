@@ -47,17 +47,20 @@ build-citoyen:
         - mv ./linux-amd64/helm /usr/local/bin
         - chmod +x /usr/local/bin/helm
 
-        - echo $KUBECONFIG
         - kubectl config use-context pel-ppr-qual
 
         - cd portail_citoyen
         - export DOCKER_BUILDKIT=0
         - export COMPOSE_DOCKER_CLI_BUILD=0
+        - export HTTPS_PROXY=${PROXY}:80 
+        - export HTTP_PROXY=${PROXY}:80 
+        - export https_proxy=${PROXY}:80 
+        - export http_proxy=${PROXY}:80
         
         ## Push image to Nexux registry
         - echo "${REGISTRY_PASSWORD}" | docker login registry-omnibus-pic.gendarmerie.fr --username ${REGISTRY_USER} --password-stdin
-        - docker build . --network=host --build-arg HTTP_PROXY="$HTTP_PROXY" --build-arg HTTPS_PROXY="$HTTPS_PROXY" --tag "registry-omnibus-pic.gendarmerie.fr/bap/pel/plainte-en-ligne-php:latest" --build-arg PHP_IMAGE=registry-nexus-pic.gendarmerie.fr/bap/pel/base-php:1.0.0 --build-arg NGINX_IMAGE=registry-nexus-pic.gendarmerie.fr/nginx:latest --target=php_prod -f k8s/Dockerfile
-        - docker build . --network=host --build-arg HTTP_PROXY="$HTTP_PROXY" --build-arg HTTPS_PROXY="$HTTPS_PROXY" --tag "registry-omnibus-pic.gendarmerie.fr/bap/pel/plainte-en-ligne-nginx:latest" --build-arg PHP_IMAGE=registry-nexus-pic.gendarmerie.fr/bap/pel/base-php:1.0.0 --build-arg NGINX_IMAGE=registry-nexus-pic.gendarmerie.fr/nginx:latest --target=nginx_prod -f k8s/Dockerfile
+        - docker build . --network=host --build-arg HTTP_PROXY="$HTTP_PROXY" --build-arg HTTPS_PROXY="$HTTPS_PROXY" --build-arg PHP_IMAGE=registry-nexus-pic.gendarmerie.fr/bap/pel/base-php:1.0.0 --tag "registry-omnibus-pic.gendarmerie.fr/bap/pel/plainte-en-ligne-php:latest" -f k8s/php/Dockerfile
+        - docker build . --network=host --build-arg HTTP_PROXY="$HTTP_PROXY" --build-arg HTTPS_PROXY="$HTTPS_PROXY" --build-arg PHP_IMAGE=registry-nexus-pic.gendarmerie.fr/bap/pel/plainte-en-ligne-php:latest --build-arg NGINX_IMAGE=registry-nexus-pic.gendarmerie.fr/nginx:latest --tag "registry-omnibus-pic.gendarmerie.fr/bap/pel/plainte-en-ligne-nginx:latest" -f k8s/nginx/Dockerfile
         - docker push registry-omnibus-pic.gendarmerie.fr/bap/pel/plainte-en-ligne-php:latest
         - docker push registry-omnibus-pic.gendarmerie.fr/bap/pel/plainte-en-ligne-nginx:latest
 
@@ -71,8 +74,7 @@ build-citoyen:
         - docker pull registry.pel.pp.fsi.interieur.gouv.fr/library/plainte-en-ligne-php:0.1.0
 
         ## Deploy newly pushed image
-        - helm upgrade --install -n pel-qual pel-qual pel-sample-chart/. --set nginx.image.tag=0.1.0 --set php.image.tag=0.1.0
-        - kubectl get all -A -n pel-qual
+        - helm upgrade --install -n pel-qual pel-qual k8s/pel-chart-0.1.0/pel-chart/. --set nginx.image.tag=0.1.0 --set php.image.tag=0.1.0
 
 .clone-code:
     stage: code-clone

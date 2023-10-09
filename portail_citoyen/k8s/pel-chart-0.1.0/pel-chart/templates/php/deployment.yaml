@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "pel-chart.name" . }}-phpfpm
+  labels:
+    {{- include "pel-chart.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.php.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "php.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.php.podAnnotations }}
+      annotations:
+        sidecar.istio.io/inject: "false"
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "php.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.php.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "pel-chart.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.php.podSecurityContext | nindent 8 }}
+      containers:
+        - name: phpfpm
+          securityContext:
+            {{- toYaml .Values.php.securityContext | nindent 12 }}
+          image: "{{ .Values.php.image.repository }}:{{ .Values.php.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.php.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 9000
+              protocol: TCP
+          readinessProbe:
+            tcpSocket:
+              port: {{ .Values.php.service.port }}
+            initialDelaySeconds: 10
+            timeoutSeconds: 5
+          resources:
+            {{- toYaml .Values.php.resources | nindent 12 }}
+          env:
+            - name: REFERENTIALS_DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: pg-secret
+                  key: uri
+            - name: REFERENTIALS_REDIS_URL
+              valueFrom:
+                secretKeyRef:
+                  name: redis-secret
+                  key: uri
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
