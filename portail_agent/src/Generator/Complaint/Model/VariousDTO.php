@@ -8,6 +8,7 @@ use App\Entity\AdditionalInformation;
 use App\Entity\Complaint;
 use App\Entity\Witness;
 use App\Referential\Repository\UnitRepository;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class VariousDTO
 {
@@ -21,8 +22,9 @@ class VariousDTO
     private string $appointmentAsked;
     private string $cctvPresent;
     private string $witnessesText = '';
+    private string $urlAPIPJ;
 
-    public function __construct(Complaint $complaint, UnitRepository $unitRepository)
+    public function __construct(Complaint $complaint, UnitRepository $unitRepository, UrlGeneratorInterface $urlGenerator)
     {
         $this->suspectsKnown = $complaint->getAdditionalInformation()?->isSuspectsKnown() ? 'Oui' : 'Non';
         $this->suspectsKnownText = $complaint->getAdditionalInformation()?->getSuspectsKnownText() ?? '';
@@ -44,6 +46,7 @@ class VariousDTO
                 $this->witnessesText .= ' ';
             }
         });
+        $this->urlAPIPJ = $urlGenerator->generate('api_download_attachments', ['complaintFrontId' => $complaint->getFrontId()], UrlGeneratorInterface::ABSOLUTE_URL);
     }
 
     /**
@@ -62,6 +65,7 @@ class VariousDTO
             'Rdv_Souhaite' => $this->appointmentAsked,
             'Enregistrement_Video' => $this->cctvPresent,
             'Temoins_Description' => $this->witnessesText,
+            'URL_API_PJ' => $this->urlAPIPJ,
         ]];
     }
 }

@@ -27,6 +27,7 @@ use App\Generator\Complaint\Model\PersonLegalRepresentativeDTO;
 use App\Generator\Complaint\Model\VariousDTO;
 use App\Referential\Entity\Unit;
 use App\Referential\Repository\UnitRepository;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class ComplaintXmlGenerator implements ComplaintGeneratorInterface
@@ -35,6 +36,7 @@ class ComplaintXmlGenerator implements ComplaintGeneratorInterface
         readonly private TranslatorInterface $translator,
         readonly private ComplaintXmlAdditionalInformationPN $additionalInformationPN,
         readonly private UnitRepository $unitRepository,
+        readonly private UrlGeneratorInterface $urlGenerator
     ) {
     }
 
@@ -61,7 +63,7 @@ class ComplaintXmlGenerator implements ComplaintGeneratorInterface
         }
         $xml = $this->setObjects($xml, $complaint);
         $xml = $this->arrayToXml($xml, (new ContactDTO($complaint))->getArray());
-        $xml = $this->arrayToXml($xml, (new VariousDTO($complaint, $this->unitRepository))->getArray());
+        $xml = $this->arrayToXml($xml, (new VariousDTO($complaint, $this->unitRepository, $this->urlGenerator))->getArray());
 
         return $xml;
     }
