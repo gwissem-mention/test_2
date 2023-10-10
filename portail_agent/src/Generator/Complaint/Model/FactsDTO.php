@@ -135,7 +135,8 @@ class FactsDTO
         } elseif (null !== $debut && null !== $startHour && null === $fin && null === $endHour) {
             $debutFormatted = $debut->format('d/m/Y');
             $startHour = \DateTime::createFromInterface($startHour);
-            $endHour = $startHour->modify('+5 minutes');
+            $endHour = clone $startHour;
+            $endHour->modify('+5 minutes');
             $this->start = $debutFormatted.' à '.$startHour->format('H:i');
             $this->end = $debutFormatted.' à '.$endHour->format('H:i');
         }
