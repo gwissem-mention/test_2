@@ -26,7 +26,7 @@ class PhoneType extends AbstractType
                     'data-action' => 'input->intl-tel-input#trimByPattern',
                     'data-intl-tel-input-pattern-param' => '[^0-9-\s]',
                     'data-placeholder-type' => $options['number_placeholder_type'],
-                    'autocomplete' => 'tel-national',
+                    'autocomplete' => 'tel',
                 ],
                 'constraints' => $options['number_constraints'],
                 'required' => $options['number_required'],
