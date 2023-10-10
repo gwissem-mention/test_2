@@ -24,7 +24,8 @@ parameters:
     app.salesforce.client_secret: '%env(SALESFORCE_API_CLIENT_SECRET)%'
     app.salesforce.recipient: '%env(SALESFORCE_RECIPIENT)%'
     app.citoyen.domain: '%env(CITOYEN_DOMAIN)%'
-    
+    app.userback_access_token: '%env(USERBACK_ACCESS_TOKEN)%'
+
 services:
     _defaults:
         autowire: true

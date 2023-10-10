@@ -7,6 +7,7 @@ twig:
         jedonnemonavis_key: '%app.jedonnemonavis_key%'
         oodrive_fetched_zip_name: '%app.oodrive.fetched_zip_name%'
         pdf_assets_host: '%app.pdf_assets_host%'
+        userback_access_token: '%app.userback_access_token%'
         
 when@test:
     twig:

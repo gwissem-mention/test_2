@@ -3,7 +3,7 @@ twig:
     form_themes: ['forms/theme.html.twig']
     globals:
         sso_is_enabled: '%sso.enabled%'
-
+        userback_access_token: '%app.userback_access_token%'
 
 when@test:
     twig:

@@ -28,6 +28,7 @@ parameters:
     app.file_nature_places: '%env(FILE_NATURE_PLACES)%'
     app.file_document_types: '%env(FILE_DOCUMENT_TYPES)%'
     app.file_registered_vehicle_natures: '%env(FILE_REGISTERED_VEHICLE_NATURES)%'
+    app.userback_access_token: '%env(USERBACK_ACCESS_TOKEN)%'
 
 services:
     _defaults:
