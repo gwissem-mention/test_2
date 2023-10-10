@@ -53,6 +53,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         );
 
         $complaint = (new Complaint())
+            ->setFrontId('AAAA-BBBB-CCCC')
             ->setCreatedAt(new \DateTimeImmutable('2022-12-01'))
             ->setTest(true)
             ->setAppointmentDate(new \DateTimeImmutable('2022-12-03'))
@@ -668,6 +669,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Rdv_Souhaite>Oui</Rdv_Souhaite>', $this->xmlContent);
         $this->assertStringContainsString('<Enregistrement_Video>Oui</Enregistrement_Video>', $this->xmlContentWithCorporationRepresented);
         $this->assertStringContainsString('<Temoins_Description>Jean Dupont</Temoins_Description>', $this->xmlContentWithCorporationRepresented);
+        $this->assertStringContainsString('<URL_API_PJ>http://localhost/api/complaint/AAAA-BBBB-CCCC/attachments</URL_API_PJ>', $this->xmlContentWithCorporationRepresented);
         $this->assertStringContainsString('</Divers>', $this->xmlContent);
     }
 
