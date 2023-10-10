@@ -18,7 +18,7 @@
             </div>
             {% if (unit.institutionCode is same as(constant('App\\AppEnum\\Institution::GN'))) %}
                 <div>
-                    <button class="fr-btn fr-btn--secondary mt-3" id="unit-id-{{ unit.idAnonym }}" data-action="google-maps--appointment#accessibilityInformation" data-google-maps--appointment-url-param="{{ path('complaint_unit_accessibility_information', { 'unitIdAnonym': unit.idAnonym }) }}" data-fr-opened="false" aria-controls="fr-modal-unit-accessibility-information" title="{{ 'pel.accessibility.information'|trans }}">{{ 'pel.accessibility.information'|trans }}</button>
+                    <button class="fr-btn fr-btn--secondary mt-3" id="unit-id-{{ unit.idAnonym }}" data-action="google-maps--appointment#accessibilityInformation" data-google-maps--appointment-url-param="{{ path('complaint_unit_accessibility_information', { 'unitIdAnonym': unit.idAnonym }) }}" data-fr-opened="false" aria-controls="fr-modal-unit-accessibility-information">{{ 'pel.accessibility.information'|trans }}</button>
                 </div>
             {% endif %}
         </div>
