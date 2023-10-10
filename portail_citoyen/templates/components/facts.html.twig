@@ -94,9 +94,13 @@
         {% if form.subPlaceNature is defined %}
             <div class="fr-form-group fr-mb-6v md:w-1/2">
                 <div class="{{ html_classes('fr-select-group', {'fr-select-group--error': form.subPlaceNature.vars.errors is not empty}) }}">
+                    {% set attr_row = {'class':html_classes(form.subPlaceNature.vars.attr.class ?? '', 'autocomplete' not in form.subPlaceNature.vars['block_prefixes'] ? 'fr-select' : '',{'fr-select--error':form.subPlaceNature.vars.errors is not empty})} %}
+                    {% if form.subPlaceNature.vars.errors is not empty %}
+                        {% set attr_row = attr_row|merge({'aria-describedby': 'form-errors-'~ form.vars.id}) %}
+                    {% endif %}
                     {{ form_label(form.subPlaceNature) }}
                     <div class="fr-input-wrap fr-icon-arrow-down-s-line before:content-[''] before:z-10">
-                        {{ form_widget(form.subPlaceNature, {'attr':{'class':html_classes(form.subPlaceNature.vars.attr.class ?? '', 'autocomplete' not in form.subPlaceNature.vars['block_prefixes'] ? 'fr-select' : '',{'fr-select--error':form.subPlaceNature.vars.errors is not empty})}}) }}
+                        {{ form_widget(form.subPlaceNature, {'attr': attr_row}) }}
                     </div>
                     {{ form_errors(form.subPlaceNature) }}
                 </div>
