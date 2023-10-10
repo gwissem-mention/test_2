@@ -207,6 +207,7 @@
 
 {%- block _objects_objects_entry_files_row -%}
     {{ component('file_upload', {
+        'data-live-id': 'object-files-'~form.parent.vars.name,
         'parentIndex': form.parent.vars.name,
         'inputId': 'object-files-'~form.parent.vars.name,
         'inputLabel': form.vars.label|default('pel.files')|trans,
