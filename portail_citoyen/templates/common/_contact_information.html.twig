@@ -40,9 +40,12 @@
     {{ form_row(form.confirmationEmail) }}
 {% endif %}
 {% if representedPerson is same as(false) %}
-    <div class="fr-pb-4v">
-        {{ 'pel.judicial.portal.text'|trans }}
-    </div>
+    <p>
+        {{ 'pel.at.least.one.phone.number.is.required'|trans }}
+    </p>
+    <p>
+        {{ 'pel.judicial.portal.text'|trans|raw }}
+    </p>
 {% endif %}
 {{ form_row(form.mobile) }}
 {{ form_row(form.phone) }}
