@@ -25,6 +25,16 @@ export default class extends Controller {
         }
     }
 
+    public async focusAddWitness(): Promise<void> {
+        this.component = await getComponent(this.element as HTMLElement);
+        if (this.component) {
+            this.component.on("render:finished", () => {
+                const [newWitness] = Array.prototype.slice.call(document.querySelectorAll("[id$='_description']")).slice(-1);
+                newWitness.focus();
+            });
+        }
+    }
+
     public async focusDeleteItem(event: Event & { params: { index: number; last: boolean; }}): Promise<void> {
         const { index, last } = event.params;
 
