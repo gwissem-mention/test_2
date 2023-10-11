@@ -50,7 +50,7 @@
         {% endfor %}
     {% endif %}
     <div class="fr-input-group{% if etalab_errors|length > 0 %} fr-input-group--error{% endif %}">
-        {{ form_label(object.documentType.documentAdditionalInformation.documentOwnerAddress) }}
+        {{ form_label(object.documentType.documentAdditionalInformation.documentOwnerAddress, null, {'label_attr': {'for':'document_owner_address_' ~ loop.index0}}) }}
         {{ component('etalab_component', {
             'data-live-id': 'document-owner-address-' ~loop.index0,
             dataModel: 'addressSearch:documentOwnerAddresses[' ~ loop.index0 ~ '][addressSearch] addressId:documentOwnerAddresses[' ~ loop.index0 ~ '][addressId] addressSearchSaved:documentOwnerAddresses[' ~ loop.index0 ~ '][addressSearchSaved]',
