@@ -1,5 +1,5 @@
+<p class="fr-badge fr-badge--purple-glycine fr-badge--no-icon fr-text--xs fr-mb-6v">{{ 'pel.complaint.date.and.time'|trans }}</p>
 <ul class="list-none fr-pl-8v fr-my-0">
-    <p class="fr-badge fr-badge--purple-glycine fr-badge--no-icon fr-text--xs fr-mb-6v -ml-8">{{ 'pel.complaint.date.and.time'|trans }}</p>
     <li class="relative text-xl/8 fr-pb-0 fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/calendar-event.svg')]">
         {% if complaint.facts.offenseDate.exactDateKnown is same as true %}
             {{ 'pel.complaint.exact.date.is.known'|trans|raw }}
@@ -50,7 +50,9 @@
             {{ 'pel.complaint.exact.hour.is.unknown'|trans|raw }}
         {% endif %}
     </li>
-    <p class="fr-badge fr-badge--purple-glycine fr-badge--no-icon fr-text--xs fr-mt-6v fr-mb-6v -ml-8">{{ 'pel.complaint.place.of.offence'|trans }}</p>
+</ul>
+<p class="fr-badge fr-badge--purple-glycine fr-badge--no-icon fr-text--xs fr-mt-6v fr-mb-6v">{{ 'pel.complaint.place.of.offence'|trans }}</p>
+<ul class="list-none fr-pl-8v fr-my-0">
     {% if complaint.facts.placeNature is not null %}
         <li class="relative text-xl/8 fr-pb-6v fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/community.svg')]">
             {{ 'pel.nature.place'|trans }} : <b>{{ complaint.facts.placeNature|nature_place_label }}</b>
@@ -86,7 +88,9 @@
             {% endif %}
         </li>
     {% endif %}
-    <p class="fr-badge fr-badge--purple-glycine fr-badge--no-icon fr-text--xs fr-mt-6v fr-mb-6v -ml-8">{{ 'pel.complaint.in.a.few.words'|trans }}</p>
+</ul>
+<p class="fr-badge fr-badge--purple-glycine fr-badge--no-icon fr-text--xs fr-mt-6v fr-mb-6v">{{ 'pel.complaint.in.a.few.words'|trans }}</p>
+<ul class="list-none fr-pl-8v fr-my-0">
     <li class="relative text-xl/8 fr-pb-6v fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/fr-quote.svg')]">
         “ {{ complaint.facts.description }} “
     </li>
