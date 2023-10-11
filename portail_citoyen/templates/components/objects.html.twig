@@ -25,7 +25,7 @@
                         <div class="fr-form-group fr-mb-6v md:w-1/2">
                             {% set attr_row = {'class':html_classes(object.category.vars.attr.class ?? '', 'autocomplete' not in object.category.vars['block_prefixes'] ? 'fr-select' : '',{'fr-select--error':object.category.vars.errors is not empty})} %}
                             {% if object.category.vars.errors is not empty %}
-                                {% set attr_row = attr_row|merge({'aria-describedby': 'form-errors-'~ form.vars.id}) %}
+                                {% set attr_row = attr_row|merge({'aria-describedby': 'form-errors-'~ object.category.vars.id}) %}
                             {% endif %}
                             <div class="{{ html_classes('fr-select-group', {'fr-select-group--error':  object.category.vars.errors is not empty}) }}">
                                 {{ form_label(object.category) }}
