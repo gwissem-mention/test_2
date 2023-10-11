@@ -130,8 +130,14 @@ class FactsDTO
             $this->start = $debutFormatted.' à '.$startHour->format('H:i');
             $this->end = $finFormatted.' à '.$endHour->format('H:i');
         } elseif (null !== $debut && null === $startHour && null === $fin && null === $endHour) {
-            $this->start = $debut->format('d/m/Y à 00h00');
-            $this->end = $debut->format('d/m/Y à 23h59');
+            $this->start = $debut->format('d/m/Y').' à 00h00';
+            $this->end = $debut->format('d/m/Y').'à 23h59';
+        } elseif (null !== $debut && null !== $startHour && null === $fin && null !== $endHour) {
+            $debutFormatted = $debut->format('d/m/Y');
+            $startHour = \DateTime::createFromInterface($startHour);
+            $endHour = \DateTime::createFromInterface($endHour);
+            $this->start = $debutFormatted.' à '.$startHour->format('H:i');
+            $this->end = $debutFormatted.' à '.$endHour->format('H:i');
         } elseif (null !== $debut && null !== $startHour && null === $fin && null === $endHour) {
             $debutFormatted = $debut->format('d/m/Y');
             $startHour = \DateTime::createFromInterface($startHour);
@@ -140,6 +146,7 @@ class FactsDTO
             $this->start = $debutFormatted.' à '.$startHour->format('H:i');
             $this->end = $debutFormatted.' à '.$endHour->format('H:i');
         }
+
         $this->noViolence = strval(!$complaint->getFacts()?->isVictimOfViolence()) ?: '';
         $this->violenceDescription = $complaint->getFacts()?->getVictimOfViolenceText() ?? '';
         $this->hasHarmPhysique = $complaint->getFacts()?->isVictimOfViolence() ? 'oui' : 'non';
