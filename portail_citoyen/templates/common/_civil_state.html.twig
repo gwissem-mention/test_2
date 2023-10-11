@@ -4,7 +4,7 @@
 	{% endif %}
 	{% if app.user is null and representedPerson is same as(false) %}
 		<div class="france-connect__group fr-mt-md-6v">
-			<button class="fr-connect" id="france_connect_auth_button" onclick="window.location='{{ path('authentication', {'france_connected': true, 'identity':true}) }}'; return false;">
+			<button type="button" class="fr-connect" id="france_connect_auth_button" onclick="window.location='{{ path('authentication', {'france_connected': true, 'identity':true}) }}'; return false;">
 				<span class="fr-connect__login">{{ 'pel.identify.with'|trans }}</span>
 				<span class="fr-connect__brand">{{ 'pel.france.connect'|trans }}</span>
 			</button>
