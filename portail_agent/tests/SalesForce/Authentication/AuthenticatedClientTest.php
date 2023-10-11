@@ -22,7 +22,7 @@ class AuthenticatedClientTest extends TestCase
                 function ($method, $url, $options): MockResponse {
                     $this->assertSame('POST', $method);
                     $this->assertSame(sprintf('%s/v2/token', self::BASE_AUTH_URI), $url);
-                    $this->assertSame('{"grant_type":"client_credentials","client_id":"clientId","client_secret":"clientSecret"}', $options['body']);
+                    $this->assertSame('{"grant_type":"client_credentials","client_id":"clientId","client_secret":"clientSecret","account_id":"accountId"}', $options['body']);
 
                     return new MockResponse('{"access_token": "access_token"}', [
                         'http_code' => 200,
@@ -45,6 +45,7 @@ class AuthenticatedClientTest extends TestCase
             'clientId',
             'clientSecret',
             self::BASE_AUTH_URI,
+            'accountId',
         );
 
         $authenticatedClient->request('GET', '/whatever');
@@ -59,7 +60,7 @@ class AuthenticatedClientTest extends TestCase
                 function ($method, $url, $options): MockResponse {
                     $this->assertSame('POST', $method);
                     $this->assertSame(sprintf('%s/v2/token', self::BASE_AUTH_URI), $url);
-                    $this->assertSame('{"grant_type":"client_credentials","client_id":"clientId","client_secret":"clientSecret"}', $options['body']);
+                    $this->assertSame('{"grant_type":"client_credentials","client_id":"clientId","client_secret":"clientSecret","account_id":"accountId"}', $options['body']);
 
                     return new MockResponse('', [
                         'http_code' => 401,
@@ -69,6 +70,7 @@ class AuthenticatedClientTest extends TestCase
             'clientId',
             'clientSecret',
             self::BASE_AUTH_URI,
+            'accountId',
         );
 
         $authenticatedClient->request('GET', '/whatever');
@@ -81,7 +83,7 @@ class AuthenticatedClientTest extends TestCase
                 function ($method, $url, $options): MockResponse {
                     $this->assertSame('POST', $method);
                     $this->assertSame(sprintf('%s/v2/token', self::BASE_AUTH_URI), $url);
-                    $this->assertSame('{"grant_type":"client_credentials","client_id":"clientId","client_secret":"clientSecret"}', $options['body']);
+                    $this->assertSame('{"grant_type":"client_credentials","client_id":"clientId","client_secret":"clientSecret","account_id":"accountId"}', $options['body']);
 
                     return new MockResponse('{"access_token":"expired_access_token"}', [
                         'http_code' => 200,
@@ -103,7 +105,7 @@ class AuthenticatedClientTest extends TestCase
                 function ($method, $url, $options): MockResponse {
                     $this->assertSame('POST', $method);
                     $this->assertSame(sprintf('%s/v2/token', self::BASE_AUTH_URI), $url);
-                    $this->assertSame('{"grant_type":"client_credentials","client_id":"clientId","client_secret":"clientSecret"}', $options['body']);
+                    $this->assertSame('{"grant_type":"client_credentials","client_id":"clientId","client_secret":"clientSecret","account_id":"accountId"}', $options['body']);
 
                     return new MockResponse('{"access_token":"new_access_token"}', [
                         'http_code' => 200,
@@ -125,7 +127,8 @@ class AuthenticatedClientTest extends TestCase
             ]),
             'clientId',
             'clientSecret',
-            self::BASE_AUTH_URI
+            self::BASE_AUTH_URI,
+            'accountId',
         );
 
         $authenticatedClient->request('GET', '/whatever');

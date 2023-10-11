@@ -23,6 +23,7 @@ parameters:
     app.salesforce.client_id: '%env(SALESFORCE_API_CLIENT_ID)%'
     app.salesforce.client_secret: '%env(SALESFORCE_API_CLIENT_SECRET)%'
     app.salesforce.recipient: '%env(SALESFORCE_RECIPIENT)%'
+    app.salesforce.account_id: '%env(SALESFORCE_API_ACCOUNT_ID)%'
     app.citoyen.domain: '%env(CITOYEN_DOMAIN)%'
     app.userback_access_token: '%env(USERBACK_ACCESS_TOKEN)%'
 
@@ -45,6 +46,7 @@ services:
             $salesForceAuthDomain: 'https://%app.salesforce.id_domain%.%app.salesforce.auth_subdomain%.%app.salesforce.domain%'
             $salesForceRestDomain: 'https://%app.salesforce.id_domain%.%app.salesforce.rest_subdomain%.%app.salesforce.domain%'
             $salesForceRecipient: '%app.salesforce.recipient%'
+            $salesForceAccountId: '%app.salesforce.account_id%'
             $citoyenDomain: '%app.citoyen.domain%'
 
     App\:

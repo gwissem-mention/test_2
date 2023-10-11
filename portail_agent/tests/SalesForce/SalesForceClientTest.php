@@ -46,7 +46,7 @@ class SalesForceClientTest extends KernelTestCase
                         $this->assertSame('POST', $method);
                         $this->assertSame(sprintf('%s/v2/token', self::BASE_AUTH_URI), $url);
                         $this->assertSame(
-                            '{"grant_type":"client_credentials","client_id":"salesForceClientId","client_secret":"salesForceClientSecret"}',
+                            '{"grant_type":"client_credentials","client_id":"salesForceClientId","client_secret":"salesForceClientSecret","account_id":"accountId"}',
                             $options['body']
                         );
 
@@ -75,6 +75,7 @@ class SalesForceClientTest extends KernelTestCase
                 'salesForceClientId',
                 'salesForceClientSecret',
                 self::BASE_AUTH_URI,
+                'accountId',
             ),
             self::BASE_REST_URI,
         );
