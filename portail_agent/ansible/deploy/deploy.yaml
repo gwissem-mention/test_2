@@ -25,6 +25,8 @@
     AWS_S3_ENDPOINT: http://localhost:9000
     AWS_S3_BUCKET: pel-bucket
     AWS_S3_REGION: eu-west-3
+    OODRIVE_OAUTH_CLIENT_SECRET: "{{ vault_oodrive_inte_client_secret }}"
+    OODRIVE_PASSWORD: "{{ vault_oodrive_inte_user_password }}"
     
   vars_files:
     - ../vars/vars.yaml
