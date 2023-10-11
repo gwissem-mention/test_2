@@ -149,7 +149,7 @@
                 {% set etalab_errors = etalab_errors|merge([error.message]) %}
             {% endfor %}
             <div class="fr-input-group{% if etalab_errors|length > 0 %} fr-input-group--error{% endif %}">
-                {{ form_label(form.address.startAddress) }}
+                {{ form_label(form.address.startAddress, null,  {'label_attr': {'for':'facts-startAddress-address'}}) }}
                 {{ component('etalab_component', {
                     'data-live-id': 'facts-startAddress-address',
                     dataModel: 'addressSearch:startAddressEtalabInput.addressSearch addressId:startAddressEtalabInput.addressId addressSearchSaved:startAddressEtalabInput.addressSearchSaved latitude:startAddressEtalabInput.latitude longitude:startAddressEtalabInput.longitude',
@@ -166,7 +166,7 @@
                 {% set etalab_errors = etalab_errors|merge([error.message]) %}
             {% endfor %}
             <div class="fr-input-group{% if etalab_errors|length > 0 %} fr-input-group--error{% endif %}">
-                {{ form_label(form.address.endAddress) }}
+                {{ form_label(form.address.endAddress, null,  {'label_attr': {'for':'facts-endAddress-address'}}) }}
                 {{ component('etalab_component', {
                     'data-live-id': 'facts-endAddress-address',
                     dataModel: 'addressSearch:endAddressEtalabInput.addressSearch addressId:endAddressEtalabInput.addressId addressSearchSaved:endAddressEtalabInput.addressSearchSaved latitude:endAddressEtalabInput.latitude longitude:endAddressEtalabInput.longitude',
