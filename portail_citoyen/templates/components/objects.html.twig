@@ -84,7 +84,7 @@
 
                     {% if form.objects|length > 1 %}
                         <div class="fr-mt-12v">
-                            {{ form_widget(object.vars.button_delete, {attr: {'data-action': 'live#action', 'data-action-name': 'removeObject(index=' ~ object.vars.name ~ ') removeCollectionItem(name=objects[objects], index=' ~ object.vars.name ~ ')'}}) }}
+                            {{ form_widget(object.vars.button_delete, {attr: {'data-action': 'live#action complaint-submit#focusDeleteItem', 'data-action-name': 'removeObject(index=' ~ object.vars.name ~ ') removeCollectionItem(name=objects[objects], index=' ~ object.vars.name ~ ')', 'data-complaint-submit-index-param': loop.index0, 'data-complaint-submit-last-param': loop.last }}) }}
                         </div>
                     {% endif %}
                 </div>
@@ -95,7 +95,7 @@
     <div class="fr-pt-4v fr-px-6v fr-pb-12v fr-pt-md-6v fr-px-md-20v flex flex-col items-center gap-y-8">
         {% set objectsLength = form.objects.vars.data|length %}
         {% set objectsQuantity = form.objects.vars.data|objects_quantity %}
-        {{ form_widget(form.objects.vars.button_add, {attr: {'data-action': 'live#action', 'data-action-name': 'prevent|addObject addCollectionItem(name=objects[objects])'}}) }}
+        {{ form_widget(form.objects.vars.button_add, {attr: {'data-action': 'live#action complaint-submit#focusAddObject', 'data-action-name': 'prevent|addObject addCollectionItem(name=objects[objects])'}}) }}
         <p class="fr-mb-0">
             <strong>{{ objectsQuantity }} {{ 'pel.total.message.two'|trans({'%quantity%': objectsQuantity}) }}</strong>
             {{ 'pel.total.message.amount'|trans }}
