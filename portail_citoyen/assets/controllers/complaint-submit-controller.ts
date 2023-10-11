@@ -15,6 +15,29 @@ export default class extends Controller {
         }
     }
 
+    public async focusAddObject(): Promise<void> {
+        this.component = await getComponent(this.element as HTMLElement);
+        if (this.component) {
+            this.component.on("render:finished", () => {
+                const [newObject] = Array.prototype.slice.call(document.querySelectorAll("[id$='_category']")).slice(-1);
+                newObject.focus();
+            });
+        }
+    }
+
+    public async focusDeleteItem(event: Event & { params: { index: number; last: boolean; }}): Promise<void> {
+        const { index, last } = event.params;
+
+        this.component = await getComponent(this.element as HTMLElement);
+        if (this.component) {
+            this.component.on("render:finished", (comp) => {
+                const indexItemToDelete = last ? index - 1 : index;
+                const newItemToDelete = Array.prototype.slice.call(comp.element.querySelectorAll("[id$='_delete']"))[indexItemToDelete];
+                newItemToDelete?.focus();
+            });
+        }
+    }
+
     private onRenderStarted(html: string, backendResponse: BackendResponse): void {
         this.ok = backendResponse.response.ok;
     }
