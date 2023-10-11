@@ -196,16 +196,40 @@ class ComplaintXmlAdditionalInformationPN
                 $complaint->getFacts()->getStartDate()?->format('d/m/Y'),
                 $complaint->getFacts()->getStartHour()?->format('h:i')
             );
-        } else {
+        } elseif ($complaint->getFacts()?->isExactDateKnown() && $complaint->getFacts()->getStartHour() && $complaint->getFacts()->getEndHour()) {
             return sprintf("Interrogé sur la date et l'heure des faits, %s %s, indique que les faits se sont déroulés entre le %s à %s et le %s à %s.\n",
                 $complaint->getIdentity()?->getLastname(),
                 $complaint->getIdentity()?->getFirstname(),
-                $complaint->getFacts()?->getStartDate()?->format('d/m/y'),
-                $complaint->getFacts()?->getStartHour()?->format('h:i'),
-                $complaint->getFacts()?->getEndDate()?->format('d/m/y'),
-                $complaint->getFacts()?->getEndHour()?->format('h:i'),
+                $complaint->getFacts()->getStartDate()?->format('d/m/y'),
+                $complaint->getFacts()->getStartHour()->format('h:i'),
+                $complaint->getFacts()->getStartDate()?->format('d/m/y'),
+                $complaint->getFacts()->getEndHour()->format('h:i'),
+            );
+        } elseif ($complaint->getFacts()?->isExactDateKnown() && Facts::EXACT_HOUR_KNOWN_NO === $complaint->getFacts()->getExactHourKnown()) {
+            return sprintf("Interrogé sur la date et l’heure des faits, %s %s, indique que les faits se sont déroulés le %s.\n",
+                $complaint->getIdentity()?->getLastname(),
+                $complaint->getIdentity()?->getFirstname(),
+                $complaint->getFacts()->getStartDate()?->format('d/m/Y'),
+            );
+        } elseif (!$complaint->getFacts()?->isExactDateKnown() && Facts::EXACT_HOUR_KNOWN_NO === $complaint->getFacts()?->getExactHourKnown()) {
+            return sprintf("Interrogé sur la date et l’heure des faits, %s %s, indique que les faits se sont déroulés entre le %s et le %s.\n",
+                $complaint->getIdentity()?->getLastname(),
+                $complaint->getIdentity()?->getFirstname(),
+                $complaint->getFacts()->getStartDate()?->format('d/m/Y'),
+                $complaint->getFacts()->getEndDate()?->format('d/m/Y'),
+            );
+        } elseif (!$complaint->getFacts()?->isExactDateKnown() && $complaint->getFacts()?->getStartHour() && $complaint->getFacts()->getEndHour()) {
+            return sprintf("Interrogé sur la date et l'heure des faits, %s %s, indique que les faits se sont déroulés entre le %s à %s et le %s à %s.\n",
+                $complaint->getIdentity()?->getLastname(),
+                $complaint->getIdentity()?->getFirstname(),
+                $complaint->getFacts()->getStartDate()?->format('d/m/y'),
+                $complaint->getFacts()->getStartHour()->format('h:i'),
+                $complaint->getFacts()->getEndDate()?->format('d/m/y'),
+                $complaint->getFacts()->getEndHour()->format('h:i'),
             );
         }
+
+        return '';
     }
 
     private function setFactsDescription(Complaint $complaint): string
