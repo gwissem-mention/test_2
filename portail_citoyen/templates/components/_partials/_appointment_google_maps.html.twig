@@ -2,7 +2,19 @@
     <label class="fr-label" for="map-search">{{ 'pel.address.choose'|trans|raw }}
         <span class="fr-hint-text">{{ 'pel.address.city.postcode'|trans }}</span>
     </label>
-    <input id="map-search" type="text" class="fr-input fr-mb-3w"/>
+    <input
+        id="map-search"
+        type="text"
+        class="fr-input fr-mb-3w"
+        aria-labelledby="map-search"
+        role="combobox"
+        aria-autocomplete="list"
+        aria-owns="list-map-search"
+        aria-expanded="false"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+    />
     <div class="fr-container--fluid">
         <div class="fr-grid-row">
             <div class="fr-col-12 col-md-6 fr-col-lg-4 map-left-menu fr-pt-1w" data-google-maps--appointment-target="leftMenu">
