@@ -18,6 +18,7 @@ final class AuthenticatedClient implements AuthenticatedClientInterface
         private readonly string $salesForceClientId,
         private readonly string $salesForceClientSecret,
         private readonly string $salesForceAuthDomain,
+        private readonly string $salesForceAccountId,
     ) {
     }
 
@@ -73,6 +74,7 @@ final class AuthenticatedClient implements AuthenticatedClientInterface
             $this->salesForceClientId,
             $this->salesForceClientSecret,
             $this->salesForceAuthDomain,
+            $this->salesForceAccountId,
         );
     }
 
@@ -86,6 +88,7 @@ final class AuthenticatedClient implements AuthenticatedClientInterface
                     'grant_type' => 'client_credentials',
                     'client_id' => $this->salesForceClientId,
                     'client_secret' => $this->salesForceClientSecret,
+                    'account_id' => $this->salesForceAccountId,
                 ],
             ]);
 
