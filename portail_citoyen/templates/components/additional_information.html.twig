@@ -56,12 +56,12 @@
                 </div>
                 {% if form.witnesses|length > 1 %}
                     <div class="fr-my-10v">
-                        {{ form_widget(witness.vars.button_delete) }}
+                        {{ form_widget(witness.vars.button_delete, {attr: {'data-action': 'live#action complaint-submit#focusDeleteItem', 'data-complaint-submit-index-param': loop.index0, 'data-complaint-submit-last-param': loop.last }}) }}
                     </div>
                 {% endif %}
             {% endfor %}
             <div class="fr-mb-8v fr-mt-10v fr-mb-md-12v">
-                {{ form_widget(form.witnesses.vars.button_add) }}
+                {{ form_widget(form.witnesses.vars.button_add, {attr: {'data-action': 'live#action complaint-submit#focusAddWitness'}}) }}
             </div>
         {% endif %}
         <hr>
