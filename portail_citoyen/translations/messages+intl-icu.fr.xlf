@@ -3212,7 +3212,11 @@
             </trans-unit>
             <trans-unit id="pel.judicial.portal.text">
                 <source>pel.judicial.portal.text</source>
-                <target>L’accès ultérieur au portail du justiciable du ministère de la Justice, www.monespace.justice.fr, nécessite obligatoirement de renseigner un numéro de téléphone portable.</target>
+                <target>L’accès ultérieur au portail du justiciable du ministère de la Justice, <![CDATA[<a target="_blank" href="https://www.monespace.justice.fr">www.monespace.justice.fr</a>]]>, nécessite obligatoirement de renseigner un numéro de téléphone portable.</target>
+            </trans-unit>
+            <trans-unit id="pel.at.least.one.phone.number.is.required">
+                <source>pel.at.least.one.phone.number.is.required</source>
+                <target>La saisie d'au moins un des deux numéros de téléphone est obligatoire.</target>
             </trans-unit>
         </body>
     </file>
