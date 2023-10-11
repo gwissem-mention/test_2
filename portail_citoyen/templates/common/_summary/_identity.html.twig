@@ -1,97 +1,103 @@
-<p class="fr-badge fr-badge--purple-glycine fr-badge--no-icon fr-text--xs fr-mb-6v -ml-8">{{ 'pel.your.status'|trans }}</p>
-<li class="text-xl/8 fr-pb-6v fr-pb-md-12v">
-    {{ 'pel.is.designated.as'|trans }} :
-    {% if complaint.identity.declarantStatus is same as(constant('App\\AppEnum\\DeclarantStatus::Victim').value) %}
-        {{ 'pel.complaint.summary.identity.victim'|trans|raw }}
-    {# Person Legal Representative must be hidden for the experimentation #}
-{#  {% elseif complaint.identity.declarantStatus is same as(constant('App\\AppEnum\\DeclarantStatus::PersonLegalRepresentative').value) %}#}
-{#  {{ 'pel.complaint.identity.person.legal.representative'|trans|raw }}#}
-    {% else %}
-        {{ 'pel.complaint.identity.corporation.legal.representative'|trans|raw }}
-    {% endif %}
-    {{ 'pel.of.infraction'|trans }}
-</li>
-<p class="fr-badge fr-badge--purple-glycine fr-badge--no-icon fr-text--xs fr-mb-6v -ml-8">{{ 'pel.complaint.your.identification'|trans }}</p>
-<li class="text-xl/8 fr-pb-6v">
-    {% if civilState.civility is same as(constant('App\\AppEnum\\Civility::M').value) %}
-        {{ 'pel.sir'|trans }}
-    {% else %}
-        {{ 'pel.madam'|trans }}
-    {% endif %}
-    {{ civilState.firstnames }}
-    <b>{{ civilState.birthName }}</b>
-</li>
-{% if civilState.usageName %}
-    <li class="text-xl/8 fr-pb-6v">
-        {{ 'pel.usage.name'|trans }} : <b>{{ civilState.usageName }}</b>
+<p class="fr-badge fr-badge--purple-glycine fr-badge--no-icon fr-text--xs fr-mb-6v">{{ 'pel.your.status'|trans }}</p>
+<ul class="fr-pl-8v fr-my-0">
+    <li class="text-xl/8 fr-pb-6v fr-pb-md-12v">
+        {{ 'pel.is.designated.as'|trans }} :
+        {% if complaint.identity.declarantStatus is same as(constant('App\\AppEnum\\DeclarantStatus::Victim').value) %}
+            {{ 'pel.complaint.summary.identity.victim'|trans|raw }}
+        {# Person Legal Representative must be hidden for the experimentation #}
+    {#  {% elseif complaint.identity.declarantStatus is same as(constant('App\\AppEnum\\DeclarantStatus::PersonLegalRepresentative').value) %}#}
+    {#  {{ 'pel.complaint.identity.person.legal.representative'|trans|raw }}#}
+        {% else %}
+            {{ 'pel.complaint.identity.corporation.legal.representative'|trans|raw }}
+        {% endif %}
+        {{ 'pel.of.infraction'|trans }}
     </li>
-{% endif %}
-<li class="text-xl/8 fr-pb-6v">
-    {{ 'pel.family.situation'|trans }} :
-    {% if civilState.familySituation is same as(constant('App\\AppEnum\\FamilySituation::Single').value) %}
-        <b>{{ 'pel.family.situation.single'|trans }}</b>
-    {% elseif civilState.familySituation is same as(constant('App\\AppEnum\\FamilySituation::Cohabitation').value) %}
-        <b>{{ 'pel.family.situation.cohabitation'|trans }}</b>
-    {% elseif civilState.familySituation is same as(constant('App\\AppEnum\\FamilySituation::Married').value) %}
-        <b>{{ 'pel.family.situation.married'|trans }}</b>
-    {% elseif civilState.familySituation is same as(constant('App\\AppEnum\\FamilySituation::Divorced').value) %}
-        <b>{{ 'pel.family.situation.divorced'|trans }}</b>
-    {% elseif civilState.familySituation is same as(constant('App\\AppEnum\\FamilySituation::CivilPartnership').value) %}
-        <b>{{ 'pel.family.situation.civil.partnership'|trans }}</b>
-    {% elseif civilState.familySituation is same as(constant('App\\AppEnum\\FamilySituation::Widowed').value) %}
-        <b>{{ 'pel.family.situation.widowed'|trans }}</b>
-    {% endif %}
-</li>
-<li class="text-xl/8 fr-pb-6v">
-    {{ 'pel.born.on'|trans }} <b>{{ civilState.birthDate|format_date(locale=app.request.locale, pattern='d MMMM yyyy') }}</b> {{ 'pel.at'|trans }}
-    {% if civilState.birthLocation.frenchTown %}
-        {% set city = civilState.birthLocation.frenchTown|city %}
-        <b>{{ city.label }} {{ city.postCode }}</b> ({{ civilState.birthLocation.country|country_referential_name }})
-    {% else %}
-        <b>{{ civilState.birthLocation.otherTown }} ({{ civilState.birthLocation.country|country_referential_name }})</b>
-    {% endif %}
-</li>
-<li class="text-xl/8 fr-pb-6v">
-    {{ 'pel.nationality'|trans }} : <b class="lowercase">{{ civilState.nationality|nationality_referential_label }}</b>
-</li>
-<li class="text-xl/8 fr-pb-8v fr-pb-md-12v">
-    {{ 'pel.your.job'|trans }} : <b>{{ civilState|job_label }}</b>
-</li>
-<p class="fr-badge fr-badge--purple-glycine fr-badge--no-icon fr-text--xs fr-mb-6v -ml-8">{{ 'pel.contact.information'|trans }}</p>
-<li class="text-xl/8 fr-pb-6v">
-    {{ 'pel.resides.at'|trans }} :
-    {% if contactInformation.country == fr_code %}
-        <b>{{ contactInformation.frenchAddress.label }}</b> ({{ contactInformation.country|country_referential_name }})
-    {% else %}
-        <b>{{ contactInformation.foreignAddress }}</b> ({{ contactInformation.country|country_referential_name }})
-    {% endif %}
-</li>
-<li class="text-xl/8 fr-pb-6v">
-    {{ 'pel.email'|trans }} : <b>{{ contactInformation.email }}</b>
-</li>
-{% if contactInformation.mobile is not null and contactInformation.mobile.number is not null %}
+</ul>
+<p class="fr-badge fr-badge--purple-glycine fr-badge--no-icon fr-text--xs fr-mb-6v">{{ 'pel.complaint.your.identification'|trans }}</p>
+<ul class="fr-pl-8v fr-my-0">
     <li class="text-xl/8 fr-pb-6v">
-        {{ 'pel.mobile'|trans }} : <b>{{ contactInformation.mobile|phone_format_intl }}</b>
+        {% if civilState.civility is same as(constant('App\\AppEnum\\Civility::M').value) %}
+            {{ 'pel.sir'|trans }}
+        {% else %}
+            {{ 'pel.madam'|trans }}
+        {% endif %}
+        {{ civilState.firstnames }}
+        <b>{{ civilState.birthName }}</b>
     </li>
-{% endif %}
-{% if contactInformation.phone is not null and contactInformation.phone.number is not null %}
+    {% if civilState.usageName %}
+        <li class="text-xl/8 fr-pb-6v">
+            {{ 'pel.usage.name'|trans }} : <b>{{ civilState.usageName }}</b>
+        </li>
+    {% endif %}
     <li class="text-xl/8 fr-pb-6v">
-        {{ 'pel.phone'|trans }} : <b>{{ contactInformation.phone|phone_format_intl }}</b>
+        {{ 'pel.family.situation'|trans }} :
+        {% if civilState.familySituation is same as(constant('App\\AppEnum\\FamilySituation::Single').value) %}
+            <b>{{ 'pel.family.situation.single'|trans }}</b>
+        {% elseif civilState.familySituation is same as(constant('App\\AppEnum\\FamilySituation::Cohabitation').value) %}
+            <b>{{ 'pel.family.situation.cohabitation'|trans }}</b>
+        {% elseif civilState.familySituation is same as(constant('App\\AppEnum\\FamilySituation::Married').value) %}
+            <b>{{ 'pel.family.situation.married'|trans }}</b>
+        {% elseif civilState.familySituation is same as(constant('App\\AppEnum\\FamilySituation::Divorced').value) %}
+            <b>{{ 'pel.family.situation.divorced'|trans }}</b>
+        {% elseif civilState.familySituation is same as(constant('App\\AppEnum\\FamilySituation::CivilPartnership').value) %}
+            <b>{{ 'pel.family.situation.civil.partnership'|trans }}</b>
+        {% elseif civilState.familySituation is same as(constant('App\\AppEnum\\FamilySituation::Widowed').value) %}
+            <b>{{ 'pel.family.situation.widowed'|trans }}</b>
+        {% endif %}
     </li>
-{% endif %}
-{% if consentContactEmail is same as(true) or consentContactSMS is same as(true) %}
     <li class="text-xl/8 fr-pb-6v">
-        {{ 'pel.consent.confirmation'|trans }}
-        <ul>
-            {% if consentContactEmail is same as(true) %}
-                <li>{{ 'pel.by.email'|trans }}</li>
-            {% endif %}
-            {% if consentContactSMS is same as(true) %}
-                <li>{{ 'pel.by.sms'|trans }}</li>
-            {% endif %}
-            {% if consentContactPortal is same as(true) %}
-                <li>{{ 'pel.on.the.judicial.portal'|trans }}</li>
-            {% endif %}
-        </ul>
+        {{ 'pel.born.on'|trans }} <b>{{ civilState.birthDate|format_date(locale=app.request.locale, pattern='d MMMM yyyy') }}</b> {{ 'pel.at'|trans }}
+        {% if civilState.birthLocation.frenchTown %}
+            {% set city = civilState.birthLocation.frenchTown|city %}
+            <b>{{ city.label }} {{ city.postCode }}</b> ({{ civilState.birthLocation.country|country_referential_name }})
+        {% else %}
+            <b>{{ civilState.birthLocation.otherTown }} ({{ civilState.birthLocation.country|country_referential_name }})</b>
+        {% endif %}
     </li>
-{% endif %}
+    <li class="text-xl/8 fr-pb-6v">
+        {{ 'pel.nationality'|trans }} : <b class="lowercase">{{ civilState.nationality|nationality_referential_label }}</b>
+    </li>
+    <li class="text-xl/8 fr-pb-8v fr-pb-md-12v">
+        {{ 'pel.your.job'|trans }} : <b>{{ civilState|job_label }}</b>
+    </li>
+</ul>
+<p class="fr-badge fr-badge--purple-glycine fr-badge--no-icon fr-text--xs fr-mb-6v">{{ 'pel.contact.information'|trans }}</p>
+<ul class="fr-pl-8v fr-my-0">
+    <li class="text-xl/8 fr-pb-6v">
+        {{ 'pel.resides.at'|trans }} :
+        {% if contactInformation.country == fr_code %}
+            <b>{{ contactInformation.frenchAddress.label }}</b> ({{ contactInformation.country|country_referential_name }})
+        {% else %}
+            <b>{{ contactInformation.foreignAddress }}</b> ({{ contactInformation.country|country_referential_name }})
+        {% endif %}
+    </li>
+    <li class="text-xl/8 fr-pb-6v">
+        {{ 'pel.email'|trans }} : <b>{{ contactInformation.email }}</b>
+    </li>
+    {% if contactInformation.mobile is not null and contactInformation.mobile.number is not null %}
+        <li class="text-xl/8 fr-pb-6v">
+            {{ 'pel.mobile'|trans }} : <b>{{ contactInformation.mobile|phone_format_intl }}</b>
+        </li>
+    {% endif %}
+    {% if contactInformation.phone is not null and contactInformation.phone.number is not null %}
+        <li class="text-xl/8 fr-pb-6v">
+            {{ 'pel.phone'|trans }} : <b>{{ contactInformation.phone|phone_format_intl }}</b>
+        </li>
+    {% endif %}
+    {% if consentContactEmail is same as(true) or consentContactSMS is same as(true) %}
+        <li class="text-xl/8 fr-pb-6v">
+            {{ 'pel.consent.confirmation'|trans }}
+            <ul>
+                {% if consentContactEmail is same as(true) %}
+                    <li>{{ 'pel.by.email'|trans }}</li>
+                {% endif %}
+                {% if consentContactSMS is same as(true) %}
+                    <li>{{ 'pel.by.sms'|trans }}</li>
+                {% endif %}
+                {% if consentContactPortal is same as(true) %}
+                    <li>{{ 'pel.on.the.judicial.portal'|trans }}</li>
+                {% endif %}
+            </ul>
+        </li>
+    {% endif %}
+</ul>

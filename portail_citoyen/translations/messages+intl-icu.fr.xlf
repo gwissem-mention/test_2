@@ -536,7 +536,7 @@
             </trans-unit>
             <trans-unit id="pel.corporation.email">
                 <source>pel.corporation.email</source>
-                <target>Adresse e-mail professionnelle d’un point de contact de l’organisation</target>
+                <target>Adresse électronique professionnelle d’un point de contact de l’organisation</target>
             </trans-unit>
             <trans-unit id="pel.corporation.function">
                 <source>pel.corporation.function</source>
