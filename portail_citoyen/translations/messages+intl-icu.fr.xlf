@@ -36,7 +36,7 @@
             </trans-unit>
             <trans-unit id="pel.address.choose">
                 <source>pel.address.choose</source>
-                <target>Renseignez une adresse<![CDATA[&nbsp;<span class="fr-label--error font-bold">*</span>]]></target>
+                <target>Renseignez une adresse</target>
             </trans-unit>
             <trans-unit id="pel.address.city.postcode">
                 <source>pel.address.city.postcode</source>
