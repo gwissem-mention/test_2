@@ -40,7 +40,8 @@ final class AgentAuthenticator extends AbstractAuthenticator implements Authenti
     public function __construct(
         private readonly bool $ssoIsEnabled,
         private readonly UrlGeneratorInterface $urlGenerator,
-        private readonly UserRepository $userRepository
+        private readonly UserRepository $userRepository,
+        private readonly SSOProfileRoleMapper $ssoProfileRoleMapper,
     ) {
     }
 
@@ -78,7 +79,7 @@ final class AgentAuthenticator extends AbstractAuthenticator implements Authenti
         $profile = $request->headers->get(self::HEADER_PROFILE, '');
 
         if (is_string($profile)) {
-            $roles = $this->extractRolesFromProfileHeader($profile);
+            $roles = $this->ssoProfileRoleMapper->getRoles($profile);
         }
 
         return new SelfValidatingPassport(
@@ -152,19 +153,5 @@ final class AgentAuthenticator extends AbstractAuthenticator implements Authenti
         $this->userRepository->save($user, true);
 
         return $user;
-    }
-
-    /**
-     * @return array<string>
-     */
-    private function extractRolesFromProfileHeader(string $profile): array
-    {
-        $roles = [];
-
-        if (false !== stristr($profile, 'superviseur')) {
-            $roles[] = 'ROLE_SUPERVISOR';
-        }
-
-        return $roles;
     }
 }
