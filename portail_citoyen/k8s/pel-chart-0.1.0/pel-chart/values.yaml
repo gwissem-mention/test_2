@@ -9,7 +9,7 @@ nameOverride: ""
 fullnameOverride: ""
 
 nginx:
-  replicaCount: 2
+  replicaCount: 1
   image:
     repository: registry.pel.pp.fsi.interieur.gouv.fr/library/plainte-en-ligne-nginx
     pullPolicy: IfNotPresent
@@ -41,7 +41,7 @@ nginx:
   affinity: {}
 
 php:
-  replicaCount: 2
+  replicaCount: 1
   image:
     repository: registry.pel.pp.fsi.interieur.gouv.fr/library/plainte-en-ligne-php
     pullPolicy: IfNotPresent
@@ -71,7 +71,26 @@ php:
   nodeSelector: {}
   tolerations: []
   affinity: {}
-
+  app:
+    env: "prod"
+    debug: 0
+    folder_rotation_count: "10"
+    folder_rotation_treshold: "10"
+    oodrive_fetched_zip_name: "PV.zip"
+    file_citites: "insee_commune.csv"
+    file_citites_services: "competence_securite_publique.csv"
+    file_cities_units: "pwb_ref_insee_unite.csv"
+    file_departments: "departement_2022.csv"
+    file_jobs: "metiers.csv"
+    file_units_gn: "pwb_ref_unite_gn.csv"
+    file_units_pn: "pwb_ref_unite_pn_exp.csv"
+    file_nationalities: "Nationalites.csv"
+    file_countries: "insee_pays.csv"
+    file_nature_places: "natures_de_lieux.csv"
+    file_document_types: "Ref_derive_docs_officiels.csv"
+    file_payment_categories: "nature_moyen_paiement.csv"
+    file_registred_vehicle_natures: "marque_vehicule_terrestre.csv"
+    
 serviceAccount:
   # Specifies whether a service account should be created
   create: true

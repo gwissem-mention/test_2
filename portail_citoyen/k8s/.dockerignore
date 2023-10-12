@@ -1,0 +1,12 @@
+node_modules
+k8s
+docker
+ansible
+tools
+Dockerfile
+docker-compose.yml
+docker-compose.override.yml.dist
+docker-compose.e2e.yml
+Makefile
+.gitlab-ci.yml
+.gitlab-ci-anfsi.yml

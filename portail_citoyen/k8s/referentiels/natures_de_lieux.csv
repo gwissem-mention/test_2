@@ -1,0 +1,89 @@
+MENU;SOUS-MENU;BACK-OFFICE;
+Domicile, logement et dépendances;Maison;MAISON INDIVIDUELLE
+Domicile, logement et dépendances;Appartement;APPARTEMENT
+Domicile, logement et dépendances;Foyer;FOYER
+Domicile, logement et dépendances;Boîtes aux lettres;BOITE AUX LETTRES
+Domicile, logement et dépendances;Parties communes d’immeuble;PARTIES COMMUNES D'IMMEUBLE
+Domicile, logement et dépendances;Garage;GARAGE PARTICULIER
+Domicile, logement et dépendances;Cave;CAVE
+Domicile, logement et dépendances;Box;BOX
+Domicile, logement et dépendances;Hôtel;HOTEL
+Domicile, logement et dépendances;Autre lieu d’hébergement;HEBERGEMENT
+Voie publique;;VOIE PUBLIQUE
+Parking;;PARKING
+Véhicule terrestre;;VEHICULE
+Transports;Aire d’autoroute;AIRE D'AUTOROUTE
+Transports;Gare routière;GARE ROUTIERE
+Transports;Autobus;AUTOBUS
+Transports;Arrêt de bus;ARRET DE BUS
+Transports;Tramway;TRAMWAY
+Transports;Arrêt de tramway;ARRET DE TRAMWAY
+Transports;Métro;METRO
+Transports;station de métro;STATION DE METRO
+Transports;RER;RER
+Transports;Gare RER;GARE RER
+Transports;Train;TRAIN
+Transports;Gare TER;GARE TER
+Transports;Gare TGV;GARE TGV
+Transports;Avion;AVION
+Transports;Aéroport;AEROPORT
+Transports;Bateau;BATEAU
+Transports;Port;PORT
+Commerce ou assimilé;Centre commercial;CENTRE COMMERCIAL
+Commerce ou assimilé;Grand magasin;GRAND MAGASIN
+Commerce ou assimilé;Grande surface;GRANDE SURFACE
+Commerce ou assimilé;Station service;STATION SERVICE
+Commerce ou assimilé;Garage;GARAGE
+Commerce ou assimilé;Banque;BANQUE
+Commerce ou assimilé;Distributeur automatique de billets;DISTRIBUTEUR AUTOMATIQUE DE BILLETS
+Commerce ou assimilé;Bureau de poste;BUREAU DE POSTE
+Commerce ou assimilé;Bijouterie Horlogerie;BIJOUTERIE HORLOGERIE
+Commerce ou assimilé;Bureau de tabac;BUREAU DE TABAC
+Commerce ou assimilé;Magasin d’alimentation;MAGASIN D'ALIMENTATION
+Commerce ou assimilé;Pharmacie;PHARMACIE
+Commerce ou assimilé;Autre commerce;COMMERCE
+Bar, restaurant;Restaurant;RESTAURANT
+Bar, restaurant;Bar;BAR
+Bar, restaurant;Autre lieu de restauration;RESTAURATION
+Lieu de loisirs;Camping;CAMPING
+Lieu de loisirs;Centre sportif;CENTRE SPORTIF
+Lieu de loisirs;Cinéma;CINEMA
+Lieu de loisirs;Discothèque;DISCOTHEQUE
+Lieu de loisirs;Jardin public;JARDIN PUBLIC
+Lieu de loisirs;Musée;MUSEE
+Lieu de loisirs;Parc d’attractions;PARC D'ATTRACTIONS
+Lieu de loisirs;Salle de spectacle;SALLE DE SPECTACLE
+Lieu de loisirs;Théâtre;THEATRE
+Établissement scolaire;École;ECOLE
+Établissement scolaire;Collège;COLLEGE
+Établissement scolaire;Lycée;LYCEE
+Établissement scolaire;Établissement enseignement supérieur;ETABLISSEMENT ENSEIGNEMENT SUPERIEUR
+Établissement scolaire;Centre d’apprentissage;CENTRE D'APPRENTISSAGE
+Établissement scolaire;Abords d’établissement scolaire;ABORDS D'ETABLISSEMENT SCOLAIRE
+Établissement scolaire;Autre établissement scolaire ou assimilé;ETABLISSEMENT SCOLAIRE
+Établissement de santé;Hôpital;HOPITAL
+Établissement de santé;Cabinet médical;CABINET MEDICAL
+Établissement de santé;Pharmacie;PHARMACIE
+Établissement de santé;Autre ;LOCAUX DE SANTE PUBLIQUE
+Établissement administratif;Mairie;MAIRIE
+Établissement administratif;Préfecture;PREFECTURE
+Établissement administratif;Sous-préfecture;SOUS PREFECTURE
+Établissement administratif;Palais de Justice;PALAIS DE JUSTICE
+Établissement administratif;Autre établissement administratif;AUTRE LOCAL ADMINISTRATIF
+Autres lieux professionnels;Entrepôt;ENTREPOT
+Autres lieux professionnels;Bureaux;BUREAUX
+Autres lieux professionnels;Caserne;CASERNE
+Autres lieux professionnels;Exploitation agricole;EXPLOITATION AGRICOLE
+Autres lieux professionnels;Chantier;CHANTIER
+Autres lieux professionnels;Usine;USINE
+Autres lieux professionnels;Local d'association;LOCAL D'ASSOCIATION
+Autres lieux professionnels;Permanence politique ou syndicale;PERMANENCE POLITIQUE OU SYNDICALE
+Lieu de culte ou de recueillement;Cimetière;CIMETIERE
+Lieu de culte ou de recueillement;Monument aux morts;MONUMENT AUX MORTS
+Lieu de culte ou de recueillement;Église;EGLISE
+Lieu de culte ou de recueillement;Mosquée;MOSQUEE
+Lieu de culte ou de recueillement;Synagogue;SYNAGOGUE
+Lieu de culte ou de recueillement;Temple;TEMPLE
+Lieu de culte ou de recueillement;Autre lieu de culte;LIEU DU CULTE
+Téléphone;;RESEAU TELEPHONIQUE
+Internet;;INTERNET

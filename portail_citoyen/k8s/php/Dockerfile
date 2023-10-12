@@ -24,7 +24,11 @@ RUN set -eux; \
     mkdir -p var/cache var/log; \
     composer dump-autoload --classmap-authoritative --no-dev; \
     composer dump-env prod; \
+    chown -R www-data:www-data var; \
     chmod +x bin/console; sync
+
+COPY --link ./k8s/php/docker-entrypoint.sh /usr/local/bin/docker-entrypoint
+RUN chmod +x /usr/local/bin/docker-entrypoint
 
 EXPOSE 9000
 
