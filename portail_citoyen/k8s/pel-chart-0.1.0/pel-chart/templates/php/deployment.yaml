@@ -54,6 +54,148 @@ spec:
                 secretKeyRef:
                   name: redis-secret
                   key: uri
+            - name: REDIS_HOST
+              value: "pel-qual-redis-pel-qual-redis-headless.pel-qual-redis.svc.cluster.local"
+            - name: REDIS_PORT
+              value: "6379"
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: redis-secret
+                  key: password 
+            # OODRIVE  
+            - name: OODRIVE_BASE_URI
+              valueFrom:
+                secretKeyRef:
+                  name: oodrive-secret
+                  key: base_uri
+            - name: OODRIVE_WORKSPACE
+              valueFrom:
+                secretKeyRef:
+                  name: oodrive-secret
+                  key: workspace
+            - name: OODRIVE_OAUTH_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: oodrive-secret
+                  key: oauth_client_id
+            - name: OODRIVE_OAUTH_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: oodrive-secret
+                  key: oauth_client_secret
+            - name: OODRIVE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: oodrive-secret
+                  key: oodrive_username
+            - name: OODRIVE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: oodrive-secret
+                  key: oodrive_password  
+            - name: OODRIVE_ROOT_FOLDER_ID
+              valueFrom:
+                secretKeyRef:
+                  name: oodrive-secret
+                  key: oodrive_root_folder_id      
+            - name: OODRIVE_FETCHED_FOLDER_ID
+              valueFrom:
+                secretKeyRef:
+                  name: oodrive-secret
+                  key: oodrive_fetched_folder_id
+            - name: OODRIVE_REPORT_FOLDER
+              valueFrom:
+                secretKeyRef:
+                  name: oodrive-secret
+                  key: oodrive_report_folder        
+            - name: FOLDER_ROTATION_COUNT
+              value: "{{ .Values.php.app.folder_rotation_count }} "
+            - name: FOLDER_ROTATION_TRESHOLD
+              value: "{{ .Values.php.app.folder_rotation_treshold }}"
+            - name: OODRIVE_FETCHED_ZIP_NAME
+              value: "{{ .Values.php.app.oodrive_fetched_zip_name }}"
+            # JEDONNEMONAVIS 
+            - name: JEDONNEMONAVIS_ID
+              valueFrom:
+                secretKeyRef:
+                  name: jedonnemonavis-secret
+                  key: id
+            - name: JEDONNEMONAVIS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jedonnemonavis-secret
+                  key: key      
+            # ACCESS_LIBRE 
+            - name: ACCES_LIBRE_API_BASE_URI
+              valueFrom:
+                secretKeyRef:
+                  name: acces-libre-secret
+                  key: base_uri
+            - name: ACCES_LIBRE_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: acces-libre-secret
+                  key: api_key 
+            # GMAP 
+            - name: GOOGLE_MAPS_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: gmap-secret
+                  key: key 
+            # FRANCE Connect
+            - name: FRANCE_CONNECT_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: france-connect-secret
+                  key: client_id    
+            - name: FRANCE_CONNECT_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: france-connect-secret
+                  key: client_secret    
+            - name: FRANCE_CONNECT_BASE_URI
+              valueFrom:
+                secretKeyRef:
+                  name: france-connect-secret
+                  key: base_uri           
+            # Referentials
+            - name: FILE_CITIES
+              value: "{{ .Values.php.app.file_citites }}"
+            - name: FILE_DEPARTMENTS
+              value:  "{{ .Values.php.app.file_departments }}"
+            - name: FILE_JOBS
+              value: "{{ .Values.php.app.file_jobs }}"
+            - name: FILE_CITIES_SERVICES
+              value: "{{ .Values.php.app.file_citites_services }}"
+            - name: FILE_UNITS_GN
+              value: "{{ .Values.php.app.file_units_gn }}"
+            - name: FILE_UNITS_PN
+              value: "{{ .Values.php.app.file_units_pn }} "
+            - name: FILE_CITIES_UNITS
+              value: "{{ .Values.php.app.file_cities_units }}"
+            - name: FILE_NATIONALITIES
+              value: "{{ .Values.php.app.file_nationalities }}"        
+            - name: FILE_COUNTRIES
+              value: "{{ .Values.php.app.file_countries }}"
+            - name: FILE_NATURE_PLACES
+              value: "{{ .Values.php.app.file_nature_places }}"    
+            - name: FILE_DOCUMENT_TYPES
+              value: "{{ .Values.php.app.file_document_types }}"
+            - name: FILE_PAYMENT_CATEGORIES
+              value: "{{ .Values.php.app.file_payment_categories }}"
+            - name: FILE_REGISTERED_VEHICLE_NATURES
+              value: "{{ .Values.php.app.file_registred_vehicle_natures }}"
+            # PDF ASSET HOSTS
+            - name: PDF_ASSETS_HOST
+              value: "https://{{ .Values.global.domain }}"    
+            # divers
+            - name: APP_ENV
+              value: "{{ .Values.php.app.env }}"  
+            - name: APP_DEBUG
+              value: "{{ .Values.php.app.debug }}"
+            - name: CITOYEN_DOMAIN
+              value: "{{ .Values.global.domain }}"       
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

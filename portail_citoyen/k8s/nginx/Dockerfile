@@ -12,4 +12,3 @@ COPY --from=php_prod /var/www/html/public /var/www/html/public
 WORKDIR /var/www/html/public
 
 CMD ["nginx", "-g", "daemon off;"]
-
