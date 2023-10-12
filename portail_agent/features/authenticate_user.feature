@@ -3,12 +3,12 @@ Feature: Create/update user according to SSO attributes
 
     Scenario: Create user on first connection
         Given the following HTTP headers
-            | name        | value       |
-            | Matricule   | QSWWHQQT    |
-            | Appelation  | Foo Bar     |
-            | Institution | PN          |
-            | Codeservice | service_3   |
-            | Profil      | superviseur |
+            | name        | value     |
+            | Matricule   | QSWWHQQT  |
+            | Appelation  | Foo Bar   |
+            | Institution | PN        |
+            | Codeservice | service_3 |
+            | Profil      | B         |
 
         When I am on "/"
         Then the "user" QSWWHQQT from PN exists with:
@@ -24,7 +24,7 @@ Feature: Create/update user according to SSO attributes
             | Appelation  | Margaud MARCHAL |
             | Institution | PN              |
             | Codeservice | service_2       |
-            | Profil      | superviseur     |
+            | Profil      | B               |
 
         When I am on "/"
         Then the "user" ZSBVHOAY from PN exists with:
@@ -52,7 +52,7 @@ Feature: Create/update user according to SSO attributes
             | Appelation  | foo   |
             | Institution | bar   |
             | Codeservice | baz   |
-            | Profil      | fsi   |
+            | Profil      | A     |
 
         When I am on "/"
         Then the response status code should be 401
