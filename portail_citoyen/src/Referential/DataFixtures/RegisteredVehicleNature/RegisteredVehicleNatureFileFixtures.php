@@ -35,7 +35,7 @@ class RegisteredVehicleNatureFileFixtures extends Fixture implements FixtureGrou
             $row = 1;
             $handle = fopen($this->registeredVehicleNaturesFixturesPath, 'rb');
             if (is_resource($handle)) {
-                while (is_array($data = fgetcsv($handle, self::LENGTH))) {
+                while (is_array($data = fgetcsv($handle, self::LENGTH, ';'))) {
                     if ($row > 1) {
                         $manager->persist(new RegisteredVehicleNature($data[self::LABEL], $data[self::CODE]));
                     }
