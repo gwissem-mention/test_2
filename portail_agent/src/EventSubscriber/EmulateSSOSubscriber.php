@@ -42,6 +42,6 @@ final class EmulateSSOSubscriber implements EventSubscriberInterface
         $request->headers->set(AgentAuthenticator::HEADER_INSTITUTION, $user->getInstitution()->name);
         $request->headers->set(AgentAuthenticator::HEADER_APPELLATION, $user->getAppellation());
         $request->headers->set(AgentAuthenticator::HEADER_SERVICE_CODE, $user->getServiceCode());
-        $request->headers->set(AgentAuthenticator::HEADER_PROFILE, $user->isSupervisor() ? 'superviseur' : 'fsi');
+        $request->headers->set(AgentAuthenticator::HEADER_PROFILE, $user->isSupervisor() ? 'B' : 'A');
     }
 }
