@@ -768,11 +768,11 @@
             </trans-unit>
             <trans-unit id="pel.email.address">
                 <source>pel.email.address</source>
-                <target>Adresse électronique</target>
+                <target>Adresse email</target>
             </trans-unit>
            <trans-unit id="pel.email.confirmation">
                  <source>pel.email.confirmation</source>
-                 <target>Confirmer votre Email</target>
+                 <target>Confirmer votre adresse email</target>
              </trans-unit>
             <trans-unit id="pel.email.help">
                  <source>pel.email.help</source>
@@ -836,7 +836,7 @@
             </trans-unit>
             <trans-unit id="pel.witness.email">
                 <source>pel.witness.email</source>
-                <target>Adresse électronique du témoin n°{index}</target>
+                <target>Adresse email du témoin n°{index}</target>
             </trans-unit>
             <trans-unit id="pel.witness.mobile">
                 <source>pel.witness.mobile</source>

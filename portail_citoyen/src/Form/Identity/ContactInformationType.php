@@ -143,6 +143,7 @@ class ContactInformationType extends AbstractType
                 'attr' => [
                     'maxlength' => 50,
                     'onpaste' => 'return false;',
+                    'autocomplete' => 'email',
                 ],
                 'mapped' => false,
                 'constraints' => [
