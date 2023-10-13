@@ -25,7 +25,6 @@ parameters:
     app.salesforce.recipient: '%env(SALESFORCE_RECIPIENT)%'
     app.salesforce.account_id: '%env(SALESFORCE_API_ACCOUNT_ID)%'
     app.citoyen.domain: '%env(CITOYEN_DOMAIN)%'
-    app.userback_access_token: '%env(USERBACK_ACCESS_TOKEN)%'
 
 services:
     _defaults:
