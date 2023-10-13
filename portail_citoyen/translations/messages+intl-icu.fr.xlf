@@ -902,10 +902,6 @@
                 <source>pel.footer.copyright.license.title</source>
                 <target>licence etalab-2.0 - nouvelle fenêtre</target>
             </trans-unit>
-            <trans-unit id="pel.footer.description">
-                <source>pel.footer.description</source>
-                <target>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consectetur et vel quam auctor semper. Cras si amet mollis dolor.</target>
-            </trans-unit>
             <trans-unit id="pel.footer.link.data">
                 <source>pel.footer.link.data</source>
                 <target>data.gouv.fr</target>
