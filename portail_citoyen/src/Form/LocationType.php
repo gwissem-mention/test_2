@@ -159,7 +159,6 @@ class LocationType extends AbstractType
                 'choices' => $choices,
                 'attr' => [
                     'class' => 'french-town',
-                    'required' => true,
                     'autocomplete' => 'address-level2',
                     'data-live-id' => 'city-'.microtime(), // @todo: remove this hack when it'll be fixed on Symfony UX autocomplete
                     'aria-hidden' => 'true',

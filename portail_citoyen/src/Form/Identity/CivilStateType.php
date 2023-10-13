@@ -177,7 +177,6 @@ class CivilStateType extends AbstractType
                     ['alias' => 'job']
                 ),
                 'attr' => [
-                    'required' => true,
                     'data-controller' => 'autocomplete',
                     'data-load-text' => $this->translator->trans('pel.results.loading'),
                     'data-live-id' => 'job-'.microtime(), // @todo: remove this hack when it'll be fixed on Symfony UX autocomplete
