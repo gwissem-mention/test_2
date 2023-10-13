@@ -73,9 +73,9 @@ class AuthorizationCodeGrantType implements GrantTypeInterface
             ],
             'body' => [
                 'grant_type' => 'password',
-                'workspace' => $this->workspace,
-                'username' => $this->username,
-                'password' => $this->password,
+                'workspace' => trim($this->workspace),
+                'username' => trim($this->username),
+                'password' => trim($this->password),
             ],
         ]);
 
