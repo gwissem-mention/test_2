@@ -122,6 +122,20 @@ export default class extends Controller {
             searchBox.setBounds(this._map.getBounds() as google.maps.LatLngBounds);
         });
         searchBox.addListener("places_changed", () => this.onPlaceChanged(searchBox));
+
+        input.addEventListener("input", () => {
+            input.setAttribute("aria-expanded", input.value !== "" ? "true" : "false");
+        });
+
+        input.addEventListener("focus", () => {
+            if (input.value !== "") {
+                input.setAttribute("aria-expanded", "true");
+            }
+        });
+
+        input.addEventListener("blur", () => {
+            input.setAttribute("aria-expanded", "false");
+        });
     }
 
     private async onPlaceChanged(searchBox: google.maps.places.SearchBox): Promise<void> {
@@ -200,6 +214,7 @@ export default class extends Controller {
                 }
             });
     }
+
     private addMarker(latLng: google.maps.LatLng, index: number | null = null, unitId = 0): void {
 
         if (index) {

@@ -1,12 +1,12 @@
 <div {{ attributes.add(stimulus_controller('google-maps--appointment')) }}>
-    <label class="fr-label" for="map-search">{{ 'pel.address.choose'|trans|raw }}
+    <label class="fr-label" for="map-search" id="map-search-label">{{ 'pel.address.choose'|trans|raw }}
         <span class="fr-hint-text">{{ 'pel.address.city.postcode'|trans }}</span>
     </label>
     <input
         id="map-search"
         type="text"
         class="fr-input fr-mb-3w"
-        aria-labelledby="map-search"
+        aria-labelledby="map-search-label"
         role="combobox"
         aria-autocomplete="list"
         aria-owns="list-map-search"
