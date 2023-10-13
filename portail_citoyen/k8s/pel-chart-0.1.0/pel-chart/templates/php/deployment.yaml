@@ -55,9 +55,9 @@ spec:
                   name: redis-secret
                   key: uri
             - name: REDIS_HOST
-              value: "pel-qual-redis-pel-qual-redis-headless.pel-qual-redis.svc.cluster.local"
+              value: "{{ .Values.php.app.redis_host }}"
             - name: REDIS_PORT
-              value: "6379"
+              value: "{{ .Values.php.app.redis_port }}"
             - name: REDIS_PASSWORD
               valueFrom:
                 secretKeyRef:
@@ -110,7 +110,7 @@ spec:
                   name: oodrive-secret
                   key: oodrive_report_folder        
             - name: FOLDER_ROTATION_COUNT
-              value: "{{ .Values.php.app.folder_rotation_count }} "
+              value: "{{ .Values.php.app.folder_rotation_count }}"
             - name: FOLDER_ROTATION_TRESHOLD
               value: "{{ .Values.php.app.folder_rotation_treshold }}"
             - name: OODRIVE_FETCHED_ZIP_NAME
@@ -171,7 +171,7 @@ spec:
             - name: FILE_UNITS_GN
               value: "{{ .Values.php.app.file_units_gn }}"
             - name: FILE_UNITS_PN
-              value: "{{ .Values.php.app.file_units_pn }} "
+              value: "{{ .Values.php.app.file_units_pn }}"
             - name: FILE_CITIES_UNITS
               value: "{{ .Values.php.app.file_cities_units }}"
             - name: FILE_NATIONALITIES
@@ -195,7 +195,11 @@ spec:
             - name: APP_DEBUG
               value: "{{ .Values.php.app.debug }}"
             - name: CITOYEN_DOMAIN
-              value: "{{ .Values.global.domain }}"       
+              value: "{{ .Values.global.domain }}"
+            - name: APP_SECRET
+              value: "{{ .Values.php.app.secret }}"
+            - name: WKHTMLTOPDF_PATH
+              value: "{{ .Values.php.app.wkhtmltopdf_path }}"
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
