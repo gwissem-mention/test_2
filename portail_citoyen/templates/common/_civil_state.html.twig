@@ -19,21 +19,19 @@
 		<p class="fr-mt-md-4v">{{ 'pel.these.informations.has.been.transmitted.by.france.connect'|trans|raw }}</p>
 	{% endif %}
 	<fieldset class="{{ html_classes('fr-fieldset', 'fr-input-group', 'fr-mt-2v', 'fr-mt-md-6v', 'fr-mb-2v', {'fr-fieldset--error': form.civility.vars.errors is not empty}) }}" {% if form.civility.vars.errors is not empty %} role="group" aria-labelledby="legend-{{ form.civility.vars.id }} form-errors-{{ form.civility.vars.id }}" {% endif %}>
-		<div class="flex gap-x-8">
-			<legend class="fr-fieldset__legend--regular fr-fieldset__legend fr-text--regular" id="legend-{{ form.civility.vars.id }}">
-				{{ form.civility.vars.label|trans }}&nbsp;<span class="text-[var(--text-default-error)]">*</span>
-			</legend>
-			{% for child in form.civility.children %}
-				<div class="fr-fieldset__element fr-fieldset__element--inline">
-					<div class="fr-radio-group">
-                        {{ form_widget(child) }}
-						<label class="fr-label" for="{{ child.vars.id }}">
-							{{ child.vars.label|trans }}
-						</label>
-					</div>
-				</div>
-			{% endfor %}
-		</div>
+        <legend class="fr-fieldset__legend--regular fr-fieldset__legend fr-text--regular" id="legend-{{ form.civility.vars.id }}">
+            {{ form.civility.vars.label|trans }}&nbsp;<span class="text-[var(--text-default-error)]">*</span>
+        </legend>
+        {% for child in form.civility.children %}
+            <div class="fr-fieldset__element fr-fieldset__element--inline">
+                <div class="fr-radio-group">
+                    {{ form_widget(child) }}
+                    <label class="fr-label" for="{{ child.vars.id }}">
+                        {{ child.vars.label|trans }}
+                    </label>
+                </div>
+            </div>
+        {% endfor %}
 		{{ form_errors(form.civility) }}
 	</fieldset>
 </div>
