@@ -41,10 +41,10 @@
 {% endif %}
 {% if representedPerson is same as(false) %}
     <p>
-        {{ 'pel.at.least.one.phone.number.is.required'|trans }}
+        {{ 'pel.judicial.portal.text'|trans|raw }}
     </p>
     <p>
-        {{ 'pel.judicial.portal.text'|trans|raw }}
+        {{ 'pel.at.least.one.phone.number.is.required'|trans }}
     </p>
 {% endif %}
 {{ form_row(form.mobile) }}
