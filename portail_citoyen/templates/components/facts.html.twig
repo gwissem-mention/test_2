@@ -96,7 +96,7 @@
                 <div class="{{ html_classes('fr-select-group', {'fr-select-group--error': form.subPlaceNature.vars.errors is not empty}) }}">
                     {% set attr_row = {'class':html_classes(form.subPlaceNature.vars.attr.class ?? '', 'autocomplete' not in form.subPlaceNature.vars['block_prefixes'] ? 'fr-select' : '',{'fr-select--error':form.subPlaceNature.vars.errors is not empty})} %}
                     {% if form.subPlaceNature.vars.errors is not empty %}
-                        {% set attr_row = attr_row|merge({'aria-describedby': 'form-errors-'~ form.vars.id}) %}
+                        {% set attr_row = attr_row|merge({'aria-describedby': form.subPlaceNature.vars.errors is not empty ? 'form-errors-'~ form.subPlaceNature.vars.id : ''}) %}
                     {% endif %}
                     {{ form_label(form.subPlaceNature) }}
                     <div class="fr-input-wrap fr-icon-arrow-down-s-line before:content-[''] before:z-10">
@@ -227,7 +227,7 @@
             </a>
             <button type="submit"
                     class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line fr-text--lg py-2.5 pr-[18px] pl-6 after:w-6 after:h-6"
-                    {% if this.fromSummary is not same as(true) %} aria-label="{{ 'pel.next.aria-label'|trans }}" {% endif %}
+                {% if this.fromSummary is not same as(true) %} aria-label="{{ 'pel.next.aria-label'|trans }}" {% endif %}
                     id="facts_submit" {% if this.fromSummary is same as(true) %} data-action="live#action" data-action-name="prevent|submit" {% endif %}>{{ this.fromSummary is same as(true) ? 'pel.save.and.go.to.next'|trans : 'pel.next'|trans }}</button>
             {% if this.fromSummary is same as(true) %}
                 <button type="submit"
