@@ -93,4 +93,14 @@ class ObjectModelNormalizer implements NormalizerInterface
     {
         return in_array('complaint_generator', $context) && $data instanceof ObjectModel;
     }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function getSupportedTypes(?string $format): array
+    {
+        return [
+            ObjectModel::class => true,
+        ];
+    }
 }

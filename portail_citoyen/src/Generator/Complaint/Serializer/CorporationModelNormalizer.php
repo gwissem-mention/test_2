@@ -60,4 +60,14 @@ class CorporationModelNormalizer implements NormalizerInterface
     {
         return in_array('complaint_generator', $context) && $data instanceof CorporationModel;
     }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function getSupportedTypes(?string $format): array
+    {
+        return [
+            CorporationModel::class => true,
+        ];
+    }
 }

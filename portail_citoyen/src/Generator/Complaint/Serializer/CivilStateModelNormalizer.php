@@ -71,4 +71,14 @@ class CivilStateModelNormalizer implements NormalizerInterface
     {
         return in_array('complaint_generator', $context) && $data instanceof CivilStateModel;
     }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function getSupportedTypes(?string $format): array
+    {
+        return [
+            CivilStateModel::class => true,
+        ];
+    }
 }

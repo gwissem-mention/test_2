@@ -48,4 +48,14 @@ class FactsModelNormalizer implements NormalizerInterface
     {
         return in_array('complaint_generator', $context) && $data instanceof FactsModel;
     }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function getSupportedTypes(?string $format): array
+    {
+        return [
+            FactsModel::class => true,
+        ];
+    }
 }
