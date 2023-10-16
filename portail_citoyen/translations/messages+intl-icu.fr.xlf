@@ -1002,6 +1002,19 @@
                 <source>pel.help.faq.concerned.with</source>
                 <target>Êtes-vous concerné par l’un des cas suivants :</target>
             </trans-unit>
+            <trans-unit id="pel.online.complaint.only.concerns">
+                <source>pel.online.complaint.only.concerns</source>
+                <target><![CDATA[La Plainte En Ligne ne concerne que les <b>atteintes aux biens dont l'auteur est inconnu</b> c'est à dire dont l'identité précise est inconnue de la victime.]]></target>
+            </trans-unit>
+
+            <trans-unit id="pel.following.offenses">
+                <source>pel.following.offenses</source>
+                <target>Les atteintes aux biens sont les infractions qui portent sur la propriété de personnes ou d’entités. Il s'agit des infractions suivantes :</target>
+            </trans-unit>
+            <trans-unit id="pel.degradation">
+                <source>pel.degradation</source>
+                <target><![CDATA[<b>La dégradation</b> est le fait d'abîmer <b>volontairement</b> le bien d'autrui, que le dommage occasionné soit léger ou grave au point de rendre l'objet inutilisable.<br> Ex : Graffitis sur une façade, dégradations de véhicule, etc.]]></target>
+            </trans-unit>
             <trans-unit id="pel.help.faq.fill.a.complaint">
                 <source>pel.help.faq.fill.a.complaint</source>
                 <target>Oui, je peux continuer</target>
@@ -1020,23 +1033,30 @@
             </trans-unit>
             <trans-unit id="pel.help.faq.theft.victim.examples">
                 <source>pel.help.faq.theft.victim.examples</source>
-                <target>Exemples : détérioration d’un véhicule, graffitis, dégradation de votre logement, dommages sur lorem ipsum dolor sit amet, consectetur adipiscing elit</target>
+                <target><![CDATA[Le vol est le fait de prendre, <b>sans autorisation</b>, un bien ou une chose qui ne nous appartient pas. Il peut être commis avec ou sans violence, avec ou sans dégradation.</br>Ex: dans un lieu public, cambriolage, vol d'un objet arraché des mains, vol d'un objet remisé dans un véhicule, etc.]]></target>
             </trans-unit>
+
            <trans-unit id="pel.help.faq.victim.of.credit.card.theft">
                 <source>pel.help.faq.victim.of.credit.card.theft</source>
                 <target><![CDATA[<b>Vol de votre carte bancaire suivi d’utilisations frauduleuses</b>]]></target>
             </trans-unit>
             <trans-unit id="pel.help.faq.victim.of.credit.card.theft.examples">
                 <source>pel.help.faq.victim.of.credit.card.theft.examples</source>
-                <target>Exemples : détérioration d’un véhicule, graffitis, dégradation de votre logement, dommages sur lorem ipsum dolor sit amet, consectetur adipiscing elit</target>
+                <target><![CDATA[Le vol concerne dans ce cas précis une carte bancaire dont le voleur ou l'un de ses complices s'est ensuite servi pour effectuer des achats ou des retraits frauduleux.</br>Ex: Je me fais voler ma carte bancaire au restaurant et peu de temps après je suis avisé par ma banque que des paiements frauduleux ont été effectués.]]></target>
+            </trans-unit>
+            <trans-unit id="pel.help.faq.victim.of.credit.card.theft.not.stolen">
+                <source>pel.help.faq.victim.of.credit.card.theft.not.stolen</source>
+                <target><![CDATA[Les utilisations frauduleuses d'une carte bancaire <b>non volée</b> ne sont pas du ressort de la Plainte En Ligne.]]></target>
             </trans-unit>
             <trans-unit id="pel.help.faq.victim.of.damage.to.property">
                 <source>pel.help.faq.victim.of.damage.to.property</source>
-                <target><![CDATA[<b>Dégradation sur un bien</b>]]></target>
+                <target><![CDATA[<b>Dégradations sur un bien et délit de fuite</b>]]></target>
             </trans-unit>
-            <trans-unit id="pel.help.faq.victim.of.damage.to.property.examples">
-                <source>pel.help.faq.victim.of.damage.to.property.examples</source>
-                <target>Exemples : détérioration d’un véhicule, graffitis, dégradation de votre logement, dommages sur lorem ipsum dolor sit amet, consectetur adipiscing elit</target>
+
+            <trans-unit id="pel.hit.and.run">
+                <source>pel.hit.and.run</source>
+                <target><![CDATA[Le <b>délit de fuite</b> est le fait, pour le conducteur d'un véhicule quelconque, de ne pas s'arrêter, sachant qu'il vient de causer ou d'occasionner un accident.</br>Ex: Un individu a embouti ma voiture en manoeuvrant son véhicule pour quitter son espace de stationnement ou encore un individu au volant de son véhicule renverse un piéton et ne s'arrête pas pour s'enquérir de l'état de la victime et communiquer ses coordonnées.]]></target>
+
             </trans-unit>
             <trans-unit id="pel.help.faq.victim.of.offline.scams">
                 <source>pel.help.faq.victim.of.offline.scams</source>
@@ -1044,7 +1064,11 @@
             </trans-unit>
             <trans-unit id="pel.help.faq.victim.of.offline.scams.examples">
                 <source>pel.help.faq.victim.of.offline.scams.examples</source>
-                <target>Exemples : détérioration d’un véhicule, graffitis, dégradation de votre logement, dommages sur lorem ipsum dolor sit amet, consectetur adipiscing elit</target>
+                      <target><![CDATA[L'escroquerie consiste pour son auteur à obtenir un bien, un service ou de l'argent par une tromperie (faux nom, manœuvres frauduleuses...).</br>Ex : Un individu me paie avec un chèque dont il sait pertinemment qu'il est volé.]]></target>
+            </trans-unit>
+            <trans-unit id="pel.help.faq.scam.must.not.have.been.committed.online">
+                <source>pel.help.faq.scam.must.not.have.been.committed.online</source>
+                      <target>L'escroquerie ne doit pas avoir été commise sur internet.</target>
             </trans-unit>
             <trans-unit id="pel.help.faq.victim.of.other.property.crimes">
                 <source>pel.help.faq.victim.of.other.property.crimes</source>
@@ -1052,7 +1076,23 @@
             </trans-unit>
             <trans-unit id="pel.help.faq.victim.of.other.property.crimes.examples">
                 <source>pel.help.faq.victim.of.other.property.crimes.examples</source>
-                <target>Exemples : détérioration d’un véhicule, graffitis, dégradation de votre logement, dommages sur lorem ipsum dolor sit amet, consectetur adipiscing elit</target>
+                <target>Il s'agit essentiellement des extorsions, des abus de confiance, des chantages hors internet ou encore des filouteries.</target>
+            </trans-unit>
+             <trans-unit id="pel.help.faq.victim.of.other.property.crimes.breach.of.trust">
+                <source>pel.help.faq.victim.of.other.property.crimes.breach.of.trust</source>
+                <target><![CDATA[L'<b> abus de confiance </b>est le fait pour une personne, à qui a été remis de l'argent ou un bien, de détourner l'usage de ce bien à son profit ou pour un usage frauduleux. </br>Ex : J'ai prêté un objet à une personne qui refuse de me le rendre, un client a loué une voiture à une société de location et n’a pas restitué la voiture à l’issue du contrat, etc.]]></target>
+            </trans-unit>
+             <trans-unit id="pel.help.faq.victim.of.other.property.crimes.extorsion">
+                <source>pel.help.faq.victim.of.other.property.crimes.extorsion</source>
+                <target><![CDATA[L'<b>extorsion</b> communément appelée "racket" est le fait d'obliger une personne à remettre un objet ou une somme d'argent, en la menaçant, elle ou ses proches, ou en lui faisant subir des actes de violence. </br>Ex : Je remets mon téléphone portable à un individu qui me le réclame en me menaçant de me frapper si je ne lui obéis pas.]]></target>
+            </trans-unit>
+             <trans-unit id="pel.help.faq.victim.of.other.property.crimes.blackmail">
+                <source>pel.help.faq.victim.of.other.property.crimes.blackmail</source>
+                <target><![CDATA[Le <b>chantage</b> consiste à obtenir ou tenter d'obtenir de l'argent, des valeurs, en menaçant de révéler ou d'imputer des faits qui peuvent porter atteinte à l'honneur ou à la considération de la victime.</br>Il ne doit pas avoir été commis sur internet.</br>Ex: Une personne menace de révéler auprès de mon entourage ou dans les médias des informations me concernant, si je ne lui remets pas une somme d'argent.]]></target>
+            </trans-unit>
+             <trans-unit id="pel.help.faq.victim.of.other.property.crimes.trickery">
+                <source>pel.help.faq.victim.of.other.property.crimes.trickery</source>
+                <target><![CDATA[La <b>filouterie</b> consiste pour une personne à se faire délivrer un bien ou une prestation alors qu'elle sait pertinemment qu'elle n'aura pas les moyens de payer. La filouterie n'est une infraction pénale que dans les situations suivantes: vente d'aliments ou de boisson dans la restauration, vente de carburant, course de taxi et prestation d'hôtellerie si le séjour est inférieur à dix jours.]]></target>
             </trans-unit>
             <trans-unit id="pel.help.tos.find.my.procedure">
                 <source>pel.help.tos.find.my.procedure</source>

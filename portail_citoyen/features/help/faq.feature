@@ -21,16 +21,23 @@ Feature:
             | pel.help.faq.heading                                                      |
             | pel.check.our.faq                                                         |
             | pel.help.faq.concerned.with                                               |
-            | pel.help.faq.victim.of.damage.to.property                                 |
-            | pel.help.faq.victim.of.damage.to.property.examples                        |
+            | pel.following.offenses                                                    |
+            | pel.degradation                                                           |
+            | pel.hit.and.run                                                           |
             | pel.help.faq.theft.victim                                                 |
             | pel.help.faq.theft.victim.examples                                        |
             | pel.help.faq.victim.of.credit.card.theft                                  |
             | pel.help.faq.victim.of.credit.card.theft.examples                         |
+            | pel.help.faq.victim.of.credit.card.theft.not.stolen                       |
             | pel.help.faq.victim.of.offline.scams                                      |
             | pel.help.faq.victim.of.offline.scams.examples                             |
+            | pel.help.faq.scam.must.not.have.been.committed.online                     |
             | pel.help.faq.victim.of.other.property.crimes                              |
             | pel.help.faq.victim.of.other.property.crimes.examples                     |
+            | pel.help.faq.victim.of.other.property.crimes.breach.of.trust              |
+            | pel.help.faq.victim.of.other.property.crimes.extorsion                    |
+            | pel.help.faq.victim.of.other.property.crimes.blackmail                    |
+            | pel.help.faq.victim.of.other.property.crimes.trickery                     |
             | pel.fsi.general.orienteer                                                 |
             | pel.help.faq.fill.a.complaint                                             |
             | pel.check.our.faq.heading                                                 |
