@@ -181,11 +181,15 @@ class ComplaintFileParser
         }
 
         if (null !== $importedComplaint->affectedService) {
+            $unit = $this->unitRepository->findOneBy(['serviceId' => $importedComplaint->affectedService]);
+
+            if (null === $unit) {
+                $this->logger->error(sprintf('Complaint %s has a not found unit %s', $complaint->getFrontId(), $importedComplaint->affectedService));
+            }
+
             $complaint->setUnitAssigned($importedComplaint->affectedService);
         } else {
             $this->logger->error(sprintf('No affected service for complaint %s', $complaint->getFrontId()));
-
-            throw new NoAffectedServiceException(sprintf('No affected service for complaint %s', $complaint->getFrontId()));
         }
 
         return $complaint;
