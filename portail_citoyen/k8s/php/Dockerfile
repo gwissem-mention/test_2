@@ -15,15 +15,17 @@ COPY --chown=www-data:www-data . /var/www/html
 
 WORKDIR /var/www/html
 
-RUN /usr/bin/composer install -vvv --prefer-dist --no-dev --no-scripts --no-autoloader --no-cache
+RUN /usr/bin/composer install -vvv --prefer-dist --no-dev --no-scripts --no-autoloader --no-cache \
+    && rm -rf /root/.composer/cache;
 
-RUN yarn install
-RUN yarn run build
+RUN yarn install \
+    && yarn run build \
+    && yarn cache clean \
+    && rm -rf /root/.cache/yarn && rm -rf ./node_modules \
 
 RUN set -eux; \
     mkdir -p var/cache var/log; \
     composer dump-autoload --classmap-authoritative --no-dev; \
-    composer dump-env prod; \
     chown -R www-data:www-data var; \
     chmod +x bin/console; sync
 

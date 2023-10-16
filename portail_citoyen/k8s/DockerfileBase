@@ -34,8 +34,7 @@ COPY --from=wkhtmltopdf /bin/wkhtmltopdf /usr/local/bin/wkhtmltopdf
 
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
 
-RUN set -eux; \
-    install-php-extensions \
+RUN install-php-extensions \
         apcu \
         intl \
         opcache \
