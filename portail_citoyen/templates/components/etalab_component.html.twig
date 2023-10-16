@@ -3,7 +3,6 @@
         <input type="text"
                tabindex="0"
                id="{{ inputName }}"
-               aria-labelledby="{{ inputName }}"
                role="combobox"
                aria-autocomplete="list"
                {% if this.autoCompleteResults|length > 0 %}aria-owns="list-{{ inputName }}"{% endif %}
