@@ -5,8 +5,8 @@ export default class extends Controller {
     protected component: Component | undefined;
     static override targets: string[] = ["list", "input"];
 
-    private currentAddress!: string|null;
-    private currentAddressElement!: HTMLElement|null;
+    private currentAddress!: string | null;
+    private currentAddressElement!: HTMLElement | null;
 
     declare readonly hasListTarget: boolean;
     declare readonly listTarget: HTMLUListElement;
@@ -19,7 +19,7 @@ export default class extends Controller {
         this.component.on("render:finished", this.onRenderFinished.bind(this));
         this.component.on("render:finished", () => this.bindFocus());
 
-        const inputElement: HTMLElement|null|undefined = this.component.element.querySelector("input");
+        const inputElement: HTMLElement | null | undefined = this.component.element.querySelector("input");
 
         if (inputElement instanceof HTMLElement) {
             inputElement.addEventListener("blur", () => this.clearResults(inputElement));
@@ -42,7 +42,7 @@ export default class extends Controller {
 
     private navigateToFirstAddress(event: KeyboardEvent): void {
         if (event.key === "ArrowDown") {
-            const firstAddress: Element|null = this.listTarget.firstElementChild;
+            const firstAddress: Element | null = this.listTarget.firstElementChild;
 
             if (firstAddress) {
                 (firstAddress as HTMLElement).focus();
@@ -97,7 +97,7 @@ export default class extends Controller {
     }
 
     private navigateToAddress(direction: string): void {
-        const address: Element|null|undefined = (direction === "up") ? this.currentAddressElement?.previousElementSibling : this.currentAddressElement?.nextElementSibling;
+        const address: Element | null | undefined = (direction === "up") ? this.currentAddressElement?.previousElementSibling : this.currentAddressElement?.nextElementSibling;
 
         if (address) {
             (address as HTMLElement).focus();
@@ -122,7 +122,7 @@ export default class extends Controller {
     }
 
     clearResults(inputElement: HTMLElement): void {
-        const list: HTMLElement|null|undefined = inputElement.parentElement?.querySelector(".list--addresses");
+        const list: HTMLElement | null | undefined = inputElement.parentElement?.querySelector(".list--addresses");
 
         if (list instanceof HTMLElement) {
             list.style.display = "none";
@@ -147,7 +147,9 @@ export default class extends Controller {
                     component.getParent()?.set(parentModelName, component.valueStore.get(modelName));
                 }
             });
-            component.getParent()?.render();
+            if (component.valueStore.has("dataGirondeEnabled") && true === component.valueStore.get("dataGirondeEnabled")) {
+                component.getParent()?.render();
+            }
         }
     }
 
