@@ -3,10 +3,9 @@
         <input type="text"
                tabindex="0"
                id="{{ inputName }}"
-               aria-labelledby="{{ inputName }}"
                role="combobox"
                aria-autocomplete="list"
-               {% if this.autoCompleteResults|length > 0 %}aria-owns="list-{{ inputName }}"{% endif %}
+               aria-owns="list-{{ inputName }}"
                aria-expanded="false"
                autocomplete="off"
                spellcheck="false"
@@ -20,21 +19,19 @@
                {% if this.errors|length > 0 %} aria-describedby="form-errors-{{ inputName }}"{% endif %}
         >
     </div>
-    {% if this.autoCompleteResults|length > 0 %}
-        <ul class="list--addresses" id="list-{{ inputName }}" role="listbox" data-etalab-target="list">
-            {% for addr in this.autoCompleteResults %}
-                <li class="list--addresses__item"
-                    data-action="mousedown->live#action"
-                    data-action-name="selectAddress(addressId={{ addr.properties.id }})"
-                    id="{{ inputName }}-{{ addr.properties.id }}"
-                    role="option"
-                    tabindex="0"
-                >
-                    {{ addr.properties.label }}
-                </li>
+    <ul class="list--addresses" id="list-{{ inputName }}" role="listbox" data-etalab-target="list">
+        {% for addr in this.autoCompleteResults %}
+            <li class="list--addresses__item"
+                data-action="mousedown->live#action"
+                data-action-name="selectAddress(addressId={{ addr.properties.id }})"
+                id="{{ inputName }}-{{ addr.properties.id }}"
+                role="option"
+                tabindex="0"
+            >
+                {{ addr.properties.label }}
+            </li>
             {% endfor %}
         </ul>
-    {% endif %}
     {% if this.errors|length > 0 %}
         {% for error in this.errors %}
             <p class="fr-error-text" id="form-errors-{{ inputName }}">
