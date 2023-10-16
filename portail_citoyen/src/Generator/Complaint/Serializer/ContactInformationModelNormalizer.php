@@ -49,4 +49,14 @@ class ContactInformationModelNormalizer implements NormalizerInterface
     {
         return in_array('complaint_generator', $context) && $data instanceof ContactInformationModel;
     }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function getSupportedTypes(?string $format): array
+    {
+        return [
+            ContactInformationModel::class => true,
+        ];
+    }
 }

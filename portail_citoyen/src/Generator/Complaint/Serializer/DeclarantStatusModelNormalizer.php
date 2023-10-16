@@ -46,4 +46,14 @@ class DeclarantStatusModelNormalizer implements NormalizerInterface
     {
         return in_array('complaint_generator', $context) && $data instanceof IdentityModel;
     }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function getSupportedTypes(?string $format): array
+    {
+        return [
+            IdentityModel::class => true,
+        ];
+    }
 }
