@@ -66,18 +66,20 @@ class FactsComponent extends AbstractController
 
     public function __invoke(): void
     {
-        $home = $this->naturePlaceRepository->findOneBy(['label' => self::NATURE_PLACE_HOME]);
+        if (!isset($this->formValues['address']['startAddress'])) {
+            $home = $this->naturePlaceRepository->findOneBy(['label' => self::NATURE_PLACE_HOME]);
 
-        if (isset($this->formValues['placeNature']) && $home?->getId() === (int) $this->formValues['placeNature']) { // Nature place is home
-            $contactInformation = $this->sessionHandler->getComplaint()?->getIdentity()?->getContactInformation();
+            if (isset($this->formValues['placeNature']) && $home?->getId() === (int) $this->formValues['placeNature']) { // Nature place is home
+                $contactInformation = $this->sessionHandler->getComplaint()?->getIdentity()?->getContactInformation();
 
-            if ($contactInformation && $contactInformation->getFrenchAddress() instanceof AbstractSerializableAddress && !$this->factsModel->getAddress()?->getStartAddress() instanceof AbstractSerializableAddress) {
-                $address = $contactInformation->getFrenchAddress();
-                $this->factsModel->getAddress()?->setStartAddress($address);
-                if ($address instanceof AddressEtalabModel) {
-                    $this->startAddressEtalabInput->setAddressSearch($address->getLabel() ?? '');
-                    $this->startAddressEtalabInput->setAddressId($address->getId() ?? '');
-                    $this->startAddressEtalabInput->setAddressSearchSaved($address->getLabel() ?? '');
+                if ($contactInformation && $contactInformation->getFrenchAddress() instanceof AbstractSerializableAddress && !$this->factsModel->getAddress()?->getStartAddress() instanceof AbstractSerializableAddress) {
+                    $address = $contactInformation->getFrenchAddress();
+                    $this->factsModel->getAddress()?->setStartAddress($address);
+                    if ($address instanceof AddressEtalabModel) {
+                        $this->startAddressEtalabInput->setAddressSearch($address->getLabel() ?? '');
+                        $this->startAddressEtalabInput->setAddressId($address->getId() ?? '');
+                        $this->startAddressEtalabInput->setAddressSearchSaved($address->getLabel() ?? '');
+                    }
                 }
             }
         }

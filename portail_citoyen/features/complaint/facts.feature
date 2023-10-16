@@ -302,3 +302,28 @@ Feature:
         And I fill in "facts-endAddress-address" with "avenue de la république bordeaux"
         And I click the "#facts-endAddress-address-33063_8132" element
         And I should not see "Uniquement les trajets vers la gironde ou depuis la gironde sont acceptés"
+
+    Scenario: I should have the facts address input changed when I fill an address different than the identity
+        When I select "1" from "facts_placeNature"
+        Then the "facts-startAddress-address" field should contain "Avenue de la République 75011 Paris"
+        When I fill in "facts-startAddress-address" with "Avenue de la République Bordeaux"
+        And I click the "#facts-startAddress-address-33063_8132" element
+        Then the "facts-startAddress-address" field should contain "Avenue de la République 33000 Bordeaux"
+
+    Scenario: I should see the correct facts address when I submit the form with a different address than identity
+        When I fill in "facts_description" with "description informations lorem ipsum dol or sit amet lorem ipsum dol or sit amet"
+        And I click the "label[for=facts_address_addressOrRouteFactsKnown_0]" element
+        And I fill in "facts-startAddress-address" with "1 test street"
+        And I fill in "facts-startAddress-address" with "2 test street"
+        And I click the "label[for=facts_offenseDate_exactDateKnown_0]" element
+        And I fill in "facts_offenseDate_startDate" with "01/01/2022"
+        And I click the "label[for=facts_offenseDate_choiceHour_0]" element
+        And I fill in "facts_offenseDate_hour" with "15:00"
+        And I select "1" from "facts_placeNature"
+        And I select "10" from "facts_subPlaceNature"
+        And I fill in "facts-startAddress-address" with "Avenue de la République Bordeaux"
+        And I click the "#facts-startAddress-address-33063_8132" element
+        And I press "facts_submit"
+        Then I should be on "/porter-plainte/objets"
+        When I follow "Étape précédente"
+        Then the "facts-startAddress-address" field should contain "Avenue de la République 33000 Bordeaux"
