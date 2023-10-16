@@ -26,15 +26,15 @@ Feature:
         Then I should be on "/porter-plainte/faits"
         When I fill in "facts_description" with "description informations lorem ipsum dol or sit amet lorem ipsum dol or sit amet"
         And I select "1" from "facts_placeNature"
+        And I select "10" from "facts_subPlaceNature"
         And I click the "label[for=facts_victimOfViolence]" element
         And I fill in "facts_victimOfViolenceText" with "Violence informations"
         And I click the "label[for=facts_offenseDate_exactDateKnown_0]" element
         And I fill in "facts_offenseDate_startDate" with "01/01/2022"
         And I click the "label[for=facts_offenseDate_choiceHour_0]" element
         And I fill in "facts_offenseDate_hour" with "15:00"
-        And I select "2" from "facts_placeNature"
-        And I click the "label[for=facts_address_addressOrRouteFactsKnown_0]" element
-        And I fill in "facts-endAddress-address" with "2 test street"
+        And I fill in "facts-startAddress-address" with "Avenue de la République Bordeaux"
+        And I click the "#facts-startAddress-address-33063_8132" element
         And I press "facts_submit"
         Then I should be on "/porter-plainte/objets"
         When I select "5" from "objects_objects_0_category"
@@ -140,12 +140,11 @@ Feature:
         And I should see the key "pel.of.infraction" translated
         And I should see the key "pel.facts.description" translated
         And I should see the key "pel.nature.place" translated
-        And I should see "Voie publique"
+        And I should see "Nature du lieu : Domicile, logement et dépendances"
+        And I should see "Précision sur la nature du lieu : Maison"
         And I should see the key "pel.victim.at.time.of.facts" translated
         And I should see the key "pel.address" translated
-        And I should see "Avenue de la République 75011 Paris (France)"
-        And I should see the key "pel.address.end" translated
-        And I should see "2 test street"
+        And I should see "Adresse : Avenue de la République 33000 Bordeaux"
         And I should see the key "pel.consent.confirmation" translated
         And I should see the key "pel.by.email" translated
         And I should see the key "pel.by.sms" translated
@@ -249,5 +248,7 @@ Feature:
         When I fill in "appointment_appointmentContactText" with "Between 10am and 12am"
         And I press "Continuer"
         Then I should be on "/porter-plainte/fin"
-        Then I should see the key "pel.end.thanks" translated
+        And I should see the key "pel.end.thanks" translated
+        And I should see "Commissariat de police de Bordeaux"
+        And I should see the key "pel.place.complaint.handling" translated
         And I should see the key "pel.download.my.declaration" translated

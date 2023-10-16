@@ -8,17 +8,12 @@ use App\AppEnum\DeclarantStatus;
 use App\Form\Model\Address\AddressEtalabModel;
 use App\Form\Model\Objects\ObjectModel;
 use App\Form\Model\Objects\ObjectsModel;
-use App\Referential\Entity\NaturePlace;
 use App\Referential\Repository\CityServiceRepository;
-use App\Referential\Repository\NaturePlaceRepository;
 use App\Thesaurus\ObjectCategoryThesaurusProviderInterface;
 
 class ComplaintHandler
 {
-    private const HOME_NATURE_PLACE = 'Domicile, logement et dépendances';
-
     public function __construct(
-        private readonly NaturePlaceRepository $naturePlaceRepository,
         private readonly CityServiceRepository $cityServiceRepository,
         private readonly ObjectCategoryThesaurusProviderInterface $objectCategoryThesaurusProvider
     ) {
@@ -26,23 +21,14 @@ class ComplaintHandler
 
     public function getAffectedService(ComplaintModel $complaint): ?string
     {
-        $serviceCode = $naturePlace = null;
+        $serviceCode = null;
 
         $factsStartAddress = $complaint->getFacts()?->getAddress()?->getStartAddress();
         $identityFrenchAddress = $complaint->getIdentity()?->getContactInformation()?->getFrenchAddress();
+        $factsStartAddress = $factsStartAddress ?: $identityFrenchAddress;
 
-        if (null !== $complaint->getFacts()?->getPlaceNature()) {
-            /** @var NaturePlace $naturePlace */
-            $naturePlace = $this->naturePlaceRepository->find($complaint->getFacts()->getPlaceNature());
-        }
-
-        $factsAddress = match ($naturePlace?->getLabel()) {
-            self::HOME_NATURE_PLACE => $identityFrenchAddress,
-            default => $factsStartAddress instanceof AddressEtalabModel ? $factsStartAddress : $identityFrenchAddress,
-        };
-
-        if ($factsAddress instanceof AddressEtalabModel) {
-            $serviceCode = $this->cityServiceRepository->findOneBy(['cityCode' => $factsAddress->getCitycode()])?->getServiceCode();
+        if ($factsStartAddress instanceof AddressEtalabModel) {
+            $serviceCode = $this->cityServiceRepository->findOneBy(['cityCode' => $factsStartAddress->getCitycode()])?->getServiceCode();
         }
 
         return $serviceCode;
