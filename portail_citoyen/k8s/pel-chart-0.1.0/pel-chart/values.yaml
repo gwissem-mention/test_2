@@ -22,11 +22,12 @@ nginx:
     - name: harbor-deployer-ppr
   resources:
     requests:
-      cpu: 1
-      memory: "1024Mi"
+      cpu: 300m
+      memory: "512Mi"
     limits:
-      memory: "1024Mi"
-  podAnnotations: {}
+      memory: "512Mi"
+  podAnnotations:
+      sidecar.istio.io/inject: "false"
   podSecurityContext: {}
     # fsGroup: 2000
   securityContext: {}
@@ -53,10 +54,10 @@ php:
     - name: harbor-deployer-ppr
   resources:
     requests:
-      cpu: 2
-      memory: "2048Mi"
+      cpu: 600m
+      memory: "1024Mi"
     limits:
-      memory: "2048Mi"
+      memory: "1024Mi"
   podAnnotations:
     sidecar.istio.io/inject: "false"
   podSecurityContext: {}
@@ -75,8 +76,8 @@ php:
     env: "prod"
     debug: 0
     secret: "aab391ebe1d5b6a9e6e0eb6609b48a27"
-    redis_host: "pel-qual-redis-pel-qual-redis.pel-qual-redis.svc.cluster.local"
-    redis_port: "26379"
+    redis_host: "pel-qual-redis-pel-qual-redis-headless.pel-qual-redis.svc.cluster.local"
+    redis_port: "6379"
     wkhtmltopdf_path: "/usr/local/bin/wkhtmltopdf"
     folder_rotation_count: "10"
     folder_rotation_treshold: "10"
