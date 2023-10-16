@@ -53,6 +53,10 @@ class ComplaintEntityListener
 
     public function postPersist(Complaint $complaint): void
     {
+        if (null === $complaint->getUnitAssigned()) {
+            return;
+        }
+
         $this->complaintNotification->setSupervisorNotifications($complaint);
         $this->entityManager->flush();
 
