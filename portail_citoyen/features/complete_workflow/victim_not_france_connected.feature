@@ -82,6 +82,13 @@ Feature:
         And I fill in "objects_objects_4_model" with "Playstation 4"
         And I fill in "objects_objects_4_serialNumber" with "12345678"
         And I fill in "objects_objects_4_description" with "Ceci est une description test pour ma console."
+        And I press "objects_objects_add"
+        And I select "4" from "objects_objects_5_category"
+        And I select "2" from "objects_objects_5_status"
+        And I select "1" from "objects_objects_5_registeredVehicleNature"
+        And I fill in "objects_objects_5_brand" with "Renault"
+        And I fill in "objects_objects_5_registrationNumber" with "AAA-BBB"
+        And I fill in "objects_objects_5_degradationDescription" with "Texte degradation"
         And I press "objects_submit"
         Then I should be on "/porter-plainte/informations-complementaires"
         When I click the "label[for=additional_information_suspectsChoice_0]" element
@@ -239,9 +246,10 @@ Feature:
         And I should not see "DUPONT Jean Pierre Marie"
         And I should see "12345678"
         And I should see "Ceci est une description test pour ma console."
+        And I should see "Texte degradation"
         And I should see the key "pel.total" translated
         And I should see the key "pel.total.message.amount" translated
-        And I should see "5 biens déclarés pour un montant total de 200,00 €"
+        And I should see "6 biens déclarés pour un montant total de 200,00 €"
         When I press "summary_submit"
         Then I should be on "/porter-plainte/rendez-vous"
         When I fill in "appointment_appointmentContactText" with "Between 10am and 12am"
