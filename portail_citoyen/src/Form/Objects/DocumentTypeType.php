@@ -55,6 +55,7 @@ class DocumentTypeType extends AbstractType
             ->add('documentIssuingCountry', CountryAutocompleteType::class, [
                 'attr' => [
                     'data-live-id' => 'document-issuing-country-'.microtime(), // @todo: remove this hack when it'll be fixed on Symfony UX autocomplete
+                    'aria-hidden' => 'true',
                 ],
                 'label' => 'pel.document.issuing.country',
                 'preferred_choices' => [$this->franceCode],
