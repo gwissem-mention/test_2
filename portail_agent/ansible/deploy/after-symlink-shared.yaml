@@ -1,30 +1,3 @@
-- name: Create .env.local file
-  copy:
-      dest: "{{ release_portal_path }}/.env.local"
-      content: |
-          APP_ENV={{ ansible_env.APP_ENV }}
-          ENABLE_SSO={{ ansible_env.ENABLE_SSO }}
-          FILE_UNITS_GN={{ ansible_env.FILE_UNITS_GN }}
-          FILE_UNITS_PN={{ ansible_env.FILE_UNITS_PN }}
-          OODRIVE_BASE_URI={{ ansible_env.OODRIVE_BASE_URI }}
-          OODRIVE_WORKSPACE={{ ansible_env.OODRIVE_WORKSPACE }}
-          OODRIVE_OAUTH_CLIENT_ID={{ ansible_env.OODRIVE_OAUTH_CLIENT_ID }}
-          FOLDER_ROTATION_COUNT={{ ansible_env.FOLDER_ROTATION_COUNT }}
-          FOLDER_ROTATION_TRESHOLD={{ ansible_env.FOLDER_ROTATION_TRESHOLD }}
-          OODRIVE_ROOT_FOLDER_ID={{ ansible_env.OODRIVE_ROOT_FOLDER_ID }}
-          OODRIVE_FETCHED_FOLDER_ID={{ ansible_env.OODRIVE_FETCHED_FOLDER_ID }}
-          OODRIVE_REPORT_FOLDER={{ ansible_env.OODRIVE_REPORT_FOLDER }}
-          OODRIVE_TMP_COMPLAINT_FOLDER={{ ansible_env.OODRIVE_TMP_COMPLAINT_FOLDER }}
-          OODRIVE_COMPLAINT_FILENAME={{ ansible_env.OODRIVE_COMPLAINT_FILENAME }}
-          ACTIVEMQ_DSN={{ ansible_env.ACTIVEMQ_DSN }}
-          ACTIVEMQ_QUEUE_NAME={{ ansible_env.ACTIVEMQ_QUEUE_NAME }}
-          SALESFORCE_RECIPIENT={{ ansible_env.SALESFORCE_RECIPIENT }}
-          CITOYEN_DOMAIN={{ CITOYEN_DOMAIN }}
-          AWS_S3_ENDPOINT={{ ansible_env.AWS_S3_ENDPOINT }}
-          AWS_S3_BUCKET={{ ansible_env.AWS_S3_BUCKET }}
-          AWS_S3_REGION={{ ansible_env.AWS_S3_REGION }}
-          FILE_JOBS={{ ansible_env.FILE_JOBS }}
-
 - name: creation du repertoire .config
   file:
       path: ~/.config/composer
@@ -158,22 +131,22 @@
       target: build
 
 # Needs to be done in preprod and prod only
-# - name: Set www-data as the owner of project directory
-#   become: true
-#   file:
-#       path: "{{ release_portal_path }}"
-#       owner: www-data
-#       group: www-data
-#       mode: 0775
-#       recurse: true
-#   when: in_ipms
+- name: Set www-data as the owner of project directory
+  become: true
+  file:
+      path: "{{ release_portal_path }}"
+      owner: www-data
+      group: www-data
+      mode: 0775
+      recurse: true
+  when: in_ipms
 #
 # Needs sudoer privileges to run in qualif
-# - name: Setup directory permissions for var/
-#   become: true
-#   file:
-#       path: "{{ release_portal_path }}/var"
-#       state: directory
-#       mode: 0775
-#       recurse: true
-
+- name: Setup directory permissions for var/
+  become: true
+  file:
+      path: "{{ release_portal_path }}/var"
+      state: directory
+      mode: 0777
+      recurse: true
+  when: in_ipms

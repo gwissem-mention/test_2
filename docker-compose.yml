@@ -39,7 +39,7 @@ services:
     restart: unless-stopped
     depends_on:
       - database-citoyen
-      - redis-citoyen
+      - redis
     volumes:
       - citoyen-public:/srv/citoyen/public:rw
       - ./portail_citoyen/public/index.php:/srv/citoyen/public/index.php:ro
@@ -67,6 +67,7 @@ services:
     depends_on:
       - database-agent
       - database-ppel
+      - redis
     volumes:
       - agent-public:/srv/agent/public:ro
       - ./portail_agent/var:/srv/agent/var
@@ -147,7 +148,7 @@ services:
   
   ###< doctrine/doctrine-bundle ###
 
-  redis-citoyen:
+  redis:
     image: redis:5.0.14
 
 volumes:

@@ -6,6 +6,7 @@
   environment:
     APP_ENV: prod
     ENABLE_SSO: "false"
+    REDIS_URL: redis://:pel@127.0.0.1:6379
     FILE_UNITS_GN: pwb_ref_unite_gn.csv
     FILE_UNITS_PN: pwb_ref_unite_pn_exp.csv
     FILE_JOBS: table_de_conversion_professions[11028].csv

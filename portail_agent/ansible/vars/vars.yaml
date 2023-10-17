@@ -18,5 +18,6 @@ ansistrano_shared_paths:
   - portail_agent/var/log
   - portail_agent/referentials
   - portail_agent/config/secrets/prod
+  - portail_agent/.env.local
 
 app_db: "{{ vault_app_db }}"

@@ -559,7 +559,7 @@ citoyen-e2e:
         -   name: selenium/standalone-chrome:4.5.3
             alias: chrome-citoyen
         -   name: redis:5.0.14
-            alias: redis-citoyen
+            alias: redis
 
 citoyen-complaint-1-e2e:
     <<: *citoyen-step
@@ -595,7 +595,7 @@ citoyen-complaint-1-e2e:
         -   name: selenium/standalone-chrome:4.5.3
             alias: chrome
         -   name: redis:5.0.14
-            alias: redis-citoyen
+            alias: redis
             
 citoyen-complaint-2-e2e:
     <<: *citoyen-step
@@ -631,7 +631,7 @@ citoyen-complaint-2-e2e:
         -   name: selenium/standalone-chrome:4.5.3
             alias: chrome
         -   name: redis:5.0.14
-            alias: redis-citoyen            
+            alias: redis            
 
 citoyen-complete-workflow-e2e:
     <<: *citoyen-step
@@ -667,7 +667,7 @@ citoyen-complete-workflow-e2e:
         -   name: selenium/standalone-chrome:4.5.3
             alias: chrome
         -   name: redis:5.0.14
-            alias: redis-citoyen
+            alias: redis
 
 citoyen-flaky-e2e:
     <<: *citoyen-step
@@ -703,7 +703,7 @@ citoyen-flaky-e2e:
         -   name: selenium/standalone-chrome:4.5.3
             alias: chrome
         -   name: redis:5.0.14
-            alias: redis-citoyen
+            alias: redis
 
 agent-e2e:
     <<: *agent-step
@@ -736,6 +736,8 @@ agent-e2e:
             alias: chrome
         -   name: symptoma/activemq:5.18.0
             alias: activemq
+        -   name: redis:5.0.14
+            alias: redis
     artifacts:
         name: "agent-e2e-$CI_COMMIT_REF_NAME"
         paths:
@@ -771,6 +773,8 @@ agent-complaint-e2e:
             alias: chrome
         -   name: symptoma/activemq:5.18.0
             alias: activemq
+        -   name: redis:5.0.14
+            alias: redis
     artifacts:
         name: "agent-complaint-e2e-$CI_COMMIT_REF_NAME"
         paths:
@@ -810,6 +814,8 @@ agent-flaky-e2e:
             alias: chrome
         -   name: symptoma/activemq:5.18.0
             alias: activemq
+        -   name: redis:5.0.14
+            alias: redis
     artifacts:
         name: "agent-flaky-e2e-$CI_COMMIT_REF_NAME"
         paths:

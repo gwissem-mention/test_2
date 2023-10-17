@@ -38,7 +38,12 @@ class Connection
 
         $dsn = 'tcp'.substr($dsn, 5);
 
-        return new self(new Client($dsn), $options);
+        $credentials = static::extractCredentialsFromDSN($dsn);
+
+        $client = new Client($dsn);
+        $client->setLogin($credentials['$login'], $credentials['$password']);
+
+        return new self($client, $options);
     }
 
     public function send(string $message): void
@@ -50,5 +55,17 @@ class Connection
         }
 
         $this->stomp->send($queueName, new Message($message));
+    }
+
+    public static function extractCredentialsFromDSN(string $dsn): array
+    {
+        $credentials = ['login' => '', 'password' => ''];
+
+        if (preg_match('stomp://([^:]+):([^@]+)@.+', $dsn, $matches)) {
+            $credentials['login'] = $matches[1];
+            $credentials['password'] = $matches[2];
+        }
+
+        return $credentials;
     }
 }

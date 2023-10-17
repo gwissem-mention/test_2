@@ -9,6 +9,10 @@ framework:
     #fragments: true
     php_errors:
         log: true
+    session:
+        handler_id: '%env(REDIS_URL)%'
+        cookie_secure: auto
+        cookie_samesite: lax
 
 when@dev:
     framework:
@@ -16,4 +20,6 @@ when@dev:
 
 when@test:
     framework:
+        session:
+            handler_id: null
         test: true

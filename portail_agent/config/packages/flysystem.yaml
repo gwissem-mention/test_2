@@ -10,6 +10,11 @@ flysystem:
 
         default.storage.memory:
             adapter: 'memory'
+            
+        default.storage.local:
+            adapter: 'local'
+            options:
+                directory: '%env(APP_UPLOADS_SOURCE_DIRECTORY)%'
          
         default.storage:
             adapter: 'lazy'

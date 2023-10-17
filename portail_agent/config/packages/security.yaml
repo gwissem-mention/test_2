@@ -12,7 +12,6 @@ security:
             security: false
         main:
             lazy: true
-            stateless: true
             provider: app_user_provider
             custom_authenticators:
                 - App\Security\AgentAuthenticator
