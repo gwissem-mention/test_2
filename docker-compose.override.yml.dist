@@ -73,11 +73,11 @@ services:
     image: schickling/mailcatcher
     ports: [1025, 1080]
 
-  redis-citoyen:
+  redis:
     ports:
       - "6379:6379"
     # Uncomment to use the password authenticated mode of Redis
-    #    command: /bin/sh -c "redis-server --requirepass redis"
+    #    command: /bin/sh -c "redis-server --requirepass pel"
 
   node-citoyen:
     ports:

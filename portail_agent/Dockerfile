@@ -42,6 +42,7 @@ RUN set -eux; \
 	; \
 	pecl install \
 		apcu-${APCU_VERSION} \
+        redis \
 	; \
 	pecl clear-cache; \
 	docker-php-ext-enable \
@@ -50,6 +51,7 @@ RUN set -eux; \
         mysqli \
         pdo \
         pdo_mysql \
+        redis \
 	; \
 	\
 	runDeps="$( \
