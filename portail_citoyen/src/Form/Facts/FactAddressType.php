@@ -156,7 +156,7 @@ class FactAddressType extends AbstractType
         /** @var array<string, string|null> $endAddress */
         $endAddress = $formParent->get('endAddress')->getData();
 
-        if (null != $startAddress['address'] && $endAddress['address']) {
+        if (null !== $startAddress['address'] && $endAddress['address']) {
             $startAddressEtalab = $this->addressEtalabHandler->getAddressModel(new EtalabInput($startAddress['address'], $startAddress['selectionId'] ?? '', $startAddress['query'] ?? ''));
             $endAddressEtalab = $this->addressEtalabHandler->getAddressModel(new EtalabInput($endAddress['address'], $endAddress['selectionId'] ?? '', $endAddress['query'] ?? ''));
 

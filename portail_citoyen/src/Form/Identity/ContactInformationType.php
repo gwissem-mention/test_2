@@ -45,7 +45,7 @@ class ContactInformationType extends AbstractType
             ->add('country', CountryAutocompleteType::class, [
                 'attr' => [
                     'autocomplete' => 'country-name',
-                    'data-live-id' => 'country-'.microtime(), // @todo: remove this hack when it'll be fixed on Symfony UX autocomplete
+                    'data-live-id' => 'country-'.microtime(),
                     'aria-hidden' => 'true',
                 ],
                 'label' => 'pel.address.country',

@@ -33,12 +33,9 @@ class LocationType extends AbstractType
         $builder
             ->add('country', CountryAutocompleteType::class, [
                 'attr' => [
-                    // Temp fix for https://github.com/symfony/ux/issues/515
-                    // TODO Remove when this PR https://github.com/symfony/ux/pull/519 is merged and pulled to the
-                    // project
                     'data-controller' => 'form',
                     'data-action' => 'form#removeFrenchTown',
-                    'data-live-id' => 'country-'.microtime(), // @todo: remove this hack when it'll be fixed on Symfony UX autocomplete
+                    'data-live-id' => 'country-'.microtime(),
                     'aria-hidden' => 'true',
                 ],
                 'label' => $options['country_label'],
@@ -160,7 +157,7 @@ class LocationType extends AbstractType
                 'attr' => [
                     'class' => 'french-town',
                     'autocomplete' => 'address-level2',
-                    'data-live-id' => 'city-'.microtime(), // @todo: remove this hack when it'll be fixed on Symfony UX autocomplete
+                    'data-live-id' => 'city-'.microtime(),
                     'aria-hidden' => 'true',
                 ],
                 'constraints' => [
