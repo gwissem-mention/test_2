@@ -274,6 +274,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                 (new Identity())
                     ->setFirstname('Jean')
                     ->setLastname('DUPONT')
+                    ->setMarriedName('BERNARD')
                     ->setCivility(Identity::CIVILITY_MALE)
                     ->setFamilySituation('Célibataire')
                     ->setDeclarantStatus(Identity::DECLARANT_STATUS_VICTIM)

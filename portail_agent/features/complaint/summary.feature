@@ -89,6 +89,7 @@ Feature:
         And I should see the key "pel.nationality" translated
         And I should see "Jean"
         And I should see "DUPONT"
+        And I should see "BERNARD"
         And I should see "Célibataire"
         And I should see "07/03/1967"
         And I should see "France"
