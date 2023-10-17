@@ -68,7 +68,6 @@
             <div class="{{ html_classes('fr-select-group', {'fr-select-group--error': form.placeNature.vars.errors is not empty}) }}">
                 {{ form_label(form.placeNature) }}
                 <div class="fr-input-wrap fr-icon-arrow-down-s-line before:content-[''] before:z-10">
-                    {# TODO: Use form theme instead this #}
                     {% set attr_row = {
                         'class': html_classes(
                             form.placeNature.vars.attr.class ?? '',

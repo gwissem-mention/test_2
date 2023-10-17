@@ -128,7 +128,7 @@ class CivilStateType extends AbstractType
                 'preferred_choices' => [$this->frenchNationalityCode],
                 'empty_data' => $this->frenchNationalityCode,
                 'attr' => [
-                    'data-live-id' => 'nationality-'.microtime(), // @todo: remove this hack when it'll be fixed on Symfony UX autocomplete
+                    'data-live-id' => 'nationality-'.microtime(),
                     'aria-hidden' => 'true',
                 ],
             ])
@@ -179,7 +179,7 @@ class CivilStateType extends AbstractType
                 'attr' => [
                     'data-controller' => 'autocomplete',
                     'data-load-text' => $this->translator->trans('pel.results.loading'),
-                    'data-live-id' => 'job-'.microtime(), // @todo: remove this hack when it'll be fixed on Symfony UX autocomplete
+                    'data-live-id' => 'job-'.microtime(),
                     'class' => 'job',
                     'data-url-civility-'.Civility::M->value => $this->urlGenerator->generate(
                         'ux_entity_autocomplete',

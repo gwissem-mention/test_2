@@ -68,13 +68,11 @@ class ObjectModelNormalizer implements NormalizerInterface
             $data['multimediaNature'] = $this->translator->trans($multimediaNatureLabel);
         }
 
-        if (null != $data['documentIssuingCountry']) {
-            /** @var int $countryCode */
-            $countryCode = $data['documentIssuingCountry'];
-            $documentIssuingCountry = $this->countryProvider->getByInseeCode(strval($countryCode));
+        if (null !== $object->getDocumentIssuingCountry()) {
+            $documentIssuingCountry = $this->countryProvider->getByInseeCode(strval($object->getDocumentIssuingCountry()));
 
             $data['documentIssuingCountry'] = [
-                'inseeCode' => $countryCode,
+                'inseeCode' => $object->getDocumentIssuingCountry(),
                 'label' => $documentIssuingCountry->getLabel(),
             ];
         }
