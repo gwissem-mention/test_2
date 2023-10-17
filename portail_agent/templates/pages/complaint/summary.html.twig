@@ -289,10 +289,6 @@
                     </li>
                 {% endif %}
                 <li>
-                    {{ 'pel.other.victim.present'|trans }} :
-                    <strong>{{ 'pel.yes'|trans }}</strong>
-                </li>
-                <li>
                     {{ 'pel.nature.of.the.facts'|trans }} :
                     <strong>{% include 'common/_complaint_natures.html.twig' with {'natures':complaint.facts.natures} only %}</strong>
                 </li>
