@@ -41,7 +41,7 @@ class Connection
         $credentials = static::extractCredentialsFromDSN($dsn);
 
         $client = new Client($dsn);
-        $client->setLogin($credentials['$login'], $credentials['$password']);
+        $client->setLogin($credentials['login'], $credentials['password']);
 
         return new self($client, $options);
     }
@@ -57,11 +57,14 @@ class Connection
         $this->stomp->send($queueName, new Message($message));
     }
 
+    /**
+     * @return string[]
+     */
     public static function extractCredentialsFromDSN(string $dsn): array
     {
         $credentials = ['login' => '', 'password' => ''];
 
-        if (preg_match('stomp://([^:]+):([^@]+)@.+', $dsn, $matches)) {
+        if (preg_match('/stomp:\/\/([^:]+):([^@]+)@.+/', $dsn, $matches)) {
             $credentials['login'] = $matches[1];
             $credentials['password'] = $matches[2];
         }
