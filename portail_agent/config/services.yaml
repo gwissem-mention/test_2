@@ -3,6 +3,7 @@ parameters:
     app.file_units_gn: '%env(FILE_UNITS_GN)%'
     app.file_units_pn: '%env(FILE_UNITS_PN)%'
     app.file_jobs: '%env(FILE_JOBS)%'
+    app.file_personnels: '%env(FILE_PERSONNELS)%'
     app.referentials_base_path: '%kernel.project_dir%/referentials'
     app.complaints_base_path: '%kernel.project_dir%/var/complaints'
     app.folder_rotation.count: '%env(FOLDER_ROTATION_COUNT)%'
@@ -66,6 +67,10 @@ services:
     App\Referential\DataFixtures\Job\JobFileFixtures:
         arguments:
             $jobsFixturesPath: '%app.referentials_base_path%/%app.file_jobs%'
+
+    App\Referential\DataFixtures\Personnel\PersonnelFileFixtures:
+        arguments:
+            $personnelsFixturesPath: '%app.referentials_base_path%/%app.file_personnels%'
 
     App\Entity\Listener\ComplaintEntityListener:
         arguments:
