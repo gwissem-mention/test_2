@@ -70,6 +70,9 @@ class User implements UserInterface
     #[ORM\JoinColumn(onDelete: 'CASCADE')]
     private ?RightDelegation $delegationGained = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $personnelId = null;
+
     /**
      * @param array<string> $roles
      */
@@ -293,5 +296,17 @@ class User implements UserInterface
     public function setDelegationGained(?RightDelegation $delegationGained): void
     {
         $this->delegationGained = $delegationGained;
+    }
+
+    public function getPersonnelId(): ?string
+    {
+        return $this->personnelId;
+    }
+
+    public function setPersonnelId(?string $personnelId): static
+    {
+        $this->personnelId = $personnelId;
+
+        return $this;
     }
 }
