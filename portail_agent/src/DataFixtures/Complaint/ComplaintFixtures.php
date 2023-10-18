@@ -94,6 +94,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                     ->setStatus(Complaint::STATUS_ONGOING_LRP)
                     ->setCreatedAt(new \DateTimeImmutable('2022-12-02'))
                     ->setUnitAssigned($unit)
+                    ->setFrontId('abcd-'.$unit.'-'.strval($i))
                     ->setAssignedTo($user);
             }
 
@@ -102,6 +103,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                     ->setStatus(Complaint::STATUS_REJECTED)
                     ->setCreatedAt(new \DateTimeImmutable('2022-12-03'))
                     ->setRefusalReason(self::REFUSAL_REASON_REORIENTATION_OTHER_SOLUTION)
+                    ->setFrontId('abcd-'.$unit.'-'.strval($i))
                     ->setUnitAssigned($unit);
             }
 
@@ -109,6 +111,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                 $complaints[] = $this->getGenericComplaint($users)
                     ->setCreatedAt(new \DateTimeImmutable('2022-12-04'))
                     ->setStatus(Complaint::STATUS_MP_DECLARANT)
+                    ->setFrontId('abcd-'.$unit.'-'.strval($i))
                     ->setUnitAssigned($unit);
             }
 
@@ -117,6 +120,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                     ->setCreatedAt(new \DateTimeImmutable('2022-12-05'))
                     ->setStatus(Complaint::STATUS_CLOSED)
                     ->setClosedAt((new \DateTimeImmutable())->sub(new \DateInterval('P200D')))
+                    ->setFrontId('abcd-'.$unit.'-'.strval($i))
                     ->setUnitAssigned($unit);
             }
 
@@ -125,6 +129,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                     ->getGenericComplaint($users)
                     ->setCreatedAt(new \DateTimeImmutable('2022-12-05'))
                     ->setStatus(Complaint::STATUS_APPOINTMENT_PENDING)
+                    ->setFrontId('abcd-'.$unit.'-'.strval($i))
                     ->setUnitAssigned($unit);
                 /** @var Identity $identity */
                 $identity = $complaint->getIdentity();
@@ -233,6 +238,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                 $complaints[] = $this->getGenericComplaint($users)
                     ->setCreatedAt(new \DateTimeImmutable('2022-12-05'))
                     ->setStatus(Complaint::STATUS_UNIT_REDIRECTION_PENDING)
+                    ->setFrontId('abcd-'.$unit.'-'.strval($i))
                     ->setUnitAssigned($unit);
             }
         }
