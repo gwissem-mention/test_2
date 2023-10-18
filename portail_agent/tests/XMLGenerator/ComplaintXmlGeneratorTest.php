@@ -422,12 +422,14 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Faits_Localisation_Insee>33063</Faits_Localisation_Insee>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Localisation_Commune>Bordeaux</Faits_Localisation_Commune>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Localisation_HidNumDep>33</Faits_Localisation_HidNumDep>', $this->xmlContent);
+        $this->assertStringContainsString('<Faits_Adresse_Depart>25 Avenue de la République, Bordeaux, 33000</Faits_Adresse_Depart>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Adresse_Depart_Pays>France</Faits_Adresse_Depart_Pays>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Adresse_Depart_Departement>33 - Gironde</Faits_Adresse_Depart_Departement>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Adresse_Depart_Codepostal>33000</Faits_Adresse_Depart_Codepostal>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Adresse_Depart_Insee>33063</Faits_Adresse_Depart_Insee>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Adresse_Depart_Commune>Bordeaux</Faits_Adresse_Depart_Commune>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Adresse_Depart_HidNumDep>33</Faits_Adresse_Depart_HidNumDep>', $this->xmlContent);
+        $this->assertStringContainsString('<Faits_Adresse_Arrivee>Place Charles Hernu, Villeurbanne, 69100</Faits_Adresse_Arrivee>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Adresse_Arrivee_Pays>France</Faits_Adresse_Arrivee_Pays>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Adresse_Arrivee_Departement>69 - Rhône</Faits_Adresse_Arrivee_Departement>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Adresse_Arrivee_Codepostal>69100</Faits_Adresse_Arrivee_Codepostal>', $this->xmlContent);
