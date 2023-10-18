@@ -94,7 +94,7 @@ class FactsParser
             ->setStartAddressCity($facts->address->startAddress->city ?? '')
             ->setStartAddressPostalCode($facts->address->startAddress->postcode ?? '')
             ->setStartAddressInseeCode($facts->address->startAddress->citycode ?? '')
-            ->setEndAddressCountry(null != $facts->address->endAddress ? 'France' : null)
+            ->setEndAddressCountry(null !== $facts->address->endAddress ? 'France' : null)
             ->setEndAddressDepartment($endAddressDepartment)
             ->setEndAddressDepartmentNumber($endAddressDepartment ? (int) $endAddressDepartment : null)
             ->setEndAddressCity($facts->address->endAddress->city ?? null)

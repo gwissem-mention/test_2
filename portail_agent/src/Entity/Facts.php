@@ -406,7 +406,7 @@ class Facts
 
     public function hasExactAddress(): bool
     {
-        return null != $this->getStartAddress() && null === $this->getEndAddress();
+        return null !== $this->getStartAddress() && null === $this->getEndAddress();
     }
 
     public function getWebsite(): ?string

@@ -812,7 +812,7 @@ class Complaint
      */
     public function getObjectsWithFiles(): ReadableCollection
     {
-        return $this->objects->filter(fn (AbstractObject $object) => (null != $object->getFiles()));
+        return $this->objects->filter(fn (AbstractObject $object) => (null !== $object->getFiles()));
     }
 
     public function hasObjectsWithFiles(): bool

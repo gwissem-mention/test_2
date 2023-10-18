@@ -9,6 +9,7 @@ use App\Complaint\ComplaintWorkflowManager;
 use App\Complaint\Exceptions\NoOodriveComplaintFolderException;
 use App\Entity\Complaint;
 use App\Entity\UploadReport;
+use App\Oodrive\DTO\File as OodriveFile;
 use App\Oodrive\Exception\FolderCreationException;
 use App\Oodrive\Exception\OodriveErrorsEnum;
 use App\Repository\ComplaintRepository;
@@ -75,7 +76,7 @@ class ApiFileUploader
 
         if (self::RECEPISSE === $uploadType) {
             $existingFiles = $this->oodriveClient->getChildrenFiles($complaintFolder);
-            $existingFileNames = array_map(fn ($existingFile) => $existingFile->getName(), $existingFiles);
+            $existingFileNames = array_map(fn (OodriveFile $existingFile) => $existingFile->getName(), $existingFiles);
             $oodriveFile = $this->oodriveClient->uploadFile($file, $file->getClientOriginalName(), $reportFolder->getId());
             $isFileReplaced = true === in_array($file->getClientOriginalName(), $existingFileNames);
             $this->logger->info(sprintf($messages[$isFileReplaced], self::RECEPISSE));

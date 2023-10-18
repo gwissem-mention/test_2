@@ -6,6 +6,7 @@ namespace App\Generator\Complaint\Model;
 
 use App\Entity\Complaint;
 use App\Entity\Facts;
+use App\Entity\FactsObjects\AbstractObject;
 
 class FactsDTO
 {
@@ -177,7 +178,7 @@ class FactsDTO
         $this->factsWebsite = $complaint->getFacts()?->getWebsite() ?? '';
         $this->exactDateKnown = $complaint->getFacts()?->isExactDateKnown() ? 'Oui' : 'Non';
         $this->hasObjectsWithAmount = $complaint->hasObjectsWithAmount() ? '1' : '0';
-        $this->estimation = '1' === $this->hasObjectsWithAmount ? (string) array_sum(array_map(fn ($object) => $object->getAmount(), $complaint->getObjects()->toArray())) : '';
+        $this->estimation = '1' === $this->hasObjectsWithAmount ? (string) array_sum(array_map(fn (AbstractObject $object) => $object->getAmount(), $complaint->getObjects()->toArray())) : '';
     }
 
     /**
