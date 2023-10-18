@@ -15,15 +15,13 @@ export default class extends Controller {
     onRenderFinished(component: Component) {
         const errorMessageElement :HTMLElement | null = document.getElementById("error-message");
 
-        const startAddressLatitude: number | null = component?.getChildren()?.get("facts-startAddress-address")?.valueStore.get("latitude");
-        const startAddressLongitude: number | null = component?.getChildren()?.get("facts-startAddress-address")?.valueStore.get("longitude");
-        const endAddressLatitude: number | null = component?.getChildren()?.get("facts-endAddress-address")?.valueStore.get("latitude");
-        const endAddressLongitude: number | null = component?.getChildren()?.get("facts-endAddress-address")?.valueStore.get("longitude");
+        const startAddressDepartmentNumber: string | null = component?.getChildren()?.get("facts-startAddress-address")?.valueStore.get("postcode")?.substring(0, 2);
+        const endAddressDepartmentNumber: string | null = component?.getChildren()?.get("facts-endAddress-address")?.valueStore.get("postcode")?.substring(0, 2);
 
-        if (startAddressLatitude && startAddressLongitude && endAddressLatitude && endAddressLongitude) {
-            if (!GirondeBoundaryChecker.isInsideGironde(startAddressLatitude, startAddressLongitude) && !GirondeBoundaryChecker.isInsideGironde(endAddressLatitude, endAddressLongitude)) {
+        if (startAddressDepartmentNumber && endAddressDepartmentNumber) {
+            if (!GirondeBoundaryChecker.isInsideGironde(startAddressDepartmentNumber) && !GirondeBoundaryChecker.isInsideGironde(endAddressDepartmentNumber)) {
                 if (errorMessageElement) {
-                    errorMessageElement.textContent = "Uniquement les trajets vers la gironde ou depuis la gironde sont acceptés";
+                    errorMessageElement.textContent = "Uniquement les trajets vers la Gironde ou depuis la Gironde sont acceptés";
                 }
                 return;
             }

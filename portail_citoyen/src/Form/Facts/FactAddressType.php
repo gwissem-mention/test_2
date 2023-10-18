@@ -7,6 +7,7 @@ namespace App\Form\Facts;
 use App\Etalab\AddressEtalabHandler;
 use App\Etalab\AddressZoneChecker;
 use App\Form\AddressEtalabType;
+use App\Form\Model\Address\AddressEtalabModel;
 use App\Form\Model\EtalabInput;
 use App\Form\Model\Facts\FactAddressModel;
 use Symfony\Component\Form\AbstractType;
@@ -159,15 +160,22 @@ class FactAddressType extends AbstractType
         if (null !== $startAddress['address'] && $endAddress['address']) {
             $startAddressEtalab = $this->addressEtalabHandler->getAddressModel(new EtalabInput($startAddress['address'], $startAddress['selectionId'] ?? '', $startAddress['query'] ?? ''));
             $endAddressEtalab = $this->addressEtalabHandler->getAddressModel(new EtalabInput($endAddress['address'], $endAddress['selectionId'] ?? '', $endAddress['query'] ?? ''));
+            $startAddressDepartmentNumber = $endAddressDepartmentNumber = null;
+
+            if ($startAddressEtalab instanceof AddressEtalabModel) {
+                $startAddressDepartmentNumber = $startAddressEtalab->getPostcode() ? substr($startAddressEtalab->getPostcode(), 0, 2) : null;
+            }
+            if ($endAddressEtalab instanceof AddressEtalabModel) {
+                $endAddressDepartmentNumber = $endAddressEtalab->getPostcode() ? substr($endAddressEtalab->getPostcode(), 0, 2) : null;
+            }
 
             if (
-                'etalab_address' === $startAddressEtalab->getAddressType()
-                && 'etalab_address' === $endAddressEtalab->getAddressType()
-                && !$this->addressZoneChecker->isInsideGironde((float) $startAddressEtalab->getLatitude(), (float) $startAddressEtalab->getLongitude())
-                && !$this->addressZoneChecker->isInsideGironde((float) $endAddressEtalab->getLatitude(), (float) $endAddressEtalab->getLongitude())
+                $startAddressDepartmentNumber && $endAddressDepartmentNumber
+                && !$this->addressZoneChecker->isInsideGironde($startAddressDepartmentNumber)
+                && !$this->addressZoneChecker->isInsideGironde($endAddressDepartmentNumber)
             ) {
                 $context
-                    ->buildViolation('Uniquement les trajets vers la gironde ou depuis la gironde sont acceptés')
+                    ->buildViolation('Uniquement les trajets vers la Gironde ou depuis la Gironde sont acceptés')
                     ->addViolation();
             }
         }

@@ -49,6 +49,9 @@ class EtalabComponent
     #[LiveProp(writable: true)]
     public ?string $longitude = null;
 
+    #[LiveProp(writable: true)]
+    public ?string $postcode = null;
+
     /**
      * @var string[] $errors
      */
@@ -84,10 +87,9 @@ class EtalabComponent
         foreach ($this->autocompleteResults as $address) {
             if ($address['properties']['id'] === $addressId) {
                 if (true === $this->dataGirondeEnabled && false === $this->isBetweenTwoPlaces) {
-                    $latitude = (float) $address['geometry']['coordinates'][1];
-                    $longitude = (float) $address['geometry']['coordinates'][0];
+                    $departmentNumber = substr($address['properties']['citycode'], 0, 2);
 
-                    if (!$this->addressZoneChecker->isInsideGironde($latitude, $longitude)) {
+                    if (!$this->addressZoneChecker->isInsideGironde($departmentNumber)) {
                         $this->errors[] = 'Uniquement les adresses des faits commis en Gironde sont acceptées';
 
                         return;
@@ -100,6 +102,7 @@ class EtalabComponent
                 $this->addressId = $addressId;
                 $this->latitude = (string) $address['geometry']['coordinates'][1];
                 $this->longitude = (string) $address['geometry']['coordinates'][0];
+                $this->postcode = $address['properties']['postcode'];
             }
         }
     }
