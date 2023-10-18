@@ -6,20 +6,10 @@ namespace App\Etalab;
 
 class AddressZoneChecker
 {
-    public function isInsideGironde(float $latitude, float $longitude): bool
-    {
-        $girondeBounds = [
-            'north' => 45.035,
-            'south' => 44.587,
-            'east' => -0.442,
-            'west' => -0.809,
-        ];
+    private const GIRONDE_DEPARTMENT_NUMBER = '33';
 
-        return
-            $latitude >= $girondeBounds['south']
-            && $latitude <= $girondeBounds['north']
-            && $longitude >= $girondeBounds['west']
-            && $longitude <= $girondeBounds['east']
-        ;
+    public function isInsideGironde(string $departmentNumber): bool
+    {
+        return self::GIRONDE_DEPARTMENT_NUMBER === $departmentNumber;
     }
 }

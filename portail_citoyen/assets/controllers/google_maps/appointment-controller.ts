@@ -155,11 +155,11 @@ export default class extends Controller {
         if (!place.geometry || !place.geometry.location) {
             return;
         }
-        const latitude: number = place.geometry.location.lat();
-        const longitude: number = place.geometry.location.lng();
+
+        const inseeCode: string = await this.getEtalabInseeCode(new google.maps.LatLng(place.geometry.location.lat(), place.geometry.location.lng()));
         const errorMessageElement: HTMLElement | null = document.getElementById("error-message");
 
-        if (!GirondeBoundaryChecker.isInsideGironde(latitude, longitude)) {
+        if (inseeCode && !GirondeBoundaryChecker.isInsideGironde(inseeCode.substring(0, 2))) {
             if (errorMessageElement) {
                 errorMessageElement.textContent = "Uniquement les adresses des faits commis en Gironde sont acceptées";
             }
@@ -168,7 +168,6 @@ export default class extends Controller {
         if (errorMessageElement) {
             errorMessageElement.textContent = "";
         }
-        const inseeCode: string = await this.getEtalabInseeCode(new google.maps.LatLng(place.geometry.location.lat(), place.geometry.location.lng()));
 
         // @ts-ignore
         const urlSearchParam: string = new URLSearchParams({

@@ -339,3 +339,13 @@ Feature:
         When I click the "label[for=summary_appointmentAsked_1]" element
         And I press "summary_submit"
         Then I should be on "/porter-plainte/fin"
+
+    Scenario: I can only select a city inside Gironde department
+        When I fill in the map autocomplete "map-search" with "Tours" and click on the first result
+        Then I should see 0 ".unit-list-item" element
+        And I should see "0 résultat"
+        Then I should see "Uniquement les adresses des faits commis en Gironde sont acceptées"
+        When I fill in the map autocomplete "map-search" with "Libourne" and click on the first result
+        Then I should see 5 ".unit-list-item" element
+        And I should see "5 résultats"
+        And I should not see "Uniquement les adresses des faits commis en Gironde sont acceptées"

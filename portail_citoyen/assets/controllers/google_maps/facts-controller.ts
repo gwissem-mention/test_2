@@ -226,7 +226,9 @@ export default class extends Controller {
         // @ts-ignore
         const label = etalabAddress ? etalabAddress.label : googleAddress;
 
-        if (!GirondeBoundaryChecker.isInsideGironde(latLng.lat(), latLng.lng())) {
+        // postcode prop is not present in Event type
+        // @ts-ignore
+        if (!GirondeBoundaryChecker.isInsideGironde(etalabAddress.postcode?.substring(0, 2))) {
             if (errorMessageElement) {
                 errorMessageElement.textContent = "Uniquement les adresses des faits commis en Gironde sont acceptées";
             }
