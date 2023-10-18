@@ -70,6 +70,7 @@ class ContactInformationType extends AbstractType
                 'required' => false,
                 'label' => false,
                 'number_label' => 'pel.mobile',
+                'number_help' => 'pel.mobile.phone.help',
                 'number_constraints' => [
                     new Callback([
                         'callback' => function (?string $value, ExecutionContextInterface $context) {

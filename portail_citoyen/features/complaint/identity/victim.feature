@@ -28,7 +28,9 @@ Feature:
         And I should see the key "pel.address" translated
         And I should see the key "pel.email.address" translated
         And I should see the key "pel.mobile" translated
+        And I should see the key "pel.mobile.phone.help" translated
         And I should see the key "pel.phone" translated
+        And I should see the key "pel.phone.help" translated
         And I should see the key "pel.judicial.portal.text" translated
         And I should see the key "pel.by.email" translated
         And I should see the key "pel.by.sms" translated

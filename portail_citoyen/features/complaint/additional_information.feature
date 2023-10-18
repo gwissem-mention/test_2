@@ -84,6 +84,7 @@ Feature:
         Then I should see a "input#additional_information_witnesses_0_description" element
         And I should see a "input#additional_information_witnesses_0_email" element
         And I should see a "input#additional_information_witnesses_0_phone_number" element
+        And I should see the key "pel.mobile.phone.help" translated
 
     Scenario: I can see 1 radio button group if I select "Yes" to the fsi visit radio buttons
         And I wait for "label[for=additional_information_fsiVisit_0]" to appear
