@@ -72,6 +72,7 @@ Feature:
         And I should see the key "pel.civility" translated
         And I should see the key "pel.family.situation" translated
         And I should see the key "pel.born.on" translated
+        And I should see the key "pel.at" translated
         And I should see the key "pel.at.in" translated
         And I should see the key "pel.department" translated
         And I should see the key "pel.resides.at" translated
@@ -92,6 +93,7 @@ Feature:
         And I should see "BERNARD"
         And I should see "Célibataire"
         And I should see "07/03/1967"
+        And I should see "Paris"
         And I should see "France"
         And I should see "FRANCAISE"
         And I should see "Boulanger"
