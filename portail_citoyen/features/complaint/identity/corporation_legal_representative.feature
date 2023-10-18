@@ -30,6 +30,7 @@ Feature:
         And I should see the key "pel.same.address.as.declarant" translated
         And I should see the key "pel.email.address" translated
         And I should see the key "pel.mobile" translated
+        And I should see the key "pel.phone.help" translated
         And I should see the key "pel.corporation.siret" translated
         And I should see the key "pel.corporation.name" translated
         And I should see the key "pel.corporation.function" translated
