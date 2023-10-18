@@ -448,11 +448,11 @@
             </trans-unit>
             <trans-unit id="pel.complaint.identity.corporation.legal.representative">
                 <source>pel.complaint.identity.corporation.legal.representative</source>
-                <target><![CDATA[<b>Représentant légal</b>]]> d’une personne morale</target>
+                <target>Vous êtes dirigeant, ou mandataire d'une personne morale</target>
             </trans-unit>
             <trans-unit id="pel.complaint.identity.corporation.legal.representative.hint">
                 <source>pel.complaint.identity.corporation.legal.representative.hint</source>
-                <target>Dirigeant ou mandataire d’une entité.</target>
+                <target>Représentant légal d’une société, d’une association, d’une fondation, d’une administration...</target>
             </trans-unit>
             <trans-unit id="pel.complaint.identity.declarant.status">
                 <source>pel.complaint.identity.declarant.status</source>
