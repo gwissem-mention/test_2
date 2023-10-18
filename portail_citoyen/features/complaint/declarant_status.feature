@@ -26,4 +26,4 @@ Feature:
         Then I should see 2 "input[type=radio][name='identity[declarantStatus]']" elements
         And I should see "Vous êtes victime ou vous représentez votre enfant mineur" in the "label[for=identity_declarantStatus_0]" element
 #        And I should see "Représentant légal d’une personne physique" in the "label[for=identity_declarantStatus_1]" element
-        And I should see "Représentant légal d’une personne morale" in the "label[for=identity_declarantStatus_1]" element
+        And I should see "Vous êtes dirigeant, ou mandataire d'une personne morale" in the "label[for=identity_declarantStatus_1]" element

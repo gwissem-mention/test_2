@@ -1122,7 +1122,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
             'identity' => [
                 'declarantStatus' => [
                     'code' => 3,
-                    'label' => '<b>Représentant légal</b> d’une personne morale',
+                    'label' => 'Vous êtes dirigeant, ou mandataire d\'une personne morale',
                 ],
                 'civilState' => [
                     'civility' => [
