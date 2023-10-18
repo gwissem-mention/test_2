@@ -31,9 +31,9 @@ class MultimediaObjectDTO extends AbstractObjectDTO
         // parent::__construct($object);
         $this->nature = $object->getNature() ?? '';
         $this->serialNumber = $object->getSerialNumber() ? strval($object->getSerialNumber()) : '';
-        $this->description = $this->getStatusAsString((int) $object->getStatus()).' - '.$object->getDescription();
         $this->phoneNumber = $object->getPhoneNumber();
         $this->operator = $object->getOperator();
+        $this->description = $this->getStatusAsString((int) $object->getStatus()).' - '.$object->getDescription();
         switch ($object->getNature()) {
             case 'TELEPHONE PORTABLE':
                 $this->phoneStatus = AbstractObject::STATUS_STOLEN === $object->getStatus() ? 'volé' : 'dégradé';
@@ -41,8 +41,8 @@ class MultimediaObjectDTO extends AbstractObjectDTO
                 $this->phoneModel = $object->getModel();
                 $this->phoneDescription = $object->getDescription().'. '.$object->getBrand().' '.$object->getModel();
                 $this->phoneSerialNumber = $object->getSerialNumber();
+                $this->description = '';
                 break;
-
             case 'MULTIMEDIA':
                 $this->status = AbstractObject::STATUS_STOLEN === $object->getStatus() ? 'volé' : 'dégradé';
                 $this->brand = $object->getBrand();
