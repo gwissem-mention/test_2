@@ -61,6 +61,9 @@ class EtalabComponent
     #[LiveProp(writable: true)]
     public bool $disabled = false;
 
+    #[LiveProp(writable: true)]
+    public bool $required = true;
+
     public function __construct(
         private readonly EtalabApiClientInterface $etalabAddressApiClient,
         private readonly AddressZoneChecker $addressZoneChecker
