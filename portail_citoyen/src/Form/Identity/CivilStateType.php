@@ -130,6 +130,7 @@ class CivilStateType extends AbstractType
                 'attr' => [
                     'data-live-id' => 'nationality-'.microtime(),
                     'aria-hidden' => 'true',
+                    'data-controller' => 'tom-select-extend',
                 ],
             ])
             ->addEventListener(
@@ -177,7 +178,7 @@ class CivilStateType extends AbstractType
                     ['alias' => 'job']
                 ),
                 'attr' => [
-                    'data-controller' => 'autocomplete',
+                    'data-controller' => 'tom-select-extend',
                     'data-load-text' => $this->translator->trans('pel.results.loading'),
                     'data-live-id' => 'job-'.microtime(),
                     'class' => 'job',

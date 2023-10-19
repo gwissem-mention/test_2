@@ -47,6 +47,7 @@ class ContactInformationType extends AbstractType
                     'autocomplete' => 'country-name',
                     'data-live-id' => 'country-'.microtime(),
                     'aria-hidden' => 'true',
+                    'data-controller' => 'tom-select-extend',
                 ],
                 'label' => 'pel.address.country',
                 'preferred_choices' => [$this->franceCode],

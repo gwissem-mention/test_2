@@ -56,6 +56,7 @@ class DocumentTypeType extends AbstractType
                 'attr' => [
                     'data-live-id' => 'document-issuing-country-'.microtime(),
                     'aria-hidden' => 'true',
+                    'data-controller' => 'tom-select-extend',
                 ],
                 'label' => 'pel.document.issuing.country',
                 'preferred_choices' => [$this->franceCode],

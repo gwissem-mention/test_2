@@ -33,7 +33,7 @@ class LocationType extends AbstractType
         $builder
             ->add('country', CountryAutocompleteType::class, [
                 'attr' => [
-                    'data-controller' => 'form',
+                    'data-controller' => 'form tom-select-extend',
                     'data-action' => 'form#removeFrenchTown',
                     'data-live-id' => 'country-'.microtime(),
                     'aria-hidden' => 'true',
@@ -159,6 +159,7 @@ class LocationType extends AbstractType
                     'autocomplete' => 'address-level2',
                     'data-live-id' => 'city-'.microtime(),
                     'aria-hidden' => 'true',
+                    'data-controller' => 'tom-select-extend',
                 ],
                 'constraints' => [
                     new NotBlank(),
