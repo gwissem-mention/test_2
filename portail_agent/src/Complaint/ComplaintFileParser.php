@@ -163,7 +163,6 @@ class ComplaintFileParser
 
         $complaint
             ->setTest(false) // TODO : get a real value from the front
-            ->setOptinNotification(false) // TODO : get a real value from the front
             ->setFrontId($importedComplaint->id)
             ->setStatus(Complaint::STATUS_ASSIGNMENT_PENDING)
             ->setCreatedAt(new \DateTimeImmutable($importedComplaint->createdAt->date, $dateTimeZone))

@@ -78,7 +78,6 @@ Feature:
         And I should see the key "pel.resides.at" translated
         And I should see the key "pel.phone" translated
         And I should see the key "pel.email" translated
-        And I should see the key "pel.want.to.receive.sms.notifications" translated
         And I should see the key "pel.consent.confirmation" translated
         And I should see the key "pel.by.email" translated
         And I should see the key "pel.by.sms" translated

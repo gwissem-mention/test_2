@@ -1210,10 +1210,6 @@
                 <source>pel.victim.or.minor.child.representative</source>
                 <target>Victime ou représentant de son enfant mineur</target>
             </trans-unit>
-            <trans-unit id="pel.want.to.receive.sms.notifications">
-                <source>pel.want.to.receive.sms.notifications</source>
-                <target>Souhaite pouvoir recevoir des notifications SMS concernant cette plainte</target>
-            </trans-unit>
             <trans-unit id="pel.welcome.to.the.agent.portal">
                 <source>pel.welcome.to.the.agent.portal</source>
                 <target>Bienvenue sur le portail plainte en ligne FSI</target>
