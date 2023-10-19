@@ -105,7 +105,7 @@ class ComplaintNotification
      */
     private function setNotificationForStolenRegisteredVehicle(Complaint $complaint, array $supervisors): void
     {
-        $objects = $complaint->getObjects();
+        $objects = $complaint->getStolenObjects();
         foreach ($objects as $object) {
             if ($object instanceof Vehicle && $object->isRegistered()) {
                 foreach ($supervisors as $supervisor) {

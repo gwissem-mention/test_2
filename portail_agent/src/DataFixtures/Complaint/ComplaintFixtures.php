@@ -407,6 +407,16 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                     ->setAmount(17000)
             )
             ->addObject(
+                (new Vehicle())
+                    ->setStatus(AbstractObject::STATUS_STOLEN)
+                    ->setNature('voiture particuliere')
+                    ->setBrand('Peugeot')
+                    ->setModel('208')
+                    ->setRegistrationNumber('AA-123-AA')
+                    ->setRegistrationCountry('France')
+                    ->setAmount(1000)
+            )
+            ->addObject(
                 (new SimpleObject())
                     ->setStatus(AbstractObject::STATUS_STOLEN)
                     ->setNature('Blouson')
