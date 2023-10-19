@@ -10,7 +10,7 @@
                autocomplete="off"
                spellcheck="false"
                autocapitalize="off"
-               required="required"
+               {% if required is same as(true) %}required="required"{% endif %}
                data-model="addressSearch"
                class="fr-input{% if this.errors|length > 0 %} fr-input--error{% endif %}"
                name="{{ inputName }}"
