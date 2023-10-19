@@ -59,7 +59,6 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
             ->setAppointmentDate(new \DateTimeImmutable('2022-12-03'))
             ->setStatus(Complaint::STATUS_ASSIGNMENT_PENDING)
             ->setDeclarationNumber('PEL-2022-'.str_pad('1', 8, '0', STR_PAD_LEFT))
-            ->setOptinNotification(true)
             ->setAlert('Alert de test trop longue')
             ->setFranceConnected(true)
             ->setUnitAssigned($unit->getCode())

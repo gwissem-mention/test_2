@@ -141,15 +141,6 @@
                         <li>
                             {{ 'pel.email'|trans }} : <strong>{{ complaint.identity.email }}</strong>
                         </li>
-                        <li>{{ 'pel.want.to.receive.sms.notifications'|trans }} :
-                            <strong>
-                                {% if complaint.optinNotification %}
-                                    {{ 'pel.yes'|trans }}
-                                {% else %}
-                                    {{ 'pel.no'|trans }}
-                                {% endif %}
-                            </strong>
-                        </li>
                         <li>
                             {{ 'pel.is.designated.as'|trans }}
                             <strong>

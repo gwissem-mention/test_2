@@ -87,9 +87,6 @@ class Complaint
     #[ORM\Column(length: 255, unique: true)]
     private string $declarationNumber;
 
-    #[ORM\Column]
-    private ?bool $optinNotification = null;
-
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?Identity $identity = null;
@@ -270,18 +267,6 @@ class Complaint
     public function setDeclarationNumber(string $declarationNumber): self
     {
         $this->declarationNumber = $declarationNumber;
-
-        return $this;
-    }
-
-    public function isOptinNotification(): ?bool
-    {
-        return $this->optinNotification;
-    }
-
-    public function setOptinNotification(bool $optinNotification): self
-    {
-        $this->optinNotification = $optinNotification;
 
         return $this;
     }

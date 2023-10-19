@@ -6,7 +6,6 @@ namespace App\Form\Complaint;
 
 use App\Entity\Identity;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -79,14 +78,6 @@ class IdentityType extends AbstractType
                 ],
                 'label' => 'pel.declarant.complain.as',
                 'disabled' => true,
-            ])
-            ->add('smsNotifications', CheckboxType::class, [
-                'label' => 'pel.want.to.receive.sms.notifications',
-                'disabled' => true,
-                'mapped' => false,
-                'attr' => [
-                    'checked' => $options['is_optin_notification'],
-                ],
             ]);
     }
 
