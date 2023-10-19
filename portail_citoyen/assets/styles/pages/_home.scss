@@ -1,0 +1,18 @@
+.pel-home__btn-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    > li:first-child {
+        flex-basis: 100%;
+        margin-bottom: 2.5rem;
+
+        @media(min-width: 48em) {
+            margin-bottom: 1.5rem;
+        }
+    }
+
+    a:not(.fr-btn) {
+        display: inline-flex;
+    }
+}

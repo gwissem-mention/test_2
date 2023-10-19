@@ -13,21 +13,21 @@
             <li class="text-lg fr-mb-5v fr-mb-md-7v md:text-xl/8">{{ 'pel.victim.of.offline.scams'|trans|raw }}</li>
             <li class="text-lg fr-mb-5v fr-mb-md-7v md:text-xl/8">{{ 'pel.victim.of.other.property.crimes'|trans|raw }}</li>
         </ul>
-        <a class="text-lg/6 fr-text-title--blue-france fr-ml-8v fr-ml-md-4v" href="{{ path('faq') }}#pel-help-faq-concerned-with">{{ 'pel.check.our.faq'|trans }}</a>
-        <div class="@container fr-col-12 fr-mt-10v fr-mt-md-6v">
-            <div class="fr-grid-row items-start justify-between flex-col md:flex-row @[489.5px]:flex-row @[0px]:md:flex-col @[489.5px]:md:flex-row">
-                <div class="fr-text-center fr-mt-4v fr-mt-md-6v">
-                    <a href="{{ path('cgu') }}#pel-help-procedures-type-of-offence" class="fr-btn fr-btn--secondary fr-text--lg px-6 py-2.5">
-                        {{ 'pel.fsi.general.orienteer'|trans }}
-                    </a>
-                </div>
-                <div class="fr-text-center fr-mt-4v fr-mt-md-6v md:order-none @[489.5px]:order-none @[489.5px]:md:order-none">
-                    <a href="{{ path('home_confirmation') }}#pel-confirm-online-complaint-that" class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line fr-text--lg fr-pr-5v fr-pl-6v py-2.5 after:w-6 after:h-6">
-                        {{ 'pel.fill.a.complaint'|trans }}
-                    </a>
-                </div>
-            </div>
-        </div>
+        <ul class="pel-home__btn-wrap pel-list--no-style">
+            <li>
+                <a class="text-lg/6 fr-text-title--blue-france fr-ml-8v fr-ml-md-5v" href="{{ path('faq') }}#pel-help-faq-concerned-with">{{ 'pel.check.our.faq'|trans }}</a>
+            </li>
+            <li class="fr-text-center fr-mt-4v fr-mt-md-6v">
+                <a href="{{ path('cgu') }}#pel-help-procedures-type-of-offence" class="fr-btn fr-btn--secondary fr-text--lg px-6 py-2.5">
+                    {{ 'pel.fsi.general.orienteer'|trans }}
+                </a>
+            </li>
+            <li class="fr-text-center fr-mt-4v fr-mt-md-6v md:order-none @[489.5px]:order-none @[489.5px]:md:order-none">
+                <a href="{{ path('home_confirmation') }}#pel-confirm-online-complaint-that" class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line fr-text--lg fr-pr-5v fr-pl-6v py-2.5 after:w-6 after:h-6">
+                    {{ 'pel.fill.a.complaint'|trans }}
+                </a>
+            </li>
+        </ul>
     </div>
 </div>
 {% endblock %}
