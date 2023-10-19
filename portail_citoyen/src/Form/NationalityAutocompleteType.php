@@ -32,7 +32,7 @@ class NationalityAutocompleteType extends AbstractType
             ],
             'attr' => [
                 'required' => true,
-                'data-controller' => 'autocomplete',
+                'data-controller' => 'tom-select-extend',
                 'data-load-text' => $this->translator->trans('pel.results.loading'),
             ],
         ]);

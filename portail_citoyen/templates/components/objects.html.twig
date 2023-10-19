@@ -8,17 +8,15 @@
     <div class="fr-accordions-group">
         {% for object in form.objects %}
             <section class="fr-accordion">
-                <h2 class="fr-accordion__title" id="accordion__title-{{ loop.index }}">
-                    <button disabled class="[&:disabled]:cursor-default fr-accordion__btn flex gap-x-2 items-center fr-h5 font-bold fr-pt-10v fr-px-6v fr-pb-8v fr-py-md-12v fr-px-md-20v after:w-4 aria-expanded:pb-5 after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] after:text-[var(--background-action-high-blue-france)] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="true" aria-controls="accordion-{{ loop.index }}">
-                        <span class="fr-badge fr-badge--purple-glycine fr-badge--no-icon fr-text--xs">{{ 'pel.goods.number'|trans }}{{ loop.index }}</span>
-                        <span>
-                            {% if object.label is defined and object.label.vars.value is not empty %}
-                                {{ object.label.vars.value }}
-                            {% else %}
-                                {{ 'pel.goods.to.be.declared'|trans }}
-                            {% endif %}
-                        </span>
-                    </button>
+                <h2 class="flex gap-x-2 items-center fr-h5 font-bold fr-m-0 fr-pt-10v fr-px-6v fr-pb-8v fr-py-md-12v fr-px-md-20v" id="accordion__title-{{ loop.index }}">
+                    <span class="fr-badge fr-badge--purple-glycine fr-badge--no-icon fr-text--xs">{{ 'pel.goods.number'|trans }}{{ loop.index }}</span>
+                    <span>
+                        {% if object.label is defined and object.label.vars.value is not empty %}
+                            {{ object.label.vars.value }}
+                        {% else %}
+                            {{ 'pel.goods.to.be.declared'|trans }}
+                        {% endif %}
+                    </span>
                 </h2>
                 <div class="fr-px-6v fr-pb-12v fr-px-md-20v " id="accordion-{{ loop.index }}">
                     {% if object.category is defined %}

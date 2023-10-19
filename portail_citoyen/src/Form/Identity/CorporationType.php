@@ -72,6 +72,7 @@ class CorporationType extends AbstractType
                 'attr' => [
                     'aria-hidden' => 'true',
                     'data-live-id' => 'nationality-corporation-'.microtime(),
+                    'data-controller' => 'tom-select-extend',
                 ],
                 'label' => 'pel.nationality',
                 'preferred_choices' => [$this->frenchNationalityCode],
@@ -96,6 +97,7 @@ class CorporationType extends AbstractType
             ->add('country', CountryAutocompleteType::class, [
                 'attr' => [
                     'aria-hidden' => 'true',
+                    'data-controller' => 'tom-select-extend',
                 ],
                 'label' => 'pel.address.country',
                 'preferred_choices' => [$this->franceCode],
