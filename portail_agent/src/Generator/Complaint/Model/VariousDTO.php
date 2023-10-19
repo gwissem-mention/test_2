@@ -37,6 +37,7 @@ class VariousDTO
         $this->cctvPresent = match ($complaint->getAdditionalInformation()?->getCctvPresent()) {
             AdditionalInformation::CCTV_PRESENT_YES => 'Oui',
             AdditionalInformation::CCTV_PRESENT_NO => 'Non',
+            AdditionalInformation::CCTV_PRESENT_DONT_KNOW => 'Je ne sais pas',
             default => 'Inconnu',
         };
         $witnessesCount = $complaint->getAdditionalInformation()?->getWitnesses()->count();
