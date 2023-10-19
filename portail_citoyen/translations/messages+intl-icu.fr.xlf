@@ -1498,37 +1498,57 @@
                 <source>pel.no.goods.declared</source>
                 <target>Aucun bien déclaré</target>
             </trans-unit>
-            <trans-unit id="pel.not.found">
-                <source>pel.not.found</source>
+            <trans-unit id="pel.site.title">
+                <source>pel.site.title</source>
+                <target>Plainte en ligne</target>
+            </trans-unit>
+            <trans-unit id="pel.error.generic.title">
+                <source>pel.error.generic.title</source>
+                <target>Erreur inattendue</target>
+            </trans-unit>
+            <trans-unit id="pel.error.generic.code.text">
+                <source>pel.error.generic.code.text</source>
+                <target>Erreur</target>
+            </trans-unit>
+            <trans-unit id="pel.error.generic.lead">
+                <source>pel.error.generic.lead</source>
+                <target>Essayez de rafraichir la page ou bien ressayez plus tard.</target>
+            </trans-unit>
+            <trans-unit id="pel.error.generic.text">
+                <source>pel.error.generic.text</source>
+                <target>Désolé, le service rencontre un problème, nous travaillons pour le résoudre le plus rapidement possible.</target>
+            </trans-unit>
+            <trans-unit id="pel.error.not.found.title">
+                <source>pel.error.not.found.title</source>
                 <target>Page non trouvée</target>
             </trans-unit>
-            <trans-unit id="pel.not.found.can">
-                <source>pel.not.found.can</source>
-                <target>Vous pouvez</target>
+            <trans-unit id="pel.error.not.found.lead">
+                <source>pel.error.not.found.lead</source>
+                <target>La page que vous cherchez est introuvable. Excusez-nous pour la gène occasionnée.</target>
             </trans-unit>
-            <trans-unit id="pel.not.found.can.menu">
-                <source>pel.not.found.can.menu</source>
-                <target>ou reprendre votre navigation à l’aide du menu.</target>
+            <trans-unit id="pel.error.not.found.text">
+                <source>pel.error.not.found.text</source>
+                <target>Si vous avez tapé l'adresse web dans le navigateur, vérifiez qu'elle est correcte. La page n’est peut-être plus disponible.<![CDATA[<br>]]>Dans ce cas, pour continuer votre visite vous pouvez consulter notre page d’accueil.</target>
             </trans-unit>
-            <trans-unit id="pel.not.found.can.sitemap.1">
-                <source>pel.not.found.can.sitemap.1</source>
-                <target>, utiliser le</target>
+            <trans-unit id="pel.error.not.found.btn.text">
+                <source>pel.error.not.found.btn.text</source>
+                <target>Page d'accueil</target>
             </trans-unit>
-            <trans-unit id="pel.not.found.can.sitemap.2">
-                <source>pel.not.found.can.sitemap.2</source>
-                <target>plan du site</target>
+            <trans-unit id="pel.error.unavailable.title">
+                <source>pel.error.unavailable.title</source>
+                <target>Service indisponible</target>
             </trans-unit>
-            <trans-unit id="pel.not.found.can.welcome">
-                <source>pel.not.found.can.welcome</source>
-                <target>retourner à l’accueil</target>
+            <trans-unit id="pel.error.unavailable.lead">
+                <source>pel.error.unavailable.lead</source>
+                <target>Le service rencontre un problème, nous travaillons pour le résoudre le plus rapidement possible.</target>
             </trans-unit>
-            <trans-unit id="pel.not.found.text">
-                <source>pel.not.found.text</source>
-                <target>Cette page n’existe pas ou n’a pas été trouvée :(</target>
+            <trans-unit id="pel.error.unavailable.text">
+                <source>pel.error.unavailable.text</source>
+                <target>Merci de réessayer plus tard, vous serez en mesure de réutiliser le service très rapidement.</target>
             </trans-unit>
-            <trans-unit id="pel.not.found.title">
-                <source>pel.not.found.title</source>
-                <target>Page non trouvée - Plainte en ligne</target>
+            <trans-unit id="pel.error.unavailable.btn.text">
+                <source>pel.error.unavailable.btn.text</source>
+                <target>Page d'accueil</target>
             </trans-unit>
             <trans-unit id="pel.object">
                 <source>pel.object</source>
