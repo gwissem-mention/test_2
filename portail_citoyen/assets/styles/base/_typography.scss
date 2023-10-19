@@ -1,0 +1,13 @@
+// override default dsfr list style
+.pel-list--no-style {
+    @include reset-list();
+
+    // override default dsfr li style
+    li {
+        padding-bottom: 0;
+
+        &::marker {
+            content: none;
+        }
+    }
+}

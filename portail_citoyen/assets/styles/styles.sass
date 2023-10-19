@@ -3,8 +3,10 @@
 
 // https://webaim.org/techniques/css/invisiblecontent/
 @layer components
-  .visually-hidden
-    @apply [clip:rect(1px,1px,1px,1px)] [clip-path:inset(50%)] h-px w-px -m-px overflow-hidden p-0 absolute
+    .visually-hidden
+        @apply [clip:rect(1px,1px,1px,1px)] [clip-path:inset(50%)] h-px w-px -m-px overflow-hidden p-0 absolute
+
+
 
 @import "@gouvfr/dsfr/dist/dsfr.css"
 // Workaround for this issue https://github.com/GouvernementFR/dsfr/issues/309
@@ -32,6 +34,8 @@
 @import "utils/mixins"
 @import "utils/keyframes"
 
+@import "base/typography"
+
 @import "components/accordion"
 @import "components/alert"
 @import "components/breadcrumb"
@@ -52,6 +56,8 @@
 @import "components/units"
 
 @import "layout/wrapper"
+
+@import "pages/home"
 
 @import "tom-select/dist/scss/tom-select"
 @import "tom-select.dsfr"
