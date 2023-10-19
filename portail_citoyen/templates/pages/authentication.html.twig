@@ -55,17 +55,17 @@
 				<p class="fr-text md:text-lg fr-mb-2v fr-mb-md-5v">{{ 'pel.continue.pel.without.log.in.explanation'|trans|raw }}</p>
 			</div>
 		</div>
-		<div class="fr-col-12 fr-grid-row gap-x-4 items-start">
-			<div class="fr-text-center fr-mt-4v fr-mt-md-3v">
+		<ul class="pel-list--no-style fr-col-12 fr-grid-row gap-x-4 items-start">
+			<li class="fr-text-center fr-mt-4v fr-mt-md-3v">
 				<a href="{{ path('home_unfolding') }}#pel-online-complaint-process" class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-arrow-left-line py-3 pr-[5px] pl-[13px] before:content-[''] before:w-6 before:h-6">
                     <span class="visually-hidden">{{ 'pel.online.complaint.process.back'|trans }}</span>
                 </a>
-			</div>
-			<div class="fr-text-center fr-mt-4v fr-mt-md-3v">
+			</li>
+			<li class="fr-text-center fr-mt-4v fr-mt-md-3v">
 				<button class="fr-btn fr-btn--secondary fr-text--lg fr-pr-6v fr-pl-6v py-2.5 after:w-6 after:h-6" data-fr-opened="false" aria-controls="fr-modal-complaint-confirm" id="no_france_connect_auth_button">
 					{{ 'pel.continue.pel.without.log.in'|trans }}
 				</button>
-			</div>
-		</div>
+			</li>
+		</ul>
 	</div>
 {% endblock %}

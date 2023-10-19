@@ -12,23 +12,23 @@
             <li class="relative text-lg fr-pr-12v fr-pb-0 pl-[38px] fr-mb-6v fr-pr-md-32v fr-mb-md-10v md:text-xl/8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/user.svg')] md:before:top-1.5 after:content-[''] after:absolute after:top-0 after:right-4 after:w-8 after:h-full after:bg-center after:bg-no-repeat after:bg-[url('/assets/images/icons/check.svg')]">{{ 'pel.you.are.victim.or.representative'|trans|raw }}</li>
         </ul>
         <div class="@container fr-col-12 fr-mt-2v fr-mt-md-7v">
-            <div class="fr-grid-row gap-x-4 items-start md:justify-between @[551.5px]:justify-between @[0px]:md:justify-normal @[551.5px]:md:justify-between">
-                <div class="fr-text-center fr-mt-4v fr-mt-md-3v">
+            <ul class="pel-list--no-style fr-grid-row gap-x-4 items-start md:justify-between @[551.5px]:justify-between @[0px]:md:justify-normal @[551.5px]:md:justify-between">
+                <li class="fr-text-center fr-mt-4v fr-mt-md-3v">
                     <a href="{{ path('home') }}#pel-use-online-complaint-for" class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-arrow-left-line py-3 pr-[5px] pl-[13px] before:content-[''] before:w-6 before:h-6">
                         <span class="visually-hidden">{{ 'pel.use.online.complaint.for.list'|trans }}</span>
                     </a>
-                </div>
-                <div class="fr-mt-4v fr-mt-md-3v w-full order-none md:order-none md:w-fit @[551.5px]:order-none @[551.5px]:w-fit @[551.5px]:md:order-none">
+                </li>
+                <li class="fr-mt-4v fr-mt-md-3v w-full order-none md:order-none md:w-fit @[551.5px]:order-none @[551.5px]:w-fit @[551.5px]:md:order-none">
                     <a href="{{ path('cgu') }}#pel-help-procedures-my-status" class="fr-btn fr-btn--secondary fr-text--lg fr-pr-6v fr-pl-6v py-2.5">
                         {{ 'pel.fsi.general.orienteer.criteria'|trans }}
                     </a>
-                </div>
-                <div class="fr-text-center fr-mt-4v fr-mt-md-3v">
+                </li>
+                <li class="fr-text-center fr-mt-4v fr-mt-md-3v">
                     <a href="{{ path('home_unfolding') }}#pel-online-complaint-process" class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line fr-text--lg fr-pr-5v fr-pl-6v py-2.5 after:w-6 after:h-6">
                         {{ 'pel.i.confirm'|trans }}
                     </a>
-                </div>
-            </div>
+                </li>
+            </ul>
         </div>
     </div>
 </div>

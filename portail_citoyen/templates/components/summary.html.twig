@@ -109,14 +109,18 @@
     </div>
     <hr>
     <div class="fr-pt-4v fr-px-6v fr-pb-12v fr-pt-md-6v fr-px-md-20v text-center">
-        <div class="flex flex-wrap items-center justify-start gap-x-4 gap-y-4 md:justify-between md:flex-nowrap">
-            <a href="{{ path('complaint_additional_information') }}" class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-arrow-left-line fr-text--lg py-3 md:py-2.5 pr-[5px] pl-[13px] md:pr-6 md:pl-[18px] before:content-[''] before:w-6 before:h-6">
-                <span class="max-lg:visually-hidden">{{ 'pel.previous'|trans }}</span>
-            </a>
-            <button type="submit" class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line fr-text--lg py-2.5 pr-[18px] pl-6 after:w-6 after:h-6" aria-label="{{ 'pel.next.summary.aria-label'|trans }}" id="summary_submit" data-action="live#action complaint-submit#submit" data-action-name="prevent|submit">
-                {{ 'pel.next'|trans }}
-            </button>
-        </div>
+        <ul class="pel-list--no-style flex flex-wrap items-center justify-start gap-x-4 gap-y-4 md:justify-between md:flex-nowrap">
+            <li>
+                <a href="{{ path('complaint_additional_information') }}" class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-arrow-left-line fr-text--lg py-3 md:py-2.5 pr-[5px] pl-[13px] md:pr-6 md:pl-[18px] before:content-[''] before:w-6 before:h-6">
+                    <span class="max-lg:visually-hidden">{{ 'pel.previous'|trans }}</span>
+                </a>
+            </li>
+            <li>
+                <button type="submit" class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line fr-text--lg py-2.5 pr-[18px] pl-6 after:w-6 after:h-6" aria-label="{{ 'pel.next.summary.aria-label'|trans }}" id="summary_submit" data-action="live#action complaint-submit#submit" data-action-name="prevent|submit">
+                    {{ 'pel.next'|trans }}
+                </button>
+            </li>
+        </ul>
     </div>
     {{ form_end(form, {render_rest: false}) }}
 </div>
