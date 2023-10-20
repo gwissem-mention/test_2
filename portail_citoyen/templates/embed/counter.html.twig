@@ -2,7 +2,7 @@
     {% block label %}{% endblock %}
     <p class="fr-hint-text fr-mb-0" data-counter-target="counterContainer" data-live-ignore>
         {% if help is defined %}
-            {{ help|trans }}
+            {{ help|trans|raw }}
         {% endif %}
         {% if minlength is same as(0) %}
             {{ 'pel.maximum'|trans }}
