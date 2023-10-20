@@ -139,6 +139,8 @@ Feature:
         And I should see "999 €"
         And I should see "Orange"
         And I should see "Description smartphone"
+        And I should see "Numéro de téléphone portable"
+        And I should see "06 12 34 56 67"
         And I should see "voiture particuliere"
         And I should see "Voiture"
         And I should see "Citroën"

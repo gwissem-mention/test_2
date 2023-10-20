@@ -1230,6 +1230,10 @@
                 <source>pel.witness.mobile</source>
                 <target>Numéro de téléphone portable n°{index}</target>
             </trans-unit>
+            <trans-unit id="pel.object.mobile">
+                <source>pel.object.mobile</source>
+                <target>Numéro de téléphone portable</target>
+            </trans-unit>
             <trans-unit id="pel.write.your.comment.here">
                 <source>pel.write.your.comment.here</source>
                 <target>Ecrivez votre message ici...</target>
