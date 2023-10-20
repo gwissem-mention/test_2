@@ -804,7 +804,7 @@
             </trans-unit>
             <trans-unit id="pel.facts.description.precise">
                 <source>pel.facts.description.precise</source>
-                <target>Description des faits en quelques mots</target>
+                <target>Décrivez les faits dont vous êtes victime</target>
             </trans-unit>
             <trans-unit id="pel.facts.hour">
                 <source>pel.facts.hour</source>
@@ -3100,7 +3100,11 @@
             </trans-unit>
             <trans-unit id="pel.resume.the.infraction.in.few.words">
                 <source>pel.resume.the.infraction.in.few.words</source>
-                <target>Résumez l'infraction en quelques mots en mentionnant toutes les informations pouvant paraître utiles dans le cadre de l'enquête.</target>
+                <target>Vous pouvez notamment apporter des éléments répondant aux questions suivantes :
+                <![CDATA[<br>]]>
+                "Comment avez-vous découvert les faits ?
+                <![CDATA[<br>]]>
+                "Selon vous comment les auteurs ont-ils procédé ?"</target>
             </trans-unit>
             <trans-unit id="pel.your.declaration.will.be.reviewed.by.an.agent">
                 <source>pel.your.declaration.will.be.reviewed.by.an.agent</source>
