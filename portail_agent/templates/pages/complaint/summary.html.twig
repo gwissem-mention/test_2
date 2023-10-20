@@ -498,6 +498,13 @@
                     {% endif %}
                 </ul>
             {% endif %}
+            {% if object.phoneNumber is not null %}
+                <ul class="m-0">
+                    <li>
+                    {{ 'pel.object.mobile'|trans }} : {{  object.phoneNumber }}
+                    </li>
+                </ul>
+            {% endif %}
             {% if object.stillOnWhenMobileStolen is not null %}
                 <ul class="m-0">
                     <li>{{ 'pel.still.on.when.mobile.stolen'|trans }} :
