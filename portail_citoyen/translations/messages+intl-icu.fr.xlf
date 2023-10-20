@@ -76,7 +76,7 @@
             </trans-unit>
             <trans-unit id="pel.amount">
                 <source>pel.amount</source>
-                <target>Montant estimé du bien (en euros)</target>
+                <target>Montant estimé du préjudice (en euros)</target>
             </trans-unit>
             <trans-unit id="pel.amount.for.group">
                 <source>pel.amount.for.group</source>
