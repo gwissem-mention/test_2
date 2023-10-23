@@ -33,32 +33,36 @@ class ComplaintFetchHandler
 
     public function __invoke(ComplaintFetchMessage $message): void
     {
-        $complaintFolder = $message->getComplaintFolder();
-
-        $files = $this->oodriveClient->getChildrenFiles($complaintFolder);
-
         try {
-            foreach ($files as $file) {
-                if (false === $file->isDir()) {
-                    try {
-                        $this->logger->info(sprintf('Fetching file %s in folder %s', $file->getName(), $complaintFolder->getId()));
-                        $this->downloadFile($file, $complaintFolder->getName());
-                        $this->logger->info(sprintf('File %s fetched', $file->getName()));
-                    } catch (\Exception $e) {
-                        // @TODO: Mark the complaint as not fetched? Send report Email?
-                        throw $e;
+            $complaintFolder = $message->getComplaintFolder();
+
+            $files = $this->oodriveClient->getChildrenFiles($complaintFolder);
+
+            try {
+                foreach ($files as $file) {
+                    if (false === $file->isDir()) {
+                        try {
+                            $this->logger->info(sprintf('Fetching file %s in folder %s', $file->getName(), $complaintFolder->getId()));
+                            $this->downloadFile($file, $complaintFolder->getName());
+                            $this->logger->info(sprintf('File %s fetched', $file->getName()));
+                        } catch (\Exception $e) {
+                            // @TODO: Mark the complaint as not fetched? Send report Email?
+                            throw $e;
+                        }
                     }
                 }
+
+                $this->logger->info(sprintf('Parsing file "plainte.json" from folder %s', $complaintFolder->getId()));
+                $this->parseAndPersistComplaint($this->complaintsBasePath.'/'.$complaintFolder->getName().'/plainte.json', $complaintFolder->getId());
+                $this->logger->info(sprintf('File "plainte.json" from folder %s parsed', $complaintFolder->getId()));
+
+                $this->moveToFetchedFolder($complaintFolder, $message->getEmailFolder()->getName());
+                $this->filesystem->remove($this->complaintsBasePath.'/'.$complaintFolder->getName());
+            } catch (NoAffectedServiceException $e) {
+                $this->logger->error(sprintf('No affected service found for file %s. Skipped.', $file->getName()));
             }
-
-            $this->logger->info(sprintf('Parsing file "plainte.json" from folder %s', $complaintFolder->getId()));
-            $this->parseAndPersistComplaint($this->complaintsBasePath.'/'.$complaintFolder->getName().'/plainte.json', $complaintFolder->getId());
-            $this->logger->info(sprintf('File "plainte.json" from folder %s parsed', $complaintFolder->getId()));
-
-            $this->moveToFetchedFolder($complaintFolder, $message->getEmailFolder()->getName());
-            $this->filesystem->remove($this->complaintsBasePath.'/'.$complaintFolder->getName());
-        } catch (NoAffectedServiceException $e) {
-            $this->logger->error(sprintf('No affected service found for file %s. Skipped.', $file->getName()));
+        } catch (\Exception $e) {
+            $this->logger->error(sprintf('Error fetching complaint %s. Error: %s', $message->getComplaintFolder()->getName(), $e->getMessage()));
         }
     }
 
