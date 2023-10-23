@@ -47,6 +47,12 @@ services:
             $salesForceRecipient: '%app.salesforce.recipient%'
             $salesForceAccountId: '%app.salesforce.account_id%'
             $citoyenDomain: '%app.citoyen.domain%'
+            $entryEventEventDefinitionKey: '%env(SALESFORCE_ENTRY_EVENT_EVENT_DEFINITION_KEY)%'
+            $takeInConsiderationEventDefinitionKey: '%env(SALESFORCE_TAKE_IN_CONSIDERATION_EVENT_DEFINITION_KEY)%'
+            $treatmentChoiceEventDefinitionKey: '%env(SALESFORCE_TREATMENT_CHOICE_EVENT_DEFINITION_KEY)%'
+            $appointmentEntryEventDefinitionKey: '%env(SALESFORCE_APPOINTMENT_ENTRY_EVENT_DEFINITION_KEY)%'
+            $appointmentInformationEventDefinitionKey: '%env(SALESFORCE_APPOINTMENT_INFORMATION_EVENT_DEFINITION_KEY)%'
+            $appointmentAfterEventDefinitionKey: '%env(SALESFORCE_APPOINTMENT_AFTER_EVENT_DEFINITION_KEY)%'
 
     App\:
         resource: '../src/'
