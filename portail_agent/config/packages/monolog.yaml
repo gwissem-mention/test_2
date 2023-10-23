@@ -5,6 +5,7 @@ monolog:
         - application_traces_gn # Logs dedicated to the application traces for the GN institution
         - application_traces_pn # Logs dedicated to the application traces for the GN institution
         - api # Logs dedicated to our API endpoints
+        - salesforce # Logs dedicated to communication with the Salesforce API
 
 when@dev:
     monolog:
@@ -52,6 +53,12 @@ when@dev:
                 path: "%kernel.logs_dir%/api_%kernel.environment%.log"
                 level: debug
                 channels: [ "api" ]
+                max_files: 20    
+            salesforce:
+                type: rotating_file
+                path: "%kernel.logs_dir%/salesforce_%kernel.environment%.log"
+                level: debug
+                channels: [ "salesforce" ]
                 max_files: 20    
 
 
@@ -123,5 +130,11 @@ when@prod: &prod
                 type: stream
                 channels: [deprecation]
                 path: php://stderr
+            salesforce_log:
+                type: rotating_file
+                path: "%kernel.logs_dir%/salesforce_%kernel.environment%.log"
+                level: error
+                channels: [ "salesforce" ]
+                max_files: 20    
 
 when@e2e: *prod

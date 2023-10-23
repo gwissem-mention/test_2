@@ -7,6 +7,7 @@ namespace App\Tests\SalesForce\Authentication;
 use App\Salesforce\HttpClient\Authentication\AuthenticatedClient;
 use App\Salesforce\HttpClient\Authentication\UnableToAuthenticateException;
 use PHPUnit\Framework\TestCase;
+use Psr\Log\NullLogger;
 use Symfony\Component\HttpClient\MockHttpClient;
 use Symfony\Component\HttpClient\Response\MockResponse;
 
@@ -38,7 +39,7 @@ class AuthenticatedClientTest extends TestCase
                     $this->assertSame('Authorization: Bearer access_token', $options['normalized_headers']['authorization'][0]);
 
                     return new MockResponse('', [
-                        'http_code' => 200,
+                        'http_code' => 201,
                     ]);
                 },
             ]),
@@ -46,6 +47,7 @@ class AuthenticatedClientTest extends TestCase
             'clientSecret',
             self::BASE_AUTH_URI,
             'accountId',
+            new NullLogger()
         );
 
         $authenticatedClient->request('GET', '/whatever');
@@ -71,6 +73,7 @@ class AuthenticatedClientTest extends TestCase
             'clientSecret',
             self::BASE_AUTH_URI,
             'accountId',
+            new NullLogger()
         );
 
         $authenticatedClient->request('GET', '/whatever');
@@ -121,7 +124,7 @@ class AuthenticatedClientTest extends TestCase
                     $this->assertSame('Authorization: Bearer new_access_token', $options['normalized_headers']['authorization'][0]);
 
                     return new MockResponse('', [
-                        'http_code' => 200,
+                        'http_code' => 201,
                     ]);
                 },
             ]),
@@ -129,6 +132,7 @@ class AuthenticatedClientTest extends TestCase
             'clientSecret',
             self::BASE_AUTH_URI,
             'accountId',
+            new NullLogger()
         );
 
         $authenticatedClient->request('GET', '/whatever');
