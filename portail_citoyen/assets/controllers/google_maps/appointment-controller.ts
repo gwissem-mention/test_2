@@ -258,11 +258,11 @@ export default class extends Controller {
     }
 
     private selectUnitById(unitId: number): void {
-        const div: HTMLElement | null = this.leftMenuTarget.querySelector(`div[data-unit-id-anonym="${unitId}"]`);
+        const listElement: HTMLElement | null = this.leftMenuTarget.querySelector(`li[data-unit-id-anonym="${unitId}"]`);
 
-        if (div) {
-            this.activeUnitItem(div, unitId);
-            div.scrollIntoView({behavior: "smooth"});
+        if (listElement) {
+            this.activeUnitItem(listElement, unitId);
+            listElement.scrollIntoView({behavior: "smooth"});
         }
     }
 

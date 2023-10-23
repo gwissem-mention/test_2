@@ -214,15 +214,15 @@ Feature:
         When I fill in the map autocomplete "map-search" with "Pessac" and click on the first result
         Then I should see 5 ".unit-list-item" element
         And I should see "5 résultats"
-        When I click the "div[data-unit-id-anonym=4017] .unit-select" element
-        Then I should see a "div[data-unit-id-anonym=4017] .unit-unselect" element
-        Then I should not see a "div[data-unit-id-anonym=4017] .unit-unselect.fr-hidden" element
-        And I should see a "div[data-unit-id-anonym=4017] .unit-select.fr-hidden" element
+        When I click the "li[data-unit-id-anonym=4017] .unit-select" element
+        Then I should see a "li[data-unit-id-anonym=4017] .unit-unselect" element
+        Then I should not see a "li[data-unit-id-anonym=4017] .unit-unselect.fr-hidden" element
+        And I should see a "li[data-unit-id-anonym=4017] .unit-select.fr-hidden" element
         And I should see the key "pel.chosen" translated
 
     Scenario: I can pick a unit and submit the page
         When I fill in the map autocomplete "map-search" with "Pessac" and click on the first result
-        And I click the "div[data-unit-id-anonym=4017] .unit-select" element
+        And I click the "li[data-unit-id-anonym=4017] .unit-select" element
         And I press "appointment_submit"
         Then I should be on "/porter-plainte/fin"
         And I should see "Commissariat de police de Bordeaux"
@@ -230,16 +230,16 @@ Feature:
 
     Scenario: I can unpick a unit
         When I fill in the map autocomplete "map-search" with "Pessac" and click on the first result
-        And I click the "div[data-unit-id-anonym=4017] .unit-select" element
-        And I click the "div[data-unit-id-anonym=4017] .unit-unselect" element
-        Then I should see a "div[data-unit-id-anonym=4017] .unit-unselect.fr-hidden" element
-        And I should not see a "div[data-unit-id-anonym=4017] .unit-select.fr-hidden" element
+        And I click the "li[data-unit-id-anonym=4017] .unit-select" element
+        And I click the "li[data-unit-id-anonym=4017] .unit-unselect" element
+        Then I should see a "li[data-unit-id-anonym=4017] .unit-unselect.fr-hidden" element
+        And I should not see a "li[data-unit-id-anonym=4017] .unit-select.fr-hidden" element
 
     Scenario: I can click on a marker and see the unit details on the left menu
         When I fill in the map autocomplete "map-search" with "Pessac" and click on the first result
         And I click on the marker at index 4017
-        Then I should not see a "div[data-unit-id-anonym=4017] .unit-unselect.fr-hidden" element
-        And I should see a "div[data-unit-id-anonym=4017] .unit-select.fr-hidden" element
+        Then I should not see a "li[data-unit-id-anonym=4017] .unit-unselect.fr-hidden" element
+        And I should see a "li[data-unit-id-anonym=4017] .unit-select.fr-hidden" element
         When I press "appointment_submit"
         Then I should be on "/porter-plainte/fin"
         And I should see "Commissariat de police de Bordeaux"
@@ -249,7 +249,7 @@ Feature:
     Scenario: I can see the gendarmerie accessibility information
         When I fill in the map autocomplete "map-search" with "Pessac" and click on the first result
         And I click on the marker at index 1004099
-        And I should see a "div[data-unit-id-anonym=1004099]" element
+        And I should see a "li[data-unit-id-anonym=1004099]" element
         When I press "unit-id-1004099"
         Then I should see a "#fr-modal-unit-accessibility-information" element
         And I wait 2000 ms

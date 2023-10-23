@@ -1,6 +1,6 @@
-<p class="fr-text-center">{{ units|length }} {{ 'pel.results'|trans|lower }}</p>
+<li class="fr-text-center">{{ units|length }} {{ 'pel.results'|trans|lower }}</li>
 {% for unit in units %}
-    <div class="unit-list-item col-lg-4 col-md-6 fr-p-5v" data-unit-id-anonym="{{ unit.idAnonym }}">
+    <li class="unit-list-item col-lg-4 col-md-6 fr-p-5v" data-unit-id-anonym="{{ unit.idAnonym }}" role="option">
         <div class="unit-list-header">
             <h2 class="fr-text--sm fr-mb-0 fr-pt-3v title-definition point-label">{{ loop.index }} - {{ unit.name|upper }}</h2>
             <button class="unit-select fr-btn fr-fi-map-pin-2-line fr-btn--icon-left fr-btn--tertiary-no-outline fr-text--sm" data-action="click->google-maps--appointment#selectUnit">
@@ -22,6 +22,6 @@
                 </div>
             {% endif %}
         </div>
-    </div>
+    </li>
 {% endfor %}
 {% include "common/_modal.html.twig" with {'id':'unit-accessibility-information', 'attribute':'data-google-maps--appointment-target=modal'} %}
