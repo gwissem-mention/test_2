@@ -173,6 +173,7 @@ class CivilStateType extends AbstractType
                     new NotBlank(),
                 ],
                 'label' => 'pel.your.job',
+                'placeholder' => 'pel.your.job.placeholder',
                 'autocomplete_url' => $this->urlGenerator->generate(
                     'ux_entity_autocomplete',
                     ['alias' => 'job']

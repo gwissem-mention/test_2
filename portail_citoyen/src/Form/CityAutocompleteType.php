@@ -25,7 +25,7 @@ class CityAutocompleteType extends AbstractType
                 ['alias' => 'city']
             ),
             'label' => 'pel.birth.town',
-            'placeholder' => false,
+            'placeholder' => 'pel.birth.town.placeholder',
         ]);
     }
 

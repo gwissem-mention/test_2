@@ -274,6 +274,10 @@
                 <source>pel.birth.town</source>
                 <target>Commune de naissance</target>
             </trans-unit>
+            <trans-unit id="pel.birth.town.placeholder">
+                <source>pel.birth.town.placeholder</source>
+                <target>Renseignez la commune de naissance</target>
+            </trans-unit>
             <trans-unit id="pel.born.on">
                 <source>pel.born.on</source>
                 <target>Né(e) le</target>
@@ -2457,6 +2461,10 @@
             <trans-unit id="pel.your.job">
                 <source>pel.your.job</source>
                 <target>Votre profession</target>
+            </trans-unit>
+            <trans-unit id="pel.your.job.placeholder">
+                <source>pel.your.job.placeholder</source>
+                <target>Renseignez votre profession</target>
             </trans-unit>
             <trans-unit id="pel.your.status">
                 <source>pel.your.status</source>

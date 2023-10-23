@@ -48,6 +48,7 @@ export default class extends Controller {
                 controlInputElement.removeAttribute("aria-labelledby");
                 controlInputElement.setAttribute("aria-autocomplete", "list");
                 controlInputElement.removeAttribute("type");
+                controlInputElement.classList.add("pel-ellipsis");
             }
 
             // If error, get error element id

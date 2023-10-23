@@ -5,7 +5,7 @@
                id="{{ inputName }}"
                role="combobox"
                aria-autocomplete="list"
-               aria-owns="list-{{ inputName }}"
+               {% if this.autoCompleteResults|length > 0 %}aria-owns="list-{{ inputName }}"{% endif %}
                aria-expanded="false"
                autocomplete="off"
                spellcheck="false"
