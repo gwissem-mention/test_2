@@ -25,7 +25,7 @@ final class FakeSalesforceHttpClient implements HttpClientInterface
                 'http_code' => 200,
             ]),
             sprintf('%s/interaction/v1/events', self::BASE_REST_URI) => new MockResponse('', [
-                'http_code' => 200,
+                'http_code' => 201,
             ]),
         ];
     }

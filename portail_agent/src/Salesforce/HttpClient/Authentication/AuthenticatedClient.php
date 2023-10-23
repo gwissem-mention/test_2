@@ -4,7 +4,13 @@ declare(strict_types=1);
 
 namespace App\Salesforce\HttpClient\Authentication;
 
+use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 use Symfony\Contracts\HttpClient\ResponseStreamInterface;
@@ -19,6 +25,7 @@ final class AuthenticatedClient implements AuthenticatedClientInterface
         private readonly string $salesForceClientSecret,
         private readonly string $salesForceAuthDomain,
         private readonly string $salesForceAccountId,
+        private readonly LoggerInterface $salesforceLogger
     ) {
     }
 
@@ -75,27 +82,44 @@ final class AuthenticatedClient implements AuthenticatedClientInterface
             $this->salesForceClientSecret,
             $this->salesForceAuthDomain,
             $this->salesForceAccountId,
+            $this->salesforceLogger
         );
     }
 
+    /**
+     * @throws TransportExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws DecodingExceptionInterface
+     * @throws ClientExceptionInterface
+     */
     private function authenticate(): string
     {
-        $response = $this->salesforceClient->request(
-            'POST',
-            sprintf('%s%s', $this->salesForceAuthDomain, '/v2/token'),
-            [
-                'json' => [
-                    'grant_type' => 'client_credentials',
-                    'client_id' => $this->salesForceClientId,
-                    'client_secret' => $this->salesForceClientSecret,
-                    'account_id' => $this->salesForceAccountId,
-                ],
-            ]);
+        try {
+            $this->salesforceLogger->info('Start authentication');
+            $response = $this->salesforceClient->request(
+                'POST',
+                sprintf('%s%s', $this->salesForceAuthDomain, '/v2/token'),
+                [
+                    'json' => [
+                        'grant_type' => 'client_credentials',
+                        'client_id' => $this->salesForceClientId,
+                        'client_secret' => $this->salesForceClientSecret,
+                        'account_id' => $this->salesForceAccountId,
+                    ],
+                ]);
 
-        if (Response::HTTP_OK !== $response->getStatusCode()) {
-            throw new UnableToAuthenticateException();
+            if (Response::HTTP_OK !== $response->getStatusCode()) {
+                throw new UnableToAuthenticateException(sprintf('Failing to authenticate, status code %s, response content %s', $response->getStatusCode(), $response->getContent(false)));
+            }
+
+            $this->salesforceLogger->info('Successfully authenticated');
+
+            return $response->toArray()['access_token'];
+        } catch (\Exception $exception) {
+            $this->salesforceLogger->error(sprintf('Failing to authenticate with exception %s', $exception->getMessage()));
+
+            throw $exception;
         }
-
-        return $response->toArray()['access_token'];
     }
 }
