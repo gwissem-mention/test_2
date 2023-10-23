@@ -27,7 +27,13 @@ class SalesForceComplaintNotifier
         private readonly UnitRepository $unitRepository,
         private readonly bool $ssoIsEnabled,
         private readonly string $salesForceRecipient,
-        private readonly string $citoyenDomain
+        private readonly string $citoyenDomain,
+        private readonly string $entryEventEventDefinitionKey,
+        private readonly string $takeInConsiderationEventDefinitionKey,
+        private readonly string $treatmentChoiceEventDefinitionKey,
+        private readonly string $appointmentEntryEventDefinitionKey,
+        private readonly string $appointmentInformationEventDefinitionKey,
+        private readonly string $appointmentAfterEventDefinitionKey,
     ) {
     }
 
@@ -54,7 +60,7 @@ class SalesForceComplaintNotifier
         );
 
         $eventDefinition = new SalesForceApiEventDefinition(
-            'APIEvent-adffc2f2-5e1d-a5a1-1027-960ed94f04a3',
+            $this->entryEventEventDefinitionKey, // 'APIEvent-adffc2f2-5e1d-a5a1-1027-960ed94f04a3',
             $declarationNumber,
             $eventDefinitionData
         );
@@ -74,7 +80,7 @@ class SalesForceComplaintNotifier
         );
 
         $eventDefinition = new SalesForceApiEventDefinition(
-            'APIEvent-54f97f47-5cf7-acb4-c4b2-ad37d29a1716',
+            $this->takeInConsiderationEventDefinitionKey, // 'APIEvent-54f97f47-5cf7-acb4-c4b2-ad37d29a1716',
             $declarationNumber,
             $eventDefinitionData
         );
@@ -93,7 +99,7 @@ class SalesForceComplaintNotifier
         );
 
         $eventDefinition = new SalesForceApiEventDefinition(
-            'APIEvent-5aa2919f-d971-d517-552d-20dca88f4a6a',
+            $this->treatmentChoiceEventDefinitionKey, // 'APIEvent-5aa2919f-d971-d517-552d-20dca88f4a6a',
             $declarationNumber,
             $eventDefinitionData
         );
@@ -114,7 +120,7 @@ class SalesForceComplaintNotifier
         );
 
         $eventDefinition = new SalesForceApiEventDefinition(
-            'APIEvent-5aa2919f-d971-d517-552d-20dca88f4a6a',
+            $this->treatmentChoiceEventDefinitionKey, // 'APIEvent-5aa2919f-d971-d517-552d-20dca88f4a6a',
             $declarationNumber,
             $eventDefinitionData
         );
@@ -133,7 +139,7 @@ class SalesForceComplaintNotifier
         );
 
         $eventDefinition = new SalesForceApiEventDefinition(
-            'APIEvent-5aa2919f-d971-d517-552d-20dca88f4a6a',
+            $this->treatmentChoiceEventDefinitionKey, // 'APIEvent-5aa2919f-d971-d517-552d-20dca88f4a6a',
             $declarationNumber,
             $eventDefinitionData
         );
@@ -156,7 +162,7 @@ class SalesForceComplaintNotifier
         );
 
         $eventDefinition = new SalesForceApiEventDefinition(
-            'APIEvent-68defbbf-84c7-98e2-3a89-23e0ee9ef666',
+            $this->appointmentEntryEventDefinitionKey, // 'APIEvent-68defbbf-84c7-98e2-3a89-23e0ee9ef666',
             $declarationNumber,
             $eventDefinitionData
         );
@@ -184,7 +190,7 @@ class SalesForceComplaintNotifier
         );
 
         $eventDefinition = new SalesForceApiEventDefinition(
-            'APIEvent-eedbb93b-7cb4-aca3-4cff-08e4210605b8',
+            $this->appointmentInformationEventDefinitionKey, // 'APIEvent-eedbb93b-7cb4-aca3-4cff-08e4210605b8',
             $declarationNumber,
             $eventDefinitionData
         );
@@ -221,7 +227,7 @@ class SalesForceComplaintNotifier
         );
 
         $eventDefinition = new SalesForceApiEventDefinition(
-            'APIEvent-5aa2919f-d971-d517-552d-20dca88f4a6a',
+            $this->treatmentChoiceEventDefinitionKey, // 'APIEvent-5aa2919f-d971-d517-552d-20dca88f4a6a',
             $declarationNumber,
             $eventDefinitionData
         );
@@ -240,7 +246,7 @@ class SalesForceComplaintNotifier
         );
 
         $eventDefinition = new SalesForceApiEventDefinition(
-            'APIEvent-1f821344-70d7-94e6-7952-b3a34bc902c5',
+            $this->appointmentAfterEventDefinitionKey, // 'APIEvent-1f821344-70d7-94e6-7952-b3a34bc902c5',
             $declarationNumber,
             $eventDefinitionData
         );
