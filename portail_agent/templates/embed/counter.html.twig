@@ -2,7 +2,7 @@
     {% block label %}{% endblock %}
     <p class="fr-hint-text fr-mb-0" data-counter-target="counterContainer" data-live-ignore>
         {% if help is defined %}
-            {{ help|trans|raw }}
+            {{ help|trans }}
         {% endif %}
         {% if minlength is same as(0) %}
             {{ 'pel.maximum'|trans }}
@@ -15,7 +15,7 @@
             <span data-counter-target="counterMaxLength"></span>
             {{ 'pel.characters'|trans }}
         {% endif %}
-        <span data-counter-target="counter" class="fr-text--red-marianne font-bold"></span>
+        <span data-counter-target="counter" class="fr-text--red-marianne pel-bold"></span>
     </p>
     {% block widget %}{% endblock %}
     {% block errors %}{% endblock %}

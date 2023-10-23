@@ -1738,6 +1738,10 @@
                 <source>pel.consent.confirmation</source>
                 <target>Je consens à recevoir de l’autorité judiciaire des avis, convocations et documents intéressants la procédure judiciaire qui pourraient découler de ma démarche</target>
             </trans-unit>
+            <trans-unit id="pel.characters">
+                <source>pel.characters</source>
+                <target>caractères</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

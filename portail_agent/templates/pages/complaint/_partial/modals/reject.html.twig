@@ -8,7 +8,25 @@
 
     {% block body %}
         <div class="px-4">
-            {{ form(rejectForm, { attr: {'data-complaint-target': 'rejectForm' }}) }}
+            {% set has_errors = rejectForm.refusalText.vars.errors is not empty %}
+            {{ form_start(rejectForm, { attr: {'data-complaint-target': 'rejectForm' }}) }}
+                {{ form_row(rejectForm.refusalReason) }}
+                {% embed 'embed/counter.html.twig' with {
+                    'parent': 'reject_refusalText',
+                    'minlength': rejectForm.refusalText.vars.attr.minlength,
+                    'maxlength': rejectForm.refusalText.vars.attr.maxlength,
+                } %}
+                    {% block label %}
+                        {{ form_label(rejectForm.refusalText) }}
+                    {% endblock %}
+                    {% block widget %}
+                        {{ form_widget(rejectForm.refusalText, {'attr':{'class':html_classes(attr.class ?? '', 'fr-input', {'fr-input--error':has_errors}),'aria-describedby':has_errors ? 'form-errors-'~ form.description.vars.id :false}}) }}
+                    {% endblock %}
+                    {% block errors %}
+                        {{ form_errors(rejectForm.refusalText) }}
+                    {% endblock %}
+                {% endembed %}
+            {{ form_end(rejectForm) }}
         </div>
     {% endblock %}
 
