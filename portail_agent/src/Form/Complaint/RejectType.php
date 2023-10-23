@@ -41,6 +41,7 @@ class RejectType extends AbstractType
                 'attr' => [
                     'minlength' => 100,
                     'maxlength' => 3000,
+                    'data-counter-target' => 'parent',
                 ],
                 'constraints' => [
                     new Length(['min' => 100, 'max' => 3000]),
