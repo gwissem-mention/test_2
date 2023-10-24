@@ -5,7 +5,12 @@
                 <div class="w-100 d-flex {{ (comment.author is same as app.user) ? 'justify-content-end' : 'justify-content-start' }}">
                     <div class="m-3 p-3 border w-75 {{ (comment.author is same as app.user) ? 'background-blue text-white comment-right' : 'background-white comment-left' }}">
                         <div class="fw-bold mb-2 text-black" id="comment-author">
-                            <span id="comment-title" class="{{ not comment.title ? 'd-none':'' }}">{{ comment.title|trans }} :</span>
+                            <span id="comment-title" class="{{ not comment.title ? 'd-none':'' }}">
+                                {{ comment.title|trans }}
+                                {% if comment.subtitle is not null %}
+                                    - {{ comment.subtitle|trans }}
+                                {% endif %} :
+                            </span>
                             {{ comment.author.appellation }}
                         </div>
                         <div class="overflow-hidden text-break text-black">{{ comment.content }}</div>

@@ -280,6 +280,11 @@ Feature:
         And I should not see a "complaint-reassign-button" element
         And I should see a ".toast" element
         And I should see the key "pel.the.declaration.has.been.refused" translated
+        When I press "complaint-comment-button"
+        Then I should see the key "pel.comment.complaint.refusal.reason" translated
+        And I should see "Motif de refus de la plainte - Réorientation de la victime vers autre démarche (civil, prudhomme, médiation...)"
+        And I should see "Thomas DURAND"
+        And I should see "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus scelerisque ante id dui lacinia eu."
         And I am on "/"
         When I click the "th:nth-of-type(10)" element
         And I should see 28 ".background-red" element

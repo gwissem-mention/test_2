@@ -1154,6 +1154,10 @@
                 <source>pel.company.name</source>
                 <target>Raison sociale</target>
             </trans-unit>
+            <trans-unit id="pel.comment.complaint.refusal.reason">
+                <source>pel.comment.complaint.refusal.reason</source>
+                <target>Motif de refus de la plainte</target>
+            </trans-unit>
             <trans-unit id="pel.complaint.validation.course.to.lrp">
                 <source>pel.complaint.validation.course.to.lrp</source>
                 <target>Parcours de validation de plainte vers le LRP :</target>
