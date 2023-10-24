@@ -48,7 +48,6 @@ Feature:
         And I should see the key "pel.legal.graphic.creations.photo.credits.videos" translated
         And I should see the key "pel.legal.graphic.creations.photo.credits.videos.text" translated
         And I should see the key "pel.legal.graphic.creations.photo.credits.videos.ask.to" translated
-        And I should see the key "pel.legal.graphic.creations.photo.credits.videos.ask.by.email" translated
         And I should see the key "pel.legal.graphic.creations.photo.credits.videos.ask.by.mail" translated
         And I should see the key "pel.legal.graphic.creations.photo.credits.videos.name" translated
         And I should see the key "pel.legal.picture.video" translated

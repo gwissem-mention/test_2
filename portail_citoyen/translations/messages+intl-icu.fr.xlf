@@ -2790,10 +2790,6 @@
                 <source>pel.legal.graphic.creations.photo.credits.videos.address.street</source>
                 <target>40 avenue des Terroirs de France</target>
             </trans-unit>
-            <trans-unit id="pel.legal.graphic.creations.photo.credits.videos.ask.by.email">
-                <source>pel.legal.graphic.creations.photo.credits.videos.ask.by.email</source>
-                <target>Par courriel à</target>
-            </trans-unit>
             <trans-unit id="pel.legal.graphic.creations.photo.credits.videos.ask.by.mail">
                 <source>pel.legal.graphic.creations.photo.credits.videos.ask.by.mail</source>
                 <target>Ou par courrier à l'adresse suivante</target>
