@@ -476,7 +476,7 @@
             </trans-unit>
             <trans-unit id="pel.complaint.identity.victim.hint">
                 <source>pel.complaint.identity.victim.hint</source>
-                <target>Personne physique ayant subit un préjudice suite à l’infraction</target>
+                <target>Personne physique ayant subi un préjudice suite à l’infraction</target>
             </trans-unit>
             <trans-unit id="pel.complaint.location">
                 <source>pel.complaint.location</source>
