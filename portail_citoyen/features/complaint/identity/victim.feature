@@ -53,8 +53,8 @@ Feature:
         And I fill in "identity_civilState_birthDate" with "01/01/2000"
         And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
         And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "abatteur_de_bestiaux"
-        And I fill in "contact-information-address" with "avenue de la république paris"
-        And I click the "#contact-information-address-75111_8158" element
+        And I fill in "contact-information-address" with "avenue de la république bordeaux"
+        And I click the "#contact-information-address-33063_8132" element
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I fill in "identity_contactInformation_confirmationEmail" with "jean@test.com"
         And I fill in "identity_contactInformation_phone_number" with "0102020304"
@@ -73,8 +73,8 @@ Feature:
         And I select "99134" from "identity_civilState_birthLocation_country"
         And I fill in "identity_civilState_birthLocation_otherTown" with "Madrid"
         And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "abatteur_de_bestiaux"
-        And I fill in "contact-information-address" with "avenue de la république paris"
-        And I click the "#contact-information-address-75111_8158" element
+        And I fill in "contact-information-address" with "avenue de la république bordeaux"
+        And I click the "#contact-information-address-33063_8132" element
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I fill in "identity_contactInformation_confirmationEmail" with "jean@test.com"
         And I fill in "identity_contactInformation_phone_number" with "0102020304"
@@ -89,8 +89,8 @@ Feature:
         And I fill in "identity_civilState_birthDate" with "01/01/2000"
         And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
         And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "abatteur_de_bestiaux"
-        And I fill in "contact-information-address" with "avenue de la république paris"
-        And I click the "#contact-information-address-75111_8158" element
+        And I fill in "contact-information-address" with "avenue de la république bordeaux"
+        And I click the "#contact-information-address-33063_8132" element
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I fill in "identity_contactInformation_confirmationEmail" with "jean@test.com"
         And I press "identity_submit"
@@ -195,8 +195,8 @@ Feature:
         And I fill in "identity_civilState_birthDate" with "01/01/2000"
         And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
         And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "abatteur_de_bestiaux"
-        And I fill in "contact-information-address" with "avenue de la république paris"
-        And I click the "#contact-information-address-75111_8158" element
+        And I fill in "contact-information-address" with "avenue de la république bordeaux"
+        And I click the "#contact-information-address-33063_8132" element
         And I press "identity_submit"
         Then I should be on "/porter-plainte/identite"
         And I should see a "#form-errors-identity_contactInformation_email" element
@@ -209,8 +209,8 @@ Feature:
         And I fill in "identity_civilState_birthDate" with "01/01/2000"
         And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
         And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "abatteur_de_bestiaux"
-        And I fill in "contact-information-address" with "avenue de la république paris"
-        And I click the "#contact-information-address-75111_8158" element
+        And I fill in "contact-information-address" with "avenue de la république bordeaux"
+        And I click the "#contact-information-address-33063_8132" element
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I press "identity_submit"
         Then I should be on "/porter-plainte/identite"
@@ -225,8 +225,8 @@ Feature:
         And I click the "label[for=identity_declarantStatus_0]" element
         And I select "1" from "identity_civilState_familySituation"
         And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "abatteur_de_bestiaux"
-        And I fill in "contact-information-address" with "avenue de la république paris"
-        And I click the "#contact-information-address-75111_8158" element
+        And I fill in "contact-information-address" with "avenue de la république bordeaux"
+        And I click the "#contact-information-address-33063_8132" element
         And I fill in "identity_contactInformation_phone_number" with "0102030405"
         And I press "identity_submit"
         Then I should be on "/porter-plainte/faits"
@@ -237,7 +237,7 @@ Feature:
         And the "identity_civilState_birthDate" field should contain "1967-03-02"
         And the "identity_civilState_birthLocation_frenchTown" field should contain "75107"
         And the "identity_civilState_job" field should contain "abatteur_de_bestiaux"
-        And the "contact-information-address" field should contain "Avenue de la République 75011 Paris"
+        And the "contact-information-address" field should contain "Avenue de la République 33000 Bordeaux"
         And the "identity_contactInformation_email" field should contain "michel.dupont@example.com"
         And the "identity_contactInformation_phone_number" field should contain "1 02 03 04 05"
 
@@ -249,8 +249,8 @@ Feature:
         And I fill in "identity_civilState_birthDate" with "01/01/2000"
         And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
         And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "abatteur_de_bestiaux"
-        And I fill in "contact-information-address" with "avenue de la république paris"
-        And I click the "#contact-information-address-75111_8158" element
+        And I fill in "contact-information-address" with "avenue de la république bordeaux"
+        And I click the "#contact-information-address-33063_8132" element
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I fill in "identity_contactInformation_confirmationEmail" with "jean@test.com"
         And I fill in "identity_contactInformation_phone_number" with "0102030405"
@@ -263,27 +263,9 @@ Feature:
         And the "identity_civilState_birthDate" field should contain "2000-01-01"
         And the "identity_civilState_birthLocation_frenchTown" field should contain "75056"
         And the "identity_civilState_job" field should contain "abatteur_de_bestiaux"
-        And the "contact-information-address" field should contain "Avenue de la République 75011 Paris"
+        And the "contact-information-address" field should contain "Avenue de la République 33000 Bordeaux"
         And the "identity_contactInformation_email" field should contain "jean@test.com"
         And the "identity_contactInformation_phone_number" field should contain "1 02 03 04 05"
-
-    Scenario: I fill the identity form with an non etalab address, then I should see a google maps opened in the facts form
-        When I click the "label[for=identity_civilState_civility_0]" element
-        And I fill in "identity_civilState_birthName" with "Dupont"
-        And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
-        And I select "1" from "identity_civilState_familySituation"
-        And I fill in "identity_civilState_birthDate" with "01/01/2000"
-        And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
-        And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "abatteur_de_bestiaux"
-        And I fill in "contact-information-address" with "avenue de la république paris"
-        And I fill in "identity_contactInformation_email" with "jean@test.com"
-        And I fill in "identity_contactInformation_confirmationEmail" with "jean@test.com"
-        And I fill in "identity_contactInformation_phone_number" with "0102030405"
-        When I press "identity_submit"
-        Then I should be on "/porter-plainte/faits"
-        And I should see a "div#facts-map" element
-        And I should see a ".gm-style" element
-        And the marker should be at latitude "48.8650197" and longitude "2.3758909"
 
     Scenario: Submit the form, selecting birth country France, then Spain, then France again
         When I click the "label[for=identity_civilState_civility_0]" element
@@ -296,8 +278,8 @@ Feature:
         And I select "99160" from "identity_civilState_birthLocation_country"
         And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
         And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "abatteur_de_bestiaux"
-        And I fill in "contact-information-address" with "avenue de la république paris"
-        And I click the "#contact-information-address-75111_8158" element
+        And I fill in "contact-information-address" with "avenue de la république bordeaux"
+        And I click the "#contact-information-address-33063_8132" element
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I fill in "identity_contactInformation_confirmationEmail" with "jean@test.com"
         And I fill in "identity_contactInformation_phone_number" with "0102020304"

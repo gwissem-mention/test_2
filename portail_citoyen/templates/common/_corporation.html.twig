@@ -34,9 +34,10 @@
                 'data-live-id': 'corporation-address',
                 dataModel: 'addressSearch:corporationEtalabInput.addressSearch addressId:corporationEtalabInput.addressId addressSearchSaved:corporationEtalabInput.addressSearchSaved',
                 inputName: 'corporation-address',
-                dataGirondeEnabled : false,
+                dataGirondeEnabled : true,
                 disabled: form.vars.value.sameAddress ?? false,
                 errors: etalab_errors,
+                fromIdentity: true,
             }) }}
         {% elseif form.foreignAddress is defined %}
             {{ form_widget(form.foreignAddress) }}

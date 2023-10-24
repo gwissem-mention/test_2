@@ -28,8 +28,9 @@
                 'data-live-id': template_id ~ '-address',
                 dataModel: 'addressSearch:' ~ etalabPropertyName ~ '.addressSearch addressId:' ~ etalabPropertyName ~ '.addressId addressSearchSaved:' ~ etalabPropertyName ~ '.addressSearchSaved',
                 inputName: template_id ~ '-address',
-                dataGirondeEnabled : false,
+                dataGirondeEnabled : true,
                 errors: etalab_errors,
+                fromIdentity: true,
             }) }}
 	{% elseif form.foreignAddress is defined %}
 		{{ form_widget(form.foreignAddress) }}

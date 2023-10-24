@@ -18,8 +18,8 @@
 #        When I click the "label[for=identity_civilState_civility_0]" element
 #        And I select "1" from "identity_civilState_familySituation"
 #        And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "abatteur_de_bestiaux"
-#        And I fill in "contact-information-address" with "avenue de la république paris"
-#        And I click the "#contact-information-address-75111_8158" element
+#        And I fill in "contact-information-address" with "avenue de la république bordeaux"
+#        And I click the "#contact-information-address-33063_8132" element
 #        And I fill in "identity_contactInformation_phone_number" with "0101020304"
 #        And I fill in "identity_contactInformation_mobile_number" with "0601020304"
 #        # Person Legal Representative must be hidden for the experimentation
@@ -30,8 +30,8 @@
 ##        And I fill in "identity_representedPersonCivilState_birthDate" with "01/01/2010"
 ##        And I fill in the autocomplete "identity_representedPersonCivilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
 ##        And I fill in the autocomplete "identity_representedPersonCivilState_job-ts-control" with "Abatteur de bestiaux" and click "abatteur_de_bestiaux"
-##        And I fill in "represented-person-address" with "avenue de la république paris"
-##        And I click the "#represented-person-address-75111_8158" element
+##        And I fill in "represented-person-address" with "avenue de la république bordeaux"
+##        And I click the "#represented-person-address-33063_8132" element
 ##        And I fill in "identity_representedPersonContactInformation_email" with "jean@test.com"
 ##        And I fill in "identity_representedPersonContactInformation_phone_number" with "0101020304"
 #        And I press "identity_submit"
@@ -111,7 +111,7 @@
 #        And I should see the key "pel.nationality" translated
 #        And I should see "francaise"
 #        And I should see the key "pel.resides.at" translated
-#        And I should see "Avenue de la République 75011 Paris (France)"
+#        And I should see "Avenue de la République 33000 Bordeaux (France)"
 #        And I should see the key "pel.your.job" translated
 #        And I should see "Abatteur de bestiaux"
 #        And I should see the key "pel.phone" translated
@@ -136,7 +136,7 @@
 #        And I should see the key "pel.nationality" translated
 #        And I should see "francaise"
 #        And I should see the key "pel.resides.at" translated
-#        And I should see "Avenue de la République 75011 Paris (France)"
+#        And I should see "Avenue de la République 33000 Bordeaux (France)"
 #        And I should see the key "pel.your.job" translated
 #        And I should see the key "pel.phone" translated
 #        And I should see the key "pel.email.address" translated

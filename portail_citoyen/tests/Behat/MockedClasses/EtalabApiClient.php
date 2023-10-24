@@ -174,7 +174,7 @@ class EtalabApiClient implements EtalabApiClientInterface
             ],
             'attribution' => 'BAN',
             'licence' => 'ETALAB-2.0',
-            'query' => 'avenue de la république paris',
+            'query' => 'avenue de la république bordeaux',
             'limit' => 5,
         ];
     }
