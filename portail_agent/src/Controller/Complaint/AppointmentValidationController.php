@@ -14,8 +14,10 @@ use App\Referential\Repository\UnitRepository;
 use App\Repository\ComplaintRepository;
 use App\Salesforce\Messenger\Appointment\AppointmentMessage;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
@@ -31,12 +33,15 @@ class AppointmentValidationController extends AbstractController
         MessageBusInterface $bus,
         ApplicationTracesLogger $logger,
         UnitRepository $unitRepository,
+        EventDispatcherInterface $dispatcher,
     ): JsonResponse {
         $appointmentTypeMessage = ApplicationTracesMessage::APPOINTMENT_VALIDATION_MANAGEMENT;
 
+        $isUpdate = false;
         if ($complaint->getAppointmentTime() && $complaint->getAppointmentDate()) {
             $appointmentTypeMessage = ApplicationTracesMessage::APPOINTMENT_CHANGE_MANAGEMENT;
             $complaint->incrementAppointmentCancellationCounter();
+            $isUpdate = true;
         }
 
         $form = $this->createForm(AppointmentType::class, $complaint);
@@ -57,7 +62,10 @@ class AppointmentValidationController extends AbstractController
             $unitCode = $complaint->getUnitToReassign();
             $unit = $unitRepository->findOneBy(['code' => $unitCode]);
 
-            $bus->dispatch(new AppointmentMessage((int) $complaint->getId())); // Salesforce email
+            $dispatcher->addListener(KernelEvents::TERMINATE, function () use ($complaint, $isUpdate, $bus) {
+                $bus->dispatch(new AppointmentMessage((int) $complaint->getId(), $isUpdate));
+            });
+
             $bus->dispatch(new InfocentreMessage($appointmentTypeMessage, $complaint, $unit));
 
             return new JsonResponse();

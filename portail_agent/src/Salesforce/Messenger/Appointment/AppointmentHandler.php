@@ -33,6 +33,11 @@ class AppointmentHandler
         /** @var User $user */
         $user = $this->security->getUser();
 
+        if ($message->isUpdate()) {
+            $this->notifier->appointmentInit($complaint);
+            sleep(20); // Hack for salesforce purpose, else appointmentWarmup is called before appointmentInit
+        }
+
         $this->notifier->appointmentWarmup($complaint, (string) $user->getTimezone());
     }
 }
