@@ -168,7 +168,8 @@
                     inputName: 'facts-endAddress-address',
                     dataGirondeEnabled: true,
                     isBetweenTwoPlaces: form.address.startAddress is defined and form.address.endAddress is defined ? true : false,
-                    errors: etalab_errors
+                    errors: etalab_errors,
+                    required: form.address.endAddress.vars.required
                 }) }}
             </div>
         {% endif %}
