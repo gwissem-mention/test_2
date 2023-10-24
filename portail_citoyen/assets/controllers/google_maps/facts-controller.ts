@@ -113,7 +113,7 @@ export default class extends Controller {
                     const latLng: google.maps.LatLng | undefined = places[0]?.geometry?.location;
 
                     if (latLng) {
-                        await this.setAddress(latLng);
+                        await this.setAddress(latLng, places[0]?.formatted_address ?? null);
                     }
                 }
 
@@ -129,15 +129,19 @@ export default class extends Controller {
                 // @ts-ignore
                 const latLng: google.maps.LatLng | null = await e.latLng;
                 if (latLng) {
+                    const googleAddressLabel: string = await this.getGoogleAddress(latLng, true);
                     this.addMarker(latLng);
-                    await this.setAddress(latLng);
+                    await this.setAddress(latLng, googleAddressLabel);
                 }
             });
         }
     }
 
-    private async getEtalabAddress(latLng: google.maps.LatLng): Promise<object> {
-        const response = await fetch(`https://api-adresse.data.gouv.fr/reverse/?lon=${latLng.lng()}&lat=${latLng.lat()}`);
+    private async getEtalabAddress(latLng: google.maps.LatLng, addressLabel: string | null = null): Promise<object> {
+        const response: Response = addressLabel ?
+            await fetch(`https://api-adresse.data.gouv.fr/search/?q=${encodeURIComponent(addressLabel)}&lon=${latLng.lng()}&lat=${latLng.lat()}`) :
+            await fetch(`https://api-adresse.data.gouv.fr/reverse/?lon=${latLng.lng()}&lat=${latLng.lat()}`);
+
         const data = await response.json();
         let address: object = {};
 
@@ -148,17 +152,21 @@ export default class extends Controller {
         return address;
     }
 
-    private async getGoogleAddress(latLng: google.maps.LatLng) {
+    private async getGoogleAddress(latLng: google.maps.LatLng, exactAddress = false) {
         let label = "";
         const geocoder = new google.maps.Geocoder();
 
         await geocoder.geocode({"location": latLng}, (results, status) => {
             if (status === google.maps.GeocoderStatus.OK && results && results.length > 0) {
-                results.forEach((result) => {
-                    if (result.types.includes("route")) {
-                        label = result.formatted_address.replace("Route sans nom, ", "") ?? "";
-                    }
-                });
+                if (exactAddress) {
+                    label = results[0]?.formatted_address ?? "";
+                } else {
+                    results.forEach((result) => {
+                        if (result.types.includes("route")) {
+                            label = result.formatted_address.replace("Route sans nom, ", "") ?? "";
+                        }
+                    });
+                }
             }
         });
 
@@ -216,11 +224,10 @@ export default class extends Controller {
         return latLng;
     }
 
-    private async setAddress(latLng: google.maps.LatLng): Promise<void> {
-        const etalabAddress: object | null = await this.getEtalabAddress(latLng);
+    private async setAddress(latLng: google.maps.LatLng, addressLabel: string | null = null): Promise<void> {
+        const etalabAddress: object | null = await this.getEtalabAddress(latLng, addressLabel);
         const googleAddress:string = await this.getGoogleAddress(latLng);
         const errorMessageElement :HTMLElement | null = document.getElementById("error-message");
-
 
         // label prop is not present in Event type
         // @ts-ignore
