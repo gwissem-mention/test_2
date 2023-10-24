@@ -21,8 +21,8 @@ Feature:
         And I fill in "identity_civilState_birthDate" with "01/01/2000"
         And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"
         And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "abatteur_de_bestiaux"
-        And I fill in "contact-information-address" with "avenue de la république paris"
-        And I click the "#contact-information-address-75111_8158" element
+        And I fill in "contact-information-address" with "avenue de la république bordeaux"
+        And I click the "#contact-information-address-33063_8132" element
         And I fill in "identity_contactInformation_email" with "jean@test.com"
         And I fill in "identity_contactInformation_confirmationEmail" with "jean@test.com"
         And I fill in "identity_contactInformation_phone_number" with "0101020304"
@@ -32,16 +32,18 @@ Feature:
         And I fill in "identity_corporation_function" with "Directeur"
         And I fill in "identity_corporation_email" with "contact@mon-entreprise.fr"
         And I fill in "identity_corporation_phone_number" with "0102030405"
-        And I fill in "corporation-address" with "avenue de la république paris"
-        And I click the "#corporation-address-75111_8158" element
+        And I fill in "corporation-address" with "avenue de la république bordeaux"
+        And I click the "#corporation-address-33063_8132" element
         And I press "identity_submit"
         Then I should be on "/porter-plainte/faits"
         When I fill in "facts_description" with "description informations lorem ipsum dol or sit amet lorem ipsum dol or sit amet"
         And I click the "label[for=facts_victimOfViolence]" element
         And I fill in "facts_victimOfViolenceText" with "Violence informations"
         And I click the "label[for=facts_address_addressOrRouteFactsKnown_0]" element
-        And I fill in "facts-startAddress-address" with "1 test street"
-        And I fill in "facts-endAddress-address" with "2 test street"
+        And I fill in "facts-startAddress-address" with "avenue de la république bordeaux"
+        And I click the "#facts-startAddress-address-33063_8132" element
+        And I fill in "facts-endAddress-address" with "avenue de la république bordeaux"
+        And I click the "#facts-endAddress-address-33063_8132" element
         And I click the "label[for=facts_offenseDate_exactDateKnown_0]" element
         And I fill in "facts_offenseDate_startDate" with "01/01/2022"
         And I click the "label[for=facts_offenseDate_choiceHour_0]" element
@@ -68,7 +70,7 @@ Feature:
         And I fill in "objects_objects_2_documentType_documentAdditionalInformation_documentOwnerCompany" with "Amazon"
         And I fill in "objects_objects_2_documentType_documentAdditionalInformation_documentOwnerPhone_number" with "0612345678"
         And I fill in "objects_objects_2_documentType_documentAdditionalInformation_documentOwnerEmail" with "jean.dupont@example.com"
-        And I fill in "document_owner_address_2" with "Avenue de la République 75011 Paris"
+        And I fill in "document_owner_address_2" with "Avenue de la République 33000 Bordeaux"
         And I fill in "objects_objects_2_documentType_documentNumber" with "123"
         And I fill in "objects_objects_2_documentType_documentIssuedBy" with "Préfecture de Paris"
         And I fill in "objects_objects_2_documentType_documentIssuedOn" with "01/01/2010"
@@ -121,7 +123,7 @@ Feature:
         And I should see the key "pel.nationality" translated
         And I should see "francaise"
         And I should see the key "pel.resides.at" translated
-        And I should see "Avenue de la République 75011 Paris (France)"
+        And I should see "Avenue de la République 33000 Bordeaux (France)"
         And I should see the key "pel.your.job" translated
         And I should see "Abatteur de bestiaux"
         And I should see the key "pel.phone" translated
@@ -147,7 +149,7 @@ Feature:
         And I should see the key "pel.address.country" translated
         And I should see "France"
         And I should see the key "pel.address" translated
-        And I should see "Avenue de la République 75011 Paris (France)"
+        And I should see "Avenue de la République 33000 Bordeaux (France)"
         And I should see the key "pel.additional.factual.information" translated
         And I should see "Nature du lieu : Voie publique"
         And I should see "La victime affirme avoir identifié 1 témoin de l’infraction"
@@ -170,9 +172,7 @@ Feature:
         And I should see the key "pel.complaint.identity.corporation.legal.representative" translated
         And I should see the key "pel.victim.at.time.of.facts" translated
         And I should see the key "pel.address" translated
-        And I should see "1 test street"
         And I should see the key "pel.address.end" translated
-        And I should see "2 test street"
         And I should see the key "pel.complaint.exact.date.is.known" translated
         And I should see the key "pel.facts.offence.occurred" translated
         And I should see the key "pel.the" translated
@@ -205,7 +205,7 @@ Feature:
         And I should see "Amazon"
         And I should see "+33 6 12 34 56 78"
         And I should see "jean.dupont@example.com"
-        And I should see "Avenue de la république 75011 Paris"
+        And I should see "Avenue de la République 33000 Bordeaux"
         And I should see "123"
         And I should see "Préfecture de Paris"
         And I should see "Espagne"

@@ -7,17 +7,22 @@ namespace App\Form\EventListener;
 use App\Form\AddressEtalabType;
 use App\Form\ForeignAddressType;
 use App\Form\Model\Identity\EmbedAddressInterface;
+use App\Form\Validator\EtalabAddressValidator;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Validator\Constraints\Callback;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 class AddAddressSubscriber implements EventSubscriberInterface
 {
-    public function __construct(protected readonly int $franceCode)
-    {
+    public function __construct(
+        protected readonly int $franceCode,
+        private readonly EtalabAddressValidator $etalabAddressValidator
+    ) {
     }
 
     public static function getSubscribedEvents(): array
@@ -61,6 +66,11 @@ class AddAddressSubscriber implements EventSubscriberInterface
     ): void {
         $constraints = [
             new NotBlank(),
+            new Callback([
+                'callback' => function (?string $value, ExecutionContextInterface $context) {
+                    $this->etalabAddressValidator->validate($value, $context);
+                },
+            ]),
         ];
 
         if ($model instanceof EmbedAddressInterface && $model->isSameAddress()) {

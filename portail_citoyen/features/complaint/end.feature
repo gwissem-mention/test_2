@@ -14,8 +14,8 @@ Feature:
         And I click the "label[for=identity_declarantStatus_0]" element
         And I select "1" from "identity_civilState_familySituation"
         Given I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "abatteur_de_bestiaux"
-        And I fill in "contact-information-address" with "avenue de la république paris"
-        And I click the "#contact-information-address-75111_8158" element
+        And I fill in "contact-information-address" with "avenue de la république bordeaux"
+        And I click the "#contact-information-address-33063_8132" element
         And I fill in "identity_contactInformation_phone_number" with "0102020304"
         And I press "identity_submit"
         Then I should be on "/porter-plainte/faits"
@@ -23,8 +23,8 @@ Feature:
         And I click the "label[for=facts_victimOfViolence]" element
         And I fill in "facts_victimOfViolenceText" with "Violence informations"
         And I click the "label[for=facts_address_addressOrRouteFactsKnown_0]" element
-        And I fill in "facts-startAddress-address" with "1 test street"
-        And I fill in "facts-startAddress-address" with "2 test street"
+        And I fill in "facts-startAddress-address" with "avenue de la république bordeaux"
+        And I click the "#facts-startAddress-address-33063_8132" element
         And I click the "label[for=facts_offenseDate_exactDateKnown_0]" element
         And I fill in "facts_offenseDate_startDate" with "01/01/2022"
         And I click the "label[for=facts_offenseDate_choiceHour_0]" element
@@ -65,7 +65,7 @@ Feature:
     Scenario: I can see the required informations in the registered complaint page
         Then I should see the key "pel.end.thanks" translated
         And I should see the key "pel.download.my.declaration" translated
-      
+
 
     Scenario: I can click on the "Je donne mon avis" button and on the back to homepage button
         Then I should see the key "pel.your.opinion" translated

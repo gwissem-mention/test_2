@@ -41,6 +41,9 @@ class EtalabComponent
     public bool $dataGirondeEnabled;
 
     #[LiveProp]
+    public bool $fromIdentity = false;
+
+    #[LiveProp]
     public bool $isBetweenTwoPlaces = false;
 
     #[LiveProp(writable: true)]
@@ -93,7 +96,7 @@ class EtalabComponent
                     $departmentNumber = substr($address['properties']['citycode'], 0, 2);
 
                     if (!$this->addressZoneChecker->isInsideGironde($departmentNumber)) {
-                        $this->errors[] = 'Uniquement les adresses des faits commis en Gironde sont acceptées';
+                        $this->errors[] = $this->fromIdentity ? 'Uniquement les adresses en Gironde sont acceptées' : 'Uniquement les adresses des faits commis en Gironde sont acceptées';
 
                         return;
                     }

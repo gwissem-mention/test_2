@@ -14,8 +14,8 @@ Feature:
         And I click the "label[for=identity_declarantStatus_0]" element
         And I select "1" from "identity_civilState_familySituation"
         And I fill in the autocomplete "identity_civilState_job-ts-control" with "Abatteur de bestiaux" and click "abatteur_de_bestiaux"
-        And I fill in "contact-information-address" with "avenue de la république paris"
-        And I click the "#contact-information-address-75111_8158" element
+        And I fill in "contact-information-address" with "avenue de la république bordeaux"
+        And I click the "#contact-information-address-33063_8132" element
         And I fill in "identity_contactInformation_phone_number" with "0102020304"
         And I press "identity_submit"
         Then I should be on "/porter-plainte/faits"
@@ -114,15 +114,14 @@ Feature:
 
     Scenario: Submit the facts form
         When I fill in "facts_description" with "description informations lorem ipsum dol or sit amet lorem ipsum dol or sit amet"
-        And I click the "label[for=facts_address_addressOrRouteFactsKnown_0]" element
-        And I fill in "facts-startAddress-address" with "1 test street"
-        And I fill in "facts-startAddress-address" with "2 test street"
+        And I select "1" from "facts_placeNature"
+        And I select "10" from "facts_subPlaceNature"
+        And I fill in "facts-startAddress-address" with "avenue de la république bordeaux"
+        And I click the "#facts-startAddress-address-33063_8132" element
         And I click the "label[for=facts_offenseDate_exactDateKnown_0]" element
         And I fill in "facts_offenseDate_startDate" with "01/01/2022"
         And I click the "label[for=facts_offenseDate_choiceHour_0]" element
         And I fill in "facts_offenseDate_hour" with "15:00"
-        And I select "1" from "facts_placeNature"
-        And I select "10" from "facts_subPlaceNature"
         And I press "facts_submit"
         Then I should be on "/porter-plainte/objets"
 
@@ -156,7 +155,7 @@ Feature:
 
     Scenario: The field start address should be filled with identity address when place nature is home and addressOrRouteFactsKnown is checked
         And I select "1" from "facts_placeNature"
-        Then the "facts-startAddress-address" field should contain "Avenue de la République 75011 Paris"
+        Then the "facts-startAddress-address" field should contain "Avenue de la République 33000 Bordeaux"
 
     Scenario: The Google Maps should not be displays at init
         Then I should not see a "div#facts-map" element
@@ -283,22 +282,24 @@ Feature:
 
     Scenario: I should not see an error if I fill "Transports" addresses with 2 non-Etalab addresses
         When I select "9" from "facts_placeNature"
-        And I fill in "facts-startAddress-address" with "1 street test"
-        And I fill in "facts-endAddress-address" with "2 street test"
+        And I fill in "facts-startAddress-address" with "avenue de la république bordeaux"
+        And I click the "#facts-startAddress-address-33063_8132" element
+        And I fill in "facts-endAddress-address" with "avenue de la république bordeaux"
+        And I click the "#facts-endAddress-address-33063_8132" element
         And I should not see "Uniquement les trajets vers la Gironde ou depuis la Gironde sont acceptés"
 
     Scenario: I should not see an error if I fill "Transports" addresses with 2 Etalab addresses, start inside Gironde department and end outside
         When I select "9" from "facts_placeNature"
         And I fill in "facts-startAddress-address" with "avenue de la république bordeaux"
         And I click the "#facts-startAddress-address-33063_8132" element
-        And I fill in "facts-endAddress-address" with "avenue de la république paris"
-        And I click the "#facts-endAddress-address-75111_8158" element
+        And I fill in "facts-endAddress-address" with "avenue de la république bordeaux"
+        And I click the "#facts-endAddress-address-33063_8132" element
         And I should not see "Uniquement les trajets vers la Gironde ou depuis la Gironde sont acceptés"
 
     Scenario: I should not see an error if I fill "Transports" addresses with 2 Etalab addresses, start outside Gironde department and end inside
         When I select "9" from "facts_placeNature"
-        And I fill in "facts-startAddress-address" with "avenue de la république paris"
-        And I click the "#facts-startAddress-address-75111_8158" element
+        And I fill in "facts-startAddress-address" with "avenue de la république bordeaux"
+        And I click the "#facts-startAddress-address-33063_8132" element
         And I fill in "facts-endAddress-address" with "avenue de la république bordeaux"
         And I click the "#facts-endAddress-address-33063_8132" element
         And I should not see "Uniquement les trajets vers la Gironde ou depuis la Gironde sont acceptés"
@@ -312,7 +313,7 @@ Feature:
 
     Scenario: I should have the facts address input changed when I fill an address different than the identity
         When I select "1" from "facts_placeNature"
-        Then the "facts-startAddress-address" field should contain "Avenue de la République 75011 Paris"
+        Then the "facts-startAddress-address" field should contain "Avenue de la République 33000 Bordeaux"
         When I fill in "facts-startAddress-address" with "Avenue de la République Bordeaux"
         And I click the "#facts-startAddress-address-33063_8132" element
         Then the "facts-startAddress-address" field should contain "Avenue de la République 33000 Bordeaux"
@@ -320,8 +321,8 @@ Feature:
     Scenario: I should see the correct facts address when I submit the form with a different address than identity
         When I fill in "facts_description" with "description informations lorem ipsum dol or sit amet lorem ipsum dol or sit amet"
         And I click the "label[for=facts_address_addressOrRouteFactsKnown_0]" element
-        And I fill in "facts-startAddress-address" with "1 test street"
-        And I fill in "facts-startAddress-address" with "2 test street"
+        And I fill in "facts-startAddress-address" with "avenue de la république bordeaux"
+        And I click the "#facts-startAddress-address-33063_8132" element
         And I click the "label[for=facts_offenseDate_exactDateKnown_0]" element
         And I fill in "facts_offenseDate_startDate" with "01/01/2022"
         And I click the "label[for=facts_offenseDate_choiceHour_0]" element

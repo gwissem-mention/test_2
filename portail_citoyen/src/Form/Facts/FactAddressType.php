@@ -10,6 +10,7 @@ use App\Form\AddressEtalabType;
 use App\Form\Model\Address\AddressEtalabModel;
 use App\Form\Model\EtalabInput;
 use App\Form\Model\Facts\FactAddressModel;
+use App\Form\Validator\EtalabAddressValidator;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -30,7 +31,8 @@ class FactAddressType extends AbstractType
 
     public function __construct(
         private readonly AddressEtalabHandler $addressEtalabHandler,
-        private readonly AddressZoneChecker $addressZoneChecker
+        private readonly AddressZoneChecker $addressZoneChecker,
+        private readonly EtalabAddressValidator $etalabAddressValidator
     ) {
     }
 
@@ -107,6 +109,11 @@ class FactAddressType extends AbstractType
         if (true === $choice || false === $form->getConfig()->getOption('address_or_route_facts_known_show')) {
             $endAddressConstraints = [
                 new Callback([$this, 'validateAddresses']),
+                new Callback([
+                    'callback' => function (?string $value, ExecutionContextInterface $context) {
+                        $this->etalabAddressValidator->validate($value, $context);
+                    },
+                ]),
             ];
             if (self::NATURE_PLACE_TRANSPORTS === $naturePlace) {
                 $endAddressConstraints[] = new NotBlank();
@@ -120,6 +127,11 @@ class FactAddressType extends AbstractType
                         'address_constraints' => [
                             new NotBlank(),
                             new Callback([$this, 'validateAddresses']),
+                            new Callback([
+                                'callback' => function (?string $value, ExecutionContextInterface $context) {
+                                    $this->etalabAddressValidator->validate($value, $context);
+                                },
+                            ]),
                         ],
                     ]);
             }
