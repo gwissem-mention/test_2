@@ -14,6 +14,7 @@ class Comment
 {
     public const UNIT_REASSIGNMENT_REASON = 'pel.comment.unit.reassignment.reason';
     public const UNIT_REASSIGNMENT_REJECT_REASON = 'pel.comment.unit.reassignment.reject.reason';
+    public const COMPLAINT_REFUSAL_REASON = 'pel.comment.complaint.refusal.reason';
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -22,6 +23,9 @@ class Comment
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $title = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $subtitle = null;
 
     #[ORM\Column(type: Types::TEXT)]
     #[Assert\Length(max: 2000)]
@@ -56,6 +60,18 @@ class Comment
     public function setTitle(?string $title): self
     {
         $this->title = $title;
+
+        return $this;
+    }
+
+    public function getSubtitle(): ?string
+    {
+        return $this->subtitle;
+    }
+
+    public function setSubtitle(?string $subtitle): self
+    {
+        $this->subtitle = $subtitle;
 
         return $this;
     }

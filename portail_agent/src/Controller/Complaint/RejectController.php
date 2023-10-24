@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Complaint;
 
+use App\Complaint\CommentHandler;
 use App\Complaint\ComplaintWorkflowException;
 use App\Complaint\ComplaintWorkflowManager;
 use App\Entity\Complaint;
@@ -37,6 +38,7 @@ class RejectController extends AbstractController
         ComplaintWorkflowManager $complaintWorkflowManager,
         ApplicationTracesLogger $logger,
         UnitRepository $unitRepository,
+        CommentHandler $commentHandler,
     ): JsonResponse {
         $form = $this->createForm(RejectType::class, $complaint);
         $form->handleRequest($request);
@@ -46,6 +48,9 @@ class RejectController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $complaintWorkflowManager->reject($complaint);
+
+            $commentHandler->addRefusalReason($complaint);
+
             $complaintRepository->save($complaint->setRejectedAt(new \DateTimeImmutable()), true);
 
             $logger->log(ApplicationTracesMessage::message(
