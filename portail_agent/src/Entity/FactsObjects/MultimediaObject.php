@@ -30,6 +30,9 @@ class MultimediaObject extends AbstractObject
     #[ORM\Column(nullable: true)]
     private ?string $serialNumber = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?string $imei = null;
+
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $description = null;
 
@@ -221,6 +224,18 @@ class MultimediaObject extends AbstractObject
     public function setOwnerFirstname(?string $ownerFirstname): self
     {
         $this->ownerFirstname = $ownerFirstname;
+
+        return $this;
+    }
+
+    public function getImei(): ?string
+    {
+        return $this->imei;
+    }
+
+    public function setImei(?string $imei): self
+    {
+        $this->imei = $imei;
 
         return $this;
     }

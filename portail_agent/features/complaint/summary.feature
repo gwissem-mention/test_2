@@ -166,6 +166,7 @@ Feature:
         And I should see "Playstation 4"
         And I should see "Sony"
         And I should see "1234567890"
+        And I should see "ABCD-1234"
         And I should see "Description console"
         And I should see "CHEQUIER"
         And I should see "Mon chéquier"

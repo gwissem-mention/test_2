@@ -70,6 +70,7 @@ JSON;
             "phoneNumberLine": null,
             "operator": null,
             "serialNumber": null,
+            "imei": null,
             "description": "Description",
             "quantity": null,
             "bank": null,
@@ -168,6 +169,7 @@ JSON;
             "phoneNumberLine": null,
             "operator": null,
             "serialNumber": null,
+            "imei": null,
             "description": null,
             "quantity": null,
             "bank": "BNP",
@@ -216,6 +218,7 @@ JSON;
             "phoneNumberLine": null,
             "operator": null,
             "serialNumber": null,
+            "imei": null,
             "description": "Description PC",
             "quantity": null,
             "bank": null,
@@ -266,6 +269,7 @@ JSON;
             "phoneNumberLine": null,
             "operator": null,
             "serialNumber": null,
+            "imei": null,
             "description": null,
             "quantity": null,
             "bank": null,
@@ -316,6 +320,7 @@ JSON;
             "phoneNumberLine": null,
             "operator": null,
             "serialNumber": null,
+            "imei": null,
             "description": null,
             "quantity": null,
             "bank": null,
@@ -366,6 +371,7 @@ JSON;
             "phoneNumberLine": null,
             "operator": null,
             "serialNumber": "A9999",
+            "imei": null,
             "description": "Carte de collection",
             "quantity": 1,
             "bank": null,
@@ -420,6 +426,7 @@ JSON;
             },
             "operator": "SFR",
             "serialNumber": "111222333343",
+            "imei": "ABCD-1234",
             "description": "Description téléphone",
             "quantity": null,
             "bank": null,
@@ -470,6 +477,7 @@ JSON;
             "phoneNumberLine": null,
             "operator": null,
             "serialNumber": null,
+            "imei": null,
             "description": null,
             "quantity": null,
             "bank": "BNP",
@@ -630,6 +638,7 @@ JSON;
         $this->assertSame('Inspiron 7', $object->getModel());
         $this->assertNull($object->getOperator());
         $this->assertNull($object->getSerialNumber());
+        $this->assertNull($object->getImei());
         $this->assertNull($object->getPhoneNumber());
         $this->assertSame('Description PC', $object->getDescription());
         $this->assertSame('DURAND', $object->getOwnerLastname());
@@ -645,6 +654,7 @@ JSON;
         $this->assertSame('Iphone 11', $object->getModel());
         $this->assertSame('SFR', $object->getOperator());
         $this->assertSame('111222333343', $object->getSerialNumber());
+        $this->assertSame('ABCD-1234', $object->getImei());
         $this->assertSame('+33 649956685', $object->getPhoneNumber());
         $this->assertSame('Description téléphone', $object->getDescription());
         $this->assertSame(1200.0, $object->getAmount());

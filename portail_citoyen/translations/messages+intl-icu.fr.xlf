@@ -1900,15 +1900,15 @@
             </trans-unit>
             <trans-unit id="pel.serial.number">
                 <source>pel.serial.number</source>
-                <target>N° de série/IMEI</target>
+                <target>N° de série</target>
             </trans-unit>
             <trans-unit id="pel.other.serial.number">
                 <source>pel.other.serial.number</source>
                 <target>N° de série</target>
             </trans-unit>
-            <trans-unit id="pel.serial.number.help">
-                <source>pel.serial.number.help</source>
-                <target>Ce numéro est nécessaire pour identifier votre téléphone. Si vous n’êtes pas en mesure de le fournir sur ce formulaire, il vous sera demandé plus tard</target>
+            <trans-unit id="pel.imei.help">
+                <source>pel.imei.help</source>
+                <target>Ce numéro est nécessaire pour identifier votre appareil. Si vous n’êtes pas en mesure de le fournir sur ce formulaire, il vous sera demandé plus tard</target>
             </trans-unit>
             <trans-unit id="pel.sir">
                 <source>pel.sir</source>
@@ -3289,6 +3289,10 @@
             <trans-unit id="pel.at.least.one.phone.number.is.required">
                 <source>pel.at.least.one.phone.number.is.required</source>
                 <target>La saisie d'au moins un des deux numéros de téléphone est obligatoire.</target>
+            </trans-unit>
+            <trans-unit id="pel.imei">
+                <source>pel.imei</source>
+                <target>N° IMEI</target>
             </trans-unit>
         </body>
     </file>

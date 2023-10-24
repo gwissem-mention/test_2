@@ -487,6 +487,9 @@
             {% if object.serialNumber %}
                 - {{ object.serialNumber }}
             {% endif %}
+            {% if object.imei %}
+                - {{ object.imei }}
+            {% endif %}
             {% if object.description is not null %}
                 - {{ object.description }}
             {% endif %}

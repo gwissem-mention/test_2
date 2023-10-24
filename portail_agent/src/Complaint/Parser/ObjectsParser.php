@@ -68,6 +68,7 @@ use League\Flysystem\FilesystemException;
  *      files: array<JsonFile>,
  *      creditCardNumber: string|null,
  *      quantity: int|null,
+ *      imei: string|null,
  *  }
  *
  * @phpstan-import-type JsonComplaint from ComplaintFileParser
@@ -185,6 +186,7 @@ class ObjectsParser
             ->setBrand($objectInput->brand)
             ->setModel($objectInput->model)
             ->setSerialNumber($objectInput->serialNumber)
+            ->setImei($objectInput->imei)
             ->setDescription($objectInput->description);
 
         if (self::MOBILE_PHONE === $objectInput->category->code) {

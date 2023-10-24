@@ -114,6 +114,9 @@
             {% if object.serialNumber is not null %}
                 <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.serial.number'|trans }} : <b>{{ object.serialNumber }}</b></li>
             {% endif %}
+            {% if object.imei is not null %}
+                <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.imei'|trans }} : <b>{{ object.imei }}</b></li>
+            {% endif %}
             {% if object.description is not null %}
                 <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.description'|trans }} : {{ object.description }}</li>
             {% endif %}
@@ -160,6 +163,9 @@
             {% endif %}
             {% if object.serialNumber is not null %}
                 <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.serial.number'|trans }} : <b>{{ object.serialNumber }}</b></li>
+            {% endif %}
+            {% if object.imei is not null %}
+                <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.imei'|trans }} : <b>{{ object.imei }}</b></li>
             {% endif %}
             {% if object.description is not null %}
                 <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.description'|trans }} : {{ object.description }}</li>

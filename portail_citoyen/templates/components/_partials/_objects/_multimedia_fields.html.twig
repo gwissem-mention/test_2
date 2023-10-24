@@ -19,6 +19,9 @@
 {% if object.serialNumber is defined %}
     {{ form_row(object.serialNumber) }}
 {% endif %}
+{% if object.imei is defined %}
+    {{ form_row(object.imei) }}
+{% endif %}
 {% if object.description is defined and object.category.vars.value in ["3", "7"] %}
     <div class="fr-mb-4v">
         {% embed 'embed/counter.html.twig' with {
