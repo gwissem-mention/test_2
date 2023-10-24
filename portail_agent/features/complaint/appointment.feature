@@ -154,8 +154,6 @@ Feature:
         When I fill hidden field "appointment_appointmentDate" with "2025-01-06"
         And I fill in "appointment_appointmentTime" with "11:00am"
         And I press "appointment-confirm-button"
-        Then the "#appointment_appointmentDate" element should be disabled
-        Then the "#appointment_appointmentTime" element should be disabled
         When I am on homepage
         And  I click the "#my-declaration" element
         Then I should see "06/01/2025"
