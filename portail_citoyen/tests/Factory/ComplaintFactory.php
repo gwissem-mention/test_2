@@ -226,6 +226,7 @@ class ComplaintFactory
                 ->setDescription('Description téléphone')
                 ->setPhoneNumberLine($this->createPhone())
                 ->setOperator('Orange')
+                ->setImei('ABCD')
                 ->setSerialNumber('1234567890'))
             ->addObject((new ObjectModel())
                 ->setCategory(7)

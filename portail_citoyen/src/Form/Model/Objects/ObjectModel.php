@@ -55,6 +55,7 @@ class ObjectModel
     private ?string $checkNumber = null;
     private ?string $checkFirstNumber = null;
     private ?string $checkLastNumber = null;
+    private ?string $imei = null;
 
     /**
      * @var Collection<int, FileModel>
@@ -590,6 +591,18 @@ class ObjectModel
     public function setCheckLastNumber(?string $checkLastNumber): self
     {
         $this->checkLastNumber = $checkLastNumber;
+
+        return $this;
+    }
+
+    public function getImei(): ?string
+    {
+        return $this->imei;
+    }
+
+    public function setImei(?string $imei): self
+    {
+        $this->imei = $imei;
 
         return $this;
     }

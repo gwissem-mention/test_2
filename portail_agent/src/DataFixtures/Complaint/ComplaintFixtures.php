@@ -344,6 +344,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                     ->setModel('iPhone 13')
                     ->setOperator('Orange')
                     ->setSerialNumber('1234567890')
+                    ->setImei('ABCD-1234')
                     ->setDescription('Description smartphone')
                     ->setPhoneNumber('06 12 34 56 67')
                     ->setStillOnWhenMobileStolen(true)
@@ -360,6 +361,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                     ->setBrand('Sony')
                     ->setModel('Playstation 4')
                     ->setSerialNumber('1234567890')
+                    ->setImei('ABCD-1234')
                     ->setDescription('Description console')
             )
             ->addObject(

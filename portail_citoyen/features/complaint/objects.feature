@@ -57,7 +57,8 @@ Feature:
         And I should see the key "pel.mobile.phone.help" translated
         And I should see the key "pel.operator" translated
         And I should see the key "pel.serial.number" translated
-        And I should see the key "pel.serial.number.help" translated
+        And I should see the key "pel.imei" translated
+        And I should see the key "pel.imei.help" translated
         And I should see the key "pel.description" translated
         And I should see the key "pel.amount" translated
         And I should see the key "pel.object.status" translated
@@ -67,6 +68,8 @@ Feature:
         Then I should see the key "pel.brand" translated
         And I should see the key "pel.model" translated
         And I should see the key "pel.serial.number" translated
+        And I should see the key "pel.imei" translated
+        And I should see the key "pel.imei.help" translated
         And I should see the key "pel.description" translated
         And I should see the key "pel.amount" translated
         And I should see the key "pel.object.status" translated
@@ -191,7 +194,7 @@ Feature:
     Scenario: I can see 4 radios buttons, a text and a required checkbox when I have a mobile phone stolen
         When I select "Téléphone portable" from "objects_objects_0_category"
         And I select "1" from "objects_objects_0_status"
-        And I fill in "objects_objects_0_serialNumber" with "1234"
+        And I fill in "objects_objects_0_imei" with "1234"
         Then I should see the key "pel.still.on.when.mobile.stolen" translated
         And I should see a "input[type=radio]#objects_objects_0_stillOnWhenMobileStolen_0" element
         And I should see a "input[type=radio]#objects_objects_0_stillOnWhenMobileStolen_1" element

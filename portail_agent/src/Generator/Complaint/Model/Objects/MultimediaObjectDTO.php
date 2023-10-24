@@ -25,15 +25,18 @@ class MultimediaObjectDTO extends AbstractObjectDTO
     private ?string $amount;
     private ?string $phoneDescription = null;
     private ?string $phoneSerialNumber = null;
+    private ?string $phoneIMEI = null;
+    private ?string $IMEI;
 
     public function __construct(MultimediaObject $object)
     {
         // parent::__construct($object);
         $this->nature = $object->getNature() ?? '';
-        $this->serialNumber = $object->getSerialNumber() ? strval($object->getSerialNumber()) : '';
+        $this->serialNumber = $object->getSerialNumber() ?? '';
         $this->phoneNumber = $object->getPhoneNumber();
         $this->operator = $object->getOperator();
         $this->description = $this->getStatusAsString((int) $object->getStatus()).' - '.$object->getDescription();
+        $this->IMEI = $object->getImei() ?? '';
         switch ($object->getNature()) {
             case 'TELEPHONE PORTABLE':
                 $this->phoneStatus = AbstractObject::STATUS_STOLEN === $object->getStatus() ? 'volé' : 'dégradé';
@@ -41,7 +44,8 @@ class MultimediaObjectDTO extends AbstractObjectDTO
                 $this->phoneModel = $object->getModel();
                 $this->phoneDescription = $object->getDescription().'. '.$object->getBrand().' '.$object->getModel();
                 $this->phoneSerialNumber = $object->getSerialNumber();
-                $this->description = '';
+                $this->phoneIMEI = $object->getImei();
+                $this->serialNumber = $this->IMEI = $this->description = '';
                 break;
             case 'MULTIMEDIA':
                 $this->status = AbstractObject::STATUS_STOLEN === $object->getStatus() ? 'volé' : 'dégradé';
@@ -75,6 +79,8 @@ class MultimediaObjectDTO extends AbstractObjectDTO
             'Objet_Multimedia_Prejudice_Estimation' => $this->amount,
             'Objet_Multimedia_Description_Tel' => $this->phoneDescription,
             'Objet_Multimedia_Numeros_Serie_Tel' => $this->phoneSerialNumber,
+            'Objet_Multimedia_IMEI_Tel' => $this->phoneIMEI,
+            'Objet_Multimedia_IMEI' => $this->IMEI,
 //            'Objet_Multimedia_Opposition' => $this->opposition,
 //            'Objet_Multimedia_Nmr_Sim' => $this->simNumber,
             // 'Objet_Multimedia_Identite_Victime' => $this->identityVictim,

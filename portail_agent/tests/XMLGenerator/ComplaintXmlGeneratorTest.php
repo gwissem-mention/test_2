@@ -168,6 +168,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
                     ->setDescription('Iphone 13 de couleur grise')
                     ->setOperator('Orange')
                     ->setSerialNumber('1234567890')
+                    ->setImei('ABCD-1234')
                     ->setPhoneNumber('06 12 34 56 67')
                     ->setAmount(999)
             )
@@ -178,6 +179,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
                     ->setBrand('Sony')
                     ->setModel('Playstation 4')
                     ->setSerialNumber('1324354657')
+                    ->setImei('BBBB-1234')
                     ->setDescription('Description console')
                     ->setAmount(499)
             )
@@ -509,7 +511,8 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
     {
         $this->assertStringContainsString('<Objet_Multimedia>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_Multimedia_Nature>TELEPHONE PORTABLE</Objet_Multimedia_Nature>', $this->xmlContent);
-        $this->assertStringContainsString('<Objet_Multimedia_Numeros_Serie>1234567890</Objet_Multimedia_Numeros_Serie>', $this->xmlContent);
+        $this->assertStringContainsString('<Objet_Multimedia_Numeros_Serie>1324354657</Objet_Multimedia_Numeros_Serie>', $this->xmlContent);
+        $this->assertStringContainsString('<Objet_Multimedia_IMEI>BBBB-1234</Objet_Multimedia_IMEI>', $this->xmlContent);
         $this->assertStringNotContainsString('<Objet_Multimedia_Description>Statut : volé - Iphone 13 de couleur grise</Objet_Multimedia_Description>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_Multimedia_Nmr_Tel>06 12 34 56 67</Objet_Multimedia_Nmr_Tel>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_Multimedia_Statut_Tel>volé</Objet_Multimedia_Statut_Tel>', $this->xmlContent);
@@ -524,6 +527,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Objet_Multimedia_Prejudice_Estimation>999</Objet_Multimedia_Prejudice_Estimation>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_Multimedia_Description_Tel>Iphone 13 de couleur grise. Apple iPhone 13</Objet_Multimedia_Description_Tel>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_Multimedia_Numeros_Serie_Tel>1234567890</Objet_Multimedia_Numeros_Serie_Tel>', $this->xmlContent);
+        $this->assertStringContainsString('<Objet_Multimedia_IMEI_Tel>ABCD-1234</Objet_Multimedia_IMEI_Tel>', $this->xmlContent);
         //        $this->assertStringContainsString('<Objet_Multimedia_Opposition>Oui</Objet_Multimedia_Opposition>', $this->xmlContent);
         //        $this->assertStringContainsString('<Objet_Multimedia_Nmr_Sim>1234567809</Objet_Multimedia_Nmr_Sim>', $this->xmlContent);
         // $this->assertStringContainsString('<Objet_Multimedia_Identite_Nom>DURAND</Objet_Multimedia_Identite_Nom>', $this->xmlContent);

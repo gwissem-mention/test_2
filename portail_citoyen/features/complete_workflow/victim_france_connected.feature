@@ -65,6 +65,7 @@ Feature:
         And I fill in "objects_objects_3_phoneNumberLine_number" with "612345678"
         And I fill in "objects_objects_3_operator" with "SFR"
         And I fill in "objects_objects_3_serialNumber" with "123456783"
+        And I fill in "objects_objects_3_imei" with "ABCD"
         And I fill in "objects_objects_3_description" with "Ceci est une description test pour mon smartphone."
         And I press "objects_objects_add"
         And I select "7" from "objects_objects_4_category"
@@ -208,6 +209,7 @@ Feature:
         And I should see the key "pel.mobile" translated
         And I should see the key "pel.operator" translated
         And I should see the key "pel.serial.number" translated
+        And I should see the key "pel.imei" translated
         And I should see the key "pel.description" translated
         And I should see "Téléphone portable"
         And I should see "OnePlus"
@@ -215,6 +217,7 @@ Feature:
         And I should see "+33 6 12 34 56 78"
         And I should see "SFR"
         And I should see "123456783"
+        And I should see "N° de série : 1234"
         And I should see "Ceci est une description test pour mon smartphone."
         And I should not see the key "pel.owner.lastname.firstname" translated
         And I should see "Sony"

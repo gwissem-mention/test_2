@@ -87,7 +87,7 @@ class ObjectType extends AbstractType
                 $form = $event->getForm();
                 $this->addCategoryFields($form, $objectModel?->getCategory());
 
-                if (ObjectModel::STATUS_STOLEN === $objectModel?->getStatus() && !empty($objectModel->getSerialNumber()) && $objectModel->getCategory() === $this->objectCategories['pel.object.category.mobile.phone']) {
+                if (ObjectModel::STATUS_STOLEN === $objectModel?->getStatus() && !empty($objectModel->getImei()) && $objectModel->getCategory() === $this->objectCategories['pel.object.category.mobile.phone']) {
                     $this->addAdditionalMobileFields($form);
                 }
 
@@ -115,7 +115,7 @@ class ObjectType extends AbstractType
                 /** @var string $paymentCategory */
                 $paymentCategory = $data['paymentCategory'] ?? '';
 
-                if (!empty($status) && (string) ObjectModel::STATUS_STOLEN === $status && !empty($data['serialNumber']) && !empty($category) && (int) $category === $this->objectCategories['pel.object.category.mobile.phone']) {
+                if (!empty($status) && (string) ObjectModel::STATUS_STOLEN === $status && !empty($data['imei']) && !empty($category) && (int) $category === $this->objectCategories['pel.object.category.mobile.phone']) {
                     $this->addAdditionalMobileFields($form);
                 } else {
                     $this->removeAdditionalMobileFields($form);
@@ -307,14 +307,14 @@ class ObjectType extends AbstractType
                 'label' => 'pel.operator',
                 'required' => false,
             ])
-            ->add('serialNumber', TextType::class, [
+            ->add('imei', TextType::class, [
                 'constraints' => [
                     new Length([
                         'max' => 20,
                     ]),
                 ],
-                'help' => 'pel.serial.number.help',
-                'label' => 'pel.serial.number',
+                'help' => 'pel.imei.help',
+                'label' => 'pel.imei',
                 'required' => false,
             ])
             ->add('description', TextareaType::class, [
@@ -333,6 +333,8 @@ class ObjectType extends AbstractType
                     'maxlength' => 255,
                 ],
             ]);
+
+        $this->addSerialNumber($form);
     }
 
     private function addCategoryPaymentWaysFields(FormInterface $form): void
@@ -524,6 +526,7 @@ class ObjectType extends AbstractType
             ->remove('phoneNumberLine')
             ->remove('operator')
             ->remove('serialNumber')
+            ->remove('imei')
             ->remove('description');
 
         $objectModel
@@ -532,6 +535,7 @@ class ObjectType extends AbstractType
             ->setPhoneNumberLine(null)
             ->setOperator(null)
             ->setSerialNumber(null)
+            ->setImei(null)
             ->setDescription(null);
     }
 
@@ -580,10 +584,10 @@ class ObjectType extends AbstractType
     private function removeCategoryDocumentFields(FormInterface $form, ?ObjectModel $objectModel): void
     {
         $form->remove('documentType')
-             ->remove('description');
+            ->remove('description');
 
         $objectModel?->setDescription(null)
-                    ?->setDocumentType(null);
+            ?->setDocumentType(null);
     }
 
     private function addAdditionalMobileFields(FormInterface $form): void
@@ -696,13 +700,14 @@ class ObjectType extends AbstractType
                 'label' => 'pel.model',
                 'required' => false,
             ])
-            ->add('serialNumber', TextType::class, [
+            ->add('imei', TextType::class, [
                 'constraints' => [
                     new Length([
                         'max' => 20,
                     ]),
                 ],
-                'label' => 'pel.serial.number',
+                'help' => 'pel.imei.help',
+                'label' => 'pel.imei',
                 'required' => false,
             ])
             ->add('description', TextareaType::class, [
@@ -722,6 +727,8 @@ class ObjectType extends AbstractType
                 ],
             ]);
 
+        $this->addSerialNumber($form);
+
         if (DeclarantStatus::CorporationLegalRepresentative->value === $this->sessionHandler->getComplaint()?->getIdentity()?->getDeclarantStatus()) {
             $this->addOwnerInformation($form);
         }
@@ -734,6 +741,7 @@ class ObjectType extends AbstractType
             ->remove('brand')
             ->remove('model')
             ->remove('serialNumber')
+            ->remove('imei')
             ->remove('description');
 
         $objectModel
@@ -741,6 +749,7 @@ class ObjectType extends AbstractType
             ->setBrand(null)
             ->setModel(null)
             ->setSerialNumber(null)
+            ->setImei(null)
             ->setDescription(null);
 
         $this->removeOwnerInformation($form, $objectModel);
@@ -837,5 +846,18 @@ class ObjectType extends AbstractType
     {
         $form->remove('label');
         $objectModel?->setLabel(null);
+    }
+
+    private function addSerialNumber(FormInterface $form): void
+    {
+        $form->add('serialNumber', TextType::class, [
+            'constraints' => [
+                new Length([
+                    'max' => 20,
+                ]),
+            ],
+            'label' => 'pel.serial.number',
+            'required' => false,
+        ]);
     }
 }

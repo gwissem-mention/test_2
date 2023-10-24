@@ -177,6 +177,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                         ->setModel($this->randomString(['Iphone', 'Iphone 13', 'Iphone 14']))
                         ->setOperator($this->randomString(['Orange', 'SFR', 'Bouygues', 'Free']))
                         ->setSerialNumber('1234567890')
+                        ->setImei('ABCD-1234')
                         ->setStillOnWhenMobileStolen(true)
                         ->setKeyboardLockedWhenMobileStolen(false)
                         ->setPinEnabledWhenMobileStolen(true)
@@ -193,6 +194,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                         ->setModel($this->randomString(['S20', 'S21', 'S22', 'S23']))
                         ->setOperator($this->randomString(['Orange', 'SFR', 'Bouygues', 'Free']))
                         ->setSerialNumber('987654321')
+                        ->setImei('XXXX-1234')
                         ->setStillOnWhenMobileStolen(true)
                         ->setKeyboardLockedWhenMobileStolen(true)
                         ->setPinEnabledWhenMobileStolen(true)
@@ -206,6 +208,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                         ->setBrand('Sony')
                         ->setModel('Playstation 4')
                         ->setSerialNumber('12345678')
+                        ->setImei('ABCD-4567')
                         ->setDescription('Ma console')
                 )
                 ->setAdditionalInformation(

@@ -80,6 +80,7 @@ use Psr\Log\LoggerInterface;
  *       files: array<JsonFile>,
  *       creditCardNumber: string|null,
  *       quantity: int|null,
+ *       imei: string|null
  *   }
  * @phpstan-type JsonComplaint object{
  *      identity: object{
