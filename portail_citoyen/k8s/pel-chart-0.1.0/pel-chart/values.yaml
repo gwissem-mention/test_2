@@ -13,7 +13,7 @@ nginx:
   image:
     repository: registry.pel.pp.fsi.interieur.gouv.fr/library/plainte-en-ligne-nginx
     pullPolicy: IfNotPresent
-    tag: "1.0.0"
+    tag: "0.0.9"
   service:
     type: ClusterIP
     port: 80
@@ -46,7 +46,7 @@ php:
   image:
     repository: registry.pel.pp.fsi.interieur.gouv.fr/library/plainte-en-ligne-php
     pullPolicy: IfNotPresent
-    tag: "1.0.0"
+    tag: "0.0.9"
   service:
     type: ClusterIP
     port: 9000

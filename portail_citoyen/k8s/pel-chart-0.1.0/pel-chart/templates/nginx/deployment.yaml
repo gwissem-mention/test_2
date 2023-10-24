@@ -31,6 +31,9 @@ spec:
             {{- toYaml .Values.nginx.securityContext | nindent 12 }}
           image: "{{ .Values.nginx.image.repository }}:{{ .Values.nginx.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.nginx.image.pullPolicy }}
+          env:
+            - name: MODSEC_AUDIT_LOG
+              value: /dev/null
           ports:
             - name: http
               containerPort: {{ .Values.nginx.service.internalPort }}

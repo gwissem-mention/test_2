@@ -6,11 +6,13 @@ metadata:
     {{- include "pel-chart.labels" . | nindent 4 }}
 data:
   nginx.conf: |-
+    server_tokens off;
     server {
         server_name {{ .Values.global.domain }};
         root /var/www/html/public;
         
         listen {{ .Values.nginx.service.internalPort }} default_server;
+        listen  [::]:{{ .Values.nginx.service.internalPort }} default_server;
 
         location / {
             # try to serve file directly, fallback to index.php
