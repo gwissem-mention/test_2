@@ -824,7 +824,7 @@
             </trans-unit>
             <trans-unit id="pel.facts.suspects.informations.text">
                 <source>pel.facts.suspects.informations.text</source>
-                <target>Indiquez le nombre de personnes, la direction de fuite ou autre complément d’informations</target>
+                <target>Indiquez leur nombre, leur description physique et vestimentaire, leur direction de fuite ou tout autre élément complémentaire</target>
             </trans-unit>
             <trans-unit id="pel.facts.witnesses.information.text">
                 <source>pel.facts.witnesses.information.text</source>
