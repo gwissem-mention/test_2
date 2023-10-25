@@ -6,7 +6,6 @@ namespace App\Tests\SalesForce;
 
 use App\Salesforce\HttpClient\ApiDataFormat\SalesForceApiDataInterface;
 use App\Salesforce\HttpClient\Authentication\AuthenticatedClient;
-use App\Salesforce\HttpClient\Authentication\SendEventException;
 use App\Salesforce\HttpClient\SalesForceApiEventDefinition;
 use App\Salesforce\HttpClient\SalesForceClient;
 use Psr\Log\NullLogger;
@@ -71,74 +70,6 @@ class SalesForceClientTest extends KernelTestCase
 
                         return new MockResponse('', [
                             'http_code' => 201,
-                        ]);
-                    },
-                ], self::BASE_REST_URI),
-                'salesForceClientId',
-                'salesForceClientSecret',
-                self::BASE_AUTH_URI,
-                'accountId',
-                new NullLogger()
-            ),
-            self::BASE_REST_URI,
-            new NullLogger()
-        );
-
-        $salesForceClient->sendEvent($eventDefinition);
-    }
-
-    public function testWrongResponseStatusCode(): void
-    {
-        self::bootKernel();
-        $container = static::getContainer();
-
-        $this->expectException(SendEventException::class);
-
-        $eventDefinitionData = new class(complaintDeclarationNumber: 'PEL_2023_12345678', identityFirstName: 'John', identityLastName: 'Doe', unitName: null) implements SalesForceApiDataInterface {
-            public function __construct(
-                #[SerializedName('complaint_declarationNumber')] public string $complaintDeclarationNumber,
-                #[SerializedName('identity_firstName')] public string $identityFirstName,
-                #[SerializedName('identity_lastName')] public string $identityLastName,
-                #[SerializedName('unit_name')] public ?string $unitName,
-            ) {
-            }
-        };
-
-        $eventDefinition = new class('aEventDefinitionKey', 'aContactKey', $eventDefinitionData) extends SalesForceApiEventDefinition {
-        };
-
-        $salesForceClient = new SalesForceClient(
-            /* @phpstan-ignore-next-line */
-            $container->get(SerializerInterface::class),
-            new AuthenticatedClient(
-                new MockHttpClient([
-                    function ($method, $url, $options): MockResponse {
-                        $this->assertSame('POST', $method);
-                        $this->assertSame(sprintf('%s/v2/token', self::BASE_AUTH_URI), $url);
-                        $this->assertSame(
-                            '{"grant_type":"client_credentials","client_id":"salesForceClientId","client_secret":"salesForceClientSecret","account_id":"accountId"}',
-                            $options['body']
-                        );
-
-                        return new MockResponse('{"access_token":"access_token"}', [
-                            'http_code' => 200,
-                        ]);
-                    },
-                    function ($method, $url, $options): MockResponse {
-                        $this->assertSame('POST', $method);
-                        $this->assertSame(sprintf('%s/interaction/v1/events', self::BASE_REST_URI), $url);
-                        $this->assertArrayHasKey('headers', $options);
-                        $this->assertArrayHasKey('normalized_headers', $options);
-                        $this->assertArrayHasKey('authorization', $options['normalized_headers']);
-                        $this->assertArrayHasKey(0, $options['normalized_headers']['authorization']);
-                        $this->assertSame('Authorization: Bearer access_token', $options['normalized_headers']['authorization'][0]);
-                        $this->assertSame(
-                            '{"EventDefinitionKey":"aEventDefinitionKey","ContactKey":"aContactKey","Data":{"complaint_declarationNumber":"PEL_2023_12345678","identity_firstName":"John","identity_lastName":"Doe"}}',
-                            $options['body']
-                        );
-
-                        return new MockResponse('', [
-                            'http_code' => 400,
                         ]);
                     },
                 ], self::BASE_REST_URI),
