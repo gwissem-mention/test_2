@@ -52,12 +52,13 @@ class FileUploadComponent
         $requestFiles = $requestStack->getCurrentRequest()->files ?? new FileBag();
         $this->files = [];
         $fileConstraint = new File([
-            'mimeTypes' => [
-                'image/jpeg',
-                'image/png',
-                'application/pdf',
+            'extensions' => [
+                'jpg' => ['image/jpeg'],
+                'jpeg' => ['image/jpeg'],
+                'png' => ['image/png'],
+                'pdf' => ['application/pdf'],
             ],
-            'mimeTypesMessage' => 'pel.file.must.be.image.or.pdf',
+            'extensionsMessage' => 'pel.file.must.be.image.or.pdf',
         ]);
 
         foreach ($requestFiles as $file) {
