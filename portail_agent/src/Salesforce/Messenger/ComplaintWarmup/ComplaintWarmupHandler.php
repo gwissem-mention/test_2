@@ -25,7 +25,7 @@ class ComplaintWarmupHandler
         /** @var ?Complaint $complaint */
         $complaint = $this->complaintRepository->find($message->getComplaintId());
 
-        if (null === $complaint || null === $complaint->getUnitAssigned()) {
+        if (null === $complaint || null === $complaint->getUnitAssigned() || true === $complaint->isTest()) {
             return;
         }
 

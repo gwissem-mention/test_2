@@ -23,7 +23,7 @@ class ComplaintRejectionHandler
         /** @var ?Complaint $complaint */
         $complaint = $this->complaintRepository->find($message->getComplaintId());
 
-        if (null === $complaint) {
+        if (null === $complaint || true === $complaint->isTest()) {
             return;
         }
 
