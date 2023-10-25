@@ -14,7 +14,7 @@ when@dev:
                 type: rotating_file
                 path: "%kernel.logs_dir%/%kernel.environment%.log"
                 level: debug
-                channels: [ "!event", "!oodrive", "!application_traces_gn", "!application_traces_pn" ]
+                channels: [ "!event", "!oodrive", "!application_traces_gn", "!application_traces_pn", "!salesforce"]
                 max_files: 20
             # uncomment to get logging in your browser
             # you may have to allow bigger header sizes in your Web server configuration
@@ -27,7 +27,7 @@ when@dev:
             console:
                 type: console
                 process_psr_3_messages: false
-                channels: [ "!event", "!doctrine", "!console", "!oodrive", "!application_traces_gn", "!application_traces_pn" ]
+                channels: [ "!event", "!doctrine", "!console", "!oodrive", "!application_traces_gn", "!application_traces_pn", "!salesforce" ]
             oodrive:
                 type: rotating_file
                 path: "%kernel.logs_dir%/oodrive_%kernel.environment%.log"
@@ -94,7 +94,7 @@ when@prod: &prod
                 type: rotating_file
                 path: "%kernel.logs_dir%/%kernel.environment%.log"
                 level: error
-                channels: [ "!oodrive" ]
+                channels: [ "!oodrive", "!salesforce" ]
                 max_files: 20
             oodrive_log:
                 type: rotating_file
@@ -122,6 +122,12 @@ when@prod: &prod
                 level: info
                 channels: [ "api" ]
                 max_files: 20
+            salesforce_log:
+                type: rotating_file
+                path: "%kernel.logs_dir%/salesforce_%kernel.environment%.log"
+                level: info
+                channels: [ "salesforce" ]
+                max_files: 20
             console:
                 type: console
                 process_psr_3_messages: false
@@ -130,11 +136,6 @@ when@prod: &prod
                 type: stream
                 channels: [deprecation]
                 path: php://stderr
-            salesforce_log:
-                type: rotating_file
-                path: "%kernel.logs_dir%/salesforce_%kernel.environment%.log"
-                level: error
-                channels: [ "salesforce" ]
-                max_files: 20    
+ 
 
 when@e2e: *prod
