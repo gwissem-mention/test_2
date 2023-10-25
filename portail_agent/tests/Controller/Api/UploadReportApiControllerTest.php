@@ -52,7 +52,7 @@ class UploadReportApiControllerTest extends WebTestCase
             ]
         );
 
-        $this->assertResponseStatusCodeSame(200);
+        $this->assertResponseStatusCodeSame(201);
     }
 
     public function testSuccessfulFileUpload(): void
