@@ -83,6 +83,8 @@ class EtalabComponent
             $addresses = $this->etalabAddressApiClient->search($this->addressSearch, 5);
 
             $this->autocompleteResults = $addresses['features'] ?? [];
+        } elseif ('' === $this->addressSearch) {
+            $this->autocompleteResults = [];
         }
     }
 
