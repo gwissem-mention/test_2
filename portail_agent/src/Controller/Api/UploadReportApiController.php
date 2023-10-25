@@ -6,6 +6,7 @@ namespace App\Controller\Api;
 
 use App\Entity\Complaint;
 use App\Oodrive\ApiFileUploader;
+use App\Oodrive\ApiFileUploaderStatusEnum;
 use App\Repository\ComplaintRepository;
 use App\Repository\UploadReportRepository;
 use Psr\Log\LoggerInterface;
@@ -48,7 +49,7 @@ class UploadReportApiController extends AbstractController
             return new JsonResponse(['message' => 'Complaint not found.'], 404);
         }
 
-        if (Complaint::STATUS_ONGOING_LRP !== $complaint->getStatus()) {
+        if (!in_array($complaint->getStatus(), [Complaint::STATUS_ONGOING_LRP, Complaint::STATUS_CLOSED])) {
             $logger->error(sprintf(
                 'Access forbidden for this complaint %d with status %s',
                 $declarationNumber,
@@ -103,7 +104,7 @@ class UploadReportApiController extends AbstractController
             return $this->json($violations, 400);
         }
 
-        $isReplaced = $apiFileUploader->upload(
+        $uploadStatus = $apiFileUploader->upload(
             $complaint,
             $requestFile,
             $uploadType,
@@ -112,8 +113,24 @@ class UploadReportApiController extends AbstractController
             (string) $request->headers->get('originName')
         );
 
-        $message = $isReplaced ? 'The file was successfully replaced.' : 'The file has been uploaded successfully.';
+        switch ($uploadStatus) {
+            case ApiFileUploaderStatusEnum::IGNORED:
+                $message = 'The exact same file already exist.';
+                $statusCode = 204;
+                break;
+            case ApiFileUploaderStatusEnum::REPLACED:
+                $message = 'The file was successfully replaced.';
+                $statusCode = 200;
+                break;
+            case ApiFileUploaderStatusEnum::UPLOADED:
+                $message = 'The file has been uploaded successfully.';
+                $statusCode = 201;
+                break;
+            default:
+                $message = 'An error occurred while uploading the file.';
+                $statusCode = 500;
+        }
 
-        return new JsonResponse(['message' => $message], $isReplaced ? 200 : 201);
+        return new JsonResponse(['message' => $message], $statusCode);
     }
 }

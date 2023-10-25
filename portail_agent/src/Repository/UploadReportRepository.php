@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Repository;
 
+use App\Entity\Complaint;
 use App\Entity\UploadReport;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -39,5 +40,25 @@ class UploadReportRepository extends ServiceEntityRepository
         if (true === $flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function uploadAlreadyExist(Complaint $complaint, string $uploadType, int $timestamp, int $size, string $originName): bool
+    {
+        return null !== $this->findOneBy([
+                'timestamp' => $timestamp,
+                'size' => $size,
+                'type' => $uploadType,
+                'originName' => $originName,
+                'complaint' => $complaint,
+            ]);
+    }
+
+    public function mustBeReplaced(Complaint $complaint, string $uploadType, string $originName): bool
+    {
+        return count($this->findBy([
+                'type' => $uploadType,
+                'originName' => $originName,
+                'complaint' => $complaint,
+            ])) > 0;
     }
 }
