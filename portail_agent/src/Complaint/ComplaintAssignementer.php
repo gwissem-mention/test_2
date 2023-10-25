@@ -72,6 +72,6 @@ class ComplaintAssignementer
         $complaint->setAssignedTo($user);
 
         $this->messageBus->dispatch(new AssignementMessage($complaint, $user, $isReassignment));
-        $this->messageBus->dispatch(new ComplaintAssignmentMessage((int) $complaint->getId())); // Salesforce email
+        $this->messageBus->dispatch(new ComplaintAssignmentMessage((int) $complaint->getId(), $isReassignment)); // Salesforce email
     }
 }

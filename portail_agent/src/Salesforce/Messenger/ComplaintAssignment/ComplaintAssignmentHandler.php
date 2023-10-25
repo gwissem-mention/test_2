@@ -23,7 +23,7 @@ class ComplaintAssignmentHandler
         /** @var ?Complaint $complaint */
         $complaint = $this->complaintRepository->find($message->getComplaintId());
 
-        if (null === $complaint || true === $complaint->isTest() || null !== $complaint->getAssignedTo()) {
+        if (null === $complaint || true === $complaint->isTest() || true === $message->isReassignment()) {
             return;
         }
 
