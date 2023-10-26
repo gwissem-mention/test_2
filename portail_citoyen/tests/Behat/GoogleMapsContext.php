@@ -44,15 +44,17 @@ class GoogleMapsContext implements Context
      */
     public function theMarkerShouldBeAtLatitudeAndLongitude(string $latitude, string $longitude): void
     {
-        $this->session->wait(5000, 'typeof marker !== "undefined" && marker !== null');
-        $lat = (string) $this->session->evaluateScript('marker.getPosition().lat()');
-        $lng = (string) $this->session->evaluateScript('marker.getPosition().lng()');
+        $this->retryStep(function () use ($latitude, $longitude) {
+            $this->session->wait(5000, 'typeof marker !== "undefined" && marker !== null');
+            $lat = (string) $this->session->evaluateScript('marker.getPosition().lat()');
+            $lng = (string) $this->session->evaluateScript('marker.getPosition().lng()');
 
-        if ($lat === $latitude && $lng === $longitude) {
-            return;
-        }
+            if ($lat === $latitude && $lng === $longitude) {
+                return;
+            }
 
-        throw new ExpectationException(sprintf('Marker not found at good position, found at lat %s lng %s', $lat, $lng), $this->session->getDriver());
+            throw new ExpectationException(sprintf('Marker not found at good position, found at lat %s lng %s', $lat, $lng), $this->session->getDriver());
+        });
     }
 
     /**
