@@ -19,8 +19,11 @@ export default class extends Controller {
         this.component = await getComponent(this.element as HTMLElement);
         if (this.component) {
             this.component.on("render:finished", () => {
-                const [newObject] = Array.prototype.slice.call(document.querySelectorAll("[id$='_category']")).slice(-1);
-                newObject.focus();
+                if (this.component) {
+                    const [newObject] = Array.prototype.slice.call(document.querySelectorAll("[id$='_category']")).slice(-1);
+                    newObject.focus();
+                    this.component = null;
+                }
             });
         }
     }
@@ -29,14 +32,17 @@ export default class extends Controller {
         this.component = await getComponent(this.element as HTMLElement);
         if (this.component) {
             this.component.on("render:finished", () => {
-                const [newWitness] = Array.prototype.slice.call(document.querySelectorAll("[id$='_description']")).slice(-1);
-                newWitness.focus();
+                if (this.component) {
+                    const [newWitness] = Array.prototype.slice.call(document.querySelectorAll("[id$='_description']")).slice(-1);
+                    newWitness.focus();
+                    this.component = null;
+                }
             });
         }
     }
 
-    public async focusDeleteItem(event: Event & { params: { index: number; last: boolean; }}): Promise<void> {
-        const { index, last } = event.params;
+    public async focusDeleteItem(event: Event & { params: { index: number; last: boolean; } }): Promise<void> {
+        const {index, last} = event.params;
 
         this.component = await getComponent(this.element as HTMLElement);
         if (this.component) {
