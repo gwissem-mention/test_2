@@ -44,7 +44,7 @@ class ContactDTO
     public function getArray(): array
     {
         return ['Contact' => [
-            'Demandes_Suites_Judiciaires' => $this->claimsLegalAction,
+            'Demande_Suites_Judiciaires' => $this->claimsLegalAction,
             'Mail_Declarant' => $this->declarantEmail,
             'Tel_Domicile_Declarant' => $this->declarantHomePhone,
 //            'Tel_Bureau_Declarant' => $this->declarantOfficePhone,
