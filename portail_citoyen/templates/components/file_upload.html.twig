@@ -2,5 +2,7 @@
     <label class="fr-label" for="{{ inputId }}">{{ inputLabel }}
         <span class="fr-hint-text">{{ inputHelp }}</span>
     </label>
-    <input data-file-upload-target="input" class="fr-upload" type="file" id="{{ inputId }}" multiple accept="image/jpeg,image/png,application/pdf" data-action="change->file-upload#upload">
+    <div class="fr-mt-4v md:w-1/2">
+        <input data-file-upload-target="input" class="fr-upload" type="file" id="{{ inputId }}" multiple accept="image/jpeg,image/png,application/pdf" data-action="change->file-upload#upload">
+    </div>
 </div>
