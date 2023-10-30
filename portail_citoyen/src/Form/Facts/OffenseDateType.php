@@ -23,6 +23,8 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 class OffenseDateType extends AbstractType
 {
+    private const TIMEZONE = 'Europe/Paris';
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -173,6 +175,9 @@ class OffenseDateType extends AbstractType
                     ],
                     'label' => 'pel.exact.hour',
                     'widget' => 'single_text',
+                    'model_timezone' => 'UTC',
+                    'view_timezone' => self::TIMEZONE,
+                    'reference_date' => new \DateTime('now', new \DateTimeZone('UTC')),
                     'constraints' => [
                         new Callback([
                             'callback' => static function (?\DateTime $value, ExecutionContextInterface $context) {
@@ -190,12 +195,16 @@ class OffenseDateType extends AbstractType
                                 $formParent = $form->getParent();
 
                                 if (!$formParent->has('endDate')) {
-                                    /** @var \DateTime $startDate */
+                                    /** @var \DateTime|null $startDate */
                                     $startDate = $formParent->get('startDate')->getData();
                                     /** @var \DateTime $now */
-                                    $now = new \DateTime('now');
+                                    $now = new \DateTime('now', new \DateTimeZone('UTC'));
 
-                                    if ($now->format('d-m-Y') === $startDate->format('d-m-Y') && time() < strtotime($value->format('H:i:s'))) {
+                                    if (
+                                        $startDate
+                                        && $now->format('d-m-Y') === $startDate->format('d-m-Y')
+                                        && time() < strtotime($value->format('H:i:s'))
+                                    ) {
                                         $context->addViolation('pel.hour.after.now');
                                     }
                                 }
@@ -215,6 +224,9 @@ class OffenseDateType extends AbstractType
                     ],
                     'label' => 'pel.start.hour',
                     'widget' => 'single_text',
+                    'model_timezone' => 'UTC',
+                    'view_timezone' => self::TIMEZONE,
+                    'reference_date' => new \DateTime('now', new \DateTimeZone('UTC')),
                     'constraints' => [
                         new NotBlank(),
                         new Callback([
@@ -233,11 +245,15 @@ class OffenseDateType extends AbstractType
                                 $formParent = $form->getParent();
 
                                 if (!$formParent->has('endDate')) {
-                                    /** @var \DateTime $startDate */
+                                    /** @var \DateTime|null $startDate */
                                     $startDate = $formParent->get('startDate')->getData();
-                                    $now = new \DateTime('now');
+                                    $now = new \DateTime('now', new \DateTimeZone('UTC'));
 
-                                    if ($now->format('d-m-Y') === $startDate->format('d-m-Y') && time() < strtotime($value->format('H:i:s'))) {
+                                    if (
+                                        $startDate
+                                        && $now->format('d-m-Y') === $startDate->format('d-m-Y')
+                                        && time() < strtotime($value->format('H:i:s'))
+                                    ) {
                                         $context->addViolation('pel.hour.after.now');
                                     }
                                 }
@@ -246,49 +262,52 @@ class OffenseDateType extends AbstractType
                         ), ],
                 ])
                 ->add('endHour', TimeType::class, [
-                        'attr' => [
-                            'class' => 'fr-input',
-                        ],
-                        'constraints' => [
-                            new Callback([
-                                'callback' => static function (?\DateTime $value, ExecutionContextInterface $context) {
-                                    if (null === $value) {
-                                        return;
-                                    }
+                    'attr' => [
+                        'class' => 'fr-input',
+                    ],
+                    'model_timezone' => 'UTC',
+                    'view_timezone' => self::TIMEZONE,
+                    'reference_date' => new \DateTime('now', new \DateTimeZone('UTC')),
+                    'constraints' => [
+                        new Callback([
+                            'callback' => static function (?\DateTime $value, ExecutionContextInterface $context) {
+                                if (null === $value) {
+                                    return;
+                                }
 
-                                    if (!$value instanceof \DateTime) {
-                                        $context->addViolation('pel.end.hour.is.invalid');
-                                    }
-                                    /** @var Form $form */
-                                    $form = $context->getObject();
-                                    /** @var Form $formParent */
-                                    $formParent = $form->getParent();
+                                if (!$value instanceof \DateTime) {
+                                    $context->addViolation('pel.end.hour.is.invalid');
+                                }
+                                /** @var Form $form */
+                                $form = $context->getObject();
+                                /** @var Form $formParent */
+                                $formParent = $form->getParent();
 
-                                    if (null === $formParent->get('startHour')->getData()) {
-                                        return;
-                                    }
+                                if (null === $formParent->get('startHour')->getData()) {
+                                    return;
+                                }
 
-                                    if (!$formParent->has('endDate')) {
-                                        /** @var \DateTime $startHour */
-                                        $startHour = $formParent->get('startHour')->getData();
-                                        /** @var \DateTime $startDate */
-                                        $startDate = $formParent->get('startDate')->getData();
-                                        $now = new \DateTime('now');
+                                if (!$formParent->has('endDate')) {
+                                    /** @var \DateTime $startHour */
+                                    $startHour = $formParent->get('startHour')->getData();
+                                    /** @var \DateTime $startDate */
+                                    $startDate = $formParent->get('startDate')->getData();
+                                    $now = new \DateTime('now', new \DateTimeZone('UTC'));
 
-                                        if ($value->getTimestamp() < $startHour->getTimestamp()) {
-                                            $context->addViolation('pel.start.hour.after.end.hour');
-                                        } elseif ($value->getTimestamp() === $startHour->getTimestamp()) {
-                                            $context->addViolation('pel.start.hour.same.as.end.hour');
-                                        } elseif ($now->format('d-m-Y') === $startDate->format('d-m-Y') && time() < strtotime($value->format('H:i:s'))) {
-                                            $context->addViolation('pel.hour.after.now');
-                                        }
+                                    if ($value->getTimestamp() < $startHour->getTimestamp()) {
+                                        $context->addViolation('pel.start.hour.after.end.hour');
+                                    } elseif ($value->getTimestamp() === $startHour->getTimestamp()) {
+                                        $context->addViolation('pel.start.hour.same.as.end.hour');
+                                    } elseif ($now->format('d-m-Y') === $startDate->format('d-m-Y') && time() < strtotime($value->format('H:i:s'))) {
+                                        $context->addViolation('pel.hour.after.now');
                                     }
-                                },
-                            ]),
-                            new NotBlank(),
-                        ],
-                        'label' => 'pel.end.hour',
-                        'widget' => 'single_text',
+                                }
+                            },
+                        ]),
+                        new NotBlank(),
+                    ],
+                    'label' => 'pel.end.hour',
+                    'widget' => 'single_text',
                 ]);
 
             $offenseDateModel?->setHour(null);

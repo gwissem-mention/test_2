@@ -320,10 +320,10 @@
                     <li>
                         {{ 'pel.facts.hour'|trans }} :
                         {% if complaint.facts.exactHourKnown is same as(constant('App\\Entity\\Facts::EXACT_HOUR_KNOWN_YES')) %}
-                            <strong>{{ complaint.facts.startHour|date('H\\hi', app.user.timezone) }}</strong>
+                            <strong>{{ complaint.facts.startHour|format_datetime('none')|date('H\\hi', app.user.timezone) }}</strong>
                         {% else %}
-                            <strong>{{ 'pel.between'|trans|lower }} {{ complaint.facts.startHour|date('H\\hi', app.user.timezone) }}
-                                {{ 'pel.and'|trans|lower }} {{ complaint.facts.endHour|date('H\\hi', app.user.timezone) }}
+                            <strong>{{ 'pel.between'|trans|lower }} {{ complaint.facts.startHour|format_datetime('none')|date('H\\hi', app.user.timezone) }}
+                                {{ 'pel.and'|trans|lower }} {{ complaint.facts.endHour|format_datetime('none')|date('H\\hi', app.user.timezone) }}
                             </strong>
                         {% endif %}
                     </li>

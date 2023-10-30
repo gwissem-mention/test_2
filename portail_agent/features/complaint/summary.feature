@@ -123,8 +123,8 @@ Feature:
         And I should see "25 Avenue Georges Pompidou, Lyon, 69003"
         And I should see "Place Charles Hernu, Villeurbanne, 69100"
         And I should see "01/12/2022"
-        And I should see "10h00"
         And I should see "11h00"
+        And I should see "12h00"
         And I should see the key "pel.objects.description" translated
         And I should see the key "pel.objects.stolen" translated
         And I should see the key "pel.objects.degraded" translated

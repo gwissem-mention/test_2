@@ -35,6 +35,7 @@ class FactsDTO
     ];
 
     private const GIRONDE_DEPARTMENT_NUMBER = '33';
+    private const TIMEZONE = 'Europe/Paris';
 
     /** @var array<int|string> */
     private array $presentation;
@@ -110,20 +111,23 @@ class FactsDTO
             $this->timeInformation = self::TIME_INFORMATION_TIME_UNKNOWN;
         }
 
-        $this->date = null !== ($date = $facts->getStartDate()) ? $date->format('d/m/Y') : '';
-        $this->hour = null !== ($hour = $facts->getStartHour()) ? $hour->format('H') : '';
-        $this->minutes = null !== ($hour = $facts->getStartHour()) ? $hour->format('i') : '';
-        $this->startDateFormatted = null !== ($date = $facts->getStartDate()) ? $date->format('d/m/Y') : '';
-        $this->startHourFormatted = null !== ($hour = $facts->getStartHour()) ? $hour->format('H') : '';
-        $this->startMinutesFormatted = null !== ($hour = $facts->getStartHour()) ? $hour->format('i') : '';
-        $this->endDateFormatted = null !== ($date = $facts->getEndDate()) ? $date->format('d/m/Y') : '';
-        $this->endHourFormatted = null !== ($hour = $facts->getEndHour()) ? $hour->format('H') : '';
-        $this->endMinutesFormatted = null !== ($hour = $facts->getEndHour()) ? $hour->format('i') : '';
-
         $debut = $facts->getStartDate();
         $fin = $facts->getEndDate();
-        $startHour = $facts->getStartHour();
-        $endHour = $facts->getEndHour();
+        $startHour = $facts->getStartHour() ? \DateTime::createFromInterface($facts->getStartHour()) : null;
+        $endHour = $facts->getEndHour() ? \DateTime::createFromInterface($facts->getEndHour()) : null;
+
+        $startHour?->setDate((int) $debut?->format('Y'), (int) $debut?->format('m'), (int) $debut?->format('d'))->setTimezone(new \DateTimeZone(self::TIMEZONE));
+        $endHour?->setDate((int) $debut?->format('Y'), (int) $debut?->format('m'), (int) $debut?->format('d'))->setTimezone(new \DateTimeZone(self::TIMEZONE));
+
+        $this->date = null !== $debut ? $debut->format('d/m/Y') : '';
+        $this->hour = null !== $startHour ? $startHour->format('H') : '';
+        $this->minutes = null !== $startHour ? $startHour->format('i') : '';
+        $this->startDateFormatted = null !== $debut ? $debut->format('d/m/Y') : '';
+        $this->startHourFormatted = null !== $startHour ? $startHour->format('H') : '';
+        $this->startMinutesFormatted = null !== $startHour ? $startHour->format('i') : '';
+        $this->endDateFormatted = null !== $fin ? $fin->format('d/m/Y') : '';
+        $this->endHourFormatted = null !== $endHour ? $endHour->format('H') : '';
+        $this->endMinutesFormatted = null !== $endHour ? $endHour->format('i') : '';
 
         if (null !== $debut && null !== $fin && null !== $startHour && null !== $endHour) {
             $debutFormatted = $debut->format('d/m/Y');
