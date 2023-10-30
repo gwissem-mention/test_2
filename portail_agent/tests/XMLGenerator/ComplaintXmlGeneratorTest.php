@@ -646,7 +646,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
     public function testContactSection(): void
     {
         $this->assertStringContainsString('<Contact>', $this->xmlContent);
-        $this->assertStringContainsString('<Demandes_Suites_Judiciaires>Oui</Demandes_Suites_Judiciaires>', $this->xmlContent);
+        $this->assertStringContainsString('<Demande_Suites_Judiciaires>Oui</Demande_Suites_Judiciaires>', $this->xmlContent);
         $this->assertStringContainsString('<Mail_Declarant>jean.dupont@gmail.com</Mail_Declarant>', $this->xmlContent);
         $this->assertStringContainsString('<Tel_Domicile_Declarant>01 23 45 67 89</Tel_Domicile_Declarant>', $this->xmlContent);
         //        $this->assertStringContainsString('<Tel_Bureau_Declarant>09 01 02 03 04</Tel_Bureau_Declarant>', $this->xmlContent);
