@@ -86,6 +86,7 @@ e2e:
                 - '%paths.base%/features/complaint/identity.feature'
                 - '%paths.base%/features/complaint/objects.feature'
                 - '%paths.base%/features/complaint/appointment.feature'
+                - '%paths.base%/features/complaint/summary.feature'
             <<: *contexts
             filters:
                 tags: '~@func&&~@flaky'

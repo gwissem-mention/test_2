@@ -58,3 +58,10 @@ Feature:
         When I fill in "identity_contactInformation_phone_number" with "0102030405"
         Then I should not see a "#form-errors-identity_contactInformation_phone_number" element
         And I should not see the key "pel.phone.fixe.error" translated
+
+    Scenario: When I follow the link "Foire aux questions", I should see the FAQ page on a new tab
+        Given I am on "/porter-plainte/identite"
+        When I follow "Foire aux questions"
+        Then The page should open in a new tab and I switch to it
+        And I should be on "/faq"
+        And I close the current window
