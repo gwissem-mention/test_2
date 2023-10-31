@@ -60,7 +60,7 @@ class CivilStateType extends AbstractType
             ->add('birthName', TextType::class, [
                 'attr' => [
                     'data-controller' => 'form',
-                    'data-action' => 'keyup->form#toUpperCase change->form#toUpperCase',
+                    'data-action' => 'keyup->form#toUpperCase change->form#toUpperCase blur->form#dispatchEventChange',
                     'maxlength' => 70,
                     'autocomplete' => 'family-name',
                 ],

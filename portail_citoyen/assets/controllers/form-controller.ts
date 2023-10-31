@@ -1,4 +1,5 @@
 import {Controller} from "@hotwired/stimulus";
+
 export default class extends Controller {
     public removeFrenchTown(): void {
         const country: Element = this.element;
@@ -28,6 +29,14 @@ export default class extends Controller {
             // Must be ignored because "value" property does not exist on Element type.
             // @ts-ignore
             element.value = element.value.toUpperCase();
+        }
+    }
+
+    public dispatchEventChange(): void {
+        const element: Element = this.element;
+
+        if (element) {
+            element.dispatchEvent(new Event("change", {bubbles: true}));
         }
     }
 
