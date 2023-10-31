@@ -36,3 +36,11 @@ Feature:
         Given I am on "/accueil-deroule"
         Then I follow "Poursuivre"
         And I should be on "/authentification#pel-to-log-in"
+
+    @javascript
+    Scenario: When I follow the link "En savoir plus", I should see the FAQ page on a new tab
+        Given I am on "/accueil-deroule"
+        When I follow "En savoir plus"
+        Then The page should open in a new tab and I switch to it
+        And I should be on "/faq"
+        And I close the current window

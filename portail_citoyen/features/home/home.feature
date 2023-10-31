@@ -67,3 +67,19 @@ Feature:
         Then I should be on "/infos/gestion-des-cookies"
         And the response status code should be 200
         And I should see the key "pel.footer.link-bottom.cookies" translated
+
+    @javascript
+    Scenario: I can access to the FAQ page from the header
+        Given I am on "/"
+        When I follow "Centre d’aide"
+        Then The page should open in a new tab and I switch to it
+        And I should be on "/faq"
+        And I close the current window
+
+    @javascript
+    Scenario: When I follow the link "J'ai un doute sur mon cas", I should see the FAQ page on a new tab
+        Given I am on "/"
+        When I follow "J’ai un doute sur mon cas"
+        Then The page should open in a new tab and I switch to it
+        And I should be on "/faq#pel-help-faq-concerned-with"
+        And I close the current window

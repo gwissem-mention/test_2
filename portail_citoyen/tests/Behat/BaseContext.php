@@ -473,6 +473,43 @@ final class BaseContext extends MinkContext
         $this->getSession()->wait($seconds * 1000, 'document.querySelectorAll("'.$element.'") !== null');
     }
 
+    /**
+     * @When /^The page should open in a new tab and I switch to it$/
+     */
+    public function pageShouldOpenInNewTabAndSwitch(): void
+    {
+        $session = $this->getSession();
+        $windowNames = $session->getWindowNames();
+
+        if (sizeof($windowNames) < 2) {
+            throw new \ErrorException('Expected to see at least 2 windows opened');
+        }
+
+        $session->switchToWindow($windowNames[1]);
+    }
+
+    /**
+     * @When I close the current window
+     */
+    public function closeCurrentWindow(): void
+    {
+        $session = $this->getSession();
+        $windowNames = $session->getWindowNames();
+
+        if (sizeof($windowNames) < 2) {
+            throw new ExpectationException('Expected to see at least 2 windows opened', $session->getDriver());
+        }
+
+        if ($windowNames[1] === $session->getWindowName()) {
+            // Close the current window
+            $session->executeScript("window.open('','_self').close();");
+            // Switch to the previous window to continue
+            $session->switchToWindow($windowNames[0]);
+        } else {
+            throw new ExpectationException('Can\'t close the current window', $session->getDriver());
+        }
+    }
+
     private function retryStep(
         callable $step,
         int $maxTime = self::RETRY_MAX_TIME,
