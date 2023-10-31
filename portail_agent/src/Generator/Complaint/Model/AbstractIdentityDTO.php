@@ -31,6 +31,7 @@ abstract class AbstractIdentityDTO
     protected string $streetNumber;
     protected string $streetType;
     protected string $streetName;
+    protected string $street;
     protected string $address;
     protected string $homePlace;
     protected string $birthplace;
@@ -60,8 +61,9 @@ abstract class AbstractIdentityDTO
         $this->city = $identity->getAddressCity() ?? '';
         $this->departmentNumber = null !== $identity->getAddressDepartmentNumber() ? strval($identity->getAddressDepartmentNumber()) : '';
         $this->streetNumber = $identity->getAddressStreetNumber() ?? '';
-        $this->streetType = $identity->getAddressStreetCompleteName();
+        $this->streetType = '';
         $this->streetName = $identity->getAddressStreetName() ?? '';
+        $this->street = $identity->getAddressStreet();
         $this->address = $identity->getAddress() ?? '';
         $this->homePlace = ($identity->getAddressCountry() ? strtoupper($identity->getAddressCountry()).', ' : '').($identity->getAddressCity() ? strtoupper($identity->getAddressCity()).', ' : '').($identity->getAddress() ? $identity->getAddress() : '');
         $this->birthplace = ($identity->getBirthCity() ? strtoupper($identity->getBirthCity()).' ' : '').($identity->getBirthPostalCode() ? $identity->getBirthPostalCode().' ' : '').($identity->getBirthCountry() ? '('.$identity->getBirthCountry().')' : '');

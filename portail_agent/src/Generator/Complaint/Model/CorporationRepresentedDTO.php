@@ -24,6 +24,7 @@ class CorporationRepresentedDTO
     private string $streetType;
     private string $streetNumber;
     private string $streetName;
+    private string $street;
     private string $address;
     private string $place;
     private string $phone;
@@ -46,9 +47,10 @@ class CorporationRepresentedDTO
         $this->city = (string) (true === $hasSameAddressAsDeclarant ? $identity->getAddressCity() : $corporation->getCity());
         $this->postCode = (string) (true === $hasSameAddressAsDeclarant ? $identity->getAddressPostcode() : $corporation->getPostCode());
         $this->inseeCode = (string) (true === $hasSameAddressAsDeclarant ? $identity->getAddressInseeCode() : $corporation->getInseeCode());
-        $this->streetType = true === $hasSameAddressAsDeclarant ? $identity->getAddressStreetCompleteName() : $corporation->getStreetCompleteName();
+        $this->streetType = '';
         $this->streetNumber = (string) (true === $hasSameAddressAsDeclarant ? $identity->getAddressStreetNumber() : $corporation->getStreetNumber());
         $this->streetName = (string) (true === $hasSameAddressAsDeclarant ? $identity->getAddressStreetName() : $corporation->getStreetName());
+        $this->street = (string) (true === $hasSameAddressAsDeclarant ? $identity->getAddressStreet() : $corporation->getStreet());
         $this->address = (string) (true === $hasSameAddressAsDeclarant ? $identity->getAddress() : $corporation->getAddress());
         $this->place = ($this->country ? strtoupper($this->country).', ' : '').($this->city ? strtoupper($this->city).', ' : '').($this->address ?: '');
         $this->email = $corporation->getContactEmail() ?? '';
@@ -80,6 +82,7 @@ class CorporationRepresentedDTO
             'Personne_Morale_Residence_RueNo' => $this->streetNumber,
             'Personne_Morale_Residence_RueType' => $this->streetType,
             'Personne_Morale_Residence_RueNom' => $this->streetName,
+            'Personne_Morale_Residence_Rue' => $this->street,
             'Personne_Morale_Residence_Adresse' => $this->address,
             'Personne_Morale_Residence_Lieu' => $this->place,
             'Personne_Morale_Residence_Identique' => $this->sameAddressAsDeclarant,
