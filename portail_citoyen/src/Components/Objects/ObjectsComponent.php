@@ -38,7 +38,7 @@ class ObjectsComponent extends AbstractController
     public bool $fromSummary;
 
     /**
-     * @var array<int, array<string, string>>
+     * @var array<int, array<string, array<string, bool|string>|string>>
      */
     #[LiveProp(writable: true)]
     public array $files = [];
@@ -64,13 +64,20 @@ class ObjectsComponent extends AbstractController
                 'addressSearchSaved' => '',
             ];
         } else {
+            $i = 0;
             foreach ($this->objectsModel->getObjects() as $object) {
+                foreach ($object->getFiles() as $file) {
+                    $this->files[$i][$file->getName()] = ['new' => false, 'name' => $file->getPath()];
+                }
+
                 $documentOwnerAddress = $object->getDocumentAdditionalInformation()?->getDocumentOwnerAddress();
                 $this->documentOwnerAddresses[] = [
                     'addressSearch' => $documentOwnerAddress?->getLabel() ?? '',
                     'addressId' => ($documentOwnerAddress instanceof AddressEtalabModel) ? $documentOwnerAddress->getId() ?? '' : '',
                     'addressSearchSaved' => ($documentOwnerAddress instanceof AddressEtalabModel) ? $documentOwnerAddress->getLabel() ?? '' : '',
                 ];
+
+                ++$i;
             }
         }
     }
@@ -94,6 +101,13 @@ class ObjectsComponent extends AbstractController
     public function removeObject(#[LiveArg] int $index): void
     {
         array_splice($this->documentOwnerAddresses, $index, 1);
+        unset($this->files[$index]);
+    }
+
+    #[LiveAction]
+    public function removeFile(#[LiveArg] int $objectIndex, #[LiveArg] int $fileIndex): void
+    {
+        array_splice($this->files[$objectIndex], $fileIndex, 1);
     }
 
     /**
@@ -134,10 +148,17 @@ class ObjectsComponent extends AbstractController
             }
         }
 
+        foreach ($objects->getObjects() as $object) {
+            $object->getFiles()->clear();
+        }
+
         foreach ($this->files as $objectIndex => $files) {
-            foreach ($files as $originalName => $name) {
-                $defaultStorage->writeStream($name, fopen(sys_get_temp_dir().'/'.$name, 'rb'));
-                $file = $defaultStorage->readStream($name);
+            /**
+             * @var array<string, bool|string> $file
+             */
+            foreach ($files as $originalName => $file) {
+                $defaultStorage->writeStream((string) $file['name'], fopen(sys_get_temp_dir().'/'.$file['name'], 'rb'));
+                $file = $defaultStorage->readStream((string) $file['name']);
                 $uploadedFile = new UploadedFile(stream_get_meta_data($file)['uri'], $originalName);
                 $objects->getObjects()->get($objectIndex)?->addFile(new FileModel($uploadedFile->getClientOriginalName(), $uploadedFile->getFilename(), (string) $uploadedFile->getMimeType(), (int) $uploadedFile->getSize()));
             }

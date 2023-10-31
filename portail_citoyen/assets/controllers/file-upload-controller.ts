@@ -52,13 +52,23 @@ export default class extends Controller {
                             component.set("files", dataLiveDataValueFiles);
 
                             const componentParent: Component | null = component.getParent();
-
-                            if (componentParent) {
-                                const parentDataFiles = {
-                                    ...componentParent.getData("files"),
-                                    ...dataLiveDataValueFiles,
-                                };
-                                componentParent.set("files", parentDataFiles);
+                            const elementParent: HTMLElement | undefined = componentParent?.element;
+                            const parentDataLiveDataValue: string | null | undefined = elementParent?.getAttribute("data-live-data-value");
+                            if (componentParent && parentDataLiveDataValue) {
+                                const parentDataLiveDataValueFiles = JSON.parse(parentDataLiveDataValue)["files"];
+                                for (const key in parentDataLiveDataValueFiles) {
+                                    // eslint-disable-next-line no-prototype-builtins
+                                    if (parentDataLiveDataValueFiles.hasOwnProperty(key)) {
+                                        // eslint-disable-next-line no-prototype-builtins
+                                        if (dataLiveDataValueFiles.hasOwnProperty(key)) {
+                                            Object.assign(dataLiveDataValueFiles[key], parentDataLiveDataValueFiles[key]);
+                                        } else {
+                                            dataLiveDataValueFiles[key] = parentDataLiveDataValueFiles[key];
+                                        }
+                                    }
+                                }
+                                componentParent.set("files", dataLiveDataValueFiles);
+                                componentParent.render();
                             }
                         }
                     }).catch((data) => {

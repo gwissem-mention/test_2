@@ -78,8 +78,20 @@
 
                     {% if object.files is defined %}
                         {{ form_row(object.files) }}
-                    {% endif %}
+                        {% if files is not empty and files[object.vars.name] is defined %}
+                            <ul>
+                                {% for original_name, file in files[object.vars.name] %}
+                                    <li class="relative text-xl/8 fr-pb-6v fr-pl-8v -ml-8">
+                                        <a class="fr-link fr-link--download fr-text--sm" href="{{ path(not file['new'] ? 'file_download': 'tmp_file_download', {'fileName':file['name'], 'originalName':original_name}) }}">
+                                            {{ original_name }}<span class="fr-icon-file-text-line before:content-[''] before:mb-1 before:ml-2 before:w-4 before:h-4 before:bg-no-repeat before:bg-[length:14px_14px]" aria-hidden="true"></span>
+                                        </a>
+                                    <a class="fr-link fr-ml-3v fr-text--xs" id="file-remove-{{ object.vars.name }}-{{ loop.index0 }}" href="javascript:void(0);" data-action="live#action" data-action-name="removeFile(objectIndex={{ object.vars.name }}, fileIndex={{ loop.index0 }})">Supprimer</a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
 
+                    {% endif %}
                     {% if form.objects|length > 1 %}
                         <div class="fr-mt-12v">
                             {{ form_widget(object.vars.button_delete, {attr: {'data-action': 'live#action complaint-submit#focusDeleteItem', 'data-action-name': 'removeObject(index=' ~ object.vars.name ~ ') removeCollectionItem(name=objects[objects], index=' ~ object.vars.name ~ ')', 'data-complaint-submit-index-param': loop.index0, 'data-complaint-submit-last-param': loop.last }}) }}

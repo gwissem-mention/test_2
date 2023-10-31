@@ -271,24 +271,25 @@ final class BaseContext extends MinkContext
      */
     public function iAttachFileToField(string $selector, string $path): void
     {
-        $fullPath = '';
-        if ($filesPaths = $this->getMinkParameter('files_path')) {
-            /** @var string $filesPaths */
-            $realFilesPaths = realpath($filesPaths);
+        $this->retryStep(function () use ($selector, $path) {
+            $fullPath = '';
+            if ($filesPaths = $this->getMinkParameter('files_path')) {
+                /** @var string $filesPaths */
+                $realFilesPaths = realpath($filesPaths);
 
-            if ($realFilesPaths) {
-                $fullPath = rtrim($realFilesPaths, DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR.$path;
+                if ($realFilesPaths) {
+                    $fullPath = rtrim($realFilesPaths, DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR.$path;
+                }
             }
-        }
 
-        $fileContent = file_get_contents($fullPath);
+            $fileContent = file_get_contents($fullPath);
 
-        if (false === $fileContent) {
-            throw new \RuntimeException(sprintf('File "%s" not found', $fullPath));
-        }
+            if (false === $fileContent) {
+                throw new \RuntimeException(sprintf('File "%s" not found', $fullPath));
+            }
 
-        $fileContentEncoded = json_encode(base64_encode($fileContent), JSON_THROW_ON_ERROR);
-        $script = "const input = document.getElementById('$selector');
+            $fileContentEncoded = json_encode(base64_encode($fileContent), JSON_THROW_ON_ERROR);
+            $script = "const input = document.getElementById('$selector');
                input.style.display = 'block';
                const list = new DataTransfer();
                const blob = new Blob([atob(".$fileContentEncoded.")]);
@@ -298,7 +299,10 @@ final class BaseContext extends MinkContext
                const event = new Event('change');
                input.dispatchEvent(event);";
 
-        $this->getSession()->executeScript($script);
+            $this->getSession()->executeScript($script);
+
+            $this->iWait(500);
+        });
     }
 
     /**
