@@ -2972,7 +2972,7 @@
             </trans-unit>
             <trans-unit id="pel.refer.the.matter">
                 <source>pel.refer.the.matter</source>
-                <target>De saisir, le cas échéant, la commission d'indemnisation des victimes d'infraction, lorsqu'il s'agit d'une infraction mentionnée aux articles <![CDATA[<a href="#" target="_self">706-3</a>]]> ou <![CDATA[<a href="#" target="_self">706-14</a>]]> du présent code ;</target>
+                <target>De saisir, le cas échéant, la commission d'indemnisation des victimes d'infraction, lorsqu'il s'agit d'une infraction mentionnée aux articles 706-3 ou 706-14 du présent code ;</target>
             </trans-unit>
             <trans-unit id="pel.of.this.code">
                 <source>pel.of.this.code</source>
@@ -3008,7 +3008,7 @@
             </trans-unit>
             <trans-unit id="pel.that.the.online.complaint">
                 <source>pel.that.the.online.complaint</source>
-                <target>Que la plainte en ligne ne constitue qu'une faculté et qu'elle conserve la possibilité de se déplacer au commisariat de police ou à la brigade de gendarmerie de son choix pour déposer plainte, conformément aux dispositions de l'article <![CDATA[<a href="#" target="_self">15-3</a>]]> ;</target>
+                <target>Que la plainte en ligne ne constitue qu'une faculté et qu'elle conserve la possibilité de se déplacer au commisariat de police ou à la brigade de gendarmerie de son choix pour déposer plainte, conformément aux dispositions de l'article 15-3 ;</target>
             </trans-unit>
             <trans-unit id="pel.filing.a.complaint.online">
                 <source>pel.filing.a.complaint.online</source>
@@ -3020,7 +3020,7 @@
             </trans-unit>
             <trans-unit id="pel.in.addition.to.cases">
                 <source>pel.in.addition.to.cases</source>
-                <target>Outre les cas dans lesquels la nature ou la gravité des faits rend nécessaire l'audition ultérieure de la victime, les officiers ou agents de police judiciaire doivent procéder à cette audition en cas de plainte en ligne portant sur des infractions d'agressions sexuelles ou d'atteintes sexuelles prévues par les articles <![CDATA[<a href="#" target="_self">222-22 à 222-31-2</a>]]> et <![CDATA[<a href="#" target="_self">227-25 à 227-27-3</a>]]> du code pénal.</target>
+                <target>Outre les cas dans lesquels la nature ou la gravité des faits rend nécessaire l'audition ultérieure de la victime, les officiers ou agents de police judiciaire doivent procéder à cette audition en cas de plainte en ligne portant sur des infractions d'agressions sexuelles ou d'atteintes sexuelles prévues par les articles 222-22 à 222-31-2 et 227-25 à 227-27-3 du code pénal.</target>
             </trans-unit>
             <trans-unit id="pel.nota">
                 <source>pel.nota</source>
