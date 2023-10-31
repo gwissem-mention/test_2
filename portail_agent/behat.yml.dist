@@ -81,6 +81,7 @@ e2e:
                 - '%paths.base%/features/home.feature'
                 - '%paths.base%/features/notification.feature'
                 - '%paths.base%/features/reporting.feature'
+                - '%paths.base%/features/delegation_rights.feature'
             <<: *contexts
             filters:
                 tags: '~@func&&~@flaky'

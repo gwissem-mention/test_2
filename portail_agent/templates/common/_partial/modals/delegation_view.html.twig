@@ -1,0 +1,34 @@
+{% if app.user %}
+    {% embed "common/_modal.html.twig" with {'id':'delegation-rights-view', 'size':'lg'} %}
+        {% block attr_sup %}data-sidebar-target="rightsDelegationViewModal"{% endblock %}
+
+        {% block title %}
+            <div class="fs-4">{{ 'pel.rights.delegation'|trans }}</div>
+        {% endblock %}
+
+        {% block body %}
+            <div class="p-4 text-center">
+                {{ 'pel.you.have.selected.a.delegation'|trans }}
+                <span class="text-blue fw-bold">
+                    {{ 'pel.from'|trans }}
+                    {{ right_delegation.startDate|date('d/m/Y') }}
+                    {{ 'pel.to'|trans }}
+                    {{ right_delegation.endDate|date('d/m/Y') }}
+                </span>
+                {{ 'pel.to.delegate.your.right.to'|trans }}
+                <span class="text-blue fw-bold">
+                    {% for agent in right_delegation.delegatedAgents %}
+                        {{ agent.appellation }}{{ loop.length > 1 and not loop.last ? ',' : '' }}
+                    {% endfor %}
+                </span>
+            </div>
+        {% endblock %}
+
+        {% block footer %}
+            <div class="px-4">
+                <button type="button" class="fr-btn fr-btn--secondary me-3" data-action="sidebar#cancelDelegation" data-sidebar-url-param="#" data-sidebar-target="delegationModalCancelButton">{{ 'pel.cancel.delegation'|trans }}</button>
+                <button type="button" class="fr-btn" data-action="sidebar#modifyDelegation" data-sidebar-url-param="#" data-sidebar-target="delegationModalModifyButton">{{ 'pel.modify.delegation'|trans }}</button>
+            </div>
+        {% endblock %}
+    {% endembed %}
+{% endif %}

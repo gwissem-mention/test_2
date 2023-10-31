@@ -1,7 +1,7 @@
 {% if app.user %}
     {% set notifications = app.user|user_unclicked_notifications %}
 {% endif %}
-<div data-controller="sidebar">
+<div data-controller="sidebar" data-sidebar-target="headerContainer" id="header">
     <header role="banner" class="fr-header">
         <div class="fr-header__body">
             <div class="row w-100 mw-100 h-100 g-0">
@@ -38,7 +38,7 @@
                                             <div class="circled background-red text-white width-20px height-20px d-flex align-items-center justify-content-center m-2 position-absolute top-30px right-0 small push-left">{{ (notifications|length>9) ? '9+' : notifications|length }}</div>
                                         {% endif %}
                                     </a>
-                                    <button class="avatar background-grey-active background-grey-hover rounded-circle text-light m-2" data-action="click->sidebar#openProfileSidebar" data-sidebar-target="avatar">{{ app.user.initials }}</button>
+                                    <button class="avatar background-grey-active background-grey-hover rounded-circle text-light m-2" data-action="click->sidebar#openProfileSidebar" data-sidebar-target="avatar" id="user_avatar">{{ app.user.initials }}</button>
                                 </div>
                             {% endif %}
                         </div>
@@ -115,7 +115,7 @@
     </header>
     {% if app.user %}
         <div class="d-none position-fixed w-100 h-100 background-black-transparent z-max top-0 right-0 bottom-0 left-0" data-sidebar-target="profileBackground"></div>
-        <div class="d-none position-fixed width-20 background-white fixed-right fixed-right-push-y p-4 shadow-sm z-max overflow-auto" data-sidebar-target="profileSidebar">
+        <div class="d-none position-fixed width-20 background-white fixed-right fixed-right-push-y p-4 shadow-sm z-max overflow-auto" data-sidebar-target="profileSidebar" id="profile-sidebar">
             <div class="d-flex align-items-center justify-content-between">
                 <span class="fw-bold text-black">{{ 'pel.profile'|trans }}</span>
                 <button class="fr-btn fr-btn--tertiary-no-outline fr-btn--icon-left fr-icon-close-line" data-action="click->sidebar#closeProfileSidebar">
@@ -144,7 +144,10 @@
                 <img src="{{ asset('build/images/icons/display-settings.svg') }}" alt="{{ 'pel.display.settings'|trans }}" class="me-1">
                 {{ 'pel.display.settings'|trans }}
             </a>
-            <a href="#" title="{{ 'pel.rights.delegation'|trans }}" class="d-block reset-link text-blue fw-semibold p-3 text-blue-active" data-action="click->sidebar#openRightsDelegationModal">
+            <a href="#" title="{{ 'pel.rights.delegation'|trans }}"
+               class="d-block reset-link text-blue fw-semibold p-3 text-blue-active"
+               data-action={{ has_right_delegation(app.user) ? "sidebar#openRightsDelegationViewModal" : "sidebar#openRightsDelegationModal"}}
+            >
                 <img src="{{ asset('build/images/icons/rights-delegation.svg') }}" alt="{{ 'pel.rights.delegation'|trans }}" class="me-1">
                 {{ 'pel.rights.delegation'|trans }}
             </a>
@@ -241,5 +244,8 @@
     {% endif %}
     {% if app.user and is_granted('ROLE_SUPERVISOR') %}
         {% include 'common/_partial/modals/delegate.html.twig' %}
+        {% if has_right_delegation(app.user) %}
+            {% include 'common/_partial/modals/delegation_view.html.twig' %}
+        {% endif %}
     {% endif %}
 </div>

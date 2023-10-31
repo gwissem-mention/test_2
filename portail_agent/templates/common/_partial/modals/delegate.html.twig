@@ -40,7 +40,7 @@
         {% block footer %}
             <div class="px-4">
                 <button type="button" class="fr-btn fr-btn--secondary me-3" id="delegate-rights-back" data-bs-dismiss="modal">{{ 'pel.cancel'|trans }}</button>
-                <button type="button" class="fr-btn" data-action="sidebar#delegate" data-sidebar-url-param="{{ path('validate_delegation_rights') }}" data-sidebar-target="delegationModalValidateButton">{{ 'pel.validate'|trans }}</button>
+                <button type="button" class="fr-btn" id="delegate-rights-validate" data-action="sidebar#delegate" data-sidebar-url-param="{{ path('validate_delegation_rights') }}" data-sidebar-target="delegationModalValidateButton">{{ 'pel.validate'|trans }}</button>
             </div>
         {% endblock %}
     {% endembed %}
