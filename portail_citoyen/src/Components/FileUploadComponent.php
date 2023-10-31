@@ -34,7 +34,7 @@ class FileUploadComponent
     public string $inputHelp;
 
     /**
-     * @var array<int, array<string, string>>
+     * @var array<int, array<string, array<string, bool|string>|string>>
      */
     #[LiveProp(writable: true)]
     public array $files = [];
@@ -75,7 +75,10 @@ class FileUploadComponent
             move_uploaded_file($file->getRealPath(), sys_get_temp_dir().'/'.$newName);
 
             $name = basename($file->getClientOriginalName());
-            $this->files[$this->parentIndex][$name] = $newName;
+            $this->files[$this->parentIndex][$name] = [
+                'new' => true,
+                'name' => $newName,
+            ];
         }
     }
 }
