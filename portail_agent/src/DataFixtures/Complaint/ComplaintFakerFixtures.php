@@ -288,7 +288,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
                         ->setInseeCode($this->insees[$this->identityAddressPostcode])
                         ->setStreetNumber(1)
                         ->setStreetType('Rue')
-                        ->setStreetName('Test')
+                        ->setStreetName('Rue du Test')
                         ->setAddress($this->faker->address)
                         ->setSameAddressAsDeclarant(false)
                 );
@@ -437,7 +437,7 @@ class ComplaintFakerFixtures extends Fixture implements FixtureGroupInterface, D
             ->setAddress($this->identityAddressStreetAddress.', '.$this->identityAddressCity.', '.$this->identityAddressPostcode)
             ->setAddressStreetNumber('1')
             ->setAddressStreetType('Rue')
-            ->setAddressStreetName('Test')
+            ->setAddressStreetName('Rue du Test')
             ->setAddressCity($this->identityAddressCity)
             ->setAddressInseeCode($this->insees[$this->identityAddressPostcode])
             ->setAddressPostcode($this->identityAddressPostcode)

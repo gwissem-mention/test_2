@@ -88,7 +88,7 @@ class UserFixtures extends Fixture implements FixtureGroupInterface
         foreach ($users as $user) {
             $manager->persist((new User($user['number'], $user['institution'], $user['roles']))
                 ->setAppellation($user['appellation'])
-                ->setServiceCode($user['serviceCode']));
+                ->setServiceCode($user['serviceCode'])->setTimezone('UTC'));
         }
 
         $manager->flush();

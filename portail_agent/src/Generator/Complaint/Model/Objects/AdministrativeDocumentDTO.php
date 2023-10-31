@@ -58,7 +58,7 @@ class AdministrativeDocumentDTO extends AbstractObjectDTO
             case $object->isOwned():
                 $this->identityDepartmentNumber = (string) $identity?->getAddressDepartmentNumber();
                 $this->ownerStreetName = $identity?->getAddressStreetName();
-                $this->ownerStreetType = $identity?->getAddressStreetType();
+                $this->ownerStreetType = '';
                 $this->ownerStreetNumber = $identity?->getAddressStreetNumber();
                 $this->ownerInseeCode = $identity?->getAddressInseeCode();
                 $this->ownerCity = $identity?->getAddressCity();
@@ -69,7 +69,7 @@ class AdministrativeDocumentDTO extends AbstractObjectDTO
             default:
                 $this->identityDepartmentNumber = (string) $object->getOwnerAddressDepartmentNumber();
                 $this->ownerStreetName = $object->getOwnerAddressStreetName();
-                $this->ownerStreetType = $object->getOwnerAddressStreetType();
+                $this->ownerStreetType = '';
                 $this->ownerStreetNumber = $object->getOwnerAddressStreetNumber();
                 $this->ownerInseeCode = $object->getOwnerAddressInseeCode();
                 $this->ownerCity = $object->getOwnerAddressCity();

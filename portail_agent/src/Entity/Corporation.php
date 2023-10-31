@@ -276,8 +276,8 @@ class Corporation
         return $this;
     }
 
-    public function getStreetCompleteName(): string
+    public function getStreet(): string
     {
-        return $this->streetNumber.' '.$this->streetType.' '.$this->streetName;
+        return empty($this->streetNumber) ? ($this->streetName ?? '') : $this->streetNumber.' '.$this->streetName;
     }
 }

@@ -56,6 +56,7 @@ class PersonDTO extends AbstractIdentityDTO
             'Personne_Residence_RueNo' => $this->streetNumber,
             'Personne_Residence_RueType' => $this->streetType,
             'Personne_Residence_RueNom' => $this->streetName,
+            'Personne_Residence_Rue' => $this->street,
             'Personne_Residence_Adresse' => $this->address,
             'Personne_Residence_Lieu' => $this->homePlace,
             'Personne_Naissance_Lieu' => $this->birthplace,

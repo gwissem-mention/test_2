@@ -470,8 +470,8 @@ class Identity
         return $this;
     }
 
-    public function getAddressStreetCompleteName(): string
+    public function getAddressStreet(): string
     {
-        return $this->addressStreetNumber.' '.$this->addressStreetType.' '.$this->addressStreetName;
+        return empty($this->addressStreetNumber) ? ($this->addressStreetName ?? '') : $this->addressStreetNumber.' '.$this->addressStreetName;
     }
 }
