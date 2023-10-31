@@ -3,14 +3,14 @@
     {% for object in complaint.objects.stolenObjects %}
         {% set objectsLoopIndex = objectsLoopIndex + 1 %}
         <p class="fr-badge fr-badge--purple-glycine fr-badge--no-icon fr-text--xs fr-mt-6v">{{ 'pel.goods.number'|trans }}{{ objectsLoopIndex }}</p>
-        {{ _self.object(object) }}
+        {{ _self.object(object, is_pdf) }}
     {% endfor %}
 {% endif %}
 {% if complaint.objects.degradedObjects is not empty %}
     {% for object in complaint.objects.degradedObjects %}
         {% set objectsLoopIndex = objectsLoopIndex + 1 %}
         <p class="fr-badge fr-badge--purple-glycine fr-badge--no-icon fr-text--xs fr-mt-6v">{{ 'pel.goods.number'|trans }}{{ objectsLoopIndex }}</p>
-        {{ _self.object(object) }}
+        {{ _self.object(object, is_pdf) }}
     {% endfor %}
 {% endif %}
 <p class="text-xl/8 fr-mt-6v"><b class="underline">{{ 'pel.total'|trans }}</b> :
@@ -20,7 +20,7 @@
     <b>{{ complaint.objects.objects|objects_amount|format_currency('EUR', {fraction_digit: 2}) }}</b>
 </p>
 
-{% macro object(object) %}
+{% macro object(object, is_pdf) %}
     <ul class="list-none fr-pl-8v fr-mt-6v fr-mb-0">
         {% if object.category|object_category_get_name is same as('pel.object.category.documents') %}
             <li class="relative text-xl/8 fr-pb-0 fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/price-tag-3.svg')]">
@@ -37,17 +37,7 @@
             {% if object.otherDocumentType is not null %}
                 <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.could.you.precise'|trans }} : <b>{{ object.otherDocumentType }}</b></li>
             {% endif %}
-
-            {% if object.files is not empty %}
-                {% for file in object.files %}
-                <li class="relative text-xl/8 fr-pb-6v fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/file-add.svg')]">
-                    <p class="text-xl/8 fr-mb-1v">{{ 'pel.attachment'|trans }}</p>
-                    <a class="fr-link fr-link--download text-lg/6" download href="{{ path('file_download', {'fileName':file.path, 'originalName':file.name}) }}">
-                        {{ file.name }}<span class="fr-icon-file-text-line before:content-[''] before:mb-1 before:ml-2 before:w-4 before:h-4 before:bg-no-repeat before:bg-[length:14px_14px]" aria-hidden="true"></span>
-                    </a>
-                </li>
-                {% endfor %}
-            {% endif %}
+            {{ _self.object_files(object.files, is_pdf) }}
             {% if object.documentNumber is not empty %}
                 <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.document.number'|trans }} : <b>{{ object.documentNumber }}</b></li>
             {% endif %}
@@ -91,16 +81,7 @@
                     {% endif %} {{ 'pel.of.type'|trans }} <b>{{ object.category|object_category_get_name|trans }}</b>
                 </p>
             </li>
-            {% if object.files is not empty %}
-                {% for file in object.files %}
-                <li class="relative text-xl/8 fr-pb-6v fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/file-add.svg')]">
-                    <p class="text-xl/8 fr-mb-1v">{{ 'pel.attachment'|trans }}</p>
-                    <a class="fr-link fr-link--download text-lg/6" download href="{{ path('file_download', {'fileName':file.path, 'originalName':file.name}) }}">
-                        {{ file.name }}<span class="fr-icon-file-text-line before:content-[''] before:mb-1 before:ml-2 before:w-4 before:h-4 before:bg-no-repeat before:bg-[length:14px_14px]" aria-hidden="true"></span>
-                    </a>
-                </li>
-                {% endfor %}
-            {% endif %}
+            {{ _self.object_files(object.files, is_pdf) }}
             <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.brand'|trans }} : <b>{{ object.brand }}</b></li>
             {% if object.model is not null %}
                 <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.model'|trans }} : <b>{{ object.model }}</b></li>
@@ -143,16 +124,7 @@
                     {% endif %} {{ 'pel.of.type'|trans }} <b>{{ object.category|object_category_get_name|trans }}</b>
                 </p>
             </li>
-            {% if object.files is not empty %}
-                {% for file in object.files %}
-                    <li class="relative text-xl/8 fr-pb-6v fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/file-add.svg')]">
-                        <p class="text-xl/8 fr-mb-1v">{{ 'pel.attachment'|trans }}</p>
-                        <a class="fr-link fr-link--download text-lg/6" download href="{{ path('file_download', {'fileName':file.path, 'originalName':file.name}) }}">
-                            {{ file.name }}<span class="fr-icon-file-text-line before:content-[''] before:mb-1 before:ml-2 before:w-4 before:h-4 before:bg-no-repeat before:bg-[length:14px_14px]" aria-hidden="true"></span>
-                        </a>
-                    </li>
-                {% endfor %}
-            {% endif %}
+            {{ _self.object_files(object.files, is_pdf) }}
             <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.multimedia.nature'|trans }} : <b>{{ object.multimediaNature|nature_label|trans }}</b></li>
             {% if object.ownerLastname is not null and object.ownerFirstname is not null %}
                 <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.owner.lastname.firstname'|trans }} : <b>{{ object.ownerLastname }} {{ object.ownerFirstname }}</b></li>
@@ -181,16 +153,7 @@
                     {% endif %} {{ 'pel.of.type'|trans }} <b>{{ object.category|object_category_get_name|trans }}</b>
                 </p>
             </li>
-            {% if object.files is not empty %}
-                {% for file in object.files %}
-                <li class="relative text-xl/8 fr-pb-6v fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/file-add.svg')]">
-                    <p class="text-xl/8 fr-mb-1v">{{ 'pel.attachment'|trans }}</p>
-                    <a class="fr-link fr-link--download text-lg/6" download href="{{ path('file_download', {'fileName':file.path, 'originalName':file.name}) }}">
-                        {{ file.name }}<span class="fr-icon-file-text-line before:content-[''] before:mb-1 before:ml-2 before:w-4 before:h-4 before:bg-no-repeat before:bg-[length:14px_14px]" aria-hidden="true"></span>
-                    </a>
-                </li>
-                {% endfor %}
-            {% endif %}
+            {{ _self.object_files(object.files, is_pdf) }}
             {% if object.paymentCategory %}
                 <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.payment.category'|trans }} : <b>{{ object.paymentCategory|payment_category_label }}</b></li>
             {% endif %}
@@ -219,16 +182,7 @@
                     {% endif %} {{ 'pel.of.type'|trans }} <b>{{ object.category|object_category_get_name|trans }}</b>
                 </p>
             </li>
-            {% if object.files is not empty %}
-                {% for file in object.files %}
-                <li class="relative text-xl/8 fr-pb-6v fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/file-add.svg')]">
-                    <p class="text-xl/8 fr-mb-1v">{{ 'pel.attachment'|trans }}</p>
-                    <a class="fr-link fr-link--download text-lg/6" download href="{{ path('file_download', {'fileName':file.path, 'originalName':file.name}) }}">
-                        {{ file.name }}<span class="fr-icon-file-text-line before:content-[''] before:mb-1 before:ml-2 before:w-4 before:h-4 before:bg-no-repeat before:bg-[length:14px_14px]" aria-hidden="true"></span>
-                    </a>
-                </li>
-                {% endfor %}
-            {% endif %}
+            {{ _self.object_files(object.files, is_pdf) }}
             <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.vehicle.category'|trans }} : <b>{{ object.registeredVehicleNature|registered_vehicle_label|trans }}</b></li>
             <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.brand'|trans }} : <b>{{ object.brand }}</b></li>
             {% if object.model is not null %}
@@ -258,16 +212,7 @@
                     {% endif %} {{ 'pel.of.type'|trans }} <b>{{ object.category|object_category_get_name|trans }}</b>
                 </p>
             </li>
-            {% if object.files is not empty %}
-                {% for file in object.files %}
-                <li class="relative text-xl/8 fr-pb-6v fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/file-add.svg')]">
-                    <p class="text-xl/8 fr-mb-1v">{{ 'pel.attachment'|trans }}</p>
-                    <a class="fr-link fr-link--download text-lg/6" download href="{{ path('file_download', {'fileName':file.path, 'originalName':file.name}) }}">
-                        {{ file.name }}<span class="fr-icon-file-text-line before:content-[''] before:mb-1 before:ml-2 before:w-4 before:h-4 before:bg-no-repeat before:bg-[length:14px_14px]" aria-hidden="true"></span>
-                    </a>
-                </li>
-                {% endfor %}
-            {% endif %}
+            {{ _self.object_files(object.files, is_pdf) }}
         {% elseif object.category|object_category_get_name is same as('pel.object.category.other') %}
             <li class="relative text-xl/8 fr-pb-0 fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/price-tag-3.svg')]">
                 <b>{{ object.label }}</b>
@@ -279,16 +224,7 @@
                     {% endif %} {{ 'pel.of.type'|trans }} <b>{{ object.category|object_category_get_name|trans }}</b>
                 </p>
             </li>
-            {% if object.files is not empty %}
-                {% for file in object.files %}
-                <li class="relative text-xl/8 fr-pb-6v fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/file-add.svg')]">
-                    <p class="text-xl/8 fr-mb-1v">{{ 'pel.attachment'|trans }}</p>
-                    <a class="fr-link fr-link--download text-lg/6" download href="{{ path('file_download', {'fileName':file.path, 'originalName':file.name}) }}">
-                        {{ file.name }}<span class="fr-icon-file-text-line before:content-[''] before:mb-1 before:ml-2 before:w-4 before:h-4 before:bg-no-repeat before:bg-[length:14px_14px]" aria-hidden="true"></span>
-                    </a>
-                </li>
-                {% endfor %}
-            {% endif %}
+            {{ _self.object_files(object.files, is_pdf) }}
             <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.description'|trans }} : <b>{{ object.description }}</b></li>
             <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.quantity'|trans }} : <b>{{ object.quantity }}</b></li>
             {% if object.serialNumber is not null %}
@@ -299,4 +235,21 @@
             <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.amount'|trans }} : <b>{{ object.amount|format_currency('EUR', {fraction_digit: 2}) }}</b></li>
         {% endif %}
     </ul>
+{% endmacro %}
+
+{% macro object_files(files, is_pdf) %}
+    {% for file in files %}
+        <li class="relative text-xl/8 fr-pb-6v fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/file-add.svg')]">
+            <p class="text-xl/8 fr-mb-1v">{{ 'pel.attachment'|trans }}</p>
+            {% if is_pdf is defined and is_pdf is same as(true) %}
+                <div class="text-lg/6">
+                    {{ file.name }}
+                </div>
+            {% else %}
+                <a class="fr-link fr-link--download text-lg/6" download href="{{ path('file_download', {'fileName':file.path, 'originalName':file.name}) }}">
+                    {{ file.name }}<span class="fr-icon-file-text-line" aria-hidden="true"></span>
+                </a>
+            {% endif %}
+        </li>
+    {% endfor %}
 {% endmacro %}

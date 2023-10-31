@@ -54,7 +54,7 @@
             </div>
             <a class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-edit-line fr-hidden fr-unhidden-md fr-py-1v min-h-fit" title="{{ 'pel.update.title.objects'|trans }}" href="{{ path('complaint_objects', {'fromSummary':1}) }}" id="update-objects">{{ 'pel.update'|trans }}</a>
         </div>
-        {{ include('common/_summary/_objects.html.twig') }}
+        {{ include('common/_summary/_objects.html.twig', {'is_pdf': false}) }}
         <a class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-edit-line md:hidden fr-mt-2v fr-py-1v min-h-fit" title="{{ 'pel.update.title.objects'|trans }}" href="{{ path('complaint_objects', {'fromSummary':1}) }}" id="update-objects">{{ 'pel.update'|trans }}</a>
     </div>
     <hr>
