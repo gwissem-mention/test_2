@@ -15,7 +15,8 @@ Feature:
         And I check "complaint_92"
         Then I should see a "#groupActionsList" element
         And I should see the key "pel.assign.to" translated
-        And I should see the key "pel.validate.the.unit.reassignment" translated
+        # Hidden for the experimentation PEL-1572
+        # And I should see the key "pel.validate.the.unit.reassignment" translated
 
     @javascript
     Scenario: Interaction with all complaint select
@@ -25,7 +26,8 @@ Feature:
         When I check "mainSelectorGroupAction"
         Then I should see a "#groupActionsList" element
         And I should see the key "pel.assign.to" translated
-        And I should see the key "pel.validate.the.unit.reassignment" translated
+        # Hidden for the experimentation PEL-1572
+        # And I should see the key "pel.validate.the.unit.reassignment" translated
         And I should see all ".secondarySelectorGroupAction" checked
 
     @javascript
@@ -42,19 +44,20 @@ Feature:
         And I should see a ".toast" element
         And I should see the key "pel.the.declaration.has.been.assigned.to" translated
 
-    @javascript
-    Scenario: I should see an error message when I try to bulk re-assign complaints to an un-assigned complaint
-        Given I am on "/"
-        And I should see a "table#datatable" element
-        And I should see at least 2 "table#datatable tbody tr" elements
-        When I check "complaint_91"
-        And I check "complaint_92"
-        And I press "Réorienter"
-        And I fill in the autocomplete "bulk_reassign_unitCodeToReassign-ts-control" with "BRIGADE TERRITORIALE AUTONOME DE CESTAS" and click "3009446"
-        And I fill in "bulk_reassign_reassignText" with "Ces plaintes ne sont pas censée être attribuées à mon unité."
-        And I press "bulk-unit-reassign-button"
-        Then I should see a ".modal[aria-modal=true]" element
-        And I should see the key "pel.only.assigned.complaint.can.be.reassigned" translated
+    # Hidden for the experimentation PEL-1572
+    # @javascript
+    # Scenario: I should see an error message when I try to bulk re-assign complaints to an un-assigned complaint
+    #   Given I am on "/"
+    #   And I should see a "table#datatable" element
+    #   And I should see at least 2 "table#datatable tbody tr" elements
+    #   When I check "complaint_91"
+    #   And I check "complaint_92"
+    #   And I press "Réorienter"
+    #   And I fill in the autocomplete "bulk_reassign_unitCodeToReassign-ts-control" with "BRIGADE TERRITORIALE AUTONOME DE CESTAS" and click "3009446"
+    #   And I fill in "bulk_reassign_reassignText" with "Ces plaintes ne sont pas censée être attribuées à mon unité."
+    #   And I press "bulk-unit-reassign-button"
+    #   Then I should see a ".modal[aria-modal=true]" element
+    #   And I should see the key "pel.only.assigned.complaint.can.be.reassigned" translated
 
     # Temporarily removed
     #@javascript

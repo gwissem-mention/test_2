@@ -1,30 +1,32 @@
-{% embed "common/_modal.html.twig" with {'id':'complaint-unit-reassign', 'size':'lg'} %}
-    {% block attr_sup %}data-complaint-target="unitReassignmentModal"{% endblock %}
+{# Hidden for experimentation PEL-1590 #}
 
-    {% block title %}{{ 'pel.select.the.unit.to.reassign' |trans }}{% endblock %}
+{#{% embed "common/_modal.html.twig" with {'id':'complaint-unit-reassign', 'size':'lg'} %}#}
+{#    {% block attr_sup %}data-complaint-target="unitReassignmentModal"{% endblock %}#}
 
-    {% block body %}
-        {{ form(unitReassignForm, { attr: { 'data-complaint-target': 'unitReassignmentForm' }}) }}
-    {% endblock %}
+{#    {% block title %}{{ 'pel.select.the.unit.to.reassign' |trans }}{% endblock %}#}
 
-    {% block footer %}
-        <button
-            type="button"
-            class="btn btn-outline-primary btn--modal"
-            id="complaint-unit-reassign-button-back"
-            data-bs-dismiss="modal"
-        >
-            {{ 'pel.back'|trans }}
-        </button>
-        <button
-            type="button"
-            class="btn btn-success btn--modal"
-            data-action="complaint#unitReassign"
-            data-complaint-url-param="{{ path('complaint_unit_reassign', { 'id': complaintId }) }}"
-            data-complaint-redirection-param="{{ path('home', { 'unitReassignmentAccepted': 1 }) }}"
-            data-complaint-supervisor-param="{{ is_granted('ROLE_SUPERVISOR') }}"
-        >
-            {{ 'pel.validate.the.unit.reassignment'|trans }}
-        </button>
-    {% endblock %}
-{% endembed %}
+{#    {% block body %}#}
+{#        {{ form(unitReassignForm, { attr: { 'data-complaint-target': 'unitReassignmentForm' }}) }}#}
+{#    {% endblock %}#}
+
+{#    {% block footer %}#}
+{#        <button#}
+{#            type="button"#}
+{#            class="btn btn-outline-primary btn--modal"#}
+{#            id="complaint-unit-reassign-button-back"#}
+{#            data-bs-dismiss="modal"#}
+{#        >#}
+{#            {{ 'pel.back'|trans }}#}
+{#        </button>#}
+{#        <button#}
+{#            type="button"#}
+{#            class="btn btn-success btn--modal"#}
+{#            data-action="complaint#unitReassign"#}
+{#            data-complaint-url-param="{{ path('complaint_unit_reassign', { 'id': complaintId }) }}"#}
+{#            data-complaint-redirection-param="{{ path('home', { 'unitReassignmentAccepted': 1 }) }}"#}
+{#            data-complaint-supervisor-param="{{ is_granted('ROLE_SUPERVISOR') }}"#}
+{#        >#}
+{#            {{ 'pel.validate.the.unit.reassignment'|trans }}#}
+{#        </button>#}
+{#    {% endblock %}#}
+{#{% endembed %}#}
