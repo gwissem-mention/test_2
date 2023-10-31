@@ -166,6 +166,26 @@ final class BaseContext extends MinkContext
         });
     }
 
+    /**
+     * @When /^I select a date range on "([^"]*)" Flatpickr element from "([^"]*)" to "([^"]*)"$/
+     */
+    public function iSelectADateRangeOnFlatPickr(string $flatpickr, string $startDate, string $endDate): void
+    {
+        $this->retryStep(function () use ($flatpickr, $startDate, $endDate) {
+            $page = $this->getSession()->getPage();
+            $element = $page->find('css', '#'.$flatpickr);
+
+            if (null === $element) {
+                throw new ExpectationException('element empty', $this->getSession()->getDriver());
+            }
+
+            $changeDate = "document.getElementById('$flatpickr')._flatpickr.setDate(['$startDate', '$endDate'])";
+            $triggerChangeEvent = "document.getElementById('$flatpickr').dispatchEvent(new Event('change', { 'bubbles': true }))";
+            $this->getSession()->executeScript($changeDate);
+            $this->getSession()->executeScript($triggerChangeEvent);
+        });
+    }
+
     public function selectOption(mixed $select, mixed $option): void
     {
         $this->retryStep(function () use ($select, $option) {

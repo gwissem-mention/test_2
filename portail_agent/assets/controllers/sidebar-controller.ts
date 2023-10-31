@@ -25,7 +25,9 @@ export default class SidebarController extends Controller {
         "delegationSelectedStartDate",
         "delegationSelectedEndDate",
         "delegationAgentsBlock",
-        "delegationModalValidateButton"
+        "delegationModalValidateButton",
+        "rightsDelegationViewModal",
+        "headerContainer",
     ];
 
     declare readonly profileSidebarTarget: HTMLInputElement;
@@ -45,6 +47,9 @@ export default class SidebarController extends Controller {
     declare readonly delegationSelectedEndDateTarget: HTMLElement;
     declare readonly delegationAgentsBlockTarget: HTMLInputElement;
     declare readonly delegationModalValidateButtonTarget: HTMLInputElement;
+    declare readonly rightsDelegationViewModalTarget: HTMLInputElement;
+    declare readonly hasRightsDelegationViewModalTarget: boolean;
+    declare readonly headerContainerTarget: HTMLInputElement;
 
     static fp: Instance | undefined;
 
@@ -165,6 +170,16 @@ export default class SidebarController extends Controller {
         }
     }
 
+    public openRightsDelegationViewModal(): void {
+        if (this.hasRightsDelegationViewModalTarget) {
+            const modal: Modal | null = new Modal(this.rightsDelegationViewModalTarget);
+
+            if (modal) {
+                modal.show();
+            }
+        }
+    }
+
     // Must be ignored because we can't type url here.
     // @ts-ignore
     public delegate({params: {url}}): void {
@@ -178,11 +193,27 @@ export default class SidebarController extends Controller {
                         .then((data: DelegateFetchResponse) => {
                             if (response.status === HttpStatusCodeEnum.OK) {
                                 Modal.getInstance(this.rightsDelegationModalTarget)?.hide();
+                                this.reloadHeaderContainer();
                             } else if (data.form) {
                                 this.delegationFormTarget.innerHTML = data.form;
                             }
                         });
                 });
+        }
+    }
+
+    private async reloadHeaderContainer(): Promise<void> {
+        // Reload the page in ajax, then replace the #header div by the new one
+        const response = await fetch(window.location.href, {
+            method: HttpMethodsEnum.GET
+        });
+        const data: string = await response.text();
+        const element: HTMLDivElement = document.createElement("div");
+        element.innerHTML = data;
+        const headerSource: HTMLElement | null = element.querySelector("#header");
+
+        if (this.headerContainerTarget && headerSource) {
+            this.headerContainerTarget.innerHTML = headerSource.innerHTML;
         }
     }
 }

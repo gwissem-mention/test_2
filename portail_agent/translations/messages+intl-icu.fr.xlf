@@ -434,7 +434,7 @@
                 <source>pel.drop.the.report.then.validate.the.sending.to.the.victim</source>
                 <target>Déposez le PV puis validez l'envoi à la victime</target>
             </trans-unit>
-          <trans-unit id="pel.physical.harm.message">
+            <trans-unit id="pel.physical.harm.message">
                 <source>pel.physical.harm.message</source>
                 <target>Dans ce cas vous devrez être examiné par un médecin et présenter un certificat médical indiquant notamment la durée de votre incapacité temporaire de travail. Les précisions relatives à cet examen vous seront communiquées lors de la fixation du rendez-vous pour la signature de votre plainte</target>
             </trans-unit>
@@ -641,6 +641,10 @@
             <trans-unit id="pel.mobile.insured">
                 <source>pel.mobile.insured</source>
                 <target>Téléphone assuré contre le vol ?</target>
+            </trans-unit>
+            <trans-unit id="pel.modify.delegation">
+                <source>pel.modify.delegation</source>
+                <target>Modifier la délégation</target>
             </trans-unit>
             <trans-unit id="pel.moral.victim.information">
                 <source>pel.moral.victim.information</source>
@@ -1246,6 +1250,10 @@
                 <source>pel.yes</source>
                 <target>Oui</target>
             </trans-unit>
+            <trans-unit id="pel.you.have.selected.a.delegation">
+                <source>pel.you.have.selected.a.delegation</source>
+                <target>Vous avez sélectionné une durée limitée</target>
+            </trans-unit>
             <trans-unit id="pel.you.will.reject.the.declarant">
                 <source>pel.you.will.reject.the.declaration</source>
                 <target>Vous allez rejeter la déclaration</target>
@@ -1518,6 +1526,10 @@
                 <source>pel.appointment.to.plan</source>
                 <target>RDV à planifier</target>
             </trans-unit>
+            <trans-unit id="pel.to.delegate.your.right.to">
+                <source>pel.to.delegate.your.right.to</source>
+                <target>pour déléguer vos droits à</target>
+            </trans-unit>
             <trans-unit id="pel.to.treat">
                 <source>pel.to.treat</source>
                 <target>À traiter</target>
@@ -1573,6 +1585,10 @@
             <trans-unit id="pel.cancel.appointment">
                 <source>pel.cancel.appointment</source>
                 <target>Annulation de rendez-vous</target>
+            </trans-unit>
+            <trans-unit id="pel.cancel.delegation">
+                <source>pel.cancel.delegation</source>
+                <target>Annuler la délégation</target>
             </trans-unit>
             <trans-unit id="pel.reattribute.to.another.agent">
                 <source>pel.assign.to.agent</source>
@@ -1690,10 +1706,6 @@
                 <source>pel.select.the.delegation.period</source>
                 <target>Sélectionnez la période pour laquelle vous souhaitez déléguer vos droits</target>
             </trans-unit>
-            <trans-unit id="pel.selectected.delegation.period">
-                <source>pel.selectected.delegation.period</source>
-                <target>La période sélectionnée :</target>
-            </trans-unit>
             <trans-unit id="pel.update.delegation.dates">
                 <source>pel.update.delegation.dates</source>
                 <target>Modifier les dates</target>
@@ -1708,11 +1720,11 @@
             </trans-unit>
             <trans-unit id="pel.to">
                 <source>pel.to</source>
-                <target>du</target>
+                <target>au</target>
             </trans-unit>
             <trans-unit id="pel.from">
                 <source>pel.from</source>
-                <target>au</target>
+                <target>du</target>
             </trans-unit>
             <trans-unit id="pel.calling.phone.number">
                 <source>pel.calling.phone.number</source>
