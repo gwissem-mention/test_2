@@ -60,5 +60,5 @@ Feature:
     Scenario: When I follow the link "En savoir plus", I should see the FAQ page on a new tab
         Given I follow "En savoir plus"
         Then The page should open in a new tab and I switch to it
-        And I should be on "/faq"
+        And I should be on "/faq#pel-faq-section"
         And I close the current window

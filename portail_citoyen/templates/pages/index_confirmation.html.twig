@@ -14,17 +14,17 @@
         <div class="@container fr-col-12 fr-mt-2v fr-mt-md-7v">
             <ul class="pel-list--no-style fr-grid-row gap-x-4 items-start md:justify-between @[551.5px]:justify-between @[0px]:md:justify-normal @[551.5px]:md:justify-between">
                 <li class="fr-text-center fr-mt-4v fr-mt-md-3v">
-                    <a href="{{ path('home') }}#pel-use-online-complaint-for" class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-arrow-left-line py-3 pr-[5px] pl-[13px] before:content-[''] before:w-6 before:h-6">
+                    <a href="{{ path('home', {'_fragment': 'pel-use-online-complaint-for'}) }}" class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-arrow-left-line py-3 pr-[5px] pl-[13px] before:content-[''] before:w-6 before:h-6">
                         <span class="visually-hidden">{{ 'pel.use.online.complaint.for.list'|trans }}</span>
                     </a>
                 </li>
                 <li class="fr-mt-4v fr-mt-md-3v w-full order-none md:order-none md:w-fit @[551.5px]:order-none @[551.5px]:w-fit @[551.5px]:md:order-none">
-                    <a href="{{ path('cgu') }}#pel-help-procedures-my-status" class="fr-btn fr-btn--secondary fr-text--lg fr-pr-6v fr-pl-6v py-2.5">
+                    <a href="{{ path('cgu', {'_fragment': 'pel-help-procedures-my-status'}) }}" class="fr-btn fr-btn--secondary fr-text--lg fr-pr-6v fr-pl-6v py-2.5">
                         {{ 'pel.fsi.general.orienteer.criteria'|trans }}
                     </a>
                 </li>
                 <li class="fr-text-center fr-mt-4v fr-mt-md-3v">
-                    <a href="{{ path('home_unfolding') }}#pel-online-complaint-process" class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line fr-text--lg fr-pr-5v fr-pl-6v py-2.5 after:w-6 after:h-6">
+                    <a href="{{ path('home_unfolding', {'_fragment': 'pel-online-complaint-process'}) }}" class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line fr-text--lg fr-pr-5v fr-pl-6v py-2.5 after:w-6 after:h-6">
                         {{ 'pel.i.confirm'|trans }}
                     </a>
                 </li>
