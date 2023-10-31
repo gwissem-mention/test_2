@@ -27,17 +27,17 @@
 					</div>
 					<p class="fr-h6 fr-mb-3v">{{ 'pel.3.your.request.is.processed.within.48h'|trans }}</p>
 					<p class="text-sm/6 md:text-base fr-mb-0">{{ 'pel.appointment.needed.if'|trans|raw }}</p>
-					<a class="text-sm/6 fr-text-title--blue-france" href="{{ path('faq') }}" target="_blank" title="{{ 'pel.appointment.needed.if.more.title'|trans }} - {{ 'pel.new.window'|trans }}">{{ 'pel.appointment.needed.if.more'|trans }}</a>
+					<a class="text-sm/6 fr-text-title--blue-france" href="{{ path('faq', {'_fragment': 'pel-faq-section'}) }}" target="_blank" title="{{ 'pel.appointment.needed.if.more.title'|trans }} - {{ 'pel.new.window'|trans }}">{{ 'pel.appointment.needed.if.more'|trans }}</a>
 				</li>
 			</ul>
 			<ul class="pel-list--no-style fr-col-12 fr-grid-row gap-x-4 items-start fr-mt-2v fr-mt-md-7v md:flex-row md:justify-between">
 				<li class="fr-text-center fr-mt-4v fr-mt-md-3v">
-					<a href="{{ path('home_confirmation') }}#pel-confirm-online-complaint-that" class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-arrow-left-line py-3 pr-[5px] pl-[13px] before:content-[''] before:w-6 before:h-6">
+					<a href="{{ path('home_confirmation', {'_fragment': 'pel-confirm-online-complaint-that'}) }}" class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-arrow-left-line py-3 pr-[5px] pl-[13px] before:content-[''] before:w-6 before:h-6">
                         <span class="visually-hidden">{{ 'pel.use.online.complaint.for.criteria'|trans }}</span>
                     </a>
 				</li>
 				<li class="fr-text-center fr-mt-4v fr-mt-md-3v">
-					<a href="{{ path('authentication') }}#pel-to-log-in" class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line fr-text--lg fr-pr-5v fr-pl-6v py-2.5 after:w-6 after:h-6">
+					<a href="{{ path('authentication', {'_fragment': 'pel-to-log-in'}) }}" class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line fr-text--lg fr-pr-5v fr-pl-6v py-2.5 after:w-6 after:h-6">
 						{{ 'pel.declaration.create'|trans }}
 					</a>
 				</li>

@@ -12,7 +12,7 @@ Feature:
         Then I should be on "/"
         Given I am on "/infos/plan-du-site"
         When I follow "Centre d’aide"
-        Then I should be on "/faq"
+        Then I should be on "/faq#pel-faq-section"
         Given I am on "/infos/plan-du-site"
         When I follow "Je trouve la démarche adaptée à ma situation"
         Then I should be on "/cgu"

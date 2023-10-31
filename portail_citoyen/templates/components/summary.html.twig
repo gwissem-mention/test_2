@@ -75,7 +75,7 @@
             <p class="text-xl/8 fr-mb-0">
                 <b>{{ 'pel.summary.appointment.is.not.required'|trans }}</b>
             </p>
-            <a class="text-sm/6 fr-text-title--blue-france" href="{{ path('faq') }}" target="_blank" title="{{ 'pel.appointment.needed.if.more.title'|trans }}">{{ 'pel.appointment.needed.if.more'|trans }}</a>
+            <a class="text-sm/6 fr-text-title--blue-france" href="{{ path('faq', {'_fragment': 'pel-faq-section'}) }}" target="_blank" title="{{ 'pel.appointment.needed.if.more.title'|trans }}">{{ 'pel.appointment.needed.if.more'|trans }}</a>
             <div class="fr-mt-6v">
                 {{ form_row(form.appointmentAsked) }}
             </div>
@@ -83,7 +83,7 @@
             <p class="text-xl/8 fr-mb-0">
                 <b>{{ 'pel.summary.appointment.is.required'|trans }}</b>
             </p>
-            <a class="text-sm/6 fr-text-title--blue-france" href="{{ path('faq') }}" target="_blank" title="{{ 'pel.appointment.needed.if.more.title'|trans }}">{{ 'pel.appointment.needed.if.more'|trans }}</a>
+            <a class="text-sm/6 fr-text-title--blue-france" href="{{ path('faq', {'_fragment': 'pel-faq-section'}) }}" target="_blank" title="{{ 'pel.appointment.needed.if.more.title'|trans }}">{{ 'pel.appointment.needed.if.more'|trans }}</a>
         {% endif %}
     </div>
     <hr class="fr-pb-0">
