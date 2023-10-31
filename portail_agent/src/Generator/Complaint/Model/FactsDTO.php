@@ -122,12 +122,12 @@ class FactsDTO
         $this->date = null !== $debut ? $debut->format('d/m/Y') : '';
         $this->hour = null !== $startHour ? $startHour->format('H') : '';
         $this->minutes = null !== $startHour ? $startHour->format('i') : '';
-        $this->startDateFormatted = null !== $debut ? $debut->format('d/m/Y') : '';
-        $this->startHourFormatted = null !== $startHour ? $startHour->format('H') : '';
-        $this->startMinutesFormatted = null !== $startHour ? $startHour->format('i') : '';
-        $this->endDateFormatted = null !== $fin ? $fin->format('d/m/Y') : '';
-        $this->endHourFormatted = null !== $endHour ? $endHour->format('H') : '';
-        $this->endMinutesFormatted = null !== $endHour ? $endHour->format('i') : '';
+        $this->startDateFormatted = $debut?->format('d/m/Y') ?? '';
+        $this->startHourFormatted = $startHour?->format('H') ?? '';
+        $this->startMinutesFormatted = $startHour?->format('i') ?? '';
+        $this->endDateFormatted = $fin?->format('d/m/Y') ?? $this->startDateFormatted;
+        $this->endHourFormatted = $endHour?->format('H') ?? $this->startHourFormatted;
+        $this->endMinutesFormatted = $endHour?->format('i') ?? $this->startMinutesFormatted;
 
         if (null !== $debut && null !== $fin && null !== $startHour && null !== $endHour) {
             $debutFormatted = $debut->format('d/m/Y');
