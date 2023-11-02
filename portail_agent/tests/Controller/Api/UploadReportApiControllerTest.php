@@ -43,13 +43,14 @@ class UploadReportApiControllerTest extends WebTestCase
             'PUT',
             '/api/complaint/PEL-2023-00000112/lrp-upload',
             [],
-            ['file' => $file],
+            [],
             [
                 'HTTP_X-UPLOAD-TYPE' => 'RECEPISSE',
                 'HTTP_timestamp' => 1696421622,
                 'HTTP_size' => 1000,
                 'HTTP_originName' => 'test.png',
-            ]
+            ],
+            base64_encode($file->getContent()),
         );
 
         $this->assertResponseStatusCodeSame(201);
@@ -66,13 +67,14 @@ class UploadReportApiControllerTest extends WebTestCase
             'PUT',
             '/api/complaint/PEL-2023-00000120/lrp-upload',
             [],
-            ['file' => $file],
+            [],
             [
                 'HTTP_X-UPLOAD-TYPE' => 'PV',
                 'HTTP_timestamp' => 1696421622,
                 'HTTP_size' => 1000,
                 'HTTP_originName' => 'test.png',
-            ]
+            ],
+            base64_encode($file->getContent()),
         );
 
         $this->assertResponseStatusCodeSame(201);
@@ -86,13 +88,14 @@ class UploadReportApiControllerTest extends WebTestCase
             'PUT',
             '/api/complaint/he file has been uploaded successfully./lrp-upload',
             [],
-            ['file' => $file],
+            [],
             [
                 'HTTP_X-UPLOAD-TYPE' => 'PV',
                 'HTTP_timestamp' => 1696421622,
                 'HTTP_size' => 1000,
                 'HTTP_originName' => 'test.png',
-            ]
+            ],
+            base64_encode($file->getContent()),
         );
         $this->assertResponseStatusCodeSame(401);
     }
@@ -108,13 +111,14 @@ class UploadReportApiControllerTest extends WebTestCase
             'PUT',
             '/api/complaint/PEL-2023-00000125/lrp-upload',
             [],
-            ['file' => $file],
+            [],
             [
                 'HTTP_X-UPLOAD-TYPE' => 'PV',
                 'HTTP_timestamp' => 1696421622,
                 'HTTP_size' => 1000,
                 'HTTP_originName' => 'test.png',
-            ]
+            ],
+            base64_encode($file->getContent()),
         );
 
         $this->assertResponseStatusCodeSame(403);
@@ -130,13 +134,14 @@ class UploadReportApiControllerTest extends WebTestCase
             'PUT',
             '/api/complaint/PEL-2023-00000030/lrp-upload',
             [],
-            ['file' => $file],
+            [],
             [
                 'HTTP_X-UPLOAD-TYPE' => 'TEST',
                 'HTTP_timestamp' => 1696421622,
                 'HTTP_size' => 1000,
                 'HTTP_originName' => 'test.png',
-            ]
+            ],
+            base64_encode($file->getContent()),
         );
 
         $this->assertResponseStatusCodeSame(400);
@@ -152,12 +157,13 @@ class UploadReportApiControllerTest extends WebTestCase
             'PUT',
             '/api/complaint/PEL-2023-00000030/lrp-upload',
             [],
-            ['file' => $file],
+            [],
             [
                 'HTTP_X-UPLOAD-TYPE' => 'TEST',
                 'HTTP_size' => 1000,
                 'HTTP_originName' => 'test.png',
-            ]
+            ],
+            base64_encode($file->getContent()),
         );
 
         $this->assertResponseStatusCodeSame(400);
@@ -173,12 +179,13 @@ class UploadReportApiControllerTest extends WebTestCase
             'PUT',
             '/api/complaint/PEL-2023-00000030/lrp-upload',
             [],
-            ['file' => $file],
+            [],
             [
                 'HTTP_X-UPLOAD-TYPE' => 'TEST',
                 'HTTP_timestamp' => 1696421622,
                 'HTTP_originName' => 'test.png',
-            ]
+            ],
+            base64_encode($file->getContent()),
         );
 
         $this->assertResponseStatusCodeSame(400);
@@ -194,12 +201,13 @@ class UploadReportApiControllerTest extends WebTestCase
             'PUT',
             '/api/complaint/PEL-2023-00000030/lrp-upload',
             [],
-            ['file' => $file],
+            [],
             [
                 'HTTP_X-UPLOAD-TYPE' => 'TEST',
                 'HTTP_timestamp' => 1696421622,
                 'HTTP_size' => 1000,
-            ]
+            ],
+            base64_encode($file->getContent()),
         );
 
         $this->assertResponseStatusCodeSame(400);

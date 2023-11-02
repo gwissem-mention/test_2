@@ -12,7 +12,7 @@ use App\Entity\UploadReport;
 use App\Repository\ComplaintRepository;
 use App\Repository\UploadReportRepository;
 use Psr\Log\LoggerInterface;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\File\File;
 
 class ApiFileUploader
 {
@@ -33,7 +33,7 @@ class ApiFileUploader
      */
     public function upload(
         Complaint $complaint,
-        UploadedFile $file,
+        File $file,
         string $uploadType,
         int $timestamp,
         int $size,
@@ -64,7 +64,7 @@ class ApiFileUploader
             $originName
         );
 
-        $oodriveFile = $this->oodriveClient->uploadFile($file, $file->getClientOriginalName(), $reportFolder->getId());
+        $oodriveFile = $this->oodriveClient->uploadFile($file, $originName, $reportFolder->getId());
 
         if (self::PV === $uploadType) {
             if (!$isReplacement) {
