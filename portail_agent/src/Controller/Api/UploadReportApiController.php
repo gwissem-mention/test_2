@@ -11,16 +11,26 @@ use App\Repository\ComplaintRepository;
 use App\Repository\UploadReportRepository;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Constraints\File as FileConstraints;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class UploadReportApiController extends AbstractController
 {
+    /**
+     * @var array|string[]
+     */
+    private static array $allowedMimeTypes = [
+        'image/jpeg',
+        'image/png',
+        'application/pdf',
+    ];
+
     #[Route('/api/complaint/{declarationNumber}/lrp-upload', name: 'api_send_report', methods: ['PUT'])]
     public function __invoke(
         Request $request,
@@ -30,7 +40,8 @@ class UploadReportApiController extends AbstractController
         LoggerInterface $logger,
         ApiFileUploader $apiFileUploader,
         string $declarationNumber,
-        UploadReportRepository $uploadReportRepository
+        UploadReportRepository $uploadReportRepository,
+        SerializerInterface $serializer,
     ): JsonResponse {
         if (!$this->isGranted('IS_AUTHENTICATED')) {
             $logger->error('User not authenticated.');
@@ -87,15 +98,15 @@ class UploadReportApiController extends AbstractController
             return $this->json(['message' => 'No originName header'], 400);
         }
 
-        /** @var UploadedFile $requestFile */
-        $requestFile = $request->files->all()['file'] ?? [];
+        $originName = (string) $request->headers->get('originName');
+
+        $tmpPath = sys_get_temp_dir().'/'.uniqid('upload_report_', true);
+        file_put_contents($tmpPath, base64_decode($request->getContent()));
+        $requestFile = new File($tmpPath);
+
         $fileConstraints = [
             new FileConstraints([
-                'mimeTypes' => [
-                    'image/jpeg',
-                    'image/png',
-                    'application/pdf',
-                ],
+                'mimeTypes' => self::$allowedMimeTypes,
                 'mimeTypesMessage' => $translator->trans('pel.file.must.be.image.or.pdf'),
             ]),
         ];
@@ -110,7 +121,7 @@ class UploadReportApiController extends AbstractController
             $uploadType,
             (int) $request->headers->get('timestamp'),
             (int) $request->headers->get('size'),
-            (string) $request->headers->get('originName')
+            $originName
         );
 
         switch ($uploadStatus) {
