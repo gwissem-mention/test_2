@@ -87,8 +87,8 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
                     ->setAddressCountry('France')
                     ->setAddressDepartment('Hauts-de-Seine')
                     ->setAddressDepartmentNumber(92)
-                    ->setMobilePhone('06 12 34 45 57')
-                    ->setHomePhone('01 23 45 67 89')
+                    ->setMobilePhone('+33 6 12 34 45 57')
+                    ->setHomePhone('+33 1 23 45 67 89')
                     ->setEmail('jean.dupont@gmail.com')
                     ->setJob('Boulanger')
                     ->setJobThesaurus('BOULANGER')
@@ -121,7 +121,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
                     ->setAddressDepartment('Hauts-de-Seine')
                     ->setAddressDepartmentNumber(92)
                     ->setAddressCountry('France')
-                    ->setMobilePhone('06 76 54 32 10')
+                    ->setMobilePhone('+33 6 76 54 32 10')
                     ->setEmail('jeremy.dupont@gmail.com')
                     ->setJob('Etudiant')
                     ->setJobThesaurus('ETUDIANT')
@@ -169,7 +169,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
                     ->setOperator('Orange')
                     ->setSerialNumber('1234567890')
                     ->setImei('ABCD-1234')
-                    ->setPhoneNumber('06 12 34 56 67')
+                    ->setPhoneNumber('+33 6 12 34 56 67')
                     ->setAmount(999)
             )
             ->addObject(
@@ -250,7 +250,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
                     ->addWitness(
                         (new Witness())
                             ->setDescription('Jean Dupont')
-                            ->setPhone('06 12 34 45 57')
+                            ->setPhone('+33 6 12 34 45 57')
                             ->setEmail('jean@example.com')
                     )
             );
@@ -321,7 +321,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Personne>', $this->xmlContent);
         $this->assertStringNotContainsString('<Personne_Lien>', $this->xmlContent);
         $this->assertStringContainsString('<Personne_Implication>victime</Personne_Implication>', $this->xmlContent);
-        $this->assertStringContainsString('<Personne_Telephone_Portable>06 76 54 32 10</Personne_Telephone_Portable>', $this->xmlContent);
+        $this->assertStringContainsString('<Personne_Telephone_Portable>+33676543210</Personne_Telephone_Portable>', $this->xmlContent);
         $this->assertStringContainsString('<Personne_Civilite_Sexe>M</Personne_Civilite_Sexe>', $this->xmlContent);
         $this->assertStringContainsString('<Personne_Nom>DUPONT</Personne_Nom>', $this->xmlContent);
         $this->assertStringContainsString('<Personne_Nom_Marital/>', $this->xmlContent);
@@ -361,7 +361,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Representant_Legal_Nom>DUPONT</Representant_Legal_Nom>', $this->xmlContent);
         $this->assertStringContainsString('<Representant_Legal_Nom_Marital/>', $this->xmlContent);
         $this->assertStringContainsString('<Representant_Legal_Prenom>Jean</Representant_Legal_Prenom>', $this->xmlContent);
-        $this->assertStringContainsString('<Tel_Portable_Declarant>06 12 34 45 57</Tel_Portable_Declarant>', $this->xmlContent);
+        $this->assertStringContainsString('<Tel_Portable_Declarant>+33612344557</Tel_Portable_Declarant>', $this->xmlContent);
         $this->assertStringContainsString('<Representant_Legal_Naissance_Date>07/03/1967</Representant_Legal_Naissance_Date>', $this->xmlContent);
         $this->assertStringContainsString('<Representant_Legal_Naissance_Pays>France</Representant_Legal_Naissance_Pays>', $this->xmlContent);
         $this->assertStringContainsString('<Representant_Legal_Naissance_Departement>75 - Paris</Representant_Legal_Naissance_Departement>', $this->xmlContent);
@@ -503,7 +503,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Objet_Doc_Admin_Identite_Residence_HidNumDep>92</Objet_Doc_Admin_Identite_Residence_HidNumDep>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_Doc_Admin_Date_Fin_Validite>01/12/2024</Objet_Doc_Admin_Date_Fin_Validite>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_Doc_Admin_Statut>volé</Objet_Doc_Admin_Statut>', $this->xmlContent);
-        $this->assertStringContainsString('<Objet_Doc_Admin_Identite_Tel>06 12 34 45 57</Objet_Doc_Admin_Identite_Tel>', $this->xmlContent);
+        $this->assertStringContainsString('<Objet_Doc_Admin_Identite_Tel>+33612344557</Objet_Doc_Admin_Identite_Tel>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_Doc_Admin_Identite_Mail>jean.dupont@gmail.com</Objet_Doc_Admin_Identite_Mail>', $this->xmlContent);
         // $this->assertStringContainsString('<Objet_Doc_Admin_Vol_Dans_Vl>Non</Objet_Doc_Admin_Vol_Dans_Vl>', $this->xmlContent);
         $this->assertStringContainsString('</Objet_Doc_Admin>', $this->xmlContent);
@@ -516,7 +516,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Objet_Multimedia_Numeros_Serie>1324354657</Objet_Multimedia_Numeros_Serie>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_Multimedia_IMEI>BBBB-1234</Objet_Multimedia_IMEI>', $this->xmlContent);
         $this->assertStringNotContainsString('<Objet_Multimedia_Description>Statut : volé - Iphone 13 de couleur grise</Objet_Multimedia_Description>', $this->xmlContent);
-        $this->assertStringContainsString('<Objet_Multimedia_Nmr_Tel>06 12 34 56 67</Objet_Multimedia_Nmr_Tel>', $this->xmlContent);
+        $this->assertStringContainsString('<Objet_Multimedia_Nmr_Tel>+33612345667</Objet_Multimedia_Nmr_Tel>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_Multimedia_Statut_Tel>volé</Objet_Multimedia_Statut_Tel>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_Multimedia_Marque_Tel>Apple</Objet_Multimedia_Marque_Tel>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_Multimedia_Modele_Tel>iPhone 13</Objet_Multimedia_Modele_Tel>', $this->xmlContent);
@@ -650,9 +650,9 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Contact>', $this->xmlContent);
         $this->assertStringContainsString('<Demande_Suites_Judiciaires>Oui</Demande_Suites_Judiciaires>', $this->xmlContent);
         $this->assertStringContainsString('<Mail_Declarant>jean.dupont@gmail.com</Mail_Declarant>', $this->xmlContent);
-        $this->assertStringContainsString('<Tel_Domicile_Declarant>01 23 45 67 89</Tel_Domicile_Declarant>', $this->xmlContent);
+        $this->assertStringContainsString('<Tel_Domicile_Declarant>+33123456789</Tel_Domicile_Declarant>', $this->xmlContent);
         //        $this->assertStringContainsString('<Tel_Bureau_Declarant>09 01 02 03 04</Tel_Bureau_Declarant>', $this->xmlContent);
-        $this->assertStringContainsString('<Tel_Portable_Declarant>06 12 34 45 57</Tel_Portable_Declarant>', $this->xmlContent);
+        $this->assertStringContainsString('<Tel_Portable_Declarant>+33612344557</Tel_Portable_Declarant>', $this->xmlContent);
         //        $this->assertStringContainsString('<Choix_Rendez_Vous>03/12/2022 00h</Choix_Rendez_Vous>', $this->xmlContent);
         //        $this->assertStringContainsString('<Creaneau_Contact>08H-12H</Creaneau_Contact>', $this->xmlContent);
         //        $this->assertStringContainsString('<Periode_Contact>Si possible entre 10h et 11h</Periode_Contact>', $this->xmlContent);

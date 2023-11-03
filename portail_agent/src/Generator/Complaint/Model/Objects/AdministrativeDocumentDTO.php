@@ -52,7 +52,7 @@ class AdministrativeDocumentDTO extends AbstractObjectDTO
         $this->identityVictim = $object->isOwned() ? 'Oui' : 'Non';
         $this->endDateValidity = $object->getValidityEndDate()?->format('d/m/Y');
         $this->status = AbstractObject::STATUS_STOLEN === $object->getStatus() ? 'volé' : 'dégradé';
-        $this->identityPhone = $identity?->getMobilePhone() ?? '';
+        $this->identityPhone = $identity?->getMobilePhone() ? str_replace(' ', '', $identity->getMobilePhone()) : '';
         $this->identityMail = $identity?->getEmail() ?? '';
         switch (true) {
             case $object->isOwned():

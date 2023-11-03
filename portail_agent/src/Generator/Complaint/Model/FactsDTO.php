@@ -178,7 +178,7 @@ class FactsDTO
         //        $this->orientation = $facts->getOrientation() ?? '';
         $this->addressAdditionalInformation = $complaint->getFacts()?->getAddressAdditionalInformation() ?? '';
         $this->place = $complaint->getFacts()?->getPlace() ?? '';
-        $this->callingPhone = $complaint->getFacts()?->getCallingPhone() ?? '';
+        $this->callingPhone = $complaint->getFacts()?->getCallingPhone() ? str_replace(' ', '', $complaint->getFacts()->getCallingPhone()) : '';
         $this->factsWebsite = $complaint->getFacts()?->getWebsite() ?? '';
         $this->exactDateKnown = $complaint->getFacts()?->isExactDateKnown() ? 'Oui' : 'Non';
         $this->hasObjectsWithAmount = $complaint->hasObjectsWithAmount() ? '1' : '0';
