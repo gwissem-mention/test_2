@@ -1006,6 +1006,14 @@
                 <source>pel.help.faq.concerned.with</source>
                 <target>Êtes-vous concerné par l’un des cas suivants :</target>
             </trans-unit>
+            <trans-unit id="pel.general.information.about.filing.a.complaint">
+                <source>pel.general.information.about.filing.a.complaint</source>
+                <target>GÉNÉRALITÉS SUR LE DÉPÔT DE PLAINTE</target>
+            </trans-unit>
+            <trans-unit id="pel.online.complaint.presentation">
+                <source>pel.online.complaint.presentation</source>
+                <target>PRÉSENTATION DE LA PLAINTE EN LIGNE</target>
+            </trans-unit>
             <trans-unit id="pel.online.complaint.only.concerns">
                 <source>pel.online.complaint.only.concerns</source>
                 <target><![CDATA[La Plainte En Ligne ne concerne que les <b>atteintes aux biens dont l'auteur est inconnu</b> c'est à dire dont l'identité précise est inconnue de la victime.]]></target>
@@ -1980,7 +1988,7 @@
             </trans-unit>
             <trans-unit id="pel.terms.of.use.article.1.title">
                 <source>pel.terms.of.use.article.1.title</source>
-                <target>ARTICLE 1: Définitions</target>
+                <target>ARTICLE 1: Définitions</target>
             </trans-unit>
             <trans-unit id="pel.terms.of.use.article.1.text.1">
                 <source>pel.terms.of.use.article.1.text.1</source>
@@ -1988,23 +1996,23 @@
             </trans-unit>
             <trans-unit id="pel.terms.of.use.article.1.text.2">
                 <source>pel.terms.of.use.article.1.text.2</source>
-                <target>Utilisateur : ce terme désigne toute personne qui utilise le service proposé par le Site.</target>
+                <target>Utilisateur : ce terme désigne toute personne qui utilise le service proposé par le Site.</target>
             </trans-unit>
             <trans-unit id="pel.terms.of.use.article.1.text.3">
                 <source>pel.terms.of.use.article.1.text.3</source>
-                <target>Service : le Service permet de recueillir sur le Site les déclarations de plainte des usagers.</target>
+                <target>Service : le Service permet de recueillir sur le Site les déclarations de plainte des usagers.</target>
             </trans-unit>
             <trans-unit id="pel.terms.of.use.article.2.title">
                 <source>pel.terms.of.use.article.2.title</source>
-                <target>ARTICLE 2 : Objet</target>
+                <target>ARTICLE 2 : Objet</target>
             </trans-unit>
             <trans-unit id="pel.terms.of.use.article.2.text.1">
                 <source>pel.terms.of.use.article.2.text.1</source>
-                <target>Les présentes « conditions générales d'utilisation » ont pour objet de définir les conditions et modalités d’utilisation du site Plainte En Ligne, disponible à l’adresse suivante: <![CDATA[<a target="_blank" href="https://plainte-en-ligne.masecurite.interieur.gouv.fr/">plainte-en-ligne.masecurite.interieur.gouv.fr</a>]]></target>
+                <target>Les présentes « conditions générales d'utilisation » ont pour objet de définir les conditions et modalités d’utilisation du site Plainte En Ligne, disponible à l’adresse suivante: <![CDATA[<a target="_blank" href="https://plainte-en-ligne.masecurite.interieur.gouv.fr/">plainte-en-ligne.masecurite.interieur.gouv.fr</a>]]></target>
             </trans-unit>
             <trans-unit id="pel.terms.of.use.article.2.text.2">
                 <source>pel.terms.of.use.article.2.text.2</source>
-                <target>Le service « Plainte En Ligne » est un site internet mis en place par le Ministère de l'Intérieur pour recueillir les déclarations de plainte de ses utilisateurs. Selon la situation, il permet la réalisation d'un dépôt de plainte de façon partiellement ou totalement dématérialisée.</target>
+                <target>Le service « Plainte En Ligne » est un site internet mis en place par le Ministère de l'Intérieur pour recueillir les déclarations de plainte de ses utilisateurs. Selon la situation, il permet la réalisation d'un dépôt de plainte de façon partiellement ou totalement dématérialisée.</target>
             </trans-unit>
            <trans-unit id="pel.terms.of.use.article.2.text.3">
                 <source>pel.terms.of.use.article.2.text.3</source>
@@ -2012,7 +2020,7 @@
             </trans-unit>
             <trans-unit id="pel.terms.of.use.article.3.title">
                 <source>pel.terms.of.use.article.3.title</source>
-                <target>ARTICLE 3 : Fonctionnement/Fonctionnalité du service</target>
+                <target>ARTICLE 3 : Fonctionnement/Fonctionnalité du service</target>
             </trans-unit>
             <trans-unit id="pel.terms.of.use.article.3.text.1">
                 <source>pel.terms.of.use.article.3.text.1</source>
@@ -2112,7 +2120,7 @@
             </trans-unit>
             <trans-unit id="pel.terms.of.use.article.5.title">
                 <source>pel.terms.of.use.article.5.title</source>
-                <target>ARTICLE 5 : Traitement des demandes abusives ou frauduleuses</target>
+                <target>ARTICLE 5 : Traitement des demandes abusives ou frauduleuses</target>
             </trans-unit>
             <trans-unit id="pel.terms.of.use.article.5.text.1">
                 <source>pel.terms.of.use.article.5.text.1</source>
@@ -2124,7 +2132,7 @@
             </trans-unit>
             <trans-unit id="pel.terms.of.use.article.6.title">
                 <source>pel.terms.of.use.article.6.title</source>
-                <target>ARTICLE 6 : Les règles relatives aux liens hypertextes</target>
+                <target>ARTICLE 6 : Les règles relatives aux liens hypertextes</target>
             </trans-unit>
             <trans-unit id="pel.terms.of.use.article.6.text.1">
                 <source>pel.terms.of.use.article.6.text.1</source>
@@ -2140,7 +2148,7 @@
             </trans-unit>
             <trans-unit id="pel.terms.of.use.article.7.title">
                 <source>pel.terms.of.use.article.7.title</source>
-                <target>ARTICLE 7 : Propriété intellectuelle</target>
+                <target>ARTICLE 7 : Propriété intellectuelle</target>
             </trans-unit>
             <trans-unit id="pel.terms.of.use.article.7.text.1">
                 <source>pel.terms.of.use.article.7.text.1</source>
@@ -2164,15 +2172,15 @@
             </trans-unit>
             <trans-unit id="pel.terms.of.use.article.7.text.6">
                 <source>pel.terms.of.use.article.7.text.6</source>
-                <target><![CDATA[<u>Par courriel à :  </u>]]></target>
+                <target><![CDATA[<u>Par courriel à :  </u>]]></target>
             </trans-unit>
             <trans-unit id="pel.terms.of.use.article.7.text.7">
                 <source>pel.terms.of.use.article.7.text.7</source>
-                <target><![CDATA[<u>Par courrier à l'adresse suivante :</u><br>Ministère de l’Intérieur<br>DICOM<br>Photo / Vidéo<br>40, avenue des Terroirs de France - 75012 Paris]]></target>
+                <target><![CDATA[<u>Par courrier à l'adresse suivante :</u><br>Ministère de l’Intérieur<br>DICOM<br>Photo / Vidéo<br>40, avenue des Terroirs de France - 75012 Paris]]></target>
             </trans-unit>
             <trans-unit id="pel.terms.of.use.article.8.title">
                 <source>pel.terms.of.use.article.8.title</source>
-                <target>ARTICLE 8 : Mise à jour à des conditions générales d’utilisation</target>
+                <target>ARTICLE 8 : Mise à jour à des conditions générales d’utilisation</target>
             </trans-unit>
             <trans-unit id="pel.terms.of.use.article.8.text.1">
                 <source>pel.terms.of.use.article.8.text.1</source>
@@ -2188,7 +2196,7 @@
             </trans-unit>
             <trans-unit id="pel.terms.of.use.article.10.title">
                 <source>pel.terms.of.use.article.10.title</source>
-                <target>ARTICLE 10 : Engagements et responsabilité</target>
+                <target>ARTICLE 10 : Engagements et responsabilité</target>
             </trans-unit>
             <trans-unit id="pel.terms.of.use.article.10.text.1">
                 <source>pel.terms.of.use.article.10.text.1</source>
@@ -2220,7 +2228,7 @@
             </trans-unit>
             <trans-unit id="pel.terms.of.use.article.11.title">
                 <source>pel.terms.of.use.article.11.title</source>
-                <target>ARTICLE 11 : Textes officiels</target>
+                <target>ARTICLE 11 : Textes officiels</target>
             </trans-unit>
             <trans-unit id="pel.terms.of.use.article.11.text.1">
                 <source>pel.terms.of.use.article.11.text.1</source>
@@ -2236,7 +2244,7 @@
             </trans-unit>
             <trans-unit id="pel.terms.of.use.article.12.title">
                 <source>pel.terms.of.use.article.12.title</source>
-                <target>ARTICLE 12 : Attribution de juridiction et droit applicable</target>
+                <target>ARTICLE 12 : Attribution de juridiction et droit applicable</target>
             </trans-unit>
             <trans-unit id="pel.terms.of.use.article.12.text.1">
                 <source>pel.terms.of.use.article.12.text.1</source>
@@ -2248,11 +2256,11 @@
             </trans-unit>
             <trans-unit id="pel.terms.of.use.article.12.text.3">
                 <source>pel.terms.of.use.article.12.text.3</source>
-                <target><![CDATA[<u>Adresse DGGN :</u><br>Direction générale de la gendarmerie nationale<br>4, rue Claude Bernard<br>92 130 Issy-les-Moulineaux]]></target>
+                <target><![CDATA[<u>Adresse DGGN :</u><br>Direction générale de la gendarmerie nationale<br>4, rue Claude Bernard<br>92 130 Issy-les-Moulineaux]]></target>
             </trans-unit>
             <trans-unit id="pel.terms.of.use.article.12.text.4">
                 <source>pel.terms.of.use.article.12.text.4</source>
-                <target><![CDATA[<u>Adresse DGPN :</u><br>Ministère de l’Intérieur<br>Direction générale de la police nationale<br>Place Beauvau<br>75008 Paris Cedex 08]]></target>
+                <target><![CDATA[<u>Adresse DGPN :</u><br>Ministère de l’Intérieur<br>Direction générale de la police nationale<br>Place Beauvau<br>75008 Paris Cedex 08]]></target>
             </trans-unit>
             <trans-unit id="pel.the">
                 <source>pel.the</source>
@@ -2386,21 +2394,700 @@
                 <source>pel.what.is.goods.damages.text</source>
                 <target>Lorem ipsum dolor sit amet, consectetur adipiscing, incididunt, ut labore et dolore magna aliqua. Vitae sapien pellentesque habitant morbi tristique senectus et. Diam maecenas sed enim ut. Accumsan lacus vel facilisis volutpat est. Ut aliquam purus sit amet luctus. Lorem ipsum dolor sit amet consectetur adipiscing elit ut.</target>
             </trans-unit>
-            <trans-unit id="pel.what.is.online.complaint">
-                <source>pel.what.is.online.complaint</source>
-                <target>Qu’est-ce que plainte en ligne ?</target>
+            <trans-unit id="pel.what.is.complaint">
+                <source>pel.what.is.complaint</source>
+                <target>Qu’est-ce que plainte ?</target>
             </trans-unit>
-            <trans-unit id="pel.what.is.online.complaint.text">
-                <source>pel.what.is.online.complaint.text</source>
-                <target>Lorem ipsum dolor sit amet, consectetur adipiscing, incididunt, ut labore et dolore magna aliqua. Vitae sapien pellentesque habitant morbi tristique senectus et. Diam maecenas sed enim ut. Accumsan lacus vel facilisis volutpat est. Ut aliquam purus sit amet luctus. Lorem ipsum dolor sit amet consectetur adipiscing elit ut.</target>
+            <trans-unit id="pel.what.is.complaint.text">
+                <source>pel.what.is.complaint.text</source>
+                <target>Le dépôt de plainte permet à une victime d’informer les forces de sécurité intérieure et l’autorité judiciaire qu’une infraction a été commise. Elle entraîne l’ouverture d’une enquête judiciaire qui a pour but de rassembler les preuves et de rechercher le ou les auteurs.</target>
+            </trans-unit>
+            <trans-unit id="pel.difference.between.online.declaration.and.a.complaint.report">
+                <source>pel.difference.between.online.declaration.and.a.complaint.report</source>
+                <target>Quelle est la différence entre une déclaration réalisée sur le site Plainte En Ligne et un procès-verbal de plainte ?</target>
+            </trans-unit>
+            <trans-unit id="pel.difference.between.online.declaration.and.a.complaint.report.text">
+                <source>pel.difference.between.online.declaration.and.a.complaint.report.text</source>
+                <target>Une déclaration réalisée par le biais du téléservice Plainte En Ligne ne devient une plainte qu’une fois validée par un de nos agents et transformée en procès-verbal de plainte. C’est ce procès-verbal qu’il me faudra transmettre à mon assurance ou à ma banque pour demander le remboursement de mon préjudice.</target>
+            </trans-unit>
+            <trans-unit id="pel.what.is.a.complaint.against.an.unknown.person">
+                <source>pel.what.is.a.complaint.against.an.unknown.person</source>
+                <target>Qu’est-ce qu’une plainte contre personne inconnue (contre X) ?</target>
+            </trans-unit>
+            <trans-unit id="pel.what.is.a.complaint.against.an.unknown.person.text">
+                <source>pel.what.is.a.complaint.against.an.unknown.person.text</source>
+                <target>Une plainte peut être portée contre une personne dénommée lorsque je connais l’identité de l’auteur des faits (prénom et nom) ou contre une personne inconnue (contre X) lorsque je ne la connais pas.Le fait que je sois en mesure de fournir des éléments permettant d’identifier l’auteur (sa description, son domicile, ses habitudes. etc.), ne veut pas dire que je connaisse son identité. Je peux donc, dans ce cas, effectuer une déclaration sur le service de la Plainte En Ligne.</target>
+            </trans-unit>
+            <trans-unit id="pel.difference.complaint.and.handrail">
+                <source>pel.difference.complaint.and.handrail</source>
+                <target>Quelle est la différence entre une plainte et une main courante ?</target>
+            </trans-unit>
+            <trans-unit id="pel.difference.complaint.and.handrail.text">
+                <source>pel.difference.complaint.and.handrail.text</source>
+                <target>Je peux déposer une main courante si je souhaite déclarer des faits dont je suis victime ou dont j’ai été témoin, sans porter plainte.<![CDATA[<br>]]>Contrairement à une plainte, le but de la main courante n’est pas d’engager des poursuites à l’encontre de l’auteur des faits, mais de signaler la nature et la date des faits aux forces de l’ordre.<![CDATA[<br>]]>Par principe, l’auteur des faits n’aura pas connaissance de ma main courante et ne sera pas convoqué. Néanmoins, même en l’absence de plainte, le procureur de la République, informé d’une infraction dans une main courante, peut décider d’initier une enquête.<![CDATA[<br>]]>Il est possible de déposer une main courante si je ne suis pas certain que les faits en question constituent une infraction. Il est également possible de déposer une main courante pour des faits qui ne constituent pas une infraction (litige prud’homal, commercial, civil…), mais dont je veux conserver la trace.<![CDATA[<br>]]>Je peux déposer ma main courante dans un commissariat de police ou dans une brigade de gendarmerie. Cette démarche n’est pas accessible en ligne.</target>
+            </trans-unit>
+            <trans-unit id="pel.who.can.file.a.complaint">
+                <source>pel.who.can.file.a.complaint</source>
+                <target>Qui peut porter plainte ?</target>
+            </trans-unit>
+            <trans-unit id="pel.who.can.file.a.complaint.text">
+                <source>pel.who.can.file.a.complaint.text</source>
+                <target>Toute personne victime d’une infraction pénale peut déposer plainte.
+                        Si une personne faisant l’objet d’une mesure de protection (tutelle ou curatelle) rencontre des difficultés pour ce faire, elle peut être assistée d’un proche, d’un membre d’une association d’aide aux victimes, ou d’un mandataire judiciaire à la protection des majeurs (tuteur ou curateur).<![CDATA[<br>]]>Sur le site de la Plainte En Ligne, seules peuvent porter plainte :</target>
             </trans-unit>
             <trans-unit id="pel.what.is.legal.representative">
                 <source>pel.what.is.legal.representative</source>
-                <target>Qui peut être le représentant légal de la victime ?</target>
+                <target>Qu’est-ce qu’un représentant légal ?</target>
+            </trans-unit>
+            <trans-unit id="pel.what.is.legal.entity">
+                <source>pel.what.is.legal.entity</source>
+                <target>Qu’est-ce qu’une personne morale ?</target>
+            </trans-unit>
+            <trans-unit id="pel.what.is.legal.entity.text">
+                <source>pel.what.is.legal.entity.text</source>
+                <target>Une personne morale est un groupement doté de la personnalité juridique (Ex. : l’État, les collectivités territoriales, les établissements publics, les sociétés privées, les sociétés civiles, les groupements d’intérêt économique, les associations, etc.).</target>
+            </trans-unit>
+            <trans-unit id="pel.what.is.an.infraction">
+                <source>pel.what.is.an.infraction</source>
+                <target>Qu’est-ce qu’une infraction ?</target>
+            </trans-unit>
+            <trans-unit id="pel.what.is.an.infraction.text">
+                <source>pel.what.is.an.infraction.text</source>
+                <target>Une infraction est un acte interdit par la loi et puni d’une sanction pénale qui peut être une amende et/ou une peine de prison.</target>
+            </trans-unit>
+            <trans-unit id="pel.offenses.classified.according.to.their.seriousness">
+                <source>pel.offenses.classified.according.to.their.seriousness</source>
+                <target>Les infractions sont classées en 3 catégories selon leur gravité :</target>
+            </trans-unit>
+            <trans-unit id="pel.contraventions">
+                <source>pel.contraventions</source>
+                <target>les contraventions — faits punissables d’une peine d’amende de 1500 à 3000 euros ;<![CDATA[<br>]]>Ex. : dégradations légères causées sur un bien, etc.</target>
+            </trans-unit>
+            <trans-unit id="pel.misdemeanors">
+                <source>pel.misdemeanors</source>
+                <target>Les délits — faits punissables d’une amende et/ou d’une peine d’emprisonnement inférieure à 10 ans ;<![CDATA[<br>]]>Ex. : vol, escroquerie, etc.</target>
+            </trans-unit>
+            <trans-unit id="pel.felonies">
+                <source>pel.felonies</source>
+                <target>Les crimes — infractions graves punissables d’une peine d’emprisonnement supérieure à 10 ans.<![CDATA[<br>]]>Ex. : Meurtre, vol ou extorsion commis sous la menace d’une arme, etc.</target>
+            </trans-unit>
+            <trans-unit id="pel.attempt">
+                <source>pel.attempt</source>
+                <target>La tentative est également punissable pour certaines infractions (tentative de vol, d’escroquerie, d’extorsion ou encore de dégradations…).<![CDATA[<br>]]>Il n’est pas possible de porter Plainte En Ligne pour des crimes.<![CDATA[<br>]]>Il n’est pas possible de porter plainte pour des faits qui ne sont pas des infractions pénales.</target>
+            </trans-unit>
+            <trans-unit id="pel.what.is.the.deadline.for.filing.a.complaint">
+                <source>pel.what.is.the.deadline.for.filing.a.complaint</source>
+                <target>Quel délai pour porter plainte ?</target>
+            </trans-unit>
+            <trans-unit id="pel.what.is.the.deadline.for.filing.a.complaint.text">
+                <source>pel.what.is.the.deadline.for.filing.a.complaint.text</source>
+                <target>Pour être valide, une plainte doit dénoncer des faits qui ne sont pas prescrits, c’est-à-dire trop anciens. Le délai de prescription est la période au-delà de laquelle il n’est plus possible de poursuivre l’auteur d’une infraction. Il dépend du type d’infraction, de l’existence ou non d’une victime et de son âge au moment des faits.<![CDATA[<br>]]>Pour les infractions qui peuvent faire l’objet d’une Plainte En Ligne, le point de départ du délai est la date des faits et les délais sont les suivants :</target>
+            </trans-unit>
+            <trans-unit id="pel.how.can.I.file.a.complaint">
+                <source>pel.how.can.I.file.a.complaint</source>
+                <target>Comment puis-je porter plainte ?</target>
+            </trans-unit>
+            <trans-unit id="pel.how.can.I.file.a.complaint.text">
+                <source>pel.how.can.I.file.a.complaint.text</source>
+                <target>Je peux porter plainte auprès de la police, de la gendarmerie ou du procureur de la République du tribunal judiciaire.<![CDATA[<br>]]>Il s’agit d’une démarche gratuite.<![CDATA[<br>]]>Si je souhaite me rendre dans un commissariat de police ou une brigade de gendarmerie pour porter plainte, j’ai la possibilité de m’y rendre directement ou de prendre rendez-vous afin de limiter mon temps d’attente.<![CDATA[<br>]]>Si je souhaite porter plainte auprès du procureur de la République, je dois lui adresser un courrier lui expliquant les faits. Je peux adresser mon courrier au tribunal judiciaire compétent au regard du lieu où les faits se sont produits ou celui dont dépend mon domicile.<![CDATA[<br>]]>La Plainte En Ligne me permet d’effectuer un dépôt de Plainte En Ligne auprès des services de police ou de gendarmerie lorsque les faits constituent une atteinte au bien et que je ne connais pas l’identité de l’auteur.</target>
+            </trans-unit>
+            <trans-unit id="pel.one.year.infraction">
+                <source>pel.one.year.infraction</source>
+                <target><![CDATA[<b>1 an</b>]]> pour les contraventions, faits punissables d’une amende n’excédant pas 1 500 €, ou 3 000 € en cas de récidive (Ex. : dégradations légères de bien)</target>
+            </trans-unit>
+            <trans-unit id="pel.six.year.offense">
+                <source>pel.six.year.offense</source>
+                <target><![CDATA[<b>6 ans</b>]]> pour les délits, faits punissables d’une amende et/ou d’une peine d’emprisonnement inférieure à 10 ans (Ex. : vols, escroqueries sans violence)</target>
+            </trans-unit>
+            <trans-unit id="pel.damage.to.property">
+                <source>pel.damage.to.property</source>
+                <target>Pour les atteintes aux biens, le point de départ du délai de prescription est la date de la commission des faits (vols, dégradations, escroqueries) ou celle où l’infraction apparaît et peut être constatée (abus de confiance).</target>
+            </trans-unit>
+            <trans-unit id="pel.who.can.file.an.online.complaint">
+                <source>pel.who.can.file.an.online.complaint</source>
+                <target>Qui peut porter plainte sur le téléservice Plainte En Ligne ?</target>
+            </trans-unit>
+            <trans-unit id="pel.who.can.file.an.online.complaint.text">
+                <source>pel.who.can.file.an.online.complaint.text</source>
+                <target>La Plainte En Ligne est réservée aux déclarants majeurs. Une victime mineure doit être représentée par un déclarant majeur ayant l’autorité parentale.</target>
+            </trans-unit>
+            <trans-unit id="pel.what.grounds.can.I.make.an.online.complaint">
+                <source>pel.what.grounds.can.I.make.an.online.complaint</source>
+                <target>Pour quels motifs puis-je porter plainte sur le téléservice Plainte En Ligne ?</target>
+            </trans-unit>
+            <trans-unit id="pel.what.grounds.can.I.make.an.online.complaint.text">
+                <source>pel.what.grounds.can.I.make.an.online.complaint.text</source>
+                <target>La Plainte En Ligne concerne les atteintes aux biens dont l’auteur est inconnu de la victime c’est à dire dont l’identité précise est inconnue.<![CDATA[<br>]]>Les atteintes aux biens concernent essentiellement les infractions qui portent sur la propriété des personnes, des organisations ou de l’État telles que les vols, les extorsions, les dégradations, mais également les escroqueries ou encore les abus de confiance.<![CDATA[<br>]]>La Plainte En Ligne ne concerne que les délits et contraventions d’atteintes aux biens.<![CDATA[<br>]]>Les faits les plus graves notamment ceux qui sont considérés par la loi comme des crimes (exemple : vols ou extorsions commis sous la menace d’une arme, vols commis avec des violences ayant entraîné une mutilation ou la mort, incendies volontaires ayant entraîné des blessures graves, etc.) ne peuvent pas être dénoncés sur ce téléservice, mais nécessitent un appel au 17 pour que des mesures d’urgence soient prises et que des consignes me soient communiquées.<![CDATA[<br>]]>Les atteintes aux biens comprennent principalement les vols, les dégradations, les extorsions, les abus de confiance, les escroqueries et toutes les tentatives de ces infractions.<![CDATA[<br>]]></target>
+            </trans-unit>
+            <trans-unit id="pel.damage.to.property.and.hit-and-run">
+                <source>pel.damage.to.property.and.hit-and-run</source>
+                <target><![CDATA[<b>Dégradations sur un bien et délit de fuite</b><br>]]>La dégradation est le fait d’abîmer volontairement le bien d’autrui, que le dommage occasionné soit léger ou grave au point de rendre l’objet inutilisable.<![CDATA[<br>]]>Ex. : Graffitis sur une façade, dégradations de véhicule, etc.<![CDATA[<br>]]>Le délit de fuite est le fait, pour le conducteur d’un véhicule quelconque, de ne pas s’arrêter, sachant qu’il vient de causer ou d’occasionner un accident.<![CDATA[<br>]]>Ex. : Un individu a embouti ma voiture en manœuvrant son véhicule pour quitter son espace de stationnement sans laisser ses coordonnées pour rédiger un constat.<![CDATA[<br>]]>Il s’agit d’un délit de fuite et non d’une dégradation volontaire, car l’auteur n’a pas voulu dégrader le véhicule, mais a voulu échapper aux conséquences de sa maladresse ou de son imprudence.<![CDATA[<br>]]>Les plaintes pour dégradations volontaires et délits de fuite peuvent être réalisées au moyen de la Plainte En Ligne. Je pourrai joindre au formulaire des clichés montrant les dégradations occasionnées ainsi que la facture des réparations si elles ont déjà été réalisées ou la facture d’achat de l’objet si celui-ci a été complètement détruit.</target>
+            </trans-unit>
+            <trans-unit id="pel.theft">
+                <source>pel.theft</source>
+                <target><![CDATA[<b>Vol</b><br>]]>Le vol est le fait de prendre, sans autorisation, un bien ou une chose qui ne nous appartient pas. Il peut être commis avec ou sans violence, avec ou sans dégradation.<![CDATA[<br>]]>Ex. : dans un lieu public, cambriolage, vol d’un objet arraché des mains, vol d’un objet remisé dans un véhicule, etc.<![CDATA[<br>]]> S’il est accompagné de violences, il me sera demandé de me déplacer dans un service de police ou de gendarmerie pour compléter ma déclaration et me voir délivrer une réquisition judiciaire qui sera à remettre au médecin habilité pour constater mes blessures.<![CDATA[<br>]]>Si j’ai été victime d’un vol de véhicule à moteur immatriculé, il me sera également demandé de me rendre dans un service de gendarmerie ou de police au plus vite.</target>
+            </trans-unit>
+            <trans-unit id="pel.theft.of.my.bank.card.followed.by.fraudulent.use">
+                <source>pel.theft.of.my.bank.card.followed.by.fraudulent.use</source>
+                <target><![CDATA[<b>Vol de ma carte bancaire suivi d’utilisations frauduleuses</b><br>]]>Le vol concerne dans ce cas précis une carte bancaire dont le voleur ou l’un de ses complices s’est ensuite servi pour effectuer des achats ou des retraits frauduleux.<![CDATA[<br>]]>Ex. : Je me fais voler ma carte bancaire au restaurant et peu de temps après je suis avisé par ma banque que des paiements frauduleux ont été effectués.<![CDATA[<br>]]>Les utilisations frauduleuses d’une carte bancaire <![CDATA[<b>non volée</b>]]> ne sont pas du ressort de la Plainte En Ligne. Elles relèvent du téléservice <![CDATA[<a href="https://www.service-public.fr/particuliers/vosdroits/R46526">PERCEVAL</a>]]>.</target>
+            </trans-unit>
+            <trans-unit id="pel.off-line.scam">
+                <source>pel.off-line.scam</source>
+                <target><![CDATA[<b>Escroquerie hors internet</b><br>]]>
+                L’escroquerie consiste pour son auteur à obtenir un bien, un service ou de l’argent par une tromperie (faux nom, manœuvres frauduleuses, etc.).<![CDATA[<br>]]>Ex. : Un individu me paie avec un chèque dont il sait pertinemment qu’il est volé.<![CDATA[<br>]]>L’escroquerie ne doit pas avoir été commise sur internet. Dans le cas contraire, elle relève du téléservice <![CDATA[<a href="https://www.service-public.fr/particuliers/vosdroits/N31138">THÉSÉE</a>]]>.
+                </target>
+            </trans-unit>
+            <trans-unit id="pel.other.property.crimes">
+                <source>pel.other.property.crimes</source>
+                <target><![CDATA[<b>Autres atteintes aux biens</b><br>]]>
+                Il s’agit essentiellement des extorsions, des abus de confiance, des chantages hors internet ou encore des filouteries.<![CDATA[<br>]]>L’<![CDATA[<b>abus de confiance</b>]]> est le fait pour une personne, à qui a été remis de l’argent ou un bien, de détourner l’usage de ce bien à son profit ou pour un usage frauduleux.<![CDATA[<br>]]>Ex. : J’ai prêté un objet à une personne qui refuse de me le rendre, un client a loué une voiture à une société de location et n’a pas restitué la voiture à l’issue du contrat, etc.<![CDATA[<br>]]>L’<![CDATA[<b>extorsion</b>]]>, communément appelée « racket », est le fait d’obliger une personne à remettre un objet ou une somme d’argent, en la menaçant, elle ou ses proches, ou en lui faisant subir des actes de violence.<![CDATA[<br>]]>Ex. : Je remets mon téléphone portable à un individu qui me le réclame en me menaçant de me frapper si je ne lui obéis pas.<![CDATA[<br>]]>Le <![CDATA[<b>chantage</b>]]> consiste à obtenir ou tenter d’obtenir de l’argent, des valeurs, en menaçant de révéler ou d’imputer des faits qui peuvent porter atteinte à l’honneur ou à la considération de la victime.
+                </target>
+            </trans-unit>
+            <trans-unit id="pel.victim.of.an.internet.scam">
+                <source>pel.victim.of.an.internet.scam</source>
+                <target>J’ai été victime d’une escroquerie sur internet, comment effectuer ma démarche en ligne ?</target>
+            </trans-unit>
+            <trans-unit id="pel.victim.of.an.internet.scam.text">
+                <source>pel.victim.of.an.internet.scam.text</source>
+                <target><![CDATA[<b><u> – Cas 1 : J’ai été victime de l’utilisation frauduleuse de ma carte bancaire en ligne.</u><br>Quelles que soient les précisions apportées ci-dessous, il est impératif, avant d’entamer toute démarche, de faire opposition sur mon moyen de paiement auprès de ma banque.<br>→ Ma carte bancaire m’a été volée </b><br>]]>J’effectue ma démarche sur le téléservice Plainte En Ligne.<![CDATA[<br>]]><![CDATA[<b> → Ma carte bancaire est toujours en ma possession </b><br>]]>Si je remplis toutes les conditions suivantes :
+                </target>
+            </trans-unit>
+            <trans-unit id="pel.I.am.an.individual">
+                <source>pel.I.am.an.individual</source>
+                <target>Je suis un particulier ;</target>
+            </trans-unit>
+            <trans-unit id="pel.victim.of.an.online.scam">
+                <source>pel.victim.of.an.online.scam</source>
+                <target>  <![CDATA[<b><u> – Cas 2 : J’ai été victime d’une arnaque sur internet</u></b><br>]]>
+                        Si je remplis toutes les conditions suivantes :</target>
+            </trans-unit>
+            <trans-unit id="pel.victim.of.an.internet.scam.corresponding.situations">
+                <source>pel.victim.of.an.internet.scam.corresponding.situations</source>
+                <target>J’ai été victime d’une escroquerie sur internet correspondant à au moins l’une des situations suivantes :</target>
+            </trans-unit>
+            <trans-unit id="pel.false.buyer">
+                <source>pel.false.buyer</source>
+                <target>faux acheteur, faux vendeur ou faux site de vente d’un bien ou d’un service ;</target>
+            </trans-unit>
+            <trans-unit id="pel.false.rental">
+                <source>pel.false.rental</source>
+                <target>fausse location (un logement, un véhicule, ou tout autre bien matériel, etc.) ;</target>
+            </trans-unit>
+            <trans-unit id="pel.hacking">
+                <source>pel.hacking</source>
+                <target>piratage d’un compte de messagerie ou de réseau social ;</target>
+            </trans-unit>
+            <trans-unit id="pel.online.blackmail">
+                <source>pel.online.blackmail</source>
+                <target>chantage en ligne ;</target>
+            </trans-unit>
+            <trans-unit id="pel.feelings.scam">
+                <source>pel.feelings.scam</source>
+                <target>escroquerie aux sentiments (fausse relation amoureuse ou amicale par l’intermédiaire d’un support internet pour gagner ma confiance et obtenir de moi de l’argent).</target>
+            </trans-unit>
+            <trans-unit id="pel.go.directly.to.teleservice.website">
+                <source>pel.go.directly.to.teleservice.website</source>
+                <target>Je peux rendre directement sur le site du téléservice <![CDATA[<a href="https://www.service-public.fr/particuliers/vosdroits/N31138"> THÉSÉE</a><br>]]>
+                        Si je ne remplis pas les conditions pour utiliser le téléservice Thésée, je peux effectuer ma démarche sur le site de la Plainte En Ligne.</target>
+            </trans-unit>
+            <trans-unit id="pel.offenses.require.validate.declaration.in.a.gendarmerie.service">
+                <source>pel.offenses.require.validate.declaration.in.a.gendarmerie.service</source>
+                <target>Pourquoi certaines infractions nécessitent que je valide ma déclaration dans un service de police ou de gendarmerie ?</target>
+            </trans-unit>
+            <trans-unit id="pel.offenses.require.validate.declaration.in.a.gendarmerie.service.text">
+                <source>pel.offenses.require.validate.declaration.in.a.gendarmerie.service.text</source>
+                <target>En raison de leur gravité, certaines infractions nécessiteront un déplacement dans nos locaux pour finaliser ma démarche (Ex. : vols commis avec violence, extorsions [rackets], etc.). Lors de ma venue, des questions complémentaires me seront posées. Il me sera remis une réquisition judiciaire pour être examiné par un médecin habilité le cas échéant. Je pourrai également être invité à visionner des clichés photographiques d’individus correspondant à la description du ou des auteurs que j’aurai éventuellement fournie.<![CDATA[<br>]]>
+                        D’autres infractions peuvent nécessiter des éléments complémentaires pour procéder à l’inscription des objets dans nos fichiers d’objets volés. C’est notamment le cas pour un vol de véhicule immatriculé.</target>
+            </trans-unit>
+            <trans-unit id="pel.use.online.complaint.offense.does.not.fall.within.scope.online.service">
+                <source>pel.use.online.complaint.offense.does.not.fall.within.scope.online.service</source>
+                <target>Que se passe-t-il si j’utilise la Plainte En Ligne pour dénoncer une infraction qui n’entre pas dans le champ d’application de ce téléservice ?</target>
+            </trans-unit>
+            <trans-unit id="pel.use.online.complaint.offense.does.not.fall.within.scope.online.service.text">
+                <source>pel.use.online.complaint.offense.does.not.fall.within.scope.online.service.text</source>
+                <target>Le champ d’application du téléservice Plainte En Ligne est défini par un texte légal que les policiers et gendarmes doivent respecter afin que le procès-verbal de plainte qui me sera adressé soit valide.<![CDATA[<br>]]>
+                        Dès lors, si je déclare sur Plainte En Ligne une infraction qui n’entre pas dans le champ d’application de ce téléservice, ma demande sera rejetée et je serai invité à me rendre dans une unité de police ou de gendarmerie pour réaliser ma démarche.</target>
+            </trans-unit>
+            <trans-unit id="pel.difference.between.online.complaint.teleservice.and.online.pre-complaint.service">
+                <source>pel.difference.between.online.complaint.teleservice.and.online.pre-complaint.service</source>
+                <target>Quelle est la différence entre le téléservice Plainte En Ligne et celui de la Pré-Plainte En Ligne?</target>
+            </trans-unit>
+            <trans-unit id="pel.difference.between.online.complaint.teleservice.and.online.pre-complaint.service.text">
+                <source>pel.difference.between.online.complaint.teleservice.and.online.pre-complaint.service.text</source>
+                <target>La Plainte En Ligne remplace la Pré-Plainte En Ligne. Elle offre un service supplémentaire à l’usager puisqu’elle lui permet sous certaines conditions (Utilisation de France Connect pour s’identifier et faits d’atteinte aux biens sans gravité commis par un auteur inconnu) de recevoir un procès-verbal de plainte sans avoir à se déplacer en commissariat ou en brigade de gendarmerie. Pour les situations plus complexes, Plainte En Ligne permet à la victime de préparer sa venue dans une unité de police ou de gendarmerie en renseignant un formulaire qui servira à la rédaction de sa plainte.</target>
+            </trans-unit>
+            <trans-unit id="pel.ransomware">
+                <source>pel.ransomware</source>
+                <target>escroquerie aux sentiments (fausse relation amoureuse ou amicale par l’intermédiaire d’un support internet pour gagner ma confiance et obtenir de moi de l’argent).</target>
+            </trans-unit>
+            <trans-unit id="pel.I.am.not.the.originator.of.the.online.purchases">
+                <source>pel.I.am.not.the.originator.of.the.online.purchases</source>
+                <target>Je ne suis pas à l’origine des achats en ligne que je conteste ;</target>
+            </trans-unit>
+            <trans-unit id="pel.able.to.identify.myself.using.france.connect">
+                <source>pel.able.to.identify.myself.using.france.connect</source>
+                <target>Je suis en mesure de m’identifier au moyen de France Connect ;</target>
+            </trans-unit>
+            <trans-unit id="pel.already.canceled.the.credit.card">
+                <source>pel.already.canceled.the.credit.card</source>
+                <target>J’ai déjà fait opposition à la carte bancaire auprès de ma banque.</target>
+            </trans-unit>
+            <trans-unit id="pel.go.directly.to.the.teleservice.website">
+                <source>pel.go.directly.to.the.teleservice.website</source>
+                <target>Je peux me rendre directement sur le site du téléservice <![CDATA[<a href="https://www.service-public.fr/particuliers/vosdroits/R46526">PERCEVAL</a>]]>.</target>
+            </trans-unit>
+            <trans-unit id="pel.on.the.information.in.my.complaint">
+                <source>pel.on.the.information.in.my.complaint</source>
+                <target>SUR LE RENSEIGNEMENT DE MA DÉCLARATION</target>
+            </trans-unit>
+            <trans-unit id="pel.documents.before.starting.process">
+                <source>pel.documents.before.starting.process</source>
+                <target>De quels documents dois-je me munir avant de débuter ma démarche ?</target>
+            </trans-unit>
+            <trans-unit id="pel.documents.before.starting.process.text">
+                <source>pel.documents.before.starting.process.text</source>
+                <target>Avant de débuter ma déclaration, je m’assure de disposer de la version numérique de tous les documents utiles :</target>
+            </trans-unit>
+            <trans-unit id="pel.documents.attesting.my.capacity.to.act">
+                <source>pel.documents.attesting.my.capacity.to.act</source>
+                <target>documents attestant de ma qualité à agir si j’effectue la démarche pour le compte d’une autre personne (pouvoir, KBIS, délibération, etc.) ;</target>
+            </trans-unit>
+            <trans-unit id="pel.documents.concerning.stolen.or.damaged.items">
+                <source>pel.documents.concerning.stolen.or.damaged.items</source>
+                <target>documents concernant les objets volés ou dégradés (factures, devis, photographies, certificat d’immatriculation ou contrat d’assurance pour un véhicule immatriculé…) ;</target>
+            </trans-unit>
+            <trans-unit id="pel.documents.to.explain.facts">
+                <source>pel.documents.to.explain.facts</source>
+                <target>documents permettant d’expliquer les faits (copies de courriels, SMS, courriers, etc.)</target>
+            </trans-unit>
+            <trans-unit id="pel.possible.medical.certificate">
+                <source>pel.possible.medical.certificate</source>
+                <target>éventuels certificats médicaux attestant de mes blessures.</target>
+            </trans-unit>
+            <trans-unit id="pel.attach.documents.to.complaint">
+                <source>pel.attach.documents.to.complaint</source>
+                <target>Je peux joindre ces documents à ma déclaration.</target>
+            </trans-unit>
+            <trans-unit id="pel.types.documents.can.I.attach">
+                <source>pel.types.documents.can.I.attach</source>
+                <target>Quels types de documents puis-je joindre à ma déclaration ?</target>
+            </trans-unit>
+            <trans-unit id="pel.types.documents.can.I.attach.text">
+                <source>pel.types.documents.can.I.attach.text</source>
+                <target>Je peux joindre à ma déclaration tout document que je juge utile à la compréhension des faits : photographies, copies de courriels ou de SMS, factures, devis, etc.<![CDATA[<br>]]>
+                        Ces documents doivent impérativement être au format JPEG, PNG ou PDF. Aucune vidéo ne peut être téléversée.<![CDATA[<br>]]>
+                        En raison de contraintes techniques, la taille maximale de chaque pièce jointe est limitée à 5 Mo. L’ensemble des documents ne doit pas dépasser 20 Mo.<![CDATA[<br>]]>
+                        Si je dispose de plus de documents que la capacité maximale autorisée ou si je souhaite communiquer un enregistrement vidéo de nature à éclairer l’enquête, je dois contacter le service en charge du traitement de ma déclaration qui m’expliquera la marche à suivre pour lui transmettre ces éléments.<![CDATA[<br>]]>
+                        Il est important lors du contact téléphonique de rappeler mon identité et les références de ma télédéclaration.</target>
+            </trans-unit>
+            <trans-unit id="pel.why.authenticate.via.france.connect">
+                <source>pel.why.authenticate.via.france.connect</source>
+                <target>Pourquoi m’authentifier via France Connect ?</target>
+            </trans-unit>
+            <trans-unit id="pel.why.authenticate.via.france.connect.text">
+                <source>pel.why.authenticate.via.france.connect.text</source>
+                <target>Lorsque je me rends dans une unité de police ou de gendarmerie pour porter plainte, je dois fournir une pièce d’identité qui permet de m’authentifier c’est-à-dire de s’assurer de mon identité.<![CDATA[<br>]]>
+                        Dans le cadre d’une démarche de Plainte totalement En Ligne, cette authentification est réalisée au moyen de France Connect.</target>
+            </trans-unit>
+            <trans-unit id="pel.how.does.france.connect.work">
+                <source>pel.how.does.france.connect.work</source>
+                <target>Comment fonctionne France Connect ?</target>
+            </trans-unit>
+            <trans-unit id="pel.how.does.france.connect.work.text">
+                <source>pel.how.does.france.connect.work.text</source>
+                <target>France Connect permet de récupérer les informations d’identité concernant la personne qui s’authentifie. Ces informations sont connues et vérifiées par d’autres services (Impôts, Assurance Maladie, La Poste, etc.).<![CDATA[<br>]]>
+                        Après avoir cliqué sur France Connect, je choisis le service qui communique mes éléments d’identité puis je me connecte à ce service avec mes identifiants (ex. : Je choisis de m’identifier avec le site des impôts puis je saisis ensuite les identifiants qui me servent pour effectuer toutes mes démarches sur le site des impôts). Les informations concernant mon identité seront automatiquement transférées dans le formulaire de la Plainte En Ligne. Il ne me restera que quelques informations complémentaires à nous fournir (nom d’usage le cas échéant, situation maritale, profession, adresse postale, etc.). </target>
+            </trans-unit>
+            <trans-unit id="pel.certain.fields.of.my.identity.not.modifiable.using.france.connect">
+                <source>pel.certain.fields.of.my.identity.not.modifiable.using.france.connect</source>
+                <target>Pourquoi certains champs de mon identité ne sont-ils pas modifiables lorsque je m’identifie au moyen de France Connect ?</target>
+            </trans-unit>
+            <trans-unit id="pel.certain.fields.of.my.identity.not.modifiable.using.france.connect.text">
+                <source>pel.certain.fields.of.my.identity.not.modifiable.using.france.connect.text</source>
+                <target>Il s’agit des informations transmises automatiquement par France Connect et qui nous permettent de nous assurer de l’identité du plaignant. Si une erreur est constatée, la modification n’est possible que sur le site qui délivre l’information erronée (AMELI, les Impôts, la Poste, etc.).</target>
+            </trans-unit>
+            <trans-unit id="pel.what.happens.cannot.authenticate.via.france.connect">
+                <source>pel.what.happens.cannot.authenticate.via.france.connect</source>
+                <target>Que se passe-t-il si je ne peux/ne veux pas m’authentifier via France Connect ?</target>
+            </trans-unit>
+            <trans-unit id="pel.what.happens.cannot.authenticate.via.france.connect.text">
+                <source>pel.what.happens.cannot.authenticate.via.france.connect.text</source>
+                <target>Je peux poursuivre ma démarche en ligne. Il me sera alors demandé de me déplacer dans l’unité en charge du traitement de ma déclaration afin d’attester de mon identité au moyen d’un titre d’identité valide (CNI, Titre de séjour, passeport ou à défaut livret de famille ou de tout autre document officiel).</target>
+            </trans-unit>
+            <trans-unit id="pel.username">
+                <source>pel.username</source>
+                <target>Qu’est-ce que le nom d’usage ?</target>
+            </trans-unit>
+            <trans-unit id="pel.username.text">
+                <source>pel.username.text</source>
+                <target>Le nom d’usage est celui que j’utilise dans ma vie quotidienne. Il s’agit essentiellement du nom d’époux pour une femme mariée, veuve ou encore divorcée. Le nom d’usage est facultatif. Il ne remplace pas le nom de famille de naissance. Il permet notamment de relier certains justificatifs que je pourrais être amené à fournir dans le cadre de ma démarche s’ils ne mentionnent que ce seul nom (factures, relevés de comptes bancaires, etc.).</target>
+            </trans-unit>
+            <trans-unit id="pel.why.being.asked.my.profession">
+                <source>pel.why.being.asked.my.profession</source>
+                <target>Pourquoi me demande-t-on ma profession ?</target>
+            </trans-unit>
+            <trans-unit id="pel.why.being.asked.my.profession.text">
+                <source>pel.why.being.asked.my.profession.text</source>
+                <target>La profession peut être une circonstance aggravante de certaines infractions. C’est la raison pour laquelle nous demandons cette information. Si cela est le cas, il est important de le préciser dans le champ détaillant les faits.</target>
+            </trans-unit>
+            <trans-unit id="pel.description.facts">
+                <source>pel.description.facts</source>
+                <target>SUR LA DESCRIPTION DES FAITS</target>
+            </trans-unit>
+            <trans-unit id="pel.describe.facts">
+                <source>pel.describe.facts</source>
+                <target>Comment dois-je décrire les faits ?</target>
+            </trans-unit>
+            <trans-unit id="pel.describe.facts.text">
+                <source>pel.describe.facts.text</source>
+                <target>Je dois raconter les faits de la façon dont ils se sont déroulés avec le plus de précisions et de simplicité.<![CDATA[<br>]]>
+                        Pour gagner en clarté, il est préférable d’expliquer les faits en suivant leur ordre chronologique.<![CDATA[<br>]]>
+                        Je commence par préciser les circonstances de découverte des faits ;<![CDATA[<br>]]>
+                        Mes explications doivent permettre de comprendre comment l’auteur a agi et quel a été son mode opératoire (main dans la poche ou dans le sac, objet arraché des mains, usage d’un objet pour commettre l’infraction, etc.).<![CDATA[<br>]]>
+                        Si l’infraction a été facilitée par mon état de faiblesse (maladie, handicap ou grossesse) ou réalisée dans le cadre de l’exercice de ma profession, il est également important de nous le signaler.<![CDATA[<br>]]>
+                        Enfin, si l’auteur a laissé sur les lieux un objet lui appartenant (ex. : vêtement, pied de biche, etc.), je dois appeler le 17 et l’indiquer dans ma déclaration. Il ne faut surtout pas manipuler l’objet avant l’intervention des policiers ou des gendarmes.</target>
+            </trans-unit>
+            <trans-unit id="pel.why.asked.if.I.have.suffered.violence">
+                <source>pel.why.asked.if.I.have.suffered.violence</source>
+                <target>Pourquoi me demande-t-on si j’ai subi des violences ?</target>
+            </trans-unit>
+            <trans-unit id="pel.why.asked.if.I.have.suffered.violence.text">
+                <source>pel.why.asked.if.I.have.suffered.violence.text</source>
+                <target>Il est important de préciser si les faits sont accompagnés de violences, car ces éléments constituent une circonstance aggravante des atteintes aux biens. Je dois également préciser si les faits ont été commis avec une arme (arme à feu, couteau, bombe lacrymogène, tesson de bouteille ou tout autre objet pouvant me blesser, etc.).<![CDATA[<br>]]>
+                        Ces informations permettent de mieux comprendre comment les faits se sont produits et d’orienter l’enquête.
+                </target>
+            </trans-unit>
+            <trans-unit id="pel.what.is.violence">
+                <source>pel.what.is.violence</source>
+                <target>Qu’est-ce que des violences ?</target>
+            </trans-unit>
+            <trans-unit id="pel.what.is.violence.text">
+                <source>pel.what.is.violence.text</source>
+                <target>Constituent des violences les coups qui ont été portés (gifles, coups de poing ou de pied, etc.), mais également les bousculades. Les vols à l’arraché de téléphone ou de sac à main sont considérés comme de vols commis avec violences.<![CDATA[<br>]]>
+                        Si les violences sont commises au moyen d’une arme, il est important de le préciser et de décrire le plus précisément possible l’arme (taille, couleur, apparence, etc.).
+                </target>
+            </trans-unit>
+            <trans-unit id="pel.what.are.threats">
+                <source>pel.what.are.threats</source>
+                <target>Qu’est-ce que des menaces ?</target>
+            </trans-unit>
+            <trans-unit id="pel.what.are.threats.text">
+                <source>pel.what.are.threats.text</source>
+                <target>Les menaces sont toutes les phrases ou postures d’intimidation utilisées par le ou les auteurs des faits pour contraindre à remettre un bien (racket) ou amener à se laisser faire pendant le vol.<![CDATA[<br>]]>
+                        Si l’auteur utilise une arme pour menacer, il est important de le préciser et de décrire l’arme avec le plus de précisions possible (taille, couleur, apparence, etc.).
+                </target>
+            </trans-unit>
+            <trans-unit id="pel.stolen.items">
+                <source>pel.stolen.items</source>
+                <target>SUR LES OBJETS VOLÉS</target>
+            </trans-unit>
+            <trans-unit id="pel.items.should.I.include.in.my.declaration">
+                <source>pel.items.should.I.include.in.my.declaration</source>
+                <target>Quels objets est-ce que je dois mentionner dans ma déclaration ?</target>
+            </trans-unit>
+            <trans-unit id="pel.items.should.I.include.in.my.declaration.text">
+                <source>pel.items.should.I.include.in.my.declaration.text</source>
+                <target>Je dois faire figurer dans ma déclaration tous les objets qui ont été volés ou dégradés dans le cadre de l’infraction dont j’ai été la victime. Pour chaque objet, j’indique s’il a été dégradé ou volé.<![CDATA[<br>]]>
+                        Ex. : J’ai été victime d’un cambriolage, le voleur a cassé une fenêtre de ma maison pour entrer dans mon domicile et me voler mes bijoux et mes papiers. La fenêtre de mon domicile doit être déclarée comme objet « dégradé », mes bijoux et mes papiers pris un par un doivent être déclarés « volés ».<![CDATA[<br>]]>
+                        Il est possible que j’aie été victime d’une tentative de vol. Le voleur pour des raisons diverses (résistance, intervention d’un tiers, etc.) n’est pas parvenu à me dérober un bien. Dans ce cas, j’ai la possibilité de cliquer en bas de la première page de la rubrique « Biens concernés » sur le bouton « Je n’ai pas de bien à déclarer ».</target>
+            </trans-unit>
+            <trans-unit id="pel.asked.information.about.stolen.items">
+                <source>pel.asked.information.about.stolen.items</source>
+                <target>Pourquoi me demande-t-on tous ces renseignements sur les objets qui m’ont été volés ?</target>
+            </trans-unit>
+            <trans-unit id="pel.asked.information.about.stolen.items.text">
+                <source>pel.asked.information.about.stolen.items.text</source>
+                <target>Un grand nombre d’objets déclarés volés peuvent être inscrit au fichier des objets volés. Pour ce faire il faut disposer des informations nécessaires pour l’identifier : marque, modèle, numéro de série, numéro IMEI, éventuelles factures, etc. L’inscription au fichier des objets volés permet de restituer un bien s’il est retrouvé dans le cadre de l’enquête ou de toute autre enquête.<![CDATA[<br>]]>
+                        Pour ce qui concerne les téléphones portables, les informations demandées permettent de bloquer auprès de mon opérateur l’usage du téléphone sur le territoire français. Cette démarche est différente de l’éventuelle opposition à la ligne à effectuer auprès de l’opérateur.</target>
+            </trans-unit>
+            <trans-unit id="pel.number.should.I.give.stolen.phone">
+                <source>pel.number.should.I.give.stolen.phone</source>
+                <target>Quel numéro dois-je indiquer dans le cas du vol de mon téléphone portable ?</target>
+            </trans-unit>
+            <trans-unit id="pel.number.should.I.give.stolen.phone.text">
+                <source>pel.number.should.I.give.stolen.phone.text</source>
+                <target>Je dois indiquer un numéro de téléphone grâce auquel je peux être joint si nécessaire (numéro de téléphone portable professionnel, numéro de ligne fixe, numéro d’un membre de ma famille, d’un proche, etc.).</target>
+            </trans-unit>
+            <trans-unit id="pel.cell.phone.imei.number">
+                <source>pel.cell.phone.imei.number</source>
+                <target>Qu’est-ce que le numéro d’IMEI d’un téléphone portable et où peut-on le retrouver ?</target>
+            </trans-unit>
+            <trans-unit id="pel.cell.phone.imei.number.text">
+                <source>pel.cell.phone.imei.number.text</source>
+                <target>L’IMEI (International Mobile Equipment Identity) est un numéro composé de 15 à 17 chiffres qui permet d’identifier un téléphone portable. Il est différent pour chaque appareil et ne change jamais même si le téléphone est vendu. Ce numéro est utile, car il permet de faire bloquer le téléphone portable qui devient inutilisable en France (EN COURS D’IMPLÉMENTATION). Il permet également d’inscrire le téléphone au fichier des objets volés et de le rendre au propriétaire s’il est retrouvé. Il s’agit donc d’une information très importante.<![CDATA[<br>]]>
+                        Il peut être trouvé lorsque le téléphone est en ma possession en tapant *#06 # sur le clavier de l’onglet appel du téléphone. Il peut être également trouvé dans le menu réglages ou paramètres propre à chaque téléphone.<![CDATA[<br>]]>
+                        Si le téléphone a été volé, le numéro IMEI peut être trouvé sur la facture d’achat du téléphone ou sur sa boîte.<![CDATA[<br>]]>
+                        Pour les utilisateurs d’un téléphone de marque Apple :</target>
+            </trans-unit>
+            <trans-unit id="pel.connect.appleid">
+                <source>pel.connect.appleid</source>
+                <target>Je me connecte à AppleID depuis un navigateur internet avec mes identifiants Apple ;</target>
+            </trans-unit>
+            <trans-unit id="pel.choose.devices">
+                <source>pel.choose.devices</source>
+                <target>Je choisis la section « Appareils » ;</target>
+            </trans-unit>
+            <trans-unit id="pel.select.device.imei">
+                <source>pel.select.device.imei</source>
+                <target>je sélectionne l’appareil pour voir le numéro de série et l’IMEI ;</target>
+            </trans-unit>
+            <trans-unit id="pel.geolocation.enabled">
+                <source>pel.geolocation.enabled</source>
+                <target>si j’ai activé la géolocalisation de mon téléphone et que celui-ci est allumé, je peux voir où il se trouve en me connectant sur <![CDATA[<a href="https://www.icloud.com/find/">Apple Find</a>]]>.</target>
+            </trans-unit>
+            <trans-unit id="pel.android.users">
+                <source>pel.android.users</source>
+                <target>Pour les utilisateurs d’un téléphone fonctionnant sous Android :</target>
+            </trans-unit>
+            <trans-unit id="pel.connect.googlefind">
+                <source>pel.connect.googlefind</source>
+                <target>je me connecte à <![CDATA[<a href="https://www.google.com/android/find/">Google Find</a>]]> depuis un navigateur internet avec mes identifiants Google</target>
+            </trans-unit>
+            <trans-unit id="pel.select.google.device">
+                <source>pel.select.google.device</source>
+                <target>je sélectionne l’appareil, puis je clique sur  pour voir le numéro de série et l’IMEI ;</target>
+            </trans-unit>
+            <trans-unit id="pel.android.geolocation.enabled">
+                <source>pel.android.geolocation.enabled</source>
+                <target>si j’ai activé la géolocalisation de mon téléphone et que celui-ci est allumé, je peux voir où il se trouve.</target>
+            </trans-unit>
+            <trans-unit id="pel.what.is.harm">
+                <source>pel.what.is.harm</source>
+                <target>Qu’est-ce qu’un préjudice ?</target>
+            </trans-unit>
+            <trans-unit id="pel.what.is.harm.text">
+                <source>pel.what.is.harm.text</source>
+                <target>C’est un dommage qui m’a été causé volontairement ou involontairement.<![CDATA[<br>]]>
+                        Il peut être matériel (destruction ou vol de mon bien, perte de salaire, etc.), corporel (blessures, etc.) ou moral (affectif, dommages psychologiques, etc.).</target>
+            </trans-unit>
+            <trans-unit id="pel.material.damage.assessed">
+                <source>pel.material.damage.assessed</source>
+                <target>Comment est évalué un préjudice matériel ?</target>
+            </trans-unit>
+            <trans-unit id="pel.material.damage.assessed.text">
+                <source>pel.material.damage.assessed.text</source>
+                <target>Le préjudice matériel est exprimé sous forme d’un montant en euros. Je peux confirmer son montant en joignant tous les justificatifs nécessaires (factures d’achat ou de réparation, devis, etc.). C’est le tribunal et/ou l’assurance qui fixeront le montant d’une indemnisation.</target>
+            </trans-unit>
+            <trans-unit id="pel.physical.or.moral.harm.assessed">
+                <source>pel.physical.or.moral.harm.assessed</source>
+                <target>Comment est évalué un préjudice physique ou moral ?</target>
+            </trans-unit>
+            <trans-unit id="pel.physical.or.moral.harm.assessed.text">
+                <source>pel.physical.or.moral.harm.assessed.text</source>
+                <target>Si j’ai été victime d’une atteinte aux biens commise avec violences (vol, racket, etc.), j’ai subi un préjudice physique que je peux faire attester par un médecin. Pour cela, j’ai la possibilité de me rendre spontanément chez mon médecin traitant. Le certificat que ce médecin aura rédigé pourra être joint à ma déclaration.<![CDATA[<br>]]>
+                         Il est également possible que le service de police ou de gendarmerie demande une consultation sur rendez-vous auprès d’un médecin spécialement formé pour rédiger ce type de certificat. Un procès-verbal de réquisition judiciaire me sera alors communiqué par un agent qu’il faudra ensuite remettre au médecin concerné. Dans son certificat, le médecin décrira les blessures physiques et/ou morales ainsi que leur gravité. La gravité des blessures est chiffrée en jour d’Incapacité Totale de Travail (ITT). L’ITT est l’unité de mesure de la gravité des blessures. Elle n’est pas nécessairement identique à un nombre de jours d’arrêt de travail.<![CDATA[<br>]]>
+                         Si l’infraction dont j’ai été victime a entraîné un préjudice moral, le principe est identique.<![CDATA[<br>]]>
+                         Si j’ai subi un préjudice physique et un préjudice moral, le certificat qui me sera délivré précisera le nombre de jours d’ITT pour chacun des préjudices. </target>
+            </trans-unit>
+            <trans-unit id="pel.additional.informations.required">
+                <source>pel.additional.informations.required</source>
+                <target>SUR LES INFORMATIONS COMPLÉMENTAIRES DEMANDÉES</target>
+            </trans-unit>
+            <trans-unit id="pel.what.is.witness">
+                <source>pel.what.is.witness</source>
+                <target>Qu’est-ce qu’un témoin ?</target>
+            </trans-unit>
+            <trans-unit id="pel.what.is.witness.text">
+                <source>pel.what.is.witness.text</source>
+                <target>Il s’agit de toute personne qui a assisté aux faits et qui accepterait de relater les faits, tels qu’elle les a vus ou entendus, auprès des forces de l’ordre. </target>
+            </trans-unit>
+            <trans-unit id="pel.information.witness">
+                <source>pel.information.witness</source>
+                <target>Quelles informations dois-je fournir concernant les éventuels témoins ?</target>
+            </trans-unit>
+            <trans-unit id="pel.information.witness.text">
+                <source>pel.information.witness.text</source>
+                <target>Je dois communiquer tous les éléments permettant d’entrer en contact avec les éventuels témoins (identité, coordonnées téléphoniques ou adresse courriel, tout élément jugé utile, etc.).</target>
+            </trans-unit>
+            <trans-unit id="pel.perpetrator">
+                <source>pel.perpetrator</source>
+                <target>Qu’est-ce que l’auteur des faits ?</target>
+            </trans-unit>
+            <trans-unit id="pel.perpetrator.text">
+                <source>pel.perpetrator.text</source>
+                <target>L’auteur des faits est celui qui a commis l’infraction dont j’ai été victime. Ce terme désigne également ses éventuels complices c’est-à-dire toutes les personnes qui l’ont aidé à commettre l’infraction.<![CDATA[<br>]]>
+                        Ex. : Une personne fait le guet, une autre détourne mon attention pendant qu’une troisième me vole.
+                </target>
+            </trans-unit>
+            <trans-unit id="pel.what.is.suspect">
+                <source>pel.what.is.suspect</source>
+                <target>Qu’est-ce qu’un suspect ?</target>
+            </trans-unit>
+            <trans-unit id="pel.what.is.suspect.text">
+                <source>pel.what.is.suspect.text</source>
+                <target>Il s’agit de la personne qui a potentiellement commis les faits que je dénonce. Ce terme désigne également ses éventuels complices c’est-à-dire toutes les personnes qui pourraient l’avoir aidé à commettre l’infraction.
+                </target>
+            </trans-unit>
+            <trans-unit id="pel.suspect.description">
+                <source>pel.suspect.description</source>
+                <target>Comment décrire un suspect ou un auteur de l’infraction ?</target>
+            </trans-unit>
+            <trans-unit id="pel.suspect.description.text">
+                <source>pel.suspect.description.text</source>
+                <target>Dans la mesure du possible, il faut fournir les éléments suivants : morphologie, sexe, âge apparent, taille, corpulence (mince, normale, forte trapue, athlétique, etc.), cheveux (couleurs, longueurs, aspects), yeux, vêtements, tout signe distinctif (tatouage, particularités physiques, etc.).<![CDATA[<br>]]>
+                        Je dois compléter ces informations pour chacun des auteurs ou des suspects.</target>
+            </trans-unit>
+            <trans-unit id="pel.ask.gendarmes.came">
+                <source>pel.ask.gendarmes.came</source>
+                <target>Pourquoi me demande-t-on si des policiers ou des gendarmes se sont déplacés ?</target>
+            </trans-unit>
+            <trans-unit id="pel.ask.gendarmes.came.text">
+                <source>pel.ask.gendarmes.came.text</source>
+                <target>L’agent rédige un rapport d’intervention qui doit être joint à la procédure judiciaire qui est ouverte. Ce rapport contient des informations qui sont utiles à l’enquête.</target>
+            </trans-unit>
+            <trans-unit id="pel.asked.traces">
+                <source>pel.asked.traces</source>
+                <target>Pourquoi me demande-t-on si des relevés de traces et d’indices ont été effectués ?</target>
+            </trans-unit>
+            <trans-unit id="pel.asked.traces.text">
+                <source>pel.asked.traces.text</source>
+                <target>Pour certaines infractions, l’auteur a pu laisser des empreintes ou des traces ADN au moment où il a commis son méfait. C’est notamment le cas lors d’un cambriolage ou lors d’un vol dans une voiture. De même, il est possible que l’auteur des faits ait oublié sur les lieux de l’infraction un objet lui appartenant (pied de biche ou tournevis ayant servi pour ouvrir une porte, caillou ou tout autre objet ayant servi à casser une vitre, un vêtement ou tout autre objet). Il est alors important de ne toucher à rien avant de recevoir les instructions d’un agent.</target>
+            </trans-unit>
+            <trans-unit id="pel.sign.complaint">
+                <source>pel.sign.complaint</source>
+                <target>Vais-je devoir me rendre au commissariat ou à la gendarmerie afin de signer ma plainte ?</target>
+            </trans-unit>
+            <trans-unit id="pel.sign.complaint.text">
+                <source>pel.sign.complaint.text</source>
+                <target>La démarche totalement en ligne est possible dans les cas suivants : </target>
+            </trans-unit>
+            <trans-unit id="pel.authenticate.france.connect">
+                <source>pel.authenticate.france.connect</source>
+                <target>Authentification au moyen de France Connect ; </target>
+            </trans-unit>
+            <trans-unit id="pel.no.violence">
+                <source>pel.no.violence</source>
+                <target>Pas de violences ou de menaces ;</target>
+            </trans-unit>
+            <trans-unit id="pel.no.vehicle.stolen">
+                <source>pel.no.vehicle.stolen</source>
+                <target>Pas de vol d’un véhicule immatriculé ;</target>
+            </trans-unit>
+            <trans-unit id="pel.facts.description.is.clear">
+                <source>pel.facts.description.is.clear</source>
+                <target>Les faits décrits sont clairs, précis et ne nécessitent pas de précisions complémentaires.</target>
+            </trans-unit>
+            <trans-unit id="pel.criteria.automatically.detected">
+                <source>pel.criteria.automatically.detected</source>
+                <target>Les trois premiers critères sont détectés automatiquement par l’application. Je serai alors informé de la nécessité de me rendre dans un commissariat de police ou une brigade de gendarmerie que j’aurai la possibilité de choisir. Il me sera ensuite demandé mes disponibilités pour être recontacté par un agent avec lequel je conviendrai d’un jour et d’une heure de rendez-vous.<![CDATA[<br>]]>
+                        Il est également possible que la nécessité d’un rendez-vous découle de l’analyse de ma déclaration par l’enquêteur. Ce dernier me contactera pour convenir d’un rendez-vous.</target>
+            </trans-unit>
+            <trans-unit id="pel.declaration.after.transmission">
+                <source>pel.declaration.after.transmission</source>
+                <target>SUR LE DEVENIR DE MA DÉCLARATION APRÈS SA TRANSMISSION</target>
+            </trans-unit>
+            <trans-unit id="pel.department.process.complaint">
+                <source>pel.department.process.complaint</source>
+                <target>Quel service va traiter ma déclaration ?</target>
+            </trans-unit>
+            <trans-unit id="pel.department.process.complaint.text">
+                <source>pel.department.process.complaint.text</source>
+                <target>Si ma déclaration remplit les conditions pour être traitée entièrement en ligne, le service qui la recevra sera celui compétent au regard du lieu de commission des faits. Si ce lieu ne peut être défini (ex. : les faits se sont commis sur internet ou à l’étranger), le service en charge du traitement sera le service compétent au regard de mon lieu de domiciliation (commune de résidence).<![CDATA[<br>]]>
+                        Si un rendez-vous est nécessaire pour finaliser ma démarche, je serai reçu dans le service de mon choix qui prendra contact avec moi.<![CDATA[<br>]]>
+                        Le nom et les coordonnées du service saisi de ma déclaration me seront communiqués dès que j’aurai validé ma déclaration.</target>
+            </trans-unit>
+            <trans-unit id="pel.appointment.online.complaint">
+                <source>pel.appointment.online.complaint</source>
+                <target>Puis-je prendre rendez-vous malgré le dépôt d’une télédéclaration ?</target>
+            </trans-unit>
+            <trans-unit id="pel.appointment.online.complaint.text">
+                <source>pel.appointment.online.complaint.text</source>
+                <target>J’ai la possibilité de prendre rendez-vous avant, pendant et après le dépôt d’une télédéclaration.<![CDATA[<br>]]>
+                        Si je souhaite être reçu par un policier ou un gendarme après avoir déposé une déclaration en ligne, je dois, avant de me déplacer, prendre contact avec le service en charge du traitement de ma déclaration pour convenir avec un agent des modalités de ma venue.<![CDATA[<br>]]>
+                        Il est important lors de la prise de contact téléphonique de rappeler mon identité et les références de ma déclaration.</target>
+            </trans-unit>
+            <trans-unit id="pel.additional.information.to.declare">
+                <source>pel.additional.information.to.declare</source>
+                <target>Comment faire si j’ai des éléments complémentaires à déclarer ou de nouveaux documents à remettre ?</target>
+            </trans-unit>
+            <trans-unit id="pel.additional.information.to.declare.text">
+                <source>pel.additional.information.to.declare.text</source>
+                <target>Pour compléter ma déclaration avec de nouveaux éléments (ajout d’informations, de documents, etc.), je dois prendre contact avec le service en charge du traitement de ma déclaration afin qu’un agent me donne la marche à suivre.<![CDATA[<br>]]>
+                        Il est important à chaque contact de rappeler mon identité, celle de la victime si elle est différente de la mienne et les références de ma déclaration.</target>
+            </trans-unit>
+            <trans-unit id="pel.when.will.my.declaration.be.processed">
+                <source>pel.when.will.my.declaration.be.processed</source>
+                <target>Sous quel délai ma déclaration va-t-elle être traitée ?</target>
+            </trans-unit>
+            <trans-unit id="pel.when.will.my.declaration.be.processed.text">
+                <source>pel.when.will.my.declaration.be.processed.text</source>
+                <target>Sauf circonstances particulières, ma déclaration sera traitée dans les 7 jours qui suivront sa réception par un service. Cela signifie qu’elle va être analysée par un agent qui va déterminer si elle remplit les conditions pour faire l’objet d’un procès-verbal de plainte.<![CDATA[<br>]]>
+                        Si tel est le cas, j’aurai accès à une une copie numérique du procès-verbal qui sera rédigé.<![CDATA[<br>]]>
+                        Une fois ma déclaration transformée en procès-verbal de plainte, l’enquête judiciaire débute.<![CDATA[<br>]]>
+                        Si tel n’est pas, le cas je recevrai un courriel m’indiquant le motif du rejet de ma déclaration.</target>
+            </trans-unit>
+            <trans-unit id="pel.when.will.my.complaint.be.processed">
+                <source>pel.when.will.my.complaint.be.processed</source>
+                <target>Sous quel délai ma plainte va-t-elle être traitée ?</target>
+            </trans-unit>
+            <trans-unit id="pel.when.will.my.complaint.be.processed.text">
+                <source>pel.when.will.my.complaint.be.processed.text</source>
+                <target>Ma déclaration a rempli toutes les conditions pour la rédaction d’un procès-verbal de plainte. Ce procès-verbal sera le premier acte de la procédure judiciaire qui va être ouverte. Cette procédure judiciaire pourra aboutir à l’identification de l’auteur ou n’apporter aucun élément utile. Si un auteur est identifié, j’en serai avisé par nos services.<![CDATA[<br>]]>
+                        Le temps de traitement d’une procédure judiciaire varie en fonction des investigations à mener.<![CDATA[<br>]]>
+                        Une fois les investigations terminées, la procédure judiciaire est transmise au Tribunal Judiciaire compétent qui décidera de la suite à donner à la plainte. Si je veux connaître les suites d’une procédure transmise à un tribunal, il faudra s’adresser au tribunal en question.</target>
+            </trans-unit>
+            <trans-unit id="pel.change.service">
+                <source>pel.change.service</source>
+                <target>Pourrais-je demander à être reçu dans un autre service que celui initialement convenu ?</target>
+            </trans-unit>
+            <trans-unit id="pel.change.service.text">
+                <source>pel.change.service.text</source>
+                <target>J’ai la possibilité de changer de lieu de rendez-vous. Néanmoins, je dois contacter dans les meilleurs délais le service saisi de ma déclaration afin qu’il la transfère au service dans lequel je souhaite me rendre.<![CDATA[<br>]]>
+                        Il est important à chaque contact de rappeler mon identité, celle de la victime si elle est différente de la mienne et les références de ma déclaration.</target>
+            </trans-unit>
+            <trans-unit id="pel.refuse.online.complaint">
+                <source>pel.refuse.online.complaint</source>
+                <target>Vos services peuvent-ils refuser de prendre ma Plainte En Ligne ?</target>
+            </trans-unit>
+            <trans-unit id="pel.refuse.online.complaint.text">
+                <source>pel.refuse.online.complaint.text</source>
+                <target>Une fois transmise, la déclaration est analysée par un enquêteur. Ce dernier va déterminer si les éléments que j’ai transmis sont constitutifs d’une infraction et si la nature de cette infraction entre dans le champ de la Plainte En Ligne. Il est possible que les faits que j’ai décrits ne constituent pas une infraction pénale, mais relèvent par exemple des juridictions prud’homale ou commerciale. Dans ce cas, ma déclaration ne pourra pas être transformée en procès-verbal de plainte. J’en serai informé et il me sera indiqué les coordonnées du service le plus approprié pour répondre à ma situation.<![CDATA[<br>]]>
+                        Si j’estime que ma situation justifie malgré tout un dépôt de plainte, j’ai la possibilité de prendre attache avec le service de police ou de gendarmerie en charge de ma plainte pour échanger de vive voix avec un agent.</target>
+            </trans-unit>
+            <trans-unit id="pel.download.complaint.report">
+                <source>pel.download.complaint.report</source>
+                <target>De combien de temps est-ce que je dispose pour télécharger mon procès-verbal de plainte et les documents qui l’accompagnent ?</target>
+            </trans-unit>
+            <trans-unit id="pel.download.complaint.report.text">
+                <source>pel.download.complaint.report.text</source>
+                <target>Je dispose de 6 mois pour télécharger l’exemplaire de ma plainte et les documents qui l’accompagnent. Passé ce délai, toute demande de copie devra être réalisée auprès du service de police ou de gendarmerie en charge de ma plainte.</target>
+            </trans-unit>
+            <trans-unit id="pel.how.download.complaint.report">
+                <source>pel.how.download.complaint.report</source>
+                <target>Comment faire pour télécharger mon dépôt de plainte et les documents qui l’accompagnent ?</target>
+            </trans-unit>
+            <trans-unit id="pel.how.download.complaint.report.text">
+                <source>pel.how.download.complaint.report.text</source>
+                <target>Je serai avisé par courriel de la mise à disposition de mon procès-verbal de plainte et des documents qui l’accompagnent. Ce courriel comprendra un lien sur lequel il faudra cliquer puis suivre les indications fournies pour récupérer les documents.</target>
+            </trans-unit>
+            <trans-unit id="pel.as.an.individual">
+                <source>pel.as.an.individual</source>
+                <target>En tant que particulier, la victime elle-même ou un parent d’un enfant mineur victime ;</target>
+            </trans-unit>
+            <trans-unit id="pel.as.an.association">
+                <source>pel.as.an.association</source>
+                <target>En tant qu’association, société, administration, etc., le représentant légal de cette personne morale.</target>
+            </trans-unit>
+            <trans-unit id="pel.to.have.standing.to.act">
+                <source>pel.to.have.standing.to.act</source>
+                <target>Pour avoir la qualité pour agir, je dois être l’un de ses dirigeants ou avoir reçu un mandat pour agir.</target>
             </trans-unit>
             <trans-unit id="pel.what.is.legal.representative.text">
                 <source>pel.what.is.legal.representative.text</source>
-                <target>Lorem ipsum dolor sit amet, consectetur adipiscing, incididunt, ut labore et dolore magna aliqua. Vitae sapien pellentesque habitant morbi tristique senectus et. Diam maecenas sed enim ut. Accumsan lacus vel facilisis volutpat est. Ut aliquam purus sit amet luctus. Lorem ipsum dolor sit amet consectetur adipiscing elit ut.</target>
+                <target>Un représentant légal est une personne physique (un individu) chargée de représenter une autre personne physique ou morale (association, société, collectivités…).</target>
+            </trans-unit>
+            <trans-unit id="pel.Who.can.file.a.complaint">
+                <source>pel.Who.can.file.a.complaint</source>
+                <target>Qui peut porter plainte ?</target>
+            </trans-unit>
+            <trans-unit id="pel.Who.can.file.a.complaint.text">
+                <source>pel.Who.can.file.a.complaint.text</source>
+                <target>Toute personne victime d’une infraction pénale peut déposer plainte.
+                        Si une personne faisant l’objet d’une mesure de protection (tutelle ou curatelle) rencontre des difficultés pour ce faire, elle peut être assistée d’un proche, d’un membre d’une association d’aide aux victimes, ou d’un mandataire judiciaire à la protection des majeurs (tuteur ou curateur).
+                        Sur le site de la Plainte En Ligne, seules peuvent porter plainte :
+                        – En tant que particulier, la victime elle-même ou un parent d’un enfant mineur victime ;
+                        – En tant qu’association, société, administration, etc., le représentant légal de cette personne morale. Pour avoir la qualité pour agir, je dois être l’un de ses dirigeants ou avoir reçu un mandat pour agir.
+                </target>
             </trans-unit>
             <trans-unit id="pel.what.subsidiary.question">
                 <source>pel.what.subsidiary.question</source>

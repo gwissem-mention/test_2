@@ -1,192 +1,736 @@
 {% extends 'common/_help.html.twig' %}
 
 {% block title %}
-	{{ 'pel.help.faq.title'|trans }}
+    {{ 'pel.help.faq.title'|trans }}
 {% endblock %}
 
 {% block breadcrumb %}
-	<ol class="fr-breadcrumb__list">
-		<li>
-			<a class="fr-breadcrumb__link" href="/">{{ 'pel.breadcrumb.welcome'|trans }}</a>
-		</li>
-		<li>
-			<a class="fr-breadcrumb__link" aria-current="page">{{ 'pel.breadcrumb.help.faq'|trans }}</a>
-		</li>
-	</ol>
+    <ol class="fr-breadcrumb__list">
+        <li>
+            <a class="fr-breadcrumb__link" href="/">{{ 'pel.breadcrumb.welcome'|trans }}</a>
+        </li>
+        <li>
+            <a class="fr-breadcrumb__link" aria-current="page">{{ 'pel.breadcrumb.help.faq'|trans }}</a>
+        </li>
+    </ol>
 {% endblock %}
 
 {% block heading %}
-	<h1 class="mb-8 lg:mb-10 pr-3 pl-3 lg:pr-0 lg:pl-0 text-[28px]/[36px] md:text-[40px]/[48px]">
-		{{ 'pel.help.faq.heading'|trans }}
-	</h1>
+    <h1 class="mb-8 lg:mb-10 pr-3 pl-3 lg:pr-0 lg:pl-0 text-[28px]/[36px] md:text-[40px]/[48px]">
+        {{ 'pel.help.faq.heading'|trans }}
+    </h1>
 {% endblock %}
 
 {% block content %}
-	<div class="fr-grid-row flex-col gap-y-10">
-		<div class="fr-grid-row fr-grid-row--center fr-background-default--grey pr-6 pl-6 lg:pr-0 lg:pl-0 border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] border-r border-r-[transparent] lg:border-r-[var(--grey-950-100-hover)] border-b border-b-[var(--grey-950-100-hover)] border-l border-l-[transparent] lg:border-l-[var(--grey-950-100-hover)]">
-			<div class="fr-col-lg-4 pt-10 lg:pt-12 lg:pr-16 lg:pl-16 grow">
-				<img src="{{ asset('build/images/document-download.svg') }}">
-				<h2 class="fr-h1 mb-8">
-					{{ 'pel.check.our.faq'|trans }}
-				</h2>
-			</div>
-			<div class="fr-col-lg-8 lg:pl-2.5">
-				<div class="pt-8 pb-12 lg:pt-10 lg:pb-14 lg:pl-14 lg:pr-14 lg:mt-0 border-solid border-0 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] h-full">
-					<h3 id="pel-help-faq-concerned-with" class="text-2xl font-bold mb-6 lg:mb-10">{{ 'pel.help.faq.concerned.with'|trans }}</h3>
+    <div class="fr-grid-row flex-col gap-y-10">
+        <div class="fr-grid-row fr-grid-row--center fr-background-default--grey pr-6 pl-6 lg:pr-0 lg:pl-0 border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] border-r border-r-[transparent] lg:border-r-[var(--grey-950-100-hover)] border-b border-b-[var(--grey-950-100-hover)] border-l border-l-[transparent] lg:border-l-[var(--grey-950-100-hover)]">
+            <div class="fr-col-lg-4 pt-10 lg:pt-12 lg:pr-16 lg:pl-16 grow">
+                <img src="{{ asset('build/images/document-download.svg') }}">
+                <h2 class="fr-h1 mb-8">
+                    {{ 'pel.check.our.faq'|trans }}
+                </h2>
+            </div>
+            <div class="fr-col-lg-8 lg:pl-2.5">
+                <div class="pt-8 pb-12 lg:pt-10 lg:pb-14 lg:pl-14 lg:pr-14 lg:mt-0 border-solid border-0 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] h-full">
+                    <h3 id="pel-help-faq-concerned-with" class="text-2xl font-bold mb-6 lg:mb-10">{{ 'pel.help.faq.concerned.with'|trans }}</h3>
                     <p class="mt-2"> {{ 'pel.online.complaint.only.concerns'|trans|raw }} </p>
-					<p class="mt-2"> {{ 'pel.following.offenses'|trans }}</p>
+                    <p class="mt-2"> {{ 'pel.following.offenses'|trans }}</p>
                     <ul>
-						<li class="text-xl/8 pb-2"><h4 class="text-xl/8 mb-0">{{ 'pel.help.faq.victim.of.damage.to.property'|trans|raw }}</h4>
-							<p class="mt-2">{{ 'pel.degradation'|trans|raw }}</p>
+                        <li class="text-xl/8 pb-2"><h4 class="text-xl/8 mb-0">{{ 'pel.help.faq.victim.of.damage.to.property'|trans|raw }}</h4>
+                            <p class="mt-2">{{ 'pel.degradation'|trans|raw }}</p>
                             <p class="mt-2">{{ 'pel.hit.and.run'|trans|raw }}</p>
 
                         </li>
-						<li class="text-xl/8 pb-2"><h4 class="text-xl/8 mb-0">{{ 'pel.help.faq.theft.victim'|trans|raw }}</h4>
-							<p class="mt-2">{{ 'pel.help.faq.theft.victim.examples'|trans|raw }}</p>
-						</li>
-						<li class="text-xl/8 pb-2"><h4 class="text-xl/8 mb-0">{{ 'pel.help.faq.victim.of.credit.card.theft'|trans|raw }}</h4>
-							<p class="mt-2">{{ 'pel.help.faq.victim.of.credit.card.theft.examples'|trans|raw }}</p>
-							<p class="mt-2">{{ 'pel.help.faq.victim.of.credit.card.theft.not.stolen'|trans|raw }}</p>
+                        <li class="text-xl/8 pb-2"><h4 class="text-xl/8 mb-0">{{ 'pel.help.faq.theft.victim'|trans|raw }}</h4>
+                            <p class="mt-2">{{ 'pel.help.faq.theft.victim.examples'|trans|raw }}</p>
+                        </li>
+                        <li class="text-xl/8 pb-2"><h4 class="text-xl/8 mb-0">{{ 'pel.help.faq.victim.of.credit.card.theft'|trans|raw }}</h4>
+                            <p class="mt-2">{{ 'pel.help.faq.victim.of.credit.card.theft.examples'|trans|raw }}</p>
+                            <p class="mt-2">{{ 'pel.help.faq.victim.of.credit.card.theft.not.stolen'|trans|raw }}</p>
 
-						</li>
-						<li class="text-xl/8 pb-2"><h4 class="text-xl/8 mb-0">{{ 'pel.help.faq.victim.of.offline.scams'|trans|raw }}</h4>
-							<p class="mt-2">{{ 'pel.help.faq.victim.of.offline.scams.examples'|trans|raw }}</p>
-							<p class="mt-2">{{ 'pel.help.faq.scam.must.not.have.been.committed.online'|trans }}</p>
-						</li>
-						<li class="text-xl/8 pb-2"><h4 class="text-xl/8 mb-0">{{ 'pel.help.faq.victim.of.other.property.crimes'|trans|raw }}</h4>
-							<p class="mt-2">{{ 'pel.help.faq.victim.of.other.property.crimes.examples'|trans }}</p>
-							<p class="mt-2">{{ 'pel.help.faq.victim.of.other.property.crimes.breach.of.trust'|trans|raw}}</p>
-							<p class="mt-2">{{ 'pel.help.faq.victim.of.other.property.crimes.extorsion'|trans|raw}}</p>
-							<p class="mt-2">{{ 'pel.help.faq.victim.of.other.property.crimes.blackmail'|trans|raw}}</p>
-							<p class="mt-2">{{ 'pel.help.faq.victim.of.other.property.crimes.trickery'|trans|raw}}</p>
-						</li>
-					</ul>
-					<div class="fr-col-12 fr-grid-row gap-x-4 items-start lg:flex-row">
-						<div class="fr-text-center mt-4 lg:mt-2">
-							<a href="{{ path('cgu', {'_fragment': 'pel-help-procedures-type-of-offence'}) }}" class="fr-btn fr-btn--secondary fr-text--lg px-6 py-2.5">
-								{{ 'pel.fsi.general.orienteer'|trans }}
-							</a>
-						</div>
-						<div class="fr-text-center mt-4 order-first lg:mt-2 md:order-last">
-							<a id="pel-confirm-online-complaint-that" href="{{ path('home_confirmation', {'_fragment': 'pel-confirm-online-complaint-that'}) }}" class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line fr-text--lg pr-5 pl-6 py-2.5 after:w-6 after:h-6">
-								{{ 'pel.help.faq.fill.a.complaint'|trans }}
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="fr-grid-row lg:pr-0 lg:pl-0 border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] border-r border-r-[transparent] lg:border-r-[var(--grey-950-100-hover)] border-b border-b-[transparent] lg:border-b-[var(--grey-950-100-hover)] border-l border-l-[transparent] lg:border-l-[var(--grey-950-100-hover)]" id="pel-faq-section">
-			<div class="fr-col-lg-4 pr-6 pl-6 pt-10 lg:pt-12 lg:pr-16 lg:pl-16 grow fr-background-default--grey">
-				<img src="{{ asset('build/images/community.svg') }}">
-				<h2 class="fr-h1 mt-2 mb-8">
-					{{ 'pel.check.our.faq.heading'|trans }}
-				</h2>
-			</div>
-			<div class="fr-col-lg-8 lg:pl-2.5 fr-background-default--grey mb-0.5 lg:mb-0">
-				<div class="lg:mt-0 border-solid border-0 h-full">
-					<div class="fr-accordions-group">
-						<section class="fr-accordion before:shadow-none">
-							<h3 class="fr-accordion__title">
-								<button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:pr-14 lg:pb-10 lg:pl-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-1">
-									{{ 'pel.what.is.legal.representative'|trans }}
-								</button>
-							</h3>
-							<div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14 [&.fr-collapse--expanded]:pb-4" id="faq-accordion-1">
-								<p class="text-lg/8">
-									{{ 'pel.what.is.legal.representative.text'|trans }}
-								</p>
-							</div>
-						</section>
-						<section class="fr-accordion">
-							<h3 class="fr-accordion__title">
-								<button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:pr-14 lg:pb-10 lg:pl-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-2">
-									{{ 'pel.can.i.make.a.physical.appointment'|trans }}
-								</button>
-							</h3>
-							<div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14 [&.fr-collapse--expanded]:pb-4" id="faq-accordion-2">
-								<p class="text-lg/8">{{ 'pel.can.i.make.a.physical.appointment.text'|trans }}</p>
-							</div>
-						</section>
-						<section class="fr-accordion">
-							<h3 class="fr-accordion__title">
-								<button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:pr-14 lg:pb-10 lg:pl-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-3">
-									{{ 'pel.why.i.require.a.physical.appointment'|trans }}
-								</button>
-							</h3>
-							<div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:pb-10 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14" id="faq-accordion-3">
-								<p class="text-lg/8 mb-0">{{ 'pel.why.i.require.a.physical.appointment.text'|trans }}</p>
-								<ul class="text-lg/8 my-0 pl-[30px]">
-									<li class="pb-0">{{ 'pel.why.i.require.a.physical.appointment.text.theft.with.violence'|trans|raw }}</li>
-									<li class="pb-0">{{ 'pel.why.i.require.a.physical.appointment.text.theft.of.registered.vehicle'|trans|raw }}</li>
-									<li class="pb-0">{{ 'pel.why.i.require.a.physical.appointment.text.continue.pel.without.log.in'|trans|raw }}</li>
-									<li class="pb-0">{{ 'pel.why.i.require.a.physical.appointment.text.other.complex.offenses'|trans|raw }}</li>
-								</ul>
-							</div>
-						</section>
-						<section class="fr-accordion">
-							<h3 class="fr-accordion__title">
-								<button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:pr-14 lg:pb-10 lg:pl-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-4">
-									{{ 'pel.what.is.goods.damages'|trans }}
-								</button>
-							</h3>
-							<div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14 [&.fr-collapse--expanded]:pb-4" id="faq-accordion-4">
-								<p class="text-lg/8">{{ 'pel.what.is.goods.damages.text'|trans }}</p>
-							</div>
-						</section>
-						<section class="fr-accordion">
-							<h3 class="fr-accordion__title">
-								<button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:px-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-5">
-									{{ 'pel.why.we.ask.me.to.be.france.connected'|trans }}
-								</button>
-							</h3>
-							<div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14 [&.fr-collapse--expanded]:pb-10" id="faq-accordion-5">
-								<p class="text-lg/8">{{ 'pel.identity.of.the.complainant.is.mandatory'|trans }}</p>
-								<p class="text-lg/8">{{ 'pel.france.connect.allow.this.verification'|trans }}</p>
-								<p class="text-lg/8">{{ 'pel.guaranteed.identity.informations'|trans }}</p>
-								<p class="text-lg/8">
-									{{ 'pel.if.you.dont.have.a.france.connect.account'|trans }}
-									<a href="https://franceconnect.gouv.fr" target="_blank" rel="noopener" title="{{ 'pel.france.connect.click.to.create.an.account'|trans }}">{{ 'pel.france.connect.click.to.create.an.account'|trans }}</a>
-								</p>
-								<p class="text-lg/8">{{ 'pel.otherwise.you.will.have.to.go.to.the.office'|trans }}</p>
-								<p class="text-lg/8">
-									<a href="https://franceconnect.gouv.fr/cgu" target="_blank" rel="noopener" title="{{ 'pel.read.more.about.france.connect'|trans }}">{{ 'pel.read.more.about.france.connect'|trans }}</a>
-								</p>
-							</div>
-						</section>
-						<section class="fr-accordion">
-							<h3 class="fr-accordion__title">
-								<button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:px-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-6">
-									{{ 'pel.what.if.i.know.the.offense.author'|trans }}
-								</button>
-							</h3>
-							<div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14 [&.fr-collapse--expanded]:pb-4" id="faq-accordion-6">
-								<p class="text-lg/8">{{ 'pel.what.if.i.know.the.offense.author.text'|trans }}</p>
-							</div>
-						</section>
-						<section class="fr-accordion">
-							<h3 class="fr-accordion__title">
-								<button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:px-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-7">
-									{{ 'pel.what.is.online.complaint'|trans }}
-								</button>
-							</h3>
-							<div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14 [&.fr-collapse--expanded]:pb-4" id="faq-accordion-7">
-								<p class="text-lg/8">{{ 'pel.what.is.online.complaint.text'|trans }}</p>
-							</div>
-						</section>
-						<section class="fr-accordion before:shadow-none">
-							<h3 class="fr-accordion__title">
-								<button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:pt-10 lg:px-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-8">
-									{{ 'pel.what.subsidiary.question'|trans }}
-								</button>
-							</h3>
-							<div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14 [&.fr-collapse--expanded]:pb-4" id="faq-accordion-8">
-								<p class="text-lg/8">{{ 'pel.what.subsidiary.question.text'|trans }}</p>
-							</div>
-						</section>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                        </li>
+                        <li class="text-xl/8 pb-2"><h4 class="text-xl/8 mb-0">{{ 'pel.help.faq.victim.of.offline.scams'|trans|raw }}</h4>
+                            <p class="mt-2">{{ 'pel.help.faq.victim.of.offline.scams.examples'|trans|raw }}</p>
+                            <p class="mt-2">{{ 'pel.help.faq.scam.must.not.have.been.committed.online'|trans }}</p>
+                        </li>
+                        <li class="text-xl/8 pb-2"><h4 class="text-xl/8 mb-0">{{ 'pel.help.faq.victim.of.other.property.crimes'|trans|raw }}</h4>
+                            <p class="mt-2">{{ 'pel.help.faq.victim.of.other.property.crimes.examples'|trans }}</p>
+                            <p class="mt-2">{{ 'pel.help.faq.victim.of.other.property.crimes.breach.of.trust'|trans|raw}}</p>
+                            <p class="mt-2">{{ 'pel.help.faq.victim.of.other.property.crimes.extorsion'|trans|raw}}</p>
+                            <p class="mt-2">{{ 'pel.help.faq.victim.of.other.property.crimes.blackmail'|trans|raw}}</p>
+                            <p class="mt-2">{{ 'pel.help.faq.victim.of.other.property.crimes.trickery'|trans|raw}}</p>
+                        </li>
+                    </ul>
+                    <div class="fr-col-12 fr-grid-row gap-x-4 items-start lg:flex-row">
+                        <div class="fr-text-center mt-4 lg:mt-2">
+                            <a href="{{ path('cgu', {'_fragment': 'pel-help-procedures-type-of-offence'}) }}" class="fr-btn fr-btn--secondary fr-text--lg px-6 py-2.5">
+                                {{ 'pel.fsi.general.orienteer'|trans }}
+                            </a>
+                        </div>
+                        <div class="fr-text-center mt-4 order-first lg:mt-2 md:order-last">
+                            <a id="pel-confirm-online-complaint-that" href="{{ path('home_confirmation', {'_fragment': 'pel-confirm-online-complaint-that'}) }}" class="fr-btn fr-btn--icon-right fr-icon-arrow-right-line fr-text--lg pr-5 pl-6 py-2.5 after:w-6 after:h-6">                                {{ 'pel.help.faq.fill.a.complaint'|trans }}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="fr-grid-row lg:pr-0 lg:pl-0 border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] border-r border-r-[transparent] lg:border-r-[var(--grey-950-100-hover)] border-b border-b-[transparent] lg:border-b-[var(--grey-950-100-hover)] border-l border-l-[transparent] lg:border-l-[var(--grey-950-100-hover)]" id="pel-faq-section">            <div class="fr-col-lg-4 pr-6 pl-6 pt-10 lg:pt-12 lg:pr-16 lg:pl-16 grow fr-background-default--grey">
+                <img src="{{ asset('build/images/community.svg') }}">
+                <h2 class="fr-h1 mt-2 mb-8">
+                    {{ 'pel.check.our.faq.heading'|trans }}
+                </h2>
+            </div>
+            <div class="fr-col-lg-8 lg:pl-2.5 fr-background-default--grey mb-0.5 lg:mb-0">
+
+                <div class="lg:mt-0 border-solid border-0 h-full">
+
+                    <div class="fr-accordions-group">
+                        <h3  class="pt-8 pb-12 lg:pt-10 lg:pb-14 lg:pl-14 lg:pr-14 lg:mt-0">{{ 'pel.general.information.about.filing.a.complaint'|trans }}</h3>
+
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:pr-14 lg:pb-10 lg:pl-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-1">
+                                    {{ 'pel.what.is.complaint'|trans }}
+                                </button>
+                            </h3>
+                            <div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14 [&.fr-collapse--expanded]:pb-4" id="faq-accordion-1">
+                                <p class="text-lg/8">
+                                    {{ 'pel.what.is.complaint.text'|trans }}
+                                </p>
+                            </div>
+                        </section>
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:pr-14 lg:pb-10 lg:pl-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-2">
+                                    {{ 'pel.difference.between.online.declaration.and.a.complaint.report'|trans }}
+                                </button>
+                            </h3>
+                            <div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14 [&.fr-collapse--expanded]:pb-4" id="faq-accordion-2">
+                                <p class="text-lg/8">{{ 'pel.difference.between.online.declaration.and.a.complaint.report.text'|trans }}</p>
+                            </div>
+                        </section>
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:pr-14 lg:pb-10 lg:pl-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-3">
+                                    {{ 'pel.what.is.a.complaint.against.an.unknown.person'|trans }}
+                                </button>
+                            </h3>
+                            <div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:pb-10 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14" id="faq-accordion-3">
+                                <p class="text-lg/8 mb-0">{{ 'pel.what.is.a.complaint.against.an.unknown.person.text'|trans }}</p>
+                            </div>
+                        </section>
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:pr-14 lg:pb-10 lg:pl-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-4">
+                                    {{ 'pel.difference.complaint.and.handrail'|trans }}
+                                </button>
+                            </h3>
+                            <div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14 [&.fr-collapse--expanded]:pb-4" id="faq-accordion-4">
+                                <p class="text-lg/8">{{ 'pel.difference.complaint.and.handrail.text'|trans|raw }}</p>
+                            </div>
+                        </section>
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:px-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-5">
+                                    {{ 'pel.who.can.file.a.complaint'|trans }}
+                                </button>
+                            </h3>
+                            <div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14 [&.fr-collapse--expanded]:pb-10" id="faq-accordion-5">
+                                <p class="text-lg/8">{{ 'pel.who.can.file.a.complaint.text'|trans }}</p>
+                                <ul>
+                                    <li class="pb-0">{{ 'pel.as.an.individual'|trans|raw }}</li>
+                                    <li class="pb-0">{{ 'pel.as.an.association'|trans|raw }}</li>
+                                </ul>
+                                <p class="text-lg/8">{{ 'pel.to.have.standing.to.act'|trans }}</p>
+
+                            </div>
+                        </section>
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:px-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-6">
+                                    {{ 'pel.what.is.legal.representative'|trans }}
+                                </button>
+                            </h3>
+                            <div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14 [&.fr-collapse--expanded]:pb-4" id="faq-accordion-6">
+                                <p class="text-lg/8">{{ 'pel.what.is.legal.representative.text'|trans }}</p>
+                            </div>
+                        </section>
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:px-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-7">
+                                    {{ 'pel.what.is.legal.entity'|trans }}
+                                </button>
+                            </h3>
+                            <div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14 [&.fr-collapse--expanded]:pb-4" id="faq-accordion-7">
+                                <p class="text-lg/8">{{ 'pel.what.is.legal.entity.text'|trans }}</p>
+                            </div>
+                        </section>
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:px-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-8">
+                                    {{ 'pel.what.is.an.infraction'|trans }}
+                                </button>
+                            </h3>
+                            <div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14 [&.fr-collapse--expanded]:pb-4" id="faq-accordion-8">
+                                <p class="text-lg/8">{{ 'pel.what.is.an.infraction.text'|trans }}</p>
+                                <p class="text-lg/8">{{ 'pel.offenses.classified.according.to.their.seriousness'|trans }}</p>
+                                <ul>
+                                    <li class="pb-0">{{ 'pel.contraventions'|trans|raw }}</li>
+                                    <li class="pb-0">{{ 'pel.misdemeanors'|trans|raw }}</li>
+                                    <li class="pb-0">{{ 'pel.felonies'|trans|raw }}</li>
+                                </ul>
+                                <p class="text-lg/8">{{ 'pel.attempt'|trans|raw}}</p>
+                            </div>
+                        </section>
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:px-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-9">
+                                    {{ 'pel.how.can.I.file.a.complaint'|trans }}
+                                </button>
+                            </h3>
+                            <div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14 [&.fr-collapse--expanded]:pb-4" id="faq-accordion-9">
+                                <p class="text-lg/8">{{ 'pel.how.can.I.file.a.complaint.text'|trans|raw }}</p>
+
+                            </div>
+                        </section>
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:px-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-10">
+                                    {{ 'pel.what.is.the.deadline.for.filing.a.complaint'|trans }}
+                                </button>
+                            </h3>
+                            <div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14 [&.fr-collapse--expanded]:pb-4" id="faq-accordion-10">
+                                <p class="text-lg/8">{{ 'pel.what.is.the.deadline.for.filing.a.complaint.text'|trans|raw }}</p>
+                                <ul>
+                                    <li class="pb-0">{{ 'pel.one.year.infraction'|trans|raw }}</li>
+                                    <li class="pb-0">{{ 'pel.six.year.offense'|trans|raw }}</li>
+                                </ul>
+                                <p class="text-lg/8">{{ 'pel.damage.to.property'|trans|raw }}</p>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="fr-accordions-group">
+                        <h3  class="pt-8 pb-12 lg:pt-10 lg:pb-14 lg:pl-14 lg:pr-14 lg:mt-0">{{ 'pel.online.complaint.presentation'|trans }}</h3>
+
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:pr-14 lg:pb-10 lg:pl-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-11">
+                                    {{ 'pel.who.can.file.an.online.complaint'|trans }}
+                                </button>
+                            </h3>
+                            <div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14 [&.fr-collapse--expanded]:pb-4" id="faq-accordion-11">
+                                <p class="text-lg/8">
+                                    {{ 'pel.who.can.file.an.online.complaint.text'|trans }}
+                                </p>
+                            </div>
+                        </section>
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:pr-14 lg:pb-10 lg:pl-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-12">
+                                    {{ 'pel.what.grounds.can.I.make.an.online.complaint'|trans }}
+                                </button>
+                            </h3>
+                            <div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14 [&.fr-collapse--expanded]:pb-4" id="faq-accordion-12">
+                                <p class="text-lg/8">{{ 'pel.what.grounds.can.I.make.an.online.complaint.text'|trans|raw }}</p>
+                                <ul>
+                                    <li class="pb-0">{{ 'pel.damage.to.property.and.hit-and-run'|trans|raw }}</li>
+                                    <li class="pb-0">{{ 'pel.theft'|trans|raw }}</li>
+                                    <li class="pb-0">{{ 'pel.theft.of.my.bank.card.followed.by.fraudulent.use'|trans|raw }}</li>
+                                    <li class="pb-0">{{ 'pel.off-line.scam'|trans|raw }}</li>
+                                    <li class="pb-0">{{ 'pel.other.property.crimes'|trans|raw }}</li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:pr-14 lg:pb-10 lg:pl-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-13">
+                                    {{ 'pel.victim.of.an.internet.scam'|trans }}
+                                </button>
+                            </h3>
+                            <div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:pb-10 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14" id="faq-accordion-13">
+                                <p class="text-lg/8 mb-0">{{ 'pel.victim.of.an.internet.scam.text'|trans|raw }}</p>
+                                <ul>
+                                    <li class="pb-0">{{ 'pel.I.am.an.individual'|trans }}</li>
+                                    <li class="pb-0">{{ 'pel.able.to.identify.myself.using.france.connect'|trans }}</li>
+                                    <li class="pb-0">{{ 'pel.I.am.not.the.originator.of.the.online.purchases'|trans|raw }}</li>
+                                    <li class="pb-0">{{ 'pel.already.canceled.the.credit.card'|trans|raw }}</li>
+                                </ul>
+                                <p class="text-lg/8 mb-0">{{ 'pel.go.directly.to.the.teleservice.website'|trans|raw }}</p>
+                                <p class="text-lg/8 mb-0">{{ 'pel.victim.of.an.online.scam'|trans|raw }}</p>
+                                <ul>
+                                    <li class="pb-0">{{ 'pel.I.am.an.individual'|trans }}</li>
+                                    <li class="pb-0">{{ 'pel.able.to.identify.myself.using.france.connect'|trans }}</li>
+                                    <li class="pb-0">{{ 'pel.victim.of.an.internet.scam.corresponding.situations'|trans|raw }}</li>
+                                    <ul>
+                                        <li class="pb-0">{{ 'pel.false.buyer'|trans }}</li>
+                                        <li class="pb-0">{{ 'pel.false.rental'|trans }}</li>
+                                        <li class="pb-0">{{ 'pel.hacking'|trans }}</li>
+                                        <li class="pb-0">{{ 'pel.online.blackmail'|trans }}</li>
+                                        <li class="pb-0">{{ 'pel.ransomware'|trans }}</li>
+                                        <li class="pb-0">{{ 'pel.feelings.scam'|trans }}</li>
+                                    </ul>
+                                </ul>
+                                <p class="text-lg/8 mb-0">{{ 'pel.go.directly.to.teleservice.website'|trans|raw }}</p>
+                            </div>
+                        </section>
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:pr-14 lg:pb-10 lg:pl-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-14">
+                                    {{ 'pel.offenses.require.validate.declaration.in.a.gendarmerie.service'|trans }}
+                                </button>
+                            </h3>
+                            <div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14 [&.fr-collapse--expanded]:pb-4" id="faq-accordion-14">
+                                <p class="text-lg/8">{{ 'pel.offenses.require.validate.declaration.in.a.gendarmerie.service.text'|trans|raw }}</p>
+                            </div>
+                        </section>
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:px-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-15">
+                                    {{ 'pel.use.online.complaint.offense.does.not.fall.within.scope.online.service'|trans }}
+                                </button>
+                            </h3>
+                            <div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14 [&.fr-collapse--expanded]:pb-10" id="faq-accordion-15">
+                                <p class="text-lg/8">{{ 'pel.use.online.complaint.offense.does.not.fall.within.scope.online.service.text'|trans|raw }}</p>
+                            </div>
+                        </section>
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:px-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-16">
+                                    {{ 'pel.difference.between.online.complaint.teleservice.and.online.pre-complaint.service'|trans }}
+                                </button>
+                            </h3>
+                            <div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14 [&.fr-collapse--expanded]:pb-4" id="faq-accordion-16">
+                                <p class="text-lg/8">{{ 'pel.difference.between.online.complaint.teleservice.and.online.pre-complaint.service.text'|trans|raw }}</p>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="fr-accordions-group">
+                        <h3  class="pt-8 pb-12 lg:pt-10 lg:pb-14 lg:pl-14 lg:pr-14 lg:mt-0">{{ 'pel.on.the.information.in.my.complaint'|trans }}</h3>
+
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:pr-14 lg:pb-10 lg:pl-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-17">
+                                    {{ 'pel.documents.before.starting.process'|trans }}
+                                </button>
+                            </h3>
+                            <div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14 [&.fr-collapse--expanded]:pb-4" id="faq-accordion-17">
+                                <p class="text-lg/8">
+                                    {{ 'pel.documents.before.starting.process.text'|trans }}
+                                </p>
+                                <ul>
+                                    <li class="pb-0">{{ 'pel.documents.attesting.my.capacity.to.act'|trans }}</li>
+                                    <li class="pb-0">{{ 'pel.documents.concerning.stolen.or.damaged.items'|trans }}</li>
+                                    <li class="pb-0">{{ 'pel.documents.to.explain.facts'|trans|raw }}</li>
+                                    <li class="pb-0">{{ 'pel.possible.medical.certificate'|trans }}</li>
+                                </ul>
+                                <p class="text-lg/8">{{ 'pel.attach.documents.to.complaint'|trans }}</p>
+                            </div>
+                        </section>
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:pr-14 lg:pb-10 lg:pl-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-18">
+                                    {{ 'pel.types.documents.can.I.attach'|trans }}
+                                </button>
+                            </h3>
+                            <div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14 [&.fr-collapse--expanded]:pb-4" id="faq-accordion-18">
+                                <p class="text-lg/8">{{ 'pel.types.documents.can.I.attach.text'|trans|raw }}</p>
+                            </div>
+                        </section>
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:pr-14 lg:pb-10 lg:pl-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-19">
+                                    {{ 'pel.why.authenticate.via.france.connect'|trans }}
+                                </button>
+                            </h3>
+                            <div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:pb-10 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14" id="faq-accordion-19">
+                                <p class="text-lg/8 mb-0">{{ 'pel.why.authenticate.via.france.connect.text'|trans|raw }}</p>
+                            </div>
+                        </section>
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:pr-14 lg:pb-10 lg:pl-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-20">
+                                    {{ 'pel.how.does.france.connect.work'|trans }}
+                                </button>
+                            </h3>
+                            <div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14 [&.fr-collapse--expanded]:pb-4" id="faq-accordion-20">
+                                <p class="text-lg/8">{{ 'pel.how.does.france.connect.work.text'|trans|raw }}</p>
+                            </div>
+                        </section>
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:px-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-21">
+                                    {{ 'pel.certain.fields.of.my.identity.not.modifiable.using.france.connect'|trans }}
+                                </button>
+                            </h3>
+                            <div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14 [&.fr-collapse--expanded]:pb-10" id="faq-accordion-21">
+                                <p class="text-lg/8">{{ 'pel.certain.fields.of.my.identity.not.modifiable.using.france.connect.text'|trans|raw }}</p>
+                            </div>
+                        </section>
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:px-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-22">
+                                    {{ 'pel.what.happens.cannot.authenticate.via.france.connect'|trans }}
+                                </button>
+                            </h3>
+                            <div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14 [&.fr-collapse--expanded]:pb-4" id="faq-accordion-22">
+                                <p class="text-lg/8">{{ 'pel.what.happens.cannot.authenticate.via.france.connect.text'|trans }}</p>
+                            </div>
+                        </section>
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:px-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-23">
+                                    {{ 'pel.username'|trans }}
+                                </button>
+                            </h3>
+                            <div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14 [&.fr-collapse--expanded]:pb-4" id="faq-accordion-23">
+                                <p class="text-lg/8">{{ 'pel.username.text'|trans }}</p>
+                            </div>
+                        </section>
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:px-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-24">
+                                    {{ 'pel.why.being.asked.my.profession'|trans }}
+                                </button>
+                            </h3>
+                            <div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14 [&.fr-collapse--expanded]:pb-4" id="faq-accordion-24">
+                                <p class="text-lg/8">{{ 'pel.why.being.asked.my.profession.text'|trans }}</p>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="fr-accordions-group">
+                        <h3  class="pt-8 pb-12 lg:pt-10 lg:pb-14 lg:pl-14 lg:pr-14 lg:mt-0">{{ 'pel.description.facts'|trans }}</h3>
+
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:pr-14 lg:pb-10 lg:pl-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-25">
+                                    {{ 'pel.describe.facts'|trans }}
+                                </button>
+                            </h3>
+                            <div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14 [&.fr-collapse--expanded]:pb-4" id="faq-accordion-25">
+                                <p class="text-lg/8">
+                                    {{ 'pel.describe.facts.text'|trans|raw }}
+                                </p>
+                            </div>
+                        </section>
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:pr-14 lg:pb-10 lg:pl-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-26">
+                                    {{ 'pel.why.asked.if.I.have.suffered.violence'|trans }}
+                                </button>
+                            </h3>
+                            <div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14 [&.fr-collapse--expanded]:pb-4" id="faq-accordion-26">
+                                <p class="text-lg/8">{{ 'pel.why.asked.if.I.have.suffered.violence.text'|trans|raw }}</p>
+                            </div>
+                        </section>
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:pr-14 lg:pb-10 lg:pl-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-27">
+                                    {{ 'pel.what.is.violence'|trans }}
+                                </button>
+                            </h3>
+                            <div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:pb-10 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14" id="faq-accordion-27">
+                                <p class="text-lg/8 mb-0">{{ 'pel.what.is.violence.text'|trans|raw }}</p>
+                            </div>
+                        </section>
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:pr-14 lg:pb-10 lg:pl-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-28">
+                                    {{ 'pel.what.are.threats'|trans }}
+                                </button>
+                            </h3>
+                            <div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14 [&.fr-collapse--expanded]:pb-4" id="faq-accordion-28">
+                                <p class="text-lg/8">{{ 'pel.what.are.threats.text'|trans|raw }}</p>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="fr-accordions-group">
+                        <h4  class="pt-8 pb-12 lg:pt-10 lg:pb-14 lg:pl-14 lg:pr-14 lg:mt-0">{{ 'pel.stolen.items'|trans }}</h4>
+
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:pr-14 lg:pb-10 lg:pl-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-29">
+                                    {{ 'pel.items.should.I.include.in.my.declaration'|trans }}
+                                </button>
+                            </h3>
+                            <div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14 [&.fr-collapse--expanded]:pb-4" id="faq-accordion-29">
+                                <p class="text-lg/8">
+                                    {{ 'pel.items.should.I.include.in.my.declaration.text'|trans|raw }}
+                                </p>
+                            </div>
+                        </section>
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:pr-14 lg:pb-10 lg:pl-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-30">
+                                    {{ 'pel.asked.information.about.stolen.items'|trans }}
+                                </button>
+                            </h3>
+                            <div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14 [&.fr-collapse--expanded]:pb-4" id="faq-accordion-30">
+                                <p class="text-lg/8">{{ 'pel.asked.information.about.stolen.items.text'|trans|raw }}</p>
+                            </div>
+                        </section>
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:pr-14 lg:pb-10 lg:pl-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-31">
+                                    {{ 'pel.number.should.I.give.stolen.phone'|trans }}
+                                </button>
+                            </h3>
+                            <div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:pb-10 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14" id="faq-accordion-31">
+                                <p class="text-lg/8 mb-0">{{ 'pel.number.should.I.give.stolen.phone.text'|trans }}</p>
+                            </div>
+                        </section>
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:pr-14 lg:pb-10 lg:pl-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-32">
+                                    {{ 'pel.cell.phone.imei.number'|trans }}
+                                </button>
+                            </h3>
+                            <div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14 [&.fr-collapse--expanded]:pb-4" id="faq-accordion-32">
+                                <p class="text-lg/8">{{ 'pel.cell.phone.imei.number.text'|trans|raw }}</p>
+                                <ul>
+                                    <li class="pb-0">{{ 'pel.connect.appleid'|trans }}</li>
+                                    <li class="pb-0">{{ 'pel.choose.devices'|trans }}</li>
+                                    <li class="pb-0">{{ 'pel.select.device.imei'|trans }}</li>
+                                    <li class="pb-0">{{ 'pel.geolocation.enabled'|trans|raw }}</li>
+                                </ul>
+                                <p class="text-lg/8">{{ 'pel.android.users'|trans|raw }}</p>
+                                <ul>
+                                    <li class="pb-0">{{ 'pel.connect.googlefind'|trans|raw }}</li>
+                                    <li class="pb-0">{{ 'pel.select.google.device'|trans }}</li>
+                                    <li class="pb-0">{{ 'pel.android.geolocation.enabled'|trans }}</li>
+                                </ul>
+                            </div>
+
+                        </section>
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:pr-14 lg:pb-10 lg:pl-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-33">
+                                    {{ 'pel.what.is.harm'|trans }}
+                                </button>
+                            </h3>
+                            <div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14 [&.fr-collapse--expanded]:pb-4" id="faq-accordion-33">
+                                <p class="text-lg/8">{{ 'pel.what.is.harm.text'|trans|raw }}</p>
+                            </div>
+
+                        </section>
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:pr-14 lg:pb-10 lg:pl-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-34">
+                                    {{ 'pel.material.damage.assessed'|trans }}
+                                </button>
+                            </h3>
+                            <div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14 [&.fr-collapse--expanded]:pb-4" id="faq-accordion-34">
+                                <p class="text-lg/8">{{ 'pel.material.damage.assessed.text'|trans|raw }}</p>
+                            </div>
+
+                        </section>
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:pr-14 lg:pb-10 lg:pl-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-35">
+                                    {{ 'pel.physical.or.moral.harm.assessed'|trans }}
+                                </button>
+                            </h3>
+                            <div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14 [&.fr-collapse--expanded]:pb-4" id="faq-accordion-35">
+                                <p class="text-lg/8">{{ 'pel.physical.or.moral.harm.assessed.text'|trans|raw }}</p>
+                            </div>
+
+                        </section>
+                    </div>
+                    <div class="fr-accordions-group">
+                        <h4  class="pt-8 pb-12 lg:pt-10 lg:pb-14 lg:pl-14 lg:pr-14 lg:mt-0">{{ 'pel.additional.informations.required'|trans }}</h4>
+
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:pr-14 lg:pb-10 lg:pl-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-36">
+                                    {{ 'pel.what.is.witness'|trans }}
+                                </button>
+                            </h3>
+                            <div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14 [&.fr-collapse--expanded]:pb-4" id="faq-accordion-36">
+                                <p class="text-lg/8">
+                                    {{ 'pel.what.is.witness.text'|trans|raw }}
+                                </p>
+                            </div>
+                        </section>
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:pr-14 lg:pb-10 lg:pl-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-37">
+                                    {{ 'pel.information.witness'|trans }}
+                                </button>
+                            </h3>
+                            <div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14 [&.fr-collapse--expanded]:pb-4" id="faq-accordion-37">
+                                <p class="text-lg/8">{{ 'pel.information.witness.text'|trans|raw }}</p>
+                            </div>
+                        </section>
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:pr-14 lg:pb-10 lg:pl-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-38">
+                                    {{ 'pel.perpetrator'|trans }}
+                                </button>
+                            </h3>
+                            <div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:pb-10 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14" id="faq-accordion-38">
+                                <p class="text-lg/8 mb-0">{{ 'pel.perpetrator.text'|trans|raw }}</p>
+                            </div>
+                        </section>
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:pr-14 lg:pb-10 lg:pl-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-39">
+                                    {{ 'pel.what.is.suspect'|trans }}
+                                </button>
+                            </h3>
+                            <div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14 [&.fr-collapse--expanded]:pb-4" id="faq-accordion-39">
+                                <p class="text-lg/8">{{ 'pel.what.is.suspect.text'|trans|raw }}</p>
+                            </div>
+
+                        </section>
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:pr-14 lg:pb-10 lg:pl-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-40">
+                                    {{ 'pel.suspect.description'|trans }}
+                                </button>
+                            </h3>
+                            <div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14 [&.fr-collapse--expanded]:pb-4" id="faq-accordion-40">
+                                <p class="text-lg/8">{{ 'pel.suspect.description.text'|trans|raw }}</p>
+                            </div>
+
+                        </section>
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:pr-14 lg:pb-10 lg:pl-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-41">
+                                    {{ 'pel.ask.gendarmes.came'|trans }}
+                                </button>
+                            </h3>
+                            <div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14 [&.fr-collapse--expanded]:pb-4" id="faq-accordion-41">
+                                <p class="text-lg/8">{{ 'pel.ask.gendarmes.came.text'|trans|raw }}</p>
+                            </div>
+
+                        </section>
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:pr-14 lg:pb-10 lg:pl-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-42">
+                                    {{ 'pel.asked.traces'|trans }}
+                                </button>
+                            </h3>
+                            <div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14 [&.fr-collapse--expanded]:pb-4" id="faq-accordion-42">
+                                <p class="text-lg/8">{{ 'pel.asked.traces.text'|trans|raw }}</p>
+                            </div>
+
+                        </section>
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:pr-14 lg:pb-10 lg:pl-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-43">
+                                    {{ 'pel.sign.complaint'|trans }}
+                                </button>
+                            </h3>
+                            <div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14 [&.fr-collapse--expanded]:pb-4" id="faq-accordion-43">
+                                <p class="text-lg/8">{{ 'pel.sign.complaint.text'|trans|raw }}</p>
+                                <ul>
+                                    <li class="pb-0">{{ 'pel.authenticate.france.connect'|trans }}</li>
+                                    <li class="pb-0">{{ 'pel.no.violence'|trans }}</li>
+                                    <li class="pb-0">{{ 'pel.no.vehicle.stolen'|trans }}</li>
+                                    <li class="pb-0">{{ 'pel.facts.description.is.clear'|trans }}</li>
+                                </ul>
+                                <p class="text-lg/8">{{ 'pel.criteria.automatically.detected'|trans|raw }}</p>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="fr-accordions-group">
+                        <h4  class="pt-8 pb-12 lg:pt-10 lg:pb-14 lg:pl-14 lg:pr-14 lg:mt-0">{{ 'pel.declaration.after.transmission'|trans }}</h4>
+
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:pr-14 lg:pb-10 lg:pl-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-44">
+                                    {{ 'pel.department.process.complaint'|trans }}
+                                </button>
+                            </h3>
+                            <div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14 [&.fr-collapse--expanded]:pb-4" id="faq-accordion-44">
+                                <p class="text-lg/8">
+                                    {{ 'pel.department.process.complaint.text'|trans|raw }}
+                                </p>
+                            </div>
+                        </section>
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:pr-14 lg:pb-10 lg:pl-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-45">
+                                    {{ 'pel.appointment.online.complaint'|trans }}
+                                </button>
+                            </h3>
+                            <div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14 [&.fr-collapse--expanded]:pb-4" id="faq-accordion-45">
+                                <p class="text-lg/8">{{ 'pel.appointment.online.complaint.text'|trans|raw }}</p>
+                            </div>
+                        </section>
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:pr-14 lg:pb-10 lg:pl-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-46">
+                                    {{ 'pel.additional.information.to.declare'|trans }}
+                                </button>
+                            </h3>
+                            <div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:pb-10 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14" id="faq-accordion-46">
+                                <p class="text-lg/8 mb-0">{{ 'pel.additional.information.to.declare.text'|trans|raw }}</p>
+                            </div>
+                        </section>
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:pr-14 lg:pb-10 lg:pl-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-47">
+                                    {{ 'pel.when.will.my.declaration.be.processed'|trans }}
+                                </button>
+                            </h3>
+                            <div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14 [&.fr-collapse--expanded]:pb-4" id="faq-accordion-47">
+                                <p class="text-lg/8">{{ 'pel.when.will.my.declaration.be.processed.text'|trans|raw }}</p>
+                            </div>
+                        </section>
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:pr-14 lg:pb-10 lg:pl-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-48">
+                                    {{ 'pel.when.will.my.complaint.be.processed'|trans }}
+                                </button>
+                            </h3>
+                            <div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14 [&.fr-collapse--expanded]:pb-4" id="faq-accordion-48">
+                                <p class="text-lg/8">{{ 'pel.when.will.my.complaint.be.processed.text'|trans|raw }}</p>
+                            </div>
+                        </section>
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:pr-14 lg:pb-10 lg:pl-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-49">
+                                    {{ 'pel.change.service'|trans }}
+                                </button>
+                            </h3>
+                            <div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14 [&.fr-collapse--expanded]:pb-4" id="faq-accordion-49">
+                                <p class="text-lg/8">{{ 'pel.change.service.text'|trans|raw }}</p>
+                            </div>
+                        </section>
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:pr-14 lg:pb-10 lg:pl-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-50">
+                                    {{ 'pel.refuse.online.complaint'|trans }}
+                                </button>
+                            </h3>
+                            <div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14 [&.fr-collapse--expanded]:pb-4" id="faq-accordion-50">
+                                <p class="text-lg/8">{{ 'pel.refuse.online.complaint.text'|trans|raw }}</p>
+                            </div>
+                        </section>
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:pr-14 lg:pb-10 lg:pl-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-51">
+                                    {{ 'pel.download.complaint.report'|trans }}
+                                </button>
+                            </h3>
+                            <div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14 [&.fr-collapse--expanded]:pb-4" id="faq-accordion-51">
+                                <p class="text-lg/8">{{ 'pel.download.complaint.report.text'|trans|raw }}</p>
+                            </div>
+                        </section>
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn text-lg/6 fr-text-title--blue-france px-6 py-10 lg:pr-14 lg:pb-10 lg:pl-14 gap-4 after:w-4 aria-expanded:pb-5 lg:border-l lg:border-l-[var(--grey-950-100-hover)] border-solid border-0 border-t border-t-[var(--grey-950-100-hover)] lg:border-t-[transparent] aria-expanded:border-solid aria-expanded:border-0 aria-expanded:border-l-4 aria-expanded:border-l-[var(--background-action-high-blue-france)] after:content-[''] after:h-4 after:[mask-repeat:no-repeat] after:[mask-position:center] after:[-webkit-mask-size:12px_12px] after:[mask-image:url('/assets/images/icons/chevron-down.svg')] aria-expanded:after:[mask-image:url('/assets/images/icons/chevron-up.svg')]" aria-expanded="false" aria-controls="faq-accordion-52">
+                                    {{ 'pel.how.download.complaint.report'|trans }}
+                                </button>
+                            </h3>
+                            <div class="fr-collapse [&.fr-collapse--expanded]:px-6 [&.fr-collapse--expanded]:mx-0 [&.fr-collapse--expanded]:border-solid [&.fr-collapse--expanded]:border-0 [&.fr-collapse--expanded]:border-l-4 [&.fr-collapse--expanded]:border-l-[var(--background-action-high-blue-france)] lg:[&.fr-collapse--expanded]:pr-16 lg:[&.fr-collapse--expanded]:pl-14 [&.fr-collapse--expanded]:pb-4" id="faq-accordion-52">
+                                <p class="text-lg/8">{{ 'pel.how.download.complaint.report.text'|trans|raw }}</p>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
