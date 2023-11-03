@@ -26,9 +26,9 @@ class ContactDTO
         $consentEmailOrSMS = true === $complaint->isConsentContactEmail() || true === $complaint->isConsentContactSMS();
         $this->claimsLegalAction = true === $consentEmailOrSMS ? 'Oui' : 'Non';
         $this->declarantEmail = $complaint->getIdentity()?->getEmail() ?? '';
-        $this->declarantHomePhone = $complaint->getIdentity()?->getHomePhone() ?? '';
+        $this->declarantHomePhone = $complaint->getIdentity()?->getHomePhone() ? str_replace(' ', '', $complaint->getIdentity()->getHomePhone()) : '';
         //        $this->declarantOfficePhone = $complaint->getIdentity()?->getOfficePhone() ?? '';
-        $this->declarantMobilePhone = $complaint->getIdentity()?->getMobilePhone() ?? '';
+        $this->declarantMobilePhone = $complaint->getIdentity()?->getMobilePhone() ? str_replace(' ', '', $complaint->getIdentity()->getMobilePhone()) : '';
         //        $this->appointementChoice = !is_null($complaint->getAppointmentDate()) ? $complaint->getAppointmentDate()->format('d/m/Y H').'h' : '';
         //        $this->contactWindow = $complaint->getContactWindow() ?? '';
         //        $this->contactPeriod = $complaint->getContactPeriod() ?? '';

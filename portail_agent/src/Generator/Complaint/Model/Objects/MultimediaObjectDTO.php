@@ -33,7 +33,7 @@ class MultimediaObjectDTO extends AbstractObjectDTO
         // parent::__construct($object);
         $this->nature = $object->getNature() ?? '';
         $this->serialNumber = $object->getSerialNumber() ?? '';
-        $this->phoneNumber = $object->getPhoneNumber();
+        $this->phoneNumber = $object->getPhoneNumber() ? str_replace(' ', '', $object->getPhoneNumber()) : '';
         $this->operator = $object->getOperator();
         $this->description = $this->getStatusAsString((int) $object->getStatus()).' - '.$object->getDescription();
         $this->IMEI = $object->getImei() ?? '';

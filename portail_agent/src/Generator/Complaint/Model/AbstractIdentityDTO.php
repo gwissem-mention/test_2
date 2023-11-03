@@ -67,6 +67,6 @@ abstract class AbstractIdentityDTO
         $this->address = $identity->getAddress() ?? '';
         $this->homePlace = ($identity->getAddressCountry() ? strtoupper($identity->getAddressCountry()).', ' : '').($identity->getAddressCity() ? strtoupper($identity->getAddressCity()).', ' : '').($identity->getAddress() ? $identity->getAddress() : '');
         $this->birthplace = ($identity->getBirthCity() ? strtoupper($identity->getBirthCity()).' ' : '').($identity->getBirthPostalCode() ? $identity->getBirthPostalCode().' ' : '').($identity->getBirthCountry() ? '('.$identity->getBirthCountry().')' : '');
-        $this->mobilePhone = $identity->getMobilePhone() ?? '';
+        $this->mobilePhone = $identity->getMobilePhone() ? str_replace(' ', '', $identity->getMobilePhone()) : '';
     }
 }
