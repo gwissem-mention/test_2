@@ -25,6 +25,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
 {
     private string $xmlContent = '';
     private string $xmlContentWithCorporationRepresented = '';
+    private ComplaintXmlGenerator $xmlGenerator;
 
     public function setUp(): void
     {
@@ -35,225 +36,10 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
 
         /** @var ComplaintXmlGenerator $xmlGenerator */
         $xmlGenerator = $container->get(ComplaintXmlGenerator::class);
+        $this->xmlGenerator = $xmlGenerator;
 
-        $unit = new Unit(
-            'ddsp33-csp-arcachon-ppel@interieur.gouv.fr',
-            'ddsp33-ppel@interieur.gouv.fr',
-            '74181',
-            '74181',
-            'Commissariat de police d\'Arcachon',
-            '44.65828',
-            '-1.1609669',
-            '1 Place de Verdun 33120 ARCACHON',
-            '33',
-            '05 57 72 29 30',
-            '24h/24 - 7j/7',
-            '4015',
-            Institution::PN
-        );
-
-        $complaint = (new Complaint())
-            ->setFrontId('AAAA-BBBB-CCCC')
-            ->setCreatedAt(new \DateTimeImmutable('2022-12-01'))
-            ->setTest(true)
-            ->setAppointmentDate(new \DateTimeImmutable('2022-12-03'))
-            ->setStatus(Complaint::STATUS_ASSIGNMENT_PENDING)
-            ->setDeclarationNumber('PEL-2022-'.str_pad('1', 8, '0', STR_PAD_LEFT))
-            ->setAlert('Alert de test trop longue')
-            ->setFranceConnected(true)
-            ->setUnitAssigned($unit->getCode())
-            ->setAppointmentAsked(true)
-            ->setIdentity(
-                (new Identity())
-                    ->setFirstname('Jean')
-                    ->setLastname('DUPONT')
-                    ->setCivility(Identity::CIVILITY_MALE)
-                    ->setDeclarantStatus(Identity::DECLARANT_STATUS_PERSON_LEGAL_REPRESENTATIVE)
-                    ->setBirthday(new \DateTimeImmutable('1967-03-07'))
-                    ->setBirthCountry('France')
-                    ->setNationality('FRANCAISE')
-                    ->setBirthDepartment('Paris')
-                    ->setBirthCity('Paris')
-                    ->setBirthPostalCode('75000')
-                    ->setBirthInseeCode('75056')
-                    ->setBirthDepartmentNumber(75)
-                    ->setAddress('15 rue PAIRA, Meudon, 92190')
-                    ->setAddressStreetNumber('15')
-                    ->setAddressStreetType('Rue')
-                    ->setAddressStreetName('Rue PAIRA')
-                    ->setAddressCity('Meudon')
-                    ->setAddressPostcode('92190')
-                    ->setAddressInseeCode('92048')
-                    ->setAddressCountry('France')
-                    ->setAddressDepartment('Hauts-de-Seine')
-                    ->setAddressDepartmentNumber(92)
-                    ->setMobilePhone('+33 6 12 34 45 57')
-                    ->setHomePhone('+33 1 23 45 67 89')
-                    ->setEmail('jean.dupont@gmail.com')
-                    ->setJob('Boulanger')
-                    ->setJobThesaurus('BOULANGER')
-                    ->setAlertNumber(3)
-            )
-            ->setConsentContactEmail(true)
-            ->setConsentContactSMS(true)
-            ->setConsentContactPortal(true)
-            ->setpersonLegalRepresented(
-                (new Identity())
-                    ->setFirstname('Jeremy')
-                    ->setLastname('DUPONT')
-                    ->setCivility(Identity::CIVILITY_MALE)
-                    ->setDeclarantStatus(Identity::DECLARANT_STATUS_VICTIM)
-                    ->setBirthday(new \DateTimeImmutable('2000-02-14'))
-                    ->setBirthCountry('France')
-                    ->setNationality('FRANCAISE')
-                    ->setBirthDepartment('Hauts-de-Seine')
-                    ->setBirthDepartmentNumber(92)
-                    ->setBirthCity('Meudon')
-                    ->setBirthPostalCode('92190')
-                    ->setBirthInseeCode('92048')
-                    ->setAddress('15 rue PAIRA, Meudon, 92190')
-                    ->setAddressStreetNumber('15')
-                    ->setAddressStreetType('Rue')
-                    ->setAddressStreetName('Rue PAIRA')
-                    ->setAddressCity('Meudon')
-                    ->setAddressInseeCode('92048')
-                    ->setAddressPostcode('92190')
-                    ->setAddressDepartment('Hauts-de-Seine')
-                    ->setAddressDepartmentNumber(92)
-                    ->setAddressCountry('France')
-                    ->setMobilePhone('+33 6 76 54 32 10')
-                    ->setEmail('jeremy.dupont@gmail.com')
-                    ->setJob('Etudiant')
-                    ->setJobThesaurus('ETUDIANT')
-            )
-            ->setFacts(
-                (new Facts())
-                    ->setNatures([Facts::NATURE_ROBBERY, Facts::NATURE_DEGRADATION])
-                    ->setDescription('Je me suis fait voler mon portable.')
-                    ->setExactDateKnown(true)
-                    ->setExactPlaceUnknown(true)
-                    ->setStartDate(new \DateTimeImmutable('2022-12-01'))
-                    ->setEndDate(new \DateTimeImmutable('2022-12-01'))
-                    ->setPlace('TRAIN')
-                    ->setStartAddress('25 Avenue de la République, Bordeaux, 33000')
-                    ->setEndAddress('Place Charles Hernu, Villeurbanne, 69100')
-                    ->setStartAddressCountry('France')
-                    ->setStartAddressCity('Bordeaux')
-                    ->setStartAddressPostalCode('33000')
-                    ->setStartAddressInseeCode('33063')
-                    ->setStartAddressDepartment('Gironde')
-                    ->setStartAddressDepartmentNumber(33)
-                    ->setEndAddressCountry('France')
-                    ->setEndAddressCity('Villeurbanne')
-                    ->setEndAddressPostalCode('69100')
-                    ->setEndAddressInseeCode('69266')
-                    ->setEndAddressDepartment('Rhône')
-                    ->setEndAddressDepartmentNumber(69)
-                    ->setExactHourKnown(Facts::EXACT_HOUR_KNOWN_NO)
-                    ->setStartHour(new \DateTimeImmutable('09:00'))
-                    ->setEndHour(new \DateTimeImmutable('10:00'))
-                    ->setAlertNumber(7)
-                    ->setAddressAdditionalInformation(
-                        "Les faits se sont produits entre le restaurant et l'appartement d'un ami"
-                    )
-                    ->setVictimOfViolence(true)
-                    ->setVictimOfViolenceText('Je me suis fait taper')
-            )
-            ->addObject(
-                (new MultimediaObject())
-                    ->setStatus(AbstractObject::STATUS_STOLEN)
-                    ->setNature('TELEPHONE PORTABLE')
-                    ->setBrand('Apple')
-                    ->setModel('iPhone 13')
-                    ->setDescription('Iphone 13 de couleur grise')
-                    ->setOperator('Orange')
-                    ->setSerialNumber('1234567890')
-                    ->setImei('ABCD-1234')
-                    ->setPhoneNumber('+33 6 12 34 56 67')
-                    ->setAmount(999)
-            )
-            ->addObject(
-                (new MultimediaObject())
-                    ->setStatus(AbstractObject::STATUS_STOLEN)
-                    ->setNature('AUTRE NATURE MULTIMEDIA')
-                    ->setBrand('Sony')
-                    ->setModel('Playstation 4')
-                    ->setSerialNumber('1324354657')
-                    ->setImei('BBBB-1234')
-                    ->setDescription('Description console')
-                    ->setAmount(499)
-            )
-            ->addObject(
-                (new AdministrativeDocument())
-                    ->setStatus(AbstractObject::STATUS_STOLEN)
-                    ->setType('Permis de conduire')
-                    ->setValidityEndDate(new \DateTimeImmutable('2024-12-01'))
-                    ->setOwned(true)
-            )
-            ->addObject(
-                (new PaymentMethod())
-                    ->setStatus(AbstractObject::STATUS_STOLEN)
-                    ->setType('Carte bancaire')
-                    ->setDescription('Carte gold')
-                    ->setBank('LCL')
-                    ->setBankAccountNumber('987654321')
-                    ->setChequeNumber('1234567890')
-                    ->setFirstChequeNumber('AAA')
-                    ->setLastChequeNumber('XXX')
-                    ->setCreditCardNumber('4624 7482 3324 9080')
-            )
-            ->addObject(
-                (new SimpleObject())
-                    ->setStatus(AbstractObject::STATUS_STOLEN)
-                    ->setNature('Blouson')
-                    ->setDescription('Blouson bleu')
-                    ->setSerialNumber('1234567890')
-                    ->setQuantity(1)
-                    ->setAmount(100)
-            )
-            ->addObject(
-                (new SimpleObject())
-                    ->setStatus(AbstractObject::STATUS_DEGRADED)
-                    ->setNature('Sac')
-                    ->setDescription('Sac bleu')
-                    ->setSerialNumber('1234567890')
-                    ->setQuantity(1)
-                    ->setAmount(100)
-            )
-            ->addObject(
-                (new Vehicle())
-                    ->setBrand('Citroën')
-                    ->setModel('C3')
-                    ->setRegistrationNumber('AA-123-AA')
-                    ->setRegistrationCountry('France')
-                    ->setInsuranceCompany('AXA')
-                    ->setInsuranceNumber('1458R147R')
-                    ->setNature('CAMION')
-                    ->setDegradationDescription('Rétroviseur cassé')
-                    ->setAmount(15000)
-                    ->setStatus(AbstractObject::STATUS_DEGRADED)
-            )
-            ->addObject(
-                (new Vehicle())
-                    ->setLabel('Trotinette')
-                    ->setStatus(AbstractObject::STATUS_DEGRADED)
-            )
-            ->setAdditionalInformation(
-                (new AdditionalInformation())
-                    ->setCctvPresent(AdditionalInformation::CCTV_PRESENT_YES)
-                    ->setCctvAvailable(true)
-                    ->setSuspectsKnown(true)
-                    ->setSuspectsKnownText('2 hommes')
-                    ->setWitnessesPresent(true)
-                    ->setFsiVisit(true)
-                    ->setObservationMade(true)
-                    ->addWitness(
-                        (new Witness())
-                            ->setDescription('Jean Dupont')
-                            ->setPhone('+33 6 12 34 45 57')
-                            ->setEmail('jean@example.com')
-                    )
-            );
+        $unit = $this->getUnit();
+        $complaint = $this->getComplaint();
 
         /** @var string $xml */
         $xml = $xmlGenerator->generate($complaint, $unit)->asXML();
@@ -439,7 +225,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Faits_Adresse_Arrivee_Insee>69266</Faits_Adresse_Arrivee_Insee>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Adresse_Arrivee_Commune>Villeurbanne</Faits_Adresse_Arrivee_Commune>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Adresse_Arrivee_HidNumDep>69</Faits_Adresse_Arrivee_HidNumDep>', $this->xmlContent);
-        $this->assertStringContainsString('<Faits_Localisation>TRAIN</Faits_Localisation>', $this->xmlContent);
+        $this->assertStringContainsString('<Faits_Localisation>La personne déclarante indique que les faits on été commis entre 25 Avenue de la République, Bordeaux, 33000 et Place Charles Hernu, Villeurbanne, 69100 dans TRAIN. M. DUPONT Jean nous précise Les faits se sont produits entre le restaurant et l\'appartement d\'un ami. Sur la présence de violences au moment des faits, la personne déclarante indique : </Faits_Localisation>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Localisation_Inconnue/>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Horaire>horaire_inconnu</Faits_Horaire>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Date_Affaire>01/12/2022</Faits_Date_Affaire>', $this->xmlContent);
@@ -687,5 +473,270 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<VL_Non_Immat_Statut>Dégradé</VL_Non_Immat_Statut>', $this->xmlContent);
         $this->assertStringContainsString('<VL_Non_Immat_Denomination>Trotinette</VL_Non_Immat_Denomination>', $this->xmlContent);
         $this->assertStringContainsString('</Objet_simple>', $this->xmlContent);
+    }
+
+    public function testFaitsLocalisation(): void
+    {
+        /** @var Complaint $complaint */
+        $complaint = $this->getComplaint();
+        /** @var Facts $facts */
+        $facts = $complaint->getFacts();
+        $facts->setPlace('INTERNET')->setAddressAdditionalInformation(null);
+        /** @var string $xml */
+        $xml = $this->xmlGenerator->generate($complaint, $this->getUnit())->asXML();
+        $xmlContent = mb_convert_encoding($xml, 'UTF-8', 'ISO-8859-1');
+
+        $this->assertStringContainsString('<Faits_Localisation>La personne déclarante indique que l\'infraction a été commise sur internet sur un site dont il ignore l\'URL. Sur la présence de violences au moment des faits, la personne déclarante indique : </Faits_Localisation>', $xmlContent);
+
+        $facts->setPlace('INTERNET')->setWebsite('www.facebook.com');
+        /** @var string $xml */
+        $xml = $this->xmlGenerator->generate($complaint, $this->getUnit())->asXML();
+        $xmlContent = mb_convert_encoding($xml, 'UTF-8', 'ISO-8859-1');
+        $this->assertStringContainsString('<Faits_Localisation>La personne déclarante indique que l\'infraction a été commise sur internet sur le site dont l\' URL est www.facebook.com. Sur la présence de violences au moment des faits, la personne déclarante indique : </Faits_Localisation>', $xmlContent);
+
+        $facts->setPlace('RESEAU TELEPHONIQUE');
+        /** @var string $xml */
+        $xml = $this->xmlGenerator->generate($complaint, $this->getUnit())->asXML();
+        $xmlContent = mb_convert_encoding($xml, 'UTF-8', 'ISO-8859-1');
+        $this->assertStringContainsString('<Faits_Localisation>La personne déclarante indique ignorer le numéro de la ligne téléphonique incriminé. Sur la présence de violences au moment des faits, la personne déclarante indique : </Faits_Localisation>', $xmlContent);
+
+        $facts->setPlace('RESEAU TELEPHONIQUE')->setCallingPhone('+33 0800 000 000');
+        /** @var string $xml */
+        $xml = $this->xmlGenerator->generate($complaint, $this->getUnit())->asXML();
+        $xmlContent = mb_convert_encoding($xml, 'UTF-8', 'ISO-8859-1');
+        $this->assertStringContainsString('<Faits_Localisation>La personne déclarante indique comme numéro de la ligne téléphonique incriminé +33 0800 000 000. Sur la présence de violences au moment des faits, la personne déclarante indique : </Faits_Localisation>', $xmlContent);
+
+        $facts->setPlace('ECOLE')->setEndAddress(null);
+        /** @var string $xml */
+        $xml = $this->xmlGenerator->generate($complaint, $this->getUnit())->asXML();
+        $xmlContent = mb_convert_encoding($xml, 'UTF-8', 'ISO-8859-1');
+        $this->assertStringContainsString('<Faits_Localisation>La personne déclarante indique comme adresse pour le lieu de commission des faits 25 Avenue de la République, Bordeaux, 33000 et comme nature de lieu ECOLE. Sur la présence de violences au moment des faits, la personne déclarante indique : </Faits_Localisation>', $xmlContent);
+    }
+
+    private function getUnit(): Unit
+    {
+        return new Unit(
+            'ddsp33-csp-arcachon-ppel@interieur.gouv.fr',
+            'ddsp33-ppel@interieur.gouv.fr',
+            '74181',
+            '74181',
+            'Commissariat de police d\'Arcachon',
+            '44.65828',
+            '-1.1609669',
+            '1 Place de Verdun 33120 ARCACHON',
+            '33',
+            '05 57 72 29 30',
+            '24h/24 - 7j/7',
+            '4015',
+            Institution::PN
+        );
+    }
+
+    private function getComplaint(): Complaint
+    {
+        $complaint = (new Complaint())
+            ->setFrontId('AAAA-BBBB-CCCC')
+            ->setCreatedAt(new \DateTimeImmutable('2022-12-01'))
+            ->setTest(true)
+            ->setAppointmentDate(new \DateTimeImmutable('2022-12-03'))
+            ->setStatus(Complaint::STATUS_ASSIGNMENT_PENDING)
+            ->setDeclarationNumber('PEL-2022-'.str_pad('1', 8, '0', STR_PAD_LEFT))
+            ->setAlert('Alert de test trop longue')
+            ->setFranceConnected(true)
+            ->setUnitAssigned($this->getUnit()->getCode())
+            ->setAppointmentAsked(true)
+            ->setIdentity(
+                (new Identity())
+                    ->setFirstname('Jean')
+                    ->setLastname('DUPONT')
+                    ->setCivility(Identity::CIVILITY_MALE)
+                    ->setDeclarantStatus(Identity::DECLARANT_STATUS_PERSON_LEGAL_REPRESENTATIVE)
+                    ->setBirthday(new \DateTimeImmutable('1967-03-07'))
+                    ->setBirthCountry('France')
+                    ->setNationality('FRANCAISE')
+                    ->setBirthDepartment('Paris')
+                    ->setBirthCity('Paris')
+                    ->setBirthPostalCode('75000')
+                    ->setBirthInseeCode('75056')
+                    ->setBirthDepartmentNumber(75)
+                    ->setAddress('15 rue PAIRA, Meudon, 92190')
+                    ->setAddressStreetNumber('15')
+                    ->setAddressStreetType('Rue')
+                    ->setAddressStreetName('Rue PAIRA')
+                    ->setAddressCity('Meudon')
+                    ->setAddressPostcode('92190')
+                    ->setAddressInseeCode('92048')
+                    ->setAddressCountry('France')
+                    ->setAddressDepartment('Hauts-de-Seine')
+                    ->setAddressDepartmentNumber(92)
+                    ->setMobilePhone('+33 6 12 34 45 57')
+                    ->setHomePhone('+33 1 23 45 67 89')
+                    ->setEmail('jean.dupont@gmail.com')
+                    ->setJob('Boulanger')
+                    ->setJobThesaurus('BOULANGER')
+                    ->setAlertNumber(3)
+            )
+            ->setConsentContactEmail(true)
+            ->setConsentContactSMS(true)
+            ->setConsentContactPortal(true)
+            ->setpersonLegalRepresented(
+                (new Identity())
+                    ->setFirstname('Jeremy')
+                    ->setLastname('DUPONT')
+                    ->setCivility(Identity::CIVILITY_MALE)
+                    ->setDeclarantStatus(Identity::DECLARANT_STATUS_VICTIM)
+                    ->setBirthday(new \DateTimeImmutable('2000-02-14'))
+                    ->setBirthCountry('France')
+                    ->setNationality('FRANCAISE')
+                    ->setBirthDepartment('Hauts-de-Seine')
+                    ->setBirthDepartmentNumber(92)
+                    ->setBirthCity('Meudon')
+                    ->setBirthPostalCode('92190')
+                    ->setBirthInseeCode('92048')
+                    ->setAddress('15 rue PAIRA, Meudon, 92190')
+                    ->setAddressStreetNumber('15')
+                    ->setAddressStreetType('Rue')
+                    ->setAddressStreetName('Rue PAIRA')
+                    ->setAddressCity('Meudon')
+                    ->setAddressInseeCode('92048')
+                    ->setAddressPostcode('92190')
+                    ->setAddressDepartment('Hauts-de-Seine')
+                    ->setAddressDepartmentNumber(92)
+                    ->setAddressCountry('France')
+                    ->setMobilePhone('+33 6 76 54 32 10')
+                    ->setEmail('jeremy.dupont@gmail.com')
+                    ->setJob('Etudiant')
+                    ->setJobThesaurus('ETUDIANT')
+            )
+            ->setFacts(
+                (new Facts())
+                    ->setNatures([Facts::NATURE_ROBBERY, Facts::NATURE_DEGRADATION])
+                    ->setDescription('Je me suis fait voler mon portable.')
+                    ->setExactDateKnown(true)
+                    ->setExactPlaceUnknown(true)
+                    ->setStartDate(new \DateTimeImmutable('2022-12-01'))
+                    ->setEndDate(new \DateTimeImmutable('2022-12-01'))
+                    ->setPlace('TRAIN')
+                    ->setStartAddress('25 Avenue de la République, Bordeaux, 33000')
+                    ->setEndAddress('Place Charles Hernu, Villeurbanne, 69100')
+                    ->setStartAddressCountry('France')
+                    ->setStartAddressCity('Bordeaux')
+                    ->setStartAddressPostalCode('33000')
+                    ->setStartAddressInseeCode('33063')
+                    ->setStartAddressDepartment('Gironde')
+                    ->setStartAddressDepartmentNumber(33)
+                    ->setEndAddressCountry('France')
+                    ->setEndAddressCity('Villeurbanne')
+                    ->setEndAddressPostalCode('69100')
+                    ->setEndAddressInseeCode('69266')
+                    ->setEndAddressDepartment('Rhône')
+                    ->setEndAddressDepartmentNumber(69)
+                    ->setExactHourKnown(Facts::EXACT_HOUR_KNOWN_NO)
+                    ->setStartHour(new \DateTimeImmutable('09:00'))
+                    ->setEndHour(new \DateTimeImmutable('10:00'))
+                    ->setAlertNumber(7)
+                    ->setAddressAdditionalInformation(
+                        "Les faits se sont produits entre le restaurant et l'appartement d'un ami"
+                    )
+                    ->setVictimOfViolence(true)
+                    ->setVictimOfViolenceText('Je me suis fait taper')
+            )
+            ->addObject(
+                (new MultimediaObject())
+                    ->setStatus(AbstractObject::STATUS_STOLEN)
+                    ->setNature('TELEPHONE PORTABLE')
+                    ->setBrand('Apple')
+                    ->setModel('iPhone 13')
+                    ->setDescription('Iphone 13 de couleur grise')
+                    ->setOperator('Orange')
+                    ->setSerialNumber('1234567890')
+                    ->setImei('ABCD-1234')
+                    ->setPhoneNumber('+33 6 12 34 56 67')
+                    ->setAmount(999)
+            )
+            ->addObject(
+                (new MultimediaObject())
+                    ->setStatus(AbstractObject::STATUS_STOLEN)
+                    ->setNature('AUTRE NATURE MULTIMEDIA')
+                    ->setBrand('Sony')
+                    ->setModel('Playstation 4')
+                    ->setSerialNumber('1324354657')
+                    ->setImei('BBBB-1234')
+                    ->setDescription('Description console')
+                    ->setAmount(499)
+            )
+            ->addObject(
+                (new AdministrativeDocument())
+                    ->setStatus(AbstractObject::STATUS_STOLEN)
+                    ->setType('Permis de conduire')
+                    ->setValidityEndDate(new \DateTimeImmutable('2024-12-01'))
+                    ->setOwned(true)
+            )
+            ->addObject(
+                (new PaymentMethod())
+                    ->setStatus(AbstractObject::STATUS_STOLEN)
+                    ->setType('Carte bancaire')
+                    ->setDescription('Carte gold')
+                    ->setBank('LCL')
+                    ->setBankAccountNumber('987654321')
+                    ->setChequeNumber('1234567890')
+                    ->setFirstChequeNumber('AAA')
+                    ->setLastChequeNumber('XXX')
+                    ->setCreditCardNumber('4624 7482 3324 9080')
+            )
+            ->addObject(
+                (new SimpleObject())
+                    ->setStatus(AbstractObject::STATUS_STOLEN)
+                    ->setNature('Blouson')
+                    ->setDescription('Blouson bleu')
+                    ->setSerialNumber('1234567890')
+                    ->setQuantity(1)
+                    ->setAmount(100)
+            )
+            ->addObject(
+                (new SimpleObject())
+                    ->setStatus(AbstractObject::STATUS_DEGRADED)
+                    ->setNature('Sac')
+                    ->setDescription('Sac bleu')
+                    ->setSerialNumber('1234567890')
+                    ->setQuantity(1)
+                    ->setAmount(100)
+            )
+            ->addObject(
+                (new Vehicle())
+                    ->setBrand('Citroën')
+                    ->setModel('C3')
+                    ->setRegistrationNumber('AA-123-AA')
+                    ->setRegistrationCountry('France')
+                    ->setInsuranceCompany('AXA')
+                    ->setInsuranceNumber('1458R147R')
+                    ->setNature('CAMION')
+                    ->setDegradationDescription('Rétroviseur cassé')
+                    ->setAmount(15000)
+                    ->setStatus(AbstractObject::STATUS_DEGRADED)
+            )
+            ->addObject(
+                (new Vehicle())
+                    ->setLabel('Trotinette')
+                    ->setStatus(AbstractObject::STATUS_DEGRADED)
+            )
+            ->setAdditionalInformation(
+                (new AdditionalInformation())
+                    ->setCctvPresent(AdditionalInformation::CCTV_PRESENT_YES)
+                    ->setCctvAvailable(true)
+                    ->setSuspectsKnown(true)
+                    ->setSuspectsKnownText('2 hommes')
+                    ->setWitnessesPresent(true)
+                    ->setFsiVisit(true)
+                    ->setObservationMade(true)
+                    ->addWitness(
+                        (new Witness())
+                            ->setDescription('Jean Dupont')
+                            ->setPhone('+33 6 12 34 45 57')
+                            ->setEmail('jean@example.com')
+                    )
+            );
+
+        return $complaint;
     }
 }

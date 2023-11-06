@@ -7,12 +7,15 @@ namespace App\Generator\Complaint\Model;
 use App\Entity\Complaint;
 use App\Entity\Facts;
 use App\Entity\FactsObjects\AbstractObject;
+use App\Entity\Identity;
 
 class FactsDTO
 {
     private const TIME_INFORMATION_KNOWN = 'connu';
     private const TIME_INFORMATION_TIME_UNKNOWN = 'horaire_inconnu';
     private const TIME_INFORMATION_DATE_UNKNOWN = 'date_inconnu';
+    private const NATURE_PLACE_INTERNET = 'INTERNET';
+    private const NATURE_PLACE_TEL = 'RESEAU TELEPHONIQUE';
 
     private const NATURES_PLACE_TRANSPORTS = [
         'AIRE D\'AUTOROUTE',
@@ -53,7 +56,7 @@ class FactsDTO
     private ?string $endAddressInseeCode = null;
     private ?string $endAddressCity = null;
     private ?string $endAddressDepartmentNumber = null;
-    private string $localisation;
+    private string $localisation = '';
     private ?string $timeInformation;
     private ?string $date;
     private ?string $hour;
@@ -88,6 +91,8 @@ class FactsDTO
     {
         /** @var Facts $facts */
         $facts = $complaint->getFacts();
+        /** @var Identity $identity */
+        $identity = $complaint->getIdentity();
         $this->presentation = str_replace(
             [Facts::NATURE_ROBBERY, Facts::NATURE_DEGRADATION, Facts::NATURE_OTHER],
             ['Vol', 'Dégradation', 'Autre atteinte aux biens'],
@@ -101,7 +106,6 @@ class FactsDTO
         $this->startAddressInseeCode = $facts->getStartAddressInseeCode() ?? '';
         $this->startAddressCity = $facts->getStartAddressCity() ?? '';
         $this->startAddressDepartmentNumber = strval($facts->getStartAddressDepartmentNumber());
-        $this->localisation = $facts->getPlace() ?? '';
 
         if (Facts::EXACT_HOUR_KNOWN_YES === $facts->getExactHourKnown() && $facts->isExactDateKnown()) {
             $this->timeInformation = self::TIME_INFORMATION_KNOWN;
@@ -183,6 +187,8 @@ class FactsDTO
         $this->exactDateKnown = $complaint->getFacts()?->isExactDateKnown() ? 'Oui' : 'Non';
         $this->hasObjectsWithAmount = $complaint->hasObjectsWithAmount() ? '1' : '0';
         $this->estimation = '1' === $this->hasObjectsWithAmount ? (string) array_sum(array_map(fn (AbstractObject $object) => $object->getAmount(), $complaint->getObjects()->toArray())) : '';
+
+        $this->setLocalisation($facts, $identity);
     }
 
     /**
@@ -242,5 +248,53 @@ class FactsDTO
             'Nature_Lieu_URL' => $this->factsWebsite,
             'Date_Exacte_Faits_Connue' => $this->exactDateKnown,
         ]];
+    }
+
+    private function setLocalisation(Facts $facts, Identity $identity): void
+    {
+        if (self::NATURE_PLACE_INTERNET === $facts->getPlace()) {
+            if (null !== $facts->getWebsite()) {
+                $this->localisation .= sprintf(
+                    'La personne déclarante indique que l\'infraction a été commise sur internet sur le site dont l\' URL est %s. ',
+                    $facts->getWebsite(),
+                );
+            } else {
+                $this->localisation .= 'La personne déclarante indique que l\'infraction a été commise sur internet sur un site dont il ignore l\'URL. ';
+            }
+        } elseif (self::NATURE_PLACE_TEL === $facts->getPlace()) {
+            if (null === $facts->getCallingPhone()) {
+                $this->localisation = 'La personne déclarante indique ignorer le numéro de la ligne téléphonique incriminé. ';
+            } else {
+                $this->localisation .= sprintf(
+                    'La personne déclarante indique comme numéro de la ligne téléphonique incriminé %s. ',
+                    $facts->getCallingPhone(),
+                );
+            }
+        } elseif (null === $facts->getEndAddress()) {
+            $this->localisation .= sprintf(
+                'La personne déclarante indique comme adresse pour le lieu de commission des faits %s et comme nature de lieu %s. ',
+                $facts->getStartAddress(),
+                $facts->getPlace()
+            );
+        } else {
+            $this->localisation .= sprintf(
+                'La personne déclarante indique que les faits on été commis entre %s et %s dans %s. ',
+                $facts->getStartAddress(),
+                $facts->getEndAddress(),
+                $facts->getPlace()
+            );
+        }
+
+        if (null !== $facts->getAddressAdditionalInformation()) {
+            $this->localisation .= sprintf(
+                '%s %s %s nous précise %s. ',
+                Identity::CIVILITY_MALE === $identity->getCivility() ? 'M.' : 'Mme',
+                $identity->getLastname(),
+                $identity->getFirstname(),
+                $facts->getAddressAdditionalInformation()
+            );
+        }
+
+        $this->localisation .= 'Sur la présence de violences au moment des faits, la personne déclarante indique : ';
     }
 }
