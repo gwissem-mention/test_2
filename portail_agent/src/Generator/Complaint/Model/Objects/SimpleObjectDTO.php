@@ -14,6 +14,7 @@ class SimpleObjectDTO extends AbstractObjectDTO
     //    private string $model;
     private string $serialNumber;
     private string $description;
+    private string $descript;
     private string $status;
     private string $quantity;
     private string $amount;
@@ -26,6 +27,7 @@ class SimpleObjectDTO extends AbstractObjectDTO
         //        $this->model = $object->getModel() ?? '';
         $this->serialNumber = $object->getSerialNumber() ?? '';
         $this->description = (string) $object->getDescription();
+        $this->descript = $object->getDescription() ?? '';
         $this->status = AbstractObject::STATUS_STOLEN === $object->getStatus() ? 'Volé' : 'Dégradé';
         $this->quantity = (string) $object->getQuantity();
         $this->amount = (string) $object->getAmount();
@@ -42,6 +44,7 @@ class SimpleObjectDTO extends AbstractObjectDTO
 //            'Objet_simple_Modele' => $this->model,
             'Objet_simple_Numeros_Serie' => $this->serialNumber,
             'Objet_simple_Description' => $this->description,
+            'Objet_simple_Descript' => $this->descript,
             'Objet_Simple_Statut' => $this->status,
             'Objet_Simple_Denomination' => $this->nature,
             'Objet_Simple_Quantite' => $this->quantity,

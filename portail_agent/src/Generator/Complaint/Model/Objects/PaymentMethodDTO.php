@@ -6,6 +6,7 @@ namespace App\Generator\Complaint\Model\Objects;
 
 use App\Entity\FactsObjects\AbstractObject;
 use App\Entity\FactsObjects\PaymentMethod;
+use App\Entity\Identity;
 
 class PaymentMethodDTO extends AbstractObjectDTO
 {
@@ -22,8 +23,10 @@ class PaymentMethodDTO extends AbstractObjectDTO
     private ?string $lastChequeNumber;
     private string $status;
     private string $creditCardNumber;
+    private string $identityLastname;
+    private string $identityFirstname;
 
-    public function __construct(PaymentMethod $object)
+    public function __construct(PaymentMethod $object, ?Identity $identity)
     {
         // parent::__construct($object);
         $this->type = $object->getType() ?? '';
@@ -39,6 +42,8 @@ class PaymentMethodDTO extends AbstractObjectDTO
         $this->lastChequeNumber = $object->getLastChequeNumber();
         $this->status = AbstractObject::STATUS_STOLEN === $object->getStatus() ? 'Volé' : 'Dégradé';
         $this->creditCardNumber = (string) $object->getCreditCardNumber();
+        $this->identityLastname = Identity::DECLARANT_STATUS_VICTIM === $identity?->getDeclarantStatus() ? $identity->getLastname() ?? '' : '';
+        $this->identityFirstname = Identity::DECLARANT_STATUS_VICTIM === $identity?->getDeclarantStatus() ? $identity->getFirstname() ?? '' : '';
     }
 
     /**
@@ -51,6 +56,7 @@ class PaymentMethodDTO extends AbstractObjectDTO
             // 'Objet_Moyen_Paiement_Devise' => $this->currency,
             // 'Objet_Moyen_Paiement_Numero' => $this->number,
             'Objet_Moyen_Paiement_Description' => $this->description,
+            'Objet_Moyen_Paiement_Descript' => $this->description,
             // 'Objet_Moyen_Paiement_Opposition' => $this->opposition,
              'Objet_Moyen_Paiement_Banque' => $this->bank,
             'Objet_Moyen_Paiement_IBAN' => $this->bankAccountNumber,
@@ -61,9 +67,9 @@ class PaymentMethodDTO extends AbstractObjectDTO
             'Objet_Moyen_Paiement_Identite_Victime' => 'Oui',
             'Objet_Moyen_Paiement_Statut' => $this->status,
             'Objet_Moyen_Paiement_Numero' => $this->creditCardNumber,
-            // 'Objet_Moyen_Paiement_Identite_Nom' => $this->identityLastname,
+            'Objet_Moyen_Paiement_Identite_Nom' => $this->identityLastname,
             // 'Objet_Moyen_Paiement_Identite_Nom_Marital' => $this->identityMarriedName,
-            // 'Objet_Moyen_Paiement_Identite_Prenom' => $this->identityFirstName,
+             'Objet_Moyen_Paiement_Identite_Prenom' => $this->identityFirstname,
             // 'Objet_Moyen_Paiement_Identite_Naissance_Date' => $this->identityBirthDate,
             // 'Objet_Moyen_Paiement_Identite_Naissance' => $this->identityBirthCountry,
             // 'Objet_Moyen_Paiement_Identite_Naissance_Departement' => ($this->identityBirthDepartmentNumber && $this->identityBirthDepartment) ? $this->identityBirthDepartmentNumber.' - '.$this->identityBirthDepartment : null,
