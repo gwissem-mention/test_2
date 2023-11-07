@@ -138,7 +138,7 @@ export default class extends Controller {
                     component.getParent()?.set(parentModelName, component.valueStore.get(modelName));
                 }
             });
-            if (component.valueStore.has("dataGirondeEnabled") && true === component.valueStore.get("dataGirondeEnabled")) {
+            if (component.valueStore.has("dataGirondeEnabled") && component.valueStore.has("isBetweenTwoPlaces") && true === component.valueStore.get("dataGirondeEnabled") && true === component.valueStore.get("isBetweenTwoPlaces")) {
                 component.getParent()?.render();
             }
         }
