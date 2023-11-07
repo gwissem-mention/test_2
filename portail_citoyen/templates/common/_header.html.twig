@@ -32,7 +32,7 @@
                     <div class="fr-header__tools-links">
                         <ul class="fr-links-group">
                             <li>
-                                <a class="fr-link fr-icon-question-fill" href="{{ path('faq', {'_fragment': 'pel-faq-section'}) }}" target="_blank" title="{{ 'pel.header.help'|trans }} - {{ 'pel.new.window'|trans }}">
+                                <a class="fr-link fr-icon-question-fill" href="{{ path('faq', {'_fragment': 'pel-faq-section'}) }}" target="_blank" title="{{ 'pel.header.help'|trans|add_new_window_text }}">
                                     {{ 'pel.header.help'|trans }}
                                 </a>
                             </li>

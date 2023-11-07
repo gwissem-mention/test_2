@@ -106,7 +106,7 @@
         {% set objectsLength = form.objects.vars.data|length %}
         {% set objectsQuantity = form.objects.vars.data|objects_quantity %}
         {{ form_widget(form.objects.vars.button_add, {attr: {'data-action': 'live#action complaint-submit#focusAddObject', 'data-action-name': 'prevent|addObject addCollectionItem(name=objects[objects])'}}) }}
-        <p class="fr-mb-0">
+        <p class="fr-mb-0" aria-live="polite" aria-atomic="true">
             <strong>{{ objectsQuantity }} {{ 'pel.total.message.two'|trans({'%quantity%': objectsQuantity}) }}</strong>
             {{ 'pel.total.message.amount'|trans }}
             <strong>{{ form.objects.vars.data|objects_amount|format_currency('EUR', {fraction_digit: 2}) }}</strong>

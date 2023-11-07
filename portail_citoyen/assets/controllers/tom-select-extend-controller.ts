@@ -1,6 +1,8 @@
 import {Controller} from "@hotwired/stimulus";
 
 export default class extends Controller {
+    private observer?: MutationObserver;
+
     public override initialize(): void {
         this._onPreConnect = this._onPreConnect.bind(this);
         this._onConnect = this._onConnect.bind(this);
@@ -14,6 +16,9 @@ export default class extends Controller {
     public override disconnect(): void {
         this.element.removeEventListener("autocomplete:pre-connect", this._onConnect);
         this.element.removeEventListener("autocomplete:connect", this._onPreConnect);
+        if (this.observer) {
+            this.observer.disconnect();
+        }
     }
 
     public _onPreConnect(event: Event): void {
@@ -56,6 +61,29 @@ export default class extends Controller {
             if (controlInputElement && controlElement && controlElement.parentElement && controlElement.parentElement.classList.contains("fr-select--error")) {
                 controlInputElement.setAttribute("aria-describedby", "form-errors-" + this.element.getAttribute("id") );
             }
+
+            this.checkForDataAttribute(controlElement);
+
+            this.observer = new MutationObserver(mutations => {
+                for (const mutation of mutations) {
+                    if (mutation.type === "childList") {
+                        this.checkForDataAttribute(controlElement);
+                    }
+                }
+            });
+
+            this.observer.observe(this.element, {
+                childList: true,
+                subtree: true
+            });
+        }
+    }
+
+    checkForDataAttribute(parentElement: Element | null) {
+        const targetDiv = parentElement?.querySelector("div[data-ts-item]");
+        if (targetDiv) {
+            targetDiv.setAttribute("aria-hidden", "true");
+            targetDiv.nextElementSibling?.setAttribute("aria-hidden", "true");
         }
     }
 }

@@ -6,7 +6,7 @@
                role="combobox"
                aria-autocomplete="list"
                {% if this.autoCompleteResults|length > 0 %}aria-owns="list-{{ inputName }}"{% endif %}
-               aria-expanded="false"
+               {% if this.autoCompleteResults|length > 0 %}aria-expanded="true"{% else %}aria-expanded="false"{% endif %}
                autocomplete="off"
                spellcheck="false"
                autocapitalize="off"
@@ -19,7 +19,11 @@
                {% if this.errors|length > 0 %} aria-describedby="form-errors-{{ inputName }}"{% endif %}
         >
     </div>
-    <ul class="list--addresses" id="list-{{ inputName }}" role="listbox" data-etalab-target="list">
+    <ul class="list--addresses"
+        id="list-{{ inputName }}"
+        role="listbox"
+        data-etalab-target="list"
+        {% if this.autoCompleteResults|length == 0 %}style="display: none"{% endif %}>
         {% for addr in this.autoCompleteResults %}
             <li class="list--addresses__item"
                 data-action="mousedown->live#action"
@@ -30,8 +34,8 @@
             >
                 {{ addr.properties.label }}
             </li>
-            {% endfor %}
-        </ul>
+        {% endfor %}
+    </ul>
     {% if this.errors|length > 0 %}
         {% for error in this.errors %}
             <p class="fr-error-text" id="form-errors-{{ inputName }}">
