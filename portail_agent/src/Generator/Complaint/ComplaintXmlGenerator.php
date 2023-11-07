@@ -96,7 +96,7 @@ class ComplaintXmlGenerator implements ComplaintGeneratorInterface
                     $objectXml = $this->arrayToXml($objectXml, (new MultimediaObjectDTO($object))->getArray());
                     break;
                 case $object instanceof PaymentMethod:
-                    $objectXml = $this->arrayToXml($objectXml, (new PaymentMethodDTO($object))->getArray());
+                    $objectXml = $this->arrayToXml($objectXml, (new PaymentMethodDTO($object, $complaint->getIdentity()))->getArray());
                     break;
                 case $object instanceof SimpleObject:
                     $objectXml = $this->arrayToXml($objectXml, (new SimpleObjectDTO($object))->getArray());

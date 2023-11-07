@@ -12,6 +12,7 @@ class MultimediaObjectDTO extends AbstractObjectDTO
     private string $nature;
     private string $serialNumber;
     private string $description;
+    private string $descript;
     private ?string $phoneNumber;
     private ?string $operator;
     //    private ?string $opposition;
@@ -27,15 +28,19 @@ class MultimediaObjectDTO extends AbstractObjectDTO
     private ?string $phoneSerialNumber = null;
     private ?string $phoneIMEI = null;
     private ?string $IMEI;
+    private string $serialNumbers;
+    private ?string $phoneSerialNumbers = null;
 
     public function __construct(MultimediaObject $object)
     {
         // parent::__construct($object);
         $this->nature = $object->getNature() ?? '';
         $this->serialNumber = $object->getSerialNumber() ?? '';
+        $this->serialNumbers = $object->getImei() ?? 'INCONNU';
         $this->phoneNumber = $object->getPhoneNumber() ? str_replace(' ', '', $object->getPhoneNumber()) : '';
         $this->operator = $object->getOperator();
         $this->description = $this->getStatusAsString((int) $object->getStatus()).' - '.$object->getDescription();
+        $this->descript = $object->getDescription() ?? '';
         $this->IMEI = $object->getImei() ?? '';
         switch ($object->getNature()) {
             case 'TELEPHONE PORTABLE':
@@ -43,9 +48,10 @@ class MultimediaObjectDTO extends AbstractObjectDTO
                 $this->phoneBrand = $object->getBrand();
                 $this->phoneModel = $object->getModel();
                 $this->phoneDescription = $object->getDescription().'. '.$object->getBrand().' '.$object->getModel();
-                $this->phoneSerialNumber = $object->getSerialNumber();
+                $this->phoneSerialNumber = $object->getSerialNumber() ?? '';
+                $this->phoneSerialNumbers = $object->getImei() ?? 'INCONNU';
                 $this->phoneIMEI = $object->getImei();
-                $this->serialNumber = $this->IMEI = $this->description = '';
+                $this->serialNumber = $this->IMEI = $this->description = $this->serialNumbers = '';
                 break;
             case 'MULTIMEDIA':
                 $this->status = AbstractObject::STATUS_STOLEN === $object->getStatus() ? 'volé' : 'dégradé';
@@ -65,8 +71,9 @@ class MultimediaObjectDTO extends AbstractObjectDTO
     {
         return ['Objet_Multimedia' => [
             'Objet_Multimedia_Nature' => $this->nature,
-            'Objet_Multimedia_Numeros_Serie' => $this->serialNumber,
+            'Objet_Multimedia_Numeros_Serie' => $this->serialNumbers,
             'Objet_Multimedia_Description' => $this->description,
+            'Objet_Multimedia_Descript' => $this->descript,
             'Objet_Multimedia_Nmr_Tel' => $this->phoneNumber,
             'Objet_Multimedia_Operateur' => $this->operator,
             'Objet_Multimedia_Identite_Victime' => 'Oui',
@@ -78,11 +85,13 @@ class MultimediaObjectDTO extends AbstractObjectDTO
             'Objet_Multimedia_Modele' => $this->model,
             'Objet_Multimedia_Prejudice_Estimation' => $this->amount,
             'Objet_Multimedia_Description_Tel' => $this->phoneDescription,
-            'Objet_Multimedia_Numeros_Serie_Tel' => $this->phoneSerialNumber,
+            'Objet_Multimedia_Numeros_Serie_Tel' => $this->phoneSerialNumbers,
             'Objet_Multimedia_IMEI_Tel' => $this->phoneIMEI,
             'Objet_Multimedia_IMEI' => $this->IMEI,
-//            'Objet_Multimedia_Opposition' => $this->opposition,
-//            'Objet_Multimedia_Nmr_Sim' => $this->simNumber,
+            'Objet_Multimedia_Num_Serie_Tel' => $this->phoneSerialNumber,
+            'Objet_Multimedia_Num_Serie' => $this->serialNumber,
+            // 'Objet_Multimedia_Opposition' => $this->opposition,
+            // 'Objet_Multimedia_Nmr_Sim' => $this->simNumber,
             // 'Objet_Multimedia_Identite_Victime' => $this->identityVictim,
             // 'Objet_Multimedia_Identite_Nom' => $this->identityLastname,
             // 'Objet_Multimedia_Identite_Nom_Marital' => $this->identityMarriedName,
