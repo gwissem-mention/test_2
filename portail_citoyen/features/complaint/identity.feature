@@ -36,7 +36,7 @@ Feature:
         Then the "identity_contactInformation_phone_number" field should contain "6 01 02 03 04"
 
     Scenario: I should see a error message when number is wrong
-        When I fill in "identity_contactInformation_phone_number" with "00010203040506"
+        When I fill in "identity_contactInformation_phone_number" with "000102030405060708"
         Then I should see the key "pel.phone.is.invalid" translated
 
     Scenario: I cannot enter non mobile number in mobile field

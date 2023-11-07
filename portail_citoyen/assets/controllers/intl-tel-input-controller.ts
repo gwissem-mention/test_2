@@ -6,21 +6,27 @@ import intlTelInput from "intl-tel-input";
 
 export default class extends Controller {
     static override targets: string[] = ["number", "code", "country"];
+
+    private telInput: intlTelInput.Plugin;
+
     public override connect(): void {
         const countryValue: string = this.countryTarget.value;
 
-        const telInput: intlTelInput.Plugin = intlTelInput(this.numberTarget, {
+        this.telInput = intlTelInput(this.numberTarget, {
             preferredCountries: ["FR"],
             separateDialCode: true,
             initialCountry: countryValue ?? "FR",
             placeholderNumberType: this.numberTarget.getAttribute("data-placeholder-type")
         });
 
-        this.numberTarget.addEventListener("countrychange", () => this.onCountryChange(telInput));
+        this.numberTarget.addEventListener("countrychange", () => this.onCountryChange(this.telInput));
     }
 
     public trimByPattern({params: {pattern}}: {params: { pattern: string }}): void {
         this.numberTarget.value = this.numberTarget.value.replaceAll(new RegExp(pattern, "g"), "");
+
+        // To force the formatOnDisplay option rendering
+        this.telInput.setNumber(this.numberTarget.value);
     }
 
     private onCountryChange(telInput: intlTelInput.Plugin): void {
