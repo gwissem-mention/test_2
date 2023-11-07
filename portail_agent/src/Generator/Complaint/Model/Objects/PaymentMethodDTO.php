@@ -14,6 +14,7 @@ class PaymentMethodDTO extends AbstractObjectDTO
     // private string $currency;
     // private ?string $number;
     private string $description;
+    private string $descript;
     // private ?string $opposition;
     private ?string $bank;
     private string $bankAccountNumber;
@@ -32,7 +33,8 @@ class PaymentMethodDTO extends AbstractObjectDTO
         $this->type = $object->getType() ?? '';
         // $this->currency = $object->getCurrency() ?? '';
         // $this->number = $object->getNumber();
-        $this->description = $object->getDescription() ?? '';
+        $this->description = $object->getBank().' '.$object->getBankAccountNumber().' '.$object->getDescription();
+        $this->descript = $object->getDescription() ?? '';
         // $this->opposition = $object->isOpposition() ? 'Oui' : 'Non';
         $this->bank = $object->getBank() ?? '';
         $this->bankAccountNumber = $object->getBankAccountNumber() ?? '';
@@ -56,7 +58,7 @@ class PaymentMethodDTO extends AbstractObjectDTO
             // 'Objet_Moyen_Paiement_Devise' => $this->currency,
             // 'Objet_Moyen_Paiement_Numero' => $this->number,
             'Objet_Moyen_Paiement_Description' => $this->description,
-            'Objet_Moyen_Paiement_Descript' => $this->description,
+            'Objet_Moyen_Paiement_Descript' => $this->descript,
             // 'Objet_Moyen_Paiement_Opposition' => $this->opposition,
              'Objet_Moyen_Paiement_Banque' => $this->bank,
             'Objet_Moyen_Paiement_IBAN' => $this->bankAccountNumber,

@@ -39,7 +39,7 @@ class MultimediaObjectDTO extends AbstractObjectDTO
         $this->serialNumbers = $object->getImei() ?? 'INCONNU';
         $this->phoneNumber = $object->getPhoneNumber() ? str_replace(' ', '', $object->getPhoneNumber()) : '';
         $this->operator = $object->getOperator();
-        $this->description = $this->getStatusAsString((int) $object->getStatus()).' - '.$object->getDescription();
+        $this->description = $object->getBrand().' '.$object->getModel().' '.$object->getDescription();
         $this->descript = $object->getDescription() ?? '';
         $this->IMEI = $object->getImei() ?? '';
         switch ($object->getNature()) {
@@ -47,13 +47,13 @@ class MultimediaObjectDTO extends AbstractObjectDTO
                 $this->phoneStatus = AbstractObject::STATUS_STOLEN === $object->getStatus() ? 'volé' : 'dégradé';
                 $this->phoneBrand = $object->getBrand();
                 $this->phoneModel = $object->getModel();
-                $this->phoneDescription = $object->getDescription().'. '.$object->getBrand().' '.$object->getModel();
+                $this->phoneDescription = $object->getDescription() ?? '';
                 $this->phoneSerialNumber = $object->getSerialNumber() ?? '';
                 $this->phoneSerialNumbers = $object->getImei() ?? 'INCONNU';
                 $this->phoneIMEI = $object->getImei();
-                $this->serialNumber = $this->IMEI = $this->description = $this->serialNumbers = '';
+                $this->serialNumber = $this->IMEI = $this->serialNumbers = '';
                 break;
-            case 'MULTIMEDIA':
+            default:
                 $this->status = AbstractObject::STATUS_STOLEN === $object->getStatus() ? 'volé' : 'dégradé';
                 $this->brand = $object->getBrand();
                 $this->model = $object->getModel();

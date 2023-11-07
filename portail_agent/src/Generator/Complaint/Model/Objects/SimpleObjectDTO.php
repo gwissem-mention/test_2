@@ -26,7 +26,7 @@ class SimpleObjectDTO extends AbstractObjectDTO
         //        $this->brand = $object->getBrand() ?? '';
         //        $this->model = $object->getModel() ?? '';
         $this->serialNumber = $object->getSerialNumber() ?? '';
-        $this->description = (string) $object->getDescription();
+        $this->description = $object->getNature().' '.$object->getDescription();
         $this->descript = $object->getDescription() ?? '';
         $this->status = AbstractObject::STATUS_STOLEN === $object->getStatus() ? 'Volé' : 'Dégradé';
         $this->quantity = (string) $object->getQuantity();
