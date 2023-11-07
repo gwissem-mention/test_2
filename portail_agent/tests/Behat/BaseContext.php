@@ -564,4 +564,21 @@ final class BaseContext extends MinkContext
             }
         });
     }
+
+    /**
+     * @Given /^I should see the "([^"]*)" field checked$/
+     */
+    public function iShouldSeeTheCheckboxChecked(string $selector): void
+    {
+        $this->retryStep(function () use ($selector) {
+            $page = $this->getSession()->getPage();
+
+            /** @var NodeElement $element */
+            $element = $page->find('css', $selector);
+
+            if (false === $element->isChecked()) {
+                throw new ExpectationException('The '.$selector.' checkbox is not checked', $this->getSession()->getDriver());
+            }
+        });
+    }
 }
