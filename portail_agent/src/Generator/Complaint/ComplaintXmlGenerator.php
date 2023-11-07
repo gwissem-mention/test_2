@@ -24,7 +24,6 @@ use App\Generator\Complaint\Model\Objects\SimpleObjectDTO;
 use App\Generator\Complaint\Model\Objects\VehicleDTO;
 use App\Generator\Complaint\Model\PersonDTO;
 use App\Generator\Complaint\Model\PersonLegalRepresentativeDTO;
-use App\Generator\Complaint\Model\VariousDTO;
 use App\Referential\Entity\Unit;
 use App\Referential\Repository\UnitRepository;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -56,14 +55,13 @@ class ComplaintXmlGenerator implements ComplaintGeneratorInterface
             $xml = $this->arrayToXml($xml, (new CorporationRepresentedDTO($corporation, $identity))->getArray());
         }
         if ($complaint->getFacts()) {
-            $data = (new FactsDTO($complaint))->getArray();
+            $data = (new FactsDTO($complaint, $this->unitRepository, $this->urlGenerator))->getArray();
             $data['Faits']['Faits_Expose'] .= $this->additionalInformationPN->set($complaint);
             $data['Faits']['Faits_Prejudice_Physique_Description'] = $data['Faits']['Faits_Prejudice_Physique_Description'] ? $this->translator->trans($data['Faits']['Faits_Prejudice_Physique_Description']) : '';
             $xml = $this->arrayToXml($xml, $data);
         }
         $xml = $this->setObjects($xml, $complaint);
         $xml = $this->arrayToXml($xml, (new ContactDTO($complaint))->getArray());
-        $xml = $this->arrayToXml($xml, (new VariousDTO($complaint, $this->unitRepository, $this->urlGenerator))->getArray());
 
         return $xml;
     }

@@ -248,6 +248,17 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Faits_Prejudice_Physique_Description>Dans ce cas vous devrez être examiné par un médecin et présenter un certificat médical indiquant notamment la durée de votre incapacité temporaire de travail. Les précisions relatives à cet examen vous seront communiquées lors de la fixation du rendez-vous pour la signature de votre plainte</Faits_Prejudice_Physique_Description>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Prejudice_Autre_Description>16698</Faits_Prejudice_Autre_Description>', $this->xmlContent);
         $this->assertStringContainsString('<Date_Exacte_Faits_Connue>Oui</Date_Exacte_Faits_Connue>', $this->xmlContent);
+        $this->assertStringContainsString('<Suspects_Informations>Oui</Suspects_Informations>', $this->xmlContent);
+        $this->assertStringContainsString('<Suspects_Description>2 hommes</Suspects_Description>', $this->xmlContent);
+        $this->assertStringContainsString('<Temoins_Presents>Oui</Temoins_Presents>', $this->xmlContent);
+        $this->assertStringContainsString('<Intervention_Fsi>Oui</Intervention_Fsi>', $this->xmlContent);
+        $this->assertStringContainsString('<Constat_Relev_Effectues>Oui</Constat_Relev_Effectues>', $this->xmlContent);
+        $this->assertStringContainsString('<Video_Disponible>Oui</Video_Disponible>', $this->xmlContent);
+        $this->assertStringContainsString('<Unite_Rdv>Commissariat de police d\'Arcachon</Unite_Rdv>', $this->xmlContent);
+        $this->assertStringContainsString('<Rdv_Souhaite>Oui</Rdv_Souhaite>', $this->xmlContent);
+        $this->assertStringContainsString('<Enregistrement_Video>Oui</Enregistrement_Video>', $this->xmlContentWithCorporationRepresented);
+        $this->assertStringContainsString('<Temoins_Description>Jean Dupont</Temoins_Description>', $this->xmlContentWithCorporationRepresented);
+        $this->assertStringContainsString('<URL_API_PJ>http://localhost/api/complaint/AAAA-BBBB-CCCC/attachments</URL_API_PJ>', $this->xmlContentWithCorporationRepresented);
         $this->assertStringContainsString('</Faits>', $this->xmlContent);
     }
 
@@ -447,23 +458,6 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<CONS_Mail>Oui</CONS_Mail>', $this->xmlContent);
         $this->assertStringContainsString('<CONS_Portalis>Oui</CONS_Portalis>', $this->xmlContent);
         $this->assertStringContainsString('</Contact>', $this->xmlContent);
-    }
-
-    public function testVariousSection(): void
-    {
-        $this->assertStringContainsString('<Divers>', $this->xmlContent);
-        $this->assertStringContainsString('<Suspects_Informations>Oui</Suspects_Informations>', $this->xmlContent);
-        $this->assertStringContainsString('<Suspects_Description>2 hommes</Suspects_Description>', $this->xmlContent);
-        $this->assertStringContainsString('<Temoins_Presents>Oui</Temoins_Presents>', $this->xmlContent);
-        $this->assertStringContainsString('<Intervention_Fsi>Oui</Intervention_Fsi>', $this->xmlContent);
-        $this->assertStringContainsString('<Constat_Relev_Effectues>Oui</Constat_Relev_Effectues>', $this->xmlContent);
-        $this->assertStringContainsString('<Video_Disponible>Oui</Video_Disponible>', $this->xmlContent);
-        $this->assertStringContainsString('<Unite_Rdv>Commissariat de police d\'Arcachon</Unite_Rdv>', $this->xmlContent);
-        $this->assertStringContainsString('<Rdv_Souhaite>Oui</Rdv_Souhaite>', $this->xmlContent);
-        $this->assertStringContainsString('<Enregistrement_Video>Oui</Enregistrement_Video>', $this->xmlContentWithCorporationRepresented);
-        $this->assertStringContainsString('<Temoins_Description>Jean Dupont</Temoins_Description>', $this->xmlContentWithCorporationRepresented);
-        $this->assertStringContainsString('<URL_API_PJ>http://localhost/api/complaint/AAAA-BBBB-CCCC/attachments</URL_API_PJ>', $this->xmlContentWithCorporationRepresented);
-        $this->assertStringContainsString('</Divers>', $this->xmlContent);
     }
 
     public function testNonRegisteredVehicleSection(): void
