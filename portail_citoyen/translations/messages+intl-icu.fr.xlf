@@ -1520,7 +1520,7 @@
             </trans-unit>
             <trans-unit id="pel.new.window">
                 <source>pel.new.window</source>
-                <target>nouvelle fenêtre</target>
+                <target>ouvrir dans une nouvelle fenêtre</target>
             </trans-unit>
             <trans-unit id="pel.no">
                 <source>pel.no</source>

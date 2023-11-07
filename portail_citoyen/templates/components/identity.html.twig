@@ -41,7 +41,7 @@
                     <p class="fr-mb-md-12v">
                         <a href="{{ path('faq', {'_fragment': 'pel-faq-section'}) }}" class="fr-text--sm fr-text-title--blue-france" target="_blank"
                            rel="noopener"
-                           title="{{ 'pel.frequently.asked.questions'|trans }} - {{ 'pel.new.window'|trans }}">{{ 'pel.frequently.asked.questions'|trans }}</a>
+                           title="{{ 'pel.frequently.asked.questions'|trans|add_new_window_text }}">{{ 'pel.frequently.asked.questions'|trans }}</a>
                     </p>
                 {% endblock %}
             </div>

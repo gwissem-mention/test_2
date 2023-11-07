@@ -24,6 +24,7 @@ export default class extends Controller {
         if (inputElement instanceof HTMLElement) {
             inputElement.addEventListener("blur", () => this.clearResults(inputElement));
         }
+
     }
 
     private bindFocus(): void {
@@ -81,8 +82,6 @@ export default class extends Controller {
             if (event.code === "ArrowDown") {
                 this.navigateToAddress("down");
             }
-
-            this.setAriaExpandedStatus();
         });
 
         this.inputTarget.addEventListener("keydown", (event: KeyboardEvent) => {
@@ -91,8 +90,6 @@ export default class extends Controller {
 
                 this.closeAddressesList();
             }
-
-            this.setAriaExpandedStatus();
         });
     }
 
@@ -112,12 +109,6 @@ export default class extends Controller {
             this.currentAddressElement = null;
 
             this.clearResults(this.listTarget);
-        }
-    }
-
-    private setAriaExpandedStatus(): void {
-        if (this.inputTarget && this.hasListTarget) {
-            this.inputTarget.setAttribute("aria-expanded", (this.hasListTarget && this.listTarget?.style.display === "").toString());
         }
     }
 
@@ -158,7 +149,6 @@ export default class extends Controller {
     }
 
     extractDataModelMappingFromComponent(component: Component): Map<string, string> {
-        this.setAriaExpandedStatus();
         const dataModel: Map<string, string> = new Map();
 
         component.valueStore.get("_attributes").dataModel.split(" ").forEach((key: string) => {
