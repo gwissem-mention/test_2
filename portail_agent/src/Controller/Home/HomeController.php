@@ -9,7 +9,6 @@ use App\Form\Complaint\BulkReassignType;
 use App\Form\Complaint\SearchType;
 use App\Form\DTO\BulkAssignAction;
 use App\Form\DTO\BulkReassignAction;
-use App\Form\RightDelegationType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -34,7 +33,6 @@ class HomeController extends AbstractController
             'bulk_assign_form' => $bulkAssignForm->createView(),
             'bulk_reassign_form' => $bulkReassignForm->createView(),
             'pathComplaints' => $pathComplaints,
-            'delegation_right_form' => $this->createForm(RightDelegationType::class),
         ]);
     }
 }

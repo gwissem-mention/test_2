@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\RightDelegationType;
 use App\Repository\ComplaintRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -33,7 +32,6 @@ class ReportingController extends AbstractController
 
         return $this->render('pages/reporting.html.twig', [
             'complaints' => $complaints,
-            'delegation_right_form' => $this->createForm(RightDelegationType::class),
         ]);
     }
 }

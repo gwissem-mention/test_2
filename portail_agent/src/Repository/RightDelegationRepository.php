@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Repository;
 
 use App\Entity\RightDelegation;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -31,5 +32,25 @@ class RightDelegationRepository extends ServiceEntityRepository
         if (true === $flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function findCurrentRightDelegationByDelegatingAgent(?User $delegatingAgent): ?RightDelegation
+    {
+        $today = (new \DateTimeImmutable())->setTime(0, 0);
+
+        /** @var RightDelegation|null $result */
+        $result = $this->createQueryBuilder('rd')
+            ->where('rd.delegatingAgent = :delegatingAgent')
+            ->andWhere('rd.endDate >= :today')
+            ->setParameter('delegatingAgent', $delegatingAgent)
+            ->setParameter('today', $today)
+            ->orderBy('rd.startDate', 'ASC')
+            ->orderBy('rd.endDate', 'ASC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+
+        return $result;
     }
 }

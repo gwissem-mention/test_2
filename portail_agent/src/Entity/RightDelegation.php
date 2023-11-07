@@ -18,7 +18,7 @@ class RightDelegation
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\OneToOne(inversedBy: 'rightDelegation')]
+    #[ORM\ManyToOne(inversedBy: 'rightDelegations')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $delegatingAgent = null;
 

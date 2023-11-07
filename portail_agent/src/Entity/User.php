@@ -63,8 +63,9 @@ class User implements UserInterface
     ], orphanRemoval: true)]
     private Collection $complaints;
 
-    #[ORM\OneToOne(mappedBy: 'delegatingAgent')]
-    private ?RightDelegation $rightDelegation = null;
+    /** @var Collection<int, RightDelegation> */
+    #[ORM\OneToMany(mappedBy: 'delegatingAgent', targetEntity: RightDelegation::class)]
+    private Collection $rightDelegations;
 
     #[ORM\ManyToOne(targetEntity: RightDelegation::class, inversedBy: 'delegatedAgents')]
     #[ORM\JoinColumn(onDelete: 'CASCADE')]
@@ -84,6 +85,7 @@ class User implements UserInterface
         foreach ($roles as $role) {
             $this->addRole($role);
         }
+        $this->rightDelegations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -273,18 +275,6 @@ class User implements UserInterface
         return (string) $this->getAppellation();
     }
 
-    public function getRightDelegation(): ?RightDelegation
-    {
-        return $this->rightDelegation;
-    }
-
-    public function setRightDelegation(RightDelegation $rightDelegation): static
-    {
-        $this->rightDelegation = $rightDelegation;
-
-        return $this;
-    }
-
     public function getDelegationGained(): ?RightDelegation
     {
         return $this->delegationGained;
@@ -293,5 +283,35 @@ class User implements UserInterface
     public function setDelegationGained(?RightDelegation $delegationGained): void
     {
         $this->delegationGained = $delegationGained;
+    }
+
+    /**
+     * @return Collection<int, RightDelegation>
+     */
+    public function getRightDelegations(): Collection
+    {
+        return $this->rightDelegations;
+    }
+
+    public function addRightDelegation(RightDelegation $rightDelegation): static
+    {
+        if (!$this->rightDelegations->contains($rightDelegation)) {
+            $this->rightDelegations->add($rightDelegation);
+            $rightDelegation->setDelegatingAgent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRightDelegation(RightDelegation $rightDelegation): static
+    {
+        if ($this->rightDelegations->removeElement($rightDelegation)) {
+            // set the owning side to null (unless already changed)
+            if ($rightDelegation->getDelegatingAgent() === $this) {
+                $rightDelegation->setDelegatingAgent(null);
+            }
+        }
+
+        return $this;
     }
 }

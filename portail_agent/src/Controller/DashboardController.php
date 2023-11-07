@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Form\RightDelegationType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,8 +15,6 @@ class DashboardController extends AbstractController
     #[Route('/tableau-de-bord', name: 'dashboard', methods: ['GET'])]
     public function __invoke(): Response
     {
-        return $this->render('pages/dashboard.html.twig', [
-            'delegation_right_form' => $this->createForm(RightDelegationType::class),
-        ]);
+        return $this->render('pages/dashboard.html.twig');
     }
 }

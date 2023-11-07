@@ -6,7 +6,6 @@ namespace App\Controller\SSOLess;
 
 use App\AppEnum\Institution;
 use App\Entity\User;
-use App\Form\RightDelegationType;
 use App\Logger\ApplicationTracesLogger;
 use App\Logger\ApplicationTracesMessage;
 use App\Referential\Entity\Unit;
@@ -80,7 +79,6 @@ class StartSessionController extends AbstractController
 
         return $this->render('pages/start_session.html.twig', [
             'form' => $form,
-            'delegation_right_form' => $this->getUser() ? $this->createForm(RightDelegationType::class) : null,
         ]);
     }
 }

@@ -8,12 +8,12 @@
 
         {% block body %}
             <div class="p-4">
-                {{ form_start(delegation_right_form, {'attr': {'data-sidebar-target': 'delegationForm'}}) }}
+                {{ form_start(right_delegation_form, {'attr': {'data-sidebar-target': 'delegationForm'}}) }}
                     <div class="fs-5 mb-3">{{ 'pel.select.the.delegation.period'|trans }}</div>
                     <div class="border-bottom pb-3" data-sidebar-target="delegationDatesCalendarBlock">
-                        {{ form_row(delegation_right_form.dateRangePicker, {'attr': {'data-sidebar-target': 'delegationDatesRangePicker', 'data-action': 'change->sidebar#changeDelegationDatesRanges'}}) }}
-                        {{ form_row(delegation_right_form.startDate, {'attr': {'data-sidebar-target': 'delegationStartDate'}}) }}
-                        {{ form_row(delegation_right_form.endDate, {'attr': {'data-sidebar-target': 'delegationEndDate'}}) }}
+                        {{ form_row(right_delegation_form.dateRangePicker, {'attr': {'data-sidebar-target': 'delegationDatesRangePicker', 'data-action': 'change->sidebar#changeDelegationDatesRanges'}}) }}
+                        {{ form_row(right_delegation_form.startDate, {'attr': {'data-sidebar-target': 'delegationStartDate'}}) }}
+                        {{ form_row(right_delegation_form.endDate, {'attr': {'data-sidebar-target': 'delegationEndDate'}}) }}
                     </div>
                     <div class="border-bottom pb-3 mb-3" data-sidebar-target="delegationDatesSelectedBlock">
                         <div class="d-flex align-items-center justify-content-between">
@@ -31,16 +31,22 @@
                     </div>
                     <div class="border-bottom" data-sidebar-target="delegationAgentsBlock">
                         <div class="fs-5 mb-3">{{ 'pel.select.one.or.more.delegated.agents'|trans }}</div>
-                        {{ form_row(delegation_right_form.delegatedAgents) }}
+                        {{ form_row(right_delegation_form.delegatedAgents) }}
                     </div>
-                {{ form_end(delegation_right_form) }}
+                {{ form_end(right_delegation_form) }}
             </div>
         {% endblock %}
 
         {% block footer %}
             <div class="px-4">
                 <button type="button" class="fr-btn fr-btn--secondary me-3" id="delegate-rights-back" data-bs-dismiss="modal">{{ 'pel.cancel'|trans }}</button>
-                <button type="button" class="fr-btn" id="delegate-rights-validate" data-action="sidebar#delegate" data-sidebar-url-param="{{ path('validate_delegation_rights') }}" data-sidebar-target="delegationModalValidateButton">{{ 'pel.validate'|trans }}</button>
+                <button type="button" class="fr-btn" id="rights-delegation-validate"
+                        data-action="sidebar#delegate"
+                        data-sidebar-url-param="{{ isModification ? path('modify_delegation_rights', {'id': right_delegation.id}) : path('validate_delegation_rights') }}"
+                        data-sidebar-target="delegationModalValidateButton"
+                >
+                    {{ 'pel.validate'|trans }}
+                </button>
             </div>
         {% endblock %}
     {% endembed %}

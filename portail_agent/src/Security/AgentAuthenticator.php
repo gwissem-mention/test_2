@@ -149,7 +149,10 @@ final class AgentAuthenticator extends AbstractAuthenticator implements Authenti
             } elseif ($rightDelegation->getStartDate() <= new \DateTimeImmutable()) {
                 $user->addRole('ROLE_DELEGATED');
             }
+        } else {
+            $user->removeRole('ROLE_DELEGATED');
         }
+
         $this->userRepository->save($user, true);
 
         return $user;

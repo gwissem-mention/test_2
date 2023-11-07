@@ -180,6 +180,27 @@ export default class SidebarController extends Controller {
         }
     }
 
+    public openRightsDelegationModificationModal(): void {
+        if (this.hasRightsDelegationModalTarget) {
+            const modificationModal: Modal | null = new Modal(this.rightsDelegationModalTarget);
+            const viewModal: Modal | null = Modal.getInstance(this.rightsDelegationViewModalTarget);
+
+            if (viewModal) {
+                viewModal.hide();
+            }
+
+            if (modificationModal) {
+                this.initFlatpickr();
+                this.setDelegationDatesState("show");
+
+                this.delegationSelectedStartDateTarget.innerText = this.formatDate(this.delegationStartDateTarget.value);
+                this.delegationSelectedEndDateTarget.innerText = this.formatDate(this.delegationEndDateTarget.value);
+
+                modificationModal.show();
+            }
+        }
+    }
+
     // Must be ignored because we can't type url here.
     // @ts-ignore
     public delegate({params: {url}}): void {

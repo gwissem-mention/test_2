@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Controller;
+namespace App\Controller\RightDelegation;
 
 use App\Entity\RightDelegation;
 use App\Entity\User;
@@ -21,27 +21,23 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 class RightDelegationController extends AbstractController
 {
     #[IsGranted('IS_AUTHENTICATED')]
-    #[Route('/delegation_droits', name: 'validate_delegation_rights', methods: ['GET', 'POST'])]
-    public function __invoke(Request $request, RightDelegationRepository $delegationRepository, UserRepository $userRepository, NotificationFactory $notificationFactory): Response
-    {
+    #[Route('/delegation_droits', name: 'validate_delegation_rights', methods: ['POST'])]
+    public function __invoke(
+        Request $request,
+        RightDelegationRepository $delegationRepository,
+        UserRepository $userRepository,
+        NotificationFactory $notificationFactory
+    ): Response {
         $this->denyAccessUnlessGranted(RightsDelegationVoter::DELEGATION_RIGHTS, $this->getUser());
 
         $rightDelegation = new RightDelegation();
+
         $form = $this->createForm(RightDelegationType::class, $rightDelegation);
         $form->handleRequest($request);
 
-        if ($request->isMethod('POST') && $form->isSubmitted()) {
-            if (false === $form->isValid()) {
-                return $this->json([
-                    'form' => $this->renderView(
-                        'common/_form.html.twig',
-                        ['form' => $form->createView()]
-                    ),
-                ], 422);
-            }
-
+        if ($form->isSubmitted() && $form->isValid()) {
+            /** @var ?User $user */
             $user = $this->getUser();
-            $user = $userRepository->findOneByIdentifier($user?->getUserIdentifier());
 
             if (null !== $user) {
                 $rightDelegation->setDelegatingAgent($user);
@@ -53,7 +49,7 @@ class RightDelegationController extends AbstractController
                     );
                 }
                 $delegationRepository->save($rightDelegation);
-                $user->setRightDelegation($rightDelegation);
+                $user->addRightDelegation($rightDelegation);
                 $userRepository->save($user, true);
 
                 return new JsonResponse();
@@ -62,6 +58,11 @@ class RightDelegationController extends AbstractController
             $this->createNotFoundException(sprintf('User is not found !'));
         }
 
-        return $this->render('pages/delegation/index.html.twig', ['delegation_right_form' => $form->createView()]);
+        return $this->json([
+            'form' => $this->renderView(
+                'common/_form.html.twig',
+                ['form' => $form->createView()]
+            ),
+        ], 422);
     }
 }
