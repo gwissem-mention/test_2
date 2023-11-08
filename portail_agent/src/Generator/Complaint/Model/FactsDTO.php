@@ -7,7 +7,11 @@ namespace App\Generator\Complaint\Model;
 use App\Entity\AdditionalInformation;
 use App\Entity\Complaint;
 use App\Entity\Facts;
-use App\Entity\FactsObjects\AbstractObject;
+use App\Entity\FactsObjects\AdministrativeDocument;
+use App\Entity\FactsObjects\MultimediaObject;
+use App\Entity\FactsObjects\PaymentMethod;
+use App\Entity\FactsObjects\SimpleObject;
+use App\Entity\FactsObjects\Vehicle;
 use App\Entity\Identity;
 use App\Entity\Witness;
 use App\Referential\Repository\UnitRepository;
@@ -87,7 +91,7 @@ class FactsDTO
     private string $exactDateKnown;
     private string $startAddress;
     private string $hasObjectsWithAmount;
-    private string $estimation;
+    private string $prejudiceOtherDescription = '';
     private bool $isStartAddressGironde = false;
     private bool $isEndAddressGironde = false;
     private string $suspectsKnown;
@@ -201,7 +205,6 @@ class FactsDTO
         $this->factsWebsite = $complaint->getFacts()?->getWebsite() ?? '';
         $this->exactDateKnown = $complaint->getFacts()?->isExactDateKnown() ? 'Oui' : 'Non';
         $this->hasObjectsWithAmount = $complaint->hasObjectsWithAmount() ? '1' : '0';
-        $this->estimation = '1' === $this->hasObjectsWithAmount ? (string) array_sum(array_map(fn (AbstractObject $object) => $object->getAmount(), $complaint->getObjects()->toArray())) : '';
         $this->suspectsKnown = $complaint->getAdditionalInformation()?->isSuspectsKnown() ? 'Oui' : 'Non';
         $this->suspectsKnownText = $complaint->getAdditionalInformation()?->getSuspectsKnownText() ?? '';
         $this->witnessesPresent = $complaint->getAdditionalInformation()?->isWitnessesPresent() ? 'Oui' : 'Non';
@@ -226,6 +229,7 @@ class FactsDTO
         $this->urlAPIPJ = $urlGenerator->generate('api_download_attachments', ['complaintFrontId' => $complaint->getFrontId()], UrlGeneratorInterface::ABSOLUTE_URL);
 
         $this->setLocalisation($facts, $identity);
+        $this->setPrejudiceOtherDescription($complaint);
     }
 
     /**
@@ -278,7 +282,7 @@ class FactsDTO
             'Faits_Prejudice_Physique' => $this->hasHarmPhysique,
             'Faits_Prejudice_Autre' => $this->hasObjectsWithAmount,
             'Faits_Prejudice_Physique_Description' => $this->hasHarmPhysiqueDescription,
-            'Faits_Prejudice_Autre_Description' => $this->estimation,
+            'Faits_Prejudice_Autre_Description' => $this->prejudiceOtherDescription,
             'Lieu_Information_Complementaires' => $this->addressAdditionalInformation,
             'Nature_Lieu' => $this->place,
             'Nature_Lieu_Tel' => $this->callingPhone,
@@ -344,5 +348,43 @@ class FactsDTO
         }
 
         $this->localisation .= 'Sur la présence de violences au moment des faits, la personne déclarante indique : ';
+    }
+
+    private function setPrejudiceOtherDescription(Complaint $complaint): void
+    {
+        /** @var Identity $identity */
+        $identity = $complaint->getIdentity();
+        if (false === $complaint->getDegradedObjects()->isEmpty()) {
+            $this->prejudiceOtherDescription = sprintf(
+                '%s %s %s indique avoir subi les dégradations suivantes : ',
+                Identity::CIVILITY_MALE === $identity->getCivility() ? 'M.' : 'Mme',
+                $identity->getLastname(),
+                $identity->getFirstname(),
+            );
+
+            foreach ($complaint->getDegradedObjects() as $object) {
+                $description = '';
+
+                if ($object instanceof Vehicle) {
+                    $description = $object->isRegistered()
+                        ? sprintf('Concernant le véhicule %s , elle précise : %s. ', $object->getRegistrationNumber(), $object->getDegradationDescription())
+                        : sprintf('%s. ', $object->getLabel());
+                } elseif ($object instanceof MultimediaObject) {
+                    $description = sprintf('%s %s. ', $object->getNature(), $object->getDescription());
+                } elseif ($object instanceof SimpleObject) {
+                    $description = null !== $object->getDescription()
+                        ? sprintf('%s %s Précisions : %s. ', $object->getQuantity(), $object->getNature(), $object->getDescription())
+                        : sprintf('%s %s. ', $object->getQuantity(), $object->getNature());
+                } elseif ($object instanceof AdministrativeDocument) {
+                    $description = null !== $object->getDescription()
+                        ? sprintf('%s %s %s Précisions : %s. ', $object->getType(), $object->getNumber(), $object->getOwnerLastname(), $object->getDescription())
+                        : sprintf('%s %s %s. ', $object->getType(), $object->getNumber(), $object->getOwnerLastname());
+                } elseif ($object instanceof PaymentMethod) {
+                    $description = sprintf('%s %s. ', $object->getType(), $object->getDescription());
+                }
+
+                $this->prejudiceOtherDescription .= $description;
+            }
+        }
     }
 }
