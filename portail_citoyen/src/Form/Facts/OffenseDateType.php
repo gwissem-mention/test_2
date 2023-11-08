@@ -137,12 +137,12 @@ class OffenseDateType extends AbstractType
                             $form = $context->getObject();
                             /** @var Form $formParent */
                             $formParent = $form->getParent();
-                            /** @var \DateTime $startDate */
+                            /** @var ?\DateTime $startDate */
                             $startDate = $formParent->get('startDate')->getData();
 
-                            if ($value->getTimestamp() < $startDate->getTimestamp()) {
+                            if ($value->getTimestamp() < $startDate?->getTimestamp()) {
                                 $context->addViolation('pel.start.date.after.end.date');
-                            } elseif ($value->getTimestamp() === $startDate->getTimestamp()) {
+                            } elseif ($value->getTimestamp() === $startDate?->getTimestamp()) {
                                 $context->addViolation('pel.start.date.same.as.end.date');
                             }
                         },
