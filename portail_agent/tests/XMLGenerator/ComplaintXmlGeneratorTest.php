@@ -246,7 +246,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         //        $this->assertStringContainsString('<Faits_Orientation>Je n\'ai pas d\'éléments succeptibles de faire avancer l\'enquête.</Faits_Orientation>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Prejudice_Autre>1</Faits_Prejudice_Autre>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Prejudice_Physique_Description>Dans ce cas vous devrez être examiné par un médecin et présenter un certificat médical indiquant notamment la durée de votre incapacité temporaire de travail. Les précisions relatives à cet examen vous seront communiquées lors de la fixation du rendez-vous pour la signature de votre plainte</Faits_Prejudice_Physique_Description>', $this->xmlContent);
-        $this->assertStringContainsString('<Faits_Prejudice_Autre_Description>16698</Faits_Prejudice_Autre_Description>', $this->xmlContent);
+        $this->assertStringContainsString('<Faits_Prejudice_Autre_Description>M. DUPONT Jean indique avoir subi les dégradations suivantes : 1 Sac Précisions : Sac bleu. Concernant le véhicule AA-123-AA , elle précise : Rétroviseur cassé. Trotinette. </Faits_Prejudice_Autre_Description>', $this->xmlContent);
         $this->assertStringContainsString('<Date_Exacte_Faits_Connue>Oui</Date_Exacte_Faits_Connue>', $this->xmlContent);
         $this->assertStringContainsString('<Suspects_Informations>Oui</Suspects_Informations>', $this->xmlContent);
         $this->assertStringContainsString('<Suspects_Description>2 hommes</Suspects_Description>', $this->xmlContent);
@@ -511,6 +511,62 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $xml = $this->xmlGenerator->generate($complaint, $this->getUnit())->asXML();
         $xmlContent = mb_convert_encoding($xml, 'UTF-8', 'ISO-8859-1');
         $this->assertStringContainsString('<Faits_Localisation>La personne déclarante indique comme adresse pour le lieu de commission des faits 25 Avenue de la République, Bordeaux, 33000 et comme nature de lieu ECOLE. Sur la présence de violences au moment des faits, la personne déclarante indique : </Faits_Localisation>', $xmlContent);
+    }
+
+    public function testFaitsPrejudiceAutreDescription(): void
+    {
+        /** @var Complaint $complaint */
+        $complaint = $this->getComplaint();
+
+        $complaint->addObject(
+            (new MultimediaObject())
+                ->setStatus(AbstractObject::STATUS_DEGRADED)
+                ->setNature('TELEPHONE PORTABLE')
+                ->setBrand('Apple')
+                ->setModel('iPhone 13')
+                ->setDescription('Iphone 13 de couleur grise')
+                ->setOperator('Orange')
+                ->setSerialNumber('1234567890')
+                ->setImei('ABCD-1234')
+                ->setPhoneNumber('+33 6 12 34 56 67')
+                ->setAmount(999)
+        )
+            ->addObject(
+                (new MultimediaObject())
+                    ->setStatus(AbstractObject::STATUS_DEGRADED)
+                    ->setNature('AUTRE NATURE MULTIMEDIA')
+                    ->setBrand('Sony')
+                    ->setModel('Playstation 4')
+                    ->setSerialNumber('1324354657')
+                    ->setImei('BBBB-1234')
+                    ->setDescription('Description console')
+                    ->setAmount(499)
+            )
+            ->addObject(
+                (new AdministrativeDocument())
+                    ->setStatus(AbstractObject::STATUS_DEGRADED)
+                    ->setType('Permis de conduire')
+                    ->setValidityEndDate(new \DateTimeImmutable('2024-12-01'))
+                    ->setOwned(true)
+            )
+            ->addObject(
+                (new PaymentMethod())
+                    ->setStatus(AbstractObject::STATUS_DEGRADED)
+                    ->setType('Carte bancaire')
+                    ->setDescription('Carte gold')
+                    ->setBank('LCL')
+                    ->setBankAccountNumber('987654321')
+                    ->setChequeNumber('1234567890')
+                    ->setFirstChequeNumber('AAA')
+                    ->setLastChequeNumber('XXX')
+                    ->setCreditCardNumber('4624 7482 3324 9080')
+            );
+
+        /** @var string $xml */
+        $xml = $this->xmlGenerator->generate($complaint, $this->getUnit())->asXML();
+        $xmlContent = mb_convert_encoding($xml, 'UTF-8', 'ISO-8859-1');
+
+        $this->assertStringContainsString('<Faits_Prejudice_Autre_Description>M. DUPONT Jean indique avoir subi les dégradations suivantes : 1 Sac Précisions : Sac bleu. Concernant le véhicule AA-123-AA , elle précise : Rétroviseur cassé. Trotinette. TELEPHONE PORTABLE Iphone 13 de couleur grise. AUTRE NATURE MULTIMEDIA Description console. Permis de conduire  . Carte bancaire Carte gold. </Faits_Prejudice_Autre_Description>', $xmlContent);
     }
 
     private function getUnit(): Unit
