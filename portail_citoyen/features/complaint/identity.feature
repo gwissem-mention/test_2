@@ -65,3 +65,13 @@ Feature:
         Then The page should open in a new tab and I switch to it
         And I should be on "/faq#pel-faq-section"
         And I close the current window
+
+    Scenario: I can enter a 08*** number in fixe field
+        When I fill in "identity_contactInformation_phone_number" with "0800 123 123"
+        Then I should not see a "#form-errors-identity_contactInformation_phone_number" element
+        And I should not see the key "pel.phone.fixe.error" translated
+
+    Scenario: I can enter a 09*** number in fixe field
+        When I fill in "identity_contactInformation_phone_number" with "0900 123 123"
+        Then I should not see a "#form-errors-identity_contactInformation_phone_number" element
+        And I should not see the key "pel.phone.fixe.error" translated

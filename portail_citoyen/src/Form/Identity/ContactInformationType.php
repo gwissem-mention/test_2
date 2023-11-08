@@ -117,7 +117,7 @@ class ContactInformationType extends AbstractType
                                     $context->addViolation('pel.phone.is.invalid');
                                 }
 
-                                if (!(PhoneNumberType::FIXED_LINE === $this->phoneUtil->getNumberType($phone))) {
+                                if (false === in_array($this->phoneUtil->getNumberType($phone), [PhoneNumberType::FIXED_LINE, PhoneNumberType::TOLL_FREE, PhoneNumberType::VOIP], true)) {
                                     $context->addViolation('pel.phone.fixe.error');
                                 }
                             } catch (NumberParseException) {
