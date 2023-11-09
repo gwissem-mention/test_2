@@ -87,10 +87,10 @@ class DocumentAdditionalInformationType extends AbstractType
                 'required' => false,
                 'priority' => -2,
                 'attr' => [
-                    'maxlength' => 50,
+                    'maxlength' => 254,
                 ],
                 'constraints' => [
-                    new Length(['max' => 50]),
+                    new Length(['max' => 254]),
                     new Email(),
                 ],
             ])
