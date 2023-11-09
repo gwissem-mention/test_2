@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Etalab;
 
-use Symfony\Component\HttpClient\Exception\ServerException;
+use Symfony\Contracts\HttpClient\Exception\HttpExceptionInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class EtalabAddressApiClient implements EtalabApiClientInterface
@@ -27,7 +27,7 @@ class EtalabAddressApiClient implements EtalabApiClientInterface
 
         try {
             return $response->toArray();
-        } catch (ServerException) {
+        } catch (HttpExceptionInterface) {
             return [];
         }
     }
