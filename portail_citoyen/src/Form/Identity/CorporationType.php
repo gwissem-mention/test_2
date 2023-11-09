@@ -80,10 +80,10 @@ class CorporationType extends AbstractType
             ])
             ->add('email', EmailType::class, [
                 'attr' => [
-                    'maxlength' => 50,
+                    'maxlength' => 254,
                 ],
                 'constraints' => [
-                    new Length(['max' => 50]),
+                    new Length(['max' => 254]),
                     new Email(),
                 ],
                 'label' => 'pel.corporation.email',

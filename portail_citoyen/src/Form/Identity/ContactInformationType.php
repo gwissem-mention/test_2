@@ -55,12 +55,12 @@ class ContactInformationType extends AbstractType
             ])
             ->add('email', EmailType::class, [
                 'attr' => [
-                    'maxlength' => 50,
+                    'maxlength' => 254,
                     'autocomplete' => 'email',
                 ],
                 'constraints' => [
                     new NotBlank(),
-                    new Length(['max' => 50]),
+                    new Length(['max' => 254]),
                     new Email(),
                 ],
                 'label' => 'pel.email.address',
@@ -143,14 +143,14 @@ class ContactInformationType extends AbstractType
         if (!$options['is_france_connected'] && !$contactInformationModel?->getEmail()) {
             $builder->add('confirmationEmail', EmailType::class, [
                 'attr' => [
-                    'maxlength' => 50,
+                    'maxlength' => 254,
                     'onpaste' => 'return false;',
                     'autocomplete' => 'email',
                 ],
                 'mapped' => false,
                 'constraints' => [
                     new NotBlank(),
-                    new Length(['max' => 50]),
+                    new Length(['max' => 254]),
                     new Email(),
                     new Callback([$this, 'validateConfirmationEmail']),
                 ],
