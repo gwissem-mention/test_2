@@ -3265,6 +3265,14 @@
                 <source>pel.upload.error.message</source>
                 <target>Une erreur s’est produite lors de l’envoi du fichier</target>
             </trans-unit>
+            <trans-unit id="pel.upload.btn.label">
+                <source>pel.upload.btn.label</source>
+                <target>Sélectionner un fichier</target>
+            </trans-unit>
+            <trans-unit id="pel.upload.btn.file.default">
+                <source>pel.upload.btn.file.default</source>
+                <target>Aucun fichier choisi</target>
+            </trans-unit>
             <trans-unit id="pel.victim.of.damage.to.property">
                 <source>pel.victim.of.damage.to.property</source>
                 <target>Victime de <![CDATA[<b>dégradation sur un bien</b>]]></target>
