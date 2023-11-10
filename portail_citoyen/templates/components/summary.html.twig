@@ -108,7 +108,16 @@
         </ul>
     </div>
     <hr>
-    <div class="fr-pt-4v fr-px-6v fr-pb-12v fr-pt-md-6v fr-px-md-20v text-center">
+    {% if complaint.objects.objects|objects_has_unregistered_vehicle_stolen is same as(true) %}
+        <div class="fr-pt-4v fr-pb-12v fr-px-6v fr-pt-md-6v fr-px-md-20v fr-pb-md-6v">
+            <div class="fr-callout">
+                <p class="fr-callout__text">
+                    {{ 'pel.bike.stolen.text'|trans|raw }}
+                </p>
+            </div>
+        </div>
+    {% endif %}
+    <div class="fr-pt-4v fr-px-6v fr-pb-12v fr-pt-md-6v fr-px-md-20v">
         <ul class="pel-list--no-style flex flex-wrap items-center justify-start gap-x-4 gap-y-4 md:justify-between md:flex-nowrap">
             <li>
                 <a href="{{ path('complaint_additional_information') }}" class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-arrow-left-line fr-text--lg py-3 md:py-2.5 pr-[5px] pl-[13px] md:pr-6 md:pl-[18px] before:content-[''] before:w-6 before:h-6">

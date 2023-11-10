@@ -3977,6 +3977,10 @@
                 <source>pel.imei</source>
                 <target>N° IMEI</target>
             </trans-unit>
+            <trans-unit id="pel.bike.stolen.text">
+                <source>pel.bike.stolen.text</source>
+                <target>Si vous déclarez le vol de votre vélo, et qu'il dispose d' un code à 10 caractères présent sur le cadre, pensez à signaler également le vol auprès de votre opérateur de marquage sur votre espace personnel. S’il est retrouvé, il vous sera restitué plus facilement. Vous ne connaissez pas votre opérateur ou ne savez pas comment accéder à votre espace personnel ? Retrouvez la liste des opérateurs et leurs coordonnées sur <![CDATA[<a target="_blank" href="https://apic-asso.com/operateurs/">https://apic-asso.com/operateurs/</a>]]></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

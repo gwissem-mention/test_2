@@ -62,3 +62,13 @@ Feature:
         Then The page should open in a new tab and I switch to it
         And I should be on "/faq#pel-faq-section"
         And I close the current window
+
+    Scenario: I should see a info text for the bike stolen case if I choose a stolen unregistered vehicle
+        Then I should see the key "pel.bike.stolen.text" translated
+
+    Scenario: I should not see a info text for the bike stolen case if I don't choose a stolen unregistered vehicle
+        Given I am on "/porter-plainte/objets"
+        And I press "objects_objects_1_delete"
+        And I press "objects_submit"
+        Given I am on "/porter-plainte/recapitulatif"
+        And I should not see the key "pel.bike.stolen.text" translated
