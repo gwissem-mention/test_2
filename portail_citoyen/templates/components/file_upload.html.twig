@@ -1,8 +1,26 @@
 <div class="fr-upload-group fr-mb-3w" {{ attributes.add(stimulus_controller('file-upload')) }} data-general-error-text="{{ 'pel.upload.error.message'|trans }}">
     <label class="fr-label" for="{{ inputId }}">{{ inputLabel }}
-        <span class="fr-hint-text">{{ inputHelp }}</span>
+        <p class="fr-hint-text">{{ inputHelp }}</p>
     </label>
-    <div class="fr-mt-4v md:w-1/2">
-        <input data-file-upload-target="input" class="fr-upload" type="file" id="{{ inputId }}" multiple accept="image/jpeg,image/png,application/pdf" data-action="change->file-upload#upload">
+    <div class="pel-file-upload-btn fr-mt-4v" data-controller="custom-input-type" data-custom-input-type-default-message-value="{{ 'pel.upload.btn.file.default'|trans }}">
+        <input
+            id="{{ inputId }}"
+            data-file-upload-target="input"
+            class="pel-visually-hiden"
+            type="file"
+            multiple
+            accept="image/jpeg,image/png,application/pdf"
+            data-custom-input-type-target="file"
+            data-action="change->file-upload#upload change->custom-input-type#displayFileName"
+            aria-label="{{ 'pel.upload.btn.label'|trans }}"
+            tabindex="-1">
+        <button
+            type="button"
+            class="fr-btn fr-btn--secondary"
+            data-action="click->custom-input-type#triggerFileInput"
+            aria-hidden="true">
+            {{ 'pel.upload.btn.label'|trans }}
+        </button>
+        <span data-custom-input-type-target="filename" class="fr-upload" aria-hidden="true">{{ 'pel.upload.btn.file.default'|trans }}</span>
     </div>
 </div>
