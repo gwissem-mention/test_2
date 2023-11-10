@@ -10,3 +10,4 @@ docker-compose.e2e.yml
 Makefile
 .gitlab-ci.yml
 .gitlab-ci-anfsi.yml
+pel-chart-0.1.0
