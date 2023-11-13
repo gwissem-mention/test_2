@@ -14,6 +14,7 @@ use App\Entity\FactsObjects\SimpleObject;
 use App\Entity\FactsObjects\Vehicle;
 use App\Entity\Identity;
 use App\Entity\Witness;
+use App\Generator\Complaint\ComplaintXmlFactsExpose;
 use App\Generator\Complaint\ComplaintXmlFactsOrientation;
 use App\Referential\Repository\UnitRepository;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -49,8 +50,7 @@ class FactsDTO
     private const GIRONDE_DEPARTMENT_NUMBER = '33';
     private const TIMEZONE = 'Europe/Paris';
 
-    /** @var array<int|string> */
-    private array $presentation;
+    private string $presentation;
     private string $manop;
     private string $startAddressCountry;
     private string $startAddressDepartment;
@@ -107,17 +107,13 @@ class FactsDTO
     private string $urlAPIPJ;
     private string $orientation = '';
 
-    public function __construct(Complaint $complaint, UnitRepository $unitRepository, UrlGeneratorInterface $urlGenerator, ComplaintXmlFactsOrientation $complaintXmlFactsOrientation)
+    public function __construct(Complaint $complaint, UnitRepository $unitRepository, UrlGeneratorInterface $urlGenerator, ComplaintXmlFactsOrientation $complaintXmlFactsOrientation, ComplaintXmlFactsExpose $complaintXmlFactsExpose)
     {
         /** @var Facts $facts */
         $facts = $complaint->getFacts();
         /** @var Identity $identity */
         $identity = $complaint->getIdentity();
-        $this->presentation = str_replace(
-            [Facts::NATURE_ROBBERY, Facts::NATURE_DEGRADATION, Facts::NATURE_OTHER],
-            ['Vol', 'Dégradation', 'Autre atteinte aux biens'],
-            $facts->getNatures() ?? []
-        );
+        $this->presentation = $complaintXmlFactsExpose->getFactsExpose($complaint);
         $this->manop = $facts->getDescription() ?? '';
         $this->startAddress = $facts->getStartAddress() ?? '';
         $this->startAddressCountry = $facts->getStartAddressCountry() ?? '';
@@ -160,7 +156,7 @@ class FactsDTO
             $this->end = $finFormatted.' à '.$endHour->format('H:i');
         } elseif (null !== $debut && null === $startHour && null === $fin && null === $endHour) {
             $this->start = $debut->format('d/m/Y').' à 00h00';
-            $this->end = $debut->format('d/m/Y').'à 23h59';
+            $this->end = $debut->format('d/m/Y').' à 23h59';
         } elseif (null !== $debut && null !== $startHour && null === $fin && null !== $endHour) {
             $debutFormatted = $debut->format('d/m/Y');
             $startHour = \DateTime::createFromInterface($startHour);
@@ -240,7 +236,7 @@ class FactsDTO
     public function getArray(): array
     {
         return ['Faits' => [
-            'Faits_Expose' => implode(' / ', $this->presentation),
+            'Faits_Expose' => $this->presentation,
             'Faits_Manop' => $this->manop,
             'Faits_Localisation_Adresse' => $this->isNaturePlaceTransports ? ($this->isStartAddressGironde && !$this->isEndAddressGironde ? $this->startAddress : $this->endAddress) : $this->startAddress,
             'Faits_Localisation_Pays' => $this->isNaturePlaceTransports ? ($this->isStartAddressGironde && !$this->isEndAddressGironde ? $this->startAddressCountry : $this->endAddressCountry) : $this->startAddressCountry,
