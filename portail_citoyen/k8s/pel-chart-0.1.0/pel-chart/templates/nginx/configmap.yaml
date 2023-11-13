@@ -72,4 +72,3 @@ data:
         error_log /dev/stderr;
         access_log /dev/stdout;
     }
-
