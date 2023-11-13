@@ -31,6 +31,13 @@ class FactsType extends AbstractType
     private const NATURE_PLACE_SCHOOL = 'Établissement scolaire';
     private const NATURE_PLACE_HOME = 'Domicile, logement et dépendances';
     private const NATURE_PLACE_TRANSPORTS = 'Transports';
+    private const NATURE_PLACE_PUBLIC_ROAD = 'Voie publique';
+    private const NATURE_PLACE_MARKET = 'Commerce ou assimilé';
+    private const NATURE_PLACE_BAR_RESTAURANT = 'Bar, restaurant';
+    private const NATURE_PLACE_HEALTH_CENTER = 'Établissement de santé';
+    private const NATURE_PLACE_ADMINISTRATIVE_CENTER = 'Établissement administratif';
+    private const NATURE_PLACE_OTHER_PROFESSIONAL_PLACE = 'Autres lieux professionnels';
+    private const NATURE_PLACE_VEHICLE = 'Véhicule terrestre';
 
     private const NATURES_PLACES_ADDRESS_OR_ROUTE_FACTS_KNOWN_NOT_DISPLAYED = [
         self::NATURE_PLACE_PARKING,
@@ -39,6 +46,13 @@ class FactsType extends AbstractType
         self::NATURE_PLACE_SCHOOL,
         self::NATURE_PLACE_HOME,
         self::NATURE_PLACE_TRANSPORTS,
+        self::NATURE_PLACE_PUBLIC_ROAD,
+        self::NATURE_PLACE_MARKET,
+        self::NATURE_PLACE_BAR_RESTAURANT,
+        self::NATURE_PLACE_HEALTH_CENTER,
+        self::NATURE_PLACE_ADMINISTRATIVE_CENTER,
+        self::NATURE_PLACE_OTHER_PROFESSIONAL_PLACE,
+        self::NATURE_PLACE_VEHICLE,
     ];
 
     private const NATURES_PLACES_ADDRESSES_NOT_DISPLAYED = [
@@ -55,6 +69,13 @@ class FactsType extends AbstractType
         self::NATURE_PLACE_LEISURE,
         self::NATURE_PLACE_SCHOOL,
         self::NATURE_PLACE_HOME,
+        self::NATURE_PLACE_PUBLIC_ROAD,
+        self::NATURE_PLACE_MARKET,
+        self::NATURE_PLACE_BAR_RESTAURANT,
+        self::NATURE_PLACE_HEALTH_CENTER,
+        self::NATURE_PLACE_ADMINISTRATIVE_CENTER,
+        self::NATURE_PLACE_OTHER_PROFESSIONAL_PLACE,
+        self::NATURE_PLACE_VEHICLE,
     ];
 
     public function __construct(

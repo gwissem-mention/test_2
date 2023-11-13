@@ -123,7 +123,7 @@ class FactAddressType extends AbstractType
                 $form
                     ->add('startAddress', AddressEtalabType::class, [
                         'label' => $startAddressLabel ?? ($endAddressShow ? 'pel.address.start.or.exact' : 'pel.address.exact'),
-                        'help' => $endAddressShow && self::NATURE_PLACE_TRANSPORTS != $naturePlace ? 'pel.address.start.or.exact.help' : null,
+                        'help' => $endAddressShow && self::NATURE_PLACE_TRANSPORTS != $naturePlace ? 'pel.address.start.or.exact.help' : 'pel.address.start.help',
                         'address_constraints' => [
                             new NotBlank(),
                             new Callback([$this, 'validateAddresses']),
