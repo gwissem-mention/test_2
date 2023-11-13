@@ -4,13 +4,14 @@ import {Loader} from "@googlemaps/js-api-loader";
 import {GirondeBoundaryChecker} from "../../scripts/GirondeBoundaryChecker";
 
 export default class extends Controller {
-    static override targets: string[] = ["map", "leftMenu", "modal"];
+    static override targets: string[] = ["map", "leftMenu", "modal", "result"];
 
     protected component: Component | undefined | null;
 
     declare readonly mapTarget: HTMLInputElement;
     declare readonly leftMenuTarget: HTMLInputElement;
     declare readonly modalTarget: HTMLInputElement;
+    declare readonly resultTarget: HTMLInputElement;
     private readonly DEFAULT_LATITUDE: number = 46.7107;
     private readonly DEFAULT_LONGITUDE: number = 2.4321;
     private readonly DEFAULT_ZOOM_FRANCE: number = 5;
@@ -22,12 +23,19 @@ export default class extends Controller {
     private _loader!: Loader;
     private _map!: google.maps.Map;
     private _markers: google.maps.Marker[] = [];
+    private observer?: MutationObserver;
 
     override async initialize(): Promise<void> {
         this.component = await getComponent(this.element as HTMLElement);
 
         if (this.component) {
             this.init();
+        }
+    }
+
+    public override disconnect(): void {
+        if (this.observer) {
+            this.observer.disconnect();
         }
     }
 
@@ -136,6 +144,33 @@ export default class extends Controller {
         input.addEventListener("blur", () => {
             input.setAttribute("aria-expanded", "false");
         });
+
+        const observer = new MutationObserver(mutations => {
+            for (const mutation of mutations) {
+                if (mutation.addedNodes.length) {
+                    const autocompleteWrapper = document.querySelector(".pac-container");
+                    if (autocompleteWrapper) {
+                        autocompleteWrapper.setAttribute("role", "listbox");
+                        autocompleteWrapper.setAttribute("id", "list-map-search");
+                        const autocompleteItems = autocompleteWrapper.querySelectorAll(".pac-item");
+                        autocompleteItems.forEach(item => item.setAttribute("role", "option"));
+                    }
+                }
+            }
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    }
+
+    public handleKeyup(event: KeyboardEvent):void {
+        const input: HTMLInputElement = document.getElementById("map-search") as HTMLInputElement;
+
+        if (event.key === "Escape") {
+            input.setAttribute("aria-expanded", "false");
+        }
     }
 
     private async onPlaceChanged(searchBox: google.maps.places.SearchBox): Promise<void> {
@@ -197,6 +232,10 @@ export default class extends Controller {
                             this.leftMenuTarget.innerHTML = data.view;
                         }
 
+                        if (this.resultTarget) {
+                            this.resultTarget.innerHTML = data.units.length;
+                        }
+
                         return;
                     }
 
@@ -210,6 +249,14 @@ export default class extends Controller {
                     if (this.leftMenuTarget) {
                         this.leftMenuTarget.innerHTML = data.view;
                     }
+
+                    if (this.resultTarget) {
+                        this.resultTarget.innerHTML = data.units.length;
+
+                        if (data.units.length > 1 && this.resultTarget.parentElement) {
+                            this.resultTarget.parentElement.innerHTML = this.resultTarget.parentElement.innerText.concat("s");
+                        }
+                    }
                 }
             });
     }
@@ -217,6 +264,13 @@ export default class extends Controller {
     private addMarker(latLng: google.maps.LatLng, index: number | null = null, unitId = 0): void {
 
         if (index) {
+            this._markers[unitId] = new google.maps.Marker({
+                map: this._map,
+                position: latLng,
+                label: {text: (index + 1).toString(), color: "white", fontWeight: "bold"},
+                icon: this.getMarkerIcon()
+            });
+        } else if (index === 0) {
             this._markers[unitId] = new google.maps.Marker({
                 map: this._map,
                 position: latLng,
@@ -258,7 +312,7 @@ export default class extends Controller {
     }
 
     private selectUnitById(unitId: number): void {
-        const listElement: HTMLElement | null = this.leftMenuTarget.querySelector(`li[data-unit-id-anonym="${unitId}"]`);
+        const listElement: HTMLElement | null = this.leftMenuTarget.querySelector(`div[data-unit-id-anonym="${unitId}"]`);
 
         if (listElement) {
             this.activeUnitItem(listElement, unitId);

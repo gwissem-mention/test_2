@@ -11,15 +11,17 @@
         aria-owns="list-map-search"
         aria-expanded="false"
         autocomplete="off"
+        data-action="keyup@window->google-maps--appointment#handleKeyup"
         spellcheck="false"
         autocapitalize="off"
         tabindex="0"
     />
     <div class="fr-container--fluid">
         <div class="fr-grid-row">
-            <ul class="pel-list--no-style fr-col-12 col-md-6 fr-col-lg-4 map-left-menu fr-pt-1w" data-google-maps--appointment-target="leftMenu" role="listbox">
-                <li class="fr-text-center">0 {{ 'pel.result'|trans|lower }}</li>
-            </ul>
+            <div class="pel-units__results-wrap fr-col-12 col-md-6 fr-col-lg-4 map-left-menu">
+                <p class="pel-units__results-count fr-text-center fr-mb-0"><span data-google-maps--appointment-target="result">0</span> {{ 'pel.result'|trans|lower }}</p>
+                <div data-google-maps--appointment-target="leftMenu"></div>
+            </div>
             <div class="fr-col-12 fr-col-md-6 fr-col-lg-8">
                 <div id="{{ id }}-map" data-google-maps--appointment-target="map" class="map" data-marker-icon="{{ asset('build/images/marker_blue.png') }}" aria-hidden="true"></div>
             </div>
