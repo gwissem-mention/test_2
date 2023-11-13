@@ -144,13 +144,15 @@
                 <img src="{{ asset('build/images/icons/display-settings.svg') }}" alt="{{ 'pel.display.settings'|trans }}" class="me-1">
                 {{ 'pel.display.settings'|trans }}
             </a>
-            <a href="#" title="{{ 'pel.rights.delegation'|trans }}"
-               class="d-block reset-link text-blue fw-semibold p-3 text-blue-active"
-               data-action={{ has_right_delegation(app.user) ? "sidebar#openRightsDelegationViewModal" : "sidebar#openRightsDelegationModal"}}
-            >
-                <img src="{{ asset('build/images/icons/rights-delegation.svg') }}" alt="{{ 'pel.rights.delegation'|trans }}" class="me-1">
-                {{ 'pel.rights.delegation'|trans }}
-            </a>
+            {% if is_granted('ROLE_SUPERVISOR') and not is_granted('ROLE_DELEGATED') %}
+                <a href="#" title="{{ 'pel.rights.delegation'|trans }}"
+                   class="d-block reset-link text-blue fw-semibold p-3 text-blue-active"
+                   data-action={{ has_right_delegation(app.user) ? "sidebar#openRightsDelegationViewModal" : "sidebar#openRightsDelegationModal"}}
+                >
+                    <img src="{{ asset('build/images/icons/rights-delegation.svg') }}" alt="{{ 'pel.rights.delegation'|trans }}" class="me-1">
+                    {{ 'pel.rights.delegation'|trans }}
+                </a>
+            {% endif %}
             <dialog id="fr-theme-modal" class="fr-modal" role="dialog" aria-labelledby="fr-theme-modal-title">
                 <div class="fr-container fr-container--fluid fr-container-md">
                     <div class="fr-grid-row fr-grid-row--center">
