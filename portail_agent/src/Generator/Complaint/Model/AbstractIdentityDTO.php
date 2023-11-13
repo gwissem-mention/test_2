@@ -40,7 +40,7 @@ abstract class AbstractIdentityDTO
 
     public function __construct(Identity $identity)
     {
-        $this->civilStatus = Identity::CIVILITY_MALE === $identity->getCivility() ? 'M' : (Identity::CIVILITY_FEMALE === $identity->getCivility() ? 'Mme' : '');
+        $this->civilStatus = $identity->getCivilityLabel();
         $this->lastname = $identity->getLastname() ?? '';
         $this->marriedName = $identity->getMarriedName() ?? '';
         $this->firstname = $identity->getFirstname() ?? '';

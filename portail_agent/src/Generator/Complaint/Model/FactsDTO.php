@@ -14,6 +14,7 @@ use App\Entity\FactsObjects\SimpleObject;
 use App\Entity\FactsObjects\Vehicle;
 use App\Entity\Identity;
 use App\Entity\Witness;
+use App\Generator\Complaint\ComplaintXmlFactsOrientation;
 use App\Referential\Repository\UnitRepository;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
@@ -106,7 +107,7 @@ class FactsDTO
     private string $urlAPIPJ;
     private string $orientation = '';
 
-    public function __construct(Complaint $complaint, UnitRepository $unitRepository, UrlGeneratorInterface $urlGenerator)
+    public function __construct(Complaint $complaint, UnitRepository $unitRepository, UrlGeneratorInterface $urlGenerator, ComplaintXmlFactsOrientation $complaintXmlFactsOrientation)
     {
         /** @var Facts $facts */
         $facts = $complaint->getFacts();
@@ -228,7 +229,7 @@ class FactsDTO
         });
         $this->urlAPIPJ = $urlGenerator->generate('api_download_attachments', ['complaintFrontId' => $complaint->getFrontId()], UrlGeneratorInterface::ABSOLUTE_URL);
 
-        $this->setOrientation($complaint);
+        $this->orientation = $complaintXmlFactsOrientation->getOrientation($complaint);
         $this->setLocalisation($facts, $identity);
         $this->setPrejudiceOtherDescription($complaint);
     }
@@ -387,86 +388,5 @@ class FactsDTO
                 $this->prejudiceOtherDescription .= $description;
             }
         }
-    }
-
-    private function setOrientation(Complaint $complaint): void
-    {
-        $civility = $this->getCivility($complaint->getIdentity()?->getCivility());
-        $firstName = $complaint->getIdentity()?->getFirstname();
-        $lastName = $complaint->getIdentity()?->getLastname();
-        $witnessesText = '';
-
-        if ($complaint->getAdditionalInformation()?->isSuspectsKnown()) {
-            $this->orientation .= sprintf("A la question de savoir si %s %s %s a des informations sur d'éventuels suspects, il nous déclare : %s.",
-                $civility,
-                $firstName,
-                $lastName,
-                $complaint->getAdditionalInformation()->getSuspectsKnownText()
-            );
-        } else {
-            $this->orientation .= sprintf("%s %s %s ne peut pas nous fournir d'informations sur d'éventuels suspects. ",
-                $civility,
-                $firstName,
-                $lastName
-            );
-        }
-        if ($complaint->getAdditionalInformation()?->isWitnessesPresent()) {
-            $witnesses = $complaint->getAdditionalInformation()->getWitnesses()->toArray();
-            $witnessesCount = count($witnesses);
-
-            foreach ($witnesses as $witness) {
-                $witnessesText .= $witness->getDescription();
-                if ($witnessesCount > 1) {
-                    $witnessesText .= ' ';
-                }
-            }
-
-            $this->orientation .= sprintf('Concernant la présence de témoins, %s %s %s nous signale : %s.',
-                $civility,
-                $firstName,
-                $lastName,
-                $witnessesText
-            );
-        } else {
-            $this->orientation .= sprintf("%s %s %s ne peut pas nous fournir d'informations sur d'éventuels suspects.",
-                $civility,
-                $firstName,
-                $lastName
-            );
-        }
-        if ($complaint->getAdditionalInformation()?->isFsiVisit() && $complaint->getAdditionalInformation()->isObservationMade()) {
-            $this->orientation .= sprintf("%s %s %s nous informe de l'intervention d'un équipage de police et de la réalisation de relevés.", $civility, $firstName, $lastName);
-        } elseif ($complaint->getAdditionalInformation()?->isFsiVisit() && !$complaint->getAdditionalInformation()->isObservationMade()) {
-            $this->orientation .= sprintf("%s %s %s nous informe de l'intervention d'un équipage de police sans réalisation de relevés.", $civility, $firstName, $lastName);
-        } elseif ($complaint->getAdditionalInformation()?->isFsiVisit()) {
-            $this->orientation .= sprintf("%s %s %s nous informe qu'il n'y a pas eu d'intervention d'un équipage de police.", $civility, $firstName, $lastName);
-        }
-
-        switch ($complaint->getAdditionalInformation()?->getCctvPresent()) {
-            case AdditionalInformation::CCTV_PRESENT_YES:
-                if ($complaint->getAdditionalInformation()?->isCctvAvailable()) {
-                    $this->orientation .= sprintf("Interrogé sur l'existence d'un enregistrement vidéo des faits, %s %s %s, nous répond par l'affirmative et déclare pouvoir la mettre à notre disposition.", $civility, $firstName, $lastName);
-                } else {
-                    $this->orientation .= sprintf("Interrogé sur l'existence d'un enregistrement vidéo des faits, %s %s %s, nous répond par l'affirmative mais déclare ne pas pouvoir nous le fournir.", $civility, $firstName, $lastName);
-                }
-                break;
-            case AdditionalInformation::CCTV_PRESENT_NO:
-                $this->orientation .= sprintf("Interrogé sur l'existence d'un enregistrement vidéo des faits, %s %s %s, nous déclare qu'il n'existe pas d'enregistrement vidéo.", $civility, $firstName, $lastName);
-                break;
-        }
-
-        $this->orientation .= sprintf("Au regard de ces faits %s %s %s dépose plainte contre X. Vu l'article 15-3-1 du code de procédure pénale, agissant conformément aux instructions de notre chef de service, recevons la plainte contre X et adressons par voie électronique à l'intéressé(e) les dispositions de l'article 10-2 du même code, les formulaires d'information des droits aux victimes et de constitution de la partie civile, le récépissé de dépôt de plainte ainsi qu'une copie du présent procès verbal. Précisons que %s %s %s sera informé(e) par le procureur de la République de la suite réservée à sa plainte que dans le cas où l'auteur des faits serait identifié. Dont acte.",
-            $civility,
-            $firstName,
-            $lastName,
-            $civility,
-            $firstName,
-            $lastName,
-        );
-    }
-
-    private function getCivility(?int $civility): string
-    {
-        return Identity::CIVILITY_MALE === $civility ? 'M' : (Identity::CIVILITY_FEMALE === $civility ? 'Mme' : '');
     }
 }

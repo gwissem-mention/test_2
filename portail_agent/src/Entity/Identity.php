@@ -474,4 +474,9 @@ class Identity
     {
         return empty($this->addressStreetNumber) ? ($this->addressStreetName ?? '') : $this->addressStreetNumber.' '.$this->addressStreetName;
     }
+
+    public function getCivilityLabel(): string
+    {
+        return Identity::CIVILITY_MALE === $this->civility ? 'M' : (Identity::CIVILITY_FEMALE === $this->civility ? 'Mme' : '');
+    }
 }
