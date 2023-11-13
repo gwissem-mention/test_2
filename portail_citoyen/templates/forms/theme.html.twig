@@ -83,7 +83,9 @@
 {% endblock %}
 
 {% block phone_row %}
-    <div class="{{ html_classes('fr-input-group', {'fr-input-group--error': form.number.vars.errors is not empty}) }}" {{ stimulus_controller('intl-tel-input') }}>
+    {% set hasErrors = form.number.vars.errors is not empty %}
+    {% set formId = form.number.vars.id %}
+    <div class="{{ html_classes('fr-input-group', {'fr-input-group--error': form.number.vars.errors is not empty}) }}" {{ stimulus_controller('intl-tel-input') }} data-intl-tel-input-has-errors-value="{{ hasErrors ? 'true' : 'false' }}" data-intl-tel-input-form-id-value="{{ formId }}">
         {{ form_label(form.number) }}
         <div class="[&_.iti]:w-full [&_.iti]:md:w-1/2">
             <div data-live-ignore>
@@ -91,10 +93,8 @@
                     'attr': {
                         'class': html_classes(
                             attr.class ?? '',
-                            'fr-input',
-                            {'fr-input--error':form.number.vars.errors is not empty}
-                        ),
-                        'aria-describedby': form.number.vars.errors is not empty ? 'form-errors-'~ form.number.vars.id : false
+                            'fr-input'
+                        )
                     }
                 }) }}
                 {{ form_widget(form.code) }}
