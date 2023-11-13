@@ -1,13 +1,22 @@
-ARG HTOPDF_IMAGE
-ARG PHP_IMAGE
+ARG HTOPDF_IMAGE=surnet/alpine-wkhtmltopdf:3.18.0-0.12.6-small
+ARG PHP_IMAGE=php:8.1-fpm-alpine
+ARG COMPOSER_IMAGE=composer:2
+ARG PHP_EXTENSION_INSTALLER_IMAGE=mlocati/php-extension-installer:1.5
 
+FROM ${COMPOSER_IMAGE} as composer
+FROM ${PHP_EXTENSION_INSTALLER_IMAGE} as php_extension_installer
 FROM ${HTOPDF_IMAGE} as wkhtmltopdf
 FROM ${PHP_IMAGE} as php
 
 ENV NODE_VERSION=16.20.2
 ENV YARN_VERSION=1.22.19
 
-RUN apk add --no-cache --virtual .binary \
+ARG APK_MAIN_REPOSITORY="https://dl-cdn.alpinelinux.org/alpine/v3.18/main"
+ARG APK_COMMUNITY_REPOSITORY="https://dl-cdn.alpinelinux.org/alpine/v3.18/community"
+RUN echo "$APK_MAIN_REPOSITORY" > /etc/apk/repositories && echo "$APK_COMMUNITY_REPOSITORY" >> /etc/apk/repositories
+RUN apk update
+
+RUN apk add --no-check-certificate --virtual .binary \
         acl \
         fcgi \
         file \
@@ -17,7 +26,7 @@ RUN apk add --no-cache --virtual .binary \
         yarn \
     ;
 
-RUN apk add --no-cache --virtual .wkhtml-deps \
+RUN apk --no-check-certificate add --virtual .wkhtml-deps \
         libx11 \
         libxrender \
         libxext \
@@ -32,9 +41,9 @@ RUN apk add --no-cache --virtual .wkhtml-deps \
 COPY --from=wkhtmltopdf /bin/wkhtmltopdf /usr/local/bin/wkhtmltopdf
 # end of wkhtmltopdf installation
 
-COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
-
-RUN install-php-extensions \
+#COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
+RUN pear config-set http_proxy "${HTTP_PROXY}"
+RUN --mount=type=bind,from=php_extension_installer,source=/usr/bin/install-php-extensions,target=/usr/local/bin/install-php-extensions install-php-extensions \
         apcu \
         intl \
         opcache \
@@ -49,8 +58,8 @@ COPY --link ./k8s/php/docker-healthcheck.sh /usr/local/bin/docker-healthcheck
 RUN chmod +x /usr/local/bin/docker-healthcheck
 HEALTHCHECK --interval=10s --timeout=3s --retries=3 CMD ["docker-healthcheck"]
 
-COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
-COPY --from=composer:2 /usr/bin/composer /usr/local/bin/composer
+COPY --from=composer /usr/bin/composer /usr/bin/composer
+COPY --from=composer /usr/bin/composer /usr/local/bin/composer
 
 ENV COMPOSER_ALLOW_SUPERUSER=1
 ENV PATH="${PATH}:/root/.composer/vendor/bin"

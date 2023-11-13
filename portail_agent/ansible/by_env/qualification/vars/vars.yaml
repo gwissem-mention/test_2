@@ -1,0 +1,25 @@
+---
+# Config variables for Ansible (also available for Ansistrano)
+symfony_root_dir: /srv/data/pel
+
+# Deployment variables specific for Ansistrano
+server_document_root: "{{ symfony_root_dir }}/{{ ansistrano_current_dir }}/portail_agent/public"
+release_portal_path: "{{ ansistrano_release_path.stdout }}/portail_agent"
+release_console_path: "{{ release_portal_path }}/bin/console"
+release_public_path: "{{ release_portal_path }}/public"
+ansistrano_deploy_to: "{{ symfony_root_dir }}"
+ansistrano_deploy_via: git
+ansistrano_git_repo: "{{ vault_git_repo }}"
+ansistrano_git_branch: "develop"
+ansistrano_after_symlink_shared_tasks_file: "{{ playbook_dir }}/after-symlink-shared.yaml"
+ansistrano_keep_releases: 3
+ansistrano_allow_anonymous_stats: false
+ansistrano_shared_paths:
+  - portail_agent/var/log
+  - portail_agent/referentials
+  - portail_agent/config/secrets/prod
+
+ansistrano_shared_files:
+  - portail_agent/.env.local
+
+app_db: "{{ vault_app_db }}"

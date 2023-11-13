@@ -29,53 +29,6 @@ stages:
         - echo "RUN curl -k -v 'https://nexus-pic.gendarmerie.fr'" >> Dockerfile
         - docker build --network=host --build-arg HTTP_PROXY="$HTTP_PROXY" --build-arg
 
-build-citoyen:
-    image: registry-nexus-pic.gendarmerie.fr/docker:20.10
-    stage: build-qualif
-    tags:
-        - proxy-internet
-    script:
-        - mkdir -p ~/.kube/ && echo $KUBECONFIGBASE64 | base64 -d > ~/.kube/config.yaml
-        - export KUBECONFIG=~/.kube/config.yaml
-        - apk add curl wget git bash yq openssl tar
-        - curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
-        - chmod +x ./kubectl
-        - mv ./kubectl /usr/local/bin
-        - curl -k https://nexus-pic.gendarmerie.fr/repository/binaries-pic/helm/helm-v3.7.2-linux-amd64.tar.gz > helm-v3.7.2-linux-amd64.tar.gz
-        - tar xzvf helm-v3.7.2-linux-amd64.tar.gz
-        - ls -l ./linux-amd64/
-        - mv ./linux-amd64/helm /usr/local/bin
-        - chmod +x /usr/local/bin/helm
-
-        - kubectl config use-context pel-ppr-qual
-
-        - cd portail_citoyen
-        - export DOCKER_BUILDKIT=0
-        - export COMPOSE_DOCKER_CLI_BUILD=0
-        - export HTTPS_PROXY=${PROXY}:80 
-        - export HTTP_PROXY=${PROXY}:80 
-        - export https_proxy=${PROXY}:80 
-        - export http_proxy=${PROXY}:80
-        
-        ## Push image to Nexux registry
-        - echo "${REGISTRY_PASSWORD}" | docker login registry-omnibus-pic.gendarmerie.fr --username ${REGISTRY_USER} --password-stdin
-        - docker build . --network=host --build-arg HTTP_PROXY="$HTTP_PROXY" --build-arg HTTPS_PROXY="$HTTPS_PROXY" --build-arg PHP_IMAGE=registry-nexus-pic.gendarmerie.fr/bap/pel/base-php:1.0.0 --tag "registry-omnibus-pic.gendarmerie.fr/bap/pel/plainte-en-ligne-php:latest" -f k8s/php/Dockerfile
-        - docker build . --network=host --build-arg HTTP_PROXY="$HTTP_PROXY" --build-arg HTTPS_PROXY="$HTTPS_PROXY" --build-arg PHP_IMAGE=registry-nexus-pic.gendarmerie.fr/bap/pel/plainte-en-ligne-php:latest --build-arg NGINX_IMAGE=registry-nexus-pic.gendarmerie.fr/nginx:latest --tag "registry-omnibus-pic.gendarmerie.fr/bap/pel/plainte-en-ligne-nginx:latest" -f k8s/nginx/Dockerfile
-        - docker push registry-omnibus-pic.gendarmerie.fr/bap/pel/plainte-en-ligne-php:latest
-        - docker push registry-omnibus-pic.gendarmerie.fr/bap/pel/plainte-en-ligne-nginx:latest
-
-        ## Push image to ATOS registry
-        - echo "${ATOS_REGISTRY_PASSWORD}" | docker login https://registry.pel.pp.fsi.interieur.gouv.fr --username deployer --password-stdin
-        - docker tag registry-omnibus-pic.gendarmerie.fr/bap/pel/plainte-en-ligne-php:latest registry.pel.pp.fsi.interieur.gouv.fr/library/plainte-en-ligne-php:0.1.0
-        - docker tag registry-omnibus-pic.gendarmerie.fr/bap/pel/plainte-en-ligne-nginx:latest registry.pel.pp.fsi.interieur.gouv.fr/library/plainte-en-ligne-nginx:0.1.0
-        - docker push registry.pel.pp.fsi.interieur.gouv.fr/library/plainte-en-ligne-php:0.1.0
-        - docker push registry.pel.pp.fsi.interieur.gouv.fr/library/plainte-en-ligne-nginx:0.1.0
-
-        - docker pull registry.pel.pp.fsi.interieur.gouv.fr/library/plainte-en-ligne-php:0.1.0
-
-        ## Deploy newly pushed image
-        - helm upgrade --install -n pel-qual pel-qual k8s/pel-chart-0.1.0/pel-chart/. --set nginx.image.tag=0.1.0 --set php.image.tag=0.1.0
-
 .clone-code:
     stage: code-clone
     tags:
@@ -93,7 +46,55 @@ build-citoyen:
         - git pull && git fetch && git checkout
         - git push -u origin develop
 
-.install-ansible:
+.build-citoyen:
+    image: registry-nexus-pic.gendarmerie.fr/docker:20.10
+    stage: build-qualif
+    tags:
+        - proxy-internet
+    script:
+        - mkdir -p ~/.kube/ && echo $KUBECONFIGBASE64 | base64 -d > ~/.kube/config.yaml
+        - export KUBECONFIG=~/.kube/config.yaml
+        - apk add curl wget git bash yq openssl tar
+        - curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+        - chmod +x ./kubectl
+        - mv ./kubectl /usr/local/bin
+        - curl -k https://nexus-pic.gendarmerie.fr/repository/binaries-pic/helm/helm-v3.7.2-linux-amd64.tar.gz > helm-v3.7.2-linux-amd64.tar.gz
+        - tar xzvf helm-v3.7.2-linux-amd64.tar.gz
+        - ls -l ./linux-amd64/
+        - mv ./linux-amd64/helm /usr/local/bin
+        - chmod +x /usr/local/bin/helm
+
+        - cd portail_citoyen
+        - export DOCKER_BUILDKIT=0
+        - export COMPOSE_DOCKER_CLI_BUILD=0
+        - export HTTPS_PROXY="10.227.192.65:80"
+        - export HTTP_PROXY="10.227.192.65:80"
+        - export https_proxy="10.227.192.65:80"
+        - export http_proxy="10.227.192.65:80"
+        - export VERSION_TAG=0.0.1
+        
+        ## Push image to Nexux registry
+        - echo "${REGISTRY_PASSWORD}" | docker login registry-omnibus-pic.gendarmerie.fr --username ${REGISTRY_USER} --password-stdin
+        - docker build . -f k8s/DockerfileBase --network=host --build-arg HTTP_PROXY="$HTTP_PROXY" --build-arg HTTPS_PROXY="$HTTPS_PROXY" --build-arg NO_PROXY=".gendarmerie.fr,.dvgendarmerie.fr" --add-host "registry-nexus-pic.gendarmerie.fr:10.226.18.61" --add-host "nexus-pic.gendarmerie.fr:10.226.18.61" --build-arg PHP_IMAGE=registry-nexus-pic.gendarmerie.fr/php:8.1-fpm-alpine --build-arg HTOPDF_IMAGE=registry-nexus-pic.gendarmerie.fr/surnet/alpine-wkhtmltopdf:3.18.0-0.12.6-small --build-arg COMPOSER_IMAGE=registry-nexus-pic.gendarmerie.fr/composer:2 --build-arg PHP_EXTENSION_INSTALLER_IMAGE=registry-nexus-pic.gendarmerie.fr/mlocati/php-extension-installer:1.5 --tag "registry-omnibus-pic.gendarmerie.fr/bap/pel/plainte-en-ligne-base_php:$VERSION_TAG"
+        - docker build . -f k8s/php/Dockerfile --network=host --build-arg HTTP_PROXY="$HTTP_PROXY" --build-arg HTTPS_PROXY="$HTTPS_PROXY" --build-arg NO_PROXY=".gendarmerie.fr,.dvgendarmerie.fr" --add-host "registry-nexus-pic.gendarmerie.fr:10.226.18.61" --add-host "nexus-pic.gendarmerie.fr:10.226.18.61" --build-arg PHP_IMAGE=registry-nexus-pic.gendarmerie.fr/bap/pel/plainte-en-ligne-base_php:$VERSION_TAG --tag "registry-omnibus-pic.gendarmerie.fr/bap/pel/plainte-en-ligne-php:$VERSION_TAG" 
+        - docker build . -f k8s/nginx/Dockerfile --network=host --build-arg HTTP_PROXY="$HTTP_PROXY" --build-arg HTTPS_PROXY="$HTTPS_PROXY" --build-arg NO_PROXY=".gendarmerie.fr,.dvgendarmerie.fr" --add-host "registry-nexus-pic.gendarmerie.fr:10.226.18.61" --add-host "nexus-pic.gendarmerie.fr:10.226.18.61" --build-arg PHP_IMAGE=registry-nexus-pic.gendarmerie.fr/bap/pel/plainte-en-ligne-php:$VERSION_TAG --build-arg NGINX_IMAGE=registry-nexus-pic.gendarmerie.fr/owasp/modsecurity-crs:3.3.5-nginx-alpine-202310170110 --tag "registry-omnibus-pic.gendarmerie.fr/bap/pel/plainte-en-ligne-nginx:$VERSION_TAG"
+        - docker push registry-omnibus-pic.gendarmerie.fr/bap/pel/plainte-en-ligne-php:$VERSION_TAG
+        - docker push registry-omnibus-pic.gendarmerie.fr/bap/pel/plainte-en-ligne-nginx:$VERSION_TAG
+
+        ## Push image to ATOS registry
+        - echo "${ATOS_REGISTRY_PASSWORD}" | docker login https://registry.pel.pp.fsi.interieur.gouv.fr --username deployer --password-stdin
+        - docker tag registry-omnibus-pic.gendarmerie.fr/bap/pel/plainte-en-ligne-base_php:$VERSION_TAG registry.pel.pp.fsi.interieur.gouv.fr/library/plainte-en-ligne-base_php:$VERSION_TAG
+        - docker tag registry-omnibus-pic.gendarmerie.fr/bap/pel/plainte-en-ligne-php:$VERSION_TAG registry.pel.pp.fsi.interieur.gouv.fr/library/plainte-en-ligne-php:$VERSION_TAG
+        - docker tag registry-omnibus-pic.gendarmerie.fr/bap/pel/plainte-en-ligne-nginx:$VERSION_TAG registry.pel.pp.fsi.interieur.gouv.fr/library/plainte-en-ligne-nginx:$VERSION_TAG
+        - docker push registry.pel.pp.fsi.interieur.gouv.fr/library/plainte-en-ligne-base_php:$VERSION_TAG
+        - docker push registry.pel.pp.fsi.interieur.gouv.fr/library/plainte-en-ligne-php:$VERSION_TAG
+        - docker pull registry.pel.pp.fsi.interieur.gouv.fr/library/plainte-en-ligne-nginx:$VERSION_TAG
+
+        ## Deploy newly pushed image
+        - kubectl config use-context pel-ppr-qual
+        - helm upgrade --install -n pel-qual pel-qual k8s/pel-chart-0.1.0/pel-chart/. --set nginx.image.tag=$VERSION_TAG --set php.image.tag=$VERSION_TAG
+
+.build-agent:
     stage: build-qualif
     tags:
         - proxy-internet

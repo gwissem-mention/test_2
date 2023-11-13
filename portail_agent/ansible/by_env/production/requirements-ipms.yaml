@@ -1,0 +1,6 @@
+- src: /builds/BAP/pel/plainte-en-ligne/portail_agent/ansible/by_env/production/artefacts/ansistrano.deploy.tar.gz
+  version: 3.14.0
+  name: ansistrano.deploy
+- src: /builds/BAP/pel/plainte-en-ligne/portail_agent/ansible/by_env/production/artefacts/ansistrano.rollback.tar.gz
+  version: 3.1.0
+  name: ansistrano.rollback

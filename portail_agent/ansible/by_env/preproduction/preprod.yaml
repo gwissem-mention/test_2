@@ -3,32 +3,38 @@ all:
     hosts:
         phpserver1:
             ansible_connection: ssh
-            ansible_host: "10.226.36.222"
-            server_name: "dapp307php1"
+            ansible_host: "10.227.37.54"
+            ansible_user: "root"
+            server_name: "dapip307php1"
+            server_user: "root"
             force_reload_db: False
             force_referential_update: False
             in_php_main_machine: False
             in_ipms: True
             ansistrano_git_repo: "{{ vault_git_repo_anfsi }}"
-            CITOYEN_DOMAIN: "https://pel.fsi.interieur.gouv.fr/"
+            CITOYEN_DOMAIN: "https://pel.pp.fsi.interieur.gouv.fr/"
             app_db: "agent"
         
         phpserver2:
             ansible_connection: ssh
-            ansible_host: "10.226.36.223"
-            server_name: "dapp307php2"
+            ansible_host: "10.227.37.55"
+            ansible_user: "root"
+            server_name: "dapip307php2"
+            server_user: "root"
             force_reload_db: False
             force_referential_update: False
             in_php_main_machine: False
             in_ipms: True
             ansistrano_git_repo: "{{ vault_git_repo_anfsi }}"
-            CITOYEN_DOMAIN: "https://pel.fsi.interieur.gouv.fr/"
+            CITOYEN_DOMAIN: "https://pel.pp.fsi.interieur.gouv.fr/"
             app_db: "agent"
 
         webserver1:
-            ansible_connection: ssh 
-            ansible_host: "10.226.36.216"
-            server_name: "dapp307web1"
+            ansible_connection: ssh
+            ansible_host: "10.227.37.52"
+            ansible_user: "root"
+            server_name: "dapip307web1"
+            server_user: "root"
             force_reload_db: False
             force_referential_update: False
             in_php_main_machine: False
@@ -38,8 +44,10 @@ all:
 
         webserver2:
             ansible_connection: ssh
-            ansible_host: "10.226.36.221"
-            server_name: "dapp307web2"
+            ansible_host: "10.227.37.53"
+            ansible_user: "root"
+            server_name: "dapip307web2"
+            server_user: "root"
             force_reload_db: False
             force_referential_update: False
             in_php_main_machine: False
