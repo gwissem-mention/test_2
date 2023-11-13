@@ -243,7 +243,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Faits_Prejudice_Physique>oui</Faits_Prejudice_Physique>', $this->xmlContent);
         //        $this->assertStringContainsString('<Faits_Orientation_Aucune>1</Faits_Orientation_Aucune>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Violences_Description>Je me suis fait taper</Faits_Violences_Description>', $this->xmlContent);
-        $this->assertStringContainsString('<Faits_Orientation>A la question de savoir si M Jean DUPONT a des informations sur d\'éventuels suspects, il nous déclare : 2 hommes.Concernant la présence de témoins, M Jean DUPONT nous signale : Jean Dupont.M Jean DUPONT nous informe de l\'intervention d\'un équipage de police et de la réalisation de relevés.Interrogé sur l\'existence d\'un enregistrement vidéo des faits, M Jean DUPONT, nous répond par l\'affirmative et déclare pouvoir la mettre à notre disposition.Au regard de ces faits M Jean DUPONT dépose plainte contre X. Vu l\'article 15-3-1 du code de procédure pénale, agissant conformément aux instructions de notre chef de service, recevons la plainte contre X et adressons par voie électronique à l\'intéressé(e) les dispositions de l\'article 10-2 du même code, les formulaires d\'information des droits aux victimes et de constitution de la partie civile, le récépissé de dépôt de plainte ainsi qu\'une copie du présent procès verbal. Précisons que M Jean DUPONT sera informé(e) par le procureur de la République de la suite réservée à sa plainte que dans le cas où l\'auteur des faits serait identifié. Dont acte.</Faits_Orientation>', $this->xmlContent);
+        $this->assertStringContainsString('<Faits_Orientation>A la question de savoir si M DUPONT Jean a des informations sur d\'éventuels suspects, il nous déclare : 2 hommes. Concernant la présence de témoins, M DUPONT Jean nous signale : Jean Dupont. M DUPONT Jean nous informe de l\'intervention d\'un équipage de police et de la réalisation de relevés. Interrogé sur l\'existence d\'un enregistrement vidéo des faits, M DUPONT Jean, nous répond par l\'affirmative et déclare pouvoir la mettre à notre disposition. Au regard de ces faits M DUPONT Jean dépose plainte contre X. Vu l\'article 15-3-1 du code de procédure pénale, agissant conformément aux instructions de notre chef de service, recevons la plainte contre X et adressons par voie électronique à l\'intéressé(e) les dispositions de l\'article 10-2 du même code, les formulaires d\'information des droits aux victimes et de constitution de la partie civile, le récépissé de dépôt de plainte ainsi qu\'une copie du présent procès verbal. Précisons que M DUPONT Jean sera informé(e) par le procureur de la République de la suite réservée à sa plainte que dans le cas où l\'auteur des faits serait identifié. Dont acte.</Faits_Orientation>', $this->xmlContent);
         //        $this->assertStringContainsString('<Faits_Orientation>Je n\'ai pas d\'éléments succeptibles de faire avancer l\'enquête.</Faits_Orientation>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Prejudice_Autre>1</Faits_Prejudice_Autre>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Prejudice_Physique_Description>Dans ce cas vous devrez être examiné par un médecin et présenter un certificat médical indiquant notamment la durée de votre incapacité temporaire de travail. Les précisions relatives à cet examen vous seront communiquées lors de la fixation du rendez-vous pour la signature de votre plainte</Faits_Prejudice_Physique_Description>', $this->xmlContent);
@@ -512,6 +512,43 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $xml = $this->xmlGenerator->generate($complaint, $this->getUnit())->asXML();
         $xmlContent = mb_convert_encoding($xml, 'UTF-8', 'ISO-8859-1');
         $this->assertStringContainsString('<Faits_Localisation>La personne déclarante indique comme adresse pour le lieu de commission des faits 25 Avenue de la République, Bordeaux, 33000 et comme nature de lieu ECOLE. Sur la présence de violences au moment des faits, la personne déclarante indique : </Faits_Localisation>', $xmlContent);
+    }
+
+    public function testFaitsOrientation(): void
+    {
+        /** @var Complaint $complaint */
+        $complaint = $this->getComplaint();
+        /** @var AdditionalInformation $additionalInformation */
+        $additionalInformation = $complaint->getAdditionalInformation();
+        $additionalInformation->setSuspectsKnown(true);
+        $additionalInformation->setWitnessesPresent(true);
+        $additionalInformation->setFsiVisit(true);
+        $additionalInformation->setObservationMade(true);
+        $additionalInformation->setCctvPresent(1);
+        $additionalInformation->setCctvAvailable(true);
+        /** @var string $xml */
+        $xml = $this->xmlGenerator->generate($complaint, $this->getUnit())->asXML();
+        $xmlContent = mb_convert_encoding($xml, 'UTF-8', 'ISO-8859-1');
+
+        $this->assertStringContainsString('<Faits_Orientation>A la question de savoir si M DUPONT Jean a des informations sur d\'éventuels suspects, il nous déclare : 2 hommes. Concernant la présence de témoins, M DUPONT Jean nous signale : Jean Dupont. M DUPONT Jean nous informe de l\'intervention d\'un équipage de police et de la réalisation de relevés. Interrogé sur l\'existence d\'un enregistrement vidéo des faits, M DUPONT Jean, nous répond par l\'affirmative et déclare pouvoir la mettre à notre disposition. Au regard de ces faits M DUPONT Jean dépose plainte contre X. Vu l\'article 15-3-1 du code de procédure pénale, agissant conformément aux instructions de notre chef de service, recevons la plainte contre X et adressons par voie électronique à l\'intéressé(e) les dispositions de l\'article 10-2 du même code, les formulaires d\'information des droits aux victimes et de constitution de la partie civile, le récépissé de dépôt de plainte ainsi qu\'une copie du présent procès verbal. Précisons que M DUPONT Jean sera informé(e) par le procureur de la République de la suite réservée à sa plainte que dans le cas où l\'auteur des faits serait identifié. Dont acte.</Faits_Orientation>', $xmlContent);
+
+        $additionalInformation->setSuspectsKnown(false);
+        $additionalInformation->setWitnessesPresent(false);
+        $additionalInformation->setFsiVisit(true);
+        $additionalInformation->setObservationMade(false);
+        $additionalInformation->setCctvPresent(1);
+        $additionalInformation->setCctvAvailable(false);
+        /** @var string $xml */
+        $xml = $this->xmlGenerator->generate($complaint, $this->getUnit())->asXML();
+        $xmlContent = mb_convert_encoding($xml, 'UTF-8', 'ISO-8859-1');
+        $this->assertStringContainsString('<Faits_Orientation>M DUPONT Jean ne peut pas nous fournir d\'informations sur d\'éventuels suspects. M DUPONT Jean ne peut pas nous fournir d\'informations sur d\'éventuels suspects. M DUPONT Jean nous informe de l\'intervention d\'un équipage de police sans réalisation de relevés. Interrogé sur l\'existence d\'un enregistrement vidéo des faits, M DUPONT Jean, nous répond par l\'affirmative mais déclare ne pas pouvoir nous le fournir. Au regard de ces faits M DUPONT Jean dépose plainte contre X. Vu l\'article 15-3-1 du code de procédure pénale, agissant conformément aux instructions de notre chef de service, recevons la plainte contre X et adressons par voie électronique à l\'intéressé(e) les dispositions de l\'article 10-2 du même code, les formulaires d\'information des droits aux victimes et de constitution de la partie civile, le récépissé de dépôt de plainte ainsi qu\'une copie du présent procès verbal. Précisons que M DUPONT Jean sera informé(e) par le procureur de la République de la suite réservée à sa plainte que dans le cas où l\'auteur des faits serait identifié. Dont acte.</Faits_Orientation>', $xmlContent);
+
+        $additionalInformation->setFsiVisit(false);
+        $additionalInformation->setCctvPresent(2);
+        /** @var string $xml */
+        $xml = $this->xmlGenerator->generate($complaint, $this->getUnit())->asXML();
+        $xmlContent = mb_convert_encoding($xml, 'UTF-8', 'ISO-8859-1');
+        $this->assertStringContainsString('<Faits_Orientation>M DUPONT Jean ne peut pas nous fournir d\'informations sur d\'éventuels suspects. M DUPONT Jean ne peut pas nous fournir d\'informations sur d\'éventuels suspects. M DUPONT Jean nous informe qu\'il n\'y a pas eu d\'intervention d\'un équipage de police. Interrogé sur l\'existence d\'un enregistrement vidéo des faits, M DUPONT Jean, nous déclare qu\'il n\'existe pas d\'enregistrement vidéo. Au regard de ces faits M DUPONT Jean dépose plainte contre X. Vu l\'article 15-3-1 du code de procédure pénale, agissant conformément aux instructions de notre chef de service, recevons la plainte contre X et adressons par voie électronique à l\'intéressé(e) les dispositions de l\'article 10-2 du même code, les formulaires d\'information des droits aux victimes et de constitution de la partie civile, le récépissé de dépôt de plainte ainsi qu\'une copie du présent procès verbal. Précisons que M DUPONT Jean sera informé(e) par le procureur de la République de la suite réservée à sa plainte que dans le cas où l\'auteur des faits serait identifié. Dont acte.</Faits_Orientation>', $xmlContent);
     }
 
     public function testFaitsPrejudiceAutreDescription(): void

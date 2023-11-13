@@ -27,7 +27,7 @@ class ComplaintXmlAdditionalInformationPN
     private function setIsFranceConnected(Complaint $complaint): string
     {
         $identity = $complaint->getIdentity();
-        $civility = $this->getCivility($identity?->getCivility());
+        $civility = $identity?->getCivilityLabel();
         $firstName = $identity?->getFirstname();
         $lastName = $identity?->getLastname();
         $birthday = $identity?->getBirthday()?->format('d/m/Y');
@@ -58,11 +58,6 @@ class ComplaintXmlAdditionalInformationPN
         }
 
         return '';
-    }
-
-    private function getCivility(?int $civility): string
-    {
-        return Identity::CIVILITY_MALE === $civility ? 'M' : (Identity::CIVILITY_FEMALE === $civility ? 'Mme' : '');
     }
 
     private function setConclusion(Complaint $complaint): string

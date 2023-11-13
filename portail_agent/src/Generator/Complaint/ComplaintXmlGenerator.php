@@ -35,7 +35,8 @@ class ComplaintXmlGenerator implements ComplaintGeneratorInterface
         readonly private TranslatorInterface $translator,
         readonly private ComplaintXmlAdditionalInformationPN $additionalInformationPN,
         readonly private UnitRepository $unitRepository,
-        readonly private UrlGeneratorInterface $urlGenerator
+        readonly private UrlGeneratorInterface $urlGenerator,
+        readonly private ComplaintXmlFactsOrientation $complaintXmlFactsOrientation
     ) {
     }
 
@@ -55,7 +56,7 @@ class ComplaintXmlGenerator implements ComplaintGeneratorInterface
             $xml = $this->arrayToXml($xml, (new CorporationRepresentedDTO($corporation, $identity))->getArray());
         }
         if ($complaint->getFacts()) {
-            $data = (new FactsDTO($complaint, $this->unitRepository, $this->urlGenerator))->getArray();
+            $data = (new FactsDTO($complaint, $this->unitRepository, $this->urlGenerator, $this->complaintXmlFactsOrientation))->getArray();
             $data['Faits']['Faits_Expose'] .= $this->additionalInformationPN->set($complaint);
             $data['Faits']['Faits_Prejudice_Physique_Description'] = $data['Faits']['Faits_Prejudice_Physique_Description'] ? $this->translator->trans($data['Faits']['Faits_Prejudice_Physique_Description']) : '';
             $xml = $this->arrayToXml($xml, $data);
