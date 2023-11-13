@@ -1,12 +1,11 @@
-<li class="fr-text-center">{{ units|length }} {{ 'pel.results'|trans|lower }}</li>
 {% for unit in units %}
-    <li class="unit-list-item col-lg-4 col-md-6 fr-p-5v" data-unit-id-anonym="{{ unit.idAnonym }}" role="option">
+    <div class="unit-list-item col-lg-4 col-md-6 fr-p-5v" data-unit-id-anonym="{{ unit.idAnonym }}">
         <div class="unit-list-header">
             <h2 class="fr-text--sm fr-mb-0 fr-pt-3v title-definition point-label">{{ loop.index }} - {{ unit.name|upper }}</h2>
-            <button class="unit-select fr-btn fr-fi-map-pin-2-line fr-btn--icon-left fr-btn--tertiary-no-outline fr-text--sm" data-action="click->google-maps--appointment#selectUnit">
+            <button class="unit-select fr-btn fr-btn--secondary fr-fi-map-pin-2-line fr-btn--icon-left fr-btn--tertiary-no-outline fr-text--sm fr-my-2v" data-action="click->google-maps--appointment#selectUnit">
                 {{ 'pel.choose'|trans }}
             </button>
-            <button class="unit-unselect fr-btn fr-fi-map-pin-2-fill fr-btn--icon-left fr-btn--tertiary-no-outline fr-text--sm fr-hidden" data-action="click->google-maps--appointment#unselectUnit">
+            <button class="unit-unselect fr-btn fr-btn--secondary fr-fi-map-pin-2-fill fr-btn--icon-left fr-btn--tertiary-no-outline fr-text--sm fr-my-2v fr-hidden" data-action="click->google-maps--appointment#unselectUnit">
                 {{ 'pel.chosen'|trans }}
             </button>
         </div>
@@ -22,6 +21,6 @@
                 </div>
             {% endif %}
         </div>
-    </li>
+    </div>
 {% endfor %}
 {% include "common/_modal.html.twig" with {'id':'unit-accessibility-information', 'attribute':'data-google-maps--appointment-target=modal'} %}
