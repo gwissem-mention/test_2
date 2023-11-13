@@ -1,0 +1,13 @@
+---
+all:
+    hosts:  
+        php:
+            ansible_connection: ssh
+            ansible_host: "10.227.166.196"
+            ansible_user: "ansible"
+            server_name: "dapqp307php1.qualpgs"
+            server_user: "ansible"
+            in_php_main_machine: True
+            ansistrano_git_branch: "main"
+            ansistrano_git_repo: "{{ vault_git_repo_anfsi }}"
+            CITOYEN_DOMAIN: https://www.pel.qual.fsi.interieur.gouv.fr
