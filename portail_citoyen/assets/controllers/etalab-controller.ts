@@ -27,6 +27,12 @@ export default class extends Controller {
 
     }
 
+    public handleKeyup(event: KeyboardEvent):void {
+        if (event.key === "Escape") {
+            this.inputTarget.setAttribute("aria-expanded", "false");
+        }
+    }
+
     private bindFocus(): void {
         if (this.hasListTarget) {
             this.inputTarget.addEventListener("keyup", (event: KeyboardEvent) => this.navigateToFirstAddress(event));

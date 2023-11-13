@@ -6,7 +6,8 @@
                role="combobox"
                aria-autocomplete="list"
                {% if this.autoCompleteResults|length > 0 %}aria-owns="list-{{ inputName }}"{% endif %}
-               {% if this.autoCompleteResults|length > 0 %}aria-expanded="true"{% else %}aria-expanded="false"{% endif %}
+               aria-expanded="{{ this.autoCompleteResults|length > 0 ? 'true' : 'false' }}"
+               data-action="keyup@window->etalab#handleKeyup"
                autocomplete="off"
                spellcheck="false"
                autocapitalize="off"
