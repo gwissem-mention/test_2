@@ -56,4 +56,8 @@ class JobAutocompleter implements EntityAutocompleterInterface
     {
         return true;
     }
+
+    public function getGroupBy(): void
+    {
+    }
 }

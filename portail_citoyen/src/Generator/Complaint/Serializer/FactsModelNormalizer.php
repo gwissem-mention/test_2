@@ -7,14 +7,12 @@ namespace App\Generator\Complaint\Serializer;
 use App\Form\Model\Facts\FactsModel;
 use App\Referential\Entity\NaturePlace;
 use App\Referential\Repository\NaturePlaceRepository;
-use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
 class FactsModelNormalizer implements NormalizerInterface
 {
     public function __construct(
-        #[Autowire(service: ObjectNormalizer::class)] private readonly NormalizerInterface $normalizer,
+        private readonly NormalizerInterface $normalizer,
         private readonly NaturePlaceRepository $naturePlaceRepository
     ) {
     }

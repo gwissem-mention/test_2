@@ -6,7 +6,7 @@ namespace App\Referential\Provider\Country;
 
 use App\Referential\Entity\Country;
 use Symfony\Component\DependencyInjection\Attribute\AsDecorator;
-use Symfony\Component\DependencyInjection\Attribute\MapDecorated;
+use Symfony\Component\DependencyInjection\Attribute\AutowireDecorated;
 use Symfony\Contracts\Cache\CacheInterface;
 
 #[AsDecorator(decorates: CountryProviderInterface::class)]
@@ -16,7 +16,7 @@ class CachedCountryProvider implements CountryProviderInterface
     private readonly CacheInterface $referentialsCache;
 
     public function __construct(
-        #[MapDecorated] CountryProviderInterface $decorated,
+        #[AutowireDecorated] CountryProviderInterface $decorated,
         CacheInterface $referentialsCache,
     ) {
         $this->decorated = $decorated;
