@@ -96,11 +96,11 @@ class ComplaintRepository extends ServiceEntityRepository
 
         $order = $this->addOrderByPriority($order);
 
-        !$unitComplaint ?
-            $qb->andWhere('assignedTo = :agent')
-                ->setParameter('agent', $agent) :
-            $qb->andWhere('c.assignedTo != :currentUser OR c.assignedTo IS NULL')
-                ->setParameter('currentUser', $agent);
+        if (false === $unitComplaint) {
+            $qb->andWhere('assignedTo = :agent')->setParameter('agent', $agent);
+        } elseif (false === $agent?->isSupervisor()) {
+            $qb->andWhere('c.assignedTo != :currentUser OR c.assignedTo IS NULL')->setParameter('currentUser', $agent);
+        }
 
         $qb = $this->search($qb, $searchQuery);
 

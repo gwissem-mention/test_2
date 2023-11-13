@@ -244,21 +244,20 @@ Feature:
         And I should see "Aucune donnée disponible dans le tableau"
         When I click the "#exceeds-deadline-filter" element
         Then I should see 26 "table#datatable tr" element
-        And I should see 10 ".background-blue" element
+        And I should see 20 ".background-blue" element
         And I should see 5 ".background-yellow" element
         When I click the "#alert-filter" element
         Then I should see 26 "table#datatable tr" element
-        And I should see 10 ".background-blue" element
+        And I should see 20 ".background-blue" element
         And I should see 5 ".background-yellow" element
         When I click the "#assignment-pending-filter" element
         Then I should see 11 "table#datatable tr" element
         And I should see 10 ".background-blue" element
         When I click the "#assigned-filter" element
         Then I should see 11 "table#datatable tr" element
-        And I should see 10 ".background-blue" element
+        And I should see 20 ".background-blue" element
         When I click the "#appointment-planned-filter" element
-        Then I should see 2 "table#datatable tr" element
-        And I should see "Aucune donnée disponible dans le tableau"
+        Then I should see 11 "table#datatable tr" element
         When I click the "#appointment-pending-filter" element
         Then I should see 11 "table#datatable tr" element
         And I should see 11 ".background-cumulus" element

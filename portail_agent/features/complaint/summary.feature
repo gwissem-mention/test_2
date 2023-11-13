@@ -586,6 +586,8 @@ Feature:
         Then I should see a ".toast" element
         And I should see the key "pel.the.declaration.has.been.self.assigned" translated
         And I should see "La déclaration vous a bien été attribuée"
+        Given I am on "/"
+        Then I should see "PEL-2023-00000093"
 
     @javascript
     Scenario: I can't self assign a declaration as a supervisor when the declaration is already assigned
