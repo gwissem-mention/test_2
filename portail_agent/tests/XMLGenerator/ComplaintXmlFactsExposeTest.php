@@ -11,10 +11,10 @@ use App\Entity\FactsObjects\AbstractObject;
 use App\Entity\FactsObjects\SimpleObject;
 use App\Entity\Identity;
 use App\Entity\Witness;
-use App\Generator\Complaint\ComplaintXmlAdditionalInformationPN;
+use App\Generator\Complaint\ComplaintXmlFactsExpose;
 use PHPUnit\Framework\TestCase;
 
-class ComplaintXmlAdditionalInformationPNTest extends TestCase
+class ComplaintXmlFactsExposeTest extends TestCase
 {
     public function testSet(): void
     {
@@ -80,15 +80,15 @@ class ComplaintXmlAdditionalInformationPNTest extends TestCase
                     ->setVictimOfViolenceText('Je me suis fait taper')
             );
 
-        $xmlAdditionalInformationPN = new ComplaintXmlAdditionalInformationPN();
+        $xmlAdditionalInformationPN = new ComplaintXmlFactsExpose();
 
-        $output = $xmlAdditionalInformationPN->set($complaint);
+        $output = $xmlAdditionalInformationPN->getFactsExpose($complaint);
 
         $expectedOutput = <<<EOT
-         Sommes rendu destinataire de la demande de plainte en ligne, déposée sur le site internet plainte-en-ligne.masecurite.interieur.gouv.fr sous le numéro d’enregistrement PEL-2023-00000001 et horodatée du 04/10/2023 15:44:32,
-        d’un internaute s’étant authentifié par FranceConnect sous l’identité suivante M John Doe, né(e) le 08/08/1990 à Avignon, 84000 en  France.
-         et qui déclare exercer l’activité de Developer
-        Interrogé sur la date et l’heure des faits, John Doe, indique que les faits se sont déroulés  entre le 01/12/2022 et le 01/12/2022. Sur l'exposé des faits, la personne déclarante indique :
+         Sommes rendu destinataire de la demande de plainte en ligne, déposée sur le site internet plainte-en-ligne.masecurite.interieur.gouv.fr sous le numéro d'enregistrement PEL-2023-00000001 et horodatée du 04/10/2023 15:44:32,
+        d'un internaute s'étant authentifié par FranceConnect sous l'identité suivante M Doe John, né(e) le 08/08/1990 à Avignon, 84000 en  France.
+         et qui déclare exercer l'activité de Developer
+        Interrogé sur la date et l'heure des faits, Doe John, indique que les faits se sont déroulés entre le 01/12/2022 à 10:00 et le 01/12/2022 à 11:00. Sur l'exposé des faits, la personne déclarante indique :
         EOT;
 
         $this->assertSame($expectedOutput, $output);
