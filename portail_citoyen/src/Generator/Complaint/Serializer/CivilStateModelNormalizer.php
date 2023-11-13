@@ -9,15 +9,13 @@ use App\AppEnum\FamilySituation;
 use App\Form\Model\Identity\CivilStateModel;
 use App\Referential\Provider\Nationality\NationalityProviderInterface;
 use App\Referential\Repository\JobRepository;
-use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class CivilStateModelNormalizer implements NormalizerInterface
 {
     public function __construct(
-        #[Autowire(service: ObjectNormalizer::class)] private readonly NormalizerInterface $normalizer,
+        private readonly NormalizerInterface $normalizer,
         private readonly JobRepository $jobRepository,
         private readonly TranslatorInterface $translator,
         private readonly NationalityProviderInterface $nationalityProvider,

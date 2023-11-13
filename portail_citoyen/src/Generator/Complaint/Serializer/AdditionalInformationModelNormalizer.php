@@ -5,15 +5,13 @@ declare(strict_types=1);
 namespace App\Generator\Complaint\Serializer;
 
 use App\Form\Model\AdditionalInformation\AdditionalInformationModel;
-use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class AdditionalInformationModelNormalizer implements NormalizerInterface
 {
     public function __construct(
-        #[Autowire(service: ObjectNormalizer::class)] private readonly NormalizerInterface $normalizer,
+        private readonly NormalizerInterface $normalizer,
         private readonly TranslatorInterface $translator,
     ) {
     }

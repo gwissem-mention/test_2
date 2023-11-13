@@ -13,15 +13,13 @@ use App\Referential\Repository\DocumentTypeRepository;
 use App\Referential\Repository\PaymentCategoryRepository;
 use App\Referential\Repository\RegisteredVehicleNatureRepository;
 use App\Thesaurus\ObjectCategoryThesaurusProviderInterface;
-use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class ObjectModelNormalizer implements NormalizerInterface
 {
     public function __construct(
-        #[Autowire(service: ObjectNormalizer::class)] private readonly NormalizerInterface $normalizer,
+        private readonly NormalizerInterface $normalizer,
         private readonly ObjectCategoryThesaurusProviderInterface $objectCategoryThesaurusProvider,
         private readonly TranslatorInterface $translator,
         private readonly CountryProviderInterface $countryProvider,

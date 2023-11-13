@@ -142,3 +142,5 @@ services:
             $clientSecret: '%env(OODRIVE_OAUTH_CLIENT_SECRET)%'
             $username: '%env(OODRIVE_USERNAME)%'
             $password: '%env(OODRIVE_PASSWORD)%'
+
+    Symfony\Component\Serializer\Normalizer\NormalizerInterface: '@serializer.normalizer.object'

@@ -8,14 +8,12 @@ use App\Form\Model\LocationModel;
 use App\Referential\Provider\Country\CountryProviderInterface;
 use App\Referential\Repository\CityRepository;
 use App\Referential\Repository\DepartmentRepository;
-use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
 class LocationModelNormalizer implements NormalizerInterface
 {
     public function __construct(
-        #[Autowire(service: ObjectNormalizer::class)] private readonly NormalizerInterface $normalizer,
+        private readonly NormalizerInterface $normalizer,
         private readonly CountryProviderInterface $countryProvider,
         private readonly CityRepository $cityRepository,
         private readonly DepartmentRepository $departmentRepository,

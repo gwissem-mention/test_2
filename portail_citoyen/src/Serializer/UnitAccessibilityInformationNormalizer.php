@@ -69,4 +69,14 @@ class UnitAccessibilityInformationNormalizer implements NormalizerInterface
     {
         return is_array($data) && in_array('unit_accessibility_information', $context);
     }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function getSupportedTypes(?string $format): array
+    {
+        return [
+            'object' => null,
+        ];
+    }
 }

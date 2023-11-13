@@ -66,4 +66,8 @@ class CityAutocompleter implements EntityAutocompleterInterface
     {
         return true;
     }
+
+    public function getGroupBy(): void
+    {
+    }
 }
