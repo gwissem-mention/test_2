@@ -39,7 +39,8 @@ Feature:
         When I fill in "facts_description" with "description informations lorem ipsum dol or sit amet lorem ipsum dol or sit amet"
         And I click the "label[for=facts_victimOfViolence]" element
         And I fill in "facts_victimOfViolenceText" with "Violence informations"
-        And I click the "label[for=facts_address_addressOrRouteFactsKnown_0]" element
+        And I select "9" from "facts_placeNature"
+        And I select "17" from "facts_subPlaceNature"
         And I fill in "facts-startAddress-address" with "avenue de la république bordeaux"
         And I click the "#facts-startAddress-address-33063_8132" element
         And I fill in "facts-endAddress-address" with "avenue de la république bordeaux"
@@ -48,7 +49,6 @@ Feature:
         And I fill in "facts_offenseDate_startDate" with "01/01/2022"
         And I click the "label[for=facts_offenseDate_choiceHour_0]" element
         And I fill in "facts_offenseDate_hour" with "15:00"
-        And I select "2" from "facts_placeNature"
         And I press "facts_submit"
         Then I should be on "/porter-plainte/objets"
         When I select "5" from "objects_objects_0_category"
@@ -151,7 +151,7 @@ Feature:
         And I should see the key "pel.address" translated
         And I should see "Avenue de la République 33000 Bordeaux (France)"
         And I should see the key "pel.additional.factual.information" translated
-        And I should see "Nature du lieu : Voie publique"
+        And I should see "Nature du lieu : Transports"
         And I should see "La victime affirme avoir identifié 1 témoin de l’infraction"
         And I should see "Jean DUPONT"
         And I should see "jean.dupont@example.com"

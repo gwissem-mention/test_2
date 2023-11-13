@@ -20,11 +20,12 @@ Feature:
     And I press "identity_submit"
     Then I should be on "/porter-plainte/faits"
     When I fill in "facts_description" with "description informations lorem ipsum dol or sit amet lorem ipsum dol or sit amet"
-    And I click the "label[for=facts_address_addressOrRouteFactsKnown_1]" element
+    And I select "2" from "facts_placeNature"
+    And I fill in "facts-startAddress-address" with "avenue de la république bordeaux"
+    And I click the "#facts-startAddress-address-33063_8132" element
     And I click the "label[for=facts_offenseDate_exactDateKnown_0]" element
     And I fill in "facts_offenseDate_startDate" with "01/01/2022"
     And I click the "label[for=facts_offenseDate_choiceHour_1]" element
-    And I select "2" from "facts_placeNature"
     And I press "facts_submit"
     Then I should be on "/porter-plainte/objets"
 

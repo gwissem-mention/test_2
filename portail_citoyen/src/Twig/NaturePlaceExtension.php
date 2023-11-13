@@ -17,6 +17,12 @@ class NaturePlaceExtension extends AbstractExtension
         'Établissement scolaire',
         'Lieu de culte ou de recueillement',
         'Lieu de loisirs',
+        'Commerce ou assimilé',
+        'Bar, restaurant',
+        'Établissement de santé',
+        'Établissement administratif',
+        'Autres lieux professionnels',
+        'Véhicule terrestre',
     ];
 
     public function __construct(private readonly NaturePlaceRepository $naturePlaceRepository)

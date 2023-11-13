@@ -22,14 +22,13 @@ Feature:
         When I fill in "facts_description" with "description informations lorem ipsum dol or sit amet lorem ipsum dol or sit amet"
         And I click the "label[for=facts_victimOfViolence]" element
         And I fill in "facts_victimOfViolenceText" with "Violence informations"
-        And I click the "label[for=facts_address_addressOrRouteFactsKnown_0]" element
+        And I select "2" from "facts_placeNature"
         And I fill in "facts-startAddress-address" with "avenue de la république bordeaux"
         And I click the "#facts-startAddress-address-33063_8132" element
         And I click the "label[for=facts_offenseDate_exactDateKnown_0]" element
         And I fill in "facts_offenseDate_startDate" with "01/01/2022"
         And I click the "label[for=facts_offenseDate_choiceHour_0]" element
         And I fill in "facts_offenseDate_hour" with "15:00"
-        And I select "2" from "facts_placeNature"
         And I press "facts_submit"
         Then I should be on "/porter-plainte/objets"
         Given I select "5" from "objects_objects_0_category"

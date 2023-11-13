@@ -109,16 +109,6 @@
         {% if form.website is defined %}
             {{ form_row(form.website) }}
         {% endif %}
-        {% if form.vars.data.placeNature|nature_place_map_displayed or (identityAddress is not null and identityAddress.addressType is not same as('etalab_address')) %}
-            <div class="fr-grid-row fr-mb-6v">
-                <div class="fr-col">
-                    {{ component('google_maps', {
-                        'data-live-id':'google-maps',
-                        'id':'facts',
-                    }) }}
-                </div>
-            </div>
-        {% endif %}
         {% if form.address.addressOrRouteFactsKnown is defined %}
             <fieldset class="{{ html_classes('fr-fieldset', 'fr-input-group', 'fr-mb-6v','fr-mb-md-2v', {'fr-fieldset--inline': form.address.addressOrRouteFactsKnown.vars.inline is same as(true),'fr-fieldset--error': form.address.addressOrRouteFactsKnown.vars.errors is not empty}) }}" {% if form.address.addressOrRouteFactsKnown.vars.errors is not empty %} role="group" aria-labelledby="legend-{{ form.address.addressOrRouteFactsKnown.vars.id }} form-errors-{{ form.address.addressOrRouteFactsKnown.vars.id }}" {% endif %}>
                 <legend class="fr-fieldset__legend--regular fr-fieldset__legend fr-text--regular" id="legend-{{ form.address.addressOrRouteFactsKnown.vars.id }}">
@@ -171,6 +161,16 @@
                     errors: etalab_errors,
                     required: form.address.endAddress.vars.required
                 }) }}
+            </div>
+        {% endif %}
+        {% if form.vars.data.placeNature|nature_place_map_displayed or (identityAddress is not null and identityAddress.addressType is not same as('etalab_address')) %}
+            <div class="fr-grid-row fr-mb-6v">
+                <div class="fr-col">
+                    {{ component('google_maps', {
+                        'data-live-id':'google-maps',
+                        'id':'facts',
+                    }) }}
+                </div>
             </div>
         {% endif %}
         {{ form_row(form.address.addressAdditionalInformation) }}

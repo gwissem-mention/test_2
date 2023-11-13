@@ -60,7 +60,7 @@
             </trans-unit>
             <trans-unit id="pel.address.exact">
                 <source>pel.address.exact</source>
-                <target>Adresse exacte des faits</target>
+                <target>Adresse des faits</target>
             </trans-unit>
             <trans-unit id="pel.address.number">
                 <source>pel.address.number</source>
@@ -161,6 +161,10 @@
             <trans-unit id="pel.address.start.or.exact.help">
                 <source>pel.address.start.or.exact.help</source>
                 <target>En cas d’adresse exacte, merci de renseigner uniquement ce champ, ou dans le cas d’un trajet l’adresse de départ</target>
+            </trans-unit>
+            <trans-unit id="pel.address.start.help">
+                <source>pel.address.start.help</source>
+                <target>Si vous ne connaissez pas l'adresse des faits, sélectionnez le lieu sur la carte</target>
             </trans-unit>
             <trans-unit id="pel.and">
                 <source>pel.and</source>
