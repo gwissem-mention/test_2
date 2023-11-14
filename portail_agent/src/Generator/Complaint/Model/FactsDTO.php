@@ -365,7 +365,7 @@ class FactsDTO
 
                 if ($object instanceof Vehicle) {
                     $description = $object->isRegistered()
-                        ? sprintf('Concernant le véhicule %s , elle précise : %s. ', $object->getRegistrationNumber(), $object->getDegradationDescription())
+                        ? sprintf('Concernant le véhicule %s , il est précisé : %s. ', $object->getRegistrationNumber(), $object->getDegradationDescription())
                         : sprintf('%s. ', $object->getLabel());
                 } elseif ($object instanceof MultimediaObject) {
                     $description = sprintf('%s %s. ', $object->getNature(), $object->getDescription());

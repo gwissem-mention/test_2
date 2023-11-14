@@ -247,7 +247,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         //        $this->assertStringContainsString('<Faits_Orientation>Je n\'ai pas d\'éléments succeptibles de faire avancer l\'enquête.</Faits_Orientation>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Prejudice_Autre>1</Faits_Prejudice_Autre>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Prejudice_Physique_Description>Dans ce cas vous devrez être examiné par un médecin et présenter un certificat médical indiquant notamment la durée de votre incapacité temporaire de travail. Les précisions relatives à cet examen vous seront communiquées lors de la fixation du rendez-vous pour la signature de votre plainte</Faits_Prejudice_Physique_Description>', $this->xmlContent);
-        $this->assertStringContainsString('<Faits_Prejudice_Autre_Description>M. DUPONT Jean indique avoir subi les dégradations suivantes : 1 Sac Précisions : Sac bleu. Concernant le véhicule AA-123-AA , elle précise : Rétroviseur cassé. Trotinette. </Faits_Prejudice_Autre_Description>', $this->xmlContent);
+        $this->assertStringContainsString('<Faits_Prejudice_Autre_Description>M. DUPONT Jean indique avoir subi les dégradations suivantes : 1 Sac Précisions : Sac bleu. Concernant le véhicule AA-123-AA , il est précisé : Rétroviseur cassé. Trotinette. </Faits_Prejudice_Autre_Description>', $this->xmlContent);
         $this->assertStringContainsString('<Date_Exacte_Faits_Connue>Oui</Date_Exacte_Faits_Connue>', $this->xmlContent);
         $this->assertStringContainsString('<Suspects_Informations>Oui</Suspects_Informations>', $this->xmlContent);
         $this->assertStringContainsString('<Suspects_Description>2 hommes</Suspects_Description>', $this->xmlContent);
@@ -604,7 +604,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $xml = $this->xmlGenerator->generate($complaint, $this->getUnit())->asXML();
         $xmlContent = mb_convert_encoding($xml, 'UTF-8', 'ISO-8859-1');
 
-        $this->assertStringContainsString('<Faits_Prejudice_Autre_Description>M. DUPONT Jean indique avoir subi les dégradations suivantes : 1 Sac Précisions : Sac bleu. Concernant le véhicule AA-123-AA , elle précise : Rétroviseur cassé. Trotinette. TELEPHONE PORTABLE Iphone 13 de couleur grise. AUTRE NATURE MULTIMEDIA Description console. Permis de conduire  . Carte bancaire Carte gold. </Faits_Prejudice_Autre_Description>', $xmlContent);
+        $this->assertStringContainsString('<Faits_Prejudice_Autre_Description>M. DUPONT Jean indique avoir subi les dégradations suivantes : 1 Sac Précisions : Sac bleu. Concernant le véhicule AA-123-AA , il est précisé : Rétroviseur cassé. Trotinette. TELEPHONE PORTABLE Iphone 13 de couleur grise. AUTRE NATURE MULTIMEDIA Description console. Permis de conduire  . Carte bancaire Carte gold. </Faits_Prejudice_Autre_Description>', $xmlContent);
     }
 
     private function getUnit(): Unit
