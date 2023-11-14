@@ -194,7 +194,6 @@ Feature:
         And I should see "Object 1"
         And I should see the key "pel.attachment" translated
         And I should see "blank.pdf"
-        When I follow "blank.pdf"
         Then I should see "Numéro de téléphone portable : +33 6 01 02 03 04"
         And I should see "Document officiel"
         And I should see "CARTE NATIONALE D'IDENTITE"

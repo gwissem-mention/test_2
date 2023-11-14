@@ -241,15 +241,9 @@
     {% for file in files %}
         <li class="relative text-xl/8 fr-pb-6v fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/file-add.svg')]">
             <p class="text-xl/8 fr-mb-1v">{{ 'pel.attachment'|trans }}</p>
-            {% if is_pdf is defined and is_pdf is same as(true) %}
                 <div class="text-lg/6">
                     {{ file.name }}
                 </div>
-            {% else %}
-                <a class="fr-link fr-link--download text-lg/6" download href="{{ path('file_download', {'fileName':file.path, 'originalName':file.name}) }}">
-                    {{ file.name }}<span class="fr-icon-file-text-line" aria-hidden="true"></span>
-                </a>
-            {% endif %}
         </li>
     {% endfor %}
 {% endmacro %}

@@ -173,26 +173,20 @@ Feature:
     And I fill in "objects_objects_1_amount" with "100"
     And I attach the file "blank.pdf" to "object-files-1" field
     Then I should see "blank.pdf"
-    And I should see 2 ".fr-link--download" element
     When I press "objects_submit"
     Then I should be on "/porter-plainte/informations-complementaires"
     When I follow "Étape précédente"
     Then I should see "blank.pdf"
-    And I should see 2 ".fr-link--download" element
     And I should see 2 "a[id^=file-remove]" element
     And I follow "file-remove-0-0"
-    Then I should see 1 ".fr-link--download" element
     And I should see 1 "a[id^=file-remove]" element
     When I attach the file "blank.pdf" to "object-files-0" field
-    Then I should see 2 ".fr-link--download" element
     And I should see 2 "a[id^=file-remove]" element
     When I press "objects_objects_add"
     And I attach the file "blank.pdf" to "object-files-2" field
     And I wait 500 ms
-    Then I should see 3 ".fr-link--download" element
     And I should see 3 "a[id^=file-remove]" element
     When I follow "file-remove-2-0"
-    Then I should see 2 ".fr-link--download" element
     And I should see 2 "a[id^=file-remove]" element
 
   Scenario: Upload a file with a forbidden file extension
