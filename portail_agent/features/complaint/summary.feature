@@ -43,7 +43,7 @@ Feature:
         And I should see a "nav" element
         And I should see a "main" element
         And I should see the key "pel.declaration.number" translated
-        And I should see "PEL-2023-00000091"
+        And I should see "2300000091"
         And I should see the key "pel.status" translated
         And I should see "À attribuer"
         And I should see the key "pel.alert" translated
@@ -422,7 +422,7 @@ Feature:
         Given I am authenticated with PR5KTZ9C from GN
         And I am on the homepage
         When I click the "#notifications-dropdown" element
-        Then I should see "La déclaration PEL-2023-00000093 vient de vous être attribuée"
+        Then I should see "La déclaration 2300000093 vient de vous être attribuée"
 
     @javascript
     Scenario: I can submit the reassign form successfully
@@ -464,7 +464,7 @@ Feature:
 #        When I am authenticated with ZSBVHOAY from PN
 #        And I am on the homepage
 #        When I click the "#notifications-dropdown" element
-#        Then I should see "La déclaration PEL-2023-00000101 a été réorientée vers votre unité"
+#        Then I should see "La déclaration 2300000101 a été réorientée vers votre unité"
 #        When I am on "/plainte/recapitulatif/101"
 #        Then I should see a "#comment-title" element
 #        And I should see the key "pel.comment.unit.reassignment.reason" translated
@@ -485,8 +485,8 @@ Feature:
 #        Then I am authenticated with PR5KTZ9R from GN
 #        And I am on the homepage
 #        When I click the "#notifications-dropdown" element
-#        Then I should see "Philippe RIVIERE vient de vous adresser une demande de réorientation vers autre service PEL-2023-00000110"
-#        When I follow "Philippe RIVIERE vient de vous adresser une demande de réorientation vers autre service PEL-2023-00000110"
+#        Then I should see "Philippe RIVIERE vient de vous adresser une demande de réorientation vers autre service 2300000110"
+#        When I follow "Philippe RIVIERE vient de vous adresser une demande de réorientation vers autre service 2300000110"
 #        Then I should be on "/plainte/recapitulatif/110?showUnitReassignmentValidationModal=1"
 #        And I should see a ".modal[aria-modal=true]" element
 #        When I press "Accepter la demande de réorientation"
@@ -497,8 +497,8 @@ Feature:
 #        Given I am authenticated with PR5KTQSD from GN
 #        And I am on the homepage
 #        When I click the "#notifications-dropdown" element
-#        Then I should see "Thomas DURAND vient de valider votre demande de réorientation vers un autre service pour la déclaration PEL-2023-00000110"
-#        When I follow "Thomas DURAND vient de valider votre demande de réorientation vers un autre service pour la déclaration PEL-2023-00000110"
+#        Then I should see "Thomas DURAND vient de valider votre demande de réorientation vers un autre service pour la déclaration 2300000110"
+#        When I follow "Thomas DURAND vient de valider votre demande de réorientation vers un autre service pour la déclaration 2300000110"
 #        Then I should be on "/"
 
 #    @javascript
@@ -517,8 +517,8 @@ Feature:
 #        Then I am authenticated with PR5KTZ9R from GN
 #        And I am on the homepage
 #        When I click the "#notifications-dropdown" element
-#        Then I should see "Philippe RIVIERE vient de vous adresser une demande de réorientation vers autre service PEL-2023-00000110"
-#        When I follow "Philippe RIVIERE vient de vous adresser une demande de réorientation vers autre service PEL-2023-00000110"
+#        Then I should see "Philippe RIVIERE vient de vous adresser une demande de réorientation vers autre service 2300000110"
+#        When I follow "Philippe RIVIERE vient de vous adresser une demande de réorientation vers autre service 2300000110"
 #        Then I should be on "/plainte/recapitulatif/110?showUnitReassignmentValidationModal=1"
 #        And I should see a ".modal[aria-modal=true]" element
 #        And I fill in "unit_reassign_unitReassignText" with "Je refuse cette réorientation."
@@ -530,8 +530,8 @@ Feature:
 #        Given I am authenticated with PR5KTQSD from GN
 #        And I am on the homepage
 #        When I click the "#notifications-dropdown" element
-#        Then I should see "Thomas DURAND vient de refuser votre demande de réorientation vers un autre service pour la déclaration PEL-2023-00000110"
-#        When I follow "Thomas DURAND vient de refuser votre demande de réorientation vers un autre service pour la déclaration PEL-2023-00000110"
+#        Then I should see "Thomas DURAND vient de refuser votre demande de réorientation vers un autre service pour la déclaration 2300000110"
+#        When I follow "Thomas DURAND vient de refuser votre demande de réorientation vers un autre service pour la déclaration 2300000110"
 #        Then I should be on "/plainte/recapitulatif/110"
 
     @func
@@ -587,7 +587,7 @@ Feature:
         And I should see the key "pel.the.declaration.has.been.self.assigned" translated
         And I should see "La déclaration vous a bien été attribuée"
         Given I am on "/"
-        Then I should see "PEL-2023-00000093"
+        Then I should see "2300000093"
 
     @javascript
     Scenario: I can't self assign a declaration as a supervisor when the declaration is already assigned

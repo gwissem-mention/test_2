@@ -164,7 +164,7 @@ class ComplaintReassignementerTest extends TestCase
             ->setTest(true)
             ->setAppointmentDate(new \DateTimeImmutable('2022-12-03'))
             ->setStatus(Complaint::STATUS_ASSIGNMENT_PENDING)
-            ->setDeclarationNumber('PEL-2022-'.str_pad('1', 8, '0', STR_PAD_LEFT))
+            ->setDeclarationNumber('22'.str_pad('1', 8, '0', STR_PAD_LEFT))
             ->setAlert('Alert de test trop longue')
             ->setIdentity(new Identity())
             ->setConsentContactEmail(true)
@@ -229,7 +229,7 @@ class ComplaintReassignementerTest extends TestCase
     {
         return [
             'declaration' => [
-                'declarationNumber' => 'PEL-2022-00000001',
+                'declarationNumber' => '2200000001',
                 'declarationStatus' => 'pel.assignment.pending',
                 'declarationDate' => new \DateTimeImmutable('2022-12-01'),
                 'refusalReason' => null,

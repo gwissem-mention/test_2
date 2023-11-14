@@ -8,8 +8,8 @@ class ComplaintNumberGenerator implements ComplaintNumberGeneratorInterface
 {
     public function generate(int $index): string
     {
-        $year = date('Y');
+        $year = date('y');
 
-        return 'PEL-'.$year.'-'.str_pad((string) $index, 8, '0', STR_PAD_LEFT);
+        return $year.str_pad((string) $index, 8, '0', STR_PAD_LEFT);
     }
 }

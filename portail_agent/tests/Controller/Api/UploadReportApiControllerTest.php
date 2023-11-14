@@ -41,7 +41,7 @@ class UploadReportApiControllerTest extends WebTestCase
 
         $this->client->request(
             'PUT',
-            '/api/complaint/PEL-2023-00000112/lrp-upload',
+            '/api/complaint/2300000112/lrp-upload',
             [],
             [],
             [
@@ -65,7 +65,7 @@ class UploadReportApiControllerTest extends WebTestCase
 
         $this->client->request(
             'PUT',
-            '/api/complaint/PEL-2023-00000120/lrp-upload',
+            '/api/complaint/2300000120/lrp-upload',
             [],
             [],
             [
@@ -109,7 +109,7 @@ class UploadReportApiControllerTest extends WebTestCase
 
         $this->client->request(
             'PUT',
-            '/api/complaint/PEL-2023-00000125/lrp-upload',
+            '/api/complaint/2300000125/lrp-upload',
             [],
             [],
             [
@@ -132,7 +132,7 @@ class UploadReportApiControllerTest extends WebTestCase
 
         $this->client->request(
             'PUT',
-            '/api/complaint/PEL-2023-00000030/lrp-upload',
+            '/api/complaint/2300000030/lrp-upload',
             [],
             [],
             [
@@ -155,7 +155,7 @@ class UploadReportApiControllerTest extends WebTestCase
 
         $this->client->request(
             'PUT',
-            '/api/complaint/PEL-2023-00000030/lrp-upload',
+            '/api/complaint/2300000030/lrp-upload',
             [],
             [],
             [
@@ -177,7 +177,7 @@ class UploadReportApiControllerTest extends WebTestCase
 
         $this->client->request(
             'PUT',
-            '/api/complaint/PEL-2023-00000030/lrp-upload',
+            '/api/complaint/2300000030/lrp-upload',
             [],
             [],
             [
@@ -199,7 +199,7 @@ class UploadReportApiControllerTest extends WebTestCase
 
         $this->client->request(
             'PUT',
-            '/api/complaint/PEL-2023-00000030/lrp-upload',
+            '/api/complaint/2300000030/lrp-upload',
             [],
             [],
             [
