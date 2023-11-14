@@ -60,7 +60,7 @@ Feature:
     @javascript
     Scenario: I can click on a complaint link on the table
         Given I am on the homepage
-        When I follow "PEL-2023-00000091"
+        When I follow "2300000091"
         And I go to the tab 2
         Then I should be on "/plainte/recapitulatif/91"
 
@@ -69,11 +69,11 @@ Feature:
         Given I am authenticated with WTDAXALL from PN
         And I am on the homepage
         When I click the "#notifications-dropdown" element
-        Then I should see "La déclaration PEL-2023-00000011 vient de vous être attribuée"
-        When I follow "La déclaration PEL-2023-00000011 vient de vous être attribuée"
+        Then I should see "La déclaration 2300000011 vient de vous être attribuée"
+        When I follow "La déclaration 2300000011 vient de vous être attribuée"
         Then I should be on "/plainte/recapitulatif/11"
         When I click the "#notifications-dropdown" element
-        Then I should not see "La déclaration PEL-2023-00000011 vient de vous être attribuée"
+        Then I should not see "La déclaration 2300000011 vient de vous être attribuée"
 
     @javascript
     Scenario: I should see a table datatables of 26 entries
@@ -180,18 +180,18 @@ Feature:
         When I click the "#my-declaration" element
         Then I should see 21 "table#datatable tr" element
         And I should see 9 "table#datatable th" element
-        And I should not see "PEL-2023-00000001"
-        And I should not see "PEL-2023-00000003"
-        And I should not see "PEL-2023-00000005"
-        And I should not see "PEL-2023-00000008"
-        And I should not see "PEL-2023-00000010"
-        And I should see "PEL-2023-00000011"
-        And I should see "PEL-2023-00000015"
-        And I should see "PEL-2023-00000018"
-        And I should see "PEL-2023-00000021"
-        And I should see "PEL-2023-00000025"
-        And I should see "PEL-2023-00000027"
-        And I should see "PEL-2023-00000030"
+        And I should not see "2300000001"
+        And I should not see "2300000003"
+        And I should not see "2300000005"
+        And I should not see "2300000008"
+        And I should not see "2300000010"
+        And I should see "2300000011"
+        And I should see "2300000015"
+        And I should see "2300000018"
+        And I should see "2300000021"
+        And I should see "2300000025"
+        And I should see "2300000027"
+        And I should see "2300000030"
         And I should see the key "pel.to.process" translated
         And I should see 10 "table#datatable .background-blue" element
         And I should see 10 "table#datatable .background-yellow" element
@@ -202,13 +202,13 @@ Feature:
         And I am on the homepage
         Then I should see 26 "table#datatable tr" element
         And I should see 10 "table#datatable th" element
-        And I should see "PEL-2023-00000001"
-        And I should see "PEL-2023-00000003"
-        And I should see "PEL-2023-00000005"
-        And I should see "PEL-2023-00000008"
-        And I should see "PEL-2023-00000010"
-        And I should see "PEL-2023-00000011"
-        And I should see "PEL-2023-00000014"
+        And I should see "2300000001"
+        And I should see "2300000003"
+        And I should see "2300000005"
+        And I should see "2300000008"
+        And I should see "2300000010"
+        And I should see "2300000011"
+        And I should see "2300000014"
 
     @javascript
     Scenario: I can search complaints
