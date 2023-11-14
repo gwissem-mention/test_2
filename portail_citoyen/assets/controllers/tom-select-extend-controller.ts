@@ -83,7 +83,6 @@ export default class extends Controller {
         const targetDiv = parentElement?.querySelector("div[data-ts-item]");
         if (targetDiv) {
             targetDiv.setAttribute("aria-hidden", "true");
-            targetDiv.nextElementSibling?.setAttribute("aria-hidden", "true");
         }
     }
 }
