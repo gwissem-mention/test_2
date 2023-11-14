@@ -48,6 +48,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         /** @var Identity $identity */
         $identity = $complaint->getIdentity();
         $complaint
+            ->setDeclarationNumber('PEL-2023-00000001')
             ->setIdentity(
                 $identity->setDeclarantStatus(Identity::DECLARANT_STATUS_CORPORATION_LEGAL_REPRESENTATIVE)
             )
@@ -135,8 +136,6 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Personne_Residence_Adresse>15 rue PAIRA, Meudon, 92190</Personne_Residence_Adresse>', $this->xmlContent);
         $this->assertStringContainsString('<Personne_Residence_Lieu>FRANCE, MEUDON, 15 rue PAIRA, Meudon, 92190</Personne_Residence_Lieu>', $this->xmlContent);
         $this->assertStringContainsString('<Personne_Naissance_Lieu>MEUDON 92190 (France)</Personne_Naissance_Lieu>', $this->xmlContent);
-        $this->assertStringContainsString('<France_Connect>Oui</France_Connect>', $this->xmlContent);
-        $this->assertStringContainsString('<Profession_INSEE_PEL>Etudiant</Profession_INSEE_PEL>', $this->xmlContent);
         $this->assertStringContainsString('</Personne>', $this->xmlContent);
     }
 
@@ -196,7 +195,6 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Personne_Morale_Residence_RueNom>Rue PAIRA</Personne_Morale_Residence_RueNom>', $this->xmlContentWithCorporationRepresented);
         $this->assertStringContainsString('<Personne_Morale_Residence_Adresse>15 rue PAIRA, Meudon, 92190</Personne_Morale_Residence_Adresse>', $this->xmlContentWithCorporationRepresented);
         $this->assertStringContainsString('<Personne_Morale_Residence_Lieu>FRANCE, MEUDON, 15 rue PAIRA, Meudon, 92190</Personne_Morale_Residence_Lieu>', $this->xmlContentWithCorporationRepresented);
-        $this->assertStringContainsString('<Mail_Personne_Morale>pdg@netflix.com</Mail_Personne_Morale>', $this->xmlContentWithCorporationRepresented);
         $this->assertStringContainsString('</Personne_Morale>', $this->xmlContentWithCorporationRepresented);
     }
 
@@ -456,6 +454,12 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Tel_Domicile_Declarant>+33123456789</Tel_Domicile_Declarant>', $this->xmlContent);
         //        $this->assertStringContainsString('<Tel_Bureau_Declarant>09 01 02 03 04</Tel_Bureau_Declarant>', $this->xmlContent);
         $this->assertStringContainsString('<Tel_Portable_Declarant>+33612344557</Tel_Portable_Declarant>', $this->xmlContent);
+        $this->assertStringContainsString('<Numero_PEL>PEL-2022-00000001</Numero_PEL>', $this->xmlContent);
+        $this->assertStringContainsString('<GDH_Validation_PEL>01/12/2022 00:00:00</GDH_Validation_PEL>', $this->xmlContent);
+        $this->assertStringContainsString('<France_Connect>Oui</France_Connect>', $this->xmlContent);
+        $this->assertStringContainsString('<Profession_INSEE_PEL>Boulanger</Profession_INSEE_PEL>', $this->xmlContent);
+        $this->assertStringContainsString('<Mail_Personne_Morale>pdg@netflix.com</Mail_Personne_Morale>', $this->xmlContentWithCorporationRepresented);
+
         //        $this->assertStringContainsString('<Choix_Rendez_Vous>03/12/2022 00h</Choix_Rendez_Vous>', $this->xmlContent);
         //        $this->assertStringContainsString('<Creaneau_Contact>08H-12H</Creaneau_Contact>', $this->xmlContent);
         //        $this->assertStringContainsString('<Periode_Contact>Si possible entre 10h et 11h</Periode_Contact>', $this->xmlContent);

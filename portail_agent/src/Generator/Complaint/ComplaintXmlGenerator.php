@@ -47,12 +47,12 @@ class ComplaintXmlGenerator implements ComplaintGeneratorInterface
         $xml = $this->arrayToXml($xml, (new FlagDTO($complaint, $unit))->getArray());
 
         if (($identity = $complaint->getIdentity()) && Identity::DECLARANT_STATUS_VICTIM === $identity->getDeclarantStatus()) {
-            $xml = $this->arrayToXml($xml, (new PersonDTO($identity, $complaint))->getArray());
+            $xml = $this->arrayToXml($xml, (new PersonDTO($identity))->getArray());
         } elseif ($identity && Identity::DECLARANT_STATUS_PERSON_LEGAL_REPRESENTATIVE === $identity->getDeclarantStatus() && ($victimIdentity = $complaint->getPersonLegalRepresented())) {
-            $xml = $this->arrayToXml($xml, (new PersonDTO($victimIdentity, $complaint))->getArray());
+            $xml = $this->arrayToXml($xml, (new PersonDTO($victimIdentity))->getArray());
             $xml = $this->arrayToXml($xml, (new PersonLegalRepresentativeDTO($identity))->getArray());
         } elseif ($identity && Identity::DECLARANT_STATUS_CORPORATION_LEGAL_REPRESENTATIVE === $identity->getDeclarantStatus() && ($corporation = $complaint->getCorporationRepresented())) {
-            $xml = $this->arrayToXml($xml, (new PersonDTO($identity, $complaint))->getArray());
+            $xml = $this->arrayToXml($xml, (new PersonDTO($identity))->getArray());
             $xml = $this->arrayToXml($xml, (new CorporationRepresentedDTO($corporation, $identity))->getArray());
         }
         if ($complaint->getFacts()) {
