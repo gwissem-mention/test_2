@@ -24,8 +24,6 @@ class FlagDTO
     //    private string $tcHome;
     //    private string $tcFacts;
     //    private ?string $unitCodeTcFacts;
-    private string $declarationNumber;
-    private string $createdAt;
 
     public function __construct(Complaint $complaint, Unit $unit)
     {
@@ -44,8 +42,6 @@ class FlagDTO
         //        $this->tcHome = strval($complaint->getTcHome()); // TODO : Still don't know what it is
         //        $this->tcFacts = strval($complaint->getTcFacts()); // TODO : Still don't know what it is
         //        $this->unitCodeTcFacts = strval($complaint->getUnitCodeTcFacts()); // TODO : Still don't know what it is
-        $this->declarationNumber = $complaint->getDeclarationNumber();
-        $this->createdAt = $complaint->getCreatedAt()?->format('d/m/Y H:i:s') ?? '';
     }
 
     /**
@@ -66,8 +62,6 @@ class FlagDTO
             'unite_adr' => $this->unitAddress,
             'unite_tph' => $this->unitPhone,
             'unite_institution' => $this->unitInstitution,
-            'Numero_PEL' => $this->declarationNumber,
-            'GDH_Validation_PEL' => $this->createdAt,
 //            'TC_Domicile' => $this->tcHome,
 //            'TC_Faits' => $this->tcFacts,
 //            'Code_Unite_TC_Faits' => $this->unitCodeTcFacts,

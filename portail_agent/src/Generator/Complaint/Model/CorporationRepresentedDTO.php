@@ -27,8 +27,6 @@ class CorporationRepresentedDTO
     private string $street;
     private string $address;
     private string $place;
-    private string $phone;
-    private string $email;
     private string $sameAddressAsDeclarant;
 
     public function __construct(Corporation $corporation, Identity $identity)
@@ -38,7 +36,6 @@ class CorporationRepresentedDTO
         $this->nicNumber = $corporation->getSiretNumber() ? substr($corporation->getSiretNumber(), 9) : '';
         $this->companyName = $corporation->getCompanyName() ?? '';
         $this->implication = $corporation->getDeclarantPosition() ?? '';
-        $this->phone = $corporation->getPhone() ?? '';
         $this->nationality = $corporation->getNationality() ?? '';
         $hasSameAddressAsDeclarant = $corporation->hasSameAddressAsDeclarant();
         $this->country = (string) (true === $hasSameAddressAsDeclarant ? $identity->getAddressCountry() : $corporation->getCountry());
@@ -53,7 +50,6 @@ class CorporationRepresentedDTO
         $this->street = (string) (true === $hasSameAddressAsDeclarant ? $identity->getAddressStreet() : $corporation->getStreet());
         $this->address = (string) (true === $hasSameAddressAsDeclarant ? $identity->getAddress() : $corporation->getAddress());
         $this->place = ($this->country ? strtoupper($this->country).', ' : '').($this->city ? strtoupper($this->city).', ' : '').($this->address ?: '');
-        $this->email = $corporation->getContactEmail() ?? '';
         $this->sameAddressAsDeclarant = $hasSameAddressAsDeclarant ? 'Oui' : 'Non';
     }
 
@@ -69,7 +65,6 @@ class CorporationRepresentedDTO
             'Personne_Morale_Siren' => $this->sirenNumber,
             'Personne_Morale_NIC' => $this->nicNumber,
             'Personne_Morale_Implication' => $this->implication,
-            'Tel_Bureau_Declarant' => $this->phone,
             'Personne_Morale_Nationalite' => $this->nationality,
             'Personne_Morale_Secteur' => '',
             'Personne_Morale_Juridique' => '',
@@ -86,7 +81,6 @@ class CorporationRepresentedDTO
             'Personne_Morale_Residence_Adresse' => $this->address,
             'Personne_Morale_Residence_Lieu' => $this->place,
             'Personne_Morale_Residence_Identique' => $this->sameAddressAsDeclarant,
-            'Mail_Personne_Morale' => $this->email,
         ]];
     }
 }

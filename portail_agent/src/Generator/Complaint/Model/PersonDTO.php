@@ -4,21 +4,16 @@ declare(strict_types=1);
 
 namespace App\Generator\Complaint\Model;
 
-use App\Entity\Complaint;
 use App\Entity\Identity;
 
 class PersonDTO extends AbstractIdentityDTO
 {
     //    private ?string $relationship;
     private ?string $implication;
-    private string $franceConnected;
-    private string $job;
 
-    public function __construct(Identity $identity, Complaint $complaint)
+    public function __construct(Identity $identity)
     {
         parent::__construct($identity);
-        $this->franceConnected = $complaint->isFranceConnected() ? 'Oui' : 'Non';
-        $this->job = $identity->getJob() ?? '';
 
         //        $this->relationship = $identity->getRelationshipWithVictime();
         $this->implication = Identity::DECLARANT_STATUS_VICTIM === $identity->getDeclarantStatus() ? 'victime' : (Identity::DECLARANT_STATUS_PERSON_LEGAL_REPRESENTATIVE === $identity->getDeclarantStatus() ? 'physique' : (Identity::DECLARANT_STATUS_CORPORATION_LEGAL_REPRESENTATIVE === $identity->getDeclarantStatus() ? 'morale' : null));
@@ -60,8 +55,6 @@ class PersonDTO extends AbstractIdentityDTO
             'Personne_Residence_Adresse' => $this->address,
             'Personne_Residence_Lieu' => $this->homePlace,
             'Personne_Naissance_Lieu' => $this->birthplace,
-            'France_Connect' => $this->franceConnected,
-            'Profession_INSEE_PEL' => $this->job,
         ]];
     }
 }

@@ -20,6 +20,12 @@ class ContactDTO
     private string $consTel;
     private string $consEmail;
     private string $consPortalis;
+    private string $declarationNumber;
+    private string $createdAt;
+    private string $franceConnected;
+    private string $job;
+    private string $email;
+    private string $phone;
 
     public function __construct(Complaint $complaint)
     {
@@ -36,6 +42,12 @@ class ContactDTO
         $this->consTel = true === $complaint->isConsentContactSMS() ? 'Oui' : 'Non';
         $this->consEmail = true === $complaint->isConsentContactEmail() ? 'Oui' : 'Non';
         $this->consPortalis = true === $complaint->isConsentContactPortal() ? 'Oui' : 'Non';
+        $this->declarationNumber = $complaint->getDeclarationNumber();
+        $this->createdAt = $complaint->getCreatedAt()?->format('d/m/Y H:i:s') ?? '';
+        $this->franceConnected = $complaint->isFranceConnected() ? 'Oui' : 'Non';
+        $this->job = $complaint->getIdentity()?->getJob() ?? '';
+        $this->email = $complaint->getCorporationRepresented()?->getContactEmail() ?? '';
+        $this->phone = $complaint->getCorporationRepresented()?->getPhone() ?? '';
     }
 
     /**
@@ -56,6 +68,12 @@ class ContactDTO
             'CONS_Tel' => $this->consTel,
             'CONS_Mail' => $this->consEmail,
             'CONS_Portalis' => $this->consPortalis,
+            'Numero_PEL' => $this->declarationNumber,
+            'GDH_Validation_PEL' => $this->createdAt,
+            'France_Connect' => $this->franceConnected,
+            'Profession_INSEE_PEL' => $this->job,
+            'Mail_Personne_Morale' => $this->email,
+            'Tel_Bureau_Declarant' => $this->phone,
         ]];
     }
 }
