@@ -153,7 +153,10 @@ export default class extends Controller {
                         autocompleteWrapper.setAttribute("role", "listbox");
                         autocompleteWrapper.setAttribute("id", "list-map-search");
                         const autocompleteItems = autocompleteWrapper.querySelectorAll(".pac-item");
-                        autocompleteItems.forEach(item => item.setAttribute("role", "option"));
+                        autocompleteItems.forEach(item => {
+                            item.setAttribute("role", "option");
+                            item.querySelectorAll(".pac-icon").forEach(el => el.setAttribute("aria-hidden", "true"));
+                        });
                     }
                 }
             }
