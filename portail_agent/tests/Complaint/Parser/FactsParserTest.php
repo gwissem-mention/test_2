@@ -302,7 +302,6 @@ JSON;
 {
 	"address":
 	{
-		"addressOrRouteFactsKnown": false,
 		"addressAdditionalInformation": "Additional information",
 		"startAddress":
 		{
@@ -410,7 +409,6 @@ JSON;
         $this->assertEquals('Amiens', $facts->getStartAddressCity());
         $this->assertEquals('80000', $facts->getStartAddressPostalCode());
         $this->assertEquals('80021', $facts->getStartAddressInseeCode());
-        $this->assertTrue($facts->isExactPlaceUnknown());
         $this->assertEquals('France', $facts->getEndAddressCountry());
         $this->assertEquals('80', $facts->getEndAddressDepartment());
         $this->assertEquals(80, $facts->getEndAddressDepartmentNumber());
@@ -428,7 +426,6 @@ JSON;
 {
 	"address":
 	{
-		"addressOrRouteFactsKnown": false,
 		"addressAdditionalInformation": "Additional information",
 		"startAddress":
         {
@@ -497,7 +494,6 @@ JSON;
         $this->assertEmpty($facts->getStartAddressCity());
         $this->assertEmpty($facts->getStartAddressPostalCode());
         $this->assertEmpty($facts->getStartAddressInseeCode());
-        $this->assertTrue($facts->isExactPlaceUnknown());
         $this->assertEquals('France', $facts->getEndAddressCountry());
         $this->assertNull($facts->getEndAddressDepartment());
         $this->assertNull($facts->getEndAddressDepartmentNumber());
@@ -515,7 +511,6 @@ JSON;
 {
 	"address":
 	{
-		"addressOrRouteFactsKnown": false,
 		"addressAdditionalInformation": "Additional information",
 		"startAddress":
 		{
@@ -627,7 +622,6 @@ JSON;
         $this->assertEquals('Amiens', $facts->getStartAddressCity());
         $this->assertEquals('80000', $facts->getStartAddressPostalCode());
         $this->assertEquals('80021', $facts->getStartAddressInseeCode());
-        $this->assertTrue($facts->isExactPlaceUnknown());
         $this->assertSame('+33 612389328', $facts->getCallingPhone());
     }
 
@@ -640,7 +634,6 @@ JSON;
 {
 	"address":
 	{
-		"addressOrRouteFactsKnown": false,
 		"addressAdditionalInformation": "Additional information",
 		"startAddress":
 		{
@@ -748,7 +741,6 @@ JSON;
         $this->assertEquals('Amiens', $facts->getStartAddressCity());
         $this->assertEquals('80000', $facts->getStartAddressPostalCode());
         $this->assertEquals('80021', $facts->getStartAddressInseeCode());
-        $this->assertTrue($facts->isExactPlaceUnknown());
         $this->assertSame('www.google.com', $facts->getWebsite());
     }
 }

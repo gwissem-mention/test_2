@@ -39,29 +39,11 @@ class FactsType extends AbstractType
     private const NATURE_PLACE_OTHER_PROFESSIONAL_PLACE = 'Autres lieux professionnels';
     private const NATURE_PLACE_VEHICLE = 'Véhicule terrestre';
 
-    private const NATURES_PLACES_ADDRESS_OR_ROUTE_FACTS_KNOWN_NOT_DISPLAYED = [
-        self::NATURE_PLACE_PARKING,
-        self::NATURE_PLACE_WORSHIP,
-        self::NATURE_PLACE_LEISURE,
-        self::NATURE_PLACE_SCHOOL,
-        self::NATURE_PLACE_HOME,
-        self::NATURE_PLACE_TRANSPORTS,
-        self::NATURE_PLACE_PUBLIC_ROAD,
-        self::NATURE_PLACE_MARKET,
-        self::NATURE_PLACE_BAR_RESTAURANT,
-        self::NATURE_PLACE_HEALTH_CENTER,
-        self::NATURE_PLACE_ADMINISTRATIVE_CENTER,
-        self::NATURE_PLACE_OTHER_PROFESSIONAL_PLACE,
-        self::NATURE_PLACE_VEHICLE,
-    ];
-
-    private const NATURES_PLACES_ADDRESSES_NOT_DISPLAYED = [
+    // For other uses
+    private const NATURES_PLACES_START_ADDRESS_NOT_DISPLAYED = [
         self::NATURE_PLACE_TELEPHONE,
         self::NATURE_PLACE_INTERNET,
     ];
-
-    // For other uses
-    private const NATURES_PLACES_START_ADDRESS_NOT_DISPLAYED = [];
 
     private const NATURES_PLACES_END_ADDRESS_NOT_DISPLAYED = [
         self::NATURE_PLACE_PARKING,
@@ -76,6 +58,8 @@ class FactsType extends AbstractType
         self::NATURE_PLACE_ADMINISTRATIVE_CENTER,
         self::NATURE_PLACE_OTHER_PROFESSIONAL_PLACE,
         self::NATURE_PLACE_VEHICLE,
+        self::NATURE_PLACE_TELEPHONE,
+        self::NATURE_PLACE_INTERNET,
     ];
 
     public function __construct(
@@ -188,10 +172,8 @@ class FactsType extends AbstractType
             'nature_place' => $naturePlace?->getLabel(),
             'start_address_label' => $startAddressLabel,
             'end_address_label' => $endAddressLabel,
-            'address_or_route_facts_known_show' => null === $naturePlace || !in_array($naturePlace->getLabel(), self::NATURES_PLACES_ADDRESS_OR_ROUTE_FACTS_KNOWN_NOT_DISPLAYED),
-            'addresses_show' => null === $naturePlace || !in_array($naturePlace->getLabel(), self::NATURES_PLACES_ADDRESSES_NOT_DISPLAYED),
-            'start_address_show' => null === $naturePlace || !in_array($naturePlace->getLabel(), self::NATURES_PLACES_START_ADDRESS_NOT_DISPLAYED),
-            'end_address_show' => null === $naturePlace || !in_array($naturePlace->getLabel(), self::NATURES_PLACES_END_ADDRESS_NOT_DISPLAYED),
+            'start_address_show' => null !== $naturePlace && !in_array($naturePlace->getLabel(), self::NATURES_PLACES_START_ADDRESS_NOT_DISPLAYED, true),
+            'end_address_show' => null !== $naturePlace && !in_array($naturePlace->getLabel(), self::NATURES_PLACES_END_ADDRESS_NOT_DISPLAYED, true),
         ]);
     }
 

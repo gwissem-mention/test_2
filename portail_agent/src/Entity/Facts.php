@@ -32,9 +32,6 @@ class Facts
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\Column]
-    private ?bool $exactPlaceUnknown = null;
-
     #[ORM\Column(length: 255)]
     private ?string $place = null;
 
@@ -352,18 +349,6 @@ class Facts
     public function setStartAddressInseeCode(?string $startAddressInseeCode): self
     {
         $this->startAddressInseeCode = $startAddressInseeCode;
-
-        return $this;
-    }
-
-    public function isExactPlaceUnknown(): ?bool
-    {
-        return $this->exactPlaceUnknown;
-    }
-
-    public function setExactPlaceUnknown(?bool $exactPlaceUnknown): self
-    {
-        $this->exactPlaceUnknown = $exactPlaceUnknown;
 
         return $this;
     }

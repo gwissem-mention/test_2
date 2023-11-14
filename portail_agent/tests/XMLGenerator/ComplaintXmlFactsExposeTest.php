@@ -66,7 +66,6 @@ class ComplaintXmlFactsExposeTest extends TestCase
                     ->setNatures([Facts::NATURE_ROBBERY, Facts::NATURE_DEGRADATION])
                     ->setDescription('Je me suis fait voler mon portable.')
                     ->setExactDateKnown(true)
-                    ->setExactPlaceUnknown(true)
                     ->setStartDate(new \DateTimeImmutable('2022-12-01'))
                     ->setEndDate(new \DateTimeImmutable('2022-12-01'))
                     ->setPlace('TRAIN')

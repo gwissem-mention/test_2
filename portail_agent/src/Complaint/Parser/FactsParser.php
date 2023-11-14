@@ -14,7 +14,6 @@ use App\Entity\Facts;
  *      offenseDate: object,
  *      placeNature: string,
  *      address: object{
- *           addressOrRouteFactsKnown: bool,
  *           startAddress: object{
  *               label: string,
  *               city: string,
@@ -81,7 +80,6 @@ class FactsParser
         $factsParsed
             ->setNatures(array_unique($natures))
             ->setDescription($facts->description)
-            ->setExactPlaceUnknown(!$facts->address->addressOrRouteFactsKnown)
             ->setPlace($facts->placeNature)
             ->setExactDateKnown($facts->offenseDate->exactDateKnown)
             ->setStartDate($this->dateParser->parse($facts->offenseDate->startDate))
