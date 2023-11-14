@@ -318,7 +318,6 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                     ->setDescription('Le vol à eu lieu à mon domicile')
                     ->setExactDateKnown(true)
                     ->setStartDate(new \DateTimeImmutable('2022-12-01'))
-                    ->setExactPlaceUnknown(false)
                     ->setPlace('RESTAURANT')
                     ->setStartAddress('25 Avenue Georges Pompidou, Lyon, 69003')
                     ->setEndAddress('Place Charles Hernu, Villeurbanne, 69100')

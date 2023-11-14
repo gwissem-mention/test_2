@@ -192,7 +192,6 @@ class ComplaintFileParserTest extends KernelTestCase
 	{
 		"address":
 		{
-			"addressOrRouteFactsKnown": false,
 			"addressAdditionalInformation": "Additional information",
 			"startAddress":
 			{

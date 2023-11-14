@@ -109,24 +109,6 @@
         {% if form.website is defined %}
             {{ form_row(form.website) }}
         {% endif %}
-        {% if form.address.addressOrRouteFactsKnown is defined %}
-            <fieldset class="{{ html_classes('fr-fieldset', 'fr-input-group', 'fr-mb-6v','fr-mb-md-2v', {'fr-fieldset--inline': form.address.addressOrRouteFactsKnown.vars.inline is same as(true),'fr-fieldset--error': form.address.addressOrRouteFactsKnown.vars.errors is not empty}) }}" {% if form.address.addressOrRouteFactsKnown.vars.errors is not empty %} role="group" aria-labelledby="legend-{{ form.address.addressOrRouteFactsKnown.vars.id }} form-errors-{{ form.address.addressOrRouteFactsKnown.vars.id }}" {% endif %}>
-                <legend class="fr-fieldset__legend--regular fr-fieldset__legend fr-text--regular" id="legend-{{ form.address.addressOrRouteFactsKnown.vars.id }}">
-                    {{ form.address.addressOrRouteFactsKnown.vars.label|trans }}&nbsp;<span class="text-[var(--text-default-error)]">*</span>
-                </legend>
-                <div class="fr-fieldset__content">
-                    {% for child in form.address.addressOrRouteFactsKnown.children %}
-                        <div class="fr-radio-group">
-                            {{ form_widget(child) }}
-                            <label class="fr-label" for="{{ child.vars.id }}">
-                                {{ child.vars.label|trans }}
-                            </label>
-                        </div>
-                    {% endfor %}
-                </div>
-                {{ form_errors(form.address.addressOrRouteFactsKnown) }}
-            </fieldset>
-        {% endif %}
         <div id="error-message" class="fr-text--red-marianne font-bold"></div>
         {% if form.address.startAddress is defined %}
             {% set etalab_errors = [] %}
@@ -173,7 +155,9 @@
                 </div>
             </div>
         {% endif %}
-        {{ form_row(form.address.addressAdditionalInformation) }}
+        {% if form.address.addressAdditionalInformation is defined %}
+            {{ form_row(form.address.addressAdditionalInformation) }}
+        {% endif %}
     </div>
     <hr>
     <div class="fr-pt-4v fr-px-6v fr-pb-10v fr-pt-md-6v fr-px-md-20v">

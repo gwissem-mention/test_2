@@ -139,7 +139,6 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
             ],
             'facts' => [
                 'address' => [
-                    'addressOrRouteFactsKnown' => false,
                     'addressAdditionalInformation' => 'Additional information',
                     'startAddress' => [
                         'addressType' => 'etalab_address',
@@ -814,7 +813,6 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
     //            ],
     //            'facts' => [
     //                'address' => [
-    //                    'addressOrRouteFactsKnown' => false,
     //                    'addressAdditionalInformation' => 'Additional information',
     //                    'startAddress' => [
     //                        'addressType' => 'etalab_address',
@@ -1262,7 +1260,6 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
             ],
             'facts' => [
                 'address' => [
-                    'addressOrRouteFactsKnown' => false,
                     'addressAdditionalInformation' => 'Additional information',
                     'startAddress' => [
                         'addressType' => 'etalab_address',

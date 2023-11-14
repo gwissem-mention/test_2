@@ -250,16 +250,7 @@ export default class extends Controller {
         const id: string | null = etalabAddress ? etalabAddress.id : null;
 
         if (label) {
-            const addressKnownRadio: HTMLElement | null = document.getElementById("facts_address_addressOrRouteFactsKnown_0");
             const addressInput: HTMLElement | null = document.getElementById("facts-startAddress-address");
-
-            if (addressKnownRadio) {
-                // checked prop is not present in HTMLElement type
-                // @ts-ignore
-                addressKnownRadio.checked = true;
-                addressKnownRadio.dispatchEvent(new Event("change", {bubbles: true}));
-            }
-
             const componentParent: Component | null | undefined = this.component?.getParent();
 
             if (componentParent) {

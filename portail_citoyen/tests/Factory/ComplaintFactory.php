@@ -185,7 +185,6 @@ class ComplaintFactory
     {
         return (new FactsModel())
             ->setAddress((new FactAddressModel())
-                ->setAddressOrRouteFactsKnown(false)
                 ->setStartAddress($this->createAddressEtalab())
                 ->setEndAddress($this->createAddressEtalab())
                 ->setAddressAdditionalInformation('Additional information'))

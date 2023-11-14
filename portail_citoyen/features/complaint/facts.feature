@@ -20,6 +20,11 @@ Feature:
         And I press "identity_submit"
         Then I should be on "/porter-plainte/faits"
 
+    Scenario: When I load the form, I should not see the additional info field and the addresses fields
+        Then I should not see a "#facts-startAddress-address" element
+        And I should not see a "#facts-endAddress-address" element
+        And I should not see a "#facts_address_addressAdditionalInformation" element
+
     Scenario: I can click on the back button
         When I follow "Étape précédente"
         Then I should be on "/porter-plainte/identite"
@@ -100,18 +105,6 @@ Feature:
         And I should not see a "input#facts_offenseDate_endHour" element
         And I should not see a "input#facts_offenseDate_hour" element
 
-    Scenario: I can see 2 inputs text if I select "Yes" to addressOrRouteFactsKnown radio button
-        When I click the "label[for=facts_address_addressOrRouteFactsKnown_0]" element
-        Then I should see the key "pel.address.start.or.exact" translated
-        And I should see the key "pel.address.end" translated
-        And I should see a "input#facts-startAddress-address" element
-        And I should see a "input#facts-endAddress-address" element
-
-    Scenario: I should not see 2 inputs text if I select "No" to addressOrRouteFactsKnown radio button
-        When I click the "label[for=facts_address_addressOrRouteFactsKnown_1]" element
-        Then I should not see the key "pel.address.start.or.exact" translated
-        And I should not see the key "pel.address.end" translated
-
     Scenario: Submit the facts form
         When I fill in "facts_description" with "description informations lorem ipsum dol or sit amet lorem ipsum dol or sit amet"
         And I select "1" from "facts_placeNature"
@@ -153,7 +146,7 @@ Feature:
         And I fill in "facts_offenseDate_endHour" with "13:00"
         Then I should see the key "pel.start.hour.same.as.end.hour" translated
 
-    Scenario: The field start address should be filled with identity address when place nature is home and addressOrRouteFactsKnown is checked
+    Scenario: The field start address should be filled with identity address when place nature is home
         And I select "1" from "facts_placeNature"
         Then the "facts-startAddress-address" field should contain "Avenue de la République 33000 Bordeaux"
 
@@ -176,10 +169,9 @@ Feature:
         And I fill in the map autocomplete "map-search" with "6 Place Rohan 33000 Bordeaux" and click on the first result
         Then the marker should be at latitude "44.8375989" and longitude "-0.5792686"
 
-    Scenario: The callingPhone field should appear, the addressOrRouteFactsKnown / start address and end address should not be displayed when I select "Téléphone" as place nature
+    Scenario: The callingPhone field should appear, the start address and end address should not be displayed when I select "Téléphone" as place nature
         And I select "3" from "facts_placeNature"
-        Then I should not see a "label[for=facts_address_addressOrRouteFactsKnown_0]" element
-        And I should not see a "input#facts-startAddress-address" element
+        Then I should not see a "input#facts-startAddress-address" element
         And I should not see a "input#facts-endAddress-address" element
         And I should see a "input#facts_callingPhone_number" element
         And I should not see a "div#facts-map" element
@@ -195,15 +187,12 @@ Feature:
         And I should see a ".gm-style" element
         And I should see the key "pel.address.exact" translated
         And I should see a "#facts-startAddress-address" element
-        And I should not see a "label[for=facts_address_addressOrRouteFactsKnown_0]" element
-        And I should not see a "label[for=facts_address_addressOrRouteFactsKnown_1]" element
         And I should not see the key "pel.address.start.or.exact" translated
         And I should not see a "#facts-endAddress-address" element
 
-    Scenario: The website field should appear, the addressOrRouteFactsKnown / start address and end address should not be displayed when I select "Internet" as place nature
+    Scenario: The website field should appear, the start address and end address should not be displayed when I select "Internet" as place nature
         And I select "5" from "facts_placeNature"
-        Then I should not see a "label[for=facts_address_addressOrRouteFactsKnown_0]" element
-        And I should not see a "input#facts-startAddress-address" element
+        Then I should not see a "input#facts-startAddress-address" element
         And I should not see a "input#facts-endAddress-address" element
         And I should see a "input#facts_website" element
         And I should not see a "div#facts-map" element
@@ -214,8 +203,6 @@ Feature:
         And I should see a ".gm-style" element
         And I should see the key "pel.address.exact" translated
         And I should see a "#facts-startAddress-address" element
-        And I should not see a "label[for=facts_address_addressOrRouteFactsKnown_0]" element
-        And I should not see a "label[for=facts_address_addressOrRouteFactsKnown_1]" element
         And I should not see the key "pel.address.start.or.exact" translated
         And I should not see a "#facts-endAddress-address" element
 
@@ -225,8 +212,6 @@ Feature:
         And I should see a ".gm-style" element
         And I should see the key "pel.address.exact" translated
         And I should see a "#facts-startAddress-address" element
-        And I should not see a "label[for=facts_address_addressOrRouteFactsKnown_0]" element
-        And I should not see a "label[for=facts_address_addressOrRouteFactsKnown_1]" element
         And I should not see the key "pel.address.start.or.exact" translated
         And I should not see a "#facts-endAddress-address" element
 
@@ -236,8 +221,6 @@ Feature:
         And I should see a ".gm-style" element
         And I should see the key "pel.address.exact" translated
         And I should see a "#facts-startAddress-address" element
-        And I should not see a "label[for=facts_address_addressOrRouteFactsKnown_0]" element
-        And I should not see a "label[for=facts_address_addressOrRouteFactsKnown_1]" element
         And I should not see the key "pel.address.start.or.exact" translated
         And I should not see a "#facts-endAddress-address" element
 
@@ -247,8 +230,6 @@ Feature:
         And I should see a "#facts-startAddress-address" element
         And I should not see a "div#facts-map" element
         And I should not see a ".gm-style" element
-        And I should not see a "label[for=facts_address_addressOrRouteFactsKnown_0]" element
-        And I should not see a "label[for=facts_address_addressOrRouteFactsKnown_1]" element
         And I should not see the key "pel.address.start.or.exact" translated
         And I should not see a "#facts-endAddress-address" element
 
@@ -261,8 +242,6 @@ Feature:
         And I should see the key "pel.transport.additional.place.information" translated
         And I should not see a "div#facts-map" element
         And I should not see a ".gm-style" element
-        And I should not see a "label[for=facts_address_addressOrRouteFactsKnown_0]" element
-        And I should not see a "label[for=facts_address_addressOrRouteFactsKnown_1]" element
 
     Scenario: I should see an error if I fill "Transports" addresses with 2 Etalab addresses outside Gironde department
         When I select "9" from "facts_placeNature"
@@ -320,15 +299,14 @@ Feature:
 
     Scenario: I should see the correct facts address when I submit the form with a different address than identity
         When I fill in "facts_description" with "description informations lorem ipsum dol or sit amet lorem ipsum dol or sit amet"
-        And I click the "label[for=facts_address_addressOrRouteFactsKnown_0]" element
+        And I select "1" from "facts_placeNature"
+        And I select "10" from "facts_subPlaceNature"
         And I fill in "facts-startAddress-address" with "avenue de la république bordeaux"
         And I click the "#facts-startAddress-address-33063_8132" element
         And I click the "label[for=facts_offenseDate_exactDateKnown_0]" element
         And I fill in "facts_offenseDate_startDate" with "01/01/2022"
         And I click the "label[for=facts_offenseDate_choiceHour_0]" element
         And I fill in "facts_offenseDate_hour" with "15:00"
-        And I select "1" from "facts_placeNature"
-        And I select "10" from "facts_subPlaceNature"
         And I fill in "facts-startAddress-address" with "Avenue de la République Bordeaux"
         And I click the "#facts-startAddress-address-33063_8132" element
         And I press "facts_submit"

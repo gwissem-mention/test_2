@@ -8,22 +8,9 @@ use App\Form\Model\Address\AbstractSerializableAddress;
 
 class FactAddressModel
 {
-    private ?bool $addressOrRouteFactsKnown = null;
     private ?string $addressAdditionalInformation = null;
     private ?AbstractSerializableAddress $startAddress = null;
     private ?AbstractSerializableAddress $endAddress = null;
-
-    public function isAddressOrRouteFactsKnown(): ?bool
-    {
-        return $this->addressOrRouteFactsKnown;
-    }
-
-    public function setAddressOrRouteFactsKnown(?bool $addressOrRouteFactsKnown): self
-    {
-        $this->addressOrRouteFactsKnown = $addressOrRouteFactsKnown;
-
-        return $this;
-    }
 
     public function getAddressAdditionalInformation(): ?string
     {
