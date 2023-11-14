@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\DataFixtures\Complaint;
 
-use App\DataFixtures\UserFixtures;
+use App\DataFixtures\UserCiFixtures;
 use App\Entity\AdditionalInformation;
 use App\Entity\Comment;
 use App\Entity\Complaint;
@@ -471,7 +471,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
     public function getDependencies(): array
     {
         return [
-            UserFixtures::class,
+            UserCiFixtures::class,
         ];
     }
 }

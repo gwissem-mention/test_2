@@ -7,7 +7,7 @@ namespace App\Tests\Behat;
 use App\DataFixtures\Complaint\ComplaintFixtures;
 use App\DataFixtures\QuestionFixtures;
 use App\DataFixtures\RejectReasonFixtures;
-use App\DataFixtures\UserFixtures;
+use App\DataFixtures\UserCiFixtures;
 use App\Factory\NotificationFactory;
 use Behat\Behat\Context\Context;
 use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
@@ -53,7 +53,7 @@ class DatabaseContext implements Context
         $schemaTool->createSchema($metadata);
 
         $loader = new Loader();
-        $loader->addFixture(new UserFixtures());
+        $loader->addFixture(new UserCiFixtures());
         $loader->addFixture(new ComplaintFixtures($this->notificationFactory, $this->defaultStorage, $this->kernel, $this->tmpComplaintFolderId));
         $loader->addFixture(new QuestionFixtures());
         $loader->addFixture(new RejectReasonFixtures());

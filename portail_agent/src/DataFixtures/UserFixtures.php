@@ -35,10 +35,25 @@ class UserFixtures extends Fixture implements FixtureGroupInterface
 
     public static function getGroups(): array
     {
-        return ['default', 'ci'];
+        return ['default'];
     }
 
     public function load(ObjectManager $manager): void
+    {
+        $users = $this->getUsers();
+
+        foreach ($users as $user) {
+            $manager->persist((new User($user['number'], $user['institution'], $user['roles']))
+                ->setAppellation($user['appellation'])
+                ->setServiceCode($user['serviceCode'])
+            );
+        }
+
+        $manager->flush();
+    }
+
+    /** @return array<int, array{appellation: string, number: string, institution: Institution, serviceCode: string, roles: array<int, string>}> */
+    public static function getUsers(): array
     {
         $faker = Factory::create('fr_FR');
         $faker->seed(1);
@@ -51,7 +66,8 @@ class UserFixtures extends Fixture implements FixtureGroupInterface
                 'serviceCode' => '74181', // COMMISSARIAT DE POLICE D'ARCACHON
                 'roles' => [],
             ],
-            ['appellation' => 'Thomas DURAND',
+            [
+                'appellation' => 'Thomas DURAND',
                 'number' => 'PR5KTZ9R',
                 'institution' => Institution::GN,
                 'serviceCode' => '3009446', // BRIGADE TERRITORIALE AUTONOME DE CESTAS
@@ -85,12 +101,6 @@ class UserFixtures extends Fixture implements FixtureGroupInterface
             }
         }
 
-        foreach ($users as $user) {
-            $manager->persist((new User($user['number'], $user['institution'], $user['roles']))
-                ->setAppellation($user['appellation'])
-                ->setServiceCode($user['serviceCode'])->setTimezone('UTC'));
-        }
-
-        $manager->flush();
+        return $users;
     }
 }
