@@ -19,9 +19,7 @@
                     <ul id="upload_file_list">
                         {% for file in files %}
                             <li>
-                                <a href="{{ path('file_download', {'fileName':file.fileName}) }}">
-                                    {{ 'pel.file.download'|trans }} {{ file.fileName }}
-                                </a>
+                                {{ file.fileName }}
                             </li>
                         {% endfor %}
                     </ul>
