@@ -28,7 +28,9 @@ class CloseController extends AbstractController
         Request $request,
         ComplaintWorkflowManager $complaintWorkflowManager,
     ): JsonResponse {
-        $form = $this->createForm(SendReportType::class);
+        $form = $this->createForm(SendReportType::class, null, [
+            'has_scheduled_appointment' => null !== $complaint->getAppointmentDate(),
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

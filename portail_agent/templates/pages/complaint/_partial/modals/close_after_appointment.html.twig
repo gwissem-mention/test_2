@@ -7,7 +7,7 @@
 
     {% block body %}
         <p class="fw-bold">{{ 'pel.indicate.the.situation'|trans }}</p>
-        {{ form(sendReportForm , { attr: { 'data-complaint-target': 'dropZoneForm', 'data-is-after-appointment': "true", 'data-error-message':'pel.you.must.do.the.appointment'|trans } }) }}
+        {{ form(sendReportForm , { attr: { 'data-complaint-target': 'dropZoneForm', 'data-has-scheduled-appointment': "true" } }) }}
         <div class="invalid-feedback d-block" data-complaint-target="dropZoneError"></div>
         <div class="d-flex justify-content-end mt-3">
             <button type="button" class="fr-btn fr-btn--secondary" data-action="complaint#browseReport">{{ 'pel.browse'|trans }}</button>
@@ -16,7 +16,7 @@
 
     {% block footer %}
         <button type="button" class="fr-btn fr-btn--secondary me-3" data-bs-dismiss="modal" id="complaint-validate-the-report-and-close-button-back">{{ 'pel.cancel'|trans }}</button>
-        <button type="button" class="fr-btn" data-action="complaint#sendReport" data-complaint-target="sendReportValidationButton" data-complaint-url-send-report-param="{{ path('complaint_send_report', { id: complaintId }) }}" data-complaint-url-close-param="{{ path('complaint_close', { id: complaintId }) }}" id="complaint-validate-the-report-and-close-button-validate" disabled>
+        <button type="button" class="fr-btn" data-action="complaint#sendReport" data-complaint-target="sendReportValidationButton" data-complaint-url-send-report-param="{{ path('complaint_send_report', { id: complaintId }) }}" data-complaint-url-close-param="{{ path('complaint_close', { id: complaintId }) }}" id="complaint-validate-the-report-and-close-button-validate">
             <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
             <span class="sr-only">{{ 'pel.close.declaration'|trans }}</span>
         </button>

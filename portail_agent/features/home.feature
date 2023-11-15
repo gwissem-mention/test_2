@@ -257,7 +257,7 @@ Feature:
         Then I should see 11 "table#datatable tr" element
         And I should see 20 ".background-blue" element
         When I click the "#appointment-planned-filter" element
-        Then I should see 11 "table#datatable tr" element
+        Then I should see 16 "table#datatable tr" element
         When I click the "#appointment-pending-filter" element
         Then I should see 11 "table#datatable tr" element
         And I should see 11 ".background-cumulus" element
