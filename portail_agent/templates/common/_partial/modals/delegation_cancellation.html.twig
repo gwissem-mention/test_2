@@ -1,0 +1,28 @@
+{% if app.user %}
+    {% embed "common/_modal.html.twig" with {'id':'delegate-rights', 'size':'lg'} %}
+        {% block attr_sup %}data-sidebar-target="rightsDelegationCancelModal"{% endblock %}
+
+        {% block title %}
+            <div class="fs-4">{{ 'pel.rights.delegation.cancellation'|trans }}</div>
+        {% endblock %}
+
+        {% block body %}
+            <div class="p-4 text-center">
+                    {{ 'pel.ask.rights.delegation.cancellation' |trans|raw }}
+            </div>
+        {% endblock %}
+
+        {% block footer %}
+            <div class="px-4">
+                <button type="button" class="fr-btn fr-btn--secondary me-3" id="delegate-rights-back" data-bs-dismiss="modal">{{ 'pel.keep.the.delegation'|trans }}</button>
+                <button type="button" class="fr-btn" id="rights-delegation-cancellation"
+                        data-action="sidebar#cancel"
+                        data-sidebar-url-param="{{  path('cancel_delegation_rights', {'id': right_delegation.id}) }}"
+                        data-sidebar-target="delegationModalCancelButton">
+                    {{ 'pel.confirm.delegation.cancellation'|trans }}
+                </button>
+            </div>
+        {% endblock %}
+
+    {% endembed %}
+{% endif %}

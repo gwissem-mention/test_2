@@ -27,6 +27,7 @@ export default class SidebarController extends Controller {
         "delegationAgentsBlock",
         "delegationModalValidateButton",
         "rightsDelegationViewModal",
+        "rightsDelegationCancelModal",
         "headerContainer",
     ];
 
@@ -48,7 +49,9 @@ export default class SidebarController extends Controller {
     declare readonly delegationAgentsBlockTarget: HTMLInputElement;
     declare readonly delegationModalValidateButtonTarget: HTMLInputElement;
     declare readonly rightsDelegationViewModalTarget: HTMLInputElement;
+    declare readonly rightsDelegationCancelModalTarget: HTMLInputElement;
     declare readonly hasRightsDelegationViewModalTarget: boolean;
+    declare readonly hasRightsDelegationCancelModalTarget: boolean;
     declare readonly headerContainerTarget: HTMLInputElement;
 
     static fp: Instance | undefined;
@@ -201,6 +204,22 @@ export default class SidebarController extends Controller {
         }
     }
 
+    public openRightsDelegationCancellationModal(): void {
+        if (this.hasRightsDelegationModalTarget) {
+            const cancelModal: Modal | null = new Modal(this.rightsDelegationCancelModalTarget);
+            const viewModal: Modal | null = Modal.getInstance(this.rightsDelegationViewModalTarget);
+
+            if (viewModal) {
+                viewModal.hide();
+            }
+
+            if (cancelModal) {
+                cancelModal.show();
+            }
+        }
+
+    }
+
     // Must be ignored because we can't type url here.
     // @ts-ignore
     public delegate({params: {url}}): void {
@@ -215,6 +234,28 @@ export default class SidebarController extends Controller {
                             if (response.status === HttpStatusCodeEnum.OK) {
                                 Modal.getInstance(this.rightsDelegationModalTarget)?.hide();
                                 this.reloadHeaderContainer();
+                            } else if (data.form) {
+                                this.delegationFormTarget.innerHTML = data.form;
+                            }
+                        });
+                });
+        }
+    }
+
+    // Must be ignored because we can't type url here.
+    // @ts-ignore
+    public cancel({params: {url}}): void {
+        if (url) {
+            fetch(url, {
+                method: HttpMethodsEnum.POST,
+                body: new FormData(this.delegationFormTarget)
+            })
+                .then((response: Response) => {
+                    response.json()
+                        .then((data: DelegateFetchResponse) => {
+                            if (response.status === HttpStatusCodeEnum.OK) {
+                                Modal.getInstance(this.rightsDelegationCancelModalTarget)?.hide();
+                                location.reload();
                             } else if (data.form) {
                                 this.delegationFormTarget.innerHTML = data.form;
                             }
