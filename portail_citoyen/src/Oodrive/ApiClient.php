@@ -71,8 +71,11 @@ class ApiClient implements ApiClientInterface
         $this->eventDispatcher->dispatch(new PreSearch($searchParamObject), PreSearch::NAME);
         $this->oodriveLogger->info(sprintf('Searching for %s', http_build_query($searchParamObject->asArray())));
 
+        $method = 'GET';
+        $url = 'share/api/v1/search/items?'.$searchParamObject->asUrlPart();
+
         try {
-            $response = $this->oodriveClient->request('GET', 'share/api/v1/search/items?'.$searchParamObject->asUrlPart(), [
+            $response = $this->oodriveClient->request($method, $url, [
                 'headers' => [
                     'Accept' => 'application/vnd.oodrive.api.search+json',
                 ],
@@ -82,11 +85,7 @@ class ApiClient implements ApiClientInterface
         }
 
         if (Response::HTTP_OK !== $response->getStatusCode()) {
-            $this->oodriveLogger->error(sprintf(
-                'Failed search %s. Got status code %d',
-                http_build_query($searchParamObject->asArray()),
-                $response->getStatusCode()
-            ));
+            $this->logError(sprintf('Failed search %s. Got status code %d', http_build_query($searchParamObject->asArray()), $response->getStatusCode()), $method, $url);
 
             throw new SearchException($response);
         }
@@ -94,11 +93,7 @@ class ApiClient implements ApiClientInterface
         $responseJson = json_decode($response->getContent(), true, 512, JSON_THROW_ON_ERROR);
 
         if (!is_array($responseJson) || empty($responseJson)) {
-            $this->oodriveLogger->error(sprintf(
-                'Unexpected API response while searching %s. Got status code %d',
-                http_build_query($searchParamObject->asArray()),
-                $response->getStatusCode()
-            ), [$responseJson]);
+            $this->logError(sprintf('Unexpected API response while searching %s. Got status code %d', http_build_query($searchParamObject->asArray()), $response->getStatusCode()), $method, $url, [$responseJson]);
 
             throw new SearchException($response);
         }
@@ -149,16 +144,20 @@ class ApiClient implements ApiClientInterface
         $this->eventDispatcher->dispatch(new PreCreateFolder($folderName, $parentId), PreCreateFolder::NAME);
         $this->oodriveLogger->info(sprintf('Creating a folder with name %s and parent %s', $folderName, $parentId));
 
-        $response = $this->oodriveClient->request('POST', sprintf('share/api/v1/items/%s', $parentId), [
+        $method = 'POST';
+        $url = sprintf('share/api/v1/items/%s', $parentId);
+        $body = json_encode(['name' => $folderName, 'isDir' => true], JSON_THROW_ON_ERROR);
+
+        $response = $this->oodriveClient->request($method, $url, [
             'headers' => [
                 'Content-Type' => 'application/json',
                 'Accept' => 'application/json',
             ],
-            'body' => json_encode(['name' => $folderName, 'isDir' => true], JSON_THROW_ON_ERROR),
+            'body' => $body,
         ]);
 
         if (Response::HTTP_CREATED !== $response->getStatusCode()) {
-            $this->oodriveLogger->error(sprintf('Failed creating folder with name %s. Got status code %d', $folderName, $response->getStatusCode()));
+            $this->logError(sprintf('Failed creating folder with name %s. Got status code %d', $folderName, $response->getStatusCode()), $method, $url, body: $body);
 
             throw new FolderCreationException($response);
         }
@@ -168,7 +167,7 @@ class ApiClient implements ApiClientInterface
         $responseJson = json_decode($response->getContent(), true, 512, JSON_THROW_ON_ERROR);
 
         if (!is_array($responseJson) || !isset($responseJson['$collection']) || empty($responseJson['$collection'])) {
-            $this->oodriveLogger->error(sprintf('Unexpected API response while creating folder with name %s. Got status code %d', $folderName, $response->getStatusCode()), [$responseJson]);
+            $this->logError(sprintf('Unexpected API response while creating folder with name %s. Got status code %d', $folderName, $response->getStatusCode()), $method, $url, [$responseJson], $body);
 
             /* @TODO: Improve exception message there */
             throw new FolderCreationException($response);
@@ -298,185 +297,6 @@ class ApiClient implements ApiClientInterface
         return $oodriveFiles;
     }
 
-    public function lockItem(string $itemId): bool
-    {
-        $this->eventDispatcher->dispatch(new PreLockItem($itemId), PreLockItem::NAME);
-        $this->oodriveLogger->info(sprintf('Locking item with id %s', $itemId));
-
-        $response = $this->oodriveClient->request('PATCH', sprintf('share/api/v1/items/%s', $itemId), [
-            'headers' => [
-                'Content-Type' => 'application/json',
-                'Accept' => 'application/json',
-            ],
-            'body' => json_encode(['lock' => true], JSON_THROW_ON_ERROR),
-        ]);
-
-        if (Response::HTTP_OK !== $response->getStatusCode()) {
-            $this->oodriveLogger->error(sprintf('Failed locking item with id %s. Got status code %d', $itemId, $response->getStatusCode()));
-
-            throw new ItemLockException($response);
-        }
-
-        // ... other checks eventually (when the forlder already exists for example)
-
-        $responseJson = json_decode($response->getContent(), true, 512, JSON_THROW_ON_ERROR);
-
-        $this->eventDispatcher->dispatch(new PostLockItem($itemId), PostLockItem::NAME);
-        $this->oodriveLogger->info(sprintf('Successfuly locked item with id %s', $itemId));
-
-        return true;
-    }
-
-    public function unlockItem(string $itemId): bool
-    {
-        $this->eventDispatcher->dispatch(new PreUnlockItem($itemId), PreUnlockItem::NAME);
-        $this->oodriveLogger->info(sprintf('Unlocking item with id %s', $itemId));
-
-        $response = $this->oodriveClient->request('PATCH', sprintf('share/api/v1/items/%s', $itemId), [
-            'headers' => [
-                'Content-Type' => 'application/json',
-                'Accept' => 'application/json',
-            ],
-            'body' => json_encode(['lock' => false], JSON_THROW_ON_ERROR),
-        ]);
-
-        if (Response::HTTP_OK !== $response->getStatusCode()) {
-            $this->oodriveLogger->error(sprintf('Failed Unlocking item with id %s. Got status code %d', $itemId, $response->getStatusCode()));
-
-            throw new ItemUnlockException($response);
-        }
-
-        // ... other checks eventually (when the forlder already exists for example)
-
-        $responseJson = json_decode($response->getContent(), true, 512, JSON_THROW_ON_ERROR);
-
-        $this->eventDispatcher->dispatch(new PostUnlockItem($itemId), PostUnlockItem::NAME);
-        $this->oodriveLogger->info(sprintf('Successfuly unlocked item with id %s', $itemId));
-
-        return true;
-    }
-
-    public function isItemLocked(string $itemId): bool
-    {
-        $this->eventDispatcher->dispatch(new PreCheckItemLock($itemId), PreCheckItemLock::NAME);
-        $this->oodriveLogger->info(sprintf('Checking if item with id %s is locked', $itemId));
-
-        $response = $this->oodriveClient->request('GET', sprintf('share/api/v1/items/%s', $itemId), [
-            'headers' => [
-                'Content-Type' => 'application/json',
-                'Accept' => 'application/json',
-            ],
-        ]);
-
-        if (Response::HTTP_OK !== $response->getStatusCode()) {
-            $this->oodriveLogger->error(sprintf('Failed Unlocking item with id %s. Got status code %d', $itemId, $response->getStatusCode()));
-
-            throw new CheckItemLockException($response);
-        }
-
-        // ... other checks eventually (when the forlder already exists for example)
-
-        $responseJson = json_decode($response->getContent(), true, 512, JSON_THROW_ON_ERROR);
-
-        if (!is_array($responseJson) || empty($responseJson)) {
-            $this->oodriveLogger->error(sprintf('Unexpected API response while checking for item lock with id %s. Got status code %d', $itemId, $response->getStatusCode()), [$responseJson]);
-
-            throw new FolderCreationException($response);
-        }
-
-        $this->eventDispatcher->dispatch(new PostCheckItemLock($itemId), PostCheckItemLock::NAME);
-        $this->oodriveLogger->info(sprintf('Successfuly checked if item with id %s is locked', $itemId));
-
-        return isset($responseJson['lock']);
-    }
-
-    /**
-     * @return array<Folder>
-     */
-    public function getChildrenFolders(Folder $rootFolder): array
-    {
-        $this->eventDispatcher->dispatch(new PreGetChildrenFolders($rootFolder->getId()), PreGetChildrenFolders::NAME);
-        $this->oodriveLogger->info(sprintf('Getting children folders of folder with id %s', $rootFolder->getId()));
-
-        $response = $this->oodriveClient->request('GET', sprintf('share/api/v1/items/%s/children', $rootFolder->getId()), [
-            'query' => [
-                'type' => 'folders',
-            ],
-            'headers' => [
-                'Content-Type' => 'application/json',
-                'Accept' => 'application/json',
-            ],
-        ]);
-
-        if (Response::HTTP_OK !== $response->getStatusCode()) {
-            $this->oodriveLogger->error(sprintf('Failed getting children folders of folder with id %s. Got status code %d', $rootFolder->getId(), $response->getStatusCode()));
-
-            throw new ChildrenFoldersFetchException($response);
-        }
-
-        $responseJson = json_decode($response->getContent(), true, 512, JSON_THROW_ON_ERROR);
-
-        if (!is_array($responseJson) || empty($responseJson)) {
-            $this->oodriveLogger->error(sprintf('Unexpected API response while getting children folders of folder with id %s. Got status code %d', $rootFolder->getId(), $response->getStatusCode()), [$responseJson]);
-
-            throw new FolderCreationException($response);
-        }
-
-        /* @phpstan-ignore-next-line */
-        $folders = array_map(static fn (array $folderData) => new Folder($folderData), $responseJson['$collection']);
-        $folders = array_filter($folders, static fn (Folder $folder) => $folder->isDir());
-
-        $this->eventDispatcher->dispatch(
-            new PostGetChildrenFolders($rootFolder->getId(), $folders),
-            PostGetChildrenFolders::NAME
-        );
-        $this->oodriveLogger->info(sprintf('Successfuly got children folders of folder with id %s', $rootFolder->getId()));
-
-        return $folders;
-    }
-
-    /**
-     * @return array<OodriveFile>
-     */
-    public function getChildrenFiles(Folder $rootFolder): array
-    {
-        $this->eventDispatcher->dispatch(new PreGetChildrenFiles($rootFolder->getId()), PreGetChildrenFiles::NAME);
-        $this->oodriveLogger->info(sprintf('Getting children files of folder with id %s', $rootFolder->getId()));
-
-        $response = $this->oodriveClient->request('GET', sprintf('share/api/v1/items/%s/children', $rootFolder->getId()), [
-            'headers' => [
-                'Content-Type' => 'application/json',
-                'Accept' => 'application/json',
-            ],
-        ]);
-
-        if (Response::HTTP_OK !== $response->getStatusCode()) {
-            $this->oodriveLogger->error(sprintf('Failed getting children files of folder with id %s. Got status code %d', $rootFolder->getId(), $response->getStatusCode()));
-
-            throw new ChildrenFilesFetchException($response);
-        }
-
-        $responseJson = json_decode($response->getContent(), true, 512, JSON_THROW_ON_ERROR);
-
-        if (!is_array($responseJson) || empty($responseJson)) {
-            $this->oodriveLogger->error(sprintf('Unexpected API response while getting children files of folder with id %s. Got status code %d', $rootFolder->getId(), $response->getStatusCode()), [$responseJson]);
-
-            throw new FolderCreationException($response);
-        }
-
-        /* @phpstan-ignore-next-line */
-        $files = array_map(static fn (array $fileData) => new OodriveFile($fileData), $responseJson['$collection']);
-        $files = array_filter($files, static fn (OodriveFile $file) => !$file->isDir());
-
-        $this->eventDispatcher->dispatch(
-            new PostGetChildrenFiles($rootFolder->getId(), $files),
-            PostGetChildrenFiles::NAME
-        );
-        $this->oodriveLogger->info(sprintf('Successfully got children files of folder with id %s', $rootFolder->getId()));
-
-        return $files;
-    }
-
     public function downloadFile(OodriveFile $file): ResponseInterface
     {
         $this->eventDispatcher->dispatch(new PreDownloadFile($file->getId()), PreDownloadFile::NAME);
@@ -504,29 +324,200 @@ class ApiClient implements ApiClientInterface
         return $response;
     }
 
-    private function doDownloadFile(OodriveFile $file): ResponseInterface
+    public function lockItem(string $itemId): bool
     {
-        try {
-            $response = $this->oodriveClient->request('GET', sprintf('share/api/v1/io/items/%s', $file->getId()), [
-                'headers' => [
-                    'Content-Type' => 'application/json',
-                    'Accept' => 'application/json',
-                ],
-            ]);
-        } catch (ClientExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface|TransportExceptionInterface $e) {
-            $this->oodriveLogger->error(sprintf('Failed downloading file with name %s. Got error %s', $file->getName(), $e->getMessage()));
+        $this->eventDispatcher->dispatch(new PreLockItem($itemId), PreLockItem::NAME);
+        $this->oodriveLogger->info(sprintf('Locking item with id %s', $itemId));
 
-            throw $e;
-        }
+        $method = 'PATCH';
+        $url = sprintf('share/api/v1/items/%s', $itemId);
+        $body = json_encode(['lock' => true], JSON_THROW_ON_ERROR);
+
+        $response = $this->oodriveClient->request($method, $url, [
+            'headers' => [
+                'Content-Type' => 'application/json',
+                'Accept' => 'application/json',
+            ],
+            'body' => $body,
+        ]);
 
         if (Response::HTTP_OK !== $response->getStatusCode()) {
-            $this->oodriveLogger->error(sprintf('Failed downloading file with name %s. Got status code %d', $file->getName(), $response->getStatusCode()));
+            $this->logError(sprintf('Failed locking item with id %s. Got status code %d', $itemId, $response->getStatusCode()), $method, $url, body: $body);
 
-            throw new FolderUpdateException($response);
+            throw new ItemLockException($response);
         }
 
-        // ... other checks eventually (when the folder already exists for example)
-        return $response;
+        // ... other checks eventually (when the forlder already exists for example)
+
+        $responseJson = json_decode($response->getContent(), true, 512, JSON_THROW_ON_ERROR);
+
+        $this->eventDispatcher->dispatch(new PostLockItem($itemId), PostLockItem::NAME);
+        $this->oodriveLogger->info(sprintf('Successfuly locked item with id %s', $itemId));
+
+        return true;
+    }
+
+    public function unlockItem(string $itemId): bool
+    {
+        $this->eventDispatcher->dispatch(new PreUnlockItem($itemId), PreUnlockItem::NAME);
+        $this->oodriveLogger->info(sprintf('Unlocking item with id %s', $itemId));
+
+        $method = 'PATCH';
+        $url = sprintf('share/api/v1/items/%s', $itemId);
+        $body = json_encode(['lock' => false], JSON_THROW_ON_ERROR);
+
+        $response = $this->oodriveClient->request($method, $url, [
+            'headers' => [
+                'Content-Type' => 'application/json',
+                'Accept' => 'application/json',
+            ],
+            'body' => $body,
+        ]);
+
+        if (Response::HTTP_OK !== $response->getStatusCode()) {
+            $this->logError(sprintf('Failed Unlocking item with id %s. Got status code %d', $itemId, $response->getStatusCode()), $method, $url, body: $body);
+
+            throw new ItemUnlockException($response);
+        }
+
+        // ... other checks eventually (when the forlder already exists for example)
+
+        $responseJson = json_decode($response->getContent(), true, 512, JSON_THROW_ON_ERROR);
+
+        $this->eventDispatcher->dispatch(new PostUnlockItem($itemId), PostUnlockItem::NAME);
+        $this->oodriveLogger->info(sprintf('Successfuly unlocked item with id %s', $itemId));
+
+        return true;
+    }
+
+    public function isItemLocked(string $itemId): bool
+    {
+        $this->eventDispatcher->dispatch(new PreCheckItemLock($itemId), PreCheckItemLock::NAME);
+        $this->oodriveLogger->info(sprintf('Checking if item with id %s is locked', $itemId));
+
+        $method = 'GET';
+        $url = sprintf('share/api/v1/items/%s', $itemId);
+
+        $response = $this->oodriveClient->request($method, $url, [
+            'headers' => [
+                'Content-Type' => 'application/json',
+                'Accept' => 'application/json',
+            ],
+        ]);
+
+        if (Response::HTTP_OK !== $response->getStatusCode()) {
+            $this->logError(sprintf('Failed Unlocking item with id %s. Got status code %d', $itemId, $response->getStatusCode()), $method, $url);
+
+            throw new CheckItemLockException($response);
+        }
+
+        // ... other checks eventually (when the forlder already exists for example)
+
+        $responseJson = json_decode($response->getContent(), true, 512, JSON_THROW_ON_ERROR);
+
+        if (!is_array($responseJson) || empty($responseJson)) {
+            $this->logError(sprintf('Unexpected API response while checking for item lock with id %s. Got status code %d', $itemId, $response->getStatusCode()), $method, $url, [$responseJson]);
+
+            throw new FolderCreationException($response);
+        }
+
+        $this->eventDispatcher->dispatch(new PostCheckItemLock($itemId), PostCheckItemLock::NAME);
+        $this->oodriveLogger->info(sprintf('Successfuly checked if item with id %s is locked', $itemId));
+
+        return isset($responseJson['lock']);
+    }
+
+    /**
+     * @return array<Folder>
+     */
+    public function getChildrenFolders(Folder $rootFolder): array
+    {
+        $this->eventDispatcher->dispatch(new PreGetChildrenFolders($rootFolder->getId()), PreGetChildrenFolders::NAME);
+        $this->oodriveLogger->info(sprintf('Getting children folders of folder with id %s', $rootFolder->getId()));
+
+        $method = 'GET';
+        $url = sprintf('share/api/v1/items/%s/children', $rootFolder->getId());
+
+        $response = $this->oodriveClient->request($method, $url, [
+            'query' => [
+                'type' => 'folders',
+            ],
+            'headers' => [
+                'Content-Type' => 'application/json',
+                'Accept' => 'application/json',
+            ],
+        ]);
+
+        if (Response::HTTP_OK !== $response->getStatusCode()) {
+            $this->logError(sprintf('Failed getting children folders of folder with id %s. Got status code %d', $rootFolder->getId(), $response->getStatusCode()), $method, $url);
+
+            throw new ChildrenFoldersFetchException($response);
+        }
+
+        $responseJson = json_decode($response->getContent(), true, 512, JSON_THROW_ON_ERROR);
+
+        if (!is_array($responseJson) || empty($responseJson)) {
+            $this->logError(sprintf('Unexpected API response while getting children folders of folder with id %s. Got status code %d', $rootFolder->getId(), $response->getStatusCode()), $method, $url, [$responseJson]);
+
+            throw new FolderCreationException($response);
+        }
+
+        /* @phpstan-ignore-next-line */
+        $folders = array_map(static fn (array $folderData) => new Folder($folderData), $responseJson['$collection']);
+        $folders = array_filter($folders, static fn (Folder $folder) => $folder->isDir());
+
+        $this->eventDispatcher->dispatch(
+            new PostGetChildrenFolders($rootFolder->getId(), $folders),
+            PostGetChildrenFolders::NAME
+        );
+        $this->oodriveLogger->info(sprintf('Successfuly got children folders of folder with id %s', $rootFolder->getId()));
+
+        return $folders;
+    }
+
+    /**
+     * @return array<OodriveFile>
+     */
+    public function getChildrenFiles(Folder $rootFolder): array
+    {
+        $this->eventDispatcher->dispatch(new PreGetChildrenFiles($rootFolder->getId()), PreGetChildrenFiles::NAME);
+        $this->oodriveLogger->info(sprintf('Getting children files of folder with id %s', $rootFolder->getId()));
+
+        $method = 'GET';
+        $url = sprintf('share/api/v1/items/%s/children', $rootFolder->getId());
+
+        $response = $this->oodriveClient->request($method, $url, [
+            'headers' => [
+                'Content-Type' => 'application/json',
+                'Accept' => 'application/json',
+            ],
+        ]);
+
+        if (Response::HTTP_OK !== $response->getStatusCode()) {
+            $this->logError(sprintf('Failed getting children files of folder with id %s. Got status code %d', $rootFolder->getId(), $response->getStatusCode()), $method, $url);
+
+            throw new ChildrenFilesFetchException($response);
+        }
+
+        $responseJson = json_decode($response->getContent(), true, 512, JSON_THROW_ON_ERROR);
+
+        if (!is_array($responseJson) || empty($responseJson)) {
+            $this->logError(sprintf('Unexpected API response while getting children files of folder with id %s. Got status code %d', $rootFolder->getId(), $response->getStatusCode()), $method, $url, [$responseJson]);
+
+            throw new FolderCreationException($response);
+        }
+
+        /* @phpstan-ignore-next-line */
+        $files = array_map(static fn (array $fileData) => new OodriveFile($fileData), $responseJson['$collection']);
+        $files = array_filter($files, static fn (OodriveFile $file) => !$file->isDir());
+
+        $this->eventDispatcher->dispatch(
+            new PostGetChildrenFiles($rootFolder->getId(), $files),
+            PostGetChildrenFiles::NAME
+        );
+        $this->oodriveLogger->info(sprintf('Successfully got children files of folder with id %s', $rootFolder->getId()));
+
+        return $files;
     }
 
     private function doFetchFolderMetadata(string $folderId): Folder
@@ -535,34 +526,29 @@ class ApiClient implements ApiClientInterface
         return new Folder($this->doFetchItemMetadata($folderId));
     }
 
-    /** Not used for moment but probably will be in future */
-    /* @phpstan-ignore-next-line */
-    private function doFetchFileMetadata(string $fileId): OodriveFile
-    {
-        /* @phpstan-ignore-next-line */
-        return new OodriveFile($this->doFetchItemMetadata($fileId));
-    }
-
     /**
      * @return array<string>
      */
     private function doFetchItemMetadata(string $itemId): array
     {
+        $method = 'GET';
+        $url = sprintf('share/api/v1/items/%s', $itemId);
+
         try {
-            $response = $this->oodriveClient->request('GET', sprintf('share/api/v1/items/%s', $itemId), [
+            $response = $this->oodriveClient->request($method, $url, [
                 'headers' => [
                     'Content-Type' => 'application/json',
                     'Accept' => 'application/json',
                 ],
             ]);
         } catch (ClientExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface|TransportExceptionInterface $e) {
-            $this->oodriveLogger->error(sprintf('Failed fetching file with id %s. Got error %s', $itemId, $e->getMessage()));
+            $this->logError(sprintf('Failed fetching file with id %s. Got error %s', $itemId, $e->getMessage()), $method, $url);
 
             throw $e;
         }
 
         if (Response::HTTP_OK !== $response->getStatusCode()) {
-            $this->oodriveLogger->error(sprintf('Failed fetching file with id %s. Got status code %d', $itemId, $response->getStatusCode()));
+            $this->logError(sprintf('Failed fetching file with id %s. Got status code %d', $itemId, $response->getStatusCode()), $method, $url);
 
             throw new FileMetadataFetchException($response);
         }
@@ -575,22 +561,26 @@ class ApiClient implements ApiClientInterface
 
     private function doCreateFileMetadata(string $fileName, string $parentId): OodriveFile
     {
+        $method = 'POST';
+        $url = sprintf('share/api/v1/items/%s', $parentId);
+        $body = json_encode(['name' => $fileName, 'isDir' => false], JSON_THROW_ON_ERROR);
+
         try {
-            $response = $this->oodriveClient->request('POST', sprintf('share/api/v1/items/%s', $parentId), [
+            $response = $this->oodriveClient->request($method, $url, [
                 'headers' => [
                     'Content-Type' => 'application/json',
                     'Accept' => 'application/json',
                 ],
-                'body' => json_encode(['name' => $fileName, 'isDir' => false], JSON_THROW_ON_ERROR),
+                'body' => $body,
             ]);
         } catch (ClientExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface|TransportExceptionInterface $e) {
-            $this->oodriveLogger->error(sprintf('Failed uploading file with name %s. Got error %s', $fileName, $e->getMessage()));
+            $this->logError(sprintf('Failed uploading file with name %s. Got error %s', $fileName, $e->getMessage()), $method, $url, body: $body);
 
             throw $e;
         }
 
         if (Response::HTTP_CREATED !== $response->getStatusCode()) {
-            $this->oodriveLogger->error(sprintf('Failed uploading file with name %s. Got status code %d', $fileName, $response->getStatusCode()));
+            $this->logError(sprintf('Failed uploading file with name %s. Got status code %d', $fileName, $response->getStatusCode()), $method, $url, body: $body);
 
             throw new FileUploadException($response);
         }
@@ -605,22 +595,26 @@ class ApiClient implements ApiClientInterface
 
     private function doUpdateFileMetadata(OodriveFile $file): OodriveFile
     {
+        $method = 'PATCH';
+        $url = sprintf('share/api/v1/items/%s', $file->getId());
+        $body = json_encode($file->getPayload(), JSON_THROW_ON_ERROR);
+
         try {
-            $response = $this->oodriveClient->request('PATCH', sprintf('share/api/v1/items/%s', $file->getId()), [
+            $response = $this->oodriveClient->request($method, $url, [
                 'headers' => [
                     'Content-Type' => 'application/json',
                     'Accept' => 'application/json',
                 ],
-                'body' => json_encode($file->getPayload(), JSON_THROW_ON_ERROR),
+                'body' => $body,
             ]);
         } catch (ClientExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface|TransportExceptionInterface $e) {
-            $this->oodriveLogger->error(sprintf('Failed uploading file with name %s. Got error %s', $file->getName(), $e->getMessage()));
+            $this->logError(sprintf('Failed uploading file with name %s. Got error %s', $file->getName(), $e->getMessage()), $method, $url, body: $body);
 
             throw $e;
         }
 
         if (Response::HTTP_OK !== $response->getStatusCode()) {
-            $this->oodriveLogger->error(sprintf('Failed uploading file with name %s. Got status code %d', $file->getName(), $response->getStatusCode()));
+            $this->logError(sprintf('Failed uploading file with name %s. Got status code %d', $file->getName(), $response->getStatusCode()), $method, $url, body: $body);
 
             throw new FileUploadException($response);
         }
@@ -642,8 +636,11 @@ class ApiClient implements ApiClientInterface
             $fileSize = strlen($fileContent);
         }
 
+        $method = 'PUT';
+        $url = sprintf('share/api/v1/io/items/%s', $fileMetadata->getId());
+
         try {
-            $response = $this->oodriveClient->request('PUT', sprintf('share/api/v1/io/items/%s', $fileMetadata->getId()), [
+            $response = $this->oodriveClient->request($method, $url, [
                 'headers' => [
                     'Content-Type' => 'application/octet-stream',
                     'Content-Length' => $fileSize,
@@ -653,13 +650,13 @@ class ApiClient implements ApiClientInterface
                 'body' => $fileContent,
             ]);
         } catch (ClientExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface|TransportExceptionInterface $e) {
-            $this->oodriveLogger->error(sprintf('Failed uploading file with ID %s. Got error %s', $fileMetadata->getId(), $e->getMessage()));
+            $this->logError(sprintf('Failed uploading file with ID %s. Got error %s', $fileMetadata->getId(), $e->getMessage()), $method, $url);
 
             throw $e;
         }
 
         if (Response::HTTP_CREATED !== $response->getStatusCode()) {
-            $this->oodriveLogger->error(sprintf('Failed uploading file with id %s. Got status code %d', $fileMetadata->getId(), $response->getStatusCode()));
+            $this->logError(sprintf('Failed uploading file with id %s. Got status code %d', $fileMetadata->getId(), $response->getStatusCode()), $method, $url);
 
             throw new FileUploadException($response);
         }
@@ -671,5 +668,47 @@ class ApiClient implements ApiClientInterface
         // ... Enrich eventually the File object with some additional metadata from the response
 
         return true;
+    }
+
+    private function doDownloadFile(OodriveFile $file): ResponseInterface
+    {
+        $method = 'GET';
+        $url = sprintf('share/api/v1/io/items/%s', $file->getId());
+
+        try {
+            $response = $this->oodriveClient->request($method, $url, [
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                    'Accept' => 'application/json',
+                ],
+            ]);
+        } catch (ClientExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface|TransportExceptionInterface $e) {
+            $this->logError(sprintf('Failed downloading file with name %s. Got error %s', $file->getName(), $e->getMessage()), $method, $url);
+
+            throw $e;
+        }
+
+        if (Response::HTTP_OK !== $response->getStatusCode()) {
+            $this->logError(sprintf('Failed downloading file with name %s. Got status code %d', $file->getName(), $response->getStatusCode()), $method, $url);
+
+            throw new FolderUpdateException($response);
+        }
+
+        // ... other checks eventually (when the folder already exists for example)
+        return $response;
+    }
+
+    /**
+     * @param array<mixed> $context
+     */
+    private function logError(string $log, string $method, string $url, array $context = [], string $body = null): void
+    {
+        $this->oodriveLogger->error(sprintf(
+            '%s - Request : %s %s%s',
+            $log,
+            $method,
+            $url,
+            (null !== $body) ? ', body : '.$body : ''
+        ), $context);
     }
 }
