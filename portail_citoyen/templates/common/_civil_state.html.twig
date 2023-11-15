@@ -18,22 +18,26 @@
 	{% if is_france_connected() is same as(true) and representedPerson is same as(false) %}
 		<p class="fr-mt-md-4v">{{ 'pel.these.informations.has.been.transmitted.by.france.connect'|trans|raw }}</p>
 	{% endif %}
-	<fieldset class="{{ html_classes('fr-fieldset', 'fr-input-group', 'fr-mt-2v', 'fr-mt-md-6v', 'fr-mb-2v', {'fr-fieldset--error': form.civility.vars.errors is not empty}) }}" {% if form.civility.vars.errors is not empty %} role="group" aria-labelledby="legend-{{ form.civility.vars.id }} form-errors-{{ form.civility.vars.id }}" {% endif %}>
-        <legend class="fr-fieldset__legend--regular fr-fieldset__legend fr-text--regular" id="legend-{{ form.civility.vars.id }}">
-            {{ form.civility.vars.label|trans }}&nbsp;<span class="text-[var(--text-default-error)]">*</span>
-        </legend>
-        {% for child in form.civility.children %}
-            <div class="fr-fieldset__element fr-fieldset__element--inline">
-                <div class="fr-radio-group">
-                    {{ form_widget(child) }}
-                    <label class="fr-label" for="{{ child.vars.id }}">
-                        {{ child.vars.label|trans }}
-                    </label>
+    <div class="{{form.civility.vars.errors is not empty ? 'fr-mb-6v' : 'fr-mb-2v'}}">
+        <fieldset class="{{ html_classes('fr-fieldset', 'fr-input-group', 'fr-mt-2v', 'fr-mt-md-6v', 'fr-mb-0', {'fr-fieldset--error': form.civility.vars.errors is not empty}) }}" {% if form.civility.vars.errors is not empty %} role="group" aria-labelledby="legend-{{ form.civility.vars.id }} form-errors-{{ form.civility.vars.id }}" {% endif %}>
+            <legend class="fr-fieldset__legend--regular fr-fieldset__legend fr-text--regular" id="legend-{{ form.civility.vars.id }}">
+                {{ form.civility.vars.label|trans }}&nbsp;<span class="text-[var(--text-default-error)]">*</span>
+            </legend>
+            {% for child in form.civility.children %}
+                <div class="fr-fieldset__element fr-fieldset__element--inline">
+                    <div class="fr-radio-group">
+                        {{ form_widget(child) }}
+                        <label class="fr-label" for="{{ child.vars.id }}">
+                            {{ child.vars.label|trans }}
+                        </label>
+                    </div>
                 </div>
-            </div>
-        {% endfor %}
-		{{ form_errors(form.civility) }}
-	</fieldset>
+            {% endfor %}
+        </fieldset>
+        {% if form.civility.vars.errors is not empty %}
+            <div class="-mt-4">{{ form_errors(form.civility) }}</div>
+        {% endif %}
+    </div>
 </div>
 {{ form_row(form.birthName) }}
 {{ form_row(form.usageName) }}

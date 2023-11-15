@@ -5,24 +5,24 @@
         <p class="fr-mb-0">{{ 'pel.all.fields.marked.with.an.asterisk.are.mandatory'|trans|raw }}</p>
     </div>
     <hr>
-    <div class="fr-pt-4v fr-px-6v fr-pt-md-6v fr-px-md-20v ">
-        <h2 class="text-[22px]/7 md:text-[28px]/9  fr-mb-8v fr-mb-md-12v">{{ 'pel.specify.your.status.in.this.process'|trans }}</h2>
-        <div class="fr-grid-row">
-            <div class="fr-col">
+    <div class="fr-grid-row">
+        <div class="fr-col">
+            <div class="fr-pt-4v fr-px-6v fr-pt-md-6v fr-px-md-20v ">
+                <h2 class="text-[22px]/7 md:text-[28px]/9  fr-mb-8v fr-mb-md-12v">{{ 'pel.specify.your.status.in.this.process'|trans }}</h2>
                 {% block choice_row %}
                     <div class="fr-form-group fr-mb-md-3v">
                         <fieldset
-                            class="{{ html_classes('fr-fieldset', 'fr-input-group', 'fr-px-0', 'fr-mx-0', 'fr-mb-0', 'fr-mb-md-6v', {'fr-fieldset--error': form.declarantStatus.vars.errors is not empty}) }}" {% if form.declarantStatus.vars.errors is not empty %} role="group" aria-labelledby="legend-{{ form.declarantStatus.vars.id }} form-errors-{{ form.declarantStatus.vars.id }}" {% endif %}>
-                            <legend class="fr-fieldset__legend fr-text--regular fr-px-0 fr-mx-0 fr-mb-6v"
+                            class="{{ html_classes('fr-fieldset', 'fr-input-group', 'fr-mb-0', {'fr-fieldset--error': form.declarantStatus.vars.errors is not empty}) }}" {% if form.declarantStatus.vars.errors is not empty %} role="group" aria-labelledby="legend-{{ form.declarantStatus.vars.id }} form-errors-{{ form.declarantStatus.vars.id }}" {% endif %}>
+                            <legend class="fr-fieldset__legend fr-text--regular fr-mb-6v"
                                     id="legend-{{ form.declarantStatus.vars.id }}">
                                 {{ form.declarantStatus.vars.label|trans }}&nbsp;<span
                                     class="text-[var(--text-default-error)]">*</span>
                             </legend>
-                            <div class="fr-fieldset__content fr-ml-0">
-                                {% for child in form.declarantStatus.children %}
+                            {% for child in form.declarantStatus.children %}
+                                <div class="fr-fieldset__element">
                                     <div class="fr-radio-group fr-radio-rich [&_input[type=radio]_+_label]:before:content-[''] [&_input[type=radio]_+_label]:before:left-6">
                                         {{ form_widget(child) }}
-                                        <label class="fr-label fr-mb-6v gap-y-1 fr-pl-16v" for="{{ child.vars.id }}">
+                                        <label class="fr-label gap-y-1 fr-pl-16v" for="{{ child.vars.id }}">
                                             {{ child.vars.label|trans|striptags }}
                                             <span
                                                 class="fr-hint-text">{{ form.declarantStatus.vars.choices_help[child.vars.value]|trans }}</span>
@@ -33,20 +33,23 @@
                                                 alt="">
                                         </div>
                                     </div>
-                                {% endfor %}
-                            </div>
-                            {{ form_errors(form.declarantStatus) }}
+                                </div>
+                            {% endfor %}
                         </fieldset>
+                        {% if form.declarantStatus.vars.errors is not empty %}
+                            <div class="-mt-4">{{ form_errors(form.declarantStatus) }}</div>
+                        {% endif %}
                     </div>
-                    <p class="fr-mb-md-12v">
+                    <p class="fr-mb-md-12v fr-mt-4v fr-mt-md-6v">
                         <a href="{{ path('faq', {'_fragment': 'pel-faq-section'}) }}" class="fr-text--sm fr-text-title--blue-france" target="_blank"
-                           rel="noopener"
-                           title="{{ 'pel.frequently.asked.questions'|trans|add_new_window_text }}">{{ 'pel.frequently.asked.questions'|trans }}</a>
+                            rel="noopener"
+                            title="{{ 'pel.frequently.asked.questions'|trans|add_new_window_text }}">{{ 'pel.frequently.asked.questions'|trans }}</a>
                     </p>
                 {% endblock %}
             </div>
         </div>
     </div>
+
     <hr>
     <div class="fr-grid-row">
         <div class="fr-col">
