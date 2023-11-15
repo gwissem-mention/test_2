@@ -37,11 +37,17 @@
             </li>
         {% endfor %}
     </ul>
-    {% if this.errors|length > 0 %}
-        {% for error in this.errors %}
-            <p class="fr-error-text" id="form-errors-{{ inputName }}">
-                {{ error }}
-            </p>
-        {% endfor %}
+    {% if this.errors|length is same as 1 %}
+        <p class="fr-error-text" id="form-errors-{{ inputName }}">
+            {{ this.errors[0] }}
+        </p>
+    {% elseif this.errors|length > 1 %}
+        <div id="form-errors-{{ inputName }}">
+            {% for error in this.errors %}
+                <p class="fr-error-text">
+                    {{ error }}
+                </p>
+            {% endfor %}
+        </div>
     {% endif %}
 </div>
