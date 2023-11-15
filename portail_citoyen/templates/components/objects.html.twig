@@ -79,14 +79,18 @@
                     {% if object.files is defined %}
                         {{ form_row(object.files) }}
                         {% if files is not empty and files[object.vars.name] is defined %}
-                            <ul>
-                                {% for original_name, file in files[object.vars.name] %}
-                                    <li class="relative text-xl/8 fr-pb-6v fr-pl-8v -ml-8">
-                                       <span class="fr-text--xs">{{ original_name }}<span class="fr-icon-file-text-line before:content-[''] before:mb-1 before:ml-2 before:w-4 before:h-4 before:bg-no-repeat before:bg-[length:14px_14px]" aria-hidden="true"></span></span>
-                                        <a class="fr-link fr-ml-3v fr-text--xs" id="file-remove-{{ object.vars.name }}-{{ loop.index0 }}" href="javascript:void(0);" data-action="live#action" data-action-name="removeFile(objectIndex={{ object.vars.name }}, fileIndex={{ loop.index0 }})">Supprimer</a>
-                                    </li>
-                                {% endfor %}
-                            </ul>
+                            <div data-controller="downloaded-files-list">
+                                <ul class="pel-list--downloaded-files grid grid-cols-2 gap-y-2 -mb-4" data-downloaded-files-list-target="list">
+                                    {% for original_name, file in files[object.vars.name] %}
+                                        <li class="relative fr-pb-4v break-all">
+                                            <span class="fr-text--xs">{{ original_name }}<span class="fr-icon-file-text-line before:content-[''] before:mb-1 before:ml-2 before:w-4 before:h-4 before:bg-no-repeat before:bg-[length:14px_14px]" aria-hidden="true"></span></span>
+                                        </li>
+                                        <li class="fr-pb-4v fr-pl-4v">
+                                            <a class="fr-link fr-text--xs pel-link--delete" title="{{'pel.dropzone.delete.file.text'|trans}} {{original_name}}" id="file-remove-{{ object.vars.name }}-{{ loop.index0 }}" href="javascript:void(0);" data-action="live#action downloaded-files-list#handleDelete" data-action-name="removeFile(objectIndex={{ object.vars.name }}, fileIndex={{ loop.index0 }})">{{ 'pel.dropzone.remove.file'|trans }}</a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
                         {% endif %}
 
                     {% endif %}

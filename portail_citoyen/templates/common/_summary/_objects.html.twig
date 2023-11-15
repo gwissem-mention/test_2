@@ -229,7 +229,7 @@
             <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.quantity'|trans }} : <b>{{ object.quantity }}</b></li>
             {% if object.serialNumber is not null %}
                 <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.other.serial.number'|trans }} : <b>{{ object.serialNumber }}</b></li>
-            {% endif%}
+            {% endif %}
         {% endif %}
         {% if object.amount is not null %}
             <li class="list-disc text-xl/8 fr-pb-6v">{{ 'pel.amount'|trans }} : <b>{{ object.amount|format_currency('EUR', {fraction_digit: 2}) }}</b></li>

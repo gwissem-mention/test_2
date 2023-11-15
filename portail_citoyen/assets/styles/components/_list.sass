@@ -13,3 +13,8 @@
             &:hover
                 cursor: pointer
                 background-color: var(--background-default-grey-hover)
+
+.pel-list
+    &--downloaded-files
+        > :not(:nth-last-child(-n+2))
+            border-bottom: 1px solid var(--border-default-grey)
