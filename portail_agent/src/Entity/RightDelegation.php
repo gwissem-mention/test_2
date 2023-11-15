@@ -74,6 +74,7 @@ class RightDelegation
     public function removeDelegatedAgent(User $delegatedAgent): static
     {
         $this->delegatedAgents->removeElement($delegatedAgent);
+        $delegatedAgent->setDelegationGained(null);
 
         return $this;
     }

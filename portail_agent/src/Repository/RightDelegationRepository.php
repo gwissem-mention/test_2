@@ -34,6 +34,12 @@ class RightDelegationRepository extends ServiceEntityRepository
         }
     }
 
+    public function remove(RightDelegation $entity): void
+    {
+        $this->getEntityManager()->remove($entity);
+        $this->getEntityManager()->flush();
+    }
+
     public function findCurrentRightDelegationByDelegatingAgent(?User $delegatingAgent): ?RightDelegation
     {
         $today = (new \DateTimeImmutable())->setTime(0, 0);

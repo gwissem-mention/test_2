@@ -46,3 +46,12 @@ Feature:
         When I press "user_avatar"
         And I follow "Délégation des droits"
         Then I should see "Vous avez sélectionné une durée limitée du 01/03/2025 au 31/03/2025 pour déléguer vos droits à Bernard EVRARD"
+
+    Scenario: As a supervisor, I can cancel the delegation
+        Given I press "user_avatar"
+        And I follow "Délégation des droits"
+        Then I press "rights-delegation-cancel"
+        And I should see the key "pel.cancel.delegation" translated
+        And I should see "Souhaitez-vous annuler la délégation de vos droits ?"
+        When I press "Confirmer l'annulation"
+        Then I am on the homepage

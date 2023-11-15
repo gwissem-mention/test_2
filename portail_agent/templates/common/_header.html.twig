@@ -248,6 +248,7 @@
         {% include 'common/_partial/modals/delegate.html.twig' with {'isModification': has_right_delegation(app.user)} %}
         {% if has_right_delegation(app.user) %}
             {% include 'common/_partial/modals/delegation_view.html.twig' %}
+            {% include 'common/_partial/modals/delegation_cancellation.html.twig' %}
         {% endif %}
     {% endif %}
 </div>

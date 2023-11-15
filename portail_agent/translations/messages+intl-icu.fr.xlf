@@ -1694,6 +1694,22 @@
                 <source>pel.rights.delegation</source>
                 <target>Délégation des droits</target>
             </trans-unit>
+            <trans-unit id="pel.rights.delegation.cancellation">
+                <source>pel.rights.delegation.cancellation</source>
+                <target>Annuler la délégation</target>
+            </trans-unit>
+            <trans-unit id="pel.keep.the.delegation">
+                <source>pel.keep.the.delegation</source>
+                <target>Garder la délégation</target>
+            </trans-unit>
+            <trans-unit id="pel.confirm.delegation.cancellation">
+                <source>pel.confirm.delegation.cancellation</source>
+                <target>Confirmer l'annulation</target>
+            </trans-unit>
+            <trans-unit id="pel.ask.rights.delegation.cancellation">
+                <source>pel.ask.rights.delegation.cancellation</source>
+                <target>Souhaitez-vous <![CDATA[<b>annuler la délégation de vos droits ?</b>]]></target>
+            </trans-unit>
             <trans-unit id="pel.the.rights.delegation.is">
                 <source>pel.the.rights.delegation.is</source>
                 <target>La délégation des droits est</target>

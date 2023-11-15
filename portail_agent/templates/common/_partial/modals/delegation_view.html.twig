@@ -26,7 +26,7 @@
 
         {% block footer %}
             <div class="px-4">
-                <button type="button" class="fr-btn fr-btn--secondary me-3" data-action="sidebar#cancelDelegation" data-sidebar-url-param="#" data-sidebar-target="delegationModalCancelButton">{{ 'pel.cancel.delegation'|trans }}</button>
+                <button type="button" class="fr-btn fr-btn--secondary me-3" id="rights-delegation-cancel" data-action="sidebar#openRightsDelegationCancellationModal">{{ 'pel.cancel.delegation'|trans }}</button>
                 <button type="button" class="fr-btn" id="rights-delegation-modify" data-action="sidebar#openRightsDelegationModificationModal">{{ 'pel.modify.delegation'|trans }}</button>
             </div>
         {% endblock %}
