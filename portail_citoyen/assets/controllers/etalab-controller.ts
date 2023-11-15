@@ -28,7 +28,7 @@ export default class extends Controller {
     }
 
     public handleKeyup(event: KeyboardEvent):void {
-        if (event.key === "Escape") {
+        if (event.key === "Escape" || event.key === "Enter") {
             this.inputTarget.setAttribute("aria-expanded", "false");
         }
     }
