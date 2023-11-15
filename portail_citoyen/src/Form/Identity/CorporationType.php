@@ -98,6 +98,7 @@ class CorporationType extends AbstractType
                 'attr' => [
                     'aria-hidden' => 'true',
                     'data-controller' => 'tom-select-extend',
+                    'data-live-id' => 'corporation-country-'.microtime(),
                 ],
                 'label' => 'pel.address.country',
                 'preferred_choices' => [$this->franceCode],
