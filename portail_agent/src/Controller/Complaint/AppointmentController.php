@@ -27,7 +27,7 @@ class AppointmentController extends AbstractController
             'assign_form' => $this->createForm(AssignType::class, $complaint),
             'unit_reassign_form' => $this->createForm(UnitReassignType::class, $complaint),
             'send_report_form' => $this->createForm(SendReportType::class, null, [
-                'is_after_appointment' => null !== $complaint->getAppointmentDate(),
+                'has_scheduled_appointment' => null !== $complaint->getAppointmentDate(),
             ]),
             'appointment_form' => $this->createForm(AppointmentType::class, $complaint),
             'isAppointmentPlanned' => null !== $complaint->getAppointmentDate(),

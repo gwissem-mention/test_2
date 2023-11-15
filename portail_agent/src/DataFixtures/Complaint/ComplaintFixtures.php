@@ -90,12 +90,20 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
             }
 
             for ($i = 1; $i <= self::COMPLAINTS_NB; ++$i) {
-                $complaints[] = $this->getGenericComplaint($users)
+                $complaint = $this->getGenericComplaint($users)
                     ->setStatus(Complaint::STATUS_ONGOING_LRP)
                     ->setCreatedAt(new \DateTimeImmutable('2022-12-02'))
                     ->setUnitAssigned($unit)
                     ->setFrontId('abcd-'.$unit.'-'.strval($i))
                     ->setAssignedTo($user);
+
+                if (0 === $i % 2) {
+                    $complaint
+                        ->setAppointmentDate(new \DateTimeImmutable('2025-01-01'))
+                        ->setAppointmentTime(new \DateTimeImmutable('2025-01-01 12:00:00'));
+                }
+
+                $complaints[] = $complaint;
             }
 
             for ($i = 1; $i <= self::COMPLAINTS_NB; ++$i) {

@@ -1266,9 +1266,9 @@
                 <source>pel.you.must.choose.a.file</source>
                 <target>Vous devez sélectionner au moins un fichier</target>
             </trans-unit>
-            <trans-unit id="pel.you.must.do.the.appointment">
-                <source>pel.you.must.do.the.appointment</source>
-                <target>Vous devez réaliser le rendez-vous</target>
+            <trans-unit id="pel.you.must.choose.a.situation">
+                <source>pel.you.must.choose.a.situation</source>
+                <target>Vous devez choisir une situation</target>
             </trans-unit>
             <trans-unit id="pel.notifications">
                 <source>pel.notifications</source>
@@ -1638,8 +1638,8 @@
                 <source>pel.indicate.the.situation</source>
                 <target>Indiquez la situation</target>
             </trans-unit>
-            <trans-unit id="pel.the.appointment.took.place.in.visioconference">
-                <source>pel.the.appointment.took.place.in.visioconference</source>
+            <trans-unit id="pel.the.appointment.took.place.in.videoconference">
+                <source>pel.the.appointment.took.place.in.videoconference</source>
                 <target>Le rendez-vous a eu lieu en visioconférence</target>
             </trans-unit>
             <trans-unit id="pel.the.appointment.took.place.on.site">

@@ -294,12 +294,12 @@ export default class ComplaintController extends Controller {
     // @ts-ignore
     private sendReport({params: {urlSendReport, urlClose}}): void {
         const dropzone: Dropzone = Dropzone.forElement(this.dropZoneFormTarget.querySelector(".dropzone"));
-        const isAfterAppointment: string | null = this.dropZoneFormTarget.getAttribute("data-is-after-appointment");
+        const hasScheduledAppointment: string | null = this.dropZoneFormTarget.getAttribute("data-has-scheduled-appointment");
         const radioInput: HTMLInputElement | null = this.hasAppointmentDoneRadioButtonTarget ? this.appointmentDoneRadioButtonTarget.querySelector("input[name=\"send_report[appointment_done]\"]:checked") : null;
 
         dropzone.options.url = urlSendReport;
 
-        if (dropzone.getQueuedFiles().length >= 1 && (isAfterAppointment !== "true" || (isAfterAppointment === "true" && radioInput?.value === "1"))) {
+        if (dropzone.getQueuedFiles().length >= 1 && (hasScheduledAppointment !== "true" || (hasScheduledAppointment === "true" && radioInput?.value))) {
             this.setSpinnerState(this.sendReportValidationButtonTarget);
             dropzone.processQueue();
 
@@ -324,7 +324,7 @@ export default class ComplaintController extends Controller {
                     this.setSpinnerState(this.sendReportValidationButtonTarget);
                 }
             });
-        } else if (urlClose && isAfterAppointment === "true" && radioInput?.value === "1") {
+        } else if (urlClose && hasScheduledAppointment === "true") {
             fetch(urlClose, {
                 method: HttpMethodsEnum.POST,
                 body: new FormData(this.dropZoneFormTarget)
@@ -347,26 +347,13 @@ export default class ComplaintController extends Controller {
                                 this.reloadComplaintContainer();
                             } else {
                                 this.dropZoneFormTarget.innerHTML = data.form;
-                                this.dropZoneErrorTarget.innerText = this.dropZoneFormTarget.getAttribute("data-error-message") ?? "";
                             }
                         });
                 });
         } else {
             if (this.dropZoneFormTarget.getAttribute("data-empty-message")) {
                 this.dropZoneErrorTarget.innerText = this.dropZoneFormTarget.getAttribute("data-empty-message") ?? "";
-            } else if (this.dropZoneFormTarget.getAttribute("data-error-message")) {
-                this.dropZoneErrorTarget.innerText = this.dropZoneFormTarget.getAttribute("data-error-message") ?? "";
             }
-        }
-    }
-
-    public isClosableAfterAppointment(): void {
-        const radioInput: HTMLInputElement | null = this.appointmentDoneRadioButtonTarget.querySelector("input[name=\"send_report[appointment_done]\"]:checked");
-
-        if (radioInput?.value === "1") {
-            this.sendReportValidationButtonTarget.removeAttribute("disabled");
-        } else {
-            this.sendReportValidationButtonTarget.setAttribute("disabled", "disabled");
         }
     }
 

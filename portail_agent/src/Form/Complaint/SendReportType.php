@@ -13,22 +13,25 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 class SendReportType extends AbstractType
 {
+    private const APPOINTMENT_VIDEOCONFERENCE = 0;
+    private const APPOINTMENT_ON_SITE = 1;
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('files', DropzoneType::class, [
-                'label' => $options['is_after_appointment'] ? 'pel.upload.report.optional' : false,
+                'label' => $options['has_scheduled_appointment'] ? 'pel.upload.report.optional' : false,
                 'accepted_files' => 'image/jpeg,image/png,application/pdf',
-                'constraints' => $options['is_after_appointment'] ? [] : [new NotBlank()],
+                'constraints' => $options['has_scheduled_appointment'] ? [] : [new NotBlank()],
             ]);
 
-        if ($options['is_after_appointment']) {
+        if ($options['has_scheduled_appointment']) {
             $builder
                 ->add('appointment_done', ChoiceType::class, [
                     'label' => false,
                     'choices' => [
-                        'pel.the.appointment.took.place.in.visioconference' => true,
-                        'pel.the.appointment.took.place.on.site' => false,
+                        'pel.the.appointment.took.place.in.videoconference' => self::APPOINTMENT_VIDEOCONFERENCE,
+                        'pel.the.appointment.took.place.on.site' => self::APPOINTMENT_ON_SITE,
                     ],
                     'expanded' => true,
                     'multiple' => false,
@@ -37,9 +40,11 @@ class SendReportType extends AbstractType
                     ],
                     'attr' => [
                         'data-complaint-target' => 'appointmentDoneRadioButton',
-                        'data-action' => 'change->complaint#isClosableAfterAppointment',
                     ],
                     'priority' => 1,
+                    'constraints' => [
+                        new NotBlank(null, 'pel.you.must.choose.a.situation'),
+                    ],
                 ]);
         }
     }
@@ -47,7 +52,7 @@ class SendReportType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'is_after_appointment' => 'false',
+            'has_scheduled_appointment' => false,
         ]);
     }
 }
