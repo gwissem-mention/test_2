@@ -770,6 +770,10 @@
                 <source>pel.dropzone.remove.file</source>
                 <target>Supprimer</target>
             </trans-unit>
+            <trans-unit id="pel.dropzone.delete.file.text">
+                <source>pel.dropzone.delete.file.text</source>
+                <target>Supprimer le fichier</target>
+            </trans-unit>
             <trans-unit id="pel.email">
                 <source>pel.email</source>
                 <target>E-mail</target>
