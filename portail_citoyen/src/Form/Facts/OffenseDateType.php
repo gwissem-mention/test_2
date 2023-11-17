@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Form\Facts;
 
 use App\Form\Model\Facts\OffenseDateModel;
+use App\Session\SessionHandler;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -23,7 +24,12 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 class OffenseDateType extends AbstractType
 {
-    private const TIMEZONE = 'Europe/Paris';
+    private ?string $userTimezone;
+
+    public function __construct(private readonly SessionHandler $sessionHandler)
+    {
+        $this->userTimezone = $this->sessionHandler->getComplaint()?->getTimezone();
+    }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -176,7 +182,7 @@ class OffenseDateType extends AbstractType
                     'label' => 'pel.exact.hour',
                     'widget' => 'single_text',
                     'model_timezone' => 'UTC',
-                    'view_timezone' => self::TIMEZONE,
+                    'view_timezone' => $this->userTimezone,
                     'reference_date' => new \DateTime('now', new \DateTimeZone('UTC')),
                     'constraints' => [
                         new Callback([
@@ -225,7 +231,7 @@ class OffenseDateType extends AbstractType
                     'label' => 'pel.start.hour',
                     'widget' => 'single_text',
                     'model_timezone' => 'UTC',
-                    'view_timezone' => self::TIMEZONE,
+                    'view_timezone' => $this->userTimezone,
                     'reference_date' => new \DateTime('now', new \DateTimeZone('UTC')),
                     'constraints' => [
                         new NotBlank(),
@@ -266,7 +272,7 @@ class OffenseDateType extends AbstractType
                         'class' => 'fr-input',
                     ],
                     'model_timezone' => 'UTC',
-                    'view_timezone' => self::TIMEZONE,
+                    'view_timezone' => $this->userTimezone,
                     'reference_date' => new \DateTime('now', new \DateTimeZone('UTC')),
                     'constraints' => [
                         new Callback([

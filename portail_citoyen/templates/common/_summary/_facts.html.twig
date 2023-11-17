@@ -1,5 +1,3 @@
-{% set timezone = 'Europe/Paris' %}
-
 <p class="fr-badge fr-badge--purple-glycine fr-badge--no-icon fr-text--xs fr-mb-6v">{{ 'pel.complaint.date.and.time'|trans }}</p>
 <ul class="list-none fr-pl-8v fr-my-0">
     <li class="relative text-xl/8 fr-pb-0 fr-pl-8v -ml-8 before:content-[''] before:absolute before:top-[5px] before:left-[3px] before:w-6 before:h-6 before:bg-no-repeat before:bg-[length:22px_22px] before:bg-[url('/assets/images/icons/calendar-event.svg')]">
@@ -27,12 +25,12 @@
                 {% if complaint.facts.offenseDate.hour is not null %}
                     {{ 'pel.facts.offence.occurred'|trans }}
                     {{ 'pel.at'|trans|lower }}
-                    <b>{{ complaint.facts.offenseDate.hour|date('H' ~ '\\' ~ 'pel.hour.h'|trans|lower ~ 'i', timezone) }}</b>.
+                    <b>{{ complaint.facts.offenseDate.hour|date('H' ~ '\\' ~ 'pel.hour.h'|trans|lower ~ 'i', complaint.timezone) }}</b>.
                 {% else %}
                     {{ 'pel.facts.offence.may.have.occurred'|trans }}
                     {{ 'pel.between'|trans|lower }}
-                    <b>{{ complaint.facts.offenseDate.startHour|date('H' ~ '\\' ~ 'pel.hour.h'|trans|lower ~ 'i', timezone) }}</b> {{ 'pel.and'|trans|lower }}
-                    <b>{{ complaint.facts.offenseDate.endHour|date('H' ~ '\\' ~ 'pel.hour.h'|trans|lower ~ 'i', timezone) }}</b>.
+                    <b>{{ complaint.facts.offenseDate.startHour|date('H' ~ '\\' ~ 'pel.hour.h'|trans|lower ~ 'i', complaint.timezone) }}</b> {{ 'pel.and'|trans|lower }}
+                    <b>{{ complaint.facts.offenseDate.endHour|date('H' ~ '\\' ~ 'pel.hour.h'|trans|lower ~ 'i', complaint.timezone) }}</b>.
                 {% endif %}
             </p>
         {% elseif complaint.facts.offenseDate.choiceHour is same as('maybe') %}
@@ -40,12 +38,12 @@
             <p class="text-xl/8">
                 {% if complaint.facts.offenseDate.hour is not null %}
                     {{ 'pel.facts.offence.occurred'|trans }}
-                    <b>{{ complaint.facts.offenseDate.hour|date('H' ~ '\\' ~ 'pel.hour.h'|trans|lower ~ 'i', timezone) }}</b>
+                    <b>{{ complaint.facts.offenseDate.hour|date('H' ~ '\\' ~ 'pel.hour.h'|trans|lower ~ 'i', complaint.timezone) }}</b>
                 {% else %}
                     {{ 'pel.facts.offence.may.have.occurred'|trans }}
                     {{ 'pel.between'|trans|lower }}
-                    <b>{{ complaint.facts.offenseDate.startHour|date('H' ~ '\\' ~ 'pel.hour.h'|trans|lower ~ 'i', timezone) }}</b> {{ 'pel.and'|trans|lower }}
-                    <b>{{ complaint.facts.offenseDate.endHour|date('H' ~ '\\' ~ 'pel.hour.h'|trans|lower ~ 'i', timezone) }}</b>.
+                    <b>{{ complaint.facts.offenseDate.startHour|date('H' ~ '\\' ~ 'pel.hour.h'|trans|lower ~ 'i', complaint.timezone) }}</b> {{ 'pel.and'|trans|lower }}
+                    <b>{{ complaint.facts.offenseDate.endHour|date('H' ~ '\\' ~ 'pel.hour.h'|trans|lower ~ 'i', complaint.timezone) }}</b>.
                 {% endif %}
             </p>
         {% else %}

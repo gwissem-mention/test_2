@@ -47,7 +47,8 @@ class ComplaintFactory
             ->setAppointmentRequired(true)
             ->setAppointment($this->createAppointment())
             ->setAdditionalInformation($this->createAdditionalInformation())
-            ->setLawRefresherAccepted(true);
+            ->setLawRefresherAccepted(true)
+            ->setTimezone('Europe/Paris');
     }
 
     public function createAppointment(): AppointmentModel

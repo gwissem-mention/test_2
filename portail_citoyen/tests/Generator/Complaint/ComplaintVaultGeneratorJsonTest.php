@@ -619,6 +619,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
             'franceConnected' => false,
             'affectedService' => '66459',
             'lawRefresherAccepted' => true,
+            'timezone' => 'Europe/Paris',
         ], JSON_THROW_ON_ERROR);
 
         self::assertJson($complaintJson);
@@ -1105,6 +1106,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
     //            'franceConnected' => false,
     //            'affectedService' => '66459',
     //            'lawRefresherAccepted' => true,
+    //            'timezone' => 'Europe/Paris',
     //        ], JSON_THROW_ON_ERROR);
     //
     //        self::assertJson($complaintJson);
@@ -1740,6 +1742,7 @@ class ComplaintVaultGeneratorJsonTest extends KernelTestCase
             'franceConnected' => false,
             'affectedService' => '66459',
             'lawRefresherAccepted' => true,
+            'timezone' => 'Europe/Paris',
         ], JSON_THROW_ON_ERROR);
 
         self::assertJson($complaintJson);
