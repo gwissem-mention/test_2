@@ -4,7 +4,7 @@
             <div class="fr-col-12 fr-col-md-8 {% if (size is defined) and (size is same as('md')) %}fr-col-lg-6{% endif %}{% if className is defined %}{{ className }}{% endif %}">
                 <div class="fr-modal__body">
                     <div class="fr-modal__header">
-                        <button class="fr-link--close fr-link" aria-controls="fr-modal-{{ id }}">{{ 'pel.close'|trans }}</button>
+                        <button class="fr-btn fr-btn--sm fr-btn--close fr-icon-close-line fr-btn--icon-right fr-btn--tertiary-no-outline" aria-controls="fr-modal-{{ id }}">{{ 'pel.close'|trans }}</button>
                     </div>
                     <div class="fr-modal__content">
                         <div id="fr-modal-{{ id }}-title" class="fr-modal__title">
