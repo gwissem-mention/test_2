@@ -23,6 +23,7 @@ class ComplaintModel
     private ?AppointmentModel $appointment = null;
     private bool $franceConnected = false;
     private ?string $affectedService = null;
+    private ?string $affectedServiceInstitution = null;
     private bool $appointmentRequired = false;
     private bool $lawRefresherAccepted = false;
     private ?string $timezone = null;
@@ -189,6 +190,18 @@ class ComplaintModel
     public function setTimezone(?string $timezone): self
     {
         $this->timezone = $timezone;
+
+        return $this;
+    }
+
+    public function getAffectedServiceInstitution(): ?string
+    {
+        return $this->affectedServiceInstitution;
+    }
+
+    public function setAffectedServiceInstitution(?string $affectedServiceInstitution): self
+    {
+        $this->affectedServiceInstitution = $affectedServiceInstitution;
 
         return $this;
     }

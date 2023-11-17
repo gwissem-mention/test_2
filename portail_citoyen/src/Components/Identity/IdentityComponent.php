@@ -176,10 +176,13 @@ class IdentityComponent extends AbstractController
         //     $identity->getRepresentedPersonContactInformation()?->setFrenchAddress(null);
         // }
 
+        $complaint->setIdentity($identity);
+        $affectedService = $complaintHandler->getAffectedService($complaint);
+
         $this->sessionHandler->setComplaint(
             $complaint
-                ->setIdentity($identity)
-                ->setAffectedService($complaintHandler->getAffectedService($complaint))
+                ->setAffectedService($affectedService?->getServiceCodeForInstitution())
+                ->setAffectedServiceInstitution($affectedService?->getInstitutionCode())
                 ->setAppointmentRequired($complaintHandler->isAppointmentRequired($complaint))
         );
 

@@ -103,6 +103,7 @@ use Psr\Log\LoggerInterface;
  *      appointmentRequired: bool,
  *      appointment: object{appointmentAsked: bool, appointmentContactText: string}|null,
  *      affectedService: string|null,
+ *      affectedServiceInstitution: string|null,
  *  }
  */
 class ComplaintFileParser
@@ -187,7 +188,9 @@ class ComplaintFileParser
                 $this->logger->error(sprintf('Complaint %s has a not found unit %s', $complaint->getFrontId(), $importedComplaint->affectedService));
             }
 
-            $complaint->setUnitAssigned($importedComplaint->affectedService);
+            $complaint
+                ->setUnitAssigned($importedComplaint->affectedService)
+                ->setUnitAssignedInstitution($importedComplaint->affectedServiceInstitution);
         } else {
             $this->logger->error(sprintf('No affected service for complaint %s', $complaint->getFrontId()));
         }

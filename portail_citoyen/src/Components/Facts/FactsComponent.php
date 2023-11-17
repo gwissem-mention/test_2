@@ -140,10 +140,13 @@ class FactsComponent extends AbstractController
             $facts->getAddress()?->setEndAddress($endAddress);
         }
 
+        $complaint->setFacts($facts);
+        $affectedService = $complaintHandler->getAffectedService($complaint);
+
         $this->sessionHandler->setComplaint(
             $complaint
-                ->setFacts($facts)
-                ->setAffectedService($complaintHandler->getAffectedService($complaint))
+                ->setAffectedService($affectedService?->getServiceCodeForInstitution())
+                ->setAffectedServiceInstitution($affectedService?->getInstitutionCode())
                 ->setAppointmentRequired($complaintHandler->isAppointmentRequired($complaint))
         );
 

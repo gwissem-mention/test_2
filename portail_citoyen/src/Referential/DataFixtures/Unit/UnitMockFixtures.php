@@ -45,8 +45,8 @@ class UnitMockFixtures extends Fixture implements FixtureGroupInterface
                 Institution::GN
             ),
             new Unit(
-                '3009446',
-                '3009446',
+                '9446',
+                '9446',
                 'Brigade territoriale autonome de Cestas',
                 '44.74221',
                 '-0.68382',

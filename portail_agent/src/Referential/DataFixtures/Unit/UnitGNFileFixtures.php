@@ -25,8 +25,6 @@ class UnitGNFileFixtures extends Fixture implements FixtureGroupInterface
     private const UNIT_DEPARTMENT_EMAIL = 9;
     private const UNIT_DEPARTMENT = 6;
 
-    private const GN_SERVICE_PREFIX = 3000000;
-
     private const BATCH_SIZE = 20;
     private const LENGTH = 1500;
 
@@ -53,7 +51,7 @@ class UnitGNFileFixtures extends Fixture implements FixtureGroupInterface
                         $unit = new Unit(
                             $data[self::UNIT_EMAIL],
                             $data[self::UNIT_DEPARTMENT_EMAIL],
-                            (string) (self::GN_SERVICE_PREFIX + (int) $data[self::UNIT_CODE]),
+                            $data[self::UNIT_CODE],
                             $data[self::UNIT_CODE],
                             $data[self::UNIT_NAME],
                             $data[self::UNIT_LATITUDE],

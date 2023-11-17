@@ -53,8 +53,8 @@ class UnitMockFixtures extends Fixture implements FixtureGroupInterface
             new Unit(
                 'bta.cestas@gendarmerie.interieur.gouv.fr',
                 'corg.ggd33@gendarmerie.interieur.gouv.fr',
-                '3009446',
-                '3009446',
+                '9446',
+                '9446',
                 'Brigade territoriale autonome de Cestas',
                 '44.74221',
                 '-0.68382',

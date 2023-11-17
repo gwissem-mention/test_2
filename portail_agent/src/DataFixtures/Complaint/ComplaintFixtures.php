@@ -54,22 +54,26 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
         $users = [$userUnit1, $userUnit2];
         $unitsUsers = [
             '74181' => $userUnit1,
-            '3009446' => $userUnit2,
+            '9446' => $userUnit2,
         ];
         $this->defaultStorage->writeStream('/blank.pdf', fopen($this->kernel->getProjectDir().'/tests/Behat/Files/blank.pdf', 'rb'));
         $this->defaultStorage->writeStream('/iphone.png', fopen($this->kernel->getProjectDir().'/tests/Behat/Files/iphone.png', 'rb'));
 
         foreach ($unitsUsers as $unit => $user) {
             $unit = strval($unit);
+            $unitInstitution = '74181' === $unit ? 'PN' : 'GN';
+
             for ($i = 1; $i <= self::COMPLAINTS_NB; ++$i) {
                 $complaints[] = $this->getGenericComplaint($users)
-                    ->setUnitAssigned($unit);
+                    ->setUnitAssigned($unit)
+                    ->setUnitAssignedInstitution($unitInstitution);
             }
 
             for ($i = 1; $i <= self::COMPLAINTS_NB; ++$i) {
                 $complaint = $this
                     ->getGenericComplaint($users)
                     ->setUnitAssigned($unit)
+                    ->setUnitAssignedInstitution($unitInstitution)
                     ->setFrontId('abcd-'.$unit.'-'.strval($i));
                 /** @var Identity $identity */
                 $identity = $complaint->getIdentity();
@@ -86,6 +90,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                     ->setAppointmentDate(new \DateTimeImmutable('2022-12-01'))
                     ->setAppointmentTime(new \DateTimeImmutable('2022-12-01'))
                     ->setUnitAssigned($unit)
+                    ->setUnitAssignedInstitution($unitInstitution)
                     ->setAssignedTo($user);
             }
 
@@ -94,6 +99,7 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                     ->setStatus(Complaint::STATUS_ONGOING_LRP)
                     ->setCreatedAt(new \DateTimeImmutable('2022-12-02'))
                     ->setUnitAssigned($unit)
+                    ->setUnitAssignedInstitution($unitInstitution)
                     ->setFrontId('abcd-'.$unit.'-'.strval($i))
                     ->setAssignedTo($user);
 
@@ -112,7 +118,8 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                     ->setCreatedAt(new \DateTimeImmutable('2022-12-03'))
                     ->setRefusalReason(self::REFUSAL_REASON_REORIENTATION_OTHER_SOLUTION)
                     ->setFrontId('abcd-'.$unit.'-'.strval($i))
-                    ->setUnitAssigned($unit);
+                    ->setUnitAssigned($unit)
+                    ->setUnitAssignedInstitution($unitInstitution);
             }
 
             for ($i = 1; $i <= self::COMPLAINTS_NB; ++$i) {
@@ -120,7 +127,8 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                     ->setCreatedAt(new \DateTimeImmutable('2022-12-04'))
                     ->setStatus(Complaint::STATUS_MP_DECLARANT)
                     ->setFrontId('abcd-'.$unit.'-'.strval($i))
-                    ->setUnitAssigned($unit);
+                    ->setUnitAssigned($unit)
+                    ->setUnitAssignedInstitution($unitInstitution);
             }
 
             for ($i = 1; $i <= self::COMPLAINTS_NB; ++$i) {
@@ -129,7 +137,8 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                     ->setStatus(Complaint::STATUS_CLOSED)
                     ->setClosedAt((new \DateTimeImmutable())->sub(new \DateInterval('P200D')))
                     ->setFrontId('abcd-'.$unit.'-'.strval($i))
-                    ->setUnitAssigned($unit);
+                    ->setUnitAssigned($unit)
+                    ->setUnitAssignedInstitution($unitInstitution);
             }
 
             for ($i = 1; $i <= self::COMPLAINTS_NB; ++$i) {
@@ -138,7 +147,8 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                     ->setCreatedAt(new \DateTimeImmutable('2022-12-05'))
                     ->setStatus(Complaint::STATUS_APPOINTMENT_PENDING)
                     ->setFrontId('abcd-'.$unit.'-'.strval($i))
-                    ->setUnitAssigned($unit);
+                    ->setUnitAssigned($unit)
+                    ->setUnitAssignedInstitution($unitInstitution);
                 /** @var Identity $identity */
                 $identity = $complaint->getIdentity();
                 $complaints[] = $complaint
@@ -210,7 +220,8 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                 $complaint = $this->getGenericComplaint($users)
                     ->setCreatedAt(new \DateTimeImmutable('2022-12-05'))
                     ->setStatus(Complaint::STATUS_ASSIGNED)
-                    ->setUnitAssigned($unit);
+                    ->setUnitAssigned($unit)
+                    ->setUnitAssignedInstitution($unitInstitution);
                 /** @var Identity $identity */
                 $identity = $complaint->getIdentity();
                 $complaints[] = $complaint
@@ -247,7 +258,8 @@ class ComplaintFixtures extends Fixture implements FixtureGroupInterface, Depend
                     ->setCreatedAt(new \DateTimeImmutable('2022-12-05'))
                     ->setStatus(Complaint::STATUS_UNIT_REDIRECTION_PENDING)
                     ->setFrontId('abcd-'.$unit.'-'.strval($i))
-                    ->setUnitAssigned($unit);
+                    ->setUnitAssigned($unit)
+                    ->setUnitAssignedInstitution($unitInstitution);
             }
         }
 

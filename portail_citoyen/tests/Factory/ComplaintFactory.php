@@ -41,6 +41,7 @@ class ComplaintFactory
             ->setCreatedAt($createdAt)
             ->setFranceConnected(false)
             ->setAffectedService('66459')
+            ->setAffectedServiceInstitution('PN')
             ->setIdentity($identity)
             ->setFacts($this->createFacts())
             ->setObjects($this->createObjects())

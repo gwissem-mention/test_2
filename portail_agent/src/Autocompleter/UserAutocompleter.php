@@ -41,10 +41,12 @@ class UserAutocompleter implements EntityAutocompleterInterface
         return $qb
             ->andWhere('LOWER(user.appellation) LIKE LOWER(:appellation)')
             ->andWhere('user.serviceCode = :serviceCode')
+            ->andWhere('user.institution = :institution')
             ->orderBy('user.appellation', 'ASC')
             ->setParameters([
                 'appellation' => '%'.$query.'%',
                 'serviceCode' => $user->getServiceCode(),
+                'institution' => $user->getInstitution()->value,
             ]);
     }
 

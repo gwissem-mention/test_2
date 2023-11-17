@@ -70,21 +70,21 @@ class UserFixtures extends Fixture implements FixtureGroupInterface
                 'appellation' => 'Thomas DURAND',
                 'number' => 'PR5KTZ9R',
                 'institution' => Institution::GN,
-                'serviceCode' => '3009446', // BRIGADE TERRITORIALE AUTONOME DE CESTAS
+                'serviceCode' => '9446', // BRIGADE TERRITORIALE AUTONOME DE CESTAS
                 'roles' => ['ROLE_SUPERVISOR'],
             ],
             [
                 'appellation' => 'Julie RICHARD',
                 'number' => 'PR5KTZ9C',
                 'institution' => Institution::GN,
-                'serviceCode' => '3009446', // BRIGADE TERRITORIALE AUTONOME DE CESTAS
+                'serviceCode' => '9446', // BRIGADE TERRITORIALE AUTONOME DE CESTAS
                 'roles' => [],
             ],
             [
                 'appellation' => 'Philippe RIVIERE',
                 'number' => 'PR5KTQSD',
                 'institution' => Institution::GN,
-                'serviceCode' => '3009446', // BRIGADE TERRITORIALE AUTONOME DE CESTAS
+                'serviceCode' => '9446', // BRIGADE TERRITORIALE AUTONOME DE CESTAS
                 'roles' => [],
             ],
         ];
