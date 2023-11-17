@@ -11,7 +11,6 @@ export default class extends Controller {
 
     setupDeleteLinks(): void {
         const list = this.listTarget as HTMLUListElement;
-
         if (list.children.length > 0) {
             list.querySelectorAll(".pel-link--delete").forEach((link: Element) => {
                 (link as HTMLAnchorElement).addEventListener("click", (event: Event) => this.handleDelete(event));
@@ -23,11 +22,11 @@ export default class extends Controller {
         event.preventDefault();
 
         const target = event.currentTarget;
-        if (!(target instanceof HTMLAnchorElement)) {
+        if (!(target instanceof HTMLButtonElement)) {
             return;
         }
 
-        const deleteButtons = Array.from(this.listTarget.querySelectorAll(".pel-link--delete")) as HTMLAnchorElement[];
+        const deleteButtons = Array.from(this.listTarget.querySelectorAll(".pel-link--delete")) as HTMLButtonElement[];
         const buttonIndex = deleteButtons.indexOf(target);
 
         if (deleteButtons.length > 1) {
