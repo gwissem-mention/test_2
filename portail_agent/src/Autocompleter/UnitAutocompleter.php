@@ -15,6 +15,8 @@ use Symfony\UX\Autocomplete\EntityAutocompleterInterface;
 #[AutoconfigureTag('ux.entity_autocompleter', ['alias' => 'unit'])]
 class UnitAutocompleter implements EntityAutocompleterInterface
 {
+    private const GIRONDE_DEPARTMENT = 33;
+
     public function getEntityClass(): string
     {
         return Unit::class;
@@ -33,8 +35,10 @@ class UnitAutocompleter implements EntityAutocompleterInterface
 
         return $qb
             ->andWhere('LOWER(unit.name) LIKE LOWER(:name)')
+            ->andWhere('unit.department = :gironde') // PEL-1202: Limit the autocomplete to the Gironde department
             ->orderBy('unit.name', 'ASC')
             ->setParameter('name', '%'.$query.'%')
+            ->setParameter('gironde', self::GIRONDE_DEPARTMENT)
         ;
     }
 

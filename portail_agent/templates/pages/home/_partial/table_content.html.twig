@@ -2,8 +2,7 @@
     data-controller="home checkbox-group dashboard-bulk-action"
     data-action="checkbox-group:updateChecked->dashboard-bulk-action#setBulkTarget dashboard-bulk-action:finished->datatable#refresh dashboard-bulk-action:finished->checkbox-group#resetAll"
     data-dashboard-bulk-action-url-bulk-assign-value="{{ path('complaint_bulk_assign') }}"
-    {# Hidden for experimentation PEL-1590#}
-    {# data-dashboard-bulk-action-url-bulk-reassign-value="{{ path('complaint_bulk_reassign') }}" #}
+    data-dashboard-bulk-action-url-bulk-reassign-value="{{ path('complaint_bulk_reassign') }}"
     class="w-100"
 >
     <div class="d-flex align-items-center justify-content-start">
@@ -18,8 +17,7 @@
         {% if is_granted('ROLE_SUPERVISOR') %}
             <div id="groupActionsList" data-checkbox-group-target="groupAction" class="mb-3 d-none">
                 <button class="fr-btn fr-btn--icon-left fr-icon-user-setting-fill me-4" data-bs-toggle="modal" data-bs-target="#modal-complaint-assign">{{ 'pel.assign.to'|trans }}</button>
-                {# Hidden for experimentation PEL-1590 #}
-                {# <button class="fr-btn fr-btn--icon-left fr-icon-arrow-go-forward-line" data-bs-toggle="modal" data-bs-target="#modal-complaint-unit-reassign">{{ 'pel.validate.the.unit.reassignment'|trans }}</button>#}
+                <button class="fr-btn fr-btn--icon-left fr-icon-arrow-go-forward-line" data-bs-toggle="modal" data-bs-target="#modal-complaint-unit-reassign">{{ 'pel.validate.the.unit.reassignment'|trans }}</button>
             </div>
         {% endif %}
     </div>

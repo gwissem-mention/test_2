@@ -349,7 +349,7 @@ final class BaseContext extends MinkContext
      *
      * @throws ElementNotFoundException
      */
-    public function fillInAutocomplete(string $field, string $query, string $foundValue): void
+    public function fillInAutocompleteAndClick(string $field, string $query, string $foundValue): void
     {
         $this->retryStep(function () use ($field, $query, $foundValue) {
             $session = $this->getSession();
@@ -387,6 +387,40 @@ final class BaseContext extends MinkContext
             }
 
             $valueToAutocomplete->click();
+        });
+    }
+
+    /**
+     * @When I fill in the autocomplete :autocomplete with :query
+     *
+     * @throws ElementNotFoundException
+     */
+    public function fillInAutocomplete(string $field, string $query): void
+    {
+        $this->retryStep(function () use ($field, $query) {
+            $session = $this->getSession();
+            $element = $session->getPage()->findField($field);
+
+            if (null === $element) {
+                throw new ElementNotFoundException($session, null, 'named', $field);
+            }
+
+            $element->focus();
+            $element->setValue($query);
+
+            $xpath = $element->getXpath();
+            $driver = $session->getDriver();
+
+            $driver->keyDown($xpath, 40);
+            $driver->keyUp($xpath, 40);
+
+            $this->iWait(500);
+
+            $autocompletes = $this->getSession()->getPage()->findField($field)?->getParent()->getParent()->find('css', '.ts-dropdown-content');
+
+            if (empty($autocompletes)) {
+                throw new \RuntimeException('Could not find the autocomplete popup box');
+            }
         });
     }
 
