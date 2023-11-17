@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Components\Identity;
 
 use App\Etalab\AddressEtalabHandler;
+use App\Etalab\AddressZoneChecker;
 use App\Form\Identity\IdentityType;
 use App\Form\Model\Address\AbstractSerializableAddress;
 use App\Form\Model\Address\AddressEtalabModel;
@@ -16,6 +17,7 @@ use App\Session\SessionHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 use Symfony\UX\LiveComponent\Attribute\LiveAction;
 use Symfony\UX\LiveComponent\Attribute\LiveArg;
@@ -46,7 +48,8 @@ class IdentityComponent extends AbstractController
 
     public function __construct(
         private readonly SessionHandler $sessionHandler,
-        private readonly AddressEtalabHandler $addressEtalabHandler
+        private readonly AddressEtalabHandler $addressEtalabHandler,
+        private readonly AddressZoneChecker $addressZoneChecker
     ) {
         $this->identityModel = $this->sessionHandler->getComplaint()?->getIdentity() ?? new IdentityModel();
 
@@ -136,6 +139,11 @@ class IdentityComponent extends AbstractController
 
         if (isset($this->formValues['contactInformation']['frenchAddress'])) {
             $address = $this->addressEtalabHandler->getAddressModel($this->contactInformationEtalabInput);
+
+            if (!$address instanceof AddressEtalabModel || false === $this->addressZoneChecker->isInsideGironde($address->getDepartment())) {
+                throw new UnprocessableEntityHttpException('Form validation failed in component');
+            }
+
             $contactInformation = $identity->getContactInformation();
             $contactInformation->setFrenchAddress($address);
             $identity->setContactInformation($contactInformation);
@@ -146,6 +154,10 @@ class IdentityComponent extends AbstractController
         if (isset($this->formValues['corporation']['frenchAddress'])) {
             if (!$this->formValues['corporation']['sameAddress'] || !$address instanceof AbstractSerializableAddress) {
                 $address = $this->addressEtalabHandler->getAddressModel($this->corporationEtalabInput);
+
+                if (!$address instanceof AddressEtalabModel || false === $this->addressZoneChecker->isInsideGironde($address->getDepartment())) {
+                    throw new UnprocessableEntityHttpException('Form validation failed in component');
+                }
             }
             $corporation = $identity->getCorporation();
             $corporation?->setFrenchAddress($address);

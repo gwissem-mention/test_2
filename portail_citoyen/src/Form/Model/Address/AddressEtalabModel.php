@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Form\Model\Address;
 
+use Symfony\Component\Serializer\Annotation\Ignore;
+
 class AddressEtalabModel extends AbstractSerializableAddress
 {
     use LatLngTrait;
@@ -12,7 +14,7 @@ class AddressEtalabModel extends AbstractSerializableAddress
     private ?string $label = null;
     private ?string $type = null;
     private ?float $score = null;
-    private ?string $housenumber = null;
+    private ?string $houseNumber = null;
     private ?string $street = null;
     private ?string $name = null;
     private ?string $postcode = null;
@@ -67,12 +69,12 @@ class AddressEtalabModel extends AbstractSerializableAddress
 
     public function getHouseNumber(): ?string
     {
-        return $this->housenumber;
+        return $this->houseNumber;
     }
 
-    public function setHouseNumber(?string $housenumber): static
+    public function setHouseNumber(?string $houseNumber): static
     {
-        $this->housenumber = $housenumber;
+        $this->houseNumber = $houseNumber;
 
         return $this;
     }
@@ -207,5 +209,11 @@ class AddressEtalabModel extends AbstractSerializableAddress
     public function getLabel(): ?string
     {
         return $this->label;
+    }
+
+    #[Ignore]
+    public function getDepartment(): string
+    {
+        return null !== $this->getPostcode() ? substr($this->getPostcode(), 0, 2) : '';
     }
 }

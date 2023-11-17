@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Components\Facts;
 
 use App\Etalab\AddressEtalabHandler;
+use App\Etalab\AddressZoneChecker;
 use App\Form\Facts\FactsType;
 use App\Form\Model\Address\AbstractSerializableAddress;
 use App\Form\Model\Address\AddressEtalabModel;
@@ -17,6 +18,7 @@ use App\Session\SessionHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 use Symfony\UX\LiveComponent\Attribute\LiveAction;
 use Symfony\UX\LiveComponent\Attribute\LiveArg;
@@ -52,6 +54,7 @@ class FactsComponent extends AbstractController
         private readonly SessionHandler $sessionHandler,
         private readonly AddressEtalabHandler $addressEtalabHandler,
         private readonly NaturePlaceRepository $naturePlaceRepository,
+        private readonly AddressZoneChecker $addressZoneChecker
     ) {
         $this->factsModel = $this->sessionHandler->getComplaint()?->getFacts() ?? new FactsModel();
 
@@ -119,11 +122,21 @@ class FactsComponent extends AbstractController
 
         if (isset($this->formValues['address']['startAddress'])) {
             $startAddress = $this->addressEtalabHandler->getAddressModel($this->startAddressEtalabInput);
+
+            if (!$startAddress instanceof AddressEtalabModel || false === $this->addressZoneChecker->isInsideGironde($startAddress->getDepartment())) {
+                throw new UnprocessableEntityHttpException('Form validation failed in component');
+            }
+
             $facts->getAddress()?->setStartAddress($startAddress);
         }
 
         if (isset($this->formValues['address']['endAddress'])) {
             $endAddress = $this->addressEtalabHandler->getAddressModel($this->endAddressEtalabInput);
+
+            if (!$endAddress instanceof AddressEtalabModel || false === $this->addressZoneChecker->isInsideGironde($endAddress->getDepartment())) {
+                throw new UnprocessableEntityHttpException('Form validation failed in component');
+            }
+
             $facts->getAddress()?->setEndAddress($endAddress);
         }
 
