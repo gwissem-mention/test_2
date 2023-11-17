@@ -177,17 +177,17 @@ Feature:
     Then I should be on "/porter-plainte/informations-complementaires"
     When I follow "Étape précédente"
     Then I should see "blank.pdf"
-    And I should see 2 "a[id^=file-remove]" element
-    And I follow "file-remove-0-0"
-    And I should see 1 "a[id^=file-remove]" element
+    And I should see 2 "button[id^=file-remove]" element
+    And I press "file-remove-0-0"
+    And I should see 1 "button[id^=file-remove]" element
     When I attach the file "blank.pdf" to "object-files-0" field
-    And I should see 2 "a[id^=file-remove]" element
+    And I should see 2 "button[id^=file-remove]" element
     When I press "objects_objects_add"
     And I attach the file "blank.pdf" to "object-files-2" field
-    And I wait 500 ms
-    And I should see 3 "a[id^=file-remove]" element
-    When I follow "file-remove-2-0"
-    And I should see 2 "a[id^=file-remove]" element
+    And I wait 1000 ms
+    And I should see 3 "button[id^=file-remove]" element
+    When I press "file-remove-2-0"
+    And I should see 2 "button[id^=file-remove]" element
 
   Scenario: Upload a file with a forbidden file extension
     And I attach the file "blank.xls" to "object-files-0" field

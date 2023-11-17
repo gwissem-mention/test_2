@@ -1,6 +1,6 @@
 <div class="fr-upload-group fr-mb-3w" {{ attributes.add(stimulus_controller('file-upload')) }} data-general-error-text="{{ 'pel.upload.error.message'|trans }}">
     <label class="fr-label" for="{{ inputId }}">{{ inputLabel }}
-        <p class="fr-hint-text">{{ inputHelp }}</p>
+        <span class="fr-hint-text">{{ inputHelp }}</span>
     </label>
     <div class="pel-file-upload-btn fr-mt-4v" data-controller="custom-input-type" data-custom-input-type-default-message-value="{{ 'pel.upload.btn.file.default'|trans }}">
         <input
