@@ -7,6 +7,7 @@ namespace App\Tests\Session;
 use App\Form\Model\Address\AddressEtalabModel;
 use App\Form\Model\Facts\FactsModel;
 use App\Form\Model\Identity\IdentityModel;
+use App\Referential\Entity\CityService;
 use App\Session\ComplaintHandler;
 use App\Session\ComplaintModel;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
@@ -55,8 +56,10 @@ class ComplaintHandlerTest extends KernelTestCase
 
         $complaint->setIdentity($identity)->setFacts($facts);
 
-        $serviceCode = $this->complaintHandler->getAffectedService($complaint);
+        $affectedService = $this->complaintHandler->getAffectedService($complaint);
 
-        $this->assertEquals('17501026', $serviceCode);
+        $this->assertInstanceOf(CityService::class, $affectedService);
+        $this->assertEquals('17501026', $affectedService->getServiceCodeForInstitution());
+        $this->assertEquals('PN', $affectedService->getInstitutionCode());
     }
 }

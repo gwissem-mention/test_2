@@ -13,7 +13,9 @@ use Doctrine\Persistence\ObjectManager;
 class CityServiceFileFixtures extends Fixture implements FixtureGroupInterface
 {
     private const CITY_CODE = 0;
-    private const SERVICE_CODE = 1;
+    private const SERVICE_CODE_PN = 1;
+    private const INSTITUTION = 2;
+    private const SERVICE_CODE_GN = 3;
     private const BATCH_SIZE = 20;
     private const LENGTH = 1000;
 
@@ -38,8 +40,12 @@ class CityServiceFileFixtures extends Fixture implements FixtureGroupInterface
             if (is_resource($handle)) {
                 while (is_array($data = fgetcsv($handle, self::LENGTH))) {
                     if ($row > 1) {
-                        $cityService = new CityService($data[self::CITY_CODE], $data[self::SERVICE_CODE]);
-                        $manager->persist($cityService);
+                        $manager->persist(new CityService(
+                            $data[self::CITY_CODE],
+                            $data[self::SERVICE_CODE_PN],
+                            $data[self::SERVICE_CODE_GN],
+                            $data[self::INSTITUTION]
+                        ));
 
                         if (($row % self::BATCH_SIZE) === 0) {
                             $manager->flush();

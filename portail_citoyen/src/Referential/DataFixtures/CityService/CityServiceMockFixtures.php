@@ -19,8 +19,8 @@ class CityServiceMockFixtures extends Fixture implements FixtureGroupInterface
     public function load(ObjectManager $manager): void
     {
         $cityServices = [
-            new CityService('33063', '74097'),
-            new CityService('75111', '17501026'),
+            new CityService('33063', '74097', '74097', '1'),
+            new CityService('75111', '17501026', '17501026', '1'),
         ];
 
         foreach ($cityServices as $cityService) {

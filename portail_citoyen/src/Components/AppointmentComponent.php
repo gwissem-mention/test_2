@@ -57,7 +57,9 @@ class AppointmentComponent extends AbstractController
             /** @var ?Unit $unit */
             $unit = $unitRepository->findOneBy(['idAnonym' => $this->unitSelected]);
             if ($unit instanceof Unit) {
-                $complaint->setAffectedService($unit->getServiceId());
+                $complaint
+                    ->setAffectedService($unit->getServiceId())
+                    ->setAffectedServiceInstitution($unit->getInstitutionCode()?->value);
             }
         }
 

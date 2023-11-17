@@ -135,6 +135,9 @@ class Complaint
     private ?string $unitAssigned = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    private ?string $unitAssignedInstitution = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $unitToReassign = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -855,6 +858,18 @@ class Complaint
             $this->uploadReports->add($uploadReport);
             $uploadReport->setComplaint($this);
         }
+
+        return $this;
+    }
+
+    public function getUnitAssignedInstitution(): ?string
+    {
+        return $this->unitAssignedInstitution;
+    }
+
+    public function setUnitAssignedInstitution(?string $unitAssignedInstitution): self
+    {
+        $this->unitAssignedInstitution = $unitAssignedInstitution;
 
         return $this;
     }

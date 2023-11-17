@@ -25,10 +25,12 @@ class ComplaintsController extends AbstractController
         $currentRoute = $request->attributes->get('_route');
         /** @var User $user */
         $user = $this->getUser();
+
         $columns = $request->query->all()['columns'] ?? [];
         $order = $request->query->all()['order'][0] ?? [];
         $search = $request->query->all()['search'] ?? [];
         $complaints = $complaintRepository->findAsPaginator(
+            $user,
             [[
                 'field' => $columns[$order['column']]['data'],
                 'dir' => $order['dir'],
@@ -36,7 +38,7 @@ class ComplaintsController extends AbstractController
             $request->query->getInt('start'),
             'my_complaints_unit' === $currentRoute,
             $request->query->getInt('length'),
-            $user->getServiceCode(), $user, $search['value']
+            $search['value']
         );
         $json = ['data' => []];
         foreach ($complaints as $complaint) {

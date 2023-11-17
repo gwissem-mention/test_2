@@ -69,12 +69,11 @@ class ComplaintRepository extends ServiceEntityRepository
      * @return Paginator<Complaint>
      */
     public function findAsPaginator(
+        User $agent,
         array $order = [],
         int $start = 0,
         bool $unitComplaint = false,
         int $length = null,
-        string $unit = null,
-        User $agent = null,
         string $searchQuery = null
     ): Paginator {
         $qb = $this
@@ -82,6 +81,7 @@ class ComplaintRepository extends ServiceEntityRepository
             ->select('c, count(comments) as HIDDEN count_comments')
             ->addSelect('(CASE WHEN c.status = :status THEN 1 ELSE 0 END) AS HIDDEN assignmentPendingSort')
             ->andWhere('c.unitAssigned = :unit')
+            ->andWhere('c.unitAssignedInstitution = :unitInstitution')
             ->orderBy('assignmentPendingSort', 'DESC')
             ->join('c.facts', 'facts')
             ->join('c.identity', 'identity')
@@ -91,14 +91,15 @@ class ComplaintRepository extends ServiceEntityRepository
             ->addGroupBy('facts')
             ->addGroupBy('identity')
             ->addGroupBy('assignedTo.id')
-            ->setParameter('unit', $unit)
+            ->setParameter('unit', $agent->getServiceCode())
+            ->setParameter('unitInstitution', $agent->getInstitution()->value)
             ->setParameter('status', Complaint::STATUS_ASSIGNMENT_PENDING);
 
         $order = $this->addOrderByPriority($order);
 
         if (false === $unitComplaint) {
             $qb->andWhere('assignedTo = :agent')->setParameter('agent', $agent);
-        } elseif (false === $agent?->isSupervisor()) {
+        } elseif (false === $agent->isSupervisor()) {
             $qb->andWhere('c.assignedTo != :currentUser OR c.assignedTo IS NULL')->setParameter('currentUser', $agent);
         }
 

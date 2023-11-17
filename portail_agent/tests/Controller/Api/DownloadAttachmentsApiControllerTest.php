@@ -28,8 +28,8 @@ class DownloadAttachmentsApiControllerTest extends WebTestCase
         /** @var FilesystemOperator $defaultStorage */
         $defaultStorage = $container->get('default.storage');
         $defaultStorage->writeStream(
-            'abcd-3009446-1/abcd-3009446-1.zip',
-            fopen(self::$kernel->getProjectDir().'/tests/Behat/Files/abcd-3009446-1.zip', 'rb')
+            'abcd-9446-1/abcd-9446-1.zip',
+            fopen(self::$kernel->getProjectDir().'/tests/Behat/Files/abcd-9446-1.zip', 'rb')
         );
 
         /** @var UserRepository $userRepository */
@@ -47,7 +47,7 @@ class DownloadAttachmentsApiControllerTest extends WebTestCase
         $this->client->loginUser($this->userGn);
         $this->client->request(
             'GET',
-            '/api/complaint/abcd-3009446-1/attachments',
+            '/api/complaint/abcd-9446-1/attachments',
         );
 
         $response = $this->client->getResponse();
@@ -60,7 +60,7 @@ class DownloadAttachmentsApiControllerTest extends WebTestCase
     {
         $this->client->request(
             'GET',
-            '/api/complaint/abcd-3009446-1/attachments',
+            '/api/complaint/abcd-9446-1/attachments',
         );
 
         $response = $this->client->getResponse();
@@ -88,7 +88,7 @@ class DownloadAttachmentsApiControllerTest extends WebTestCase
         $this->client->loginUser($this->userGn);
         $this->client->request(
             'GET',
-            '/api/complaint/abcd-3009446-5/attachments',
+            '/api/complaint/abcd-9446-5/attachments',
         );
 
         $response = $this->client->getResponse();

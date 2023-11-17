@@ -8,6 +8,7 @@ use App\AppEnum\DeclarantStatus;
 use App\Form\Model\Address\AddressEtalabModel;
 use App\Form\Model\Objects\ObjectModel;
 use App\Form\Model\Objects\ObjectsModel;
+use App\Referential\Entity\CityService;
 use App\Referential\Repository\CityServiceRepository;
 use App\Thesaurus\ObjectCategoryThesaurusProviderInterface;
 
@@ -19,19 +20,17 @@ class ComplaintHandler
     ) {
     }
 
-    public function getAffectedService(ComplaintModel $complaint): ?string
+    public function getAffectedService(ComplaintModel $complaint): ?CityService
     {
-        $serviceCode = null;
-
         $factsStartAddress = $complaint->getFacts()?->getAddress()?->getStartAddress();
         $identityFrenchAddress = $complaint->getIdentity()?->getContactInformation()?->getFrenchAddress();
         $factsStartAddress = $factsStartAddress ?: $identityFrenchAddress;
 
-        if ($factsStartAddress instanceof AddressEtalabModel) {
-            $serviceCode = $this->cityServiceRepository->findOneBy(['cityCode' => $factsStartAddress->getCitycode()])?->getServiceCode();
+        if (!$factsStartAddress instanceof AddressEtalabModel) {
+            return null;
         }
 
-        return $serviceCode;
+        return $this->cityServiceRepository->findOneBy(['cityCode' => $factsStartAddress->getCitycode()]);
     }
 
     public function isAppointmentRequired(ComplaintModel $complaint): bool
