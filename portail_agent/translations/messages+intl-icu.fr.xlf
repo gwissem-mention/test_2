@@ -1298,6 +1298,10 @@
                 <source>pel.unit.redirection.pending</source>
                 <target>En attente de réorientation</target>
             </trans-unit>
+            <trans-unit id="pel.unit.reassignment.in.gironde.only">
+                <source>pel.unit.reassignment.in.gironde.only</source>
+                <target>Réorientation possible vers une unité de Gironde seulement</target>
+            </trans-unit>
             <trans-unit id="pel.unit.reassignment.reason">
                 <source>pel.unit.reassignment.reason</source>
                 <target>Veuillez décrire le motif de la réorientation</target>
