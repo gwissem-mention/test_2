@@ -4,11 +4,12 @@ import {Loader} from "@googlemaps/js-api-loader";
 import {GirondeBoundaryChecker} from "../../scripts/GirondeBoundaryChecker";
 
 export default class extends Controller {
-    static override targets: string[] = ["map", "leftMenu", "modal", "result"];
+    static override targets: string[] = ["map", "leftMenu", "modal", "result", "mapInput"];
 
     protected component: Component | undefined | null;
 
     declare readonly mapTarget: HTMLInputElement;
+    declare readonly mapInputTarget: HTMLInputElement;
     declare readonly leftMenuTarget: HTMLInputElement;
     declare readonly modalTarget: HTMLInputElement;
     declare readonly resultTarget: HTMLInputElement;
@@ -200,9 +201,13 @@ export default class extends Controller {
         if (inseeCode && !GirondeBoundaryChecker.isInsideGironde(inseeCode.substring(0, 2))) {
             if (errorMessageElement) {
                 errorMessageElement.textContent = "Uniquement les adresses des faits commis en Gironde sont acceptées";
+                this.mapInputTarget.setAttribute("aria-describedby", errorMessageElement.id);
             }
             return;
+        } else {
+            this.mapInputTarget.removeAttribute("aria-describedby");
         }
+
         if (errorMessageElement) {
             errorMessageElement.textContent = "";
         }

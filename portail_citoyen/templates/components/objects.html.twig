@@ -86,7 +86,7 @@
                                             <span class="fr-text--xs">{{ original_name }}<span class="fr-icon-file-text-line before:content-[''] before:mb-1 before:ml-2 before:w-4 before:h-4 before:bg-no-repeat before:bg-[length:14px_14px]" aria-hidden="true"></span></span>
                                         </li>
                                         <li class="fr-pb-4v fr-pl-4v">
-                                            <a class="fr-link fr-text--xs pel-link--delete" title="{{'pel.dropzone.delete.file.text'|trans}} {{original_name}}" id="file-remove-{{ object.vars.name }}-{{ loop.index0 }}" href="javascript:void(0);" data-action="live#action downloaded-files-list#handleDelete" data-action-name="removeFile(objectIndex={{ object.vars.name }}, fileIndex={{ loop.index0 }})">{{ 'pel.dropzone.remove.file'|trans }}</a>
+                                            <button class="fr-link fr-text--xs pel-link--delete" title="{{'pel.dropzone.delete.file.text'|trans}} {{original_name}}" id="file-remove-{{ object.vars.name }}-{{ loop.index0 }}" href="javascript:void(0);" data-action="live#action downloaded-files-list#handleDelete" data-action-name="removeFile(objectIndex={{ object.vars.name }}, fileIndex={{ loop.index0 }})">{{ 'pel.dropzone.remove.file'|trans }}</button>
                                         </li>
                                     {% endfor %}
                                 </ul>

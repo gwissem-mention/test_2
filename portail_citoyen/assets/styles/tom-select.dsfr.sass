@@ -1,40 +1,63 @@
 .fr-select-group--error
-  .#{$select-ns}-wrapper
-    &.single
-      .#{$select-ns}-control
-        box-shadow: inset 0 -2px 0 0 var(--border-plain-error) !important
+    .#{$select-ns}-wrapper
+        &.single
+            .#{$select-ns}-control
+                box-shadow: inset 0 -2px 0 0 var(--border-plain-error) !important
 
 .#{$select-ns}-wrapper
-  display: flex
-  min-height: $select-line-height + ($select-padding-y*2) + ($select-border-width *2)
+    display: flex
+    min-height: $select-line-height + ($select-padding-y*2) + ($select-border-width *2)
 
-  &.single
-    .#{$select-ns}-control
-      margin-top: 0.5rem
-      --idle: transparent
-      --hover: var(--background-contrast-grey-hover)
-      --active: var(--background-contrast-grey-active)
-      background: var(--background-contrast-grey) !important
-      border-radius: 0.25rem 0.25rem 0 0
-      box-shadow: inset 0 -2px 0 0 var(--border-plain-grey)
-      line-height: 1.5rem
-      padding: 0.5rem 1rem
-      border: none
-      font-size: 1rem
-      color: var(--text-label-grey)
+    &.single
+        margin-top: 1rem
+        .#{$select-ns}-control
+            --idle: transparent
+            --hover: var(--background-contrast-grey-hover)
+            --active: var(--background-contrast-grey-active)
+            background: var(--background-contrast-grey) !important
+            border-radius: 0.25rem 0.25rem 0 0
+            box-shadow: inset 0 -2px 0 0 var(--border-plain-grey)
+            line-height: 1.5rem
+            padding: 0.5rem 1rem
+            border: none
+            font-size: 1rem
+            color: var(--text-label-grey)
 
-      > input
-        font-size: 1rem
-        color: var(--text-label-grey)
-        line-height: 1.5rem
-        background: var(--background-contrast-grey) !important
-        max-width: calc(100% - 2.5rem) !important
+            > input
+                font-size: 1rem
+                color: var(--text-label-grey)
+                line-height: 1.5rem
+                background: var(--background-contrast-grey) !important
+                max-width: calc(100% - 2.5rem) !important
 
-        &::placeholder
-          color: var(--text-label-grey)
+                &::placeholder
+                    color: var(--text-label-grey)
 
-      &:after
-        content: none
+            &:after
+                content: none
+
+    &.plugin-virtual_scroll
+        .#{$select-ns}-control
+            display: flex
+            > .item
+                position: relative
+                padding-right: 2rem
+            > .item + input
+                position: absolute
+                left: 1rem
+                opacity: 0
+                width: calc(100% - 3rem) !important
+                min-width: unset
+                height: calc(100% - 1rem)
+                margin: 0 !important
+                padding: 0.5rem 0 !important
+
+        &.input-active
+            .#{$select-ns}-control > .item
+                opacity: 0
+            .#{$select-ns}-control > .item + input
+                opacity: 1
+
 
 .#{$select-ns}-dropdown
   font-size: 1rem
