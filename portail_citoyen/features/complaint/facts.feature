@@ -313,3 +313,17 @@ Feature:
         Then I should be on "/porter-plainte/objets"
         When I follow "Étape précédente"
         Then the "facts-startAddress-address" field should contain "Avenue de la République 33000 Bordeaux"
+
+    Scenario: I should see an error when I select an address not in Gironde
+        When I fill in "facts_description" with "description informations lorem ipsum dol or sit amet lorem ipsum dol or sit amet"
+        And I select "1" from "facts_placeNature"
+        And I select "10" from "facts_subPlaceNature"
+        And I fill in "facts-startAddress-address" with "Avenue de la République Paris"
+        And I click the "#facts-startAddress-address-75111_8158" element
+        And I click the "label[for=facts_offenseDate_exactDateKnown_0]" element
+        And I fill in "facts_offenseDate_startDate" with "01/01/2022"
+        And I click the "label[for=facts_offenseDate_choiceHour_0]" element
+        And I fill in "facts_offenseDate_hour" with "15:00"
+        And I press "facts_submit"
+        Then I should be on "/porter-plainte/faits"
+        And I should see "Uniquement les adresses des faits commis en Gironde sont acceptées"
