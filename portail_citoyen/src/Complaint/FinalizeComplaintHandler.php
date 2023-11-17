@@ -48,6 +48,7 @@ class FinalizeComplaintHandler
                         $file->getName(),
                         $folder->getId()
                     );
+                    $this->defaultStorage->delete($file->getPath());
                 }
             }
         }
