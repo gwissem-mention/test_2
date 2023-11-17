@@ -14,7 +14,10 @@
 {% endblock %}
 
 {% block content %}
-	<div data-controller="form">
+	<div
+        data-controller="form timezone"
+        data-timezone-url-value="{{ path('complaint_timezone') }}"
+    >
 		{{ component('identity', {fromSummary: from_summary}) }}
 	</div>
 {% endblock %}

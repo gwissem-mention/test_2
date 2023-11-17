@@ -25,6 +25,7 @@ class ComplaintModel
     private ?string $affectedService = null;
     private bool $appointmentRequired = false;
     private bool $lawRefresherAccepted = false;
+    private ?string $timezone = null;
 
     public function __construct(Uuid $id)
     {
@@ -176,6 +177,18 @@ class ComplaintModel
     public function setLawRefresherAccepted(bool $lawRefresherAccepted): self
     {
         $this->lawRefresherAccepted = $lawRefresherAccepted;
+
+        return $this;
+    }
+
+    public function getTimezone(): ?string
+    {
+        return $this->timezone;
+    }
+
+    public function setTimezone(?string $timezone): self
+    {
+        $this->timezone = $timezone;
 
         return $this;
     }
