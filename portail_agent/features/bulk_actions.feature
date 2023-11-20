@@ -50,7 +50,7 @@ Feature:
         When I check "complaint_91"
         And I check "complaint_92"
         And I press "Réorienter"
-        And I fill in the autocomplete "bulk_reassign_unitCodeToReassign-ts-control" with "BRIGADE TERRITORIALE AUTONOME DE CESTAS" and click "3009446"
+        And I fill in the autocomplete "bulk_reassign_unitCodeToReassign-ts-control" with "BRIGADE TERRITORIALE AUTONOME DE CESTAS" and click "9446"
         And I fill in "bulk_reassign_reassignText" with "Ces plaintes ne sont pas censée être attribuées à mon unité."
         And I press "bulk-unit-reassign-button"
         Then I should see a ".modal[aria-modal=true]" element
