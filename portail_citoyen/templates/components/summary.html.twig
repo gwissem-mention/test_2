@@ -6,8 +6,8 @@
     <hr>
     <div class="fr-pt-6v fr-pb-12v fr-px-6v fr-pt-md-6v fr-px-md-20v fr-pb-md-6v">
         <div class="flex justify-between items-center fr-mb-8v fr-mb-md-12v">
-            <div class="flex items-center gap-x-4">
-                <img src="{{ asset('build/images/national-identity-card.svg') }}" width="40" height="36" alt="">
+            <div class="relative flex items-center gap-x-4 before:content-[''] before:absolute before:-left-1 before:top-0 before:w-[46px] before:h-full before:bg-white">
+                <img class="relative" src="{{ asset('build/images/national-identity-card.svg') }}" width="40" height="36" alt="">
                 <h2 class="fr-mb-0 text-2xl">{{ 'pel.complaint.your.identity'|trans }}</h2>
             </div>
             <a class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-edit-line fr-hidden fr-unhidden-md fr-py-1v min-h-fit" title="{{ 'pel.update.title.identity'|trans }}" href="{{ path('complaint_identity', {'fromSummary':1}) }}" id="update-identity">{{ 'pel.update'|trans }}</a>
@@ -36,8 +36,8 @@
     <hr>
     <div class="fr-pt-4v fr-pb-12v fr-px-6v fr-pt-md-6v fr-px-md-20v fr-pb-md-6v">
         <div class="flex justify-between items-center fr-mb-8v fr-mb-md-12v">
-            <div class="flex items-center gap-x-2">
-                <img src="{{ asset('build/images/document.svg') }}" class="-ml-2" height="48" alt="">
+            <div class="relative flex items-center gap-x-2 before:content-[''] before:absolute before:-left-1 before:top-0 before:w-[40px] before:h-full before:bg-white">
+                <img class="relative -ml-2" src="{{ asset('build/images/document.svg') }}" width="48" height="48" alt="">
                 <h2 class="fr-mb-0 text-2xl">{{ 'pel.facts.description'|trans }}</h2>
             </div>
             <a class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-edit-line fr-hidden fr-unhidden-md fr-py-1v min-h-fit" title="{{ 'pel.update.title.facts'|trans }}" href="{{ path('complaint_facts', {'fromSummary':1}) }}" id="update-facts">{{ 'pel.update'|trans }}</a>
@@ -48,8 +48,8 @@
     <hr>
     <div class="fr-pt-4v fr-pb-12v fr-px-6v fr-pt-md-6v fr-px-md-20v fr-pb-md-6v">
         <div class="flex justify-between items-center fr-mb-8v fr-mb-md-6v">
-            <div class="flex items-center gap-x-4">
-                <img src="{{ asset('build/images/vehicle-registration-document.svg') }}" alt="">
+            <div class="relative flex items-center gap-x-4 before:content-[''] before:absolute before:-left-1 before:top-0 before:w-[40px] before:h-full before:bg-white">
+                <img class="relative" src="{{ asset('build/images/vehicle-registration-document.svg') }}" alt="">
                 <h2 class="fr-mb-0 text-2xl">{{ 'pel.goods.concerned.by.the.offence'|trans }}</h2>
             </div>
             <a class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-edit-line fr-hidden fr-unhidden-md fr-py-1v min-h-fit" title="{{ 'pel.update.title.objects'|trans }}" href="{{ path('complaint_objects', {'fromSummary':1}) }}" id="update-objects">{{ 'pel.update'|trans }}</a>
@@ -60,8 +60,8 @@
     <hr>
     <div class="fr-pt-4v fr-pb-12v fr-px-6v fr-pt-md-6v fr-px-md-20v fr-pb-md-6v">
         <div class="flex justify-between items-center fr-mb-8v fr-mb-md-12v">
-            <div class="flex items-center gap-x-4">
-                <img src="{{ asset('build/images/error.svg') }}" alt="">
+            <div class="relative flex items-center gap-x-4 before:content-[''] before:absolute before:-left-1 before:top-0 before:w-[40px] before:h-full before:bg-white">
+                <img class="relative" src="{{ asset('build/images/error.svg') }}" alt="">
                 <h2 class="fr-mb-0 text-2xl">{{ 'pel.additional.factual.information'|trans }}</h2>
             </div>
             <a class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-edit-line fr-hidden fr-unhidden-md fr-py-1v min-h-fit" title="{{ 'pel.update.title.additional.information'|trans }}" href="{{ path('complaint_additional_information', {'fromSummary':1}) }}" id="update-additional-information">{{ 'pel.update'|trans }}</a>
@@ -89,8 +89,8 @@
     <hr class="fr-pb-0">
     <div class="fr-background-alt--beige-gris-galet fr-pt-10v fr-pb-2v fr-px-6v fr-pt-md-12v fr-px-md-20v ">
         <div class="flex justify-between items-center fr-mb-8v fr-mb-md-6v">
-            <div class="flex items-center gap-x-4">
-                <img src="{{ asset('build/images/sign-document.svg') }}" alt="">
+            <div class="relative flex items-center gap-x-4 before:content-[''] before:absolute before:-left-1 before:top-0 before:w-[40px] before:h-full before:bg-[var(--pel-beige-gris-galet-975-75)]">
+                <img class="relative" src="{{ asset('build/images/sign-document.svg') }}" alt="">
                 <h2 class="fr-mb-0 text-2xl">{{ 'pel.declaration.confirmation'|trans }}</h2>
             </div>
         </div>
