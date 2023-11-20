@@ -68,10 +68,14 @@ export default class extends Controller {
             event.preventDefault();
             event.stopImmediatePropagation();
 
+            const eventTarget = event.target as HTMLLIElement;
+            const addressId = eventTarget.dataset["adressId"];
+
             if (event.code === "Enter" || event.code === "NumpadEnter") {
                 this.inputTarget.focus();
                 this.inputTarget.value = `${this.currentAddress}`;
 
+                this.component?.action("selectAddress", { addressId: addressId });
                 this.closeAddressesList();
             }
 
