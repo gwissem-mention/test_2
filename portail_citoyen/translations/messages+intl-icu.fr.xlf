@@ -2404,7 +2404,7 @@
             </trans-unit>
             <trans-unit id="pel.what.is.complaint">
                 <source>pel.what.is.complaint</source>
-                <target>Qu’est-ce que plainte ?</target>
+                <target>Qu'est-ce qu'une plainte ?</target>
             </trans-unit>
             <trans-unit id="pel.what.is.complaint.text">
                 <source>pel.what.is.complaint.text</source>
@@ -2829,7 +2829,7 @@
             </trans-unit>
             <trans-unit id="pel.connect.appleid">
                 <source>pel.connect.appleid</source>
-                <target>Je me connecte à AppleID depuis un navigateur internet avec mes identifiants Apple ;</target>
+                <target>Je me connecte à <![CDATA[<a href=" http://appleid.apple.com/">AppleID</a>]]> depuis un navigateur internet avec mes identifiants Apple ;</target>
             </trans-unit>
             <trans-unit id="pel.choose.devices">
                 <source>pel.choose.devices</source>
@@ -2853,7 +2853,7 @@
             </trans-unit>
             <trans-unit id="pel.select.google.device">
                 <source>pel.select.google.device</source>
-                <target>je sélectionne l’appareil, puis je clique sur  pour voir le numéro de série et l’IMEI ;</target>
+                <target>je sélectionne l’appareil, puis je clique sur ⓘ pour voir le numéro de série et l’IMEI ;</target>
             </trans-unit>
             <trans-unit id="pel.android.geolocation.enabled">
                 <source>pel.android.geolocation.enabled</source>
