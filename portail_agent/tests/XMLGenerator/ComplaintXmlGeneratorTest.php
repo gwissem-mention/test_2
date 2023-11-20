@@ -246,18 +246,6 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Faits_Prejudice_Autre>1</Faits_Prejudice_Autre>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Prejudice_Physique_Description>Dans ce cas vous devrez être examiné par un médecin et présenter un certificat médical indiquant notamment la durée de votre incapacité temporaire de travail. Les précisions relatives à cet examen vous seront communiquées lors de la fixation du rendez-vous pour la signature de votre plainte</Faits_Prejudice_Physique_Description>', $this->xmlContent);
         $this->assertStringContainsString('<Faits_Prejudice_Autre_Description>M. DUPONT Jean indique avoir subi les dégradations suivantes : 1 Sac Précisions : Sac bleu. Concernant le véhicule AA-123-AA , il est précisé : Rétroviseur cassé. Trotinette. </Faits_Prejudice_Autre_Description>', $this->xmlContent);
-        $this->assertStringContainsString('<Date_Exacte_Faits_Connue>Oui</Date_Exacte_Faits_Connue>', $this->xmlContent);
-        $this->assertStringContainsString('<Suspects_Informations>Oui</Suspects_Informations>', $this->xmlContent);
-        $this->assertStringContainsString('<Suspects_Description>2 hommes</Suspects_Description>', $this->xmlContent);
-        $this->assertStringContainsString('<Temoins_Presents>Oui</Temoins_Presents>', $this->xmlContent);
-        $this->assertStringContainsString('<Intervention_Fsi>Oui</Intervention_Fsi>', $this->xmlContent);
-        $this->assertStringContainsString('<Constat_Relev_Effectues>Oui</Constat_Relev_Effectues>', $this->xmlContent);
-        $this->assertStringContainsString('<Video_Disponible>Oui</Video_Disponible>', $this->xmlContent);
-        $this->assertStringContainsString('<Unite_Rdv>Commissariat de police d\'Arcachon</Unite_Rdv>', $this->xmlContent);
-        $this->assertStringContainsString('<Rdv_Souhaite>Oui</Rdv_Souhaite>', $this->xmlContent);
-        $this->assertStringContainsString('<Enregistrement_Video>Oui</Enregistrement_Video>', $this->xmlContentWithCorporationRepresented);
-        $this->assertStringContainsString('<Temoins_Description>Jean Dupont</Temoins_Description>', $this->xmlContentWithCorporationRepresented);
-        $this->assertStringContainsString('<URL_API_PJ>http://localhost/api/complaint/AAAA-BBBB-CCCC/attachments</URL_API_PJ>', $this->xmlContentWithCorporationRepresented);
         $this->assertStringContainsString('</Faits>', $this->xmlContent);
     }
 
@@ -452,21 +440,32 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Demande_Suites_Judiciaires>Oui</Demande_Suites_Judiciaires>', $this->xmlContent);
         $this->assertStringContainsString('<Mail_Declarant>jean.dupont@gmail.com</Mail_Declarant>', $this->xmlContent);
         $this->assertStringContainsString('<Tel_Domicile_Declarant>+33123456789</Tel_Domicile_Declarant>', $this->xmlContent);
-        //        $this->assertStringContainsString('<Tel_Bureau_Declarant>09 01 02 03 04</Tel_Bureau_Declarant>', $this->xmlContent);
         $this->assertStringContainsString('<Tel_Portable_Declarant>+33612344557</Tel_Portable_Declarant>', $this->xmlContent);
-        $this->assertStringContainsString('<Numero_PEL>2200000001</Numero_PEL>', $this->xmlContent);
-        $this->assertStringContainsString('<GDH_Validation_PEL>01/12/2022 00:00:00</GDH_Validation_PEL>', $this->xmlContent);
-        $this->assertStringContainsString('<France_Connect>Oui</France_Connect>', $this->xmlContent);
-        $this->assertStringContainsString('<Profession_INSEE_PEL>Boulanger</Profession_INSEE_PEL>', $this->xmlContent);
         $this->assertStringContainsString('<Mail_Personne_Morale>pdg@netflix.com</Mail_Personne_Morale>', $this->xmlContentWithCorporationRepresented);
-
-        //        $this->assertStringContainsString('<Choix_Rendez_Vous>03/12/2022 00h</Choix_Rendez_Vous>', $this->xmlContent);
-        //        $this->assertStringContainsString('<Creaneau_Contact>08H-12H</Creaneau_Contact>', $this->xmlContent);
-        //        $this->assertStringContainsString('<Periode_Contact>Si possible entre 10h et 11h</Periode_Contact>', $this->xmlContent);
         $this->assertStringContainsString('<CONS>Oui</CONS>', $this->xmlContent);
         $this->assertStringContainsString('<CONS_Tel>Oui</CONS_Tel>', $this->xmlContent);
         $this->assertStringContainsString('<CONS_Mail>Oui</CONS_Mail>', $this->xmlContent);
         $this->assertStringContainsString('<CONS_Portalis>Oui</CONS_Portalis>', $this->xmlContent);
+        $this->assertStringContainsString('<Numero_PEL>2200000001</Numero_PEL>', $this->xmlContent);
+        $this->assertStringContainsString('<GDH_Validation_PEL>01/12/2022 00:00:00</GDH_Validation_PEL>', $this->xmlContent);
+        $this->assertStringContainsString('<France_Connect>Oui</France_Connect>', $this->xmlContent);
+        $this->assertStringContainsString('<Profession_INSEE_PEL>Boulanger</Profession_INSEE_PEL>', $this->xmlContent);
+        $this->assertStringContainsString('<Date_Exacte_Faits_Connue>Oui</Date_Exacte_Faits_Connue>', $this->xmlContent);
+        $this->assertStringContainsString('<Suspects_Informations>Oui</Suspects_Informations>', $this->xmlContent);
+        $this->assertStringContainsString('<Suspects_Description>2 hommes</Suspects_Description>', $this->xmlContent);
+        $this->assertStringContainsString('<Temoins_Presents>Oui</Temoins_Presents>', $this->xmlContent);
+        $this->assertStringContainsString('<Temoins_Description>Jean Dupont</Temoins_Description>', $this->xmlContentWithCorporationRepresented);
+        $this->assertStringContainsString('<Intervention_Fsi>Oui</Intervention_Fsi>', $this->xmlContent);
+        $this->assertStringContainsString('<Constat_Relev_Effectues>Oui</Constat_Relev_Effectues>', $this->xmlContent);
+        $this->assertStringContainsString('<Enregistrement_Video>Oui</Enregistrement_Video>', $this->xmlContentWithCorporationRepresented);
+        $this->assertStringContainsString('<Video_Disponible>Oui</Video_Disponible>', $this->xmlContent);
+        $this->assertStringContainsString('<Rdv_Souhaite>Oui</Rdv_Souhaite>', $this->xmlContent);
+        $this->assertStringContainsString('<Unite_Rdv>Commissariat de police d\'Arcachon</Unite_Rdv>', $this->xmlContent);
+        $this->assertStringContainsString('<URL_API_PJ>http://localhost/api/complaint/AAAA-BBBB-CCCC/attachments</URL_API_PJ>', $this->xmlContentWithCorporationRepresented);
+        //        $this->assertStringContainsString('<Choix_Rendez_Vous>03/12/2022 00h</Choix_Rendez_Vous>', $this->xmlContent);
+        //        $this->assertStringContainsString('<Creaneau_Contact>08H-12H</Creaneau_Contact>', $this->xmlContent);
+        //        $this->assertStringContainsString('<Periode_Contact>Si possible entre 10h et 11h</Periode_Contact>', $this->xmlContent);
+
         $this->assertStringContainsString('</Contact>', $this->xmlContent);
     }
 
