@@ -309,7 +309,7 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
     {
         $this->assertStringContainsString('<Objet_Multimedia>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_Multimedia_Nature>TELEPHONE PORTABLE</Objet_Multimedia_Nature>', $this->xmlContent);
-        $this->assertStringContainsString('<Objet_Multimedia_Numeros_Serie/>', $this->xmlContent);
+        $this->assertStringContainsString('<Objet_Multimedia_Numeros_Serie>BBBB-1234</Objet_Multimedia_Numeros_Serie>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_Multimedia_IMEI>BBBB-1234</Objet_Multimedia_IMEI>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_Multimedia_Description>Apple iPhone 13 Iphone 13 de couleur grise</Objet_Multimedia_Description>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_Multimedia_Nmr_Tel>+33612345667</Objet_Multimedia_Nmr_Tel>', $this->xmlContent);
@@ -609,6 +609,98 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $xmlContent = mb_convert_encoding($xml, 'UTF-8', 'ISO-8859-1');
 
         $this->assertStringContainsString('<Faits_Prejudice_Autre_Description>M. DUPONT Jean indique avoir subi les dégradations suivantes : 1 Sac Précisions : Sac bleu. Concernant le véhicule AA-123-AA , il est précisé : Rétroviseur cassé. Trotinette. TELEPHONE PORTABLE Iphone 13 de couleur grise. AUTRE NATURE MULTIMEDIA Description console. Permis de conduire  . Carte bancaire Carte gold. </Faits_Prejudice_Autre_Description>', $xmlContent);
+    }
+
+    public function testObjetMultimediaNumerosSerie(): void
+    {
+        /** @var Complaint $complaint */
+        $complaint = $this->getComplaint();
+        $complaint->getObjects()->clear();
+        $complaint->addObject(
+            (new MultimediaObject())
+                ->setStatus(AbstractObject::STATUS_DEGRADED)
+                ->setNature('TELEPHONE PORTABLE')
+                ->setBrand('Apple')
+                ->setModel('iPhone 13')
+                ->setDescription('Iphone 13 de couleur grise')
+                ->setOperator('Orange')
+                ->setSerialNumber('1234567890')
+                ->setImei('ABCD-1234')
+                ->setPhoneNumber('+33 6 12 34 56 67')
+                ->setAmount(999)
+        );
+        /** @var string $xml */
+        $xml = $this->xmlGenerator->generate($complaint, $this->getUnit())->asXML();
+        $xmlContent = mb_convert_encoding($xml, 'UTF-8', 'ISO-8859-1');
+        $this->assertStringContainsString('<Objet_Multimedia_Numeros_Serie>ABCD-1234</Objet_Multimedia_Numeros_Serie>', $xmlContent);
+
+        $complaint->getObjects()->clear();
+        $complaint->addObject(
+            (new MultimediaObject())
+                ->setStatus(AbstractObject::STATUS_DEGRADED)
+                ->setNature('TELEPHONE PORTABLE')
+                ->setBrand('Apple')
+                ->setModel('iPhone 13')
+                ->setDescription('Iphone 13 de couleur grise')
+                ->setOperator('Orange')
+                ->setSerialNumber('1234567890')
+                ->setPhoneNumber('+33 6 12 34 56 67')
+                ->setAmount(999)
+        );
+        /** @var string $xml */
+        $xml = $this->xmlGenerator->generate($complaint, $this->getUnit())->asXML();
+        $xmlContent = mb_convert_encoding($xml, 'UTF-8', 'ISO-8859-1');
+        $this->assertStringContainsString('<Objet_Multimedia_Numeros_Serie>INCONNU</Objet_Multimedia_Numeros_Serie>', $xmlContent);
+
+        $complaint->getObjects()->clear();
+        $complaint->addObject(
+            (new MultimediaObject())
+                ->setStatus(AbstractObject::STATUS_DEGRADED)
+                ->setNature('AUTRES')
+                ->setBrand('Sony')
+                ->setModel('PlayStation 5')
+                ->setDescription('PlayStation 5')
+                ->setSerialNumber('1234567890')
+                ->setImei('AAAA-BBBB')
+                ->setAmount(499)
+        );
+        /** @var string $xml */
+        $xml = $this->xmlGenerator->generate($complaint, $this->getUnit())->asXML();
+        $xmlContent = mb_convert_encoding($xml, 'UTF-8', 'ISO-8859-1');
+        $this->assertStringContainsString('<Objet_Multimedia_Numeros_Serie>AAAA-BBBB</Objet_Multimedia_Numeros_Serie>', $xmlContent);
+
+        $complaint->getObjects()->clear();
+        $complaint->addObject(
+            (new MultimediaObject())
+                ->setStatus(AbstractObject::STATUS_DEGRADED)
+                ->setNature('AUTRES')
+                ->setBrand('Sony')
+                ->setModel('PlayStation 5')
+                ->setDescription('PlayStation 5')
+                ->setSerialNumber('1234567890')
+                ->setAmount(499)
+        );
+        /** @var string $xml */
+        $xml = $this->xmlGenerator->generate($complaint, $this->getUnit())->asXML();
+        $xmlContent = mb_convert_encoding($xml, 'UTF-8', 'ISO-8859-1');
+        $this->assertStringContainsString('<Objet_Multimedia_Numeros_Serie>1234567890</Objet_Multimedia_Numeros_Serie>', $xmlContent);
+
+        $complaint->getObjects()->clear();
+        $complaint->addObject(
+            (new MultimediaObject())
+                ->setStatus(AbstractObject::STATUS_DEGRADED)
+                ->setNature('AUTRES')
+                ->setBrand('Sony')
+                ->setModel('PlayStation 5')
+                ->setDescription('PlayStation 5')
+                ->setAmount(499)
+        );
+
+        /** @var string $xml */
+        $xml = $this->xmlGenerator->generate($complaint, $this->getUnit())->asXML();
+        $xmlContent = mb_convert_encoding($xml, 'UTF-8', 'ISO-8859-1');
+
+        $this->assertStringContainsString('<Objet_Multimedia_Numeros_Serie/>', $xmlContent);
     }
 
     private function getUnit(): Unit

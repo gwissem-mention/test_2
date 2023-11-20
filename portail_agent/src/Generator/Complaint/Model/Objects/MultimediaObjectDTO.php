@@ -36,7 +36,6 @@ class MultimediaObjectDTO extends AbstractObjectDTO
         // parent::__construct($object);
         $this->nature = $object->getNature() ?? '';
         $this->serialNumber = $object->getSerialNumber() ?? '';
-        $this->serialNumbers = $object->getImei() ?? 'INCONNU';
         $this->phoneNumber = $object->getPhoneNumber() ? str_replace(' ', '', $object->getPhoneNumber()) : '';
         $this->operator = $object->getOperator();
         $this->description = $object->getBrand().' '.$object->getModel().' '.$object->getDescription();
@@ -51,12 +50,14 @@ class MultimediaObjectDTO extends AbstractObjectDTO
                 $this->phoneSerialNumber = $object->getSerialNumber() ?? '';
                 $this->phoneSerialNumbers = $object->getImei() ?? 'INCONNU';
                 $this->phoneIMEI = $object->getImei();
-                $this->serialNumber = $this->IMEI = $this->serialNumbers = '';
+                $this->serialNumber = $this->IMEI = '';
+                $this->serialNumbers = $object->getImei() ?? 'INCONNU';
                 break;
             default:
                 $this->status = AbstractObject::STATUS_STOLEN === $object->getStatus() ? 'volé' : 'dégradé';
                 $this->brand = $object->getBrand();
                 $this->model = $object->getModel();
+                $this->serialNumbers = $object->getImei() ?? $object->getSerialNumber() ?? '';
                 break;
         }
         //        $this->opposition = $object->isOpposition() ? 'Oui' : 'Non';
