@@ -61,13 +61,15 @@
 
 .#{$select-ns}-dropdown
   font-size: 1rem
-  border: 1px solid $grey
+  border: 1px solid var(--background-default-grey-hover)
 
   > .#{$select-ns}-dropdown-content
     > .option
       padding: $padding-medium
-      border-top: 1px solid $grey
+      border-top: 1px solid var(--background-default-grey-hover)
+      background-color: var(--background-default-grey)
+      color: var(--text-label-grey)
 
       &.active, &:hover
-        background-color: $grey
+        background-color: var(--background-default-grey-hover)
 
