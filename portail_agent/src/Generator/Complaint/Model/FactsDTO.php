@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Generator\Complaint\Model;
 
-use App\Entity\AdditionalInformation;
 use App\Entity\Complaint;
 use App\Entity\Facts;
 use App\Entity\FactsObjects\AdministrativeDocument;
@@ -13,11 +12,8 @@ use App\Entity\FactsObjects\PaymentMethod;
 use App\Entity\FactsObjects\SimpleObject;
 use App\Entity\FactsObjects\Vehicle;
 use App\Entity\Identity;
-use App\Entity\Witness;
 use App\Generator\Complaint\ComplaintXmlFactsExpose;
 use App\Generator\Complaint\ComplaintXmlFactsOrientation;
-use App\Referential\Repository\UnitRepository;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class FactsDTO
 {
@@ -84,30 +80,14 @@ class FactsDTO
     private string $hasHarmPhysique;
     private string $hasHarmPhysiqueDescription;
     private bool $isNaturePlaceTransports;
-    private string $addressAdditionalInformation;
-    private string $place;
-    private string $callingPhone;
-    private string $factsWebsite;
-    private string $exactDateKnown;
     private string $startAddress;
     private string $hasObjectsWithAmount;
     private string $prejudiceOtherDescription = '';
     private bool $isStartAddressGironde = false;
     private bool $isEndAddressGironde = false;
-    private string $suspectsKnown;
-    private string $suspectsKnownText;
-    private string $witnessesPresent;
-    private string $fsiVisit;
-    private string $observationMade;
-    private string $cctvAvailable;
-    private string $appointmentUnit;
-    private string $appointmentAsked;
-    private string $cctvPresent;
-    private string $witnessesText = '';
-    private string $urlAPIPJ;
     private string $orientation = '';
 
-    public function __construct(Complaint $complaint, UnitRepository $unitRepository, UrlGeneratorInterface $urlGenerator, ComplaintXmlFactsOrientation $complaintXmlFactsOrientation, ComplaintXmlFactsExpose $complaintXmlFactsExpose)
+    public function __construct(Complaint $complaint, ComplaintXmlFactsOrientation $complaintXmlFactsOrientation, ComplaintXmlFactsExpose $complaintXmlFactsExpose)
     {
         /** @var Facts $facts */
         $facts = $complaint->getFacts();
@@ -196,35 +176,7 @@ class FactsDTO
         }
         //        $this->noOrientation = !is_null($noOrientation = $facts->isNoOrientation()) ? strval($noOrientation) : '';
         //        $this->orientation = $facts->getOrientation() ?? '';
-        $this->addressAdditionalInformation = $complaint->getFacts()?->getAddressAdditionalInformation() ?? '';
-        $this->place = $complaint->getFacts()?->getPlace() ?? '';
-        $this->callingPhone = $complaint->getFacts()?->getCallingPhone() ? str_replace(' ', '', $complaint->getFacts()->getCallingPhone()) : '';
-        $this->factsWebsite = $complaint->getFacts()?->getWebsite() ?? '';
-        $this->exactDateKnown = $complaint->getFacts()?->isExactDateKnown() ? 'Oui' : 'Non';
         $this->hasObjectsWithAmount = $complaint->hasObjectsWithAmount() ? '1' : '0';
-        $this->suspectsKnown = $complaint->getAdditionalInformation()?->isSuspectsKnown() ? 'Oui' : 'Non';
-        $this->suspectsKnownText = $complaint->getAdditionalInformation()?->getSuspectsKnownText() ?? '';
-        $this->witnessesPresent = $complaint->getAdditionalInformation()?->isWitnessesPresent() ? 'Oui' : 'Non';
-        $this->fsiVisit = $complaint->getAdditionalInformation()?->isFsiVisit() ? 'Oui' : 'Non';
-        $this->observationMade = $complaint->getAdditionalInformation()?->isObservationMade() ? 'Oui' : 'Non';
-        $this->cctvAvailable = $complaint->getAdditionalInformation()?->isCctvAvailable() ? 'Oui' : 'Non';
-        $this->appointmentAsked = $complaint->isAppointmentAsked() ? 'Oui' : 'Non';
-        $this->appointmentUnit = $unitRepository->findOneBy(['code' => $complaint->getUnitAssigned()])?->getName() ?? '';
-        $this->cctvPresent = match ($complaint->getAdditionalInformation()?->getCctvPresent()) {
-            AdditionalInformation::CCTV_PRESENT_YES => 'Oui',
-            AdditionalInformation::CCTV_PRESENT_NO => 'Non',
-            AdditionalInformation::CCTV_PRESENT_DONT_KNOW => 'Je ne sais pas',
-            default => 'Inconnu',
-        };
-        $witnessesCount = $complaint->getAdditionalInformation()?->getWitnesses()->count();
-        $complaint->getAdditionalInformation()?->getWitnesses()->map(function (Witness $witness) use ($witnessesCount): void {
-            $this->witnessesText .= $witness->getDescription();
-            if ($witnessesCount > 1) {
-                $this->witnessesText .= ' ';
-            }
-        });
-        $this->urlAPIPJ = $urlGenerator->generate('api_download_attachments', ['complaintFrontId' => $complaint->getFrontId()], UrlGeneratorInterface::ABSOLUTE_URL);
-
         $this->orientation = $complaintXmlFactsOrientation->getOrientation($complaint);
         $this->setLocalisation($facts, $identity);
         $this->setPrejudiceOtherDescription($complaint);
@@ -281,22 +233,6 @@ class FactsDTO
             'Faits_Prejudice_Autre' => $this->hasObjectsWithAmount,
             'Faits_Prejudice_Physique_Description' => $this->hasHarmPhysiqueDescription,
             'Faits_Prejudice_Autre_Description' => $this->prejudiceOtherDescription,
-            'Lieu_Information_Complementaires' => $this->addressAdditionalInformation,
-            'Nature_Lieu' => $this->place,
-            'Nature_Lieu_Tel' => $this->callingPhone,
-            'Nature_Lieu_URL' => $this->factsWebsite,
-            'Date_Exacte_Faits_Connue' => $this->exactDateKnown,
-            'Suspects_Informations' => $this->suspectsKnown,
-            'Suspects_Description' => $this->suspectsKnownText,
-            'Temoins_Presents' => $this->witnessesPresent,
-            'Intervention_Fsi' => $this->fsiVisit,
-            'Constat_Relev_Effectues' => $this->observationMade,
-            'Video_Disponible' => $this->cctvAvailable,
-            'Unite_Rdv' => $this->appointmentUnit,
-            'Rdv_Souhaite' => $this->appointmentAsked,
-            'Enregistrement_Video' => $this->cctvPresent,
-            'Temoins_Description' => $this->witnessesText,
-            'URL_API_PJ' => $this->urlAPIPJ,
         ]];
     }
 

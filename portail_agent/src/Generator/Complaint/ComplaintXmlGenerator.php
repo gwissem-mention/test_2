@@ -56,12 +56,12 @@ class ComplaintXmlGenerator implements ComplaintGeneratorInterface
             $xml = $this->arrayToXml($xml, (new CorporationRepresentedDTO($corporation, $identity))->getArray());
         }
         if ($complaint->getFacts()) {
-            $data = (new FactsDTO($complaint, $this->unitRepository, $this->urlGenerator, $this->complaintXmlFactsOrientation, $this->complaintXmlFactsExpose))->getArray();
+            $data = (new FactsDTO($complaint, $this->complaintXmlFactsOrientation, $this->complaintXmlFactsExpose))->getArray();
             $data['Faits']['Faits_Prejudice_Physique_Description'] = $data['Faits']['Faits_Prejudice_Physique_Description'] ? $this->translator->trans($data['Faits']['Faits_Prejudice_Physique_Description']) : '';
             $xml = $this->arrayToXml($xml, $data);
         }
         $xml = $this->setObjects($xml, $complaint);
-        $xml = $this->arrayToXml($xml, (new ContactDTO($complaint))->getArray());
+        $xml = $this->arrayToXml($xml, (new ContactDTO($complaint, $this->unitRepository, $this->urlGenerator))->getArray());
 
         return $xml;
     }
