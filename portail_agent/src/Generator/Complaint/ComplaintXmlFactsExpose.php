@@ -13,8 +13,7 @@ class ComplaintXmlFactsExpose
 
     public function getFactsExpose(Complaint $complaint): string
     {
-        $exposedFacts = ' ';
-        $exposedFacts .= $this->setIntroduction($complaint);
+        $exposedFacts = $this->setIntroduction($complaint);
         $exposedFacts .= $this->setIsFranceConnected($complaint);
         $exposedFacts .= $this->setConclusion($complaint);
 
@@ -42,11 +41,11 @@ class ComplaintXmlFactsExpose
 
         switch (true) {
             case $complaint->isFranceConnected() && Identity::DECLARANT_STATUS_VICTIM === $declarantStatus:
-                $isFcMessage = "d'un internaute s'étant authentifié par FranceConnect sous l'identité suivante %s %s %s, né(e) le %s à %s, %s en  %s.\n et qui déclare exercer l'activité de %s\n";
+                $isFcMessage = "d'un internaute s'étant authentifié par FranceConnect sous l'identité suivante %s %s %s, né(e) le %s à %s, %s en %s\n et qui déclare exercer l'activité de %s.\n";
 
                 return sprintf($isFcMessage, $civility, $lastName, $firstName, $birthday, $birthCity, $birthPostalCode, $birthCountry, $job);
             case $complaint->isFranceConnected() && Identity::DECLARANT_STATUS_CORPORATION_LEGAL_REPRESENTATIVE === $declarantStatus:
-                $isFcMessage = "d'un internaute s'étant authentifié par FranceConnect sous l'identité suivante %s %s %s, né(e) le %s, à %s %s, en %s et qui déclare exercer l'activité de %s, agissant  pour le compte de %s.\n";
+                $isFcMessage = "d'un internaute s'étant authentifié par FranceConnect sous l'identité suivante %s %s %s, né(e) le %s, à %s %s, en %s et qui déclare exercer l'activité de %s, agissant pour le compte de %s.\n";
 
                 return sprintf($isFcMessage, $civility, $lastName, $firstName, $birthday, $birthCity, $birthPostalCode, $birthCountry, $job, $corporation);
             case !$complaint->isFranceConnected() && Identity::DECLARANT_STATUS_VICTIM === $declarantStatus:
@@ -54,7 +53,7 @@ class ComplaintXmlFactsExpose
 
                 return sprintf($isFcMessage, $civility, $lastName, $firstName, $birthday, $birthCity, $birthPostalCode, $birthCountry, $job);
             case !$complaint->isFranceConnected() && Identity::DECLARANT_STATUS_CORPORATION_LEGAL_REPRESENTATIVE === $declarantStatus:
-                $isFcMessage = "d'un internaute ayant déclaré l'identité suivante %s %s %s, né(e) le %s, à %s %s, en %s. et qui déclare exercer l'activité de %s, agissant  pour le compte de %s.\n";
+                $isFcMessage = "d'un internaute ayant déclaré l'identité suivante %s %s %s, né(e) le %s, à %s %s, en %s et qui déclare exercer l'activité de %s, agissant pour le compte de %s.\n";
 
                 return sprintf($isFcMessage, $civility, $lastName, $firstName, $birthday, $birthCity, $birthPostalCode, $birthCountry, $job, $corporation);
         }
