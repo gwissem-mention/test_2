@@ -5,12 +5,13 @@ parameters:
     app.file_jobs: '%env(FILE_JOBS)%'
     app.referentials_base_path: '%kernel.project_dir%/referentials'
     app.complaints_base_path: '%kernel.project_dir%/var/complaints'
+    app.complaint.processing_deadline: '%env(COMPLAINT_PROCESSING_DEADLINE)%'
+    app.complaint.attachments.cleanup.period: '%env(COMPLAINT_ATTACHMENTS_CLEANUP_PERIOD)%'
     app.folder_rotation.count: '%env(FOLDER_ROTATION_COUNT)%'
     app.folder_rotation.treshold: '%env(FOLDER_ROTATION_TRESHOLD)%'
     app.oodrive.root_folder_id: '%env(OODRIVE_ROOT_FOLDER_ID)%'
     app.oodrive.fetched_folder_id: '%env(OODRIVE_FETCHED_FOLDER_ID)%'
     app.oodrive.tmp_complaint_folder: '%env(OODRIVE_TMP_COMPLAINT_FOLDER)%'
-    complaint.processing_deadline: '%env(COMPLAINT_PROCESSING_DEADLINE)%'
     app.oodrive.declaration.cleanup.period: '%env(OODRIVE_DECLARATION_CLEANUP_PERIOD)%'
     app.oodrive.attachments.only.cleanup.period: '%env(OODRIVE_ATTACHMENTS_ONLY_CLEANUP_PERIOD)%'
     app.oodrive.report.cleanup.period: '%env(OODRIVE_REPORT_CLEANUP_PERIOD)%'
@@ -75,7 +76,7 @@ services:
 
     App\Entity\Listener\ComplaintEntityListener:
         arguments:
-            $complaintProcessingDeadline: '%complaint.processing_deadline%'
+            $complaintProcessingDeadline: '%app.complaint.processing_deadline%'
         tags:
             - { name: 'doctrine.orm.entity_listener', event: 'prePersist', entity: 'App\Entity\Complaint' }
             - { name: 'doctrine.orm.entity_listener', event: 'postPersist', entity: 'App\Entity\Complaint' }
@@ -108,7 +109,11 @@ services:
         arguments:
             $oodriveDeclarationCleanUpPeriod: '%app.oodrive.declaration.cleanup.period%'
             $oodriveAttachmentsOnlyCleanUpPeriod: '%app.oodrive.attachments.only.cleanup.period%'
-            $oodriveReportCleanUpPeriod: '%app.oodrive.report.cleanup.period%'       
+            $oodriveReportCleanUpPeriod: '%app.oodrive.report.cleanup.period%'
+            
+    App\Repository\AttachmentDownloadRepository:
+        arguments:
+            $complaintAttachmentsCleanUpPeriod: '%app.complaint.attachments.cleanup.period%'
 
     app.logger.formatter.json_traces:
         class: App\Logger\Formatter\ApplicationTracesFormatter
