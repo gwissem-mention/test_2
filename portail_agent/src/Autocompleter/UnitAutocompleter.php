@@ -62,4 +62,8 @@ class UnitAutocompleter implements EntityAutocompleterInterface
     {
         return $security->isGranted('IS_AUTHENTICATED');
     }
+
+    public function getGroupBy(): void
+    {
+    }
 }

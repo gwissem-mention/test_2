@@ -70,4 +70,8 @@ class UserAutocompleter implements EntityAutocompleterInterface
     {
         return $security->isGranted('ROLE_SUPERVISOR');
     }
+
+    public function getGroupBy(): void
+    {
+    }
 }
