@@ -475,8 +475,8 @@ class ComplaintXmlGeneratorTest extends KernelTestCase
         $this->assertStringContainsString('<Objet_simple>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_simple_Nature>Véhicules non immatriculés</Objet_simple_Nature>', $this->xmlContent);
         $this->assertStringContainsString('<Objet_simple_Description>Trotinette</Objet_simple_Description>', $this->xmlContent);
-        $this->assertStringContainsString('<VL_Non_Immat_Statut>Dégradé</VL_Non_Immat_Statut>', $this->xmlContent);
-        $this->assertStringContainsString('<VL_Non_Immat_Denomination>Trotinette</VL_Non_Immat_Denomination>', $this->xmlContent);
+        $this->assertStringContainsString('<Objet_Non_Immat_Statut>Dégradé</Objet_Non_Immat_Statut>', $this->xmlContent);
+        $this->assertStringContainsString('<Objet_Non_Immat_Denomination>Trotinette</Objet_Non_Immat_Denomination>', $this->xmlContent);
         $this->assertStringContainsString('</Objet_simple>', $this->xmlContent);
     }
 

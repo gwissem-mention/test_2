@@ -26,8 +26,8 @@ class NonRegisteredVehicleDTO extends AbstractObjectDTO
         return ['Objet_simple' => [
             'Objet_simple_Nature' => 'Véhicules non immatriculés',
             'Objet_simple_Description' => $this->label,
-            'VL_Non_Immat_Statut' => $this->status,
-            'VL_Non_Immat_Denomination' => $this->label,
+            'Objet_Non_Immat_Statut' => $this->status,
+            'Objet_Non_Immat_Denomination' => $this->label,
         ]];
     }
 }
