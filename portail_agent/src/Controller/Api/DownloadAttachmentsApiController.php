@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace App\Controller\Api;
 
+use App\Entity\AttachmentDownload;
 use App\Entity\Complaint;
 use App\Entity\User;
 use App\Logger\ApplicationTracesLogger;
 use App\Logger\ApplicationTracesMessage;
+use App\Repository\AttachmentDownloadRepository;
 use App\Repository\ComplaintRepository;
 use League\Flysystem\FilesystemOperator;
 use Psr\Log\LoggerInterface;
@@ -27,8 +29,9 @@ class DownloadAttachmentsApiController extends AbstractController
         FilesystemOperator $defaultStorage,
         LoggerInterface $apiLogger,
         ApplicationTracesLogger $applicationTraceslogger,
-        Request $request): Response
-    {
+        Request $request,
+        AttachmentDownloadRepository $attachmentDownloadRepository
+    ): Response {
         if (!$this->isGranted('IS_AUTHENTICATED')) {
             $apiLogger->error(sprintf(
                 'User not authenticated. Got status code %d',
@@ -88,6 +91,8 @@ class DownloadAttachmentsApiController extends AbstractController
             $user->getNumber(),
             $request->getClientIp())
         );
+
+        $attachmentDownloadRepository->save(new AttachmentDownload($complaint), true);
 
         return new StreamedResponse(function () use ($zipName, $defaultStorage) {
             /** @var resource $outputStream */

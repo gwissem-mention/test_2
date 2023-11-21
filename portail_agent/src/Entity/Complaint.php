@@ -214,11 +214,16 @@ class Complaint
     ], orphanRemoval: true)]
     private Collection $uploadReports;
 
+    /** @var Collection<int, AttachmentDownload> */
+    #[ORM\OneToMany(mappedBy: 'complaint', targetEntity: AttachmentDownload::class, orphanRemoval: true)]
+    private Collection $attachmentDownloads;
+
     public function __construct()
     {
         $this->objects = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->uploadReports = new ArrayCollection();
+        $this->attachmentDownloads = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -870,6 +875,24 @@ class Complaint
     public function setUnitAssignedInstitution(?string $unitAssignedInstitution): self
     {
         $this->unitAssignedInstitution = $unitAssignedInstitution;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, AttachmentDownload>
+     */
+    public function getAttachmentDownloads(): Collection
+    {
+        return $this->attachmentDownloads;
+    }
+
+    public function addAttachmentDownload(AttachmentDownload $attachmentDownload): self
+    {
+        if (!$this->attachmentDownloads->contains($attachmentDownload)) {
+            $this->attachmentDownloads->add($attachmentDownload);
+            $attachmentDownload->setComplaint($this);
+        }
 
         return $this;
     }
