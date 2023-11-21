@@ -473,14 +473,14 @@
                 </ul>
             {% endif %}
             {% if object.amount is not null %}
-                - {{ object.amount|format_currency('EUR', {fraction_digit: 0}) }}
+                - {{ object.amount|default(0.0)|format_currency('EUR', {fraction_digit: 0}) }}
             {% endif %}
         </li>
     {% elseif object|object_type is same as('App\\Entity\\FactsObjects\\MultimediaObject') %}
         <li>
             <strong>{{ 'pel.number'|trans }} {{ index }}</strong> : {{ object.nature }}
             - {{ object.model }} - {{ object.brand }}
-            - {{ object.amount|format_currency('EUR', {fraction_digit: 0}) }}
+            - {{ object.amount|default(0.0)|format_currency('EUR', {fraction_digit: 0}) }}
             {% if object.operator %}
                 - {{ object.operator }}
             {% endif %}
@@ -526,7 +526,7 @@
             <strong>{{ 'pel.number'|trans }} {{ index }}</strong> : {{ object.type }}
             - {{ object.description }} - {{ object.bank }} - {{ object.bankAccountNumber }}
             {% if object.amount is not null %}
-                - {{ object.amount|format_currency('EUR', {fraction_digit: 0}) }}
+                - {{ object.amount|default(0.0)|format_currency('EUR', {fraction_digit: 0}) }}
             {% endif %}
             <ul class="m-0">
                 {% if object.chequeNumber is not null %}
@@ -559,7 +559,7 @@
                 {{ object.model }} -
             {% endif %}
             {% if object.amount is not null %}
-                {{ object.amount|format_currency('EUR', {fraction_digit: 0}) }}
+                {{ object.amount|default(0.0)|format_currency('EUR', {fraction_digit: 0}) }}
             {% endif %}
             {% if object.degradationDescription is not null %}
                 <ul class="m-0">
@@ -573,7 +573,7 @@
         <li><strong>{{ 'pel.number'|trans }} {{ index }}</strong> : {{ object.nature }}
             - {{ object.description }}
             {% if object.amount is not null %}
-                - {{ object.amount|format_currency('EUR', {fraction_digit: 0}) }}
+                - {{ object.amount|default(0.0)|format_currency('EUR', {fraction_digit: 0}) }}
             {% endif %}
             {% if object.serialNumber is not null %}
                 - {{ object.serialNumber }}
