@@ -11,7 +11,9 @@
 {% block content %}
     <div data-controller="form">
         <div class="flex flex-col gap-y-8 md:gap-y-10 items-center fr-pt-10v fr-pb-8v fr-px-6v fr-pt-md-12v fr-px-md-20v fr-pb-md-10v">
-            <img src="{{ asset('build/images/calendar.svg') }}" class="w-[100px] md:w-[120px]" alt="">
+            <div class="relative w-[100px] md:w-[120px] before:content-[''] before:absolute before:-left-1 before:top-0 before:w-[40px] before:h-full bg-white">
+                <img src="{{ asset('build/images/calendar.svg') }}" class="relative w-[100px] md:w-[120px]" alt="">
+            </div>
             <h1 class="text-center fr-mb-0 text-[28px]/9 md:text-[40px]/[48px]">{{ 'pel.complaint.my.declaration'|trans }}</h1>
             <p class="fr-mb-0">{{ 'pel.all.fields.marked.with.an.asterisk.are.mandatory'|trans|raw }}</p>
         </div>
