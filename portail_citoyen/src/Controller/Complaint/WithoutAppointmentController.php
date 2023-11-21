@@ -25,6 +25,9 @@ class WithoutAppointmentController extends AbstractController
         /** @var ComplaintModel $complaint */
         $complaint = $sessionHandler->getComplaint();
 
+        $complaint->setValidatedAt(new \DateTimeImmutable('now'));
+        $sessionHandler->setComplaint($complaint);
+
         $bus->dispatch(new FinalizeComplaint($complaint));
 
         return $this->redirectToRoute('complaint_end');

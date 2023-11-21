@@ -190,7 +190,7 @@
                 <source>pel.appointment.message.2</source>
                 <target>Si cette unité ne vous convient pas, veuillez prendre rendez-vous dans un commissariat ou une gendarmerie ci-dessous.</target>
             </trans-unit>
-           <trans-unit id="pel.appointment.message.3">
+            <trans-unit id="pel.appointment.message.3">
                 <source>pel.appointment.message.3</source>
                 <target>Au vu des éléments déclarés, veuillez prendre rendez-vous dans un commissariat ou une gendarmerie.</target>
             </trans-unit>
@@ -218,7 +218,7 @@
                 <source>pel.add.an.attachment</source>
                 <target>Téléverser un document pour compléter la description</target>
             </trans-unit>
-           <trans-unit id="pel.attachment">
+            <trans-unit id="pel.attachment">
                 <source>pel.attachment</source>
                 <target>Document ajouté</target>
             </trans-unit>
@@ -782,7 +782,7 @@
                 <source>pel.email.address</source>
                 <target>Adresse email</target>
             </trans-unit>
-           <trans-unit id="pel.email.confirmation">
+            <trans-unit id="pel.email.confirmation">
                  <source>pel.email.confirmation</source>
                  <target>Confirmer votre adresse email</target>
              </trans-unit>
@@ -1055,8 +1055,7 @@
                 <source>pel.help.faq.theft.victim.examples</source>
                 <target><![CDATA[Le vol est le fait de prendre, <b>sans autorisation</b>, un bien ou une chose qui ne nous appartient pas. Il peut être commis avec ou sans violence, avec ou sans dégradation.</br>Ex: dans un lieu public, cambriolage, vol d'un objet arraché des mains, vol d'un objet remisé dans un véhicule, etc.]]></target>
             </trans-unit>
-
-           <trans-unit id="pel.help.faq.victim.of.credit.card.theft">
+            <trans-unit id="pel.help.faq.victim.of.credit.card.theft">
                 <source>pel.help.faq.victim.of.credit.card.theft</source>
                 <target><![CDATA[<b>Vol de votre carte bancaire suivi d’utilisations frauduleuses</b>]]></target>
             </trans-unit>
@@ -1138,11 +1137,11 @@
                 <source>pel.help.tos.locate.police.station</source>
                 <target>Trouver un établissement</target>
             </trans-unit>
-           <trans-unit id="pel.help.tos.my.status">
+            <trans-unit id="pel.help.tos.my.status">
                 <source>pel.help.tos.my.status</source>
                 <target>Ma situation</target>
             </trans-unit>
-           <trans-unit id="pel.help.tos.title">
+            <trans-unit id="pel.help.tos.title">
                 <source>pel.help.tos.title</source>
                 <target>Conditions d’utilisation du service - Plainte en ligne</target>
             </trans-unit>
@@ -1250,7 +1249,7 @@
                 <source>pel.i.confirm.i.want.to.file.a.complaint</source>
                 <target>Je confirme vouloir <![CDATA[<b>déposer plainte pour les faits figurant dans ma déclaration</b>]]>.</target>
             </trans-unit>
-           <trans-unit id="pel.i.have.no.goods.to.declare">
+            <trans-unit id="pel.i.have.no.goods.to.declare">
                 <source>pel.i.have.no.goods.to.declare</source>
                 <target>Je n’ai pas de bien à déclarer</target>
             </trans-unit>
@@ -1906,7 +1905,7 @@
                 <source>pel.results</source>
                 <target>Résultats</target>
             </trans-unit>
-           <trans-unit id="pel.result">
+            <trans-unit id="pel.result">
                 <source>pel.result</source>
                 <target>Résultat</target>
             </trans-unit>
@@ -2022,7 +2021,7 @@
                 <source>pel.terms.of.use.article.2.text.2</source>
                 <target>Le service « Plainte En Ligne » est un site internet mis en place par le Ministère de l'Intérieur pour recueillir les déclarations de plainte de ses utilisateurs. Selon la situation, il permet la réalisation d'un dépôt de plainte de façon partiellement ou totalement dématérialisée.</target>
             </trans-unit>
-           <trans-unit id="pel.terms.of.use.article.2.text.3">
+            <trans-unit id="pel.terms.of.use.article.2.text.3">
                 <source>pel.terms.of.use.article.2.text.3</source>
                 <target>Le site Plainte En Ligne n'est pas adapté au traitement des situations d’urgence pour lesquelles il est nécessaire de téléphoner immédiatement au 17 ou au 112.</target>
             </trans-unit>
@@ -2322,6 +2321,10 @@
                 <source>pel.validate</source>
                 <target>Valider</target>
             </trans-unit>
+            <trans-unit id="pel.validated.at">
+                <source>pel.validated.at</source>
+                <target>Validée le</target>
+            </trans-unit>
             <trans-unit id="pel.vehicle.registration.certificate">
                 <source>pel.vehicle.registration.certificate</source>
                 <target>Carte grise</target>
@@ -2366,7 +2369,7 @@
                 <source>pel.victim.of.violence.information</source>
                 <target>Les infractions avec violence peuvent nécessiter une étape supplémentaire vous invitant à vous rendre dans un commissariat de police ou une gendarmerie.</target>
             </trans-unit>
-           <trans-unit id="pel.video.facts">
+            <trans-unit id="pel.video.facts">
                 <source>pel.video.facts</source>
                 <target>Vidéos des faits</target>
             </trans-unit>

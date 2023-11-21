@@ -51,7 +51,9 @@ class AppointmentComponent extends AbstractController
         $complaint = $this->sessionHandler->getComplaint();
         /** @var AppointmentModel $appointment */
         $appointment = $this->getFormInstance()->getData();
-        $complaint->setAppointment($appointment);
+        $complaint
+            ->setAppointment($appointment)
+            ->setValidatedAt(new \DateTimeImmutable('now'));
 
         if ($this->unitSelected) {
             /** @var ?Unit $unit */

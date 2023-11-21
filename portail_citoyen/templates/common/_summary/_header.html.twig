@@ -1,3 +1,6 @@
 <h1 class="text-[28px]/9 md:text-[40px]/[48px] fr-mb-2v">{{ 'pel.summary.of.declaration'|trans }}</h1>
+{% if is_pdf is same as(true) %}
+    <p class="pel-bold">{{ 'pel.validated.at'|trans }} {{ datetime_with_timezone(complaint.validatedAt, complaint.timezone) }}</p>
+{% endif %}
 <p class="pel-bold">{{ 'pel.summary.is.not.legal.proof'|trans }}</p>
 <p>{{ 'pel.summary.official.documents.will.be.sent'|trans }}</p>
