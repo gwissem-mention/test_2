@@ -6,6 +6,7 @@ namespace App\Tests\XMLGenerator;
 
 use App\Entity\AdditionalInformation;
 use App\Entity\Complaint;
+use App\Entity\Corporation;
 use App\Entity\Facts;
 use App\Entity\FactsObjects\AbstractObject;
 use App\Entity\FactsObjects\SimpleObject;
@@ -16,42 +17,100 @@ use PHPUnit\Framework\TestCase;
 
 class ComplaintXmlFactsExposeTest extends TestCase
 {
-    public function testSet(): void
+    public function testGetFactsExpose(): void
+    {
+        $complaint = $this->getComplaint();
+        $xmlAdditionalInformationPN = new ComplaintXmlFactsExpose();
+
+        $output = $xmlAdditionalInformationPN->getFactsExpose($complaint);
+        $expectedOutput = <<<EOT
+        Sommes rendu destinataire de la demande de plainte en ligne, déposée sur le site internet plainte-en-ligne.masecurite.interieur.gouv.fr sous le numéro d'enregistrement 2300000001 et horodatée du 04/10/2023 15:44:32,
+        d'un internaute s'étant authentifié par FranceConnect sous l'identité suivante M Doe John, né(e) le 08/08/1990 à Avignon, 84000 en France
+         et qui déclare exercer l'activité de Developer.
+        Interrogé sur la date et l'heure des faits, Doe John, indique que les faits se sont déroulés entre le 01/12/2022 à 10:00 et le 01/12/2022 à 11:00. Sur l'exposé des faits, la personne déclarante indique :
+        EOT;
+
+        $this->assertSame($expectedOutput, $output);
+
+        $complaint->setFranceConnected(false);
+
+        $output = $xmlAdditionalInformationPN->getFactsExpose($complaint);
+        $expectedOutput = <<<EOT
+        Sommes rendu destinataire de la demande de plainte en ligne, déposée sur le site internet plainte-en-ligne.masecurite.interieur.gouv.fr sous le numéro d'enregistrement 2300000001 et horodatée du 04/10/2023 15:44:32,
+        d'un internaute ayant déclaré l'identité suivante M Doe John, né(e) le 08/08/1990, à Avignon 84000, en France et qui déclare exercer l'activité de Developer.
+        Interrogé sur la date et l'heure des faits, Doe John, indique que les faits se sont déroulés entre le 01/12/2022 à 10:00 et le 01/12/2022 à 11:00. Sur l'exposé des faits, la personne déclarante indique :
+        EOT;
+
+        $this->assertSame($expectedOutput, $output);
+
+        /** @var Identity $identity */
+        $identity = $complaint->getIdentity();
+        $complaint
+            ->setFranceConnected(true)
+            ->setIdentity(
+                $identity->setDeclarantStatus(3)
+            )
+            ->setCorporationRepresented((new Corporation())
+                ->setCompanyName('My Company'));
+
+        $output = $xmlAdditionalInformationPN->getFactsExpose($complaint);
+        $expectedOutput = <<<EOT
+        Sommes rendu destinataire de la demande de plainte en ligne, déposée sur le site internet plainte-en-ligne.masecurite.interieur.gouv.fr sous le numéro d'enregistrement 2300000001 et horodatée du 04/10/2023 15:44:32,
+        d'un internaute s'étant authentifié par FranceConnect sous l'identité suivante M Doe John, né(e) le 08/08/1990, à Avignon 84000, en France et qui déclare exercer l'activité de Developer, agissant pour le compte de My Company.
+        Interrogé sur la date et l'heure des faits, Doe John, indique que les faits se sont déroulés entre le 01/12/2022 à 10:00 et le 01/12/2022 à 11:00. Sur l'exposé des faits, la personne déclarante indique :
+        EOT;
+
+        $this->assertSame($expectedOutput, $output);
+
+        $complaint
+            ->setFranceConnected(false);
+
+        $output = $xmlAdditionalInformationPN->getFactsExpose($complaint);
+        $expectedOutput = <<<EOT
+        Sommes rendu destinataire de la demande de plainte en ligne, déposée sur le site internet plainte-en-ligne.masecurite.interieur.gouv.fr sous le numéro d'enregistrement 2300000001 et horodatée du 04/10/2023 15:44:32,
+        d'un internaute ayant déclaré l'identité suivante M Doe John, né(e) le 08/08/1990, à Avignon 84000, en France et qui déclare exercer l'activité de Developer, agissant pour le compte de My Company.
+        Interrogé sur la date et l'heure des faits, Doe John, indique que les faits se sont déroulés entre le 01/12/2022 à 10:00 et le 01/12/2022 à 11:00. Sur l'exposé des faits, la personne déclarante indique :
+        EOT;
+
+        $this->assertSame($expectedOutput, $output);
+    }
+
+    private function getComplaint(): Complaint
     {
         $complaint = new Complaint();
 
         $identity = new Identity();
         $identity->setCivility(Identity::CIVILITY_MALE)
-        ->setFirstname('John')
-        ->setLastname('Doe')
-        ->setJob('Developer')
-        ->setBirthday(new \DateTimeImmutable('1990-08-08'))
-        ->setBirthCity('Avignon')
-        ->setBirthPostalCode('84000')
-        ->setBirthCountry('France')
-        ->setDeclarantStatus(1);
+            ->setFirstname('John')
+            ->setLastname('Doe')
+            ->setJob('Developer')
+            ->setBirthday(new \DateTimeImmutable('1990-08-08'))
+            ->setBirthCity('Avignon')
+            ->setBirthPostalCode('84000')
+            ->setBirthCountry('France')
+            ->setDeclarantStatus(1);
 
-        $complaint->setIdentity($identity)
-
-       ->setDeclarationNumber('2300000001')
-        ->setCreatedAt(new \DateTimeImmutable('2023-10-04 15:44:32'))
-        ->setFranceConnected(true)
-        ->setAdditionalInformation(
-            (new AdditionalInformation())
-                ->setCctvPresent(AdditionalInformation::CCTV_PRESENT_YES)
-                ->setCctvAvailable(true)
-                ->setSuspectsKnown(true)
-                ->setSuspectsKnownText('2 hommes')
-                ->setWitnessesPresent(true)
-                ->setFsiVisit(true)
-                ->setObservationMade(true)
-                ->addWitness(
-                    (new Witness())
-                        ->setDescription('Jean Dupont')
-                        ->setPhone('06 12 34 45 57')
-                        ->setEmail('jean@example.com')
-                )
-        )
+        $complaint
+            ->setIdentity($identity)
+            ->setDeclarationNumber('2300000001')
+            ->setCreatedAt(new \DateTimeImmutable('2023-10-04 15:44:32'))
+            ->setFranceConnected(true)
+            ->setAdditionalInformation(
+                (new AdditionalInformation())
+                    ->setCctvPresent(AdditionalInformation::CCTV_PRESENT_YES)
+                    ->setCctvAvailable(true)
+                    ->setSuspectsKnown(true)
+                    ->setSuspectsKnownText('2 hommes')
+                    ->setWitnessesPresent(true)
+                    ->setFsiVisit(true)
+                    ->setObservationMade(true)
+                    ->addWitness(
+                        (new Witness())
+                            ->setDescription('Jean Dupont')
+                            ->setPhone('06 12 34 45 57')
+                            ->setEmail('jean@example.com')
+                    )
+            )
             ->addObject(
                 (new SimpleObject())
                     ->setStatus(AbstractObject::STATUS_STOLEN)
@@ -79,17 +138,6 @@ class ComplaintXmlFactsExposeTest extends TestCase
                     ->setVictimOfViolenceText('Je me suis fait taper')
             );
 
-        $xmlAdditionalInformationPN = new ComplaintXmlFactsExpose();
-
-        $output = $xmlAdditionalInformationPN->getFactsExpose($complaint);
-
-        $expectedOutput = <<<EOT
-         Sommes rendu destinataire de la demande de plainte en ligne, déposée sur le site internet plainte-en-ligne.masecurite.interieur.gouv.fr sous le numéro d'enregistrement 2300000001 et horodatée du 04/10/2023 15:44:32,
-        d'un internaute s'étant authentifié par FranceConnect sous l'identité suivante M Doe John, né(e) le 08/08/1990 à Avignon, 84000 en  France.
-         et qui déclare exercer l'activité de Developer
-        Interrogé sur la date et l'heure des faits, Doe John, indique que les faits se sont déroulés entre le 01/12/2022 à 10:00 et le 01/12/2022 à 11:00. Sur l'exposé des faits, la personne déclarante indique :
-        EOT;
-
-        $this->assertSame($expectedOutput, $output);
+        return $complaint;
     }
 }
