@@ -16,6 +16,7 @@ class ComplaintModel
 {
     private Uuid $id;
     private \DateTimeInterface $createdAt;
+    private \DateTimeInterface $validatedAt;
     private ?IdentityModel $identity = null;
     private ?FactsModel $facts = null;
     private ?AdditionalInformationModel $additionalInformation = null;
@@ -78,6 +79,18 @@ class ComplaintModel
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getValidatedAt(): \DateTimeInterface
+    {
+        return $this->validatedAt;
+    }
+
+    public function setValidatedAt(\DateTimeInterface $validatedAt): self
+    {
+        $this->validatedAt = $validatedAt;
 
         return $this;
     }
