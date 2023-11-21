@@ -273,7 +273,6 @@ Feature:
         And I fill in "identity_civilState_firstnames" with "Jean Pierre Marie"
         And I select "1" from "identity_civilState_familySituation"
         And I fill in "identity_civilState_birthDate" with "01/01/2000"
-        And I select "99160" from "identity_civilState_birthLocation_country"
         And I select "99134" from "identity_civilState_birthLocation_country"
         And I select "99160" from "identity_civilState_birthLocation_country"
         And I fill in the autocomplete "identity_civilState_birthLocation_frenchTown-ts-control" with "Paris" and click "75056"

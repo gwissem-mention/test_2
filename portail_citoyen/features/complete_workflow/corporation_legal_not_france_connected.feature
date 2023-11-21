@@ -30,8 +30,10 @@ Feature:
         And I fill in "identity_corporation_siret" with "12345678900000"
         And I fill in "identity_corporation_name" with "Mon entreprise"
         And I fill in "identity_corporation_function" with "Directeur"
+        And I fill in the autocomplete "identity_corporation_nationality-ts-control" with "FRANCAISE" and click "23"
         And I fill in "identity_corporation_email" with "contact@mon-entreprise.fr"
         And I fill in "identity_corporation_phone_number" with "0102030405"
+        And I fill in the autocomplete "identity_corporation_country-ts-control" with "France" and click "99160"
         And I fill in "corporation-address" with "avenue de la république bordeaux"
         And I click the "#corporation-address-33063_8132" element
         And I press "identity_submit"
