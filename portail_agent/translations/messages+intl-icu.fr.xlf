@@ -848,7 +848,7 @@
             </trans-unit>
             <trans-unit id="pel.drafting.victim.to.another.teleservice">
                 <source>pel.drafting.victim.to.another.teleservice</source>
-                <target>Rédaction de la victime vers un autre téléservice</target>
+                <target>Redirection de la victime vers un autre téléservice</target>
             </trans-unit>
             <trans-unit id="pel.drop.report.and.send.to.the.victim">
                 <source>pel.drop.report.and.send.to.the.victim</source>
