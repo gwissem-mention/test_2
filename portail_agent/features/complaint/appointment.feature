@@ -22,10 +22,18 @@ Feature:
         And I should see the key "pel.logout" translated
 
     @func
-    Scenario: I can navigate to the appointment management page
+    Scenario: as a supervisor I can only see some features if the complaint is assigned to someone else
         Given I am on "/plainte/recapitulatif/91"
+        Then I should see "Récapitulatif"
+        Then I should see "M'attribuer"
+        And I should not see "Gestion de RDV"
+        And I should not see "Rejeter"
+
+    @func
+    Scenario: I can navigate to the appointment management page
+        Given I am on "/plainte/recapitulatif/101"
         When I follow "Gestion de RDV"
-        Then I should be on "/plainte/rendez-vous/91"
+        Then I should be on "/plainte/rendez-vous/101"
         And the response status code should be 200
         And I should see the key "pel.appointment.management" translated
         And I should see the key "pel.declarant" translated

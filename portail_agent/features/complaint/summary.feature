@@ -52,7 +52,6 @@ Feature:
         And I should see 26 "button" element
         And I should see the key "pel.assign.declaration.to" translated
         And I should not see the key "pel.send.to.lrp" translated
-        And I should not see the key "pel.reject" translated
         # PEL-987:Hide redirection for experimentation phase
         #And I should not see the key "pel.unit.reassign" translated
         And I should see the key "pel.comment" translated
@@ -61,7 +60,6 @@ Feature:
         And I should see the key "pel.description.of.facts" translated
         And I should see the key "pel.objects.description" translated
         And I should see the key "pel.additional.informations" translated
-        And I should see the key "pel.appointment.management" translated
         And I should see the key "pel.complaint.online" translated
         And I should see the key "pel.portal" translated
         And I should see "Brigade territoriale autonome de Cestas"
