@@ -125,8 +125,8 @@ class CivilStateType extends AbstractType
                     new NotBlank(),
                 ],
                 'label' => 'pel.nationality',
-                'preferred_choices' => [$this->frenchNationalityCode],
-                'empty_data' => $this->frenchNationalityCode,
+                'data' => $this->frenchNationalityCode,
+                'placeholder' => '',
                 'attr' => [
                     'data-live-id' => 'nationality-'.microtime(),
                     'aria-hidden' => 'true',

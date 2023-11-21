@@ -30,9 +30,9 @@ class ContactInformationType extends AbstractType
     public function __construct(
         private readonly EventSubscriberInterface $addAddressSubscriber,
         private readonly SessionHandler $sessionHandler,
-        private readonly int $franceCode,
         private readonly PhoneNumberUtil $phoneUtil,
         private readonly MobileValidator $mobileValidator,
+        private readonly string $franceCode
     ) {
     }
 
@@ -50,8 +50,8 @@ class ContactInformationType extends AbstractType
                     'data-controller' => 'tom-select-extend',
                 ],
                 'label' => 'pel.address.country',
-                'preferred_choices' => [$this->franceCode],
-                'empty_data' => $this->franceCode,
+                'placeholder' => '',
+                'data' => $this->franceCode,
             ])
             ->add('email', EmailType::class, [
                 'attr' => [

@@ -26,8 +26,8 @@ class CorporationType extends AbstractType
 
     public function __construct(
         private readonly EventSubscriberInterface $addAddressSubscriber,
-        private readonly string $franceCode,
         private readonly string $frenchNationalityCode,
+        private readonly string $franceCode,
     ) {
     }
 
@@ -75,8 +75,8 @@ class CorporationType extends AbstractType
                     'data-controller' => 'tom-select-extend',
                 ],
                 'label' => 'pel.nationality',
-                'preferred_choices' => [$this->frenchNationalityCode],
-                'empty_data' => $this->frenchNationalityCode,
+                'data' => $this->frenchNationalityCode,
+                'placeholder' => '',
             ])
             ->add('email', EmailType::class, [
                 'attr' => [
@@ -101,8 +101,8 @@ class CorporationType extends AbstractType
                     'data-live-id' => 'corporation-country-'.microtime(),
                 ],
                 'label' => 'pel.address.country',
-                'preferred_choices' => [$this->franceCode],
-                'empty_data' => $this->franceCode,
+                'placeholder' => '',
+                'data' => $this->franceCode,
                 'constraints' => [
                     new NotBlank(),
                 ],

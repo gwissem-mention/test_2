@@ -34,15 +34,13 @@ class LocationType extends AbstractType
             ->add('country', CountryAutocompleteType::class, [
                 'attr' => [
                     'data-controller' => 'form tom-select-extend',
-                    'data-action' => 'form#removeFrenchTown',
                     'data-live-id' => 'country-'.microtime(),
                     'aria-hidden' => 'true',
                 ],
                 'label' => $options['country_label'],
-                'preferred_choices' => [$this->franceCode],
-                'empty_data' => null === $locationModel?->getCountry() ?
-                    $this->franceCode :
-                    $locationModel->getCountry(),
+                'empty_data' => null === $locationModel?->getCountry() ? '' : $locationModel->getCountry(),
+                'placeholder' => '',
+                'data' => $this->franceCode,
             ])
             ->addEventListener(
                 FormEvents::PRE_SET_DATA,
