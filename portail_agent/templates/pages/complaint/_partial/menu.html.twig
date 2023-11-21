@@ -1,18 +1,42 @@
 <div class="p-lg-4">
-    <a href="{{ path('complaint_summary', {'id': complaint.id}) }}" class="fr-btn fr-btn--icon-left fr-icon-article-line mb-3 w-100 text-white reset-link">{{ 'pel.summary'|trans }}</a>
-    {% if workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_ASSIGN')) %}
-        <button type="button" class="fr-btn fr-btn--icon-left fr-icon-user-add-line mb-3 w-100" id="complaint-reassign-button" data-bs-toggle="modal" data-bs-target="#modal-complaint-assign" title="{{ (complaint.assignedTo is not null ? 'pel.click.here.to.reassign.the.declaration.to.an.agent': 'pel.click.here.to.assign.the.declaration.to.an.agent')|trans }}" id="complaint-assign-button">{{ (complaint.assignedTo is not null ? 'pel.reassign.declaration.to':'pel.assign.declaration.to')|trans }}</button>
+    <a href="{{ path('complaint_summary', {'id': complaint.id}) }}"
+       class="fr-btn fr-btn--icon-left fr-icon-article-line mb-3 w-100 text-white reset-link">{{ 'pel.summary'|trans }}</a>
+
+    {% if workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_ASSIGN')) and
+        (app.user is same as complaint.assignedTo or (is_granted('ROLE_SUPERVISOR') and not is_granted('ROLE_DELEGATED'))) %}
+        <button type="button" class="fr-btn fr-btn--icon-left fr-icon-user-add-line mb-3 w-100"
+                id="complaint-reassign-button" data-bs-toggle="modal" data-bs-target="#modal-complaint-assign"
+                title="{{ (complaint.assignedTo is not null ? 'pel.click.here.to.reassign.the.declaration.to.an.agent': 'pel.click.here.to.assign.the.declaration.to.an.agent')|trans }}"
+                id="complaint-assign-button">{{ (complaint.assignedTo is not null ? 'pel.reassign.declaration.to':'pel.assign.declaration.to')|trans }}</button>
     {% endif %}
-    {% if workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_SEND_TO_LRP')) %}
-        <button type="button" class="fr-btn fr-btn--icon-left fr-icon-success-line mb-3 w-100" data-bs-toggle="modal" data-bs-target="#modal-complaint-send-to-lrp" title="{{ 'pel.click.here.to.send.this.declaration.to.lrp'|trans }}" id="complaint-send-to-lrp-button">{{ 'pel.validate'|trans }}</button>
+
+    {% if workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_SEND_TO_LRP')) and
+        (app.user is same as complaint.assignedTo) %}
+        <button type="button" class="fr-btn fr-btn--icon-left fr-icon-success-line mb-3 w-100"
+                data-bs-toggle="modal" data-bs-target="#modal-complaint-send-to-lrp"
+                title="{{ 'pel.click.here.to.send.this.declaration.to.lrp'|trans }}"
+                id="complaint-send-to-lrp-button">{{ 'pel.validate'|trans }}</button>
     {% elseif workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_CLOSE_AFTER_APPOINTMENT')) %}
-        <button type="button" class="fr-btn fr-btn--icon-left fr-icon-checkbox-fill mb-3 w-100" data-bs-toggle="modal" data-bs-target="#modal-complaint-close-after-appointment" title="{{ 'pel.click.here.to.close.the.complaint.after.the.appointment'|trans }}" id="complaint-close-after-appointment-button">{{ 'pel.close.declaration'|trans }}</button>
-    {% elseif workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_CLOSE_AFTER_SENDING_THE_REPORT')) %}
-        <button type="button" class="fr-btn fr-btn--icon-left fr-icon-checkbox-fill mb-3 w-100" data-bs-toggle="modal" data-bs-target="#modal-complaint-send-report-to-victim" title="{{ 'pel.click.here.to.send.the.report.to.the.victim.and.close'|trans }}" id="complaint-send-report-to-victim-button">{{ 'pel.close.declaration'|trans }}</button>
+        <button type="button" class="fr-btn fr-btn--icon-left fr-icon-checkbox-fill mb-3 w-100" data-bs-toggle="modal"
+                data-bs-target="#modal-complaint-close-after-appointment"
+                title="{{ 'pel.click.here.to.close.the.complaint.after.the.appointment'|trans }}"
+                id="complaint-close-after-appointment-button">{{ 'pel.close.declaration'|trans }}</button>
+    {% elseif workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_CLOSE_AFTER_SENDING_THE_REPORT')) and
+        (app.user is same as complaint.assignedTo) %}
+        <button type="button" class="fr-btn fr-btn--icon-left fr-icon-checkbox-fill mb-3 w-100"
+                data-bs-toggle="modal" data-bs-target="#modal-complaint-send-report-to-victim"
+                title="{{ 'pel.click.here.to.send.the.report.to.the.victim.and.close'|trans }}"
+                id="complaint-send-report-to-victim-button">{{ 'pel.close.declaration'|trans }}</button>
     {% endif %}
-    {% if workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_REJECT')) %}
-        <button type="button" class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-close-line mb-3 w-100" data-bs-toggle="modal" data-bs-target="#modal-complaint-reject" title="{{ 'pel.you.will.reject.the.declaration'|trans }}" id="complaint-reject-button">{{ 'pel.reject'|trans }}</button>
+
+    {% if workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_REJECT')) and
+        (app.user is same as complaint.assignedTo) %}
+        <button type="button" class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-close-line mb-3 w-100"
+                data-bs-toggle="modal" data-bs-target="#modal-complaint-reject"
+                title="{{ 'pel.you.will.reject.the.declaration'|trans }}"
+                id="complaint-reject-button">{{ 'pel.reject'|trans }}</button>
     {% endif %}
+
     {# PEL-987:Hide redirection for experimentation phase #}
     {# {% if workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_ASK_UNIT_REDIRECTION') ) %}
         <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modal-complaint-unit-reassign" id="complaint-unit-reassign-button">
@@ -26,8 +50,16 @@
             {% endif %}
         </button>
     {% endif %} #}
+
     {% if workflow_can(complaint, constant('App\\Complaint\\ComplaintWorkflowManager::TRANSITION_SELF_ASSIGN')) %}
-        <button type="button" class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-user-line mb-3 w-100" title="{{ 'pel.click.here.to.self.assign.the.declaration'|trans }}" id="complaint-self-assign-button" data-action="complaint#selfAssign" data-complaint-url-param="{{ path('complaint_self_assign', {'id':complaint.id}) }}">{{ 'pel.self.assign.the.declaration'|trans }}</button>
+        <button type="button" class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-user-line mb-3 w-100"
+                title="{{ 'pel.click.here.to.self.assign.the.declaration'|trans }}" id="complaint-self-assign-button"
+                data-action="complaint#selfAssign"
+                data-complaint-url-param="{{ path('complaint_self_assign', {'id':complaint.id}) }}">{{ 'pel.self.assign.the.declaration'|trans }}</button>
     {% endif %}
-    <a href="{{ path('complaint_appointment', {'id': complaint.id}) }}" class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-calendar-2-fill mb-3 w-100 text-blue reset-link">{{ 'pel.appointment.management'|trans }}</a>
+
+    {% if app.user is same as complaint.assignedTo %}
+        <a href="{{ path('complaint_appointment', {'id': complaint.id}) }}"
+           class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-calendar-2-fill mb-3 w-100 text-blue reset-link">{{ 'pel.appointment.management'|trans }}</a>
+    {% endif %}
 </div>
