@@ -998,6 +998,10 @@
                 <source>pel.header.baseline</source>
                 <target>Portail officiel de déclaration de plainte pour des faits d’atteinte aux biens</target>
             </trans-unit>
+            <trans-unit id="pel.header.badge">
+                <source>pel.header.badge</source>
+                <target>Expérimentation</target>
+            </trans-unit>
             <trans-unit id="pel.header.menu">
                 <source>pel.header.menu</source>
                 <target>Menu</target>
@@ -1005,6 +1009,10 @@
             <trans-unit id="pel.header.help">
                 <source>pel.header.help</source>
                 <target>Centre d’aide</target>
+            </trans-unit>
+            <trans-unit id="pel.header.help.enhance">
+                <source>pel.header.help.enhance</source>
+                <target>Aidez nous à améliorer ce service</target>
             </trans-unit>
             <trans-unit id="pel.health.insurance.card">
                 <source>pel.health.insurance.card</source>
