@@ -550,6 +550,10 @@
                 <source>pel.home.title</source>
                 <target>Accéder à la gestion des déclarations</target>
             </trans-unit>
+            <trans-unit id="pel.hour.before.now">
+                <source>pel.hour.before.now</source>
+                <target>L'heure saisie est antérieur à l'heure actuelle</target>
+            </trans-unit>
             <trans-unit id="pel.hour.h">
                 <source>pel.hour.h</source>
                 <target>h</target>

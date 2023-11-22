@@ -77,6 +77,7 @@ class AppointmentValidationController extends AbstractController
                 [
                     'appointment_form' => $form->createView(),
                     'complaint' => $complaint,
+                    'is_appointment_planned' => false,
                 ]
             ),
         ], 422);

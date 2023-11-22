@@ -53,9 +53,18 @@ Feature:
     @javascript
     Scenario: I can see form errors if the date is before today
         Given I am on "/plainte/rendez-vous/91"
-        When I fill hidden field "appointment_appointmentDate" with "2023-01-01"
+        When I select a date on "appointment_appointmentDate" Flatpickr element with "2023-01-01"
         And I fill in "appointment_appointmentTime" with "10:00am"
         And I press "appointment-confirm-button"
+        And I should see a ".fr-error-text" element
+
+    @javascript
+    Scenario: I can see form errors if the date is today and the time is before now
+        Given I am on "/plainte/rendez-vous/91"
+        When I select a date on "appointment_appointmentDate" Flatpickr element with "today"
+        And I fill in "appointment_appointmentTime" with "01:01am"
+        And I press "appointment-confirm-button"
+        And I should see a ".fr-error-text" element
 
     @javascript
     Scenario: I can submit the appointment form successfully
@@ -63,8 +72,6 @@ Feature:
         When I fill hidden field "appointment_appointmentDate" with "2025-01-01"
         And I fill in "appointment_appointmentTime" with "10:00am"
         And I press "appointment-confirm-button"
-        Then the "#appointment_appointmentDate" element should be disabled
-        Then the "#appointment_appointmentTime" element should be disabled
         When I am on homepage
         Then I should see "01/01/2025"
 
@@ -77,10 +84,7 @@ Feature:
     @javascript
     Scenario: If there is an appointment planned, I can modify it
         Given I am on "/plainte/rendez-vous/101"
-        And the "#appointment-modify-button" element should not be disabled
         When I press "Modifier RDV"
-        Then the "#appointment_appointmentDate" element should not be disabled
-        And the "#appointment_appointmentTime" element should not be disabled
         When I fill hidden field "appointment_appointmentDate" with "2025-01-06"
         And I fill in "appointment_appointmentTime" with "11:00am"
         And I press "appointment-confirm-button"
@@ -91,7 +95,6 @@ Feature:
     @javascript
     Scenario: If there is an appointment planned, I can open and close the cancellation modal
         Given I am on "/plainte/rendez-vous/102"
-        And the "#appointment-cancel-button" element should not be disabled
         When I press "appointment-cancel-button"
         Then I should see a ".modal[aria-modal=true]" element
         When I press "Conserver le rendez-vous"
@@ -100,12 +103,9 @@ Feature:
     @javascript
     Scenario: If there is an appointment planned, I can cancel it
         Given I am on "/plainte/rendez-vous/102"
-        And the "#appointment-cancel-button" element should not be disabled
         When I press "appointment-cancel-button"
         Then I should see a ".modal[aria-modal=true]" element
         When I press "Confirmer l'annulation"
         Then I should not see a ".modal[aria-modal=true]" element
-        And the "#appointment_appointmentDate" element should not be disabled
-        And the "#appointment_appointmentTime" element should not be disabled
         When I am on homepage
         Then I should not see "06/01/2025"
