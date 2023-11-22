@@ -49,20 +49,11 @@ spec:
                 secretKeyRef:
                   name: pg-secret
                   key: uri
-            - name: REFERENTIALS_REDIS_URL
+            - name: REDIS_DSN
               valueFrom:
                 secretKeyRef:
                   name: redis-secret
                   key: uri
-            - name: REDIS_HOST
-              value: "{{ .Values.php.app.redis_host }}"
-            - name: REDIS_PORT
-              value: "{{ .Values.php.app.redis_port }}"
-            - name: REDIS_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: redis-secret
-                  key: password 
             # OODRIVE  
             - name: OODRIVE_BASE_URI
               valueFrom:

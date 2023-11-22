@@ -39,7 +39,7 @@ services:
     restart: unless-stopped
     depends_on:
       - database-citoyen
-      - redis
+      - redis-sentinel-1
     volumes:
       - citoyen-public:/srv/citoyen/public:rw
       - ./portail_citoyen/public/index.php:/srv/citoyen/public/index.php:ro
@@ -67,7 +67,7 @@ services:
     depends_on:
       - database-agent
       - database-ppel
-      - redis
+      - redis-agent
     volumes:
       - agent-public:/srv/agent/public:ro
       - ./portail_agent/var:/srv/agent/var
@@ -105,6 +105,8 @@ services:
       - ./portail_citoyen:/srv/citoyen
       - citoyen-public:/srv/citoyen/public:rw
     working_dir: /srv/citoyen
+    ports:
+      - "8089:8089"
 
   node-agent:
     image: node:16
@@ -148,7 +150,47 @@ services:
   
   ###< doctrine/doctrine-bundle ###
 
-  redis:
+  redis-master-1:
+    image: bitnami/redis:latest
+    environment:
+      - REDIS_REPLICATION_MODE=master
+      - REDIS_PASSWORD=mymasterpassword
+    ports:
+      - '6379:6379'
+  
+  redis-slave-1-1:
+    image: bitnami/redis:latest
+    environment:
+      - REDIS_REPLICATION_MODE=slave
+      - REDIS_MASTER_HOST=redis-master-1
+      - REDIS_MASTER_PASSWORD=mymasterpassword
+      - REDIS_PASSWORD=myslavepassword1
+    ports:
+      - '6380:6379'
+    
+  redis-slave-1-2:
+    image: bitnami/redis:latest
+    environment:
+      - REDIS_REPLICATION_MODE=slave
+      - REDIS_MASTER_HOST=redis-master-1
+      - REDIS_MASTER_PASSWORD=mymasterpassword
+      - REDIS_PASSWORD=myslavepassword2
+    ports:
+      - '6381:6379'
+
+  redis-sentinel-1:
+    image: bitnami/redis-sentinel:latest
+    environment:
+      - REDIS_MASTER_HOST=redis-master-1
+      - REDIS_SENTINEL_QUORUM=2
+      - REDIS_MASTER_PASSWORD=mymasterpassword
+      - REDIS_SENTINEL_PASSWORD=mymasterpassword
+    depends_on:
+      - redis-master-1
+      - redis-slave-1-1
+      - redis-slave-1-2
+
+  redis-agent:
     image: redis:5.0.14
 
 volumes:

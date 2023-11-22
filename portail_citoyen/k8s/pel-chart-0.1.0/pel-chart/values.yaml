@@ -13,7 +13,7 @@ nginx:
   image:
     repository: registry.pel.pp.fsi.interieur.gouv.fr/library/plainte-en-ligne-nginx
     pullPolicy: IfNotPresent
-    tag: "0.0.11"
+    tag: "0.0.15"
   service:
     type: ClusterIP
     port: 80
@@ -45,7 +45,7 @@ php:
   image:
     repository: registry.pel.pp.fsi.interieur.gouv.fr/library/plainte-en-ligne-php
     pullPolicy: IfNotPresent
-    tag: "0.0.11"
+    tag: "0.0.15"
   service:
     type: ClusterIP
     port: 9000
@@ -75,8 +75,6 @@ php:
     env: "prod"
     debug: 0
     secret: "aab391ebe1d5b6a9e6e0eb6609b48a27"
-    redis_host: "pel-qual-redis-pel-qual-redis-headless.pel-qual-redis.svc.cluster.local"
-    redis_port: "6379"
     wkhtmltopdf_path: "/usr/local/bin/wkhtmltopdf"
     folder_rotation_count: "10"
     folder_rotation_treshold: "10"
