@@ -95,8 +95,6 @@ export default class ComplaintController extends Controller {
     ): void {
         const { id, disabled } = element;
 
-        this.toggleModifyAppointmentButton();
-
         // init flatpickr
         if (!disabled) {
             this.initFlatpickr(id);
@@ -484,6 +482,7 @@ export default class ComplaintController extends Controller {
                 });
         }
     }
+
     public modifyAppointment(): void {
         this.initFlatpickr(this.appointmentDateInputTarget.id);
 
@@ -504,12 +503,7 @@ export default class ComplaintController extends Controller {
         this.complaintAppointmentTimeTarget.classList.add("d-none");
         this.complaintAppointmentDateTarget.parentElement?.parentElement?.parentElement?.classList.add("fr-mt-md-9v");
     }
-    public toggleModifyAppointmentButton(): void {
-        if (this.appointmentDateInputTarget.value !== "" && this.appointmentTimeInputTarget.value !== "") {
-            this.appointmentDateInputTarget.setAttribute("disabled", "disabled");
-            this.appointmentTimeInputTarget.setAttribute("disabled", "disabled");
-        }
-    }
+
     private setSpinnerState(button: HTMLButtonElement): void {
         button.querySelector(".spinner-border")?.classList.toggle("d-none");
 

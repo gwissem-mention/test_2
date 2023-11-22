@@ -38,7 +38,7 @@
         <div class="col fr-pt-md-20v fr-pb-md-9v">
             <div class="row fr-pl-md-16v">
                 <div class="col-12">
-                    {% if complaint.appointmentDate is empty %}
+                    {% if is_appointment_planned is same as(false) %}
                         <p>{{ 'pel.enter.the.date.of.the.appointment.with.the.victim'|trans }}</p>
                     {% else %}
                         <p class="d-none" data-complaint-target="pelEnterTheDateOfTheAppointmentWithTheVictim">
@@ -54,7 +54,7 @@
                     {{ form_row(appointment_form.appointmentDate, {'attr': {'data-complaint-target': 'appointmentDateInput'}}) }}
                 </div>
                 <div class="col-12 d-flex flex-column">
-                    {% if complaint.appointmentTime is empty %}
+                    {% if is_appointment_planned is same as(false) %}
                         <p class="fr-mt-md-9v fr-mb-md-6v">{{ 'pel.enter.the.time.of.the.appointment.with.the.victim'|trans }}</p>
                         <div class="col-4">
                             {{ form_row(appointment_form.appointmentTime, {'attr': {'data-complaint-target': 'appointmentTimeInput'}}) }}
@@ -64,7 +64,7 @@
                             {{ 'pel.enter.the.time.of.the.appointment.with.the.victim'|trans }}
                         </p>
                         <p class="fr-text--lead fr-btn fr-background-default--grey fr-p-0 fr-text-title--blue-france fr-mb-md-32v" data-complaint-target="complaintAppointmentTime">
-                            <span class="text-uppercase">{{ 'pel.at'|trans }}</span>&nbsp;{{ complaint.appointmentTime|date('H' ~ '\\' ~ 'pel.hour.h'|trans|lower ~ 'i', app.user.timezone) }}</span>
+                            <span class="text-uppercase">{{ 'pel.at'|trans }}&nbsp;{{ complaint.appointmentTime|date('H' ~ '\\' ~ 'pel.hour.h'|trans|lower ~ 'i', app.user.timezone) }}</span>
                         </p>
                         <div class="col-4">
                             {{ form_row(appointment_form.appointmentTime, {'attr': {'data-complaint-target': 'appointmentTimeInput', 'class': 'd-none'}}) }}
@@ -72,7 +72,7 @@
                     {% endif %}
                 </div>
                 <div class="col-12 d-flex flex-wrap justify-content-end appointment-footer fr-mt-md-6v">
-                    {% if complaint.appointmentDate is empty %}
+                    {% if is_appointment_planned is same as(false)%}
                         <button type="button"
                             id="appointment-confirm-button"
                             class="fr-btn fr-mt-md-4v"
@@ -97,7 +97,6 @@
                                 data-bs-toggle="modal"
                                 data-bs-target="#modal-complaint-cancel-appointment"
                                 data-complaint-target="cancelAppointmentButton"
-                                {{ isAppointmentPlanned ? '' : 'disabled'}}
                         >
                             {{ 'pel.appointment.cancel'|trans }}
                         </button>
@@ -107,7 +106,6 @@
                                 data-action="complaint#modifyAppointment"
                                 data-complaint-target="modifyAppointmentButton"
                                 data-complaint-modify-appointment-action-value="modify"
-                            {{ isAppointmentPlanned ? '' : 'disabled'}}
                         >
                             {{ 'pel.appointment.modify'|trans }}
                         </button>

@@ -186,6 +186,30 @@ final class BaseContext extends MinkContext
         });
     }
 
+    /**
+     * @When /^I select a date on "([^"]*)" Flatpickr element with "([^"]*)"$/
+     */
+    public function iSelectADateOnFlatPickr(string $flatpickr, string $date): void
+    {
+        if ('today' === $date) {
+            $date = (new \DateTimeImmutable())->format('Y-m-d');
+        }
+
+        $this->retryStep(function () use ($flatpickr, $date) {
+            $page = $this->getSession()->getPage();
+            $element = $page->find('css', '#'.$flatpickr);
+
+            if (null === $element) {
+                throw new ExpectationException('element empty', $this->getSession()->getDriver());
+            }
+
+            $changeDate = "document.getElementById('$flatpickr')._flatpickr.setDate(['$date'])";
+            $triggerChangeEvent = "document.getElementById('$flatpickr').dispatchEvent(new Event('change', { 'bubbles': true }))";
+            $this->getSession()->executeScript($changeDate);
+            $this->getSession()->executeScript($triggerChangeEvent);
+        });
+    }
+
     public function selectOption(mixed $select, mixed $option): void
     {
         $this->retryStep(function () use ($select, $option) {
