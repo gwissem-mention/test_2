@@ -159,7 +159,7 @@ logs:
 
 ## Start containers
 start:
-	@$(DOCKER_COMP) $(DOCKER_COMP_FILES) up -d
+	@$(DOCKER_COMP) $(DOCKER_COMP_FILES) up --scale redis-sentinel-1=3 -d
 
 ## Stop containers
 stop:

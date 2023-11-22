@@ -51,14 +51,12 @@ services:
             - '../src/Kernel.php'
     
     Redis:
-        class: Redis
-        calls:
-            -   connect:
-                    - '%env(REDIS_HOST)%'
-                    - '%env(int:REDIS_PORT)%'
-            - auth:
-                    - '%env(REDIS_PASSWORD)%'
-    
+        factory: [ 'Symfony\Component\Cache\Adapter\RedisAdapter', 'createConnection' ]
+        class: \Redis
+        lazy: true
+        arguments:
+            - '%env(REDIS_DSN)%'
+
     Symfony\Component\HttpFoundation\Session\Storage\Handler\RedisSessionHandler:
         arguments:
             - '@Redis'

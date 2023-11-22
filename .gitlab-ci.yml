@@ -558,8 +558,15 @@ citoyen-e2e:
             alias: database-e2e-citoyen
         -   name: selenium/standalone-chrome:4.5.3
             alias: chrome-citoyen
-        -   name: redis:5.0.14
+        -   name: bitnami/redis:latest
             alias: redis
+            variables: 
+                REDIS_REPLICATION_MODE: "master"
+                ALLOW_EMPTY_PASSWORD: "yes"
+        -   name: bitnami/redis-sentinel:latest
+            alias: redis-sentinel
+            variables: 
+                REDIS_MASTER_HOST: "redis"
 
 citoyen-complaint-1-e2e:
     <<: *citoyen-step
@@ -594,8 +601,15 @@ citoyen-complaint-1-e2e:
             alias: database-e2e-citoyen
         -   name: selenium/standalone-chrome:4.5.3
             alias: chrome
-        -   name: redis:5.0.14
+        -   name: bitnami/redis:latest
             alias: redis
+            variables:
+                REDIS_REPLICATION_MODE: "master"
+                ALLOW_EMPTY_PASSWORD: "yes"
+        -   name: bitnami/redis-sentinel:latest
+            alias: redis-sentinel
+            variables:
+                REDIS_MASTER_HOST: "redis"
             
 citoyen-complaint-2-e2e:
     <<: *citoyen-step
@@ -630,8 +644,15 @@ citoyen-complaint-2-e2e:
             alias: database-e2e-citoyen
         -   name: selenium/standalone-chrome:4.5.3
             alias: chrome
-        -   name: redis:5.0.14
-            alias: redis            
+        -   name: bitnami/redis:latest
+            alias: redis
+            variables:
+                REDIS_REPLICATION_MODE: "master"
+                ALLOW_EMPTY_PASSWORD: "yes"
+        -   name: bitnami/redis-sentinel:latest
+            alias: redis-sentinel
+            variables:
+                REDIS_MASTER_HOST: "redis"    
 
 citoyen-complete-workflow-e2e:
     <<: *citoyen-step
@@ -666,8 +687,15 @@ citoyen-complete-workflow-e2e:
             alias: database-e2e-citoyen
         -   name: selenium/standalone-chrome:4.5.3
             alias: chrome
-        -   name: redis:5.0.14
+        -   name: bitnami/redis:latest
             alias: redis
+            variables:
+                REDIS_REPLICATION_MODE: "master"
+                ALLOW_EMPTY_PASSWORD: "yes"
+        -   name: bitnami/redis-sentinel:latest
+            alias: redis-sentinel
+            variables:
+                REDIS_MASTER_HOST: "redis"
 
 citoyen-flaky-e2e:
     <<: *citoyen-step
@@ -702,8 +730,15 @@ citoyen-flaky-e2e:
             alias: database-e2e-citoyen
         -   name: selenium/standalone-chrome:4.5.3
             alias: chrome
-        -   name: redis:5.0.14
+        -   name: bitnami/redis:latest
             alias: redis
+            variables:
+                REDIS_REPLICATION_MODE: "master"
+                ALLOW_EMPTY_PASSWORD: "yes"
+        -   name: bitnami/redis-sentinel:latest
+            alias: redis-sentinel
+            variables:
+                REDIS_MASTER_HOST: "redis"
 
 agent-e2e:
     <<: *agent-step
